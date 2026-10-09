@@ -1,0 +1,371 @@
+% ch2_b 第2章 §2.1续 (书页 25–35 / p040–p050)
+
+上面的差分方程可以用拟设 $\operatorname{Det}(M_N)=a\mathrm{e}^{nu}+b\mathrm{e}^{-nu}$ 求解。我们得到
+\begin{equation*}
+\operatorname{Det}(M_N)=\frac{\sinh((N+1)u)}{\sinh(u)}
+\end{equation*}
+当 $u=0$ 时，有
+\begin{equation*}
+\operatorname{Det}(M_N)=N+1
+\end{equation*}
+这意味着 $\operatorname{Det}(M)=\left(\frac{m}{2\Delta t}\right)^{N-1}N$。把所有这些结果放到一起，我们得到
+\begin{equation*}
+G(x_b,t_b,x_a,t_a)=\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\mathrm{e}^{\mathrm{i}S_c(x_b,t_b,x_a,t_a)}
+\end{equation*}
+这正是自由粒子的量子传播子。
+
+对于在 $x$ 和 $\dot{x}$ 上为二次的作用量，路径积分可以精确求值。最一般的二次型作用量具有形式
+\begin{equation*}
+L=\frac{1}{2}m\dot{x}^2-bx-\frac{1}{2}m\omega^2x^2
+\end{equation*}
+容易验证，$G$ 由式 (2.1.18) 给出，其中
+\begin{equation*}
+A(t)=-\mathrm{i}\left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2}\int \mathcal{D}[x(t')]\exp\left(\mathrm{i}\int_0^t\mathrm{d}t'\,\left[\frac{1}{2}m\delta\dot{x}^2-\frac{1}{2}m\omega^2\delta x^2\right]\right)
+\end{equation*}
+其中 $\delta x(0)=\delta x(t)=0$。上述路径积分可以用 $\operatorname{Det}(M_N)$ 的公式来计算，得到
+\begin{equation*}
+\mathrm{i}A(t)=\left(\frac{m\omega}{2\pi\mathrm{i}\sin(t\omega)}\right)^{1/2}\tag{2.1.19}
+\end{equation*}
+
+\subsection*{问题 2.1.5}
+
+考虑一维粒子受恒力 $f$（势为 $V(x)=-fx$）。证明其传播子为
+\begin{equation*}
+\mathrm{i}G(x_b,t,x_a,0)=\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\exp\left[\mathrm{i}\left(\frac{m(x_b-x_a)^2}{2t}+\frac{1}{2}ft(x_b+x_a)-\frac{f^2t^3}{24m}\right)\right]
+\end{equation*}
+
+\subsection*{问题 2.1.6}
+
+证明谐振子的传播子具有形式
+\begin{equation*}
+G(x_b,t,x_a,0)=A(t)\exp\left(\frac{\mathrm{i}m\omega_0}{2\sin(t\omega_0)}\left[(x_b^2+x_a^2)\cos(\omega_0 t)-2x_bx_a\right]\right)
+\end{equation*}
+并利用归一化条件或路径积分证明
+\begin{equation*}
+A(t)=\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin(t\omega_0)}\right)^{1/2}\mathrm{e}^{\mathrm{i}\phi(t)}
+\end{equation*}
+
+\subsection*{问题 2.1.7}
+
+用虚时路径积分计算自由粒子在虚时中的传播子。施行适当的解析延拓，恢复出实时传播子。
+
+\subsection*{问题 2.1.8}
+
+用虚时路径积分计算谐振子在虚时中的传播子 $\mathcal{G}(0,0,\tau)$。由 $\tau\to\infty$ 极限下 $\mathcal{G}(0,0,\tau)$ 的衰减，求出基态能量。
+
+\section{线性响应与关联函数}
+
+\begin{keypoints}
+\item 线性响应（如响应率）易于测量。它们是使我们得以观察并研究物质性质的窗口。
+\end{keypoints}
+
+对实验学家而言，每一个物理系统都是一个黑箱。为了探查一个物理系统的性质，实验学家扰动这个系统并观察它如何响应。虽然谁也没有见过氢原子的内部，我们却是这样了解氢原子内部结构的：我们敲击原子（即用光、电子或原子束去激发它），然后聆听它如何鸣响（即观察受激原子的发射光谱）。由于大多数微扰都很弱，实验学家通常观察到的是线性响应，即响应与微扰成正比。测量线性响应的实验有很多类型，例如弹性、磁化率、电导等的测量。中子散射、核磁共振、X 射线衍射等也都测量系统的线性响应。因此，要为一个系统建立理论，从理论出发计算各种线性响应是十分重要的，因为这些结果通常是最容易用实验检验的。本节我们将考虑一个非常简单系统的线性响应。通过这项研究，我们将得到线性响应的一般理论。
+
+实验在任何理论中都非常重要，而且是唯一真正要紧的东西。事实上，每一项理论研究的目标都是理解其实验后果。不过，本书不会太多地讨论实验，而是会大量讨论线性响应，或更一般地，关联函数。由于实验与关联函数之间的密切关系，我们将把关联函数视为我们的“实验结果”。本书的讨论正是围绕这些“实验结果”展开的。当我们讨论一个模型时，讨论的目的就是理解并计算各种关联函数。在本书中，我们将把关联函数当作系统的物理性质。
+
+由以上讨论引出一个哲学问题：什么是实在？想象一个只能测量线性响应的世界。那么在那个世界里，线性响应就将代表全部实在，而物理理论也将是关于线性响应的理论。在我们的世界里，我们可以测量线性响应之外的东西；然而，看来我们也走不了太远。在我们的世界上所能测量的一切似乎都是关联函数。因此，很自然地可以把我们世界的物理理论定义为关于关联函数的理论，而关联函数或许就代表着我们世界的实在。
+
+这一点很重要，因为物理理论中的许多概念和构件并不代表实在。当新理论发展起来时，这些概念可能会改变。例如，点粒子（具有位置和速度）是牛顿经典理论的一个基本概念。我们曾经相信万物皆由粒子构成，粒子是实在的构件。量子理论发展起来之后，我们现在相信粒子并不代表实在；代表实在的是线性希尔伯特空间中的量子态。然而，量子态并不是我们能直接测量的东西。没有人能保证，当超越量子理论的新理论发展起来时，量子态的概念不会有与粒子概念同样的命运。（我希望读者同意我的看法：我们现有的任何物理理论都不是终极正确的，都不代表最终的真理。）
+
+物理学是一门测量的科学。遗憾的是，物理理论通常包含许多不代表实在的东西（例如牛顿经典力学中粒子的概念）。完全不同的两种理论（甚至可能基于不同的概念）却可以描写同一个实在。因此，透过理论中形式体系和虚假概念的烟幕，始终盯住实在（如关联函数和可测量量）是非常重要的。把这种思路推向极端，我们可以把量子态和量子算符当作非实在的对象，把它们仅仅看作用来计算可在实验中测量的关联函数的数学工具。
+
+\subsection{线性响应与响应函数}
+
+\begin{keypoints}
+\item 线性响应可以由相应算符的一类关联函数——响应函数——计算出来。
+\end{keypoints}
+
+为理解线性响应理论的一般结构，让我们先研究一个简单量子系统——谐振子的极化——的线性响应：
+\begin{equation*}
+H_0=\frac{p^2}{2m}+\frac{1}{2}m\omega_0^2x^2.
+\end{equation*}
+电场 $\mathcal{E}$ 与偶极算符 $ex$ 耦合：
+\begin{equation*}
+H_1=-ex\mathcal{E}
+\end{equation*}
+感生偶极矩为
+\begin{equation*}
+d=\langle\psi|ex|\psi\rangle
+\end{equation*}
+其中 $|\psi\rangle$ 是 $H_0+H_1$ 的基态。准确到微扰论的一阶，
+\begin{equation*}
+|\psi\rangle=|0\rangle+\sum_{n=1,2,\dots}|n\rangle\frac{\langle n|H_1|0\rangle}{E_0-E_n}
+\end{equation*}
+于是我们有
+\begin{equation*}
+d=-2\mathcal{E}\sum_{n=1,2,\dots}\frac{\langle 0|ex|n\rangle\langle n|ex|0\rangle}{E_0-E_n}=2e^2\frac{\langle 0|x^2|0\rangle}{\omega_0}\mathcal{E}\tag{2.2.1}
+\end{equation*}
+
+响应率 $\chi$ 由 $\chi=2e^2\frac{\langle 0|x^2|0\rangle}{\omega_0}$ 给出。
+
+上述结果可以用关联函数来表达。为理解线性响应与关联函数之间的一般关系，我们考虑一个由 $H_0$ 描写的一般量子系统。我们缓慢地开启再关闭微扰，并用含时微扰论计算线性响应。
+
+计入含时微扰 $f(t)O_1$ 之后，总哈密顿量为
+\begin{equation*}
+H(t)=H_0+f(t)O_1
+\end{equation*}
+我们假设微扰在有限时刻开启，也就是说，在起始时刻 $t_{start}$ 之前 $f(t)=0$。为得到 $H_0$ 的本征态 $|\psi_n\rangle$ 在微扰 $f(t)O_1$ 下的响应，我们从 $t=t_{-\infty}=-\infty$ 时的 $|\psi_n\rangle$ 出发。在有限时刻，态 $|\psi_n\rangle$ 演化为
+\begin{equation*}
+|\psi_n(t)\rangle=T\left(\mathrm{e}^{-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,H(t)}\right)|\psi_n\rangle\tag{2.2.2}
+\end{equation*}
+其中 $T(\dots)$ 是编时算符：
+\begin{equation*}
+T(O(t_1)O(t_2))=\left\{\begin{array}{ll}
+O(t_1)O(t_2), & \text{若 } t_1>t_2\\
+O(t_2)O(t_1), & \text{若 } t_2>t_1
+\end{array}\right.
+\end{equation*}
+我们可以把 $|\psi_n(t)\rangle$ 按 $O_1$ 展开到一阶：
+\begin{equation*}
+|\psi_n(t)\rangle=\mathrm{e}^{-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,H_0}|\psi_n\rangle+\delta|\psi_n(t)\rangle,
+\end{equation*}
+（译注：原文此式右端首项为 $\mathrm{e}^{-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,H_0}|\psi_n(t)\rangle$，按物理意义应为 $|\psi_n\rangle$，疑为排印之误。）其中
+\begin{equation*}
+\begin{aligned}
+\delta|\psi_n(t)\rangle&=-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,f(t')\mathrm{e}^{-\mathrm{i}H_0(t-t')}O_1\mathrm{e}^{-\mathrm{i}H_0(t'-t_{-\infty})}|\psi_n\rangle\\
+&=-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,f(t')\mathrm{e}^{-\mathrm{i}H_0(t-t_{-\infty})}O_1(t')|\psi_n\rangle
+\end{aligned}
+\end{equation*}
+上面我们引入了 $O_1(t)=\mathrm{e}^{\mathrm{i}H_0(t-t_{-\infty})}O_1\mathrm{e}^{-\mathrm{i}H_0(t-t_{-\infty})}$。为得到物理量 $O_2$ 因响应微扰 $f(t)O_1$ 而发生的变化，我们计算
+\begin{align*}
+&\ \langle\psi_n(t)|O_2|\psi_n(t)\rangle-\langle\psi_n|\mathrm{e}^{\mathrm{i}H_0(t-t_{-\infty})}O_2\mathrm{e}^{-\mathrm{i}H_0(t-t_{-\infty})}|\psi_n\rangle\\
+&\quad\equiv\delta\langle\psi_n(t)|O_2|\psi_n(t)\rangle\\
+&\quad=-\mathrm{i}\int_{-\infty}^{t}\mathrm{d}t'\,f(t')\langle\psi_n|[O_2(t),O_1(t')]|\psi_n\rangle+O(f^2)\\
+&\quad=\int_{-\infty}^{\infty}\mathrm{d}t'\,D(t,t')f(t')+O(f^2)\tag{2.2.3}
+\end{align*}
+其中 $D(t,t')$ 是响应函数，定义为
+\begin{equation*}
+D(t,t')=-\mathrm{i}\Theta(t-t')\langle\psi_n|[O_2(t),O_1(t')]|\psi_n\rangle\tag{2.2.4}
+\end{equation*}
+而
+\begin{equation*}
+\Theta(t)=\left\{\begin{array}{ll}
+1 & \text{当 } t>0\\
+0 & \text{当 } t<0
+\end{array}\right.
+\end{equation*}
+在零温下，应取 $|\psi_n\rangle$ 为基态，于是得到如下零温响应函数：
+\begin{equation*}
+D(t,t')=-\mathrm{i}\Theta(t-t')\langle\psi_0|[O_2(t),O_1(t')]|\psi_0\rangle\tag{2.2.5}
+\end{equation*}
+由于 $H_0$ 与 $t$ 无关，可以证明 $D(t,t')$ 只是 $t-t'$ 的函数。我们将把 $D(t,t')$ 写作 $D(t-t')$。基态的响应 $\delta\langle O_2\rangle$ 为
+\begin{equation*}
+\delta\langle O_2\rangle=\int_{-\infty}^{\infty}\mathrm{d}t'\,D(t-t')f(t')\tag{2.2.6}
+\end{equation*}
+为检验式 (2.2.6) 是否再现谐振子的结果 (2.2.1)，我们注意到 $-e\mathcal{E}$ 扮演 $f(t)$ 的角色，而且 $O_1=O_2=ex$。为了应用式 (2.2.6)，需要计算响应函数
+\begin{equation*}
+D(t-t')=-\mathrm{i}\Theta(t-t')\langle 0|[x(t),x(t')]|0\rangle=-2\langle 0|x^2|0\rangle\Theta(t-t')\sin(\omega(t-t'))\tag{2.2.7}
+\end{equation*}
+为从式 (2.2.6) 得到感生偶极矩，需要假设电场开启与关闭都很缓慢，即 $\mathcal{E}(t)=\mathcal{E}\mathrm{e}^{-0^+|t|}$。我们得到
+\begin{equation*}
+d=\int_{-\infty}^{\infty}\mathrm{d}t'\,e^2D(t-t')\mathrm{e}^{0^+t'}(-\mathcal{E})=-e^2D_{\omega=0}\mathcal{E}=\frac{2e^2\langle 0|x^2|0\rangle}{\omega_0}\mathcal{E}\tag{2.2.8}
+\end{equation*}
+其中 $D_\omega=\int\mathrm{d}t\,D(t)\mathrm{e}^{\mathrm{i}\omega t}$。
+
+我们看到，电偶极子对电场的线性响应与偶极算符 $ex$ 的关联相联系。事实上，所有其他线性响应都具有类似的结构。线性响应的系数可以由相应算符的关联函数算出。例如，电导可以由流算符的关联函数算出。
+
+\subsection{编时关联函数与路径积分}
+
+\begin{keypoints}
+\item 响应函数可以用编时关联函数表示。
+\item 编时关联函数可以通过路径积分计算。
+\end{keypoints}
+
+本节我们想讨论如何用路径积分计算响应函数。首先注意到，当 $t>t'$ 时，响应函数 $D(t,t')$ 含有两项 $\langle 0|O_2(t)O_1(t')|0\rangle$ 和 $\langle 0|O_1(t')O_2(t)|0\rangle$。第一项可以写为
+\begin{align*}
+\mathrm{i}G(t,t')&=\langle 0|O_2(t)O_1(t')|0\rangle\nonumber\\
+&=\langle 0|U^\dagger(t,-\infty)O_2(t)U(t,t')O_1(t')U(t',-\infty)|0\rangle\nonumber\\
+&=\frac{\langle 0|U^\dagger(\infty,t)O_2(t)U(t,t')O_1(t')U(t',-\infty)|0\rangle}{\langle 0|U^\dagger(\infty,-\infty)|0\rangle}\tag{2.2.9}
+\end{align*}
+其中 $U(t,t')$ 由 $\mathrm{e}^{-\mathrm{i}(t-t')H_0}$ 给出。
+
+我们知道，时间演化算符 $U(t,t')$ 可以用路径积分表示。但这还不够：要用路径积分计算 $G(t,t')$，我们还需要知道基态 $|0\rangle$。下面我们将讨论一个技巧，它使我们不必知道基态波函数 $|0\rangle$ 就能计算 $G(t,t')$。首先，我们想通过引入修改的演化算符
+\begin{equation*}
+U^\theta(t_b,t_a)\equiv\mathrm{e}^{-\mathrm{i}(t_b-t_a)H\mathrm{e}^{-\mathrm{i}\theta}}
+\end{equation*}
+把式 (2.2.9) 推广到复时间，其中 $\theta$ 是一个小正数（我们已假定 $t_b-t_a>0$）。注意，当 $t_b-t_a$ 大时，只有基态 $|0\rangle$ 对 $\langle\psi|U^\theta(t_b,t_a)|\psi\rangle$ 有贡献，这里 $|\psi\rangle$ 是任意态。这样，算符 $U^\theta(t_b,t_a)$ 就实现了向基态的投影。于是我们可以把 $G_x$ 写成
+\begin{equation*}
+\mathrm{i}G(t_b,t_a)=\frac{\langle\psi|U^\theta(\infty,t_b)O_2U^\theta(t_b,t_a)O_1U^\theta(t_a,-\infty)|\psi\rangle}{\langle\psi|U^\theta(\infty,-\infty)|\psi\rangle}\tag{2.2.10}
+\end{equation*}
+如果取 $|\psi\rangle=\delta(x)$，则式 (2.2.10) 可以直接写成路径积分：
+\begin{equation*}
+\mathrm{i}G(t_b,t_a)\equiv\frac{\int\mathcal{D}x\,O_2(t_b)O_1(t_a)\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,L(x,\dot{x})}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,L(x,\dot{x})}}\tag{2.2.11}
+\end{equation*}
+这里理解为 $x(t)$ 在边界 $t=\pm\infty$ 处为零，并且时间 $t$ 带有一个小的虚部，即 $t\to t\mathrm{e}^{-\mathrm{i}\theta}$。我们注意到，传播子的路径积分表示中那个“讨厌的”系数在计算关联函数时会抵消掉。这大大简化了路径积分计算。
+
+我们想指出，路径积分 (2.2.11) 中定义的关联 $G(t_2,t_1)$ 就是所谓的编时关联函数。这是因为，当 $t_2>t_1$ 时，它等于
+\begin{equation*}
+\mathrm{i}G(t_2,t_1)=\frac{\langle 0|U(\infty,t_2)O_2U(t_2,t_1)O_1U(t_1,-\infty)|0\rangle}{\langle 0|U(\infty,-\infty)|0\rangle}
+\end{equation*}
+而当 $t_2<t_1$ 时，它等于
+\begin{equation*}
+\mathrm{i}G(t_2,t_1)=\frac{\langle 0|U(\infty,t_1)O_1U(t_1,t_2)O_2U(t_2,-\infty)|0\rangle}{\langle 0|U(\infty,-\infty)|0\rangle}
+\end{equation*}
+由上述表达式可以证明，$G(t_2,t_1)$ 只依赖于 $t_2-t_1$，可以写作 $G(t_2,t_1)=G(t_2-t_1)$。引入 $O_{1,2}(t)=U^\dagger(t,-\infty)O_{1,2}U(t,-\infty)$ 之后，编时关联函数可以写成如下更紧凑的形式（在海森堡绘景中）：
+\begin{equation*}
+G(t_2,t_1)=-\mathrm{i}\langle 0|T(O_2(t_2)O_1(t_1))|0\rangle=\left\{\begin{array}{ll}
+-\mathrm{i}\langle 0|O_2(t_2)O_1(t_1)|0\rangle & \text{当 } t_2>t_1\\
+-\mathrm{i}\langle 0|O_1(t_1)O_2(t_2)|0\rangle & \text{当 } t_1>t_2
+\end{array}\right.\tag{2.2.12}
+\end{equation*}
+
+作为应用，让我们用路径积分计算谐振子 $H_0=\frac{p^2}{2m}+\frac{1}{2}m\omega_0^2x^2$ 中的编时关联 $G(t_2,t_1)=-\mathrm{i}\langle 0|T(x(t_2)x(t_1))|0\rangle$。计入时间的小虚部，即 $t\to t\mathrm{e}^{-\mathrm{i}\theta}$（$\theta=0^+$）之后，振子的作用量变为 $S=\int\mathrm{d}t\,\frac{\mathrm{e}^{-\mathrm{i}\theta}}{2}x\left(-m\mathrm{e}^{2\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2-m\omega_0^2\right)x$，而式 (2.2.11) 变为
+\begin{equation*}
+\mathrm{i}G_x(t_2,t_1)\equiv\frac{\int\mathcal{D}x\,x(t_2)x(t_1)\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,\frac{\mathrm{e}^{-\mathrm{i}\theta}}{2}x\left(-m\mathrm{e}^{2\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2-m\omega_0^2\right)x}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,\frac{\mathrm{e}^{-\mathrm{i}\theta}}{2}x\left(-m\mathrm{e}^{2\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2-m\omega_0^2\right)x}}\tag{2.2.13}
+\end{equation*}
+我们可以用如下公式（见问题 2.2.1）来求出上述比值：
+\begin{equation*}
+\frac{\int\prod_i\mathrm{d}x_i\,x_{i_1}x_{i_2}\,\mathrm{e}^{-\frac{1}{2}x_iA_{ij}x_j}}{\int\prod_i\mathrm{d}x_i\,\mathrm{e}^{-\frac{1}{2}x_iA_{ij}x_j}}=(A^{-1})_{i_1j_2}\tag{2.2.14}
+\end{equation*}
+唯一的差别是，式 (2.2.14) 中的矢量 $x_i$ 和矩阵 $A_{ij}$ 用整数标记，而式 (2.2.13) 中的矢量 $x(t)$ 和矩阵 $m\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+m\omega_0^2$ 是实数 $t$ 的函数。比较式 (2.2.13) 与 (2.2.14)，我们看到 $\mathrm{i}G_x(t_2,t_1)$ 正是算符 $\left(-\mathrm{i}m\left(\mathrm{e}^{\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+\omega_0^2\mathrm{e}^{-\mathrm{i}\theta}\right)\right)^{-1}$ 的矩阵元。换言之，它满足
+\begin{equation*}
+\mathrm{e}^{-\mathrm{i}\theta}\left(-m\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2\mathrm{e}^{2\mathrm{i}\theta}-m\omega_0^2\right)G_x(t-t')=\delta(t-t')\tag{2.2.15}
+\end{equation*}
+对 $0<\theta\leqslant\frac{\pi}{2}$，式 (2.2.15) 有一个解
+\begin{equation*}
+G_x(t-t')=-\frac{\mathrm{i}}{2m\omega_0}\mathrm{e}^{-\mathrm{i}\mathrm{e}^{-\mathrm{i}\theta}|t-t'|\omega_0}
+\end{equation*}
+它在 $t-t'\to\pm\infty$ 时有限。当 $\theta\to 0^+$ 时，上式变为
+\begin{equation*}
+G_x(t)=-\mathrm{i}\frac{1}{2m\omega_0}\mathrm{e}^{-\mathrm{i}|t|\omega_0(1-\mathrm{i}0^+)}\tag{2.2.16}
+\end{equation*}
+在频率空间中，该关联为
+\begin{equation*}
+G_x(\omega)\equiv\int\mathrm{d}t\,G_x(t,0)\mathrm{e}^{\mathrm{i}\omega t}=\frac{m^{-1}}{\omega^2-\omega_0^2+\mathrm{i}0^+}\tag{2.2.17}
+\end{equation*}
+总结起来：
+\begin{equation*}
+\boxed{\begin{gathered}
+G_x(\omega)\ \text{正是算符}\ -m\frac{\mathrm{d}^2}{\mathrm{d}t^2}-m\omega_0^2\ \text{的逆，}\\
+\text{该算符出现于作用量}\ S=\int\mathrm{d}t\,\frac{1}{2}x(t)\left(-m\frac{\mathrm{d}^2}{\mathrm{d}t^2}-m\omega_0^2\right)x(t)\ \text{之中。}
+\end{gathered}}
+\end{equation*}
+上面冗长的计算以及用 $t\mathrm{e}^{-\mathrm{i}\theta}$ 替换 $t$ 的技巧，只是告诉我们如何引入这个无穷小却十分重要的 $0^+$。
+
+响应函数 $D(t,t')$ 中的第二项，即 $\langle 0|O_1(t')O_2(t)|0\rangle$，由于 $t>t'$ 而具有不正确的时间次序。不过，注意到 $\langle 0|O_1(t')O_2(t)|0\rangle=\langle 0|O_2^\dagger(t)O_1^\dagger(t')|0\rangle^*$，这一点即可弥补。因此，响应函数可以用编时关联函数表示：
+\begin{equation*}
+\mathrm{i}D(t,t')=\Theta(t-t')\left(\langle 0|T(O_2(t)O_1(t'))|0\rangle-\langle 0|T(O_2^\dagger(t)O_1^\dagger(t'))|0\rangle^*\right)
+\end{equation*}
+这样，我们就能通过编时关联函数用路径积分计算响应函数。
+
+当 $O_{1,2}$ 为厄米算符时，我们有
+\begin{equation*}
+D(t)=2\Theta(t)\mathrm{Re}\,G(t)\tag{2.2.18}
+\end{equation*}
+当 $O_1=O_2=O_1^\dagger$ 时，有 $G(t)=G(-t)$。可以证明，在 $\omega$ 空间中
+\begin{equation*}
+\boxed{\ \mathrm{Re}\,D_\omega=\mathrm{Re}\,G(\omega),\qquad \mathrm{Im}\,D_\omega=\mathrm{sgn}(\omega)\,\mathrm{Im}\,G(\omega)\ }\tag{2.2.19}
+\end{equation*}
+
+%FIG{2.2}: {电容器中含偶极子的 CL 电路。}
+
+\subsection*{问题 2.2.1}
+
+证明式 (2.2.14)。（提示：计算 $\int\prod_i\mathrm{d}x_i\,\mathrm{e}^{J_ix_i}\mathrm{e}^{-\frac{1}{2}x_i\Lambda_{ij}x_j}$，并把结果展开到 $J$ 的二阶。）
+
+\subsection*{问题 2.2.2}
+
+\begin{enumerate}
+\item[(a)] 用相干态路径积分和生成泛函 $\frac{Z[\eta(t),\bar{\eta}(t)]}{Z[0,0]}$，其中
+\begin{equation*}
+Z[\eta(t),\bar{\eta}(t)]=\int\mathcal{D}^2[a(t)]\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\left[\mathrm{i}\frac{1}{2}\left(a^*\frac{\mathrm{d}}{\mathrm{d}t}a-a\frac{\mathrm{d}}{\mathrm{d}t}a^*\right)-\omega_0a^*a-\bar{\eta}a-\eta a^*\right]}
+\end{equation*}
+计算实空间与频率空间中的关联 $\mathrm{i}G(t)=\langle a(t)a^*(0)\rangle$。（提示：用复时间 $t\to t\mathrm{e}^{-\mathrm{i}0^+}$。）
+\item[(b)] 在 $t>0$ 与 $t<0$ 两种情形下，把你的结果与相应的编时关联函数 $\langle 0|T(\hat{a}(t)\hat{a}^\dagger(0))|0\rangle$ 进行比较。并注意 $t\to 0^\pm$ 的极限。
+\item[(c)] 现在我们想用相干态路径积分计算 $\langle 0|\hat{a}^\dagger\hat{a}|0\rangle$ 和 $\langle 0|\hat{a}\hat{a}^\dagger|0\rangle$。问题在于，在路径积分中这两个算符都变成了 $a^*a$。结合上述计算，我们该如何解决这一问题？请描述如何用路径积分计算如下关联：$\langle 0|(\hat{a}\hat{a}^\dagger)_{t_1}(\hat{a}\hat{a}^\dagger)_{t_2}|0\rangle$。
+\end{enumerate}
+
+\subsection{有效理论}
+
+\begin{keypoints}
+\item 有效理论是一个非常重要的概念。如果你只想记住场论中的一件事，那就记住有效理论。
+\end{keypoints}
+
+我们知道，电偶极矩与电场 $\mathcal{E}$ 耦合。为考察这种耦合如何影响电场的动力学，让我们考虑一个 CL 电路（见图 2.2）。在没有偶极矩时，电容器中电场的动力学由作用量 $S_0(\mathcal{E})=\int\mathrm{d}t\,\frac{1}{2g}(\dot{\mathcal{E}}^2-\omega_{CL}^2\mathcal{E}^2)$ 描写，其中 $\omega_{CL}$ 是 CL 电路的振荡频率。耦合系统由下式描写：
+\begin{equation*}
+Z=\int\mathcal{D}x\,\mathcal{D}\mathcal{E}\,\mathrm{e}^{\mathrm{i}S_0(\mathcal{E})+\mathrm{i}\int\mathrm{d}t\,[L(x,\dot{x})+ex\mathcal{E}]}
+\end{equation*}
+其中 $L(x,\dot{x})$ 描写偶极子的动力学，而 $ex\mathcal{E}$ 描写偶极子与电场之间的耦合。
+
+让我们假设 $\omega_0\gg\omega_{CL}$，并积掉高频运动 $x(t)$。我们得到只含 $\mathcal{E}(t)$ 的路径积分：
+\begin{equation*}
+\begin{gathered}
+Z=\int\mathcal{D}\mathcal{E}\,\mathrm{e}^{\mathrm{i}S_0(\mathcal{E})+\mathrm{i}S_I(\mathcal{E})},\\
+\mathrm{e}^{\mathrm{i}S_I}=\frac{Z[\mathcal{E}]}{Z[0]},\qquad Z[\mathcal{E}]=\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\left[\frac{m}{2}\dot{x}^2-\frac{m\omega_0^2}{2}x^2+ex\mathcal{E}\right]}
+\end{gathered}
+\end{equation*}
+我们看到，耦合系统的电场动力学由一个新的作用量 $S_{eff}=S_0+S_I$ 描写，我们称之为有效作用量。完成高斯积分后，我们得到
+\begin{align*}
+S_I&=\int\mathrm{d}t\,\frac{1}{2m}\mathcal{E}(t)\left(\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+\omega_0^2\right)^{-1}\mathcal{E}(t)\nonumber\\
+&=-\int\mathrm{d}t\,\mathrm{d}t'\,\frac{e^2}{2}\mathcal{E}(t)G_x(t-t')\mathcal{E}(t')=-\int\frac{\mathrm{d}\omega}{2\pi}\,\frac{e^2}{2}\mathcal{E}_{-\omega}G_x(\omega)\mathcal{E}_\omega
+\end{align*}
+这进而给出电场的有效拉格朗日量：
+\begin{equation*}
+L_{\mathrm{eff}}=\frac{1}{2g}(\dot{\mathcal{E}}^2-\omega_{CL}^2\mathcal{E}^2)+\frac{e^2}{2m}\mathcal{E}\left(\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+\omega_0^2\right)^{-1}\mathcal{E}.
+\end{equation*}
+在 $\omega_0\gg\omega_{CL}$ 的极限下，$L_{\mathrm{eff}}$ 可以简化为
+\begin{equation*}
+L_{\mathrm{eff}}=\frac{1}{2g}(\dot{\mathcal{E}}^2-(\omega_{CL}^*)^2\mathcal{E}^2),\qquad \omega_{CL}^*=\sqrt{\omega_{CL}^2-\frac{ge^2}{m\omega_0^2}}.
+\end{equation*}
+我们看到，积掉高频的 $x(t)$ 之后，低频电场由一个简单的有效拉格朗日量描写。与偶极子的耦合把电场的振荡频率移到了一个较低的值 $\omega_{CL}^*$。
+
+\subsection*{问题 2.2.3}
+
+\textbf{两个耦合谐振子的低能有效理论：}考虑一个由两个耦合谐振子组成的系统：
+\begin{equation*}
+Z=\int\mathcal{D}x\,\mathcal{D}X\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,L(x,X)}
+\end{equation*}
+其中
+\begin{equation*}
+L(x,X)=\frac{1}{2}m\dot{x}^2-\frac{1}{2}m\omega^2x^2+\frac{1}{2}M\dot{X}^2-\frac{1}{2}M\Omega^2X^2-gxX
+\end{equation*}
+这里我们假设 $\Omega\gg\omega$、$g\sim m\omega^2$ 且 $m\sim M$。此时 $X$ 是一个围绕 $X=0$ 振荡的高能自由度。试通过积掉 $X$，求出描写软自由度 $x$ 的低能动力学的低能有效理论 $L_{\mathrm{eff}}(x)$。（至少应包含领头的 $\frac{1}{\Omega}$ 修正。）特别地，求出有效质量 $m^*$ 和有效弹簧常数 $m^*(\omega^*)^2$。
+
+\subsection{含时响应与耗散}
+
+\begin{keypoints}
+\item 响应函数给出响应率的正确实部和虚部，而编时关联函数只给出响应率的正确实部。
+\end{keypoints}
+
+我们也可以用路径积分计算对含时电场的响应。注意到 $t$ 时刻的平均偶极矩可以表示为
+\begin{equation*}
+\begin{aligned}
+d(t)=\langle ex(t)\rangle&=e\,\frac{\int\mathcal{D}x\,x(t)\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t'\,[L(x,\dot{x})+ex\mathcal{E}]}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t'\,[L(x,\dot{x})+ex\mathcal{E}]}}\\
+&=-\int_{-\infty}^{+\infty}\mathrm{d}t'\,e^2G_x(t-t')\mathcal{E}(t')+O(\mathcal{E}^2)
+\end{aligned}
+\end{equation*}
+其中
+\begin{equation*}
+\mathrm{i}G_x(t_1-t_2)=\frac{\int\mathcal{D}x\,x(t_1)x(t_2)\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,L(x,\dot{x})}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t'\,L(x,\dot{x})}}
+\end{equation*}
+在频率空间中，上式变为 $d_\omega=-e^2G_x(\omega)E_\omega$。我们求得有限频率响应率 $\chi(\omega)$ 为
+\begin{equation*}
+\chi(\omega)=-e^2G_x(\omega)=-\frac{e^2m^{-1}}{\omega^2-\omega_0^2+\mathrm{i}0^+}\tag{2.2.20}
+\end{equation*}
+虚部 $\mathrm{i}0^+$ 已在 2.2.2 节中算出。
+
+上述对有限频率响应率的路径积分计算属于一类被称为“形式计算”的计算。用路径积分我们可以“形式地”计算很多东西。然而，对“形式”计算得到的结果必须持保留态度。这些结果通常或多或少是正确的，但未必完全正确。正如我们将在 2.4.3 节看到的，$\mathrm{Im}\chi(\omega)\omega$ 有其物理意义：它代表频率 $\omega$ 处的摩擦系数。由于 $\mathrm{Im}G(\omega)$ 总是负的，我们发现当 $\omega>0$ 时 $\mathrm{Im}\chi(\omega)\omega>0$，而当 $\omega<0$ 时 $\mathrm{Im}\chi(\omega)\omega<0$。$\omega<0$ 时摩擦系数为负是一个非物理且错误的结果。因此，式 (2.2.20) 并不完全正确，它与先前的结果 (2.2.8) 不一致。
+
+事实上，只要把编时关联 $G_x$ 换成响应函数 $D$，就能从这个错误的结果得到正确的结果 (2.2.8)：
+\begin{equation*}
+d(t)=-\int_{-\infty}^{+\infty}\mathrm{d}t'\,e^2D(t-t')\mathcal{E}(t')+O(\mathcal{E}^2)
+\end{equation*}
+\begin{equation*}
+\chi(\omega)=-e^2D(\omega)=-\frac{e^2m^{-1}}{\omega^2-\omega_0^2+\mathrm{i}\,\mathrm{sgn}(\omega)0^+}
+\end{equation*}
+此时，$\mathrm{Im}\chi(\omega)\omega$ 总是正的。
+
+% 新增术语（本块新增，供术语表维护者收录）：
+% response function -> 响应函数
+% time-ordered correlation function -> 编时关联函数
+% time-ordering operator -> 编时算符
+% effective action -> 有效作用量
+% effective Lagrangian -> 有效拉格朗日量
+% Gaussian integral -> 高斯积分
+% CL circuit -> CL 电路
+% capacitor -> 电容器
+% dipole moment -> 偶极矩
+% Heisenberg picture -> 海森堡绘景
+% formal calculation -> 形式计算
+% friction coefficient -> 摩擦系数
+% spring constant -> 弹簧常数

@@ -1,0 +1,36 @@
+% 图 7.5 无外场自发劈裂的 g(E) 子带（↓带顶比 E_F 低 δE）
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{arrows.meta}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\begin{document}
+\begin{tikzpicture}[line width=0.8pt,>=Stealth]
+% 底线（两端向外箭头）
+\draw[Stealth-Stealth] (-4.3,0) -- (4.3,0);
+\node at (-4.3,-0.5) {$g(E)$};
+\node at (4.3,-0.5) {$g(E)$};
+% 中央 E 轴
+\draw[->] (0,-0.9) -- (0,5.3);
+\node[above left] at (0.1,5.15) {$E$};
+% 左带（自旋↑）：填充至 E_F=4.1
+\fill[black!55] plot[domain=-2.0034:0] (\x,{0.02+1.0165*\x*\x}) -- (0,4.1) -- cycle;
+\draw[line width=0.6pt] plot[domain=-2.15:0,smooth]
+  (\x,{0.02+1.0165*\x*\x});
+% 右带（自旋↓）：顶点 0.6，仅填充至 3.55（δE 白隙）
+\fill[black!55] plot[domain=0:1.82] (\x,{0.6+0.89*\x*\x}) -- (0,3.55) -- cycle;
+\draw[line width=0.6pt] plot[domain=0:2.15,smooth]
+  (\x,{0.6+0.89*\x*\x});
+% E_F 水平线横跨右带上方
+\draw[line width=0.9pt] (-1.99,4.1) -- (1.99,4.1);
+\node[left] at (-2.08,4.1) {$E_{\mathrm{F}}$};
+% 自旋箭头
+\draw[line width=1.3pt,->] (-0.75,2.0) -- (-0.75,3.3);
+\draw[line width=1.3pt,->] (0.72,3.15) -- (0.72,1.95);
+% δE 标注（E_F 与右带顶之间的相向双箭头）
+\draw[->] (2.62,4.62) -- (2.62,4.18);
+\draw[->] (2.62,3.03) -- (2.62,3.47);
+\node[right] at (2.82,3.82) {$\delta E$};
+\end{tikzpicture}
+\end{document}

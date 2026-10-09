@@ -1,0 +1,145 @@
+% 第二章（章标题见 ch2.tex）
+
+本章的目的是推导属于晶体学点群矩阵表示各行的球谐函数线性组合，并给出这些函数的表。Melvin（1956）把这类函数命名为\textit{对称适配函数}（symmetry-adapted functions），因为它们在群元素变换下具有表示所要求的正确性质。在确定对称适配函数方面做过工作的有：Altmann（1956, 1957），Bell（1954），Bethe（1929），Betts（1959），Callen and Callen（1963），Cohan（1958），Cornwell（1969），Flodmark（1963），Flower, March, and Murray（1960），McIntosh（1960\textsuperscript{a}, 1963），Melvin（1956），Meyer（1954），Nesbet（1961），Schiff（1955, 1956），以及 von der Lage and Bethe（1947）。本章的处理相当紧贴 Altmann（1957）、Altmann and Bradley（1963\textsuperscript{a}, \textsuperscript{b}, 1965）与 Altmann and Cracknell（1965）给出的路线。给定群的一个矩阵表示，问题就是求出对该表示对称适配的所有可能的基。于是，任何可以按球谐函数展开、且要具有该表示某一行的变换性质的函数，都将只包含那些对称适配到同一变换性质的球谐函数线性组合。我们对这样的、对称适配到点群表示某一行的球谐函数线性组合使用术语\textit{面谐函数}（surface harmonic）。
+
+\section{转动群的矩阵元}
+
+在确定对称适配函数的过程中，需要知道球谐函数在三维转动群的各类转动下如何变换。本节给出确定这些变换性质所需的公式与定义。
+
+我们采用如下归一化球谐函数的定义：
+
+\begin{equation*}
+Y_{l}^{m}(\theta, \phi) = \sqrt{\left\{\frac{(2l+1)(l-|m|)!}{4\pi(l+|m|)!}\right\}}\, P_{l}^{m}(\cos\theta)\exp(\mathrm{i}m\phi)
+\tag{2.1.1}
+\end{equation*}
+
+其中 $P_{l}^{m}(\cos\theta)$ 是连带勒让德函数：
+
+\begin{equation*}
+P_{l}^{m}(\cos\theta) = \frac{1}{2^{l}l!}\sin^{|m|}\theta\ \frac{d^{l+|m|}}{(d\cos\theta)^{l+|m|}}\left\{(\cos^{2}\theta - 1)^{l}\right\}.
+\tag{2.1.2}
+\end{equation*}
+
+这里不宜赘述球谐函数的性质——讨论它们的书非常多（仅举数例：Condon and Shortley (1935)，Edmonds (1957)，Gel'fand, Minlos, and Shapiro (1963)，Wigner (1959)）。
+
+我们用欧拉角 $\alpha$、$\beta$、$\gamma$ 规定一个纯转动 $R$：先绕 $z$ 轴作角度 $\alpha$（$0 \leqslant \alpha < 2\pi$）的主动转动，其次绕 $y$ 轴作角度 $\beta$（$0 \leqslant \beta \leqslant \pi$）的主动转动，最后绕 $z$ 轴作角度 $\gamma$（$0 \leqslant \gamma < 2\pi$）的主动转动。于是第一次转动（转角 $\alpha$）把点 $(r, \theta, \phi)$ 移到 $(r, \theta, \phi + \alpha)$；第二次转动（转角 $\beta$）把点 $(r, \theta, 0)$ 移到 $(r, \theta + \beta, 0)$；第三次转动（转角 $\gamma$）把点 $(r, \theta, \phi)$ 移到 $(r, \theta, \phi + \gamma)$（见图 2.1）。$R(\alpha, \beta, \gamma)$ 表示这三个相继转动的乘积。注意，与全书一致，我们采用主动约定：算符 $R(\alpha, \beta, \gamma)$ 移动空间的点而保持坐标系 $Oxyz$ 不动；并且所有正向转动都取通常的逆时针方向。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.52\textwidth]{fig2_1.png}
+\caption{球极坐标 $(r, \theta, \phi)$。}
+\end{figure}
+
+采用这一欧拉角定义，即可导出球谐函数的变换规律，结果是（Altmann 1957，Wigner 1959）
+
+\begin{equation*}
+R(\alpha, \beta, \gamma)Y_{l}^{m}(\theta, \phi) = \sum_{n=-l}^{l} Y_{l}^{n}(\theta, \phi)\mathscr{D}^{l}\{R(\alpha, \beta, \gamma)\}_{nm},
+\tag{2.1.3}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\mathscr{D}^{l}\{R(\alpha, \beta, \gamma)\}_{nm} = C_{nm}\exp(-\mathrm{i}n\gamma)\, d^{l}(\beta)_{nm}\exp(-\mathrm{i}m\alpha).
+\tag{2.1.4}
+\end{equation*}
+
+在式 (2.1.4) 中
+
+\begin{equation*}
+C_{nm} = (\mathrm{i}^{|n|+n})(\mathrm{i}^{-|m|-m}),
+\tag{2.1.5}
+\end{equation*}
+
+而
+
+\begin{equation*}
+\begin{aligned}
+d^{l}(\beta)_{nm} = \sum_{k} \frac{(-1)^{k-m+n}\sqrt{\{(l+n)!(l+m)!(l-n)!(l-m)!\}}}{(l-n-k)!(l+m-k)!k!(k-m+n)!} \\
+\times \cos^{2l+m-n-2k}\left(\tfrac{1}{2}\beta\right)\sin^{2k+n-m}\left(\tfrac{1}{2}\beta\right),
+\end{aligned}
+\tag{2.1.6}
+\end{equation*}
+
+其中对 $k$ 的求和从数 0 与 $(m-n)$ 中较大者到数 $(l-n)$ 与 $(l+m)$ 中较小者。对三维转动群的每个转动 $R(\alpha, \beta, \gamma)$，对每个整数 $l$ 都有唯一一个矩阵 $\mathscr{D}^{l}\{R(\alpha, \beta, \gamma)\}$。对给定的 $l$，矩阵族 $\mathscr{D}^{l}\{R(\alpha, \beta, \gamma)\}$ 构成定义 1.3.4 意义下转动群 $R(\alpha, \beta, \gamma)$ 的一个 $(2l+1)$ 维表示。式 (2.1.3) 表明函数 $Y_{l}^{m}(\theta, \phi)$（$-l \leqslant m \leqslant l$）构成该表示的一组基。$\mathscr{D}^{j}\{R(\alpha, \beta, \gamma)\}$（$j$ 为半奇数）的表示将在第 6 章讨论。
+
+约化矩阵元 $d^{l}(\beta)_{nm}$ 满足以下对称关系：
+
+\begin{equation*}
+d^{l}(\beta)_{nm} = d^{l}(\beta)_{-m,-n} = (-1)^{m+n}d^{l}(\beta)_{mn}.
+\tag{2.1.7}
+\end{equation*}
+
+由于式 (2.1.7)，只需在 $-l \leqslant m \leqslant l$、$|m| \leqslant n \leqslant l$ 范围内计算 $d^{l}(\beta)_{nm}$。Altmann and Bradley（1963\textsuperscript{a}）证明，在此范围内 $d^{l}(\beta)_{nm}$ 用递推关系计算最方便：
+
+\begin{equation*}
+\begin{aligned}
+\sqrt{\{(l+n)(l-n+1)\}}\, d^{l}(\beta)_{n-1,m} \\
+= (m-n)\cot\left(\tfrac{1}{2}\beta\right)d^{l}(\beta)_{nm} - \sqrt{\{(l+m)(l-m+1)\}}\, d^{l}(\beta)_{n,m-1}
+\end{aligned}
+\tag{2.1.8}
+\end{equation*}
+
+起始值为
+
+\begin{equation*}
+d^{l}(\beta)_{lm} = (-1)^{l-m}\sqrt{\left\{\frac{(2l)!}{(l+m)!(l-m)!}\right\}}\cos^{l+m}\left(\tfrac{1}{2}\beta\right)\sin^{l-m}\left(\tfrac{1}{2}\beta\right).
+\tag{2.1.9}
+\end{equation*}
+
+式 (2.1.8) 仅对 $l$、$m$、$n$ 的整数值成立。
+
+$\beta = 0$、$\beta = \pi$ 与 $\beta = \tfrac{1}{2}\pi$ 三种情形值得特别注意，原因有二：其一，如 Wigner（1959）所示，任意 $\beta$ 的矩阵元可以由 $\beta = \tfrac{1}{2}\pi$ 的矩阵元表出；其二，总可以（Altmann 1957）选取坐标轴，使晶体学点群中任何转动的 $\beta$ 角取 $0$、$\tfrac{1}{2}\pi$、$\pi$ 三值之一。若 $\beta = 0$，则这是绕 $z$ 轴转 $(\alpha + \gamma)$ 的转动，于是
+
+\begin{equation*}
+\mathscr{D}^{l}\{R(\alpha, 0, \gamma)\}_{nm} = \exp(-\mathrm{i}m\alpha)\exp(-\mathrm{i}m\gamma)\delta_{nm}.
+\tag{2.1.10}
+\end{equation*}
+
+若 $\beta = \pi$，则如 Altmann（1957）所示，仅当 $n = -m$ 时有非零元，且
+
+\begin{equation*}
+\mathscr{D}^{l}\{R(\alpha, \pi, \gamma)\}_{nm} = (-1)^{l}\exp(-\mathrm{i}m\alpha)\exp(\mathrm{i}m\gamma)\delta_{n,-m}.
+\tag{2.1.11}
+\end{equation*}
+
+若 $\beta = \tfrac{1}{2}\pi$，则 $d^{l}(\tfrac{1}{2}\pi)_{nm}$ 没有简单的解析公式；不过 Bradley（1961）已对所有 $l \leqslant 20$ 的值编制了这些函数的表。
+
+为完整研究球谐函数在点群操作下的变换性质，还需补充在反演 $I$ 下的变换关系：
+
+\begin{equation*}
+IY_{l}^{m}(\theta, \phi) = (-1)^{l}Y_{l}^{m}(\theta, \phi).
+\tag{2.1.12}
+\end{equation*}
+
+第 1 章引入的晶体学点群操作的欧拉角表见表 2.1。
+
+\begin{table}[H]
+\centering
+\textbf{表 2.1}\quad \textit{点群 432（$O$）与 622（$D_{6}$）的欧拉角}
+
+\smallskip
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c||c|c|c|c||c|c|c|c|}
+\hline
+\multicolumn{8}{|c||}{(a) 432（$O$）} & \multicolumn{4}{c|}{(b) 622（$D_{6}$）} \\ \hline
+元素 & $\alpha$ & $\beta$ & $\gamma$ & 元素 & $\alpha$ & $\beta$ & $\gamma$ & 元素 & $\alpha$ & $\beta$ & $\gamma$ \\ \hline
+$E$ & $0$ & $0$ & $0$ & $C_{4x}^{+}$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $\tfrac{3}{2}\pi$ & $E$ & $0$ & $0$ & $0$ \\ \hline
+$C_{2x}$ & $\pi$ & $\pi$ & $0$ & $C_{4y}^{+}$ & $0$ & $\tfrac{1}{2}\pi$ & $0$ & $C_{6}^{+}$ & $\tfrac{1}{3}\pi$ & $0$ & $0$ \\ \hline
+$C_{2y}$ & $0$ & $\pi$ & $0$ & $C_{4z}^{+}$ & $\tfrac{1}{2}\pi$ & $0$ & $0$ & $C_{3}^{+}$ & $\tfrac{2}{3}\pi$ & $0$ & $0$ \\ \hline
+$C_{2z}$ & $\pi$ & $0$ & $0$ & $C_{4x}^{-}$ & $\tfrac{3}{2}\pi$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $C_{2}$ & $\pi$ & $0$ & $0$ \\ \hline
+$C_{31}^{-}$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $0$ & $C_{4y}^{-}$ & $\pi$ & $\tfrac{1}{2}\pi$ & $\pi$ & $C_{3}^{-}$ & $\tfrac{4}{3}\pi$ & $0$ & $0$ \\ \hline
+$C_{32}^{+}$ & $\tfrac{3}{2}\pi$ & $\tfrac{1}{2}\pi$ & $\pi$ & $C_{4z}^{-}$ & $\tfrac{3}{2}\pi$ & $0$ & $0$ & $C_{6}^{-}$ & $\tfrac{5}{3}\pi$ & $0$ & $0$ \\ \hline
+$C_{33}^{+}$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $\pi$ & $C_{2a}$ & $\tfrac{1}{2}\pi$ & $\pi$ & $0$ & $C'_{21}$ & $\pi$ & $\pi$ & $0$ \\ \hline
+$C_{34}^{+}$ & $\tfrac{3}{2}\pi$ & $\tfrac{1}{2}\pi$ & $0$ & $C_{2b}$ & $\tfrac{3}{2}\pi$ & $\pi$ & $0$ & $C'_{22}$ & $\tfrac{5}{3}\pi$ & $\pi$ & $0$ \\ \hline
+$C_{31}^{+}$ & $\pi$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $C_{2c}$ & $\pi$ & $\tfrac{1}{2}\pi$ & $0$ & $C'_{23}$ & $\tfrac{1}{3}\pi$ & $\pi$ & $0$ \\ \hline
+$C_{32}^{-}$ & $0$ & $\tfrac{1}{2}\pi$ & $\tfrac{3}{2}\pi$ & $C_{2d}$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $C''_{21}$ & $0$ & $\pi$ & $0$ \\ \hline
+$C_{33}^{-}$ & $0$ & $\tfrac{1}{2}\pi$ & $\tfrac{1}{2}\pi$ & $C_{2e}$ & $0$ & $\tfrac{1}{2}\pi$ & $\pi$ & $C''_{22}$ & $\tfrac{2}{3}\pi$ & $\pi$ & $0$ \\ \hline
+$C_{34}^{-}$ & $\pi$ & $\tfrac{1}{2}\pi$ & $\tfrac{3}{2}\pi$ & $C_{2f}$ & $\tfrac{3}{2}\pi$ & $\tfrac{1}{2}\pi$ & $\tfrac{3}{2}\pi$ & $C''_{23}$ & $\tfrac{4}{3}\pi$ & $\pi$ & $0$ \\ \hline
+\end{tabular}}
+
+\smallskip
+\parbox{0.92\textwidth}{\textit{表 2.1 的注.}
+(i) 对称操作已在第 1 章定义，均为主动操作。
+(ii) 欧拉角定义为：先将空间的点绕 $z$ 轴转 $\alpha$（正向规定为 $x$ 轴上的点转向 $y$ 轴），随后绕 $y$ 轴转 $\beta$，再绕 $z$ 轴转 $\gamma$。$\alpha$、$\beta$、$\gamma$ 的限制为 $0 \leqslant \alpha < 2\pi$、$0 \leqslant \beta \leqslant \pi$、$0 \leqslant \gamma < 2\pi$。}
+\end{table}

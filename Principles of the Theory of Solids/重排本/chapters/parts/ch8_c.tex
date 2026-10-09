@@ -1,0 +1,257 @@
+% ch8_c §8.5–8.6 (书页 272–281 / p286–p295)
+%--B-TAIL--
+在式 (8.64)、(8.65) 中，我们写下了光作非弹性衍射的选择定则——即一个光子 $|\mathbf{k},\omega\rangle$ 变换为另一个光子 $|\mathbf{k}',\omega'\rangle$ 并发射一个声子 $|\mathbf{q},\nu\rangle$。这将表现为晶体所散射的一部分光的频移。这种一阶 Raman 效应显然等价于单声子吸收。晶体的二阶 Raman 谱含有来自双声子过程的谱带——如此等等。当涉及有限波矢的声学支时，我们称之为 Brillouin 散射。
+
+动量选择定则 (8.64)、(8.67)、(8.68) 依赖于 Bloch 定理（见 §2.7）。若不存在完整的晶格平移对称性，跃迁便可以被允许到布里渊区中的任何一点。因此，晶格中的杂质或其他不完整性会诱发本来被禁止的红外吸收及类似的光学现象。这类效应的详细计算显然非常复杂，但由此可以直接观察到来自局域模（localized modes）的锐线以及来自共振（§2.12）的峰。
+
+\section{带间跃迁}
+
+当电子处于 Bloch 态、形成宽的能带时，电子从满态到空态的跃迁产生宽的吸收带。再者，对于光频，$\mathbf{K}$ 在布里渊区的尺度上很小，因此可以忽略光子的波矢，并假定所有跃迁都是“竖直的”（vertical），如图 143 所示。
+
+%FIG{143}: {半导体中的竖直带间跃迁。}
+
+我们已经在式 (5.45) 中写下了半导体介电常数的公式。在那里我们更关心的是所有波长下的静态行为；而现在我们关心的是 $\epsilon(\mathbf{q},\omega)$ 在长波极限下的频率依赖。由式 (5.57) 我们有
+
+\begin{align*}
+\epsilon(\mathbf{q},\omega) &= 1 + \frac{4\pi e^2}{q^2} \sum_{\mathbf{k}} \frac{\left|\langle\mathbf{k}|\,e^{i\mathbf{q}\cdot\mathbf{r}}\,|\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle\right|^2 \left\{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g})\right\}}{(\hbar\omega)^2-\left\{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g})\right\}^2} \\
+&\approx 1 + \frac{4\pi e^2}{m} \sum_{\mathbf{k}} \frac{f_{\mathbf{k}}}{\omega_{\mathbf{k}}^2-\omega^2},
+\tag{8.71}
+\end{align*}
+
+其中 $f_{\mathbf{k}}$ 是一个振子强度，如同式 (8.40) 中那样，对应于价带中 $|\mathbf{k}\rangle$ 与导带中 $|\mathbf{k}+\mathbf{g}\rangle$（在简约区图式中正位于其上方）之间的跃迁，这两个态的能量差为 $\hbar\omega_{\mathbf{k}}$。但由于 $\mathbf{k}$ 是连续的，求和变成如下形式的积分
+
+\begin{equation*}
+\epsilon(0,\omega) \approx 1 + \frac{4\pi e^2}{m} \int \frac{f(\omega')\mathcal{N}_d(\omega')\,d\omega'}{\omega'^2-\omega^2},
+\tag{8.72}
+\end{equation*}
+
+其中 $\mathcal{N}_d(\omega')\,d\omega'$ 是竖直能量差为 $\hbar\omega'$、落在 $d\omega'$ 范围内的能级数目，而 $f(\omega')$ 是该范围内跃迁的振子强度——即一个数量级为 1 的数。
+
+介电常数实部的这个公式不如虚部那么有意思。借助色散关系 (8.29) 与 (8.30) 可以看出，吸收系数必具有如下形式
+
+\begin{align*}
+2\omega\,\mathsf{n}(\omega)\,\mathsf{k}(\omega) &= \frac{\pi}{2}\,\frac{4\pi e^2}{m} \int f(\omega')\,\mathcal{N}_d(\omega')\,\delta(\omega-\omega')\,d\omega' \\
+&= \frac{2\pi^2 e^2}{m} f(\omega)\,\mathcal{N}_d(\omega).
+\tag{8.73}
+\end{align*}
+
+我们本来也可以通过另一种途径得到同一结果：注意式 (5.45) 中的 $\epsilon(\mathbf{q},\omega)$ 带有一个由参数 $\alpha$ 支配的虚部，这个 $\alpha$ 在式 (5.1) 中是作为被电子系统屏蔽的微扰的衰减常数引入的。显然，这个参数所扮演的角色与式 (8.51) 中的线宽参数 $\Gamma_j$ 相同；后者实际上本质上就具有 (5.45) 与 (5.57) 的形式。于是，沿着从 (8.51) 到 (8.47) 的步骤往回追溯——实际上就是让每个跃迁的线宽趋于零——我们就回到了式 (8.73)。
+
+式 (8.73) 中的函数 $\mathcal{N}_d(\omega)$ 是价带与导带能量之差的谱；由于这两个带各自都是倒格子中的连续周期函数，该谱只具有 §2.5 中指出的那些 van Hove 奇异性。其中最重要的是吸收带边（absorption band edge），对应于两带之间的最小竖直能量差 $\hbar\omega_0$。如式 (2.72) 所示，谱在该邻域内的行为必为
+
+\begin{equation*}
+\mathcal{N}_d(\omega) \propto (\omega-\omega_0)^{\frac{1}{2}}.
+\tag{8.74}
+\end{equation*}
+
+然而应当注意，$\hbar\omega_0$ 未必就是价带顶与导带底之间的那个“能隙” $\mathcal{E}_{\mathrm{gap}}$。这两个点在 $\mathbf{k}$ 空间中未必恰好上下正对：两带之间的最小\emph{竖直}间隔可能要稍大一些。
+
+%FIG{144}: {(a) 直接跃迁未必给出能隙；(b) 声子辅助跃迁。}
+
+不过，如果允许同时发射或吸收一个声子，便有可能观察到 $\hbar\omega\approx\mathcal{E}_{\mathrm{gap}}$ 的光学跃迁。这类\emph{间接}跃迁或\emph{声子辅助}跃迁（phonon-assisted transitions）很容易用二阶微扰论导出。过程分两步；例如，先通过吸收一个光子竖直地向上跃迁，然后通过发射或吸收一个波矢 $\mathbf{q}$ 足够大的声子，到达导带中相应的极小点。我们无须操心中间虚态中的能量守恒；总的条件将是
+
+\begin{equation*}
+\hbar\omega = \mathcal{E}_{\mathrm{gap}} \pm \hbar\nu_{\mathbf{q}},
+\tag{8.75}
+\end{equation*}
+
+其中 $\nu_{\mathbf{q}}$ 是声子的频率。由于在能隙的尺度上 $\hbar\nu_{\mathbf{q}}$ 是个小能量（例如 0.03 eV），我们会发现吸收带似乎从 $\mathcal{E}_{\mathrm{gap}}$ 附近开始。但间接跃迁的概率比直接跃迁小得多，并且如式 (8.70) 所示，通过声子态的占据数而依赖于温度。
+
+以上关于完整晶体中电子跃迁的讨论采用的是简单的单电子模型。然而在现实中，如图 144 那样的跃迁，其末态在导带中有一个电子之外，价带中还有一个空穴。如果这两个粒子没有立即彼此分飞开来，它们可以像 §6.7 中那样相互吸引而形成束缚态——Wannier 激子（exciton）能级——其总能量低于产生它们的那条带隙。换言之，光谱在基本吸收边之下显示出激子谱线。这一现象在离子晶体中特别显著（译注：原文作“in ionic and crystals”，疑有脱字）：其中的 Frenkel 激子虽然“小”且实际上不能移动，却具有很大的振子强度，对应于它们所源自的原子或分子激发态。
+在这些材料中，电磁场与激子振幅之间的耦合可以强到足以产生极化激元（polariton）传播模式（参见 §8.3）。
+
+杂质与不完整性的效应也使半导体和离子晶体的光学性质大大复杂化，同时也大大丰富起来。例如，人们可以观察到与带电杂质的类氢能级之间的跃迁相联系的各种吸收线（§6.4）。
+
+色心（colour centre）中光学跃迁的理论因不完整性周围的晶格畸变而变得稍微复杂一些。由于这种畸变受到与光学活性电子的静电相互作用的影响，它必然依赖于系统的电子态。因此，不完整性的本征态必须同时用电子坐标和原子坐标来描写。但是，光学跃迁在被吸收或发射的频率的周期时间内发生，而晶格畸变到新电子态所要求的位形所需的时间却是一个动力学模的周期，比前者长得多。因此，从晶格的观点看，跃迁必须当作\emph{非绝热}的或\emph{突然}的来处理（参见 §6.11）。
+
+这就是 Franck–Condon 原理的基础，如图 145 所示。设不完整性周围晶格的畸变可以用单一坐标 $u$ 来度量，例如离子向内或向外的“呼吸”式位移的振幅。当电子处于某态 $|a\rangle$ 时，晶格的势能在某个值 $u_a$ 处取极小，这与另一电子态 $|b\rangle$ 的平衡位移 $u_b$ 不同。从 $|a\rangle$ 到 $|b\rangle$ 的光吸收将在晶格畸变不变的情况下进行——即沿直线 $u=u_a$ “竖直地”进行。反之，发射则必须沿 $u_b$ 进行，它对应于初始电子态 $|b\rangle$ 中的平衡位移。显然，$\hbar\omega_{ab}\neq\hbar\omega_{ba}$。不过在实际上，我们还必须考虑每个势能极小点附近晶格模的热激发。声子发射会使谱线展宽，并且在高温下最终会把两个过程之间的差别抹平。
+
+%FIG{145}: {F 心处的光学跃迁，显示晶格畸变的效应：吸收 AB' 所需的能量高于发射 BA'。高温下，声子能级与两个方向的电子跃迁相结合（A'B'）。}
+
+带间光学跃迁当然在金属中也可以观察到——只是需要修正，以顾及电子未必完全填满一个带、或者可能分布于几个不同的布里渊区这一事实。这类跃迁的理论原则上遵循本节的论证——但该现象当然可能在一定程度上被电子系统的电导率所伴随的高反射率所掩盖（见 §8.6）。
+
+另一种本质上等价于带间跃迁的现象是软 X 射线的发射。当固体中一个原子的最深能级之一上的电子被移走时，电子从其他各个能级向下跃迁，便发射出 X 射线。我们关心的是从金属价带出发的跃迁——直观上很显然，发射辐射的谱将显示出一个频带，反映出传导电子或价电子所占据的态带。
+
+%FIG{146}: {X 射线发射。}
+
+这个谱的实际形状将取决于带中态密度与相应跃迁矩阵元平方二者的乘积。众所周知，电子与电磁场之间的相互作用是通过电子的动量算符进行的（即通过电子运动产生的电流），因此必须研究如下形式的矩阵元
+
+\begin{equation*}
+\int \psi_{\mathbf{k}}^{*}(\mathbf{r})\, e^{i\mathbf{K}\cdot\mathbf{r}}\, \mathrm{grad}\,\phi_a(\mathbf{r})\,\mathrm{d}\mathbf{r},
+\tag{8.76}
+\end{equation*}
+
+其中 $\phi_a$ 是失去电子的那个原子轨道，$\mathbf{K}$ 是 X 射线的波矢。与这类跃迁相联系的波长在原子距离的尺度上仍然是长的，所以这个波动因子可以忽略——而且，由于 $\phi_a(\mathbf{r})$ 是局域化的函数，不存在动量选择定则。
+
+然而，这个矩阵元在整个带内可能有相当大的变化，视能级 $\phi_a$ 是 s 态还是 p 态而定，也视 $\psi_{\mathbf{k}}(\mathbf{r})$ 在原子内部更偏 s 型还是 p 型而定。还有来自电子间相互作用的效应。因此，发射谱的确切形状未必是态密度的直接量度，尽管它应当反映该函数的某些特征，特别是 费米能级处的锐利截止。
+
+晶体对光或 X 射线的吸收伴随着电子被激发到更高的能级。在半导体或绝缘体中，这些激发电子通常是可以移动的，因而产生光电导（photoconductivity）。但是这样产生的载流子很容易被杂质和不完整性俘获（trapping），大量复杂的实验现象即为明证。
+
+如果能量足够，电子可以穿越晶体表面被光电发射出去。关于光电效应的初等 Einstein 公式只告诉我们，它在表面之外具有的能量不能超过
+
+\begin{equation*}
+\mathcal{E}_{\max} = \hbar\omega - \phi_W
+\tag{8.77}
+\end{equation*}
+
+因为它必须已经越过了功函数势垒 $\phi_W$（§6.9）。但能量较低的光电子必定来自晶体内 费米能量以下的能级。直接测量 $n(\mathcal{E},\omega)$——给定光子频率下发射电子的能量分布——应当能给出大量关于从占据带态到空带态的跃迁概率的信息，这类跃迁正是光吸收的成因。
+
+为了解释这些观察结果，我们自然会构造一幅能级图（图 147），并按照图 143 的方式清点竖直的或直接的跃迁。原则上，若能同时控制 $\mathcal{E}$ 和 $\omega$，我们由此应当能获得比诸如式 (8.73) 的带间谱密度所给出的稍多一点关于能带结构的信息。实际上，许多晶体固体的光电发射谱并不符合这一模式，而似乎表现得如同
+
+\begin{equation*}
+n(\mathcal{E},\omega) \sim \rho_f(\mathcal{E})\,\rho_i(\mathcal{E}-\hbar\omega),
+\tag{8.78}
+\end{equation*}
+
+仿佛在能量密度为 $\rho_i(\mathcal{E}-\hbar\omega)$ 的初态与能量为 $\rho_f(\mathcal{E})$ 的末态之间，“非直接”跃迁可以不加甄别地发生。实验在技术上很困难，但结论是明确的：尚不清楚这一与简单理论的分歧，究竟仅仅是像 L.E.E.D.（§6.9）中那样，由于发射表面附近晶体动量选择定则的失效所致，还是应归因于多电子效应。
+
+%FIG{147}: {光电发射。}
+
+\section{与传导电子的相互作用}
+
+当固体是相对良好的导体时，光学性质会怎样？例如，假定我们在复折射率的公式 (8.7) 中忽略 $\epsilon$——这是一个对金属有效的假定。
+
+于是我们有
+
+\begin{equation*}
+\mathsf{N}^2 = \frac{4\pi\sigma}{\omega}\, i,
+\tag{8.79}
+\end{equation*}
+
+并且实部和虚部大小相等：
+
+\begin{equation*}
+\mathsf{n} + i\mathsf{k} = \left(\frac{2\pi\sigma}{\omega}\right)^{\frac{1}{2}}(1+i).
+\tag{8.80}
+\end{equation*}
+
+其最显而易见的后果是，固体的反射本领变得非常高。由式 (8.19)，
+
+\begin{equation*}
+\mathsf{R} \approx 1 - 2\left(\frac{\omega}{2\pi\sigma}\right)^{\frac{1}{2}},
+\tag{8.81}
+\end{equation*}
+
+这就是所谓的 Hagen--Rubens 关系。对完全反射性的偏离正比于
+
+\begin{equation*}
+\left(\frac{\omega}{2\pi\sigma}\right)^{\frac{1}{2}} \sim \left(\frac{2\omega}{\omega_p^2\tau}\right)^{\frac{1}{2}},
+\tag{8.82}
+\end{equation*}
+
+其中 $\tau$ 是电导率的经典公式 (7.33) 中的弛豫时间，而 $\omega_p$ 则是电子气无处不在的等离体频率。我们知道，即使 $\omega$ 接近红外频率，这个比值也仍然相当小。
+
+但这个初等的宏观理论假定 $\sigma$ 与频率无关。当场振荡得如此之快，以致电子来不及发生碰撞时——即当
+
+\begin{equation*}
+\omega\tau > 1.
+\tag{8.83}
+\end{equation*}
+
+时——情况就不再如此。要研究这个区域，我们必须回到输运方程 (7.14)。
+
+为了完整起见，也为了便于后面引用，让我们写下分布可以在空间和时间上变化的 Boltzmann 方程：
+
+\begin{equation*}
+e\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}}\left(-\frac{\partial f^0}{\partial\mathcal{E}}\right) = \frac{g_{\mathbf{k}}}{\tau} + \mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}} + \frac{\partial g_{\mathbf{k}}}{\partial t}.
+\tag{8.84}
+\end{equation*}
+
+我们像 (7.17) 中那样假定一个弛豫时间。“失衡”分布 $g_{\mathbf{k}}$ 随时间的变化可以被显式地包括进来；正如从 (7.7) 所看到的，当 $\partial f_{\mathbf{k}}/\partial t$ 的所有其他贡献都被计入之后，剩下来的正是这一项。
+
+现在设
+
+\begin{equation*}
+\mathbf{E} = \mathbf{E}_0\exp\{i(\mathbf{K}\cdot\mathbf{r}-\omega t)\},
+\tag{8.85}
+\end{equation*}
+
+如 (8.3) 中那样，并设 $g_{\mathbf{k}}$ 出于“感应”（sympathy）也以同样的方式随空间和时间变化。于是，令
+
+\begin{equation*}
+g_{\mathbf{k}} = \left(-\frac{\partial f^0}{\partial\mathcal{E}}\right)\Phi(\mathbf{k})\exp\{i(\mathbf{K}\cdot\mathbf{r}-\omega t)\}.
+\tag{8.86}
+\end{equation*}
+
+代入 (8.84)，得到
+
+\begin{equation*}
+e\mathbf{E}_0\cdot\mathbf{v}_{\mathbf{k}} = \frac{\Phi(\mathbf{k})}{\tau} + i\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}}\,\Phi(\mathbf{k}) - i\omega\Phi(\mathbf{k}),
+\tag{8.87}
+\end{equation*}
+
+其解为
+
+\begin{equation*}
+\Phi(\mathbf{k}) = \frac{e\tau\,\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}_0}{1-i\omega\tau+i\tau\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}}}.
+\tag{8.88}
+\end{equation*}
+
+我们的 Boltzmann 方程的线性性质使得这个初等的解成为可能。
+
+对于电导率，如 (7.20)--(7.24) 中那样，我们有
+
+\begin{align*}
+\boldsymbol{\sigma}\cdot\mathbf{E}_0 &= \frac{e}{4\pi^3}\int \Phi(\mathbf{k})\,\mathbf{v}_{\mathbf{k}}\,\frac{dS_F}{\hbar v_{\mathbf{k}}} \\
+&= \frac{e^2}{4\pi^3}\int \frac{\tau\,\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}}{1-i\tau(\omega-\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}})}\,\frac{dS_F}{\hbar v_{\mathbf{k}}}\cdot\mathbf{E}_0.
+\tag{8.89}
+\end{align*}
+
+于是，电导率本身就有了实部和虚部；$\boldsymbol{\sigma}$ 的实部将对 $\mathsf{N}^2$ 的虚部作出贡献，而 $\boldsymbol{\sigma}$ 的虚部则看上去像是实介电常数的一部分。
+
+对于普通的电磁波，其相速大于电子的 费米速度，我们可以略去 $\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}}$ 项，它比 $\omega$ 小得多。为形式上简单起见，假定金属具有立方对称性，我们从 (8.89) 得到
+
+\begin{align*}
+\sigma(\omega) &= \frac{e^2}{12\pi^3}\int \frac{\tau v(1+i\omega\tau)}{1+\omega^2\tau^2}\,dS_F \\
+&= \sigma(0)\frac{1+i\omega\tau}{1+\omega^2\tau^2},
+\tag{8.90}
+\end{align*}
+
+其中 $\sigma(0)$ 是金属的普通静态电导率。
+
+应当把这个公式代入 (8.7) 和 (8.19)。若取 $\epsilon=1$，即忽略离子的任何内部极化率，则由 (8.7)、(8.8)、(7.33) 和 (5.53)，我们得到 $\mathsf{N}^2$ 的实部和虚部
+
+\begin{align*}
+\mathsf{n}^2-\mathsf{k}^2 &= 1-\frac{4\pi\sigma(0)\,\omega\tau}{\omega(1+\omega^2\tau^2)} \\
+&= 1-\frac{\omega_p^2\tau^2}{1+\omega^2\tau^2}
+\tag{8.91}
+\end{align*}
+
+以及
+
+\begin{align*}
+2\mathsf{n}\mathsf{k} &= \frac{4\pi\sigma(0)}{\omega(1+\omega^2\tau^2)} \\
+&= \frac{\omega_p^2\tau}{\omega(1+\omega^2\tau^2)},
+\tag{8.92}
+\end{align*}
+
+其中，电子气的等离体频率再一次扮演了最重要的角色。
+
+这个 \emph{Drude 理论}涵盖了三个不同的频率区域。
+
+(i) $\omega\ll 1/\tau$。这是普通的低频区。$\mathsf{N}^2$ 的虚部远大于实部，因而金属强烈反射，Hagen--Rubens 关系 (8.81) 成立。吸收系数大体上与 $\omega$ 无关，而正比于电导率。$\mathsf{N}^2$ 的实部为负，其大小远大于 1。
+
+(ii) $1/\tau\ll\omega\ll\omega_p$。这是\emph{弛豫区}（relaxation region），在此区域中 $\omega^2\tau^2$ 在 (8.91) 与 (8.92) 的分母里占了上风。吸收系数迅速下降，与 $1/\omega^2$ 成比例——而且说来奇怪，它与电导率成\emph{反}比。$\mathsf{N}^2$ 的虚部变得小于实部——但后者仍然很大且为负，如今具有如下形式
+
+\begin{equation*}
+\mathsf{n}^2-\mathsf{k}^2 = 1-\frac{\omega_p^2}{\omega^2}
+\tag{8.93}
+\end{equation*}
+
+如 (5.67) 和 (8.45) 中那样。于是，金属仍然强烈反射，此时
+
+\begin{equation*}
+\mathsf{R} \approx 1-\frac{1}{\sqrt{\pi\sigma_0\tau}} \approx 1-\frac{2}{\omega_p\tau}.
+\tag{8.94}
+\end{equation*}
+
+%FIG{148}: {金属光学性质的示意行为，图中示出介电常数的实部和虚部、反射系数以及吸收系数。注意频率采用对数标度。}
+
+(iii) $\omega_p\ll\omega$。$\mathsf{N}^2$ 的实部变为正数，反射本领降到零。这时金属应当显得或多或少是透明的，其吸收系数为
+
+\begin{equation*}
+\frac{2\omega\,\mathsf{n}(\omega)\,\mathsf{k}(\omega)}{c} \approx \frac{\omega_p^2}{\omega^2\tau c}.
+\tag{8.95}
+\end{equation*}
+
+式 (8.91) 和 (8.92) 蕴含着 $\mathsf{n}$ 与 $\mathsf{k}$ 作为 $\omega$ 的函数之间的某些关系，而事实上这些关系并不总是得到遵守。但

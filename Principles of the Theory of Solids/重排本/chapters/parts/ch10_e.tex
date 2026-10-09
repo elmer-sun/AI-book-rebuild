@@ -1,0 +1,344 @@
+% ch10_e §10.10–10.11 (书页 362–371 / p376–p385)
+
+\section{Ising 问题的严格解}
+
+事实证明，Ising 问题可以在两种特殊情形下严格求解。其中一种情形是平庸的，证明也很简单；另一种情形表述起来并不困难，但配分函数最终公式的证明却太过艰难，无法在这里给出。
+
+平庸的情形是线性链；我们给出它的解，因为它展示了一种普遍的技巧。设考虑由 $N$ 个“层”组成的格子。在一维情形，这样一个“层”就是单个格点；在二维情形，它会是完整的一行原子，依此类推。
+
+现在设 $\nu_j$ 是标志第 $j$ 层“状态”的记号；例如在二维情形，$\nu_j$ 可以是 $(++-+\ldots)$ 这样的符号，它给出第 $j$ 行中所有原子的自旋方向。我们假设只有相邻的层之间才有相互作用，即能量可以写成
+
+\begin{equation*}
+\mathcal{E} = \sum_{j=1}^{N} \mathcal{V}(\nu_j, \nu_{j+1}) + \sum_{j=1}^{N} \mathcal{V}(\nu_j)
+\tag{10.88}
+\end{equation*}
+
+（其中包括每一层的“内能”，并且像 §1.6 中那样把两端闭合起来，使得 $\nu_{N+1} \equiv \nu_1$）。
+
+于是系统的配分函数可以写成
+
+\begin{equation*}
+Z = \sum_{\nu_1}\sum_{\nu_2}\cdots\sum_{\nu_N}\left\{\prod_{j=1}^{N}\exp\left[-\left[\mathcal{V}(\nu_j, \nu_{j+1}) + \tfrac{1}{2}\mathcal{V}(\nu_j) + \tfrac{1}{2}\mathcal{V}(\nu_{j+1})\right]/kT\right]\right\}.
+\tag{10.89}
+\end{equation*}
+
+但这不过相当于写下一串矩阵的乘积，其典型元素是
+
+\begin{equation*}
+P_{\nu_j\nu_{j+1}} = \exp\left\{-\left[\mathcal{V}(\nu_j, \nu_{j+1}) + \tfrac{1}{2}\mathcal{V}(\nu_j) + \tfrac{1}{2}\mathcal{V}(\nu_{j+1})\right]/kT\right\},
+\tag{10.90}
+\end{equation*}
+
+这里要认识到，$\nu_j$ 是一个记号，按照层的复杂程度，它可以取两个或更多的值。实际上，式 (10.89) 说的无非是
+
+\begin{align*}
+Z &= \mathrm{trace}\,(P^N)\\
+&= \sum_i \lambda_i^N,
+\tag{10.91}
+\end{align*}
+
+其中 $\lambda_i$ 是式 (10.90) 中矩阵 $P$ 的本征值。实际上我们是假定 $N$ 很大——即我们的链几乎无限长——所以只有 $P$ 的最大本征值才是重要的。于是有结果
+
+\begin{align*}
+F &= -kT\ln Z\\
+&\to -NkT\ln\lambda_{\max},
+\tag{10.92}
+\end{align*}
+
+这表明自由能是一种广延性质。
+
+现在，在一维链中，记号 $\nu_j$ 正是 $\sigma_j$ 的取值 $+1$ 和 $-1$。矩阵 (10.90) 可以写成
+
+\begin{equation*}
+P = \begin{pmatrix}\, y^{-\frac{1}{2}}z^{-\frac{1}{2}} & z^{\frac{1}{2}}\,\\[2pt]\, z^{\frac{1}{2}} & y^{\frac{1}{2}}z^{-\frac{1}{2}}\, \end{pmatrix}
+\tag{10.93}
+\end{equation*}
+
+（用 (10.75) 的记号）。这个矩阵的本征值是
+
+\begin{equation*}
+\lambda_{\pm} = \tfrac{1}{2}\left\{(1+y) \pm \sqrt{\left[(1-y)^2 + 4yz^2\right]}\,\right\} y^{-\frac{1}{2}}z^{-\frac{1}{2}};
+\tag{10.94}
+\end{equation*}
+
+把 $\lambda_+$ 代入 (10.92)，我们的问题便告解决。
+
+这个结果的有趣之处在于，$F$ 既是 $y$ 的连续函数，又是 $z$ 的连续函数——也就是说，它是 $H$ 和 $T$ 的连续函数，没有奇点。零场下的比热可以算出，就是
+
+\begin{equation*}
+C_v = Nk\left(\frac{J}{kT}\right)^{2}\mathrm{sech}^2\left(\frac{J}{kT}\right),
+\tag{10.95}
+\end{equation*}
+
+它在 $kT = J$ 附近有一个平滑的极大，但不表现出相变。
+
+此外，在 $H = 0$ 时不存在与自发磁化强度相对应的解。\emph{线性链不是铁磁性的}。这一点从 Bragg--Williams 公式 (10.81) 本来看不出来，但在 Bethe 方法中确实显露出来：按式 (10.85)，当配位数 $p$ 趋于 2 时 $T_c \to 0$。当然，同样的结论对反铁磁性也成立。
+
+%FIG{190}: 线性链的比热。
+
+重要的是要认识到这是一条\emph{拓扑}定理；Bethe 方法中 $p = 2$ 给不出转变温度这一点很可能只是偶然的。关键在于，线性链在任意一点都太容易被弄断。引入一个断口，便摧毁了长程序，使能量增加 $2J$；但断口可以出现在 $N$ 个格点中的任何一处，于是熵增加了 $k\ln N$。自由能的改变将会是
+
+\begin{equation*}
+F = 2J - kT\ln N,
+\tag{10.96}
+\end{equation*}
+
+%FIG{191}: 线性链中的长程序 (a) 被单个断口 (b) 破坏。
+
+只要 $N$ 足够大，无论温度多低，它总可以被做成负的。由这个论证——或者由对一个像 (10.93) 那样的矩阵的本征值所作的更精细的讨论，该矩阵阶数有限而且所有元素都为正——可以推断：任何只在一个维度上无限的格子都将没有奇点。这是“一条链构不成晶体”这条格言的一个典型例证；凡研究凝聚态的学生都应当把它牢牢记在心头。
+
+不难证明，在二维格子中上述反驳不再成立。例如，假设我们造出一个反转自旋的连通区域，如图 192 所示。这个区域将由一条长度为 $L$ 的多边形边界围住——也就是说，在两个区域之间的边界上将有 $L$ 条 AB 型的连键。于是系统的能量将增加 $2LJ$。但与这份能量相联系的熵是多少？一般地说，边界的每个节点处有 3 个可供选择的方向，因此铺排这条边界的方式约有 $3^L$ 种。实际上这是高估，因为多边形还必须重新闭合——但当 $L$ 很大时这个误差并不重要。于是，对自由能的贡献将是
+
+\begin{align*}
+F &\approx 2LJ - kT\ln 3^L\\
+&= L(2J - kT\ln 3).
+\tag{10.97}
+\end{align*}
+
+%FIG{192}: 一个反转自旋的区域。
+
+如果
+
+\begin{equation*}
+kT < \frac{2J}{\ln 3},
+\tag{10.98}
+\end{equation*}
+
+则所有这类贡献都将为正。
+
+有序态在这个温度以下应当是稳定的。
+
+这个粗糙的论证可以由严格的计算来支持，因为 Ising 模型另一个可解的情形是二维正方格子。Onsager 证明了该系统在温度
+
+\begin{equation*}
+kT_c = \frac{2J}{\ln(1+\sqrt{2})}
+\tag{10.99}
+\end{equation*}
+
+以下是“铁磁性的”（或“反铁磁性的”）；这一证明所要求的代数定理远远超出我们现在的范围（尽管其出发点实际上就是式 (10.92) 所引述的关系）。
+
+这个结果最有趣的特征是：虽然自由能本身是温度的连续函数，比热却在居里温度两侧对数式地发散。这样的奇点实际上在任何固态体系中都没有观察到，但这也许是因为我们不容易真正实现一个二维的 Ising 自旋集合。
+
+%FIG{193}: 正方层格的比热：Onsager 公式。
+
+Onsager 方法还可以应用于另外几种二维格子，它们表现出类似的性质；此外还有一些优美的拓扑定理，利用它们可以在其他情形下定出转变温度。然而，对于处在有限磁场中的二维 Ising 铁磁体，不存在严格解。
+
+对三维格子来说，Ising 问题完全没有严格解。人们可以有把握地相信它们会表现出长程序，因为拓扑条件比二维更有利于合作效应；借助级数展开，居里点可以定得相当准确。
+
+由这段讨论产生一条重要原理。按照 Bethe 方法，有序–无序转变应当只依赖于配位数 $p$（参看式 (10.75)）。这样一来，二维三角格子与三维简立方格子的配位数都是 $p = 6$，二者就应当有完全相同的性质。事实上，它们的行为大不相同：比热曲线不同，转变温度也不同。格子的维数对合作现象是带根本性的，实际上对固体的许多性质也是如此。
+
+%FIG{194}: 三角层格 (a) 与简立方格子 (b) 具有相同的配位数。
+
+\section{自旋波}
+
+让我们回到自旋哈密顿量 (10.29)，并假定交换积分为铁磁型的。在零磁场中
+
+\begin{equation*}
+\mathcal{H} = -\sum_{ll'} J_{ll'}\,\mathsf{S}_l \cdot \mathsf{S}_{l'}.
+\tag{10.100}
+\end{equation*}
+
+设 $S$ 是每个离子的总自旋。我们可以用自旋的 $z$ 分量 $\mathsf{S}_l^z$ 的本征态来给第 $l$ 个离子上的自旋态分类。于是，对沿 $z$ 方向分量为 $S'$ 的态
+
+\begin{equation*}
+\mathsf{S}_l^z\left|S'\right\rangle_l = S'\left|S'\right\rangle_l
+\tag{10.101}
+\end{equation*}
+
+（本节中取 $\hbar = 1$）。
+
+铁磁性普遍理论的假定是：哈密顿量 $\mathcal{H}$ 有这样一个基态，其中所有自旋都沿 $z$ 方向最大限度地排列。我们假定这个态可以写成
+
+\begin{equation*}
+\left|0\right\rangle = \left|S\right\rangle_1\left|S\right\rangle_2\left|S\right\rangle_3\ldots\left|S\right\rangle_l\ldots\left|S\right\rangle_N,
+\tag{10.102}
+\end{equation*}
+
+其中 $\mathsf{S}^z$ 在格子的每个格点上都取其最大值 $S$。
+
+容易验证这是 $\mathcal{H}$ 的一个本征态。让我们为某一格点上的自旋定义两个新算符（暂时略去它的标记 $l$）
+
+\begin{equation*}
+\mathsf{S}^{+} \equiv \mathsf{S}^{x} + i\mathsf{S}^{y}, \quad \mathsf{S}^{-} \equiv \mathsf{S}^{x} - i\mathsf{S}^{y}.
+\tag{10.103}
+\end{equation*}
+
+它们是自旋偏离（spin-deviation）算符。例如，考察一下用 $\mathsf{S}^{+}$ 作用到 $\mathsf{S}^z$ 的一个本征态上的效果；其结果是 $\mathsf{S}^z$ 的另一个本征态。于是，采用 (10.101) 的记号，
+
+\begin{align*}
+\mathsf{S}^z\{\mathsf{S}^{+}\left|S'\right\rangle\} &= \mathsf{S}^z(\mathsf{S}^{x}+i\mathsf{S}^{y})\left|S'\right\rangle\\
+&= \{(\mathsf{S}^{x}\mathsf{S}^z+i\mathsf{S}^{y})+i(\mathsf{S}^{y}\mathsf{S}^z-i\mathsf{S}^{x})\}\left|S'\right\rangle\\
+&= \mathsf{S}^{+}\mathsf{S}^z\left|S'\right\rangle+\mathsf{S}^{+}\left|S'\right\rangle\\
+&= \mathsf{S}^{+}(S'+1)\left|S'\right\rangle\\
+&= (S'+1)\{\mathsf{S}^{+}\left|S'\right\rangle\},
+\tag{10.104}
+\end{align*}
+
+这里用了自旋算符的熟知对易关系。这样，$\mathsf{S}^{+}\left|S'\right\rangle$ 是 $\mathsf{S}^z$ 的本征值为 $S'+1$ 的本征态——换句话说，它就是态 $\left|S'+1\right\rangle$。$\mathsf{S}^{+}$ 的效果是使自旋在 $z$ 方向上的分量增加一个单位。类似地，$\mathsf{S}^{-}$ 使 $S'$ 减少一个量子。
+
+%FIG{195}: 算符 $\mathsf{S}_l^{\dagger}\mathsf{S}_{l'}^{-}$ 交换自旋偏离。
+
+把 (10.103) 代入哈密顿量是很容易的事，后者可以写成
+
+\begin{equation*}
+\mathcal{H} = -\sum_{ll'} J_{ll'}\{\mathsf{S}_l^z\mathsf{S}_{l'}^z + \tfrac{1}{2}(\mathsf{S}_l^{+}\mathsf{S}_{l'}^{-}+\mathsf{S}_l^{-}\mathsf{S}_{l'}^{+})\}.
+\tag{10.105}
+\end{equation*}
+
+当 $\mathcal{H}$ 作用在态 (10.102) 上时，只有 $z$ 分量作出贡献：
+
+\begin{equation*}
+\mathcal{H}\left|0\right\rangle = -\sum_{ll'} J_{ll'}S^2\left|0\right\rangle.
+\tag{10.106}
+\end{equation*}
+
+算符 $\mathsf{S}_l^{+}$ 作用在态 $\left|S\right\rangle_l$ 上给出零，因为我们不能把 $\mathsf{S}_l^z$ 的本征值增大到超过它的最大值 $S$。于是，有序态 $\left|0\right\rangle$ 是总哈密顿量的本征态。
+
+但现在来考虑系统的激发。自然而然的设想是，它们对应于单个自旋发生偏离的态，如图 195(a) 那样。然而，这样的态并不是 $\mathcal{H}$ 的本征态；算符 $\mathsf{S}_l^{+}\mathsf{S}_{l'}^{-}$ 作用在这个态上，会把它变成另一个态，如图 195(b) 那样，自旋偏离已经被交换到它的近邻身上。Ising 模型中所用的那种态的分类（例如图 185）在这里行不通；自旋偏离会在格子中不停地四处游走。
+
+这种交换效应颇像 Bloch 态的紧束缚模型（§3.4）中电子从一个原子被递交给下一个原子的过程，而且结果证明它具有非常相似的数学性质。这一效应的数学表述如下。
+
+让我们设 $S$ 是一个相当大的数（比如 $\frac{5}{2}$）。$\mathsf{S}^{-}$ 的效果是“产生一个自旋偏离”。我们不采用 (10.101) 的分类，而写
+
+\begin{equation*}
+n = S - S',
+\tag{10.107}
+\end{equation*}
+
+并把态 $\left|n\right\rangle$ 定义为带有 $n$ 个自旋偏离量子的态。只要 $n < 2S$，我们就有通过 $\mathsf{S}^{-}$ 和 $\mathsf{S}^{+}$ 的作用来产生和湮没这些量子的自由。因此，这些算符带有简谐振子的常规理论中湮没算符和产生算符的某些性质（参看 §2.11）。
+
+为了形式地表明这一点，我们可以计算对易子
+
+\begin{align*}
+[\mathsf{S}^{+},\mathsf{S}^{-}] &= i[\mathsf{S}^{y},\mathsf{S}^{x}] - i[\mathsf{S}^{x},\mathsf{S}^{y}]\\
+&= -2i(i\mathsf{S}^z)\\
+&= 2\mathsf{S}^z.
+\tag{10.108}
+\end{align*}
+
+于是，若令
+
+\begin{equation*}
+a = \frac{\mathsf{S}^{+}}{(2\mathsf{S}^z)^{\frac{1}{2}}}, \quad a^{*} = \frac{\mathsf{S}^{-}}{(2\mathsf{S}^z)^{\frac{1}{2}}},
+\tag{10.109}
+\end{equation*}
+
+则 $a$ 和 $a^{*}$ 具有标准的对易关系
+
+\begin{equation*}
+[a, a^{*}] = 1,
+\tag{10.110}
+\end{equation*}
+
+而且互为复共轭。
+
+定义 (10.109) 没有指明 $\mathsf{S}^{+}$ 和 $[\mathsf{S}^z]^{-\frac{1}{2}}$ 究竟应当按什么次序取——由于这些算符互不对易，这本来可能造成严重的后果。但若 $S$ 足够大，我们就可以忽略这个误差，把算符 $2\mathsf{S}^z$ 换成数 $2S$，因为我们只打算考虑几乎完全排列整齐的态。在这个近似下，自旋偏离态 $\left|n\right\rangle$ 是 $a^{*}a$ 的本征态，我们可以写
+
+\begin{equation*}
+a\left|n\right\rangle = n^{\frac{1}{2}}\left|n-1\right\rangle, \quad a^{*}\left|n\right\rangle = (n+1)^{\frac{1}{2}}\left|n+1\right\rangle.
+\tag{10.111}
+\end{equation*}
+
+$n$ 的定义还意味着我们可以写
+
+\begin{equation*}
+\mathsf{S}^z = S - a^{*}a.
+\tag{10.112}
+\end{equation*}
+
+现在把 (10.109) 和 (10.112) 代入哈密顿量 (10.105)。它近似地变成
+
+\begin{align*}
+\mathcal{H} &\approx -\sum_{ll'} J_{ll'}\{(S-a_l^{*}a_l)(S-a_{l'}^{*}a_{l'})+\tfrac{1}{2}\cdot 2S(a_l^{*}a_{l'}+a_l a_{l'}^{*})\}\\
+&\approx -\sum_{ll'} J_{ll'}\{S^2 + S(a_l a_{l'}^{*}+a_l^{*}a_{l'}-a_l^{*}a_l-a_{l'}^{*}a_{l'})\},
+\tag{10.113}
+\end{align*}
+
+这里我们略去了一个 $a_l^{*}a_l a_{l'}^{*}a_{l'}$ 量级的项。
+
+式 (10.113) 中的第一项就是基态（式 (10.116)；译注：疑为 (10.106) 之误印）的能量；其余各项是算符，明确地表达自旋偏离从一个格点向下一个格点的传递。这颇像晶格动力学中的情形——晶格位移依靠弹性力从一个格点传到另一个格点——或者，正如我们已指出过的，像电子波的紧束缚公式。我们可以用在 §2.1 中用过的同一手法求出这个哈密顿量的本征态：代入
+
+\begin{equation*}
+a_l = N^{-\frac{1}{2}}\sum_{\mathbf{q}} a_{\mathbf{q}}\,e^{i\mathbf{q}\cdot\mathbf{l}}, \quad a_l^{*} = N^{-\frac{1}{2}}\sum_{\mathbf{q}} a_{\mathbf{q}}^{*}\,e^{-i\mathbf{q}\cdot\mathbf{l}},
+\tag{10.114}
+\end{equation*}
+
+来代替每个格点上的湮没算符和产生算符。这等价于 (2.8)；波矢 $\mathbf{q}$ 满足与晶格动力学中相同的条件，而新算符 $a_{\mathbf{q}}$ 和 $a_{\mathbf{q}}^{*}$ 满足对易关系 (10.110)。
+
+把 (10.114) 代入 (10.113)，并利用 $J_{ll'}$ 只依赖于 $\mathbf{h} = \mathbf{l}-\mathbf{l}'$ 这一事实（如 (2.6) 中那样），我们得到
+
+\begin{equation*}
+\mathcal{H} = \mathcal{H}_0 + \sum_{\mathbf{q}}\left\{\sum_{\mathbf{h}} 2SJ(\mathbf{h})\left(1-e^{-i\mathbf{q}\cdot\mathbf{h}}\right)\right\}a_{\mathbf{q}}^{*}a_{\mathbf{q}},
+\tag{10.115}
+\end{equation*}
+
+其中 $\mathcal{H}_0$ 与算符 $a_{\mathbf{q}}$ 无关。但 $\mathcal{H}-\mathcal{H}_0$ 是一组简谐振子的哈密顿量，每个波矢 $\mathbf{q}$ 对应一个振子，每个振子具有能级
+
+\begin{equation*}
+\mathcal{E}_{\mathbf{q}} = n_{\mathbf{q}}\sum_{\mathbf{h}} 2SJ(\mathbf{h})\left(1-e^{-i\mathbf{q}\cdot\mathbf{h}}\right).
+\tag{10.116}
+\end{equation*}
+
+换句话说，算符 $a_{\mathbf{q}}$、$a_{\mathbf{q}}^{*}$ 是自旋波的湮没算符和产生算符，自旋波是系统的元激发。第 $\mathbf{q}$ 个自旋波模中的能量以下列量子为单位而量子化：
+
+\begin{equation*}
+\hbar\omega_{\mathbf{q}} = \sum_{\mathbf{h}} 2SJ(\mathbf{h})\left(1-e^{-i\mathbf{q}\cdot\mathbf{h}}\right).
+\tag{10.117}
+\end{equation*}
+
+仿照光子、声子和等离激元的命名，这样的元激发有时叫作磁振子（magnon）。
+
+对于只含最近邻相互作用的简单格子，式 (10.117) 在小波矢下的形式容易算出：
+
+\begin{equation*}
+\hbar\omega_{\mathbf{q}} \approx 2SJq^2a^2,
+\tag{10.118}
+\end{equation*}
+
+其中 $a$ 是晶格常数。于是，磁振子的能量正比于其波矢的平方——颇像电子的能量。实际上，可以定义一个“有效质量” $m^{*}$，使得
+
+\begin{equation*}
+\hbar\omega_{\mathbf{q}} \approx \frac{\hbar^2 q^2}{2m^{*}}.
+\tag{10.119}
+\end{equation*}
+
+对于居里温度为几百开的典型铁磁体（由此可从式 (10.34) 得出 $J$ 的量级），我们发现 $m^{*}$ 约为自由电子质量的 10 倍。
+
+激发谱的形式带来若干简单的推论。例如，由于磁振子服从 Bose--Einstein 统计，可以用 (2.46) 计算每个模的平均占据数：
+
+\begin{equation*}
+\overline{n}_{\mathbf{q}} = \frac{1}{e^{\hbar\omega_{\mathbf{q}}/kT}-1}.
+\tag{10.120}
+\end{equation*}
+
+如果接受 (10.118)，并计算温度 $T$ 下所有被激发模中的磁振子总数，就得到
+
+\begin{align*}
+\overline{n} &= \frac{1}{8\pi^3}\int_0^{\infty}\frac{4\pi q^2\,dq}{\exp(2SJa^2q^2/kT)-1}\\
+&= \frac{N}{4\pi^2}\left(\frac{kT}{2SJ}\right)^{\frac{3}{2}}\int_0^{\infty}\frac{x^{\frac{1}{2}}\,dx}{e^x-1}.
+\tag{10.121}
+\end{align*}
+
+但每个磁振子都对应于一个自旋偏离的激发；它使系统的总自旋 $NS$ 减少一个单位（用 (10.112) 和 (10.114) 可以验证）。于是，自旋波诸模中 $\overline{n}$ 个量子的激发使总自旋减少 $\overline{n}$；磁化强度应当随温度的升高而按公式
+
+\begin{equation*}
+M(T) = M(0)\left\{1-\gamma\left(\frac{kT}{2SJ}\right)^{\frac{3}{2}}\right\},
+\tag{10.122}
+\end{equation*}
+
+减小，其中 $M(0)$ 是 $T=0$ 时的饱和磁化强度，$\gamma$ 是一个可以由定积分 (10.121) 的值算出的数。
+
+色散公式 (10.118) 的另一个简单推论是，磁振子应当对比热有贡献。显然，把 $\hbar\omega_{\mathbf{q}}$ 放到 (10.121) 的积分号下（参看式 (2.49)），就会在计算 $\mathcal{E}$ 时多引进 $T$ 的一次幂。这多出的一份 $T$ 的幂会在求微商得出比热时被取出来，因此比热也按 $T^{\frac{3}{2}}$ 变化。
+
+铁磁介质中的自旋波还有许多其他有趣的性质。例如，它们可以与声子相互作用，并且可以像格波一样引起中子的非弹性散射。§2.8 的一般论证在此适用，并给出能量与晶体动量的选择定则。
+
+从一般理论的观点看，我们在本节中所做的无非是对自旋哈密顿量 (10.100) 的态验证了 Bloch 定理（§1.4）。这个哈密顿量满足晶格平移不变性的条件，所以各态必定可以按波矢分类，并且必定具有满足 §2.5 各定律的谱。尽管如此，把哈密顿量约化成 (10.113) 的形式时不得不丢掉大量的项，特别是从自旋算符 $\mathsf{S}^{+}$ 和 $\mathsf{S}^{-}$ 定义算符 $a$ 和 $a^{*}$ 时所涉及的那些项。这些项给出自旋波之间的相互作用，在 (10.122) 按 $T$ 之幂的展开式中产生更多的项。事实是，在单个格点上能够产生的自旋偏离数以 $2S$ 为限。若产生高密度的磁振子，就有超越这一限度的趋势，可叠加性与独立性的假设便不再成立。实际上，有序态崩溃，我们穿过居里点；整个近似方案土崩瓦解。
+
+我们对铁磁磁振子谱的推导是从 §10.4 的 Heisenberg 模型出发的。但是，物理上等价的现象也出现在 §10.5 的巡游电子模型中，尽管自旋并不局域在格点上。要构造行列式波函数 $\Psi(\mathbf{k},\mathbf{q})$——把一个电子从某个态 $\left|\mathbf{k},+\right\rangle$ 放进自旋已反转的另一个态 $\left|\mathbf{k}+\mathbf{q},-\right\rangle$——显然需要量级为交换能 $U$ 的能量。但电子气实际上是多体系统，除单粒子激发外还有集体模（参看 §5.7）。为了描述自旋波，我们把这些行列式作线性组合，
+
+\begin{equation*}
+\Psi_{\mathbf{q}} = \sum_{\mathbf{k}} A_{\mathbf{k}}\,\Psi(\mathbf{k},\mathbf{q})
+\tag{10.123}
+\end{equation*}
+
+并选取系数 $A_{\mathbf{k}}$，使得 $\Psi_{\mathbf{q}}$ 是系统总哈密顿量的近似本征态。结果看上去与 (10.118) 完全一样；当 $\mathbf{q}\to 0$ 时能量趋于零。根据关于破缺对称效应的 \emph{Goldstone 定理}，这是其

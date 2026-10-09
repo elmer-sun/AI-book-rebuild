@@ -1,0 +1,376 @@
+% ch3_b (书页 106-118 / p121-p133)
+%--A-TAIL--
+%JOIN%，连接两点。但还有一个同样好的定义——直线是一条把它自身的切矢量平行移动的路径。以后会看到，这两个概念当且仅当联络是 Christoffel 联络时才会一致。
+
+我们将从第二种定义出发（测地线是一条切矢量被平行移动的曲线），因为它在计算上直接得多。路径 $x^\mu(\lambda)$ 的切矢量是 $dx^\mu/d\lambda$。于是，它被平行移动的条件就是
+\begin{equation*}
+\frac{D}{d\lambda}\frac{dx^\mu}{d\lambda} = 0,
+\tag{3.43}
+\end{equation*}
+或者等价地
+\begin{equation*}
+\boxed{\;\frac{d^2x^\mu}{d\lambda^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda} = 0.\;}
+\tag{3.44}
+\end{equation*}
+这就是\textbf{测地线方程}（geodesic equation），另一个你应该记住的方程。如果联络系数取为欧几里得空间中的 Christoffel 符号，我们可以容易地看出它重新给出通常的直线概念；在这种情形下我们可以选取笛卡尔坐标，使得 $\Gamma^\mu_{\rho\sigma} = 0$，于是测地线方程就简化为 $d^2x^\mu/d\lambda^2 = 0$，这正是直线的方程。
+
+刚才这简单得有点令人不好意思；让我们转向最短距离定义这个更不平凡的情形。我们知道，在洛伦兹时空（Lorentzian spacetime）中，距离的定义牵涉到种种微妙之处；对类光路径而言距离是零，而对类时路径来说，使用固有时更为方便。所以为了简单起见，我们就只对类时路径做这个计算——结果得到的方程将被证明对任何路径都成立，因此我们并没有损失任何一般性。于是我们考虑固有时泛函
+\begin{equation*}
+\tau = \int\left(-g_{\mu\nu}\frac{dx^\mu}{d\lambda}\frac{dx^\nu}{d\lambda}\right)^{1/2}\,d\lambda,
+\tag{3.45}
+\end{equation*}
+其中积分沿路径进行。为了寻找最短距离路径，我们可以按通常的变分法来做，寻求这个泛函的驻点（critical points）。它们将被证明是固有时\emph{最大}的曲线，这与我们在第 1 章中对双生子佯谬的讨论相一致。不过，我们可以用一个技巧来简化代数运算。积分 (3.45) 具有形式 $\tau = \int\sqrt{-f}\,d\lambda$，其中 $f = g_{\mu\nu}(dx^\mu/d\lambda)(dx^\nu/d\lambda)$。变分看起来像
+\begin{align*}
+\delta\tau &= \int\delta\sqrt{-f}\,d\lambda\\
+&= -\int\frac{1}{2}(-f)^{-1/2}\,\delta f\,d\lambda.
+\tag{3.46}
+\end{align*}
+如果我们现在规定参数就是固有时 $\tau$ 本身，而不是任意参数 $\lambda$，事情会变得更容易；这样切矢量就是
+四速度 $U^\mu$。这就固定了 $f$ 的值：
+\begin{equation*}
+f = g_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau} = g_{\mu\nu}U^\mu U^\nu = -1.
+\tag{3.47}
+\end{equation*}
+由式 (3.46) 我们便有
+\begin{equation*}
+\delta\tau = -\frac{1}{2}\int\delta f\,d\tau.
+\tag{3.48}
+\end{equation*}
+式 (3.45) 的驻点——即 $\delta\tau = 0$ 的那些路径——因此等价于下面这个更简单的积分的驻点（参数化固定）：
+\begin{equation*}
+I = \frac{1}{2}\int f\,d\tau = \frac{1}{2}\int g_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}\,d\tau.
+\tag{3.49}
+\end{equation*}
+（这个 $\frac{1}{2}$ 绝不是必需的，但它会让后面的事情变得更顺。）对这个表达式作变分，因而是寻找最短距离路径的一条捷径，我们会明智地沿用它。
+
+$I$ 的驻点当然满足 Euler–Lagrange 方程 (1.128)，但求出它们需要反复运用链式法则；而同样简单的做法是直接考虑路径作无穷小变分时积分的改变：
+\begin{align*}
+x^\mu &\rightarrow x^\mu + \delta x^\mu\\
+g_{\mu\nu} &\rightarrow g_{\mu\nu} + (\partial_\sigma g_{\mu\nu})\delta x^\sigma.
+\tag{3.50}
+\end{align*}
+第二行来自弯曲时空中的泰勒展开——如你所见，这里用的是偏导数，而不是协变导数。这是因为我们只是把分量 $g_{\mu\nu}$ 当作某个具体坐标系中时空上的函数来看待。把它代入式 (3.49)，只保留 $\delta x^\mu$ 的一阶项，就得到
+\begin{equation*}
+\delta I = \frac{1}{2}\int\left[\partial_\sigma g_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}\delta x^\sigma + g_{\mu\nu}\frac{d(\delta x^\mu)}{d\tau}\frac{dx^\nu}{d\tau} + g_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{d(\delta x^\nu)}{d\tau}\right]d\tau.
+\tag{3.51}
+\end{equation*}
+最后两项可以分部积分；例如
+\begin{align*}
+\frac{1}{2}\int\left[g_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{d(\delta x^\nu)}{d\tau}\right]d\tau &= -\frac{1}{2}\int\left[g_{\mu\nu}\frac{d^2x^\mu}{d\tau^2} + \frac{dg_{\mu\nu}}{d\tau}\frac{dx^\mu}{d\tau}\right]\delta x^\nu\,d\tau\\
+&= -\frac{1}{2}\int\left[g_{\mu\nu}\frac{d^2x^\mu}{d\tau^2} + \partial_\sigma g_{\mu\nu}\frac{dx^\sigma}{d\tau}\frac{dx^\mu}{d\tau}\right]\delta x^\nu\,d\tau,
+\tag{3.52}
+\end{align*}
+其中我们略去了边界项——因为我们取变分 $\delta x^\mu$ 在路径端点处为零，所以边界项消失。在第二行里我们用到了
+链式法则作用于 $g_{\mu\nu}$ 的导数。把一些哑指标重新排列之后，变分 (3.51) 就变成
+\begin{equation*}
+\delta I = -\int\left[g_{\mu\sigma}\frac{d^2x^\mu}{d\tau^2} + \frac{1}{2}\left(\partial_\mu g_{\nu\sigma} + \partial_\nu g_{\sigma\mu} - \partial_\sigma g_{\mu\nu}\right)\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}\right]\delta x^\sigma\,d\tau.
+\tag{3.53}
+\end{equation*}
+既然我们寻找的是驻点，就希望 $\delta I$ 对任何变分 $\delta x^\sigma$ 都为零；这意味着
+\begin{equation*}
+g_{\mu\sigma}\frac{d^2x^\mu}{d\tau^2} + \frac{1}{2}\left(\partial_\mu g_{\nu\sigma} + \partial_\nu g_{\sigma\mu} - \partial_\sigma g_{\mu\nu}\right)\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau} = 0,
+\tag{3.54}
+\end{equation*}
+再用逆度规 $g^{\rho\sigma}$ 乘上去，最终得到
+\begin{equation*}
+\frac{d^2x^\rho}{d\tau^2} + \frac{1}{2}g^{\rho\sigma}\left(\partial_\mu g_{\nu\sigma} + \partial_\nu g_{\sigma\mu} - \partial_\sigma g_{\mu\nu}\right)\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau} = 0.
+\tag{3.55}
+\end{equation*}
+我们看到，这正是测地线方程 (3.40)，只不过具体选取了 Christoffel 联络 (3.27)。于是，在带度规的流形上，长度泛函的极值曲线（extremals）就是相对于该度规所联系的 Christoffel 联络平行移动其切矢量的那些曲线。同一流形上是否还定义了别的联络，对此毫无影响。当然，在广义相对论中使用的联络只有 Christoffel 联络，所以这两种概念是一回事。
+
+变分原理提供了一个便捷的办法，让我们能够真正算出给定度规的 Christoffel 符号。与其直接代进式 (3.27)，通常更省事的做法是显式地对积分 (3.49) 作变分，把所关心的度规代入 $g_{\mu\nu}$。这一流程的例子见 3.5 节。
+
+\section{测地线的性质}
+
+测地线在广义相对论中的主要用处在于：它们是无加速检验粒子所走的路径。\textbf{检验粒子}（test particle）是这样一种物体，它自身不影响它所穿行的几何——这从来都不是严格成立的，但往往是一个极好的近似。这个概念让我们可以，比如说，去探究太阳周围引力场的性质，而无需操心我们正在研究其运动的那个行星自身的场。测地线方程可以看成 Newton 定律 $\textbf{f} = m\textbf{a}$ 在 $\textbf{f} = 0$ 情形下向弯曲时空的推广。也可以通过在方程右边添加项来引入力；实际上，回过头看看狭义相对论中洛伦兹力的表达式 (1.106)，自然会猜测
+\begin{equation*}
+\frac{d^2x^\mu}{d\tau^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\tau}\frac{dx^\sigma}{d\tau} = \frac{q}{m}F^\mu{}_\nu\frac{dx^\nu}{d\tau}.
+\tag{3.56}
+\end{equation*}
+这个话题我们以后还会细谈；不过事实上，你若这样猜，就猜对了。
+
+关于测地线路径的参数化，我们还应该更仔细地讲几句。当我们把测地线方程表述为切矢量被平行移动的要求，即式 (3.44) 时，我们用某个参数 $\lambda$ 来参数化路径；而当我们求出时空间隔极值的公式 (3.55) 时，最终得到的却是一个非常具体的参数化——固有时。当然，从式 (3.55) 的形式可以清楚地看出，变换
+\begin{equation*}
+\tau \rightarrow \lambda = a\tau + b,
+\tag{3.57}
+\end{equation*}
+（其中 $a$、$b$ 为常数）使方程保持不变。任何以这种方式与固有时相联系的参数都被称为\textbf{仿射参量}（affine parameter），用它来参数化测地线与用固有时同样好。在我们的式 (3.44) 的推导里藏着这样一件事：\emph{切矢量被平行移动这一要求，实际上也约束着曲线的参数化}——具体地说，约束到由式 (3.57) 与固有时相联系的那种参数化。换句话说，如果你从某一点、带着某个初始方向出发，开始朝那个方向走，并让你的切矢量始终保持平行移动，那么你不仅定义了流形中的一条路径，而且（在线性变换的范围内）也定义了沿这条路径的参数。
+
+当然，没有什么能阻止你使用其他任何你喜欢的参数化，只不过那样式 (3.44) 就不再被满足。更一般地，你满足的将是如下形式的方程
+\begin{equation*}
+\frac{d^2x^\mu}{d\alpha^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\alpha}\frac{dx^\sigma}{d\alpha} = f(\alpha)\frac{dx^\mu}{d\alpha},
+\tag{3.58}
+\end{equation*}
+其中 $\alpha(\lambda)$ 是某个参数，而 $f(\alpha)$ 与仿射参量通过下式相联系：
+\begin{equation*}
+f(\alpha) = -\left(\frac{d^2\alpha}{d\lambda^2}\right)\left(\frac{d\alpha}{d\lambda}\right)^{-2}.
+\tag{3.59}
+\end{equation*}
+反过来，如果沿一条曲线式 (3.58) 得到满足，你总能找到一个仿射参量 $\lambda(\alpha)$，使测地线方程 (3.44) 得到满足。
+
+对类时路径，我们可以用四速度 $U^\mu = dx^\mu/d\tau$ 把测地线方程写成
+\begin{equation*}
+U^\lambda\nabla_\lambda U^\mu = 0.
+\tag{3.60}
+\end{equation*}
+类似地，用四维动量（four-momentum）$p^\mu = mU^\mu$ 来表示，测地线方程就简单地变成
+\begin{equation*}
+p^\lambda\nabla_\lambda p^\mu = 0.
+\tag{3.61}
+\end{equation*}
+这个关系所表达的观念是：自由下落的粒子会沿着其动量所指的方向继续运动。
+
+对类光路径，固有时为零，$\tau$ 不是合适的仿射参量。尽管如此，问一问某个参数
+化的路径 $x^\mu(\lambda)$ 是否满足测地线方程 (3.44)，这仍然是完全良好定义的。如果一条类光路径对某个参数 $\lambda$ 而言是测地线，那么它对任何形如 $a\lambda + b$ 的其他仿射参量而言也是测地线。不过，这些参数之间没有像类时路径的固有时那样的优先选择。当然，只要沿路径在某一点选定了参数，如果我们想求解测地线方程，参数沿路径其余部分就有唯一的延续。人们常常方便地这样选取类光测地线上仿射参量 $\lambda$ 的归一化，使得 $dx^\mu/d\lambda$ 等于动量四矢量：
+\begin{equation*}
+p^\mu = \frac{dx^\mu}{d\lambda}.
+\tag{3.62}
+\end{equation*}
+这与类时路径形成对照：类时情形下 $dx^\mu/d\tau$ 是单位质量的动量。于是，四速度为 $U^\mu$ 的观者所测得的粒子能量（等价地说，频率，因为我们取 $\hbar = 1$）便是
+\begin{equation*}
+E = -p_\mu U^\mu.
+\tag{3.63}
+\end{equation*}
+无论 $p^\mu$ 是类光还是类时的，这个表达式总是给出四速度为 $U^\mu$ 的观者所测得的、动量为 $p^\mu$ 的粒子的能量；你可以换到局部惯性坐标系去验证它。（一个警告：这个 $E$ 的表达式不包含势能，只包含来自运动和惯性的内禀能量。在一般时空中并不会有良好定义的引力势能概念，尽管在某些特殊情形下它确实存在。）
+
+具有洛伦兹度规的时空中，测地线有一个重要性质：相对于度规相容联络，测地线的特征（类时/类光/类空）永不改变。这只是因为平行移动保持内积，而特征正是由切矢量与它自身的内积决定的。这也说明我们在推导式 (3.55) 时只考虑纯类时路径是自洽的；对类空路径我们同样会推导出这个方程，因为唯一的差别只是最终答案中多出一个整体负号。
+
+%FIG{3.3}: {我们总可以用一列总路径长度为零的类光路径去逼近一条类时路径。因此，类时测地线必定是固有时的极大而非极小。}
+现在让我们来解释前面的评注：类时测地线是固有时的极大值点。我们之所以知道这是真的，是因为给定任何一条类时曲线（无论是不是测地线），我们都能用一条类光曲线以任意精度去逼近它。为此我们要做的，只是考虑跟随这条类时曲线的“锯齿状”类光曲线，如图 3.3 所画的那样。随着我们增加尖角的数目，类光曲线越来越贴近类时曲线，而路径长度却始终为零。因此类时测地线不可能是固有时取最小值的曲线，因为它们总是无穷小地邻近于固有时更小（实际上是零）的曲线；实际上，它们使固有时取最大值。记住双生子佯谬中哪个双生子老得更多的办法就在这里——呆在家里的那个基本上处于测地线上，因此经历了更多的固有时。当然，就连这样说也有点草率；实际上，每次我们说“最大化”或“最小化”时，都应当加上修饰语“局部地”。常见的情形是：流形上两点之间不止存在一条测地线。例如，在 $S^2$ 上我们可以
+过任意两点画一个大圆，并想象在两点之间旅行，既可以走短的那条路，也可以绕远走长的那条。显然两者之中一条比另一条长，尽管二者都是长度泛函的驻点。
+
+测地线提供了一种方便的办法，把点 $p$ 的切空间 $T_p$ 映射到流形上包含 $p$ 的一个区域，这个映射叫做\textbf{指数映射}（exponential map）。这个映射反过来又为这个区域定义了一组坐标，它们自动就是 2.5 节讨论过的局部惯性坐标【点 $p$ 附近的坐标 $x^{\hat\mu}$，满足 $g_{\hat\mu\hat\nu}(p) = \eta_{\hat\mu\hat\nu}$ 且 $\partial_{\hat\sigma}g_{\hat\mu\hat\nu}(p) = 0$】。我们首先注意到，任何矢量 $k \in T_p$ 都定义了一条经过该点的唯一测地线，$k$ 是它在 $p$ 点的切矢量，且 $\lambda(p) = 0$：
+\begin{equation*}
+\frac{dx^\mu}{d\lambda}(\lambda = 0) = k^\mu.
+\tag{3.64}
+\end{equation*}
+唯一性来自如下事实：测地线方程是二阶微分方程，而给定形如 $x^\mu(p)$ 和 $k^\mu = (dx^\mu/d\lambda)(p)$ 的初始数据就完全确定了一个解。在这条测地线上，$M$ 中将有唯一的一点使得 $\lambda = 1$。于是 $p$ 处的指数映射 $\exp_p : T_p \rightarrow M$ 就定义为
+\begin{equation*}
+\exp_p(k) = x^\nu(\lambda = 1),
+\tag{3.65}
+\end{equation*}
+其中 $x^\nu(\lambda)$ 是在条件 (3.64) 之下测地线方程的解，如图 3.4 所示。
+
+%FIG{3.4}: {指数映射把 $T_p$ 中的一个矢量映到 $M$ 中沿该矢量所相切的测地线上、位于单位仿射参量处的一点。}
+对于靠近零矢量的某组切矢量 $k^\mu$ 来说，这个映射是良好定义的，而且实际上是可逆的。不过，依赖于几何的不同，从单一点出发的不同测地线最终可能相交，在相交处 $\exp_p : T_p \rightarrow M$ 就不再一一对应。此外，指数映射的值域未必是整个流形，其定义域也未必是整个切空间。值域之所以可能不是全部 $M$，仅仅是因为可能存在两个点，它们之间没有任何测地线相连。第 8 章讨论的 anti-de Sitter 空间就是一个例子。定义域之所以可能不是全部 $T_p$，则是因为测地线可能撞上奇点——我们把奇点看作“流形的边缘”。具有此类奇点的流形被称为\textbf{测地不完备}（geodesically incomplete）的。在更仔细的讨论中，实际上应当是
+反过来才对：在我们去掉了“流形的一部分被人为地手工排除”这类平凡情形之后，定义奇点的最好办法，就是把它定义为测地线看起来“终结”的地方。参见 Wald (1984) 或 Hawking and Ellis (1973)。这个问题不仅仅是技术性的；Hawking 和 Penrose 的奇点定理断言，对特定的物质内容而言，广义相对论中的时空几乎注定是测地不完备的。作为例子，广义相对论中最有用的两类时空——描写黑洞的 Schwarzschild 解和描写均匀、各向同性宇宙学的 Friedmann–Robertson–Walker 解——都具有重要的奇点；这些将在后面的章节里讨论。
+
+现在我们用指数映射来构造局部惯性坐标。容易的部分是找出 $T_p$ 的一组基矢 $\{\hat{e}_{(\hat\mu)}\}$，使得度规的分量具有规范形式的分量：
+\begin{equation*}
+g_{\hat\mu\hat\nu} = g(\hat{e}_{(\hat\mu)}, \hat{e}_{(\hat\nu)}) = \eta_{\hat\mu\hat\nu}.
+\tag{3.66}
+\end{equation*}
+这里 $g(\ ,\ )$ 表示度规，即把它看作从 $T_p \times T_p$ 到 $\mathbf{R}$ 的多重线性映射。帽子有两种不同的含义：$e$ 上面的帽子提醒我们它是基矢，而指标上面的帽子提醒我们正处于局部惯性坐标中（下面就会看到）。这一步容易，因为它不过是线性代数，还未涉及坐标；从 $g_{\mu\nu}$ 的任意一组分量出发，我们总可以把这个矩阵对角化，然后重新缩放基矢以满足式 (3.66)。我们本以为困难的部分，是找一个坐标系 $x^{\hat\mu}$，使得基矢 $\{\hat{e}_{(\hat\mu)}\}$ 恰好构成坐标基，即 $\hat{e}_{(\hat\mu)} = \partial_{\hat\mu}$，并且 $g_{\hat\mu\hat\nu}$ 的一阶偏导数为零。然而实际上，指数映射自动做到了这一点。对充分靠近 $p$ 的任何点 $q$，都存在唯一的一条测地线路径把 $p$ 与 $q$ 连接起来，以及一个唯一的参数化 $\lambda$，使得 $\lambda(p) = 0$ 且 $\lambda(q) = 1$。在 $p$ 点，这条测地线的切矢量 $k$ 可以写成我们基矢的线性组合，$k = k^{\hat\mu}\hat{e}_{(\hat\mu)}$。我们把苦苦寻找的坐标 $x^{\hat\mu}$ 就定义为这些分量：$x^{\hat\mu}(q) = k^{\hat\mu}$。换言之，我们把坐标 $x^{\hat\mu}(q)$ 定义为那个被 $\exp_p$ 映到 $q$ 的切矢量 $k$ 沿归一化基 $\{\hat{e}_{(\hat\mu)}\}$ 的分量。这样构造出来的坐标被称为 $p$ 处的\textbf{Riemann 法坐标}（Riemann normal coordinates）。
+
+我们还须验证这些 Riemann 法坐标满足 $\partial_{\hat\sigma}g_{\hat\mu\hat\nu}(p) = 0$。注意，切空间中的一条射线（形如 $\lambda k^{\hat\mu}$ 的、参数化的矢量集合，其中 $k^{\hat\mu}$ 为某个固定矢量）经指数映射会被映成一条测地线。因此，在 Riemann 法坐标中，形如
+\begin{equation*}
+x^{\hat\mu}(\lambda) = \lambda k^{\hat\mu}
+\tag{3.67}
+\end{equation*}
+的曲线将求解测地线方程。事实上，过 $p$ 的\emph{任何}测地线都可以这样表达，只要取某个合适的矢量 $k^{\hat\mu}$。于是我们有
+\begin{equation*}
+\frac{d^2x^{\hat\mu}}{d\lambda^2} = 0
+\tag{3.68}
+\end{equation*}
+沿此坐标系中过 $p$ 的任何测地线都成立。但由测地线方程，我们还有
+\begin{equation*}
+\frac{d^2x^{\hat\mu}}{d\lambda^2}(p) = -\Gamma^{\hat\mu}_{\hat\rho\hat\sigma}(p)k^{\hat\rho}k^{\hat\sigma},
+\tag{3.69}
+\end{equation*}
+其中 $k^{\hat\rho} = (dx^{\hat\rho}/d\lambda)(p)$。由于这对任意的 $k^{\hat\rho}$ 都成立，我们得出结论
+\begin{equation*}
+\Gamma^{\hat\mu}_{\hat\rho\hat\sigma}(p) = 0.
+\tag{3.70}
+\end{equation*}
+现在用上度规相容性：
+\begin{align*}
+0 &= \nabla_{\hat\sigma}g_{\hat\mu\hat\nu}\\
+&= \partial_{\hat\sigma}g_{\hat\mu\hat\nu} - \Gamma^{\hat\lambda}_{\hat\sigma\hat\mu}g_{\hat\lambda\hat\nu} - \Gamma^{\hat\lambda}_{\hat\sigma\hat\nu}g_{\hat\mu\hat\lambda}\\
+&= \partial_{\hat\sigma}g_{\hat\mu\hat\nu},
+\tag{3.71}
+\end{align*}
+其中所有量都在 $p$ 点取值。我们看到，Riemann 法坐标给出了 2.5 节讨论过的局部惯性坐标的一个具体实现。它们并不唯一；存在无穷多个非 Riemann 法坐标的坐标系，同样满足 $g_{\hat\mu\hat\nu}(p) = \eta_{\hat\mu\hat\nu}$ 与 $\partial_{\hat\sigma}g_{\hat\mu\hat\nu}(p) = 0$，但在围绕 $p$ 的展开中，它们与 Riemann 法坐标的差别只出现在 $x^{\hat\mu}$ 的三阶项上。
+
+\section{再论膨胀宇宙}
+
+让我们把目前已经发展出来的某些技术投入实用，去理解一个简单的度规。回忆第 2 章中研究过的膨胀宇宙度规：
+\begin{align*}
+ds^2 &= -dt^2 + a^2(t)[dx^2 + dy^2 + dz^2]\\
+&= -dt^2 + a^2(t)\delta_{ij}\,dx^i dx^j.
+\tag{3.72}
+\end{align*}
+这个度规描写了一个由平直空间截面组成的宇宙，截面随时间膨胀，固定空间坐标处的粒子之间的相对距离按尺度因子（scale factor）$a(t)$ 成比例地增长。
+
+面对一个度规，我们做的第一件事就是计算 Christoffel 符号。正如 3.3 节末尾提到的，最容易的办法其实是显式地对形如 (3.49) 的积分作变分。把眼下考虑的度规代进去，我们得到
+\begin{equation*}
+I = \frac{1}{2}\int\left[-\left(\frac{dt}{d\tau}\right)^2 + a^2(t)\delta_{ij}\frac{dx^i}{d\tau}\frac{dx^j}{d\tau}\right]d\tau.
+\tag{3.73}
+\end{equation*}
+这个技巧是考虑变分 $x^\mu \rightarrow x^\mu + \delta x^\mu$，并要求 $\delta I$ 为零。我们将在 $n$ 维流形上得到 $n$ 个方程（这里 $n = 4$），每个 $\mu$ 对应一个；每个方程都对应测地线方程的一个分量 (3.44)。在与 $x^\mu$ 相关的变分所导出的方程中，$(dx^\rho/d\tau)(dx^\sigma/d\tau)$ 的系数就是 $\Gamma^\mu_{\rho\sigma}$。
+
+对度规 (3.72)，我们需要分别考虑对 $x^0 = t$ 的变分和对某个 $x^i$ 的变分（选哪一个都无所谓，因为各个类空方向的结果都是等价的）。让我们从 $t \rightarrow t + \delta t$ 开始。非平凡的时间依赖来自尺度因子；对它取一阶近似，
+\begin{equation*}
+a(t + \delta t) = a(t) + \dot{a}\,\delta t,
+\tag{3.74}
+\end{equation*}
+其中 $\dot{a} = da/dt$。于是我们有
+\begin{align*}
+\delta I &= \frac{1}{2}\int\left[-2\frac{dt}{d\tau}\frac{d(\delta t)}{d\tau} + 2a\dot{a}\,\delta_{ij}\frac{dx^i}{d\tau}\frac{dx^j}{d\tau}\delta t\right]d\tau\\
+&= \int\left[\frac{d^2t}{d\tau^2} + a\dot{a}\,\delta_{ij}\frac{dx^i}{d\tau}\frac{dx^j}{d\tau}\right]\delta t\,d\tau,
+\tag{3.75}
+\end{align*}
+其中在分部积分之后我们（一如既往地）丢掉了边界项。令 $\delta t$ 的系数等于零就意味着
+\begin{equation*}
+\frac{d^2t}{d\tau^2} + a\dot{a}\,\delta_{ij}\frac{dx^i}{d\tau}\frac{dx^j}{d\tau} = 0,
+\tag{3.76}
+\end{equation*}
+而它按理应当与测地线方程（取 $\mu = 0$ 时）
+\begin{equation*}
+\frac{d^2x^0}{d\tau^2} + \Gamma^0_{\rho\sigma}\frac{dx^\rho}{d\tau}\frac{dx^\sigma}{d\tau} = 0.
+\tag{3.77}
+\end{equation*}
+等价。比较这两个方程就意味着
+\begin{align*}
+\Gamma^0_{00} &= 0,\\
+\Gamma^0_{i0} = \Gamma^0_{0i} &= 0,\\
+\Gamma^0_{ij} &= a\dot{a}\,\delta_{ij}.
+\tag{3.78}
+\end{align*}
+
+我们可以对一个空间坐标重复这一流程：$x^i \rightarrow x^i + \delta x^i$。此时的变分便是
+\begin{align*}
+\delta I &= \frac{1}{2}\int a^2\left(2\delta_{ij}\frac{dx^i}{d\tau}\frac{d(\delta x^j)}{d\tau}\right)d\tau\\
+&= -\int\left(a^2\frac{d^2x^i}{d\tau^2} + 2a\frac{da}{d\tau}\frac{dx^i}{d\tau}\right)\delta_{ij}\delta x^j\,d\tau.
+\tag{3.79}
+\end{align*}
+利用链式法则，我们可以把 $da/d\tau$ 用 $\dot{a}$ 表示出来：
+\begin{equation*}
+\frac{da}{d\tau} = \dot{a}\frac{dt}{d\tau}.
+\tag{3.80}
+\end{equation*}
+然后在 (3.79) 中令 $\delta x^j$ 的系数等于零，就意味着
+\begin{equation*}
+\frac{d^2x^i}{d\tau^2} + 2\frac{\dot{a}}{a}\frac{dt}{d\tau}\frac{dx^i}{d\tau} = 0.
+\tag{3.81}
+\end{equation*}
+与测地线方程相比较，我们发现 Christoffel 符号必须满足
+\begin{equation*}
+\Gamma^i_{\rho\sigma}\frac{dx^\rho}{d\tau}\frac{dx^\sigma}{d\tau} = 2\frac{\dot{a}}{a}\frac{dt}{d\tau}\frac{dx^i}{d\tau}.
+\tag{3.82}
+\end{equation*}
+于是，Christoffel 符号由下式给出：
+\begin{align*}
+\Gamma^i_{00} &= 0\\
+\Gamma^i_{j0} = \Gamma^i_{0j} &= \frac{\dot{a}}{a}\delta^i_j\\
+\Gamma^i_{jk} &= 0.
+\tag{3.83}
+\end{align*}
+合在一起，(3.78) 和 (3.83) 就是度规 (3.72) 的全部联络系数。当然，无论是研究这个时空的测地线，还是计算协变导数，都需要它们；事实上，(3.76) 和 (3.81) 合起来\emph{正是}测地线方程。让我们用它来做点事情：求解类光测地线，也就是光子这类无质量粒子所走的路径——对它们我们必须用 $\lambda$ 而非 $\tau$ 作参数。不失一般性，我们可以考虑沿 $x$ 方向的路径，即 $x^\mu(\lambda) = \{t(\lambda), x(\lambda), 0, 0\}$。利用 $ds^2 = 0$，求解这类类光路径是平凡的。我们有
+\begin{equation*}
+0 = -dt^2 + a^2(t)dx^2,
+\tag{3.84}
+\end{equation*}
+这意味着
+\begin{equation*}
+\frac{dx}{d\lambda} = \frac{1}{a}\frac{dt}{d\lambda}.
+\tag{3.85}
+\end{equation*}
+在 2.6 节中我们曾对 $a = t^q$ 求解过它，但这里我们保持更一般的情形。另外，我们选择了考虑沿正 $x$ 方向运动的路径，这就确定了 $dx/d\lambda$ 的符号。不过，我们必须区分“类光路径”与“类光测地线”：后者是一个限制性强得多的类；要证明这些路径是测地线，我们需要把坐标 $t$ 和 $x$ 用参数 $\lambda$ 解出来。
+
+让我们求解 $dt/d\lambda$——事后会看出，这才是我们最感兴趣的量。把类光条件 (3.85) 代入测地线方程 (3.76) 的 $\mu = 0$ 分量，并记得把 $\tau$ 换成 $\lambda$，我们得到
+\begin{equation*}
+\frac{d^2t}{d\lambda^2} + \frac{\dot{a}}{a}\left(\frac{dt}{d\lambda}\right)^2 = 0.
+\tag{3.86}
+\end{equation*}
+容易验证，这个方程由下式解出：
+\begin{equation*}
+\frac{dt}{d\lambda} = \frac{\omega_0}{a},
+\tag{3.87}
+\end{equation*}
+其中 $\omega_0$ 是常数。对给定的 $a(t)$，它可以立刻被积分而给出 $t(\lambda)$。但更有意思的是考虑共动观者（即固定在空间坐标处的观者）所测得的光子能量 $E$；这样的观者具有四速度
+\begin{equation*}
+U^\mu = (1, 0, 0, 0).
+\tag{3.88}
+\end{equation*}
+不要被误导，以为静止粒子的四速度的类时分量总会等于 1；我们需要满足归一化条件 $g_{\mu\nu}U^\mu U^\nu = -1$，它在静止系（$U^i = 0$）中意味着 $U^0 = \sqrt{-g_{00}}$。根据式 (3.63)，并用 $p^\mu = dx^\mu/d\lambda$，我们有
+\begin{align*}
+E &= -p_\mu U^\mu\\
+&= -g_{00}\frac{dx^0}{d\lambda}U^0\\
+&= \frac{\omega_0}{a}.
+\tag{3.89}
+\end{align*}
+现在我们明白为什么在 (3.87) 中把比例常数记作 $\omega_0$ 了：$\omega_0$ 不过是 $a = 1$ 时光子的频率。回忆 $E = \hbar\omega$，而我们使用的单位制中 $\hbar = 1$。
+
+我们揭示了一个深刻的现象：\textbf{宇宙学红移}（cosmological redshift）。一个光子在尺度因子为 $a_1$ 处以能量 $E_1$ 被发射，而在尺度因子为 $a_2$ 处被观测到能量为 $E_2$，则有
+\begin{equation*}
+\frac{E_2}{E_1} = \frac{a_1}{a_2}.
+\tag{3.90}
+\end{equation*}
+它之所以被称作“红移”，是因为光子的波长与频率成反比，而在膨胀宇宙中波长因此随时间增长。作为一个实际问题，这提供了一种测量我们与遥远星系之间尺度因子变化的简便办法，同时也可以充当距离的代理量：由于宇宙一直在单调膨胀，红移越大就意味着距离越远。按惯用记号，红移的量记为
+\begin{equation*}
+z = \frac{\omega_1 - \omega_2}{\omega_2} = \frac{a_2}{a_1} - 1,
+\tag{3.91}
+\end{equation*}
+这样一来，如果从来没有过膨胀，$z$ 就为零；例如，若发射者与观者相距很近，宇宙还来不及有可察觉的膨胀，就属于这种情形。
+
+正如 3.3 节所述，宇宙学红移\emph{不是}多普勒频移（尽管人们难免想谈论退行星系的“速度”，这是可以理解的）。现在我们可以定量地理解这个论断了。你可能会以为，就发射出的光子的行为而言，在平直时空中彼此真实地分开运动的两个星系，与在膨胀时空中固定于共动坐标上的两个星系，几乎没有什么差别。但让我们考虑一个具体的（不现实却富有教益的）例子。从平直时空出发，设想我们的两个星系起初并不彼此分开，而是静止在某个整体惯性坐标系中。一个星系朝另一个发射一个光子；在光子旅行的途中，我们迅速把两个星系拉开，直到它们的间距变为原来的两倍，然后让它们静止在那个距离上；随后光子被第二个星系吸收。显然不会有任何多普勒频移，因为两个星系在发射和吸收时都是静止的。现在考虑膨胀时空中的类似现象，星系钉在固定的共动坐标上。开始时尺度因子恒定（宇宙不膨胀）。一个星系发出一个光子，我们设想在光子旅行的过程中宇宙开始膨胀，直到尺度因子变为原来的两倍，然后在光子被吸收之前停止膨胀。在这种情形下肯定会有红移，尽管在发射和吸收时都不存在任何“相对运动”（这个概念反正也是定义不良的）；光子的波长会随着尺度因子翻倍而翻倍，于是我们观测到红移 $z = 1$。这个例子演示了宇宙学红移与常规多普勒效应之间的概念区别。
+
+在测地线方程之外，协变导数还将在另一项任务中发挥作用：把物理定律从狭义相对论的平直时空推广到广义相对论的弯曲几何。正如我们在下一章会更详细讨论的，一条简单的经验法则是：把所有偏导数都换成协变导数，把平直时空度规 $\eta_{\mu\nu}$ 出现的所有地方都换成弯曲度规 $g_{\mu\nu}$。例如，狭义相对论的能量-动量守恒方程 $\partial_\mu T^{\mu\nu} = 0$（其中 $T^{\mu\nu}$ 是能量-动量张量）就变成
+\begin{equation*}
+\nabla_\mu T^{\mu\nu} = 0.
+\tag{3.92}
+\end{equation*}
+在宇宙学中，我们通常把充满宇宙的物质建模为理想流体；相应的能量-动量张量来自把式 (1.114) 推广到弯曲时空：
+\begin{equation*}
+T^{\mu\nu} = (\rho + p)U^\mu U^\nu + pg^{\mu\nu}.
+\tag{3.93}
+\end{equation*}
+回忆一下，$\rho$ 是能量密度，$p$ 是压强，而 $U^\mu$ 是流体的四速度。对度规 (3.72) 而言，逆度规的分量为
+\begin{equation*}
+g^{\mu\nu} = \begin{pmatrix} -1 & & & \\ & a^{-2} & & \\ & & a^{-2} & \\ & & & a^{-2} \end{pmatrix}.
+\tag{3.94}
+\end{equation*}
+
+在这些坐标中，我们可以取流体处于其静止系，于是四速度的分量为 $U^\mu = (1, 0, 0, 0)$。事实上，正如我们以后会看到的，要让这个特定的度规求解 Einstein 方程，流体就必须处于其静止系。于是能量-动量张量取如下形式：
+\begin{equation*}
+T^{\mu\nu} = \begin{pmatrix} \rho & & & \\ & a^{-2}p & & \\ & & a^{-2}p & \\ & & & a^{-2}p \end{pmatrix}.
+\tag{3.95}
+\end{equation*}
+注意，这些分量是专就度规 (3.72) 而言的；对其他度规，它们一般看起来会不同。
+
+让我们看看能量-动量守恒方程 $\nabla_\mu T^{\mu\nu} = 0$ 对膨胀宇宙中的理想流体意味着什么。协变导数的法则 (3.17) 给出
+\begin{equation*}
+\nabla_\mu T^{\mu\nu} = \partial_\mu T^{\mu\nu} + \Gamma^\mu_{\mu\lambda}T^{\lambda\nu} + \Gamma^\nu_{\mu\lambda}T^{\mu\lambda} = 0.
+\tag{3.96}
+\end{equation*}
+这个方程有四个分量，每个 $\nu$ 对应一个，尽管 $\nu = i \in \{1, 2, 3\}$ 的三个分量彼此等价。（译注：原文此处两处印作 $\mu$。）让我们先逐项考察 $\nu = 0$ 的分量。第一项是直截了当的：
+\begin{equation*}
+\partial_\mu T^{\mu 0} = \partial_0 T^{00} = \dot{\rho}.
+\tag{3.97}
+\end{equation*}
+第二项是
+\begin{equation*}
+\Gamma^\mu_{\mu\lambda}T^{\lambda 0} = \Gamma^\mu_{\mu 0}T^{00} = 3\frac{\dot{a}}{a}\rho,
+\tag{3.98}
+\end{equation*}
+第三项是
+\begin{equation*}
+\Gamma^0_{\mu\lambda}T^{\mu\lambda} = \Gamma^0_{00}T^{00} + \Gamma^0_{11}T^{11} + \Gamma^0_{22}T^{22} + \Gamma^0_{33}T^{33} = 3\frac{\dot{a}}{a}p.
+\tag{3.99}
+\end{equation*}
+在上面每一组等式里，我们都先利用了 $T^{\mu\nu}$ 是对角的事实，然后代入了这个度规下能量-动量张量与联络系数的显式公式。合在一起，我们便得到
+\begin{equation*}
+\dot{\rho} = -3\frac{\dot{a}}{a}(\rho + p).
+\tag{3.100}
+\end{equation*}
+现在让我们看某个空间分量，为明确起见取 $\nu = 1$。再次逐项计算，式 (3.96) 中的第一项为
+\begin{equation*}
+\partial_\mu T^{\mu 1} = \partial_1 T^{11} = a^{-2}\partial_x p.
+\tag{3.101}
+\end{equation*}
+第二项和第三项是
+\begin{equation*}
+\Gamma^\mu_{\mu\lambda}T^{\lambda 1} = \Gamma^\mu_{\mu 1}T^{11} = 0,
+\tag{3.102}
+\end{equation*}
+

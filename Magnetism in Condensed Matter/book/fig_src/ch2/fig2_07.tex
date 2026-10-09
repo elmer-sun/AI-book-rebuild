@@ -1,0 +1,35 @@
+% 图 2.7 自旋 1/2 顺磁体磁化遵循 tanh(y)；虚线为渐近线与原点处切线 y
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{arrows.meta}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\begin{document}
+\begin{tikzpicture}[line width=0.8pt,>=Stealth]
+\begin{axis}[
+  width=10.5cm,height=6.4cm,scale only axis,
+  axis lines=middle,
+  axis line style={-Stealth,line width=0.9pt},
+  xmin=-4.8,xmax=5.4,ymin=-1.30,ymax=1.30,
+  xtick={-4,-3,-2,-1,0,1,2,3,4},
+  ytick={1,-1},
+  tick style={line width=0.7pt},
+  xlabel={$\mu_{\mathrm{B}}B/k_{\mathrm{B}}T$},
+  x label style={at={(axis cs:5.4,0)},anchor=west},
+  ylabel={$M/M_{\mathrm{s}}$},
+  y label style={at={(axis cs:-0.25,1.30)},anchor=south},
+  clip=true]
+  % 渐近线
+  \addplot[dotted,line width=0.7pt,domain=-4.8:5.4] {1};
+  \addplot[dotted,line width=0.7pt,domain=-4.8:5.4] {-1};
+  % 原点处切线 tanh ~ y
+  \addplot[dotted,line width=0.7pt,domain=-1.52:1.05] {x};
+  % tanh 曲线
+  \addplot[very thick,line width=1.15pt,domain=-4.8:4.8,samples=241]
+    {(exp(2*x)-1)/(exp(2*x)+1)};
+\end{axis}
+\end{tikzpicture}
+\end{document}

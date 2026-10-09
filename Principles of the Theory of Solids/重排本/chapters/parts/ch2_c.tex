@@ -1,0 +1,459 @@
+% ch2_c §2.5–2.7 (书页 47–58 / p061–p072)
+%--B-TAIL--
+%JOIN%利用一个人为扩大的布里渊区——扩展区图式（图 26(a)）——并忽略由此产生的带隙：正如 §2.2 中图 19(c)（原书第 34 页）中那样，这些带隙来自晶胞内各原子之间质量的不同以及动力学相互作用的不同。
+
+\section{晶格谱}
+
+简正模频率分布的实际计算是一个数值计算问题。归根到底，除了对 q 空间中一组密集分布
+的 q 值网格求解方程组 (2.13)，再数出有多少个 $\nu_{\mathbf{q}}$ 值落入每个区间
+$d\nu$ 之外，别无他法。
+
+但是有一条重要的原理，即 van Hove 定理（van Hove's theorem），它支配着函数
+$\mathcal{D}(\nu)$ 及其奇点的性质。这一定理的完整证明超出了本书的范围，但其一般论证
+既有意义又重要。
+
+为简单起见，我们考虑谱中的一支。频率落在区间 $d\nu$ 内的模所占的比例等于
+\begin{equation*}
+\mathcal{D}(\nu)\,d\nu = \frac{v_c}{8\pi^3} \int\!\!\!\int\!\!\!\int d^3 q,
+\tag{2.65}
+\end{equation*}
+其中积分遍及 q 空间中 $\nu \leqslant \nu_{\mathbf{q}} \leqslant \nu + d\nu$
+的壳层体积。
+
+我们引入矢量
+\begin{equation*}
+\mathbf{v}_{\mathbf{q}} \equiv \nabla_{\mathbf{q}}\,\nu_{\mathbf{q}}
+\equiv \left( \frac{\partial\nu_q}{\partial q_x},\,
+\frac{\partial\nu_q}{\partial q_y},\,
+\frac{\partial\nu_q}{\partial q_z} \right),
+\tag{2.66}
+\end{equation*}
+即频率函数在 q 空间中的梯度。这个矢量具有速度的量纲（在 Debye 模型中它就是声速），
+并且在所有涉及波的能量传播的问题中都扮演重要角色。事实上，它就是波矢为 $\mathbf{q}$
+的波包在晶格这种色散介质中的群速（group velocity）。
+
+我们可以用式 (2.66) 来对式 (2.65) 作一个形式上的简化。令我们在其中积分的 q 空间壳层
+内的体积元是一个柱体：其底面是频率面 $\nu_{\mathbf{q}} = \nu$ 上的面元 $dS_\nu$，
+高为
+\begin{equation*}
+dq_\perp = \frac{d\nu}{\left| \partial\nu_{\mathbf{q}}/\partial q \right|}
+\tag{2.67}
+\end{equation*}
+沿曲面法向量出。这个方向正是 $\mathbf{v}_{\mathbf{q}}$ 的方向，于是
+\begin{equation*}
+\mathcal{D}(\nu)\,d\nu = \frac{1}{8\pi^3 N} \int\!\!\int dS_\nu\, dq_\perp
+\tag{2.68}
+\end{equation*}
+
+%FIG{26}: {声学与光学频率面：(a) 扩展区图式；(b) 分处于两个区中。}
+由此得
+\begin{equation*}
+\mathcal{D}(\nu) = \frac{1}{8\pi^3 N} \int \frac{dS_\nu}{v_q},
+\tag{2.69}
+\end{equation*}
+其中 $v_q$ 就是矢量 $\mathbf{v}_{\mathbf{q}}$ 的模。
+
+在晶格模谱和电子态谱的理论中我们经常用到这个公式。就其本身而言，它能告诉我们的并不
+多，只是关于 $\mathcal{D}(\nu)$ 之奇点的性质。这些奇点必定出现在临界点（critical
+point）处，即 $\mathbf{v}_{\mathbf{q}}$ 为零之处，也就是说函数
+$\nu_{\mathbf{q}}$ 局部“平坦”之处。
+
+设 $\mathbf{q}_c$ 是一个临界点。由于 $\nu_{\mathbf{q}}$ 是 $\mathbf{q}$
+的连续函数，可以在该点附近把它展成 Taylor 级数。线性项因
+$\mathbf{v}_{\mathbf{q}} = \mathbf{0}$ 而消失，二次项则可通过主轴变换化为平方和。
+于是可以写出
+\begin{equation*}
+\nu_{\mathbf{q}} = \nu_c + \alpha_1 \xi_1^2 + \alpha_2 \xi_2^2
++ \alpha_3 \xi_3^2 + \ldots,
+\tag{2.70}
+\end{equation*}
+其中 $\boldsymbol{\xi} = \mathbf{q} - \mathbf{q}_c$
+是离开临界点的矢距，以局部主轴为参照；系数 $\alpha_1, \alpha_2, \alpha_3$
+取决于 $\nu_{\mathbf{q}}$ 对 $\mathbf{q}$ 的局部二阶导数。
+
+例如，设 $\alpha_1, \alpha_2, \alpha_3$ 全为负，则 $\nu$
+位于一个局部极大附近。等频面 (2.70) 是椭球面；由初等解析几何可知，
+围绕 $\mathbf{q}_c$ 的等值面 $\nu$ 所包围的体积为
+\begin{equation*}
+\frac{4}{3}\pi\,
+\frac{(\nu_c - \nu)^{\frac{3}{2}}}{|\alpha_1 \alpha_2 \alpha_3|^{\frac{1}{2}}},
+\tag{2.71}
+\end{equation*}
+于是由式 (2.65) 出发，对 $\nu$ 求导一次即得
+\begin{equation*}
+\mathcal{D}(\nu) =
+\frac{1}{4\pi^2 N\,|\alpha_1 \alpha_2 \alpha_3|^{\frac{1}{2}}}
+(\nu_c - \nu)^{\frac{1}{2}}.
+\tag{2.72}
+\end{equation*}
+此式对 $\nu < \nu_c$ 成立；当 $\nu > \nu_c$ 时，$\mathbf{q}_c$
+的邻域对 $\mathcal{D}(\nu)$ 没有贡献。因此，这一奇点并不破坏
+$\mathcal{D}(\nu)$ 的连续性，但其斜率 $\partial\mathcal{D}(\nu)/\partial\nu$
+不连续，且当 $\nu$ 从下方趋于 $\nu_c$ 时趋于 $-\infty$。
+
+系数 $\alpha_1, \alpha_2, \alpha_3$ 还有其他的可能组合。例如，若一正两负，
+我们就得到指标为 1 的鞍点（saddle-point of index 1）。此时，用完全相同的解析几何
+方法可以得出，$\nu_c$ 邻域内谱的形状为
+\begin{equation*}
+\mathcal{D}(\nu) = \left\{
+\begin{array}{ll}
+C + O(\nu - \nu_c) & (\nu < \nu_c), \\[6pt]
+C - \dfrac{1}{4\pi^2 N\,|\alpha_1 \alpha_2 \alpha_3|^{\frac{1}{2}}}
+(\nu - \nu_c)^{\frac{1}{2}} + O(\nu - \nu_c) & (\nu > \nu_c),
+\end{array}
+\right.
+\tag{2.73}
+\end{equation*}
+仍然只是斜率上的一次不连续——一侧带有一条竖直切线——叠加在由区的其他区域产生的光滑
+函数 $C + O(\nu - \nu_c)$ 之上。
+
+%FIG{27}: {不同类型的 van Hove 奇点。}
+事实上，临界点共有四种类型，如图 27 所示，其中 $S_1$ 和 $S_2$
+分别指指标为 1 和指标为 2 的鞍点（后者有两个 $\alpha$
+为正、一个为负，其表现犹如反过来的式 (2.73)）。极小的情形显然与极大的情形类似。
+
+这些奇点并不十分严重——但却是必不可少的。van Hove 定理实质上断言：\emph{谱必定至少
+各含一个 $S_1$ 型与 $S_2$ 型的临界点，且 $\mathcal{D}(\nu)$
+的斜率在上端必趋于 $-\infty$}。这一证明需要若干泛函拓扑方面的定理，超出了本书当前的
+范围。不过，这一论证可以在二维情形中得到说明（在二维中，鞍点产生对数奇点，而极值点
+产生 $\mathcal{D}(\nu)$ 的有限跃变）。
+
+关键在于，函数 $\nu_{\mathbf{q}}$ 是倒格子空间中 $\mathbf{q}$
+的连续周期函数。设在区内某点 $m$ 处它有一个极小，则在倒格子的每个对应点处它都有类似
+的极小。同样，如果它在区内某点 $M$ 处取极大值，那么这就是一个临界点，对应于重复区图
+式中环绕 $M$ 的山丘的峰顶。\footnote{若极大值位于区的角上，我们也许会觉得积分似乎只应
+包含落在区内的那一部分。但来自其他角的贡献会自动补足，凑成像式 (2.72)
+那样的完整一项。我们也可以通过平移积分区域使之包含一个完整的峰来保证这一点。倒格子的
+\emph{任何}一个晶胞都是可取的积分区域；Brillouin 区只不过是约定俗成的选择。}于是，
+整个倒格子空间中将有这样一种峰的分布。
+
+现在考虑一条联结两个极大 $M$、$M$ 的路径。函数 $\nu_{\mathbf{q}}$
+必定沿这条路径变化；在路径上的某点 $X$ 处，它取得该路径上的极小值。现在让这条路径在
+区内移动，就会生成一系列点 $X, X, X$。这些点构成另一条连续路径；由于 $m$ 与 $m$
+是 $\nu_{\mathbf{q}}$ 的绝对极小点，这条路径必定经过这些点。
+
+%FIG{28}: {寻找鞍点。}
+但现在我们有了一条从两个极小之间穿过的路径 $mm$。在这条路径上必至少有一个极大
+$S$。这个点就是一个鞍点——对诸如 $MM$ 的路径而言它是极小，而对诸如 $mm$
+的路径而言它是极大。于是，我们的函数 $\nu_{\mathbf{q}}$ 至少有一个 $S$
+型的临界点。
+
+在一般的三维问题中，谱有三个声学支，论证更为复杂。区的原点 $\mathbf{q} = 0$
+是所有三支的绝对极小——但函数 $\nu_{\mathbf{q}}$ 在该处不能展成 Taylor
+级数，而且速度并不为零。横波的两支也不是彼此分立的，因此必须把
+$\nu_{\mathbf{q}}$ 当作 $\mathbf{q}$ 的双值函数来处理。不过，上述形式的定理对
+总谱仍然成立。当然，实际的临界点可能远多于这个最少数目。
+
+\section{理想晶体的衍射}
+
+如果晶体中的所有原子都严格处在它们“名下”的格点上，那么与晶体相联系的所有可测物理量
+都将是严格的周期函数。例如，一个电子的势能将满足条件
+\begin{equation*}
+\mathcal{V}(\mathbf{r} + \mathbf{l}) = \mathcal{V}(\mathbf{r}).
+\tag{2.74}
+\end{equation*}
+
+设有一束快速电子射入晶体。由于被这个势散射，电子将从一个电子态跃迁到另一个电子态。
+在微扰论的 Born 近似中，初态 $\Psi_{\mathbf{k}}$ 与末态 $\Psi_{\mathbf{k}'}$
+之间的跃迁速率正比于矩阵元
+\begin{equation*}
+\mathcal{M}_{\mathbf{k}'\mathbf{k}} \equiv \int \Psi_{\mathbf{k}'}^{*}(\mathbf{r})\,
+\mathcal{V}(\mathbf{r})\, \Psi_{\mathbf{k}}(\mathbf{r})\, \mathrm{d}\mathbf{r}.
+\tag{2.75}
+\end{equation*}
+的平方。
+
+我们取这些态为平面波态
+\begin{equation*}
+\Psi_{\mathbf{k}} = e^{i\mathbf{k}\cdot\mathbf{r}}.
+\tag{2.76}
+\end{equation*}
+我们又由式 (1.15) 知道，势可以展成 Fourier 级数
+\begin{equation*}
+\mathcal{V}(\mathbf{r}) = \sum_{\mathbf{g}} \mathcal{V}_{\mathbf{g}}\,
+e^{i\mathbf{g}\cdot\mathbf{r}}.
+\tag{2.77}
+\end{equation*}
+于是
+\begin{align*}
+\mathcal{M}_{\mathbf{k}'\mathbf{k}}
+&= \int e^{-i\mathbf{k}'\cdot\mathbf{r}} \sum_{\mathbf{g}}
+\mathcal{V}_{\mathbf{g}}\, e^{i\mathbf{g}\cdot\mathbf{r}}\,
+e^{i\mathbf{k}\cdot\mathbf{r}}\, \mathrm{d}\mathbf{r} \\
+&= \sum_{\mathbf{g}} \mathcal{V}_{\mathbf{g}} \int
+e^{i(\mathbf{k}+\mathbf{g}-\mathbf{k}')\cdot\mathbf{r}}\, \mathrm{d}\mathbf{r} \\
+&= \left\{ \begin{array}{ll}
+\mathcal{V}_{\mathbf{g}} & \text{若}\quad \mathbf{k}+\mathbf{g}-\mathbf{k}' = 0, \\
+0 & \text{其余情形}. \\
+\end{array} \right\}
+\tag{2.78}
+\end{align*}
+
+如果 $\mathbf{k}$ 是固定的——也就是说，入射电子束是单色的且方向高度确定——那么我们
+只能在满足
+\begin{equation*}
+\mathbf{k}' = \mathbf{k} + \mathbf{g},
+\tag{2.79}
+\end{equation*}
+的方向上观察到衍射束，其中 $\mathbf{g}$
+是晶体的倒格矢之一。
+
+在这种情形下我们还必须坚持：衍射束的能量与入射能量相同，即两个波矢长度相等。这就给
+散射角加上了一个条件。若 $2\theta$ 是 $\mathbf{k}$ 与 $\mathbf{k}'$
+之间的夹角，则
+\begin{equation*}
+|\mathbf{g}| = 2|\mathbf{k}|\sin\theta.
+\tag{2.80}
+\end{equation*}
+为了在倒格子空间中满足这些几何条件，我们作出 \emph{Ewald 球}（Ewald
+sphere）（图 29(b)），其半径 $OP$ 等于入射波矢。若把倒格子的原点放在 $P$，则矢量
+$\mathbf{g}$ 必定把我们带到 $Q$ 点，$OQ$ 即波矢 $\mathbf{k}'$。因此，只要晶体
+相对于入射束的取向恰好使倒格子的一个格点落在球面上，就会发生衍射。
+
+%FIG{29}: {(a) X 射线衍射；(b) Ewald 作图法。}
+我们可以换一种方式来表述这一点。正如 §1.3 中所指出的，倒格矢的长度正比于它所垂直的
+晶面族的面间距 $d$ 的倒数，即
+\begin{equation*}
+|\mathbf{g}| = \frac{2\pi n}{d},
+\tag{2.81}
+\end{equation*}
+其中 $n$ 是整数（$\mathbf{g}$ 在倒格子三矢组（reciprocal triad）
+各轴上分量的最大公约数）。于是，若 $\lambda$ 是入射电子的波长，则式 (2.80) 与
+(2.81) 给出
+\begin{equation*}
+n\lambda = 2d\sin\theta.
+\tag{2.82}
+\end{equation*}
+这就是所谓的 \emph{Bragg 反射定律}（Bragg reflection law）。它很容易通过考察从相继
+各晶面上反射的束之间的相位关系推出：要发生相干衍射，附加路径 $ABC$
+必须是波长的整数倍（图 30）。
+
+散射矩阵元的大小取决于 $\mathcal{V}_{\mathbf{g}}$。对电子而言，这似乎就是局域势的
+各 Fourier 分量——但当我们处理极慢电子时这种看法会导致误解，我们将在 §3.6
+再回到这一点。同样的理论也适用于 X 射线的衍射，只是 X 射线响应的是晶体中的局域电子
+密度。由于电子密度同样是一个像 (2.74) 那样的周期函数，衍射图样在定性上是相同的。本节
+的理论自然进而引出 X 射线晶体结构分析那令人赞叹的复杂性与种种成就。
+
+在中子的情形，散射主要来自原子核：它在空间中的行为像一个 $\delta$
+函数型的势，而且随元素不同而有相当大的变化。事实上，由于同一元素的不同同位素可能具有
+差别很大的中子
+散射截面，并且在晶体中随机混在一起，所以总会有一些\emph{非相干}（incoherent）
+散射，它给衍射图样添上一片弥漫的背景。即使晶体中只存在一种同位素，这种情形也可能发生，
+因为中子对原子核的自旋取向是敏感的。
+
+%FIG{30}: {Bragg 衍射。}
+%FIG{31}: {反铁磁排列，显示出加倍了的晶胞。}
+中子衍射在分析\emph{反铁磁}（antiferromagnetic）晶体时特别有用。在这类晶体中，原子
+具有永久原子磁矩，它们以如下方式极化并排列：一个子晶格上的所有原子磁矩指向一个方向，
+另一子晶格上的所有原子磁矩指向相反的方向。我们将在 §§10.6、10.11
+中讨论这种系统的磁性质。
+
+这里我们只指出：中子带有磁矩，对每个原子处的局域磁场敏感，因而能够区分磁矩取向不同的
+原子。其结果是结构的周期单元变大了，这意味着有效布里渊区的尺寸变小了。新的倒格矢被
+引入（可对照图 19），于是衍射图样中出现了新的线，称为磁超格线（magnetic
+superlattice lines）。
+
+晶体衍射的这一初等\emph{几何理论}（geometrical
+theory）忽略了若干实际上的复杂因素，例如下一节要讨论的热振动的效应。我们还必须考虑
+入射束与衍射束在穿过较厚样品时与一层层原子持续相互作用的问题。由此产生若干复杂的效应，
+例如\emph{初级消光}（primary extinction）和\emph{摆动效应}（pendulum
+effect，即“Pendellösung”），对它们的解释要用到 X 射线衍射的\emph{动力学理论}
+（dynamical theory）。其要点是：X
+射线（或电子、或中子）在晶体中传播时经受速度色散，在接近相干衍射条件时尤其如此（参见
+§3.3）。处在不同色散面上的两束或更多的束可以同时被激发，并在穿过样品时相互干涉。在
+\emph{低能电子衍射}（low energy electron diffraction，L.E.E.D.）
+的情形，这类效应完全支配着实验现象（参见 §6.9）。
+
+\section{含晶格振动的晶体衍射}
+
+现在考虑更一般的情形：势未必是周期的。设它是各个原子势叠加的结果：
+\begin{equation*}
+\mathcal{V}(\mathbf{r}) = \sum_{\boldsymbol{l}} \mathcal{V}_a(\mathbf{r} - \mathbf{R}_{\boldsymbol{l}}),
+\tag{2.83}
+\end{equation*}
+其中 $\mathbf{R}_{\boldsymbol{l}}$
+是本应处在格点 $\boldsymbol{l}$ 上的那个原子（或离子）的实际位置，而
+$\mathcal{V}_a$ 是单个原子的势场。为记号简单起见，我们假定是 Bravais 格子。
+
+于是我们可以像式 (2.75) 那样，计算从态 $\Psi_{\mathbf{k}}$ 散射到态
+$\Psi_{\mathbf{k}'}$ 的矩阵元：
+\begin{align*}
+\mathcal{M}_{\mathbf{k}'\mathbf{k}}
+&= \int e^{-i\mathbf{k}'\cdot\mathbf{r}} \sum_{\boldsymbol{l}}
+\mathcal{V}_a(\mathbf{r} - \mathbf{R}_{\boldsymbol{l}})\,
+e^{i\mathbf{k}\cdot\mathbf{r}}\, \mathrm{d}\mathbf{r} \\
+&= \sum_{\boldsymbol{l}} \int e^{i(\mathbf{k}-\mathbf{k}')\cdot\mathbf{r}}\,
+\mathcal{V}_a(\mathbf{r} - \mathbf{R}_{\boldsymbol{l}})\, \mathrm{d}\mathbf{r} \\
+&= \sum_{\boldsymbol{l}} e^{i(\mathbf{k}-\mathbf{k}')\cdot\mathbf{R}_{\boldsymbol{l}}}
+\int e^{i(\mathbf{k}-\mathbf{k}')\cdot(\mathbf{r}-\mathbf{R}_{\boldsymbol{l}})}
+\mathcal{V}_a(\mathbf{r} - \mathbf{R}_{\boldsymbol{l}})\, \mathrm{d}\mathbf{r}.
+\tag{2.84}
+\end{align*}
+
+求和中的每个积分名义上遍及整个空间——至少遍及整个晶体。但我们预计原子势
+$\mathcal{V}_a(\mathbf{r})$ 的作用范围非常有限，所以积分结果几乎不会依赖于计量它所
+用的中心 $\mathbf{R}_{\boldsymbol{l}}$。我们引入\emph{散射矢量}（scattering vector）
+\begin{equation*}
+\mathbf{K} = \mathbf{k}' - \mathbf{k};
+\tag{2.85}
+\end{equation*}
+于是矩阵元变为
+\begin{equation*}
+\mathcal{M}_{\mathbf{k}'\mathbf{k}} = \mathcal{V}_a(\mathbf{K}) \cdot
+\frac{1}{N} \sum_{\boldsymbol{l}} e^{-i\mathbf{K}\cdot\mathbf{R}_{\boldsymbol{l}}},
+\tag{2.86}
+\end{equation*}
+其中我们把原子势的 Fourier 变换定义为\footnote{我们引入 $N = 1/v_c$
+——宏观单位体积晶体中的晶胞数——以使 $\mathcal{V}_a(\mathbf{K})$
+具有能量的量纲。式 (2.84) 中用到的平面波态 (2.76)
+显然也是按这个宏观单位体积归一化的。}
+\begin{equation*}
+\mathcal{V}_a(\mathbf{K}) \equiv \frac{1}{v_c} \int
+\mathcal{V}_a(\mathbf{r})\, e^{-i\mathbf{K}\cdot\mathbf{r}}\, \mathrm{d}\mathbf{r}.
+\tag{2.87}
+\end{equation*}
+
+把式 (2.86) 分解成一个\emph{原子因子}（atomic factor）和一个\emph{结构因子}
+（structure factor）是极为有用的。我们先考虑理想晶格的结构因子，即令
+\begin{equation*}
+\mathbf{R}_{\boldsymbol{l}} = \boldsymbol{l}
+= l_1\mathbf{a}_1 + l_2\mathbf{a}_2 + l_3\mathbf{a}_3
+\tag{2.88}
+\end{equation*}
+对所有格点都成立。
+
+把散射矢量写成
+\begin{equation*}
+\mathbf{K} = K_1\mathbf{b}_1 + K_2\mathbf{b}_2 + K_3\mathbf{b}_3,
+\tag{2.89}
+\end{equation*}
+其中 $\mathbf{b}_1, \mathbf{b}_2, \mathbf{b}_3$
+是倒格子三矢组 (1.19)。于是结构因子变为
+\begin{align*}
+\sum_{\boldsymbol{l}} e^{-i\mathbf{K}\cdot\boldsymbol{l}}
+&= \sum_{l_1,l_2,l_3} e^{-i(K_1 l_1 + K_2 l_2 + K_3 l_3)} \\
+&= \Bigl( \sum_{0 \leqslant l_1 < L_1} e^{-iK_1 l_1} \Bigr)
+   \Bigl( \sum_{0 \leqslant l_2 < L_2} e^{-iK_2 l_2} \Bigr)
+   \Bigl( \sum_{0 \leqslant l_3 < L_3} e^{-iK_3 l_3} \Bigr) \\
+&= \left( \frac{1 - e^{-iK_1 L_1}}{1 - e^{-iK_1}} \right)
+   \left( \frac{1 - e^{-iK_2 L_2}}{1 - e^{-iK_2}} \right)
+   \left( \frac{1 - e^{-iK_3 L_3}}{1 - e^{-iK_3}} \right),
+\tag{2.90}
+\end{align*}
+其中，如同式 (1.76) 中那样，$L_1, L_2, L_3$
+是沿晶体块体各边的晶胞数。
+
+式 (2.90) 中的每个因子只是 1 的量级，并且随 $\mathbf{K}$ 的变化剧烈起伏。对
+$\mathbf{K}$ 的一段取值区间作任何平均都会给出零——除非平均区间包含了所有分母的零点，
+即
+\begin{equation*}
+e^{-iK_1} = e^{-iK_2} = e^{-iK_3} = 1,
+\tag{2.91}
+\end{equation*}
+这只有在 $K_1, K_2, K_3$ 各自都是 $2\pi$
+的整数倍时才成立。但根据式 (1.20)，这正是 $\mathbf{K}$
+应与倒格矢之一重合的条件。
+
+当 $\mathbf{K}$ 真的等于某个倒格矢时，式 (2.90)
+中每一项的分子和分母都变为零。不过这时我们回到原来的求和式，注意到每一项都具有
+$\exp(-i\mathbf{g}\cdot\boldsymbol{l})$ 的形式，恰好等于 1，于是求和正好是
+$N$。这样我们就得到重要的规则
+\begin{equation*}
+\frac{1}{N} \sum_{\boldsymbol{l}} e^{-i\mathbf{K}\cdot\boldsymbol{l}}
+= \delta_{\mathbf{K}\,\mathbf{g}},
+\tag{2.92}
+\end{equation*}
+其中 $\delta$ 记号在 $\mathbf{K}$ 不是集合 $\{\mathbf{g}\}$
+中的矢量时为零。
+
+把式 (2.92) 代回式 (2.86)，便得
+\begin{equation*}
+\mathcal{M}_{\mathbf{k}'\mathbf{k}}
+= \mathcal{V}_a(\mathbf{g})\, \delta_{\mathbf{k}'-\mathbf{k},\,\mathbf{g}},
+\tag{2.93}
+\end{equation*}
+这正是我们先前的结果 (2.78)。
+
+但现在假设晶体的晶格模被激发了。每个原子都偏离其理想格点：
+\begin{align*}
+\mathbf{R}_{\boldsymbol{l}} &= \boldsymbol{l} + \mathbf{u}_{\boldsymbol{l}} \\
+&= \boldsymbol{l} + \sum_{\mathbf{q}>}
+\left( \mathbf{U}_{\mathbf{q}}\, e^{i\mathbf{q}\cdot\boldsymbol{l}}
++ \mathbf{U}_{\mathbf{q}}^{*}\, e^{-i\mathbf{q}\cdot\boldsymbol{l}} \right),
+\tag{2.94}
+\end{align*}
+其中 $\mathbf{U}_{\mathbf{q}}$ 如式 (2.8) 与 (2.10)
+中那样，是波矢为 $\mathbf{q}$ 的模的矢量振幅。求和只遍及 $\mathbf{q}$
+取值范围的一半，这样我们就可以把复共轭项 $\mathbf{U}_{\mathbf{q}}^{*} =
+\mathbf{U}_{-\mathbf{q}}$ 明写出来，使位移为实。
+
+把式 (2.94) 代入式 (2.86) 的结构因子中：
+\begin{align*}
+\frac{1}{N} \sum_{\boldsymbol{l}} e^{-i\mathbf{K}\cdot\mathbf{R}_{\boldsymbol{l}}}
+&= \frac{1}{N} \sum_{\boldsymbol{l}} \exp\bigl[ -i\mathbf{K}\cdot
+\bigl\{ \boldsymbol{l} + \sum_{\mathbf{q}>}
+(\mathbf{U}_{\mathbf{q}}\, e^{i\mathbf{q}\cdot\boldsymbol{l}}
++ \mathbf{U}_{\mathbf{q}}^{*}\, e^{-i\mathbf{q}\cdot\boldsymbol{l}}) \bigr\} \bigr] \\
+&= \frac{1}{N} \sum_{\boldsymbol{l}} \bigl[ e^{-i\mathbf{K}\cdot\boldsymbol{l}}
+\prod_{\mathbf{q}>} \exp\bigl\{ -i\mathbf{K}\cdot
+(\mathbf{U}_{\mathbf{q}}\, e^{i\mathbf{q}\cdot\boldsymbol{l}}
++ \mathbf{U}_{\mathbf{q}}^{*}\, e^{-i\mathbf{q}\cdot\boldsymbol{l}}) \bigr\}
+\bigr].
+\tag{2.95}
+\end{align*}
+
+这是严格的。让我们把宗量正比于 $\mathbf{U}_{\mathbf{q}}$
+的那个指数函数展开——假定它是小位移：
+\begin{align*}
+&\exp \bigl\{ -i\mathbf{K}\cdot
+(\mathbf{U}_{\mathbf{q}}\, e^{i\mathbf{q}\cdot\boldsymbol{l}}
++ \mathbf{U}_{\mathbf{q}}^{*}\, e^{-i\mathbf{q}\cdot\boldsymbol{l}}) \bigr\} \\
+&\qquad = 1 - i\mathbf{K}\cdot
+(\mathbf{U}_{\mathbf{q}}\, e^{i\mathbf{q}\cdot\boldsymbol{l}}
++ \mathbf{U}_{\mathbf{q}}^{*}\, e^{-i\mathbf{q}\cdot\boldsymbol{l}})
+- |\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^2 \ldots
+\tag{2.96}
+\end{align*}
+
+代入式 (2.95) 后显然可见，把乘积展开时，会出现一个形如 (2.90)
+的项，给出理想晶体结构的衍射图样；
+其后是所有与 $\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}$
+呈线性关系的项之和，即形如
+\begin{align*}
+\frac{1}{N} \sum_{\boldsymbol{l}} e^{-i\mathbf{K}\cdot\boldsymbol{l}}
+\sum_{\mathbf{q}} \left( -i\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}} \right)
+e^{i\mathbf{q}\cdot\boldsymbol{l}}
+&= \frac{1}{N} \sum_{\mathbf{q}} \left( -i\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}} \right)
+\sum_{\boldsymbol{l}} e^{i(\mathbf{q}-\mathbf{K})\cdot\boldsymbol{l}} \\
+&= \sum_{\mathbf{q}} \left( -i\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}} \right)
+\delta_{\mathbf{K}-\mathbf{q},\,\mathbf{g}}
+\tag{2.97}
+\end{align*}
+的项——最后一步用了式 (2.92)。正如我们将在 §2.9
+中看到的，式 (2.96) 中的模平方项也很重要，因为它的符号不变。
+
+为了理解这一结果，让我们考虑两种情形。在图 32(a) 中，$\mathbf{K}$
+位于布里渊区之内。也就是说，我们在这样的态的区域中寻找被散射的电子（或 X
+射线、中子）：其中 $\mathbf{k}'$ 与初态 $\mathbf{k}$ 相差不超过半个倒格矢。按惯例，波矢
+$\mathbf{q}$ 被限制在一个布里渊区内，于是式 (2.97)
+中剩下的唯一一项就是 $\mathbf{q} = \mathbf{K}$ 的那一项。换言之，这一跃迁的矩阵元为
+\begin{equation*}
+\mathcal{M}_{\mathbf{k}'\mathbf{k}} = -i\{(\mathbf{k}'-\mathbf{k})\cdot
+\mathbf{U}_{\mathbf{q}}\}\, \mathcal{V}_a(\mathbf{k}'-\mathbf{k}),
+\tag{2.98}
+\end{equation*}
+其中
+\begin{equation*}
+\mathbf{q} = \mathbf{k}' - \mathbf{k}.
+\tag{2.99}
+\end{equation*}
+
+%FIG{32}: {(a) 正常过程；(b) 倒逆过程（Umklapp 过程）。}
+
+如果 $\mathbf{K}$ 并\emph{不}落在第一布里渊区内（图 32(b)），式 (2.97)
+的求和式中仍然会剩下一项。也就是说，仍然存在一个 $\mathbf{q}$
+值满足 $\mathbf{K} - \mathbf{q} = \mathbf{g}$，即满足
+\begin{equation*}
+\mathbf{q} = \mathbf{k}' - \mathbf{k} - \mathbf{g}.
+\tag{2.100}
+\end{equation*}

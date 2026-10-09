@@ -1,0 +1,455 @@
+% 第17章 大N展开
+\chapter{大 $N$ 展开}
+
+第 16 章我们导出了三族 $SU(N)$ Heisenberg 模型的生成泛函与关联函数的泛函积分表示。(16.39) 与 (16.40) 是精确的，但对 $Q$ 与 $\lambda$ 的积分权重 $\exp(-NS)$ 复杂且非 Gauss。路径积分可用附录 E 阐述的最陡下降法展开，$N$ 是大的控制参数。大的 $N$ 压低鞍点附近大涨落的贡献。$N$ 在半经典展开中的角色类似自旋大小 $S$\footnote{见 (10.25)。}。然而与此相反，大 $N$ 平均场理论绝非“经典的”：它包含量子涨落的失序效应。
+
+鞍点组态记作 $\bar{\lambda},\bar{Q}$。固定辅助场后，Gauss 型 Lagrange 量 $L(\bar{\lambda},\bar{Q})$ 描述无相互作用的 $z$ 粒子。$\bar{\lambda},\bar{Q}$ 由鞍点方程\footnote{存在 $Q$ 与 $Q^{*}$ 的鞍点不是复共轭的情形，见 Auerbach 与 Larson。}
+
+\begin{equation*}
+\left. \frac {\delta \mathcal {S}}{\delta \lambda_ {i}} \right| _ {\bar {\lambda}, \bar {Q}} = \langle n _ {i} \rangle - S = 0 ,
+\tag{17.1}
+\end{equation*}
+
+\begin{equation*}
+\left. \frac {\delta \mathcal {S}}{\delta Q _ {ij}} \right| _ {\bar {\lambda}, \bar {Q}} = \left. \frac {\delta \mathcal {S}}{\delta Q _ {ij} ^ {*}} \right| _ {\bar {\lambda}, \bar {Q}} = 0
+\tag{17.2}
+\end{equation*}
+
+确定，通常称为“平均场方程”。$\langle n\rangle$ 表示用鞍点 Lagrange 量 $L(\bar{\lambda},\bar{Q})$ 的平均场期望值。在第 18 章描述的平均场理论中，$\bar{\lambda},\bar{Q}$ 是静态均匀场，即只有两个变分参数，其输入是格子结构、自旋与温度。
+
+粗略地说，平均场理论的物理意义是“最好地”近似 Heisenberg 模型能量与关联的二次 Lagrange 量。但要强调：它不是变分理论。平均场哈密顿量与基态混入了违反局域约束的非物理波函数；平均场激发（“准粒子”）也因含 Schwinger 玻色子或受约束费米子的密度涨落而违反约束。保约束的激发是偶数个准粒子的复合体。局域约束通过场 $\lambda$ 的动力学涨落重新进入理论——这一表述将在 17.3.1 小节精确化。
+
+$Q_{ij}$ 是与准粒子耦合的有效场。其物理解释由平均场方程 (17.2) 给出：
+
+\begin{equation*}
+0 = \left. \frac {\delta \mathcal {S}}{\delta Q _ {ij} ^ {*}} \right| _ {\bar {\lambda}, \bar {Q}} \; \Rightarrow \; Q _ {ij} = \left\{ \begin{array}{ll} \frac {J}{N} \langle \mathcal {F} _ {ij} \rangle & \text{FM-B} \\ \frac {J}{N} \langle \mathcal {A} _ {ij} \rangle & \text{AFM-B} \\ \frac {J}{N} \langle \mathcal {D} _ {ij} \rangle & \text{AFM-F} \end{array} \right.
+\tag{17.3}
+\end{equation*}
+
+于是 $Q_{ij}$ 自洽地依赖键算符的期望值。
+
+\section{涨落与规范场}
+
+本节把讨论限于 Schwinger 玻色子模型 FM-B 与 AFM-B。Hubbard--Stratonovich 场 $Q_{ij}$ 的涨落可用物理自旋关联作半经典诠释。对 $N = 2$，用 7.3 节定义的自旋相干态之间的 $F_{ij}$、$A_{ij}$ 矩阵元即可说明。铁磁键算符给出
+
+\begin{align*}
+Q _ {ij} ^ {F} & \Rightarrow \frac {J}{2} \left\langle \hat {\Omega} _ {i} \right|_{S} \left\langle \hat {\Omega} _ {j} \right|_{S - \frac {1}{2}} \mathcal {F} _ {ij} \left| \hat {\Omega} _ {i} \right\rangle_{S - \frac {1}{2}} \left| \hat {\Omega} _ {j} \right\rangle_{S}\\
+& = J S \, e ^ {i ( \chi_ {i} - \chi_ {j} )/2} \left( u _ {i} ^ {*} u _ {j} + v _ {i} ^ {*} v _ {j} \right)\\
+& = J S \exp \left( - \frac {i}{2} \psi_{ij} ^ {F} \right) \left| ( 1 + \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} )/2 \right| ^ {\frac {1}{2}} ,
+\tag{17.4}
+\end{align*}
+
+$|\hat{\Omega}(\theta,\phi)\rangle_{S}$ 与 $u(\theta,\phi), v(\theta,\phi)$ 分别已在 (7.18) 与 (7.14) 定义，相位 $\psi^{F}$ 由 (7.19) 给出。由 (17.4) 可见，对铁磁关联的自旋 $\hat{\Omega}_{i} \approx \hat{\Omega}_{j}$，$Q$ 取极大。
+
+对缓变组态，$\psi_{ij}^{F}$ 可按自旋偏差展开到线性阶（见 (7.19)）：
+
+\begin{align*}
+\psi_{i, i + \delta_ {\mu}} ^ {F} & = - \cos ( \theta_ {i} ) \left( \phi_ {i} - \phi_{i + \delta_ {\mu}} \right) + \chi_ {i} - \chi_{i + \delta_ {\mu}} + \mathcal {O} \left( | \delta_ {\mu} | ^ {2} \right)\\
+& \simeq \mathbf {A} ( \hat {\Omega} _ {i} ) \cdot \partial_ {\mu} \hat {\Omega} _ {i} \, | \delta_ {\mu} | .
+\tag{17.5}
+\end{align*}
+
+$\{\delta_{\mu}\}$ 是格子上的近邻矢量，$\mathbf{A}$ 是 (10.18) 定义的磁单极矢量势，$\chi_{i}$ 是任意规范选择。
+
+连续规范场定义为
+
+\begin{equation*}
+A _ {\mu} ( \mathbf {x} _ {i}, \tau ) \equiv \frac {1}{2} \mathbf {A} ( \hat {\Omega} _ {i} ) \cdot \partial_ {\mu} \hat {\Omega} _ {i} \, , \quad \mu = 0, 1, \dots , d ,
+\tag{17.6}
+\end{equation*}
+
+$\partial_{0} = \partial_{\tau}$。规范不变（“电磁”）场描述手性自旋关联
+
+\begin{equation*}
+F _ {\mu \nu} = \partial_ {\mu} A _ {\nu} - \partial_ {\nu} A _ {\mu} = \frac {1}{2} \partial_ {\mu} \hat {\Omega} \times \partial_ {\nu} \hat {\Omega} \cdot \hat {\Omega}.
+\tag{17.7}
+\end{equation*}
+
+有限值 $F_{\mu\nu} \neq 0$ 蕴含局域自旋关联在 $\mu - \nu$ 平面内的非共面性：$\mu - \nu$ 平面上有限区域内的自旋在单位球上张出有限面积。
+
+反铁磁情形，键算符给出
+
+\begin{align*}
+Q _ {ij} ^ {N} & \Rightarrow \frac {J}{2} \left\langle \hat {\Omega} _ {i} \right|_{S - \frac {1}{2}} \left\langle \hat {\Omega} _ {j} \right|_{S - \frac {1}{2}} \mathcal {A} _ {ij} \left| \hat {\Omega} _ {i}, \hat {\Omega} _ {j} \right\rangle_{S} = J S \, e ^ {- i ( \chi_ {j} + \chi_ {i} )/2} \left( u _ {i} v _ {j} - v _ {i} u _ {j} \right)\\
+& = J S \exp \left( - \frac {i}{2} \psi_{ij} ^ {N} \right) \left| ( 1 - \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} )/2 \right| ^ {\frac {1}{2}} .
+\tag{17.8}
+\end{align*}
+
+对反铁磁（Néel）关联的自旋 $\hat{\Omega}_{i} \approx -\hat{\Omega}_{j}$，$Q^{N}$ 取极大。Néel 场定义为
+
+\begin{equation*}
+\hat {\mathbf {n}} ( \mathbf {x} _ {i} ) \approx \frac {1}{2} \left[ \eta_ {i} \hat {\Omega} _ {i} + ( 2 d ) ^ {- 1} \sum_{\delta_ {\mu}} \eta_{i + \delta_ {\mu}} \hat {\Omega}_{i + \delta_ {\mu}} \right] \, , \quad \eta_ {i} = \left\{ \begin{array}{ll} 1 & i \in A \\ - 1 & i \in B \end{array} \right. .
+\tag{17.9}
+\end{equation*}
+
+对反铁磁关联的组态，$\hat{n}$ 近似为由 $(\tilde{\theta},\tilde{\phi})$ 参数化的单位矢量场。键相位 $\psi_{ij}^{N}$ 近似为
+
+\begin{align*}
+\psi_{i, i + \delta_ {\mu}} ^ {N} & \simeq - \eta_ {i} \cos ( \tilde {\theta} _ {i} ) \left( \tilde {\phi} _ {i} - \tilde {\phi}_{i + \delta_ {\mu}} \right) + \left( \chi_ {i} - \chi_{i + \delta_ {\mu}} \right)\\
+& \simeq \eta_ {i} \mathbf {A} ( \hat {\mathbf {n}} ) \cdot \partial_ {\mu} \hat {\mathbf {n}} \, | \delta_ {\mu} | .
+\tag{17.10}
+\end{align*}
+
+Néel 规范场 $A^{N}$ 按 (17.6) 定义：
+
+\begin{equation*}
+A _ {\mu} ^ {N} ( \mathbf {x} _ {i}, \tau ) \equiv \frac {\eta_ {i}}{2} \mathbf {A} ( \hat {\mathbf {n}} ) \cdot \partial_ {\mu} \hat {\mathbf {n}} ,
+\tag{17.11}
+\end{equation*}
+
+同样 $\partial_{0} = \partial_{\tau}$。Néel“电磁”场描述交错磁化的手性涨落：
+
+\begin{equation*}
+F _ {\mu \nu} ^ {N} = \partial_ {\mu} A _ {\nu} ^ {N} - \partial_ {\nu} A _ {\mu} ^ {N} = \frac {1}{2} \partial_ {\mu} \hat {\mathbf {n}} \times \partial_ {\nu} \hat {\mathbf {n}} \cdot \hat {\mathbf {n}}.
+\tag{17.12}
+\end{equation*}
+
+一维中“电场”$F_{01}^{N}$ 为
+
+\begin{equation*}
+F _ {01} ^ {N} = \frac {1}{2} \partial_ {\tau} \hat {\mathbf {n}} \times \partial_ {x} \hat {\mathbf {n}} \cdot \hat {\mathbf {n}} ,
+\tag{17.13}
+\end{equation*}
+
+右端正比于 $(x,\tau)$ 平面内的“拓扑密度”\footnote{见 15.1 节，及第 13 章习题 2 与 3。}。
+
+$Q_{ij}^{N}$ 的相位与手性 Néel 关联之间的这一联系，有助于理解大 $N$ 途径与半经典连续途径的对应\footnote{见 Read 与 Sachdev，第 18 章文献注释。}。
+
+\section{$1/N$ 展开图}
+
+把绕鞍点的涨落记作
+
+\begin{equation*}
+r _ {\alpha} = \left[ i \lambda_ {i} ( \tau ) - \bar {\lambda} \, , \; \operatorname{Re} Q _ {ij} ( \tau ) - \operatorname{Re} \bar {\mathbf {Q}} \, , \; \operatorname{Im} Q _ {ij} ( \tau ) - \operatorname{Im} \bar {Q} \right] ,
+\tag{17.14}
+\end{equation*}
+
+$\alpha$ 包括场、空间与时间指标。由 (17.1) 与 (17.2)，作用量绕鞍点的 Taylor 展开没有线性项：
+
+\begin{equation*}
+\mathcal {S} = \mathcal {S} ^ {(0)} + \frac {1}{2} \mathcal {S}_{\alpha \alpha '} ^ {(2)} r_ {\alpha} r_{\alpha '} + \mathcal {S} ^ {\mathrm{int}} ,
+\tag{17.15}
+\end{equation*}
+
+重复指标求和。$\mathcal{S}^{\mathrm{int}}$ 含三次及更高阶项：
+
+\begin{equation*}
+\mathcal {S} ^ {\mathrm{int}} = \sum_ {n = 3} ^ {\infty} \frac {1}{n !} \mathcal {S}_{\alpha_ {1} \dots \alpha_ {n}} ^ {( n )} r_{\alpha_ {1}} \dots r_{\alpha_ {n}}.
+\tag{17.16}
+\end{equation*}
+
+$\mathcal{S}^{(n)}$ 确定如下。作用量写为
+
+\begin{align*}
+\mathcal {S} & = \mathcal {S} _ {0} + \frac {\eta}{N} \mathrm{Tr} \ln \left( 1 + G _ {0} \sum_ {\alpha} r _ {\alpha} \hat {v} _ {\alpha} \right) ,\\
+\mathcal {S} _ {0} & = \frac {\eta}{N} \mathrm{Tr} \ln G _ {0} ^ {- 1} + \int_ {0} ^ {\beta} d \tau \left( \sum_{\langle ij \rangle} \frac {| Q _ {ij} | ^ {2}}{J} - iS \sum_ {i} \lambda_ {i} \right) ,\\
+G _ {0} & = \hat {G} ( \bar {Q}, \bar {Q} ^ {*}, \bar {\lambda} ) ,
+\tag{17.17}
+\end{align*}
+
+$\hat{G}$ 已在 (16.37) 与 (16.38) 定义，$G_{0}$ 是平均场 Green 函数。矩阵 $\hat{v}_{\alpha}$ 是“内顶点”，它保持 $m$ 味指标并把场 $r_{\alpha}$ 连到两个 $G_{0}$。用恒等式
+
+\begin{equation*}
+\operatorname{Tr} \ln ( 1 + A ) = - \sum_ {n = 1} ^ {\infty} \frac {( - 1 ) ^ {n}}{n} \operatorname{Tr} ( A ) ^ {n} ,
+\tag{17.18}
+\end{equation*}
+
+得到显式表达式
+
+\begin{equation*}
+\mathcal {S}_{\alpha_ {1} \dots \alpha_ {n}} ^ {( n )} = \frac {( - 1 ) ^ {n + 1}}{n} \, \frac {\eta}{N} \sum_ {P} \eta \, \mathrm{Tr} \left( \hat {v}_{\alpha_ {1}} G _ {0} \dots \hat {v}_{\alpha_ {n}} G _ {0} \right).
+\tag{17.19}
+\end{equation*}
+
+$\sum_{P}$ 对 $(\alpha_{1},\ldots \alpha_{n})$ 的所有置换求和；迹对空间、时间与 $m$ 味求和。$\mathcal{S}^{(n)}$ 图示为同一 $m$ 指标的平均场 Green 函数构成的、带 $n$ 个内顶点的“回路”，见图~\ref{fig:17.1}。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig17_1.jpg}
+\caption{$\mathcal{S}^{(5)}$——带五个内顶点的回路。}
+\label{fig:17.1}
+\end{figure}
+
+“RPA 传播子”是二次型的逆：
+
+\begin{equation*}
+D _ {\alpha , \alpha '} = \left( \frac {1}{2} \mathcal {S} ^ {(2)} \right)_{\alpha , \alpha '} ^ {- 1} = \left( \Pi_ {0} - \Pi \right)_{\alpha , \alpha '} ^ {- 1} ,
+\tag{17.20}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\Pi_{\alpha , \alpha '} = \frac {\eta}{N} \operatorname{Tr} \left( \hat {v} _ {\alpha} G _ {0} \hat {v} _ {\alpha '} G _ {0} \right).
+\tag{17.21}
+\end{equation*}
+
+$\Pi_{0}$ 在动量与 Matsubara 空间是对角的。在辅助场表示（$\mathrm{Re}\, Q, \mathrm{Im}\, Q, \lambda$）中：
+
+\begin{equation*}
+\Pi_ {0} = \left( \begin{array}{ccc} \frac {1}{J} & 0 & 0 \\ 0 & \frac {1}{J} & 0 \\ 0 & 0 & 0 \end{array} \right).
+\tag{17.22}
+\end{equation*}
+
+术语“RPA”（随机相位近似）常用于描述绕平均场理论的 Gauss 涨落。应当始终计算 $\det D$ 以验证
+
+\begin{equation*}
+\operatorname{Re} \det D > 0.
+\tag{17.23}
+\end{equation*}
+
+$\operatorname{Re} \det D$ 的零点与负值是\emph{危险}的：它们使平均场理论不再是一个合法的鞍点。
+
+把 (16.40) 的前置因子与指数按 $r_{\alpha}$ 幂次展开，关联函数由如下求和给出：
+
+\begin{align*}
+\tilde {R} ^ {mm '} ( 1, 2 ) & = \tilde {R} ^ {I} ( 1, 2 ) + \delta_{mm '} \tilde {R} ^ {II} ( 1, 2 ) ,\\
+\tilde {R} ^ {I} & = Z ^ {- 1} \int \mathcal {D} \mathbf {r} \left( \sum_{n = 0} ^ {\infty} - \frac {1}{n !} \mathcal {S}_{1, 2, \alpha_ {1}, \alpha_ {n}} ^ {( n + 2 )} r_{\alpha_ {1}} \dots r_{\alpha_ {n}} \right)\\
+& \quad \times \sum_{L = 0} ^ {\infty} \frac {( - N ) ^ {L}}{L !} \left( \sum_{n = 3} ^ {\infty} \frac {1}{n !} \mathcal {S}_{\alpha_ {1} \ldots \alpha_ {n}} ^ {( n )} r_{\alpha_ {1}} \dots r_{\alpha_ {n}} \right) ^ {L} \exp \left( - \frac {N}{2} \mathcal {S}_{\alpha \beta} ^ {( 2 )} r_{\alpha} r_{\beta} \right) ,
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig17_2.jpg}
+\caption{五个顶点的回路，其中两个是外顶点。}
+\label{fig:17.2}
+\end{figure}
+
+\begin{align*}
+\tilde {R} ^ {II} & = Z ^ {- 1} \int \mathcal {D} \mathbf {r} \left( \sum_{n = 0} ^ {\infty} \frac {1}{n !} \mathcal {S}_{1, \alpha_ {1}, \alpha_ {n}} ^ {( n + 1 )} r_{\alpha_ {1}} \dots r_{\alpha_ {n}} \right) \left( \sum_{n = 0} ^ {\infty} \frac {1}{n !} \mathcal {S}_{2, \alpha_ {1}, \alpha_ {n}} ^ {( n + 1 )} r_{\alpha_ {1}} \dots r_{\alpha_ {n}} \right)\\
+& \quad \times \sum_{L = 0} ^ {\infty} \frac {( - N ) ^ {L}}{L !} \left( \sum_{n = 3} ^ {\infty} \frac {1}{n !} \mathcal {S}_{\alpha_ {1} \ldots \alpha_ {n}} ^ {( n )} r_{\alpha_ {1}} \dots r_{\alpha_ {n}} \right) ^ {L} \exp \left( - \frac {N}{2} \mathcal {S}_{\alpha \beta} ^ {( 2 )} r_{\alpha} r_{\beta} \right) ,
+\tag{17.24}
+\end{align*}
+
+这里略去了作用量中的常数 $-N\mathcal{S}^{(0)}$。定义含一个或两个流顶点的\emph{外回路}（见图~\ref{fig:17.2}）：
+
+\begin{align*}
+\frac {\delta}{\delta j _ {m} ( 1 )} \mathcal {S}_{\alpha_ {1}, \alpha_ {n}} ^ {( n )} & = \frac {1}{N} \mathcal {S}_{1, \alpha_ {1}, \alpha_ {n}} ^ {( n + 1 )} ,\\
+\frac {\delta^ {2}}{\delta j _ {m} ( 1 ) \delta j _ {m} ( 2 )} \mathcal {S}_{\alpha_ {1}, \alpha_ {n}} ^ {( n )} & = \mathcal {S}_{1, 2, \alpha_ {1}, \alpha_ {n}} ^ {( n + 2 )} .
+\tag{17.25}
+\end{align*}
+
+(17.24) 中的积分是多维 Gauss 积分之和。Gauss 积分的性质是：偶数个场的积分可写成两两“收缩”之和：
+
+\begin{equation*}
+\overbrace {r _ {1} \cdots r _ {2k}} = \sum_{\mathrm{i} _ {1}, \dots \mathrm{i} _ {\mathrm{k}}} \overbrace {r _ {1} r _ {i _ {1}}} \dots \overbrace {r _ {k} r _ {i _ {k}}} ,
+\tag{17.26}
+\end{equation*}
+
+两个变量的收缩为
+
+\begin{align*}
+\widehat {r _ {1} r _ {2}} & \equiv Z ^ {- 1} \int \mathcal {D} \mathbf {r} \; r_{\alpha i \tau} r_{\alpha ' i ' \tau '} \exp \left( - \frac {N}{2} r_{\alpha} D_{\alpha , \beta} ^ {- 1} r_{\beta} \right)\\
+& = \frac {1}{N} D_{1, 2}.
+\tag{17.27}
+\end{align*}
+
+传播子画作连接两个顶点的波浪线，见图~\ref{fig:17.3}。给定回路数目，图按顶点之间以一切可能方式用 $D$ 连接来构造。图的非连通部分包含与外回路 (17.25) 无关的回路；对关联函数只需考虑连通图，因为非连通部分与归一化因子 $Z^{-1}$ 相消——这就是“链簇定理”。于是，计算任何特定图就是：把所有可能的回路与被传播子收缩的顶点相乘，并对内部指标求和。一个重要条件是：内部回路（不含外顶点的）必须至少有三个顶点；外回路可以有任意数目（包括零）的内顶点。任何特定图的 $1/N$ 阶为
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{fig17_3.jpg}
+\caption{内场收缩的图。}
+\label{fig:17.3}
+\end{figure}
+
+\begin{equation*}
+\left( \frac {1}{N} \right) ^ {P - L} ,
+\tag{17.28}
+\end{equation*}
+
+$L$ 是内回路数，$P$ 是传播子数。对 $1/N^{p}$ 阶的所有图求和后得到 $\tilde{R}^{(p)}$——级数的系数：
+
+\begin{equation*}
+\tilde {R} ^ {mm '} ( 1, 2 ) \sim \sum_ {p = 0} ^ {\infty} N ^ {- p} \tilde {R} ^ {mm ' (p)} ( 1, 2 ).
+\tag{17.29}
+\end{equation*}
+
+$\sim$ 表示渐近级数。(17.29) 未必收敛，且可能遗漏 $e^{-N(\cdot)}$ 型的本质奇异项。
+
+\section{求和规则}
+
+$1/N$ 级数的图展开具有特殊结构，使我们能得到在 $1/N$ 级数每一阶都成立的某些恒等式，即求和规则。由 $D$ 的定义本身，无电荷涨落约束逐阶得到强制。下文将分别对 Schwinger 玻色子与受约束费米子展示这一点。此外，我们导出对一切 $N$ 成立的局域 $\mathrm{SU}(N)$ 自旋涨落求和规则。
+
+\subsection{电荷涨落的缺失}
+
+这里证明约束在 $1/N$ 的每一阶都被精确强制。换言之，把给定阶的所有图求和后，密度涨落恒等地消失：
+
+\begin{equation*}
+\langle \langle n _ {1} \mathcal {A} \rangle \rangle = NS \, \langle \langle \mathcal {A} \rangle \rangle ,
+\tag{17.30}
+\end{equation*}
+
+对任意算符 $\mathcal{A}$，$\langle\cdot\rangle$ 是任意温度下的精确期望值。
+
+看看 (17.30) 如何从图展开导出是有启发的。存在相应源流时 Lagrange 量含项
+
+\begin{equation*}
+\left( j _ {1} + i \lambda_ {1} \right) \left( \sum_ {m} z _ {1m} ^ {*} z _ {1m} \right) - i \lambda_ {1} NS.
+\tag{17.31}
+\end{equation*}
+
+对 $j_{1}$ 的外顶点与约束场 $\lambda_{1}$ 的内顶点完全相同。用 (17.25) 对 $\mathcal{S}[j]$ 求两次导：
+
+\begin{equation*}
+\mathcal {S}_{1, \alpha} ^ {(2)} = - i \Pi_{\lambda_ {1}, \alpha} ,
+\tag{17.32}
+\end{equation*}
+
+再由 (17.20) 与 (17.22)：
+
+\begin{equation*}
+\sum_ {\alpha} \Pi_{\lambda_ {1}, \alpha} D_{\alpha , \alpha '} = - \left( I _ {\lambda} \right)_{\lambda_ {1}, \alpha '} + \left( \Pi_ {0} D \right)_{\lambda_ {1}, \alpha '} = - \left( I ^ {\lambda} \right)_{\lambda_ {1}, \alpha '} ,
+\tag{17.33}
+\end{equation*}
+
+$I^{\lambda}$ 投影到 $\lambda$ 场扇区。为了图示地计算 (17.30)，考虑含外回路 $\mathcal{S}^{(n+1)}$（$n \geq 0$）的连通图。先考虑 $n \geq 1$ 的所有图。把一个图的“尾巴”定义为串联附着到回路 $\Pi_{\lambda_{1},r}$（(17.21) 定义）上的一个传播子。所有图可分成两类：有尾巴的与无尾巴的。对每个无尾巴图 $\Gamma(n_{1},\mathcal{A})$，容易通过在 $j_{1}$ 顶点接一个尾巴定义抵消项 $\bar{\Gamma}(n_{1},\mathcal{A})$，如图~\ref{fig:17.4} 所示。由 (17.28)，二者具有相同的 $1/N$ 阶，因为它们的回路数减传播子数相同。用 (17.33) 证明二者精确相消：
+
+\begin{align*}
+\bar {\Gamma} ( n _ {1}, \mathcal {A} ) & = N \sum_{\alpha \alpha '} \Pi_{\lambda_ {1} \alpha} D_{\alpha , \alpha '} \Gamma ( n _ {l}, \mathcal {A} )\\
+& = \sum_{\alpha '} \left[ - \delta_{\lambda_ {1}, \alpha '} + \sum_{\alpha} \left( \Pi_ {0} \right)_{\lambda_ {1}, \alpha} D_{\alpha , \alpha '} \right] \Gamma ( \alpha ', \mathcal {A} )\\
+& = - \Gamma ( n _ {1}, \mathcal {A} ) .
+\tag{17.34}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig17_4.jpg}
+\caption{电荷涨落图及其抵消项。}
+\label{fig:17.4}
+\end{figure}
+
+于是，在 $1/N$ 的任何阶，抵消项消去电荷涨落图中的连通项。幸存的只有 $n_{1}$ 在回路 $\mathcal{S}^{(1)}$ 上的非连通图。图规则不允许给回路 $N\mathcal{S}^{(1)}$ 加抵消项，因为不可能有只含一两个顶点的内回路。鞍点条件 (17.1) 蕴含
+
+\begin{equation*}
+\langle n _ {1} \rangle = NS ,
+\tag{17.35}
+\end{equation*}
+
+这就完成了 (17.30) 的证明。证毕。
+
+\subsection{在位自旋涨落}
+
+这里计算在位自旋涨落。对 $SU(2)$，我们熟悉“自旋平方”算符 $S^{2}$，投影到 $S$ 扇区后它给出 $S(S+1)$ 倍的单位矩阵。$SU(N)$ 生成元
+
+\begin{equation*}
+\hat {S} _ {i} ^ {mm '} = a _ {im} ^ {\dagger} a _ {im '}
+\tag{17.36}
+\end{equation*}
+
+定义在位涨落
+
+\begin{equation*}
+S ^ {mm '} \equiv \langle \langle \hat {S} _ {i} ^ {mm '} \hat {S} _ {i} ^ {m'm} \rangle \rangle ,
+\tag{17.37}
+\end{equation*}
+
+$\langle\cdot\rangle$ 是任意温度下的精确期望值。利用约束，容易确定“自旋平方”算符的期望值：
+
+\begin{align*}
+\sum_ {mm '} S ^ {mm '} & = \left\langle \left\langle \sum_ {mm '} \left[ n_{im '} \left( 1 + \eta n_{im} \right) - \eta \delta_{mm '} n_{im '} \right] \right\rangle \right\rangle\\
+& = N ^ {2} S ( 1 + \eta S ) - \eta NS .
+\tag{17.38}
+\end{align*}
+
+（受约束费米子情形用了恒等式 $n_{im}^2 = n_{im}$。）
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig17_5.jpg}
+\caption{$S^{m \neq m'}$——所有传播子不可约图之和。}
+\label{fig:17.5}
+\end{figure}
+
+由于路径积分是 $\mathrm{SU}(N)$ 不变的，可以如下确定单个关联 $S^{mm'}$。先找对角涨落 $S^{mm}$ 与非对角涨落 $S^{m\neq m'}$ 之间的关系。在转动对称的体系中，这些量不能依赖 $m$ 或 $m'$。
+
+由 (17.24)，$S^{m\neq m'}$ 由路径积分 $\tilde{R}^{I}$ 给出。由于内顶点保持 $m$ 指标，$S^{m\neq m'}$ 中的所有图都是连通的，不可能通过剪断任何数目的传播子线分成两部分。把这些图称为传播子不可约（PI）图，见图~\ref{fig:17.5}。构成 $S^{m\neq m'}$ 的所有 PI 图也出现在对角关联 $S_{c}^{mm}$ 的连通部分中：
+
+\begin{equation*}
+\text{若} \quad \Gamma^ {PI} \in S ^ {m \neq m '}, \quad \text{则} \quad \Gamma^ {PI} \in S _ {c} ^ {mm}.
+\tag{17.39}
+\end{equation*}
+
+然而对每个 $\Gamma^{PI}$，$S_{c}^{mm}$ 还含一个带尾巴的抵消项 $\bar{\Gamma}^{PI}$，见图~\ref{fig:17.6}。用 (17.33)，图与抵消项之和为
+
+\begin{align*}
+\Gamma^ {PI} ( i, i ) + \bar {\Gamma} ^ {PI} ( i, i ) & = \Gamma^ {PI} ( i, i ) + \sum_{\alpha \alpha '} \bar {\Gamma} _ {\alpha} ^ {PI} ( i, \alpha ) D_{\alpha , \alpha '} \Pi_{\alpha ' \lambda_ {i}}\\
+& = \left( 1 - 1/N \right) \Gamma^ {PI} ( i, i ) .
+\tag{17.40}
+\end{align*}
+
+除 PI 图及其抵消项外，$S_{c}^{mm}$ 还有两个外顶点位于不同回路的贡献——传播子可约（PR）图。但容易证明所有 PR 图与抵消项精确相消（图~\ref{fig:17.7}）：在一个回路上加尾巴，由于变成内回路的那个回路多了一个 $m'$ 求和，抵消项具有相同的 $1/N$ 阶。这就证明了所有不消去的图都是 PI 的。用 (17.38) 得到重要恒等式：
+
+\begin{equation*}
+S _ {c} ^ {mm} ( i, i ) = \left( 1 - \frac {1}{N} \right) S ^ {m \neq m '} ( i, i ).
+\tag{17.41}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig17_6.jpg}
+\caption{$S_{\mathrm{c}}^{mm}$——传播子不可约图及其抵消项。}
+\label{fig:17.6}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig17_7.jpg}
+\caption{$S_{\mathrm{c}}^{mm}$——传播子可约图的消去。}
+\label{fig:17.7}
+\end{figure}
+
+分离 $S^{mm}$ 的连通与非连通部分并用 (17.41)：
+
+\begin{align*}
+\sum_ {mm '} S ^ {m, m '} & = \sum_{m \neq m '} S ^ {m \neq m '} ( i, i ) + \sum_{m} \left[ S _ {c} ^ {mm} ( i, i ) + \langle \langle n _ {im} \rangle \rangle ^ {2} \right]\\
+& = \left[ N ( N - 1 ) + N \left( 1 - \frac {1}{N} \right) \right] S ^ {m \neq m '} ( i, i ) + NS ^ {2} .
+\tag{17.42}
+\end{align*}
+
+令 (17.38) 与 (17.42) 相等，得到想要的恒等式
+
+\begin{equation*}
+S ^ {m \neq m '} ( 1, 1 ) = \frac {N}{N + \eta} S ( 1 + \eta S ).
+\tag{17.43}
+\end{equation*}
+
+$N = 2$ 时 (17.43) 化为熟知结果：
+
+\begin{equation*}
+\langle S _ {i} ^ {+} S _ {i} ^ {-} \rangle = \left\{ \begin{array}{ll} \frac {2}{3} S ( S + 1 ) & \text{Schwinger 玻色子} \\ \frac {1}{2} & \text{受约束费米子} \end{array} \right.
+\tag{17.44}
+\end{equation*}
+
+(17.43) 可用于检验 $1/N$ 任意阶的自旋关联图计算。在动量与 Matsubara 频率表示中，$(1/N)^{p}$ 阶的所有图之和必须满足总动量求和规则：
+
+\begin{equation*}
+\left( \beta \mathcal {N} \right) ^ {- 1} \sum_{\mathbf {k}, n} S ^ {m \neq m' (p)} ( \mathbf {k}, \omega_ {n} ) = \left( \frac {1}{N} \right) ^ {p} \left( - \eta \right) ^ {p} S ( 1 + \eta S ) \, , \quad p = 0, 1, 2, \dots .
+\tag{17.45}
+\end{equation*}
+
+\begin{exercises}
+
+\item 计算一维半满 Fermi 气体的自旋关联
+
+\begin{equation*}
+\left| \Psi^ {\mathrm{FG}} \right\rangle = \prod_{| k | < \pi / 2} c _ {k \uparrow} ^ {\dagger} c _ {k \downarrow} ^ {\dagger} \left| 0 \right\rangle .
+\tag{17.46}
+\end{equation*}
+
+提示：证明下列恒等式并计算之：
+
+\begin{equation*}
+S ^ {+-} ( q ) = \frac {1}{\mathcal {N}} \sum_ {k} \left\langle c _ {k \uparrow} ^ {\dagger} c_{k + q \downarrow} c_{k + q \downarrow} ^ {\dagger} c _ {k \uparrow} \right\rangle .
+\tag{17.47}
+\end{equation*}
+
+\item 对 $q$ 求和，计算在位涨落 $\langle S_{i}^{+}S_{i}^{-}\rangle$，与求和规则 (17.44) 比较。解释差异。
+
+\end{exercises}
+
+\begin{chapbib}
+\item 大 $N$ 展开中约束的效应，可从 Gutzwiller 投影波函数关联的大 $N$ 展开学习，见第 8 章文献注释。
+\item Hubbard--Stratonovich 场 $Q$ 与 $Q^{*}$ 的鞍点不是复共轭的平均场理论讨论于
+  A. Auerbach and B. E. Larson, Phys. Rev. B \textbf{43}, 7800 (1991)。
+\end{chapbib}

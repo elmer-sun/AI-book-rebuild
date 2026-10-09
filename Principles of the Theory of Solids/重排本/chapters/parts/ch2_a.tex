@@ -1,0 +1,227 @@
+% ch2_a §2.1–2.2 (书页 27–36 / p041–p050)
+% 第2章 LATTICE WAVES
+
+\chapter{格波}
+
+\epigraphbook{那些井然有序的运动，那规整齐一的步伐，虽不给耳朵任何声息，却向理解之心敲出最为盈满和谐的音律。}{Sir Thomas Browne}
+
+\section{晶格动力学}
+
+最简单的固体大概要数固态氩：它是中性原子的规则排列，原子带着结合紧密的封闭电子壳层，靠 van der Waals 力维系在一起，这种力主要作用在晶格中最近邻的原子之间。这类晶体的物理学，就是原子在各自理想化平衡位置附近的热运动。
+
+要讨论这种运动，最初等的观念是 \emph{Einstein 模型}（Einstein model）：每个原子都在其邻居的力场所形成的势阱中，像一个简谐振子那样振动。这个力场绝不会严格是一个具有球对称性的二次势阱，但就平均而言，这是一种合理的近似。于是，晶体的激发谱由间距为 $\hbar\nu_E$ 的能级组成，其中 $\nu_E$ 是 \emph{Einstein 频率}（Einstein frequency），即每个原子在其势阱中的振荡频率。
+
+这个模型在某些只需对热振动作极粗略处理的场合是有用的——尤其是在相对高温时，此时各原子彼此独立地振动这一假设是站得住脚的。但我们一眼就能看出：若两个或更多的原子一致地运动，它们之间那种趋于把每个原子拉回平衡位置的力便会减弱，因而激发一个量子所需的能量可能要小得多。相邻原子的运动有一种相互关联的趋势。
+
+要得到整个晶格的谱，我们必须把局域的力放进来，并对运动作完整的描述。若不是晶格具有平移不变性，这将是一个无法解决的问题。这些激发必须满足 Bloch 定理，正如 §1.4 中所证明的那样。\emph{晶格动力学}（lattice dynamics）的理论，为第 1 章中建立起来的整套数学机器提供了最初等的例子。
+
+让我们先定义\emph{晶格位移}（lattice displacements）：$\mathbf{u}_{sl}$ 是这样一个矢量，它给出第 $l$ 个晶胞中第 $s$ 个原子离开其平衡位置的位移。设此原子的质量为 $M_s$，则系统的动能定义为
+\begin{equation*}
+\text{K.E.} = \sum_{sl} \frac{1}{2} M_s \left| \dot{\mathbf{u}}_{sl} \right|^2.
+\tag{2.1}
+\end{equation*}
+我们在这里作相当普遍的假设：晶格是带基元的格子（lattice with a basis），因此标记 $s$ 遍取晶胞中的一个或多个原子。
+
+至于势能一项，我们本需要把原子间的力定义出来。但我们可以相当普遍地假设，存在一个函数 $\mathcal{V}(\mathbf{u}_{sl})$，它用所有原子的位置——也就是说，用它们在某一时刻离开平衡晶格格点的实际位移——来表达整个晶体的势能。我们还可以进一步假设：当所有 $\mathbf{u}_{sl}$ 为零时，这个函数取极小，因为完整晶格想必是一个稳定平衡的组态。我们利用微振动理论，把 $\mathcal{V}$ 在这一点附近按 $\mathbf{u}_{sl}$ 的笛卡儿分量 $u_{sl}^{j}$ 展开成幂级数：
+\begin{equation*}
+\mathcal{V} = \mathcal{V}_0 + \sum_{slj} u_{sl}^{j} \left[ \frac{\partial \mathcal{V}}{\partial u_{sl}^{j}} \right]_0
++ \frac{1}{2} \sum_{ss',\,ll',\,jj'} u_{sl}^{j} u_{s'l'}^{j'} \left[ \frac{\partial^2 \mathcal{V}}{\partial u_{sl}^{j} \, \partial u_{s'l'}^{j'}} \right]_0 + \ldots
+\tag{2.2}
+\end{equation*}
+常数项在当前的讨论里无关紧要；线性项的系数必须为零，因为我们处在平衡点附近；于是第一个重要的项必然是位移的二次项——即所谓的\emph{谐和项}（harmonic term）。
+
+由这两个函数，即式 (2.1) 与式 (2.2)，用经典力学中通常的 Lagrange 程序，我们得到各分量的运动方程
+\begin{equation*}
+M_s \ddot{u}_{sl}^{j} = - \sum_{s'l'} \left[ \frac{\partial^2 \mathcal{V}}{\partial u_{sl}^{j} \, \partial u_{s'l'}^{j'}} \right]_0 u_{s'l'}^{j'}
+\tag{2.3}
+\end{equation*}
+它对晶胞中所有的格点 $s$、对晶格中所有的晶胞 $l$、以及位移矢量的每一个笛卡儿分量 $j = x, y, z$ 都成立。
+
+这些方程当然代表了数目极其庞大的耦合微分方程。但让我们考察一下右边的系数。令
+\begin{equation*}
+\left[ \frac{\partial^2 \mathcal{V}}{\partial u_{sl}^{j} \, \partial u_{s'l'}^{j'}} \right]_0 \equiv \mathsf{G}_{sl;s'l'}^{jj'}.
+\tag{2.4}
+\end{equation*}
+这些系数构成一个笛卡儿张量的分量，于是我们可以把式 (2.3) 用矢量形式写得更简洁些：
+\begin{equation*}
+M_s \ddot{\mathbf{u}}_{sl} = - \sum_{s'l'} \mathsf{G}_{sl;s'l'} \cdot \mathbf{u}_{s'l'}.
+\tag{2.5}
+\end{equation*}
+
+这个方程可以作如下解释：右边求和中的每一项，都是第 $l'$ 个晶胞中第 $s'$ 个格点上的原子因位移 $\mathbf{u}_{s'l'}$ 而\emph{作用在第 $l$ 个晶胞中第 $s$ 个原子上的力}。倘若我们知道整个晶格的势能可以由原子对之间的力构造出来，那就可以直接用原子间力常数把它写出来。
+
+但无论这些力的物理图像如何，有一点是必需的：它们不能依赖于 $l$ 和 $l'$ 在晶格中的绝对位置。张量 $\mathsf{G}$ 必须只是它们相对位置的函数：
+\begin{equation*}
+\mathsf{G}_{sl;s'l'} = \mathsf{G}_{ss'}(\boldsymbol{h}), \quad \text{其中}\ \ \boldsymbol{h} = \boldsymbol{l}' - \boldsymbol{l}.
+\tag{2.6}
+\end{equation*}
+我们的运动方程现在读作
+\begin{equation*}
+M_s \ddot{\mathbf{u}}_{sl} = - \sum_{s'\boldsymbol{h}} \mathsf{G}_{ss'}(\boldsymbol{h}) \cdot \mathbf{u}_{s,\,l+\boldsymbol{h}}.
+\tag{2.7}
+\end{equation*}
+
+这些方程具有满足 Bloch 定理所要求的平移不变的形式；把标记从 $l$ 换成譬如 $l''$，只不过是原封不动地重复同一组方程。现在假设我们已经找到了一个解——一组描述各个 $l$ 值的 $\mathbf{u}_{sl}$ 的时间函数。这些函数必须满足 Bloch 条件 (1.48) 或 (1.57)。于是存在一个波矢\footnote{我们用这个符号表示格波的波矢，而用 $\boldsymbol{k}$ 表示电子波的波矢。当然，二者都是同一倒格子空间中的矢量。}$\boldsymbol{q}$，使得
+\begin{equation*}
+\mathbf{u}_{sl}(t) = e^{i\boldsymbol{q}\cdot\boldsymbol{l}} \mathbf{u}_{s,o}(t),
+\tag{2.8}
+\end{equation*}
+其中 $\mathbf{u}_{s,o}(t)$ 是碰巧被选作格矢 $\boldsymbol{l}$ 原点的那一晶胞处的位移。注意：在每一个晶胞里，格点 $s$ 上的原子都以相同的振幅沿相同的方向运动；逐胞不同的只是相位。
+
+动力学方程的每一个解，都有一个使式 (2.8) 得以满足的 $\boldsymbol{q}$ 值。要弄清哪个解带哪个波矢，我们必须回到式 (2.7)。把式 (2.8) 代入，得
+\begin{equation*}
+M_s \ddot{\mathbf{u}}_{s,o}\, e^{i\boldsymbol{q}\cdot\boldsymbol{l}} = - \sum_{s'\boldsymbol{h}} \mathsf{G}_{ss'}(\boldsymbol{h}) \cdot \mathbf{u}_{s',o}\, e^{i\boldsymbol{q}\cdot\boldsymbol{h}} e^{i\boldsymbol{q}\cdot\boldsymbol{l}}.
+\tag{2.9}
+\end{equation*}
+因子 $\exp i\boldsymbol{q}\cdot\boldsymbol{l}$ 可以消去。为了表明原点的选取完全任意，而我们处理的乃是具有确定 $\boldsymbol{q}$ 值的一个解，让我们写
+\begin{equation*}
+\mathbf{u}_{s,o} = \mathbf{U}_{s,\boldsymbol{q}}.
+\tag{2.10}
+\end{equation*}
+
+于是只剩下
+\begin{align*}
+M_s \ddot{\mathbf{U}}_{s,\boldsymbol{q}} &= - \sum_{s'} \Bigl\{ \sum_{\boldsymbol{h}} \mathsf{G}_{ss'}(\boldsymbol{h})\, e^{i\boldsymbol{q}\cdot\boldsymbol{h}} \Bigr\} \cdot \mathbf{U}_{s',\boldsymbol{q}} \\
+&= - \sum_{s'} \mathsf{G}_{ss'}(\boldsymbol{q}) \cdot \mathbf{U}_{s',\boldsymbol{q}},
+\tag{2.11}
+\end{align*}
+其中
+\begin{equation*}
+\mathsf{G}_{ss'}(\boldsymbol{q}) \equiv \sum_{\boldsymbol{h}} \mathsf{G}_{ss'}(\boldsymbol{h})\, e^{i\boldsymbol{q}\cdot\boldsymbol{h}}
+\tag{2.12}
+\end{equation*}
+——它是力张量（force tensor）$\mathsf{G}$ 的一个 Fourier 变换。
+
+新方程组 (2.11) 相对而言容易求解。关键在于它的数目是有限的。设每个晶胞含 $n$ 个原子，晶格共有 $N$ 个晶胞。原来的方程组 (2.3) 或 (2.5) 将有 $3nN$ 个——这里对矢量的三个笛卡儿分量是分别计算的。而新方程组 (2.11) 只有 $3n$ 个——$n$ 个 $s$ 值的每一个各有 3 个分量方程。
+
+这是平移不变性的一个极有威力的例证。所有晶胞在结构上本质同一，这意味着我们只需要关于其中一个晶胞的信息，就能计算整个集合的动力学。诚然，若想为每个 $\boldsymbol{q}$ 值（边界条件恰好允许 $N$ 个不同的值）求得解，我们得分别计算；但在实践中我们只关心这类解的一个有限样本，其余的可以靠插值得到。
+
+接下来的步骤是初等的。如同在通常的振动理论中那样，我们假设 $\mathbf{U}_{s,\boldsymbol{q}}$ 含有时间因子 $\exp(i\nu t)$。于是必须求解由 $3n$ 个方程组成的方程组
+\begin{equation*}
+\sum_{s'j'} \Bigl\{ \mathsf{G}_{ss'}^{jj'}(\boldsymbol{q}) - \nu^2 M_s \delta_{ss'} \delta_{jj'} \Bigr\} U_{s',\boldsymbol{q}}^{j'} = 0,
+\tag{2.13}
+\end{equation*}
+其未知对象是 $\mathbf{U}_{s,\boldsymbol{q}}$ 的各分量。这是一个本征值方程；令矩阵 $\{\ \}$ 的行列式为零，得到一个关于 $\nu^2$ 的方程，求出它的根，便得到全部 $3n$ 个解。实际上，我们所做的无非是求出晶胞内 $n$ 个原子的 $3n$ 个简正模（normal mode）振动，只是假定它们通过力张量 $\mathsf{G}_{ss'}(\boldsymbol{q})$ 相互作用。这个张量不同于原来的原子间力张量 $\mathsf{G}_{ss'}(\boldsymbol{h})$，而且对每个 $\boldsymbol{q}$ 值都不相同；对给定的 $s$ 和 $s'$，它把晶格中每个晶胞的格点 $s$ 上的\emph{所有} $s$ 类原子（即每个晶胞中位于格点 $s$ 上的那些原子）与格点 $s'$ 上的\emph{所有}原子之间的相互作用总括起来，并计及它们之间的相对相位。
+
+\section{格波的性质}
+
+要理解格波的物理性质，研究几个简单的例子是有益的。其中最简单的当属\emph{线性链}（linear chain）。
+
+假设我们有一维“晶格”，每个晶胞一个原子，且只有最近邻力。运动方程很容易写出来。势能（参见式 (2.2)）具有如下形式：
+\begin{equation*}
+\mathcal{V} = \sum_{l} \frac{1}{2} \alpha \left( u_{l} - u_{l+a} \right)^2,
+\tag{2.14}
+\end{equation*}
+其中 $\alpha$ 是力常数（force constant）。运动方程（参见式 (2.5)）变为
+\begin{equation*}
+M \ddot{u}_{l} = - \alpha \left( 2u_{l} - u_{l+a} - u_{l-a} \right)
+\tag{2.15}
+\end{equation*}
+
+%FIG{16}: {线性链的振动频率}
+
+通过代换
+\begin{equation*}
+u_{l} = U_{q}\, e^{iql},
+\tag{2.16}
+\end{equation*}
+它变换成与式 (2.11) 类比的方程，即
+\begin{align*}
+M \ddot{U}_{q} &= - \left( 2\alpha - \alpha e^{iqa} - \alpha e^{-iqa} \right) U_{q} \\
+&= - 2\alpha \left( 1 - \cos qa \right) U_{q},
+\tag{2.17}
+\end{align*}
+其中 $a$ 是链中原子的间距。这是一个简谐振子的方程，其频率为
+\begin{equation*}
+\nu_{q} = \sqrt{\left( \frac{\alpha}{M} \right)}\, 2 \sin \left( \frac{qa}{2} \right).
+\tag{2.18}
+\end{equation*}
+
+这个众所周知的结果体现了理论的许多要点。（i）一切可能的振动，由如下范围内的 $q$ 值给出：
+\begin{equation*}
+- \frac{\pi}{a} < q \leqslant \frac{\pi}{a}.
+\tag{2.19}
+\end{equation*}
+这正是我们的布里渊区（Brillouin zone）。任何落在这个范围之外的 $q$ 值都只是精确地重复同一运动：
+\begin{equation*}
+u_{l} = U\, e^{i(q+\sigma)l} \equiv U\, e^{iql}.
+\tag{2.20}
+\end{equation*}
+把波矢取在布里渊区之外是相当不自然的（尽管并非没有意义！）。不过，假如我们当初用了大于 $\pi/a$ 的 $|q|$ 值，其实也会得到正确的结果。在式 (2.18) 中，$\nu_q$ 是 $q$ 的周期函数，所以凡在布里渊区内约化到同一点的那些 $q$ 值都具有相同的频率。
+
+恰好有 $N$ 个不同的解，对应于布里渊区中 $N$ 个允许的 $q$ 值。这与原晶格的 $N$ 个自由度正相一致。
+
+（ii）对于小的 $q$ 值（即 $qa \ll 1$），
+\begin{equation*}
+\nu_{q} \sim \sqrt{\left( \frac{\alpha}{M} \right)}\, aq.
+\tag{2.21}
+\end{equation*}
+
+频率与波数成正比，这对应于连续介质中普通弹性波的一个众所周知的性质：若扰动的波长远大于晶格常数，那么这条原子链在经典力学中的行为就像一根“重弹性绳”。
+
+然而在大的 $q$ 值处，波的速度不再是常数；到了 $q = \pi/a$，即波长等于 $2a$ 时，函数 $\nu_q$ 弯折下来趋于一条水平切线。这表现出\emph{色散}（dispersion）性质。
+
+现在考虑一个更复杂的情形：一条原子线性链，间距和力常数都与前面相同，但两种不同的质量 $M_1$ 与 $M_2$ 交替排列。现在我们的晶胞含两个原子。与式 (2.11) 类比的方程要比式 (2.17) 复杂：
+\begin{equation*}
+\left.
+\begin{aligned}
+M_1 \ddot{U}_{1} &= - 2\alpha U_{1} + 2\alpha \cos qa \cdot U_{2}, \\
+M_2 \ddot{U}_{2} &= - 2\alpha U_{2} + 2\alpha \cos qa \cdot U_{1}.
+\end{aligned}
+\right\}
+\tag{2.22}
+\end{equation*}
+
+为求频率 $\nu$，我们必须求解行列式方程
+\begin{equation*}
+\begin{vmatrix}
+2\alpha - M_1 \nu^2 &\quad - 2\alpha \cos qa \\
+- 2\alpha \cos qa &\quad 2\alpha - M_2 \nu^2
+\end{vmatrix} = 0,
+\tag{2.23}
+\end{equation*}
+它有两个根
+\begin{equation*}
+\nu_{\pm}^{2} = \alpha \left( \frac{1}{M_1} + \frac{1}{M_2} \right) \pm \alpha \sqrt{\left\{ \left( \frac{1}{M_1} + \frac{1}{M_2} \right)^{2} - \frac{4 \sin^{2} qa}{M_1 M_2} \right\}}.
+\tag{2.24}
+\end{equation*}
+把这两个根作为 $q$ 的函数描画出来，就如图 18 所示。
+
+%FIG{17}: {双原子线性链}
+
+%FIG{18}: {双原子链的振动频率}
+
+与单原子链一样，这里有一个根 $\nu_{-}$，它在 $q = 0$ 附近趋于与 $q$ 成正比。我们称之为\emph{声学支}（acoustic mode），因为它是把链当作弹性连续体时的长波长振动的对应物。这种情形下求出的声速正是这种介质中正常的声速——我们把这个证明留作读者的练习。
+
+但还有另一个分支 $\nu_{+}$，在 $q = 0$ 附近满足
+\begin{equation*}
+\nu_{+}^{2} \sim 2\alpha \left( \frac{1}{M_1} + \frac{1}{M_2} \right)
+\tag{2.25}
+\end{equation*}
+这个分支与声学支相隔甚远，但随着 $q$ 的增大，两个分支的频率有相互靠近的趋势。这叫做\emph{光学支}（optical mode）。我们容易验证：在 $q = 0$ 的情形，轻、重两类原子各自的子晶格（sublattice）都在作刚体式的整体运动，且两者彼此反向；或者可以这样说，每个晶胞里的双原子分子都在振动，仿佛与邻居无关。如果像在离子晶体中那样，两类原子带有异号电荷，这就给出一个振荡的偶极矩，因而是光学活性的。
+
+%FIG{19}: {振动频率：(a) 按双原子链处理的单原子线性链；(b) 单原子线性链，显示区边界；(c) 按单原子链处理的双原子线性链}
+
+研究从图 16 的单原子链到图 18 的双原子链的转变，是很有启发性的。假设我们在第一种情形下一开始就取一个含两个原子的晶胞，而无视这两个原子质量相同的事实。容易证明：此时光学支与声学支将在 $q = \pi/2a$ 处相接，如图 19(a) 所示。与图 16 相比，我们似乎把模的数目加倍了。然而，晶胞长度加倍之后，布里渊区的尺寸显然减半了。通过平移 $\pi/a$（即对我们这个加倍后的晶胞而言的一个倒格矢），可以把图 19(a) 展开成图 19(b)。这时“声学”支与“光学”支便连续相接。图 19(a) 的简约区是虚假地只及应有大小的一半。
+
+我们可以换一种说法。交替改变链上原子的质量，其效果是在 $\pm \pi/2a$ 处引入新的区边界。频率跨越这条边界不再连续；出现了一个隙。我们可以用图 19(c) 来表示——这是处理双原子链的另一种方式。在下一章里我们会经常遇到这个现象。
+
+下一个要考虑的情形，该是具有最近邻相互作用的二维或三维 Bravais 格子。然而这时方程已经复杂得难以轻松地一般求解。每一个维度都给位移矢量引入一个额外的笛卡儿分量，因此在三维情形我们必须求解一个关于 $\nu^2$ 的三次方程。
+
+在这种情形下，只要过渡到长波极限，这三个根就可以在物理上加以辨认。实际上我们处理的是一个弹性连续体，其结构过于细微，在长波的动力学中无足轻重。众所周知，在这样的连续体中可以传播三种不同类型、速度各不相同的声波。
+
+%FIG{20}: {恒定频率面：(a) 各向同性介质；(b) 真实晶体}
+
+这三个\emph{声学支}的本质差别在于它们的\emph{偏振}（polarization）性质。例如在各向同性连续体中，有一个模是\emph{纵}偏振的——每个原子的位移矢量都沿着波的传播方向。另外两个模速度相同，是\emph{横}偏振的——原子在垂直于波矢的平面内运动。一般说来，纵模的速度比横模高，因此 $\boldsymbol{q}$ 空间中的恒定频率面看上去就像图 20(a) 那样。
+
+晶体固体在宏观弹性性质上通常不是各向同性的，所以这幅图像会引人误解。给定类型的波，其速度将依赖于传播方向。于是（图 20(b)）横支的恒定频率面可能离球面很远。这样，除了特殊的对称方向之外，两个横模将不再简并，它们的频率面可能以复杂的样式相互交截。的确，把模形式上分成横模与纵模是有点误导的：在这样的介质中，实际的偏振矢量（即方程 (2.11) 或 (2.13) 的解矢量 $\mathbf{U}_{\boldsymbol{q}}$ 的方向）未必严格地平行或垂直于 $\boldsymbol{q}$。
+
+由此，格波的长波行为就确定下来了。对沿给定方向的 $\boldsymbol{q}$，我们必须有 $\nu$ 与 $q$ 之间的一个关系，其形式如图 21 所勾勒——在 $q = 0$ 附近是线性关系，斜率等于相应的宏观声速。但随着 $q$ 增大，我们逼近布里渊区的边界，就必定出现色散。
+
+%FIG{21}: {格波在给定方向上的色散}
+
+此后的确切行为会相当复杂。一般地说，$\nu_{\boldsymbol{q}}$ 会像线性情形那样弯折下来，但不一定弯到水平切线。唯一的规则是：$\nu_{\boldsymbol{q}}$ 作为倒格子空间中 $\boldsymbol{q}$ 的函数，其根的整体图样是连续的，并且具有倒格子的周期性。察看式 (2.8) 与式 (2.12) 即可明白这一点。与线性情形一样，若 $\boldsymbol{g}$ 是一个倒格矢，则波矢 $\boldsymbol{q}' = \boldsymbol{q} + \boldsymbol{g}$ 的解与波矢 $\boldsymbol{q}$ 的解完全相同，所以 $\nu_{\boldsymbol{q}}$ 以 $\boldsymbol{g}$ 为周期。它是 $\boldsymbol{q}$ 空间中的连续函数，因为它是一个本征值方程的解，该方程的矩阵是对称的，而其系数本身就是 $\boldsymbol{q}$ 空间中的连续周期函数。
+
+这意味着，当我们把像图 20(b) 那样的图形扩展到整个区时，它必定构成这种图样的一部分，如图 22 所草示。只要知道力常数，这样的图是能够计算出来的——尽管在实践中更常见的做法是：先用中子或 X 射线衍射（参见 §2.8）测定各方向上的色散曲线，再反过来寻找能与之拟合的原子力常数。
+
+在带基元的三维晶格这一更复杂的情形，我们还会发现横光学支与纵光学支，它们各有自己的色散曲线和能量面。所有这些情形，原则上都涵盖在我们的普遍方程 (2.13) 之中。

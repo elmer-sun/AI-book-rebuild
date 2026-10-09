@@ -1,0 +1,180 @@
+% ch2 B.1 前半 B. Energy Bands in Solids; 1. Perturbation Theory for Weak Periodic Potentials. Brillouin and Jones Zones and Symmetrized Plane Waves (原书页 28–35 / PDF p043–p050)
+
+%--A2-TAIL--
+% （以下两段是上一小节 A.2 在原书页 28 顶部的收尾内容，装配时移走。）
+
+方程 $[\mathcal{H},\,C_n^{\dagger}] = E_n C_n^{\dagger}$（除那些会激发出三个粒子的项之外）本来可以或多或少地先验猜出，以作为 Hartree-Fock 近似之物理内涵的表述。换言之，人们想要做的，是找出一组产生单电子激发的算符，并用这些单电子态中最低的 $N$ 个态来填充。于是，对基态的自洽（self-consistency）性要求就相当于要求：相互作用项在平均意义上、并在我们近似的限度之内，其作用如同施加于我们所选诸态的一个平均势，而不去激发其他单电子态——我们把 $[\mathcal{H},C_n^{\dagger}]$ 视为 $i(\partial C_n^{\dagger}/\partial t)$，并要求时间演化不激发其他的态。全部操作上的复杂之处，并不在于计算 $[\mathcal{H},C_n^{\dagger}]$，而在于证明这样做确使总能量取极小。
+
+上面所述，是把对易子（commutator）与哈密顿量联用——亦即运动方程（equations of motion）——来在多体问题 (18) 中同时确定基态与激发能量的最直截了当的例子之一。这一技术在多体理论的大多数分支中都很有用，尽管它大概正逐渐被一个更普遍、更完备然而与之类似的方法——Green 函数方法——所取代。
+
+\section{固体中的能带}
+
+现在我们接着讨论用 Hartree-Fock 方法计算固体中能带（energy band）时所涉及的问题——它们实际得多，也远不那么形式化。
+
+在这一领域，Reitz (11)、Ham (19) 以及 Wigner 与 Seitz (20) 刊于《Seitzschrift》第 1 卷的文章极有价值，Brooks (21) 的文章与 Jones 的书 (22) 亦然。在讨论能带与内聚能（cohesive energy）的计算时，我将涵盖以下专题：
+
+\begin{enumerate}
+\item 弱周期势的微扰论（perturbation theory）——这将使我们获得关于布里渊区（Brillouin zone）与 Jones 区的一些概念。（我不打算谈紧束缚（tight binding）；就能带理论而言，在实际固体中它似乎从来都不是一种很有用的技术。）
+\item 元胞法（cellular method）。
+\item 自由电子气及其交换能——关于关联能（correlation energy）的简短评述。
+\item O.P.W.（正交化平面波，orthogonalized plane wave）与消去理论（cancellation theory）。
+\end{enumerate}
+
+\subsection{弱周期势的微扰论：布里渊区与 Jones 区、对称化平面波}
+
+当然，除了极简单的情形，没有人知道如何精确求解——哪怕动用机器——普遍的积分微分 Hartree-Fock 方程。实际使用的种种近似，全都只是基于对某种周期性局域势的估计——电子就在这种势中运动——然后在这个周期势 $V(\mathbf{r})$ 中求解波动方程。正如我们下面将要讨论的，所有这类波动方程的解都具有若干共同的一般性质；这些性质大概最容易在下面这种方案中加以描述——它是所有近似方案中最简单的一种，而且人们现已认识到它粗略地适用于许多金属。
+
+当然，一切能带结构中最简单的，莫过于周期势完全消失的极限下所得的那种。但要理解怎样才能把它看作一种能带结构，我们必须先考察周期势 $V(\mathbf{r})$ 相对较弱的情形。
+
+每一种晶体结构都有一个基本的空间平移群，或称“布拉维格子”（Bravais lattice），它由沿三个线性独立矢量 $\mathbf{a}_1$、$\mathbf{a}_2$、$\mathbf{a}_3$ 的平移构成；这一对称性保证了
+\begin{equation*}
+V(\mathbf{r} + l\mathbf{a}_1 + m\mathbf{a}_2 + n\mathbf{a}_3) = V(\mathbf{r})
+\end{equation*}
+
+选取 $\mathbf{a}_1$、$\mathbf{a}_2$ 与 $\mathbf{a}_3$ 总有无穷多种可能的方式，但它们全都生成同一个晶格，并且具有相同的初基原胞（primitive cell）尺寸
+\begin{equation*}
+\Omega = \mathbf{a}_1 \cdot (\mathbf{a}_2 \times \mathbf{a}_3)
+\end{equation*}
+
+作为这种周期性的一个后果，$V(\mathbf{r})$ 的 Fourier 变换 $V(\mathbf{k})$ 化为一个 Fourier 和而非 Fourier 积分：
+\begin{align*}
+V(\mathbf{k}) &= \frac{1}{\text{vol.}} \int d\mathbf{r}\; e^{-i\mathbf{k}\cdot\mathbf{r}}\,V(\mathbf{r}) \\
+&= \frac{n(\text{cells})}{\text{vol.}} \left( \int_{\text{cell}} d\mathbf{r}\; e^{-i\mathbf{k}\cdot\mathbf{r}}\,V(\mathbf{r}) \right) \sum_{m,l,n} e^{-i\mathbf{k}\cdot(m\mathbf{a}_1 + n\mathbf{a}_2 + l\mathbf{a}_3)}
+\end{align*}
+
+除非满足下述条件，否则对 $l$、$m$、$n$ 求和时最后这个和式为零：
+\begin{equation*}
+\mathbf{k}\cdot\mathbf{a}_1 = 2\pi n_1 \qquad \mathbf{k}\cdot\mathbf{a}_2 = 2\pi n_2 \qquad \mathbf{k}\cdot\mathbf{a}_3 = 2\pi n_3
+\end{equation*}
+其中 $n_1$、$n_2$ 与 $n_3$ 全为整数。这些关系式只有当 $\mathbf{k}$ 是我们晶体的布拉维格子的倒格子（reciprocal lattice）中的一个矢量 $\mathbf{K} = n_1\mathbf{b}_1 + n_2\mathbf{b}_2 + n_3\mathbf{b}_3$ 时才能被满足。倒格子的基矢 $\mathbf{b}_j$ 可以由 $\mathbf{a}_i\cdot\mathbf{b}_j = 2\pi\delta_{ij}$（译注：原书印作 $2\delta_{ij}$，系漏排 $\pi$）来定义——这就是说，$\mathbf{b}_i$ 垂直于两个晶格矢量，其长度由第三个矢量决定；或者由下式定义：
+\begin{equation*}
+V(\mathbf{r}) = \sum_k e^{i\mathbf{K}\cdot\mathbf{r}}\,V(\mathbf{K}) \tag{10}
+\end{equation*}
+（$\mathbf{K}$ 为倒格矢的集合。）
+
+此式可以反过来给出
+\begin{equation*}
+V(\mathbf{K}) = \frac{1}{N\Omega} \int d\mathbf{r}\; e^{i\mathbf{K}\cdot\mathbf{r}}\,V(\mathbf{r})
+\end{equation*}
+但由于 $e^{i\mathbf{K}\cdot(\mathbf{r} + l\mathbf{a}_1 + m\mathbf{a}_2 + n\mathbf{a}_3)} = e^{i\mathbf{K}\cdot\mathbf{r}}$，便有
+\begin{equation*}
+V(\mathbf{K}) = \frac{1}{\Omega} \int_{\text{primitive cell}} d\mathbf{r}\; e^{i\mathbf{K}\cdot\mathbf{r}}\,V(\mathbf{r})
+\end{equation*}
+
+晶格对称性的一切后果都总结在式 (10) 的形式之中。
+
+现在我们把 $V(\mathbf{r})$ 代入 Schrödinger 方程。
+\begin{equation*}
+-\frac{\hbar^2}{2m}\,\nabla^2\Psi(\mathbf{r}) + V(\mathbf{r})\Psi(\mathbf{r}) = E\Psi(\mathbf{r})
+\end{equation*}
+
+在没有 $V(\mathbf{r})$ 时，解将为平面波（plane wave）：
+\begin{equation*}
+\phi_k(\mathbf{r}) = \frac{1}{(N\Omega)^{1/2}}\,e^{i\mathbf{k}\cdot\mathbf{r}} \qquad\qquad -\frac{\hbar^2}{2m}\,\nabla^2\phi_k = -\frac{\hbar^2 k^2}{2m}\,\phi_k = E_k^{0}\,\phi_k
+\end{equation*}
+
+在晶体表面上所能施加的最简单边界条件，是 Born-von Karman 周期性边界条件——即设想晶格在 $x$、$y$、$z$ 三个可能方向的每一个方向上都折叠到自身之上，于是三个方向上的长度分别为 $L_1$、$L_2$、$L_3$，且 $L_1L_2L_3 = N$。于是 $\Psi(x+L_1,\,y,\,z) = \Psi(x,y,z)$，从而 $k_xL_1 = 2\pi n_x$，$k_x = 2\pi n_x/L_1$。这样，$\mathbf{k}$ 空间中每一体积 $(2\pi)^3/N\Omega$ 对应一个可能的态，因为每一体积为 $(2\pi)^3/L_1L_2L_3$ 的平行六面体对应一个态（当然，计入自旋则为两个态）。
+
+现在，当我们引入 $V(\mathbf{r})$ 之后，各个平面波态便不再相互独立。然而我们仍然可以希望：若 $V$ 很弱，真实的波函数便主要由单个平面波 $\phi_k$ 构成，于是我们用一个特定的 $\mathbf{k}$ 来标记它们：
+\begin{equation*}
+\Psi_k = \phi_k + \sum_{k'\neq k} a_{k'}\,\phi_{k'}
+\end{equation*}
+
+Schrödinger 方程于是变成下面这组关于 $a_k$ 与 $E_k$ 的耦合线性方程：
+\begin{equation*}
+E - E_k^{0} = \sum_{k'\neq k} (k'|V|k)\,a_{k'} + (k|V|k)
+\end{equation*}
+\begin{equation*}
+(E - E_{k'}^{0})\,a_{k'} = \sum_{k''\neq k} (k''|V|k')\,a_{k''} + (k|V|k')
+\end{equation*}
+
+从 $V$ 的表达式我们立即看出：一般而言，除非 $k' - k$ 等于某个倒格矢 $\mathbf{K}$，否则这些矩阵元（matrix element）为零。矢量 $\mathbf{K} = 0$ 给出一个平均势 $(k|V|k) = V_0$，它只是加到所有能量上的一个平凡常数；其余所有的 $V$ 则起到把 $\mathbf{k}$ 与通过倒格子平移与之相连的某个矢量 $\mathbf{k}+\mathbf{K}$ 耦合起来的作用。因此，我们的波函数实际上必定是
+\begin{equation*}
+\Psi_k = \phi_k + \sum_{\substack{K\neq 0 \\ \text{(倒格子)}}} a_{k+K}\,\phi_{k+K} \tag{11}
+\end{equation*}
+而我们的方程组是
+\begin{equation*}
+(E - E_k^{0})(1) = \sum_K V_K\,a_{k+K} \qquad (\text{即 } a_k = 1)
+\end{equation*}
+\begin{equation*}
+(E - E_{k+K}^{0})\,a_{k+K} = V_K^{*}(1) + \sum_{K'\neq -K} V_{K'}\,a_{k+K+K'}
+\end{equation*}
+
+在一般位置处，可以预期微扰论收敛；若果真如此，则我们看到 $a_{k+K}$ 具有 $V_K$ 的量级，于是右端最后一项具有 $V^2$ 的量级，应当略去。这样做的结果是
+\begin{equation*}
+a_{k+K} \simeq \frac{V_K^{*}}{E - E_{k+K}^{0}}
+\end{equation*}
+\begin{equation*}
+E - E_k^{0} = \sum_K \frac{|V_k|^{2}}{E - E_{k+K}^{0}}
+\end{equation*}
+（译注：原书此式及下文式 (12) 的分子均印作 $|V_k|^2$，按求和指标应为 $|V_K|^2$。）
+
+最后，若 $V$ 足够小，则 $E \simeq E_k^{0}$，于是得到
+\begin{equation*}
+E_k = E_k^{0} - \sum_K \frac{|V_K|^{2}}{E_{k+K}^{0} - E_k^{0}} \tag{12}
+\end{equation*}
+
+这样，平面波的能谱与平面波函数只不过是受到了微弱的微扰：混入了波矢为 $\mathbf{k}+\mathbf{K}$ 的态，这里 $\mathbf{K}$ 属于倒格子。
+
+值得指出的是，形如式 (11) 的波函数可以写成
+\begin{equation*}
+\Psi_k = e^{i\mathbf{k}\cdot\mathbf{r}}\left(1 + \sum_{K\neq 0} a_{k+K}\,e^{i\mathbf{K}\cdot\mathbf{r}}\right) = e^{i\mathbf{k}\cdot\mathbf{r}}\,u_k(\mathbf{r})
+\end{equation*}
+其中，正如我们在展开 $V(\mathbf{r})$ 时所见到的那样，$u_k(\mathbf{r})$ 以晶格周期为周期，因为它是关于倒格子波矢的一个 Fourier 和。这就是 Bloch 的著名结果；它显然不依赖于微扰论的收敛性，而是普遍成立的。
+
+一个相关的事实是：从晶格平移对称性的观点来看，$\phi_k$ 与 $\phi_{k+K}$ 本质上是相同的，因为如果我们施行一个位移为 $\mathbf{A} = l_1\mathbf{a}_1 + l_2\mathbf{a}_2 + l_3\mathbf{a}_3$ 的晶格平移 $T$，则
+\begin{equation*}
+T\phi_k = e^{i\mathbf{k}\cdot\mathbf{A}}\phi_k \qquad\qquad T\phi_{k+K} = e^{i\mathbf{k}\cdot\mathbf{A}}\phi_{k+K}
+\end{equation*}
+因此，从群论的角度看，它们具有相同的对称性质，可以预期它们会相互混合；当我们讨论布里渊区时，将会看到这一点的种种后果。
+
+当右端的求和不小时，式 (12) 并不能令人满意；而在 $\mathbf{k}$ 空间中大量位置上情形必然如此，因为存在若干区域，在其中
+\begin{equation*}
+E_{k+K}^{0} = \hbar^2(\mathbf{k}+\mathbf{K})^2/2\mathrm{m} \simeq \hbar^2 k^2/2\mathrm{m} = E_k^{0}
+\end{equation*}
+（译注：原书此式第一个系数印作 $h^2$，应为 $\hbar^2$。）
+
+这发生在满足下式的点附近：
+\begin{equation*}
+2\,\mathbf{k}\cdot\mathbf{K} + K^2 = 0
+\end{equation*}
+
+只要 $\mathbf{k}$ 平行于 $\mathbf{K}$ 的分量取值 $-K/2$，而其余两个分量任意，上式就会成立。而且，由于 $-\mathbf{K}$ 也是倒格矢，因此只要 $\mathbf{k}$ 落在平分某一倒格矢的平面上，这种情况就会出现（图 2）。
+
+%FIG{2}: 图 2（原书图注仅 “Figure 2”：波矢 k 与倒格矢 ±K，竖直虚线为平分面）
+
+现在，若 $V$ 确实很小，并且 $\mathbf{k}$ 不位于两个这类平面的交线上，那么除了涉及 $\mathbf{K}$ 的那一项之外，微扰求和中的所有其余项我们仍可以用 $E_k = E_k^{0}$ 来近似。这些附加的项于是加起来只给出一个无关紧要的常数修正，而留给我们的只不过是求解波函数中两个强耦合分量的一个二次方程：
+\begin{equation*}
+E - E_k^{0} = \frac{|V_K|^{2}}{E - E_{k+K}^{0}} + \sum_{K'\neq 0,\,K} \frac{|V_{K'}|^{2}}{E_k^{0} - E_{k+K'}^{0}}
+\end{equation*}
+或
+\begin{equation*}
+\left(E - \frac{\hbar^2 k^2}{2\mathrm{m}}\right)\left(E - \frac{\hbar^2 (k+K)^2}{2\mathrm{m}}\right) \simeq |V_K|^{2}
+\end{equation*}
+（倘若不得已，我们本可以把 $E_k^{0}$ 与 $E_{k+K}^{0}$ \emph{两者}都对其他所有态引起的微扰加以修正。只修正两个能量中的一个是不妥的，因为那会使区边界发生一个非物理的移动。）
+
+令 $\mathbf{k} = \mathbf{K}/2 + k_{\parallel} + k_{\perp}$，其中 $k_{\perp}$ 是沿垂直平分面方向、垂直于 $\mathbf{K}$ 的无关分量，而 $k_{\parallel}$ 是平行于 $\mathbf{K}$ 的分量，即 $\mathbf{k}$ 到该平面的距离。于是上面的方程变为
+\begin{align*}
+&\left[E - \frac{\hbar^2}{2\mathrm{m}}\left\{\left(\frac{K}{2}\right)^{2} + k_{\parallel}^{2} + k_{\perp}^{2}\right\} + \left(\frac{\hbar^2}{2\mathrm{m}}\right)k_{\parallel}K\right] \\
+&\quad\times\left[E - \frac{\hbar^2}{2\mathrm{m}}\left\{\left(\frac{K}{2}\right)^{2} + k_{\perp}^{2} + k_{\parallel}^{2}\right\} - \frac{\hbar^2}{2\mathrm{m}}\,k_{\parallel}K\right] \\
+&= |V_K|^{2}
+\end{align*}
+于是
+\begin{align*}
+E = {}& \frac{\hbar^2}{2\mathrm{m}}\left[\left(\frac{K}{2}\right)^{2} + k_{\perp}^{2} + k_{\parallel}^{2}\right] \\
+&\pm \sqrt{|V_K|^{2} + \left(\frac{\hbar^2}{2\mathrm{m}}\,k_{\parallel}K\right)^{2}}
+\end{align*}
+
+图 3 是沿一条 $k_{\perp}$（译注：原文印作 $K_{\perp}$）为常数的线对该方程所作的草图。这表明在布里渊区边界处存在带隙（band gap）$\Delta_K = 2V_K$。因此，周期势所起的作用，是使 $E$–$\mathbf{k}$ 曲线 $E = \hbar^2 k^2/2\mathrm{m}$ 在每一个平面 $(\mathbf{k}\cdot\mathbf{K}) = |\mathbf{K}|^2/2$ 处失去连续性；于是整条曲线的草图看上去可能就像图 4 所示那样。
+
+%FIG{3}: 图 3（原书图注仅 “Figure 3”：沿 k∥ 方向的恒能线，自由电子交叉直线在区边界处劈裂，能隙为 V_K）
+
+%FIG{4}: 图 4（原书图注仅 “Figure 4”：E–k 曲线整体草图，自由电子抛物线在各区边界处张开隙；图中标注 −ℏ²k²/2m）
+
+我们注意到，在这些区边界点的每一处，方程都有一个越过边界继续延伸的形式解。$\mathbf{k}$ 处的这个形式解事实上与 $\mathbf{k}' = \mathbf{k} - \mathbf{K}$ 处的解全同；这一事实例示了一个可以由我们出发的方程容易证明的一般性质：能量可以看作 $\mathbf{k}$ 的连续然而多值的函数，并具有倒格子的周期性：$E(\mathbf{k}+\mathbf{K}) = E(\mathbf{k})$。
+
+从这个观点来看，隙看起来在其中张开的那些平面是相当任意的；它们是由微扰计算挑出来的，而在原则上，在一个足够缺乏对称性的晶格中，这种计算并不给出任何唯一的方案——例如，对于带隙在何处最小、或者能带在何处可能是平坦的，它都给不出唯一答案。尽管如此，对称性通常使得能带结构在 $\mathbf{k}$ 空间中是偶的。若果真如此，布里渊区边界就绝不可能真的远离那些带隙间隔最小、以及能量相对极小与极大的位置。要严重违背这一点，将需要强的自旋-轨道耦合（spin-orbit coupling）以及对称中心的缺失。
+
+可以证明，这些平面边界中最内层的那一组恰好围出倒格子空间的一个单胞（unit cell）——理由很简单：我们可以围绕 R. L. S.（倒格子空间）的每一点画出这个胞，而没有任何一点会被遗漏。
+
+% ——本文件到此为止；原书句子在页 35 末 “the first” 处中断，下接 p051，由下一文件续译。

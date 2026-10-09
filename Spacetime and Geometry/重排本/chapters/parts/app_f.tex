@@ -1,0 +1,94 @@
+% app_f 附录I 平行移动传播子 (书页 479-482 / p494-p497)
+%--E-TAIL--
+% 附录I The Parallel Propagator
+\chapter{平行移动传播子}
+
+沿一条曲线把一个张量平行移动的想法，显然在广义相对论中具有核心的重要性。对于一个沿路径 $x^\mu(\lambda)$ 被输运的矢量 $V^\mu$，平行移动方程为
+\begin{equation*}
+\frac{dx^\mu}{d\lambda}\nabla_\mu V^\nu \equiv \frac{dx^\mu}{d\lambda}\partial_\mu V^\nu + \frac{dx^\mu}{d\lambda}\Gamma^\nu_{\mu\sigma}V^\sigma = 0.
+\tag{I.1}
+\end{equation*}
+
+结果表明，可以对这个方程写下一个显式而一般的解；这个解有些形式化，但无论是其本身，还是它同量子场论中一些技术的联系，都颇有意思。
+
+我们首先注意到，对某条路径 $\gamma:\lambda\to x^\sigma(\lambda)$，求解矢量 $V^\mu$ 的平行移动方程就相当于寻找一个矩阵 $P^\mu{}_\rho(\lambda,\lambda_0)$，它把矢量的初始值 $V^\mu(\lambda_0)$ 与它沿路径稍后某处的值联系起来：
+\begin{equation*}
+V^\mu(\lambda) = P^\mu{}_\rho(\lambda,\lambda_0)V^\rho(\lambda_0).
+\tag{I.2}
+\end{equation*}
+
+当然，这个被称为\textbf{平行移动传播子}（parallel propagator）的矩阵 $P^\mu{}_\rho(\lambda,\lambda_0)$ 依赖于路径 $\gamma$（尽管很难找到一种记号来表明这一点，而又不让 $\gamma$ 看起来像一个指标）。如果我们定义
+\begin{equation*}
+A^\mu{}_\rho(\lambda) = -\Gamma^\mu_{\sigma\rho}\frac{dx^\sigma}{d\lambda},
+\tag{I.3}
+\end{equation*}
+其中右端的量在 $x^\nu(\lambda)$ 处取值，那么平行移动方程就变成
+\begin{equation*}
+\frac{d}{d\lambda}V^\mu = A^\mu{}_\rho V^\rho.
+\tag{I.4}
+\end{equation*}
+
+由于平行移动传播子必须对任何矢量都适用，把式 (I.2) 代入式 (I.4) 可知，$P^\mu{}_\rho(\lambda,\lambda_0)$ 也服从这个方程：
+\begin{equation*}
+\frac{d}{d\lambda}P^\mu{}_\rho(\lambda,\lambda_0) = A^\mu{}_\sigma(\lambda)P^\sigma{}_\rho(\lambda,\lambda_0).
+\tag{I.5}
+\end{equation*}
+
+为了求解这个方程，先对两边积分：
+\begin{equation*}
+P^\mu{}_\rho(\lambda,\lambda_0) = \delta^\mu_\rho + \int_{\lambda_0}^{\lambda} A^\mu{}_\sigma(\eta)P^\sigma{}_\rho(\eta,\lambda_0)\,d\eta.
+\tag{I.6}
+\end{equation*}
+
+容易看出，Kronecker $\delta$ 符号（Kronecker delta）在 $\lambda=\lambda_0$ 时给出了正确的归一化。
+
+我们可以用迭代法求解式 (I.6)：把右端代入它自身，如此反复，便得到
+\begin{equation*}
+P^\mu{}_\rho(\lambda,\lambda_0) = \delta^\mu_\rho + \int_{\lambda_0}^{\lambda} A^\mu{}_\rho(\eta)\,d\eta + \int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta} A^\mu{}_\sigma(\eta)A^\sigma{}_\rho(\eta')\,d\eta'\,d\eta + \cdots.
+\tag{I.7}
+\end{equation*}
+
+这个级数中的第 $n$ 项是在一个 $n$ 维直角三角形——即 $n$ 维单纯形（$n$-simplex）——上的积分：
+\begin{align*}
+&\int_{\lambda_0}^{\lambda} A(\eta_1)\,d\eta_1 \\
+&\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta_2} A(\eta_2)A(\eta_1)\,d\eta_1 d\eta_2 \\
+&\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta_3}\int_{\lambda_0}^{\eta_2} A(\eta_3)A(\eta_2)A(\eta_1)\,d^3\eta.
+\end{align*}
+见图 I.1。
+
+%FIG{I.1}: {$n$ 维单纯形（$n$ 维直角三角形），$n = 1, 2, 3$。}
+
+如果我们能把这样的积分看成是在一个 $n$ 维立方体（$n$-cube）而不是 $n$ 维单纯形上进行，事情会简单一些。有没有办法做到这一点呢？每个立方体中有 $n!$ 个这样的单纯形，所以我们必须乘以 $1/n!$ 来补偿这块多出来的体积。但我们还想把被积函数也弄对；用矩阵记号，$n$ 阶的被积函数是 $A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)$，只是附带一个特殊性质：$\eta_n \ge \eta_{n-1} \ge \cdots \ge \eta_1$。因此我们定义\textbf{路径排序符号}（path-ordering symbol）$\mathcal{P}$，用它来保证这个条件成立。换句话说，表达式
+\begin{equation*}
+\mathcal{P}\left[A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\right]
+\tag{I.8}
+\end{equation*}
+代表这 $n$ 个矩阵 $A(\eta_i)$ 的乘积，其排序方式为：$\eta_i$ 值最大者排在最左边，其后每个 $\eta_i$ 的值都小于或等于前一个值。于是我们可以把式 (I.7) 中的 $n$ 阶项写成
+\begin{align*}
+&\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta_n}\cdots\int_{\lambda_0}^{\eta_2} A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\,d^n\eta \\
+&\quad = \frac{1}{n!}\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\lambda}\cdots\int_{\lambda_0}^{\lambda} \mathcal{P}\left[A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\right] d^n\eta.
+\tag{I.9}
+\end{align*}
+
+这个表达式对矩阵 $A(\eta_i)$ 没有给出任何实质性的陈述；它纯粹是一种记号。但现在我们可以把式 (I.7) 写成矩阵形式：
+\begin{equation*}
+P(\lambda,\lambda_0) = \mathbf{1} + \sum_{n=1}^{\infty} \frac{1}{n!}\int_{\lambda_0}^{\lambda} \mathcal{P}\left[A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\right] d^n\eta.
+\tag{I.10}
+\end{equation*}
+
+这个公式正是指数函数的级数表达式；因此我们说，平行移动传播子由路径排序指数（path-ordered exponential）给出
+\begin{equation*}
+P(\lambda,\lambda_0) = \mathcal{P}\exp\left(\int_{\lambda_0}^{\lambda} A(\eta)\,d\eta\right),
+\tag{I.11}
+\end{equation*}
+这同样只是记号；路径排序指数就定义为式 (I.10) 的右端。我们可以把它写得更显式一些：
+\begin{equation*}
+\boxed{\,P^\mu{}_\nu(\lambda,\lambda_0) = \mathcal{P}\exp\left(-\int_{\lambda_0}^{\lambda} \Gamma^\mu_{\sigma\nu}\frac{dx^\sigma}{d\eta}\,d\eta\right).}
+\tag{I.12}
+\end{equation*}
+
+能有一个显式公式总归是件好事，哪怕它相当抽象。同样类型的表达式也出现在量子场论中，即所谓的“Dyson 公式”（Dyson's Formula）；它之所以在那里出现，是因为时间演化算符的 Schrödinger 方程与式 (I.5) 具有相同的形式。
+
+平行移动传播子一个特别有意思的例子出现在路径是一个回路（loop）——即从同一点出发、又终止于同一点——的情形。这时，如果联络是度规相容的，所得到的矩阵就恰好是切空间在该点处的一个洛伦兹变换。这个变换就是所谓的这条回路的“和乐”（holonomy）。如果你知道每一条可能回路的和乐，事实证明这等价于知道度规。于是人们可以在“圈表示”（loop representation）中考察广义相对论，其中基本变量是和乐而不是显式的度规。有一个名为“圈量子引力”（loop quantum gravity）的研究纲领，试图用这些变量直接把广义相对论量子化（有别于弦论那样的进路——在弦论中，GR 会在某个极限下自动出现）。在这个方向上已经取得了大量的数学进展，但根本性的障碍依然存在。\footnote{关于这一进路的综述，见 C.~Rovelli, “Loop quantum gravity,” \emph{Living Rev.~Rel.}~\textbf{1}, 1 (1998), \texttt{http://arxiv.org/gr-qc/9710008}。}
+
+% 书页 482（p497）为空白页，无正文内容；附录 J 自书页 483 起，由另一块负责。

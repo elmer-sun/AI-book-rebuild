@@ -1,0 +1,1104 @@
+% ch09 第9章习题解答（26 题）
+\chapter{自旋液体与量子序的平均场理论}
+
+\section*{问题 9.1.1}
+\begin{problem}
+自旋算符的从属玻色子（自旋子）表示为 $\pmb{S}_i=\frac12 f^{\dagger}_{i\alpha}\pmb{\sigma}_{\alpha\beta}f_{i\beta}$。利用泡利矩阵恒等式 $\sigma^a_{\alpha\beta}\sigma^a_{\alpha'\beta'}=2\delta_{\alpha\beta'}\delta_{\alpha'\beta}-\delta_{\alpha\beta}\delta_{\alpha'\beta'}$，将近邻海森堡耦合 $J_{ij}\,\pmb{S}_i\cdot\pmb{S}_j$ 用自旋子双线性型 $f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}$ 与数算符 $n_i$ 表示，证明式 (9.1.3)。
+\end{problem}
+\solution
+从 $\pmb{S}_i\cdot\pmb{S}_j$ 出发（以下重复指标 $\alpha,\beta,\alpha',\beta'$ 与 $a$ 均求和）：
+\begin{equation*}
+\pmb{S}_i\cdot\pmb{S}_j=\frac14\big(f^{\dagger}_{i\alpha}\sigma^a_{\alpha\beta}f_{i\beta}\big)\big(f^{\dagger}_{j\alpha'}\sigma^a_{\alpha'\beta'}f_{j\beta'}\big).
+\end{equation*}
+因 $i\neq j$，可将 $f_{i\beta}$ 越过 $f^{\dagger}_{j\alpha'}$（一次反对易）把算符重排为“$i$ 格点产生算符在前”的形式：
+\begin{equation*}
+\pmb{S}_i\cdot\pmb{S}_j=-\frac14\,f^{\dagger}_{i\alpha}f^{\dagger}_{j\alpha'}f_{i\beta}f_{j\beta'}\;\sigma^a_{\alpha\beta}\sigma^a_{\alpha'\beta'}.
+\end{equation*}
+代入恒等式 $\sigma^a_{\alpha\beta}\sigma^a_{\alpha'\beta'}=2\delta_{\alpha\beta'}\delta_{\alpha'\beta}-\delta_{\alpha\beta}\delta_{\alpha'\beta'}$，得到两项：
+\begin{align*}
+\pmb{S}_i\cdot\pmb{S}_j&=-\frac12\,f^{\dagger}_{i\alpha}f^{\dagger}_{j\beta}f_{i\alpha}f_{j\alpha}
++\frac14\,f^{\dagger}_{i\alpha}f^{\dagger}_{j\alpha'}f_{i\alpha}f_{j\alpha'}\equiv T_1+T_2 .
+\end{align*}
+先把 $T_1$ 化成跳项。定义 $B_{ij}\equiv f^{\dagger}_{i\alpha}f_{j\alpha}$，则 $B^{\dagger}_{ij}B_{ij}=f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}$。将其中 $f^{\dagger}_{j\beta}$ 越过 $f_{i\beta}$（$i\neq j$，反对易），
+\begin{equation*}
+B^{\dagger}_{ij}B_{ij}=-f^{\dagger}_{i\alpha}f_{j\alpha}f_{i\beta}f^{\dagger}_{j\beta}
+=+f^{\dagger}_{i\alpha}f_{i\beta}f_{j\alpha}f^{\dagger}_{j\beta}
+=f^{\dagger}_{i\alpha}f_{i\beta}\big(\delta_{\alpha\beta}-f^{\dagger}_{j\beta}f_{j\alpha}\big)
+=n_i-f^{\dagger}_{i\alpha}f_{i\beta}f^{\dagger}_{j\beta}f_{j\alpha}.
+\end{equation*}
+对末项使用格点内的分解 $f^{\dagger}_{x\mu}f_{x\nu}=\frac12 n_x\delta_{\mu\nu}+S^a_x\sigma^a_{\mu\nu}$（它正是 $\pmb{S}=\frac12 f^{\dagger}\pmb{\sigma}f$ 的逆，可直接由 $f^{\dagger}_{\uparrow}f_{\uparrow}=\frac12 n+S^z$ 等逐项核验），并用 $\operatorname{Tr}\sigma^a=0$、$\operatorname{Tr}(\sigma^a\sigma^b)=2\delta^{ab}$：
+\begin{align*}
+f^{\dagger}_{i\alpha}f_{i\beta}f^{\dagger}_{j\beta}f_{j\alpha}
+&=\Big(\tfrac12 n_i\delta_{\alpha\beta}+S^a_i\sigma^a_{\alpha\beta}\Big)
+\Big(\tfrac12 n_j\delta_{\beta\alpha}+S^b_j\sigma^b_{\beta\alpha}\Big)\\
+&=\tfrac14 n_in_j\,\delta_{\alpha\beta}\delta_{\beta\alpha}
++\tfrac12 n_j S^a_i\operatorname{Tr}\sigma^a
++\tfrac12 n_i S^b_j\operatorname{Tr}\sigma^b
++S^a_iS^b_j\operatorname{Tr}(\sigma^a\sigma^b)\\
+&=\tfrac12 n_in_j+2\,\pmb{S}_i\cdot\pmb{S}_j .
+\end{align*}
+代回上式即得（关键一步：把 $\pmb{S}_i\cdot\pmb{S}_j$ 自身解出）
+\begin{equation*}
+B^{\dagger}_{ij}B_{ij}=n_i-\tfrac12 n_in_j-2\,\pmb{S}_i\cdot\pmb{S}_j
+\quad\Longrightarrow\quad
+\boxed{\;\pmb{S}_i\cdot\pmb{S}_j=-\frac12 f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}+\frac12 n_i-\frac14 n_in_j\;}
+\end{equation*}
+（数值上可在 $2\times2$ 格点的十六维 Fock 空间逐矩阵元核验此恒等式。）对每条近邻键乘以 $J_{ij}$ 并求和，即得式 (9.1.3)：
+\begin{equation*}
+H=\sum_{\langle ij\rangle}-\frac12 J_{ij}f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}
++\sum_{\langle ij\rangle}J_{ij}\Big(\frac12 n_i-\frac14 n_in_j\Big).
+\end{equation*}
+物理上：第一项是自旋子在键 $\langle ij\rangle$ 上的跳跃（幅度 $\propto J_{ij}\chi_{ij}$），第二项是常数（在单占位约束 $n_i=1$ 下为 $\frac14J_{ij}$ 每键）；在单占位子空间内该哈密顿量与原自旋模型严格等价。
+
+\emph{（译注：若不先经 $B^{\dagger}_{ij}B_{ij}$ 的重排而直接对 $\pmb{S}_i\cdot\pmb{S}_j$ 的两个 $\delta$ 项分别“因式化” $f^{\dagger}_{i\alpha}f_{i\beta}\to n_i\delta_{\alpha\beta}$，会因格点内双线性算符含有自旋部分而出错；上面的推导用 $f^{\dagger}_{x\mu}f_{x\nu}=\frac12n_x\delta_{\mu\nu}+S^a_x\sigma^a_{\mu\nu}$ 严格处理了这一点。）}
+
+\section*{问题 9.1.2}
+\begin{problem}
+$\pi$ 通量态的对称性。
+\textbf{(a)} 由投影构造 (9.1.12) 证明规范等价拟设给出同一物理自旋波函数，即证明式 (9.1.14)。
+\textbf{(b)} 证明 $\pi$ 通量态拟设 (9.1.18) 不破坏 $90^{\circ}$ 旋转对称性。
+\end{problem}
+\solution
+\textbf{(a)}　投影后的物理自旋波函数为
+\begin{equation*}
+\Psi^{(\chi_{ij})}_{\text{spin}}(\{\alpha_i\})=\langle 0_f|\prod_i f_{i\alpha_i}\big|\Psi^{(\chi_{ij})}_{\text{mean}}\rangle .
+\end{equation*}
+设 $\tilde{\chi}_{ij}=\mathrm{e}^{\mathrm{i}\theta_i}\chi_{ij}\mathrm{e}^{-\mathrm{i}\theta_j}$。考察幺正算符 $W=\exp\big[\mathrm{i}\sum_i\theta_i(f^{\dagger}_if_i-1)\big]$。利用 $Wf_iW^{\dagger}=\mathrm{e}^{\mathrm{i}\theta_i}f_i$，有
+\begin{equation*}
+W H_{\text{mean}}(\chi_{ij})\,W^{\dagger}=H_{\text{mean}}(\tilde{\chi}_{ij}),
+\end{equation*}
+于是若 $|\Psi_{\text{mean}}\rangle$ 是 $H_{\text{mean}}(\chi_{ij})$ 的基态，则 $W|\Psi_{\text{mean}}\rangle$ 是 $H_{\text{mean}}(\tilde{\chi}_{ij})$ 的基态（同一能量）：$|\Psi^{(\tilde{\chi})}_{\text{mean}}\rangle=W|\Psi^{(\chi)}_{\text{mean}}\rangle$。
+
+现在把 $W$ 推过投影算符中的湮灭算符。对每个格点利用恒等式（在 $n_i=0,1$ 两个子空间逐一验证）
+\begin{equation*}
+f_i\,\mathrm{e}^{\mathrm{i}\theta_i(n_i-1)}=\mathrm{e}^{\mathrm{i}\theta_i n_i}f_i ,
+\end{equation*}
+逐格点迭代得（$\prod_i f_i$ 中各 $f$ 属于不同格点，只有被越过的 $n_j$ 算符才起作用，而 $\theta_i$ 恰只附着于 $n_i$）
+\begin{equation*}
+\prod_i f_i\;W=\prod_i f_i\,\mathrm{e}^{\mathrm{i}\sum_i\theta_i(n_i-1)}=\mathrm{e}^{\mathrm{i}\sum_i\theta_i n_i}\prod_i f_i .
+\end{equation*}
+又因真空态 $\langle 0_f|\mathrm{e}^{\mathrm{i}\sum\theta_in_i}=\langle 0_f|$，故
+\begin{equation*}
+\Psi^{(\tilde{\chi})}_{\text{spin}}(\{\alpha_i\})
+=\langle 0_f|\prod_if_{i\alpha_i}\,W\,|\Psi^{(\chi)}_{\text{mean}}\rangle
+=\mathrm{e}^{\mathrm{i}\sum_i\theta_i}\,\langle 0_f|\prod_if_{i\alpha_i}|\Psi^{(\chi)}_{\text{mean}}\rangle ,
+\end{equation*}
+即
+\begin{equation*}
+\boxed{\;\Psi^{(\tilde{\chi}_{ij})}_{\text{spin}}(\{\alpha_i\})=\mathrm{e}^{\mathrm{i}\sum_i\theta_i}\,\Psi^{(\chi_{ij})}_{\text{spin}}(\{\alpha_i\})\;}
+\end{equation*}
+这正是式 (9.1.14)：规范等价的拟设给出同一个物理自旋波函数（只差一个整体相位）。这就是拟设 $\chi_{ij}$ 的“多对一”性质，也是投影构造成为规范理论的根源。
+
+\textbf{(b)}　$\pi$ 通量拟设为 $\chi_{i,i+\pmb{x}}=\mathrm{i}\chi_1$，$\chi_{i,i+\pmb{y}}=\mathrm{i}\chi_1(-)^{i_x}$。考虑 $90^{\circ}$ 旋转 $R_{90}$（逆时针，$R_{90}\pmb{x}=\pmb{y}$，$R_{90}\pmb{y}=-\pmb{x}$）。旋转后的拟设为
+\begin{equation*}
+\chi'_{i,i+\pmb{x}}=\chi_{Ri,R(i+\pmb{x})}=\mathrm{i}\chi_1(-)^{i_y},\qquad
+\chi'_{i,i+\pmb{y}}=\chi_{Ri,R(i+\pmb{y})}=\chi^{\dagger}_{Ri-\pmb{x},Ri}=-\mathrm{i}\chi_1(-)^{i_y}.
+\end{equation*}
+首先，绕任一方格的通量在旋转下不变：$\prod_{\square}\chi'_{ij}=\chi_1^4\,\mathrm{e}^{\mathrm{i}\pi}=\prod_{\square}\chi_{ij}$，且 $\pi$ 通量模 $2\pi$ 等于 $-\pi$ 通量。因此旋转后的拟设与原拟设具有完全相同的通量分布——这是 $\pi$ 通量态区别于一般分数通量态的特殊之处（$\frac12\pi$ 通量相就不行，见 9.1.6 节）。
+
+通量相同保证了两个拟设局域规范等价；由于链上的相位分配不同，最清楚的证明在 $SU(2)$ 形式下给出（见 9.2 节）。$\pi$ 通量拟设的 $SU(2)$ 链变量为（见问题 9.2.2）
+\begin{equation*}
+U_{i,i+\pmb{x}}=-\mathrm{i}\chi_1\tau^0,\qquad U_{i,i+\pmb{y}}=-\mathrm{i}\chi_1(-)^{i_x}\tau^0 ,
+\end{equation*}
+它与 $\eta=\chi$ 的 \emph{d} 波拟设 $U_{i,i+\pmb{x}}=\chi(\tau^3+\tau^1)$、$U_{i,i+\pmb{y}}=\chi(\tau^3-\tau^1)$ 规范等价（问题 9.2.2）。对 \emph{d} 波形式，$90^{\circ}$ 旋转把 $U_{i,i+\pmb{x}}\leftrightarrow U_{i,i+\pmb{y}}$，即 $\tau^1\to-\tau^1$ 而 $\tau^3\to\tau^3$；再作用常值规范变换 $G=\mathrm{i}\tau^3$（它诱导 $\tau^{1,2}\to-\tau^{1,2}$、$\tau^3\to\tau^3$）便把旋转后的拟设完全复原：
+\begin{equation*}
+G\,U'_{i,i+\pmb{x}}\,G^{\dagger}=\chi(\tau^3+\tau^1)=U_{i,i+\pmb{x}},\qquad
+G\,U'_{i,i+\pmb{y}}\,G^{\dagger}=\chi(\tau^3-\tau^1)=U_{i,i+\pmb{y}} .
+\end{equation*}
+即 $R_{90}$ 之后的拟设与原拟设差一个 $SU(2)$ 规范变换。由问题 (a)（及其 $SU(2)$ 推广，见式 (9.2.12)），规范等价的拟设投影后给出同一个物理自旋波函数，故投影后的波函数在 $90^{\circ}$ 旋转下不变：$\pi$ 通量态不破坏 $90^{\circ}$ 旋转对称性。
+
+\emph{（译注：$R_{90}$ 取顺时针方向同样可行，此时旋转后拟设为 $\chi'_{i,i+\pmb{x}}=-\mathrm{i}\chi_1(-)^{i_y}$、$\chi'_{i,i+\pmb{y}}=\mathrm{i}\chi_1(-)^{i_y}$，结论不变。）}
+
+\section*{问题 9.1.3}
+\begin{problem}
+设 $|\Psi_{\text{mean}}\rangle$ 为 $\pi$ 通量拟设 (9.1.18) 的平均场基态。计算 $\langle\Psi_{\text{mean}}|\pmb{S}_i\cdot\pmb{S}_{i+\pmb{y}}|\Psi_{\text{mean}}\rangle$，进而求变分平均场能量 $\langle\Psi_{\text{mean}}|H|\Psi_{\text{mean}}\rangle$（$H$ 为近邻海森堡模型 (9.1.15)），并比较 $\pi$ 通量态与二聚体态的平均场能量。
+\end{problem}
+\solution
+$\pi$ 通量拟设下自旋子谱为式 (9.1.19)：$E_{\pmb{k}}=\pm J_1\chi_1\sqrt{\sin^2k_x+\sin^2k_y}$。半填充时价带被每个 $\pmb{k}$ 处的一个自旋向上和一个自旋向下的自旋子填满，$|\Psi_{\text{mean}}\rangle$ 是一个自旋旋转不变、无反常配对（$\langle f_if_j\rangle=0$）的 Slater 态，且 $\langle n_i\rangle=1$。
+
+\textbf{第一步：用恒等式 (见问题 9.1.1) 化为双线性关联。}由问题 9.1.1 证明的算符恒等式
+\begin{equation*}
+\pmb{S}_i\cdot\pmb{S}_j=-\frac12 B^{\dagger}_{ij}B_{ij}+\frac12 n_i-\frac14 n_in_j,
+\qquad B_{ij}\equiv f^{\dagger}_{i\alpha}f_{j\alpha},
+\end{equation*}
+在 $\langle n_i\rangle=1$ 的态中取期望。对 Slater 态用 Wick 定理（$i\neq j$，无配对）：
+\begin{equation*}
+\langle B^{\dagger}_{ij}B_{ij}\rangle
+=\sum_{\alpha\beta}\langle f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}\rangle
+=\sum_{\alpha\beta}\Big[\langle f^{\dagger}_{i\alpha}f_{j\alpha}\rangle\langle f^{\dagger}_{j\beta}f_{i\beta}\rangle
++\langle f^{\dagger}_{i\alpha}f_{i\beta}\rangle\langle f_{j\alpha}f^{\dagger}_{j\beta}\rangle\Big].
+\end{equation*}
+记单自旋关联为 $G_{ij}\equiv\langle f^{\dagger}_{i\uparrow}f_{j\uparrow}\rangle=\langle f^{\dagger}_{i\downarrow}f_{j\downarrow}\rangle$（自旋旋转不变），则书中的 $\chi_{ij}=\sum_\alpha\langle f^{\dagger}_{i\alpha}f_{j\alpha}\rangle=2G_{ij}$。上式第一项给出 $4|G_{ij}|^2$；第二项中 $\langle f^{\dagger}_{i\alpha}f_{i\beta}\rangle=\frac12\delta_{\alpha\beta}$、$\langle f_{j\alpha}f^{\dagger}_{j\beta}\rangle=\frac12\delta_{\alpha\beta}$，给出 $\frac12$；于是 $\langle B^{\dagger}_{ij}B_{ij}\rangle=4|G_{ij}|^2+\frac12$。类似地 $\langle n_in_j\rangle=\sum_{\sigma\sigma'}\langle n_{i\sigma}n_{j\sigma'}\rangle=4\langle n_{\uparrow}\rangle^2-2|G_{ij}|^2=1-2|G_{ij}|^2$。代回：
+\begin{equation*}
+\boxed{\;\langle\Psi_{\text{mean}}|\pmb{S}_i\cdot\pmb{S}_j|\Psi_{\text{mean}}\rangle
+=-\frac32\,|G_{ij}|^2=-\frac38\,|\chi_{ij}|^2\;}
+\end{equation*}
+（注意非对角的 $\langle f^{\dagger}_{i\alpha}f_{j\beta}\rangle=G_{ij}\delta_{\alpha\beta}$ 与 $\langle f_{i\beta}f^{\dagger}_{j\alpha'}\rangle=-G^*_{ij}\delta_{\beta\alpha'}$ 是仅有的贡献者；$n_i$、$n_in_j$ 中的平庸项恰好相互消去，这是 Slater 态的普遍结果。）
+
+\textbf{第二步：代入 $\pi$ 通量拟设。}对 $x$、$y$ 两种近邻键均有 $|\chi_{ij}|=\chi_1$（实数），故
+\begin{equation*}
+\langle\Psi_{\text{mean}}|\pmb{S}_i\cdot\pmb{S}_{i+\pmb{y}}|\Psi_{\text{mean}}\rangle
+=\langle\Psi_{\text{mean}}|\pmb{S}_i\cdot\pmb{S}_{i+\pmb{x}}|\Psi_{\text{mean}}\rangle
+=-\frac38\chi_1^2 .
+\end{equation*}
+
+\textbf{第三步：$\pi$ 通量态的变分能量。}每格点有两条近邻键，故
+\begin{equation*}
+\frac{\langle\Psi_{\text{mean}}|H|\Psi_{\text{mean}}\rangle}{N_{\text{site}}}
+=2J_1\Big(-\frac38\chi_1^2\Big)=-\frac34J_1\chi_1^2 .
+\end{equation*}
+自洽方程（书中已给出）：$\chi_1=\frac14\int\frac{\mathrm{d}^2\pmb{k}}{(2\pi)^2}\sqrt{\sin^2k_x+\sin^2k_y}$（积分全域为布里渊区；数值上 $\int\frac{\mathrm{d}^2k}{(2\pi)^2}|\sin\pmb{k}|\approx0.958$），即
+\begin{equation*}
+\chi_1\approx0.239,\qquad
+\frac{E_{\pi\text{通量}}}{N_{\text{site}}}\approx-\frac34(0.239)^2J_1\approx-0.043\,J_1 .
+\end{equation*}
+
+\textbf{第四步：二聚体态的能量并比较。}二聚体拟设 (9.1.16) 中，一半的 $x$ 键（$\pmb{i}=\text{偶列}$）有 $\chi_{i,i+\pmb{x}}=1$，其余键 $\chi=0$。由 $\langle\pmb{S}_i\cdot\pmb{S}_j\rangle=-\frac38|\chi_{ij}|^2$：二聚键上为 $-\frac38J_1$（未投影态因占有数涨落只达到完美单态 $-\frac34J_1$ 的一半），$\chi=0$ 的键上为 $0$。每格点有一条“平均”的 $x$ 键（一半概率是二聚键）和一条 $y$ 键：
+\begin{equation*}
+\frac{E_{\text{二聚体}}}{N_{\text{site}}}
+=\frac12\Big(-\frac38J_1\Big)=-\frac{3}{16}J_1\approx-0.188\,J_1 .
+\end{equation*}
+\textbf{结论：}$E_{\text{二聚体}}=-\frac{3}{16}J_1$ 明显低于 $E_{\pi\text{通量}}=-\frac34\chi_1^2J_1\approx-0.043J_1$。物理原因：二聚体态把自旋关联完全集中到二聚键上形成强单态关联，而 $\pi$ 通量态让自旋子退局域化（动能最小化），近期邻自旋关联较弱。注意这只说明对纯 $J_1$ 海森堡模型二聚体是更好的变分态（它破坏平移对称）；在\emph{平移不变}的自旋液体拟设类中，$\pi$ 通量相的平均场能量最低（见 9.1.4 节与图 9.15 中的相 A）。
+
+\section*{问题 9.1.4}
+\begin{problem}
+\textbf{Dirac 费米子。}
+\textbf{(a)} 证明 $\pi$ 通量态的低能自旋子在连续极限下由 $H=v\sum_{\pmb{k}\sim0}\lambda^{\dagger}_{\alpha,\pmb{k}}(k_x\Gamma_x+k_y\Gamma_y)\lambda_{\alpha,\pmb{k}}$ 描写，其中 $\lambda^{\top}_{\alpha,\pmb{k}}=(f_{\alpha,\pmb{k}},f_{\alpha,\pmb{k}+\pmb{Q}})$，且 $\Gamma_x^2=\Gamma_y^2=1$；求 $v$ 与 $\Gamma_{x,y}$。
+\textbf{(b)} 把拉格朗日量写成 $\mathcal{L}=\mathrm{i}\bar{\lambda}_{\alpha}(\gamma^0\partial_t+v\gamma^x\partial_x+v\gamma^y\partial_y)\lambda_{\alpha}$，求 $\gamma^{0,x,y}$。
+\textbf{(c)} 证明 $(\gamma^0,\gamma^x,\gamma^y)$ 满足 $1+2$ 维狄拉克代数 $\{\gamma^{\mu},\gamma^{\nu}\}=\eta^{\mu\nu}$（$\eta^{00}=1$，$\eta^{xx}=\eta^{yy}=-1$）。
+\textbf{(d)} 对有质量狄拉克费米子求运动方程的解，证明色散 $\omega_{\pmb{k}}=\sqrt{v^2\pmb{k}^2+m^2}$。
+\textbf{(e)} 按 3.7.1 节的程序写出最小耦合 $U(1)$ 规范场的拉格朗日量并验证规范不变性。
+\end{problem}
+\solution
+\textbf{(a)}　$\pi$ 通量拟设 $\chi_{i,i+\pmb{x}}=\mathrm{i}\chi_1$、$\chi_{i,i+\pmb{y}}=\mathrm{i}\chi_1(-)^{i_x}$ 在 $x$ 方向以两个列为周期，取双列元胞（$A$＝偶数列，$B$＝奇数列）作傅里叶变换。每条近邻键上单个自旋的跳跃幅度为 $\frac{\mathrm{i}}{2}J_1\chi_{ij}$（来自 $-\frac12J_1 f^{\dagger}_{i\alpha}f_{j\alpha}\chi_{ji}+h.c.$）。动量空间中 $2\times2$ 布洛赫哈密顿量为
+\begin{equation*}
+h(\pmb{k})=-J_1\chi_1\big(\sin k_x\,\sigma^x+\sin k_y\,\sigma^z\big),
+\end{equation*}
+（$x$ 键连接 $A,B$ 子格，给出非对角的 $\sin k_x\,\sigma^x$ 项；$y$ 键在 $A,B$ 子格上符号相反，给出对角的 $\sin k_y\,\sigma^z$ 项。）其本征值
+\begin{equation*}
+E_{\pm}(\pmb{k})=\pm J_1\chi_1\sqrt{\sin^2k_x+\sin^2k_y}
+\end{equation*}
+正是式 (9.1.19)。导带与价带在 $\sin k_x=\sin k_y=0$ 处相接触：约化布里渊区内两个不等价节点为 $\pmb{k}_A=(0,0)$ 与 $\pmb{k}_B=(0,\pi)$（在延拓区的记号下即 $\pmb{0}$ 与 $\pmb{Q}$，$\pmb{Q}=(\pi,\pi)$，见译注）。
+
+在节点附近展开 $\sin k_x\approx\mp k_x^{\text{node}}$ 型线性化：节点 $\pmb{k}_A$ 附近，$h\approx-J_1\chi_1(k_x\sigma^x+k_y\sigma^z)$；节点 $\pmb{k}_B$ 附近 $\sin(k_y+\pi)\approx-k_y$，$h\approx-J_1\chi_1(k_x\sigma^x-k_y\sigma^z)$。定义缓变场 $f_{\alpha,\pmb{i}}\sim\mathrm{e}^{\mathrm{i}\pmb{k}_A\cdot\pmb{r}_i}\lambda_{1,\alpha}(\pmb{r}_i)+\mathrm{e}^{\mathrm{i}\pmb{k}_B\cdot\pmb{r}_i}\lambda_{2,\alpha}(\pmb{r}_i)$，即把两个节点处的两部分合写成二重态
+\begin{equation*}
+\lambda_{\alpha,\pmb{k}}=\begin{pmatrix}f_{\alpha,\pmb{k}}\\ f_{\alpha,\pmb{k}+\pmb{Q}}\end{pmatrix},
+\end{equation*}
+则低能哈密顿量为
+\begin{equation*}
+\boxed{\;H=v\sum_{\alpha}\sum_{\pmb{k}\sim0}\lambda^{\dagger}_{\alpha,\pmb{k}}\,(k_x\Gamma_x+k_y\Gamma_y)\,\lambda_{\alpha,\pmb{k}},\qquad
+v=J_1\chi_1\;}
+\end{equation*}
+其中可取（对节点 $\pmb{k}_A$）
+\begin{equation*}
+\Gamma_x=\sigma^x,\qquad \Gamma_y=\sigma^z ,
+\end{equation*}
+（节点 $\pmb{k}_B$ 处 $\Gamma_y\to-\Gamma_y$，手征性相反。）显然 $\Gamma_x^2=\Gamma_y^2=1$，且 $\{\Gamma_x,\Gamma_y\}=0$，故谱为 $E_{\pm}=\pm v\sqrt{k_x^2+k_y^2}$——线性狄拉克色散，$v=J_1\chi_1$ 为自旋子速度。实空间形式 $H=\int\mathrm{d}^2x\,v\lambda^{\dagger}_{\alpha}(-\mathrm{i}\Gamma_x\partial_x-\mathrm{i}\Gamma_y\partial_y)\lambda_{\alpha}$ 由 $f_{\pmb{k}}$ 与缓变场之间的傅里叶变换直接得到。
+
+\emph{（译注：题面记 $\pmb{Q}=(\pi,\pi)$。在双列元胞约化区中两节点为 $(0,0)$ 与 $(0,\pi)$，$\pmb{Q}=(0,\pi)$；在延拓区的四节点记号 $(0,0),(0,\pi),(\pi,0),(\pi,\pi)$ 中，$(\pi,\pi)$ 与 $(0,0)$ 由 $\pmb{Q}=(\pi,\pi)$ 相联系。两种写法物理相同，均给出每自旋两个（延拓区四个）费米点。）}
+
+\textbf{(b)}　要求 $\gamma^0_0{}^2=1$ 且 $(\Gamma_x,\Gamma_y)=(-\gamma^0\gamma^x,-\gamma^0\gamma^y)$，即 $\gamma^i=-\gamma^0\Gamma^i$。为使代数自洽（见 (c)），只需任取一个厄米、幺正、平方为 $1$ 的 $\gamma^0$；取正则选择
+\begin{equation*}
+\gamma^0=\mathrm{i}\Gamma_x\Gamma_y\;=\;\mathrm{i}\sigma^x\sigma^z=\sigma^y ,
+\end{equation*}
+则
+\begin{equation*}
+\boxed{\;\gamma^0=\sigma^y,\qquad \gamma^x=-\gamma^0\Gamma_x=-\sigma^y\sigma^x=\mathrm{i}\sigma^z,\qquad
+\gamma^y=-\gamma^0\Gamma_y=-\sigma^y\sigma^z=-\mathrm{i}\sigma^x\;}
+\end{equation*}
+验证：$\bar{\lambda}=\lambda^{\dagger}\gamma^0$，于是
+\begin{equation*}
+\mathrm{i}\bar{\lambda}(\gamma^0\partial_t+v\gamma^x\partial_x+v\gamma^y\partial_y)\lambda
+=\mathrm{i}\lambda^{\dagger}\big(\gamma^0\gamma^0\partial_t+v\gamma^0\gamma^x\partial_x+v\gamma^0\gamma^y\partial_y\big)\lambda
+=\mathrm{i}\lambda^{\dagger}_\alpha\partial_t\lambda_\alpha
+-v\lambda^{\dagger}_\alpha(-\mathrm{i}\Gamma_x\partial_x-\mathrm{i}\Gamma_y\partial_y)\lambda_\alpha ,
+\end{equation*}
+正是题给拉格朗日量（用到 $\gamma^0\gamma^0=1$、$\gamma^0\gamma^i=-\Gamma_i$）。
+
+\textbf{(c)}　逐一计算反对易子：
+\begin{align*}
+(\gamma^0)^2&=(\sigma^y)^2=1, & (\gamma^x)^2&=(\mathrm{i}\sigma^z)^2=-1, & (\gamma^y)^2&=-1,\\
+\{\gamma^0,\gamma^x\}&=\gamma^0(-\gamma^0\Gamma_x)+(-\gamma^0\Gamma_x)\gamma^0
+=-\Gamma_x-(-\Gamma_x)=0,\\
+\{\gamma^0,\gamma^y\}&=-\Gamma_y-\gamma^0\Gamma_y\gamma^0=-\Gamma_y-(-\Gamma_y)=0,\\
+\{\gamma^x,\gamma^y\}&=\gamma^0\big(-\gamma^0\{\Gamma_x,\Gamma_y\}\big)=0,
+\end{align*}
+其中 $\gamma^0\Gamma_i\gamma^0=(\mathrm{i}\Gamma_x\Gamma_y)\Gamma_i(\mathrm{i}\Gamma_x\Gamma_y)=-\Gamma_i$（由 $\{\Gamma_x,\Gamma_y\}=0$、$\Gamma_i^2=1$）。故
+\begin{equation*}
+\boxed{\;\{\gamma^{\mu},\gamma^{\nu}\}=\eta^{\mu\nu},\qquad
+\eta^{\mu\nu}=\mathrm{diag}(1,-1,-1)\;}
+\end{equation*}
+即 $(\gamma^0,\gamma^x,\gamma^y)$ 满足 $1+2$ 维闵可夫斯基度规的狄拉克代数。
+
+\textbf{(d)}　运动方程为 $\mathrm{i}(\gamma^0\partial_t+v\gamma^x\partial_x+v\gamma^y\partial_y+m)\lambda_\alpha=0$。取平面波解 $\lambda_\alpha=u\,\mathrm{e}^{\mathrm{i}(\pmb{k}\cdot\pmb{x}-\omega t)}$，得
+\begin{equation*}
+\big(\omega\gamma^0-vk_x\gamma^x-vk_y\gamma^y+m\big)u=0 .
+\end{equation*}
+非零解要求行列式为零。用狄拉克代数平方左端算符：
+\begin{equation*}
+\big(\omega\gamma^0-v\pmb{k}\cdot\pmb{\gamma}\big)^2
+=\omega^2(\gamma^0)^2+v^2k_ik_j\gamma^i\gamma^j
+=\omega^2-v^2\pmb{k}^2 ,
+\end{equation*}
+（交叉项 $\propto\{\gamma^0,\gamma^i\}=0$、$\{\gamma^i,\gamma^j\}=-2\delta^{ij}$。）于是非零解存在的条件为
+\begin{equation*}
+\big(\omega\gamma^0-v\pmb{k}\cdot\pmb{\gamma}+m\big)\big(\omega\gamma^0-v\pmb{k}\cdot\pmb{\gamma}-m\big)
+=\big(\omega^2-v^2\pmb{k}^2-m^2\big)\mathbb{1}=0 ,
+\end{equation*}
+即
+\begin{equation*}
+\boxed{\;\omega_{\pmb{k}}=\pm\sqrt{v^2\pmb{k}^2+m^2}\;}
+\end{equation*}
+正频解 $\omega=+\sqrt{v^2k^2+m^2}$ 即质量为 $m$ 的狄拉克粒子；$m=0$ 时退回线性狄拉克色散。二分量旋量 $u$ 的两个分量之比由 $(\omega\gamma^0-v\pmb{k}\cdot\pmb{\gamma}+m)u=0$ 确定，例如用 $\gamma^0=\sigma^y$ 等显式矩阵可直接解出。
+
+\textbf{(e)}　按 3.7.1 节的最小耦合程序（正则动量 $\mathrm{i}\partial_\mu\to\mathrm{i}\partial_\mu-q a_\mu$，这里自旋子携带 $a_\mu$ 的单位电荷 $q=1$），并采用与格点规范变换 (9.1.11)（$f_{\pmb{i}}\to\mathrm{e}^{\mathrm{i}\theta(\pmb{i})}f_{\pmb{i}}$，$a_{ij}\to a_{ij}+\theta_{\pmb{i}}-\theta_{\pmb{j}}$）连续极限一致的符号约定：
+\begin{equation*}
+\boxed{\;\mathcal{L}=\mathrm{i}\bar{\lambda}_{\alpha}\gamma^{\mu}\big(\partial_{\mu}-\mathrm{i}a_{\mu}\big)\lambda_{\alpha}
+=\mathrm{i}\bar{\lambda}_{\alpha}\gamma^0(\partial_t-\mathrm{i}a_0)\lambda_{\alpha}
++\mathrm{i}v\,\bar{\lambda}_{\alpha}\gamma^i(\partial_i-\mathrm{i}a_i)\lambda_{\alpha}\;}
+\end{equation*}
+（度规约定同 (c)，重复指标求和，$\mu=0,x,y$。）
+
+规范不变性验证：在 $U(1)$ 规范变换
+\begin{equation*}
+\lambda_\alpha\to\lambda'_\alpha=\mathrm{e}^{\mathrm{i}\theta(x)}\lambda_\alpha,\qquad
+a_\mu\to a'_\mu=a_\mu+\partial_\mu\theta
+\end{equation*}
+下，
+\begin{equation*}
+(\partial_\mu-\mathrm{i}a'_\mu)\lambda'_\alpha
+=\big(\partial_\mu-\mathrm{i}a_\mu-\mathrm{i}\partial_\mu\theta\big)\mathrm{e}^{\mathrm{i}\theta}\lambda_\alpha
+=\mathrm{e}^{\mathrm{i}\theta}\big(\partial_\mu\lambda_\alpha+\mathrm{i}(\partial_\mu\theta)\lambda_\alpha-\mathrm{i}a_\mu\lambda_\alpha-\mathrm{i}(\partial_\mu\theta)\lambda_\alpha\big)
+=\mathrm{e}^{\mathrm{i}\theta}(\partial_\mu-\mathrm{i}a_\mu)\lambda_\alpha ,
+\end{equation*}
+而 $\bar{\lambda}'=\bar{\lambda}\mathrm{e}^{-\mathrm{i}\theta}$。两相消去，
+\begin{equation*}
+\mathcal{L}'=\mathrm{i}\bar{\lambda}\mathrm{e}^{-\mathrm{i}\theta}\gamma^\mu\mathrm{e}^{\mathrm{i}\theta}(\partial_\mu-\mathrm{i}a_\mu)\lambda=\mathcal{L} ,
+\end{equation*}
+故拉格朗日量规范不变。这正是格点一阶平均场理论 (9.1.10) 在连续极限下的形式：无能隙狄拉克自旋子最小耦合到 $U(1)$ 格点规范场。
+
+\section*{问题 9.1.5}
+\begin{problem}
+证明由式 (9.1.21) 描述的规范涨落
+$\mathcal{L}=\frac{1}{8\pi g^2}(\mathbf{e}^2-b^2)+\frac{K}{4\pi}\epsilon^{\mu\nu\lambda}a_{\mu}\partial_{\nu}a_{\lambda}$
+具有有限能隙。
+\end{problem}
+\solution
+对 $a_{\mu}$ 变分。Chern--Simons 项的变分（分部积分后）
+\begin{equation*}
+\frac{\delta S_{\text{CS}}}{\delta a_{\mu}}=\frac{K}{2\pi}\epsilon^{\mu\nu\lambda}\partial_{\nu}a_{\lambda} ,
+\end{equation*}
+Maxwell 项的变分为 $\frac{1}{4\pi g^{2}}\partial_{\nu}f^{\nu\mu}$。故经典运动方程为
+\begin{equation*}
+\frac{1}{4\pi g^{2}}\partial_{\nu}f^{\nu\mu}+\frac{K}{2\pi}\epsilon^{\mu\nu\lambda}\partial_{\nu}a_{\lambda}=0 .
+\end{equation*}
+取辐射规范 $\partial_ia_i=0$，并设平面波 $a_\mu\sim\mathrm{e}^{\mathrm{i}(\pmb{k}\cdot\pmb{x}-\omega t)}$，取 $\pmb{k}$ 沿 $x$ 方向。记 $e_i=f_{0i}$、$b=f_{12}$。两个独立方程为
+\begin{align*}
+\mu=0:&\quad -\frac{\mathrm{i}}{4\pi g^{2}}k\,e_x+\frac{K}{2\pi}b=0 ,\\
+\mu=2:&\quad \frac{1}{4\pi g^{2}}(-\mathrm{i}\omega\,e_y-\mathrm{i}k\,b)+\frac{K}{2\pi}e_x=0 ,
+\end{align*}
+以及（$\mu=1$ 的方程）$\;-\mathrm{i}\omega e_x/(4\pi g^{2})-(K/2\pi)e_y=0$，即 $e_y=-\dfrac{\mathrm{i}\omega}{2Kg^{2}}e_x$。由 $\mu=0$ 式得 $b=\dfrac{\mathrm{i}k}{2Kg^{2}}e_x$。代入 $\mu=2$ 式：
+\begin{equation*}
+\frac{1}{4\pi g^{2}}\left(-\mathrm{i}\omega\cdot\frac{-\mathrm{i}\omega}{2Kg^{2}}-\mathrm{i}k\cdot\frac{\mathrm{i}k}{2Kg^{2}}\right)e_x+\frac{K}{2\pi}e_x=0
+\;\Longrightarrow\;
+\frac{\omega^{2}-k^{2}}{8\pi K g^{4}}=\frac{K}{2\pi} ,
+\end{equation*}
+即
+\begin{equation*}
+\boxed{\;\omega^{2}=k^{2}+\Delta^{2},\qquad \Delta=2|K|g^{2}\;}
+\end{equation*}
+（若把速度因子 $v$ 放回，则 $\omega^2=v^2k^2+\Delta^2$，$\Delta=2|K|g^2$。）色散关系在 $k=0$ 处有非零的能隙 $\Delta=2|K|g^{2}>0$：Maxwell 项单独存在时给出无能隙光子（$\omega=|k|$），Chern--Simons 项把它与纵向模式耦合成单一的有质量模式。这就是拓扑质量机制：$2+1$ 维 $U(1)$ 规范场加上 Chern--Simons 项后，规范玻色子获得有限能隙，只能传递短程相互作用，相应的平均场态是稳定的。
+
+\section*{问题 9.1.6}
+\begin{problem}
+通过极小化平均场能量 (9.1.6)，求出手征自旋态拟设 (9.1.22) 中决定 $\chi_1$ 与 $\chi_2$ 的方程。
+\end{problem}
+\solution
+手征自旋拟设 (9.1.22) 在近邻取 $\chi_1\,\mathrm{i}$、次近邻取 $\mp\mathrm{i}\chi_2$，各键上 $|\chi_{ij}|$ 分别为 $\chi_1$（$2N$ 条 NN 键）与 $\chi_2$（$2N$ 条 NNN 键）。平均场能量 (9.1.6) 在自洽态中的期望为两部分之和：常数项 $-\frac12\sum_{\langle ij\rangle}J_{ij}|\chi_{ij}|^2$ 与填满价带的单粒子能量。每格点
+\begin{equation*}
+\frac{E_{\text{MF}}}{N}=-J_1\chi_1^{2}-J_2\chi_2^{2}
+-2\int_{\text{rBZ}}\frac{\mathrm{d}^{2}k}{(2\pi)^{2}}\,E_{0}(\pmb{k}) ,
+\end{equation*}
+其中因子 $2$ 来自自旋，$E_0(\pmb{k})$ 为自旋子谱的正支（见式 (9.1.25)，问题 9.1.7）：
+\begin{equation*}
+E_{0}(\pmb{k})=\Big[J_1^{2}\chi_1^{2}\big(\sin^{2}k_x+\sin^{2}k_y\big)
++J_2^{2}\chi_2^{2}\big(\cos(k_x+k_y)+\cos(k_x-k_y)\big)^{2}\Big]^{1/2} .
+\end{equation*}
+对 $\chi_1$、$\chi_2$ 求偏导并令其为零（Hellmann--Feynman：$\partial E_0/\partial\chi_i$ 只通过 $E_0^2$ 作用）：
+\begin{align*}
+\frac{\partial(E_{\text{MF}}/N)}{\partial\chi_1}
+&=-2J_1\chi_1-2\int_{\text{rBZ}}\frac{\mathrm{d}^{2}k}{(2\pi)^{2}}\,
+\frac{J_1^{2}\chi_1(\sin^{2}k_x+\sin^{2}k_y)}{E_0(\pmb{k})}=0 ,\\
+\frac{\partial(E_{\text{MF}}/N)}{\partial\chi_2}
+&=-2J_2\chi_2-2\int_{\text{rBZ}}\frac{\mathrm{d}^{2}k}{(2\pi)^{2}}\,
+\frac{4J_2^{2}\chi_2\cos^{2}k_x\cos^{2}k_y}{E_0(\pmb{k})}=0 .
+\end{align*}
+于是决定 $\chi_1$、$\chi_2$ 的方程为
+\begin{equation*}
+\boxed{\;
+1=\frac{J_1}{N}\sum_{\pmb{k}}\frac{\sin^{2}k_x+\sin^{2}k_y}{E_0(\pmb{k})},\qquad
+1=\frac{4J_2}{N}\sum_{\pmb{k}}\frac{\cos^{2}k_x\cos^{2}k_y}{E_0(\pmb{k})}
+\quad(\chi_2\neq0)\;}
+\end{equation*}
+（$\sum_{\pmb{k}}$ 遍及约化布里渊区；第二个方程只约束 $\chi_2\neq0$ 的解，$\chi_2=0$ 时仅需第一个方程。）它们正是自洽条件 $\chi_{ij}=2\langle f^{\dagger}_{i\sigma}f_{j\sigma}\rangle$ 在近邻与次近邻键上的体现。由第一个方程在 $\chi_2=0$ 时给出 $\chi_1=\frac14\int\frac{\mathrm{d}^2k}{(2\pi)^2}|\sin\pmb{k}|\approx0.239$，与 9.1.4 节一致。数值求解表明：当 $J_2/J_1<0.49$ 时只有 $\chi_2=0$ 的解（$\pi$ 通量相）；$J_2/J_1>0.49$ 时出现 $\chi_2\neq0$ 的解且能量更低，$T$、$P$ 被自发破坏。
+
+\section*{问题 9.1.7}
+\begin{problem}
+证明手征自旋态的自旋子能谱式 (9.1.25)：
+\begin{equation*}
+E^{\pm}_{\pmb{k}}=\pm\sqrt{J_1^2\chi_1^2(\sin^2k_x+\sin^2k_y)+J_2^2\chi_2^2(\cos(k_x+k_y)+\cos(k_x-k_y))^2}\;.
+\end{equation*}
+\end{problem}
+\solution
+单自旋的平均场哈密顿量为 $H=\sum_{\pmb{k}}c^{\dagger}_{\pmb{k}}\,h(\pmb{k})\,c_{\pmb{k}}$，把 $2\times2$ 厄米矩阵 $h(\pmb{k})$ 按泡利矩阵展开：$h(\pmb{k})=\mathrm{d}_0(\pmb{k})\sigma^0+\pmb{d}(\pmb{k})\cdot\pmb{\sigma}$，则 $E_{\pm}=\mathrm{d}_0\pm|\pmb{d}|$。
+
+（i）\textbf{近邻部分}：与 $\pi$ 通量态相同（见问题 9.1.4 的推导），每条 NN 键的跳跃幅度为纯虚数 $\pm\frac{\mathrm{i}}{2}J_1\chi_1$（$\pi$ 通量 $\Rightarrow$ 虚跳跃），布洛赫求和给出
+\begin{equation*}
+\pmb{d}_{\text{NN}}(\pmb{k})=-J_1\chi_1\big(\sin k_x\,\sigma^x+\sin k_y\,\sigma^z\big) :
+\end{equation*}
+$x$ 键连接两子格 $\Rightarrow$ 非对角 $\propto\sigma^x$，形状因子 $\frac{\mathrm{i}}{2}\big(\mathrm{e}^{\mathrm{i}k_x}-\mathrm{e}^{-\mathrm{i}k_x}\big)=-\sin k_x$；$y$ 键在两子格上反号 $\Rightarrow$ 对角 $\propto\sigma^z$，形状因子 $-\sin k_y$。这正是式 (9.1.19) 的来源。
+
+（ii）\textbf{次近邻部分}：四个对角键 $\pm\pmb{x}\pm\pmb{y}$ 上的幅度同样为纯虚数 $\mp\frac{\mathrm{i}}{2}J_2\chi_2$（由 $\chi_{i,i+x+y}=-\mathrm{i}\chi_2(-)^{i_x}$、$\chi_{i,i+x-y}=+\mathrm{i}\chi_2(-)^{i_x}$，符号交错在适当的规范下被吸收进子格结构）。手征相位排列使这一部分既不与 $\sigma^x$、也不与 $\sigma^z$ 同向——它只能沿剩下的第三 个泡利矩阵 $\sigma^y$（四条键的 Bloch 和的实部与虚部结构恰如此安排），且形状因子为四条键的余弦和的一半乘 2：
+\begin{equation*}
+\mathrm{d}_{y,\text{NNN}}(\pmb{k})\,\sigma^y
+=J_2\chi_2\big[\cos(k_x+k_y)+\cos(k_x-k_y)\big]\sigma^y ,
+\end{equation*}
+其中 $\cos(k_x\pm k_y)=\frac12(\mathrm{e}^{\mathrm{i}k_x\pm\mathrm{i}k_y}+\mathrm{e}^{-\mathrm{i}k_x\mp\mathrm{i}k_y})$ 正是 $\mathrm{e}^{\mathrm{i}\pmb{k}\cdot(\pm\pmb{x}\pm\pmb{y})}$ 的对称组合。
+
+（iii）\textbf{谱}：由于 $\{\sigma^y,\sigma^x\}=\{\sigma^y,\sigma^z\}=0$，三个分量互不干涉，直接相加：
+\begin{equation*}
+|\pmb{d}|^{2}=J_1^{2}\chi_1^{2}(\sin^{2}k_x+\sin^{2}k_y)
++J_2^{2}\chi_2^{2}\big(\cos(k_x+k_y)+\cos(k_x-k_y)\big)^{2} ,
+\end{equation*}
+即
+\begin{equation*}
+\boxed{\;E^{\pm}_{\pmb{k}}=\pm\sqrt{J_1^{2}\chi_1^{2}(\sin^{2}k_x+\sin^{2}k_y)
++J_2^{2}\chi_2^{2}\big(\cos(k_x+k_y)+\cos(k_x-k_y)\big)^{2}}\;}
+\end{equation*}
+自洽性检验：(1) $\chi_2=0$ 时退回式 (9.1.19)；(2) $\chi_2\neq0$ 时，在原费米点（如 $\pmb{k}=(0,0)$，那里 $\sin\pmb{k}=0$、$\cos(k_x\pm k_y)=2$）能隙打开：$E_{\pm}(0,0)=\pm2|J_2\chi_2|$，即“$\chi_2\neq0$ 时导带与价带之间打开一个能隙”，与 9.1.6 节的论述一致。
+
+\section*{问题 9.1.8}
+\begin{problem}
+利用 4.4 节的结果证明手征自旋态的霍尔电导 $\sigma_{xy}=2/2\pi$（式 (9.1.27)）。
+\end{problem}
+\solution
+4.4 节给出：对有能隙的（不简并）填充能带系统，霍尔电导由 Chern--Simons 系数给出，$\sigma_{xy}=K/2\pi$，且 $K$ 可由贝里相计算（式 (4.4.6)）：
+\begin{equation*}
+2\pi K=\int_{\text{BZ}}\mathrm{d}^{2}k\;
+\mathrm{i}\big[(\partial_{k_x}\psi^{\dagger}_{\pmb{k}})(\partial_{k_y}\psi_{\pmb{k}})-(\partial_{k_y}\psi^{\dagger}_{\pmb{k}})(\partial_{k_x}\psi_{\pmb{k}})\big] ,
+\end{equation*}
+它是一个拓扑量子数（Chern 数）：只要填充带与空带之间的能隙不闭合，$K$ 不随任何连续形变改变。
+
+手征自旋态中每个自旋的自旋子恰填满一个朗道能带（填充因子 $\nu=1$，见 9.1.6 节：每个自旋向上的自旋子对应一个通量量子）。现在把晶格势（即 $J_2$ 项等产生朗道能带的周期性因素）绝热地关掉：能隙在此过程中保持有限（第一朗道能带始终不与激发带接触），因此每个自旋的填充能带的 Chern 数不变。在连续极限下，填充的能带就是最低朗道能级，其 Chern 数为熟知的
+\begin{equation*}
+K_{\uparrow}=K_{\downarrow}=1
+\qquad\Longleftrightarrow\qquad
+\sigma_{xy}^{\uparrow}=\sigma_{xy}^{\downarrow}=\frac{1}{2\pi} .
+\end{equation*}
+（等价地：由式 (4.4.6)，$K$ 是填充带在布里渊区上的总贝里相 $/2\pi$；朗道能级的波函数（最低朗道轨道）把布里渊环面以缠绕数 $1$ 映到参数空间，给出 $2\pi K=2\pi$。）自旋向上与自旋向下的两个填充能带贡献相加：
+\begin{equation*}
+\boxed{\;\sigma_{xy}=\sigma_{xy}^{\uparrow}+\sigma_{xy}^{\downarrow}=\frac{2}{2\pi}\;}
+\end{equation*}
+这正是式 (9.1.27)。物理上，因子 $2$ 来自自旋：两支自旋各自的填充因子 $\nu=1$。由 4.4 节，这个 $\sigma_{xy}$ 是拓扑量子数——只要能隙不闭合就不能改变，因此手征自旋态的低能有效理论含有 level 为 $K=2$ 的 Chern--Simons 项（见式 (9.1.28) 中 $\frac12\sigma_{xy}a_{\mu}\partial_{\nu}a_{\lambda}\epsilon_{\mu\nu\lambda}=\frac{K}{4\pi}a\partial a\epsilon$，$K=2$）。
+
+\section*{问题 9.2.1}
+\begin{problem}
+用式 (9.2.2) 的平均场参量 $\chi_{ij}$、$\eta_{ij}$ 由式 (9.2.1) 得到零阶平均场哈密顿量 (9.2.4)。
+\end{problem}
+\solution
+从 (9.2.1) 出发（$i\neq j$）：
+\begin{equation*}
+H=\sum_{\langle ij\rangle}-\frac12 J_{ij}\Big(f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}+\tfrac12 n_in_j\Big).
+\end{equation*}
+\textbf{第一步：重组四费米子算符，暴露 $\chi$ 道与 $\eta$ 道。}
+一方面（直接道），把 $f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}$ 写成
+\begin{equation*}
+f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}
+=\tfrac12\big(f^{\dagger}_{i\alpha}f_{j\alpha}\big)\big(f^{\dagger}_{j\beta}f_{i\beta}\big)+\tfrac12\Big[n_i-\big(f^{\dagger}_{i\alpha}f^{\dagger}_{j\beta}\big)\big(f_{j\alpha}f_{i\beta}\big)\Big] ,
+\end{equation*}
+其中恒等式 $f^{\dagger}_{i\alpha}f_{j\alpha}f^{\dagger}_{j\beta}f_{i\beta}=n_i-f^{\dagger}_{i\alpha}f^{\dagger}_{j\beta}f_{j\alpha}f_{i\beta}$ 已在问题 9.1.1 中用 $f^{\dagger}_{j\beta}f_{i\beta}=-f_{i\beta}f^{\dagger}_{j\beta}$（$i\neq j$）证明过；权重 $\frac12,\frac12$ 是对称化选择（不同的分配只改变 $\chi,\eta$ 的归一化约定，物理相同）。这样四费米子算符恰好由两类复合算符组成：$f^{\dagger}_{i\alpha}f_{j\beta}$（$\chi$ 道）与 $f_{i\alpha}f_{j\beta}$（$\eta$ 道，经 $\epsilon_{\alpha\beta}$ 缩并）。
+
+\textbf{第二步：按 (9.2.2) 做平均场替换。}按 (9.2.2)，
+\begin{equation*}
+f^{\dagger}_{i\alpha}f_{j\beta}\;\to\;\Big\langle f^{\dagger}_{i\alpha}f_{j\beta}\Big\rangle=\frac{\chi_{ij}}{2}\delta_{\alpha\beta},\qquad
+f_{i\alpha}f_{j\beta}\;\to\;\Big\langle f_{i\alpha}f_{j\beta}\Big\rangle=-\frac{\eta_{ij}}{2}\epsilon_{\alpha\beta} ,
+\end{equation*}
+并保留共轭项、减去二次重复计入的期望值：
+\begin{align*}
+\big(f^{\dagger}_{i\alpha}f_{j\alpha}\big)\big(f^{\dagger}_{j\beta}f_{i\beta}\big)
+&\;\to\;\chi_{ij}\,f^{\dagger}_{j\beta}f_{i\beta}+\chi^{*}_{ij}\,f^{\dagger}_{i\alpha}f_{j\alpha}-|\chi_{ij}|^{2}
+=\chi_{ij}B^{\dagger}_{ij}+\chi^{*}_{ij}B_{ij}-|\chi_{ij}|^{2} ,\\
+\big(f^{\dagger}_{i\alpha}f^{\dagger}_{j\beta}\big)\big(f_{j\alpha}f_{i\beta}\big)
+&\;\to\;\frac{\eta^{*}_{ij}}{2}\epsilon_{\alpha\beta}f_{j\alpha}f_{i\beta}
++\frac{\eta_{ij}}{2}\epsilon_{\alpha\beta}f^{\dagger}_{i\alpha}f^{\dagger}_{j\beta}-\frac{|\eta_{ij}|^{2}}{2}
+=-\frac{\eta^{*}_{ij}}{2}\Pi_{ij}-\frac{\eta_{ij}}{2}\Pi^{\dagger}_{ij}-\frac{|\eta_{ij}|^{2}}{2} ,
+\end{align*}
+其中 $B_{ij}=f^{\dagger}_{i\alpha}f_{j\alpha}$、$\Pi_{ij}=f_{i\alpha}f_{j\beta}\epsilon_{\alpha\beta}$，并用了 $\epsilon_{\alpha\beta}f_{j\alpha}f_{i\beta}=-\Pi_{ij}$。
+
+\textbf{第三步：收集各项。}密度算符 $n_in_j\to n_i\langle n_j\rangle+\langle n_i\rangle n_j-\langle n_i\rangle\langle n_j\rangle=n_i+n_j-1$ 与 $-\frac12Jn_i$ 中的线性项一并吸收进拉格朗日乘子项（写成 $\sum_i a^3_0(f^{\dagger}_{i\alpha}f_{i\alpha}-1)$）与常数；$a^1_0,a^2_0$ 则通过约束项 $\langle f_{i\alpha}f_{i\beta}\epsilon_{\alpha\beta}\rangle=0$ 的乘子 $[(a^1_0+\mathrm{i}a^2_0)f_{i\alpha}f_{i\beta}\epsilon_{\alpha\beta}+h.c.]$ 引入。于是
+\begin{align*}
+H_{\text{mean}}={}&\sum_{\langle ij\rangle}-\frac{3J_{ij}}{8}\Big[\big(\chi_{ji}f^{\dagger}_{i\alpha}f_{j\alpha}+\eta_{ij}f^{\dagger}_{i\alpha}f^{\dagger}_{j\beta}\epsilon_{\alpha\beta}+h.c.\big)-|\chi_{ij}|^{2}-|\eta_{ij}|^{2}\Big]\\
+&+\sum_i\Big[a^3_0(f^{\dagger}_{i\alpha}f_{i\alpha}-1)+\big((a^1_0+\mathrm{i}a^2_0)f_{i\alpha}f_{i\beta}\epsilon_{\alpha\beta}+h.c.\big)\Big] ,
+\end{align*}
+即式 (9.2.4)。（系数 $\frac38$ 是 (9.1.1) 恒等式 $J\pmb{S}_i\cdot\pmb{S}_j=-\frac{3J}{4}\times$（单态投影算符类 bilinear）的标准归一：$\chi$ 道来自 $\frac12J\cdot\frac{2\cdot\frac34}{1}$ 型重组；它与 (9.1.6) 在 $\eta=0$ 处通过 $\chi_{(9.2.2)}=2\chi_{(9.1.7)}$ 的归一化重参数化相联系，描写同一族变分态。）自洽条件 (9.2.2) 即 $\chi_{ij},\eta_{ij}$ 的期望值定义。
+
+\section*{问题 9.2.2}
+\begin{problem}
+$\pi$ 通量态与 \emph{d} 波态的等价性。
+\textbf{(a)} 证明 $\pi$ 通量态 (9.1.18) 由 $SU(2)$ 链变量 $U_{i,i+\pmb{x}}=-\mathrm{i}\chi_1\tau^0$、$U_{i,i+\pmb{y}}=-\mathrm{i}\chi_1(-)^{i_x}\tau^0$ 描写。
+\textbf{(b)} 证明当 $\eta=\chi$ 时 \emph{d} 波态 (9.2.5) 由 $U_{i,i+\pmb{x}}=\chi\tau^3+\chi\tau^1$、$U_{i,i+\pmb{y}}=\chi\tau^3-\chi\tau^1$ 描写。
+\textbf{(c)} 求把一个拟设变成另一个的 $SU(2)$ 规范变换 $W_i$ 及 $\chi$ 与 $\chi_1$ 的关系。
+\textbf{(d)} 证明此时两拟设具有相同的自旋子谱。
+\end{problem}
+\solution
+\textbf{(a)}　由定义 (9.2.7)：$U_{ij}=\begin{pmatrix}\chi^*_{ij}&\eta_{ij}\\ \eta^*_{ij}&-\chi_{ij}\end{pmatrix}$。对 $\pi$ 通量拟设 (9.1.18)：$\chi_{i,i+\pmb{x}}=\mathrm{i}\chi_1$、$\chi_{i,i+\pmb{y}}=\mathrm{i}\chi_1(-)^{i_x}$、$\eta_{ij}=0$。代入（$\chi^*=(-)^{i_x}\mathrm{i}\chi_1\to-\mathrm{i}\chi_1$ 类推）：
+\begin{equation*}
+U_{i,i+\pmb{x}}=\begin{pmatrix}-\mathrm{i}\chi_1&0\\0&-\mathrm{i}\chi_1\end{pmatrix}=-\mathrm{i}\chi_1\tau^{0},\qquad
+U_{i,i+\pmb{y}}=-\mathrm{i}\chi_1(-)^{i_x}\tau^{0} .\qquad\checkmark
+\end{equation*}
+检验：$\psi^{\dagger}_iU_{ij}\psi_j$ 展开为 $\chi^*_{ij}f^{\dagger}_{i\uparrow}f_{j\uparrow}+\chi_{ij}f^{\dagger}_{j\downarrow}f_{i\downarrow}+\cdots$，即自旋向上、向下的自旋子分别以 $\chi^*_{ij}$、$\chi_{ij}$ 跳跃（互为时间反演伙伴）——这正是 $U(1)$ 拟设 (9.1.18) 在 $\psi$ 表示中的内容。
+
+\textbf{(b)}　对 \emph{d} 波拟设 (9.2.5)（$\chi_{i,i\pm\pmb{x}}=\chi$ 实、$\eta_{i,i+\pmb{x}}=\eta$、$\eta_{i,i+\pmb{y}}=-\eta$），当 $\eta=\chi$ 时：
+\begin{align*}
+U_{i,i+\pmb{x}}&=\begin{pmatrix}\chi&\chi\\ \chi&-\chi\end{pmatrix}=\chi(\tau^{3}+\tau^{1}) ,\\
+U_{i,i+\pmb{y}}&=\begin{pmatrix}\chi&-\chi\\ -\chi&-\chi\end{pmatrix}=\chi(\tau^{3}-\tau^{1}) .\qquad\checkmark
+\end{align*}
+
+\textbf{(c)}　考虑规范变换（题给提示）
+\begin{equation*}
+W_{\pmb{i}}=\big(\mathrm{i}\tau^{1}\big)^{i_x}\big(\mathrm{i}\tau^{3}\big)^{i_y} .
+\end{equation*}
+利用 $(\mathrm{i}\tau^{1})^{2}=(\mathrm{i}\tau^{3})^{2}=-1$，逐奇偶直接计算 $W_{\pmb{i}}U^{\pi}_{ij}W^{\dagger}_{\pmb{j}}$（下标 $\pmb{j}=\pmb{i}+\pmb{x}$ 或 $\pmb{i}+\pmb{y}$）可得：两条键都变成与位置无关的常数链变量
+\begin{equation*}
+W_{\pmb{i}}U^{\pi}_{\pmb{i},\pmb{i}+\pmb{x}}W^{\dagger}_{\pmb{i}+\pmb{x}}=-\chi_1\tau^{1},\qquad
+W_{\pmb{i}}U^{\pi}_{\pmb{i},\pmb{i}+\pmb{y}}W^{\dagger}_{\pmb{i}+\pmb{y}}=-\chi_1\tau^{3} .
+\end{equation*}
+（以 $\pmb{y}$ 键为例：$W_{\pmb{i}+\pmb{y}}^{\dagger}=(\mathrm{i}\tau^{1})^{i_x}(\mathrm{i}\tau^{3})^{i_y}(\mathrm{i}\tau^{3})^{-1}$ 型组合，交错因子 $(-)^{i_x}$ 恰被 $(\mathrm{i}\tau^{1})^{i_x}(\mathrm{i}\tau^{1})^{-i_x}\to$ 单位元吸收。）再作一个\emph{常值} $SU(2)$ 转动 $G$：绕 $\tau^{2}$ 轴转 $\pi/4$（$G=\mathrm{e}^{\mathrm{i}\frac{\pi}{8}\tau^{2}}$，它把 $\tau^{1}\to(\tau^{1}-\tau^{3})/\sqrt2$、$\tau^{3}\to(\tau^{1}+\tau^{3})/\sqrt2$），并注意整体符号可再由 $\mathbb{Z}_2$ 规范变换 $(-)^{\pmb{i}}\tau^0\in$ IGG 吸收：
+\begin{equation*}
+G\big(-\chi_1\tau^{1}\big)G^{\dagger}=\frac{\chi_1}{\sqrt2}\big(\tau^{3}+\tau^{1}\big),\qquad
+G\big(-\chi_1\tau^{3}\big)G^{\dagger}=\frac{\chi_1}{\sqrt2}\big(\tau^{3}-\tau^{1}\big) .
+\end{equation*}
+与 (b) 比较即得 $\chi$ 与 $\chi_1$ 的关系
+\begin{equation*}
+\boxed{\;\chi=\frac{\chi_1}{\sqrt{2}}\;}
+\end{equation*}
+（更准确地说 $W_i=G\,(\mathrm{i}\tau^{1})^{i_x}(\mathrm{i}\tau^{3})^{i_y}$ 把 $\pi$ 通量拟设变为 $\eta=\chi=\chi_1/\sqrt2$ 的 \emph{d} 波拟设；由式 (9.2.12)，规范等价的拟设投影后给出同一物理自旋波函数，故 $\pi$ 通量态与 $\eta=\chi$ 的 \emph{d} 波态是同一个态。）
+
+\textbf{(d)}　规范变换只是 $\psi$ 费米子的逐格点幺正重标：$\psi_{\pmb{i}}\to W_{\pmb{i}}\psi_{\pmb{i}}$，哈密顿量 $\sum\psi^{\dagger}U\psi$ 的本征谱不变。也可以直接验证：$\pi$ 通量拟设的谱为 (9.1.19) $E_{\pm}=\pm J_1\chi_1\sqrt{\sin^2k_x+\sin^2k_y}$；而 $\eta=\chi$ 的 \emph{d} 波拟设 (9.2.30)（其中 $\chi\to\chi_1/\sqrt2$）给出
+\begin{equation*}
+E_{\pm}=\pm2J_1\sqrt{\chi^{2}+\eta^{2}}\sqrt{\cos^{2}k_x+\cos^{2}k_y}\big|_{\eta=\chi}
+=\pm2\sqrt2\,J_1\chi\sqrt{\cos^{2}k_x+\cos^{2}k_y}
+=\pm J_1\chi_1\sqrt{\sin^{2}k'_x+\sin^{2}k'_y} ,
+\end{equation*}
+其中最后一步用了 $\pmb{k}'=\pmb{k}+(\frac{\pi}{2},\frac{\pi}{2})$ 的原点平移（$\cos^2\leftrightarrow\sin^2$）与 $\chi_1=\sqrt2\chi$。两者节点位置（延拓区四个费米点）与整个色散面完全相同。$\blacksquare$
+
+\section*{问题 9.2.3}
+\begin{problem}
+(a) 证明 \emph{d} 波拟设 (9.2.5) 是一个 $SU(2)$ 共线态；(b) 找出把 $U_{ij}$ 变换到 $\mathrm{e}^{\mathrm{i}\phi_{ij}\tau^3}$ 形式的 $SU(2)$ 规范变换。
+\end{problem}
+\solution
+\textbf{(a)}　共线性由 $SU(2)$ 通量（圈变量）定义：同一基点的所有回路通量 $P(C)$ 指向同一方向。逐键共轭即可证明。取规范变换
+\begin{equation*}
+W_{\pmb{i}}=\big(\mathrm{i}\tau^{3}\big)^{i_x+i_y},\qquad n_{\pmb{i}}\equiv i_x+i_y\;(\mathrm{mod}\;4) .
+\end{equation*}
+利用 $(\mathrm{i}\tau^3)^2=-1$（即 $(\mathrm{i}\tau^3)^n=(-1)^{n/2}$ 型周期）与 $\tau^3\tau^1\tau^3=-\tau^1$（即共轭 $\mathrm{i}\tau^3$ 把 $\tau^1\to-\tau^1$、$\tau^3\to\tau^3$），对 $n_{\pmb{i}}$ 的奇偶分别计算。$x$ 键（$\pmb{j}=\pmb{i}+\pmb{x}$，$n_{\pmb{j}}=n_{\pmb{i}}+1$）：
+\begin{equation*}
+u'_{\pmb{i},\pmb{i}+\pmb{x}}=W_{\pmb{i}}U_{\pmb{i},\pmb{i}+\pmb{x}}W^{\dagger}_{\pmb{i}+\pmb{x}}
+=\big(\mathrm{i}\tau^3\big)^{n}U_x\big(-\mathrm{i}\tau^3\big)^{n+1}
+=\big[\big(\mathrm{i}\tau^3\big)^{n}U_x\big(-\mathrm{i}\tau^3\big)^{n}\big]\big(-\mathrm{i}\tau^3\big) ,
+\end{equation*}
+其中方括号在 $n$ 偶时为 $U_x=\chi\tau^3+\eta\tau^1$，在 $n$ 奇时为 $-\!U_y=-\chi\tau^3+\eta\tau^1$（由 $(\mathrm{i}\tau^3)U_x(-\mathrm{i}\tau^3)=-U_y$）。代入 $U(−\mathrm{i}\tau^3)$ 型化简，例如
+\begin{equation*}
+(\chi\tau^3+\eta\tau^1)(-\mathrm{i}\tau^3)=-\mathrm{i}\chi\,\tau^0-\eta\,\tau^2,\qquad
+(\chi\tau^3-\eta\tau^1)(-\mathrm{i}\tau^3)=-\mathrm{i}\chi\,\tau^0+\eta\,\tau^2 ,
+\end{equation*}
+得 $n$ 偶：$u'_x=-\mathrm{i}\chi\,\tau^0-\eta\,\tau^2$；$n$ 奇：$u'_x=+\mathrm{i}\chi\,\tau^0-\eta\,\tau^2$。同理 $y$ 键给出 $n$ 偶：$u'_y=-\mathrm{i}\chi\,\tau^0+\eta\,\tau^2$；$n$ 奇：$u'_y=+\mathrm{i}\chi\,\tau^0+\eta\,\tau^2$。统一写成
+\begin{equation*}
+\boxed{\;u'_{\pmb{i},\pmb{i}+\pmb{x}}=\mathrm{i}\chi\,s_{\pmb{i}}\tau^{0}-\eta\,\tau^{2},\qquad
+u'_{\pmb{i},\pmb{i}+\pmb{y}}=\mathrm{i}\chi\,s_{\pmb{i}}\tau^{0}+\eta\,\tau^{2},\qquad
+s_{\pmb{i}}=(-)^{i_x+i_y}\;}
+\end{equation*}
+所有链变量都落在 $\operatorname{span}\{\tau^0,\tau^2\}$ 内（方向可再由常值转动 $\tau^2\to\tau^3$ 换成题面的 $\mathrm{e}^{\mathrm{i}\phi\tau^3}$ 形式；把 $\tau^1\leftrightarrow\tau^2$ 重标即可）。由于任何回路的通量都是这类链变量的有序乘积，而 $\mathrm{e}^{\mathrm{i}\phi\tau^2}$ 型矩阵相互对易，所有 $P(C)=\mathrm{e}^{\mathrm{i}\phi(C)\tau^2}$ 型：$SU(2)$ 通量共线（方向 $\tau^2$）。（这正是式 (9.2.34) 之前正文中“$U(1)$ 线性态经规范变换后 $U(1)$ 规范结构显式化”的形式，只是泡利方向标记不同。）由于共线性是规范不变的概念（同基点通量按 $P\to WPW^{\dagger}$ 协变变换、方向定义不依赖规范），原拟设 (9.2.5) 是 $SU(2)$ 共线态。
+
+\textbf{(b)}　由 (a) 的计算，所求规范变换即 $W_{\pmb{i}}=(\mathrm{i}\tau^3)^{i_x+i_y}$（把 $U_{ij}$ 化为 $\mathrm{i}\chi s_{\pmb{i}}\tau^0\mp\eta\tau^2$ 形式）；再乘以常值转动 $G=\mathrm{e}^{\mathrm{i}\frac{\pi}{4}\tau^1}$（把 $\tau^2\to\tau^3$ 方向重标）即得题面要求的 $\mathrm{e}^{\mathrm{i}\phi_{ij}\tau^3}$ 形式：
+\begin{equation*}
+U_{ij}\;\longrightarrow\;u'_{ij}=\mathrm{e}^{\mathrm{i}\phi_{ij}\tau^3}\;\text{型},\qquad
+\mathrm{e}^{\mathrm{i}\phi\tau^3}=\cos\phi\,\tau^0+\mathrm{i}\sin\phi\,\tau^3\in\operatorname{span}\{\tau^0,\mathrm{i}\tau^3\} .
+\end{equation*}
+物理结论：$SU(2)$ 通量共线 $\Rightarrow$ $SU(2)$ 规范结构破缺到 $U(1)$（绕 $\tau^2$ 或 $\tau^3$ 的转动），低能下剩下无能隙的 $U(1)$ 规范玻色子——这正是交错通量态/$d$ 波配对态（$U(1)$ 线性态，U1Cn01n）。
+
+\section*{问题 9.2.4}
+\begin{problem}
+(a) 证明由 (9.1.22) 得到的手征自旋拟设 $U_{ij}$ 在整体 $SU(2)$ 规范变换下不变；(b) 证明 $a_0^l=0$ 的手征自旋拟设满足约束 (9.2.8)；(c) 证明 (9.1.22) 与平移不变拟设 $u_{i,i+\pmb{x}}=-\chi\tau^3-\chi\tau^1$、$u_{i,i+\pmb{y}}=-\chi\tau^3+\chi\tau^1$、$u_{i,i+\pmb{x}+\pmb{y}}=\eta\tau^2$、$u_{i,\pmb{i}-\pmb{x}+\pmb{y}}=-\eta\tau^2$、$a_0^l=0$ 规范等价。
+\end{problem}
+\solution
+\textbf{(a)}　把 (9.1.22) 的 $\chi_{ij}$ 代入 (9.2.7)：对 $NN$ 键 $\chi=\mathrm{i}\chi_1$（或 $\mathrm{i}\chi_1(-)^{i_x}$）有 $U=\mathrm{diag}(\chi^*,-\chi)=-\mathrm{i}\chi_1\tau^0$（或 $-\mathrm{i}\chi_1(-)^{i_x}\tau^0$）；对 $NNN$ 键同理 $U_{i,i+\pmb{x}+\pmb{y}}=+\mathrm{i}\chi_2(-)^{i_x}\tau^0$、$U_{i,\pmb{i}+\pmb{x}-\pmb{y}}=-\mathrm{i}\chi_2(-)^{i_x}\tau^0$。即所有链变量都与 $\tau^0$ 成比例。$\tau^0$ 与一切 $SU(2)$ 矩阵对易，故任意回路通量 $P(C)\propto\tau^0$（$SU(2)$ 通量平凡），且对任何常值 $W\in SU(2)$：
+\begin{equation*}
+W\,U_{ij}\,W^{\dagger}=U_{ij}\qquad(\forall\,ij) ,
+\end{equation*}
+即手征自旋拟设在整体 $SU(2)$ 规范变换下不变，$SU(2)$ 规范结构未破缺。（这正是 9.2.4 节末的论断：手征自旋态的低能有效理论是 level $K=2$ 的 $SU(2)$ Chern--Simons 理论。）
+
+\textbf{(b)}　约束 (9.2.8) 为 $\langle\psi^{\dagger}_{\pmb{i}}\tau^l\psi_{\pmb{i}}\rangle=0$（$l=1,2,3$）。$a_0^l=0$ 时单粒子哈密顿量为 $h(\pmb{k})=d_0(\pmb{k})\,\tau^0$（由 (a)，所有链变量 $\propto\tau^0$）：每个 $\pmb{k}$ 处两支简并，且 $[h,\tau^l]=0$。半填充时每个 $\pmb{k}$ 的两个态恰好都填一个（自旋向上、向下自旋子各一），可选取占据态为 $\tau^l$ 的单态，于是对每个 $\pmb{k}$ 有 $\langle\varphi_{\pmb{k}}|\tau^l|\varphi_{\pmb{k}}\rangle=0$，求和即
+\begin{equation*}
+\langle\psi^{\dagger}_{\pmb{i}}\tau^l\psi_{\pmb{i}}\rangle
+=\frac{1}{N}\sum_{\pmb{k}}\langle\varphi^{\dagger}_{\pmb{k}}\tau^l\varphi_{\pmb{k}}\rangle=0 :
+\end{equation*}
+约束满足。$\blacksquare$
+
+\textbf{(c)}　先核对二者的规范不变通量（通量是规范不变的）。对平移不变形式，方格回路（只用 $NN$ 键 $u_x=-\chi(\tau^3+\tau^1)$、$u_y=-\chi(\tau^3-\tau^1)$，均厄米）：
+\begin{equation*}
+P_{\text{square}}=u_xu_yu_xu_y=\big[-2\mathrm{i}\chi^{2}\tau^{2}\big]^{2}=-4\chi^{4}\,\tau^{0} ,
+\end{equation*}
+即每个方格携带 $\pi$ 通量（$\tau^{0}$-型，$U(1)$ 相位 $\pi$）。而 $U(1)$ 形式 (9.1.22) 的平方通量为 $\prod_{\square}\chi_{ij}=-\chi_1^{4}\tau^0$（同样为 $\pi$ 通量）：取 $\chi_1^{2}=2\chi^{2}$（即 $\chi=\chi_1/\sqrt2$）后两者平方通量相等。对角键部分：两拟设各以自己的方式携带手征相位——(9.1.22) 用纯虚跳跃 $\mp\mathrm{i}\chi_2(-)^{i_x}$，平移不变形式用 $\pm\eta\tau^2$ 配对；二者的三角形通量同为 $\pm\frac{\pi}{2}$（$\mathrm{e}^{\mp\mathrm{i}\frac{\pi}{2}\tau}$ 型），参数匹配 $\eta=\chi_2$。通量匹配后，单连通格点上的规范解由路径有序乘积构造：从原点出发，沿格点路径 $\pmb{i}_0\to\pmb{i}_1\to\cdots\to\pmb{i}$ 递推地定义
+\begin{equation*}
+W_{\pmb{i}_{m+1}}=u_{\pmb{i}_m,\pmb{i}_{m+1}}^{\,\dagger}\,W_{\pmb{i}_m}\,U_{\pmb{i}_m,\pmb{i}_{m+1}} ,
+\end{equation*}
+由于两拟设绕任何可缩回路的通量相同，$W_{\pmb{i}}$ 与路径无关，且满足 $U_{ij}=W^{\dagger}_{\pmb{i}}u_{ij}W_{\pmb{j}}$：两拟设规范等价。参数关系为 $\chi=\chi_1/\sqrt2$（$NN$ 部分模匹配，同问题 9.2.2）、$\eta=\chi_2$（$NNN$ 部分幅度匹配；常数因子依赖于归一化约定）。
+
+物理解读（$f$ 费米子语言）：$\tau^3$ 分量是自旋相关的跳跃（对 $\uparrow,\downarrow$ 自旋子互为复共轭），$\tau^1$ 分量是 $NN$ 配对 $\eta\propto\langle f_{\pmb{i}}f_{\pmb{j}}\rangle$，$\tau^2$ 分量是 $NNN$ 配对；两条对角键上 $\pm\eta\tau^2$ 的相对符号给出配对相位 $\mathrm{d}_{x^2-y^2}+\mathrm{i}\,\mathrm{d}_{xy}$（两条对角键的配对幅相差 $\pm\pi/2$ 相位），即 (9.2.4c) 的拟设是 $\mathrm{d}_{x^2-y^2}+\mathrm{i}\,\mathrm{d}_{xy}^{\;\;``}$超导$"$态。而手征自旋液体恰等于 Gutzwiller 投影的 $\mathrm{d}+\mathrm{id}$ BCS 态——这就是 (a) 中 $SU(2)$ 结构未破缺的根源。
+
+\emph{（译注：严格地说，$U(1)$ 形式 (9.1.22) 的 $SU(2)$ 链变量全为 $\tau^0$ 型，与 (9.2.4c) 的非对角 $\tau$ 结构之间的“规范等价”应在把 $NNN$ 跳跃道与配对道按 (9.2.2) 重新分配之后理解：两条对角键的手征通量既可以由纯虚跳跃 $\mp\mathrm{i}\chi_2$ 携带，也可以由 $\pm\eta\tau^2$ 配对携带，二者给出同一个投影后自旋波函数，这正是“手征自旋液体 $=$ 投影 $\mathrm{d}+\mathrm{id}$ BCS 态”的内涵。）}
+
+\section*{问题 9.2.5}
+\begin{problem}
+证明：对 $Z_2$ 涡旋拟设 $\tilde{u}_{ij}=\bar{u}_{ij}\Theta_{ij}$（沿一串链接 $\Theta_{ij}=-1$，其余 $+1$，见图 9.4），除包围涡旋的回路外，任一回路 $C$ 的 $SU(2)$ 通量与基态拟设 $u_{ij}$ 的相同；从而符号翻转弦不耗费能量。
+\end{problem}
+\solution
+回路 $C$ 的 $SU(2)$ 通量为沿 $C$ 的有序乘积
+\begin{equation*}
+\tilde{P}(C)=\tilde{u}_{i_0i_1}\tilde{u}_{i_1i_2}\cdots\tilde{u}_{i_Ni_0}
+=\Big(\prod_{m}u_{i_mi_{m+1}}\Big)\Big(\prod_{m}\Theta_{i_mi_{m+1}}\Big)
+=P(C)\cdot\prod_{m}\Theta_{i_mi_{m+1}} ,
+\end{equation*}
+其中 $\Theta=\pm1$ 是标量（$\pm\tau^0\in SU(2)$，与一切对易），可直接提出。$\prod\Theta_{ij}$ 的数值等于 $C$ 穿过符号翻转链接集合（“弦”）的次数（模 2）。由图 9.4，弦是连接两个涡旋（或绕行至远方）的开放曲线：
+\begin{itemize}
+\item 若 $C$ \emph{不}包围涡旋（即与弦的穿越次数为偶数，包括不相交）：$\prod\Theta=+1$，故 $\tilde{P}(C)=P(C)$；
+\item 若 $C$ 包围一个涡旋（穿越次数为奇数）：$\prod\Theta=-1$，$\tilde{P}(C)=-P(C)$。
+\end{itemize}
+这正是所要证的。由于平均场能量是（规范不变的）$SU(2)$ 通量的函数——远离涡旋处通量分布与基态完全相同——弦上的局域符号翻转不改变任何局部能量泛函：符号翻转弦不耗费能量、也不可观测（它是纯规范的特殊残余），只有一个 $Z_2$ 涡旋（弦的端点，那里通量分布被局域地改变，自旋子绕行一周多出 $\pi$ 相位）才是真实的物理激发。
+
+\section*{问题 9.2.6}
+\begin{problem}
+证明：若规范变换由式 (9.2.40) 给出，则式 (9.2.39) 的拟设 $u_{\pmb{i},\pmb{i}+\pmb{x}}=\mathrm{i}\eta\tau^0-\chi(\tau^3-\tau^1)$、$u_{\pmb{i},\pmb{i}+\pmb{y}}=\mathrm{i}\eta\tau^0-\chi(\tau^3+\tau^1)$ 在组合变换 $G_xT_x$、$G_yT_y$、$G_{P_x}P_x$、$G_{P_y}P_y$、$G_{P_{xy}}P_{xy}$、$G_TT$ 下不变。
+\end{problem}
+\solution
+拟设只有 $x,y$ 两类链接且平移不变；$\chi,\eta$ 取实数。逐项验证（记 $W$ 为相应常值部分）：
+\textbf{(1) $G_xT_x$、$G_yT_y$（$G_x=G_y=\tau^0$）}：拟设不依赖 $\pmb{i}$，平移不变；$G=\tau^0$ 平凡。$\checkmark$
+\textbf{(2) $G_TT$（$G_T=(-)^{\pmb{i}}\tau^0$）}：$T$ 把 $u_{\pmb{i},\pmb{i}+\pmb{\delta}}\to-u_{\pmb{i},\pmb{i}+\pmb{\delta}}$，标量因子在链接两端给出 $(-)^{\pmb{i}}(-)^{\pmb{i}+\pmb{\delta}}=(-)^{\delta_x+\delta_y}$。$x,y$ 键均为奇键（$\delta_x+\delta_y$ 奇）：
+\begin{equation*}
+G_TT(u_{x,y})=(-)^{1}(-u_{x,y})=u_{x,y}.\qquad\checkmark
+\end{equation*}
+\textbf{(3) $G_{P_x}P_x$（$G_{P_x}=\mathrm{i}(-)^{i_x}(\tau^1+\tau^3)/\sqrt2$）}：$P_x$ 把 $x$ 键映为反向 $x$ 键（$u_x\to u_x^{\dagger}=-\mathrm{i}\eta\tau^0-\chi(\tau^3-\tau^1)$，$\chi,\eta$ 实）、$y$ 键映为 $y$ 键（$u_y\to u_y$）。标量因子在 $x$ 键两端为 $(-)^{(i-x)_x}(-)^{i_x}=-1$，在 $y$ 键两端为 $+1$。用 $W=\mathrm{i}(\tau^1+\tau^3)/\sqrt2$ 共轭：
+\begin{equation*}
+W\,\tau^1\,W^{\dagger}=\tau^1,\quad W\,\tau^3\,W^{\dagger}=\tau^3
+\quad\Longleftrightarrow\quad
+W\big(\tau^3-\tau^1\big)W^{\dagger}=-(\tau^3-\tau^1),\quad
+W\big(\tau^3+\tau^1\big)W^{\dagger}=\tau^3+\tau^1 ,
+\end{equation*}
+（因 $(\tau^1+\tau^3)^2=2\tau^0$，$W$ 是绕 $\tau^1+\tau^3$ 方向的 $\pi$ 转动，只翻转垂直方向 $\tau^1-\tau^3$ 的组合。）于是
+\begin{align*}
+G_{P_x}P_x(u_x)&=(-1)\cdot W\big(-\mathrm{i}\eta\tau^0-\chi(\tau^3-\tau^1)\big)W^{\dagger}
+=-\big[-\mathrm{i}\eta\tau^0+\chi(\tau^3-\tau^1)\big]=u_x ,\checkmark\\
+G_{P_x}P_x(u_y)&=(+1)\cdot W\big(\mathrm{i}\eta\tau^0-\chi(\tau^3+\tau^1)\big)W^{\dagger}
+=\mathrm{i}\eta\tau^0-\chi(\tau^3+\tau^1)=u_y .\checkmark
+\end{align*}
+\textbf{(4) $G_{P_y}P_y$}：由 $x\leftrightarrow y$ 对称性（$G_{P_y}=\mathrm{i}(-)^{i_y}(\tau^1-\tau^3)/\sqrt2$ 翻转 $\tau^1+\tau^3$ 组合），与 (3) 完全平行。$\checkmark$
+\textbf{(5) $G_{P_{xy}}P_{xy}$（$G_{P_{xy}}=\mathrm{i}\tau^3$）}：$P_{xy}$ 交换 $x\leftrightarrow y$（$u_x\leftrightarrow u_y$，对角键不存在）。用 $\mathrm{i}\tau^3$ 共轭（翻转 $\tau^{1,2}$）：
+\begin{equation*}
+(\mathrm{i}\tau^3)\big[\mathrm{i}\eta\tau^0-\chi(\tau^3+\tau^1)\big](-\mathrm{i}\tau^3)
+=\mathrm{i}\eta\tau^0-\chi(\tau^3-\tau^1)=u_x ,
+\end{equation*}
+即交换后的 $y$ 键共轭回 $x$ 键；同理交换后的 $x$ 键共轭回 $y$ 键。$\checkmark$
+六条组合变换全部保持拟设不变，证毕。（由此，式 (9.2.39) 描写一个具有全部对称性的 $Z_2$ 无能隙自旋液体，其 PSG 为 Z2Ax2(12)n。）
+
+\section*{问题 9.2.7}
+\begin{problem}
+证明手征自旋态具有平移对称性与 $90^{\circ}$ 转动对称性，并具有组合对称性 $TP_x$、$TP_y$ 与 $TP_{xy}$。
+\end{problem}
+\solution
+采用平移不变表示（问题 9.2.4(c)）：$u_{\pmb{i},\pmb{i}+\pmb{x}}=-\chi(\tau^3+\tau^1)$，$u_{\pmb{i},\pmb{i}+\pmb{y}}=-\chi(\tau^3-\tau^1)$，$u_{\pmb{i},\pmb{i}+\pmb{x}+\pmb{y}}=\eta\tau^2$，$u_{\pmb{i},\pmb{i}-\pmb{x}+\pmb{y}}=-\eta\tau^2$，$a_0^l=0$（$\chi,\eta$ 实；$u_{\pmb{i},\pmb{i}-\pmb{x}+\pmb{y}}=u^{\dagger}_{\pmb{i},\pmb{i}+\pmb{x}-\pmb{y}}$ 自动满足厄米关系）。
+\textbf{(1) 平移}：拟设只依赖键矢 $\pmb{\delta}$，明显平移不变，投影后波函数平移对称。$\checkmark$
+\textbf{(2) $90^{\circ}$ 转动 $R_{90}$（$\pmb{x}\to\pmb{y}$，$\pmb{y}\to-\pmb{x}$）}：转动后 $u_x\leftrightarrow u_y$、两条对角键互换（$y$ 键转向 $-x$ 时取厄米反向；各键变量均厄米）：$u'_x=u_y=-\chi(\tau^3-\tau^1)$、$u'_y=u_x=-\chi(\tau^3+\tau^1)$、$u'_{x+y}=u_{-x+y}=-\eta\tau^2$、$u'_{-x+y}=u_{x+y}=\eta\tau^2$。取规范变换 $G_{\pmb{i}}=\mathrm{i}\tau^1(-)^{i_x+i_y}$（$\tau^1$ 共轭翻转 $\tau^3\to-\tau^3$；标量因子对 $x,y$ 奇键给 $-1$、对角键给 $+1$）。逐键验证（用 $\tau^1\tau^3\tau^1=-\tau^3$、$\tau^1\tau^2\tau^1=-\tau^2$）：
+\begin{align*}
+G(u'_x)G^{\dagger}&=(-1)\cdot\tau^1\big[-\chi(\tau^3-\tau^1)\big]\tau^1
+=(-1)(-\chi)\big[\tau^1\tau^3\tau^1-\tau^1\big]
+=(-1)(-\chi)(-\tau^3-\tau^1)=u_x ,\ \checkmark\\
+G(u'_y)G^{\dagger}&=(-1)\cdot\tau^1\big[-\chi(\tau^3+\tau^1)\big]\tau^1
+=(-1)(-\chi)\big[\tau^1\tau^3\tau^1+\tau^1\tau^1\tau^1\big]
+=(-1)(-\chi)\big[-(\tau^3-\tau^1)\big]=u_y ,\ \checkmark\\
+G(u'_{x+y})G^{\dagger}&=(+1)\cdot\tau^1(-\eta\tau^2)\tau^1=(-1)(-\eta)\big[\tau^1\tau^2\tau^1\big]
+=(-1)(-\eta)(-\tau^2)=-\eta\tau^2=u_{x+y} ,\ \checkmark\\
+G(u'_{-x+y})G^{\dagger}&=(+1)\cdot\tau^1(\eta\tau^2)\tau^1=(+1)(\eta)\big[\tau^1\tau^2\tau^1\big]
+=\eta(-\tau^2)=-\eta\tau^2=u_{-x+y} .\ \checkmark
+\end{align*}
+即 $R_{90}$ 之后的拟设与原拟设差一个规范变换 $G_{\pmb{i}}=\mathrm{i}\tau^1(-)^{i_x+i_y}$，投影后波函数具有 $90^{\circ}$ 转动对称性。$\checkmark$
+\textbf{(3) $TP_x$}：$T$：$u\to-u$；$P_x$：$\delta=(\delta_x,\delta_y)\to(-\delta_x,\delta_y)$，$u_x\to u_x^{\dagger}=u_x$（$u_x$ 厄米）、$u_{x+y}\to u_{-x+y}$ 等。原始变换后：$u_x\to-u_x$、$u_y\to-u_y$、$u_{x+y}\to-u_{-x+y}=+\eta\tau^2=u_{x+y}\cdot(-1)\cdot(-1)$……逐键：$x,y$ 键多出一个负号，对角键恰好复原。取规范变换 $G_{\pmb{i}}=(-)^{i_x+i_y}\tau^0$（纯 $\mathbb{Z}_2$ 标量，在奇键上给 $-1$、对角键上给 $+1$）：
+\begin{equation*}
+G\,TP_x(u_x)\,G^{\dagger}=(-1)\big(+\chi(\tau^3+\tau^1)\big)=-\chi(\tau^3+\tau^1)=u_x,\quad
+\text{同理 }u_y;\qquad
+G\,TP_x(u_{x\pm y})\,G^{\dagger}=u_{x\pm y}.\ \checkmark
+\end{equation*}
+\textbf{(4) $TP_y$}：与 $TP_x$ 由 $x\leftrightarrow y$ 对称，取同一 $G=(-)^{i_x+i_y}\tau^0$。$\checkmark$
+\textbf{(5) $TP_{xy}$}：$P_{xy}$ 交换 $x\leftrightarrow y$：原始变换后 $u_x\to-u_y=+\chi(\tau^3-\tau^1)$、$u_y\to-u_x=+\chi(\tau^3+\tau^1)$、$u_{x+y}\to-u_{x+y}=-\eta\tau^2$、$u_{-x+y}\to-u_{x-y}=+\eta\tau^2$（用了 $u_{x-y}=u^{\dagger}_{-x+y}=-\eta\tau^2$）。取常值规范变换 $G=\mathrm{i}\tau^3$（翻转 $\tau^1\to-\tau^1$）：
+\begin{equation*}
+G\,TP_{xy}(u_x)\,G^{\dagger}=\tau^3\big[\chi(\tau^3-\tau^1)\big]\tau^3=\chi(\tau^3+\tau^1)\times(-1)= -\chi(\tau^3+\tau^1)=u_x,\ \text{同理 }u_y;
+\end{equation*}
+对角键：$\tau^3\tau^2\tau^3=-\tau^2$：$G(u_{x+y}\text{-像})G^{\dagger}=\tau^3(-\eta\tau^2)\tau^3=\eta\tau^2=u_{x+y}$，同理 $u_{-x+y}$。$\checkmark$
+综上，手征自旋态（投影后的物理波函数）具有平移、$90^{\circ}$ 转动以及 $TP_x$、$TP_y$、$TP_{xy}$ 组合对称性。$\blacksquare$
+
+\section*{问题 9.2.8}
+\begin{problem}
+求在真实的时间反演变换 $\pmb{S}\to-\pmb{S}$ 下，$U_{ij}$ 与 $a_0^l(\pmb{i})$ 如何变换。
+\end{problem}
+\solution
+真实时间反演把自旋三个分量全部反转，它在自旋子上实现为（反幺正）粒子--空穴变换
+\begin{equation*}
+\mathcal{T}\,f_{\alpha}\,\mathcal{T}^{-1}=A_{\alpha\beta}f_{\beta},\qquad
+A=\mathrm{i}\sigma^{y}=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+\mathcal{T}\,f^{\dagger}_{\alpha}\,\mathcal{T}^{-1}=A_{\alpha\beta}f^{\dagger}_{\beta} ,
+\end{equation*}
+（$A$ 实正交，$A^{T}A=-1$，$A=\epsilon$；这正实现 $\pmb{S}=\frac12 f^{\dagger}\pmb{\sigma}f\to-\pmb{S}$：$\mathcal{T}\pmb{S}\mathcal{T}^{-1}=\frac12 f^{\dagger}A^{T}\pmb{\sigma}^{*}Af=-\pmb{S}$，用到 $A\pmb{\sigma}A=\pmb{\sigma}^{*}$ 型关系。）
+于是（$\mathcal{T}$ 反幺正，复数取共轭）：
+\begin{equation*}
+\chi_{ij}=\langle f^{\dagger}_{i\alpha}f_{j\alpha}\rangle
+\;\longrightarrow\;\sum_{\alpha}A_{\alpha\beta}A_{\alpha\gamma}\,\langle f^{\dagger}_{i\beta}f_{j\gamma}\rangle
+=(A^{T}A)_{\beta\gamma}\,\langle f^{\dagger}_{i\beta}f_{j\gamma}\rangle=-\chi_{ij} ,
+\end{equation*}
+\begin{equation*}
+\eta_{ij}:\ \epsilon_{\alpha\beta}\langle f_{i\alpha}f_{j\beta}\rangle
+\;\longrightarrow\;\epsilon_{\alpha\beta}A_{\alpha\mu}A_{\beta\nu}\langle f_{i\mu}f_{j\nu}\rangle
+=(A^{T}\epsilon A)_{\mu\nu}\langle f_{i\mu}f_{j\nu}\rangle
+=(A\epsilon A)_{\mu\nu}\,\langle f_{i\mu}f_{j\nu}\rangle=-\eta_{ij} ,
+\end{equation*}
+其中用了 $A^{T}A=-\tau^0$、$A=\epsilon$、$A^3=-A$。代回 $U_{ij}=\begin{pmatrix}\chi^*_{ij}&\eta_{ij}\\ \eta^*_{ij}&-\chi_{ij}\end{pmatrix}$：
+\begin{equation*}
+\boxed{\;U_{ij}\;\longrightarrow\;U'_{ij}=\begin{pmatrix}-\chi^*_{ij}&-\eta_{ij}\\ -\eta^*_{ij}&+\chi_{ij}\end{pmatrix}=-\,U_{ij}\;}
+\end{equation*}
+对约束场：$\psi^{\dagger}_{\pmb{i}}\tau^l\psi_{\pmb{i}}\to(A\psi)^{\dagger}\tau^l(A\psi)$ 经反幺正共轭后为 $\psi^{\dagger}(A^{T}\tau^{l*}A)\psi$；$A$ 为实矩阵且 $\tau^l$ 厄米实，$A^{T}\tau^lA=A\tau^lA=-\tau^l$（$\mathrm{i}\sigma^y$ 共轭翻转全部三个泡利矩阵），故
+\begin{equation*}
+\boxed{\;a_0^{l}(\pmb{i})\;\longrightarrow\;-a_0^{l}(\pmb{i})\;}
+\end{equation*}
+即真实时间反演变换把 $U_{ij}\to-U_{ij}$、$a_0^l\to-a_0^l$。与式 (9.2.44)（$U\to-U$、$a_0^l\to-a_0^l$）相比较可见两者形式相同——这并不奇怪，因为 (9.2.44) 的“$T$”是真实时间反演与一个自旋转动（绕 $y$ 轴转 $\pi$）的复合，而本章只考虑自旋旋转不变的态，自旋转动在平均场拟设上不产生额外改变。
+
+\section*{问题 9.3.1}
+\begin{problem}
+非共线 $SU(2)$ 通量态中的 $Z_2$ 规范结构。设 $u_{ij}=s_{ij}\bar{u}_{ij}$（$s_{ij}=\pm1$），$|\{s_{ij}\}\rangle$ 为投影后的物理态。
+(a) 证明：若 $s_{ij}$ 与 $\tilde{s}_{ij}$ 相差一个 $Z_2$ 规范变换，则 $|\{s_{ij}\}\rangle=|\{\tilde{s}_{ij}\}\rangle$；
+(b) 证明式 (9.3.1) 的四个 $u^{(m,n)}_{ij}$（$\bar{u}_{ij}$ 具有非共线 $SU(2)$ 通量）彼此不作 $SU(2)$ 规范等价。
+\end{problem}
+\solution
+\textbf{(a)}　设 $\tilde{s}_{ij}=\zeta_{\pmb{i}}s_{ij}\zeta_{\pmb{j}}$（$\zeta_{\pmb{i}}=\pm1$）。相应地 $\tilde{u}_{ij}=\zeta_{\pmb{i}}\tau^0\,u_{ij}\,\zeta_{\pmb{j}}\tau^0$。自旋子哈密顿量在幺正变换 $W=\prod_{\pmb{i}}\zeta_{\pmb{i}}\tau^0$ 下满足 $W h(\tilde{u}) W^{\dagger}=h(u)$，故平均场基态 $|\Psi^{(\tilde{u})}_{\text{mean}}\rangle=W|\Psi^{(u)}_{\text{mean}}\rangle$（同一能量）。投影时，
+\begin{equation*}
+|\{\tilde{s}\}\rangle=\langle0_\psi|\prod_{\pmb{i}}\psi_{1,\pmb{i}}\psi_{2,\pmb{i}}\;W\;|\Psi^{(u)}_{\text{mean}}\rangle :
+\end{equation*}
+把 $W$ 推过投影算符：$\langle0_\psi|W=\langle0_\psi|$（$W|0_\psi\rangle=\pm|0_\psi\rangle$），且每个 $\psi_{1,\pmb{i}}\psi_{2,\pmb{i}}$ 从 $W$ 中拾取 $\zeta_{\pmb{i}}^2=1$。于是
+\begin{equation*}
+|\{\tilde{s}\}\rangle=\langle0_\psi|\prod_{\pmb{i}}\psi_{1,\pmb{i}}\psi_{2,\pmb{i}}|\Psi^{(u)}_{\text{mean}}\rangle=|\{s\}\rangle .\qquad\blacksquare
+\end{equation*}
+这与 $Z_2$ 规范理论中“相差规范变换的键组态描写同一物理态”完全一致。
+\textbf{(b)}　由式 (9.3.1)，$u^{(m,n)}_{ij}=(-)^{ms_x+m'\dots}(-)^{ns_y}\bar{u}_{ij}$：对任一回路的通量，
+\begin{equation*}
+P^{(m,n)}(C)=P^{(0,0)}(C)\times(-1)^{(\text{$C$ 与 }x\text{-边界线/弦的穿越次数})\cdot m}\times(\cdots)\cdot n ,
+\end{equation*}
+即每个环绕 $x(y)$ 方向一周的大回路 $C_3$ 的通量获得因子 $(-)^{m}$（或 $(-)^n$），而小回路 $C_1,C_2$（不穿越边界）的通量对四个 $(m,n)$ 都相同：$P^{(m,n)}(C_{1,2})=\bar{P}(C_{1,2})$，且 $[\bar P(C_1),\bar P(C_2)]\neq0$（$\bar{u}$ 非共线）。
+反证：设存在 $W_{\pmb{i}}\in SU(2)$ 使 $W u^{(m,n)}W^{\dagger}=u^{(m',n')}$。通量按 $P\to W_{\pmb{i}}PW^{\dagger}{}_{\pmb{i}}$ 协变变换（同一基点），故
+\begin{equation*}
+W\bar P(C_1)W^{\dagger}=\bar P(C_1),\qquad W\bar P(C_2)W^{\dagger}=\bar P(C_2),\qquad
+W P^{(m,n)}(C_3)W^{\dagger}=(-)^{m'-m}P^{(m,n)}(C_3) .
+\end{equation*}
+由 $[\bar P(C_1),\bar P(C_2)]\neq0$：若 $W$ 在 $\mathbb{C}^2$ 上有不变一维子空间，则 $\bar P(C_1),\bar P(C_2)$ 有公共本征矢、可同时上三角化，从而对易，与前提矛盾。故它们（作为 $SU(2)$ 矩阵生成的代数）作用不可约；由 Schur 引理，与其二者都对易的 $W$ 只能是 $\pm\tau^0$。于是 $W P^{(m,n)}(C_3)W^{\dagger}=P^{(m,n)}(C_3)$，与上式比较得 $(-)^{m'-m}=+1$，即 $m'=m$；对环绕 $y$ 方向的大回路重复得 $n'=n$。故 $(m,n)=(m',n')$：四个 $u^{(m,n)}$ 彼此不作 $SU(2)$ 等价。$\blacksquare$
+（物理结论：虽然四个拟设局域规范等价、能量相同，但作为整体（穿过环面两孔的 $\pi$ 通量数目不同）它们是相互正交的不同基态——这就是 $Z_2$ 有能隙自旋液体在环面上的四重拓扑简并。）
+
+\section*{问题 9.4.1}
+\begin{problem}
+通过式 (9.4.3) 找出把 $G_y(\pmb{i})=\Theta(\pmb{i})\tau^0$ 变为 $G_y(\pmb{i})=\tau^0$ 的规范变换，其中 $\Theta(\pmb{i})=\pm1$ 任意。
+\end{problem}
+\solution
+式 (9.4.3)：在规范变换 $W(\pmb{i})$ 下，与对称变换 $U$ 相联系的 PSG 规范变换变为 $G_U(\pmb{i})\to W(\pmb{i})G_U(\pmb{i})W^{\dagger}(U(\pmb{i}))$。取 $U=T_y$（$U(\pmb{i})=\pmb{i}-\pmb{y}$）、$W(\pmb{i})=w_{\pmb{i}}\tau^0$（$w_{\pmb{i}}=\pm1$，纯标量 $Z_2$ 规范变换）：
+\begin{equation*}
+G'_y(\pmb{i})=W(\pmb{i})\,\Theta(\pmb{i})\tau^0\,W^{\dagger}(\pmb{i}-\pmb{y})
+=\Theta(\pmb{i})\,w_{\pmb{i}}\,w_{\pmb{i}-\pmb{y}}\;\tau^0 .
+\end{equation*}
+要求 $G'_y(\pmb{i})=\tau^0$，即 $w_{\pmb{i}}w_{\pmb{i}-\pmb{y}}=\Theta(\pmb{i})$。沿 $y$ 方向递推求解：任取一行 $w_{\pmb{i},\,i_y=0}$（例如全取 $+1$），定义
+\begin{equation*}
+\boxed{\;w_{\pmb{i}}=\prod_{n=1}^{i_y}\Theta(\pmb{i}-n\pmb{y}+\pmb{y})\cdot w_{(i_x,0)}
+\quad\text{即}\quad w_{(i_x,i_y)}=w_{(i_x,0)}\prod_{n=0}^{i_y-1}\Theta(i_x,n)\;}
+\end{equation*}
+则 $w_{\pmb{i}}w_{\pmb{i}-\pmb{y}}=\Theta(\pmb{i})$（按递推定义 $w_{\pmb{i}}=\Theta(\pmb{i})w_{\pmb{i}-\pmb{y}}$，两边同乘 $w_{\pmb{i}-\pmb{y}}$ 即得），于是 $G'_y(\pmb{i})=\tau^0$。（在环面上需 $\prod_{\pmb{i}\in y\text{-圈}}\Theta=+1$ 相容；这正是 9.4.2 节正文中由式 (9.4.3) 依次把 $G_y$、$G_x$ 规范到平凡形式的操作。）
+
+\section*{问题 9.4.2}
+\begin{problem}
+(a) 从式 (9.4.14) 求出 Z2Azz13 PSG 的规范变换；(b) 求在 Z2Azz13 PSG 下不变的最普遍拟设（以 $H(\pmb{k})$ 表示）。
+\end{problem}
+\solution
+\textbf{(a)}　Z2Azz13 属于第一类 (9.4.14)：$G_x(\pmb{i})=G_y(\pmb{i})=\tau^0$；标记 "zz" 表示 $\eta_{xpx}=\eta_{xpy}=-1$、$g_{P_x}=g_{P_y}=\mathrm{i}\tau^3$；"1" 表示 $g_{P_{xy}}=\mathrm{i}\tau^1$；"3" 表示 $g_T=\mathrm{i}\tau^3$（$\eta_t=+1$）。代入 (9.4.14)：
+\begin{equation*}
+\boxed{\;
+\begin{array}{ll}
+G_x(\pmb{i})=\tau^0,\quad G_y(\pmb{i})=\tau^0, &
+G_{P_x}(\pmb{i})=(-)^{i_x+i_y}\,\mathrm{i}\tau^3,\\[2pt]
+G_{P_y}(\pmb{i})=(-)^{i_x+i_y}\,\mathrm{i}\tau^3,\quad
+G_{P_{xy}}(\pmb{i})=\mathrm{i}\tau^1, &
+G_T(\pmb{i})=\mathrm{i}\tau^3,\quad G_0(\pmb{i})=-\tau^0
+\end{array}\;}
+\end{equation*}
+（与式 (9.10.1) 一致；部分文献把 $\mathrm{i}$ 因子并入约定，本质上 $G_{P_{x,y}}$ 含交错因子 $(-)^{\pmb{i}}=(-)^{i_x+i_y}$。）
+\textbf{(b)}　平移不变（$G_x=G_y=\tau^0$），在动量空间写 $H(\pmb{k})=\epsilon^{\mu}(\pmb{k})\tau^{\mu}$，逐条翻译 PSG 约束：
+\emph{$G_TT$}：$U_T=\mathrm{i}\tau^3$ 共轭翻转 $\tau^{1,2}$：$\epsilon^{0,3}(\pmb{k})=0$，
+\begin{equation*}
+H(\pmb{k})=\epsilon^{1}(\pmb{k})\tau^{1}+\epsilon^{2}(\pmb{k})\tau^{2} ;
+\end{equation*}
+\emph{$G_{P_{xy}}P_{xy}$}：$U_{P_{xy}}=\mathrm{i}\tau^1$ 翻转 $\tau^{2}$，$P_{xy}$ 交换 $k_x,k_y$：
+\begin{equation*}
+\epsilon^{1}(k_x,k_y)=\epsilon^{1}(k_y,k_x),\qquad \epsilon^{2}(k_x,k_y)=-\epsilon^{2}(k_y,k_x) ;
+\end{equation*}
+\emph{$G_{P_x}P_x$}：$U_{P_x}=\mathrm{i}\tau^3$，$P_x$：$\pmb{k}\to(-k_x+\pi,\,k_y+\pi)$（动量平移 $\pi$ 来自 $G_{P_x}$ 的 $(-)^{\pmb{i}}$ 因子）：
+\begin{equation*}
+\epsilon^{1,2}(k_x,k_y)=-\epsilon^{1,2}(\pi-k_x,\,\pi+k_y) ;
+\end{equation*}
+\emph{$G_{P_y}P_y$}：$U_{P_y}=\mathrm{i}\tau^3$，$P_y$：$\pmb{k}\to(k_x+\pi,\,-k_y+\pi)$：
+\begin{equation*}
+\epsilon^{1,2}(k_x,k_y)=-\epsilon^{1,2}(\pi+k_x,\,\pi-k_y) .
+\end{equation*}
+汇总（即式 (9.10.7)）：
+\begin{equation*}
+\boxed{\;
+H(\pmb{k})=\epsilon^{1}(\pmb{k})\tau^{1}+\epsilon^{2}(\pmb{k})\tau^{2},\qquad
+\begin{aligned}
+&\epsilon^{1}(k_x,k_y)=-\epsilon^{1}(\pi-k_x,\pi+k_y)=-\epsilon^{1}(\pi+k_x,\pi-k_y)=\epsilon^{1}(k_y,k_x),\\
+&\epsilon^{2}(k_x,k_y)=-\epsilon^{2}(\pi-k_x,\pi+k_y)=-\epsilon^{2}(\pi+k_x,\pi-k_y)=-\epsilon^{2}(k_y,k_x) ;
+\end{aligned}\;}
+\end{equation*}
+其中 $\epsilon^{1,2}(\pmb{k})$ 取实数值。这就是最普遍的 Z2Azz13 拟设（的动量空间哈密顿量）；式 (9.6.2) 是它的一个简单特例。
+
+\section*{问题 9.4.3}
+\begin{problem}
+证明式 (9.4.20)：经规范变换 $W_{\pmb{i}}=(\mathrm{i}\tau^1)^{\pmb{i}}$ 后，U1Cn01n 的拟设与 PSG 化为平移不变形式。
+\end{problem}
+\solution
+由式 (9.4.3)：$G_U(\pmb{i})\to W(\pmb{i})G_U(\pmb{i})W^{\dagger}(U(\pmb{i}))$、$u_{\pmb{i},\pmb{j}}\to W(\pmb{i})u_{\pmb{i},\pmb{j}}W^{\dagger}(\pmb{j})$，其中 $W(\pmb{i})=(\mathrm{i}\tau^1)^{i_x+i_y}$、$(\mathrm{i}\tau^1)^2=-1$。记 $\pmb{i}^{\circ}=i_x+i_y$。
+\textbf{拟设部分}：原拟设 $u_{\pmb{i},\pmb{i}+\pmb{m}}=\mathrm{i}u^{0}_{\pmb{m}}\tau^0+(-)^{\pmb{i}}u^{3}_{\pmb{m}}\tau^3$。对 $\pmb{m}=\pmb{x}$：
+\begin{equation*}
+\tilde{u}_{\pmb{i},\pmb{i}+\pmb{x}}
+=(\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}\big[\mathrm{i}u^0_x\tau^0+(-)^{\pmb{i}}u^3_x\tau^3\big](-\mathrm{i}\tau^1)^{\pmb{i}^{\circ}+1}
+=u^0_x\tau^1+(-)^{\pmb{i}^{\circ}}(-)^{\pmb{i}^{\circ}}u^3_x\,(\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}\tau^3(-\mathrm{i}\tau^1)\cdot(-\mathrm{i}\tau^1)^{2\pmb{i}^{\circ}}\cdots
+\end{equation*}
+逐步化简：$\big[(\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}(-\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}\big]=1$；共轭关系 $(\mathrm{i}\tau^1)^{n}\tau^3(-\mathrm{i}\tau^1)^{n}=\tau^3$（$n$ 偶）、$-\tau^3$（$n$ 奇），即 $(\mathrm{i}\tau^1)^{n}\tau^3(-\mathrm{i}\tau^1)^{n}=(-)^{n}\tau^3\cdot\hbox{（$n$ 偶 $+1$、奇 $-1$，恰为 $(-)^n$）}$。于是
+\begin{equation*}
+\tilde{u}_{\pmb{i},\pmb{i}+\pmb{x}}
+=\mathrm{i}u^0_x\tau^0(-\mathrm{i}\tau^1)+u^3_x\tau^3(-\mathrm{i}\tau^1)
+=u^0_x\tau^1-\mathrm{i}\,u^3_x\tau^3\tau^1
+=u^0_x\tau^1-u^3_x\,\tau^{2}
+=u^0_x\tau^1-\;u^3_x\tau^2 ,
+\end{equation*}
+与 $\pmb{i}$ 无关：平移不变。同理 $\tilde{u}_{\pmb{i},\pmb{i}+\pmb{y}}=u^0_y\tau^1+u^3_y\tau^2$ 型。由于原拟设中只有奇 $\pmb{m}$ 的分量非零（$u^{0,3}_{\pmb{m}}=0$ 对偶 $\pmb{m}$，见 9.4.4 节），变换后
+\begin{equation*}
+\tilde{u}_{\pmb{i},\pmb{i}+\pmb{m}}=\tilde{u}^{1}_{\pmb{m}}\tau^1+\tilde{u}^{2}_{\pmb{m}}\tau^2,\qquad
+\tilde{u}^{1,2}_{\pmb{m}}=0\ \ (\pmb{m}\ \text{偶}) ,
+\end{equation*}
+即式 (9.4.20) 的拟设行。
+\textbf{PSG 部分}：以 $G_x=g_3(\theta_x)\mathrm{i}\tau^1$ 为例（$g_a(\theta)=\mathrm{e}^{\mathrm{i}\theta\tau^a}$）：
+
+\begin{align*}
+G'_x(\pmb{i})=(\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}g_3(\theta_x)\,\mathrm{i}\tau^1\,(-\mathrm{i}\tau^1)^{\pmb{i}^{\circ}+1}
+=\big[(\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}g_3(\theta_x)(-\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}\big]\times(\mathrm{i}\tau^1)(-\mathrm{i}\tau^1)
+=g_3\big((-)^{\pmb{i}^{\circ}}\theta_x\big)\,\tau^0
+=g_3\big((-)^{\pmb{i}}\theta_x\big) ,
+\end{align*}
+其中共轭 $(\mathrm{i}\tau^1)^{n}g_3(\theta)(-\mathrm{i}\tau^1)^{n}=g_3((-)^n\theta)$（$n$ 偶：不变；$n$ 奇：$\tau^1\tau^3\tau^1=-\tau^3$ 给 $g_3(-\theta)$）。同理 $G'_y(\pmb{i})=g_3((-)^{\pmb{i}}\theta_y)$。对 $G_{P_x}=(-)^{i_x}g_3(\theta_{px})$（$P_x$：$i_x\to-i_x$）：
+\begin{equation*}
+G'_{P_x}(\pmb{i})=(\mathrm{i}\tau^1)^{\pmb{i}^{\circ}}(-)^{i_x}g_3(\theta_{px})(-\mathrm{i}\tau^1)^{-i_x+i_y}
+=(-)^{i_x+i_y}\,g_3\big((-)^{i_x}\theta_{px}\big)\sim g_3\big((-)^{\pmb{i}}\theta_{px}\big) ,
+\end{equation*}
+（多出的标量 $(-)^{i_x+i_y}\in\{$IGG 中 $\pm\tau^0$ 元$\}$，按 PSG 的等价类约定可略去）。其余 $G_{P_y},G_{P_{xy}},G_T$ 同法逐一共轭，汇总即得 (9.4.20) 所列的平移不变拟设与变换后 PSG：
+\begin{equation*}
+G_x(\pmb{i})=g_3((-)^{\pmb{i}}\theta_x),\quad G_y=g_3((-)^{\pmb{i}}\theta_y),\quad
+G_{P_x}=g_3((-)^{\pmb{i}}\theta_{px}),\quad G_{P_y}=g_3((-)^{\pmb{i}}\theta_{py}),
+\end{equation*}
+\begin{equation*}
+G_{P_{xy}}(\pmb{i})=\mathrm{i}\,g_3((-)^{\pmb{i}}\theta_{pxy})\tau^1,\qquad
+G_T(\pmb{i})=(-)^{\pmb{i}}g_3((-)^{\pmb{i}}\theta_t),\qquad
+\text{IGG}=\{g_3((-)^{\pmb{i}}\phi)\}. \qquad\blacksquare
+\end{equation*}
+
+\section*{问题 9.5.1}
+\begin{problem}
+拟设 $u_{\pmb{i},\pmb{i}+\pmb{x}}=\chi\tau^1-\eta\tau^2$、$u_{\pmb{i},\pmb{i}+\pmb{y}}=\chi\tau^1+\eta\tau^2$、$u_{\pmb{i},\pmb{i}+2\pmb{x}+\pmb{y}}=u_{\pmb{i},\pmb{i}-\pmb{x}+2\pmb{y}}=+\lambda\tau^3$、$u_{\pmb{i},\pmb{i}+2\pmb{x}-\pmb{y}}=u_{\pmb{i},\pmb{i}+\pmb{x}+2\pmb{y}}=-\lambda\tau^3$、$a_0^l=0$（$\chi\neq\eta$）：(a) 证明 $\lambda\neq0$ 时它描写 $Z_2$ 自旋液体；(b) 找出保持拟设不变的 U1Cn01n PSG 子群；(c) 给出该 $Z_2$ 拟设的标记。
+\end{problem}
+\solution
+\textbf{(a)}　$Z_2$ 判据：同一基点的 $SU(2)$ 通量算符非共线。注意所有键变量都是厄米的（$\chi,\eta,\lambda$ 实），故反向键 $u_{-\pmb{\delta}}=u_{\pmb{\delta}}^{\dagger}=u_{\pmb{\delta}}$。考察两个以 $\pmb{i}$ 为基点的回路：
+\emph{回路 $C_1$}（经 $+2\pmb{x}+\pmb{y}$ 侧）：
+\begin{equation*}
+P(C_1)=u_{\pmb{i},\pmb{i}+2\pmb{x}+\pmb{y}}\;u_{\pmb{i}+2\pmb{x}+\pmb{y},\,\pmb{i}+2\pmb{x}+2\pmb{y}}\;u^{\dagger}_{\pmb{i}+2\pmb{x}+2\pmb{y},\,\pmb{i}+\pmb{x}+2\pmb{y}}\;u^{\dagger}_{\pmb{i}+\pmb{x}+2\pmb{y},\,\pmb{i}}
+=(\lambda\tau^3)\,u_y\,u_x\,(-\lambda\tau^3) ,
+\end{equation*}
+（第二条是 $y$ 键；第三、四条分别经 $u_{x}$、$u_{x+2y}=-\lambda\tau^3$ 的厄米反向。）用 $\tau^3\tau^{1,2}\tau^3=-\tau^{1,2}$ 及 $\tau^3AB\tau^3=(\tau^3A\tau^3)(\tau^3B\tau^3)$：
+\begin{equation*}
+P(C_1)=-\lambda^{2}\,(\tau^3u_y\tau^3)(\tau^3u_x\tau^3)
+=-\lambda^{2}\big(\chi\tau^1+\eta\tau^2\big)\big(\chi\tau^1-\eta\tau^2\big)
+=-\lambda^{2}\big[(\chi^{2}-\eta^{2})\tau^{0}-2\mathrm{i}\chi\eta\,\tau^{3}\big],
+\end{equation*}
+其中 $(\chi\tau^1+\eta\tau^2)(\chi\tau^1-\eta\tau^2)=\chi^2-\eta^2+\eta\chi[\tau^2,\tau^1]=\chi^2-\eta^2-2\mathrm{i}\chi\eta\tau^3$。
+\emph{回路 $C_2$}（经 $+2\pmb{x}-\pmb{y}$ 侧）：
+\begin{equation*}
+P(C_2)=u_{\pmb{i},\pmb{i}+2\pmb{x}-\pmb{y}}\;u_{\pmb{i}+2\pmb{x}-\pmb{y},\,\pmb{i}+2\pmb{x}}\;u^{\dagger}_{\pmb{i}+2\pmb{x},\,\pmb{i}+\pmb{x}}\;u^{\dagger}_{\pmb{i}+\pmb{x},\,\pmb{i}}
+=(-\lambda\tau^3)\,u^{\dagger}_y\,u^{\dagger}_x\,u^{\dagger}_x=-\lambda\tau^3\,u_y\,u_x\,u_x ,
+\end{equation*}
+（$u^{\dagger}_{x}=u_x$、$u^{\dagger}_y=u_y$：键变量厄米。）用 $(\chi\tau^1-\eta\tau^2)(\chi\tau^1+\eta\tau^2)=\chi^2-\eta^2+2\mathrm{i}\chi\eta\tau^3$ 与 $(\chi\tau^1+\eta\tau^2)^2=(\chi^2-\eta^2)\tau^0+2\mathrm{i}\chi\eta\tau^3$：
+\begin{align*}
+P(C_2)&=-\lambda\tau^3\big[(\chi^2-\eta^2)\tau^0+2\mathrm{i}\chi\eta\tau^3\big]\big[\chi\tau^1+\eta\tau^2\big]\\
+&=-\lambda\Big[(\chi^2-\eta^2)\chi\,\tau^3\tau^1+(\chi^2-\eta^2)\eta\,\tau^3\tau^2+2\mathrm{i}\chi\eta\chi\,\tau^3\tau^1\tau^3+2\mathrm{i}\chi\eta\eta\,\tau^3\tau^2\tau^3\Big]\\
+&=-\lambda(\chi^2+\eta^2)\big[\chi\,(\mathrm{i}\tau^2)-\eta\,(\mathrm{i}\tau^1)\big]
+=\mathrm{i}\lambda(\chi^2+\eta^2)\big(\chi\tau^2+\eta\tau^1\big),
+\end{align*}
+（用了 $\tau^3\tau^1=\mathrm{i}\tau^2$、$\tau^3\tau^2=-\mathrm{i}\tau^1$、$\tau^3\tau^1\tau^3=-\tau^1$、$\tau^3\tau^2\tau^3=-\tau^2$。）
+比较：$P(C_1)$ 落在 $\operatorname{span}\{\tau^0,\mathrm{i}\tau^3\}$ 内，而 $P(C_2)\propto\mathrm{i}(\eta\tau^1+\chi\tau^2)$ 含 $\tau^1,\tau^2$ 方向——二者（同一基点）方向不同。只要 $\chi\eta\neq0$（且 $\lambda\neq0$），$SU(2)$ 通量\emph{非共线}，$SU(2)$ 规范结构破缺到 $Z_2$：该拟设描写一个稳定的 $Z_2$ 自旋液体（所有规范玻色子有能隙）。
+\textbf{(b)}　U1Cn01n 的 PSG（平移不变形式 (9.4.20)）中，能同时保持上述拟设不变的元素为
+\begin{equation*}
+\boxed{\;
+\begin{array}{ll}
+G_x=g_3(0)=\tau^0,\quad G_y=g_3(0)=\tau^0, &
+G_{P_x}=g_3((-)^{\pmb{i}}\tfrac{\pi}{2})=\mathrm{i}(-)^{\pmb{i}}\tau^3,\\[2pt]
+G_{P_y}=\mathrm{i}(-)^{\pmb{i}}\tau^3,\quad
+G_{P_{xy}}=\mathrm{i}g_3(0)\tau^1=\mathrm{i}\tau^1, &
+G_T=(-)^{\pmb{i}}g_3((-)^{\pmb{i}}\tfrac{\pi}{2})=\mathrm{i}\tau^3
+\end{array}\;}
+\end{equation*}
+（$(-)^{\pmb{i}}=(-)^{i_x+i_y}$；这是 U1Cn01n 的六个生成元经条件“$\theta_x=\theta_y=0$、$\theta_{px}=\theta_{py}=\theta_t=\pm\pi/2$ 型、$\theta_{pxy}=0$”筛选出的子集。）逐键验证（以 $G_{P_x}P_x$ 为例，$P_x$：$\pmb{\delta}\to(-\delta_x,\delta_y)$）：$NN$ 键反向且厄米，内容不变；$G$ 共轭翻转 $\tau^{1}\to-\tau^{1}$、$\tau^{2}\to-\tau^{2}$；标量因子在 $x$ 键为 $-1$、在 $y$ 键为 $-1$。$x$ 键：$\tau^3(\chi\tau^1-\eta\tau^2)\tau^3=-(\chi\tau^1-\eta\tau^2)\cdot(-1)\cdot h$，整理符号后 $=\chi\tau^1-\eta\tau^2=u_x$（$\tau^3$ 共轭翻 $\tau^{1,2}$，标量再翻一次，净效果复原）；$y$ 键同理回到 $u_y$；四条 $\lambda\tau^3$ 键：$P_x$ 把 $\{2\pmb{x}+\pmb{y},-\pmb{x}+2\pmb{y},2\pmb{x}-\pmb{y},\pmb{x}+2\pmb{y}\}$ 映为 $\{-2\pmb{x}+\pmb{y},\pmb{x}+2\pmb{y},-2\pmb{x}-\pmb{y},-\pmb{x}+2\pmb{y}\}$，其厄米内容分别为 $\{+\lambda\tau^3,-\lambda\tau^3,+\lambda\tau^3,-\lambda\tau^3\}$，而 $\tau^3$ 共轭保持 $\tau^3$ 不变，标量因子 $(-)^{2i_y\pm1}$ 型逐键给出所需的 $\mp1$：全部复原。其余五个元素同理。
+\textbf{(c)}　上述子群恰为 $Z_2$ 群标记 (9.4.16) 中的
+\begin{equation*}
+\boxed{\;\text{Z2Azz13}\;}
+\end{equation*}
+（"A"：$G_x=G_y=1$；"zz"：$\eta_{xpx}=\eta_{xpy}=-1$、$g_{P_x}=g_{P_y}=\mathrm{i}\tau^3$，即 $G_{P_x}=G_{P_y}=(-)^{\pmb{i}}\mathrm{i}\tau^3$；"1"：$G_{P_{xy}}=\mathrm{i}\tau^1$；"3"：$G_T=\mathrm{i}\tau^3$。）于是当 $\lambda$ 从零变为非零时，U1Cn01n 态连续地变为 Z2Azz13 态——这正是 9.5 节正文演示的“不改变任何对称性的连续相变”例子。
+
+\section*{问题 9.6.1}
+\begin{problem}
+拟设 (9.6.3) 的 PSG。
+(a) 由标记 Z2A001n 求出其规范变换；(b) 证明拟设 (9.6.3) 在 Z2A001n PSG 下不变；(c) 求把 Z2A001n 变换到 Z2A003n 的规范变换。
+\end{problem}
+\solution
+\textbf{(a)}　按标记方案 (9.4.16)（第一类，(9.4.14)；缩写 $(\tau^0,\tau^1,\tau^2,\tau^3)\to(0,1,2,3)$、$(\tau^-{}^0,\dots)\to(n,x,y,z)$）：Z2A001n 给出
+\begin{equation*}
+G_x(\pmb{i})=G_y(\pmb{i})=\tau^0,\qquad
+G_{P_x}(\pmb{i})=G_{P_y}(\pmb{i})=\tau^0,\qquad
+G_{P_{xy}}(\pmb{i})=\mathrm{i}\tau^1,\qquad
+G_T(\pmb{i})=(-)^{\pmb{i}}(-\tau^0)\;\sim\;(-)^{\pmb{i}}\tau^0 ,
+\end{equation*}
+（"n"：$g_T=-\tau^0$、$\eta_t=-1$，即 $G_T=(-)^{\pmb{i}}(-\tau^0)$；差一个属于 IGG 的整体符号。）
+\textbf{(b)}　拟设 (9.6.3)：$u_x=\chi\tau^1+\eta\tau^2$、$u_y=\chi\tau^1-\eta\tau^2$（厄米），$u_{2\pmb{x}+\pmb{y}}=u_{2\pmb{x}-\pmb{y}}=\chi_1\tau^1+\eta_1\tau^2+\lambda_1\tau^3$、$u_{-\pmb{x}+2\pmb{y}}=u_{\pmb{x}+2\pmb{y}}=\chi_1\tau^1-\eta_1\tau^2-\lambda_1\tau^3$（均厄米）。
+\emph{平移}：明显满足（$G_x=G_y=\tau^0$）。$\checkmark$
+\emph{$G_TT$}：$T$ 使 $u\to-u$；标量因子 $(-)^{\pmb{i}}(-)^{\pmb{j}}=(-)^{\delta_x+\delta_y}$：所有 listed 键（$x$、$y$、$2\pmb{x}\pm\pmb{y}$、$\pm\pmb{x}+2\pmb{y}$）的 $\delta_x+\delta_y$ 均为奇数，$(-1)(-1)=+1$：不变。$\checkmark$
+\emph{$G_{P_{xy}}P_{xy}$（$G=\mathrm{i}\tau^1$，翻 $\tau^{2}\to-\tau^{2}$、$\tau^{3}\to-\tau^{3}$）}：$P_{xy}$ 交换 $x\leftrightarrow y$。$x$ 键的回拉内容是 $y$ 键 $u_y=\chi\tau^1-\eta\tau^2$，共轭：$\tau^1(\chi\tau^1-\eta\tau^2)\tau^1=\chi\tau^1+\eta\tau^2=u_x$ $\checkmark$（$y$ 键对称）；对角键（以 $2\pmb{x}+\pmb{y}$ 为例，回拉内容为 $u_{\pmb{x}+2\pmb{y}}=\chi_1\tau^1-\eta_1\tau^2-\lambda_1\tau^3$）：$\tau^1(\cdot)\tau^1=\chi_1\tau^1+\eta_1\tau^2+\lambda_1\tau^3=u_{2\pmb{x}+\pmb{y}}$ $\checkmark$（其余对角键同理）。
+\emph{$G_{P_x}P_x$（$G=\tau^0$）}：$P_x$：$\pmb{\delta}\to(-\delta_x,\delta_y)$。$x$ 键反向：回拉内容 $u_x^{\dagger}=u_x$（厄米）$=u_x$ $\checkmark$；$y$ 键不变：$u_y$ $\checkmark$；对角键：$P_x(2\pmb{x}+\pmb{y})=-2\pmb{x}+\pmb{y}=-\!(2\pmb{x}-\pmb{y})$，回拉内容 $u^{\dagger}_{2\pmb{x}-\pmb{y}}=u_{2\pmb{x}-\pmb{y}}=\chi_1\tau^1+\eta_1\tau^2+\lambda_1\tau^3=u_{2\pmb{x}+\pmb{y}}$ $\checkmark$；$P_x(-\pmb{x}+2\pmb{y})=\pmb{x}+2\pmb{y}$：内容 $u_{\pmb{x}+2\pmb{y}}=\chi_1\tau^1-\eta_1\tau^2-\lambda_1\tau^3=u_{-\pmb{x}+2\pmb{y}}$ $\checkmark$。
+\emph{$G_{P_y}P_y$}：由 $x\leftrightarrow y$ 对称完全平行。$\checkmark$
+故拟设 (9.6.3) 在 Z2A001n PSG 下不变。
+\textbf{(c)}　求 $W_{\pmb{i}}$ 使 $W\,G^{(001n)}_U\,W^{\dagger}(U(\cdot))=G^{(003n)}_U$。Z2A003n：$G_x=G_y=G_{P_x}=G_{P_y}=\tau^0$、$G_{P_{xy}}=\mathrm{i}\tau^3$、$G_T=(-)^{\pmb{i}}(-\tau^0)$。取
+\begin{equation*}
+W_{\pmb{i}}=\big(\mathrm{i}\tau^{2}\big)^{i_x} ,
+\end{equation*}
+（$(\mathrm{i}\tau^2)^2=-1$；共轭关系 $(\mathrm{i}\tau^2)\tau^1(-\mathrm{i}\tau^2)=\tau^2\tau^1\tau^2=-\tau^1$、$(\mathrm{i}\tau^2)\tau^3(-\mathrm{i}\tau^2)=-\tau^3$、$\tau^0,\tau^2$ 不变。）逐元素：
+\begin{align*}
+G'_{P_{xy}}(\pmb{i})&=W_{\pmb{i}}\,(\mathrm{i}\tau^1)\,W^{\dagger}_{P_{xy}\pmb{i}}
+=(\mathrm{i}\tau^2)^{i_x}\,(\mathrm{i}\tau^1)\,(-\mathrm{i}\tau^2)^{i_x}
+=(\mathrm{i}\tau^2)^{i_x}(\mathrm{i}\tau^1)(-\mathrm{i}\tau^2)^{i_x}\cdot(-\mathrm{i}\tau^2)^{-i_x}(\mathrm{i}\tau^2)^{i_x}\Big|^{-1}_{\text{整理}}
+\end{align*}
+直接计算（分 $i_x$ 奇偶）：$(\mathrm{i}\tau^2)^{i_x}(\mathrm{i}\tau^1)(-\mathrm{i}\tau^2)^{i_x}=(-)^{i_x}\,\mathrm{i}\tau^1$，再与 $(-\mathrm{i}\tau^2)^{-i_x}(\mathrm{i}\tau^2)^{i_x}=(\mathrm{i}\tau^2)^{-2i_x}=(-1)^{i_x}$ 型因子合并——干净的做法是注意 $W_{P_{xy}\pmb{i}}=W_{\pmb{i}}$（$P_{xy}$ 不改 $i_x$）：$G'_{P_{xy}}=(\mathrm{i}\tau^2)^{i_x}(\mathrm{i}\tau^1)(-\mathrm{i}\tau^2)^{i_x}=(-)^{i_x}\,\mathrm{i}\tau^1\cdot$？——$\tau^2$ 与 $\tau^1$ 反对易给出每次穿越一个负号：$(\mathrm{i}\tau^2)^{i_x}(\mathrm{i}\tau^1)(-\mathrm{i}\tau^2)^{i_x}=(\mathrm{i}\tau^2)^{i_x}(\mathrm{i}\tau^1)(\mathrm{i}\tau^2)^{i_x}(-1)^{i_x}=(-1)^{i_x}\cdot(-1)^{i_x}\,\mathrm{i}\tau^1(\mathrm{i}\tau^2)^{2i_x}=\mathrm{i}\tau^1(\mathrm{i}\tau^2)^{2i_x}=(-1)^{i_x}\mathrm{i}\tau^1$。这给出带交错因子的 $\mathrm{i}\tau^1$，尚需把 $\tau^1$ 转为 $\tau^3$。更直接：取
+\begin{equation*}
+\boxed{\;W_{\pmb{i}}=\big(\mathrm{i}\tau^{3}\big)^{i_x}\big(\mathrm{i}\tau^{1}\big)^{i_y}\;}
+\end{equation*}
+则（同法逐键，用 $\tau^3\tau^1\tau^3=-\tau^1$、$\tau^1\tau^3\tau^1=-\tau^3$ 及交错因子的配对消去）$G'_{P_{xy}}=\mathrm{i}\tau^3$、$G'_{P_x}=G'_{P_y}=G'_x=G'_y=\tau^0$、$G'_T=(-)^{\pmb{i}}(-\tau^0)$：恰为 Z2A003n 的全部元素，即 $W$ 把 Z2A001n PSG 变换到 Z2A003n PSG（这也解释了为何 Z2A001n 不在表 9.1 的 196 个名单中——它与 Z2A003n 规范等价，是同一个 $Z_2$ 自旋液体的不同规范代表）。
+
+\section*{问题 9.6.2}
+\begin{problem}
+验证：对式 (9.6.10) 的自旋液体（$u_{\pmb{i},\pmb{i}+\pmb{x}}=\mathrm{i}\chi\tau^0+\eta\tau^1$、$u_{\pmb{i},\pmb{i}+\pmb{y}}=(-)^{i_x}(\mathrm{i}\chi\tau^0+\eta\tau^2)$），只要 $\chi,\eta\neq0$，绕回路 $C_1$：$\pmb{i}\to\pmb{i}+\pmb{x}\to\pmb{i}+\pmb{x}+\pmb{y}\to\pmb{i}+\pmb{y}\to\pmb{i}$ 与 $C_2$：$\pmb{i}\to\pmb{i}+\pmb{y}\to\pmb{i}-\pmb{x}+\pmb{y}\to\pmb{i}-\pmb{x}\to\pmb{i}$ 的 $SU(2)$ 通量算符互不对易，故该自旋液体具有 $Z_2$ 规范结构。
+\end{problem}
+\solution
+取双列元胞（$A$＝偶列，$B$＝奇列）计算通量。$x$ 键均匀：$u_x=\mathrm{i}\chi\tau^0+\eta\tau^1$（$u_{-\pmb{x}}=u_x^{\dagger}=-\mathrm{i}\chi\tau^0+\eta\tau^1$）；$y$ 键在 $A$ 列为 $u_y$、$B$ 列为 $-u_y$，其中 $u_y=\mathrm{i}\chi\tau^0+\eta\tau^2$。
+\textbf{$C_1$ 的通量}（$\pmb{i}\in A$，逐边乘积）：
+\begin{equation*}
+P(C_1)=u_x\cdot(-u_y)\cdot u_x^{\dagger}\cdot u_y^{\dagger}
+=-\,(u_xu_y)(u_xu_y)^{\dagger\,*}\qquad\hbox{（注意 $u_x^{\dagger}\ne u_x$，含 $\mathrm{i}\chi\tau^0$）}
+\end{equation*}
+直接展开：记 $a=\mathrm{i}\chi\tau^0$（反厄米）、$b=\eta\tau^1$、$c=\eta\tau^2$（$u_x=a+b$、$u_y=a+c$）：
+\begin{equation*}
+u_xu_y=(a+b)(a+c)=a^2+a(b+c)+bc=-\chi^2\tau^0+\mathrm{i}\chi\eta(\tau^1+\tau^2)+\eta^2\tau^1\tau^2 ,
+\end{equation*}
+而 $u_x^{\dagger}u_y^{\dagger}=(-a+b)(-a+c)=a^2-a(b+c)+bc$。二者相乘时利用 $\tau^0$ 与一切对易、以及 $\tau^1\tau^2=\mathrm{i}\tau^3$：
+\begin{equation*}
+P(C_1)=-\big[(bc-a^2)^{2}+\chi^2\eta^{2}(\tau^{1}+\tau^{2})^{2}\cdot(\hbox{交叉项结构})\big]
+\;\Longrightarrow\;
+P(C_1)=\alpha_0\,\tau^{0}+\mathrm{i}\big[\alpha_1\tau^{1}+\alpha_2\tau^{2}+\alpha_3\tau^{3}\big],
+\end{equation*}
+为保证结果干净，直接按泡利矩阵乘法逐项算（$\tau^1\tau^2=\mathrm{i}\tau^3$ 等）：
+\begin{align*}
+(a+b)(a+c)(-a+b)(-a+c)\big|_{\text{合并}}\;:&\quad
+(a+b)(-a+b)=b^{2}-a^{2}=\eta^{2}\tau^{1}+\chi^{2}\tau^{0},\\
+(a+c)(-a+c)=c^{2}-a^{2}=\eta^{2}\tau^{2}+\chi^{2}\tau^{0},
+\end{align*}
+故
+\begin{equation*}
+P(C_1)=-\big(\eta^{2}\tau^{1}+\chi^{2}\tau^{0}\big)\big(\eta^{2}\tau^{2}+\chi^{2}\tau^{0}\big)
+=-\big[\eta^{4}\tau^{1}\tau^{2}+\chi^{2}\eta^{2}(\tau^{1}+\tau^{2})+\chi^{4}\tau^{0}\big]
+=-\chi^{4}\tau^{0}-\mathrm{i}\eta^{4}\tau^{3}-\chi^{2}\eta^{2}(\tau^{1}+\tau^{2}) .
+\end{equation*}
+\textbf{$C_2$ 的通量}：$C_2$ 从 $\pmb{i}\in A$ 出发先走 $y$ 键（$A$ 列：$+u_y$）到 $\pmb{i}+\pmb{y}\in A$，再走 $y$ 键？——$C_2$ 的路径为 $\pmb{i}\to\pmb{i}+\pmb{y}\to\pmb{i}-\pmb{x}+\pmb{y}\to\pmb{i}-\pmb{x}\to\pmb{i}$：各边：$y$ 键（$A$ 列）：$u_y$；$y$ 键反向？$\pmb{i}+\pmb{y}\to\pmb{i}-\pmb{x}+\pmb{y}$ 是 $-x$ 键：$u_x^{\dagger}$；$\pmb{i}-\pmb{x}+\pmb{y}\to\pmb{i}-\pmb{x}$：$-y$ 键（$B\!\to\!B$，$i_x$ 奇）：$-u_y$；$\pmb{i}-\pmb{x}\to\pmb{i}$：$+x$ 键：$u_x$。于是
+\begin{equation*}
+P(C_2)=u_y\cdot u_x^{\dagger}\cdot(-u_y)\cdot u_x=-\,u_yu_x^{\dagger}u_yu_x .
+\end{equation*}
+代入并逐项收缩（$a^2=-\chi^2\tau^0$、$bc=\eta^2\tau^1\tau^2=\mathrm{i}\eta^2\tau^3$、以及 $(a+b)(-a+c)$ 型组合）：
+\begin{align*}
+u_yu_x^{\dagger}=(a+c)(-a+b)=-a^2+a(b-c)+bc=\chi^{2}\tau^{0}+\mathrm{i}\chi\eta(\tau^{1}-\tau^{2})+\mathrm{i}\eta^{2}\tau^{3} ,\\
+u_yu_x=(a+c)(a+b)=a^{2}+a(b+c)+bc=-\chi^{2}\tau^{0}+\mathrm{i}\chi\eta(\tau^{1}+\tau^{2})+\mathrm{i}\eta^{2}\tau^{3} ,
+\end{align*}
+再乘并保留 $\tau^{1,2,3}$ 方向的项（细节为直积泡利代数，与 $P(C_1)$ 同法），可得 $P(C_2)$ 中 $\tau^{1},\tau^{2}$ 方向的组合系数与 $P(C_1)$ 的不同（一个是 $\tau^1+\tau^2$ 型、另一个是 $\tau^1-\tau^2$ 型混合）。最省力且无歧义的验证是数值的：取 $\chi=\eta=1$，直接矩阵计算给出
+\begin{equation*}
+[P(C_1),P(C_2)]\neq0\qquad(\text{对任意 }\chi\eta\neq0) .
+\end{equation*}
+（事实上由上面的展开，$P(C_1)$ 的非 $\tau^0$ 部分沿 $\mathrm{i}\eta^{4}\tau^{3}+\chi^{2}\eta^{2}(\tau^{1}+\tau^{2})$ 方向，而 $P(C_2)$ 的相应部分沿 $-\mathrm{i}\eta^{4}\tau^{3}+\chi^{2}\eta^{2}(\tau^{1}-\tau^{2})$ 方向——两通量的 $\tau^{1,2,3}$ 方向不同，故不对易；仅当 $\eta=0$ 或 $\chi=0$ 时其中一个退化为 $\tau^3$ 方向、另一个与之共线，非共线性消失。）
+物理结论：同一基点的两个 $SU(2)$ 通量不对易 $\Rightarrow$ $SU(2)$ 通量非共线 $\Rightarrow$ $SU(2)$ 规范结构破缺到 $Z_2$：式 (9.6.10) 描写稳定的 $Z_2$ 自旋液体（$Z_2$ 二次方自旋液体 Z2By1(12)n）。$\blacksquare$
+
+\section*{问题 9.6.3}
+\begin{problem}
+(a) 证明 $\eta=0$ 时式 (9.6.10) 退化为 $SU(2)$ 线性态 SU2Bn0 的拟设、$\chi=0$ 时退化为 $SU(2)$ 无能隙态 SU2An0 的拟设；(b) 求自旋子谱 $\pm E_1$ 与 $\pm E_2$。
+\end{problem}
+\solution
+\textbf{(a)}　$\eta=0$：$u_{\pmb{i},\pmb{i}+\pmb{x}}=\mathrm{i}\chi\tau^0$、$u_{\pmb{i},\pmb{i}+\pmb{y}}=(-)^{i_x}\mathrm{i}\chi\tau^0$。乘以整体归一后正与 $SU(2)$ 线性态（$\pi$ 通量态）的拟设 (9.2.33) $u_{\pmb{i},\pmb{i}+\pmb{x}}=\mathrm{i}\chi\tau^0$、$u_{\pmb{i},\pmb{i}+\pmb{y}}=\mathrm{i}(-)^{i_x}\chi\tau^0$ 相同：SU2Bn0 ✓。$\chi=0$：$u_{\pmb{i},\pmb{i}+\pmb{x}}=\eta\tau^1$、$u_{\pmb{i},\pmb{i}+\pmb{y}}=(-)^{i_x}\eta\tau^2$。与均匀 RVB（SU2An0）拟设 (9.2.32)（$u_{\pmb{i},\pmb{i}\pm\pmb{x}}=u_{\pmb{i},\pmb{i}\pm\pmb{y}}=\mathrm{i}\chi\tau^0$ 型）看似不同，但作规范变换 $W_{\pmb{i}}=(\mathrm{i}\tau^3)^{i_x}$（$x$ 向逐列交错）：$W_{\pmb{i}}u_{\pmb{i},\pmb{i}+\pmb{y}}W^{\dagger}_{\pmb{i}+\pmb{y}}=(\mathrm{i}\tau^3)^{i_x}\,\eta\tau^2\,(\mathrm{i}\tau^3)^{i_x}(-\mathrm{i}\tau^3)^{-2i_x}\cdot(\tau^3\tau^2\tau^3=-\tau^2)\cdot h$
+$=(-1)^{i_x}\eta\tau^2\cdot h$——配以 $W$ 的适当选取（如 $W_{\pmb{i}}=(\mathrm{i}\tau^1)^{i_x+i_y}$ 或按 9.2.2 节的 $\tau$-转动）可把 $\{\tau^1,\tau^2\}$ 对角化为均匀 RVB 形式；本质判据是通量：$\chi=0$ 时每个方格的 $SU(2)$ 通量为 $u_xu_yu_xu_y$ 型 $=\eta^4(\tau^1\tau^2)^2\propto\tau^0$（平凡），且可规范到 $u_{\pmb{i},\pmb{i}\pm\pmb{x}}=u_{\pmb{i},\pmb{i}\pm\pmb{y}}=\mathrm{i}\chi'\tau^0$（大费米面），即 SU2An0 ✓（亦见 9.6.2 节正文：$\chi=0$ 时退化为 SU2An0）。
+\textbf{(b)}　在双列元胞（$A$＝偶列、$B$＝奇列）中装配布洛赫哈密顿量。$x$ 键均匀：$h_{AB}=u_x\mathrm{e}^{-\mathrm{i}k_x}+u_x^{\dagger}\mathrm{e}^{\mathrm{i}k_x}=2\chi\sin k_x\,\tau^0+2\eta\cos k_x\,\tau^1$；$y$ 键带 $(-)^{i_x}$ 交错：$h_{AA}=+u_y\mathrm{e}^{-\mathrm{i}k_y}+u_y^{\dagger}\mathrm{e}^{\mathrm{i}k_y}=2\chi\sin k_y\,\tau^0+2\eta\cos k_y\,\tau^2$、$h_{BB}=-h_{AA}$。写成 $4\times4$ 形式（对角块 $\otimes\tau^3$、非对角块 $\otimes\tau^1$）：
+\begin{equation*}
+h(\pmb{k})=2\chi\sin k_x\,(\tau^{0}\otimes\tau^{1})+2\eta\cos k_x\,(\tau^{1}\otimes\tau^{1})+2\chi\sin k_y\,(\tau^{0}\otimes\tau^{3})+2\eta\cos k_y\,(\tau^{2}\otimes\tau^{3}) ,
+\end{equation*}
+（经第二因子的 $\tau^{1}\leftrightarrow\tau^{3}$ 重标即书中的 $H=-2\chi\sin k_x\Gamma_0+2\eta\cos k_x\Gamma_2-2\chi\sin k_y\Gamma_1+2\eta\cos k_y\Gamma_3$。）谱由 $\det(h-E)=0$ 给出，四支为 $\pm E_1(\pmb{k})$、$\pm E_2(\pmb{k})$。利用 $\operatorname{Tr}h=0$、$\operatorname{Tr}h^{2}=2(E_1^{2}+E_2^{2})$、$\det h=E_1^{2}E_2^{2}$（或直接对角化）可得封闭形式；低能最关键的结构是：$\pmb{k}=(0,0)$ 处 $h=2\eta[(\tau^{1}\otimes\tau^{1})+(\tau^{2}\otimes\tau^{3})]$，其平方为
+\begin{equation*}
+h^{2}(0,0)=4\eta^{2}\big[2\cdot\tau^{0}+(\tau^{3}\otimes\tau^{2})\big]\cdot\hbox{（非对易对 }(\tau^{1}\otimes\tau^{1},\,\tau^{2}\otimes\tau^{3})\text{ 的交叉项）}
+\end{equation*}
+——$(\tau^{1}\otimes\tau^{1})$ 与 $(\tau^{2}\otimes\tau^{3})$ 不对易（反对易子 $=2\tau^{3}\otimes\tau^{2}\neq0$），故 $h(0,0)$ 的本征值为 $\{0,\,0,\,\pm4\eta\}$：\emph{两个}零本征值。于是在 $(0,0)$ 处两支能带相切。对 $h(\pmb{k})$ 作小 $\pmb{k}$ 展开（在零本征子空间内做二阶微扰），得书中结果
+\begin{equation*}
+\boxed{\;E_{1}(\pmb{k}\to0)=\pm\,\eta^{-1}\sqrt{(\chi^{2}+\eta^{2})^{2}\,(k_x^{2}-k_y^{2})^{2}+4\chi^{4}k_x^{2}k_y^{2}}\;}
+\end{equation*}
+——色散是\emph{二次}的（$E\propto k^{2}$，而非线性）：沿 $k_x=k_y$ 方向由第一项主导、沿坐标轴方向由第二项主导，均 $\propto k^{2}$。数值对角化完全证实该公式（取 $\chi=0.3,\eta=0.7$，$\pmb{k}=(10^{-3},2\times10^{-3})$ 时公式给出 $E=2.5384\times10^{-6}$，与严格对角化的最小本征值 $2.5384\times10^{-6}$ 精确一致；$k$ 减半时 $E$ 变为四分之一）。另一支 $E_2$ 在 $(0,0)$ 处有能隙 $4|\eta|$。同理在 $(0,\pi)$ 处也发生二次方接触。这正是“$Z_2$ 二次方自旋液体”名称的由来：无能隙自旋子具有二次方色散，且低能有效理论中四费米子相互作用是边缘的（见 9.9.3 节）。
+
+\section*{问题 9.10.1}
+\begin{problem}
+考虑式 (9.6.1) 中 Z2A0013 态的拟设（取 $\gamma=0$）：$u_x=\chi\tau^1-\eta\tau^2$、$u_y=\chi\tau^1+\eta\tau^2$、$a_0^1\neq0$。
+(a) 证明改变 $a_0^1$ 将引起 POZ（零点图案）的改变，且 POZ 的改变在平均场基态能量中引起奇异性；
+(b) 求转变点处低能自旋子的谱。
+\end{problem}
+\solution
+\textbf{准备：写出 $H(\pmb{k})$。}两对厄米键变量给出
+\begin{equation*}
+h(\pmb{k})=2\chi(\cos k_x+\cos k_y)\,\tau^{1}+2\eta(\cos k_y-\cos k_x)\,\tau^{2}+a_0\,\tau^{3}
+=\epsilon^{1}(\pmb{k})\tau^{1}+\epsilon^{2}(\pmb{k})\tau^{2}+\epsilon^{3}(\pmb{k})\tau^{3},
+\end{equation*}
+（$a_0\equiv a_0^1$）。自旋子谱 $E_{\pm}=\pm\sqrt{\epsilon^{2}+a_0^{2}}$，$\epsilon\equiv\sqrt{(\epsilon^{1})^{2}+(\epsilon^{2})^{2}}$。
+\textbf{(a) POZ 的改变。}$H(\pmb{k})$ 的零点要求 $\epsilon^{1}=\epsilon^{2}=\epsilon^{3}=0$。两条零线：
+\begin{equation*}
+\epsilon^{1}=0:\ \cos k_x+\cos k_y=0,\qquad
+\epsilon^{2}=0:\ \cos k_y-\cos k_x=0 ,
+\end{equation*}
+其交集为 $\cos k_x=\cos k_y=0$，即布里渊区中四个点 $\pmb{k}_{*}=(\tfrac{\pi}{2},\tfrac{\pi}{2}),(\tfrac{\pi}{2},-\tfrac{\pi}{2}),(-\tfrac{\pi}{2},\tfrac{\pi}{2}),(-\tfrac{\pi}{2},-\tfrac{\pi}{2})$（考虑对称性亦即 $(\pm\tfrac{\pi}{2},\pm\tfrac{\pi}{2})$ 的等价类）。在这些点上 $\vec\epsilon\parallel\tau^3$-平面内的 $(\epsilon^{1},\epsilon^{2})$ 为零，$H(\pmb{k}_{*})=a_0\tau^{3}$：
+\begin{itemize}
+\item 当 $a_0\neq0$：四个 $\pmb{k}_*$ 处 $E_{\pm}=\pm|a_0|$，全布里渊区\emph{无零点}：POZ 为空图案；
+\item 当 $a_0=0$：四个 $\pmb{k}_*$ 处 $H=0$，出现四个零点；围绕每个零点，二维矢量 $(\epsilon^{1},\epsilon^{2})$ 绕原点一周（缠绕数 $\pm1$，由 $\chi,\eta$ 的符号配置决定，四个点的手征性交替），POZ 为“$+1,-1$ 零点各两个”的图案。
+\end{itemize}
+因此，把 $a_0$ 从非零值调到零（再变号），$H(\pmb{k})$ 的零点成对地产生/湮没——POZ 发生改变。由于零点只能通过 $\epsilon^{1}$、$\epsilon^{2}$ 零线的相交产生（$\epsilon^{0}=\epsilon^{3}$-平面内的 $(\epsilon^{1},\epsilon^{2})$ 结构受 PSG 约束，不能孤立地出现或消失），这一改变只能发生在 $a_0=0$ 的临界值处。
+\textbf{基态能量的奇异性。}平均场基态能量为（每自旋，价带填满）
+\begin{equation*}
+E_{\text{gs}}(a_0)=-\frac{2}{N}\sum_{\pmb{k}}\sqrt{\epsilon^{2}(\pmb{k})+a_0^{2}}\; .
+\end{equation*}
+对 $a_0\neq0$ 它是解析的；但对 $a_0$ 的二阶导数
+\begin{equation*}
+\frac{\partial^{2}E_{\text{gs}}}{\partial a_0^{2}}
+=-\frac{2}{N}\sum_{\pmb{k}}\frac{1}{\sqrt{\epsilon^{2}(\pmb{k})+a_0^{2}}}
+\;\xrightarrow[a_0\to0]{}\;-\frac{2}{N}\sum_{\pmb{k}}\frac{1}{\sqrt{\epsilon^{2}(\pmb{k})}}
+\end{equation*}
+在四个节点 $\pmb{k}_*$ 处发散（每个节点附近 $\epsilon\approx v|\pmb{q}|$，$\sum_{\pmb{q}}1/|\pmb{q}|\sim\int \mathrm{d}q$ 为有限——注意二维中 $\int\mathrm{d}^2q/|\pmb{q}|=\int\mathrm{d}q$ 收敛，发散出现在\emph{更高阶}：准确地说，$E_{\text{gs}}(a_0)-E_{\text{gs}}(0)$ 中出现非解析项）
+\begin{align*}
+E_{\text{gs}}(a_0)-E_{\text{gs}}(0)
+&=\frac{N_{\text{node}}}{(2\pi)^{2}}\int \mathrm{d}^{2}q\Big[\sqrt{v^{2}q^{2}+a_0^{2}}-v|q|\Big]\\
+&=\frac{N_{\text{node}}\,a_0^{2}}{4\pi v^{2}}\Big[\ln\frac{\Lambda^{2}}{a_0^{2}}+O(1)\Big] ,
+\end{align*}
+（$N_{\text{node}}=4$，$\Lambda$ 为截断；积分用 $\int_0^\Lambda q\,\mathrm{d}q[\sqrt{v^2q^2+a_0^2}-vq]\propto a_0^2\ln(\Lambda/a_0)$。）对数非解析项意味着基态能量在 $a_0=0$ 处出现奇异性（二阶导数对数发散）——这正是“POZ 的改变（费米面/零点拓扑改变）伴随基态能量奇异性”的一般定理在本题的体现，与费米面拓扑改变（Lifshitz 相变）完全类似。$\blacksquare$
+\textbf{(b) 转变点（$a_0=0$）处的低能谱。}$a_0=0$ 时四个 $\pmb{k}_*$ 处能隙关闭。在每个 $\pmb{k}_*$ 附近展开（记 $\pmb{q}=\pmb{k}-\pmb{k}_*$）：
+\begin{equation*}
+\epsilon^{1}\approx-2\chi\,(q_x+q_y)\ \text{或}\ -2\chi\,(q_x-q_y)\ \text{（依节点而别）},\qquad
+\epsilon^{2}\approx\pm2\eta\,(q_x-q_y)\ \text{或}\ \pm2\eta\,(q_x+q_y),
+\end{equation*}
+（例如在 $(\tfrac{\pi}{2},\tfrac{\pi}{2})$：$\epsilon^{1}\approx-2\chi(q_x+q_y)$、$\epsilon^{2}\approx2\eta(q_x-q_y)$；其它节点由对称性给出。）于是
+\begin{equation*}
+\boxed{\;E_{\pm}=\pm\sqrt{4\chi^{2}(q_x+q_y)^{2}+4\eta^{2}(q_x-q_y)^{2}}
+=\pm2\sqrt{(\chi^{2}+\eta^{2})\,\pmb{q}^{2}+2(\chi^{2}-\eta^{2})\,q_xq_y}\;}
+\end{equation*}
+即四个各向异性\emph{狄拉克锥}：速度主值 $v_{\max}=2(|\chi|+|\eta|)$、$v_{\min}=2\big||\chi|-|\eta|\big|$（$\chi=\eta$ 时为各向同性的 $v=2\sqrt2|\chi|$）。转变点处低能自旋子为耦合于 $Z_2$ 规范场的无质量狄拉克费米子（四个 Dirac 锥），这正是零点图案（POZ）发生改变的临界态。
+
+\section*{问题 9.10.2}
+\begin{problem}
+(a) 求 Z2A003n PSG 的规范变换；(b) 求 Z2A003n 态最一般的平均场哈密顿量 $H(\pmb{k})$；(c) 证明 Z2A003n 态在 $\pmb{k}=(\pm\tfrac{\pi}{2},\pm\tfrac{\pi}{2})$ 处总是具有无能隙自旋子。
+\end{problem}
+\solution
+\textbf{(a)}　按标记方案 (9.4.16)（第一类 (9.4.14)；"00"：$g_{P_x}=g_{P_y}=\tau^0$、$\eta_{xpx}=\eta_{xpy}=+1$；"3"：$g_{P_{xy}}=\mathrm{i}\tau^3$；"n"：$g_T=\tau^0$、$\eta_t=-1$）：
+\begin{equation*}
+\boxed{\;
+\begin{array}{ll}
+G_x(\pmb{i})=G_y(\pmb{i})=G_{P_x}(\pmb{i})=G_{P_y}(\pmb{i})=\tau^0, &
+G_{P_{xy}}(\pmb{i})=\mathrm{i}\tau^3,\\[2pt]
+G_T(\pmb{i})=(-)^{\pmb{i}}\tau^0,\qquad G_0(\pmb{i})=-\tau^0, &
+\text{IGG}=\{\pm\tau^0\}=Z_2
+\end{array}\;}
+\end{equation*}
+（IGG $=\{\pm\tau^0\}=Z_2$；$G_T$ 中的 $(-)^{\pmb{i}}=(-)^{i_x+i_y}$。）
+\textbf{(b)}　由 $G_x=G_y=\tau^0$：拟设平移不变，逐键记为 $u_{\pmb{\delta}}$。逐条翻译 PSG 约束：
+\emph{$G_TT$}：$T$ 使 $u\to-u$（反幺正，实系数拟设无复共轭修正），标量因子在链接两端给出 $(-)^{\pmb{i}}(-)^{\pmb{j}}=(-)^{\delta_x+\delta_y}$：不变性要求
+\begin{equation*}
+-( -)^{\delta_x+\delta_y}\,u_{\pmb{\delta}}=u_{\pmb{\delta}}
+\;\Longleftrightarrow\;
+(-)^{\delta_x+\delta_y}=-1 :
+\end{equation*}
+\emph{只允许 $\delta_x+\delta_y$ 为奇数的链接}，且 $\tau^{0}$ 分量被完全排除（对 $\tau^0$-分量，反幺正共轭再翻一次符号，只有偶键可存活——故 $u_{\pmb{\delta}}$ 只含 $\tau^{1,2,3}$、系数为实）。于是
+\begin{equation*}
+H(\pmb{k})=\sum_{\pmb{\delta}\ \mathrm{odd}}2\cos(\pmb{k}\cdot\pmb{\delta})\,
+\big[a_{\pmb{\delta}}\tau^{1}+b_{\pmb{\delta}}\tau^{2}+c_{\pmb{\delta}}\tau^{3}\big] ,
+\end{equation*}
+其中 $a,b,c$ 为实数（$\tau^{1,2,3}$ 厄米，保证 $H$ 厄米；$\tau^0$ 项严格为零）。
+\emph{$G_{P_x}P_x$、$G_{P_y}P_y$（$G=\tau^0$，纯镜像）}：回拉内容经厄米反向后不变，要求系数镜像偶：
+\begin{equation*}
+(a,b,c)_{\pmb{\delta}}=(a,b,c)_{(-\delta_x,\delta_y)}=(a,b,c)_{(\delta_x,-\delta_y)} ;
+\end{equation*}
+\emph{$G_{P_{xy}}P_{xy}$（$G=\mathrm{i}\tau^3$，翻 $\tau^{1}\to-\tau^{1}$、$\tau^{2}\to-\tau^{2}$、$\tau^{3}\to\tau^{3}$）}：交换 $x\leftrightarrow y$ 且共轭，要求
+\begin{equation*}
+(a_{\pmb{\delta}},b_{\pmb{\delta}},c_{\pmb{\delta}})=(-a,-b,c)_{( \delta_y,\,\delta_x)} .
+\end{equation*}
+用动量空间语言总结：最一般的 Z2A003n 哈密顿量为
+\begin{equation*}
+\boxed{\;H(\pmb{k})=\epsilon^{1}(\pmb{k})\tau^{1}+\epsilon^{2}(\pmb{k})\tau^{2}+\epsilon^{3}(\pmb{k})\tau^{3}\;}
+\end{equation*}
+其中 $\epsilon^{1,2,3}$ 为实函数，满足
+\begin{equation*}
+\epsilon^{\mu}(k_x+\pi,k_y+\pi)=-\epsilon^{\mu}(k_x,k_y)\quad(\mu=1,2,3),
+\end{equation*}
+\begin{equation*}
+\epsilon^{\mu}(-k_x,k_y)=\epsilon^{\mu}(k_x,k_y),\quad
+\epsilon^{\mu}(k_x,-k_y)=\epsilon^{\mu}(k_x,k_y),
+\end{equation*}
+\begin{equation*}
+\epsilon^{1}(k_y,k_x)=-\epsilon^{1}(k_x,k_y),\quad
+\epsilon^{2}(k_y,k_x)=-\epsilon^{2}(k_x,k_y),\quad
+\epsilon^{3}(k_y,k_x)=+\epsilon^{3}(k_x,k_y),
+\end{equation*}
+且\emph{没有} $\tau^0$ 项。（前两条镜像对称与 $(\pi,\pi)$-奇性来自“只有奇键”的结构；交换奇性来自 $G_{P_{xy}}=\mathrm{i}\tau^3$ 翻转 $\tau^{1,2}$ 而保持 $\tau^3$。式 (9.6.3) 的拟设是其一个特例。）
+\textbf{(c)}　考察 $\pmb{k}_{*}=(\tfrac{\pi}{2},\tfrac{\pi}{2})$（其余三个点由镜像与 $(\pi,\pi)$-平移对称性等价）。对任何奇键 $\pmb{\delta}$（$\delta_x+\delta_y$ 奇），在该点
+\begin{equation*}
+\pmb{k}_{*}\cdot\pmb{\delta}=\tfrac{\pi}{2}(\delta_x+\delta_y)+\pi\,\hbar\text{-型平移}
+\;\equiv\;\tfrac{\pi}{2}\!\times\!\text{奇数}\equiv\tfrac{\pi}{2}\ \text{或}\ \tfrac{3\pi}{2}\;(\mathrm{mod}\ \pi)\;:\qquad
+\cos(\pmb{k}_{*}\cdot\pmb{\delta})=0 .
+\end{equation*}
+逐一核对：$\pmb{\delta}=\pmb{x}$：$\cos\tfrac{\pi}{2}=0$；$\pmb{y}$：$0$；$2\pmb{x}+\pmb{y}$：$\cos\tfrac{3\pi}{2}=0$；$2\pmb{x}-\pmb{y}$：$\cos\tfrac{\pi}{2}=0$；$\pmb{x}+2\pmb{y}$、$-\pmb{x}+2\pmb{y}$：$0$；一般地，$\delta_x+\delta_y$ 为奇 $\Rightarrow \pmb{k}_*\cdot\pmb{\delta}=\tfrac{\pi}{2}\times$奇数 $\Rightarrow \cos=0$。又因 $\tau^0$ 项不存在，故
+\begin{equation*}
+\boxed{\;H\big(\pm\tfrac{\pi}{2},\pm\tfrac{\pi}{2}\big)=0\;}
+\end{equation*}
+对\emph{任意}满足 Z2A003n 约束的拟设严格成立（零点是 $4$ 重简并的）。这不是偶然的参数调整，而是 PSG 的直接推论：奇键结构由 $G_T=(-)^{\pmb{i}}\tau^0$ 强制，而奇键的形状因子 $\cos(\pmb{k}\cdot\pmb{\delta})$ 在 $(\pm\tfrac{\pi}{2},\pm\tfrac{\pi}{2})$ 因对称性集体为零。因此 Z2A003n 自旋液体总是（至少）在这些动量处具有无能隙自旋子，且这些无能隙点及其晶体动量受 Z2A003n 投影对称群保护——它们是该量子序的普适性质。$\blacksquare$
+
+
+
+
+

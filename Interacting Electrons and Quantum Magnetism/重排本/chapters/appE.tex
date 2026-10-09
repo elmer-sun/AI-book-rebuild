@@ -1,0 +1,156 @@
+% 附录E 最陡下降法
+\chapter{最陡下降法}
+
+最陡下降法在文献中有若干名称，如鞍点展开、平稳相位近似。其基本原理可用单复变量围道积分的展开说明：
+
+\begin{equation*}
+I ( g ) = \int_ {C} d z \, e ^ {- g f ( z )} ,
+\tag{E.1}
+\end{equation*}
+
+$z = x + iy$ 沿复平面中的围道 $C$ 运行，连接两个 $\operatorname{Re} f \to \infty$ 的点。
+
+设 $f(z)$ 在复平面内解析。Cauchy--Riemann 条件为
+
+\begin{align*}
+\partial_ {x} \operatorname{Re} f & = \partial_ {y} \operatorname{Im} f ,\\
+\partial_ {y} \operatorname{Re} f & = - \partial_ {x} \operatorname{Im} f ,
+\tag{E.2}
+\end{align*}
+
+这也蕴含：任何解析函数的实部与虚部都不能有绝对极小，因为
+
+\begin{equation*}
+\nabla^ {2} \operatorname{Re} f = \nabla^ {2} \operatorname{Im} f = 0.
+\tag{E.3}
+\end{equation*}
+
+然而 $\operatorname{Re}f(z)$ 可以沿某条围道取得极小。由于 $e^{-gf(z)}$ 也解析，可以在复平面内把 $C$ 形变为 $C'$，使其通过鞍点 $z_{0}$：
+
+\begin{equation*}
+\partial_ {x} \operatorname{Re} f \left( z _ {0} \right) = \partial_ {y} \operatorname{Re} f \left( z _ {0} \right) = 0.
+\tag{E.4}
+\end{equation*}
+
+$C'$ 必须满足：
+
+\begin{enumerate}[itemsep=1pt]
+\item $C'$ 的端点与 $C$ 相同；
+\item $\operatorname{Re}f(z)$ 在围道上于 $z_0$ 处取极小；
+\item $\operatorname{Im}f$ 在 $z_{0}$ 附近沿围道为常数。
+\end{enumerate}
+
+路径 $C$ 与 $C'$ 见图~\ref{fig:E.1}。
+
+由 (E.2) 与 (E.4)，第三个条件等价于路径平行于 $\nabla \operatorname{Re}f$：$C'$ 正是 $\exp(-g\operatorname{Re}f)$ 的最陡下降路径——方法由此得名。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figE_1.jpg}
+\caption{鞍点及其最陡下降路径。}
+\label{fig:E.1}
+\end{figure}
+
+把积分改写为
+
+\begin{align*}
+I ( g ) & = e ^ {- g f ( z _ {0} )} I ' ( g ) ,\\
+I ' ( g ) & = \int_ {C '} d z \, \exp \left\{ - g [ f ( z + z _ {0} ) - f ( z _ {0} ) ] \right\} ,
+\tag{E.5}
+\end{align*}
+
+把 $f(z)$ 在 $z_0$ 附近作 Taylor 展开：
+
+\begin{equation*}
+f ( \tilde {x} + z _ {0} ) - f ( z _ {0} ) = \frac {1}{2} f^ {(2)} \tilde {x} ^ {2} + \sum_{n = 3} ^ {\infty} \frac {f^ {(n)}}{n !} \tilde {x} ^ {n}.
+\tag{E.6}
+\end{equation*}
+
+选取围道 $\tilde{x} \in C'$ 使
+
+\begin{equation*}
+\left. f^ {(2)} \tilde {x} ^ {2} \right|_{\tilde {x} \in C '} = \left| f^ {(2)} \tilde {x} ^ {2} \right| \equiv y ^ {2}.
+\tag{E.7}
+\end{equation*}
+
+$C'$（到二阶）是平稳相位路径：
+
+\begin{equation*}
+\operatorname{Im} f ( \tilde {x} + z _ {0} ) = \operatorname{Im} f ( z _ {0} ) + \mathcal {O} ( \tilde {x} ^ {3} ).
+\tag{E.8}
+\end{equation*}
+
+把 $I'$ 按 $g^{-1}$ 幂次展开：
+
+\begin{align*}
+I ' ( g ) & = \sqrt {\frac {2 \pi}{g f^ {(2)}}} \int_{- \infty} ^ {\infty} \frac {dy}{\sqrt {2 \pi}} e ^ {- \frac {1}{2} y ^ {2}}\\
+& \quad \times \sum_{m = 0} ^ {\infty} \frac {1}{m !} \left( - \sum_{n = 3} ^ {\infty} \frac {f^ {(n)}}{n ! \, g^ {\frac {n}{2} - 1} \left( f^ {(2)} \right) ^ {\frac {n}{2}}} \, y ^ {n} \right) ^ {m}.
+\tag{E.9}
+\end{align*}
+
+由对称性，$y$ 的所有奇次幂消失。把被积函数改写为 $y^{2n}$ 的幂级数，系数 $a_{2n}$。Gauss 积分为
+
+\begin{equation*}
+\int_{- \infty} ^ {\infty} \frac {dy}{\sqrt {2 \pi}} \, y ^ {2n} e ^ {- \frac {1}{2} y ^ {2}} = 1 \cdot 3 \cdot 5 \dots \left( 2n - 1 \right) = \left( 2n - 1 \right)!! ,
+\tag{E.10}
+\end{equation*}
+
+由此得
+
+\begin{equation*}
+I ' ( g ) = \sqrt {\frac {2 \pi}{g f^ {(2)}}} \left[ 1 + \sum_{n = 1} ^ {\infty} g ^ {- n} a_{2n} \left( 2n - 1 \right)!! \right].
+\tag{E.11}
+\end{equation*}
+
+存在多个鞍点的情形：
+
+\begin{equation*}
+\left. \partial_ {x} \operatorname{Re} f \right|_{z _ {0} ^ {\alpha}} = 0 \, , \quad \alpha = 1, 2, \dots .
+\tag{E.12}
+\end{equation*}
+
+若鞍点之间的距离远大于 $I'$ 的典型涨落：
+
+\begin{equation*}
+\left| z _ {0} ^ {\alpha} - z _ {0} ^ {\alpha '} \right| \gg \frac {1}{\sqrt {g f^ {(2)}}} ,
+\tag{E.13}
+\end{equation*}
+
+则可以把各鞍点当作独立积分求和：
+
+\begin{equation*}
+I ( g ) = \sum_ {\alpha} e ^ {- g f ( z _ {\alpha} )} I _ {\alpha} ' ( g ) ,
+\tag{E.14}
+\end{equation*}
+
+$I_{\alpha}'$ 是绕 $z_0^\alpha$ 的涨落积分。
+
+把最陡下降展开推广到多维积分是直截了当的。给定积分
+
+\begin{equation*}
+I ( g ) = \int \mathcal {D} \mathbf {z} \, e ^ {- g f ( \mathbf {z} )} ,
+\tag{E.15}
+\end{equation*}
+
+$\mathbf{z} = (z_1, \ldots, z_{\mathcal{N}})$，寻找鞍点
+
+\begin{equation*}
+\left. \partial_ {x _ {i}} \operatorname{Re} f \right|_{\mathbf {z} _ {0}} = 0 \, , \quad i = 1, \dots , \mathcal {N}.
+\tag{E.16}
+\end{equation*}
+
+鞍点 $z_{0}$ 一般是复矢量，它在由 $x_{i}$ 参数化的 $\mathcal{N}$ 条围道上使 $\operatorname{Re}f(\mathbf{z})$ 极小。围道的选取使 $\operatorname{Im}f$ 在鞍点附近为常数。(E.16) 是 $\mathcal{N}$ 个耦合的非线性方程，文献中有许多名称：“鞍点方程”、“经典运动方程”、“平均场方程”等，取决于所论积分与控制其展开的大参数。
+
+$f$ 绕鞍点 $\mathbf{z}_0$ 的二次型定义逆“传播子”$D$：
+
+\begin{equation*}
+D _ {i, j} = \frac {1}{2} \left( \partial_{\tilde {x} _ {i}} \partial_{\tilde {x} _ {j}} f \right)_{i, j} ^ {- 1}.
+\tag{E.17}
+\end{equation*}
+
+$D$ 是 Gauss 系数 $f^{(2)}$ 之逆的推广，描述变量 $\vec{x}$ 中涨落之间的有效相互作用，文献中常称为“RPA 传播子”\footnote{RPA 即“随机相位近似”，例如见 17.2 节。}。
+
+\begin{chapbib}
+\item 最陡下降法的简明参考文献：
+  G. Arfken, \textit{Mathematical Methods for Physicists} (Academic Press, 1970), 7.4 节。
+\end{chapbib}

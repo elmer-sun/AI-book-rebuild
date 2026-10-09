@@ -1,0 +1,114 @@
+% 附录 E 统计力学（Statistical mechanics）
+\chapter{统计力学}
+
+本附录简要勾画主正文将用到的统计力学中的若干结果。
+
+\section{配分函数与热力学函数}
+
+温度 T 下占据能量为 $E_i$ 的态 i 的概率 $p_i$ 为
+\begin{equation*}
+p_i = \frac{\mathrm{e}^{-E_i/k_{\mathrm{B}}T}}{Z}\tag{E.1}
+\end{equation*}
+Z 是单粒子配分函数，用于归一化概率：
+\begin{equation*}
+\sum_ip_i = 1.\tag{E.2}
+\end{equation*}
+这意味着 Z 由
+\begin{equation*}
+Z = \sum_i\mathrm{e}^{-E_i/k_{\mathrm{B}}T}\tag{E.3}
+\end{equation*}
+给出。定义 $\beta=1/k_{\mathrm{B}}T$，可以求出 $\partial Z/\partial\beta$：
+\begin{equation*}
+\frac{\partial Z}{\partial\beta} = -\sum_iE_i\,\mathrm{e}^{-\beta E_i}.\tag{E.4}
+\end{equation*}
+既然已经找到概率分布，就可以用它计算各量的期望值。能量 $\langle E\rangle$ 为
+\begin{equation*}
+\langle E\rangle = \sum_iE_ip_i = \frac{\sum_iE_i\,\mathrm{e}^{-\beta E_i}}{Z} = -\frac{1}{Z}\frac{\partial Z}{\partial\beta} = -\frac{\partial\ln Z}{\partial\beta}.\tag{E.5}
+\end{equation*}
+每粒子的熵为
+\begin{equation*}
+S = -k_{\mathrm{B}}\sum_ip_i\ln p_i\tag{E.6}
+\end{equation*}
+从而
+\begin{equation*}
+S = -k_{\mathrm{B}}\sum_i\frac{\mathrm{e}^{-\beta E_i}}{Z}[-\beta E_i-\ln Z] = k_{\mathrm{B}}\ln Z + \frac{\langle E\rangle}{T}.\tag{E.7}
+\end{equation*}
+在式 E.8 中我们用了附录 B 的结果：可利用的自由能为 $-\boldsymbol{\mu}\cdot\delta\mathbf{B}$。
+
+对 N 个独立可分辨的粒子，恰当的配分函数变为 $Z^{N}$，总能量为
+$E=N\langle E\rangle$。热力学第一定律可以表示为
+\begin{equation*}
+\mathrm{d}E = T\,\mathrm{d}S - p\,\mathrm{d}V - M\,\mathrm{d}B.\tag{E.8}
+\end{equation*}
+亥姆霍兹自由能 F（又称亥姆霍兹函数）定义为
+\begin{equation*}
+F = E - TS,\tag{E.9}
+\end{equation*}
+与配分函数 Z 的关系为
+\begin{equation*}
+F = -Nk_{\mathrm{B}}T\ln Z.\tag{E.10}
+\end{equation*}
+用式 E.8 与 E.9，$\mathrm{d}F$ 可写为
+\begin{equation*}
+\mathrm{d}F = -S\,\mathrm{d}T - p\,\mathrm{d}V - M\,\mathrm{d}B\tag{E.11}
+\end{equation*}
+故
+\begin{equation*}
+M = -\left(\frac{\partial F}{\partial B}\right)_{T,V} = Nk_{\mathrm{B}}T\left(\frac{\partial\ln Z}{\partial B}\right)_{T,V}.\tag{E.12}
+\end{equation*}
+熵为\footnote{原书式 (E.13) 左端印作 $M$；按上文“熵由下式给出”，应为 $S$——疑为原书排印之误。——译注}
+\begin{equation*}
+M = -\left(\frac{\partial F}{\partial T}\right)_{V,B}.\tag{E.13}
+\end{equation*}
+
+\section{能量均分定理}
+
+体系的能量常可写成一些二次项之和。例如弹簧常数 K 的弹簧上的质量 m，其能量
+$E=\frac{1}{2}mv^{2}+\frac{1}{2}Kx^{2}$ 就含两个这样的二次项。低温下量子效应主导，
+我们预期谐振子解与能级阶梯。但高温下（$k_{\mathrm{B}}T$ 远大于能级间距设定的能量
+尺度），系统可以经典地处理。
+
+能量均分定理（equipartition theorem）断言：在经典极限下——$k_{\mathrm{B}}T$ 远
+大于量子能级间距、且能量含若干独立二次项时——能量的期望值等于 $\frac{1}{2}k_{\mathrm{B}}T$
+乘以能量中独立二次项的数目。
+
+证明很直接：若 $E(x_1,x_2,\ldots,x_n)=\sum_{i=1}^{n}\alpha_ix_i^{2}$（$\alpha_i$
+为常数），则
+\begin{equation*}
+\langle E\rangle = \frac{\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}\mathrm{d}x_1\mathrm{d}x_2\cdots\mathrm{d}x_n\,e^{-\beta E(x_1,x_2,\ldots x_n)}E}{\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\cdots\int_{-\infty}^{\infty}\mathrm{d}x_1\mathrm{d}x_2\cdots\mathrm{d}x_n\,e^{-\beta E(x_1,x_2,\ldots x_n)}}.\tag{E.14}
+\end{equation*}
+看起来吓人，但对每个变量的积分可以轻松分离。于是
+\begin{align*}
+\langle E\rangle &= \sum_{i=1}^{n}\alpha_i\left(\frac{\int_{-\infty}^{\infty}\mathrm{d}x_i\,x_i^{2}\,\mathrm{e}^{-\beta\alpha_ix_i^{2}}\prod_{j\neq i}\int_{-\infty}^{\infty}\mathrm{d}x_j\,\mathrm{e}^{-\beta\alpha_ix_j^{2}}}{\int_{-\infty}^{\infty}\mathrm{d}x_i\,\mathrm{e}^{-\beta\alpha_ix_i^{2}}\prod_{j\neq i}\int_{-\infty}^{\infty}\mathrm{d}x_j\,\mathrm{e}^{-\beta\alpha_ix_j^{2}}}\right)\\
+&= \sum_{i=1}^{n}\left(\frac{\frac{\alpha_i}{2}\sqrt{\frac{\pi}{\alpha_i^{3}\beta^{3}}}}{\sqrt{\frac{\pi}{\alpha_i\beta}}}\right)\\
+&= \sum_{i=1}^{n}\frac{1}{2\beta}\\
+&= \frac{n}{2}k_{\mathrm{B}}T,\tag{E.15}
+\end{align*}
+其中用了标准积分\footnote{原书乘积积分的指数印作 $\alpha_i x_j^{2}$；为使积分分解成立应为 $\alpha_j x_j^{2}$——疑为原书排印之误，上式照录。——译注}
+\begin{equation*}
+\int_{-\infty}^{\infty}\mathrm{d}x\,e^{-\gamma x^{2}} = \sqrt{\frac{\pi}{\gamma}} \qquad\text{及}\qquad \int_{-\infty}^{\infty}\mathrm{d}x\,x^{2}e^{-\gamma x^{2}} = \frac{1}{2}\sqrt{\frac{\pi}{\gamma^{3}}}.\tag{E.16}
+\end{equation*}
+
+\begin{example}{E.1}
+这一结果的三例：
+（1）弹簧常数 K 的弹簧上质量 m：$E=\frac{1}{2}mv^{2}+\frac{1}{2}Kx^{2}$（两个二次
+项），故 $\langle E\rangle=k_{\mathrm{B}}T$。
+（2）气体中质量 m 的分子：$E=\frac{1}{2}mv_x^{2}+\frac{1}{2}mv_y^{2}+\frac{1}{2}mv_z^{2}$
+（三个二次项），故 $\langle E\rangle=\frac{3}{2}k_{\mathrm{B}}T$。
+（3）含 N 个原子的固体（因而 3N 根弹簧、能量含 6N 个二次项）：
+$\langle E\rangle=3Nk_{\mathrm{B}}T$。
+\end{example}
+
+除了给能量加上 $\frac{1}{2}k_{\mathrm{B}}T$，每个二次自由度还给热容加上
+$\frac{1}{2}k_{\mathrm{B}}$。
+
+\section*{延伸阅读}
+
+\begin{itemize}[itemsep=0.2em]
+\item F.~Reif,《Fundamentals of statistical and thermal physics》, McGraw-Hill,
+1965。
+\item J.~R.~Waldram,《The theory of thermodynamics》, CUP 1985。
+\item P.~M.~Chaikin 与 T.~C.~Lubensky,《Principles of condensed matter physics》,
+CUP 1995。
+\item A.~M.~Glazer 与 J.~S.~Wark,《Statistical mechanics》, OUP 2001。
+\end{itemize}

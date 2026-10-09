@@ -1,0 +1,401 @@
+% app_c 附录C+D 子流形+超曲面 (书页 439-452 / p454-p467)
+%--B-TAIL--
+% 附录C Submanifolds
+\chapter{子流形}
+
+% ---- 书页 439 / p454 ----
+子流形（submanifold）的概念——某个另一流形的子集，其维数可能（而且通常确实）更低——在直观上直截了当；然而，若了解到随之而来还有一套形式理论，也不必惊讶。子流形在广义相对论中无处不在——作为时空的边界、固定时刻的超曲面、更大的空间在对称性作用下被叶状分层而成的空间——因此值得我们花力气去理解它们究竟是如何运作的。
+
+考虑一个 $n$ 维流形 $M$ 和一个 $m$ 维流形 $S$，其中 $m \leq n$，以及一个映射 $\phi : S \to M$。如果映射 $\phi$ 既是 $C^\infty$ 的又是单射（one-to-one），而且逆映射 $\phi^{-1} : \phi[S] \to S$ 也是 $C^\infty$ 的，那么我们就说像 $\phi[S]$ 是 $M$ 的一个\textbf{嵌入子流形}（embedded submanifold）。如果 $\phi$ 局部是单射但不必全局是单射（也就是说，$\phi[S]$ 在 $M$ 中可能有自交），那么我们就说 $\phi[S]$ 是 $M$ 的一个\textbf{浸入子流形}（immersed submanifold）。当我们不加任何限定语地说到“子流形”时，我们心目中想的是嵌入的情形。$n$ 维流形的一个 $m$ 维子流形被称为具有\textbf{余维数}（codimension）$n - m$。
+
+如附录 A 所讨论的，映射 $\phi : S \to M$ 可以用来把 $(k,0)$ 型张量从 $S$ 推前到 $M$，并把 $(0,l)$ 型张量从 $M$ 拉回到 $S$。特别地，给定点 $q \in S$ 及其像 $\phi(q) \in M$，切空间 $T_{\phi(q)}\phi[S]$ 自然地被等同于 $n$ 维矢量空间 $T_{\phi(q)}M$ 的一个 $m$ 维子空间。如果你想一想把矢量定义为沿曲线的方向导数，这就完全讲得通了；任何曲线 $\gamma : \mathbf{R} \to S$ 显然通过复合在 $M$ 中定义了一条曲线（$\phi \circ \gamma : \mathbf{R} \to M$），后者又定义了一个方向导数。类似地，$M$ 上的微分形式也可以拉回到 $S$，办法是把它们的作用限制在子空间 $T_{\phi(q)}\phi[S]$ 中的矢量上。
+
+定义子流形的另一种方式，是把它定义为一族函数取某组指定固定值的地方。$M$ 的一个 $m$ 维子流形可以用 $n - m$ 个函数 $f^a(x)$（其中 $a$ 从 1 取到 $n - m$）规定为使诸 $f^a$ 等于某些常数 $f^a_*$ 的那些点 $x$ 组成的集合：
+\begin{gather*}
+f^1(x) = f^1_* \\
+f^2(x) = f^2_* \\[1em]
+f^{n-m}(x) = f^{n-m}_*. \tag{C.1}
+\end{gather*}
+
+% ---- 书页 440 / p455 ----
+这些函数应当是非退化的，这样子流形才真正具有维数 $m$。注意，以这种方式定义的子流形是 $M$ 的一个实实在在的子集；它与我们在前面定义中所说的 $\phi[S]$ 等价。为方便起见，从今往后我们会倾向于模糊原来的空间与其作为子流形的嵌入之间的区别，径直称之为“子流形 $S$”。
+
+为了看清子流形这两种定义之间的关系，设想在 $\phi[S] \subset M$ 的一个邻域内构造一组坐标 $x^\mu = \{f^a, y^\alpha\}$，它由这 $n - m$ 个函数 $f^a$ 再加上另外 $m$ 个函数 $y^\alpha$ 组成。于是我们可以把函数 $y^\alpha$ 拉回来充当 $S$ 上的坐标，而映射 $\phi : S \to M$ 就简单地由下式给出：
+\begin{equation*}
+\phi : (y^\alpha) \to (f^a_*, y^\alpha).
+\tag{C.2}
+\end{equation*}
+一个简单的例子是二维球面 $S^2$，事实上我们当初就是把它定义为 $\mathbf{R}^3$ 中到原点距离为单位长度的那些点的集合。在球坐标 $(r, \theta, \phi)$ 下，这等价于要求 $r = 1$，于是坐标 $r$ 就扮演了函数 $f(x)$ 的角色，而 $\theta$ 和 $\phi$ 则是 $S^2$ 上的诱导坐标（induced coordinates）。
+
+我们在式 (B.3) 处已经提到，指定单个矢量场会导致一族积分曲线，它们正是一维子流形。我们可能会想到推广这一构造：用一组若干个矢量场来定义更高维的子流形。设想我们有一个 $n$ 维流形 $M$、一个 $m$ 维子流形 $S$，以及一组 $p$ 个线性无关的矢量场 $V^\mu_{(a)}$，其中 $p \geq m$。这些矢量场“拼合起来定义了 $S$”这一说法意味着每个矢量处处都与 $S$ 相切，从而诸 $V^\mu_{(a)}$ 张成每一个切空间 $T_pS$；我们说 $S$ 是这些矢量场的一个\textbf{积分子流形}（integral submanifold）。然而，任意给定的一组矢量场未必真的能拼合起来定义这样的子流形。它们能否做到，由 \textbf{Frobenius 定理}揭示：一组矢量场 $V^\mu_{(a)}$ 能拼合起来定义积分子流形，当且仅当它们的全部对易子都落在由诸 $V^\mu_{(a)}$ 张成的空间之中；也就是说，若
+\begin{equation*}
+[V_{(a)}, V_{(b)}]^\mu = \alpha^c V^\mu_{(c)}
+\tag{C.3}
+\end{equation*}
+对某一组系数 $\alpha^c(x)$ 成立。（用群论的语言说，这意味着这些矢量场构成一个李代数（Lie algebra）。）我们不打算给出证明，但希望这个结果在数学上讲得通。如果这些矢量场要拼合起来构成一个子流形 $S$，它们必须处处保持与 $S$ 相切。但对易子 $[V, W]$ 等价于李导数 $\mathcal{L}_V W$，后者量度的正是当我们沿着 $V$ 行进时 $W$ 如何变化。如果这个李导数不留在由这些矢量所定义的空间之内，那就意味着 $W$ 开始伸出子流形 $S$ 之外。矢量场拼合起来构成子流形的例子很容易找；在第 5.2 节我们讨论过，与球对称性相联系的三个 Killing 矢量如何把一个三维空间叶状分层成二维球面。（注意，积分子流形的维数可以小于矢量场的数目。）关于 Frobenius 定理的讨论，可参见 Schutz (1980)。
+
+% ---- 书页 441 / p456 ----
+Frobenius 定理有一个有趣的替代表述，它使用微分形式。首先注意，任意一组 $p$ 个线性无关的 1-形式 $\omega_\mu^{(a)}$ 定义了 $T_pM$ 的一个 $(n-p)$ 维矢量子空间，称为这组形式的\textbf{零化子}（annihilator），它由 $T_pM$ 中满足
+\begin{equation*}
+\omega_\mu^{(a)} V^\mu = 0
+\tag{C.4}
+\end{equation*}
+（对每一个 $\omega_\mu^{(a)}$ 都满足）的那些矢量 $V^\mu$ 组成。因此，我们可以不问一组矢量场是否拼合起来定义了一组子流形，而是问一组 1-形式 $\omega_\mu^{(a)}$ 所定义的一组矢量子空间是否拼合起来，充当一组子流形的切空间。为了理解何时会发生这种情形，回想式 (C.1) 中 $m$ 维子流形的定义：它是使一组 $p = n - m$ 个函数 $f^a(x)$ 被取为常数值的地方。常函数是其外微分为零（$(\mathrm{d}f^a)_\mu = \nabla_\mu f^a$ 为零）的函数；但如果一个函数只是沿某个子流形才为常数，那就意味着
+\begin{equation*}
+\mathrm{d}f^a(V) = V^\mu \nabla_\mu f^a = 0
+\tag{C.5}
+\end{equation*}
+对所有与该子流形相切的矢量 $V^\mu \in T_pS$ 成立。反过来也对：如果一个矢量 $V^\mu$ 被所有梯度 $\nabla_\mu f^a$ 零化，它必然与相应的子流形 $S$ 相切。因此，如果一组 1-形式各自都是恰当的，$\omega_\mu^{(a)} = \nabla_\mu f^a$，那么它们所零化的矢量空间肯定定义子流形，即诸 $f^a$ 沿之为常数的那些子流形。但是，如果一组 $p$ 个 1-形式零化某个子空间，那么作为原来诸形式之线性组合的任何另一组 $p$ 个 1-形式也同样会零化它。因此我们说，一组 1-形式 $\omega_\mu^{(a)}$ 是\textbf{成面的}（surface-forming），如果其中每一个成员都能表示成一组恰当形式的线性组合；也就是说，如果存在函数 $g^a{}_b(x)$ 和 $f^a(x)$ 使得
+\begin{equation*}
+\omega_\mu^{(a)} = \sum_b g^a{}_b \nabla_\mu f^b.
+\tag{C.6}
+\end{equation*}
+当然，手里拿到一组形式时，可能很难判断是否存在函数使这一条件得到满足；这正是 Frobenius 定理的对偶表述派上用场的地方。这一定理的版本断言：一组 1-形式 $\omega_\mu^{(a)}$ 是成面的，当且仅当零化子中的每一对矢量同时也被外微分 $\mathrm{d}\omega^{(a)}$ 所零化。换句话说，形式组 $\omega_\mu^{(a)}$ 将满足式 (C.6)，当且仅当对每一对满足 $\omega_\mu^{(a)} V^\mu = 0$ 与 $\omega_\mu^{(a)} W^\mu = 0$（对所有 $a$）的矢量 $V^\mu$ 和 $W^\mu$，我们还有
+\begin{equation*}
+\nabla_{[\mu} \omega_{\nu]}^{(a)} V^\mu W^\nu = 0.
+\tag{C.7}
+\end{equation*}
+
+% ---- 书页 442 / p457 ----
+满足这一条件的一组形式有时被称为“闭的”（closed），这显然是单个形式为闭（即其外微分为零）这一概念的推广。我们不去证明 Frobenius 定理的对偶表述与矢量场版本的等价性，但其中显然涉及把我们的这组形式作用在矢量场的对易子（C.3）上。
+
+% ---- 书页 443 / p458 ----
+% 附录D Hypersurfaces
+\chapter{超曲面}
+
+超曲面（hypersurface）是 $n$ 维流形 $M$ 的一个 $(n-1)$ 维（余维数为一）子流形 $\Sigma$。（当然，如果 $n = 3$，$\Sigma$ 本也完全可以就叫“曲面”，但为了统一起见，我们将继续使用“超”字。）超曲面在广义相对论中极为有用，随之而来的是大量的形式理论。在本附录中，我们汇集超曲面研究中的一批结果：法矢量、类光超曲面的生成元、超曲面的 Frobenius 定理、高斯法坐标、诱导度规、投影张量、外曲率，以及带边流形。这有点像一桌自助餐（smorgasbord），难免带着可想而知的一团杂乱，但希望它同样可口而富于营养。
+
+规定超曲面 $\Sigma$ 的一种方式，是令单个函数等于一个常数，
+\begin{equation*}
+f(x) = f_*.
+\tag{D.1}
+\end{equation*}
+矢量场
+\begin{equation*}
+\zeta^\mu = g^{\mu\nu} \nabla_\nu f
+\tag{D.2}
+\end{equation*}
+将是该曲面的法矢量，其意义是它与 $T_p\Sigma \subset T_pM$ 中的所有矢量都正交。如果 $\zeta^\mu$ 是类时的，就称该超曲面是类空的；如果 $\zeta^\mu$ 是类空的，超曲面就是类时的；而如果 $\zeta^\mu$ 是类光的，超曲面也是类光的。任何与某个法矢量场成比例的矢量场，
+\begin{equation*}
+\xi^\mu = h(x) \nabla^\mu f
+\tag{D.3}
+\end{equation*}
+（其中 $h(x)$ 是某个函数）本身就是法矢量场；由于法矢量在相差一个标度因子的意义下唯一，任何法矢量都可以写成这种形式。因此，对类时和类空超曲面，我们可以定义法矢量的归一化版本，
+\begin{equation*}
+n^\mu = \pm \frac{\zeta^\mu}{|\zeta_\mu \zeta^\mu|^{1/2}}.
+\tag{D.4}
+\end{equation*}
+于是，对类空曲面有 $n^\mu n_\mu = -1$，对类时曲面有 $n^\mu n_\mu = +1$；除一个整体定向之外，这样的法矢量场是唯一的。对类空曲面，这个符号通常选得使 $n^\mu$ 指向未来（future-directed）。
+
+类光超曲面有一个特殊性质：它们可以分解成一族类光测地线，称为该超曲面的\textbf{生成元}（generators）。让我们看看这是怎么回事。
+
+% ---- 书页 444 / p459 ----
+注意，法矢量 $\zeta^\mu$ 除了与 $\Sigma$ 正交之外，还与 $\Sigma$ 相切，因为类光矢量与自身正交。因此，满足
+\begin{equation*}
+\zeta^\mu = \frac{d x^\mu}{d\alpha},
+\tag{D.5}
+\end{equation*}
+的积分曲线将是包含在超曲面之内的类光曲线。这些曲线 $x^\mu(\alpha)$ 必然是测地线，尽管 $\alpha$ 未必是仿射参量。为了验证这一论断，回想测地线方程的一般形式可以表示为
+\begin{equation*}
+\zeta^\mu \nabla_\mu \zeta_\nu = \eta(\alpha) \zeta_\nu,
+\tag{D.6}
+\end{equation*}
+其中 $\eta(\alpha)$ 是一个函数，若 $\alpha$ 是仿射参量它将为零。我们直接代入式 (D.2) 并计算：
+\begin{align*}
+\zeta^\mu \nabla_\mu \zeta_\nu &= \zeta^\mu \nabla_\mu \nabla_\nu f \\
+&= \zeta^\mu \nabla_\nu \nabla_\mu f \\
+&= \zeta^\mu \nabla_\nu \zeta_\mu \\
+&= \frac{1}{2} \nabla_\nu (\zeta^\mu \zeta_\mu).
+\tag{D.7}
+\end{align*}
+在第二行中我们用到了无挠条件，即作用在标量上的协变导数是对易的。注意，尽管在 $\Sigma$ 本身上 $\zeta^\mu \zeta_\mu = 0$，我们不能确定 $\nabla_\nu (\zeta^\mu \zeta_\mu)$ 为零，因为在超曲面之外 $\zeta^\mu \zeta_\mu$ 可能非零。如果这个梯度为零，式 (D.7) 就是测地线方程，我们就证完了。但如果它不为零，我们可以用 $\zeta^\mu \zeta_\mu = 0$ 作为定义子流形 $\Sigma$ 的另一种方式，而它的导数就定义了一个法矢量。因此，必有
+\begin{equation*}
+\nabla_\mu (\zeta^\nu \zeta_\nu) = g \nabla_\mu f = g \zeta_\mu,
+\tag{D.8}
+\end{equation*}
+其中 $g(x)$ 是某个标量函数。把它代入式 (D.7) 就得到
+\begin{equation*}
+\zeta^\mu \nabla_\mu \zeta_\nu = \frac{1}{2} g \zeta_\nu,
+\tag{D.9}
+\end{equation*}
+它与测地线方程 (D.6) 等价。当然，一旦我们知道路径 $x^\mu(\alpha)$ 是测地线，就可以随意用仿射参量 $\lambda(\alpha)$ 对它重新参数化。等价地说，我们用一个标量函数 $h(x)$ 去缩放法矢量场，
+\begin{equation*}
+\xi^\mu = h \zeta^\mu,
+\tag{D.10}
+\end{equation*}
+使得 $\xi^\mu \nabla_\mu \xi^\nu = 0$。惯例正是这么做的，并使用相应的切矢量
+\begin{equation*}
+\xi^\mu = \frac{d x^\mu}{d\lambda}
+\tag{D.11}
+\end{equation*}
+
+% ---- 书页 445 / p460 ----
+作为 $\Sigma$ 的法矢量。类光测地线 $x^\mu(\lambda)$ 的并集就是类光超曲面 $\Sigma$，它们便是 $\Sigma$ 的生成元。
+
+由式 (D.3) 我们知道，与超曲面正交的矢量场可以写成 $\xi^\mu = h \nabla^\mu f$ 的形式。在第 4 章的习题中曾请你证明，这蕴含
+\begin{equation*}
+\xi_{[\mu} \nabla_\nu \xi_{\sigma]} = 0,
+\tag{D.12}
+\end{equation*}
+或者用微分形式的记号，
+\begin{equation*}
+\xi \wedge \mathrm{d}\xi = 0.
+\tag{D.13}
+\end{equation*}
+其逆命题——任何满足此方程的矢量场都与某个超曲面正交——从基本原理出发较难证明，但它是 Frobenius 定理对偶表述的直接推论。设想我们有两个矢量 $V^\mu$ 和 $W^\mu$，两者都被一个服从式 (D.12) 的 1-形式 $\xi_\mu$ 所零化。由 Frobenius 定理（式 (C.7)），$\xi_\mu$ 将定义一个超曲面，当且仅当
+\begin{equation*}
+\nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu = 0.
+\tag{D.14}
+\end{equation*}
+把式 (D.12) 中的表达式作用到 $V^\mu W^\nu$ 上，并展开反对称化括号，我们得到
+\begin{align*}
+\xi_{[\mu} \nabla_\nu \xi_{\sigma]} V^\mu W^\nu
+&= \tfrac{1}{3} \left( \xi_\mu \nabla_{[\nu} \xi_{\sigma]} + \xi_\nu \nabla_{[\sigma} \xi_{\mu]} \right) V^\mu W^\nu + \tfrac{1}{3} \xi_\sigma \nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu \\
+&= \tfrac{1}{3} \xi_\sigma \nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu,
+\tag{D.15}
+\end{align*}
+其中在最后一行我们用到了 $V^\mu$ 和 $W^\mu$ 被 $\xi_\mu$ 零化这一事实。但由于 $\nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu$ 是一个标量而 $\xi_\sigma$ 是一个非零的 1-形式，式 (D.15) 能为零的唯一办法就是式 (D.14) 成立。因此，式 (D.12) 为真当且仅当 $\xi_\mu$ 超曲面正交（hypersurface-orthogonal）。
+
+在流形（或其一部分）上放置一个自然适配于某个超曲面 $\Sigma$ 的坐标系往往很方便；高斯法坐标（Gaussian normal coordinates）就提供了做到这一点的一种便捷办法。先在 $\Sigma$ 上选取坐标 $y^i = \{y^1, \ldots, y^{n-1}\}$。在每一点 $p \in \Sigma$ 处，构造以 $n^\mu$ 为在 $p$ 处切矢量的那条（唯一的）测地线。令 $z$ 为每条测地线上的仿射参量。[如果 $n^\mu$ 已归一化且 $z(p) = 0$，则这个参量是唯一的。]$\Sigma$ 邻域中的任何一点 $q$ 都位于某条这样的测地线上。对每个这样的点，我们指派坐标 $\{z, y^1, \ldots, y^{n-1}\}$，其中诸 $y^i$ 是由我们所构造的测地线连到 $q$ 的那个点 $p$ 的坐标。这些坐标 $\{z, y^1, \ldots, y^{n-1}\}$ 就称为\textbf{高斯法坐标}（Gaussian normal coordinates）（不要与“Riemann 法坐标”相混淆，后者是从单个点 $p$ 出发沿所有方向走测地线构造出来的）。如果我们走到测地线聚焦并相交的地方，这些坐标终将失去良好定义，但在包含 $\Sigma$ 的某个区域内它们总是存在的。关于高斯法坐标的所有陈述都应理解为在其良好定义的区域内适用。
+
+% ---- 书页 446 / p461 ----
+与坐标函数 $\{z, y^1, \ldots, y^{n-1}\}$ 相联系的是坐标基矢量场 $\{\partial_z, \partial_1, \ldots, \partial_{n-1}\}$。为记号方便，让我们把这些矢量场记作
+\begin{gather*}
+(\partial_z)^\mu = n^\mu, \\
+(\partial_i)^\mu = Y^\mu_{(i)},
+\tag{D.16}
+\end{gather*}
+其中第一行是有意义的，因为 $\partial_z$ 不过是原来的法矢量 $n^\mu$ 沿测地线的延拓。相对于这组基矢量，度规取一种简单的形式。首先，我们知道
+\begin{equation*}
+g_{zz} = ds^2 (\partial_z, \partial_z) = n_\mu n^\mu = \pm 1,
+\tag{D.17}
+\end{equation*}
+因为 $n^\mu$ 正是从 $\Sigma$ 发出的那些测地线的归一化切矢量。为了把这一符号歧义打包起来，让我们把它记作 $\sigma$：
+\begin{equation*}
+\sigma = n_\mu n^\mu = \pm 1.
+\tag{D.18}
+\end{equation*}
+但我们也有 $g_{zi} = n_\mu Y^\mu_{(i)} = 0$，这可以直接验证。从原来的曲面 $\Sigma$ 出发，在那里按假设有 $n_\mu Y^\mu_{(i)} = 0$（因为 $n^\mu$ 与 $\Sigma$ 正交）。然后我们计算
+\begin{align*}
+\frac{D}{dz} \left( n_\mu Y^\mu_{(i)} \right) &= n^\nu \nabla_\nu \left( n_\mu Y^\mu_{(i)} \right) \\
+&= n^\nu n_\mu \nabla_\nu Y^\mu_{(i)} \\
+&= Y^\nu_{(i)} n_\mu \nabla_\nu n^\mu \\
+&= \frac{1}{2} Y^\nu_{(i)} \nabla_\nu \left( n_\mu n^\mu \right) \\
+&= 0.
+\tag{D.19}
+\end{align*}
+让我们逐行解释这个推导。第一行就是方向协变导数 $D/dz$ 的定义。第二行用了 Leibniz 法则，再加上 $n_\mu$ 沿测地线被平行移动这一事实（$n^\nu \nabla_\nu n_\mu = 0$）。第三行用了 $n^\mu$ 与 $Y^\nu_{(i)}$ 都是坐标基矢量、因而其李括号为零这一事实：$[n, Y_{(i)}]^\mu = n^\nu \nabla_\nu Y^\mu_{(i)} - Y^\nu_{(i)} \nabla_\nu n^\mu = 0$。第四行再次用了 Leibniz 法则和 $n_\mu$ 被平行移动的事实，而第五行则仅仅反映了 $n_\mu n^\mu = \sigma$ 为常数这一事实。
+
+于是我们可以把高斯法坐标下的度规写成
+\begin{equation*}
+\boxed{\, ds^2 = \sigma \, \mathrm{d}z^2 + \gamma_{ij} \, \mathrm{d}y^i \mathrm{d}y^j, \,}
+\tag{D.20}
+\end{equation*}
+其中 $\gamma_{ij} = g(\partial_i, \partial_j)$ 一般而言是所有坐标 $\{z, y^1, \ldots, y^{n-1}\}$ 的函数。我们没有对几何作任何假设；我们只是选取了一个使度规取特定形式的坐标系。
+
+% ---- 书页 447 / p462 ----
+注意，令 $z$ 等于常数定义了一族与原来曲面 $\Sigma$ 微分同胚的超曲面；式 (D.20) 中不出现非对角项 $g_{zi}$，这反映的正是矢量场 $n^\mu$ 与所有这些曲面都正交，而不只是与原来那一个正交这一事实。高斯法坐标绝不冷僻；我们时时刻刻都在使用它们。简单的例子有 Minkowski 空间中的惯性坐标，
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + \mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2,
+\tag{D.21}
+\end{equation*}
+或者欧几里得三维空间中的球坐标，
+\begin{equation*}
+ds^2 = \mathrm{d}r^2 + r^2 \mathrm{d}\theta^2 + r^2 \sin^2 \theta \, \mathrm{d}\phi^2.
+\tag{D.22}
+\end{equation*}
+宇宙学中通常的 Robertson--Walker 坐标则给出了一个稍不那么平凡的例子，
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + a^2(t) \left[ \frac{\mathrm{d}r^2}{1 - \kappa r^2} + r^2 \mathrm{d}\Omega^2 \right].
+\tag{D.23}
+\end{equation*}
+当然，RW 几何是高度对称的（均匀且各向同性）。但是，既然我们刚刚看到高斯法坐标总可以被定义，我们就知道，通过改动度规的空间分量，便可以描述完全一般的几何。这提供了一种流行的描述宇宙学微扰的方式；对平直空间切片，我们把“同步规范”（synchronous gauge）定义为
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + a^2(t) (\delta_{ij} + h_{ij}) \mathrm{d}x^i \mathrm{d}x^j,
+\tag{D.24}
+\end{equation*}
+其中 $h_{ij}(t, \mathbf{x})$ 是度规微扰。（推广到弯曲的空间切片是直截了当的。）再一次，我们没有对几何作任何假设，只是选了一个可能方便的坐标系。
+
+回想把任意子流形嵌入的映射 $\phi : \Sigma \to M$ 使我们能够把度规从 $M$ 拉回到 $\Sigma$。给定 $\Sigma$ 上的坐标 $y^i$ 和 $M$ 上的坐标 $x^\mu$，我们把子流形上的\textbf{诱导度规}（induced metric）定义为
+\begin{equation*}
+(\phi^* g)_{ij} = \frac{\partial x^\mu}{\partial y^i} \frac{\partial x^\nu}{\partial y^j} g_{\mu\nu}.
+\tag{D.25}
+\end{equation*}
+当子流形是一个超曲面时，这个诱导度规恰好就是在式 (D.20) 中出现的 $\gamma_{ij}$。为看清这一点，注意高斯法坐标是式 (C.2) 所描述的自然嵌入坐标的特例。我们有一个在 $M$ 上由 $z = z_*$ 定义的超曲面 $\Sigma$，在 $\Sigma$ 上定义了坐标 $y^i$，以及一个由下式给出的映射 $\phi : \Sigma \to M$：
+\begin{equation*}
+\phi : y^i \to x^\mu = (z_*, y^i).
+\tag{D.26}
+\end{equation*}
+给定 $M$ 上度规的形式 (D.20)，立即可知在这个映射下拉回 (D.25) 就简单地是
+\begin{equation*}
+(\phi^* g)_{ij} = \gamma_{ij}.
+\tag{D.27}
+\end{equation*}
+
+% ---- 书页 448 / p463 ----
+请记住，这个方程只应在高斯法坐标中求值；否则右端连意义都没有。
+
+与诱导度规一道，子流形还从它们所嵌入的流形那里继承一个诱导体积元。回想带有度规 $g_{\mu\nu}$ 的 $n$ 维流形上的体积元由 Levi-Civita 张量给出，后者可以表示为
+\begin{equation*}
+\epsilon = \sqrt{|g|} \, \mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n.
+\tag{D.28}
+\end{equation*}
+为了得到子流形 $\Sigma$ 上的体积元，方便的做法是引入高斯法坐标 $(z, y^1, \ldots, y^{n-1})$，在其中度规取式 (D.20) 的形式。于是 $\Sigma$ 上的体积元 $\widehat{\epsilon}$ 将取如下形式：
+\begin{equation*}
+\widehat{\epsilon} = \sqrt{|\gamma|} \, \mathrm{d}y^1 \wedge \cdots \wedge \mathrm{d}y^{n-1}.
+\tag{D.29}
+\end{equation*}
+（通过选取第一个坐标为垂直于超曲面的那个坐标，我们已经在如何由 $M$ 上的定向定义 $\Sigma$ 上的定向这一问题上隐含地选定了一个约定。）在这些坐标中我们有
+\begin{equation*}
+\sqrt{|g|} = \sqrt{|\gamma|},
+\tag{D.30}
+\end{equation*}
+于是 $M$ 上的体积元就变成
+\begin{equation*}
+\epsilon = \sqrt{|\gamma|} \, \mathrm{d}z \wedge \mathrm{d}y^1 \wedge \cdots \wedge \mathrm{d}y^{n-1}.
+\tag{D.31}
+\end{equation*}
+我们可以利用 $\Sigma$ 的法矢量把这两个体积元联系起来，该法矢量的分量为
+\begin{equation*}
+n^\mu = (1, 0, \ldots, 0).
+\tag{D.32}
+\end{equation*}
+$\epsilon$ 与 $n^\mu$ 的缩并可以记为
+\begin{equation*}
+[\epsilon(n)]_{\mu_1 \cdots \mu_{n-1}} = n^\lambda \epsilon_{\lambda \mu_1 \cdots \mu_{n-1}}.
+\tag{D.33}
+\end{equation*}
+于是显然，在这些坐标中我们有
+\begin{gather*}
+\epsilon(n) = \sqrt{|\gamma|} \, \mathrm{d}y^1 \wedge \cdots \wedge \mathrm{d}y^{n-1} \\
+= \widehat{\epsilon}. \tag{D.34}
+\end{gather*}
+因此，诱导体积元的分量为
+\begin{equation*}
+\widehat{\epsilon}_{\mu_1 \cdots \mu_{n-1}} = n^\lambda \epsilon_{\lambda \mu_1 \cdots \mu_{n-1}}.
+\tag{D.35}
+\end{equation*}
+但这是张量之间的关系，所以在任何坐标系中都成立。我们也可以由 $\widehat{\epsilon}$ 和 $n^\mu$ 重建 $\epsilon$，途径是
+\begin{equation*}
+\frac{1}{n} \epsilon_{\nu \mu_1 \cdots \mu_{n-1}} = n_{[\nu} \widehat{\epsilon}_{\mu_1 \cdots \mu_{n-1}]},
+\tag{D.36}
+\end{equation*}
+
+% ---- 书页 449 / p464 ----
+这很容易通过与 $n^\nu$ 作缩并来检验。子流形体积元的概念在我们下文讨论 Stokes 定理时将至关重要。
+
+与超曲面上诱导度规密切相关的另一个概念，是带有单位法矢量 $n^\mu$ 的超曲面 $\Sigma$ 的\textbf{投影张量}（projection tensor），由下式给出：
+\begin{equation*}
+P_{\mu\nu} = g_{\mu\nu} - \sigma n_\mu n_\nu,
+\tag{D.37}
+\end{equation*}
+其中 $\sigma = n_\mu n^\mu$。让我们收集这个对象的一些有用性质。给定 $T_pM$ 中的任何矢量 $V^\mu$，$P_{\mu\nu}$ 会把它投影成与超曲面相切（也就是说，与 $n^\mu$ 正交）：
+\begin{align*}
+(P_{\mu\nu} V^\mu) n^\nu &= g_{\mu\nu} V^\mu n^\nu - \sigma n_\mu n_\nu V^\mu n^\nu \\
+&= V^\mu n_\mu - \sigma^2 V^\mu n_\mu \\
+&= 0.
+\tag{D.38}
+\end{align*}
+作用在任何两个已经与 $\Sigma$ 相切的矢量 $V^\mu$ 和 $W^\nu$ 上时，投影张量的表现就像度规一样：
+\begin{align*}
+P_{\mu\nu} V^\mu W^\nu &= g_{\mu\nu} V^\mu W^\nu - \sigma n_\mu n_\nu V^\mu W^\nu \\
+&= g_{\mu\nu} V^\mu W^\nu.
+\tag{D.39}
+\end{align*}
+最后，投影张量是幂等的（idempotent）；作用两次（或更多次）与只作用一次产生同样的结果：
+\begin{align*}
+P^\mu{}_\lambda P^\lambda{}_\nu &= (\delta^\mu_\lambda - \sigma n^\mu n_\lambda) (\delta^\lambda_\nu - \sigma n^\lambda n_\nu) \\
+&= \delta^\mu_\nu - \sigma n^\mu n_\nu - \sigma n^\mu n_\nu + \sigma^3 n^\mu n_\nu \\
+&= P^\mu{}_\nu.
+\tag{D.40}
+\end{align*}
+$P_{\mu\nu}$ 有时被称为超曲面的\textbf{第一基本形式}（first fundamental form）。因为它对与 $\Sigma$ 相切的矢量确实像度规那样起作用，而超曲面又常常是类空的，你有时会看到它被称为“空间度规”（spatial metric）。
+
+很久以前，当我们初次谈到流形与曲率时，我们曾小心区分一个空间的“内蕴”曲率——由 Riemann 张量所量度的——与“外在”曲率，后者依赖于这个空间如何嵌入某个更大的空间。例如，二维环面可以具有平直的度规，但它在 $\mathbf{R}^3$ 中的任何嵌入都使它看上去是弯曲的。现在我们有条件对这一概念给出一个正式定义，它对超曲面是有意义的。设我们有一族超曲面 $\Sigma$，带有单位矢量场 $n^\mu$，并且我们把 $n^\mu$ 延拓过一个区域（以我们喜欢的任何方式）。那么 $\Sigma$ 的\textbf{外曲率}（extrinsic curvature）就简单地由投影张量沿法矢量场的李导数给出：
+\begin{equation*}
+K_{\mu\nu} = \frac{1}{2} \mathcal{L}_n P_{\mu\nu}.
+\tag{D.41}
+\end{equation*}
+
+% ---- 书页 450 / p465 ----
+外曲率，有时称为子流形的\textbf{第二基本形式}（second fundamental form），由此被解释为当我们沿法矢量场行进时投影张量（若 $\Sigma$ 类空，即空间度规）的变化率；它与 $n^\mu$ 在 $\Sigma$ 之外的延拓方式无关。只需几行计算就可以证明，这个定义等价于度规本身被投影的李导数：
+\begin{equation*}
+K_{\mu\nu} = \frac{1}{2} P^\alpha{}_\mu P^\beta{}_\nu \mathcal{L}_n g_{\alpha\beta}.
+\tag{D.42}
+\end{equation*}
+由式 (B.20) 我们知道，$g_{\mu\nu}$ 的李导数由法矢量的对称化协变导数给出，于是有
+\begin{equation*}
+K_{\mu\nu} = P^\alpha{}_\mu P^\beta{}_\nu \nabla_{(\alpha} n_{\beta)}.
+\tag{D.43}
+\end{equation*}
+由于我们不假定 $n^\mu$ 的积分曲线是测地线，我们可以把加速度定义为
+\begin{equation*}
+a^\mu = n^\nu \nabla_\nu n^\mu.
+\tag{D.44}
+\end{equation*}
+然后再花几行功夫就能证明，式 (D.43) 等价于
+\begin{equation*}
+\boxed{\, K_{\mu\nu} = \nabla_\mu n_\nu - \sigma n_\mu a_\nu. \,}
+\tag{D.45}
+\end{equation*}
+外曲率有许多好的性质。它是对称的，
+\begin{equation*}
+K_{\mu\nu} = K_{\nu\mu},
+\tag{D.46}
+\end{equation*}
+从式 (D.41) 看这很显然，尽管从式 (D.45) 看不出来。你可以利用 $n^\mu$ 超曲面正交这一事实，检验式 (D.45) 确实是对称的。外曲率还与法方向正交（“纯空间的”）：
+\begin{align*}
+n^\mu K_{\mu\nu} &= n^\mu \nabla_\mu n_\nu - \sigma n^\mu n_\mu a_\nu \\
+&= a_\nu - \sigma^2 a_\nu \\
+&= 0.
+\tag{D.47}
+\end{align*}
+我们可以定义一个沿超曲面作用的协变导数 $\widehat{\nabla}_\mu$，办法是取一个普通协变导数再作投影。例如，对一个 $(1,1)$ 型张量 $X^\mu{}_\nu$，我们有
+\begin{equation*}
+\widehat{\nabla}_\sigma X^\mu{}_\nu = P^\alpha{}_\sigma P^\mu{}_\beta P^\gamma{}_\nu \nabla_\alpha X^\beta{}_\gamma.
+\tag{D.48}
+\end{equation*}
+由此我们可以构造超曲面上的曲率张量 $\widehat{R}^\rho{}_{\sigma\mu\nu}$，例如通过考虑作用在与超曲面相切的矢量场 $V^\mu$（即 $P^\mu{}_\nu V^\nu = V^\mu$）上的协变导数的对易子：
+\begin{equation*}
+[\widehat{\nabla}_\mu, \widehat{\nabla}_\nu] V^\rho = \widehat{R}^\rho{}_{\sigma\mu\nu} V^\sigma.
+\tag{D.49}
+\end{equation*}
+
+% ---- 书页 451 / p466 ----
+有两个重要方程把 $n$ 维 Riemann 曲率与超曲面 Riemann 曲率以及外曲率联系起来。\textbf{Gauss 方程}是
+\begin{equation*}
+\widehat{R}^\rho{}_{\sigma\mu\nu} = P^\rho{}_\alpha P^\beta{}_\sigma P^\gamma{}_\mu P^\delta{}_\nu R^\alpha{}_{\beta\gamma\delta} + \sigma (K^\rho{}_\mu K_{\sigma\nu} - K^\rho{}_\nu K_{\sigma\mu}).
+\tag{D.50}
+\end{equation*}
+（译注：原书第二个投影因子误印为 $P^\beta{}_\rho$，按自由指标 $\sigma$ 的结构应为 $P^\beta{}_\sigma$，此处已按本意改正。）
+我们可以取适当的迹，得到超曲面标量曲率，
+\begin{equation*}
+\widehat{R} = P^{\sigma\nu} \widehat{R}^\lambda{}_{\sigma\lambda\nu} = R - \sigma (2 R_{\mu\nu} n^\mu n^\nu + K^2 - K^{\mu\nu} K_{\mu\nu}),
+\tag{D.51}
+\end{equation*}
+其中 $K = g^{\mu\nu} K_{\mu\nu}$。我们还有 \textbf{Codazzi 方程}，
+\begin{equation*}
+\widehat{\nabla}_{[\mu} K_{\nu]}{}^\mu = \frac{1}{2} P^\sigma{}_\nu R_{\rho\sigma} n^\rho.
+\tag{D.52}
+\end{equation*}
+式 (D.50) 与式 (D.52) 合在一起——这称呼倒是颇具想象力——称为 Gauss--Codazzi 方程。
+
+为免混淆，我们应当指出，外曲率的定义往往因文献而异。在有些文献中，法矢量场被取为处处测地的（$a^\mu = 0$）；此时事情大大简化，并且容易证明在这种情形下有
+\begin{align*}
+K_{\mu\nu} &= \frac{1}{2} \mathcal{L}_n P_{\mu\nu} \\
+&= \frac{1}{2} \mathcal{L}_n g_{\mu\nu} \\
+&= \nabla_\mu n_\nu.
+\tag{D.53}
+\end{align*}
+（如果我们事先被给定的是整族超曲面，就不能简单假设单位法矢量场的积分曲线是测地线。然而，我们常常只被给定单个曲面，这时就允许通过求解测地线方程把法矢量场延拓到曲面之外。）另一些文献则倾向于把外曲率看成生活在 $\Sigma$ 上而非 $M$ 中的张量 $\widehat{K}_{ij}$。如果我们有一个嵌入 $\phi : y^i \to x^\mu$，这个版本的外曲率由拉回给出：
+\begin{align*}
+\widehat{K}_{ij} &= (\phi^* K)_{ij} \\
+&= \frac{\partial x^\mu}{\partial y^i} \frac{\partial x^\nu}{\partial y^j} K_{\mu\nu}.
+\tag{D.54}
+\end{align*}
+最后，有些文献喜欢把外曲率定义为我们的定义的负值。在不同的约定之间来回换算应当是直截了当的。
+
+在结束讨论之前，我们提一下超曲面的一种非常常见的出现方式：作为流形 $M$ 的一个闭区域 $N$ 的\textbf{边界}（boundary），按惯例记作 $\partial N$。例如，如果 $N$ 由 $\mathbf{R}^n$ 中所有与原点的距离 $r \leq 1$ 的元素组成，那么边界 $\partial N$ 显然就是由 $r = 1$ 定义的 $(n-1)$ 维球面。我们可以把这个概念推广到考虑的不是闭区域、而是带有一个边界的整个流形的情形。
+
+% ---- 书页 452 / p467 ----
+所谓\textbf{带边流形}（manifold with boundary），是一个装备了坐标卡片图册的集合，与第 2 章中我们对流形的定义完全一样，只是卡片被取为映到 $\mathbf{R}^n$ 上半部分的映射：即由满足 $x^1 \geq 0$ 的 $n$ 元组 $\{x^1, \ldots, x^n\}$ 组成的集合。边界 $\partial M$ 是被卡片映射到 $x^1 = 0$ 的那些点组成的集合。于是 $\partial M$ 自然是一个 $(n-1)$ 维子流形（本身没有边界）。流形之边界的一个例子将出现在我们后面关于共形图（conformal diagrams）的讨论中，在那里共形无限远可以被看成时空的一个边界。凭借连续性，我们可以把边界当作超曲面来对待，包括诱导度规等等；偶尔在边界上取导数时需要小心，但大多数情况下我们可以相信自己的直觉。

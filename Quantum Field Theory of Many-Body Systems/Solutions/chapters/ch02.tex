@@ -1,0 +1,1183 @@
+% ch02 第2章习题解答（26 题）
+\chapter{量子力学的路径积分表述}
+
+\section*{问题 2.1.1}
+\begin{problem}
+证明在频率空间中 $G(x_b,x_a,\omega)=\sum_n \psi_n(x_b)\psi_n^{\dagger}(x_a)/(\omega-\epsilon_n)$，其中 $\psi_n$ 为能量本征函数。谐振子的实传播子为 $G(x_b,t,x_a,0)=(-\mathrm{i})\big(\frac{m\omega_0}{2\pi\mathrm{i}\sin\omega_0 t}\big)^{1/2}\exp\big\{\frac{\mathrm{i}m\omega_0}{2\sin\omega_0 t}[(x_b^2+x_a^2)\cos\omega_0 t-2x_bx_a]\big\}$。研究并解释 $G(0,0,\omega)$ 的极点结构。
+\end{problem}
+\solution
+取能量本征态完备基 $\sum_n|n\rangle\langle n|=1$（$\langle x|n\rangle=\psi_n(x)$，$\psi_n^{\dagger}(x_a)\equiv\psi_n^*(x_a)$），并注意 $\langle n_b|U(t_b,t_a)|n_a\rangle=\mathrm{e}^{-\mathrm{i}\epsilon_{n_a}(t_b-t_a)}\delta_{n_bn_a}$，实时传播子可写为谱展开
+\begin{equation*}
+G(x_b,x_a,t)=\sum_n\langle x_b|n\rangle(-\mathrm{i})\,\mathrm{e}^{-\mathrm{i}\epsilon_n t}\langle n|x_a\rangle
+=\sum_n \psi_n(x_b)\psi_n^*(x_a)(-\mathrm{i})\,\mathrm{e}^{-\mathrm{i}\epsilon_n t}.
+\end{equation*}
+按书中定义作频率空间变换（$0^+$ 保证收敛，下面把 $\mathrm{i}0^+$ 简记掉）：
+\begin{equation*}
+G(x_b,x_a,\omega)=\int_0^{\infty}\mathrm{d}t\,G(x_b,x_a,t)\,\mathrm{e}^{\mathrm{i}\omega t-0^+t}
+=\sum_n \psi_n(x_b)\psi_n^*(x_a)(-\mathrm{i})\int_0^\infty\mathrm{d}t\,\mathrm{e}^{\mathrm{i}(\omega-\epsilon_n)t-0^+t}.
+\end{equation*}
+利用 $\int_0^\infty\mathrm{d}t\,\mathrm{e}^{\mathrm{i}\varOmega t-0^+t}=\dfrac{\mathrm{i}}{\varOmega+\mathrm{i}0^+}$，得
+\begin{equation*}
+(-\mathrm{i})\cdot\frac{\mathrm{i}}{\omega-\epsilon_n+\mathrm{i}0^+}=\frac{1}{\omega-\epsilon_n+\mathrm{i}0^+},
+\end{equation*}
+于是
+\begin{equation*}
+\boxed{\;G(x_b,x_a,\omega)=\sum_n\frac{\psi_n(x_b)\psi_n^{\dagger}(x_a)}{\omega-\epsilon_n+\mathrm{i}0^+}\;}
+\end{equation*}
+与书中谱表示 $G(x_b,x_a,\omega)=\sum_n\langle x_b|n\rangle\langle n|x_a\rangle/(\omega-\epsilon_n+\mathrm{i}0^+)$ 一致。
+
+对谐振子取 $x_b=x_a=0$，指数上的相位 $[(x_b^2+x_a^2)\cos\omega_0t-2x_bx_a]$ 恒为零，故
+\begin{equation*}
+G(0,t,0,0)=(-\mathrm{i})\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin\omega_0 t}\right)^{1/2}.
+\end{equation*}
+为把它展成 $\sum_n C_n\mathrm{e}^{-\mathrm{i}t\epsilon_n}$，记 $\theta=\omega_0 t$ 并取 $t\to t(1-\mathrm{i}0^+)$（使 $|q|=|\mathrm{e}^{-2\mathrm{i}\theta}|<1$），用
+\begin{equation*}
+\sin\theta=\frac{\mathrm{e}^{\mathrm{i}\theta}(1-\mathrm{e}^{-2\mathrm{i}\theta})}{2\mathrm{i}}
+\;\Rightarrow\;
+(\mathrm{i}\sin\theta)^{-1/2}=2^{1/2}\,\mathrm{e}^{-\mathrm{i}\theta/2}\,(1-q)^{-1/2},\qquad q\equiv\mathrm{e}^{-2\mathrm{i}\theta},
+\end{equation*}
+以及二项式展开 $(1-q)^{-1/2}=\sum_{k=0}^{\infty}c_k q^k$，$c_k=\dfrac{\binom{2k}{k}}{4^k}=\dfrac{(2k)!}{2^{2k}(k!)^2}$。代入并注意 $(-\mathrm{i})\,2^{1/2}\,(m\omega_0/2\pi)^{1/2}=-\mathrm{i}\,(m\omega_0/\pi)^{1/2}$，得
+\begin{equation*}
+G(0,t,0,0)=-\mathrm{i}\left(\frac{m\omega_0}{\pi}\right)^{1/2}\sum_{k=0}^{\infty}c_k\,
+\mathrm{e}^{-\mathrm{i}\omega_0(2k+\frac12)t}.
+\end{equation*}
+另一方面，谱展开给出 $G(0,t,0,0)=\sum_n(-\mathrm{i})|\psi_n(0)|^2\mathrm{e}^{-\mathrm{i}\epsilon_n t}$，而谐振子 $\epsilon_n=\omega_0(n+\frac12)$、
+\begin{equation*}
+\psi_{2k}(0)=(-1)^k\left(\frac{m\omega_0}{\pi}\right)^{1/4}\frac{(2k)!}{2^{2k}(k!)^2}^{\,\frac12}
+\;\Rightarrow\;|\psi_{2k}(0)|^2=\left(\frac{m\omega_0}{\pi}\right)^{1/2}\frac{(2k)!}{2^{2k}(k!)^2},
+\qquad \psi_{2k+1}(0)=0 .
+\end{equation*}
+两式逐项相同（$n=2k$），于是频率空间中
+\begin{equation*}
+\boxed{\;G(0,0,\omega)=\left(\frac{m\omega_0}{\pi}\right)^{1/2}
+\sum_{k=0}^{\infty}\frac{(2k)!/2^{2k}(k!)^2}{\omega-\omega_0(2k+\frac12)+\mathrm{i}0^+}\;}
+\end{equation*}
+
+\textbf{极点结构及其解释：} $G(0,0,\omega)$ 在
+\begin{equation*}
+\omega=\epsilon_{2k}=\omega_0\Big(2k+\frac12\Big)=\frac{\omega_0}{2},\ \frac{5\omega_0}{2},\ \frac{9\omega_0}{2},\ \dots
+\end{equation*}
+处有单极点，且极点都在实轴下方 $\mathrm{i}0^+$ 处（稳定谱）。\textbf{奇能级 $\epsilon_{2k+1}=\omega_0(2k+\frac32),\dots$ 完全不出现。}原因是：从 $x_a=0$ 出发到 $x_b=0$ 的传播只通过“在原点有振幅”的中间态进行，第 $n$ 个能级的权重是 $\psi_n(0)\psi_n^*(0)=|\psi_n(0)|^2$；奇宇称态在原点有节点，权重为零，因而在频率空间不产生极点。这正体现了一条普遍规律：关联函数的极点只包含“与外部算符（此处为 $x$，且取在 $x=0$）有耦合”的那些本征态；残差 $\mathrm{Res}=|\psi_{2k}(0)|^2>0$ 随 $k$ 以 $\sim(m\omega_0/\pi)^{1/2}/\sqrt{\pi k}$ 减小，密集的高能级逐渐连成经典连续谱。
+
+\emph{（译注：题面所给传播子指数上印作 $\frac{m\omega_0}{2\pi\sin(t\omega_0)}$，按标准结果并参照问题 2.1.6，分母应为 $2\sin(t\omega_0)$，上文已按此改正。）}
+
+\section*{问题 2.1.2}
+\begin{problem}
+求三维自由粒子在波矢与频率空间中的传播子 $G_E(k_b,k_a,\omega)$。
+\end{problem}
+\solution
+三维自由粒子 $H=p^2/2m$。动量本征态 $|k\rangle$ 满足 $H|k\rangle=\dfrac{k^2}{2m}|k\rangle$，故
+\begin{equation*}
+\mathrm{i}G(k_b,t_b,k_a,t_a)=\langle k_b|\mathrm{e}^{-\mathrm{i}(t_b-t_a)H}|k_a\rangle
+=\mathrm{e}^{-\mathrm{i}\frac{k_a^2}{2m}(t_b-t_a)}\,\delta^3(k_b-k_a).
+\end{equation*}
+按书中对能量本征态传播子的同样定义（$G_E\equiv(-\mathrm{i})\langle n_b|U|n_a\rangle$，$\int_0^\infty\mathrm{d}t\,\mathrm{e}^{\mathrm{i}\omega t-0^+t}$），取 $t=t_b-t_a>0$：
+\begin{align*}
+G_E(k_b,k_a,\omega)&=\int_0^{\infty}\mathrm{d}t\,(-\mathrm{i})\,\mathrm{e}^{-\mathrm{i}\frac{k_a^2}{2m}t}\,\delta^3(k_b-k_a)\,\mathrm{e}^{\mathrm{i}\omega t-0^+t}
+=\delta^3(k_b-k_a)\,(-\mathrm{i})\,\frac{\mathrm{i}}{\omega-\frac{k_a^2}{2m}+\mathrm{i}0^+},
+\end{align*}
+即
+\begin{equation*}
+\boxed{\;G_E(k_b,k_a,\omega)=\frac{\delta^3(k_b-k_a)}{\omega-\dfrac{k_a^2}{2m}+\mathrm{i}0^+}\;}
+\end{equation*}
+与书中单粒子本征态结果 $G_E(n_b,n_a,\omega)=\delta_{n_bn_a}/(\omega-\epsilon_{n_a}+\mathrm{i}0^+)$ 完全同构：对每个 $k$ 在 $\omega=k^2/2m$ 处有一个单极点。它与坐标空间谱表示自洽：
+\begin{equation*}
+G(x_b,x_a,\omega)=\int\mathrm{d}k_a\,\langle x_b|k_a\rangle G_E(k_a,k_a,\omega)\langle k_a|x_a\rangle
+=\int\frac{\mathrm{d}^3k}{(2\pi)^3}\frac{\mathrm{e}^{\mathrm{i}k\cdot(x_b-x_a)}}{\omega-\frac{k^2}{2m}+\mathrm{i}0^+},
+\end{equation*}
+即三维自由格林函数的熟知形式（其极点位于 $\omega=k^2/2m$，$0^+$ 给出向外的出射波边界条件）。
+
+\section*{问题 2.1.3}
+\begin{problem}
+对谐振子 $H=\omega\hat a^\dagger\hat a$，用相干态 $|a\rangle$（$\hat a|a\rangle=a|a\rangle$，$\int\frac{\mathrm{d}^2a}{\pi}|a\rangle\langle a|=1$，$\langle a|a'\rangle=\mathrm{e}^{-\frac12|a|^2-\frac12|a'|^2+a^*a'}$）证明相干态传播子的路径积分表示
+$\mathrm{i}G(a_b,t_b,a_a,t_a)=\int\pi^{-N+1}\mathcal D^2[a(t)]\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,[\frac{\mathrm{i}}{2}(a^\dagger\dot a-a\dot a^\dagger)-\omega a^\dagger a]}$，并证明该拉格朗日量与相空间路径积分的 $L=p\dot x-H$ 仅差一个全时间导数。
+\end{problem}
+\solution
+把 $U(t_b,t_a)$ 分成 $N$ 段（$\Delta t=(t_b-t_a)/N$），在每段之间插入完备性 $\int\frac{\mathrm{d}^2a_j}{\pi}|a_j\rangle\langle a_j|=1$（$j=1,\dots,N-1$，$a_0\equiv a_a$，$a_N\equiv a_b$）：
+\begin{equation*}
+\mathrm{i}G(a_b,t_b,a_a,t_a)=\int\prod_{j=1}^{N-1}\frac{\mathrm{d}^2a_j}{\pi}\,
+\prod_{j=1}^{N}\langle a_j|\mathrm{e}^{-\mathrm{i}H\Delta t}|a_{j-1}\rangle .
+\end{equation*}
+对小 $\Delta t$，用 $H=\omega\hat a^\dagger\hat a$ 与 $\hat a^\dagger|a_{j-1}\rangle=\frac{\partial}{\partial a_{j-1}}|a_{j-1}\rangle$ 型恒等式（或直接在 $\langle a_j|\cdots|a_{j-1}\rangle$ 中把算符换成其在 $|a_{j-1}\rangle$ 上的本征值，误差为 $O(\Delta t^2)$）：
+\begin{equation*}
+\langle a_j|\mathrm{e}^{-\mathrm{i}H\Delta t}|a_{j-1}\rangle
+=\langle a_j|a_{j-1}\rangle\,\mathrm{e}^{-\mathrm{i}\omega a_{j-1}^*a_{j-1}\Delta t}+O(\Delta t^2).
+\end{equation*}
+交叠项用 $\langle a|a'\rangle=\mathrm{e}^{-a^*(a-a')}-\frac12|a-a'|^2$ 改写；最后一因子随 $\Delta t\to0$ 只重整化测度，可略：
+\begin{equation*}
+\langle a_j|a_{j-1}\rangle\simeq\mathrm{e}^{-a_j^*(a_j-a_{j-1})}.
+\end{equation*}
+于是
+\begin{equation*}
+\mathrm{i}G=\lim_{N\to\infty}\int\pi^{-N+1}\prod_{j=1}^{N-1}\mathrm{d}^2a_j\,
+\exp\Big\{\sum_{j=1}^{N}\Big[-a_j^*(a_j-a_{j-1})-\mathrm{i}\omega a_j^*a_j\Delta t\Big]\Big\}
+=\int\mathcal D^2[a(t)]\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,[-\mathrm{i}a^*\dot a-\omega a^*a]} .
+\end{equation*}
+由于（把 $a,a^*$ 当作独立复数）
+\begin{equation*}
+-\mathrm{i}a^*\dot a=\frac{\mathrm{i}}{2}\big(a^*\dot a-a\dot a^*\big)-\frac{\mathrm{i}}{2}\frac{\mathrm{d}}{\mathrm{d}t}(a^*a)
+\quad\Longleftrightarrow\quad
+\frac{\mathrm{i}}{2}(a^*\dot a-a\dot a^*)=-\mathrm{i}a^*\dot a+\frac{\mathrm{d}}{\mathrm{d}t}\Big[\frac{\mathrm{i}}{2}a^*a\Big],
+\end{equation*}
+两个拉格朗日量给出的路径积分只差端点相位 $\mathrm{e}^{\frac{\mathrm{i}}{2}(|a_b|^2-|a_a|^2)}$；把它并入边界归一（这正是交叠项端点因子的来源），即得题给形式
+\begin{equation*}
+\boxed{\;\mathrm{i}G(a_b,t_b,a_a,t_a)=\int\pi^{-N+1}\mathcal D^2[a(t)]\;
+\mathrm{e}^{\mathrm{i}\int_{t_a}^{t_b}\mathrm{d}t\,\big[\frac{\mathrm{i}}{2}(a^\dagger\dot a-a\dot a^\dagger)-\omega a^\dagger a\big]}\;}
+\end{equation*}
+
+再证与相空间形式只差全导数。用
+\begin{equation*}
+x=\frac{1}{\sqrt{2m\omega}}(a+a^*),\qquad
+p=-\mathrm{i}\sqrt{\frac{m\omega}{2}}(a-a^*),
+\qquad H=\frac{p^2}{2m}+\frac{m\omega^2x^2}{2}=\omega\,a^*a,
+\end{equation*}
+（略去零点能 $\omega/2$，它只贡献一个常数相位 $\mathrm{e}^{-\mathrm{i}\omega T/2}$。）直接计算：
+\begin{equation*}
+p\dot x=-\mathrm{i}\sqrt{\frac{m\omega}{2}}(a-a^*)\cdot\frac{\dot a+\dot a^*}{\sqrt{2m\omega}}
+=-\frac{\mathrm{i}}{2}\big(a\dot a+a\dot a^*-a^*\dot a-a^*\dot a^*\big)
+=\frac{\mathrm{i}}{2}\big(a^*\dot a-a\dot a^*\big)+\frac{\mathrm{i}}{2}\big(a^*\dot a^*-a\dot a\big).
+\end{equation*}
+最后一项是全导数，因为 $\dfrac{\mathrm{d}}{\mathrm{d}t}(a^{*2}-a^2)=2(a^*\dot a^*-a\dot a)$：
+\begin{equation*}
+p\dot x-H=\Big[\frac{\mathrm{i}}{2}(a^*\dot a-a\dot a^*)-\omega a^*a\Big]
++\frac{\mathrm{d}}{\mathrm{d}t}\Big[\frac{\mathrm{i}}{4}(a^{*2}-a^2)\Big]
+\;(+\text{常数}-\omega/2\cdot).
+\end{equation*}
+即两套拉格朗日量只差全时间导数 $f(t)=\frac{\mathrm{i}}{4}(a^{*2}-a^2)$（以及常数），路径积分相应地只差端点相位——物理内容完全相同。
+
+\section*{问题 2.1.4}
+\begin{problem}
+推导虚时传播子的路径积分表示 (2.1.13) 与相空间形式 (2.1.15)。
+\end{problem}
+\solution
+虚时传播子 $\mathcal G(x_b,x_a,\tau)=\langle x_b|\mathrm{e}^{-\tau H}|x_a\rangle$。把 $[0,\tau]$ 分成 $N$ 段 $\Delta\tau=\tau/N$。由 Trotter 公式
+\begin{equation*}
+\mathrm{e}^{-\Delta\tau\left(\frac{p^2}{2m}+V(x)\right)}
+=\mathrm{e}^{-\Delta\tau\frac{p^2}{2m}}\mathrm{e}^{-\Delta\tau V(x)}+O(\Delta\tau^2),
+\end{equation*}
+故（注意势能在左端先作用）
+\begin{equation*}
+\mathcal G(x_j,\Delta\tau;x_{j-1},0)
+=\langle x_j|\mathrm{e}^{-\Delta\tau\frac{p^2}{2m}}|x_{j-1}\rangle\,\mathrm{e}^{-\Delta\tau V(x_{j-1})}+O(\Delta\tau^2).
+\end{equation*}
+插入 $\int\frac{\mathrm{d}p_j}{2\pi}|p_j\rangle\langle p_j|=1$ 与 $\langle x|p\rangle=\mathrm{e}^{\mathrm{i}px}$：
+\begin{equation*}
+\mathcal G(x_j,\Delta\tau;x_{j-1},0)
+=\int\frac{\mathrm{d}p_j}{2\pi}\,
+\exp\Big[-\mathrm{i}p_j(x_j-x_{j-1})-\Delta\tau\Big(\frac{p_j^2}{2m}+V(x_{j-1})\Big)\Big]+O(\Delta\tau^2).
+\end{equation*}
+连乘并令 $N\to\infty$，指数上 $-\mathrm{i}p_j(x_j-x_{j-1})=-\mathrm{i}p_j\frac{x_j-x_{j-1}}{\Delta\tau}\Delta\tau\to-\mathrm{i}\int\mathrm{d}\tau'\,p\dot x$，立得相空间路径积分
+\begin{equation*}
+\boxed{\;\mathcal G(x_b,x_a,\tau)=\int\mathcal D[x(\tau')]\,\mathcal D[p(\tau')]\;
+\mathrm{e}^{-\int_0^\tau\mathrm{d}\tau'\,\big[\frac{p^2}{2m}+V(x)-\mathrm{i}p\frac{\mathrm{d}x}{\mathrm{d}\tau}\big]}\;}
+\end{equation*}
+（式 2.1.15；测度 $\mathcal D x\,\mathcal Dp=\prod_1^N\frac{\mathrm{d}x_j\mathrm{d}p_j}{2\pi}$）。这正相当于在式 (2.1.11) 中作 $t\to-\mathrm{i}\tau$。
+
+对 $p_j$ 完成高斯积分即可得坐标空间形式：
+\begin{equation*}
+\int\frac{\mathrm{d}p}{2\pi}\,
+\mathrm{e}^{-\Delta\tau\frac{p^2}{2m}-\mathrm{i}p\Delta x}
+=\left(\frac{m}{2\pi\Delta\tau}\right)^{1/2}
+\exp\Big[-\frac{m(\Delta x)^2}{2\Delta\tau}\Big],
+\end{equation*}
+（把势能取 $V\big(\frac{x_j+x_{j-1}}2\big)$，差别为 $O(\Delta\tau^2)$。）于是
+\begin{equation*}
+\mathcal G(x_b,x_a,\tau)=A_\tau^N\int\mathcal D[x(\tau')]\,
+\mathrm{e}^{-\int_0^\tau\mathrm{d}\tau'\,\big[\frac m2\big(\frac{\mathrm{d}x}{\mathrm{d}\tau}\big)^2+V(x)\big]},
+\qquad
+\boxed{\;A_\tau=\left(\frac{m}{2\pi\Delta\tau}\right)^{1/2}\;}
+\end{equation*}
+即式 (2.1.13)。与实时情形 (2.1.10) 对比可见：虚时路径积分就是把 $\mathrm{i}S\to-S$ 的“统计权重”路径积分，这正是 $\tau\to\mathrm{i}t$ 解析延拓的来由。
+
+\section*{问题 2.1.5}
+\begin{problem}
+一维粒子受恒力 $f$（$V=-fx$），证明 $\mathrm{i}G(x_b,t,x_a,0)=\big(\frac{m}{2\pi\mathrm{i}t}\big)^{1/2}\exp\{\mathrm{i}[\frac{m(x_b-x_a)^2}{2t}+\frac12ft(x_b+x_a)-\frac{f^2t^3}{24m}]\}$。
+\end{problem}
+\solution
+拉格朗日量 $L=\frac m2\dot x^2+fx$。因 $V$ 对 $x$ 至多线性，围绕经典路径的涨落作用量与自由粒子完全相同（无 $x^2$ 项），故归一化系数仍为自由粒子的 $A(t)=(m/2\pi\mathrm{i}t)^{1/2}$，只需算经典作用量 $S_c$。
+
+经典方程 $m\ddot x_c=f$，端点条件 $x_c(0)=x_a$、$x_c(t)=x_b$ 给出
+\begin{equation*}
+x_c(t')=x_a+v_0t'+\frac{f t'^2}{2m},\qquad
+v_0=\frac{x_b-x_a}{t}-\frac{ft}{2m}\equiv\frac{\Delta x}{t}-\frac{ft}{2m}.
+\end{equation*}
+作用量 $S_c=\int_0^t\mathrm{d}t'\,[\frac m2\dot x_c^2+fx_c]$：
+\begin{align*}
+\int_0^t\frac m2\dot x_c^2\,\mathrm{d}t'
+&=\frac m2\int_0^t\Big(v_0^2+\frac{2v_0ft'}{m}+\frac{f^2t'^2}{m^2}\Big)\mathrm{d}t'
+=\frac{mv_0^2t}{2}+\frac{v_0ft^2}{2}+\frac{f^2t^3}{6m},\\
+\int_0^t fx_c\,\mathrm{d}t'
+&=fx_at+fv_0\frac{t^2}{2}+\frac{f^2t^3}{6m}.
+\end{align*}
+代入 $v_0$ 逐项化简：
+\begin{align*}
+\frac{mv_0^2t}{2}&=\frac{m(\Delta x)^2}{2t}-\frac{f\,\Delta x\,t}{2}+\frac{f^2t^3}{8m},\\
+\frac{v_0ft^2}{2}+\frac{fv_0t^2}{2}&=v_0ft^2=f\Delta x\,t-\frac{f^2t^3}{2m},
+\end{align*}
+于是
+\begin{align*}
+S_c&=\frac{m(\Delta x)^2}{2t}+\Big[-\frac{f\Delta x\,t}{2}+f\Delta x\,t+fx_at\Big]
++\Big[\frac18-\frac12+\frac13+\frac16\Big]\frac{f^2t^3}{m}
+=\frac{m(\Delta x)^2}{2t}+\frac{ft(x_a+x_b)}{2}-\frac{f^2t^3}{24m},
+\end{align*}
+（线性 $f$ 项：$f t[x_a+\frac{\Delta x}2]=\frac{ft}2(x_a+x_b)$；$f^2$ 项：$\frac18-\frac12+\frac13+\frac16=\frac{3-12+8+4}{24}=\frac1{24}$。）
+
+因此
+\begin{equation*}
+\boxed{\;\mathrm{i}G(x_b,t,x_a,0)=\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}
+\exp\Big\{\mathrm{i}\Big[\frac{m(x_b-x_a)^2}{2t}+\frac12ft(x_b+x_a)-\frac{f^2t^3}{24m}\Big]\Big\}\;}
+\end{equation*}
+自洽性检查：$t\to0^+$ 时 $f$ 相关项消失，恢复自由传播子 (2.1.2)；$S_c$ 满足 Hamilton--Jacobi 递推关系。
+
+\section*{问题 2.1.6}
+\begin{problem}
+证明谐振子传播子 $G(x_b,t,x_a,0)=A(t)\exp\{\frac{\mathrm{i}m\omega_0}{2\sin\omega_0t}[(x_b^2+x_a^2)\cos\omega_0t-2x_bx_a]\}$，并用归一化条件或路径积分证明 $A(t)=(\frac{m\omega_0}{2\pi\mathrm{i}\sin\omega_0t})^{1/2}\mathrm{e}^{\mathrm{i}\phi(t)}$。
+\end{problem}
+\solution
+\textbf{(a) 化为 $A(t)\mathrm{e}^{\mathrm{i}S_c}$。}把路径写成 $x=x_c+\delta x$（$\delta x(0)=\delta x(t)=0$），由于作用量是二次的，
+\begin{equation*}
+S[x]=S[x_c]+\int_0^t\mathrm{d}t'\,\Big[\frac m2\delta\dot x^2-\frac{m\omega_0^2}2\delta x^2\Big],
+\end{equation*}
+涨落部分与端点无关，故 $G=A(t)\mathrm{e}^{\mathrm{i}S_c}$，$S_c$ 为经典作用量。
+
+\textbf{(b) 经典作用量。}经典路径 $m\ddot x_c=-m\omega_0^2x_c$ 满足端点条件：
+\begin{equation*}
+x_c(t')=\frac{x_a\sin\omega_0(t-t')}{\sin\omega_0t}+\frac{x_b\sin\omega_0t'}{\sin\omega_0t}.
+\end{equation*}
+由运动方程 $\ddot x_c=-\omega_0^2x_c$ 可写 $\frac{m}{2}(\dot x_c^2-\omega_0^2x_c^2)=\frac m2\frac{\mathrm{d}}{\mathrm{d}t'}(x_c\dot x_c)$，故
+\begin{equation*}
+S_c=\frac m2\big[x_c\dot x_c\big]_0^{t}
+=\frac m2\big[x_b\dot x_c(t)-x_a\dot x_c(0)\big].
+\end{equation*}
+而 $\dot x_c(t)=\frac{\omega_0}{\sin\omega_0t}(x_b-x_a\cos\omega_0t)$，$\dot x_c(0)=\frac{\omega_0}{\sin\omega_0t}(x_b\cos\omega_0t-x_a)$，代入得
+\begin{equation*}
+\boxed{\;S_c=\frac{m\omega_0}{2\sin\omega_0t}\big[(x_a^2+x_b^2)\cos\omega_0t-2x_ax_b\big]\;}
+\end{equation*}
+
+\textbf{(c) 定 $A(t)$ 之模（归一化条件）。}要求 $\int\mathrm{d}x_b\,G(x_b,t;x_a)G^*(x_b,t;x_a')=\delta(x_a-x_a')$。代入 $G=A\mathrm{e}^{\mathrm{i}S_c}$，令 $\alpha=m\omega_0\cot\omega_0t$：
+\begin{equation*}
+\int\mathrm{d}x_b\,\mathrm{e}^{\mathrm{i}\alpha\{x_b^2-(x_a+x_a')x_b+x_ax_a'\}}
+=\mathrm{e}^{-\mathrm{i}\alpha\frac{(x_a-x_a')^2}{4}}\int\mathrm{d}x_b\,\mathrm{e}^{\mathrm{i}\alpha(x_b-\frac{x_a+x_a'}2)^2}
+=\mathrm{e}^{-\mathrm{i}\frac{\alpha}4(x_a-x_a')^2}\sqrt{\frac{\pi}{\alpha}}\,\mathrm{e}^{\mathrm{i}\pi/4},
+\end{equation*}
+（$0<\omega_0t<\pi/2$ 时 $\alpha>0$）。取 $t\to0^+$，$\alpha\to m/t$，利用菲涅尔表示 $\delta(x)=\lim_{\epsilon\to0^+}(2\pi\epsilon)^{-1/2}\mathrm{e}^{\mathrm{i}\pi/4}\mathrm{e}^{\mathrm{i}x^2/2\epsilon}$，即 $\mathrm{e}^{-\mathrm{i}x^2m/4t}\to\sqrt{\frac{4\pi t}{m}}\,\mathrm{e}^{-\mathrm{i}\pi/4}\delta(x)$，得
+\begin{equation*}
+\int\mathrm{d}x_b\,GG^*\;\to\;|A|^2\sqrt{\frac{\pi t}{m}}\,\mathrm{e}^{\mathrm{i}\pi/4}\cdot\sqrt{\frac{4\pi t}{m}}\,\mathrm{e}^{-\mathrm{i}\pi/4}\,\delta(x_a-x_a')
+=|A|^2\frac{2\pi t}{m}\,\delta(x_a-x_a'),
+\end{equation*}
+故 $|A(t\to0)|=(m/2\pi t)^{1/2}$，与 $(m\omega_0/2\pi\sin\omega_0t)^{1/2}$ 的小 $t$ 极限一致；于是可写
+\begin{equation*}
+A(t)=\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin\omega_0t}\right)^{1/2}\mathrm{e}^{\mathrm{i}\phi(t)}
+\end{equation*}
+（归一化只固定 $|A|$，剩下的 $\phi(t)$ 是 Maslov 相，仅可能在焦散点 $\sin\omega_0t=0$ 处跳变）。
+
+\textbf{(d) 路径积分定出 $A(t)$。}涨落算符 $-m\frac{\mathrm{d}^2}{\mathrm{d}t'^2}-m\omega_0^2$ 在 Dirichlet 边界条件下的本征值为 $m[(n\pi/t)^2-\omega_0^2]$（$n=1,2,\dots$），于是相对自由粒子（对照书中 Det$(M_N)$ 的算法）
+\begin{equation*}
+\frac{A_{\text{osc}}(t)}{A_{\text{free}}(t)}
+=\prod_{n=1}^{\infty}\Big[1-\frac{\omega_0^2t^2}{n^2\pi^2}\Big]^{-1/2}
+=\Big[\frac{\sin\omega_0t}{\omega_0t}\Big]^{-1/2},
+\end{equation*}
+（用了 $\sin z=z\prod_{n=1}^\infty(1-\frac{z^2}{n^2\pi^2})$）。结合 $A_{\text{free}}=(m/2\pi\mathrm{i}t)^{1/2}$ 即得式 (2.1.19)：
+\begin{equation*}
+\boxed{\;\mathrm{i}A(t)=\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin\omega_0t}\right)^{1/2}\;}
+\end{equation*}
+合成三步，$G(x_b,t,x_a,0)=\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin\omega_0t}\right)^{1/2}
+\exp\Big\{\frac{\mathrm{i}m\omega_0}{2\sin\omega_0t}\big[(x_b^2+x_a^2)\cos\omega_0t-2x_ax_b\big]\Big\}$，与 $\omega_0\to0$ 时恢复自由传播子一致。
+
+\section*{问题 2.1.7}
+\begin{problem}
+用虚时路径积分计算自由粒子的虚时传播子，并经解析延拓恢复实时传播子。
+\end{problem}
+\solution
+由问题 2.1.4，$V=0$ 时
+\begin{equation*}
+\mathcal G(x_b,x_a,\tau)=\left(\frac{m}{2\pi\Delta\tau}\right)^{N/2}
+\int\prod_{j=1}^{N-1}\mathrm{d}x_j\,
+\exp\Big[-\frac m{2\Delta\tau}\sum_{j=1}^{N}(x_j-x_{j-1})^2\Big],
+\qquad \tau=N\Delta\tau .
+\end{equation*}
+每个短时核都是高斯型热核 $k_{\Delta\tau}(x,x')=(\frac m{2\pi\Delta\tau})^{1/2}\mathrm{e}^{-\frac m{2\Delta\tau}(x-x')^2}$，其傅里叶表示为
+\begin{equation*}
+k_{\Delta\tau}(x,x')=\int\frac{\mathrm{d}k}{2\pi}\,
+\mathrm{e}^{\mathrm{i}k(x-x')-\frac{k^2}{2m}\Delta\tau}.
+\end{equation*}
+连乘后先积掉 $x_1,\dots,x_{N-1}$（产生 $k_j=k_{j+1}$ 的链接），只剩 $k_1\equiv k$：
+\begin{equation*}
+\mathcal G(x_b,x_a,\tau)=\int\frac{\mathrm{d}k}{2\pi}\,
+\mathrm{e}^{\mathrm{i}k(x_b-x_a)-\frac{k^2}{2m}\tau}
+=\left(\frac{m}{2\pi\tau}\right)^{1/2}\exp\Big[-\frac{m(x_b-x_a)^2}{2\tau}\Big],
+\end{equation*}
+最后一步是标准高斯积分。即
+\begin{equation*}
+\boxed{\;\mathcal G(x_b,x_a,\tau)=\left(\frac{m}{2\pi\tau}\right)^{1/2}
+\exp\Big[-\frac{m(x_b-x_a)^2}{2\tau}\Big]\;}
+\end{equation*}
+（也可由 $N=1$ 的高斯核的 $N$ 重卷积仍为高斯核、方差相加直接得出。）
+
+解析延拓：按书中关系 $\mathcal G(x_b,x_a,\tau)\big|_{\tau=\mathrm{i}t}=\mathrm{i}G(x_b,x_a,t)$，取 $\tau=\mathrm{i}t$（$t>0$）：
+\begin{equation*}
+\mathcal G(x_b,x_a,\mathrm{i}t)=\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}
+\exp\Big[+\frac{\mathrm{i}m(x_b-x_a)^2}{2t}\Big]=\mathrm{i}G
+\;\Longrightarrow\;
+G=-\mathrm{i}\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\exp\Big[\frac{\mathrm{i}m(x_b-x_a)^2}{2t}\Big],
+\end{equation*}
+与直接解薛定谔方程得到的自由传播子 (2.1.2) 完全一致。
+
+\section*{问题 2.1.8}
+\begin{problem}
+用虚时路径积分计算谐振子 $\mathcal G(0,0,\tau)$，并从 $\tau\to\infty$ 的衰减求基态能量。
+\end{problem}
+\solution
+虚时作用量 $S_E=\int_0^\tau\mathrm{d}\tau'[\frac m2\dot x^2+\frac{m\omega_0^2}2x^2]$ 是二次的。取端点 $x(0)=x(\tau)=0$，把 $x(\tau')$ 用正弦模展开 $x(\tau')=\sum_{n=1}^\infty c_n\sqrt{\frac2\tau}\sin\frac{n\pi\tau'}\tau$，则
+\begin{equation*}
+S_E=\frac12\sum_{n=1}^\infty\Big[\Big(\frac{n\pi}\tau\Big)^2+\omega_0^2\Big]m\,c_n^2,
+\end{equation*}
+对 $c_n$ 的高斯积分给出
+\begin{equation*}
+\mathcal G(0,0,\tau)=\mathcal G_{\text{free}}(0,0,\tau)\,
+\prod_{n=1}^\infty\Big[1+\frac{\omega_0^2\tau^2}{n^2\pi^2}\Big]^{-1/2},
+\end{equation*}
+用无穷乘积 $\sinh z=z\prod_{n=1}^\infty(1+\frac{z^2}{n^2\pi^2})$ 以及问题 2.1.7 的 $\mathcal G_{\text{free}}=(m/2\pi\tau)^{1/2}$：
+\begin{equation*}
+\boxed{\;\mathcal G(0,0,\tau)=\left(\frac{m\omega_0}{2\pi\sinh\omega_0\tau}\right)^{1/2}\;}
+\end{equation*}
+谱表示给出同一函数的另一形式：$\mathcal G(0,0,\tau)=\sum_n|\psi_n(0)|^2\mathrm{e}^{-\epsilon_n\tau}$。当 $\tau\to\infty$ 时 $\sinh\omega_0\tau\to\frac12\mathrm{e}^{\omega_0\tau}$，故
+\begin{equation*}
+\mathcal G(0,0,\tau)\;\xrightarrow{\ \tau\to\infty\ }\;\left(\frac{m\omega_0}{\pi}\right)^{1/2}\mathrm{e}^{-\omega_0\tau/2}
+\;=\;|\psi_0(0)|^2\,\mathrm{e}^{-E_0\tau},
+\end{equation*}
+逐项比较得
+\begin{equation*}
+\boxed{\;E_0=\frac{\omega_0}{2}\;}\qquad\text{且}\qquad |\psi_0(0)|^2=\Big(\frac{m\omega_0}{\pi}\Big)^{1/2},
+\end{equation*}
+后者正是谐振子基态 $|\psi_0(x)|^2=(m\omega_0/\pi)^{1/2}\mathrm{e}^{-m\omega_0x^2}$ 在原点的取值，交叉验证了结果的正确性。
+
+\section*{问题 2.2.1}
+\begin{problem}
+证明高斯积分公式 (2.2.14)：$\dfrac{\int\prod_i\mathrm{d}x_i\,x_{i_1}x_{i_2}\,\mathrm{e}^{-\frac12x_iA_{ij}x_j}}{\int\prod_i\mathrm{d}x_i\,\mathrm{e}^{-\frac12x_iA_{ij}x_j}}=(A^{-1})_{i_1i_2}$。
+\end{problem}
+\solution
+设 $A_{ij}$ 为实的正定对称 $N\times N$ 矩阵（振幅情形加 $\mathrm{i}0^+$ 理解）。引入源项并计算生成函数
+\begin{equation*}
+Z[J]=\int\prod_{i=1}^N\mathrm{d}x_i\,
+\exp\Big[-\frac12\sum_{ij}x_iA_{ij}x_j+\sum_iJ_ix_i\Big].
+\end{equation*}
+指数配方可写为
+\begin{equation*}
+-\frac12x^{\mathsf T}Ax+J^{\mathsf T}x
+=-\frac12(x-A^{-1}J)^{\mathsf T}A(x-A^{-1}J)+\frac12J^{\mathsf T}A^{-1}J,
+\end{equation*}
+（直接展开并利用 $A^{\mathsf T}=A$、$A^{-1}AA^{-1}=A^{-1}$ 验证）。作平移 $y=x-A^{-1}J$（测度不变），得
+\begin{equation*}
+Z[J]=Z[0]\,\exp\Big[\frac12\sum_{ij}J_i(A^{-1})_{ij}J_j\Big],
+\qquad
+Z[0]=(\det A)^{-1/2}(2\pi)^{N/2}.
+\end{equation*}
+现在把 $x_{i_1}x_{i_2}$ 的平均值用 $J$ 的导数表出：
+\begin{equation*}
+\frac{\int\prod\mathrm{d}x_i\,x_{i_1}x_{i_2}\,\mathrm{e}^{-\frac12xAx}}
+{\int\prod\mathrm{d}x_i\,\mathrm{e}^{-\frac12xAx}}
+=\frac1{Z[0]}\frac{\partial^2 Z[J]}{\partial J_{i_1}\partial J_{i_2}}\Big|_{J=0}.
+\end{equation*}
+对 $\mathrm{e}^{\frac12JA^{-1}J}$ 求二阶导：一阶导给出 $x_{i_1}$ 平均 $=\sum_j(A^{-1})_{i_1j}J_j$（$J=0$ 时为零，对应奇数个 $x$ 的平均为零），二阶导在 $J=0$ 处恰为
+\begin{equation*}
+\frac{\partial^2}{\partial J_{i_1}\partial J_{i_2}}\Big|_{J=0}\frac12J A^{-1}J=(A^{-1})_{i_1i_2}.
+\end{equation*}
+故
+\begin{equation*}
+\boxed{\;\frac{\int\prod_i\mathrm{d}x_i\,x_{i_1}x_{i_2}\,\mathrm{e}^{-\frac12x_iA_{ij}x_j}}
+{\int\prod_i\mathrm{d}x_i\,\mathrm{e}^{-\frac12x_iA_{ij}x_j}}=(A^{-1})_{i_1i_2}\;}
+\end{equation*}
+把离散指标换成连续变量，同一公式即给出 $\mathrm{i}G_x(t_2,t_1)$ 是作用量中算符之逆（书 2.2.2 节的用法）。
+
+\section*{问题 2.2.2}
+\begin{problem}
+(a) 用相干态路径积分与生成泛函 $Z[\eta,\bar\eta]/Z[0,0]$ 计算 $\mathrm{i}G(t)=\langle a(t)a^*(0)\rangle$（实空间与频率空间）；(b) 与编时关联 $\langle0|T(\hat a(t)\hat a^\dagger(0))|0\rangle$ 在 $t\gtrless0$ 比较，注意 $t\to0^\pm$；(c) 说明如何在路径积分中计算 $\langle0|\hat a^\dagger\hat a|0\rangle$、$\langle0|\hat a\hat a^\dagger|0\rangle$ 及 $\langle0|(\hat a\hat a^\dagger)_{t_1}(\hat a\hat a^\dagger)_{t_2}|0\rangle$。
+\end{problem}
+\solution
+\textbf{(a)} 取 $L=\mathrm{i}a^*\dot a-\omega_0a^*a$（与书中对称形式差全导数，见问题 2.1.3）：
+\begin{equation*}
+Z[\eta,\bar\eta]=\int\mathcal D^2[a]\,
+\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,(\mathrm{i}a^*\dot a-\omega_0a^*a-\bar\eta a-\eta a^*)}.
+\end{equation*}
+作傅里叶变换 $a(t)=\int\frac{\mathrm{d}\omega}{2\pi}a_\omega\mathrm{e}^{-\mathrm{i}\omega t}$，注意 $\int\mathrm{d}t\,\mathrm{i}a^*\dot a=\int\frac{\mathrm{d}\omega}{2\pi}a^*_{-\omega}\,\omega\,a_\omega$，得
+\begin{equation*}
+S=\int\frac{\mathrm{d}\omega}{2\pi}\,a^*_{-\omega}\,(\omega-\omega_0)\,a_\omega
+-\int\frac{\mathrm{d}\omega}{2\pi}(\bar\eta_{-\omega}a_\omega+\eta_{-\omega}a_\omega^*),
+\end{equation*}
+即高斯核 $K(\omega)=\omega-\omega_0$。配平移 $a\to a+\xi$，$a^*\to a^*+\xi^*$（$K\xi=\bar\eta$，$\xi^*K=\eta$）消去线性项：
+\begin{equation*}
+\frac{Z[\eta,\bar\eta]}{Z[0,0]}=\exp\Big[-\mathrm{i}\int\frac{\mathrm{d}\omega}{2\pi}\,
+\eta_{-\omega}\frac{1}{\omega-\omega_0+\mathrm{i}0^+}\,\bar\eta_\omega\Big],
+\end{equation*}
+其中 $\mathrm{i}0^+$ 由复时间 $t\to t\mathrm{e}^{-\mathrm{i}0^+}$（即 $\omega_0\to\omega_0-\mathrm{i}0^+$ 方向的收敛因子）产生。由 $a\sim\frac{1}{\mathrm{i}}\frac{\delta}{\delta\bar\eta}$、$a^*\sim\frac{1}{\mathrm{i}}\frac{\delta}{\delta\eta}$，
+\begin{equation*}
+\mathrm{i}G(t-t')=\langle a(t)a^*(t')\rangle
+=\frac{1}{Z[0]}\frac{\delta^2 Z}{\delta(\mathrm{i}\bar\eta)\delta(\mathrm{i}\eta)}\bigg|_{\eta=\bar\eta=0}
+=\mathrm{i}\int\frac{\mathrm{d}\omega}{2\pi}\frac{\mathrm{e}^{-\mathrm{i}\omega(t-t')}}{\omega-\omega_0+\mathrm{i}0^+},
+\end{equation*}
+即
+\begin{equation*}
+\boxed{\;G(t)=\int\frac{\mathrm{d}\omega}{2\pi}\frac{\mathrm{e}^{-\mathrm{i}\omega t}}{\omega-\omega_0+\mathrm{i}0^+},
+\qquad
+G(\omega)=\frac{1}{\omega-\omega_0+\mathrm{i}0^+}\;}
+\end{equation*}
+对 $t>0$ 在下半平面闭合围道（极点 $\omega_0-\mathrm{i}0^+$），顺时针绕极点一周：$\mathrm{i}G(t>0)=\mathrm{e}^{-\mathrm{i}\omega_0t}$；对 $t<0$ 闭合上半平面（无极点）：$\mathrm{i}G(t<0)=0$。
+
+\textbf{(b)} 精确对角化：$\hat a(t)=\hat a\,\mathrm{e}^{-\mathrm{i}\omega_0t}$，$\hat a^\dagger(t)=\hat a^\dagger\mathrm{e}^{\mathrm{i}\omega_0t}$，
+\begin{align*}
+\langle0|\hat a(t)\hat a^\dagger(0)|0\rangle&=\mathrm{e}^{-\mathrm{i}\omega_0t}\langle0|\hat a\hat a^\dagger|0\rangle=\mathrm{e}^{-\mathrm{i}\omega_0t}\qquad(t>0),\\
+\langle0|\hat a^\dagger(0)\hat a(t)|0\rangle&=\mathrm{e}^{-\mathrm{i}\omega_0t}\langle0|\hat a^\dagger\hat a|0\rangle=0\qquad(t<0).
+\end{align*}
+与 (a) 完全一致：路径积分算出的正是编时关联 $\langle0|T(\hat a(t)\hat a^\dagger(0))|0\rangle$。特别地
+\begin{equation*}
+\mathrm{i}G(0^+)=\langle0|\hat a\hat a^\dagger|0\rangle=1,\qquad
+\mathrm{i}G(0^-)=\langle0|\hat a^\dagger\hat a|0\rangle=0:
+\end{equation*}
+$t\to0$ 的极限不连续，跳跃量 $\mathrm{i}G(0^+)-\mathrm{i}G(0^-)=1=[\hat a,\hat a^\dagger]$ 编码了对易子。
+
+\textbf{(c)} 在路径积分中 $\hat a^\dagger\hat a$ 与 $\hat a\hat a^\dagger$ 都对应同一可积函数 $a^*(t)a(t)$，故不能直接区分。解决办法是利用 (b) 中发现的“编时次序分辨算符次序”：把复合算符放在略有不同的时刻再做极限。具体地
+\begin{equation*}
+(\hat a\hat a^\dagger)_t\;\longleftrightarrow\;\lim_{\epsilon\to0^+}\hat a(t)\hat a^\dagger(t-\epsilon)\cdot\mathrm{e}^{\mathrm{i}\omega_0\epsilon}
+\;\equiv\;\lim_{\epsilon\to0^+}\;a(t)\,a^*(t-\epsilon),
+\end{equation*}
+即用编时积 $T\big(a(t)a^*(t-\epsilon)\big)$（时间靠后者 $a(t)$ 在左）代表 $\hat a\hat a^\dagger$，而 $T\big(a(t+\epsilon)a^*(t)\big)$ 代表 $\hat a^\dagger\hat a$。于是
+\begin{equation*}
+\langle0|\hat a^\dagger\hat a|0\rangle=\lim_{\epsilon\to0^+}\langle0|T(\hat a(\epsilon)\hat a^\dagger(0))|0\rangle=\lim_{\epsilon\to0^+}\mathrm{e}^{-\mathrm{i}\omega_0\epsilon}\cdot0=0,
+\qquad
+\langle0|\hat a\hat a^\dagger|0\rangle=\lim_{\epsilon\to0^+}\mathrm{e}^{-\mathrm{i}\omega_0\epsilon}\cdot1=1,
+\end{equation*}
+两者得以区分。对双算符乘积，取四点编时函数并按 $t_1$ 附近、$t_2$ 附近分别配对后取极限：
+\begin{equation*}
+\langle0|(\hat a\hat a^\dagger)_{t_1}(\hat a\hat a^\dagger)_{t_2}|0\rangle
+=\lim_{\epsilon\to0^+}\mathrm{e}^{2\mathrm{i}\omega_0\epsilon}
+\big\langle0\big|T\big(a(t_1)a^*(t_1{-}\epsilon)\,a(t_2)a^*(t_2{-}\epsilon)\big)\big|0\big\rangle,
+\end{equation*}
+对 $t_1>t_2$，编时函数中仅 $a(t_1)$ 与 $a^*(t_2-\epsilon)$、$a(t_2)$ 与 $a^*(t_1-\epsilon)$ 的收缩非零，给出 $\mathrm{e}^{-\mathrm{i}\omega_0(t_1-t_2)}$，与精确值 $\langle1|\hat a^{\,}(t_2)\hat a^\dagger(t_1)|1\rangle=\mathrm{e}^{-\mathrm{i}\omega_0(t_1-t_2)}$ 相符。要点：编时关联函数 + “相邻时刻取极限” = 指定算符次序。
+
+\section*{问题 2.2.3}
+\begin{problem}
+两个耦合谐振子 $L=\frac m2\dot x^2-\frac{m\omega^2}2x^2+\frac M2\dot X^2-\frac{M\Omega^2}2X^2-gxX$，$\Omega\gg\omega$，$g\sim m\omega^2$，$m\sim M$。积掉高频自由度 $X$，求低能有效理论 $L_{\mathrm{eff}}(x)$（至少含领头 $\frac1\Omega$ 修正），并求 $m^*$ 与 $m^*(\omega^*)^2$。
+\end{problem}
+\solution
+把 $x$ 部分写成频率空间 $L$ 中的二次型：$X$ 的线性项为 $-gxX$，$X$ 的核为 $M(\Omega^2-\omega_{\omega}^2)$（其中 $(\mathrm{d}/\mathrm{d}t)^2\to-\omega^2$）：
+\begin{equation*}
+S[X;x]=\int\frac{\mathrm{d}\omega}{2\pi}\Big[\frac12X_{-\omega}M(\Omega^2-\omega^2)X_\omega-gx_{-\omega}X_\omega\Big].
+\end{equation*}
+对 $X$ 完成高斯积分（配平移，$X_\omega=-\frac{g x_\omega}{M(\Omega^2-\omega^2)}$ 为经典解），利用 $\int\mathrm{e}^{\frac{\mathrm{i}}2XKX-\mathrm{i}JX}=\mathrm{e}^{-\frac{\mathrm{i}}2JK^{-1}J}\times$常数，得有效作用量
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}S_I}=\frac{Z[\mathcal E]}{Z[0]}\;\Rightarrow\;
+S_I=-\frac{g^2}{2M}\int\frac{\mathrm{d}\omega}{2\pi}\,
+\frac{x_{-\omega}x_\omega}{\Omega^2-\omega^2}
+=-\frac{g^2}{2M}\int\mathrm{d}t\,x\Big(\Omega^2+\frac{\mathrm{d}^2}{\mathrm{d}t^2}\Big)^{-1}x .
+\end{equation*}
+由于积分出的是高能自由度，$\omega\ll\Omega$，可作大 $\Omega$ 展开：
+\begin{equation*}
+\frac{1}{\Omega^2-\omega^2}=\frac1{\Omega^2}\Big(1+\frac{\omega^2}{\Omega^2}+\cdots\Big)
+\;\Longrightarrow\;
+S_I=-\frac{g^2}{2M\Omega^2}\int\mathrm{d}t\,x^2-\frac{g^2}{2M\Omega^4}\int\mathrm{d}t\,\dot x^2+\cdots
+\end{equation*}
+（第二项用了 $\int\frac{\mathrm{d}\omega}{2\pi}\omega^2x_{-\omega}x_\omega=\int\mathrm{d}t\,\dot x^2$）。于是
+\begin{equation*}
+\boxed{\;L_{\mathrm{eff}}(x)=\frac12\Big(m-\frac{g^2}{M\Omega^4}\Big)\dot x^2-\frac12\Big(m\omega^2+\frac{g^2}{M\Omega^2}\Big)x^2\;}
+\end{equation*}
+即
+\begin{equation*}
+m^*=m-\frac{g^2}{M\Omega^4},
+\qquad
+m^*(\omega^*)^2=m\omega^2+\frac{g^2}{M\Omega^2},
+\qquad
+(\omega^*)^2=\omega^2+\frac{g^2}{mM\Omega^2}+O\Big(\frac1{\Omega^4}\Big).
+\end{equation*}
+\textbf{自洽性检查：}精确对角化两振子，久期方程 $\big(\omega^2_{\text{eig}}-\omega^2\big)\big(\omega^2_{\text{eig}}-\Omega^2\big)=\frac{g^2}{mM}$，低频解 $\omega_-^2=\omega^2+\frac{g^2}{mM(\Omega^2-\omega^2)}+\cdots\approx\omega^2+\frac{g^2}{mM\Omega^2}$，与 $\omega^*$ 一致。按题设 $g\sim m\omega^2$、$M\sim m$：质量修正 $\sim m\,\omega^4/\Omega^4$、频率修正 $\sim\omega^4/\Omega^2$，均为小量，展开自洽。物理解释：$X$ 被 $x$ 极化并随其运动，等效地使弹簧变硬（$(\omega^*)^2$ 增大）并改变有效质量。
+
+\section*{问题 2.2.4}
+\begin{problem}
+谐振子 $j=e\dot x$：计算编时流关联 $G_j(\omega)=\int\mathrm{d}t\,G_j(t)\mathrm{e}^{\mathrm{i}\omega t}$（$\mathrm{i}G_j(t)=\langle j(t)j(0)\rangle$）；用经典物理（可加少量摩擦 $\gamma$）计算 $\sigma(\omega)$（$j_\omega=\sigma E_\omega$）；证明对 $\omega>0$ 有 $\sigma=C\,G_j(\omega)/\omega$ 型关系并求 $C$；证明 $\mathrm{Re}\,\sigma$ 仅在 $\omega=\omega_0$ 非零。
+\end{problem}
+\solution
+\textbf{(1) 流关联函数。}用谱表示最直接。$j$ 只连接基态与第一激发态：
+$\langle0|\hat p|1\rangle=-\mathrm{i}\sqrt{m\omega_0/2}$，$\langle0|j|1\rangle=\frac em\langle0|\hat p|1\rangle=-\mathrm{i}\,\mathrm{e}\sqrt{\omega_0/2m}$，
+$|\langle0|j|1\rangle|^2=\frac{e^2\omega_0}{2m}$。零温下
+\begin{equation*}
+\mathrm{i}G_j(t)=\langle0|T(j(t)j(0))|0\rangle
+=\frac{e^2\omega_0}{2m}\,\mathrm{e}^{-\mathrm{i}\omega_0|t|\,(1-\mathrm{i}0^+)} ,
+\end{equation*}
+（$t>0$：$\langle0|j(t)j(0)|0\rangle=\frac{e^2\omega_0}{2m}\mathrm{e}^{-\mathrm{i}\omega_0t}$；$t<0$：$\langle0|j(0)j(t)|0\rangle=\frac{e^2\omega_0}{2m}\mathrm{e}^{+\mathrm{i}\omega_0t}$；两者对 $|t|$ 的依赖相同）。作傅里叶变换
+\begin{equation*}
+G_j(\omega)=\frac{e^2\omega_0}{2m}\int_{-\infty}^{\infty}\mathrm{d}t\,
+\mathrm{e}^{\mathrm{i}\omega t-0^+|t|}\mathrm{e}^{-\mathrm{i}\omega_0|t|}
+=\frac{e^2\omega_0}{2m}\left[\frac{\mathrm{i}}{\omega-\omega_0+\mathrm{i}0^+}-\frac{\mathrm{i}}{\omega+\omega_0-\mathrm{i}0^+}\right],
+\end{equation*}
+合并两项：
+\begin{equation*}
+\boxed{\;G_j(\omega)=\frac{e^2\omega_0^2/m}{\omega^2-\omega_0^2+\mathrm{i}0^+}
+= e^2\omega_0^2\,G_x(\omega)\;}
+\end{equation*}
+最后一步与书中 $G_x(\omega)=m^{-1}/(\omega^2-\omega_0^2+\mathrm{i}0^+)$（式 2.2.17）自洽：对谐振子 $G_j=e^2\omega_0^2G_x$（联系 $j=e\dot x$；对流形的、含 $\delta(t)$ 接触项的部分两者之差是光滑常数，不影响极点结构）。
+
+\textbf{(2) 经典电导。}加摩擦 $\gamma$，受迫振动方程 $m\ddot x+m\omega_0^2x+\gamma\dot x=eE(t)$。取 $\mathrm{e}^{-\mathrm{i}\omega t}$：$x_\omega=\dfrac{eE_\omega}{m(\omega_0^2-\omega^2)-\mathrm{i}\gamma\omega}$，而 $j_\omega=e\dot x_\omega=-\mathrm{i}\omega e\,x_\omega$，故
+\begin{equation*}
+\sigma(\omega)=\frac{-\mathrm{i}\omega e^2}{m(\omega_0^2-\omega^2)-\mathrm{i}\gamma\omega}
+\;\xrightarrow{\gamma\to0^+}\;
+\frac{\mathrm{i}e^2\omega/m}{\omega^2-\omega_0^2+\mathrm{i}0^+},
+\end{equation*}
+（$\gamma\to0^+$ 取在正确一侧，保证耗散为正）。
+
+\textbf{(3) 与 $G_j$ 的关系。}由上两式立即得
+\begin{equation*}
+\sigma(\omega)=\frac{\mathrm{i}\omega}{\omega_0^2}\,G_j(\omega)
+=\frac{\mathrm{i}}{\omega}\Big[\frac{e^2}{m}+G_j(\omega)\Big],
+\end{equation*}
+第二式即 Kohler/Kubo 型关系：$\frac{\mathrm{i}}{\omega}\big[\frac{e^2}m+G_j(\omega)\big]=\frac{\mathrm{i}e^2}{m\omega}\cdot\frac{\omega^2}{\omega^2-\omega_0^2+\mathrm{i}0^+}=\sigma(\omega)$。在共振极点 $\omega\simeq\omega_0$ 附近 $G_j$ 发散、 diamagnetic 常数项 $\frac{e^2}m$ 可略，于是对 $\omega>0$
+\begin{equation*}
+\boxed{\;\sigma(\omega)\simeq \mathrm{i}\,\frac{G_j(\omega)}{\omega}\;,\qquad C=\mathrm{i}\;}
+\end{equation*}
+\emph{（译注：严格的关系是 $\sigma=\frac{\mathrm{i}}{\omega}\big[\frac{e^2}{m}+G_j(\omega)\big]$，即除 $G_j/\omega$ 外还有 diamagnetic 接触项 $e^2/m$；原书形式 $\sigma=CG_j/\omega$ 应理解为在共振点（$\mathrm{Re}\,\sigma$ 的全部结构所在）忽略接触项，此时 $C=\mathrm{i}$。）}
+
+\textbf{(4) 实部的位置。}保留 $\mathrm{i}0^+$：
+\begin{equation*}
+\mathrm{Re}\,\sigma(\omega)=\mathrm{Re}\,\frac{\mathrm{i}e^2\omega}{m}\,\mathcal P\frac1{\omega^2-\omega_0^2}
++\frac{e^2\omega}{m}\,\pi\delta(\omega^2-\omega_0^2)
+=\frac{\pi e^2\omega}{2m\omega_0}\,\delta(\omega-\omega_0)\qquad(\omega>0),
+\end{equation*}
+即 $\mathrm{Re}\,\sigma$ 只在 $\omega=\omega_0$ 非零：只有此处振子才能通过跃迁 $|0\rangle\to|1\rangle$ 吸收能量（$\hbar\omega=\epsilon_1-\epsilon_0$）。推论：有限直流电导需要无能隙激发——有能隙系统 $\mathrm{Re}\,\sigma(0)=0$。
+
+\section*{问题 2.2.5}
+\begin{problem}
+用谱表示证明式 (2.2.39)：$T=0$ 时 $G(\omega)=-\mathcal G(\omega)\big|_{\mathrm{i}\omega\to\omega(1+\mathrm{i}0^+)}$。
+\end{problem}
+\solution
+设 $\omega_m=\epsilon_m-\epsilon_0\ge0$，记 $C_m=\langle0|O_2|m\rangle\langle m|O_1|0\rangle$，$D_m=\langle0|O_1|m\rangle\langle m|O_2|0\rangle$。零温谱表示（(2.2.24) 与 (2.2.33) 的 $\beta\to\infty$ 极限）为
+\begin{align*}
+&\mathrm{i}G(t)\big|_{t>0}=\sum_mC_m\mathrm{e}^{-\mathrm{i}\omega_mt},\qquad
+\mathrm{i}G(t)\big|_{t<0}=\eta\sum_mD_m\mathrm{e}^{+\mathrm{i}\omega_mt},\\
+&\mathcal G(\tau)\big|_{\tau>0}=\sum_mC_m\mathrm{e}^{-\omega_m\tau},\qquad
+\mathcal G(\tau)\big|_{\tau<0}=\eta\sum_mD_m\mathrm{e}^{+\omega_m\tau}.
+\end{align*}
+先取编时的实时傅里叶变换（$\int_0^\infty\mathrm{e}^{\mathrm{i}\varOmega t-0^+t}\mathrm{d}t=\frac{\mathrm{i}}{\varOmega+\mathrm{i}0^+}$，$\int_{-\infty}^0\mathrm{e}^{\mathrm{i}\varOmega t+0^+t}\mathrm{d}t=\frac{-\mathrm{i}}{\varOmega-\mathrm{i}0^+}$）：
+\begin{equation*}
+G(\omega)=\sum_m\frac{C_m}{\omega-\omega_m+\mathrm{i}0^+}
+-\eta\sum_m\frac{D_m}{\omega+\omega_m-\mathrm{i}0^+}.
+\end{equation*}
+再取虚时（Matsubara）函数的 $T=0$ 极限，$\mathcal G(\omega)=\int\mathrm{d}\tau\,\mathcal G(\tau)\mathrm{e}^{\mathrm{i}\omega\tau}=\sum_m\frac{C_m}{\omega_m-\mathrm{i}\omega}+\eta\sum_m\frac{D_m}{\omega_m+\mathrm{i}\omega}$，作代换 $\mathrm{i}\omega\to\omega(1+\mathrm{i}0^+)$（即 $\omega_m-\mathrm{i}\omega\to\omega_m-\omega-\mathrm{i}0^+$ 等）：
+\begin{equation*}
+-\mathcal G(\omega)\big|_{\mathrm{i}\omega\to\omega(1+\mathrm{i}0^+)}
+=-\sum_m\frac{C_m}{\omega_m-\omega-\mathrm{i}0^+}
+-\eta\sum_m\frac{D_m}{\omega_m+\omega+\mathrm{i}0^+}
+=\sum_m\frac{C_m}{\omega-\omega_m+\mathrm{i}0^+}
+-\eta\sum_m\frac{D_m}{\omega+\omega_m+\mathrm{i}0^+}.
+\end{equation*}
+与 $G(\omega)$ 比较：$C_m$ 项（极点在 $\omega=+\omega_m>0$，且 $\mathrm{i}0^+$ 约定一致）逐项相等；$D_m$ 项的差别仅在 $\mathrm{i}0^+$ 记号：
+\begin{equation*}
+\frac{1}{\omega+\omega_m-\mathrm{i}0^+}-\frac{1}{\omega+\omega_m+\mathrm{i}0^+}=2\pi\mathrm{i}\,\delta(\omega+\omega_m),
+\end{equation*}
+其支集在 $\omega=-\omega_m\le0$。因此
+\begin{equation*}
+\boxed{\;-\mathcal G(\omega)\big|_{\mathrm{i}\omega\to\omega(1+\mathrm{i}0^+)}=G(\omega)
+\qquad(\omega>0)\;}
+\end{equation*}
+对 $\omega<0$ 两边相差 $\delta(\omega+\omega_m)$ 型接触项。这正是书中强调的内容：\textbf{傅里叶变换与解析延拓不可交换}——零温下全部“吸收谱”$A_+(\nu)$ 位于 $\nu>0$，故对正频此延拓恰好重新给出编时关联；有限温度下权重在 $\nu<0$ 也存在（$\mathrm{e}^{-\epsilon_m\beta}$ 因子），延拓便无法把 $\mathcal G^\beta(\omega_l)$ 变成 $G^\beta(\omega)$。
+
+\section*{问题 2.2.6}
+\begin{problem}
+从 $\mathcal G^\beta(\tau)$ 的定义出发证明式 (2.2.35)。
+\end{problem}
+\solution
+在 $(0,\beta)$ 上（此时 $T_\tau$ 序即 $\tau>0$ 支）代入谱表示 (2.2.33)：
+\begin{align*}
+\mathcal G^\beta(\omega_l)&=\int_0^\beta\mathrm{d}\tau\,\mathcal G^\beta(\tau)\mathrm{e}^{\mathrm{i}\omega_l\tau}
+=\sum_{m,n}\frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{Z}\,
+\mathrm{e}^{-\epsilon_n\beta}\int_0^\beta\mathrm{d}\tau\,
+\mathrm{e}^{(\mathrm{i}\omega_l-\epsilon_m+\epsilon_n)\tau}\\
+&=\sum_{m,n}\frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{Z}\,
+\mathrm{e}^{-\epsilon_n\beta}\,
+\frac{\mathrm{e}^{(\mathrm{i}\omega_l-\epsilon_m+\epsilon_n)\beta}-1}{\mathrm{i}\omega_l-\epsilon_m+\epsilon_n}.
+\end{align*}
+ Matsubara 频率满足 $\mathrm{e}^{\mathrm{i}\omega_l\beta}=\eta$，故分子 $=\eta\mathrm{e}^{-\epsilon_m\beta}-\mathrm{e}^{-\epsilon_n\beta}$：
+\begin{equation*}
+\mathcal G^\beta(\omega_l)=-\sum_{m,n}\frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}
+{\mathrm{i}\omega_l-\epsilon_m+\epsilon_n}\,
+\frac{\mathrm{e}^{-\epsilon_n\beta}-\eta\,\mathrm{e}^{-\epsilon_m\beta}}{Z}.
+\end{equation*}
+当 $\eta=+1$、$\omega_l=0$ 且 $m=n$ 时上式为 $\frac00$ 型未定式，需小心处理：引入小复数 $\delta$，把上式写成
+\begin{equation*}
+\mathcal G^\beta(\omega_l)=-\sum_{m,n}\frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}
+{\mathrm{i}\omega_l-\epsilon_m+\epsilon_n+T\delta}\,
+\frac{\mathrm{e}^{-\epsilon_n\beta}-(\eta+\delta)\mathrm{e}^{-\epsilon_m\beta}}{Z},
+\end{equation*}
+并验证它对良好情形 $(\omega_l\neq0)$ 无影响、而对奇异情形给出正确极限。取 $\eta=1$、$\omega_l\to0$、$\epsilon_m=\epsilon_n+\Delta\to\epsilon_n$（即 $\Delta\to0$）：
+\begin{equation*}
+\frac{\mathrm{e}^{-\epsilon_n\beta}-\mathrm{e}^{-(\epsilon_n+\Delta)\beta}}{\mathrm{i}\omega_l-\Delta+T\delta}
+\;\xrightarrow[\omega_l\to0]{\Delta\to0}\;
+\frac{\beta\mathrm{e}^{-\epsilon_n\beta}\Delta}{-\Delta+T\delta}\;\to\;\beta\,\mathrm{e}^{-\epsilon_n\beta},
+\end{equation*}
+即 $m=n$ 项贡献 $\langle\psi_n|O_2|\psi_n\rangle\langle\psi_n|O_1|\psi_n\rangle\,\beta\,\mathrm{e}^{-\epsilon_n\beta}/Z$，正是 $\tau$-积分 $\int_0^\beta\mathrm{d}\tau\,\langle O_2(\tau)O_1(0)\rangle_{n}$ 对常数被积函数的结果。合并即得
+\begin{equation*}
+\boxed{\;\mathcal G^\beta(\omega_l)=-\sum_{m,n}\frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}
+{\mathrm{i}\omega_l-\epsilon_m+\epsilon_n+T\delta}\,
+\frac{\mathrm{e}^{-\epsilon_n\beta}-(\eta+\delta)\,\mathrm{e}^{-\epsilon_m\beta}}{Z}\;}
+\end{equation*}
+以及第二等式（把分子按 $\delta$ 拆开重组，见书中式 (2.2.35) 第二行）。
+
+\section*{问题 2.2.7}
+\begin{problem}
+证明式 (2.2.43) $\mathcal G_x^\beta(\omega_n)=m^{-1}/(\omega_n^2+\omega_0^2)$；计算 $\langle x^2\rangle=\mathcal G_x^\beta(0)$ 并检查 $T\to0$、$T\to\infty$ 极限。
+\end{problem}
+\solution
+\textbf{(1) 式 (2.2.43)。}虚时路径积分是高斯型：
+\begin{equation*}
+Z=\int\mathcal D[x(\tau)]\,\mathrm{e}^{-\int_0^\beta\mathrm{d}\tau\,\frac m2(\dot x^2+\omega_0^2x^2)},\qquad
+x(\tau)=\beta^{-1/2}\sum_n x_{\omega_n}\mathrm{e}^{\mathrm{i}\omega_n\tau},\quad \omega_n=2\pi nT .
+\end{equation*}
+由周期性 $\dot x\to\mathrm{i}\omega_n x_{\omega_n}$：
+\begin{equation*}
+S_E=\frac12\sum_{n=-\infty}^{\infty}x_{-\omega_n}\big[m\omega_n^2+m\omega_0^2\big]x_{\omega_n}.
+\end{equation*}
+这是问题 2.2.1 的高斯公式的泛函版本：$\langle x_{\omega_n}x_{-\omega_n}\rangle=(A^{-1})_{\omega_n\omega_n}$：
+\begin{equation*}
+\boxed{\;\mathcal G_x^\beta(\omega_n)=\langle x_{\omega_n}x_{-\omega_n}\rangle=\frac{m^{-1}}{\omega_n^2+\omega_0^2}\;}
+\end{equation*}
+
+\textbf{(2) $\langle x^2\rangle$。}$\mathcal G_x^\beta(\tau)$ 在 $\tau=0^+$ 的值：
+\begin{equation*}
+\langle x^2\rangle=\mathcal G_x^\beta(0^+)=\frac1\beta\sum_{n=-\infty}^{\infty}\mathcal G_x^\beta(\omega_n)\,\mathrm{e}^{\mathrm{i}\omega_n0^+}
+=\frac{T}{m}\sum_{n}\frac{1}{\omega_n^2+\omega_0^2}.
+\end{equation*}
+用围道技巧（图 2.3）：$f(z)=\frac{1}{(-\mathrm{i}z)^2+\omega_0^2}\cdot\frac{1}{\mathrm{e}^{\beta z}-1}$ 的极点为 $z=\mathrm{i}\omega_n$（来自 $\mathrm{e}^{\beta z}=1$，每处留数 $T$）与 $z=\pm\omega_0$（来自 $(-\mathrm{i}z)^2+\omega_0^2=\omega_0^2-z^2$）。由于大圆 $C_2$ 上被积函数为 $O(z^{-2})$，$\oint_{C_2}=0$，把 $C_1$（围住虚轴）连续变形扫过 $\pm\omega_0$：
+\begin{equation*}
+\sum_n\frac{T}{\omega_n^2+\omega_0^2}
+=\operatorname*{Res}_{z=\omega_0}f+\operatorname*{Res}_{z=-\omega_0}f
+=\frac{1}{2\omega_0}\cdot\frac{1}{\mathrm{e}^{\beta\omega_0}-1}
++\frac{1}{-2\omega_0}\cdot\frac{1}{\mathrm{e}^{-\beta\omega_0}-1}
+=\frac{2n_B(\omega_0)+1}{2\omega_0},
+\end{equation*}
+（第二式用了 $\frac{1}{\mathrm{e}^{-\beta\omega_0}-1}=-\big(1+n_B\big)$。）故
+\begin{equation*}
+\boxed{\;\langle x^2\rangle=\frac{2n_B(\omega_0)+1}{2m\omega_0}
+=\frac{1}{2m\omega_0}\coth\frac{\beta\omega_0}{2}\;}
+\end{equation*}
+
+\textbf{(3) 极限。}
+\begin{align*}
+T\to0:\quad& n_B\to0,\quad \langle x^2\rangle\to\frac{1}{2m\omega_0}
+\quad\text{（零点涨落，} \tfrac12\hbar\omega_0=m\omega_0^2\langle x^2\rangle \text{ 的维里定理）};\\
+T\to\infty:\quad& n_B\simeq\frac{T}{\omega_0},\quad
+\langle x^2\rangle\to\frac{T}{m\omega_0^2}
+\quad\text{（经典能量均分：}\tfrac12m\omega_0^2\langle x^2\rangle=\tfrac T2\text{）}.
+\end{align*}
+两极限均正确。
+
+\section*{问题 2.3.1}
+\begin{problem}
+证明图 2.4 中定义的 $\theta_B$（自旋 1 相干态相位的平行移动一周的转角）就是自旋 1 的贝里相。
+\end{problem}
+\solution
+分两步：先算自旋 1 的贝里相，再算图 2.4 中切矢量平行移动一周的转角，证明二者是同一个几何量。
+
+\textbf{(1) 自旋 1 的贝里相。}自旋 1 相干态是两个自旋 1/2 相干态的直积 $|\pmb n\rangle=|z\rangle\otimes|z\rangle$，由式 (2.3.6) 其贝里相是自旋 1/2 的两倍。用规范 (2.3.1)（$z=(\mathrm{e}^{-\mathrm{i}\phi}\cos\frac\theta2,\ \sin\frac\theta2)$，$z^\dagger\partial_\phi z=-\mathrm{i}\cos^2\frac\theta2$，$z^\dagger\partial_\theta z=0$）：
+\begin{equation*}
+\mathrm{i}z^\dagger\dot z=\cos^2\frac\theta2\,\dot\phi=\frac{1+\cos\theta}2\,\dot\phi .
+\end{equation*}
+对闭合路径（记 $D$ 为回路在球面上围住的区域，$-D$ 为补区）：
+\begin{equation*}
+\theta_B^{(S=1)}=2\oint\mathrm{i}z^\dagger\dot z\,\mathrm{d}t=\oint(1+\cos\theta)\,\mathrm{d}\phi
+=2\pi\,w+\oint\cos\theta\,\mathrm{d}\phi,
+\end{equation*}
+$w$ 为 $\phi$ 的环绕数。由斯托克斯公式 $\Omega(D)=\oint_{\partial D}(1-\cos\theta)\mathrm{d}\phi$（$D$ 取外向定向），即 $\oint\cos\theta\,\mathrm{d}\phi=2\pi w-\Omega$，故
+\begin{equation*}
+\theta_B^{(S=1)}=4\pi w-\Omega\;\equiv\;-\,\Omega(D)\;=\;+\,\Omega(-D)\pmod{2\pi},
+\end{equation*}
+即自旋 1 的贝里相（模 $2\pi$）等于回路所围立体角：$\mathrm{e}^{\mathrm{i}\theta_B}=\mathrm{e}^{\mathrm{i}\Omega}$（取向约定与书 (2.3.5)、(2.3.6) 中 $\theta_B=S\Omega$ 一致，$\Omega$ 取相应一侧的立体角）。
+
+\textbf{(2) 切矢量的平行移动。}在单位球面上取自然标架 $\pmb e_\theta=\partial_\theta\pmb n$、$\pmb e_\phi=\frac{1}{\sin\theta}\partial_\phi\pmb n$，把图 2.4 中的单位切矢量写成 $\pmb u=\cos\psi\,\pmb e_\theta+\sin\psi\,\pmb e_\phi$。平行移动条件是 $\dot{\pmb u}$ 在切平面内无分量，即 $\dot{\pmb u}\cdot\pmb e_\theta=\dot{\pmb u}\cdot\pmb e_\phi=0$。利用
+\begin{equation*}
+\partial_\theta\pmb e_\theta=-\pmb n,\quad
+\partial_\phi\pmb e_\theta=\cos\theta\,\pmb e_\phi,\quad
+\partial_\theta\pmb e_\phi=0,\quad
+\partial_\phi\pmb e_\phi=-\sin\theta\,\pmb n-\cos\theta\,\pmb e_\theta,
+\end{equation*}
+（这些由 $\pmb n=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$ 直接求导得到），两个条件都给出同一个方程
+\begin{equation*}
+\dot\psi=-\cos\theta\,\dot\phi .
+\end{equation*}
+绕闭合回路一周，切矢量的转角为
+\begin{equation*}
+\Delta\psi=-\oint\cos\theta\,\mathrm{d}\phi=\Omega(D)-2\pi w\;\equiv\;\Omega\pmod{2\pi}
+\;=\;\theta_B^{(S=1)}\pmod{2\pi},
+\end{equation*}
+（取向约定下 $\mathrm{e}^{\mathrm{i}\Delta\psi}=\mathrm{e}^{\mathrm{i}\theta_B}$）。
+
+因此图 2.4 定义的 $\theta_B$（平行移动一周切矢量的转角）正是自旋 1 的贝里相：二者都是球面自然联络沿回路的和乐（holonomy），由回路所围立体角给出——这正是“自旋 1 相干态的相位可由切平面上二维单位矢量表示”这一几何表示的内容。
+
+\section*{问题 2.3.2}
+\begin{problem}
+自旋 1/2 系统 $H=a\sigma^1+b\sigma^3$，用不连续路径 $s_z(t)=\pm\frac12$ 求时间演化算符 $\langle s_z'|U(t,0)|s_z\rangle$ 的路径积分表示。
+\end{problem}
+\solution
+取 $s_z$ 表象，$|+\rangle,|-\rangle$ 为 $\sigma^3$ 本征态（$\sigma^3|s\rangle=2s|s\rangle$，$s=\pm\frac12$），完备性 $\sum_{s=\pm\frac12}|s\rangle\langle s|=1$。把 $[0,t]$ 分成 $N$ 段并在每段间插入完备性：
+\begin{equation*}
+\langle s'|U(t,0)|s\rangle=\sum_{s_1\dots s_{N-1}=\pm\frac12}
+\prod_{j=1}^{N}\langle s_j|\mathrm{e}^{-\mathrm{i}H\Delta t}|s_{j-1}\rangle,
+\qquad s_0=s,\ s_N=s' .
+\end{equation*}
+由 $H=a\sigma^1+b\sigma^3$ 的矩阵元
+\begin{equation*}
+\langle s'|\sigma^3|s\rangle=2s\,\delta_{s's},\qquad
+\langle s'|\sigma^1|s\rangle=1-\delta_{s's}\ \ (\text{翻转}),
+\end{equation*}
+得短时振幅（准确到 $O(\Delta t)$，这正是路径积分所需的精度）：
+\begin{equation*}
+\langle s_j|\mathrm{e}^{-\mathrm{i}H\Delta t}|s_{j-1}\rangle
+=\begin{cases}
+\mathrm{e}^{-\mathrm{i}\,2b\,s_{j}\Delta t}+O(\Delta t^2), & s_j=s_{j-1},\\[1ex]
+-\mathrm{i}\,a\,\Delta t+O(\Delta t^2), & s_j=-s_{j-1}\ \text{（一次翻转）}.
+\end{cases}
+\end{equation*}
+于是得到路径积分表示：对所有分段常数的路径 $s_z(\tau)$（$s_z(0)=s$，$s_z(t)=s'$）求和，每条路径的振幅为
+\begin{equation*}
+\boxed{\;
+\langle s_z'|U(t,0)|s_z\rangle
+=\sum_{\text{路径 } s_z(\tau)}
+\exp\Big[-\mathrm{i}\int_0^t\mathrm{d}\tau\;2b\,s_z(\tau)\Big]\;(-\mathrm{i}a)^{\,N_{\text{flip}}}\;}
+\end{equation*}
+其中 $N_{\text{flip}}$ 是路径上 $s_z$ 跳变的次数；等价地
+\begin{equation*}
+\langle s_z'|U(t,0)|s_z\rangle
+=\sum_{n=0}^{\infty}(-\mathrm{i}a)^n\!\!\int_{0<\tau_1<\dots<\tau_n<t}\prod_{k=1}^n\mathrm{d}\tau_k
+\sum_{\substack{s_z(\tau)\ \text{分段常数}\\ \text{仅在 }\tau_k\text{ 处跳变}}}
+\exp\Big[-\mathrm{i}\int_0^t 2b\,s_z(\tau)\,\mathrm{d}\tau\Big].
+\end{equation*}
+解读：$\sigma^3$ 项 $b$ 给出连续“势能”相位 $\mathrm{e}^{-\mathrm{i}\int 2bs_z\mathrm{d}\tau}$，$\sigma^1$ 项 $a$ 使 $s_z$ 以每个跳变 $-\mathrm{i}a\,\mathrm{d}\tau$ 的振幅发生翻转——这正是不连续路径上的一阶（类相空间）路径积分。自洽性检查：按 $a$ 的幂次展开即回到戴森级数；$a=0$ 时只有无翻转路径存活，给出 $\langle s'|U|s\rangle=\delta_{ss'}\mathrm{e}^{-\mathrm{i}2bst}$；$b=0$ 时 $\langle+|U|+\rangle=\cos(at)\mathrm{e}^{-\mathrm{i}\pi/2}$-型振荡与精确解 $U=\cos(at)-\mathrm{i}(a\sigma^1/|a|)\sin(at)$ 一致。
+
+\section*{问题 2.3.3}
+\begin{problem}
+用旋量表示 (2.3.1) 计算闭合路径（$\phi:0\to2\pi$，$\theta$ 固定）的贝里相；再对同一路径改用另一旋量表示计算，说明 $\theta_B$ 的 $2\pi$ 模糊性。
+\end{problem}
+\solution
+\textbf{规范 (2.3.1)：}$z=\begin{pmatrix}\mathrm{e}^{-\mathrm{i}\phi}\cos\frac\theta2\\ \sin\frac\theta2\end{pmatrix}$，
+\begin{equation*}
+z^\dagger\dot z=z^\dagger\partial_\phi z\,\dot\phi=-\mathrm{i}\cos^2\frac\theta2\,\dot\phi
+\;\Longrightarrow\;
+\theta_B=\int_0^{2\pi}\mathrm{i}z^\dagger\dot z\,\mathrm{d}\phi=2\pi\cos^2\frac\theta2=\pi(1+\cos\theta).
+\end{equation*}
+\textbf{另一规范（描述同一条路径）：}$\tilde z=\begin{pmatrix}\cos\frac\theta2\\ \mathrm{e}^{\mathrm{i}\phi}\sin\frac\theta2\end{pmatrix}$，它给出同一个 $\pmb n$（$\tilde z^\dagger\sigma\tilde z=(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$，与 (2.3.1) 相同），且 $\tilde z=\mathrm{e}^{\mathrm{i}\phi}z$：
+\begin{equation*}
+\tilde z^\dagger\partial_\phi\tilde z=\mathrm{i}\sin^2\frac\theta2
+\;\Longrightarrow\;
+\tilde\theta_B=-\int_0^{2\pi}\sin^2\frac\theta2\,\mathrm{d}\phi=-\pi(1-\cos\theta).
+\end{equation*}
+比较：
+\begin{equation*}
+\theta_B-\tilde\theta_B=\pi(1+\cos\theta)+\pi(1-\cos\theta)=2\pi ,
+\end{equation*}
+恰好相差 $2\pi$：\textbf{$\theta_B$ 有 $2\pi$ 的模糊性，依赖于所选旋量表示；但 $\mathrm{e}^{\mathrm{i}\theta_B}$ 是良定义的且只依赖路径 $\pmb n(t)$}：
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}\theta_B}=\mathrm{e}^{\mathrm{i}\tilde\theta_B}=\mathrm{e}^{\mathrm{i}\pi(1+\cos\theta)}
+=\mathrm{e}^{-\mathrm{i}\Omega/2},\qquad \Omega=2\pi(1-\cos\theta),
+\end{equation*}
+（$\Omega$ 为北极帽立体角；取补区则等价地 $\theta_B\equiv+\Omega'/2$，$\Omega'=2\pi(1+\cos\theta)$，与 (2.3.5) 一致）。这正是路径积分中必须用旋量表示（而非直接用 $\pmb n$）来写贝里相的原因。
+
+\emph{（译注：原书第二问的旋量印作 $z=(\cos\frac\theta2,\ \mathrm{e}^{-\mathrm{i}\phi}\sin\frac\theta2)$。该旋量实际表示 $\pmb n=(\sin\theta\cos\phi,\,-\sin\theta\sin\phi,\cos\theta)$，即同一圆周但方向相反的路径，其“贝里相” $\pi(1-\cos\theta)=-\theta_B\,( \mathrm{mod}\ 2\pi)$ 恰为反向路径的贝里相。要描述同一条（同向）路径，应取 $\mathrm{e}^{+\mathrm{i}\phi}$，如上文所用的 $\tilde z$；此时两表示的结果恰差 $2\pi$，与书中“$2\pi$ 模糊性”的结论一致。）}
+
+\section*{问题 2.3.4}
+\begin{problem}
+对小闭合路径 $(\theta,\phi)\to(\theta+d\theta,\phi)\to(\theta+d\theta,\phi+d\phi)\to(\theta,\phi+d\phi)\to(\theta,\phi)$ 以及对一般大闭合路径证明式 (2.3.5)：$\theta_B=\Omega/2$。
+\end{problem}
+\solution
+\textbf{(a) 小回路。}用规范 (2.3.1)，$z^\dagger\partial_\theta z=0$、$\mathrm{i}z^\dagger\partial_\phi z=\cos^2\frac\theta2=\frac{1+\cos\theta}2$。逐段计算 $\theta_B=\oint\mathrm{i}z^\dagger\dot z\,\mathrm{d}t$：
+\begin{align*}
+(\theta,\phi)\to(\theta+d\theta,\phi)&:\quad z^\dagger\partial_\theta z=0\ \Rightarrow\ 0;\\
+(\theta+d\theta,\phi)\to(\theta+d\theta,\phi+d\phi)&:\quad \int\frac{1+\cos(\theta+d\theta)}2\,\mathrm{d}\phi;\\
+(\theta+d\theta,\phi+d\phi)\to(\theta,\phi+d\phi)&:\quad 0;\\
+(\theta,\phi+d\phi)\to(\theta,\phi)&:\quad -\int\frac{1+\cos\theta}2\,\mathrm{d}\phi .
+\end{align*}
+相加（保留 $d\theta d\phi$ 领头阶）：
+\begin{equation*}
+\theta_B=\frac{\cos(\theta+d\theta)-\cos\theta}{2}\,d\phi=-\frac12\sin\theta\,d\theta\,d\phi .
+\end{equation*}
+该小矩形回路所围的球面面积为 $\Omega=\sin\theta\,d\theta\,d\phi$（由 $\Omega=\oint(1-\cos\theta)d\phi$ 对同一围道计算，得 $[1-\cos(\theta+d\theta)-1+\cos\theta]d\phi=+\sin\theta\,d\theta d\phi$）。于是
+\begin{equation*}
+\boxed{\;\theta_B=-\frac{\Omega}{2}\;=\;+\frac{\Omega'}{2}\quad(\mathrm{mod}\ 2\pi)\;}
+\end{equation*}
+其中 $\Omega'=\Omega$ 按书中 (2.3.6) $\theta_B=S\Omega$ 的取向约定（回路反向或取补区，$\Omega'=4\pi-\Omega$ 与 $-\Omega$ 只差 $2\pi$）。取该约定即 $\theta_B=+\Omega/2$：式 (2.3.5) 对小回路得证（$S=\frac12$）。
+
+\textbf{(b) 一般大回路。}用斯托克斯公式。在 $D$（回路围住的区域）上取使规范 (2.3.1) 正则的定向（$D$ 不含南极；若含南极则换用正则的 $\tilde z=(\cos\frac\theta2,\mathrm{e}^{\mathrm{i}\phi}\sin\frac\theta2)$，其 $\mathrm{i}\tilde z^\dagger\dot{\tilde z}=-\frac{1-\cos\theta}2\dot\phi$，结果相同），贝里联络一形式为
+\begin{equation*}
+\omega=\mathrm{i}z^\dagger\mathrm{d}z=\frac{1+\cos\theta}2\,\mathrm{d}\phi
+\;\Longrightarrow\;
+\mathrm{d}\omega=-\frac12\sin\theta\,\mathrm{d}\theta\wedge\mathrm{d}\phi .
+\end{equation*}
+于是
+\begin{equation*}
+\theta_B=\oint_{\partial D}\omega=\int_D\mathrm{d}\omega=-\frac12\int_D\sin\theta\,d\theta d\phi=-\frac{\Omega(D)}2
+\;=\;+\frac{\Omega(\bar D)}2\ \ (\mathrm{mod}\ 2\pi),
+\end{equation*}
+$\bar D$ 为补区（$\Omega(\bar D)=4\pi-\Omega(D)$，而 $-\frac{\Omega(D)}2=\frac{4\pi-\Omega(D)}2-2\pi$）。两种区域选取给出相差 $2\pi$ 的同一相位，几何上良定义的是
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}\theta_B}=\mathrm{e}^{\mathrm{i}\Omega/2}:
+\end{equation*}
+即贝里相的模值总是回路所围立体角的一半（对自旋 $S$ 则为 $S\Omega$），这正是式 (2.3.5)（及 (2.3.6)）。自洽性检查：对 $\theta=$ 常数的圆（问题 2.3.3），$\theta_B=\pi(1+\cos\theta)=\frac12\cdot2\pi(1+\cos\theta)=\Omega_{\text{南}}/2$，验证无误。
+
+\section*{问题 2.3.5}
+\begin{problem}
+自旋与球面上的粒子：(1) 将 $\pmb B=0$ 的自旋作用量 (2.3.8) 写成 $\int\mathrm{d}t(A_\theta\dot\theta+A_\phi\dot\phi)$ 并求 $A_\theta,A_\phi$；(2) 证明 $(A_\phi,A_\theta)$ 描写均匀磁场并求球面总磁通量子数；(3) 求总磁通为 $N_\phi$ 时球面第一朗道能级的态数。
+\end{problem}
+\solution
+\textbf{(1)}自旋 $S$ 的贝里项 $2S\,\mathrm{i}z^\dagger\dot z$，用 (2.3.1)：$\mathrm{i}z^\dagger\dot z=\frac{1+\cos\theta}2\dot\phi+\frac{\sin\theta}2\dot\theta$（后一项来自 $\sin\frac\theta2\,\frac{d}{dt}\sin\frac\theta2$），故
+\begin{equation*}
+S[\pmb n(t)]=\int\mathrm{d}t\,\Big[S\sin\theta\,\dot\theta+S(1+\cos\theta)\,\dot\phi\Big],
+\qquad
+\boxed{\;A_\theta=S\sin\theta,\qquad A_\phi=S(1+\cos\theta)\;}
+\end{equation*}
+（另一常用规范：$A_\phi=S\cos\theta$，与上式差全导数 $S\,\mathrm{d}\phi$——多值规范变换；还有 $A_\theta=0,\ A_\phi=-S(1-\cos\theta)$，来自另一旋量表示。）
+
+\textbf{(2)}球面上磁场（感应强度）由 $F=\mathrm{d}A$ 给出：
+\begin{equation*}
+F=\mathrm{d}A=\partial_\theta A_\phi\,\mathrm{d}\theta\wedge\mathrm{d}\phi
+=-S\sin\theta\,\mathrm{d}\theta\wedge\mathrm{d}\phi .
+\end{equation*}
+法向磁场 $B_n$ 由 $F=B_n\,(\text{面积元})=B_n\sin\theta\,d\theta d\phi$ 定义：
+\begin{equation*}
+B_n=\frac{-S\sin\theta}{\sin\theta}=-S=\text{常数}.
+\end{equation*}
+\textbf{球面各点的法向磁场相同——均匀磁场}（等价于球心处磁荷 $S$ 的磁单极子产生的径向场；矢势的 $\phi$ 分量在 $\theta=\pi$ 处的奇异性正是狄拉克弦）。总磁通为
+\begin{equation*}
+\Phi=\Big|\int_{S^2}F\Big|=4\pi S=2S\cdot(2\pi)
+\quad\Longrightarrow\quad
+\boxed{\;\text{总磁通量子数 }N_\phi=\frac{\Phi}{2\pi}=2S\;}
+\end{equation*}
+（磁通量子 $2\pi$，即 $\hbar=e=1$ 单位下的 $hc/e$。）
+
+\textbf{(3)}球面（$N_\phi$ 个磁通量子）上带电粒子的朗道能级由总角动量量子数标记：$j=\frac{N_\phi}2,\frac{N_\phi}2+1,\dots$，第 $j$ 能级含 $2j+1$ 个态（磁量子 $m=-j,\dots,j$）。最低朗道能级（LLL）即 $j=\frac{N_\phi}2$：
+\begin{equation*}
+\boxed{\;\dim(\text{LLL})=N_\phi+1\;}
+\end{equation*}
+（等价论证：LLL 的波函数是磁单极谐函数 $Y_{N_\phi/2,\,m}$，$m=-\frac{N_\phi}{2},\dots,+\frac{N_\phi}{2}$；或：LLL 态是 CP$^1$ 上度数为 $N_\phi$ 的线丛的全纯截面，其维数由 Riemann--Roch 定理给出 $N_\phi+1$。）回到自旋问题：$N_\phi=2S$ 给出 $2S+1$ 个态——恰好是自旋 $S$ 希尔伯特空间的维数。这说明 $m\to0$ 极限下（$\omega_c\to\infty$，只剩 LLL）“球面上带电荷粒子 + $2S$ 磁通量子”的低能希尔伯特空间就是自旋 $S$ 的表示空间，这是 Haldane 球图像。
+
+\section*{问题 2.3.6}
+\begin{problem}
+自旋 $S$ 量子自旋链 $H=\sum_iJ\pmb S_i\cdot\pmb S_{i+1}$：(1) 写出作用量；(2) 求铁磁基态（$J<0$）小涨落的运动方程与色散，证明小 $k$ 时 $\omega\propto k^2$；(3) 求反铁磁基态（$J>0$）小涨落的运动方程与色散，证明 $k$ 接近 $\pi$ 时 $\omega\propto|k-\pi|$。
+\end{problem}
+\solution
+\textbf{(1) 作用量。}对每个自旋用相干态路径积分 (2.3.7) 并把 $H$ 写成 $J S^2\sum_i\pmb n_i\cdot\pmb n_{i+1}$：
+\begin{equation*}
+S[\{z_i\}]=\int\mathrm{d}t\,\Big[\sum_i2S\,\mathrm{i}\,z_i^\dagger\dot z_i
+-JS^2\sum_i\pmb n_i\cdot\pmb n_{i+1}\Big],
+\qquad \pmb n_i=z_i^\dagger\pmb\sigma z_i .
+\end{equation*}
+由 $\delta S=0$（或直接把 (2.3.9) 用于格点 $i$，有效场为 $\pmb B_i^{\rm eff}=-J(\pmb S_{i+1}+\pmb S_{i-1})$ 所对应的量）得运动方程
+\begin{equation*}
+\dot{\pmb S}_i=-J\,\pmb S_i\times(\pmb S_{i+1}+\pmb S_{i-1}).
+\end{equation*}
+
+\textbf{(2) 铁磁自旋波（$J<0$，$\pmb S_i=S\hat z$）。}令 $\pmb S_i=S\hat z+\delta\pmb S_i$（$\delta\pmb S_i\perp\hat z$，小量），展开到一阶：
+\begin{equation*}
+\pmb S_i\times(\pmb S_{i+1}+\pmb S_{i-1})
+=S\hat z\times(\delta\pmb S_{i+1}+\delta\pmb S_{i-1}-2\delta\pmb S_i),
+\end{equation*}
+\begin{equation*}
+\delta\dot{\pmb S}_i=|J|\,S\,\hat z\times\big(\delta\pmb S_{i+1}+\delta\pmb S_{i-1}-2\delta\pmb S_i\big)
+\qquad(|J|=-J).
+\end{equation*}
+取圆偏振平面波 $\delta\pmb S_i=S(\hat x-\mathrm{i}\hat y)\,e^{\mathrm{i}(ki-\omega t)}$，利用 $\hat z\times(\hat x-\mathrm{i}\hat y)=\mathrm{i}(\hat x-\mathrm{i}\hat y)$：
+\begin{equation*}
+-\mathrm{i}\omega=|J|S\big(2\cos k-2\big)\,\mathrm{i}
+\;\Longrightarrow\;
+\boxed{\;\omega(k)=2|J|S\,(1-\cos k)=4|J|S\sin^2\frac k2\;}
+\end{equation*}
+小 $k$：$\omega\approx|J|S\,k^2$，即铁磁自旋波呈二次色散（物理原因：铁磁态破坏转动对称但均匀转动模式 $\pmb S_i$ 同向摆动不改变 $H$，涨落以平方形式进入刚度）。
+
+\textbf{(3) 反铁磁自旋波（$J>0$，$\pmb S_i=S(-)^i\hat z$）。}写
+\begin{equation*}
+\pmb S_i=(-)^i\big(S\hat z+\pmb s_i\big),\qquad \pmb s_i\perp\hat z\ \text{为小涨落}.
+\end{equation*}
+由（注意 $\pmb S_{i\pm1}=-(-)^i(S\hat z+\pmb s_{i\pm1})$，展开到一阶）
+\begin{equation*}
+\pmb S_i\times(\pmb S_{i+1}+\pmb S_{i-1})=(-)^iS\,\hat z\times\big(2\pmb s_i-\pmb s_{i+1}-\pmb s_{i-1}\big),
+\end{equation*}
+并注意 $\dot{\pmb S}_i=(-)^i\dot{\pmb s}_i$，得
+\begin{equation*}
+\dot{\pmb s}_i=-J(-)^iS\,\hat z\times\big(2\pmb s_i-\pmb s_{i+1}-\pmb s_{i-1}\big).
+\end{equation*}
+由于右端带 $(-)^i$，两套子格必须分开记号（$i$ 偶为 $A$ 子格，$i$ 奇为 $B$ 子格）：
+\begin{align*}
+\dot{\pmb s}^A_i&=-JS\,\hat z\times\big(2\pmb s^A_i-\pmb s^B_{i-1}-\pmb s^B_{i+1}\big),\\
+\dot{\pmb s}^B_i&=+JS\,\hat z\times\big(2\pmb s^B_i-\pmb s^A_{i-1}-\pmb s^A_{i+1}\big).
+\end{align*}
+取平面波 $\pmb s^{A,B}_i=\pmb s_{A,B}\,e^{\mathrm{i}(ki-\omega t)}$（$\pmb s_{A,B}$ 为待定复振幅，圆偏振基下 $\hat z\times\pmb s=\mp\mathrm{i}\pmb s$）：
+\begin{align*}
+-\mathrm{i}\omega s_A&=-JS(-\mathrm{i})\big(2s_A-2\cos k\,s_B\big),\\
+-\mathrm{i}\omega s_B&=+JS(-\mathrm{i})\big(2s_B-2\cos k\,s_A\big),
+\end{align*}
+即（约去 $-\mathrm{i}$）
+\begin{equation*}
+(\omega+2JS)\,s_A-2JS\cos k\,s_B=0,\qquad
+2JS\cos k\,s_A+(\omega-2JS)\,s_B=0 .
+\end{equation*}
+非零解要求行列式为零：
+\begin{equation*}
+(\omega+2JS)(\omega-2JS)-(2JS)^2\cos^2k=0
+\;\Longrightarrow\;
+\omega^2=(2JS)^2\sin^2k ,
+\end{equation*}
+\begin{equation*}
+\boxed{\;\omega(k)=2JS\,|\sin k|\;}
+\end{equation*}
+在 $k\to\pi$：$\sin k=\sin(\pi-q)=\sin q\approx|q|=|k-\pi|$，故
+\begin{equation*}
+\omega\approx2JS\,|k-\pi|\;\propto\;|k-\pi| ,
+\end{equation*}
+线性色散。（同一公式在 $k\to0$ 也给出线性：$\omega\approx2JS|k|$——反铁磁的两个 Goldstone 模分别位于约化布里渊区的中心与边界。物理上 $k=0$ 模对应所有自旋的均匀转动，$k=\pi$ 模对应奈尔矢量的均匀转动；由方程可知 $k\approx\pi$ 时 $s_B\approx-s_A$，即两子格反位相、物理横向涨落是平滑的。）
+
+\textbf{讨论。}经典统计力学中（配分函数只依赖 $H$）铁磁态与反铁磁态的热力学在高温无区别；而在量子层次贝里相（其符号/结构随 $\pmb n$ 缠绕方式不同）使两者的自旋波色散完全不同（$\omega\propto k^2$ 对 $\omega\propto|k|$），激发态密度、低温比热等随之不同。这正是贝里相支配量子磁序低能动力学的例子。
+
+\section*{问题 2.4.1}
+\begin{problem}
+双势阱 $V(x)=\frac g4(x^2-x_0^2)^2$：(1) 估算 $S_0$ 与隧穿时间 $t_{tun}$（瞬子尺度）；(2) 设 $K\sim\sqrt{gx_0^2/m}$，估算时间方向瞬子的平均密度；(3) 问 $g,x_0$ 取何值时半经典图像（$S_0\gg1$ 且瞬子不重叠）成立。
+\end{problem}
+\solution
+\textbf{(1)}瞬子作用量 $S_0=\int_{-x_0}^{+x_0}\mathrm{d}x\,\sqrt{2mV(x)}$。在势垒区 $|x|<x_0$：$\sqrt{2mV}=\sqrt{2m\cdot\frac g4(x_0^2-x^2)^2}=\sqrt{\frac{mg}2}\,(x_0^2-x^2)$，
+\begin{equation*}
+S_0=\sqrt{\frac{mg}2}\int_{-x_0}^{x_0}(x_0^2-x^2)\,\mathrm{d}x
+=\sqrt{\frac{mg}2}\cdot\frac{4x_0^3}{3}
+=\boxed{\;\frac{2}{3}\,x_0^3\sqrt{2mg}\;}
+\end{equation*}
+瞬子即倒置势 $-V$ 中的牛顿运动 $m\ddot x_c=V'(x_c)=gx_c(x_c^2-x_0^2)$，其解为
+\begin{equation*}
+x_c(\tau)=x_0\tanh\frac{\omega_0\tau}{2},\qquad
+\omega_0\equiv\sqrt{\frac{V''(x_0)}{m}}=\sqrt{\frac{2gx_0^2}{m}}\ \ (\text{极小点处振动频率}).
+\end{equation*}
+（验证：$\ddot x_c=-\frac{x_0\omega_0^2}2\mathrm{sech}^2\frac{\omega_0\tau}2\tanh\frac{\omega_0\tau}2=-\frac{g x_0^3}m\,\tanh\,\mathrm{sech}^2=\frac{1}{m}V'(x_c)$，验证无误。）粒子在 $|x|\sim x_0$ 附近、时段 $|\Delta\tau|\lesssim2/\omega_0$ 内完成翻转，故
+\begin{equation*}
+\boxed{\;t_{tun}\sim\omega_0^{-1}=\sqrt{\frac{m}{2gx_0^2}}\;}
+\end{equation*}
+（相差 $O(1)$ 因子；这正是“穿过势垒所需时间”的物理图像。）
+
+\textbf{(2)}由 2.4.1 节，瞬子在时间方向按“稀薄气体”分布，单位时间的（平均）密度为
+\begin{equation*}
+\boxed{\;n_{inst}=K\,\mathrm{e}^{-S_0}\sim\sqrt{\frac{g x_0^2}{m}}\;
+\exp\Big[-\frac23 x_0^3\sqrt{2mg}\Big]\;}
+\end{equation*}
+平均间距 $\sim n_{inst}^{-1}=\mathrm{e}^{S_0}/K$。
+
+\textbf{(3)}两个条件：
+\begin{enumerate}
+\item[(i)] $S_0=\frac23x_0^3\sqrt{2mg}\gg1\iff m g x_0^6\gg1$（作用量远大于 $\hbar=1$）；
+\item[(ii)] 瞬子不重叠：平均间距 $\mathrm{e}^{S_0}/K\gg t_{tun}\sim\omega_0^{-1}$。因 $K\sim\sqrt{gx_0^2/m}=\omega_0/\sqrt2=O(\omega_0)$，这要求 $\mathrm{e}^{S_0}\gg O(1)$，由 (i) 自动满足。
+\end{enumerate}
+故两个条件同时成立当且仅当
+\begin{equation*}
+\boxed{\;g\,m\,x_0^6\gg1\;}
+\end{equation*}
+即势垒又高又宽（大 $g$、大 $x_0$ 或大 $m$）；此时隧穿是 $\mathrm{e}^{-S_0}$ 的非微扰小量，半经典（瞬子气体）图像自洽。
+
+\section*{问题 2.4.2}
+\begin{problem}
+场论 $S=\int\mathrm{d}t\,\mathrm{d}^dx\,[\frac12((\partial_tm)^2-v^2(\nabla m)^2)-\frac g4(m^2-m_0^2)^2-Bm]$（取 $v=1$）：(1) 求 $B_c$；(2) 写出虚时作用量与反弹解形式；(3) 求 $K$ 为虚数时的衰变率与单位体积衰变率；(4) $B=B_c/2$ 时估算 $S_0$；(5) 估算 $K$；(6) 讨论半经典图像适用的 $g,m_0$。
+\end{problem}
+\solution
+\textbf{(1)}$B=0$ 时 $V(m)=\frac g4(m^2-m_0^2)^2$ 在 $m=\pm m_0$ 有两个简并极小。加 $B$ 后 $V(m)=\frac g4(m^2-m_0^2)^2+Bm$，极小点满足
+\begin{equation*}
+V'(m)=gm(m^2-m_0^2)+B=0 .
+\end{equation*}
+对小的 $B$：在 $m_0$ 附近 $gm(m^2-m_0^2)\approx2gm_0^2(m-m_0)$，得 $m_+\approx m_0-\frac{B}{2gm_0^2}$；在 $-m_0$ 附近同理 $m_-\approx-m_0-\frac{B}{2gm_0^2}$；此外两极小之间还有一个极大。势能差 $V(m_+)-V(m_-)\approx2Bm_0$：对 $B>0$，$-m_0$ 一侧是（真）基态，$+m_0$ 一侧是亚稳态（书中的 $m_+$/$m_-$ 记号见译注）。当 $B$ 增大时亚稳极小与极大在拐点 $V''=g(3m^2-m_0^2)=0$，即 $m=\pm m_0/\sqrt3$ 处合并而消失：
+\begin{equation*}
+B_c=\big|g\,m\,(m_0^2-m^2)\big|_{m=m_0/\sqrt3}
+=\frac{2\,g\,m_0^3}{3\sqrt3}
+\qquad\Longrightarrow\qquad
+\boxed{\;B_c=\frac{2gm_0^3}{3\sqrt3}\;}
+\end{equation*}
+$0<B<B_c$ 时亚稳态存在，$B\ge B_c$ 时消失。
+
+\textbf{(2)}$t\to-\mathrm{i}\tau$（$\partial_t\to\mathrm{i}\partial_\tau$）：欧氏（虚时）作用量
+\begin{equation*}
+S_E=\int\mathrm{d}\tau\,\mathrm{d}^dx\,
+\Big[\frac12\Big(\frac{\partial m}{\partial\tau}\Big)^2+\frac12(\nabla_{\pmb x}m)^2
++\frac g4(m^2-m_0^2)^2+Bm\Big]
+=\int\mathrm{d}\tau\,\mathrm{d}^dx\,\Big[\frac12(\partial_\rho m)^2+V(m)\Big],
+\end{equation*}
+其中 $\rho$ 为 $d+1$ 维欧氏时空半径矢量，$V(m)=\frac g4(m^2-m_0^2)^2+Bm$。按 Coleman 的论证，反弹（bounce）驻定路径具有 $O(d+1)$ 对称性，只依赖 $\rho=|(\tau,\pmb x)-(\tau_0,\pmb x_0)|$：
+\begin{equation*}
+m(\tau,\pmb x)=m_-+f\big(\sqrt{(\tau-\tau_0)^2+(\pmb x-\pmb x_0)^2}\big),\qquad f(\infty)=0,
+\end{equation*}
+且满足 $f''+\frac{d}{\rho}f'=V'(m_-+f)$。
+
+\textbf{(3)}包含多反弹的稀薄气体求和给出
+\begin{equation*}
+\langle m_-|\mathrm{e}^{-TH}|m_-\rangle
+=\mathrm{e}^{-TE_0}\sum_n\frac1{n!}\Big(TV_d\,K\mathrm{e}^{-S_0}\Big)^n
+=\exp\Big[-TE_0+TV_d\,K\mathrm{e}^{-S_0}\Big],
+\end{equation*}
+（$V_d$ 为空间体积；反弹位置 $\int\mathrm{d}\tau_i\mathrm{d}^dx_i$ 给出时空体积因子）。解析延拓到实时后能量本征值移动 $E=E_0-K\mathrm{e}^{-S_0}$；由于环绕反弹的涨落算符有一个负本征值（零模 $\dot m_c$ 有一个节点，见 2.4.2 节的论证），$K$ 是纯虚数，$K=\mathrm{i}|K|$：$E=E_0-\mathrm{i}|K|\mathrm{e}^{-S_0}$。于是
+\begin{equation*}
+\big|\langle m_-|\mathrm{e}^{-\mathrm{i}tH}|m_-\rangle\big|^2\propto\mathrm{e}^{-2\,V_d\,|K|\mathrm{e}^{-S_0}\,t},
+\qquad
+\boxed{\;\text{衰变率 }\varGamma=2|K|\mathrm{e}^{-S_0}\ \ (\text{单位体积 }\gamma=2|K|\mathrm{e}^{-S_0})\;}
+\end{equation*}
+（$K$ 理解为单位时空体积的反弹涨落系数，量纲为 $[\text{长度}]^{-(d+1)}$。）
+
+\textbf{(4) $S_0$ 的标度估算（$B=B_c/2$）。}重标度 $m=m_0\,m'$、$\rho=L\rho'$：
+\begin{equation*}
+S_E=L^{d+1}\Big[\frac{m_0^2}{2L^2}(\partial m')^2+\frac{gm_0^4}4(m'^2-1)^2+B\,m_0\,m'\Big].
+\end{equation*}
+取动能与四次项同量级：$m_0^2L^{d-1}\sim gm_0^4L^{d+1}$，得反弹尺寸
+\begin{equation*}
+L\sim\frac{1}{m_0\sqrt g}.
+\end{equation*}
+此时三项系数分别为 $m_0^2L^{d-1}=gm_0^4L^{d+1}=m_0^{3-d}g^{(1-d)/2}$ 与 $Bm_0L^{d+1}$；代入 $B=B_c/2=\frac{gm_0^3}{3\sqrt3}$ 得 $Bm_0L^{d+1}=\frac{1}{3\sqrt3}m_0^{3-d}g^{(1-d)/2}$——与另两项同量级。故
+\begin{equation*}
+\boxed{\;S_0=\Big[m_0^{\,3-d}\,g^{(1-d)/2}\Big]\times S',\qquad S'=O(1):\quad
+S_0\sim m_0^{3-d}g^{(1-d)/2}\ \ \big(d=3:\ S_0\sim 1/g\big)\;}
+\end{equation*}
+（反弹时空尺寸亦为 $L\sim1/(m_0\sqrt g)$。与薄墙结果交叉核对：$d=3$、$B\to0$ 时 $S_0=\frac{27\pi^2\sigma^4}{2(\Delta V)^3}$，$\sigma\sim m_0^3\sqrt g$、$\Delta V\sim gm_0^4$ 给出 $S_0\sim1/g$，验证无误。）
+
+\textbf{(5) $K$ 的标度估算。}$K$ 由围绕反弹与围绕 $m_-$ 的涨落行列式之比给出（式 (2.4.7) 的场论版本）：涨落算符 $\mathcal M=-\partial_\rho^2+V''(m)$ 的本征值尺度为 $L^{-2}$，故每单位时空体积的行列式比贡献 $O(1)/L^{d+1}$；此外每个（共 $d+1$ 个） collective coordinate 的零模给出一个 $\sqrt{S_0/2\pi}$ 因子。于是
+\begin{equation*}
+\boxed{\;K\sim S_0^{(d+1)/2}\,L^{-(d+1)}
+\sim S_0^{(d+1)/2}\,(m_0\sqrt g)^{d+1}
+\quad\big(d=3:\ K\sim S_0^2(gm_0^2)^2\big)\;}
+\end{equation*}
+标度行为：$S\to aS$ 时涨落本征值 $\propto a$、反弹尺寸 $\to L/\sqrt a$，故 $K\to a^{(d+1)/2}K$、$\mathrm{e}^{-S}\to\mathrm{e}^{-aS}$。且由于负本征值，$K$ 为虚数（$K=\mathrm{i}|K|$），这正是亚稳态衰变的根源。
+
+\textbf{(6)}半经典图像适用要求：(i) $S_0=m_0^{3-d}g^{(1-d)/2}\gg1$（对 $d=3$ 即 $g\ll1$，$m_0=O(1)$；一般地要求有效耦合 $g\,m_0^{2(d-1)/(3-d)}\ll1$ 型的弱耦合/大场）；(ii) 瞬子（反弹）稀薄：$|K|\mathrm{e}^{-S_0}\,L^{d+1}\sim S_0^{(d+1)/2}\mathrm{e}^{-S_0}\ll1$，由 $S_0\gg1$ 自动满足；(iii) $B<B_c$（势垒存在且不太低，$B\sim B_c$ 时上述 O(1) 估算仍成立，但 $B\to0$ 的薄墙极限要求另计）。综上：
+\begin{equation*}
+\boxed{\;g\ \text{足够小（}d=3:\ g\ll1\text{），}m_0\ \text{不太小，且 }B<B_c:\ \text{半经典衰变图像自洽}\;}
+\end{equation*}
+
+\emph{（译注：原书称“$B$ 较小时系统有一个基态 $m=m_+$ 和一个亚稳态 $m=m_-$”。按本书势 $V=\frac g4(m^2-m_0^2)^2+Bm$，$B>0$ 时线性项有利于 $m<0$，故基态在 $-m_0$ 一侧、亚稳态在 $+m_0$ 一侧；原书的 $m_\pm$ 标记相当于 $B<0$（或对 $B\to-B$、$m\to-m$ 的 renaming）。临界值 $|B_c|=2gm_0^3/(3\sqrt3)$ 与物理结论不受影响。）}
+
+\section*{问题 2.4.3}
+\begin{problem}
+有效质量：(1) 设小 $\Omega$ 处 $n(\Omega)g^2(\Omega)\propto\Omega^\alpha$、$\Omega>\Omega_0$ 处为零，求使 $m^*$ 发散的 $\alpha$；(2) 对 $n g^2=N_0\mathrm{e}^{-\Omega/\Omega_0}$ 与 $N_0\mathrm{e}^{-(\Omega/\Omega_0)^2}$ 判断哪种情形 $m^*$ 发散。
+\end{problem}
+\solution
+由 (2.4.8)–(2.4.9)，有效质量修正为
+\begin{equation*}
+m^*-m=-\frac{\mathrm{Re}\,G_{\mathrm{os}}(\omega)-\mathrm{Re}\,G_{\mathrm{os}}(0)}{\omega^2},
+\qquad
+\mathrm{Re}\,G_{\mathrm{os}}(\omega)=\int_0^{\Omega_0}\mathrm{d}\Omega\;
+n(\Omega)g^2(\Omega)\,\frac{\Omega^2}{\omega^2-\Omega^2}\ \ (\text{主值}).
+\end{equation*}
+利用恒等式 $\Omega^2\big[\frac{1}{\omega^2-\Omega^2}+\frac1{\Omega^2}\big]=\frac{\omega^2}{\omega^2-\Omega^2}$：
+\begin{equation*}
+m^*-m=-\int_0^{\Omega_0}\mathrm{d}\Omega\;\frac{n(\Omega)g^2(\Omega)}{\omega^2-\Omega^2}\Big|_{\text{主值},\ \omega\to0}
+\equiv-F(\omega).
+\end{equation*}
+设小 $\Omega$ 处 $n g^2=n_0\Omega^{\alpha}$。把积分分成 $\Omega<\omega$ 与 $\Omega>\omega$ 两段：
+\begin{align*}
+F_a&=-n_0\int_0^{\omega}\frac{\Omega^{\alpha}\,\mathrm{d}\Omega}{\omega^2-\Omega^2}
+\approx-\frac{n_0}{\omega^2}\cdot\frac{\omega^{\alpha+1}}{\alpha+1}
+=-\frac{n_0}{\alpha+1}\,\omega^{\alpha-1}\qquad(\alpha>-1),\\
+F_b&=-n_0\int_{\omega}^{\Omega_0}\frac{\Omega^{\alpha}\,\mathrm{d}\Omega}{\omega^2-\Omega^2}
+\approx n_0\int_{\omega}^{\Omega_0}\Omega^{\alpha-2}\mathrm{d}\Omega
+=\frac{n_0}{\alpha-1}\big[\Omega_0^{\alpha-1}-\omega^{\alpha-1}\big]\qquad(\alpha\neq1),
+\end{align*}
+（$\alpha=1$ 时 $F_b=n_0\ln(\Omega_0/\omega)$）。两段的 $\omega$ 发散项相消与否由系数
+\begin{equation*}
+-\frac{n_0}{\alpha+1}-\frac{n_0}{\alpha-1}=\frac{2\alpha\,n_0}{1-\alpha^2}
+\end{equation*}
+决定。于是：
+\begin{itemize}
+\item $\alpha\le-1$：$F_a$ 在 $\Omega\to0$ 处已发散（$\int_0^\omega\Omega^\alpha\mathrm{d}\Omega$ 发散），$m^*$ 发散；
+\item $-1<\alpha<0$ 与 $0<\alpha<1$：发散系数 $\frac{2\alpha}{1-\alpha^2}\neq0$，且 $\omega^{\alpha-1}\to\infty$，$m^*\sim-\frac{2\alpha n_0}{1-\alpha^2}\omega^{\alpha-1}$ 发散；
+\item $\alpha=1$：$F\approx\frac{n_0}{2}+n_0\ln\frac{\Omega_0}{\omega}\to\infty$，$m^*$ 对数发散；
+\item $\alpha=0$：发散系数为零，恰好相消：$F\to n_0/\Omega_0$，$m^*=m-\dfrac{n_0}{\Omega_0}$ 有限（与书中截断谱的例子一致）；
+\item $\alpha>1$：$\omega^{\alpha-1}\to0$，$F\to\dfrac{n_0\,\Omega_0^{\alpha-1}}{\alpha-1}$，$m^*$ 有限。
+\end{itemize}
+\begin{equation*}
+\boxed{\;m^*\ \text{发散}\iff \alpha<0\ \text{或}\ 0<\alpha\le1;\qquad
+m^*\ \text{有限}\iff \alpha=0\ \text{或}\ \alpha>1\;}
+\end{equation*}
+物理解释：$\alpha<0$ 是谱密度在 $\Omega=0$ 处真的奇异；而 $0<\alpha\le1$ 的发散是 $\omega\to0$ 极限与主值积分不交换的结果（$\Omega\sim\omega$ 那一段贡献 $\omega^{\alpha-1}$）。
+
+\textbf{(2)}两种谱在 $\Omega\to0$ 时都趋于常数 $N_0$，即 $\alpha=0$ 行为，故两种情形 $m^*$ 都\textbf{不发散}。逐项验证：以 $\mathrm{e}^{-\Omega/\Omega_0}$ 为例，
+\begin{equation*}
+F(\omega)=-N_0\,\mathcal P\!\int_0^\infty\frac{\mathrm{e}^{-\Omega/\Omega_0}\,\mathrm{d}\Omega}{\omega^2-\Omega^2}
+=-\frac{N_0}{\omega}\Big[\mathcal O(1)\Big]+\mathcal O(\omega)\ \to\ 0\quad(\omega\to0),
+\end{equation*}
+（$\int_0^\omega\mathrm{d}\Omega/\omega^2$ 的 $\frac1\omega$ 发散与 $\int_\omega^\infty\mathrm{e}^{-\Omega/\Omega_0}\mathrm{d}\Omega/\Omega^2$ 的 $\frac1\omega$ 发散精确相消，余项 $\sim\frac{\omega}{\Omega_0}\ln\frac{\Omega_0}{\omega}\to0$）。高斯截断 $\mathrm{e}^{-(\Omega/\Omega_0)^2}$ 同理。所以两种情形都有 $m^*=m+\mathcal O(\omega)\to m$：\textbf{没有哪种情形的有效质量发散}（要使 $m^*$ 发散需要 $n g^2$ 在 $\Omega\to0$ 呈 $\Omega^\alpha$、$\alpha\neq0,\alpha\le1$ 型的（软）奇异性，如 $\propto\sqrt\Omega$ 或 $\propto1/\Omega$）。
+
+\section*{问题 2.4.4}
+\begin{problem}
+布朗运动：(a) 质量 $m$、摩擦 $\gamma$ 的粒子从 $x=0$ 释放，求 $t$ 时刻的 $\bar x=\sqrt{\langle x^2\rangle}$；(b) 计算水中直径 1 cm 塑料球与直径小 $10^4$ 倍的花粉 1 分钟后的 $\bar x$（20°C 水的黏度 0.01 泊）。
+\end{problem}
+\solution
+\textbf{(a)}$\langle x^2(t)\rangle=\int_0^t\mathrm{d}t_1\int_0^t\mathrm{d}t_2\,\langle v(t_1)v(t_2)\rangle
+=\int\frac{\mathrm{d}\omega}{2\pi}\,P^v(\omega)\,\frac{1-\cos\omega t}{\omega^2}$，
+其中速度噪声谱由 (2.4.22)（取 $K=0$）给出：
+\begin{equation*}
+P^v(\omega)=\frac{1}{\tanh(\hbar\omega/2T)}\cdot\frac{2\gamma\omega\hbar}{m^2\omega^2+\gamma^2}.
+\end{equation*}
+低频端（布朗运动的 $\langle x^2\rangle$ 由 $\omega\sim1/t\to0$ 的模式支配）：
+\begin{equation*}
+\tanh\frac{\hbar\omega}{2T}\approx\frac{\hbar\omega}{2T}
+\;\Longrightarrow\;
+P^v(\omega\to0)=\frac{2\gamma\omega\hbar}{(\hbar\omega/2T)\gamma^2}=\frac{4T}{\gamma},
+\end{equation*}
+为有限常数（这正是 $\omega=0$ 处速度功率谱，见提示）。代入：
+\begin{equation*}
+\langle x^2(t)\rangle\approx\frac{4T}{\gamma}\int\frac{\mathrm{d}\omega}{2\pi}\,\frac{1-\cos\omega t}{\omega^2}
+=\frac{4T}{\gamma}\cdot\frac t2
+=\frac{2Tt}{\gamma},
+\end{equation*}
+（用了 $\int_{-\infty}^{\infty}\frac{\mathrm{d}\omega}{2\pi}\frac{1-\cos\omega t}{\omega^2}=\frac t2$）。故
+\begin{equation*}
+\boxed{\;\bar x(t)=\sqrt{\frac{2Tt}{\gamma}}\;}
+\end{equation*}
+即爱因斯坦关系 $D=T/\gamma$ 下的扩散律 $\langle x^2\rangle=2Dt$。（自洽性：$\langle v^2\rangle=\int\frac{\mathrm{d}\omega}{2\pi}\frac{P^v}{2}=\frac{2T}{\gamma}\cdot\frac{\gamma}{2m}=\frac Tm$ 为能量均分；关联时间 $m/\gamma$，$D=\langle v^2\rangle\cdot m/\gamma=T/\gamma$，验证无误。）
+
+\textbf{(b)}斯托克斯摩擦 $\gamma=6\pi\eta R$，$T=k_BT=1.38\times10^{-16}\,\mathrm{erg/K}\times293\,\mathrm K=4.04\times10^{-14}\,\mathrm{erg}$，$\eta=0.01\,\mathrm{poise}=0.01\,\mathrm{dyn\,s/cm^2}$，$t=60\,\mathrm s$。注意 $\bar x$ 只通过 $\gamma\propto R$ 依赖粒子（质量已消去）：
+\begin{equation*}
+\bar x^2=\frac{2k_BT\,t}{6\pi\eta R}=\frac{k_BT\,t}{3\pi\eta R}.
+\end{equation*}
+\textbf{塑料球}（$R=0.5\,\mathrm{cm}$）：
+\begin{equation*}
+\bar x^2=\frac{4.04\times10^{-14}\times60}{3\pi\times0.01\times0.5}\ \mathrm{cm}^2
+=5.2\times10^{-11}\ \mathrm{cm}^2
+\;\Longrightarrow\;
+\boxed{\;\bar x\approx7\times10^{-6}\,\mathrm{cm}\approx70\,\mathrm{nm}\;}
+\end{equation*}
+\textbf{花粉}（$R=0.5\,\mathrm{cm}/10^4=5\times10^{-5}\,\mathrm{cm}$）：
+\begin{equation*}
+\bar x^2=\frac{4.04\times10^{-14}\times60}{3\pi\times0.01\times5\times10^{-5}}\ \mathrm{cm}^2
+=5.1\times10^{-7}\ \mathrm{cm}^2
+\;\Longrightarrow\;
+\boxed{\;\bar x\approx7\times10^{-4}\,\mathrm{cm}\approx7\,\mu\mathrm{m}\;}
+\end{equation*}
+由于 $\bar x\propto R^{-1/2}$，小 $10^4$ 倍的花粉游走距离大 $100$ 倍——微米量级的无规游走正是布朗在显微镜下观察到 Pollen运动 的量级；而 1 cm 塑料球的热游走仅几十纳米，完全不可察觉。
+
+\section*{问题 2.4.5}
+\begin{problem}
+对任意 $g_i,\Omega_i$ 的耦合振子系统（式 (2.4.8)）直接证明式 (2.4.24)：$P(\omega)=P_0(\omega)/\tanh(\hbar|\omega|/2T)$。
+\end{problem}
+\solution
+把 $x$ 与热库振子 $h_i$ 的总二次型对角化为简正模 $Q_\alpha$（频率 $\Omega_\alpha$，质量 $M_\alpha$；$\alpha$ 跑遍全部模式，$g_i,\Omega_i$ 只通过 $\Omega_\alpha$ 与混合系数进入）。坐标分解 $x=\sum_\alpha c_\alpha Q_\alpha$，各模式独立，故
+\begin{equation*}
+\mathrm{i}G_x(t)=\langle T\,x(t)x(0)\rangle=\sum_\alpha c_\alpha^2\,\mathrm{i}G_{Q_\alpha}(t),
+\qquad
+\mathrm{i}G_{Q_\alpha}(t)\big|_{t>0}=\frac{1}{2M_\alpha\Omega_\alpha}\,
+\big[(n_\alpha+1)\,\mathrm{e}^{-\mathrm{i}\Omega_\alpha t}+n_\alpha\,\mathrm{e}^{+\mathrm{i}\Omega_\alpha t}\big],
+\end{equation*}
+$n_\alpha=n_B(\Omega_\alpha)$。按噪声谱的定义（对谐系统，每个模式独立地）：
+\begin{align*}
+P_x(\omega)&=\int_{-\infty}^{\infty}\mathrm{d}t\;
+\big\langle\tfrac12\{x(t),x(0)\}\big\rangle\,\mathrm{e}^{\mathrm{i}\omega t}
+=\sum_\alpha c_\alpha^2\,\frac{2n_\alpha+1}{2M_\alpha\Omega_\alpha}\,\pi\big[\delta(\omega-\Omega_\alpha)+\delta(\omega+\Omega_\alpha)\big]\\
+&=\sum_\alpha c_\alpha^2\,\coth\frac{\hbar\Omega_\alpha}{2T}\;
+\frac{\pi}{2M_\alpha\Omega_\alpha}\big[\delta(\omega-\Omega_\alpha)+\delta(\omega+\Omega_\alpha)\big],
+\end{align*}
+（用了 $2n_B(\Omega)+1=\coth(\hbar\Omega/2T)$）。零温时 $n_\alpha=0$：
+\begin{equation*}
+P_0(\omega)=\sum_\alpha c_\alpha^2\,\frac{\pi}{2M_\alpha\Omega_\alpha}
+\big[\delta(\omega-\Omega_\alpha)+\delta(\omega+\Omega_\alpha)\big].
+\end{equation*}
+由于 $\delta(\omega\mp\Omega_\alpha)$ 只在 $\omega=\pm\Omega_\alpha$ 处取值，而 $\coth\frac{\hbar\Omega_\alpha}{2T}=\coth\frac{\hbar|\omega|}{2T}$ 在支集上为常数，逐项比较得
+\begin{equation*}
+\boxed{\;P(\omega)=\coth\!\Big(\frac{\hbar|\omega|}{2T}\Big)\,P_0(\omega)
+=\frac{P_0(\omega)}{\tanh(\hbar|\omega|/2T)}\;}
+\end{equation*}
+即式 (2.4.24)。与提示核对：由上式，$\langle x^2\rangle=\int\frac{\mathrm{d}\omega}{2\pi}\frac{P(\omega)}2
+=\sum_\alpha c_\alpha^2\frac{2n_\alpha+1}{2M_\alpha\Omega_\alpha}$，正是各模式 $(n_\alpha+\frac12)$ 贡献之和；$T=0$ 给零点涨落、$T\to\infty$ 给均分，两者都正确。由于证明只用到“系统是（全耦合）谐振子系、可对角化为独立模式”，结果对任意 $g_i,\Omega_i$ 成立。（这也正是书中用 $P(\omega)=-2\,\mathrm{Im}G_\omega$ 与 $\mathrm{Im}G=\mathrm{Im}D/\tanh(\beta\omega/2)$（式 (2.4.19)、(2.4.20)）推出同一关系的模式级内容：每个简正模的涨落谱是其零温谱乘以 $\coth$ 因子。）
+
+%__END__

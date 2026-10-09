@@ -1,0 +1,508 @@
+% 第3章 Hubbard 模型及其子模型
+\chapter{Hubbard 模型及其子模型}
+
+许多理论家把职业生涯的相当部分献给了 Hubbard 模型。尽管如此，它仍然既令人着迷又令人困惑。原因也许在于：Hubbard 模型是人们能写下的、却又无法约化为单粒子理论的最简单的多粒子模型。
+
+其基态已知是复杂的（即许多 Fock 态的叠加）。除一维情形外（见文献注释），其解析形式在多数情况下未知。在一维，基态关联与激发已从多种途径得到理解，所用方法新颖而多样：Bethe 拟设精确解、玻色化、场论方法、Luttinger 与 Tomonaga 模型，以及微扰重整化群。遗憾的是，上述方法专属于一维，把它们应用于二维和三维尚未给出结论性结果。
+
+尽管如此，在二维和三维，借助定理、受控近似方案与外推到大格子的数值结果的组合，在参数空间的若干区域已取得进展。更多背景可参见文献注释中关于 Hubbard 模型的新近专著。
+
+我们将在 3.1 节看到，Hubbard 模型中的某些截断在“原子极限”下是有理有据的。它纳入了 Coulomb 相互作用的短程部分，同时避开了长程 Coulomb 力的高复杂性（如屏蔽效应）。
+
+然而，Hubbard 模型忽略了微观哈密顿量中并非明显很小的那些项。因此应当把它视为一个有效哈密顿量，只包含低能下最有关的耦合。其参数原则上可以在重整化群方案中积掉高能模式而定出。遗憾的是，这是一项艰难的任务，对现实的能带结构至今没有定量地完成。
+
+在半满的强相互作用（大 $U$）极限下，Hubbard 哈密顿量约化为纯自旋模型（见 3.2 节）。3.3 节讨论吸引（负 $U$）Hubbard 模型，它用于理解超导电性与电荷密度波有序。我们将证明负 $U$ 模型在半满时映射到正 $U$ 模型，于是负 $U$ 模型就转化为一个量子磁性问题。
+
+\section{截断相互作用}
+
+下面我们尝试部分地论证 Hubbard 模型中缺失项的截断。从 $H^{0}$ 中的裸离子--电子势和长程 Coulomb 相互作用 $v(r) = e^{2}/r$ 出发是正确的，却没有多少用处：芯电子与价电子的集体屏蔽很强。如 1.1 节所述，屏蔽效应的很大一部分是重整化有效电子--离子势。于是相互作用取为
+
+\begin{equation*}
+\tilde {\mathcal {V}} ^ {\mathrm{el-el}} = \frac {1}{2} \int d ^ {3} x \, d ^ {3} y \; \tilde {v} (\mathbf {x}, \mathbf {y}) \sum_ {ss'} \psi_ {s} ^ {\dagger} (\mathbf {x}) \psi_ {s '} ^ {\dagger} (\mathbf {y}) \psi_ {s '} (\mathbf {y}) \psi_ {s} (\mathbf {x}).
+\tag{3.1}
+\end{equation*}
+
+这里为简单起见忽略了自旋轨道相互作用（相对论修正）。然而应当记住，对 $d$、$f$ 壳层，这些相互作用对得到正确的磁矩晶体场劈裂和各向异性交换可能很重要。
+
+我们使用自洽单粒子哈密顿量 (1.7) 给出的能带能量与 Bloch 波函数：
+
+\begin{equation*}
+\tilde {\mathcal {H}} ^ {0} \rightarrow \left\{ \epsilon_ {\alpha \mathbf {k}}, \, \phi_ {\alpha \mathbf {k}} \right\},
+\tag{3.2}
+\end{equation*}
+
+其中 $\alpha$ 是能带指标。由 $\phi_{\alpha \mathbf{k}}$ 导出的 Wannier 态为
+
+\begin{equation*}
+\phi_ {\alpha i} (\mathbf {x}) \equiv \frac {1}{\sqrt {\mathcal {N}}} \sum_ {\mathbf {k}} e ^ {- i \mathbf {kx} _ {i}} \phi_ {\alpha \mathbf {k}} (\mathbf {x}),
+\tag{3.3}
+\end{equation*}
+
+其中 $\mathcal{N}$ 是格点数目。Wannier 态是以格点指标 $i$ 和能带指标 $\alpha$ 标记的单粒子基底。Wannier 算符为
+
+\begin{equation*}
+c _ {\alpha is} ^ {\dagger} \equiv \int d ^ {3} x \, \phi_ {\alpha i} (\mathbf {x}) \, \psi_ {s} ^ {\dagger} (\mathbf {x}).
+\tag{3.4}
+\end{equation*}
+
+由于变换 (3.4) 是幺正的，集合 $\{c_{\alpha is}\}$、$\{c_{\alpha is}^{\dagger}\}$ 满足正则反对易关系（见 (A.10)）。逆变换 (3.4) 得
+
+\begin{equation*}
+\psi_ {s} ^ {\dagger} (\mathbf {x}) = \sum_ {i \alpha} \phi_ {\alpha i} ^ {*} \, c _ {\alpha is} ^ {\dagger}.
+\tag{3.5}
+\end{equation*}
+
+把相互作用哈密顿量 (1.16) 与 (1.17) 中的场算符换成 Wannier 算符，得到
+
+\begin{equation*}
+\mathcal {H} = - \sum t _ {\alpha ij} \, c _ {\alpha is} ^ {\dagger} c _ {\alpha js} + \sum U _ {ijkl} ^ {\alpha \beta \gamma \delta} c _ {\alpha is} ^ {\dagger} c _ {\beta js'} ^ {\dagger} c _ {\gamma ks'} c _ {\delta ls},
+\tag{3.6}
+\end{equation*}
+
+对所有重复指标求和。$t_{ij}$ 是跳跃矩阵元：
+
+\begin{equation*}
+t _ {\alpha ij} = - \langle \phi_ {\alpha is} | \tilde {H} ^ {0} | \phi_ {\alpha is} \rangle = \frac {1}{\mathcal {N}} \sum_ {\mathbf {k}} e ^ {- i (\mathbf {x} _ {j} - \mathbf {x} _ {i}) \mathbf {k}} \, \epsilon_ {\alpha k},
+\tag{3.7}
+\end{equation*}
+
+由哈密顿量的厄米性，$t_{ij} = t_{ji}^{*}$。在没有外规范场时，$t_{ij}$ 可取为实。相互作用参数为
+
+\begin{equation*}
+U _ {ijkl} ^ {\alpha \beta \gamma \delta} = \frac {1}{2} \int d ^ {3} x \, d ^ {3} y \; \tilde {v} (\mathbf {x}, \mathbf {y}) \, \phi_ {\alpha i} ^ {*} (\mathbf {x}) \phi_ {\beta j} ^ {*} (\mathbf {y}) \phi_ {\gamma k} (\mathbf {y}) \phi_ {\delta l} (\mathbf {x}).
+\tag{3.8}
+\end{equation*}
+
+（通过适当选择 $\tilde{H}^{0}$）最优地选取 Wannier 态，可使 $U_{ijkl}$ 的范围与大小减到最小。从这里开始，(3.6) 中的许多项将被略去。
+
+当费米面位于单一导带内（$\alpha = 1$）时，若其他能带与费米能相距很远，忽略与之耦合的矩阵元是合理的。这一截断导致单带 Hubbard 模型。
+
+对 $f$ 电子金属（稀土化合物），单带模型并不合理，因为相互作用参数大于带间劈裂。对这些体系，深度局域的 $f$ 能级与离域的 $s$、$p$ 带之间存在电荷涨落。这类模型由 Anderson 与 Kondo 哈密顿量给出，已被用于描述混合价与重费米子体系（见文献注释）。
+
+被略去的相互作用有两类：直接项与交换项。
+
+直接项含 Wannier 函数模方（即 (3.8) 中的 $|\phi_{i}|^{2}$）的积分：
+
+\begin{equation*}
+\mathcal {V} = \sum_ {i \neq j} V _ {ij} \, n _ {i} n _ {j}.
+\tag{3.9}
+\end{equation*}
+
+格点间相互作用 $V_{ij} = U_{ijji}$ 耦合不同格点上的密度涨落。$V_{ij}$ 未必小于 $t_{ij}$；当屏蔽不良时，它们不随距离迅速衰减。因此，从量级考虑，我们没有理由忽略 $V$。另一方面，$V$ 耦合的是电荷涨落而非自旋涨落。在磁相变附近，这类项对自由能的贡献非奇性；预期它们在电荷密度失稳附近才是有关的。
+
+交换项包含格点间的磁性耦合。例如两格点项可写为
+
+\begin{equation*}
+\mathcal {J} = \sum_ {i \neq j} U _ {ijij} \, c _ {is} ^ {\dagger} c _ {js'} ^ {\dagger} c _ {is'} c _ {js} = - \frac {1}{2} \sum_ {i \neq j} J _ {ij} ^ {F} \left( \mathbf {S} _ {i} \mathbf {S} _ {j} + \frac {1}{4} n _ {i} n _ {j} \right),
+\tag{3.10}
+\end{equation*}
+
+其中 $J_{ij}^{F} = U_{ijij}$。这一铁磁交换项此前已在 (2.9) 中对两轨道上的两个电子得到过。如 Hirsch 所论（见文献注释），这些项可以促进过渡金属中的铁磁倾向。尽管如此，Hubbard 模型照例把它们忽略，理由如下：交换积分含有一个或两个 Wannier 函数的非对角乘积（即 $\phi_{i}^{*}\phi_{j}$）。形如 (3.10) 的格点间铁磁交换在原子极限下被压低，那里 Wannier 轨道近似为原子轨道的叠加\footnote{在这一极限下，被略去的能带指标对应于一个原子能级。}：
+
+\begin{equation*}
+\phi_ {\mathbf {k}} (\mathbf {x}) \simeq \sum_ {i} e ^ {i \mathbf {kx} _ {i}} \phi (\mathbf {x} - \mathbf {x} _ {i}).
+\tag{3.11}
+\end{equation*}
+
+这不能是等式，因为格点上的原子波函数并不正交。其交叠的量级为
+
+\begin{equation*}
+\int d ^ {3} x \, \left| \phi_ {i} (\mathbf {x}) ^ {*} \phi_ {j} (\mathbf {x}) \right| \simeq e ^ {- | \mathbf {x} _ {i} - \mathbf {x} _ {j} | / l _ {a}},
+\tag{3.12}
+\end{equation*}
+
+其中 $l_{a}$ 是原子轨道的平均半径。
+
+于是，含交叠因子积分的参数 $t_{ij}$ 与 $J_{ij}$ 也很小。原子极限与 Hubbard 模型的另外两个极限相容：
+
+\begin{enumerate}[itemsep=1pt]
+\item 紧束缚极限：只保留格点上最短程的键 $\{t_{ij}\}$；
+\item 大 $U$ 极限：原子波函数愈加局域，在位 Hubbard 相互作用愈大，故有
+\end{enumerate}
+
+\begin{equation*}
+U \simeq \frac {e ^ {2}}{l _ {a}} \gg t _ {ij}.
+\tag{3.13}
+\end{equation*}
+
+总之，原子极限下能带结构的最小 Hubbard 模型由紧束缚跳跃参数 $t_{ij}$、在位相互作用 $U = 2U_{iiii}$ 和电子数 $N_{e}$ 给出：
+
+\begin{equation*}
+\mathcal {H} = - \sum_ {ijs} t _ {ij} \, c _ {is} ^ {\dagger} c _ {js} + U \sum_ {i} n _ {i \uparrow} n _ {i \downarrow}.
+\tag{3.14}
+\end{equation*}
+
+(3.14) 的简单性极具欺骗性：相互作用项产生高度关联的基态。随后各章我们将研究这一模型中产生的不同类型的磁关联。
+
+\section{大 $U$：t--J 模型}
+
+这里我们导出支配 Hubbard 模型在 $U/t \gg 1$ 区低能激发的有效哈密顿量。我们引入低能激发有效哈密顿量的概念，并按 $t/U$ 幂次展开。半满（每格点一个电子）时，对 $U/t \gg 1$，低能下主要是自旋激发；我们将证明它们由自旋 $1/2$ 的反铁磁 Heisenberg 模型支配。在其他填充下，存在低能自旋与电荷激发，由所谓的 t--J 模型支配。
+
+取零级哈密顿量为
+
+\begin{equation*}
+\mathcal {U} = U \sum_ {i} n _ {i \uparrow} n _ {i \downarrow}.
+\tag{3.15}
+\end{equation*}
+
+$\mathcal{U}$ 的本征态是 Wannier 表象中的 Fock 态。$\mathcal{U}$ 把 Fock 空间分成两个子空间：
+
+\begin{equation*}
+S = \left\{ \left| n _ {1 \uparrow}, n _ {1 \downarrow}, n _ {2 \uparrow} \dots \right\rangle : \; \forall i, \; n _ {i \uparrow} + n _ {i \downarrow} \leq 1 \right\},
+\tag{3.16}
+\end{equation*}
+
+\begin{equation*}
+D = \left\{ \left| n _ {1 \uparrow}, n _ {1 \downarrow}, n _ {2 \uparrow} \dots \right\rangle : \; \exists i, \; n _ {i \uparrow} + n _ {i \downarrow} = 2 \right\}.
+\tag{3.17}
+\end{equation*}
+
+$D$ 含至少一个双占据格点；$S$ 是每格点一个或零个电子的所有组态。
+
+跳跃项
+
+\begin{equation*}
+\mathcal {T} = - \sum_ {ijs} t _ {ij} \, c _ {is} ^ {\dagger} c _ {js}
+\tag{3.18}
+\end{equation*}
+
+视为微扰。$\mathcal{T}$ 把一个电子跳跃进入或跳出双占格点，从而耦合 $S$ 与 $D$。$\mathcal{U}$ 是对角的，$\mathcal{T}$ 解除两个子空间中的巨大简并。$\mathcal{H}$ 分块为
+
+\begin{equation*}
+\mathcal {H} = \left( \begin{array}{cc} P _ {s} \mathcal {T} P _ {s} & P _ {s} \mathcal {T} P _ {d} \\ P _ {d} \mathcal {T} P _ {s} & P _ {d} ( \mathcal {T} + \mathcal {U} ) P _ {d} \end{array} \right),
+\tag{3.19}
+\end{equation*}
+
+其中 $P_{s,d}$ 是到子空间 $S$、$D$ 的投影算符。
+
+预解算符为
+
+\begin{equation*}
+\mathcal {G} (E) = (E - \mathcal {H}) ^ {- 1}.
+\tag{3.20}
+\end{equation*}
+
+下述矩阵恒等式有用：
+
+\begin{equation*}
+\left[ \left( \begin{array}{cc} A & B \\ C & D \end{array} \right) ^ {- 1} \right] _ {ss} = (A - B D ^ {- 1} C) ^ {- 1},
+\tag{3.21}
+\end{equation*}
+
+其中 $()_{ss}$ 表示左上象限的单占据子空间。把 $\mathcal{G}$ 投影到子空间 $S$：
+
+\begin{equation*}
+P _ {s} \mathcal {G} (E) P _ {s} = P _ {s} \left[ E - \mathcal {H} \right] ^ {- 1} P _ {s} = \left[ E - \mathcal {H} ^ {\mathrm{eff}} (E) \right] ^ {- 1}.
+\tag{3.22}
+\end{equation*}
+
+利用 (3.21) 及 $P_{s}\mathcal{U} = \mathcal{U}P_{s} = 0$，有效哈密顿量显式为
+
+\begin{align*}
+\mathcal {H} ^ {\mathrm{eff}} & = P _ {s} \mathcal {T} P _ {s}\\
+& \quad + P _ {s} \mathcal {T} P _ {d} \left\{ P _ {d} \left[ E - ( \mathcal {U} + \mathcal {T} ) \right] P _ {d} \right\} ^ {- 1} P _ {d} \mathcal {T} P _ {s}.
+\tag{3.23}
+\end{align*}
+
+$\mathcal{H}$ 的本征能量（对应于在 $S$ 中有权重的态）由特征多项式的零点给出：
+
+\begin{equation*}
+\det \left| E _ {n} - \mathcal {H} ^ {\mathrm{eff}} ( E _ {n} ) \right| = 0.
+\tag{3.24}
+\end{equation*}
+
+注意 $E_{n}$ 并非 $H^{\mathrm{eff}}$ 的本征值，因为 $H^{\mathrm{eff}}$ 参数式地依赖 $E$。若暂且不计大量格点带来的问题，可以把 $P_{d}(E-\mathcal{H})^{-1}P_{d}$ 按 $E/U$ 的零阶、$t/U$ 的二阶展开。这使我们能用一个不依赖能量的哈密顿量的本征值方程代替 (3.24)：
+
+\begin{align*}
+\mathcal {H} ^ {\mathrm{eff}} & \rightarrow \mathcal {H} ^ {\mathrm{t-J}} \left[ 1 + \mathcal {O} ( E/U ) + \mathcal {O} ( t/U ) \right],\\
+\mathcal {H} ^ {\mathrm{t-J}} & = P _ {s} \left[ \mathcal {T} - \frac {1}{U} \sum_ {ijkss'} t _ {ij} t _ {jk} \, c _ {is} ^ {\dagger} c _ {js} \, n _ {j \uparrow} n _ {j \downarrow} \, c _ {js'} ^ {\dagger} c _ {ks'} \right] P _ {s}.
+\tag{3.25}
+\end{align*}
+
+$H^{\mathrm{t-J}}$ 通常称为 t--J 模型。
+
+让我们暂停片刻，意识到格点数 $N \to \infty$ 的情形。当电子数按 $N$ 标度时，基态能量 $E_{0}$ 是广延量，即它是按 $N$ 标度的零点能之和。因此把 $\mathcal{H}^{\mathrm{eff}}(E)$ 在 $E = 0$ 附近展开并不合理。然而，只要把能量零点移到
+
+\begin{equation*}
+E ^ {0} \rightarrow E _ {0} ^ {\prime} = E _ {0} ^ {d} - U,
+\tag{3.26}
+\end{equation*}
+
+仍然可以导出低激发的有效哈密顿量。$E_{0}^{d}$（同样为广延量）是 Hubbard 模型在双占据扇区中的最低能量。如果我们放弃知道 Hubbard 模型基态能量，就无需实际计算 $E_{0}^{d}$。于是我们把 $H^{\mathrm{t-J}}$ 限制于描述低能元激发与波函数。现在重复上述步骤，对小能量
+
+\begin{equation*}
+\left| E - E _ {0} ^ {\prime} \right| \ll U
+\tag{3.27}
+\end{equation*}
+
+作展开。这使我们能用不依赖能量的有效哈密顿量研究低频、低温响应\footnote{$E_{0}$ 的这一移动正是 Brillouin--Wigner 微扰论与 Rayleigh--Schrödinger 微扰论的差别所在，例如参看 J. W. Negele and H. Orland, \textit{Quantum Many Particle Systems} (Addison-Wesley, 1988) 习题 3.6。}。
+
+重排费米子算符，得到 t--J 模型一个更透明的形式：
+
+\begin{equation*}
+\mathcal {H} ^ {\mathrm{t-J}} = P _ {s} \left( \mathcal {T} + \hat {\mathcal {H}} ^ {\mathrm{QHM}} + \mathcal {J} ' \right) P _ {s},
+\tag{3.28}
+\end{equation*}
+
+\begin{equation*}
+\mathcal {T} = - \sum_ {ijs} t _ {ij} \, c _ {is} ^ {\dagger} c _ {js},
+\tag{3.29}
+\end{equation*}
+
+\begin{equation*}
+\mathcal {H} ^ {\mathrm{QHM}} = \frac {1}{2} \sum_ {ij} J _ {ij} \left( \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} - \frac {n _ {i} n _ {j}}{4} \right),
+\tag{3.30}
+\end{equation*}
+
+\begin{equation*}
+\mathcal {J} ' = - \frac {1}{2 U} \sum_ {ijk} ^ {i \neq k} t _ {ij} t _ {jk} \left[ \sum_ {s} \left( c _ {is} ^ {\dagger} c _ {ks} \, n _ {j} \right) - c _ {i} ^ {\dagger} \vec {\sigma} c _ {k} \cdot c _ {j} ^ {\dagger} \vec {\sigma} c _ {j} \right],
+\tag{3.31}
+\end{equation*}
+
+其中自旋算符 $S_{i}$ 已在 (2.10) 定义，超交换耦合常数为
+
+\begin{equation*}
+J _ {ij} = 4 t _ {ij} ^ {2} / U.
+\tag{3.32}
+\end{equation*}
+
+半满时 $n_{i}=1$。这一极限下，$P_{s}$ 湮灭 $\mathcal{T}$ 与 $\mathcal{J}'$（每个格点恰好一个电子时，不存在低能跳跃过程）。这是 Mott 绝缘体相。在投影 $P_{s}$ 下幸存的只有 $H^{\mathrm{QHM}}$ 的磁相互作用——量子 Heisenberg 模型。于是我们在 Hubbard 模型中找到了反铁磁相互作用，它在（至少对大 $U/t$）半满附近很重要。本书将对 Heisenberg 哈密顿量作大量讨论。
+
+额外的电子或空穴（相对半满而言）对量子反铁磁体的影响是当前深入研究的课题，特别是在铜氧化物高温超导的语境下。
+
+掺杂的一个效应据信是削弱反铁磁关联。粗略地说，空穴偏爱铁磁的自旋环境，在那里它们可以更“机动”，从而降低动能。这一效应在无穷大 $U$ 极限最为突出，见 4.2 节的 Nagaoka 定理。
+
+文献中 $\mathcal{J}'$ 项常被略去，默认其效应与 $t$ 跳跃相比很小。然而，对具有近邻 $t$ 跳跃的双子晶格模型，空位（空穴）在 $\mathcal{T}$ 下可以在不同子晶格之间移动，从而扰乱反铁磁关联。图~\ref{fig:3.1} 粗略地展示了这一点。$\mathcal{J}'$ 的跳跃项则不会“搞乱”自旋，因为它使空穴在同一子晶格内移动。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{fig3_1.jpg}
+\caption{t--J 模型中空穴与自旋的相互作用。}
+\label{fig:3.1}
+\end{figure}
+
+离开 t--J 模型之前，我们把它再写一遍——这次是正规排序形式：
+
+\begin{equation*}
+\mathcal {H} ^ {\mathrm{t-J}} = P _ {s} \left[ \mathcal {T} - \frac {1}{U} \sum_ {ijk} t _ {ij} t _ {jk} \left( c _ {i \uparrow} ^ {\dagger} c _ {j \downarrow} ^ {\dagger} - c _ {i \downarrow} ^ {\dagger} c _ {j \uparrow} ^ {\dagger} \right) \left( c _ {j \downarrow} c _ {k \uparrow} - c _ {j \uparrow} c _ {k \downarrow} \right) \right] P _ {s}.
+\tag{3.33}
+\end{equation*}
+
+在第 19 章中，我们将用自旋--空穴相干态处理 t--J 模型。在定义其大自旋推广之后，我们将导出稀疏空穴密度的半经典理论。
+
+\section{负 $U$ 模型}
+
+负 $U$ Hubbard 模型描述电子之间的局域吸引相互作用。与排斥情形一样，应当把这个模型视为一个参数已重整化的有效模型，适用于低频与低温。当电子使某个集体自由度极化时，它们可以通过共享这一极化获得负的配对结合能 $-U$。
+
+产生电子间吸引的极化机制已有多种提案，列举几个：晶格形变（声子）、集体电荷振荡（等离激元）、自旋涨落（顺磁振子）。在负 $U$ 相互作用中，极化机制的时间尺度（如声子的 Debye 频率）相对跳跃时间被视为瞬时的\footnote{这与超导电性的 Migdal--Eliashberg 近似正好处在相反的区间，参见 Schrieffer 的书。}。
+
+我们讨论如下形式的哈密顿量：
+
+\begin{align*}
+\mathcal {H} ^ {-U} & = - \sum_ {ijs} t _ {ij} \, c _ {is} ^ {\dagger} c _ {js} - \frac {U}{2} \sum_ {i} ( n _ {i} - 1 ) ^ {2}\\
+& \quad + \frac {1}{2} \sum_ {ij} V _ {ij} ( n _ {i} - 1 ) ( n _ {j} - 1 ) - \mu \sum_ {i} n _ {i}.
+\tag{3.34}
+\end{align*}
+
+负 $U$ 项有利于同一格点上上、下自旋的局域配对。但跳跃项 $t_{ij}c_{is}^{\dagger}c_{js}$ 与这一倾向竞争，因为它使电子离域化、拆散配对。格点间相互作用 $V_{ij}$ 排斥不同格点上的电子，在半满附近对选定基态尤为重要。
+
+第一步，只对下自旋电子作粒子--空穴变换，把 (3.34) 变成正 $U$ 模型：
+
+\begin{align*}
+c _ {i \uparrow} & \rightarrow \tilde {c} _ {i \uparrow} ,\\
+c _ {i \downarrow} & \rightarrow \tilde {c} _ {i \downarrow} ^ {\dagger}.
+\tag{3.35}
+\end{align*}
+
+这是一个正则的 Bogoliubov 变换（见 A.1 节），“赝电子”$\tilde{c}$ 满足 Fermi 反对易关系。利用 $\tilde{n}_{is}^{2} = \tilde{n}_{is}$，(3.34) 立即变成正 $U$ 哈密顿量
+
+\begin{align*}
+\mathcal {H} ^ {-U} \to \tilde {\mathcal {H}} ^ {+U} & = - \sum_ {ij} t _ {ij} \left( \tilde {c} _ {i \uparrow} ^ {\dagger} \tilde {c} _ {j \uparrow} - \tilde {c} _ {i \downarrow} ^ {\dagger} \tilde {c} _ {j \downarrow} \right) + \frac {U}{2} \sum_ {i} ( \tilde {n} _ {i} - 1 ) ^ {2}\\
+& \quad + \frac {1}{2} \sum_ {ij} J _ {ij} ^ {a} \tilde {S} _ {i} ^ {z} \tilde {S} _ {j} ^ {z} - h \sum_ {i} \tilde {S} _ {i} ^ {z} - \mathcal {N} \Delta E,
+\tag{3.36}
+\end{align*}
+
+其中 Ising 各向异性为
+
+\begin{equation*}
+J _ {ij} ^ {a} = 4 V _ {ij},
+\tag{3.37}
+\end{equation*}
+
+磁场为
+
+\begin{equation*}
+h = 2 \mu ,
+\tag{3.38}
+\end{equation*}
+
+能量平移为
+
+\begin{equation*}
+\Delta E = \mu + \frac {1}{2} U.
+\tag{3.39}
+\end{equation*}
+
+现在对跳跃参数 $t_{ij}$ 定义二分格子（bipartite lattice）。
+
+\medskip
+\noindent\textbf{定义 3.1}\quad 若一个格子可以分成两个不相交的子晶格 $A$ 与 $B$，使得 $t_{ij}$ 只连接 $i \in A$ 到 $j \in B$（或 $i \in B$ 到 $j \in A$），则称之为二分格子。
+\medskip
+
+二分格子的常见例子是正方格子与立方格子。非二分的例子有三角格子与面心立方（FCC）格子的键。
+
+注意 (3.36) 中的相互作用项为正，而跳跃矩阵元带有依赖自旋的正负号。这对非二分格子有重要的物理意义：在那里这些符号无法通过简单的规范变换消去。
+
+\subsection{赝自旋模型与超导电性}
+
+变换 (3.35) 把负 $U$ 模型的电荷算符映射为正 $U$ 模型的赝自旋算符。特别地，局域电荷涨落映射为 $z$ 方向的赝自旋：
+
+\begin{equation*}
+\frac {1}{2} ( n _ {i} - 1 ) \Leftrightarrow \tilde {S} _ {i} ^ {z}.
+\tag{3.40}
+\end{equation*}
+
+于是，负 $U$ 模型偏离半满对应于正 $U$ 模型中 $S^{z}$ 方向的均匀磁化；类似地，负 $U$ 模型中的电荷密度波对应于正 $U$ 模型中的 $z$ 自旋密度波。
+
+赝自旋分量 $\tilde{S}^x$、$\tilde{S}^y$ 对应于配对算符：
+
+\begin{align*}
+\frac {1}{2} \left( c _ {i \uparrow} ^ {\dagger} c _ {i \downarrow} ^ {\dagger} + c _ {i \downarrow} c _ {i \uparrow} \right) & \Leftrightarrow \tilde {S} _ {i} ^ {x},\\
+\frac {1}{2i} \left( c _ {i \uparrow} ^ {\dagger} c _ {i \downarrow} ^ {\dagger} - c _ {i \downarrow} c _ {i \uparrow} \right) & \Leftrightarrow \tilde {S} _ {i} ^ {y}.
+\tag{3.41}
+\end{align*}
+
+于是，赝自旋在 $x$--$y$ 平面内的有序代表负 $U$ 模型中的超导电性：
+
+\begin{equation*}
+\Psi ( \mathbf {x} _ {i} ) = \Delta ( \mathbf {x} _ {i} ) \, e ^ {i \phi ( \mathbf {x} _ {i} )} \Leftrightarrow \langle \tilde {S} _ {i} ^ {+} \rangle .
+\tag{3.42}
+\end{equation*}
+
+有序矩的大小是 BCS 序参量 $\Delta$，其在 $x$--$y$ 平面内的角度是超导相位 $\phi$（参见 Schrieffer 的书，见文献注释）。$\Psi$ 以电荷 $2e$ 与外电磁规范场耦合。对缓变 $\Psi(\mathbf{x})$ 的自由能展开给出 Ginzburg--Landau 自由能泛函，后者产生了超导电性的大部分宏观唯象学（如磁通量子化、持续电流等）。
+
+注意 $H^{+U}$ 的化学势为零。现在证明一个重要定理。
+
+\medskip
+\noindent\textbf{定理 3.2}\quad 对 $\mathcal{H}^{-U}$ 的任何电子填充，正 $U$ 模型 $\tilde{\mathcal{H}}^{+U}$ 恰好处于半满。
+\medskip
+
+证明很简单。考虑变换
+
+\begin{equation*}
+\tilde {c} _ {is} \rightarrow \tilde {c} _ {i,-s} ^ {\dagger} \, , \quad s = \uparrow , \downarrow .
+\tag{3.43}
+\end{equation*}
+
+容易验证 $\tilde{H}^{+U}$ 在此变换下不变：
+
+\begin{equation*}
+\tilde {\mathcal {H}} ^ {+U} [ \tilde {c} ' ] = \tilde {\mathcal {H}} ^ {+U} [ \tilde {c} ],
+\tag{3.44}
+\end{equation*}
+
+而
+
+\begin{equation*}
+\tilde {n} _ {i} \rightarrow 2 - \tilde {n} _ {i} '.
+\tag{3.45}
+\end{equation*}
+
+电子数由热力学平均给出：
+
+\begin{equation*}
+\langle \tilde {n} _ {i} \rangle = \frac {1}{Z} \mathrm{Tr}_{\tilde{c}} \left( e ^ {- \beta \tilde {\mathcal {H}} ^ {+U} [ \tilde {c} ]} \tilde {n} _ {i} \right) = \frac {1}{Z} \mathrm{Tr}_{\tilde{c}'} \left[ e ^ {- \beta \tilde {\mathcal {H}} ^ {+U} [ \tilde {c} ' ]} ( 2 - \tilde {n} _ {i} ' ) \right],
+\tag{3.46}
+\end{equation*}
+
+由于 (3.43) 是正则变换，迹在变换下不变，故\footnote{这里通过对有限格子定义平均，回避了局域自发对称性破缺（即相分离）的微妙之处。}
+
+\begin{equation*}
+\mathcal {N} ^ {- 1} \left\langle \sum_ {i} \tilde {n} _ {i} \right\rangle = \mathcal {N} ^ {- 1} \left\langle \sum_ {i} ( 2 - \tilde {n} _ {i} ) \right\rangle = 1,
+\tag{3.47}
+\end{equation*}
+
+证毕。
+
+定理 3.2 很重要，因为大 $U$ 时正 $U$ Hubbard 模型的半满极限可以约化为纯自旋问题。循 3.2 节的推导，有效赝自旋哈密顿量为
+
+\begin{align*}
+\tilde {\mathcal {H}} ^ {+U} & \rightarrow \tilde {\mathcal {H}} ^ {-x-xz} + \mathcal {O} ( t ^ {2} / U ),\\
+\tilde {\mathcal {H}} ^ {-x-xz} & = \frac {1}{2} \sum_ {\langle ij \rangle} \left[ ( J _ {ij} + J _ {ij} ^ {a} ) \tilde {S} _ {i} ^ {z} \tilde {S} _ {j} ^ {z} - J _ {ij} ( \tilde {S} _ {i} ^ {x} \tilde {S} _ {j} ^ {x} + \tilde {S} _ {i} ^ {y} \tilde {S} _ {j} ^ {y} ) \right] - h \sum_ {i} \tilde {S} _ {i} ^ {z},
+\tag{3.48}
+\end{align*}
+
+其中超交换耦合仍是 $J_{ij} = 4t_{ij}^{2}/U$。常数能量平移已略去。$\tilde{H}^{-x-xz}$ 是各向异性 Heisenberg 模型：$x, y$ 自旋分量为铁磁耦合，$z$ 分量为反铁磁耦合。
+
+哈密顿量 (3.48) 是一个量子磁性模型，可以用本书描述的许多方法处理。在第 11 章我们将学到，半经典近似适用于二维和三维的破缺对称相。经典基态由极小化经典哈密顿量 $\tilde{\mathcal{H}}^{-x-xz}[\tilde{\mathbf{S}}]$ 得到，其中 $\tilde{\mathbf{S}}$ 是大小为 $S$ 的矢量。对非二分格子（如三角或面心立方格子）上的近邻模型，$z$ 自旋耦合是受挫的（见图~\ref{fig:3.2} 左三角形的底边键）；与此同时，铁磁的 $x$--$y$ 耦合可以完全满足（见右三角形）。结果，经典近似给出 $x$--$y$ 赝自旋有序，即低温超导电性。我们将看到，大的量子与热涨落可以破坏磁序，在低维尤其如此；超导电性同样受制于这些失序机制。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.52\textwidth]{fig3_2.jpg}
+\caption{赝自旋哈密顿量 $H^{-x-xz}$：受挫的 $z$ 自旋耦合（左三角形）与满足的 $x$--$y$ 耦合（右三角形）。}
+\label{fig:3.2}
+\end{figure}
+
+对二分格子\footnote{这里使用定义 3.1，把 $t_{ij}$ 换成 $J_{ij}$。}，把子晶格 B 上所有自旋绕 $z$ 轴旋转 $\pi$，即可把 $\tilde{\mathcal{H}}^{-x-xz}$ 化为 Ising--Heisenberg 形式
+
+\begin{equation*}
+\tilde {\mathcal {H}} ^ {-x-xz} \rightarrow \tilde {\mathcal {H}} ^ {xxz} = \frac {1}{2} \sum_ {ij} \left( J _ {ij} \, \tilde {\mathbf {S}} _ {i} \cdot \tilde {\mathbf {S}} _ {j} + J _ {ij} ^ {a} \tilde {S} _ {i} ^ {z} \tilde {S} _ {j} ^ {z} \right) - h \sum_ {i} \tilde {S} _ {i} ^ {z}.
+\tag{3.49}
+\end{equation*}
+
+$\tilde{H}^{xxz}[\tilde{S}]$ 的基态是反铁磁的：赝自旋在两个子晶格上指向相反方向。$J^{a}=0$、$h=0$ 时，(3.49) 的经典基态具有 $O(3)$ 简并，序参量可指向球面上任何方向。$h>0$ 时简并降至 $O(2)$，因为 $z$ 方向的均匀磁场偏爱自旋大体躺在 $x$--$y$ 平面内——自旋的倾倒带来线性于 $h$ 的能量增益；见图~\ref{fig:3.3}。
+
+然而，当 Ising 各向异性有限（$J^{a} > 0$）时，即使磁场很小，自旋也倾向于沿 $z$ 方向排列。磁场与 Ising 各向异性的竞争决定有序矩的方向。Ising 有序与 $x$--$y$ 有序之间的转变在磁场 $h$ 下可以是一阶或二阶。这一转变在真实磁性体系中无论理论上还是实验上都已被充分研究，并被应用于铋酸盐超导体的超导理论和氦-4 的超流理论（见文献注释）。在经典平均场近似下，转变的级次取决于次近邻相互作用的符号。一阶转变称为自旋翻转（spin-flop），在磁场--温度相图上意味着一个双临界点。二阶转变则意味着一个中间混合相，序参量同时具有 $z$ 与 $x$--$y$ 分量（即电荷密度波与超导电性共存）。对氦而言，混合相称为“超固体”，迄今尚未在实验上发现。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.52\textwidth]{fig3_3.jpg}
+\caption{均匀磁场中反铁磁体的自旋翻转态。}
+\label{fig:3.3}
+\end{figure}
+
+有效哈密顿量 (3.48) 是在大 $|U| \gg t$ 下导出的，它描述束缚在约一格常量尺度上的紧致电子对。弱耦合 $|U| < t$ 时，更好做法是对相互作用强度用微扰论，或用 4.1 节描述的那类变分磁态。当电荷激发存在能隙时，弱耦合与强耦合定性相似。弱耦合下，若费米面有大片平行部分（嵌套），也会出现这样的能隙。此时赝自旋模型 $\tilde{H}^{-x-xz}$ 可作为有效模型使用，在 Cooper 对的尺度上粗粒化——也就是说，“格点常量”应换成超导关联长度。
+
+\begin{exercises}
+
+\item 证明导出 Heisenberg 哈密顿量 (3.30) 时用到的恒等式：
+
+\begin{equation*}
+P _ {s} \left[ \sum_ {ss'} c _ {is} ^ {\dagger} c _ {js} \, n _ {j \uparrow} n _ {j \downarrow} \, c _ {js'} ^ {\dagger} c _ {is'} \right] P _ {s} = - 2 P _ {s} \left[ \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} - \frac {n _ {i} n _ {j}}{4} \right] P _ {s}.
+\tag{3.50}
+\end{equation*}
+
+\item 通过重排费米子算符，证明 (3.33) 的 t--J 模型等于 (3.25)。
+
+\item 求两格点 Hubbard 模型 (3.14)（$i = 1,2$）在 $N_e = 1, 2, 3$ 个电子时的全部本征能量与本征态。$N_e = 2$ 时单态--三重态劈裂是多少？这就是有效自旋超交换常数。
+
+提示：在每个填充 $N_{e}$ 下，把哈密顿量作为相关 Fock 态上的矩阵对角化。对 $4 \times 4$ 格子，这个矩阵有多大？
+
+\item 证明 Hubbard 哈密顿量 (3.14) 与总自旋 $S_{tot} = \sum_{i} S_{i}$ 对易，从而是转动不变的。在一维 $N$ 格点的环上，其本征态由哪些量子数分类？
+
+\end{exercises}
+
+\begin{chapbib}
+\item 关于 Hubbard 模型的一本新近综合参考书（收录该领域许多重要论文）：
+  \textit{The Hubbard Model}, edited by A. Montorosi (World Scientific, 1992)。
+\item 一维精确解参看：
+  \textit{The Many Body Problem --- An Encyclopedia of Exactly Solved Models in One Dimension}, edited by D. C. Mattis (World Scientific, 1993)。
+\item 一维的场论与重整化群技术参看：
+  V. J. Emery, \textit{The Many Body Problem in One Dimension}, in ``Correlated Electron Systems'', edited by V. J. Emery (World Scientific, 1993)；
+  H. J. Schultz, \textit{Interacting Fermions in One Dimension}, 同卷。
+\item 超导电性的基本教科书：
+  J. R. Schrieffer, \textit{Theory of Superconductivity} (Benjamin-Cummings, 1983)。
+\item 负 $U$ 模型被提出用于铋酸盐超导体：
+  T. M. Rice and L. Sneddon, Phys. Rev. Lett. \textbf{47}, 689 (1981)；
+  A. S. Alexandrov, J. Ranninger, and S. Robaszkiewicz, Phys. Rev. B \textbf{33}, 4526 (1986)；
+  A. Aharony and A. Auerbach, Phys. Rev. Lett. \textbf{70}, 1874 (1993)。
+\item 磁学文献中对自旋翻转转变的分析见：
+  \textit{Elements of Theoretical Magnetism}, edited by S. Krupicka and J. Sternberk (Iliffe), 7.4 节；
+  M. E. Fisher and D. R. Nelson, Phys. Rev. Lett. \textbf{32}, 1350 (1974)。
+\item 在超流氦的语境下，赝自旋模型与超固体的可能性有很长的历史：
+  T. Matsubara and H. Matsuda, Prog. Theor. Phys. \textbf{16}, 569 (1956)；
+  H. Matsuda and T. Tsuneto, Suppl. Prog. Theor. Phys. \textbf{46}, 411 (1970)；
+  K. S. Liu and M. E. Fisher, J. Low Temp. Phys. \textbf{10}, 655 (1973)；\textbf{17}, 129 (1957)。
+\item 关于包含 (3.10) 之 $J^F$ 项的 Hubbard 模型推广的讨论，见
+  J. E. Hirsch, Phys. Rev. B \textbf{40}, 9061 (1989)。
+\end{chapbib}

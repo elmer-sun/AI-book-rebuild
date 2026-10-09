@@ -1,0 +1,208 @@
+% ch2 C.3–C.4 (原书页 82–90 / PDF p097–p105)
+
+% 衔接说明：本文件含小节 C.3（外场中的运动，原书 3 节）与 C.4（"击穿"效应，原书 4 节）。
+% 原书 p.82 顶部（本节标题之前）尚有 C.2 的收尾文字（"neighboring sites ... support
+% to this theory (47). Further detail on these effective mass wave functions is not
+% suitable here."），已按 ch2_C12.tex 文件尾注与该文件末句合并，本文件不重复。
+% 本文件结束于原书 p.90 末句（"The effect is called "magnetic breakdown.""），
+% 句子完整；原书 p.91（PDF p106）起的内容由下一文件续译。
+
+% ---- 原书 p.82 (PDF p097) ----
+
+\subsection{外场中的运动}
+
+在外场存在下有效质量近似的行为及其失效这个问题上，我将遵照 Wannier，取均匀电场（而不是磁场）的情形作为较简单的例子。在电场中，有效哈密顿量为
+\begin{equation*}
+\mathcal{H}_{\text{eff}} = E_n(\mathbf{k}) - e\,\mathbf{E}\cdot\mathbf{R}
+\end{equation*}
+取 $\mathbf{E}$ 沿 $x$ 方向，它便是
+% 校注：原书此式首项印作花体小写（形似 $\mathcal{E}_n(k)$），按上式与本书记号统一转写为 $E_n(k)$。
+\begin{equation*}
+E_n(k) - eER_x
+\end{equation*}
+
+试图求出这个哈密顿量的显式本征函数并没有多大教益——虽然事实上做得到——因为对这些本征函数的解释会相当没有意义；只要想到在自由电子情形中电子会径直加速奔向无穷远，我们就能明白这一点。
+
+我们不如来看这两个正则共轭变量的运动方程：
+\begin{equation*}
+i\hbar\,\frac{d\mathbf{R}}{dt} = [\mathcal{H},\,\mathbf{R}] = E_n(\mathbf{k})\left(-i\,\frac{\partial}{\partial\mathbf{k}}\right) + i\,\frac{\partial}{\partial\mathbf{k}}\,E_n(\mathbf{k})
+\end{equation*}
+即
+\begin{equation*}
+\mathbf{V} = \frac{d\mathbf{R}}{dt} = \frac{1}{\hbar}\,\nabla_{\mathbf{k}}\,E_n(\mathbf{k})
+\end{equation*}
+
+这是色散介质中波包群速度的一个熟知结果；但在这里，如果我们愿意，波包尽可以只由动量确定为 $\mathbf{k}$ 的单一成分构成，因为 $\nabla_{\mathbf{k}}E_n(\mathbf{k})$ 仅是 $\mathbf{k}$ 的函数。这一关系显然不依赖于微扰的形式，是能带电子的一条普遍性质。
+
+接下来我们求 $\mathbf{k}$ 的运动方程：
+\begin{equation*}
+i\hbar\,\frac{d\mathbf{k}}{dt} = [\mathcal{H},\,\mathbf{k}] = ie\mathbf{E}\left(\frac{\partial}{\partial k_x}\,k - k\,\frac{\partial}{\partial k_x}\right) = ie\mathbf{E}
+\end{equation*}
+
+% ---- 原书 p.83 (PDF p098) ----
+
+这又是一个非常简单的结果，并且可以立即积分：$\mathbf{k} = \mathbf{k}_0 + e\mathbf{E}t/\hbar$。
+% 校注：原书此处印作 $\mathbf{k} = \mathbf{k}_0 + \mathbf{E}t/\hbar$，缺因子 $e$；按
+% $i\hbar\, d\mathbf{k}/dt = ie\mathbf{E}$（即 $\hbar\, d\mathbf{k}/dt = e\mathbf{E}$）
+% 并对照后文（原书 p.88）的 $k_0 + eEt/\hbar$，补足为 $e\mathbf{E}t/\hbar$。
+$\hbar\mathbf{k}$ 常被称为"晶体动量"（crystal momentum）$\mathbf{P}_c$，而这一方程表明 $d\mathbf{P}_c/dt = \mathbf{F}$，其中 $\mathbf{F}$ 是作用在电荷 $e$ 上的力。有了这两个方程——在有效哈密顿量近似之内它们是精确的——我们便可以追踪一个电子的运动：它既可以是从任一单个 Bloch 波 $b_n(\mathbf{k}_0)$ 出发的电子，也可以是以给定 $\mathbf{k}_0$ 为中心的一个波包。
+
+于是，让我们在 $k$ 空间中沿某条平行于 $x$ 轴的直线画出 $E_n(\mathbf{k})$ 曲线；这就会给出能量随时间的变化（图 19）。注意，
+
+%FIG{19}: 图 19　$E_n$（亦即位置 $x$）随 $k = eEt/\hbar$ 的周期性变化（横轴标出 $-K/2$、$0$、$K/2$、$K$、$3K/2$），以及速度 $v_x = \partial E_n/\partial k_x$ 随时间的对应周期性变化（原书图注仅作 "Figure 19"）
+
+% ---- 原书 p.84 (PDF p099) ----
+
+当 $k$ 增大到区边界时，我们必须利用能带在 $k$ 空间中的周期性。我们看到，$k$ 越过边界后便继续进入下一个区，这恰恰等价于跳回到区的相对面上相应的点。
+
+相当重要的一点是：由此得到的速度是周期性的，既经历负值也经历正值。波包的净位移可以由速度对时间的积分得到：
+\begin{align*}
+x &= \int_0^t dt\; v_x(t) \\
+&= \int_0^t \frac{dt}{\hbar}\,\frac{\partial E_n}{\partial k_x} = \frac{1}{\hbar}\int_0^t \frac{dt}{dk}\,\frac{\partial E_n}{\partial k}\,dk = \frac{1}{eE}\left\{E_n[k_x(t)] - E_n(0)\right\}
+\end{align*}
+
+于是每经过一个周期，位移便回到零。这并不奇怪：满带电子必定不携带任何净电流，因为绝缘体正是由满带来描述的。
+
+实际金属或半导体之所以能承载电流，唯一的原因是弛豫效应的存在：电子在 $k$ 空间中才加速了极小的距离，弛豫效应就阻止它们继续完成周期性位移；所得的分布在 $+v$ 方向略有增多、在 $-v$ 方向略有减少，最终结果便是一真实电流。另一方面，在绝缘体中没有可供散射进入的空末态，所以我们必须把电子设想为确实在执行这周期性的位移。
+
+$x$ 方向的总位移是 $W/eE$，即带宽除以 $eE$。这鼓励我们借助一种非常有用的半经典图像来直观想象外势存在下的能带结构（图 20）。半经典地（并非真正经典地，因为能带概念不是经典的）看，固定能量的电子可预期在上、下带边之间来回振荡，被禁带（forbidden gaps）束缚在中间。
+
+%FIG{20}: 图 20　外势存在下能带结构的半经典图像：斜率为 $eE$ 的许带（Allowed）与斜纹的禁带（Forbidden）交替排列，带宽为 $W$，固定能量的电子沿水平线在上下带边之间往返，在实空间的总位移为 $W/eE$，横轴为 $x$（原书图注仅作 "Figure 20"）
+
+% ---- 原书 p.85 (PDF p100) ----
+
+振荡的总时间周期，就是 $k$ 从一个区边界移动到下一个区边界所需的时间，即 $\hbar K/eE = T$。$K$ 为 $2\pi/a$（$a$ 为晶面间距），因此相应的能量劈裂是 $\hbar\omega = eEa$。这一劈裂的缘由显而易见：一个平移量恰好为 $a$ 的波函数仍满足同一波动方程，而能量的移动量是 $eEa$。这些被 Wannier 称为"Stark 阶梯"（Stark ladders）的能级 (48)，实际上已在 p-n 结中被观测到。即便取相当好的绝缘体中也能达到的正常电场——$10^3$ 到 $10^4$ v/cm，即 10 到 100 esu/cm——这一劈裂也极其微小——$10^{-6}$ 到 $10^{-7}$ ev——对应着极长的周期，量级为 $10^{-8}$ 秒；相比之下，散射的平均自由时间充其量不过 $10^{-11}$ 的量级。这就是为什么在有散射存在时，分布通常仍非常接近平衡。另一方面，在 p-n 结中，尤其是在隧道二极管中，人们可以在 10 到 100 个晶格间距上获得带隙量级的电压，此时小的位移便可能对应于相当可观的能量（图 21）。
+
+%FIG{21}: 图 21　p-n 结的能带图：导带（Conduction band）、禁带（Gap）与价带（Valence band）在结区弯曲衔接，虚线为费米面 $E_F$（原书图注仅作 "Figure 21"）
+
+这一能量劈裂也可以用一种与"Landau 能级"（Landau levels）劈裂的计算相像得多的方法来计算；Landau 能级在磁场情形中极为重要。假设我们试图用半经典的相位积分（phase-integral）法则，把电子在两条带边之间的往复运动加以量子化：
+\begin{equation*}
+\int p\,dx = \hbar\oint k\,dx = nh
+\end{equation*}
+现在让我们取这一轨道与下一个可能轨道之间的差 $\Delta k$：
+
+% ---- 原书 p.86 (PDF p101) ----
+
+\begin{equation*}
+2\pi = \oint \Delta k\,dx = \Delta E\oint \frac{\Delta k}{\Delta E}\,dx = \hbar^{-1}\,\Delta E\oint \frac{dt}{dx}\,dx
+\end{equation*}
+这便直接给出劈裂的 Einstein 频率条件：
+\begin{equation*}
+\hbar^{-1}\,\Delta E = 2\pi/T
+\end{equation*}
+$\Delta E$ 我们此前已从别的途径导出，但在磁场情形中，这一方法是唯一简单的方法。
+
+至此，在有效哈密顿量理论的框架之内，自由电子在均匀电场中的行为的讨论便告完成。我们看到，这些现象虽然迷人，却不能为能带结构提供多少信息；所幸磁场的情形在实验上要有用得多 (50)。对这个复杂得多的情形，我将作极为简略的处理，然后试着谈一谈整个有效哈密顿量理论在哪里、又如何失效。
+
+磁场的作用，是把晶体动量方程 $d\mathbf{p}_c/dt = \mathbf{F}$ 中的力 $e\mathbf{E}$ 换成洛伦兹力 $e(\mathbf{v}/c)\times\mathbf{H}$：
+% 校注：原书此处印作小写 $dp_c/dt$，与原书 p.83 的 $\mathbf{P}_c$ 同指晶体动量，记号大小写不一致，照录。
+\begin{equation*}
+\frac{d\mathbf{k}}{dt} = \frac{e}{c}\left[\nabla_{\mathbf{k}}\,E_n(\mathbf{k})\times\mathbf{H}\right] \tag{22}
+\end{equation*}
+于是，在磁场存在时，$\mathbf{k}$ 沿着一个既垂直于 $\mathbf{H}$、又垂直于能量面梯度的方向移动；这意味着它绕磁场方向描出一条恒能等值线（图 22）。
+
+%FIG{22}: 图 22　磁场中的恒能面与轨道：两条闭合恒能线 $E_1$ 与 $E_2$，$\mathbf{k}$ 沿等能线绕行（箭头），$\mathbf{H}$ 垂直于纸面（图中以 $\oplus$ 标出）（原书图注仅作 "Figure 22"）
+
+当 $E_n = \hbar^2k^2/2m^*$ 时，式 (22) 很容易求解，给出回旋频率（cyclotron frequency）$eH/m^*c$。在其它情形下，可以用各种方式证明这一频率为
+\begin{equation*}
+\Delta E = \hbar\omega_c = \frac{2\pi e}{\hbar c}\,\frac{\partial A}{\partial E}
+\end{equation*}
+
+% ---- 原书 p.87 (PDF p102) ----
+
+其中 $A$ 是垂直于场 $\mathbf{H}$ 的适当平面所截出的面积。相应地，在使
+\begin{equation*}
+A(E) = \frac{2\pi e}{\hbar c}\,n
+\end{equation*}
+成立的那些能量处，存在着量子化的能级。这些就是 Landau 能级；它们对 De Haas-van Alphen 效应与回旋效应的理论至关重要，而这些效应在实际能带结构的研究中一直极有价值。
+
+式 (22) 的一个重要推论，在过去几年中变得引人注目，特别是通过 Lifshitz 及其在哈尔科夫（Kharkov）的小组的工作。这就是磁场情形中所谓"开放轨道"（open orbits）得以存在的可能性 (51)。能带结构完全可能是这样的：当电子沿恒能面垂直于 $\mathbf{H}$ 漂移时，这个面与区的边界相交，电子便游荡着进入下一个区、再下一个区，如此继续（图 23）。
+
+%FIG{23}: 图 23　开放轨道示意：扩展区图式中的恒能线，"or" 连出两种情形——或者在每个区内闭合，或者穿越一个又一个区边界延伸出去（原书图注仅作 "Figure 23"）
+
+这种轨道与电场情形的非常相像；同样，在轨道穿越区边界的那个方向上，电子没有净漂移，但它可以在垂直于 $\mathbf{H}$ 的另一个方向上漂移——处于闭合轨道中的电子则做不到这一点。由于 $1/\omega_c$ 可以做到比 $\tau$ 短——这与电场情形相反——这类轨道可以产生非常强的效应。特别是，它们的存在解释了强场磁阻不饱和这一悬置数十年的难题。
+
+应当强调，所有这些结果不仅受制于有效哈密顿量理论的那些我稍后就要讨论的局限，而且还受制于如下事实：在磁场情形中，除非能量面实际上确是完美的球面或椭球面，否则它们\emph{仅仅}在半经典意义上正确。对于 Si 和 Ge 中能带简并点附近的回旋共振，Fletcher 与 Luttinger (52, 53) 已对量子数非常低的轨道计算并测量了其量子偏离。
+
+% ---- 原书 p.88 (PDF p103) ----
+
+\subsection{"击穿"效应}
+
+有一个物理上理解得相当透彻的效应，完全处于有效哈密顿量的适用域之外，这就是 Zener 隧穿效应（Zener tunneling effect）；它不仅在半导体的实际应用中十分重要，而且可以在一个非常简单的模型上相当容易地加以演示。让我们回到近自由电子的微扰论，讨论若此时施加电场，在区边界处会发生什么。
+
+方程 $\hbar\,(dk/dt) = eE$ 在任何情形下都成立，因此在没有区边界时，电子将在场中无限地加速：
+\begin{equation*}
+V = \frac{\hbar k}{m} = \frac{\hbar}{m}\left(k_0 + \frac{eEt}{\hbar}\right)
+\end{equation*}
+
+事实上，我们可以求得含时波动方程
+\begin{equation*}
+i\hbar\,\frac{\partial\Psi}{\partial t} = -\frac{\hbar^2}{2m}\,\frac{\partial^2\Psi}{\partial x^2} - eEx\,\Psi
+\end{equation*}
+的一个精确解，只要令 $\Psi = a(t)\exp\left\{i\left[k+(eEt/\hbar)\right]x\right\}$，便有
+% 校注：原书此行指数中印作 (Eet/ℏ)，按 $dk/dt = eE/\hbar$ 及上下文应为 eEt/ℏ，照本意转写。
+\begin{equation*}
+\left(i\hbar\,\frac{da}{dt} - eEx\,a\right)\exp[i\,k(t)\,x] = \frac{\hbar^2}{2m}\left(k+\frac{eEt}{\hbar}\right)^{\!2}\Psi - eEx\,\Psi
+\end{equation*}
+此时 $a(t)$ 满足一个带有随时间变化的动能的波动方程
+\begin{equation*}
+i\hbar\,\frac{da}{dt} = E^0(k(t))\,a = \frac{\hbar^2}{2m}\left(k+\frac{eEt}{\hbar}\right)^{\!2}a
+\end{equation*}
+
+这可以积分出来，但其结果相当无关紧要；要紧的是：一旦允许 $k$ 随时间变化，加速运动便可以用一个随时间变化的 $k$ 矢量与动能来代替。
+
+现在让我们引入周期势的 Fourier 分量 $V_K$。这将在波动方程中带来 $k(t)$ 与 $k(t)-K$ 之间的一个常值耦合，后者是另一个同样在不断加速的态。在能量对 $k$ 的图上，$k-K$ 随 $k$ 一同移动；我们既可以把它画在同一条抛物线上，也可以把它画在一条被倒格矢 $K$ 平移、并在区边界处与原抛物线相交的抛物线上（图 24）。在 $V$ 很小的近似之内，只需考虑靠近交叉点 $P$ 的两个 $k$ 矢量。在该点附近，我们可以把正确的波函数展开成这两个加速平面波之和：
+\begin{equation*}
+\Psi = a(t)\exp\left[i\left(k+\frac{eEt}{\hbar}\right)x\right] + b(t)\exp\left[i\left(k-K+\frac{eEt}{\hbar}\right)x\right]
+\end{equation*}
+
+% ---- 原书 p.89 (PDF p104) ----
+
+%FIG{24}: 图 24　Zener 模型的 $E$–$k$ 图：自由电子抛物线与其经倒格矢 $K$ 平移的副本在区边界（竖直的 BZ 线）处交叉；$k$ 与 $k-K$ 两个加速态的轨迹（箭头）沿各自抛物线向上移动，底边双箭头标出间距 $K$（原书图注仅作 "Figure 24"）
+
+并且容易看出，我们得到 $a$ 与 $b$ 的一对联立方程：
+\begin{align*}
+i\hbar\,\frac{da}{dt} &= E[k(t)]\,a + V_K\,b \\
+i\hbar\,\frac{db}{dt} &= E[k(t)-K]\,b + V_K\,a
+\end{align*}
+哈密顿量矩阵是
+\begin{equation*}
+\mathcal{H} = \begin{pmatrix} E[k(t)] & V_K \\ V_K & E[k(t)-K] \end{pmatrix}
+\end{equation*}
+
+这一波动方程的形式是众所周知的，例如在绝热通过或快速通过（adiabatic or rapid passage）的理论中。有两种极限情形：若 $V$ 足够弱，它便仅充当一个小微扰。如果我们从 $a=1$、$b=0$ 出发，则越过区边界后系数 $a$ 仍然很大、$b$ 很小，电子便简单地跳过能隙继续加速。容易证明
+
+% ---- 原书 p.90 (PDF p105) ----
+
+\begin{equation*}
+b \simeq \frac{|V_K|^2}{\hbar\,\dfrac{d}{dt}\left(E_k - E_{k-K}\right)}
+\end{equation*}
+
+%FIG{rapid}: 无编号插图（原书不编号，旁注 Rapid）　快速通过极限示意：两支能级交叉，电子由 $a$ 沿原支直接穿过交叉点奔向 $b$（箭头），交叉处的虚线弧示弱耦合引起的微小避免交叉
+
+这一情形即所谓的"快速极限"（rapid limit）。
+
+在绝热极限（adiabatic limit）下——此时 $V$ 相当大——更接近正确的假定是：哈密顿量在每一时刻都可以对角化，从而给出两个态的能量，它们分别等价于各自的能带能量 $E_n(k)$。在这种情形中，$a$ \emph{绝热地}（adiabatically）变为 $b$，而跳越能隙的概率极其微小：
+\begin{equation*}
+P \simeq \exp\left[-\,\frac{|V_K|^2}{\hbar\,\dfrac{d}{dt}\left(E_k - E_{k-K}\right)}\right]
+\end{equation*}
+
+%FIG{adiabatic}: 无编号插图（原书不编号，旁注 Adiabatic）　绝热通过极限示意：两支能级避免交叉，电子沿下面一支由 $a$ 出发绕过极小值绝热地过渡到 $b$
+
+现在
+\begin{equation*}
+\frac{d}{dt}\left(E_k - E_{k-K}\right) = \frac{2d}{dt}\,\frac{\hbar^2k^2}{2m} = \frac{eE\hbar K}{m}
+\end{equation*}
+于是
+\begin{equation*}
+P \simeq \exp\left(\frac{-|V|^2 m}{\hbar^2KeE}\right)
+\end{equation*}
+
+这是远为常见的情形。对于 1 伏特的能隙和 $E = 10^4$ v/cm，$P = \mathrm{e}^{-200}$。
+% 校注：原书此处印作 "E = 10^4 cm"，单位疑漏 "v/"（对照原书 p.85 的 v/cm 及本段量纲），译文补足为 10^4 v/cm。
+而当 $E \sim 10^7$ 时——如 p-n 结中那样——$P$ 相当大，隧穿完全可能发生。
+
+Falicov (54) 最近指出——Blount (55) 则给出了一个好的理论——在磁场情形中，类似的现象在某些晶体中要容易发生得多。如果一条区边界打断了一条近自由电子的磁轨道，那么电子在绕能量面运行时便可以跳入下一条轨道（图 25）。正如我们已经指出的，磁场情形中的运动速率可以变得相当大，而这一效应确实已在 Mg 中被观测到。这一效应称为"磁击穿"（magnetic breakdown）。
+
+% ---- C.4 收尾（原书 p.91 / PDF p106，图 25 之下，协调者补译） ----
+值得指出的是，在这个极限下，$E$ 或 $H$ 是以 $\exp[-\mathrm{const}/E\ 或\ H]$ 的形式出现的，因此这些结果绝不可能作为关于 $E$ 或 $H$ 的微扰论的幂级数结果出现，因为 $\mathrm{e}^{-(1/x)}$ 在 $x=0$ 处的一切导数都为零。我们将会发现，有效哈密顿量理论可以被证明在微扰论的\emph{所有阶}上都正确；但当然，我们已经确凿地表明，尽管如此它并不包含全部的物理效应。因此，微扰理论充其量只能渐近收敛。

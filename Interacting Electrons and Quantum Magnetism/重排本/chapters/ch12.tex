@@ -1,0 +1,372 @@
+% 第12章 连续近似
+\chapter{连续近似}
+
+第 11 章我们在自旋路径积分的半经典展开中导出了自旋波理论。然而自旋波理论不适用于 Heisenberg 模型的无序（或“转动对称”）相，因为它假设 $O(3)$ 对称已自发破缺。根据 Mermin--Wagner 定理 6.2，一维、二维在 $T > 0$ 不可能有自发破缺对称。此外我们知道，一维 Heisenberg 反铁磁体即使在 $T = 0$ 也不预期有长程自旋序。
+
+脑中浮现的第一个问题是：在不存在自发破缺对称时还能用半经典近似吗？本章将看到答案是肯定的。短程经典哈密顿量主要对短程关联敏感。因此对 Heisenberg 反铁磁体，半经典（大 $S$）极限中的重要组态（即“半经典组态”）至少具有短程反铁磁序。在更长的长度尺度上，半经典组态可以大大偏离 Néel 态。所以不应像自旋波展开那样先验地破缺路径积分的转动对称；相反，我们应当消去短长度尺度的涨落，同时保留长波半经典模式的完全转动对称。
+
+考虑虚时路径积分 (10.10)：
+
+\begin{align*}
+Z [ j ] & = \int \mathcal {D} \hat {\Omega} ( \tau ) \, \exp \left( - \tilde {\mathcal {S}} [ \hat {\Omega} ] \right) ,\\
+\tilde {\mathcal {S}} [ \hat {\Omega} ] & = - i S \sum_ {i} \omega [ \hat {\Omega} _ {i} ] + \int_ {0} ^ {\beta} d \tau \, H ( \tau ) ,
+\tag{12.1}
+\end{align*}
+
+并专门讨论 Heisenberg 反铁磁体
+
+\begin{equation*}
+H [ \hat {\Omega} ] = \frac {1}{2} S ^ {2} \sum_ {ij} J _ {ij} \, \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j}.
+\tag{12.2}
+\end{equation*}
+
+考虑 $d$ 维、晶格常量 $a$、格点数 $\mathcal{N}$（每维格点数为偶数）的立方格子。取单位 $\hbar = K_{B} = 1$。相互作用 $J_{ij}$ 具有完全的格子对称性，使经典哈密顿量 $H[\hat{\Omega}]$ 有 Néel 基态。还假设 $J_{ij}$ 短程：
+
+\begin{equation*}
+\frac {1}{2 d} \sum_ {j} \left| J _ {ij} \right| \left| \mathbf {x} _ {j} - \mathbf {x} _ {i} \right| ^ {2} < \infty .
+\tag{12.3}
+\end{equation*}
+
+\section{Haldane 映射}
+
+Haldane 把 $d$ 维量子 Heisenberg 反铁磁体的有效长波作用量映射到 $d + 1$ 维非线性 {$\sigma$} 模型（NLSM）。NLSM 是统计力学与粒子物理中已被广泛研究的场论，后续章节将讨论。
+
+Haldane 映射的实质是短、长长度尺度涨落的分离。这一分离靠坐标的适当选取实现。第一步定义两个连续矢量场 $\hat{\mathbf{n}}$ 与 $\mathbf{L}$，把自旋参数化为
+
+\begin{equation*}
+\hat {\Omega} _ {i} = \eta_ {i} \hat {\mathbf {n}} ( \mathbf {x} _ {i} ) \sqrt {1 - \left| \frac {\mathbf {L} ( \mathbf {x} _ {i} )}{S} \right| ^ {2}} + \frac {\mathbf {L} ( \mathbf {x} _ {i} )}{S} ,
+\tag{12.4}
+\end{equation*}
+
+其中 $\eta_{i}=e^{i\mathbf{X}_{i}\cdot\vec{\pi}}$ 在两个子晶格上取相反符号，$\hat{n}$ 是模为 1 的 Néel 场：
+
+\begin{equation*}
+\left| \hat {\mathbf {n}} ( \mathbf {x} _ {i} ) \right| = 1.
+\tag{12.5}
+\end{equation*}
+
+$\mathbf{L}$ 是横向倾倒场，取为满足
+
+\begin{equation*}
+\mathbf {L} ( \mathbf {x} _ {i} ) \cdot \hat {\mathbf {n}} ( \mathbf {x} _ {i} ) = 0.
+\tag{12.6}
+\end{equation*}
+
+表面上看，(12.4) 用四个变量（$(\hat{\mathbf{n}}_{i}, \mathbf{L}_{i})$ 的六个自由度减去两个约束 (12.5) 与 (12.6)）替换了每格点两个独立自由度 $(\theta_{i}, \phi_{i})$。这一出人由在测度中固定 Fourier 分量的数目解决：
+
+\begin{equation*}
+\mathcal {D} \hat {\Omega} = \prod_{| \mathbf {q} | \leq \Lambda_{BZ}} d \hat {\mathbf {n}} _ {\mathbf {q}} \, d \mathbf {L} _ {\mathbf {q}} \, \delta ( \mathbf {L} \cdot \hat {\mathbf {n}} ) \, \mathcal {J} [ \hat {\mathbf {n}}, \mathbf {L} ] ,
+\tag{12.7}
+\end{equation*}
+
+$\mathcal{J}$ 是变换 (12.4) 的 Jacobian，Fourier 变换定义为
+
+\begin{equation*}
+\mathbf {X} _ {\mathbf {q}} = \sum_ {i} e ^ {- i \mathbf {q} \cdot \mathbf {x} _ {i}} \mathbf {X} ( \mathbf {x} _ {i} ) \, , \quad \mathbf {X} = \hat {\mathbf {n}}, \mathbf {L} \dots ,
+\tag{12.8}
+\end{equation*}
+
+$\Lambda_{BZ}$ 是球型布里渊区半径，取为满足
+
+\begin{equation*}
+2 \mathcal {N} = 4 \sum_{| \mathbf {q} | \leq \Lambda_{BZ}} .
+\tag{12.9}
+\end{equation*}
+
+(12.9) 两端分别数出 (12.7) 两端的自由度数目。
+
+在短程有序相中，$Z$ 由在关联长度 $\xi$ 以下具有可观反铁磁关联的组态主导。对大的 $\xi/a$，假设可以找到一个中间动量截断尺度 $\Lambda$，远小于微观截断动量，又远大于逆关联长度：
+
+\begin{equation*}
+\xi^ {- 1} \ll \Lambda \ll \Lambda_{BZ}, \, 2 \pi / R _ {J} ,
+\tag{12.10}
+\end{equation*}
+
+$R_{J}$ 是 $J_{i,j}$ 的特征力程。这等价于假设路径积分中的主导组态在 $\Lambda^{-1}$ 尺度上缓变，或者说它们在
+
+\begin{equation*}
+\left| \hat {\mathbf {n}}_{| \mathbf {q} | > \Lambda} \right| \ll 1.
+\tag{12.11}
+\end{equation*}
+
+处的 Fourier 分量可忽略。因此允许在 (12.7) 与 (12.9) 中把格子的立方布里渊区换成球型区。(12.11) 也与倾倒场很小的假设相容：
+
+\begin{equation*}
+\left| \mathbf {L} _ {i} / S \right| \ll 1.
+\tag{12.12}
+\end{equation*}
+
+到 $|L|/S$ 的领头阶，(12.7) 的 Jacobian 是常数：
+
+\begin{equation*}
+\mathcal {J} \approx S ^ {- \mathcal {N}}.
+\tag{12.13}
+\end{equation*}
+
+注意我们无需假设 $\mathbf{L}$ 在空间中缓变。主要假设概括为波矢尺度 $\Lambda$ 的存在。必须通过计算 $\xi(\Lambda)$ 并验证不等式 (12.10) 来检查这一假设的自洽性。
+
+\section{连续哈密顿量}
+
+用 $\hat{n}$ 与 $\mathbf{L}$ 写出哈密顿量。把相互作用按 $|L/S|^{2}$ 展开到二次阶：
+
+\begin{align*}
+\hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} & \approx \eta_ {i} \eta_ {j} - \frac {1}{2} \eta_ {i} \eta_ {j} \left( \hat {\mathbf {n}} _ {i} - \hat {\mathbf {n}} _ {j} \right) ^ {2}\\
+& \quad + \left( \frac {1}{S} \right) ^ {2} \left[ \mathbf {L} _ {i} \mathbf {L} _ {j} - \frac {1}{2} \eta_ {i} \eta_ {j} \left( \mathbf {L} _ {i} ^ {2} + \mathbf {L} _ {j} ^ {2} \right) \right]\\
+& \quad + \frac {1}{S} \left( \eta_ {j} \mathbf {L} _ {i} \hat {\mathbf {n}} _ {j} + \eta_ {i} \mathbf {L} _ {j} \hat {\mathbf {n}} _ {i} \right) + \mathcal {O} \left( | \mathbf {L} | ^ {2} | \hat {\mathbf {n}} _ {i} - \hat {\mathbf {n}} _ {j} | \right)
+\tag{12.14}
+\end{align*}
+
+Néel 场之差可用导数近似：
+
+\begin{equation*}
+\hat {\mathbf {n}} _ {i} - \hat {\mathbf {n}} _ {j} \approx \partial_ {l} \hat {\mathbf {n}} ( \mathbf {x} _ {i} ) \, x _ {ij} ^ {l} + \frac {1}{2} \left( \partial_ {l} \partial_ {k} \hat {\mathbf {n}} \right) x _ {ij} ^ {l} x _ {ij} ^ {k} + \dots ,
+\tag{12.15}
+\end{equation*}
+
+其中 $x_{ij} = x_i - x_j$，重复空间指标 $l, k = 1, \ldots, d$ 求和。由 (12.10) 可见 (12.15) 中更高阶导数属于小参数 $\Lambda R_J \ll 1$ 的更高阶。
+
+由哈密顿量的对称性，一阶导数在交叉项中相消：
+
+\begin{align*}
+\sum_ {ij} J _ {ij} \eta_ {i} \mathbf {L} _ {j} \hat {\mathbf {n}} _ {i} & \approx \sum_ {ij} \eta_ {i} J _ {ij} \mathbf {L} _ {j} \left( \hat {\mathbf {n}} + \partial_ {l} \hat {\mathbf {n}} \, x _ {ij} ^ {l} + \frac {1}{2} \partial_ {l} \partial_ {k} \hat {\mathbf {n}} \, x _ {ij} ^ {l} x _ {ij} ^ {k} \dots \right)\\
+& \approx \frac {1}{2} \sum_ {ij} J _ {ij} \eta_ {i} \mathbf {L} _ {j} \left( \partial_ {l} \partial_ {k} \hat {\mathbf {n}} \right) x _ {ij} ^ {l} x _ {ij} ^ {k} \sim \mathcal {O} \left( \Lambda R _ {J} \right) ^ {2} ,
+\tag{12.16}
+\end{align*}
+
+可以忽略。
+
+现在把格子求和换成积分：
+
+\begin{equation*}
+\sum_ {i} F _ {i} \rightarrow a ^ {- d} \int d ^ {d} x \sum_ {i} \delta ( \mathbf {x} - \mathbf {x} _ {i} ) F ( \mathbf {x} ) ,
+\tag{12.17}
+\end{equation*}
+
+得到连续表示
+
+\begin{equation*}
+H \approx E _ {0} ^ {cl} + \frac {1}{2} \int d ^ {d} x \left[ \rho_ {s} \sum_ {l} \left| \partial_ {l} \hat {\mathbf {n}} \right| ^ {2} + \int d ^ {d} x ' \, \mathbf {L} _ {x} \chi_{xx '} ^ {- 1} \mathbf {L} _ {x '} \right] .
+\tag{12.18}
+\end{equation*}
+
+经典能量为
+
+\begin{equation*}
+E _ {0} ^ {cl} = S ^ {2} \, \frac {1}{2} \sum_ {ij} J _ {ij} \eta_ {i} \eta_ {j}
+\tag{12.19}
+\end{equation*}
+
+“劲度常数”\footnote{记号 $\rho_{s}$ 源于 Bose 超流的连续理论，那里劲度常数等于超流密度。}为
+
+\begin{equation*}
+\rho_ {s} = - \frac {S ^ {2}}{2 d \mathcal {N} a ^ {d}} \sum_ {ij} J _ {ij} \eta_ {i} \eta_ {j} \left| \mathbf {x} _ {i} - \mathbf {x} _ {j} \right| ^ {2}.
+\tag{12.20}
+\end{equation*}
+
+逆均匀磁化率为
+
+\begin{equation*}
+\chi_ {\mathbf {x}, \mathbf {x} '} ^ {- 1} = \frac {1}{\mathcal {N} a ^ {d}} \sum_ {ij} J _ {ij} \left[ \delta ( \mathbf {x} - \mathbf {x} _ {i} ) \delta ( \mathbf {x} ' - \mathbf {x} _ {j} ) - \delta ( \mathbf {x} ' - \mathbf {x} ) \delta ( \mathbf {x} - \mathbf {x} _ {i} ) \eta_ {i} \eta_ {j} \right].
+\tag{12.21}
+\end{equation*}
+
+在 Fourier 空间，倾倒场项为
+
+\begin{equation*}
+\int d ^ {d} x \int d ^ {d} x ' \, \mathbf {L} _{x} \chi_{xx '} ^ {- 1} \mathbf {L}_{x '} = \int^{q \leq \Lambda_{BZ}} \frac {d ^ {d} q}{( 2 \pi ) ^ {d}} \, \mathbf {L}_{\mathbf {q}} \chi^ {- 1} ( \mathbf {q} ) \mathbf {L}_{- \mathbf {q}} ,
+\tag{12.22}
+\end{equation*}
+
+其中
+
+\begin{align*}
+\chi ( \mathbf {q} ) & = \frac {1}{J ( \mathbf {q} ) - J ( \vec {\pi} )} ,\\
+J ( \mathbf {q} ) & = \sum_ {j} e ^ {i \mathbf {q} \cdot \mathbf {x} _ {ij}} J _ {ij} .
+\tag{12.23}
+\end{align*}
+
+\section{动能项}
+
+自旋路径积分中的动能 Berry 相位项为（见 (10.15)）
+
+\begin{equation*}
+- i S \sum_ {i} \omega_ {i} = - i S \int_ {0} ^ {\beta} d \tau \sum_ {i} \mathbf {A} ( \hat {\Omega} _ {i} ) \dot {\hat {\Omega}} _ {i}.
+\tag{12.24}
+\end{equation*}
+
+为方便，取在反演下对称的矢量势
+
+\begin{equation*}
+\mathbf {A} ( \hat {\Omega} ) = \mathbf {A} ( - \hat {\Omega} ) ,
+\tag{12.25}
+\end{equation*}
+
+例如（见 (10.17)）
+
+\begin{equation*}
+\mathbf {A} = - \frac {\cos \theta}{\sin \theta} \hat {\phi}.
+\tag{12.26}
+\end{equation*}
+
+用 (10.34) 把 (12.24) 按 $\hat{n}$ 与 $\mathbf{L}$ 展开：
+
+\begin{align*}
+- i S \sum_ {i} \omega_ {i} & = - i S \sum_ {i} \eta_ {i} \, \omega \left[ \hat {\mathbf {n}} _ {i} + \eta_ {i} ( \mathbf {L} _ {i} / S ) \right]\\
+& = - i S \sum_ {i} \left[ \eta_ {i} \, \omega [ \hat {\mathbf {n}} _ {i} ] + \frac {\delta \omega}{\delta \hat {\mathbf {n}} _ {i}} \cdot ( \mathbf {L} _ {i} / S ) \right]\\
+& = - i \Upsilon - i \int_ {0} ^ {\beta} d \tau \sum_ {i} \left( \hat {\mathbf {n}} _ {i} \times \partial_ {\tau} \hat {\mathbf {n}} _ {i} \cdot \mathbf {L} _ {i} \right) ,
+\tag{12.27}
+\end{align*}
+
+其中
+
+\begin{equation*}
+\Upsilon [ \hat {\mathbf {n}} ] = S \sum_ {i} \eta_ {i} \, \omega [ \hat {\mathbf {n}} ( \mathbf {x} _ {i} ) ].
+\tag{12.28}
+\end{equation*}
+
+$\Upsilon$ 是与 Néel 场 $\hat{n}$ 相联系的一个拓扑 Berry 相位。在转动对称相中，Berry 相位之间的干涉可以对基态简并与低能谱产生戏剧性的后果，第 15 章讨论。
+
+\section{配分函数与关联}
+
+(12.27) 的第二项把 $\mathbf{L}$ 与 $\hat{n} \times \partial_{\tau}\hat{n}$ 耦合，意味着这两个场互为正则共轭\footnote{类似于 (11.7) 的动能项 $(\mathbf{p} \cdot \dot{\mathbf{q}} - \mathbf{q} \cdot \dot{\mathbf{p}})/2$。}。约束 $\delta(\mathbf{L} \cdot \hat{\mathbf{n}})$ 在 (12.27) 第二项中自动满足。配方、对 $L^{\perp}$ 作 Gauss 积分并忽略整体归一化常数：
+
+\begin{align*}
+Z & = \int \mathcal {D} \hat {\mathbf {n}} \; e ^ {i \Upsilon [ \hat {\mathbf {n}} ]} \exp \left( - \int_ {0} ^ {\beta} d \tau \int_{\Lambda} d ^ {d} x \, \frac {\rho_ {s}}{2} \sum_ {l = 1} ^ {d} \left| \partial_ {l} \hat {\mathbf {n}} \right| ^ {2} \right) \zeta [ \hat {\mathbf {n}} ] ,\\
+\zeta [ \hat {\mathbf {n}} ] & = \int_{\Lambda_{BZ}} \mathcal {D} \mathbf {L} ^ {\perp} \exp \Big[ - \int_ {0} ^ {\beta} d \tau \int^ {\Lambda} \frac {d ^ {d} q}{( 2 \pi ) ^ {d}} \left( \hat {\mathbf {n}} \times \partial_ {\tau} \hat {\mathbf {n}} \right)_{- \mathbf {q}} \cdot \mathbf {L} _ {\mathbf {q}}\\
+& \quad - \frac {1}{2} \int_{\Lambda_{BZ}} \frac {d ^ {d} q}{( 2 \pi ) ^ {d}} \chi^ {- 1} ( \mathbf {q} ) \mathbf {L} _ {\mathbf {q}} \mathbf {L} _ {- \mathbf {q}} \Big]\\
+& \propto \exp \Big[ - \frac {1}{2} \int d \tau \int^ {\Lambda} \frac {d ^ {d} q}{( 2 \pi ) ^ {d}} \chi ( \mathbf {q} ) \left( \hat {\mathbf {n}} \times \partial_ {\tau} \hat {\mathbf {n}} \right)_{\mathbf {q}} \cdot \left( \hat {\mathbf {n}} \times \partial_ {\tau} \hat {\mathbf {n}} \right)_{- \mathbf {q}} \Big] .
+\tag{12.29}
+\end{align*}
+
+由 (12.23)，$\chi(\mathbf{q})$ 在 $\Lambda$ 尺度上变化很小。于是可用其零动量极限代替：
+
+\begin{equation*}
+\zeta [ \hat {\mathbf {n}} ] \approx \exp \left( - \frac {1}{2} \int_ {0} ^ {\beta} d \tau \int_{\Lambda} d ^ {d} x \; \chi_ {0} \left| \partial_ {\tau} \hat {\mathbf {n}} \right| ^ {2} \right) ,
+\tag{12.30}
+\end{equation*}
+
+其中 $\chi_{0}=a^{-d}\chi(0)$，$\int_{\Lambda}d^{d}x$ 理解为只含被积函数中 $|q|\leq\Lambda$ 的 Fourier 分量。(12.30) 最后一行用了恒等式
+
+\begin{equation*}
+\left| \hat {\mathbf {n}} ( \mathbf {x} ) \times \partial_ {\tau} \hat {\mathbf {n}} ( \mathbf {x} ) \right| ^ {2} = \left| \partial_ {\tau} \hat {\mathbf {n}} ( \mathbf {x} ) \right| ^ {2}.
+\tag{12.31}
+\end{equation*}
+
+于是得到 $\hat{n}$ 场的局域相互作用。
+
+组合 (12.27) 与 (12.30)，导出半经典配分函数
+
+\begin{align*}
+Z \propto \int_{\Lambda} \mathcal {D} \hat {\mathbf {n}} \; e ^ {i \Upsilon [ \hat {\mathbf {n}} ]}\\
+\times \exp \left[ - \frac {1}{2} \int_ {0} ^ {\beta} d \tau \int_{\Lambda} d ^ {d} x \left( \chi_ {0} \left| \partial_ {\tau} \hat {\mathbf {n}} \right| ^ {2} + \rho_ {s} \sum_ {l = 1} ^ {d} \left| \partial_ {l} \hat {\mathbf {n}} \right| ^ {2} \right) \right] .
+\tag{12.32}
+\end{align*}
+
+自旋波速度定义为
+
+\begin{equation*}
+c \equiv \sqrt {\rho_ {s} / \chi_ {0}}.
+\tag{12.33}
+\end{equation*}
+
+Euclidean“相对论性”记号统一了空间与虚时坐标：
+
+\begin{equation*}
+\left( x _ {1}, \dots , x _ {d}, c \tau \right) \rightarrow \left( x _ {1}, \dots , x _ {d + 1} \right).
+\tag{12.34}
+\end{equation*}
+
+用这一记号，$Z$ 的作用量就是带 Berry 相位的 $d + 1$ 维非线性 {$\sigma$} 模型（NLSM）：
+
+\begin{align*}
+Z & \propto \int_{\Lambda} \mathcal {D} \hat {\mathbf {n}} \; e ^ {i \Upsilon} \exp \left( - \int d ^ {d + 1} x \, \mathcal {L}_{\mathrm{NLSM}} ^ {d + 1} \right) ,\\
+\mathcal {L}_{\mathrm{NLSM}} ^ {D} & = \frac {\Lambda^ {D - 2}}{2 f _ {D}} \sum_ {\mu = 1} ^ {D} \partial_ {\mu} \hat {\mathbf {n}} \cdot \partial_ {\mu} \hat {\mathbf {n}} ,
+\tag{12.35}
+\end{align*}
+
+$f$ 是无量纲耦合常数
+
+\begin{equation*}
+f _ {D} = \frac {c}{\rho_ {s}} \Lambda^ {D - 2}.
+\tag{12.36}
+\end{equation*}
+
+Heisenberg 反铁磁体在长距离、低温下的自旋关联函数为
+
+\begin{align*}
+\langle S _ {i} ^ {\alpha} S _ {j} ^ {\alpha} ( \tau ) \rangle_ {d} & \approx \frac {e ^ {i \vec {\pi} \cdot ( \mathbf {x} _ {i} - \mathbf {x} _ {j} )} S ^ {2}}{\mathcal {N} Z} \int_{\Lambda} \mathcal {D} \hat {\mathbf {n}}\\
+& \quad \times n ^ {\alpha} ( 0, 0 ) \, n ^ {\alpha} ( \mathbf {x} _ {j}, c \tau ) \, e ^ {i \Upsilon} \exp \left( - \int_ {0} ^ {c \beta} d x _ {d + 1} \int d ^ {d} x \, \mathcal {L}_{\mathrm{NLSM}} ^ {d + 1} \right) .
+\tag{12.37}
+\end{align*}
+
+量子 Heisenberg 反铁磁体（QHA）的虚时基态关联为
+
+\begin{equation*}
+Z ^ {- 1} \sum_ {m} \left| \langle \Psi_ {0} | \hat {\mathbf {n}} ( 0 ) | \Psi_ {m} \rangle \right| ^ {2} \exp [ - ( E _ {m} - E _ {0} ) \tau ] = \langle \hat {\mathbf {n}} ( 0, 0 ) \hat {\mathbf {n}} ( 0, \tau ) \rangle .
+\tag{12.38}
+\end{equation*}
+
+NLSM 在时空中转动对称。若关联在远距离以关联长度 $\xi$ 指数衰减，则虚时衰减周期为 $\xi/c$。由 (12.38)，最低激发能 $\Delta$ 决定最快衰减率，因此
+
+\begin{equation*}
+\Delta = \min_{m} \left[ E _ {m} - E _ {0} \right] \approx c \xi^ {- 1}.
+\tag{12.39}
+\end{equation*}
+
+若 $\Delta$ 不随体系大小消失，它就是激发谱中一个热力学上有意义的能隙，称为 Haldane 能隙。
+
+在没有拓扑 Berry 相位 $\Upsilon$ 时，量子反铁磁体的基态由 $d+1$ 维 NLSM 的经典能量描述，$f$ 是经典问题的耦合常数。在有限（但低）的温度 $\beta^{-1}$ 下，量子反铁磁体映射到虚时维度上宽度为 $c\beta$ 的有限宽板上的 NLSM。第 13、14 章研究 NLSM 并导出其长程关联。第 15 章讨论计入 Berry 相位效应的量子 Heisenberg 反铁磁体关联。
+
+必须警惕：Haldane 映射在限制性条件 (12.10) 下才有效，后者可在 $S \gg 1$ 极限实现。
+
+作为具体例子，表 12.1 列出立方格子上最简单的近邻 Heisenberg 反铁磁体的 NLSM 参数，均由本章的定义与方程给出。
+
+\begin{table}[H]
+\centering
+\caption{近邻 Heisenberg 反铁磁体的非线性 {$\sigma$} 模型参数}
+\label{tab:12.1}
+\begin{tabular}{cc}
+\toprule
+参数 & 数值 \\
+\midrule
+$\Lambda$ & $a^{-1}$ \\
+$\rho_s$ & $J S^2 a^{2-d}$ \\
+$\chi_0$ & $(4 d J a^{d})^{-1}$ \\
+$c$ & $2 J S a \, d^{1/2}$ \\
+$f$ & $2 \sqrt{d} \, S^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+于是大 $S$（半经典）极限对应于 NLSM 的弱耦合极限，$f \ll 1$。
+
+\begin{exercises}
+
+\item 循 $Z$ 的连续近似 (12.32) 的推导，证明 Green 函数 (10.21) 可以用 NLSM 场论的实时路径积分近似：
+
+\begin{align*}
+G ( t ) & \propto \int_{\Lambda} \mathcal {D} \hat {\mathbf {n}} \; \delta \left( | \hat {\mathbf {n}} | - 1 \right) e ^ {i \Upsilon} \exp \left( - i \int_ {0} ^ {t} d t ' \int d ^ {d} x \, \mathcal {L}_{\mathrm{NLSM}} ^ {d + 1} \right) ,\\
+\mathcal {L}_{\mathrm{NLSM}} ^ {d + 1} & = \frac {\Lambda^ {d - 1}}{2 f} \sum_ {\mu = 1} ^ {d + 1} \partial_ {\mu} \hat {\mathbf {n}} \cdot \partial^ {\mu} \hat {\mathbf {n}} ,
+\tag{12.40}
+\end{align*}
+
+其中 $x_{d+1} = ict$，$x_{\mu}x^{\mu} = \mathbf{x} \cdot \mathbf{x} - x_{d+1}^{2}$ 是 Minkowski 乘积。
+
+\item 对 (12.40) 中的总作用量关于 $\hat{n}$ 变分，导出场 $\hat{\mathbf{n}}(\mathbf{x},t)$ 的经典动力学。证明运动方程为
+
+\begin{equation*}
+\partial_ {\mu} \partial^ {\mu} \hat {\mathbf {n}} = 0.
+\tag{12.41}
+\end{equation*}
+
+把 (12.41) 在 $\hat{n} = \hat{x}$ 附近对小涨落线性化，求解本征模式（自旋波）。把这些自旋波模式与 Heisenberg 自旋的偏振和色散联系起来。
+
+\end{exercises}
+
+\begin{chapbib}
+\item 本章大部分内容取自 Haldane 的讲义：
+  F. D. M. Haldane, \textit{Two-Dimensional Strongly Correlated Electron Systems}, edited by Z. Z. Gan and Z. B. Su (Gordon and Breach, 1988), p. 249。
+\item Haldane 映射的原始推导用 Holstein--Primakoff 算符与半经典运动方程：
+  F. D. M. Haldane, Phys. Lett. A \textbf{93}, 464 (1983)；
+  F. D. M. Haldane, Phys. Rev. Lett. \textbf{50}, 1153 (1983)。
+\end{chapbib}

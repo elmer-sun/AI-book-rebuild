@@ -1,0 +1,847 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第3章 电子态
+
+% 第3章 Electron States
+\chapter{电子态}
+
+\epigraphbook{谱写部落歌谣的方法有六十九种，\\而其中每一种都无一不是对的。}{KIPLING}
+
+\section{自由电子}
+
+考察固体 Na。每个原子含有 11 个电子，但其中 10 个电子处于紧紧束缚在原子核上的状态，构成一个净正电荷为 $+|e|$ 的离子。在自由原子中，剩下的那个电子在围绕此离子的一个轨道（orbital）上运动。当诸原子聚集成固体时，这些轨道相互交叠并发生相互作用。可以论证，这种交叠是如此广泛，以致于把每个电子都定域在各自原子上的量子化方案必然失效，必须代之以另一种方案：每个电子的波函数是它在所有离子的势中运动的薛定谔方程（Schrödinger equation）的解。于是，我们一开始就区分两类电子：一类是芯电子（core electrons），它们被处理成几乎完全定域化的；另一类是价电子（valence electrons）或传导电子（conduction electrons），假定它们进入 Bloch 态——即延展于整个晶体之中的状态。
+
+在本章中我们将采用单电子模型（one-electron model），即忽略价电子之间因库仑排斥而生的任何相互作用。这些关联（correlation）与交换（exchange）效应将在第 5 章中讨论。芯内部各电子之间、或芯电子与价电子之间的这类效应，通常被当作每个价电子在晶体中运动时所感受到的势 $\mathcal{V}(\mathbf{r})$ 的一部分来处理。于是，$\mathcal{V}(\mathbf{r})$ 被认为是按离子的 Hartree 势或 Hartree--Fock 势计算出来的。
+
+如果假定 $\mathcal{V}(\mathbf{r})$ 是一个常数，就可以做一个极大的简化。这时电子便自动落入平面波态（plane-wave states）
+\begin{equation*}
+|{\bf k}\rangle=\psi_{\bf k}=e^{i{\bf k}\cdot{\bf r}},
+\tag{3.1}
+\end{equation*}
+其能量为
+\begin{equation*}
+\mathcal{E}({\bf k})=\frac{\hbar^{2}k^{2}}{2m}.
+\tag{3.2}
+\end{equation*}
+
+正如在 §1.5 中所见，这些态满足 Bloch 定理。等能面是 ${\bf k}$ 空间中的球面。${\bf k}$ 的允许值在此空间中以 $V/8\pi^{3}$ 的密度分布。但对每一个 ${\bf k}$ 值，实际上有两个电子态，自旋相反。如果实空间中单位体积内有 $ZN$ 个电子（即每个原子 $Z$ 个电子，每个晶胞 1 个原子，单位体积内有 $N$ 个晶胞），那么为了满足 Pauli 原理，我们需要把态一直填充到波数 $k_{F}$，$k_{F}$ 满足
+\begin{align*}
+\frac{4}{3}\pi k_{F}^{3}\,\frac{2}{8\pi^{3}}&=ZN,\\
+\text{即}\quad k_{F}&=(3\pi^{2}ZN)^{1/3}.
+\tag{3.3}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_36.pdf}
+\caption*{图 36\quad 自由电子的费米面。}
+\end{figure}
+
+我们说费米面（Fermi surface）是一个半径为 $k_{F}$ 的球面。费米能（Fermi energy）或费米能级（Fermi level）是相应于这一分布顶端的能量，
+\begin{equation*}
+\mathcal{E}_{F}=\frac{\hbar^{2}k_{F}^{2}}{2m}.
+\tag{3.4}
+\end{equation*}
+
+我们注意到，费米球的半径与 Debye 球的半径相当。把式 (3.3) 与式 (2.53) 相比较，得
+\begin{equation*}
+k_{F}=\left(\frac{Z}{2}\right)^{1/3}q_{D}.
+\tag{3.5}
+\end{equation*}
+
+这意味着费米能级上电子的波长与原子间距相当（参看式 (2.55)）：
+\begin{equation*}
+\lambda_{F}=\frac{2\pi}{k_{F}}\sim\left(\frac{2}{Z}\right)^{1/3}2.6\,r_{s},
+\tag{3.6}
+\end{equation*}
+其中 $r_{s}$ 是 Wigner--Seitz 球的半径。
+
+\section{价电子的衍射}
+
+我们刚刚证明的结果使自由电子模型（free-electron model）露出了破绽：费米能级上的电子所处的态，其波长与晶格间距相当。因此必定存在强的衍射效应，即使 $\mathcal{V}(\mathbf{r})$ 与常数势没有非常显著的差别。让我们把这个势当作作用在自由电子态上的微扰来处理。令
+\begin{equation*}
+\mathcal{E}({\bf k})=\mathcal{E}_{\bf k}^{0}+\langle{\bf k}|\mathcal{V}|{\bf k}\rangle+\sum_{{\bf k}'}\frac{|\langle{\bf k}|\mathcal{V}|{\bf k}'\rangle|^{2}}{\mathcal{E}_{\bf k}^{0}-\mathcal{E}_{{\bf k}'}^{0}},
+\tag{3.7}
+\end{equation*}
+其中
+\begin{equation*}
+\mathcal{E}_{\bf k}^{0}\equiv\hbar^{2}k^{2}/2m,
+\tag{3.8}
+\end{equation*}
+并且对势在未微扰态 (3.1) 之间的矩阵元采用了 Dirac 记号。
+
+但 $\mathcal{V}(\mathbf{r})$ 必须具有晶格的周期性。如 §2.6 中所证明，除非 $({\bf k}-{\bf k}')$ 是一个倒格矢（reciprocal lattice vector），否则它的矩阵元为零。由式 (2.78) 立即得到
+\begin{equation*}
+\mathcal{E}({\bf k})=\mathcal{E}_{\bf k}^{0}+\mathcal{V}_{0}+\sum_{{\bf g}\neq{\bf 0}}\frac{|\mathcal{V}_{\bf g}|^{2}}{\mathcal{E}_{\bf k}^{0}-\mathcal{E}_{\bf k-{\bf g}}^{0}},
+\tag{3.9}
+\end{equation*}
+其中 $\mathcal{V}_{\bf g}$ 是 $\mathcal{V}$ 对应于倒格矢 ${\bf g}$ 的 Fourier 分量（如式 (1.15)）。
+
+问题在于——这样一个展开究竟有多好？有两个条件必须满足：(i) 当 ${\bf g}$ 增大时，Fourier 分量 $\mathcal{V}_{\bf g}$ 应当迅速趋于零；(ii) 在被微扰所混合的诸未微扰态之间，不得存在如下形式的简并
+\begin{equation*}
+\mathcal{E}_{\bf k}^{0}=\mathcal{E}_{\bf k-{\bf g}}^{0}
+\tag{3.10}
+\end{equation*}
+目前，先把条件 (i) 搁置，留待以后研究。
+
+简并条件 (3.10) 等价于写成
+\begin{equation*}
+|{\bf k}|=|{\bf k}-{\bf g}|;
+\tag{3.11}
+\end{equation*}
+从几何上看，这意味着 ${\bf k}$ 位于倒格矢 ${\bf g}$ 的垂直平分面上。也就是说——\emph{当 ${\bf k}$ 位于（或接近）区边界时，简单的微扰展开式 (3.9) 便不再有效}。这个公式只能在未微扰态的球面未触及区的边界时使用——实际上，即使对单价金属，它也很少有效。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_37.pdf}
+\caption*{图 37\quad （原书此图无图注。）}
+\end{figure}
+
+注意，图 37 正是波矢为 ${\bf k}$ 的电子相干 Bragg 衍射到方向 ${\bf k}'={\bf k}-{\bf g}$ 的 Ewald 作图（图 29(b)）。在每一种情形下，几何条件都是：$OPQ$ 应构成一个等腰三角形，且以倒格矢 ${\bf g}$ 为底边 $PQ$。于是我们从代数上证实：晶体内的价电子受到来自晶格的衍射作用，恰好像它们是从晶体外部入射进来的一样。
+
+为了求出区边界邻域内的解，我们必须显式地考察微扰方程。晶格的周期性意味着势只能混合相差一个倒格矢 ${\bf g}$ 的波，因此我们是假定波函数可以展开成级数
+\begin{equation*}
+\psi_{\bf k}=\sum_{\bf g}\alpha_{\bf k-{\bf g}}e^{i({\bf k}-{\bf g})\cdot{\bf r}}.
+\tag{3.12}
+\end{equation*}
+若把它代入薛定谔方程
+\begin{equation*}
+\left\{-\frac{\hbar^{2}}{2m}\nabla^{2}+\mathcal{V}(\mathbf{r})\right\}\psi_{\bf k}=\mathcal{E}({\bf k})\psi_{\bf k},
+\tag{3.13}
+\end{equation*}
+并用展开式中的某一项去乘遍整个方程，便得到系数 $\alpha$ 的线性方程组：
+\begin{equation*}
+\{\mathcal{E}_{\bf k-{\bf g}}^{0}-\mathcal{E}({\bf k})\}\alpha_{\bf k-{\bf g}}+\sum_{{\bf g}'}\mathcal{V}_{{\bf g}-{\bf g}'}\alpha_{\bf k-{\bf g}'}=0
+\tag{3.14}
+\end{equation*}
+其中 ${\bf g}$ 取一切值（包括 ${\bf g}={\bf 0}$ 和 ${\bf g}'={\bf 0}$）。众所周知，只须假定除 $\alpha_{\bf k}$ 之外所有 $\alpha_{\bf k-{\bf g}}$ 都很小，便可由此得到简单的微扰公式 (3.9)。实际上，这时我们取
+\begin{equation*}
+\alpha_{\bf k-{\bf g}}\approx\frac{\mathcal{V}_{-{\bf g}}}{\mathcal{E}_{\bf k}^{0}-\mathcal{E}_{\bf k-{\bf g}}^{0}}.
+\tag{3.15}
+\end{equation*}
+
+当 ${\bf k}$ 位于某条区边界附近时——比如说平分矢量 ${\bf G}$ 的那条边界——恰恰就是这个假定失效了。波 $\exp\{i({\bf k}-{\bf G})\cdot{\bf r}\}$ 的系数变得与原来未微扰态的系数同等重要。实际上，此时电子已被晶格作了 Bragg 反射，就好像它是一束从外部入射的电子束一样。条件 (3.11) 等价于 §2.6 中的式 (2.79) 和 (2.80)。为了构成一个定态，我们必须把入射束和衍射束放在同等的地位上处理。
+
+作为近似，让我们忽略 (3.14) 中除这两个系数之外的所有系数。把能量原点移动 $\mathcal{V}_{0}$ 之后，得到
+\begin{equation*}
+\left.\begin{aligned}
+\{\mathcal{E}_{\bf k}^{0}-\mathcal{E}({\bf k})\}\alpha_{\bf k}+\mathcal{V}_{\bf G}\alpha_{\bf k-{\bf G}}&=0,\\
+\mathcal{V}_{-{\bf G}}\alpha_{\bf k}+\{\mathcal{E}_{\bf k-{\bf G}}^{0}-\mathcal{E}({\bf k})\}\alpha_{\bf k-{\bf G}}&=0.
+\end{aligned}\right\}
+\tag{3.16}
+\end{equation*}
+
+方程组的行列式是 $\mathcal{E}({\bf k})$ 的一个二次式，其解为
+\begin{equation*}
+\mathcal{E}^{\pm}({\bf k})=\tfrac{1}{2}(\mathcal{E}_{\bf k}^{0}+\mathcal{E}_{\bf k-{\bf G}}^{0})\pm\tfrac{1}{2}\sqrt{(\mathcal{E}_{\bf k}^{0}-\mathcal{E}_{\bf k-{\bf G}}^{0})^{2}+4|\mathcal{V}_{\bf G}|^{2}}
+\tag{3.17}
+\end{equation*}
+（注意到 $\mathcal{V}_{-{\bf G}}=\mathcal{V}_{\bf G}^{*}$）。这样，态 $e^{i{\bf k}\cdot{\bf r}}$ 与 $e^{i({\bf k}-{\bf G})\cdot{\bf r}}$ 组合成另外两个态 $\psi^{+}$ 和 $\psi^{-}$，其能量分别为 $\mathcal{E}^{+}$ 和 $\mathcal{E}^{-}$。
+
+为简单起见，让我们考虑在一维情形下会发生什么。在 $k=0$ 附近，两个未微扰能量之差大得很，以致我们可以忽略 $4|\mathcal{V}_{\bf G}|^{2}$。我们得到
+\begin{equation*}
+\mathcal{E}({\bf k})\sim\mathcal{E}_{\bf k}^{0},
+\tag{3.18}
+\end{equation*}
+因而 $\psi^{-}$ 沿着自由电子抛物线。在 $k=\frac{1}{2}G$ 处，也就是区边界处，两个未微扰波具有相同的能量：于是
+\begin{equation*}
+\mathcal{E}^{-}(\tfrac{1}{2}G)=\mathcal{E}_{\frac{1}{2}G}^{0}-|\mathcal{V}_{\bf G}|.
+\tag{3.19}
+\end{equation*}
+（译注：原书此式右端误印为“$+$”，按式 (3.17) 及上下文“$\psi^{-}$ 的能量被压低”应为“$-$”。）态 $\psi^{-}$ 的能量比自由电子抛物线低了一个量 $|\mathcal{V}_{\bf G}|$。我们在图 38 中的 $A$ 点看到这一点。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_38.pdf}
+\caption*{图 38\quad 一维情形的电子能量：简约区图式。}
+\end{figure}
+
+在区边界处，态 $\psi^{+}$ 具有能量
+\begin{equation*}
+\mathcal{E}^{+}(\tfrac{1}{2}G)=\mathcal{E}_{\frac{1}{2}G}^{0}+|\mathcal{V}_{\bf G}|,
+\tag{3.20}
+\end{equation*}
+因而它的能量被抬高到自由电子抛物线之上。若把 $k$ 限制在区之内，我们发现随着 $k$ 的减小，这个态的能量趋于 $\mathcal{E}_{\bf k-{\bf G}}^{0}$。这样，区内的能量便落入两个\emph{能带}（band），中间隔着宽度为 $2|\mathcal{V}_{\bf G}|$ 的带隙（gap）$AB$。
+
+把图 38 与 §1.5 中的图 14 加以比较是有启发性的。那个颇为人为的自由电子简约区图式（reduced zone scheme），已经被周期性晶格势分裂成若干个能带。我们也可以用另一种方式来表示这个结果：把 $\psi^{+}$ 这一支画到第二个区中去——即采用扩展区图式（extended zone scheme）（图 39）。这样更清楚地表明，各个能量是如何由自由电子抛物线经微扰而得出的——只是在区边界处引入了不连续性。这同我们在 §2.2 的图 19(c) 中观察到的现象一样，在那里，两种不同质量的引入使晶格的振动谱发生了分裂。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_39.pdf}
+\caption*{图 39\quad 一维情形的电子能量：扩展区图式。}
+\end{figure}
+
+为了理解所发生的事情，让我们计算 $k=\frac{1}{2}G$ 处的波函数。假定 $\mathcal{V}_{\bf G}$ 为负。由式 (3.12) 和 (3.16) 我们得到
+\begin{align*}
+\psi^{-}&=(e^{i\frac{1}{2}Gr}+e^{-i\frac{1}{2}Gr})/\sqrt{2}\\
+&=\sqrt{2}\cos\tfrac{1}{2}Gr
+\tag{3.21}
+\end{align*}
+以及
+\begin{equation*}
+\psi^{+}=\sqrt{2}\,i\sin\tfrac{1}{2}Gr.
+\tag{3.22}
+\end{equation*}
+
+因此，$|\psi^{-}|^{2}$ 是这样一个函数：它在 $r=0$ 附近很大，而且也在
+格点处。它对应于电子集中分布在原子上的状态。但这正是我们所预期的。$\mathcal{V}_{G}$ 的\emph{负}值对应于在每个原子邻域内为负的周期势——一个\emph{吸引}电子的势。这样，$\psi^{-}$ 由于与原子的势阱相配合，能量被降低；类似地，$\psi^{+}$ 的能量被升高，因为它使电子密度在正势区域变大。仿照原子轨道的称谓，我们说 $\psi^{-}$ 是 $s$ 型的，$\psi^{+}$ 是 $p$ 型的。
+
+顺便指出，展开式 (3.12) 使 $\psi_{\mathbf{k}}$ 能够满足 Bloch 定理 (1.58)。我们可以写成
+\begin{align*}
+\psi_{\mathbf{k}} &= e^{i\mathbf{k}\cdot\mathbf{r}}\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}e^{-i\mathbf{g}\cdot\mathbf{r}}\notag \\
+&= e^{i\mathbf{k}\cdot\mathbf{r}}u_{\mathbf{k}}(\mathbf{r}), \tag{3.23}
+\end{align*}
+其中 $u_{\mathbf{k}}(\mathbf{r})$ 是晶格中的周期函数，正如 (1.60) 中那样。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_40.pdf}
+\caption*{图 40\quad 周期势，以及 $s$ 型与 $p$ 型态中的电子密度。}
+\end{figure}
+
+我们还注意到，图 39 中 $A$ 与 $A'$ 两处的波函数是完全相同的；二者均由 (3.21) 给出。类似地，$\psi^{+}(\frac{1}{2}G)$ 与 $\psi^{+}(-\frac{1}{2}G)$ 除相差一个常数外也相同，因此 $B$ 与 $B'$ 两点在图 38 与图 39 的区图式中是等价的。这是 §1.5 中所讨论的那些原理的一个实例，在那里已经证明：一个态的波矢量在相差一个倒格矢的意义下是任意的。
+
+\section{近自由电子模型}
+
+一维情形的这些原理可以推广到三维。如果我们沿着 k 空间中某个特定方向考察 $\mathcal{E}(\mathbf{k})$ 的行为，就会发现它沿着一条自由电子抛物线变化，而在穿过布里渊区边界时发生跳跃式的不连续（图 41）。每个不连续的大小将取决于势中相应 Fourier 分量的强弱。如果区边界是倒格矢 $\mathbf{G}$ 的垂直平分面，那么不连续的大小将是 $2|\mathcal{V}_{\mathbf{G}}|$ 的量级。每当一条等能线穿过区边界时，同样会出现这种不连续。于是（图 42），本应穿过 $O$ 点的自由电子球被分裂成双曲面的一叶——在区内 $S$ 处，由 (3.17) 的一个根生成——以及边界之外另一支的一叶 $S'$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_41.pdf}
+\caption*{图 41\quad 沿 k 空间中的 $OAB$ 线，在区边界处 $\mathcal{E}(\mathbf{k})$ 出现不连续。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_42.pdf}
+\caption*{图 42\quad 区边界处等能线的不连续。}
+\end{figure}
+
+这意味着函数 $\mathcal{E}(\mathbf{k})$ 在第一布里渊区内部是连续的——但在任何一点越过区边界时，能量都有一个跳跃。这使该理论最引人注目的推论之一成为可能：\emph{对某些能量值，可能不存在电子态}。能谱可以出现能隙。电子能级分成了若干\emph{能带}。这是一条基本性质，它衍生出金属和半导体的许多性质。它是 Bragg 衍射的一个后果。电子波函数被“拉”得与晶格具有相同的周期性，并在能量上分裂开来。
+
+目前我们关心的是求出 $\mathcal{E}(\mathbf{k})$ 的问题。上一节的计算提示了如下的方法：——用方程组 (3.14) 求展开式 (3.12) 中系数的解；把所有与能被 $\mathbf{k}$ 附近的区边界所混合的波的系数相对应的项分离出来，对能量 $\mathcal{E}(\mathbf{k})$ 求解久期行列式（secular determinant）；再用形如 (3.9) 的微扰展开修正势的其他 Fourier 分量的效应。
+
+这称为\emph{近自由电子}（nearly-free-electron，N.F.E.）方法。要使它有效，Fourier 分量 $\mathcal{V}_{\mathbf{g}}$ 的级数应当迅速收敛。可是乍看起来这一点似乎不大可能。$\mathcal{V}(\mathbf{r})$ 是离子阵列的势。我们知道，离子核心附近的场非常强——$\mathcal{V}(\mathbf{r})$ 在每个格点处都有一个向下延伸的长而尖的尖峰。这意味着它具有波长非常短的 Fourier 分量，因此当 $\mathbf{g}$ 为第一区尺度的许多倍时，$\mathcal{V}_{\mathbf{g}}$ 仍可能很大。或者我们也可以说，$\psi_{\mathbf{k}}(\mathbf{r})$ 在离子核心内部必须表现得像原子轨道一样，带有对应于高动能的多次振荡。这同样意味着，在表示式 (3.12) 中我们需要许多项，一直用到非常短的波长。
+
+正是这些论证曾使这一方法作为能带结构的实用计算方案而遭到忽视。但现在看来，通过引入赝势（pseudo-potential）的观念，可以使它在形式上有效。这将由 §3.6 展开。
+
+N.F.E. 模型作为说明函数 $\mathcal{E}(\mathbf{k})$ 在 k 空间中行为的手段非常有用。考虑一个矩形点阵——二维情形——它的倒格子也是矩形的，如图 43 所示。第一布里渊区很容易构造——就是矩形 $RR'R''R'''$。$\mathcal{E}(\mathbf{k})$ 在此区内部必须连续，而且在勾画这个晶胞的任何一条线上都可能出现不连续。
+
+但再考虑中央区之外 $\mathcal{E}(\mathbf{k})$ 不连续点的轨迹。它们可以是倒格子中任一矢量的垂直平分线。因此，图中任何一条线上都可能有不连续——例如 $\mathbf{g}_{3}$ 的垂直平分线就是一条穿过区角隅的对角线。我们最初那张关于不连续的图（图 41）是不对的——它没有画出可能发生的一切，即便是方格子情形也不例外。因此，在图 43 中的 $X_{1},X_{2},X_{3},X_{4}$ 等点处，$\mathcal{E}(\mathbf{k})$ 都可能有跳跃和能隙。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_43.pdf}
+\caption*{图 43\quad 在矩形倒格子中，$\mathcal{E}(\mathbf{k})$ 的不连续将出现在 $X_{1}$、$X_{2}$、$X_{3}$、$X_{4}$ 处。}
+\end{figure}
+
+这看起来似乎表明 $\mathcal{E}(\mathbf{k})$ 是一个远比实际情形复杂的函数。例如，假定我们试着画出由 N.F.E. 模型得出的一些等能线。它们看上去将如图 44 那样（把注意力限定在这些平面组以内的区域）。我们可以先画出自由电子圆，再按图 42 所示的方式加入不连续，从而把它们构造出来。或者更确切地说，我们应当对该点处相互混合的那些波的能量求解久期行列式。于是在 $P$ 点有与 $P'$ 处的波的混合，因为在自由电子方案中这两点能量相同，且相差一个倒格矢。类似地，为求 $Q$ 点的解，我们需要考虑这样一个 $3\times 3$ 行列式，它描述波矢本应为 $OQ$、$OQ'$ 和 $OQ''$ 的那些波（在自由电子模型中）的混合。
+
+现在的意思是，在 $P$ 与 $P'$ 两点我们将求解的是完全相同的方程。两点的能级相同。我们将其中的较低者归属于第一区内部；在每种情形下，较高的能级都属于区边界之外的等能线。同样，在 $Q$、$Q'$ 和 $Q''$ 处方程也是同一个，并给出三个能量根。我们可以把其中的最低者，在这些点的每一处，归属于图 44 中各边界以内的区域。于是这三个点能量全部相同。我们可以考察这些点的邻域，并类似地证明：$A$ 与 $A'$、$B$ 与 $B'$、$C$ 与 $C'$ 都是在此意义下等价的点对；$A$ 与 $A'$ 是同一波函数的两套可互换的标记，借助倒格子平移即可相互还原。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_44.pdf}
+\caption*{图 44\quad 矩形区中的等能线。}
+\end{figure}
+
+现在看一看，当我们用倒格矢把第一区之外的那些碎块零料平移过去时会发生什么。它们完美地拼合起来，构成单一的区——在 Brillouin 扩展区图式中，这些部分本来都被说成属于\emph{第二区}。而且，边界上的等价点恰好匹配，使等能线连续起来。\emph{简约区中的能量是 $\mathbf{k}$ 的连续函数}。
+
+我们表示能面的方案于是就像图 46 那样，每条能带配一个区。我们可以把这些等能线想成不同曲面的等高线；把它们一层层堆叠起来，就可以把 $\mathcal{E}(\mathbf{k})$ 表示成简约区中 $\mathbf{k}$ 的多值函数，而不必像扩展区图式中那样让 $\mathcal{E}(\mathbf{k})$ 成为单值函数。
+
+我们还可以再进一步。可以证明（我们的 N.F.E. 模型就能提供一个证明），在每条能带之内 $\mathcal{E}(\mathbf{k})$ 是连续的，且导数也连续。图 45 中画出的那些内部边界在能面上并不显现；等能线平滑地从它们上面越过。现在让我们回想，基本区本身就是倒格子的晶胞，通过倒格子平移可以把它重复排列，产生布满全空间的图案。而且，像 $P$ 与 $P'$ 这样原本等价、因而代表同一状态和相同能量的点，现在相互重合，于是 $\mathcal{E}(\mathbf{k})$ 跨越这些边界也是连续的。可以证明，等能线从一个晶胞到下一个晶胞平滑地衔接。于是，\emph{给定能带中的能量是 $\mathbf{k}$ 的具有倒格子周期的连续函数}。我们把它称为重复区图式（repeated zone scheme）。这与我们在 §2.2 中就恒定晶格频率曲面所观察到的原理如出一辙。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_45.pdf}
+\caption*{图 45\quad 约化成单一的区。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_46.pdf}
+\caption*{图 46\quad 对应于图 44 的简约区图式。}
+\end{figure}
+
+这一原理的一个有趣应用，是 Harrison 的方法：在重复区图式中构造价为 $Z$ 的金属的费米面。设 N.F.E. 方案中的微扰势非常小。此时能量面必定是球面。我们算出体积恰为一个区的 $\frac{1}{2}Z$ 倍的球面的半径，并以原点为中心把它画出。再围绕倒格子的每一点画出同样的球面，于是便得到一幅具有重复区图式周期性的图案（图 48）。
+
+现在，我们可以从这幅图案中挑出各种能够连续拼合的部分，组成在每个区中都重复的曲面。这些分立的图形，每一个便构成费米面的一个分支，即费米面在第 1、第 2、第 3……区中的部分（图 49）。当作球面画出时，这些曲面在各部分相接处看似带有尖点，但与势的 Fourier 分量相联系的态的混合会把棱角磨圆，给出光滑的几何对象。正如我们将在第 9 章看到的那样，所得的曲面往往与实验上可观察到的曲面相当相像，而且对于研究复杂金属中的费米面，它们肯定提供了宝贵的指引。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_47.pdf}
+\caption*{图 47\quad 对应于图 46 的重复第一区。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_48.pdf}
+\caption*{图 48\quad 自由电子费米面的 Harrison 作图。}
+\end{figure}
+
+这些代数公式和几何构图也出现在动力学衍射理论（dynamical theory of diffraction）中（§2.6）。在非常接近衍射条件 (3.11) 时，穿过晶格的快电子束或 X 射线束就不再能表示成带单一波矢 $\mathbf{k}$ 的简单平面波。各种衍射波必须像 (3.12) 那样包括进波函数之中，从而改变了
+%（句子未完，下接书页 91 / p105 页首 "excitation."——应续作“……从而改变了激发的速度”，由下一部分的 B-TAIL 续译。）
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_49.pdf}
+\caption*{图 49\quad 对应于图 48 的简约区：第一区（满）、第二区、第三区、第四区。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_50.pdf}
+\caption*{图 50\quad X 射线或快电子动力学衍射的色散面。}
+\end{figure}
+速度。例如，在简单的区边界附近，至少必须把两支波组合起来，得到一个类似于式 (3.17) 的二次方程，它给出电子或光子能量作为 $\mathbf{k}$ 的函数的两个根。
+
+这些根生成了图 50 中的\emph{色散面}。原先以倒格点 $P$ 与 $Q$ 为中心、半径为 $\nu/c$ 的“自由光子”球面本应在区边界上的 $O$ 点相交（参看图 29 与图 37），如今则分裂成两个双曲面。因此，图中诸如 $S$ 或 $S'$ 这样的点代表一个频率为 $\nu$ 的电磁扰动，它以两支平面波的组合形式在晶体中传播，其波矢为 $SP$ 与 $SQ$，或 $S'P$ 与 $S'Q$。为了与这个频率的入射 X 射线相匹配，色散面两个分支的波束都被激发，从而导致 §2.6 中提到过的干涉效应。除了尺度上的差别——X 射线或快电子的波矢通常远大于倒格子的典型矢量——图 50 其实与图 42 完全相同。
+
+\section{紧束缚法}
+
+N.F.E. 方法着眼于原子芯以外的波函数，它们看上去非常像平面波；而在芯区内，它们则像原子轨道。这提示了一种截然不同的电子波函数构造方案：我们试着把各自局域在特定原子上的原子轨道组合起来，用以表示一个贯穿整个晶体的状态。
+
+设 $\phi_a(\mathbf{r}-\mathbf{l})$ 是中心位于 $\mathbf{l}$ 处的自由原子的一个原子轨道。于是我们可以构造一个满足 Bloch 条件 (1.58) 的函数
+\begin{equation*}
+\phi_{\mathbf{k}}(\mathbf{r})=\sum_{l}e^{i\mathbf{k}\cdot\mathbf{l}}\phi_a(\mathbf{r}-\mathbf{l}).
+\tag{3.24}
+\end{equation*}
+这个函数看起来像一列强局域化的原子轨道，乘上一个波动的相位因子 $\exp(i\mathbf{k}\cdot\mathbf{l})$。在每个原子内部，局域轨道占主导，应当是局域 Schr\"odinger 方程的一个很好的解。
+
+作为一级近似，让我们对这个波函数计算能量的期望值
+\begin{equation*}
+\mathcal{E}(\mathbf{k})=\frac{\displaystyle\int\phi_{\mathbf{k}}^{*}\left\{-\frac{\hbar^{2}}{2m}\nabla^{2}+\mathcal{V}(\mathbf{r})\right\}\phi_{\mathbf{k}}\,\mathrm{d}\mathbf{r}}{\displaystyle\int\phi_{\mathbf{k}}^{*}\phi_{\mathbf{k}}\,\mathrm{d}\mathbf{r}}.
+\tag{3.25}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_51.pdf}
+\caption*{图 51\quad 固体中的波函数}
+\end{figure}
+
+如果相邻晶胞中轨道的交叠不太大，我们或许可以把分母中的归一化因子取为 1。分子可以写成
+\begin{align*}
+\mathcal{E}(\mathbf{k})&\approx\sum_{ll'}e^{i\mathbf{k}\cdot(\mathbf{l}-\mathbf{l}')}\int\phi_a^{*}(\mathbf{r}-\mathbf{l}')\left\{-\frac{\hbar^{2}}{2m}\nabla^{2}+\mathcal{V}(\mathbf{r})\right\}\phi_a(\mathbf{r}-\mathbf{l})\,\mathrm{d}\mathbf{r}\\
+&=\sum_{\mathbf{h}}e^{i\mathbf{k}\cdot\mathbf{h}}\mathcal{E}_{\mathbf{h}},
+\tag{3.26}
+\end{align*}
+其中
+\begin{equation*}
+\mathcal{E}_{\mathbf{h}}=\frac{1}{v_c}\int\phi_a^{*}(\mathbf{r}+\mathbf{h})\left\{-\frac{\hbar^{2}}{2m}\nabla^{2}+\mathcal{V}(\mathbf{r})\right\}\phi_a(\mathbf{r})\,\mathrm{d}\mathbf{r}.
+\tag{3.27}
+\end{equation*}
+我们利用晶格势的周期性，使各个积分只依赖于轨道所居格点的相对位置 $\mathbf{h}=\mathbf{l}-\mathbf{l}'$。
+
+现在设 $\phi_a(\mathbf{r})$ 满足方程
+\begin{equation*}
+\left\{-\frac{\hbar^{2}}{2m}\nabla^{2}+v_a(\mathbf{r})\right\}\phi_a(\mathbf{r})=\mathcal{E}_a\phi_a(\mathbf{r}),
+\tag{3.28}
+\end{equation*}
+其中 $v_a(\mathbf{r})$ 现在是位于 $\mathbf{r}=\mathbf{0}$ 处的孤立原子的势。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_52.pdf}
+\caption*{图 52\quad (a)等能线；(b)紧束缚法得到的沿立方轴的 $\mathcal{E}(k)$}
+\end{figure}
+
+如果我们略去各种交叠积分，便得到
+\begin{equation*}
+\left.\begin{aligned}
+\mathcal{E}_{0}&\approx\mathcal{E}_a,\\
+\mathcal{E}_{\mathbf{h}}&\approx\frac{1}{v_c}\int\phi_a^{*}(\mathbf{r}+\mathbf{h})\left\{\mathcal{V}(\mathbf{r})-v_a(\mathbf{r})\right\}\phi_a(\mathbf{r})\,\mathrm{d}\mathbf{r}.
+\end{aligned}\right\}
+\tag{3.29}
+\end{equation*}
+显然，$\phi_a(\mathbf{r}+\mathbf{h})$ 与 $\phi_a(\mathbf{r})$ 之间必须有某种交叠，$\mathcal{E}_{\mathbf{h}}$ 才不至于为零——而 $\mathbf{h}$ 处原子附近的高势会增强这种交叠。但是我们可以预期，除了近邻以外，$\mathcal{E}_{\mathbf{h}}$ 都应当非常小。
+
+考虑一个简单立方晶格，取 $\mathbf{h}=(a,0,0)$ 等等。于是，当 $\phi_a(\mathbf{r})$ 具有立方对称性时，
+\begin{equation*}
+\mathcal{E}(\mathbf{k})\approx\mathcal{E}_a+2\mathcal{E}_{100}(\cos ak_x+\cos ak_y+\cos ak_z),
+\tag{3.30}
+\end{equation*}
+这个情形下的区当然是一个立方体，能面如图 52 所示。由式 (3.29) 易见 $\mathcal{E}_{100}$ 本质上是负的。我们得到一条宽度为 $12|\mathcal{E}_{100}|$ 的能带，其最低能量为 $\mathcal{E}_a+6\mathcal{E}_{100}$。
+
+沿立方轴方向我们看到，$\mathcal{E}(\mathbf{k})$ 在 $k=0$ 处有一个极小，而在区边界 $\mathbf{k}=(\pi/a,0,0)$ 处有一个极大。这与 N.F.E. 模型的曲线（图 36）表面上有几分相似，但带底的曲率依赖于 $\mathcal{E}_{100}$。整条能带的结构依赖于诸如式 (3.29) 那样的积分，它们对原子芯之外轨道的细节以及晶格间距都非常敏感。显然，如果原子轨道高度局域化，或者晶格间距变大，能带将趋于变得非常窄。
+
+这种\emph{紧束缚法}演示了一条重要的原理。设想我们取 $N$ 个原子，并让它们彼此相距很远。每个原子上将有各不相同的原子能级 $\phi_a,\phi_b,\phi_c$；而在整个集合中，对单个电子来说，这些将是 $N$ 重简并的状态。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_53.pdf}
+\caption*{图 53\quad 原子彼此靠拢时，原子能级展宽成带}
+\end{figure}
+
+但当我们把原子聚到一起时，轨道发生交叠——于是我们发现，$N$ 重简并被劈裂成一个态带。每一条原子能级都将产生一个完整的、含 $N$ 个态的能带——因此我们可以谈及由相应原子态产生的 3s 带、4p 带等等。这种分类在过渡金属的情形下特别贴切：原子的 d 态在每个芯内都相当紧致，因而它们组合成一个相对较窄且界定清晰的 d 带。
+
+然而，从图 53 可以清楚地看到，不同的能带可能展宽到彼此相交。这时就必须修改我们在此讨论的简单方案。我们必须假定波函数是\emph{原子轨道的线性组合}（L.C.A.O.）
+\begin{equation*}
+\psi_{\mathbf{k}}=\sum_{lj}e^{i\mathbf{k}\cdot\mathbf{l}}\beta_j\phi_a^{(j)}(\mathbf{r}-\mathbf{l}),
+\tag{3.31}
+\end{equation*}
+其中 $\phi_a^{(j)}(\mathbf{r}-\mathbf{l})$ 是 $\mathbf{l}$ 处原子上一组互不相同的原子轨道之一。
+
+然后我们必须把它用作试探波函数来估算能量，并通过适当选取系数 $\beta_j$ 而使能量取极小。显而易见，我们将得到一组组线性方程，其系数中含有诸如式 (3.26) 中 $\mathcal{E}_{\mathbf{h}}$ 那样的表达式。这些表达式又涉及如式 (3.29) 那样的积分，只是其中的两个原子轨道也许对应于两个不同格点上的不同原子能级。
+
+L.C.A.O. 方法在量子化学中被广泛用于构造\emph{分子}波函数，但它用于固体中 Bloch 函数的定量计算并不真正令人满意。我们不仅在三中心积分和非正交基函数上遇到计算困难；而且，用诸如式 (3.31) 那样的表达式去表示半导体或金属中的价电子态，还存在着根本性的异议。
+
+当我们构成固体时，每个原子都与其近邻的势相交叠。让我们以一种简单化的想法（图 54 与图 55）假定：各别的原子势可以叠置起来，在以原子核为中心的主势阱之间的间隙区域中形成一个较低而且恒定的势。显然，式 (3.31) 中所用的那些单个原子轨道已不复存在，因为它们此时将位于原子球之间势垒的能量之上。原则上，试图用全然不同的势 $v_a(\mathbf{r})$（它满足无关的边界条件：当 $r\to\infty$ 时 $\phi_a(\mathbf{r})$ 迅速趋于零）的本征态来表示势 $\mathcal{V}(\mathbf{r})$ 中的 Bloch 函数，并不是一个好方法。所有的节点都错置了位置，而且不容易挪动。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_54.pdf}
+\caption*{图 54\quad 自由原子的束缚原子轨道}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_55.pdf}
+\caption*{图 55\quad 晶体的 Bloch 态}
+\end{figure}
+
+无论如何，这组函数是\emph{不完备}的，因为它缺少 Schr\"odinger 方程在连续谱中、高于 $v_a(\mathbf{r})$ 能量零点的所有散射波本征态。虽然式 (3.31) 在原子芯内部可以与 $\psi_{\mathbf{k}}$ 匹配得相当好，但它谈不上能表示间隙区域中的 Bloch 态——在那里它必须表现得像自由电子平面波的简单组合（见 §3.6）。
+
+不过，这个方法确实给出了一条重要的形式原理。
+
+在式 (3.26) 中我们看到，$\mathbf{k}$ 空间中的能量可以展开成 Fourier 级数
+\begin{equation*}
+\mathcal{E}(\mathbf{k})=\sum_{l}e^{i\mathbf{k}\cdot\mathbf{l}}\mathcal{E}_l.
+\tag{3.32}
+\end{equation*}
+可以证明，这种形式的展开总是可能的——也就是说，L.C.A.O. 方法如果精确而彻底地进行下去，将会给出这种形式的能量——尽管系数 $\mathcal{E}_l$ 不再是像式 (3.27) 或 (3.29) 那样的简单积分，而且当 $\mathbf{l}$ 很大时也许收敛得不太快。
+
+现在请记住，正格矢 $\mathbf{l}$ 本身就是倒格子 $\mathbf{g}$ 的倒格矢（§1.3 (iv)）。式 (3.32) 正是如下这类公式
+\begin{equation*}
+\mathcal{V}(\mathbf{r})=\sum_{\mathbf{g}}e^{i\mathbf{r}\cdot\mathbf{g}}\mathcal{V}_{\mathbf{g}}
+\tag{3.33}
+\end{equation*}
+的对偶（译注：原书此式编号误印为“(3.23)”。）；只要 $\mathcal{V}(\mathbf{r})$ 具有周期性 $\mathcal{V}(\mathbf{r}+\mathbf{l})=\mathcal{V}(\mathbf{r})$，这类公式便成立。于是，\emph{每条能带中的能量函数在倒格子中必须是周期的}；
+\begin{equation*}
+\mathcal{E}(\mathbf{k}+\mathbf{g})=\mathcal{E}(\mathbf{k}).
+\tag{3.34}
+\end{equation*}
+
+这个性质我们在上一节中已经注意到。(3.32) 这种表示式有时颇为方便；它使 $\mathcal{E}(\mathbf{k})$ 自动满足这个条件。如果把系数 $\mathcal{E}_l$ 当作可调参数来处理，往往就能用这个公式拟合观测到的费米面。作为内插公式，它的“物理”论证比 N.F.E. 方案略逊一筹——在后一方案中，Fourier 分量 $\mathcal{V}_{\mathbf{g}}$ 可以取作参数——但它更便于计算，因为它把能量直接表示成简单解析函数之和。
+
+\section{元胞法}
+
+L.C.A.O. 方法所受的非议之一，可以通过使用被构造得满足 Bloch 条件 (1.58) 的函数来避免；也就是说，当波函数移动通过晶格平移 $\mathbf{l}$ 时（例如从晶胞的一个面移动到另一个面），它改变一个因子 $\exp(i\mathbf{k}\cdot\mathbf{l})$。另一种做法是，对公式
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r})=e^{i\mathbf{k}\cdot\mathbf{r}}u_{\mathbf{k}}(\mathbf{r}),
+\tag{3.35}
+\end{equation*}
+中的函数 $u_{\mathbf{k}}(\mathbf{r})$ 建立微分方程，同时（由式 (1.61)）知道它必须是正格子中的周期函数。
+
+在一维情形，这看上去是个简单的方案。例如，可以选取一个 $\mathcal{E}$ 值，积分方程，看条件是否满足，再改变 $\mathcal{E}$，如此等等。但在三维情形，它是笨拙的。条件 (3.34) 必须在晶胞的整个面上成立——这就意味着要在无穷多个点上成立。于是，人们在晶胞内构造各种球谐函数的解，并寻找在晶胞边界上有限个点处相匹配的线性组合。这还可以改进：在晶胞表面上定义一个平均匹配误差，并通过改变系数使其极小。这一步骤在数学上很繁琐，但原理上足够明了；它曾为某些固体给出过相当好的能带结构，但在新理论概念方面却少有贡献。
+
+元胞法看上去简单而直接。晶胞是一个定义明确的几何概念，Bloch 条件也很容易写下。但是整个想法并不很对头。我们不应当人为地设立晶胞边界，偏偏在势最为平坦、波函数最接近自由电子波函数的区域制造匹配间断。匹配条件只能任意地定义，而有时表面上看去合理的做法竟给出完全错误的结果，甚至连空晶格这种初等情形也不例外。
+
+这种一般性的元胞方法有一个前身，有时颇为有用。这就是 \emph{Wigner--Seitz 方法}。我们注意到，F.C.C. 或 B.C.C. 格子的晶胞——即 Wigner--Seitz 原胞——是一个近似于球体的规则多面体。姑且假定它是一个球，体积与晶胞相同，即半径为 $r_s$（参看式 (2.54)）。
+
+考虑 $\mathbf{k}=0$ 的态。它必须满足
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r}+\mathbf{l})=\psi_{\mathbf{k}}(\mathbf{r});
+\tag{3.36}
+\end{equation*}
+即它必须逐个晶胞地周期。这意味着它在晶胞边界上应当有水平切线；我们可以说它必须满足条件
+\begin{equation*}
+\left.\frac{\partial\psi_{\mathbf{k}}}{\partial r}\right]_{r=r_s}=0
+\tag{3.37}
+\end{equation*}
+于 Wigner--Seitz 球面上。这样一来，如果势在球内是球对称的，我们只需在这个边界条件下求解一个径向方程，于是能量 $\mathcal{E}(0)$ 便可唯一地确定（图 56）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_56.pdf}
+\caption*{图 56\quad Wigner--Seitz 方法}
+\end{figure}
+
+这是确定单价金属导带底位置的一个巧妙办法，在计算金属内聚能（§4.3）时可以相当有把握地使用它。我们还可以再前进一步，写下方程
+\begin{equation*}
+-\frac{\hbar^2}{2m}\left\{\nabla^2+2i\mathbf{k}\cdot\nabla\right\}u_{\mathbf{k}}+\mathcal{V}(\mathbf{r})\,u_{\mathbf{k}}
+=\left\{\mathcal{E}(\mathbf{k})-\frac{\hbar^2 k^2}{2m}\right\}u_{\mathbf{k}}\tag{3.38}
+\end{equation*}
+(3.35) 中的周期函数 $u_{\mathbf{k}}(\mathbf{r})$ 必须满足这个方程；而且我们还可以进而坚持要求 $u_{\mathbf{k}}$ 在 $r=r_s$ 处具有水平切线。这样一来，从 $\mathcal{E}(0)$ 量起的函数 $\mathcal{E}(\mathbf{k})$ 就会给出某种不同于自由电子公式的结果，从而带上几分能带形状的特征。
+
+但在这个方法里，我们完全忽略了固体的结构。答案只依赖于原子体积，而不依赖于晶格的实际几何构形。对于液体——其中每个原子的环境是无序的——我们应当得到与同样密度的固态金属完全相同的结果；那些我们在前面几节里不厌其详地讨论过的美丽衍射效应，在这里根本就进不来。
+
+\section{正交化平面波}
+
+现在我们转向几种真正行之有效的能带结构计算方法。例如，紧束缚法（§3.4）受到的那些根本性诘难，可以通过如下做法来化解：(a) 在原子轨道的 Bloch 和 (3.31) 中有意加入像 (3.12) 那样的平面波项；(b) 从后一个和里剔除所有那些在原子势相互重叠时实际上已经消失的虚构轨道（图 54 和图 55）。Herring 在引入\emph{正交化平面波}（orthogonalized plane wave，OPW）概念时所做的正是这两件事。
+
+考虑一组由\emph{芯态}（core states）——也就是在离子中早已被占据的轨道——构成的 Bloch 函数。由 (3.24) 可以写出
+\begin{equation*}
+b_{l\mathbf{k}}=\sum_l e^{i\mathbf{k}\cdot\mathbf{l}}\,b_l(\mathbf{r}-\mathbf{l}).\tag{3.39}
+\end{equation*}
+像 $b_l(\mathbf{r})$ 这样的一个芯轨道是高度局域化的，因此上式不过是简并单电子态的一种组合，其中每一个态对应于电子局域在一个特定原子上。实际上，它是整个晶体的 Schrödinger 方程的解，对应于某一芯能级 $\mathcal{E}_l$。它可以形成一条窄带，在晶体中这条带是全满的。
+
+较高的那些态既然是同一个 Schrödinger 方程的解，就\emph{必须与} $b_{l\mathbf{k}}$ \emph{正交}：
+\begin{equation*}
+\langle\psi_{\mathbf{k}},b_{l\mathbf{k}}\rangle=0.\tag{3.40}
+\end{equation*}
+此外我们知道，在原子之间的区域，$\psi_{\mathbf{k}}$ 必须看起来像一列自由电子波。让我们试着取
+\begin{equation*}
+\chi_{\mathbf{k}}=e^{i\mathbf{k}\cdot\mathbf{r}}-\sum_l\beta_l\,b_{l\mathbf{k}}\tag{3.41}
+\end{equation*}
+作为其中一个较高态的波函数的一种可能形式。只要适当选取系数 $\beta_l$，就能使它满足正交化条件 (3.40)。也就是说，我们把 $\chi_{\mathbf{k}}$ 做成一个\emph{正交化平面波}（O.P.W.）
+\begin{equation*}
+\chi_{\mathbf{k}}=e^{i\mathbf{k}\cdot\mathbf{r}}-\sum_l\langle b_{l\mathbf{k}},e^{i\mathbf{k}\cdot\mathbf{r}}\rangle\,b_{l\mathbf{k}}.\tag{3.42}
+\end{equation*}
+
+对于较高的态，这是一个很好的猜测：在间隙区域里它看起来像 $\exp(i\mathbf{k}\cdot\mathbf{r})$——那里每个 $b_{l\mathbf{k}}$ 都很小（芯态高度局域化）——而在芯区内部，它又与所有芯态正交，因而是较高原子轨道的一个不错的候选者。举例来说，设芯态是 $2s$ 和 $2p$，各有一个节面：于是 $\chi_{\mathbf{k}}$ 将多出一个节面，正像 $3s$ 或 $3p$ 轨道那样。
+
+现在我们用 O.P.W. 作为波函数的基态，尝试
+\begin{equation*}
+\psi_{\mathbf{k}}=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,\chi_{\mathbf{k}-\mathbf{g}}\tag{3.43}
+\end{equation*}
+作为 Schrödinger 方程的解，做法与 (3.12) 相同。我们用变分原理把能量期望值极小化，从而确定系数 $\alpha_{\mathbf{k}-\mathbf{g}}$。这套手续如今已为大家所熟悉，不必再显式写出了。
+
+这种近似过程在初始阶段收敛得惊人地快。单个 O.P.W. 往往就足以在 k 空间的大片区域上代表波函数；取 3 项或 4 项便能给出相当好的图像，甚至到布里渊区最偏远的角落也不例外。这个方法已经成功地用于若干金属和半导体，而且并不局限于“被空白区域包围的球对称势”这种情形。
+
+为什么会这样？下面这个归功于 Phillips 和 Kleinman 的论证非常有说服力。
+
+假定 (3.43) 在 $\alpha_{\mathbf{k}-\mathbf{g}}$ 取某组确定值时就是严格的波函数。写下函数
+\begin{equation*}
+\phi=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,e^{i(\mathbf{k}-\mathbf{g})\cdot\mathbf{r}},\tag{3.44}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_57.pdf}
+\caption*{图 57\quad 正交化平面波的合成。(a)平面波；(b)芯函数；(c)O.P.W.＝平面波－芯函数}
+\end{figure}
+——即由简单平面波按同样的系数组合而成的函数。于是 (3.42) 与 (3.43) 可以写成（略去指标 $\mathbf{k}$，它自始至终不变）
+\begin{equation*}
+\psi=\phi-\sum_l\langle b_l,\phi\rangle\,b_l.\tag{3.45}
+\end{equation*}
+把它代入 Schrödinger 方程 $\mathcal{H}\psi=\mathcal{E}\psi$，即
+\begin{equation*}
+\mathcal{H}\phi-\sum_l\langle b_l,\phi\rangle\,\mathcal{H}b_l=\mathcal{E}\phi-\mathcal{E}\sum_l\langle b_l,\phi\rangle\,b_l,\tag{3.46}
+\end{equation*}
+亦即
+\begin{equation*}
+\mathcal{H}\phi-\sum_l\langle b_l,\phi\rangle\,\mathcal{E}_l b_l+\mathcal{E}\sum_l\langle b_l,\phi\rangle\,b_l=\mathcal{E}\phi,\tag{3.47}
+\end{equation*}
+这里用到 $b_l$ 也是 $\mathcal{H}$ 的本征态、其能量为 $\mathcal{E}_l$ 这一事实。于是
+\begin{equation*}
+\mathcal{H}\phi+\sum_l(\mathcal{E}-\mathcal{E}_l)\,b_l\langle b_l,\phi\rangle=\mathcal{E}\phi.\tag{3.48}
+\end{equation*}
+
+我们可以把它看成一个新的 Schrödinger 方程
+\begin{equation*}
+(\mathcal{H}+\mathcal{V}_R)\phi=\mathcal{E}\phi,\tag{3.49}
+\end{equation*}
+式中我们对一个算符作如下形式定义：
+\begin{equation*}
+\mathcal{V}_R\phi\equiv\sum_l(\mathcal{E}-\mathcal{E}_l)\,b_l\langle b_l,\phi\rangle.\tag{3.50}
+\end{equation*}
+我们的“平滑化”波函数 $\phi$ 现在满足一个新方程，其“哈密顿量”是
+\begin{equation*}
+\mathcal{H}+\mathcal{V}_R=-\frac{\hbar^2}{2m}\nabla^2+\mathcal{V}+\mathcal{V}_R.\tag{3.51}
+\end{equation*}
+这就好比我们要在一个\emph{赝势}（pseudo-potential）
+\begin{equation*}
+\Gamma=\mathcal{V}+\mathcal{V}_R.\tag{3.52}
+\end{equation*}
+中求本征函数的平面波解。
+
+§3.2 的那套形式手续现在可以拿来使用了。系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 必须满足与 (3.14) 相仿的方程，只不过其中要用 $\Gamma$ 的 Fourier 分量来代替真实晶格势 $\mathcal{V}$ 的 Fourier 分量。
+
+当然，这些方程只是把 (3.43) 取作试探波函数、对能量期望值中的系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 作变分所得方程的另一种写法。但结果表明（这一点可以上升为一条普遍原理来论证）：除了头几个倒格矢之外，$\Gamma$ 的 Fourier 分量都很小。函数 $\phi$ 可以称为\emph{赝波函数}（pseudo-wave-function），它所满足的方程 (3.49) 中的有效势相对较弱。这样我们又回到了一个简单的 N.F.E. 模型。
+
+把 $\Gamma$ 当作一个小的局域势来处理，这个论证并不严格。符号 $\mathcal{V}_R$ 代表的是一个非局域算符
+\begin{equation*}
+\mathcal{V}_R(\mathbf{r},\mathbf{r}')=\sum_l(\mathcal{E}-\mathcal{E}_l)\,b_l(\mathbf{r})\,b_l^{*}(\mathbf{r}'),\tag{3.53}
+\end{equation*}
+它通过下式起作用：
+\begin{equation*}
+\mathcal{V}_R\phi=\int\mathcal{V}_R(\mathbf{r},\mathbf{r}')\,\phi(\mathbf{r}')\,d\mathbf{r}'.\tag{3.54}
+\end{equation*}
+这告诉我们，比如说，$\mathcal{V}_R$ 作用在不同角动量的函数上时必定有所不同；我们应当写成
+\begin{equation*}
+\mathcal{V}_R=\mathcal{V}_s+\mathcal{V}_p+\mathcal{V}_d+\dots,\tag{3.55}
+\end{equation*}
+其中 $\mathcal{V}_s$ 只作用在具有 $s$ 对称性的函数上，如此等等。
+
+问题的实质在于：$\mathcal{V}$ 是原子的吸引势，因而是负的，尤其在 $r=0$ 附近更是如此；而 $\mathcal{V}_R$ 含有 $\mathcal{E}-\mathcal{E}_l$ 和芯轨道的平方，因而是正的。两者之间有部分抵消，使 $\mathcal{V}_{\mathrm{eff}}$ 的数值减小。这种抵消虽然永远不会完全，但可以通过适当选取芯函数而得到改善。
+实际上，构造 $\mathcal{V}_R$ 的整个过程并不是唯一的。可以证明：\emph{哈密顿量 $(\mathcal{H}+\mathcal{V}_R)$ 的价电子本征值，对于任何形如下式的算符都是相同的}
+\begin{equation*}
+\mathcal{V}_R\phi=\sum_l\langle F_l,\phi\rangle\,b_l,\tag{3.56}
+\end{equation*}
+\emph{其中诸 $F_l$ 是完全任意的函数}。要看出这一点，请注意算符 $\mathcal{V}_R$ 总是把 $\phi$ 投影到芯态所张的流形上，而我们正在寻找的价电子本征函数与这个流形正交——因此，把算符 $\mathcal{V}_R$ 加到哈密顿量上，对价电子本征函数空间中的本征值问题毫无影响。
+
+于是，只要明智地选取函数 $F_l$，我们就可以设法获得良好的抵消。例如，若取
+\begin{equation*}
+F_l=-\mathcal{V}b_l,\tag{3.57}
+\end{equation*}
+便得到
+\begin{equation*}
+\Gamma\phi=\mathcal{V}\phi-\sum_l\langle b_l,\mathcal{V}\phi\rangle\,b_l,\tag{3.58}
+\end{equation*}
+这表明我们可以从 $\mathcal{V}$ 中减去任何能展开成芯函数之和的部分。这就解释了为什么在许多情况下 $\Gamma$ 结果相当小。
+
+这样，抵消原理虽然不是一个严格的定理，却为\emph{赝势概念}提供了依据：\emph{金属和半导体中的价电子，其行为就好像它们与晶格的离子并没有强烈的相互作用一样}。这就是 §3.3 的 N.F.E. 模型在经验上取得成功的原因——不仅在于它给出了费米面的漂亮图像（如图 49），也在于它能处理复杂得多的现象，例如电阻率和声子谱的理论（参见 §§6.12、6.13）。无论从哪方面看，这都是自 1930 年代初 Bloch 的工作以来固体理论中最富成果的进展之一。
+
+然而，从理论的角度看，这种基于 O.P.W. 形式体系的“解析”赝势并不完全令人满意：它过于强烈地依赖能量和角动量；它不是真正的局域势；它的定义不唯一；它也无法优雅地处理 $d$ 带（见 §3.10）。它所确立的要点——N.F.E. 模型远比乍看之下的样子要好——几乎同样可以从下一节要讨论的“muffin-tin”方法得到，而无须引入像 (3.44) 中函数 $\phi$ 那样的赝平面波（Ψ.P.W.）。
+
+\section{增广平面波}
+
+L.C.A.O. 方法和元胞法之所以受到诘难，是由于金属中的势在离子实之间相当平坦。我们索性假定它是一个 \emph{muffin-tin 势}（muffin-tin potential，蛋盒势）——在每个格点周围半径 $R_s$ 以内球对称，而在间隙区域为常数。再假定 $R_s$ 小于 Wigner--Seitz 半径 $r_s$，使这些球互不相交。于是，在每个球内部我们都可以用球谐函数把 Schrödinger 方程严格解出，
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_58.pdf}
+\caption*{图 58\quad muffin-tin 势}
+\end{figure}
+而在球与球之间的体积中我们也能求出严格解——平面波。只要在每个球面上把这些解匹配起来，就能构造出遍及整个晶体的 Schrödinger 方程的解。
+
+实际的做法如下：设 $\mathcal{E}$ 是我们这个态的能量。在每个球内部，Schrödinger 方程的解具有如下形式：
+\begin{equation*}
+\phi(\mathbf{r})=\sum_{lm}C_{lm}\,\mathcal{R}_l(r,\mathcal{E})\,Y_{lm}(\theta,\phi),\tag{3.59}
+\end{equation*}
+其中 $Y_{lm}(\theta,\phi)$ 是对应于矢量 $\mathbf{r}$ 的方向 $(\theta,\phi)$ 的球谐函数，而 $\mathcal{R}_l$ 是径向方程（采用原子单位）
+\begin{equation*}
+-\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\mathcal{R}_l}{\partial r}\right)+\left\{\frac{l(l+1)}{r^2}+\mathcal{V}(r)\right\}\mathcal{R}_l=\mathcal{E}\,\mathcal{R}_l\tag{3.60}
+\end{equation*}
+的解。
+
+现在我们来选取系数 $C_{lm}$，使得 $\phi(\mathbf{r})$ 在球面 $r=R_s$ 上恰好与单一平面波 $\exp(i\mathbf{k}\cdot\mathbf{r})$ 相匹配。利用平面波按球谐函数展开的标准公式，容易证明，只要取
+\begin{equation*}
+C_{lm}=(2l+1)\,i^{\,l}\left\{j_l(kR_s)\big/\mathcal{R}_l(R_s,\mathcal{E})\right\}Y_{lm}^{*}(\theta',\phi')\tag{3.61}
+\end{equation*}
+即可做到这一点，其中 $\theta'$、$\phi'$ 给出 $\mathbf{k}$ 的方向，$j_l$ 是球 Bessel 函数。把 (3.61) 代入 (3.59)，我们就定义了一个\emph{增广平面波}（augmented plane wave，A.P.W.）$\phi_{\mathbf{k}}(\mathbf{r})$，它在间隙区域中等于 $\exp(i\mathbf{k}\cdot\mathbf{r})$，而在以 $\mathbf{l}$ 为中心的球内则满足
+\begin{equation*}
+\phi_{\mathbf{k}}(\mathbf{r})=e^{i\mathbf{k}\cdot\mathbf{l}}\,\phi_{\mathbf{k}}(\mathbf{r}-\mathbf{l})\tag{3.62}
+\end{equation*}
+
+遗憾的是，就整个晶格的势而言，这个函数仍然不是我们 Schrödinger 方程的解。的确，我们并没有对能量 $\mathcal{E}$ 与波矢 $\mathbf{k}$ 之间的关系作任何特别的假定。但我们知道，最终的波函数可以由 A.P.W. 构造出来——而且根据 Bloch 定理，它必定取如下形式
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r})=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,\phi_{\mathbf{k}-\mathbf{g}}(\mathbf{r}),\tag{3.63}
+\end{equation*}
+其中系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 有待确定。
+
+下一步是把 (3.63) 用作试探函数，对能量作变分估计。容易证明，这些系数必须满足形如
+\begin{equation*}
+\left\{(\mathbf{k}-\mathbf{g})^2-\mathcal{E}\right\}\alpha_{\mathbf{k}-\mathbf{g}}+\sum_{\mathbf{g}'}\Gamma_{\mathbf{gg}'}\,\alpha_{\mathbf{k}-\mathbf{g}'}=0,\tag{3.64}
+\end{equation*}
+的方程，其中 $\Gamma_{\mathbf{gg}'}$ 是一个含有 $\phi_{\mathbf{k}-\mathbf{g}}$、$\phi_{\mathbf{k}-\mathbf{g}'}$ 以及与周期势相联系的哈密顿算符的积分。
+
+这些积分的显式公式，其推导会使我们过于深入方法的细节；结果为
+\begin{align*}
+\Gamma_{\mathbf{gg}'}=\frac{4\pi R_s^2}{v_c}\Big\{&-\left[(\mathbf{k}-\mathbf{g}')\cdot(\mathbf{k}-\mathbf{g})-\mathcal{E}\right]\frac{j_1\left(|\mathbf{g}-\mathbf{g}'|\,R_s\right)}{|\mathbf{g}-\mathbf{g}'|}\\
+&+\sum_{l=0}^{\infty}(2l+1)\,P_l(\cos\theta_{\mathbf{gg}'})\,j_l\left(|\mathbf{k}-\mathbf{g}|\,R_s\right)j_l\left(|\mathbf{k}-\mathbf{g}'|\,R_s\right)\\
+&\qquad\qquad\times\frac{\mathcal{R}'_l(R_s,\mathcal{E})}{\mathcal{R}_l(R_s,\mathcal{E})}\Big\}\tag{3.65}
+\end{align*}
+（其中 $\theta_{\mathbf{gg}'}$ 是 $(\mathbf{k}-\mathbf{g})$ 与 $(\mathbf{k}-\mathbf{g}')$ 之间的夹角，$\mathcal{R}'_l$ 是径向函数 $\mathcal{R}_l$ 的导数）。这一手续的实质，是让球外区域给出一个像 (3.65) 中第一主项那样的贡献；其余部分则来自梯度算符对每个 A.P.W. 在各个球面上的斜率不连续所起的作用。
+
+能带结构问题现在就归结为求线性方程组 (3.64) 的解——只有当久期行列式为零时，解才可能存在。现在假定我们选定一个 $\mathbf{k}$ 值。所有系数都将依赖于 $\mathcal{E}$——或像 (3.64) 中那样显式地依赖，或通过 (3.65) 隐式地依赖。我们可以对给定的 $\mathcal{E}$ 值算出行列式，然后改变 $\mathcal{E}$，直到找出一个根为止。这个 $\mathcal{E}$ 值就是我们对 $\mathcal{E}(\mathbf{k})$ 的估计。
+
+A.P.W. 方法是计算金属能带结构的一种稳妥实用的程序。它需要大量计算，但确实行之有效。例如，结果对原子势半径 $R_s$ 的选取并不十分敏感，而且在存在 $d$ 带时依然适用（见 §3.10）。然而，这里有趣的一点是，兜了一圈之后，我们最终回到了在结构上与 N.F.E. 法相似的那些公式。(3.64) 与式 (3.14) 完全相同，只不过我们用一个更复杂的表达式取代了原子势的 Fourier 分量，即
+\begin{equation*}
+\mathcal{V}_{\mathbf{g}-\mathbf{g}'}\rightarrow\Gamma_{\mathbf{gg}'}.
+\end{equation*}
+换言之，$\Gamma_{\mathbf{gg}'}$ 正是某个有效原子势的 Fourier 分量。倘若它碰巧不怎么依赖 $\mathcal{E}$ 和 $\mathbf{k}$，而只是 $|\mathbf{g}-\mathbf{g}'|$ 的函数，那么我们就可以直接用 N.F.E. 方法构造出费米面等等。
+
+遗憾的是，A.P.W. 赝势分量 (3.65) 通常并不像我们希望的那样小。这一点由“空格子检验”（empty lattice test）即可看出：在 $\mathcal{V}(\mathbf{r})\equiv 0$ 的“晶格”中求解 $\mathcal{E}(\mathbf{k})$ 时，(3.65) 中函数 $R_l$ 的径向导数在 $r=R_s$ 处并不自动为零，因此即使真实势的 Fourier 分量 $\mathcal{V}_{\mathbf{g}-\mathbf{g}'}$ 为零，系数 $\Gamma_{\mathbf{gg}'}$ 也不趋于零。这样一来，仅仅为了得到平庸的结果 $\mathcal{E}(\mathbf{k})=k^2$，就得做大量的计算。因此，A.P.W. 方法在实践上的成功，并不能直接求助于 §3.6 的赝势概念来论证。这一点将在 §3.8 中进一步讨论。
+
+\section{Green 函数法}
+
+有一种技术在原理上看起来截然不同，推演出来的结果却颇为相似：它从任意势 $\mathcal{V}(\mathbf{r})$ 中波函数的标准积分方程出发：
+\begin{equation*}
+\psi(\mathbf{r})=-\frac{1}{4\pi}\int\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}'|)}{|\mathbf{r}-\mathbf{r}'|}\,\mathcal{V}(\mathbf{r}')\,\psi(\mathbf{r}')\,d\mathbf{r}',\tag{3.66}
+\end{equation*}
+其中
+\begin{equation*}
+\kappa^2=\mathcal{E}\tag{3.67}
+\end{equation*}
+因而当 $\mathcal{E}>0$ 时 $\kappa$ 为实数，当 $\mathcal{E}<0$ 时 $\kappa$ 为虚数。
+
+这个方程说的是：波函数被势散射到自身之中，达到自洽；来自各个不同点 $\mathbf{r}'$、强度为 $\mathcal{V}(\mathbf{r}')\psi(\mathbf{r}')$ 的小波，重新合成为 $\psi(\mathbf{r})$。现在假定我们有一个 muffin-tin 势，即
+\begin{equation*}
+\mathcal{V}(\mathbf{r})=\sum_l v_a(\mathbf{r}-\mathbf{l}).\tag{3.68}
+\end{equation*}
+代入 (3.66)，得
+\begin{equation*}
+\psi(\mathbf{r})=-\frac{1}{4\pi}\sum_l\int\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}'|)}{|\mathbf{r}-\mathbf{r}'|}\,v_a(\mathbf{r}'-\mathbf{l})\psi(\mathbf{r}')\,d\mathbf{r}',\tag{3.69}
+\end{equation*}
+式中积分仅遍及 $\mathbf{l}$ 周围的元胞，因为 $v_a(\mathbf{r}-\mathbf{l})$ 在其他地方为零。
+
+我们要找的是一个 Bloch 函数。利用这一性质，可以把 $\psi(\mathbf{r}')$ 的原点移到 $\mathbf{r}'-\mathbf{l}$ 处，再把它重新记作 $\mathbf{r}''$。于是
+\begin{align*}
+\psi_{\mathbf{k}}(\mathbf{r})&=-\frac{1}{4\pi}\sum_l\int\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}'|)}{|\mathbf{r}-\mathbf{r}'|}\,v_a(\mathbf{r}'-\mathbf{l})\,e^{i\mathbf{k}\cdot\mathbf{l}}\psi_{\mathbf{k}}(\mathbf{r}'-\mathbf{l})\,d\mathbf{r}'\\
+&=-\frac{1}{4\pi}\int\left\{G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')\right\}v_a(\mathbf{r}'')\psi_{\mathbf{k}}(\mathbf{r}'')\,d\mathbf{r}''.\tag{3.70}
+\end{align*}
+这实际上就是说，$\mathbf{r}$ 处的波函数是所有其他元胞（位于 $\mathbf{l}$ 等处）散射出的小波各带适当相位因子后的贡献之和。由于所有元胞全同，我们得以引入\emph{结构 Green 函数}（structural Green function），或称 Greenian：
+\begin{equation*}
+G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')\equiv\sum_l\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}''+\mathbf{l}|)}{|\mathbf{r}-\mathbf{r}''+\mathbf{l}|}\,e^{i\mathbf{k}\cdot\mathbf{l}},\tag{3.71}
+\end{equation*}
+它给出从 $\mathbf{r}''$ 以及所有其他元胞中各等价点散射来的波在 $\mathbf{r}$ 处的效果（图 59b）。这样一来，我们只需在单个元胞中积分，便能得出整个波函数。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_59.pdf}
+\caption*{图 59\quad 普通的 Green 函数（(a)）描述从 $\mathbf{r}'$ 到 $\mathbf{r}$ 的传播；现以结构 Green 函数（(b)）取代之，后者把来自晶格中所有等价点 $\mathbf{r}''$ 的波组合起来}
+\end{figure}
+
+论证的下一步是构造一个泛函，使它经变分后给出积分方程 (3.70)。容易证明，这个泛函就是
+\begin{align*}
+\Lambda&=N\int\psi_{\mathbf{k}}^{*}(\mathbf{r})\,v_a(\mathbf{r})\,\psi_{\mathbf{k}}(\mathbf{r})\,d\mathbf{r}\\
+&\quad+\frac{1}{4\pi}\iint\psi_{\mathbf{k}}^{*}(\mathbf{r})\,v_a(\mathbf{r})\,G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')\,v_a(\mathbf{r}'')\psi_{\mathbf{k}}(\mathbf{r}'')\,d\mathbf{r}\,d\mathbf{r}''.\tag{3.72}
+\end{align*}
+积分只需遍及单个元胞——而且由于势在每个原子球以外处处为零，每重积分都可以限制在 $r,r''\leqslant R_s$ 的范围内。
+
+现在我们在每个元胞内部假设一个与 (3.59) 同形的试探波函数
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r})=\sum_{lm}C_{lm}\,\mathcal{R}_l(r)\,Y_{lm}(\theta,\phi).\tag{3.73}
+\end{equation*}
+显然，(3.72) 最终将成为系数 $C_{lm}$ 的一个二次函数
+\begin{equation*}
+\Lambda=\sum_{lm;\,l'm'}\Lambda_{lm;l'm'}\,C_{lm}\,C_{l'm'}^{*}\tag{3.74}
+\end{equation*}
+变分条件给出一组线性方程，其行列式 $|\Lambda_{lm;l'm'}|$ 必须为零。这个行列式是波矢 $\mathbf{k}$ 和能量 $\mathcal{E}=\kappa^2$ 的函数。行列式的根给出 $\mathcal{E}(\mathbf{k})$ 各支所要求的关系。
+
+这个行列式的具体形式颇有意思。它的各项为
+\begin{equation*}
+\Lambda_{lm;l'm'}=A_{lm;l'm'}+\kappa\,\delta_{ll'}\,\delta_{mm'}\,\frac{n'_l-n_l L_l}{j'_l-j_l L_l}.\tag{3.75}
+\end{equation*}
+系数 $A_{lm;l'm'}$ 就其起源而言是结构性的。它们来自
+Green 函数 (3.71) 沿 $\mathbf{r}$ 和 $\mathbf{r}''$ 方向的球谐函数展开。这些系数依赖于 $\kappa$ 和 $\mathbf{k}$——但除此之外只依赖于晶格结构。实际公式非常复杂，因为其中要涉及各种宗量的 Clebsch–Gordan 系数以及球 Bessel 函数 $j_l$ 和 $n_l$。要计算晶格和，Ewald 方法（§2.3）也很有用（从分母的形式便可以猜到这一点）。不过，一旦针对给定结构编成了数表，系数 $A_{lm;l'm'}$ 就不必再重新计算。
+
+原子势是通过径向函数 $\mathcal{R}_l$ 在球面上的对数导数 $L_l$ 进来的——正如 (3.66) 中那样。之所以如此，是因为尝试函数 (3.73) 在原子球内部满足 Schrödinger 方程，于是我们可以在 (3.70) 与 (3.72) 的被积函数中写出
+\begin{equation*}
+v_a(\mathbf{r})\,\psi_{\mathbf{k}}(\mathbf{r})=\left(\nabla^2+\mathcal{E}\right)\psi_{\mathbf{k}}(\mathbf{r})\tag{3.76}
+\end{equation*}
+随后使用 Green 定理，便得到一个面积分，其中出现 Green 函数的导数（它们在 (3.75) 中表现为 $n_l$ 与 $j_l$）以及径向函数的导数。在这个方法中，假定每个原子的 muffin-tin 势是球对称的，这一点至关重要。
+
+由以上讨论可以清楚地看到，Green 函数方法（也称为 Korringa、Kohn 与 Rostoker 方法，即 KKR 方法）与 A.P.W. 方法非常相似。在 A.P.W. 方法中，我们按需要把展开做到任意多的球谐函数项，然后要求解一个久期行列式，以求出来自不同倒格矢的贡献。在 KKR 方法中，我们对格矢求和（实际上，经过对 $G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')$ 作 Fourier 变换，是对倒格矢求和），但得到的久期行列式是按不同球谐函数的贡献写出的。两种方法都需要高速计算机，而且两者都工作得相当好。KKR 方法的优点是：结构性质与原子性质在行列式的各项中是分离开的，因此可以分别计算、快速合并。A.P.W. 的优点则是：它对原子球以外的波函数给出更好的图像。
+
+\section{模型赝势}
+
+我们在 §3.6 中已经看到，每个原子势对电子的作用，看起来不过是一个弱赝势（pseudo-potential）的作用。这个重要原理，如何体现在基于 muffin-tin 点阵的能带结构技术之中呢？
+
+原子势并不显式地出现在 A.P.W. 和 KKR 公式 (3.65) 与 (3.75) 之中——它们只依赖于 $\mathcal{R}_l$ 在原子球面上的梯度。这个量同样出现在球形势散射的分波理论（partial wave theory）中（见 §5.5）。我们把每个径向解 $\mathcal{R}_l(r,\mathcal{E})$ 与同能量 $\mathcal{E}=\kappa^2$、同角动量 $l$ 的自由电子波匹配起来，从而定义一个\emph{相移}（phase shift）$\eta_l(\mathcal{E})$，它通过下列公式与 $\mathcal{R}_l$ 的对数导数相联系：
+\begin{equation*}
+L_l\equiv\frac{\mathcal{R}'_l(R_s,\mathcal{E})}{\mathcal{R}_l(R_s,\mathcal{E})}=\left.\frac{j'_l(\kappa r)-\tan\eta_l(\mathcal{E})\cdot n'_l(\kappa r)}{j_l(\kappa r)-\tan\eta_l(\mathcal{E})\cdot n_l(\kappa r)}\right|_{r=R_s}.\tag{3.77}
+\end{equation*}
+球 Bessel 函数 $j_l$ 与 $n_l$（连同其导数 $j'_l$ 与 $n'_l$）当然正是径向 Schrödinger 方程 (3.60) 在 muffin-tin 势阱之外的自由空间解。
+
+知道了所有分波在所有能量下的相移，我们便得到了关于原子势所需的全部信息；例如在 (3.75) 中，久期行列式的对角元就只含 $\kappa\cot\eta_l(\mathcal{E})$。这十分自然；相移还给出每个原子的散射截面，从而给出晶格对该能量电子的衍射图样。我们可以预期每个原子的行为，就好像它有一个 $t$ 矩阵即\emph{散射振幅}（scattering amplitude），对沿 $\theta$ 角的散射，取标准的分波形式
+\begin{equation*}
+t_a(\theta)=-\left(\frac{4\pi N}{\kappa}\right)\sum_l(2l+1)\sin\eta_l\exp(i\eta_l)\,P_l(\cos\theta).\tag{3.78}
+\end{equation*}
+一个很深的势当然可能产生很大的相移——但在 (3.77) 与 (3.78) 中，我们显然可以忽略每个 $\eta_l$ 中 $\pi$ 的所有整数倍。起作用的只是其余部分——而这个余项可以令散射变得非常弱。在分波理论中，当势阱加深时，截面 $|t_a(\theta)|^2$ 并不会急剧增大；随着束缚态的引入它只是起伏波动，很少大于几个电子波长。换言之，Born 近似——其中从 $\mathbf{k}$ 散射到 $\mathbf{k}'$ 的截面正比于 $|\langle\mathbf{k}'|v_a|\mathbf{k}\rangle|^2$——当 $v_a(\mathbf{r})$ 是一个非常深的势时并不成立。这时我们必须用分波公式 (3.78) 取代势的矩阵元。
+
+这正是 §3.2 的简单 N.F.E. 纲要不收敛的原因。我们是在用微扰论去描述晶体中每个原子的散射。但是，为描写波函数在原子内部快速振荡所需要的高阶 Fourier 系数，与芯区之外 Bloch 态的总体衍射图样基本无关。$\mathcal{R}_l$ 的每个节点都给 $\eta_l$ 增加 $\pi$，但对 (3.65)、(3.75) 或 (3.78) 几乎没有影响。因此，O.P.W. 赝势 (3.50) 正是一个解析手段：通过减去正交化的芯态来消去这些内部节点。剩下的弱赝势 $\Gamma$ 只是一个算符，其矩阵元在原子芯之外给出的波函数，与原来的原子势 $v_a$ 所给出的基本相同。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_60.pdf}
+\caption*{图 60\quad 模型势 $w$ 连同原子内部的波函数 $\phi$，重现了真实势 $v$ 连同真实波函数 $\psi$ 的效果。}
+\end{figure}
+
+对赝势概念的这种诠释，为整个能带结构问题提示了一条替代路线：\emph{把每个原子势 $v_a$ 换成一个弱势 $w_a$，它对传导电子具有相同的散射振幅。}直觉上很清楚，原来晶体中的 $\mathcal{E}(\mathbf{k})$ 将与这个假想材料中的能带结构完全相同，而在后者中 N.F.E. 形式体系如今应当是收敛的。我们所要做的，只是把 (3.14) 中的 $\mathcal{V}_{\mathbf{g}'-\mathbf{g}}$，或
+(3.64) 中的 $\Gamma_{\mathbf{gg}'}$，换成我们的\emph{模型势}（model potential）$w_a$ 的相应 Fourier 分量。
+
+这一方案会遇到非局域性、能量依赖性和任意性等困难——这些困难在 (3.56) 那类解析赝势中就已被发现。对给定的能量 $\mathcal{E}$ 和角动量 $l$，存在无穷多个局域势 $w_l(\mathbf{r},\mathcal{E})$，在其中求解径向 Schrödinger 方程 (3.60)，都能在原子芯之外精确重现真实的径向函数 $\mathcal{R}_l$。但同一个模型势通常不能同时适用于不同的 $l$ 值或不同的能量，因此我们必须引入一些算符，把波函数中各个角动量分量分离出来，正如 (3.55) 中那样。实践中，\emph{模型赝势}（model pseudo-potential）中每个 $w_l(\mathbf{r},\mathcal{E})$ 的函数形式，与其说是出于深刻的解析理由，不如说主要是为了计算上的方便。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_61.pdf}
+\caption*{图 61\quad 用于 KKR 矩阵元的模型赝势。}
+\end{figure}
+
+在 muffin-tin 点阵中，一个显然的选择是在原子球面上放一个 $\delta$ 函数奇点，对每个 $l$ 值取适当的强度，使之重现散射相移 $\eta_l(\mathcal{E})$（图 61）。利用平面波和球 Bessel 函数的标准解析性质，我们得到如下形式的“赝势”矩阵元：
+\begin{equation*}
+\Gamma^{\mathrm{KKR}}_{\mathbf{gg}'}=-\frac{4\pi N}{\kappa}\sum_l(2l+1)\tan\eta'_l\,\frac{j_l(|\mathbf{k}-\mathbf{g}|R_s)\,j_l(|\mathbf{k}-\mathbf{g}'|R_s)}{\left\{j_l(\kappa R_s)\right\}^2}\,P_l(\cos\theta_{\mathbf{gg}'}),\tag{3.79}
+\end{equation*}
+其中
+\begin{equation*}
+\cot\eta'_l\equiv\cot\eta_l-n_l(\kappa R_s)\big/j_l(\kappa R_s).\tag{3.80}
+\end{equation*}
+这个公式与 (3.78)——单个孤立原子的散射振幅——十分相似；在区边界附近，当 $|\mathbf{k}-\mathbf{g}|\sim|\mathbf{k}-\mathbf{g}'|\sim\kappa$ 时，在小相移极限下它便趋于后者。
+
+说来也怪，带这些矩阵元的一组 N.F.E. 方程，其实可以从 KKR 方程的久期行列式出发，经过一连串矩阵变换，从角动量表象 (3.64) 变换到倒格子表象而得到。这个公式与 A.P.W. 矩阵元 (3.65) 之间也有代数上的联系——而后者本身是不能从一组简单的局域势导出的。
+
+实践中，对一个给定晶体计算 muffin-tin 势的分布是相当复杂的过程，屏蔽、关联和交换效应在其中起着重要作用（见第 5 章）。非常方便的做法是：在最初阶段——可以说，在把原子聚拢来构成晶格之前——就把每个原子芯内的深势替换为一个模型赝势 $w$。如果让这个赝势在芯外的行为如同价电子所看到的 Coulomb 函数 $-Ze^2/r$，我们甚至可以计算自由原子的光谱能级，并调整 $w$ 的参数去拟合观测值。这一步骤绕开了自洽原子势等许多理论计算，它就是图 62 中勾画的 Heine–Abarenkov 赝势和 Shaw 赝势的基础。在 $w^{\mathrm{HA}}$ 中，‘芯’的内部（半径可任意选取）被做成平坦的，但可以升高或降低，以便对每个角动量都给出正确的电子本征态；在 $w^{\mathrm{S}}$ 中，则为每个 $l$ 值选取一个半径 $R_l$，使得势在‘芯的边缘’处没有急剧的不连续。然而，困难在于要在 Bloch 态的能量 $\mathcal{E}$ 处选取这些参数，而这个能量未必落在光谱能级的集合之内。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_62.pdf}
+\caption*{图 62\quad 模型赝势：(a) Heine–Abarenkov 模型；(b) Shaw 模型。}
+\end{figure}
+
+\section{共振能带}
+
+在紧束缚法（§3.4）的早期应用中，人们注意到 $d$ 轨道如此紧缩在原子芯内部，以至于只通过与近邻的重叠产生很窄的带。在\emph{过渡元素}（transition elements）中，这些内层 $d$ 态并未全部填满，而且离 $s$ 或 $p$ ‘价’态非常近——后者本身组合成一条普通的导带。狭窄的‘d 带’的态密度足以容纳每原子至多 10 个电子，它位于‘s-p 带’之内，并在两者相交处与之\emph{杂化}（hybridize）（图 63）。这种情形当然非常重要，因为伴随着磁性现象。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_63.pdf}
+\caption*{图 63\quad (a) $d$ 带穿过 $s$ 带；(b) $s$–$d$ 杂化。}
+\end{figure}
+
+建立一种内插方案，或者说带可调参数的\emph{模型哈密顿量}（model Hamiltonian），并不困难：其中 $d$ 带用一个 L.C.A.O. 表达式（如 (3.31)）配上适当的赝势分量的矩阵来表示。杂化的程度则由进一步添加的、连接这两个子矩阵的任意矩阵元来确定。
+
+但是，一个像样的定量分析必须顾及 §3.4 中强调的那一点（见图 54）：在我们构成晶体的过程中，原子轨道本身会因势的重叠而被破坏。然而这种破坏并不总是彻底的；在原来 $d$ 轨道的能量附近，仍然可能观察到\emph{虚束缚态}（virtual bound states）。在晶格动力学理论（§2.12）中，我们提到过\emph{共振}（resonance）——一种强烈集中于杂质附近、但在整个晶体中都具有有限振幅的激发。
+
+类似地，电子波函数在共振能量处可以在 muffin-tin 势阱内具有很大的振幅，却并不严格地局域于其中。考察径向 Schrödinger 方程 (3.60) 可知，当 $l\neq0$ 时这种情况很容易发生：‘离心势’ $l(l+1)/r^2$ 提供了一道势垒，电子可以从它的虚态穿过这道势垒隧穿而出（图 64）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_64.pdf}
+\caption*{图 64\quad 虚态波函数穿透离心势垒的隧穿。}
+\end{figure}
+
+这类共振的存在——不仅来自 $d$ 态，有时甚至来自自由原子的 $p$ 态——是 §3.6 解析赝势形式体系的隐患之一。例如，我们是否应当把这样的态当作‘芯’的一部分来进行正交化，就不清楚。要理解这一局面，必须再一次转向一般散射理论——共振在那里是人们熟悉的现象。在共振能量 $\mathcal{E}_l$ 附近，第 $l$ 个分波的相移按如下公式经过 $\pi/2$：
+\begin{equation*}
+\tan\eta_l(\mathcal{E})\approx\frac{W_l}{\mathcal{E}-\mathcal{E}_l}.\tag{3.81}
+\end{equation*}
+把这个公式塞进比如 A.P.W. 或 KKR 程序里，我们只管摇动手柄，就能得到一个能带结构。其结果是在 $\mathcal{E}(\mathbf{k})$ 中产生以 $\mathcal{E}_l$ 为中心的复杂结构，正如紧束缚图像中那样（图 63）。但是，这条\emph{共振能带}（resonance band）在导带中的位置和宽度，如今由 $\mathcal{E}_l$ 的数值——相对于 muffin-tin 零点计量——以及共振的宽度 $W_l$ 决定，而这两者都无法从 L.C.A.O. 模型准确地推出来。
+
+现在若把 (3.81) 代入 KKR 赝势 (3.79)，我们会发现 $\Gamma_{\mathbf{gg}'}$ 在 $\mathcal{E}_l$ 附近出现奇点，把 N.F.E. 方程的收敛性完全破坏掉。这并不是该方法的人为假象。赝势矩阵元强烈的能量依赖性——哪怕在能量上离共振能级相当远——是许多固体的电子能带结构物理的一个本质特征，而在计算中它并不总是得到充分的考虑。
+
+\section{晶体对称性与自旋–轨道相互作用}
+
+在电子能带结构的计算中，晶体结构的对称性十分重要。要正经地讨论它需要群论——这个题目太大，我们在这里无法展开。基本的定理，笼统地说，就是\emph{布里渊区中的能量函数具有晶体的完整点群}。任何使晶体保持不变的操作——比如绕一根轴转动晶体——也同样把函数 $\mathcal{E}(\mathbf{k})$ 变换到它自身。
+
+这可以用来对布里渊区中各点对应的能级和波函数进行分类和化简。为看清楚这是如何发生的，考虑一个具有正方形区的正方格子。取某个像 $\mathbf{k}$ 那样的一般点。假定我们试图把波函数作 A.P.W. 或 O.P.W. 展开，形式为
+\begin{equation*}
+\psi_{\mathbf{k}}=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,\phi_{\mathbf{k}-\mathbf{g}}\tag{3.82}
+\end{equation*}
+正如 (3.43) 或 (3.63) 那样。我们或许会决定，求和中只需包括图 65($a$) 所示那一组倒格矢。但这样一来，所有矢量 $(\mathbf{k}-\mathbf{g})$ 的大小和方向各不相同，因此所有系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 也各不相同，彼此之间没有任何明显的关系。我们无法避免去求解一个复杂程度最高的行列式方程。
+
+但假定我们要找的是区对称轴上像 $\Delta$ 这样的某一点处的解。显然，(3.82) 中将会有许多系数相同。
+例如，$(\mathbf{g}_5$ 与 $\mathbf{g}_8)$、$(\mathbf{g}_2$ 与 $\mathbf{g}_4)$、$(\mathbf{g}_6$ 与 $\mathbf{g}_7)$ 这些对相对于 $\Delta$ 是对称放置的，因此在展开式中具有相同的系数。于是不必用 8 个各自独立的系数，我们可以假定只有 5 个。这样，行列式的次数较低，求解起来也就更容易。
+
+在对角线上像 $\Sigma$ 这样的点处，情形也一样。在 $X$ 和 $M$ 处还会有进一步的化简，因为这两个点位于倒格矢的中点上，从而可以利用系数之间另外一些等价关系。实际上，区中的点对称性越高，待解方程的次数就越低。\emph{在一定计算量之下，我们在高对称点上能得到比区中任意点处更精确的 $\mathcal{E}(\mathbf{k})$ 值。}
+
+群论告诉我们的还不止这些。它会为我们生成那些具有相同系数的函数——或者，在更复杂的
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_65.pdf}
+\caption*{图 65\quad ($a$) 倒格子空间中的一般点 $\mathbf{k}$；($b$) 正方区中的对称点和对称线。}
+\end{figure}
+情形下，是乘上像 $1/\sqrt{3}$ 这样一个数后的相同系数。它还告诉我们，在哪些点上可以预期能级之间出现简并。例如，在点 $M$ 处，设有四个 O.P.W. 或 A.P.W. 在能量上简并（对应于图 65 中的 $\mathbf{k}$、$(\mathbf{k}-\mathbf{g}_5)$、$(\mathbf{k}-\mathbf{g}_1)$ 和 $(\mathbf{k}-\mathbf{g}_2)$）。它们会被与晶格势相联系的微扰所劈裂——但可以证明，一个二重简并总会保留下来。当我们画等能面时，这一信息极有帮助。
+
+有一类问题中群论至关重要。在重原子中我们知道存在很强的\emph{自旋–轨道相互作用}（spin–orbit interaction）——一个形如 $\lambda\mathbf{L}\cdot\mathbf{S}$ 的算符，其中 $\mathbf{S}$ 是电子的自旋算符，$\mathbf{L}$ 是轨道角动量算符。在自由原子中，它的作用是消除某些具有同一空间波函数、但电子自旋相反的状态之间的简并。例如，原子的 $P$ 态分裂成 $P_{\frac{3}{2}}$ 和 $P_{\frac{1}{2}}$ 两个态，分别对应于总角动量 $j=\frac{3}{2}$ 和 $j=\frac{1}{2}$。
+
+在构造能带时我们所作的假定是：自旋无关紧要；我们只用一个空间波函数，并且对每个 $\psi_{\mathbf{k}}$ 假定可以把两个自旋相反的电子放进具有这个波函数的两个态里。自旋–轨道相互作用可能解除这些态之间的简并。然而要注意，\emph{时间反演对称性}（time reversal symmetry）这条基本量子原理，总会在任何 Bloch 态 $\psi_{\mathbf{k}}(\mathbf{r})$ 与其复共轭 $\psi_{\mathbf{k}}^*(\mathbf{r})$ 之间保留 \emph{Kramers 简并}（Kramers degeneracy）——后者描写的是电子的波矢和自旋两者都反转了的态。对“无自旋”粒子，这意味着 $\mathcal{E}(\mathbf{k})=\mathcal{E}(-\mathbf{k})$，与晶格的点群对称性无关。
+
+在区中的一般点上，$\psi_{\mathbf{k}}$ 本身不简并；此时若晶格势具有反演中心，自旋–轨道相互作用并不把自旋相反的态分开。这是因为，在态 $\psi_{\mathbf{k}}(\mathbf{r})$ 中反转自旋，等价于考察 $\psi_{\mathbf{k}}(-\mathbf{r})$，而后者具有相同的能量。
+
+但是区中有一些特殊点，自旋–轨道效应在这些点上可能相当重要。最有趣的情形是区的中心，一个具有立方对称性的点。在紧束缚模型中，我们可以用 $p$ 轨道来构造一条‘p 带’。但原子有三个简并的 $p$ 态，所以我们有三条这样的带——比如说，对应于原子的 $p_x$、$p_y$ 和 $p_z$ 轨道。这三条带在 $\mathbf{k}=0$ 处简并；在该点上它们恰好被立方对称性互相变换。每条带的每个态又是二重自旋简并的，所以总共有六重简并。
+
+当我们引入自旋–轨道相互作用时，发现这个六重简并被劈裂成一个四重能级和一个二重能级。实际上，现在我们应当用原子态 $p_{\frac{3}{2}}$——它是四重简并的——和 $p_{\frac{1}{2}}$——它是二重简并的——来构造我们的能带。有趣的是看看当我们沿某个任意方向离开 $\mathbf{k}=0$ 时会发生什么。如果
+存在反演对称性，那么每条能级仍然是二重简并的，如图 66($b$) 所示。我们可以说，$j=\frac{3}{2}$ 的带再次分裂成 $m_j=\pm\frac{3}{2}$ 的带（比如说，沿传播方向计量）和 $m_j=\pm\frac{1}{2}$ 的带。如果没有反演对称性，它们还会像图 66($c$) 那样进一步分裂；通过自旋–轨道相互作用，电子自旋变得对晶体势沿传播方向所含的“螺旋”成分敏感了。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_66.pdf}
+\caption*{图 66\quad 自旋–轨道相互作用对区中心附近 $p$ 型能级的影响：($a$) 6 个能级在 $\mathbf{k}=0$ 处简并；($b$) 在具有反演对称性的晶格中，自旋–轨道相互作用使所有态保持二重简并；($c$) 没有反演对称性时，简并被完全解除。}
+\end{figure}
+
+这些效应在诸如 Ge 或 InSb 这类半导体的价带顶部十分重要。在前一种情形，图 66($b$) 成立；在后一种情形，不存在反演中心，区中心处的简并当我们沿任意方向离开时就解除。劈裂的实际符号和大小，可以从自由原子能级中相应效应的符号和大小推测出来。
+
+要作定量计算，方便的办法是把自旋–轨道相互作用 $\lambda\mathbf{L}\cdot\mathbf{S}$ 当作微扰来处理。在区中心附近，它主要作用在 Bloch 函数的周期部分 $u_{\mathbf{k}}$ 上，后者满足方程 (3.38)。事实上，我们可以利用这个方程与普通 Schrödinger 方程的相似性，把附加项
+\begin{equation*}
+-\frac{i\hbar^2}{m}\,\mathbf{k}\cdot\nabla=\frac{\hbar}{m}\,\mathbf{k}\cdot\mathbf{p}\tag{3.83}
+\end{equation*}
+当作状态 $u_{\mathbf{0}}$ 上的一个附加微扰（对小的 $\mathbf{k}$ 值），从而不必完整算出整个能带结构，就能细致地计算自旋–轨道劈裂。这就是所谓的 \emph{$\mathbf{k}\cdot\mathbf{p}$ 方法}（$\mathbf{k}\cdot\mathbf{p}$ method）。

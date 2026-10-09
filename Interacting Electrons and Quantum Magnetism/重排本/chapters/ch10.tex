@@ -1,0 +1,424 @@
+% 第10章 自旋路径积分
+\chapter{自旋路径积分}
+
+定义何谓“理解”一个特定体系总是困难的。即使拥有基态波函数与能量的精确解析形式，也未必能解释其物理性质。例如 $S = \frac{1}{2}$ Heisenberg 模型的 Bethe 拟设波函数，其关联仍需数值计算。理解一个模型有时意味着对其性质有一个简单的近似。一个近似——尽管不精确，甚至带有数学上的含糊——可能比精确解更有启发性。特别是，近似可以统一一族模型，并处理参数空间中精确可解点附近的一个开邻域。
+
+路径积分提供形式表达式，由此引出有用的近似方案。通常它们无法以封闭解析形式求值\footnote{用 A. M. Polyakov 的话说：“路径积分没有现成的表可查。”}。尽管有这些缺点，它们仍是有价值的理论物理工具。凭借紧凑的表达式与记号，路径积分常用于生成渐近展开和表述平均场理论。
+
+自旋相干态路径积分用单位矢量的时间历程描述量子自旋。这一图像高度直观，因为它把经典描述与量子现象联系起来。因此它是半经典近似的自然出发点，后者将在第 11、12、19 章描述。
+
+\section{路径积分的构造}
+
+自旋相干态可用于构造 Heisenberg 模型的路径积分表示。虚时表述中的生成泛函为\footnote{见附录 B 的 (B.17)。}
+
+\begin{align*}
+Z [ j ] & = \mathrm{Tr} \, T _ {\tau} \left( \exp \left[ - \int_ {0} ^ {\beta} d \tau \, \mathcal {H} ( \tau ) \right] \right)\\
+& = \lim _ {N _ {\epsilon} \to \infty} \mathrm{Tr} \, T _ {\tau} \prod_ {n = 0} ^ {N _ {\epsilon} - 1} \left[ 1 - \epsilon \, \mathcal {H} ( \tau _ {n} ) \right] ,
+\tag{10.1}
+\end{align*}
+
+其中 $\beta$ 是逆温度，$T_{\tau}$ 是时序算符，$\epsilon = \beta/N_{\epsilon}$ 是时间步长，$\tau_{n} = n\epsilon$ 是离散虚时间。生成哈密顿量含源流：
+
+\begin{equation*}
+\mathcal {H} ( \tau ) = \mathcal {H} - \sum_ {i \alpha} j _ {i} ^ {\alpha} ( \tau ) S _ {i} ^ {\alpha} \, , \quad \tau \in [ 0, \beta ) .
+\tag{10.2}
+\end{equation*}
+
+构造路径积分的基本要素是 (7.25) 给出的单位分解。利用 (7.27)，在 (10.1) 的各因子之间插入 $N_{\epsilon}-1$ 次单位分解，得到多维积分
+
+\begin{equation*}
+Z [ j ] = \lim _ {N _ {\epsilon} \rightarrow \infty} \int \left( \prod_{\tau, i} d \hat {\Omega} _ {i \tau} \right) \prod_{\tau = \epsilon} ^ {\beta} \langle \hat {\Omega} ( \tau ) | \hat {\Omega} ( \tau - \epsilon ) \rangle \left[ 1 - \epsilon H ( \tau ) \right]
+\tag{10.3}
+\end{equation*}
+
+其中 $\hat{\Omega} = (\hat{\Omega}_1, \ldots, \hat{\Omega}_{\mathcal{N}})$，“经典哈密顿量”定义为
+
+\begin{equation*}
+H ( \tau ) \equiv \frac {\langle \hat {\Omega} ( \tau ) | \mathcal {H} ( \tau ) | \hat {\Omega} ( \tau - \epsilon ) \rangle}{\langle \hat {\Omega} ( \tau ) | \hat {\Omega} ( \tau - \epsilon ) \rangle}.
+\tag{10.4}
+\end{equation*}
+
+定义
+
+\begin{equation*}
+\hat {\Omega} ( \beta ) = \hat {\Omega} ( 0 )
+\tag{10.5}
+\end{equation*}
+
+并注意测度对这两个时刻只算一次积分。
+
+先验地，$\hat{\Omega}(\tau)$ 是 $\tau$ 的任意离散函数。下面我们将做一件明目张胆的非法操作：在 $N_{\epsilon} \to \infty$ 极限下把它当作连续可微函数，用导数代替差分：
+
+\begin{equation*}
+\frac {\hat {\Omega} _ {i} ( \tau + \epsilon ) - \hat {\Omega} _ {i} ( \tau )}{\epsilon} \Rightarrow \dot {\hat {\Omega}} _ {i} ( \tau ) + \mathcal {O} ( \epsilon ).
+\tag{10.6}
+\end{equation*}
+
+(10.6) 的隐含假设是 $Z$ 由光滑路径主导，即 $|\dot{\Omega}| < \infty$。事实证明这一假设并不成立\footnote{见 Klauder，及 Schulman 书中第 31 章。}。忽略不连续路径，我们丢失了量子哈密顿量中算符排序的信息。尽管如此，我们仍将按可微函数的规则去操作“时间导数”。必须牢记我们的数学基础并不牢固；因此，凡是可能，都应当用不存在排序含糊的算符方法检验路径积分的结果。
+
+利用 (7.19)，把相邻时间步的相干态交叠写出并展开到 $\epsilon$ 的领头阶：
+
+\begin{equation*}
+\langle \hat {\Omega} ( \tau + \epsilon ) | \hat {\Omega} ( \tau ) \rangle = \exp \left( - i S \epsilon \sum_ {i} \left( \dot {\phi} _ {i} \cos [ \theta_ {i} ( \tau ) ] + \dot {\chi} _ {i} \right) \right) ,
+\tag{10.7}
+\end{equation*}
+
+其中 $\chi(\tau)$ 是任意规范约定。经典哈密顿量 (10.4) 乘以 $\epsilon$，可在等时计算：
+
+\begin{equation*}
+H [ \hat {\Omega} ( \tau ) ] \rightarrow \langle \hat {\Omega} ( \tau ) | \mathcal {H} ( \tau ) | \hat {\Omega} ( \tau ) \rangle .
+\tag{10.8}
+\end{equation*}
+
+极限 $N_{\epsilon} \rightarrow \infty$ 把 (10.3) 变成路径积分。路径积分测度定义为
+
+\begin{equation*}
+\mathcal {D} \hat {\Omega} ( \tau ) = \lim _ {N _ {\epsilon} \rightarrow \infty} \prod_ {i, n} d \hat {\Omega} _ {i} ( \tau _ {n} ).
+\tag{10.9}
+\end{equation*}
+
+对哈密顿量取指数、丢弃 $\epsilon$ 的高阶项，取 (10.3) 的形式连续极限，写为
+
+\begin{align*}
+Z [ j ] & = \oint \mathcal {D} \hat {\Omega} ( \tau ) \, \exp \left( - \tilde {\mathcal {S}} [ \hat {\Omega} ] \right) ,\\
+\tilde {\mathcal {S}} [ \hat {\Omega} ] & = - i S \sum_ {i} \omega [ \hat {\Omega} _ {i} ] + \int_ {0} ^ {\beta} d \tau \, H [ \hat {\Omega} ( \tau ) ] .
+\tag{10.10}
+\end{align*}
+
+记号 $\oint$ 反映周期边条件 (10.5)。对规范约定 $\chi_{i}(\tau)=0$，泛函 $\omega$ 依赖单个自旋的历程如下：
+
+\begin{align*}
+\omega [ \hat {\Omega} ] & = - \int_ {0} ^ {\beta} d \tau \, \dot {\phi} \cos \theta\\
+& = - \int_ {\phi_ {0}} ^ {\phi_ {0}} d \phi \, \cos ( \theta_ {\phi} ) .
+\tag{10.11}
+\end{align*}
+
+我们看到 $\omega$ 是几何的：它只依赖 $\hat{\Omega}_{i}(\tau)$ 在球面上的轨迹，而不依赖其显式时间依赖。泛函 $S\omega$ 也称为自旋历程的 Berry 相位，因为它描述与 $\hat{\Omega}(\tau)$ 平行的外磁场\footnote{见习题及 Shapere 与 Wilczek。}绝热转动时自旋所获得的相位。
+
+现在将看到，Berry 相位度量路径 $\hat{\Omega}(\tau)$ 在单位球上围出的面积。路径增量 $d\hat{\Omega}$（如图~\ref{fig:10.1} 所示）通过经线 $\phi$ 与 $\phi + d\phi$ 连到北极。这个面积增量是球面上的一个三角形，其面积为
+
+\begin{equation*}
+d \omega ' = ( 1 - \cos \theta ) \, d \phi .
+\tag{10.12}
+\end{equation*}
+
+于是由 $\theta (\tau), \phi (\tau)$ 参数化的闭合轨道围出的面积为
+
+\begin{equation*}
+\omega ' = \int_ {0} ^ {\beta} d \tau \, \dot {\phi} \left[ 1 - \cos \theta ( \tau ) \right].
+\tag{10.13}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{fig10_1.jpg}
+\caption{作为单位球上轨道的自旋历程。}
+\label{fig:10.1}
+\end{figure}
+
+因此 $\omega'$ 是逆时针轨道 $\{\hat{\Omega} (\tau)\}_{0}^{\beta}$ 左侧围出的面积。恒等式
+
+\begin{equation*}
+\omega ' = \omega
+\tag{10.14}
+\end{equation*}
+
+在 $\phi(\beta)$ 不越过“日界线”边界 $\pm\pi$ 时成立——这正是约定 (7.17) 的要求\footnote{$\omega$ 与 $\omega'$ 差别的澄清见习题 2。}。
+
+把 Berry 相位 $\omega$ 写成规范不变的形式是有用的，即不指定球面的任何参数化（如 $\theta,\phi$）。引入矢量势 $\mathbf{A}(\hat{\Omega})$，满足
+
+\begin{equation*}
+\omega = \int_ {0} ^ {\beta} d \tau \, \mathbf {A} ( \hat {\Omega} ) \dot {\hat {\Omega}}.
+\tag{10.15}
+\end{equation*}
+
+$\mathbf{A}(\hat{\Omega})$ 是单位磁单极矢量势，它沿轨道 $\{\hat{\Omega}(\tau)\}$ 的线积分等于该轨道张开的立体角 $\omega$。由 Stokes 定理，$\mathbf{A}$ 满足
+
+\begin{equation*}
+\nabla \times \mathbf {A} \cdot \hat {\Omega} = \epsilon^ {\alpha \beta \gamma} \frac {\partial A ^ {\beta}}{\partial \hat {\Omega} ^ {\alpha}} \hat {\Omega} ^ {\gamma} = 1 ,
+\tag{10.16}
+\end{equation*}
+
+其中 $\epsilon^{\alpha\beta\gamma}$ 是全反对称张量，$\alpha,\beta,\gamma\in\{x,y,z\}$，重复指标求和。$\mathbf{A}$ 的两个标准选择是
+
+\begin{align*}
+\mathbf {A} ^ {a} & = - \frac {\cos \theta}{\sin \theta} \, \hat {\phi} ,\\
+\mathbf {A} ^ {b} & = \frac {1 - \cos \theta}{\sin \theta} \, \hat {\phi}
+\tag{10.17}
+\end{align*}
+
+\begin{equation*}
+= \frac {\hat {z} \times \hat {\Omega}}{\hat {z} \cdot \hat {\Omega} + 1}.
+\tag{10.18}
+\end{equation*}
+
+规范 $A^{b}$ 与 $A^{a}$ 的差别在于奇点的位置。$A^{a}$ 在北、南两极奇异；$\phi$ 的定义域是 $[-\pi, \pi)$，因而不允许越过 $\phi = \pm\pi$ 日界线的路径。反之，$A^{b}$ 只在南极 $\hat{\Omega} = -\hat{z}$ 有一个奇点——这正是携带磁单极通量的“Dirac 弦”进入球面的地方。对绕南极的无穷小轨道，$S\omega$ 的值为 $4\pi S$。由于 $S$ 是半整数，$\exp[-iS\omega]$ 是轨道的连续泛函，即使轨道越过规范场在南极的奇点。
+
+\subsection{Green 函数}
+
+Green 函数 $G(t)$ 描述零温的实时演化。它由演化算符在两个相干态之间的矩阵元给出：
+
+\begin{equation*}
+G ( \hat {\Omega} _ {0}, \hat {\Omega} _ {t}; t ) = \left\langle \hat {\Omega} _ {t} \left| T _ {t '} \left( \exp \left[ - i \int_ {0} ^ {t} d t ' \, \mathcal {H} ( t ' ) \right] \right) \right| \hat {\Omega} _ {0} \right\rangle ,
+\tag{10.19}
+\end{equation*}
+
+其中 $T_{t'}$ 是实时排序算符（见 B.3）。$G(t)$ 可以用与 $Z$ 的路径积分极为类似的方式表示。在 (10.1)--(10.10) 的推导中，把虚时变量 $\tau$ 换成实时 $t'$：
+
+\begin{equation*}
+\begin{array}{ccc}
+\tau & \to & i t '\\
+t ' & \in & [ 0, t ]
+\end{array}
+\tag{10.20}
+\end{equation*}
+
+并把区间 $[0,t]$ 离散成 $N_{\epsilon}$ 个宽 $\epsilon$ 的步长。在 $(1-i\epsilon\mathcal{H})$ 各因子之间插入单位分解并取连续极限 $N_{\epsilon}\to\infty$（这将引入前述时间导数带来的数学含糊），得到形式表达式
+
+\begin{equation*}
+G ( t ) = \int_{\hat {\Omega} _ {0}} ^ {\hat {\Omega} _ {t}} \mathcal {D} \hat {\Omega} ( t ' ) \, \exp \left[ i \mathcal {S} [ \hat {\Omega} ] \right] ,
+\tag{10.21}
+\end{equation*}
+
+其中 $\mathcal{S}$ 是实时作用量
+
+\begin{equation*}
+\mathcal {S} [ \hat {\Omega} ] = \int_ {0} ^ {t} d t ' \left( S \sum_ {i} \mathbf {A} \cdot \dot {\hat {\Omega}} - H [ \hat {\Omega} ( t ' ), t ' ] \right).
+\tag{10.22}
+\end{equation*}
+
+\section{大 $S$ 展开}
+
+自旋相干态路径积分 (10.10) 与 (10.21) 是导出半经典近似的方便出发点。坐标是单位矢量，即经典自旋；量子效应通过其（实或虚）时间依赖进入。我们可以把 $H[\hat{\Omega}]$ 的参数标度成与 $S$ 无关，即使用相应的经典哈密顿量 $H^{cl}[\hat{\Omega}]$\footnote{例如见 (6.35) 与 (6.36)。}。于是令 $S \to \infty$，一切 $\dot{\hat{\Omega}} \neq 0$ 的含时路径都被 Berry 相位因子的快速振荡压低，经典配分函数得以恢复：
+
+\begin{equation*}
+\lim _ {S \to \infty} Z [ j ] \sim Z ' \int \mathcal {D} \hat {\Omega} \, \exp \left[ - \beta H ^ {cl} [ \hat {\Omega} ] \right] ,
+\tag{10.23}
+\end{equation*}
+
+其中 $Z'$ 包含归一化因子与高阶量子修正。右端积分就是经典哈密顿量 $H$ 的生成泛函。
+
+也可以用 $S$ 作为控制参数，对 Green 函数作系统的渐近展开。这一半经典展开把量子修正引入经典理论。第一步是重标时间变量
+
+\begin{align*}
+\tau & \rightarrow S ^ {- 1} \tau = \bar {\tau} ,\\
+\beta & \rightarrow S ^ {- 1} \beta = \bar {\beta} .
+\tag{10.24}
+\end{align*}
+
+经典逆温度 $\bar{\beta}$ 取为与 $S$ 无关。这使我们可以把 $S$ 从作用量中标度出来：
+
+\begin{align*}
+Z ( \bar {\beta} ) & = \oint \mathcal {D} \hat {\Omega} ( \bar {\tau} ) \, \exp \left( - S \mathcal {S} ^ {cl} [ \hat {\Omega} ( \bar {\tau} ), \bar {\beta} ] \right) ,\\
+\mathcal {S} ^ {cl} & = \int_ {0} ^ {\bar {\beta}} d \bar {\tau} \left( i \sum_ {i} \mathbf {A} \cdot \dot {\bar {\Omega}} - H ^ {cl} [ \hat {\Omega} ( \bar {\tau} ) ] \right) .
+\tag{10.25}
+\end{align*}
+
+现在可以以 $S$ 为大参数，对 $Z$ 应用最陡下降法（见附录 E），得到对鞍点 $\hat{\Omega}^{cl,\alpha}$ 的求和（见 (E.14)）：
+
+\begin{equation*}
+Z \sim \sum_ {\alpha} \exp \left( - S \mathcal {S} ^ {cl} [ \hat {\Omega} ^ {cl, \alpha}, \bar {\beta} ] \right) Z _ {\alpha} ' ,
+\tag{10.26}
+\end{equation*}
+
+鞍点方程为
+
+\begin{equation*}
+\left. \frac {\delta \mathcal {S} ^ {cl}}{\delta \hat {\Omega}} \right| _ {\hat {\Omega} = \hat {\Omega} ^ {cl, \alpha}} = 0.
+\tag{10.27}
+\end{equation*}
+
+前置因子 $Z_{\alpha}'$ 含 $S^{-1}$ 幂次的次主导修正，可由展开涨落积分求得：
+
+\begin{equation*}
+Z _ {\alpha} ' = \oint \mathcal {D} \delta \hat {\Omega} \, \exp \left[ - S \left( \mathcal {S} ^ {cl} [ \hat {\Omega} ] - \mathcal {S} ^ {cl} [ \hat {\Omega} ^ {cl, \alpha} ] \right) \right] ,
+\tag{10.28}
+\end{equation*}
+
+其中 $\delta \hat{\Omega} = \hat{\Omega} - \hat{\Omega}^{cl,\alpha}$。
+
+\subsection{半经典动力学}
+
+Green 函数的大 $S$ 展开要求标度
+
+\begin{equation*}
+t \rightarrow S t = \bar {t} ,
+\tag{10.29}
+\end{equation*}
+
+这给出
+
+\begin{align*}
+G ( \bar {t} ) & = \int_{\hat {\Omega} _ {0}} ^ {\hat {\Omega} _ {\bar {t}}} \mathcal {D} \hat {\Omega} ( \bar {t} ' ) \, \exp \left( i S \mathcal {S} ^ {cl} [ \hat {\Omega} ] \right) ,\\
+\mathcal {S} ^ {cl} & = \int_ {0} ^ {\bar {t}} d \bar {t} ' \left( \sum_ {i} \mathbf {A} \cdot \dot {\hat {\Omega}} - H ^ {cl} [ \hat {\Omega} ( \bar {t} ' ) ] \right) .
+\tag{10.30}
+\end{align*}
+
+$G(t)$ 由使作用量取极值的含时路径 $\hat{\Omega}_{cl}(t')$ 主导。以下我们把 $\bar{t}$ 重记为 $t$。最陡下降法给出鞍点之和（见 (E.14)）：
+
+\begin{equation*}
+G \sim \sum_ {\alpha} \exp \left( i S \mathcal {S} [ \hat {\Omega} ^ {cl, \alpha}, \bar {t} ] \right) G _ {\alpha} ' ,
+\tag{10.31}
+\end{equation*}
+
+$\hat{\Omega}^{cl}(t')$ 由鞍点方程
+
+\begin{equation*}
+\left. \frac {\delta}{\delta \hat {\Omega}} \mathcal {S} [ \hat {\Omega} ] \right| _ {\hat {\Omega} ^ {cl, \alpha}} = 0 ,
+\tag{10.32}
+\end{equation*}
+
+以及边条件
+
+\begin{align*}
+\hat {\Omega} ^ {cl, \alpha} ( 0 ) & = \hat {\Omega} _ {0} ,\\
+\hat {\Omega} ^ {cl, \alpha} ( t ) & = \hat {\Omega} _ {t}
+\tag{10.33}
+\end{align*}
+
+确定。
+
+作用量中 Berry 相位部分的变分为
+
+\begin{align*}
+\delta \omega [ \hat {\Omega} ] & = \int_ {0} ^ {t} d t ' \; \delta \left( \mathbf {A} \cdot \dot {\hat {\Omega}} \right)\\
+& = \int_ {0} ^ {t} d t ' \left[ \frac {\partial A ^ {\alpha}}{\partial \hat {\Omega} ^ {\beta}} \delta \hat {\Omega} ^ {\beta} \dot {\hat {\Omega}} ^ {\alpha} + A ^ {\alpha} \frac {d}{d t} \delta \hat {\Omega} ^ {\alpha} \right]\\
+& \quad + \left[ \frac {\partial A ^ {\alpha}}{\partial \hat {\Omega} ^ {\beta}} \dot {\hat {\Omega}} ^ {\beta} \delta \hat {\Omega} ^ {\alpha} - \frac {\partial A ^ {\alpha}}{\partial \hat {\Omega} ^ {\beta}} \dot {\hat {\Omega}} ^ {\beta} \delta \hat {\Omega} ^ {\alpha} \right]\\
+& = \int_ {0} ^ {t} d t ' \, \frac {\partial A ^ {\alpha}}{\partial \hat {\Omega} ^ {\beta}} \epsilon^ {\alpha \beta \gamma} ( \dot {\hat {\Omega}} \times \delta \hat {\Omega} ) _ {\gamma} + \int_ {0} ^ {t} d t ' \, \frac {d}{d t '} \left( \mathbf {A} \cdot \delta \hat {\Omega} \right)\\
+& = \int_ {0} ^ {t} d t ' \; \hat {\Omega} \cdot ( \dot {\hat {\Omega}} \times \delta \hat {\Omega} ) .
+\tag{10.34}
+\end{align*}
+
+全导数的积分为零，因为端点被 (10.33) 固定。(10.34) 中还用了 (10.16) 与 $\hat{\Omega}$ 长度不变：
+
+\begin{align*}
+\delta \hat {\Omega} \cdot \hat {\Omega} & = \dot {\hat {\Omega}} \cdot \hat {\Omega} = 0 ,\\
+\dot {\hat {\Omega}} \times \delta \hat {\Omega} & \parallel \hat {\Omega} ,
+\tag{10.35}
+\end{align*}
+
+把 (10.34) 用于 (10.32)，得到经典 Euler--Lagrange 运动方程
+
+\begin{align*}
+\hat {\Omega} ^ {cl} \times \dot {\hat {\Omega}} ^ {cl} & = \frac {\partial H [ \hat {\Omega} ^ {cl} ]}{\partial \hat {\Omega}}\\
+\Rightarrow \quad \dot {\hat {\Omega}} _ {i} ^ {cl} ( t ' ) & = \left. \hat {\Omega} ^ {cl} ( t ' ) \times \frac {\partial H}{\partial \hat {\Omega} _ {i} ( t ' )} \right| _ {\hat {\Omega} ^ {cl}} .
+\tag{10.36}
+\end{align*}
+
+方程 (10.36) 描述“快速陀螺”极限下的经典转子系统，即转子内部转动能远大于转子间典型相互作用能的情形。第二行右端是作用在转子 $\hat{\Omega}_{i}$ 上的力矩，它改变方向但不改变大小\footnote{转子的经典力学见 Goldstein 的书。}。
+
+利用 (10.36) 可以验证哈密顿量在经典路径上是运动常数：
+
+\begin{align*}
+\frac {d}{d t} H [ \hat {\Omega} ^ {cl} ( t ' ) ] & = \sum_ {i} \frac {\partial H}{\partial \hat {\Omega} _ {i} ( t ' )} \cdot \dot {\hat {\Omega}} _ {i} ^ {cl} ( t ' )\\
+& = \sum_ {i} \frac {\partial H}{\partial \hat {\Omega} _ {i} ( t ' )} \cdot \left[ \hat {\Omega} _ {i} ^ {cl} ( t ' ) \times \frac {\partial H}{\partial \hat {\Omega} _ {i} ( t ' )} \right]\\
+& = 0 ,
+\tag{10.37}
+\end{align*}
+
+这保证能量沿经典轨迹守恒：$H[\hat{\Omega}^{cl}(t)] = H[\hat{\Omega}_{0}]$。
+
+至此我们遇到一个问题：运动方程 (10.36) 对时间是一阶的，但解必须同时满足 $t' = 0$ 与 $t' = t$ 的两个边条件 (10.33)。对几乎所有边条件（例如 $H[\hat{\Omega}_{t}] \neq H[\hat{\Omega}_{0}]$ 时）这是不可能的。Klauder 建议了一种克服办法：在经典运动方程中添入阶为 $\epsilon$ 的二阶瞬态项。这样就可以在固定边条件下解二阶方程、计算经典作用量，最后取 $\epsilon \to 0$ 极限。
+
+\subsection{半经典能谱}
+
+依赖能量的 Green 函数定义为
+
+\begin{equation*}
+G ( \hat {\Omega} _ {0}, \hat {\Omega} _ {t}; E ) = i \int_ {0} ^ {\infty} d t \, G ( \hat {\Omega} _ {0}, \hat {\Omega} _ {t}; t ) \, e ^ {i ( E + i 0 ^ {+} ) t}.
+\tag{10.38}
+\end{equation*}
+
+谱函数 $\Gamma(E)$ 为
+
+\begin{align*}
+\Gamma ( E ) & = \int d \hat {\Omega} _ {0} \, G ( \hat {\Omega} _ {0}, \hat {\Omega} _ {0}; E )\\
+& = \sum_ {\alpha} \frac {1}{E - E _ {\alpha} + i 0 ^ {+}} .
+\tag{10.39}
+\end{align*}
+
+$\Gamma(E)$ 的极点就是哈密顿量的本征能量 $\{E_{\alpha}\}$。
+
+这里我们以非常粗略的方式，用经典周期轨道导出 $E_{\alpha}$ 的领头阶半经典近似。用路径积分导出半经典能谱的首创工作是 Gutzwiller；他的公式被广泛用于量子化具有混沌经典动力学的哈密顿量\footnote{这是一个称为“量子混沌”的研究领域，见文献注释。}。
+
+$\Gamma(E)$ 的路径积分表示多了 $d\hat{\Omega}_{0}$ 与 $dt$ 积分。$\Gamma(E)$ 的半经典近似由 Gutzwiller 导出。经典路径的持续时间为 $t^{E}$，由 $dt$ 积分的鞍点近似确定：
+
+\begin{equation*}
+\left. \frac {\partial \mathcal {S} [ \hat {\Omega} ^ {cl} ]}{\partial t} \right| _ {t = t ^ {E}} + E = 0.
+\tag{10.40}
+\end{equation*}
+
+由于 Berry 相位项 $\omega$ 是几何的，它不依赖 $t^{E}$。于是
+
+\begin{equation*}
+H ^ {cl} [ \hat {\Omega} ^ {cl} ] = E
+\tag{10.41}
+\end{equation*}
+
+且
+
+\begin{equation*}
+\mathcal {S} ^ {cl} ( t ^ {E} ) + E t ^ {E} = \sum_ {i} \omega [ \hat {\Omega} _ {i} ].
+\tag{10.42}
+\end{equation*}
+
+考虑能量为 $E$ 的周期轨道 $\hat{\Omega}_{i}^{E,\alpha}$，走过一次。如习题所示，对 $\hat{\Omega}_{0}$ 求迹的鞍点方程蕴含 $\dot{\hat{\Omega}}(0)=\dot{\hat{\Omega}}(t^{E})$。因此 $\Gamma$ 由对 $\hat{\Omega}_{i}^{E,\alpha}$ 的所有重复求和给出：
+
+\begin{align*}
+\Gamma & \sim \sum_ {\alpha} \sum_ {n} \exp \left( i n S \sum_ {i} \omega [ \hat {\Omega} _ {i} ^ {E, \alpha} ] \right)\\
+& = \sum_ {\alpha} \frac {\exp \left( i S \sum_ {i} \omega [ \hat {\Omega} _ {i} ^ {E, \alpha} ] \right)}{1 - \exp \left( i S \sum_ {i} \omega [ \hat {\Omega} _ {i} ^ {E, \alpha} ] \right)} .
+\tag{10.43}
+\end{align*}
+
+比较 (10.39) 与 (10.43)。半经典谱可由 (10.43) 的极点得到，$E_{\alpha}$ 由 Bohr--Sommerfeld 量子化条件确定：
+
+\begin{equation*}
+\sum_ {i} \omega [ \hat {\Omega} _ {i} ^ {E, \alpha} ] = 2 n \pi / S \; \Rightarrow \; E _ {\alpha} ^ {sc}.
+\tag{10.44}
+\end{equation*}
+
+我们引用如下定理：若两个函数有相同的极点与留数，则它们至多差一个常数。于是，对量级为一的能量 $E_{\alpha}^{sc}$（即 $n = \mathcal{O}(S)$），(10.44) 按下式逼近量子谱：
+
+\begin{equation*}
+E _ {\alpha} = E _ {\alpha} ^ {sc} + \mathcal {O} ( 1/S ).
+\tag{10.45}
+\end{equation*}
+
+\begin{exercises}
+
+\item 相干态定义 (7.15) 中取 Euler 规范约定 $\chi = 0$ 给出 Berry 相位的表达式 (10.11)。若取 $\chi = -\phi$，证明 $\omega$ 改由 (10.13) 给出。
+
+\item（Patrick Lee 的问题）：$\phi$ 在 (7.17) 中定义为半开区间 $[- \pi, \pi)$ 内。证明：若允许轨道 $\hat{\Omega}(t)$ 越过“日界线”$\phi = -\pi$，则 $\omega$ 的两个表达式 (10.11) 与 (10.13) 相差 $2\pi$；对半奇整数 $S$ 这对应于整体因子 $\exp(2\pi S) = -1$。为解决这一困难，如下计算 (10.11) 中环绕日界线的线积分：在经度 $\phi = -\pi + \epsilon$ 处从 $\theta$ 走到北极，环绕北极，再从日界线另一侧 $\phi = -\pi - \epsilon$ 处下到 $\theta$。
+
+\item 考虑缓变的磁相互作用
+
+\begin{equation*}
+H [ \hat {\Omega} ( \tau ), \tau ] = - h ( \tau ) \, \hat {\Omega} ( \tau ) \cdot \mathbf {S} ,
+\tag{10.46}
+\end{equation*}
+
+其中 $\tau \in [0, \beta]$ 参数化场的轨迹。设对所有 $\tau$ 有 $h(\tau) > 0$，把非简并的绝热基态定义为 $\Psi_0(\tau)$。证明由
+
+\begin{equation*}
+S \omega = \lim _ {dh / d\tau \rightarrow 0} \int_ {0} ^ {\beta} d \tau \, \operatorname{Im} \left\langle \frac {d}{d \tau} \Psi_ {0} ( \tau ) \middle| \Psi_ {0} ( \tau ) \right\rangle ,
+\tag{10.47}
+\end{equation*}
+
+定义的 Berry 相位等于表达式 (10.11)。
+
+\end{exercises}
+
+\begin{chapbib}
+\item 自旋相干态路径积分综述见
+  J. Klauder, Phys. Rev. D \textbf{19}, 2349 (1979)。
+\item 推荐的路径积分与半经典近似教科书：
+  L. S. Schulman, \textit{Techniques and Applications of Path Integration} (Wiley, 1981)。
+\item 关于 Berry 相位及其在物理各领域的大量出现，见
+  A. Shapere and F. Wilczek, \textit{Geometric Phases in Physics} (World Scientific, 1989)。
+\item 转子的经典运动方程求解见
+  H. Goldstein, \textit{Classical Mechanics} (Addison-Wesley, 1981), 第五章。
+\item 量子能级的半经典近似导出于
+  M. C. Gutzwiller, J. Math. Phys. \textbf{12}, 343 (1971)。
+\item 该主题（含量子混沌应用）的新近综述：
+  M. C. Gutzwiller, \textit{Chaos and Quantum Physics}, edited by M. J. Giannoni, A. Voros, and J. Zinn-Justin (North Holland, 1992)。
+\end{chapbib}

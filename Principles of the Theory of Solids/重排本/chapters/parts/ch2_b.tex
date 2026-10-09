@@ -1,0 +1,274 @@
+% ch2_b §2.3–2.4 (书页 37–46 / p051–p060)
+%--A-TAIL--
+%（以下为 §2.2 收尾的插图，印于书页 37 顶部，随图移归上一部分 A）
+%FIG{22}: {重复区图式（repeated zone scheme）下晶格频率函数的一支 $\nu_{\mathbf{q}}$}
+
+\section{晶格求和}
+
+在长波极限下，晶格简正模方程的解与宏观连续介质弹性波方程的解之间的等价性，为把原子力常数同固体中观测到的弹性常数联系起来提供了一个便利的方法。原则上这是一个比较简单的纲领，尽管在实践中它可能涉及繁冗的计算。
+
+有一个主要的困难之处。在一个常见的情形中，我们对原子间力了解得非常清楚：在离子晶体中，固体内聚能的主要部分来自异号电荷离子之间的 Coulomb 力。例如，对于位于诸点 $\mathbf{R}_l$ 处的一组离子，总静电能必定由
+\begin{equation*}
+\mathcal{E} = \frac{1}{2}\sum_{ij} \frac{\pm e^2}{|\mathbf{R}_i - \mathbf{R}_j|}
+\tag{2.26}
+\end{equation*}
+给出，正负号取决于 $\mathbf{R}_i$ 与 $\mathbf{R}_j$ 两处电荷的相对符号。
+
+此式可以改写成
+\begin{equation*}
+\mathcal{E} = -\frac{1}{2}N\alpha\,\frac{e^2}{a},
+\tag{2.27}
+\end{equation*}
+其中 $a$ 是一个晶格常数，系数 $\alpha$ 现在是无量纲的，依赖于正、负离子在晶格中的排布方式。这样，\emph{Madelung 常数} $\alpha$ 作为表征某一特定类型晶体结构的参量（而不管其尺度大小），就有了一定的意义。
+
+%FIG{23}: {（原书此图无图注）}
+
+例如，设我们的离子晶体由两套子晶格组成——正离子位于一组格点 $\boldsymbol{l}$ 上，负离子位于 $\boldsymbol{l}+\mathbf{x}$ 上。我们需要计算
+\begin{equation*}
+\alpha = a\sum_{\boldsymbol{l}}\left\{\frac{1}{|\boldsymbol{l}|} - \frac{1}{|\boldsymbol{l}+\mathbf{x}|}\right\}
+\tag{2.28}
+\end{equation*}
+（第一项中除去 $\boldsymbol{l}=0$）。麻烦在于，这个和式中的两项分开来各自发散；在距离 $\boldsymbol{l}$ 处，有待计入的点的数目是 $l^2$ 的量级。
+
+这个级数是条件收敛的，而且即使如此，收敛也很慢。计算这类和式的问题变得十分严峻。最好的直接方法是 Evjen 方法，即从原点向外逐个处理各层壳，使每一壳的总静电电荷恰好为零。
+
+这个困难并不只限于内聚能的计算。在计算诸如式 (2.12) 那样的表达式——原子之间力张量的 Fourier 变换——时也会出现。在那里，我们同样要对所有格点求和，而对 Coulomb 力来说收敛很慢。任何计算离子晶体晶格动力学的尝试都必然碰上这个困难。
+
+有一个非常漂亮的方法，称为 \emph{Ewald 方法}（Ewald's method），可以用它解决这个问题。也许这只是一个技巧，算不上固体理论的一条基本原理，但它实在精巧，值得稍作题外的讨论。它还演示了晶格上周期函数理论的某些内容。
+
+先考虑函数
+\begin{equation*}
+\frac{2}{\sqrt{\pi}}\sum_{\boldsymbol{l}} e^{-|\boldsymbol{l}-\mathbf{r}|^2\rho^2} = F(\mathbf{r},\rho).
+\tag{2.29}
+\end{equation*}
+这个函数在 $\mathbf{r}$ 中是周期的，具有晶格的周期性。因此，按式 (1.15)，可以把它展开成 Fourier 级数
+\begin{equation*}
+F(\mathbf{r},\rho) = \sum_{\boldsymbol{g}} F_{\boldsymbol{g}}\, e^{i\boldsymbol{g}\cdot\mathbf{r}},
+\tag{2.30}
+\end{equation*}
+其中
+\begin{equation*}
+F_{\boldsymbol{g}} = \frac{1}{V}\int \frac{2}{\sqrt{\pi}}\sum_{\boldsymbol{l}} e^{-|\boldsymbol{l}-\mathbf{r}|^2\rho^2}\, e^{-i\boldsymbol{g}\cdot\mathbf{r}}\, d\mathbf{r},
+\tag{2.31}
+\end{equation*}
+如式 (1.22)（积分遍及整个晶体）。
+
+现在我们在级数的每一项中引入一个因子 $\exp(i\boldsymbol{g}\cdot\boldsymbol{l})=1$。这样一来，
+\begin{align*}
+F_{\boldsymbol{g}} &= \frac{1}{V}\,\frac{2}{\sqrt{\pi}}\sum_{\boldsymbol{l}}\int e^{-|\boldsymbol{l}-\mathbf{r}|^2\rho^2}\, e^{-i\boldsymbol{g}\cdot(\mathbf{r}-\boldsymbol{l})}\, d\mathbf{r} \\
+&= \frac{N}{V}\,\frac{2}{\sqrt{\pi}}\int e^{-r^2\rho^2-i\boldsymbol{g}\cdot\mathbf{r}}\, d\mathbf{r},
+\tag{2.32}
+\end{align*}
+因为和式中的每一项现在都相同，只不过各自取晶格中不同的点 $\boldsymbol{l}$ 为原点来计算。由于积分收敛很快，而所有格点又彼此等价，这一步是显而易见的。
+
+式 (2.32) 中的积分很容易算出。它给出
+\begin{equation*}
+F_{\boldsymbol{g}} = \frac{2\pi}{v_c}\,\frac{1}{\rho^3}\, e^{-g^2/4\rho^2}.
+\tag{2.33}
+\end{equation*}
+把式 (2.33) 代入式 (2.29) 和 (2.30)，得到的关系式在纯数学中称为 \emph{$\theta$ 函数变换}（theta-function transformation）（在纯数学中通常只对简单立方格子证明这个关系；我们的结果更为普遍）
+\begin{equation*}
+\frac{2}{\sqrt{\pi}}\sum_{\boldsymbol{l}} e^{-|\boldsymbol{l}-\mathbf{r}|^2\rho^2} = \frac{2\pi}{v_c}\sum_{\boldsymbol{g}}\frac{1}{\rho^3}\, e^{-g^2/4\rho^2}\, e^{i\boldsymbol{g}\cdot\mathbf{r}}.
+\tag{2.34}
+\end{equation*}
+但是考虑恒等式
+\begin{equation*}
+\frac{2}{\sqrt{\pi}}\int_0^\infty e^{-z^2\rho^2}\, d\rho = \frac{1}{|z|}.
+\tag{2.35}
+\end{equation*}
+把它用到式 (2.34) 的左端，我们有
+\begin{equation*}
+\sum_{\boldsymbol{l}}\frac{1}{|\boldsymbol{l}-\mathbf{r}|} = \sum_{\boldsymbol{l}}\frac{2}{\sqrt{\pi}}\int_0^\infty e^{-|\boldsymbol{l}-\mathbf{r}|^2\rho^2}\, d\rho.
+\tag{2.36}
+\end{equation*}
+我们把对哑变量 $\rho$ 的积分在某个任意点 $G$ 处分成两部分，并在第一部分中用式 (2.34) 代换被积函数：
+\begin{align*}
+\sum_{\boldsymbol{l}}\frac{1}{|\boldsymbol{l}-\mathbf{r}|} &= \frac{2\pi}{v_c}\int_0^G \sum_{\boldsymbol{g}}\frac{1}{\rho^3}\, e^{-g^2/4\rho^2}\, e^{i\boldsymbol{g}\cdot\mathbf{r}}\, d\rho + \sum_{\boldsymbol{l}}\frac{2}{\sqrt{\pi}}\int_G^\infty e^{-|\boldsymbol{l}-\mathbf{r}|^2\rho^2}\, d\rho \\
+&= \frac{\pi}{v_c}\,\frac{1}{G^2}\sum_{\boldsymbol{g}} e^{i\boldsymbol{g}\cdot\mathbf{r}}\,\frac{e^{-g^2/4G^2}}{g^2/4G^2} + \sum_{\boldsymbol{l}}\frac{1}{|\boldsymbol{l}-\mathbf{r}|}\,\mathrm{erfc}\{G|\boldsymbol{l}-\mathbf{r}|\},
+\tag{2.37}
+\end{align*}
+其中第二项含有\emph{余误差函数}（complementary error function），当自变量取大值时它迅速趋于零。
+
+具体做法是选取一个 $G$ 值，使得对 $\boldsymbol{l}$ 的级数和对 $\boldsymbol{g}$ 的级数都迅速收敛；容易看出，这两个级数都比原来的级数 (2.36) 收敛得好得多。从“物理上”讲，这就好像我们分两步在 $\mathbf{r}$ 处建立起电荷。第一步，我们作一个球对称的 Gaussian 分布，其在半径 $z$ 处的电荷密度正比于 $\exp(-G^2z^2)$。点电荷晶格与这个电荷云在长距离上的静电相互作用，给出式 (2.37) 中的第一项。然后我们再作修正：在 $\mathbf{r}$ 处放一个点电荷，同时减去 Gaussian 分布。这个对象是电中性的，它与晶格的长程相互作用可以忽略，只贡献一个对邻近格点迅速收敛的和。
+
+不过事情还没有完，因为上面的和式全部取正号，而且当 $\mathbf{r}=0$ 时它包含了原点处的电荷对自身的作用。这会表现为第二个求和中 $\boldsymbol{l}=0$ 那一项在 $\mathbf{r}=0$ 附近的一个发散贡献。我们从左端的级数中减去 $1/r$，这等价于把右端对 $\boldsymbol{l}$ 求和中的第一项去掉，而在 $r\to 0$ 的极限下代之以下式
+\begin{align*}
+\frac{1}{r}\,\mathrm{erf}\,Gr - \frac{1}{r} &= \frac{2}{\sqrt{\pi}}\,\frac{1}{r}\left\{\int_{Gr}^{\infty} e^{-z^2}\, dz - \frac{\sqrt{\pi}}{2}\right\} \\
+&= -\frac{2}{\sqrt{\pi}}\,\frac{1}{r}\int_0^{Gr} e^{-z^2}\, dz \\
+&\to -2G/\sqrt{\pi}.
+\tag{2.38}
+\end{align*}
+于是
+\begin{equation*}
+\sum_{\boldsymbol{l}\neq 0}\frac{1}{|\boldsymbol{l}|} = \frac{\pi}{v_c}\,\frac{1}{G^2}\sum_{\boldsymbol{g}}\frac{e^{-g^2/4G^2}}{g^2/4G^2} + \sum_{\boldsymbol{l}\neq 0}\frac{1}{|\boldsymbol{l}|}\,\mathrm{erf}\{G|\boldsymbol{l}|\} - \frac{2G}{\sqrt{\pi}}.
+\tag{2.39}
+\end{equation*}
+式 (2.37) 和 (2.39) 都还含有一个奇异性；$\boldsymbol{g}=0$ 的项是发散的。但当我们像式 (2.28) 那样计算 Madelung 常数时，是从一个级数中减去另一个级数，两个奇异性便相互抵消。这说白了就是：每一套子晶格各自的平均势如果单独计算将是无穷大，但晶体的总电荷为零。
+
+从这里我们可以看到这一变换的某种物理意义。考虑一个更复杂的情形。设有一个格波，在晶格的每个格点上产生一个偶极子，
+\begin{equation*}
+\mathbf{p}(\boldsymbol{l}) = \mathbf{p}\, e^{i\mathbf{q}\cdot\boldsymbol{l}}.
+\tag{2.40}
+\end{equation*}
+由初等静电学可知，这组电荷分布在 $\mathbf{r}$ 处产生的 Coulomb 场，就是这些偶极子所产生的势的梯度：
+\begin{align*}
+\mathbf{E}(\mathbf{r}) &= \nabla\left\{\sum_{\boldsymbol{l}} \mathbf{p}(\boldsymbol{l})\cdot\nabla\left(\frac{1}{|\boldsymbol{l}-\mathbf{r}|}\right)\right\} \\
+&= \nabla(\mathbf{p}\cdot\nabla)\left\{\sum_{\boldsymbol{l}} \frac{e^{i\mathbf{q}\cdot\boldsymbol{l}}}{|\boldsymbol{l}-\mathbf{r}|}\right\}.
+\tag{2.41}
+\end{align*}
+对格点的这个和式是式 (2.36) 稍微复杂一点的版本。用我们上面在 $\mathbf{q}=0$ 的特殊情形中用过的同一套论证就可以把它求出来；结果是
+\begin{equation*}
+\sum_{\boldsymbol{l}} \frac{e^{i\mathbf{q}\cdot\boldsymbol{l}}}{|\boldsymbol{l}-\mathbf{r}|} = \frac{\pi}{v_c}\,\frac{1}{G^2}\sum_{\boldsymbol{g}} \frac{e^{i(\mathbf{q}+\boldsymbol{g})\cdot\mathbf{r}}\, e^{-|\mathbf{q}+\boldsymbol{g}|^2/4G^2}}{|\mathbf{q}+\boldsymbol{g}|^2/4G^2} + \sum_{\boldsymbol{l}} \frac{e^{i\mathbf{q}\cdot\boldsymbol{l}}}{|\boldsymbol{l}-\mathbf{r}|}\,\mathrm{erf}\{G|\boldsymbol{l}-\mathbf{r}|\},
+\tag{2.42}
+\end{equation*}
+它可以逐项微商，正是式 (2.41) 所需要的。事实上，当离子之间存在 Coulomb 力时，我们在这里得到的就是计算力张量系数（如式 (2.12)）所需的那类公式。
+
+但是考虑第一个求和中 $\boldsymbol{g}=0$ 那一项对电场的贡献：
+\begin{equation*}
+\mathbf{E}_0(\mathbf{r}) = \frac{-4\pi}{v_c}\, e^{-q^2/4G^2}\,\frac{(\mathbf{p}\cdot\mathbf{q})}{q^2}\,\mathbf{q}.
+\tag{2.43}
+\end{equation*}
+除了因子 $\exp(-q^2/4G^2)$ 之外，这正是宏观电场 $\overline{\mathbf{E}}(\mathbf{r})$，即与下述宏观极化波
+\begin{equation*}
+\mathbf{p}(\mathbf{r}) = \mathbf{p}\, e^{i\mathbf{q}\cdot\mathbf{r}}
+\tag{2.44}
+\end{equation*}
+相联系的场——此时把晶体当作连续介质看待。于是我们可以把式 (2.41) 表成
+\begin{equation*}
+\mathbf{E}(\mathbf{r}) = \overline{\mathbf{E}}(\mathbf{r}) + \frac{4\pi}{v_c}\left(1-e^{-q^2/4G^2}\right)\frac{(\mathbf{p}\cdot\mathbf{q})}{q^2}\,\mathbf{q} + \sum_{\boldsymbol{g}\neq 0}\{\,\} + \sum_{\boldsymbol{l}}\{\,\},
+\tag{2.45}
+\end{equation*}
+其中我们不必费神写出对 $\boldsymbol{g}$ 和对 $\boldsymbol{l}$ 求和的所有各项，只须注意它们全都迅速收敛（$\mathbf{r}=0$ 的邻域除外；在该邻域可以采用式 (2.39) 中用过的办法消除原点处偶极子的自能）。在这个表达式中，我们把在 $\mathbf{q}=0$ 附近表现很坏的宏观场 $\overline{\mathbf{E}}(\mathbf{r})$ 分离了出来，其余各项则对一切 $\mathbf{q}$ 值都迅速收敛于一个确定的局部场（local field）（参见 §8.2）。
+
+这个局部场在离子晶体的晶格动力学中是重要的，因为它可能使离子本身发生极化。由此产生的感生偶极子分布又反过来对作用于离子上的力作出贡献，因此必须包括在有效力张量（式 (2.4)）之中：点电荷之间的中心成对力不足以解释实验事实。从这个方向入手，理论公式显得相当繁复，但它们可以从一个简单的物理模型导出：把每个离子换成一个质量较大、电荷设为 $e^+$ 的“芯”，它连着一个无重量、由电荷为 $e^-$ 的价电子组成的“壳层”。这个\emph{壳层模型}（shell model）中的各种电荷和弹性常数，不仅提供了足以把晶格谱（lattice spectrum）拟合到实验上的可调参数，而且解析地表示了晶体中真实的\emph{非中心}（noncentral）多体原子间力。
+
+在共价晶体或金属晶体中，晶格求和（lattice sums）的收敛问题容易安排，因为正离子的长程 Coulomb 场很快被价电子屏蔽掉（参见第 5 章）。但晶格谱的计算会因其他类型的多体力而变得复杂，例如共价键对弯曲（§4.2）、或传导电子气对压缩（§6.11）的抵抗。在非导电晶体中，还必须计入电磁场与极性晶格振动在\emph{极化激元}（polariton）模式中的动力学耦合（§8.3）。
+
+\section{晶格比热}
+
+格波存在的一个重要后果是它们的热激发，它表现为对固体比热的一个贡献。要计算这个贡献，我们其实应当用量子力学的算符来代替经典坐标 $\mathbf{u}_{sl}$ 及其相应的动量。我们在 §2.1 中所做的全部工作，只不过是证明这些坐标可以经过正则变换变到一组新坐标，在新坐标中运动方程就是一群独立简谐振子的运动方程。因此，激发必然属于 Bose–Einstein 类型；一个简正模可以被赋予任意数目的量子，每个量子的能量为 $\hbar\nu_{\mathbf{q}}$，其中 $\nu_{\mathbf{q}}$ 是相应的经典频率。
+
+统计力学理论于是告诉我们，平均而言，第 $q$ 个模中将会有
+\begin{equation*}
+\bar{n}_{\mathbf{q}} = \frac{1}{e^{\hbar\nu_{\mathbf{q}}/kT}-1}
+\tag{2.46}
+\end{equation*}
+个量子，它们贡献的能量为
+\begin{equation*}
+\bar{\mathcal{E}}_{\mathbf{q}} = \left(\bar{n}_{\mathbf{q}} + \frac{1}{2}\right)\hbar\nu_{\mathbf{q}},
+\tag{2.47}
+\end{equation*}
+其中计入了零点能（zero-point energy），不过我们暂时把它丢开不算。于是，系统的平均总能量由下式给出：
+\begin{equation*}
+\bar{\mathcal{E}} = \sum_{\mathbf{q}} \frac{\hbar\nu_{\mathbf{q}}}{e^{\hbar\nu_{\mathbf{q}}/kT}-1},
+\tag{2.48}
+\end{equation*}
+其中求和遍及所有的模（即遍及所有不同的波矢以及所有的偏振）。
+
+由于 $\mathbf{q}$ 矢量在倒格子空间中以密度 $V/8\pi^3$ 分布，我们可以把这个和式写成一个积分；我们还可以通过对温度求微商来计算比热：
+\begin{equation*}
+C_V = \frac{1}{V}\,\frac{\partial\bar{\mathcal{E}}}{\partial T} = \frac{1}{kT^2}\,\frac{1}{8\pi^3}\sum_{\text{polarizations}} \iiint \frac{(\hbar\nu_{\mathbf{q}})^2\, e^{\hbar\nu_{\mathbf{q}}/kT}}{(e^{\hbar\nu_{\mathbf{q}}/kT}-1)^2}\, d^3q.
+\tag{2.49}
+\end{equation*}
+在形式上，我们可以通过引入\emph{晶格谱}（lattice spectrum）来简化此式。让我们定义 $\mathcal{D}(\nu)$，使得 $\mathcal{D}(\nu)\,d\nu$ 为频率落在 $\nu\to\nu+d\nu$ 范围内的模的分数。对一个每晶胞含 $n$ 个原子的结构，总共有 $3nN$ 个模。于是
+\begin{equation*}
+C_V = 3nNk \int \frac{(\hbar\nu/kT)^2\, e^{\hbar\nu/kT}}{(e^{\hbar\nu/kT}-1)^2}\,\mathcal{D}(\nu)\, d\nu.
+\tag{2.50}
+\end{equation*}
+但这只不过把问题推回到对 $\mathcal{D}(\nu)$ 的计算上去，而后者可能需要对晶格模的运动方程求出完整的解。采用如下两条假设，我们可以得到一个粗糙的公式。
+
+(i) 只须考虑声学支，并且它们全都具有相同的恒定声速，即
+\begin{equation*}
+\nu_{\mathbf{q}} = sq.
+\tag{2.51}
+\end{equation*}
+
+(ii) 限制 $\mathbf{q}$ 允许值范围的布里渊区，可以用倒格子空间中一个同体积的球来代替。
+
+第二个假设意味着，格波存在一个最大波数，即 \emph{Debye 波数}（Debye wave-number）$q_D$。\emph{Debye 球}是布里渊区的一个近似；如果要它恰好容纳 $N$ 个点（$\mathbf{q}$ 空间中点的密度为 $V/8\pi^3$），就必须有
+\begin{equation*}
+N = \frac{V}{8\pi^3}\,\frac{4}{3}\pi q_D^3,
+\tag{2.52}
+\end{equation*}
+即
+\begin{equation*}
+q_D = \left(\frac{6\pi^2}{v_c}\right)^{1/3}.
+\tag{2.53}
+\end{equation*}
+在正格子中我们也常常作类似的近似，把 Wigner–Seitz 原胞换成一个半径为 $r_s$ 的 \emph{Wigner–Seitz 球}，其体积与原胞相同：
+\begin{equation*}
+\frac{4}{3}\pi r_s^3 = v_c.
+\tag{2.54}
+\end{equation*}
+于是
+\begin{equation*}
+q_D = \left(\frac{9\pi}{2}\right)^{1/3}\frac{1}{r_s}, \qquad \lambda_D = \frac{2\pi}{q_D} \sim 2.6\, r_s.
+\tag{2.55}
+\end{equation*}
+换句话说，声学支的\emph{截止波长}（cut-off wavelength）略大于一个晶胞的平均直径。晶格不能传播波长更短的波。
+
+由这两条假设，晶格谱取如下形式：
+\begin{align*}
+\mathcal{D}(\nu)\, d\nu &= 4\pi q^2\, dq \,\Big/ \frac{4}{3}\pi q_D^3 \\
+&= \frac{3\nu^2}{\nu_D^3}\, d\nu,
+\tag{2.56}
+\end{align*}
+其中 $\nu_D$ 是 \emph{Debye 频率}，$sq_D$。比热公式变成
+\begin{align*}
+C_V &= 3Nk \int_0^{\nu_D} \frac{(\hbar\nu/kT)^2\, e^{\hbar\nu/kT}}{(e^{\hbar\nu/kT}-1)^2}\,\frac{3\nu^2}{\nu_D^3}\, d\nu \\
+&= 3Nk\left(\frac{T}{\Theta}\right)^3 3\int_0^{\Theta/T} \frac{z^4 e^z}{(e^z-1)^2}\, dz,
+\tag{2.57}
+\end{align*}
+其中我们已令 $z=\hbar\nu/kT$，而
+\begin{equation*}
+k\Theta = \hbar\nu_D
+\tag{2.58}
+\end{equation*}
+定义了 \emph{Debye 温度}（Debye temperature）$\Theta$。
+
+%FIG{24}: {比热的 Debye 定律}
+
+这就是著名的 \emph{Debye 比热公式}。它的结构非常简单。
+
+(i) 当 $T/\Theta$ 大时，积分上限很小，可以把被积函数展开，得到
+\begin{equation*}
+\int_0^{\Theta/T} \frac{z^4}{z^2}\, dz = \frac{1}{3}\left(\frac{\Theta}{T}\right)^3.
+\tag{2.59}
+\end{equation*}
+于是
+\begin{equation*}
+C_V = 3Nk,
+\tag{2.60}
+\end{equation*}
+这就是 \emph{Dulong–Petit 定律}。
+
+(ii) 在低温下，积分的上限 $\Theta/T$ 在一切实际场合都可以取作无穷大。这时积分趋于一个常数 $(4\pi^4/15)$，因而
+\begin{equation*}
+C_V \sim \frac{12\pi^4}{5}\, Nk \left(\frac{T}{\Theta}\right)^3,
+\tag{2.61}
+\end{equation*}
+这就是众所周知的\emph{比热的 $T^3$ 定律}，在低温下成立。
+
+Debye 公式对大多数固体都很有效，Debye 温度已作为固体的一个物理参数被列成表格。它是表征晶格动力学运动的最方便的标度温度：$k\Theta$ 代表在晶格诸模中能够激发的最大量子的能量；$\Theta$ 也应当通过如下关系与晶体中的平均声速相联系：
+\begin{equation*}
+k\Theta = \hbar q_D\, s.
+\tag{2.62}
+\end{equation*}
+
+然而，我们在推导这个公式时作了非常粗暴的假设。我们为晶格谱（图 25(a)）假定了一个非常特殊的形式。关系式 $\mathcal{D}(\nu)\propto\nu^2$ 在 $\nu=0$ 附近应当成立，那时材料表现得像一个弹性连续介质，但在
+%FIG{25}: {(a) Debye 谱。(b) 真实的晶格谱}
+$\nu_D$ 处的陡峭截止却并没有根据。精确计算（例如图 25(b)）表明，谱分布在很宽的范围上，带有几个峰，对应于不同偏振的模具有极不相同的速度。高频处往往还有一个相当显著的峰，它源于区边界附近的强色散。$\nu_{\mathbf{q}}$ 随 $\mathbf{q}$ 变化的曲线趋于平坦（参见 §2.2 中的图 22），使得频率相差 $d\nu$ 的诸曲面之间包进了更大的 $\mathbf{q}$ 空间体积。
+
+如果格子是带基元的格子（lattice with a basis），我们还应当计入光学支的贡献。这些模的频率几乎不依赖于波数，因此 \emph{Einstein 模型}（Einstein model）——每个模都具有同一频率——可能更为合适，即
+\begin{align*}
+C_V &= 3Nk\,\frac{(\hbar\nu_E/kT)^2\, e^{\hbar\nu_E/kT}}{(e^{\hbar\nu_E/kT}-1)^2} \\
+&= 3Nk\,\frac{(\Theta_E/T)^2\, e^{\Theta_E/T}}{(e^{\Theta_E/T}-1)^2},
+\tag{2.63}
+\end{align*}
+其中 $\Theta_E$ 是 \emph{Einstein 温度}（Einstein temperature），由下式定义：
+\begin{equation*}
+k\Theta_E = \hbar\nu_E.
+\tag{2.64}
+\end{equation*}
+
+然而应当指出，如果把式 (2.57) 中的 $N$ 取作晶体中原子的总数而不是晶胞的数目，我们仍然可以用单独一个 Debye 项来表示复杂晶体的比热。如果我们忽略晶胞内原子彼此之间在位置和质量上的差异，得到的结果正是如此。Debye 公式丝毫不涉及真实的晶体结构，所以这未必是一个坏的近似。实际上，我们正是

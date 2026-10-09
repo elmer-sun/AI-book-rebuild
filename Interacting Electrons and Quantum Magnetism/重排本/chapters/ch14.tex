@@ -1,0 +1,228 @@
+% 第14章 非线性{$\sigma$}模型：大N
+\chapter{非线性 $\sigma$ 模型：大 $N$}
+
+第 13 章在弱耦合 $f \ll 1$ 区域求解了 $d$ 维非线性 {$\sigma$} 模型（NLSM）的关联。弱耦合区域对应 $d$ 维格子上经典 Heisenberg 模型的低温极限。由 Haldane 映射（见第 12 章），它也等价于 $d-1$ 维量子 Heisenberg 反铁磁体的大 $S$ 极限，即半经典极限。本章研究 NLSM 的另一种途径：引入称为 $CP^{N-1}$ 模型的复投影表示，$N$ 为复场数目。物理的 $O(3)$ 模型对应 $N = 2$。大 $N$ 极限基本上由路径积分的鞍点给出，即一个平均场理论。该平均场理论恢复了 13.4 节用穷人标度得到的关联长度 $\xi$。
+
+\section{$CP^1$ 表述}
+
+$O(3)$ NLSM 可以用两个复（旋量）场表示
+
+\begin{equation*}
+\mathbf {z} ( \mathbf {x} ) = \left[ z _ {1} ( \mathbf {x} ), z _ {2} ( \mathbf {x} ) \right]
+\tag{14.1}
+\end{equation*}
+
+使得 $\hat{n}$ 的分量由双线性型给出：
+
+\begin{equation*}
+n ^ {\alpha} ( \mathbf {x} ) = \mathbf {z} ^ {\dagger} ( \mathbf {x} ) \sigma^ {\alpha} \mathbf {z} ( \mathbf {x} ) \, , \quad \alpha = x, y, z ,
+\tag{14.2}
+\end{equation*}
+
+$\sigma^{\alpha}$ 是 $2\times2$ Pauli 矩阵（见 (A.20)）。$\hat{n}$ 的模方条件化为约束
+
+\begin{equation*}
+| \hat {\mathbf {n}} | = | \mathbf {z} | ^ {2} = | z _ {1} | ^ {2} + | z _ {2} | ^ {2} = 1.
+\tag{14.3}
+\end{equation*}
+
+需要一些直截了当的代数来证明：由 (14.2) 与 (14.3) 成立恒等式
+
+\begin{equation*}
+\frac {1}{4} \left| \partial_ {\mu} \hat {\mathbf {n}} \right| ^ {2} = \left( \partial_ {\mu} \mathbf {z} ^ {\dagger} \right) \cdot \left( \partial_ {\mu} \mathbf {z} \right) - \left[ \mathcal {A} _ {\mu} ( \mathbf {z} ^ {*}, \mathbf {z} ) \right] ^ {2} ,
+\tag{14.4}
+\end{equation*}
+
+其中 $\mathcal{A}_{\mu}$ 是双线性型：
+
+\begin{equation*}
+\mathcal {A} _ {\mu} \equiv - \frac {i}{2} \left[ \mathbf {z} ^ {\dagger} \partial_ {\mu} \mathbf {z} - \left( \partial_ {\mu} \mathbf {z} ^ {\dagger} \right) \mathbf {z} \right].
+\tag{14.5}
+\end{equation*}
+
+NLSM 配分函数的测度为
+
+\begin{align*}
+\mathcal {D} \hat {\mathbf {n}} & = \prod_{\mathbf {x},\, m = 1,2} \frac {d \operatorname{Re} z _ {m} ( \mathbf {x} ) \, d \operatorname{Im} z _ {m} ( \mathbf {x} )}{\pi} \, \delta \left( | \mathbf {z} | ^ {2} - 1 \right)\\
+& \equiv \mathcal {D} ^ {2} \mathbf {z} \, \delta \left( | \mathbf {z} | ^ {2} - 1 \right) .
+\tag{14.6}
+\end{align*}
+
+于是 $CP^1$ 表示为
+
+\begin{align*}
+Z_{\mathrm{NLSM}} & = \int \mathcal {D} ^ {2} \mathbf {z} \, \delta \left( | \mathbf {z} | ^ {2} - 1 \right)\\
+& \quad \times \exp \left( - \frac {2 \Lambda^ {d - 2}}{f} \int d ^ {d} x \sum_ {\mu} \left| \left[ \partial_ {\mu} - i \mathcal {A} _ {\mu} ( \mathbf {z} ^ {*}, \mathbf {z} ) \right] \mathbf {z} \right| ^ {2} \right) .
+\tag{14.7}
+\end{align*}
+
+测度中的约束与作用量中的相互作用是求解 (14.7) 关联时困难的来源。引入实约束场 $\lambda(\mathbf{x})$ 与恒等式
+
+\begin{equation*}
+\delta \left( | \mathbf {z} | ^ {2} - 1 \right) = \int \mathcal {D} \lambda \, \exp \left[ i \int d ^ {d} x \, \lambda \left( | \mathbf {z} | ^ {2} - 1 \right) \right]
+\tag{14.8}
+\end{equation*}
+
+可以替换 $\delta$ 函数约束。再引入辅助规范场 $A_{\mu}$ 并用 Hubbard--Stratonovich 恒等式
+
+\begin{equation*}
+\exp \left( c \, \mathcal {A} _ {\mu} ^ {2} \right) = \sqrt {\frac {c}{\pi}} \int_{- \infty} ^ {\infty} d A _ {\mu} \, \exp \left( - c A _ {\mu} ^ {2} - 2 c A _ {\mu} \mathcal {A} _ {\mu} \right)
+\tag{14.9}
+\end{equation*}
+
+解耦四场相互作用 $\mathcal{A}_{\mu}^{2}$。由 (14.7)、(14.8) 与 (14.9)，配分函数为（相差整体归一化）
+
+\begin{align*}
+Z_{CP^{1}} & = \int \mathcal {D} ^ {2} \mathbf {z} \, \mathcal {D} \mathbf {A} \, \mathcal {D} \lambda\\
+& \quad \exp \left\{ - \int d ^ {d} x \left[ \frac {2 \Lambda^ {d - 2}}{f} \sum_ {\mu} \left| \left( \partial_ {\mu} - i A _ {\mu} \right) \mathbf {z} \right| ^ {2} - i \lambda \left( | \mathbf {z} | ^ {2} - 1 \right) \right] \right\} .
+\tag{14.10}
+\end{align*}
+
+\section{大 $N$ 下的 $CP^{N - 1}$ 模型}
+
+先把 $CP^{1}$ 模型推广为 $CP^{N-1}$ 模型：复场数目从 $2$ 扩到 $N$：
+
+\begin{equation*}
+\mathbf {z} = \left( z _ {1}, z _ {2}, \dots , z _ {N} \right) \, , \quad N \geq 2.
+\tag{14.11}
+\end{equation*}
+
+约束 (14.3) 推广为
+
+\begin{equation*}
+| \mathbf {z} | ^ {2} = \sum_ {m = 1} ^ {N} | z _ {m} | ^ {2} = \frac {N}{2}.
+\tag{14.12}
+\end{equation*}
+
+(14.12) 的 $N$ 依赖保证大 $N$ 理论非平凡。于是 (14.10) 推广为
+
+\begin{align*}
+Z_{CP^{N - 1}} = \int \mathcal {D} ^ {2} \mathbf {z} \, \mathcal {D} \mathbf {A} \, \mathcal {D} \lambda \, \exp \Big[ - \frac {2 \Lambda^ {d - 2}}{f} \int d ^ {d} x \sum_ {\mu} \left| \left( \partial_ {\mu} - i \mathbf {A} _ {\mu} \right) \mathbf {z} \right| ^ {2}\\
+- i \lambda \left( | \mathbf {z} | ^ {2} - \frac {N}{2} \right) \Big] .
+\tag{14.13}
+\end{align*}
+
+形式上可以积掉 $z$ 场：
+
+\begin{align*}
+Z_{CP^{N - 1}} & = \int \mathcal {D} \mathbf {A} \, \mathcal {D} \lambda \, \exp \left( - N \mathcal {S} [ \mathbf {A}, \lambda ] \right) ,\\
+\mathcal {S} [ \mathbf {A}, \lambda ] & = \mathrm{Tr} \ln \left[ - \left( \partial_ {\mu} - i A _ {\mu} \right) ^ {2} \right] - \frac {i \Lambda^ {d - 2}}{f} \int d ^ {d} x \, \lambda .
+\tag{14.14}
+\end{align*}
+
+注意 $N$ 乘的是一个与 $N$ 无关的作用量 $\mathcal{S}$。如附录 E 所释，这使 (14.14) 在大 $N$ 下可以鞍点近似：
+
+\begin{equation*}
+Z \approx \exp \left( - N \mathcal {S} [ \mathbf {A} _ {0}, \lambda_ {0} ] \right) Z ' ,
+\tag{14.15}
+\end{equation*}
+
+鞍点方程为
+
+\begin{equation*}
+\left. \frac {\delta \mathcal {S}}{\delta \bar {\mathbf {A}}} \right| _ {\bar {\mathbf {A}} _ {0}, \lambda_ {0}} = \left. \frac {\delta \mathcal {S}}{\delta \lambda} \right| _ {\bar {\mathbf {A}} _ {0}, \lambda_ {0}} = 0.
+\tag{14.16}
+\end{equation*}
+
+假设鞍点作用量 $S[\bar{\mathbf{A}}_{0}, \lambda_{0}]$ 不破缺规范或平移对称，取
+
+\begin{align*}
+\mathbf {A} _ {0} & = 0 ,\\
+\lambda_ {0} & = - i \bar {\lambda} .
+\tag{14.17}
+\end{align*}
+
+鞍点作用量是无相互作用 $z$ 场的自由能：
+
+\begin{equation*}
+\mathcal {S} ( 0, \bar {\lambda} ) = \sum_ {\mathbf {k}} \ln \left[ \mathbf {k} ^ {2} + \bar {\lambda} \right] - \frac {\mathcal {N} \Lambda^ {d - 2}}{f} \bar {\lambda}.
+\tag{14.18}
+\end{equation*}
+
+$\bar{\lambda}$ 的鞍点方程为
+
+\begin{equation*}
+\mathcal {N} ^ {- 1} \sum_ {\mathbf {k}} \frac {1}{| \mathbf {k} | ^ {2} + \bar {\lambda}} - \frac {1}{f} = 0 ,
+\tag{14.19}
+\end{equation*}
+
+给出
+
+\begin{equation*}
+\bar {\lambda} = \left\{ \begin{array}{ll} f ^ {2} / 4 & d = 1 \\[2pt] \frac {1}{2} \Lambda^ {2} \exp \left( - \frac {4 \pi}{f} \right) & d = 2 \\[4pt] \frac {1}{2} \Lambda^ {2} \left( \frac {2}{\pi} - \frac {4 \pi}{f} \right) ^ {2} & d = 3 \end{array} \right..
+\tag{14.20}
+\end{equation*}
+
+定义
+
+\begin{align*}
+S ^ {+-} ( \mathbf {x} ) & \equiv \left\langle \left[ \hat {\mathbf {n}} ^ {x} ( 0 ) + i \hat {\mathbf {n}} ^ {y} ( 0 ) \right] \left[ \hat {\mathbf {n}} ^ {x} ( \mathbf {x} ) - i \hat {\mathbf {n}} ^ {y} ( \mathbf {x} ) \right] \right\rangle\\
+& \rightarrow \left\langle z _ {m} ^ {*} ( 0 ) z _ {m '} ( 0 ) z _ {m '} ^ {*} ( \mathbf {x} ) z _ {m} ( \mathbf {x} ) \right\rangle\\
+& \equiv S ^ {m \neq m '} ( \mathbf {x} ) ,
+\tag{14.21}
+\end{align*}
+
+把（$N=2$ 的）$O(3)$ 关联函数推广到 $N > 2$。由于各味在鞍点作用量 (14.18) 中解耦：
+
+\begin{align*}
+S ^ {m \neq m '} ( \mathbf {x} ) & = \left| G ( \mathbf {x} ) \right| ^ {2} ,\\
+G ( \mathbf {x} ) & = Z ^ {- 1} \int \mathcal {D} ^ {2} \mathbf {z} \; \mathbf {z} ^ {\dagger} ( 0 ) \cdot \mathbf {z} ( \mathbf {x} )\\
+& \quad \times \exp \left( - \frac {2 \Lambda^ {d - 2}}{f} \sum_ {\mathbf {k}} \left( | \mathbf {k} | ^ {2} + \bar {\lambda} \right) \mathbf {z} _ {\mathbf {k}} ^ {*} \mathbf {z} _ {\mathbf {k}} - \frac {N \mathcal {N} \Lambda^ {d - 2}}{f} \bar {\lambda} \right)\\
+& = \mathcal {N} ^ {- 1} \sum_ {\mathbf {k}} \frac {e ^ {- i \mathbf {k} \cdot \mathbf {x}}}{| \mathbf {k} | ^ {2} + \bar {\lambda}} .
+\tag{14.22}
+\end{align*}
+
+循 (13.48)，Fourier 和在大距离的渐近为
+
+\begin{equation*}
+G ( \mathbf {x} ) \sim \text{const} \; | \mathbf {x} | ^ {- ( d - 1 )/2} \exp \left( - | \mathbf {x} | \sqrt {\bar {\lambda}} \right).
+\tag{14.23}
+\end{equation*}
+
+取 $G(\mathbf{x})$ 的平方，得渐近关联函数
+
+\begin{equation*}
+\lim_{| \mathbf {x} | \gg \xi} S ^ {m \neq m '} ( \mathbf {x} ) \sim \text{const} \; | \mathbf {x} | ^ {- ( d - 1 )} \exp ( - | \mathbf {x} | / \xi ) ,
+\tag{14.24}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\xi = \frac {1}{2 \sqrt {\bar {\lambda}}}.
+\tag{14.25}
+\end{equation*}
+
+由 (14.20)：
+
+\begin{equation*}
+\xi = \left\{ \begin{array}{ll} \dfrac {\Lambda^ {- 1}}{f} & d = 1 \\[6pt] \frac {1}{2} \Lambda^ {- 1} \exp \left( + \frac {2 \pi}{f} \right) & d = 2 \\[6pt] \frac {1}{2} \Lambda^ {- 1} \left( \frac {2}{\pi} - \frac {4 \pi}{f} \right) ^ {- 1} & d = 3 \end{array} \right..
+\tag{14.26}
+\end{equation*}
+
+这些结果（取 $N = 2$）再现了 $O(3)$ NLSM 由 (13.54) 与 (13.55) 给出的关联长度。也就是说，大 $N$ 近似与弱耦合重整化群结果在单圈阶一致。
+
+显然，$CP^{N-1}$ 的大 $N$ 理论在描述 Heisenberg 模型的主要长波特征上相当不坏。这令人放心，因为凝聚态理论与粒子物理中常把大 $N$ 近似用于物理上有趣的 $N = 2$ 体系\footnote{格子 Heisenberg 模型的大 $N$ 理论见第 16、18 章。}。但必须注意：大 $N$ 近似不能恢复更细致的双圈重整化群结果中 $\xi(f)$ 与 $S^{+-}(\mathbf{x})$ 的前指数依赖。这些差别大概来自 $Z'$——它包含 $1/N$ 展开的更高阶项。
+
+\begin{exercises}
+
+\item 证明对 $CP^1$ 模型
+
+\begin{equation*}
+\left( \partial_ {\mu} A _ {\nu} - \partial_ {\nu} A _ {\mu} \right) = \frac {1}{2} \partial_ {\mu} \hat {\mathbf {n}} \times \partial_ {\nu} \hat {\mathbf {n}} \cdot \hat {\mathbf {n}} ,
+\tag{14.27}
+\end{equation*}
+
+其中 $A(\mathbf{z})$ 是 (14.5) 定义的 $CP^1$ 规范场。
+
+\item 比较 (13.61) 与 (14.27)，证明规范场定义 (13.58) 与 (14.5) 相差一个全导数项。利用这一比较证明：$z$ 旋量的电荷是自旋波模式 $\psi$ 电荷的一半。
+
+\end{exercises}
+
+\begin{chapbib}
+\item $CP^{N - 1}$ 模型的 $1/N$ 展开引入于
+  A. d'Adda, M. Luscher, and P. di Vecchia, Nucl. Phys. B \textbf{146}, 63 (1978)；\textbf{152}, 125 (1979)。
+\item 场论大 $N$ 展开的教学参考书：
+  S. Coleman, \textit{Aspects of Symmetry} (Cambridge University Press, 1990), 第八章；
+  A. M. Polyakov, \textit{Gauge Fields and Strings} (Harwood, 1987), 第八章。
+\end{chapbib}

@@ -1,0 +1,237 @@
+% ch3_d §3.6–3.8 (书页 98–107 / p112–p121)
+%--C-TAIL--
+这是确定单价金属导带底位置的一个巧妙办法，在计算金属内聚能（§4.3）时可以相当有把握地使用它。我们还可以再前进一步，写下方程
+\begin{equation*}
+-\frac{\hbar^2}{2m}\left\{\nabla^2+2i\mathbf{k}\cdot\nabla\right\}u_{\mathbf{k}}+\mathcal{V}(\mathbf{r})\,u_{\mathbf{k}}
+=\left\{\mathcal{E}(\mathbf{k})-\frac{\hbar^2 k^2}{2m}\right\}u_{\mathbf{k}}\tag{3.38}
+\end{equation*}
+(3.35) 中的周期函数 $u_{\mathbf{k}}(\mathbf{r})$ 必须满足这个方程；而且我们还可以进而坚持要求 $u_{\mathbf{k}}$ 在 $r=r_s$ 处具有水平切线。这样一来，从 $\mathcal{E}(0)$ 量起的函数 $\mathcal{E}(\mathbf{k})$ 就会给出某种不同于自由电子公式的结果，从而带上几分能带形状的特征。
+
+但在这个方法里，我们完全忽略了固体的结构。答案只依赖于原子体积，而不依赖于晶格的实际几何构形。对于液体——其中每个原子的环境是无序的——我们应当得到与同样密度的固态金属完全相同的结果；那些我们在前面几节里不厌其详地讨论过的美丽衍射效应，在这里根本就进不来。
+
+\section{正交化平面波}
+
+现在我们转向几种真正行之有效的能带结构计算方法。例如，紧束缚法（§3.4）受到的那些根本性诘难，可以通过如下做法来化解：(a) 在原子轨道的 Bloch 和 (3.31) 中有意加入像 (3.12) 那样的平面波项；(b) 从后一个和里剔除所有那些在原子势相互重叠时实际上已经消失的虚构轨道（图 54 和图 55）。Herring 在引入\emph{正交化平面波}（orthogonalized plane wave，OPW）概念时所做的正是这两件事。
+
+考虑一组由\emph{芯态}（core states）——也就是在离子中早已被占据的轨道——构成的 Bloch 函数。由 (3.24) 可以写出
+\begin{equation*}
+b_{l\mathbf{k}}=\sum_l e^{i\mathbf{k}\cdot\mathbf{l}}\,b_l(\mathbf{r}-\mathbf{l}).\tag{3.39}
+\end{equation*}
+像 $b_l(\mathbf{r})$ 这样的一个芯轨道是高度局域化的，因此上式不过是简并单电子态的一种组合，其中每一个态对应于电子局域在一个特定原子上。实际上，它是整个晶体的 Schrödinger 方程的解，对应于某一芯能级 $\mathcal{E}_l$。它可以形成一条窄带，在晶体中这条带是全满的。
+
+较高的那些态既然是同一个 Schrödinger 方程的解，就\emph{必须与} $b_{l\mathbf{k}}$ \emph{正交}：
+\begin{equation*}
+\langle\psi_{\mathbf{k}},b_{l\mathbf{k}}\rangle=0.\tag{3.40}
+\end{equation*}
+此外我们知道，在原子之间的区域，$\psi_{\mathbf{k}}$ 必须看起来像一列自由电子波。让我们试着取
+\begin{equation*}
+\chi_{\mathbf{k}}=e^{i\mathbf{k}\cdot\mathbf{r}}-\sum_l\beta_l\,b_{l\mathbf{k}}\tag{3.41}
+\end{equation*}
+作为其中一个较高态的波函数的一种可能形式。只要适当选取系数 $\beta_l$，就能使它满足正交化条件 (3.40)。也就是说，我们把 $\chi_{\mathbf{k}}$ 做成一个\emph{正交化平面波}（O.P.W.）
+\begin{equation*}
+\chi_{\mathbf{k}}=e^{i\mathbf{k}\cdot\mathbf{r}}-\sum_l\langle b_{l\mathbf{k}},e^{i\mathbf{k}\cdot\mathbf{r}}\rangle\,b_{l\mathbf{k}}.\tag{3.42}
+\end{equation*}
+
+对于较高的态，这是一个很好的猜测：在间隙区域里它看起来像 $\exp(i\mathbf{k}\cdot\mathbf{r})$——那里每个 $b_{l\mathbf{k}}$ 都很小（芯态高度局域化）——而在芯区内部，它又与所有芯态正交，因而是较高原子轨道的一个不错的候选者。举例来说，设芯态是 $2s$ 和 $2p$，各有一个节面：于是 $\chi_{\mathbf{k}}$ 将多出一个节面，正像 $3s$ 或 $3p$ 轨道那样。
+
+现在我们用 O.P.W. 作为波函数的基态，尝试
+\begin{equation*}
+\psi_{\mathbf{k}}=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,\chi_{\mathbf{k}-\mathbf{g}}\tag{3.43}
+\end{equation*}
+作为 Schrödinger 方程的解，做法与 (3.12) 相同。我们用变分原理把能量期望值极小化，从而确定系数 $\alpha_{\mathbf{k}-\mathbf{g}}$。这套手续如今已为大家所熟悉，不必再显式写出了。
+
+这种近似过程在初始阶段收敛得惊人地快。单个 O.P.W. 往往就足以在 k 空间的大片区域上代表波函数；取 3 项或 4 项便能给出相当好的图像，甚至到布里渊区最偏远的角落也不例外。这个方法已经成功地用于若干金属和半导体，而且并不局限于“被空白区域包围的球对称势”这种情形。
+
+为什么会这样？下面这个归功于 Phillips 和 Kleinman 的论证非常有说服力。
+
+假定 (3.43) 在 $\alpha_{\mathbf{k}-\mathbf{g}}$ 取某组确定值时就是严格的波函数。写下函数
+\begin{equation*}
+\phi=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,e^{i(\mathbf{k}-\mathbf{g})\cdot\mathbf{r}},\tag{3.44}
+\end{equation*}
+%FIG{57}: {正交化平面波的合成。（a）平面波；（b）芯函数；（c）O.P.W.＝平面波－芯函数}
+——即由简单平面波按同样的系数组合而成的函数。于是 (3.42) 与 (3.43) 可以写成（略去指标 $\mathbf{k}$，它自始至终不变）
+\begin{equation*}
+\psi=\phi-\sum_l\langle b_l,\phi\rangle\,b_l.\tag{3.45}
+\end{equation*}
+把它代入 Schrödinger 方程 $\mathcal{H}\psi=\mathcal{E}\psi$，即
+\begin{equation*}
+\mathcal{H}\phi-\sum_l\langle b_l,\phi\rangle\,\mathcal{H}b_l=\mathcal{E}\phi-\mathcal{E}\sum_l\langle b_l,\phi\rangle\,b_l,\tag{3.46}
+\end{equation*}
+亦即
+\begin{equation*}
+\mathcal{H}\phi-\sum_l\langle b_l,\phi\rangle\,\mathcal{E}_l b_l+\mathcal{E}\sum_l\langle b_l,\phi\rangle\,b_l=\mathcal{E}\phi,\tag{3.47}
+\end{equation*}
+这里用到 $b_l$ 也是 $\mathcal{H}$ 的本征态、其能量为 $\mathcal{E}_l$ 这一事实。于是
+\begin{equation*}
+\mathcal{H}\phi+\sum_l(\mathcal{E}-\mathcal{E}_l)\,b_l\langle b_l,\phi\rangle=\mathcal{E}\phi.\tag{3.48}
+\end{equation*}
+
+我们可以把它看成一个新的 Schrödinger 方程
+\begin{equation*}
+(\mathcal{H}+\mathcal{V}_R)\phi=\mathcal{E}\phi,\tag{3.49}
+\end{equation*}
+式中我们对一个算符作如下形式定义：
+\begin{equation*}
+\mathcal{V}_R\phi\equiv\sum_l(\mathcal{E}-\mathcal{E}_l)\,b_l\langle b_l,\phi\rangle.\tag{3.50}
+\end{equation*}
+我们的“平滑化”波函数 $\phi$ 现在满足一个新方程，其“哈密顿量”是
+\begin{equation*}
+\mathcal{H}+\mathcal{V}_R=-\frac{\hbar^2}{2m}\nabla^2+\mathcal{V}+\mathcal{V}_R.\tag{3.51}
+\end{equation*}
+这就好比我们要在一个\emph{赝势}（pseudo-potential）
+\begin{equation*}
+\Gamma=\mathcal{V}+\mathcal{V}_R.\tag{3.52}
+\end{equation*}
+中求本征函数的平面波解。
+
+§3.2 的那套形式手续现在可以拿来使用了。系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 必须满足与 (3.14) 相仿的方程，只不过其中要用 $\Gamma$ 的 Fourier 分量来代替真实晶格势 $\mathcal{V}$ 的 Fourier 分量。
+
+当然，这些方程只是把 (3.43) 取作试探波函数、对能量期望值中的系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 作变分所得方程的另一种写法。但结果表明（这一点可以上升为一条普遍原理来论证）：除了头几个倒格矢之外，$\Gamma$ 的 Fourier 分量都很小。函数 $\phi$ 可以称为\emph{赝波函数}（pseudo-wave-function），它所满足的方程 (3.49) 中的有效势相对较弱。这样我们又回到了一个简单的 N.F.E. 模型。
+
+把 $\Gamma$ 当作一个小的局域势来处理，这个论证并不严格。符号 $\mathcal{V}_R$ 代表的是一个非局域算符
+\begin{equation*}
+\mathcal{V}_R(\mathbf{r},\mathbf{r}')=\sum_l(\mathcal{E}-\mathcal{E}_l)\,b_l(\mathbf{r})\,b_l^{*}(\mathbf{r}'),\tag{3.53}
+\end{equation*}
+它通过下式起作用：
+\begin{equation*}
+\mathcal{V}_R\phi=\int\mathcal{V}_R(\mathbf{r},\mathbf{r}')\,\phi(\mathbf{r}')\,d\mathbf{r}'.\tag{3.54}
+\end{equation*}
+这告诉我们，比如说，$\mathcal{V}_R$ 作用在不同角动量的函数上时必定有所不同；我们应当写成
+\begin{equation*}
+\mathcal{V}_R=\mathcal{V}_s+\mathcal{V}_p+\mathcal{V}_d+\dots,\tag{3.55}
+\end{equation*}
+其中 $\mathcal{V}_s$ 只作用在具有 $s$ 对称性的函数上，如此等等。
+
+问题的实质在于：$\mathcal{V}$ 是原子的吸引势，因而是负的，尤其在 $r=0$ 附近更是如此；而 $\mathcal{V}_R$ 含有 $\mathcal{E}-\mathcal{E}_l$ 和芯轨道的平方，因而是正的。两者之间有部分抵消，使 $\mathcal{V}_{\mathrm{eff}}$ 的数值减小。这种抵消虽然永远不会完全，但可以通过适当选取芯函数而得到改善。
+实际上，构造 $\mathcal{V}_R$ 的整个过程并不是唯一的。可以证明：\emph{哈密顿量 $(\mathcal{H}+\mathcal{V}_R)$ 的价电子本征值，对于任何形如下式的算符都是相同的}
+\begin{equation*}
+\mathcal{V}_R\phi=\sum_l\langle F_l,\phi\rangle\,b_l,\tag{3.56}
+\end{equation*}
+\emph{其中诸 $F_l$ 是完全任意的函数}。要看出这一点，请注意算符 $\mathcal{V}_R$ 总是把 $\phi$ 投影到芯态所张的流形上，而我们正在寻找的价电子本征函数与这个流形正交——因此，把算符 $\mathcal{V}_R$ 加到哈密顿量上，对价电子本征函数空间中的本征值问题毫无影响。
+
+于是，只要明智地选取函数 $F_l$，我们就可以设法获得良好的抵消。例如，若取
+\begin{equation*}
+F_l=-\mathcal{V}b_l,\tag{3.57}
+\end{equation*}
+便得到
+\begin{equation*}
+\Gamma\phi=\mathcal{V}\phi-\sum_l\langle b_l,\mathcal{V}\phi\rangle\,b_l,\tag{3.58}
+\end{equation*}
+这表明我们可以从 $\mathcal{V}$ 中减去任何能展开成芯函数之和的部分。这就解释了为什么在许多情况下 $\Gamma$ 结果相当小。
+
+这样，抵消原理虽然不是一个严格的定理，却为\emph{赝势概念}提供了依据：\emph{金属和半导体中的价电子，其行为就好像它们与晶格的离子并没有强烈的相互作用一样}。这就是 §3.3 的 N.F.E. 模型在经验上取得成功的原因——不仅在于它给出了费米面的漂亮图像（如图 49），也在于它能处理复杂得多的现象，例如电阻率和声子谱的理论（参见 §§6.12、6.13）。无论从哪方面看，这都是自 1930 年代初 Bloch 的工作以来固体理论中最富成果的进展之一。
+
+然而，从理论的角度看，这种基于 O.P.W. 形式体系的“解析”赝势并不完全令人满意：它过于强烈地依赖能量和角动量；它不是真正的局域势；它的定义不唯一；它也无法优雅地处理 $d$ 带（见 §3.10）。它所确立的要点——N.F.E. 模型远比乍看之下的样子要好——几乎同样可以从下一节要讨论的“muffin-tin”方法得到，而无须引入像 (3.44) 中函数 $\phi$ 那样的赝平面波（Ψ.P.W.）。
+
+\section{增广平面波}
+
+L.C.A.O. 方法和元胞法之所以受到诘难，是由于金属中的势在离子实之间相当平坦。我们索性假定它是一个 \emph{muffin-tin 势}（muffin-tin potential，蛋盒势）——在每个格点周围半径 $R_s$ 以内球对称，而在间隙区域为常数。再假定 $R_s$ 小于 Wigner--Seitz 半径 $r_s$，使这些球互不相交。于是，在每个球内部我们都可以用球谐函数把 Schrödinger 方程严格解出，
+%FIG{58}: {muffin-tin 势}
+而在球与球之间的体积中我们也能求出严格解——平面波。只要在每个球面上把这些解匹配起来，就能构造出遍及整个晶体的 Schrödinger 方程的解。
+
+实际的做法如下：设 $\mathcal{E}$ 是我们这个态的能量。在每个球内部，Schrödinger 方程的解具有如下形式：
+\begin{equation*}
+\phi(\mathbf{r})=\sum_{lm}C_{lm}\,\mathcal{R}_l(r,\mathcal{E})\,Y_{lm}(\theta,\phi),\tag{3.59}
+\end{equation*}
+其中 $Y_{lm}(\theta,\phi)$ 是对应于矢量 $\mathbf{r}$ 的方向 $(\theta,\phi)$ 的球谐函数，而 $\mathcal{R}_l$ 是径向方程（采用原子单位）
+\begin{equation*}
+-\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\mathcal{R}_l}{\partial r}\right)+\left\{\frac{l(l+1)}{r^2}+\mathcal{V}(r)\right\}\mathcal{R}_l=\mathcal{E}\,\mathcal{R}_l\tag{3.60}
+\end{equation*}
+的解。
+
+现在我们来选取系数 $C_{lm}$，使得 $\phi(\mathbf{r})$ 在球面 $r=R_s$ 上恰好与单一平面波 $\exp(i\mathbf{k}\cdot\mathbf{r})$ 相匹配。利用平面波按球谐函数展开的标准公式，容易证明，只要取
+\begin{equation*}
+C_{lm}=(2l+1)\,i^{\,l}\left\{j_l(kR_s)\big/\mathcal{R}_l(R_s,\mathcal{E})\right\}Y_{lm}^{*}(\theta',\phi')\tag{3.61}
+\end{equation*}
+即可做到这一点，其中 $\theta'$、$\phi'$ 给出 $\mathbf{k}$ 的方向，$j_l$ 是球 Bessel 函数。把 (3.61) 代入 (3.59)，我们就定义了一个\emph{增广平面波}（augmented plane wave，A.P.W.）$\phi_{\mathbf{k}}(\mathbf{r})$，它在间隙区域中等于 $\exp(i\mathbf{k}\cdot\mathbf{r})$，而在以 $\mathbf{l}$ 为中心的球内则满足
+\begin{equation*}
+\phi_{\mathbf{k}}(\mathbf{r})=e^{i\mathbf{k}\cdot\mathbf{l}}\,\phi_{\mathbf{k}}(\mathbf{r}-\mathbf{l})\tag{3.62}
+\end{equation*}
+
+遗憾的是，就整个晶格的势而言，这个函数仍然不是我们 Schrödinger 方程的解。的确，我们并没有对能量 $\mathcal{E}$ 与波矢 $\mathbf{k}$ 之间的关系作任何特别的假定。但我们知道，最终的波函数可以由 A.P.W. 构造出来——而且根据 Bloch 定理，它必定取如下形式
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r})=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,\phi_{\mathbf{k}-\mathbf{g}}(\mathbf{r}),\tag{3.63}
+\end{equation*}
+其中系数 $\alpha_{\mathbf{k}-\mathbf{g}}$ 有待确定。
+
+下一步是把 (3.63) 用作试探函数，对能量作变分估计。容易证明，这些系数必须满足形如
+\begin{equation*}
+\left\{(\mathbf{k}-\mathbf{g})^2-\mathcal{E}\right\}\alpha_{\mathbf{k}-\mathbf{g}}+\sum_{\mathbf{g}'}\Gamma_{\mathbf{gg}'}\,\alpha_{\mathbf{k}-\mathbf{g}'}=0,\tag{3.64}
+\end{equation*}
+的方程，其中 $\Gamma_{\mathbf{gg}'}$ 是一个含有 $\phi_{\mathbf{k}-\mathbf{g}}$、$\phi_{\mathbf{k}-\mathbf{g}'}$ 以及与周期势相联系的哈密顿算符的积分。
+
+这些积分的显式公式，其推导会使我们过于深入方法的细节；结果为
+\begin{align*}
+\Gamma_{\mathbf{gg}'}=\frac{4\pi R_s^2}{v_c}\Big\{&-\left[(\mathbf{k}-\mathbf{g}')\cdot(\mathbf{k}-\mathbf{g})-\mathcal{E}\right]\frac{j_1\left(|\mathbf{g}-\mathbf{g}'|\,R_s\right)}{|\mathbf{g}-\mathbf{g}'|}\\
+&+\sum_{l=0}^{\infty}(2l+1)\,P_l(\cos\theta_{\mathbf{gg}'})\,j_l\left(|\mathbf{k}-\mathbf{g}|\,R_s\right)j_l\left(|\mathbf{k}-\mathbf{g}'|\,R_s\right)\\
+&\qquad\qquad\times\frac{\mathcal{R}'_l(R_s,\mathcal{E})}{\mathcal{R}_l(R_s,\mathcal{E})}\Big\}\tag{3.65}
+\end{align*}
+（其中 $\theta_{\mathbf{gg}'}$ 是 $(\mathbf{k}-\mathbf{g})$ 与 $(\mathbf{k}-\mathbf{g}')$ 之间的夹角，$\mathcal{R}'_l$ 是径向函数 $\mathcal{R}_l$ 的导数）。这一手续的实质，是让球外区域给出一个像 (3.65) 中第一主项那样的贡献；其余部分则来自梯度算符对每个 A.P.W. 在各个球面上的斜率不连续所起的作用。
+
+能带结构问题现在就归结为求线性方程组 (3.64) 的解——只有当久期行列式为零时，解才可能存在。现在假定我们选定一个 $\mathbf{k}$ 值。所有系数都将依赖于 $\mathcal{E}$——或像 (3.64) 中那样显式地依赖，或通过 (3.65) 隐式地依赖。我们可以对给定的 $\mathcal{E}$ 值算出行列式，然后改变 $\mathcal{E}$，直到找出一个根为止。这个 $\mathcal{E}$ 值就是我们对 $\mathcal{E}(\mathbf{k})$ 的估计。
+
+A.P.W. 方法是计算金属能带结构的一种稳妥实用的程序。它需要大量计算，但确实行之有效。例如，结果对原子势半径 $R_s$ 的选取并不十分敏感，而且在存在 $d$ 带时依然适用（见 §3.10）。然而，这里有趣的一点是，兜了一圈之后，我们最终回到了在结构上与 N.F.E. 法相似的那些公式。(3.64) 与式 (3.14) 完全相同，只不过我们用一个更复杂的表达式取代了原子势的 Fourier 分量，即
+\begin{equation*}
+\mathcal{V}_{\mathbf{g}-\mathbf{g}'}\rightarrow\Gamma_{\mathbf{gg}'}.
+\end{equation*}
+换言之，$\Gamma_{\mathbf{gg}'}$ 正是某个有效原子势的 Fourier 分量。倘若它碰巧不怎么依赖 $\mathcal{E}$ 和 $\mathbf{k}$，而只是 $|\mathbf{g}-\mathbf{g}'|$ 的函数，那么我们就可以直接用 N.F.E. 方法构造出费米面等等。
+
+遗憾的是，A.P.W. 赝势分量 (3.65) 通常并不像我们希望的那样小。这一点由“空格子检验”（empty lattice test）即可看出：在 $\mathcal{V}(\mathbf{r})\equiv 0$ 的“晶格”中求解 $\mathcal{E}(\mathbf{k})$ 时，(3.65) 中函数 $R_l$ 的径向导数在 $r=R_s$ 处并不自动为零，因此即使真实势的 Fourier 分量 $\mathcal{V}_{\mathbf{g}-\mathbf{g}'}$ 为零，系数 $\Gamma_{\mathbf{gg}'}$ 也不趋于零。这样一来，仅仅为了得到平庸的结果 $\mathcal{E}(\mathbf{k})=k^2$，就得做大量的计算。因此，A.P.W. 方法在实践上的成功，并不能直接求助于 §3.6 的赝势概念来论证。这一点将在 §3.8 中进一步讨论。
+
+\section{Green 函数法}
+
+有一种技术在原理上看起来截然不同，推演出来的结果却颇为相似：它从任意势 $\mathcal{V}(\mathbf{r})$ 中波函数的标准积分方程出发：
+\begin{equation*}
+\psi(\mathbf{r})=-\frac{1}{4\pi}\int\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}'|)}{|\mathbf{r}-\mathbf{r}'|}\,\mathcal{V}(\mathbf{r}')\,\psi(\mathbf{r}')\,d\mathbf{r}',\tag{3.66}
+\end{equation*}
+其中
+\begin{equation*}
+\kappa^2=\mathcal{E}\tag{3.67}
+\end{equation*}
+因而当 $\mathcal{E}>0$ 时 $\kappa$ 为实数，当 $\mathcal{E}<0$ 时 $\kappa$ 为虚数。
+
+这个方程说的是：波函数被势散射到自身之中，达到自洽；来自各个不同点 $\mathbf{r}'$、强度为 $\mathcal{V}(\mathbf{r}')\psi(\mathbf{r}')$ 的小波，重新合成为 $\psi(\mathbf{r})$。现在假定我们有一个 muffin-tin 势，即
+\begin{equation*}
+\mathcal{V}(\mathbf{r})=\sum_l v_a(\mathbf{r}-\mathbf{l}).\tag{3.68}
+\end{equation*}
+代入 (3.66)，得
+\begin{equation*}
+\psi(\mathbf{r})=-\frac{1}{4\pi}\sum_l\int\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}'|)}{|\mathbf{r}-\mathbf{r}'|}\,v_a(\mathbf{r}'-\mathbf{l})\psi(\mathbf{r}')\,d\mathbf{r}',\tag{3.69}
+\end{equation*}
+式中积分仅遍及 $\mathbf{l}$ 周围的元胞，因为 $v_a(\mathbf{r}-\mathbf{l})$ 在其他地方为零。
+
+我们要找的是一个 Bloch 函数。利用这一性质，可以把 $\psi(\mathbf{r}')$ 的原点移到 $\mathbf{r}'-\mathbf{l}$ 处，再把它重新记作 $\mathbf{r}''$。于是
+\begin{align*}
+\psi_{\mathbf{k}}(\mathbf{r})&=-\frac{1}{4\pi}\sum_l\int\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}'|)}{|\mathbf{r}-\mathbf{r}'|}\,v_a(\mathbf{r}'-\mathbf{l})\,e^{i\mathbf{k}\cdot\mathbf{l}}\psi_{\mathbf{k}}(\mathbf{r}'-\mathbf{l})\,d\mathbf{r}'\\
+&=-\frac{1}{4\pi}\int\left\{G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')\right\}v_a(\mathbf{r}'')\psi_{\mathbf{k}}(\mathbf{r}'')\,d\mathbf{r}''.\tag{3.70}
+\end{align*}
+这实际上就是说，$\mathbf{r}$ 处的波函数是所有其他元胞（位于 $\mathbf{l}$ 等处）散射出的小波各带适当相位因子后的贡献之和。由于所有元胞全同，我们得以引入\emph{结构 Green 函数}（structural Green function），或称 Greenian：
+\begin{equation*}
+G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')\equiv\sum_l\frac{\exp(i\kappa\,|\mathbf{r}-\mathbf{r}''+\mathbf{l}|)}{|\mathbf{r}-\mathbf{r}''+\mathbf{l}|}\,e^{i\mathbf{k}\cdot\mathbf{l}},\tag{3.71}
+\end{equation*}
+它给出从 $\mathbf{r}''$ 以及所有其他元胞中各等价点散射来的波在 $\mathbf{r}$ 处的效果（图 59b）。这样一来，我们只需在单个元胞中积分，便能得出整个波函数。
+
+%FIG{59}: {普通的 Green 函数（(a)）描述从 $\mathbf{r}'$ 到 $\mathbf{r}$ 的传播；现以结构 Green 函数（(b)）取代之，后者把来自晶格中所有等价点 $\mathbf{r}''$ 的波组合起来}
+
+论证的下一步是构造一个泛函，使它经变分后给出积分方程 (3.70)。容易证明，这个泛函就是
+\begin{align*}
+\Lambda&=N\int\psi_{\mathbf{k}}^{*}(\mathbf{r})\,v_a(\mathbf{r})\,\psi_{\mathbf{k}}(\mathbf{r})\,d\mathbf{r}\\
+&\quad+\frac{1}{4\pi}\iint\psi_{\mathbf{k}}^{*}(\mathbf{r})\,v_a(\mathbf{r})\,G(\kappa,\mathbf{k};\mathbf{r}-\mathbf{r}'')\,v_a(\mathbf{r}'')\psi_{\mathbf{k}}(\mathbf{r}'')\,d\mathbf{r}\,d\mathbf{r}''.\tag{3.72}
+\end{align*}
+积分只需遍及单个元胞——而且由于势在每个原子球以外处处为零，每重积分都可以限制在 $r,r''\leqslant R_s$ 的范围内。
+
+现在我们在每个元胞内部假设一个与 (3.59) 同形的试探波函数
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r})=\sum_{lm}C_{lm}\,\mathcal{R}_l(r)\,Y_{lm}(\theta,\phi).\tag{3.73}
+\end{equation*}
+显然，(3.72) 最终将成为系数 $C_{lm}$ 的一个二次函数
+\begin{equation*}
+\Lambda=\sum_{lm;\,l'm'}\Lambda_{lm;l'm'}\,C_{lm}\,C_{l'm'}^{*}\tag{3.74}
+\end{equation*}
+变分条件给出一组线性方程，其行列式 $|\Lambda_{lm;l'm'}|$ 必须为零。这个行列式是波矢 $\mathbf{k}$ 和能量 $\mathcal{E}=\kappa^2$ 的函数。行列式的根给出 $\mathcal{E}(\mathbf{k})$ 各支所要求的关系。
+
+这个行列式的具体形式颇有意思。它的各项为
+\begin{equation*}
+\Lambda_{lm;l'm'}=A_{lm;l'm'}+\kappa\,\delta_{ll'}\,\delta_{mm'}\,\frac{n'_l-n_l L_l}{j'_l-j_l L_l}.\tag{3.75}
+\end{equation*}
+系数 $A_{lm;l'm'}$ 就其起源而言是结构性的。它们来自

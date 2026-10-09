@@ -1,0 +1,223 @@
+% 附录B 线性响应与生成泛函
+\chapter{线性响应与生成泛函}
+
+\section{自旋响应函数}
+
+自旋响应函数描述自旋对任意弱的、依赖时空的磁场（或“源流”）$j_{i}^{\alpha}(t)$（$t \geq 0$ 时开启）的响应动力学。完整的依赖源的哈密顿量为
+
+\begin{equation*}
+\mathcal {H} [ j ] = \mathcal {H} _ {0} - \sum_ {\mathbf {q}} j _ {i} ^ {\alpha} ( t ) S _ {i} ^ {\alpha} ,
+\tag{B.1}
+\end{equation*}
+
+$\alpha = x, y, z$。$t > 0$ 时 Hilbert 空间中所有态按 Schrödinger 方程演化：
+
+\begin{equation*}
+i \frac {\partial}{\partial t} \left| \psi ( t ) \right\rangle = \mathcal {H} [ j ] \left| \psi ( t ) \right\rangle .
+\tag{B.2}
+\end{equation*}
+
+(B.2) 的解由演化算符给出：
+
+\begin{align*}
+\left| \psi ( t ) \right\rangle & = U [ t, j ] \left| \psi ( 0 ) \right\rangle ,\\
+U [ t, j ] & = T _ {t '} \exp \left( - i \int_ {0} ^ {t} d t ' \, \mathcal {H} [ j ( t ' ) ] \right) ,
+\tag{B.3}
+\end{align*}
+
+$\mathcal{H}_{0}(\mu)$ 是巨正则表述中的无相互作用哈密顿量。时序指数定义为离散表达式的极限：
+
+\begin{align*}
+& T _ {t '} \exp \left[ - i \int_ {0} ^ {t} d t ' \, \mathcal {H} ( t ' ) \right]\\
+= & \lim_{\epsilon \rightarrow 0} \underbrace {\left[ 1 - i \mathcal {H} ( t ) \epsilon \right] \left[ 1 - i \mathcal {H} ( t - 2\epsilon ) \epsilon \right] \dots \left[ 1 - i \mathcal {H} ( \epsilon ) \epsilon \right]}_{N _ {\epsilon}} ,
+\tag{B.4}
+\end{align*}
+
+$\epsilon = t / N_{\epsilon}$ 是无穷小时间步长。
+
+算符 $S_{i}^{\alpha}$ 的期望值在 $\mathcal{H}[j]$ 下演化为
+
+\begin{equation*}
+\langle S _ {i} ^ {\alpha} ( t ) \rangle_{j} = Z ^ {- 1} \operatorname{Tr} \left( \rho \, U ^ {- 1} [ t, j ] \, S _ {i} ^ {\alpha} \, U [ t, j ] \right) ,
+\tag{B.5}
+\end{equation*}
+
+$Z = \operatorname{Tr}\rho$ 是配分函数，$\rho$ 是密度矩阵。到源流 $j$ 的线性阶，(B.5) 给出
+
+\begin{equation*}
+\langle S _ {i} ^ {\alpha} ( t ) \rangle_{j} = \langle S _ {i} ^ {\alpha} ( 0 ) \rangle + i \int_ {0} ^ {t} d t ' \sum_{i ', \alpha '} j_{i '} ^ {\alpha '} \left\langle \left[ S _ {i} ^ {\alpha} ( t ), S _ {i '} ^ {\alpha '} ( t ' ) \right] \right\rangle + \mathcal {O} ( j ^ {2} ) ,
+\tag{B.6}
+\end{equation*}
+
+$\langle\cdot\rangle$ 相对 $H_{0}$ 定义。(B.6) 中积分的核就是响应函数
+
+\begin{equation*}
+R_{ii'} ^ {\alpha \alpha'} ( t - t ' ) = - i \theta ( t - t ' ) \left\langle \left[ S _ {i} ^ {\alpha} ( t ), S _ {i'} ^ {\alpha} ( t ' ) \right] \right\rangle .
+\tag{B.7}
+\end{equation*}
+
+由于 $\theta$ 函数，$R$ 也称为“推迟”关联函数。
+
+可以用 $\mathcal{H}_0$ 的本征态与本征能量计算 $R$：
+
+\begin{equation*}
+\mathcal {H} _ {0} ( \mu ) \left| n \right\rangle = E _ {n} \left| n \right\rangle .
+\tag{B.8}
+\end{equation*}
+
+在本征态表示中，(B.7) 为
+
+\begin{align*}
+R_{ii'} ( t ) & = - i \theta ( t ) Z ^ {- 1} \sum_{nm} e ^ {- E_{n} /T} \Big( e ^ {i ( E_{n} - E_{m} ) t} \langle n | S _ {i} ^ {\alpha} | m \rangle \langle m | S _ {i'} ^ {\alpha} | n \rangle\\
+& \quad - e ^ {i ( E_{m} - E_{n} ) t} \langle n | S _ {i'} ^ {\alpha} | m \rangle \langle m | S _ {i} ^ {\alpha} | n \rangle \Big) .
+\tag{B.9}
+\end{align*}
+
+哈密顿量的平移不变性给出 $R_{ii'} = R(\mathbf{x}_i - \mathbf{x}_{i'})$，$x_i$ 是格点 $i$ 的位置。$R$ 的时空 Fourier 变换为
+
+\begin{align*}
+R ( \mathbf {q}, \omega + i0 ^ {+} ) & = \mathcal {N} ^ {- 1} \sum_{ii'} \int_ {0} ^ {\infty} d t \, e ^ {- i \mathbf {q} ( \mathbf {x} _ {i} - \mathbf {x} _ {i'} ) + i ( \omega + i0 ^ {+} ) t} R ( \mathbf {x} _ {i} - \mathbf {x} _ {i'}, t )\\
+& = ( \mathcal {N} Z ) ^ {- 1} \sum_{n, m} \langle n | S _ {\mathbf {q}} ^ {\alpha} | m \rangle \langle m | S _ {- \mathbf {q}} ^ {\alpha} | n \rangle \frac {e ^ {- E_{n} /T} - e ^ {- E_{m} /T}}{E _ {n} - E _ {m} + \omega + i0 ^ {+}} ,
+\tag{B.10}
+\end{align*}
+
+其中
+
+\begin{equation*}
+S _ {\mathbf {q}} ^ {\alpha} = \sum_ {i} e ^ {- i \mathbf {qx} _ {i}} S _ {i} ^ {\alpha}.
+\tag{B.11}
+\end{equation*}
+
+无穷小正数 $0^{+}$ 保证 Fourier 积分在大时间收敛。$R$ 的实部与虚部由恒等式
+
+\begin{equation*}
+\frac {1}{x + i0 ^ {+}} = \mathcal {P} \left( \frac {1}{x} \right) - i \pi \delta ( x )
+\tag{B.12}
+\end{equation*}
+
+给出，$\mathcal{P}$ 取主值。把 (B.12) 用于 (B.10)，可以证明 Kramers--Kronig 关系：
+
+\begin{align*}
+\operatorname{Re} R ( \mathbf {q}, \omega ) & = \mathcal {P} \int_{- \infty} ^ {\infty} \frac {d \omega '}{\pi} \frac {\operatorname{Im} R ( \mathbf {q}, \omega ' )}{\omega ' - \omega} ,\\
+\operatorname{Im} R ( \mathbf {q}, \omega ) & = - \mathcal {P} \int_{- \infty} ^ {\infty} \frac {d \omega '}{\pi} \frac {\operatorname{Re} R ( \mathbf {q}, \omega ' )}{\omega ' - \omega} .
+\tag{B.13}
+\end{align*}
+
+\section{涨落与耗散}
+
+谱响应函数的虚部 $\operatorname{Im} R_{21}(\omega)$ 是耗散部分，描述频率 $\omega$ 的外振荡通过激发体系内部模式而被阻尼。平衡时两个自旋涨落之间的关联函数是
+
+\begin{equation*}
+S_{i, i'} ^ {\alpha \alpha'} ( t - t ' ) = \left\langle S _ {i} ^ {\alpha} ( t ) \cdot S _ {i'} ^ {\alpha'} ( t ' ) \right\rangle .
+\tag{B.14}
+\end{equation*}
+
+其 Fourier 变换称为动力学结构因子：
+
+\begin{align*}
+S ^ {\alpha \alpha'} ( \mathbf {q}, \omega ) & = \mathcal {N} ^ {- 1} \sum_{ii'} \int_{- \infty} ^ {\infty} d t \, e ^ {- i \mathbf {q} ( \mathbf {x} _ {i} - \mathbf {x} _ {i'} ) + i\omega t} S_{ii'} ^ {\alpha \alpha'} ( t )\\
+& = \frac {2 \pi}{Z \mathcal {N}} \sum_{n, m} e ^ {- E_{n} /T} \langle n | S _ {\mathbf {q}} ^ {\alpha} | m \rangle \langle m | S _ {- \mathbf {q}} ^ {\alpha'} | n \rangle \, \delta \left( \omega + E_{n} - E_{m} \right) .
+\tag{B.15}
+\end{align*}
+
+对厄米可观察量，结构因子 $S(\mathbf{q},\omega)$ 为实。它描述频率 $\omega$ 的自发涨落，可由散射实验测量。例如，极化的非弹性中子散射截面测量的正是电子自旋结构因子。
+
+比较 (B.10) 与 (B.15) 的显式表达式，得到耗散响应函数与结构因子之间的简单关系（略去上标）：
+
+\begin{equation*}
+S ( \mathbf {q}, \omega ) = - \frac {2}{1 - e ^ {- \omega /T}} \operatorname{Im} R ( \mathbf {q}, \omega ).
+\tag{B.16}
+\end{equation*}
+
+这一关系称为涨落--耗散定理。
+
+\section{生成泛函}
+
+理论家关心的是从微观模型计算响应函数或结构因子。使这类计算在相互作用多粒子体系中可行的有用工具是虚时生成泛函。正文中我们遇到过生成泛函的路径积分表示，它们适合作半经典或大 $N$ 近似。这里把响应函数 $R(\mathbf{q},\omega)$ 导出为生成泛函的二阶导数。
+
+巨正则生成泛函定义为
+
+\begin{equation*}
+Z [ j, \mu ] = \operatorname{Tr} T _ {\tau} \left( \exp \left[ - \int_ {0} ^ {\beta} d \tau \, \mathcal {H} [ j ( \tau ) ] \right] \right) ,
+\tag{B.17}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\mathcal {H} [ j ( \tau ) ] = \mathcal {H} _ {0} ( \mu ) - \sum_ {i} j _ {i} ^ {\alpha} ( \tau ) S _ {i} ^ {\alpha} \, , \quad \tau \in [ 0, \beta ).
+\tag{B.18}
+\end{equation*}
+
+时序算符 $T(\bullet)$（先前在 (B.4) 中使用）把算符按 $\tau$ 从右到左递增排序。
+
+对转动对称的 $H_{0}$，$\langle S_{i}^{\alpha}\rangle = 0$。虚时关联函数定义为
+
+\begin{align*}
+\tilde {R}_{i, i'} ^ {\alpha \alpha'} ( \tau, \tau ' ) & = \left. \frac {\delta^ {2} \ln Z}{\delta j_{i} ^ {\alpha} ( \tau ) \, \delta j_{i'} ^ {\alpha'} ( \tau ' )} \right| _ {j = 0}\\
+& = Z ^ {- 1} \operatorname{Tr} \left\{ e ^ {- \beta \mathcal {H} _ {0}} T _ {\tau} \left[ S _ {i} ^ {\alpha} ( \tau ) S _ {i'} ^ {\alpha} ( \tau ' ) \right] \right\} ,
+\tag{B.19}
+\end{align*}
+
+其中
+
+\begin{equation*}
+S _ {i} ^ {\alpha} ( \tau ) \equiv e ^ {\mathcal {H} _ {0} \tau} S _ {i} ^ {\alpha} e ^ {- \mathcal {H} _ {0} \tau} ,
+\tag{B.20}
+\end{equation*}
+
+时序定义为
+
+\begin{equation*}
+T _ {\tau} \left[ A ( \tau ) B ( \tau ' ) \right] = \left\{ \begin{array}{ll} A ( \tau ) B ( \tau ' ) & \tau \geq \tau ' \\ B ( \tau ' ) A ( \tau ) & \tau < \tau ' \end{array} \right..
+\tag{B.21}
+\end{equation*}
+
+由 (B.19)，利用迹的循环性质，验证
+
+\begin{equation*}
+\tilde {R} ( \tau, \tau ' ) = \tilde {R} ( \tau - \tau ', 0 ) \equiv \tilde {R} ( \tau - \tau ' )
+\tag{B.22}
+\end{equation*}
+
+且 $\tilde{R} (\tau)$ 在区间 $[0,\beta)$ 上周期：
+
+\begin{equation*}
+\lim_{\tau \rightarrow \beta ^ {-}} \tilde {R} ( \tau ) = \lim_{\tau \rightarrow 0 ^ {-}} \tilde {R} ( \tau ).
+\tag{B.23}
+\end{equation*}
+
+对时空平移不变的哈密顿量，用 $\tilde{R}_{ii'}(\tau)$ 的 Fourier 表示是方便的：
+
+\begin{equation*}
+\tilde {R} ( \mathbf {q}, i\omega_ {n} ) = \mathcal {N} ^ {- 1} \sum_{ii'} \int_ {0} ^ {\beta} d \tau \, e ^ {- i \mathbf {q} ( \mathbf {x} _ {i} - \mathbf {x} _ {i'} ) - i\omega_{n} \tau} \tilde {R}_{ii'} ( \tau ) ,
+\tag{B.24}
+\end{equation*}
+
+\begin{equation*}
+\omega_ {n} = 2 n \pi \beta^ {- 1} \, , \quad n = 0, \pm 1, \pm 2, \dots .
+\tag{B.25}
+\end{equation*}
+
+频率 $\omega_{n}$ 是 Bose--Matsubara 频率。在 (B.19) 的算符之间插入完备本征态集并在 (B.24) 中完成 $d\tau$ 积分，发现 $R(\mathbf{q}, i\omega_{n})$ 确实是 (B.10) 谱响应函数的解析延拓：
+
+\begin{equation*}
+\tilde {R} ( \mathbf {q}, z ) \Big|_{z \rightarrow \omega + i0 ^ {+}} = \operatorname{Re} R ( \mathbf {q}, \omega ) + i \operatorname{Im} R ( \mathbf {q}, \omega ).
+\tag{B.26}
+\end{equation*}
+
+右端的函数是描述体系在频率 $\omega$ 的响应与耗散的物理可测量，它们通过涨落--耗散定理 (B.16) 与结构因子相联系；左端可由理论——例如虚时生成泛函——得到。
+
+最后，把静态磁化率定义为动量 $\mathbf{q}$ 处磁化对波矢 $\mathbf{q}$、$\alpha$ 方向序场的响应：
+
+\begin{equation*}
+\chi^ {\alpha \alpha} ( \mathbf {q} ) = - \frac {1}{2} \operatorname{Re} R ^ {\alpha \alpha} ( \mathbf {q}, 0 ).
+\tag{B.27}
+\end{equation*}
+
+\begin{chapbib}
+\item 本附录内容的推荐教科书：
+  P. C. Martin, \textit{Measurements and Correlation Functions} (Gordon and Breach, 1968)；
+  G. Rickayzen, \textit{Green's Functions and Condensed Matter} (Academic Press, 1980)。
+\item 另见第 1、2 章的文献注释。
+\end{chapbib}

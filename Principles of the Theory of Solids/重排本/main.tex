@@ -1,0 +1,76 @@
+% 《固体理论原理》中文重排本
+% J. M. Ziman, Principles of the Theory of Solids, 2nd ed. (Cambridge University Press, 1972)
+% 编译：xelatex ×3
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+\usepackage{amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\ctexset{
+  chapter/name = {第,章},
+  section/format = \Large\bfseries,
+}
+\allowdisplaybreaks
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \predisplaypenalty=10000
+\graphicspath{{figures/}}
+\xeCJKDeclareCharClass{CJK}{"201C, "201D, "2018, "2019}
+
+% 插入的空白衬页真正空白（无页眉页脚）
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% 插图占位（翻译阶段先占位，图重绘后替换为 \includegraphics）
+\newcommand{\figplaceholder}[2]{%
+  \begin{figure}[H]\centering
+  \fbox{\parbox[c][5cm][c]{0.8\textwidth}{\centering 图 #1 重绘占位\\ #2}}
+  \caption*{图 #1\quad #2}\label{fig:auto:#1}
+  \end{figure}}
+
+% 章首题词（原书各章卷首引语）
+\newcommand{\epigraphbook}[2]{%
+  \begin{center}\itshape #1\\[0.3em]\scshape #2\end{center}}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\centering
+{\Huge\bfseries 固体理论原理\\[5em]}
+{\Large Principles of the Theory of Solids\\[3em]}
+{\Large J. M. Ziman（J. M. 齐曼）\quad 著\\[1em]}
+{\large 剑桥大学　第二版（1972）\\[5em]}
+{\large 中文重排本\\[0.5em]}
+{\large 依据 1972 年 Cambridge University Press 第二版\\[0.3em]
+扫描件识别、翻译并重新排版\\[0.3em]
+仅供个人学习研究使用\\[3em]}
+\end{titlepage}
+\thispagestyle{empty}\mbox{}\clearpage
+\tableofcontents
+
+\input{chapters/ch00_preface}
+
+\mainmatter
+
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+\input{chapters/ch08}
+\input{chapters/ch09}
+\input{chapters/ch10}
+\input{chapters/ch11}
+
+\input{chapters/ch12_bib}
+
+\end{document}

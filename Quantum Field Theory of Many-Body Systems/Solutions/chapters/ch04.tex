@@ -1,0 +1,989 @@
+% ch04 第4章习题解答（20 题）
+\chapter{自由费米子系统}
+
+\section*{问题 4.1.1}
+\begin{problem}
+由 Jordan--Wigner 变换 $c_{\pmb{i}_a}=\sigma^-_{\pmb{i}_a}\prod_{b<a}\sigma^z_{\pmb{i}_b}$（式 (4.1.1)）证明费米子反对易代数（式 (4.1.3)）：$\{c_{\pmb{i}},c_{\pmb{j}}\}=\{c^\dagger_{\pmb{i}},c^\dagger_{\pmb{j}}\}=0$，$\{c_{\pmb{i}},c^\dagger_{\pmb{j}}\}=\delta_{\pmb{i}\pmb{j}}$。
+\end{problem}
+\solution
+格点按给定顺序编号为 $1,2,\ldots$，记 $S_a\equiv\prod_{b<a}\sigma^z_b$（前缀弦），则 $c_a=\sigma^-_a S_a$，且
+\begin{equation*}
+c_a^\dagger=(\sigma^-_aS_a)^\dagger=S_a\sigma^+_a=\sigma^+_aS_a,
+\end{equation*}
+最后一步用了不同格点上的算符彼此对易。由泡利矩阵代数，在同格点上
+\begin{equation*}
+(\sigma^{\pm})^2=0,\qquad
+\sigma^+\sigma^-+\sigma^-\sigma^+=1,\qquad
+\sigma^z\sigma^\pm=-\sigma^\pm\sigma^z,
+\end{equation*}
+即 $\sigma^z$ 与同格点的 $\sigma^\pm$ 反对易；不同格点上的所有算符相互对易，且 $(\sigma^z_b)^2=1$。
+
+\textbf{(1) 同格点（$a=b$）。}由 $(\sigma^{\pm})^2=0$ 与 $S_a^2=\prod_{b<a}(\sigma^z_b)^2=1$，
+\begin{equation*}
+\{c_a,c_a\}=2\sigma^-_aS_a\sigma^-_aS_a=2(\sigma^-_a)^2S_a^2=0,
+\end{equation*}
+同理 $\{c_a^\dagger,c_a^\dagger\}=0$。而
+\begin{equation*}
+c_ac_a^\dagger+c_a^\dagger c_a
+=\sigma^-_aS_a\sigma^+_aS_a+\sigma^+_aS_a\sigma^-_aS_a
+=(\sigma^-\sigma^++\sigma^+\sigma^-)_a\,S_a^2=1 .
+\end{equation*}
+
+\textbf{(2) 异格点（$a<e$）。}此时 $S_e=S_a\prod_{a\le b<e}\sigma^z_b$。注意：弦中的 $\sigma^z_b$（$b\ne a$）与 $\sigma^{\pm}_a$ 对易，唯一给出负号的是同格点因子 $\sigma^z_a$。于是
+\begin{align*}
+c_ac_e&=\sigma^-_aS_a\,\sigma^-_eS_e
+=\sigma^-_a\sigma^-_e\,(S_a)^2\prod_{a\le b<e}\sigma^z_b
+=\sigma^-_a\sigma^-_e\prod_{a\le b<e}\sigma^z_b,\\
+c_ec_a&=\sigma^-_eS_e\,\sigma^-_aS_a
+=\sigma^-_e\sigma^-_a\,(S_a)^2\prod_{a\le b<e}\sigma^z_b\,[\sigma^z_a\sigma^-_a=-\sigma^-_a\sigma^z_a]\\
+&=-\sigma^-_a\sigma^-_e\prod_{a\le b<e}\sigma^z_b .
+\end{align*}
+两式相加恰好为零：$\{c_a,c_e\}=0$。把 $\sigma^-\to\sigma^+$ 重复同样的推导得 $\{c^\dagger_a,c^\dagger_e\}=0$。最后
+\begin{align*}
+c_ac_e^\dagger&=\sigma^-_a\sigma^+_e\prod_{a\le b<e}\sigma^z_b,\\
+c_e^\dagger c_a&=\sigma^+_e\sigma^-_a\prod_{a\le b<e}\sigma^z_b
+=-\sigma^-_a\sigma^+_e\prod_{a\le b<e}\sigma^z_b
+\quad(\text{唯一的负号仍来自 }\sigma^z_a),
+\end{align*}
+故 $\{c_a,c_e^\dagger\}=0$。综合 (1)(2) 即得式 (4.1.3)。
+
+\emph{物理评注：}费米子反对易关系并非希尔伯特空间的性质，而来自跃迁算符携带的弦：把一个费米子搬过另一个费米子时弦上的 $\sigma^z$ 会探测它，恰好产生一个负号。这正是“费米子是非局域客体”的代数体现。
+
+\section*{问题 4.1.2}
+\begin{problem}
+一维超导体 $H=\sum_i(tc^\dagger_ic_{i+1}+\eta c^\dagger_ic^\dagger_{i+1}+\text{h.c.})$（式 (4.1.6)，取 $t,\eta$ 实）。证明 $\lambda_k=u_kc_k+v_kc^\dagger_{-k}$ 满足费米子反对易代数（归一化 $|u_k|^2+|v_k|^2=1$ 给出 $\{\lambda_k,\lambda^\dagger_{k'}\}=\delta_{kk'}$）；适当选取 $u_k,v_k$ 可把 $H$ 对角化为 $H=E_g+\sum_kE_k\lambda^\dagger_k\lambda_k$。求准粒子谱 $E_k$ 与基态能量 $E_g$。
+\end{problem}
+\solution
+取书中约定 $c_k=N_s^{-1/2}\sum_ie^{-\mathrm{i}k i}c_i$，即 $c_i=N_s^{-1/2}\sum_ke^{\mathrm{i}k i}c_k$。利用 $\frac{1}{N_s}\sum_ie^{\mathrm{i}(k-k')i}=\delta_{kk'}$ 与 $\frac{1}{N_s}\sum_ie^{\mathrm{i}(k+k')i}=\delta_{k,-k'}$：
+\begin{align*}
+\sum_itc^\dagger_ic_{i+1}+\text{h.c.}&=\sum_k2t\cos k\;c^\dagger_kc_k\equiv\sum_k\epsilon_kc^\dagger_kc_k,\\
+\sum_i\eta c^\dagger_ic^\dagger_{i+1}&=\eta\sum_ke^{\mathrm{i}k}c^\dagger_kc^\dagger_{-k},\qquad
+\text{h.c.}=\eta\sum_ke^{-\mathrm{i}k}c_{-k}c_k .
+\end{align*}
+对每一对 $\pm k$（$k>0$）收集配对项（指标 $-k$ 贡献 $-e^{-\mathrm{i}k}c^\dagger_kc^\dagger_{-k}+e^{\mathrm{i}k}c_{-k}c_k$），得
+\begin{equation*}
+H=\sum_{k>0}\Big[\epsilon_k\big(c^\dagger_kc_k+c^\dagger_{-k}c_{-k}\big)
++2\mathrm{i}\eta\sin k\,\big(c^\dagger_kc^\dagger_{-k}-c_{-k}c_k\big)\Big],
+\end{equation*}
+配对振幅 $\Delta_k=2\mathrm{i}\eta\sin k$ 满足自旋单粒子配对所要求的奇宇称 $\Delta_{-k}=-\Delta_k=\Delta_k^*$。
+
+\textbf{(a) $\lambda_k$ 的代数。}由 $\{c_k,c^\dagger_{k'}\}=\delta_{kk'}$、$\{c_k,c_{k'}\}=\{c^\dagger_k,c^\dagger_{k'}\}=0$，
+\begin{align*}
+\{\lambda_k,\lambda_{k'}\}&=u_kv_{k'}\{c_k,c^\dagger_{-k'}\}+v_ku_{k'}\{c^\dagger_{-k},c_{k'}\}
+=\big(u_kv_{-k}+v_ku_{-k}\big)\delta_{kk'},\\
+\{\lambda_k,\lambda^\dagger_{k'}\}&=\big(u_ku^*_{k'}+v_kv^*_{k'}\big)\delta_{kk'} .
+\end{align*}
+因此除归一化 $|u_k|^2+|v_k|^2=1$（给出 $\{\lambda_k,\lambda^\dagger_{k'}\}=\delta_{kk'}$）外，还须
+\begin{equation*}
+u_kv_{-k}+v_ku_{-k}=0 .
+\end{equation*}
+取偶宇称 $u_{-k}=u_k$、奇宇称 $v_{-k}=-v_k$（下面构造的解正满足此式），则 $\lambda_k$ 在全布里渊区上构成正则费米子系：$\{\lambda_k,\lambda_{k'}\}=\{\lambda^\dagger_k,\lambda^\dagger_{k'}\}=0$，$\{\lambda_k,\lambda^\dagger_{k'}\}=\delta_{kk'}$。
+
+\textbf{(b) 对角化。}把 $E_k\lambda^\dagger_k\lambda_k$ 展开：
+\begin{equation*}
+E_k\lambda^\dagger_k\lambda_k
+=E_k\big[(|u_k|^2-|v_k|^2)c^\dagger_kc_k
++u^*_kv_k\,c^\dagger_kc^\dagger_{-k}
++v^*_ku_k\,c_{-k}c_k\big]+\text{const}.
+\end{equation*}
+配对系数须逐对匹配：对每一 $k>0$，$\sum_kE_k\lambda^\dagger_k\lambda_k$ 给出 $2E_ku^*_kv_k\,(c^\dagger_kc^\dagger_{-k}-c_{-k}c_k)$（利用 $u_{-k}=u_k$、$v_{-k}=-v_k$，$\pm k$ 两指标贡献相加），故令非常数部分与 $H$ 逐项相等得到条件
+\begin{equation*}
+E_k\big(|u_k|^2-|v_k|^2\big)=\epsilon_k,\qquad
+E_ku^*_kv_k=\Delta_k\equiv2\mathrm{i}\eta\sin k .
+\end{equation*}
+与 $|u_k|^2+|v_k|^2=1$ 联立，两式平方相加得
+\begin{equation*}
+E_k^2=\epsilon_k^2+|\Delta_k|^2=4t^2\cos^2k+4\eta^2\sin^2k,
+\end{equation*}
+即
+\begin{equation*}
+\boxed{\;E_k=2\sqrt{t^2\cos^2k+\eta^2\sin^2k}\;}
+\end{equation*}
+准粒子谱处处非零（能隙 $2|\eta|$ 在 $k=\pm\pi/2$ 处）：配对项把原来在 $\pm\pi/2$ 处的费米点粘合，一维超导体是能带绝缘体。一组显式解为
+\begin{equation*}
+u_k=\sqrt{\tfrac12\Big(1+\frac{\epsilon_k}{E_k}\Big)},\qquad
+v_k=\mathrm{i}\,\mathrm{sgn}(\eta\sin k)\sqrt{\tfrac12\Big(1-\frac{\epsilon_k}{E_k}\Big)} ,
+\end{equation*}
+它满足 $u_{-k}=u_k$、$v_{-k}=-v_k$ 与 $E_ku^*_kv_k=2\mathrm{i}\eta\sin k$。（若把 $\lambda$ 定义式中的配对相位取共轭，则 $v_k$ 整体变号，谱不变。）
+
+\textbf{(c) 基态能量。}常数项：$H$ 本身无常数项，而 $\sum_kE_k\lambda^\dagger_k\lambda_k$ 的常数项为 $\sum_kE_k|v_k|^2=\sum_{k>0}2E_k|v_k|^2=\sum_{k>0}(E_k-\epsilon_k)$，故
+\begin{equation*}
+\boxed{\;E_g=\sum_{k>0}\big(\epsilon_k-E_k\big)
+=\frac12\sum_k\Big[2t\cos k-2\sqrt{t^2\cos^2k+\eta^2\sin^2k}\Big]<0\;}
+\end{equation*}
+（$t=0$ 时 $E_g=-\sum_{k>0}2|\eta\sin k|$，即 Kitaev 链的基态能量。）
+
+自洽性检验：$\eta=0$ 时 $E_k=2|t\cos k|$，在费米点 $\pm\pi/2$ 处重新出现无能隙的金属谱，$E_g\to\sum_{k>0}\epsilon_k-\text{h.c.}$ 型结果，与自由费米子一致。
+
+\section*{问题 4.1.3}
+\begin{problem}
+一维自旋-1/2（硬核玻色子）系统 $H=\sum_i(J_x\sigma^x_i\sigma^x_{i+1}+J_y\sigma^y_i\sigma^y_{i+1}+B\sigma^z_i)$。(a) 用 Jordan--Wigner 变换映射为自由费米子。(b) $J_x=J_y=J$：求 $J$ 从 $-\infty$ 到 $+\infty$ 扫过时的相变次数与临界 $J$，并对每个相与临界点画出总能量--动量空间中的激发区域。(c) 同题于 $J_x=J,\ \alpha J_y=J\ (0<\alpha<1)$。(d) 讨论两种情形为何定性不同。
+\end{problem}
+\solution
+\textbf{(a) Jordan--Wigner 映射。}取一维自然排序，$\sigma^-_i=c_i\prod_{j<i}\sigma^z_j$，$\sigma^+_i=c^\dagger_i\prod_{j<i}\sigma^z_j$，$\sigma^z_i=2c^\dagger_ic_i-1$，从而
+\begin{equation*}
+\sigma^x_i=(c_i+c^\dagger_i)\prod_{j<i}\sigma^z_j,\qquad
+\sigma^y_i=\mathrm{i}(c_i-c^\dagger_i)\prod_{j<i}\sigma^z_j .
+\end{equation*}
+利用 $c_i$ 与 $\prod_{j<i}\sigma^z_j$ 对易（弦不含 $i$ 位），两相邻自旋的交换项为（诸 $c$ 逐个越过对方格点的弦，弦因子两两相消）
+\begin{align*}
+\sigma^x_i\sigma^x_{i+1}+\sigma^y_i\sigma^y_{i+1}&=2(\sigma^+_i\sigma^-_{i+1}+\sigma^-_i\sigma^+_{i+1})=2(c^\dagger_ic_{i+1}+c^\dagger_{i+1}c_i),\\
+\sigma^x_i\sigma^x_{i+1}-\sigma^y_i\sigma^y_{i+1}&=2(\sigma^+_i\sigma^+_{i+1}+\sigma^-_i\sigma^-_{i+1})=2(c^\dagger_ic^\dagger_{i+1}-c_ic_{i+1}),
+\end{align*}
+其中用了 $c_i e^{\pm\mathrm{i}\pi n_i}=-c_i$、$c^\dagger_i e^{\pm\mathrm{i}\pi n_i}=+c^\dagger_i$。于是
+\begin{equation*}
+H=\sum_i\Big[(J_x+J_y)(c^\dagger_ic_{i+1}+\text{h.c.})+(J_x-J_y)(c^\dagger_ic^\dagger_{i+1}-c_ic_{i+1})+B(2c^\dagger_ic_i-1)\Big].
+\end{equation*}
+按问题 4.1.2 同样的步骤傅里叶变换并作 Bogoliubov 变换，记 $\xi_k\equiv2(J_x+J_y)\cos k+B$，配对振幅为 $\Delta_k=2\mathrm{i}(J_x-J_y)\sin k$，得自由费米子谱
+\begin{equation*}
+\boxed{\;E_k=\sqrt{\xi_k^2+|\Delta_k|^2}
+=\sqrt{\big[2(J_x+J_y)\cos k+B\big]^2+4(J_x-J_y)^2\sin^2k}\;}
+\end{equation*}
+准粒子为 $E_k\lambda^\dagger_k\lambda_k$ 型；激发能（改变任一 $k$ 的占据）为 $|E_k|$。相变发生在能隙闭合即 $E_k=0$ 之处。
+
+\textbf{(b) $J_x=J_y=J$。}此时 $J_x-J_y=0$，配对消失，
+\begin{equation*}
+E_k=\big|4J\cos k+B\big| .
+\end{equation*}
+能隙闭合要求 $4J\cos k+B=0$ 有解，即 $|B|\le4|J|$。固定 $B\ne0$（不妨取 $B>0$；$B<0$ 由 $\sigma^z\to-\sigma^z$ 即粒子--空穴变换与 $B>0$ 等价），得两个临界点：
+\begin{equation*}
+\boxed{\;J_{c1}=-\frac{B}{4}\ (\text{在 }k=0\text{ 处闭合})，\qquad
+J_{c2}=+\frac{B}{4}\ (\text{在 }k=\pi\text{ 处闭合}) .\;}
+\end{equation*}
+三个相的激发区域（在 $(E,k)$ 平面中画出曲线 $E(k)=|4J\cos k+B|$ 及其 $E\to-E$ 镜像，即粒子和空穴两支）：
+
+\begin{itemize}
+\item \textbf{相 I（$J<-B/4$）：}$E_k$ 在 $k=\pm k_0$ 处有线性（V 形）触零点，$\cos k_0=-B/(4J)>0$，$k_0=\arccos\frac{B}{4|J|}<\frac{\pi}{2}$；低能激发是 $\pm k_0$ 处的两对线性 Dirac 锥，$E\approx v|k\mp k_0|$，$v=4|J||\sin k_0|$。此相为 $x/y$ 平面有序相（硬核玻色子的“超流”相，玻色子在 $\pm k_0$ 附近聚集）。
+\item \textbf{临界点 $J=-B/4$：}$E_k=B(1-\cos k)=2B\sin^2(k/2)$，在 $k=0$ 处\emph{二次}触零：$E\approx\frac{B}{2}k^2$。整个激发区域是一条在 $k=0$ 处以抛物线方式贴地的单条曲线。
+\item \textbf{相 II（$|J|<B/4$）：}$E_k=B+4J\cos k>0$ 处处非零（最小值 $B-4|J|$ 在 $k=\pi$ 若 $J>0$，在 $k=0$ 若 $J<0$），激发曲线为一条处处光滑的正曲线：这是 $z$ 方向完全极化的顺磁相（硬核玻色子真空），无能隙激发。
+\item \textbf{临界点 $J=+B/4$：}$E_k=B(1+\cos k)=2B\cos^2(k/2)$，在 $k=\pi$ 处二次触零。
+\item \textbf{相 III（$J>B/4$）：}触零点移到 $k=\pm k_0$，$\cos k_0=-B/(4J)<0$，$k_0>\frac{\pi}{2}$，仍为两对线性 Dirac 锥。
+\end{itemize}
+（正如题目提示：临界点上 $E\propto(k-k_c)^2$ 的色散正是一维硬核玻色子/稀薄玻色子在真空--超流转变处的谱，$z=2$；有能隙相则是“真空”，无能隙激发；有序相两支曲线在 $\pm k_0$ 线性触零。）
+
+\textbf{(c) $J_x=J,\ \alpha J_y=J$，即 $J_y=J/\alpha$。}记 $A=J_x+J_y=J\frac{1+\alpha}{\alpha}$，$D=J_x-J_y=-J\frac{1-\alpha}{\alpha}\neq0$，则
+\begin{equation*}
+E_k=\sqrt{\big[2A\cos k+B\big]^2+4D^2\sin^2k},\qquad D\neq0 .
+\end{equation*}
+能隙闭合须同时 $\xi_k=0$ 与 $D\sin k=0$；由 $D\neq0$ 得 $\sin k=0$，$k=0$ 或 $\pi$，于是仍有两个临界点：
+\begin{equation*}
+\boxed{\;J_{c1}=-\frac{\alpha B}{2(1+\alpha)}\ (k=0)，\qquad
+J_{c2}=+\frac{\alpha B}{2(1+\alpha)}\ (k=\pi) .\;}
+\end{equation*}
+但临界行为不同：在 $J=J_{c1}$ 附近、$k\ll1$ 处 $\xi_k\approx(B+2A)-Ak^2\to-Ak^2$ 而 $2D\sin k\approx2Dk$，故
+\begin{equation*}
+E_k\approx2|D|\,|k|=\frac{2|J|(1-\alpha)}{\alpha}|k| ,
+\end{equation*}
+即\emph{线性}（相对论型、$z=1$）触零；$k=\pi$ 处同理。三个相的激发区域形状与 (b) 相同——顺磁相为有能隙的光滑曲线；两有序相在 $\pm k_0$（$\cos k_0=-B/2A$）处线性触零；但在两个临界点上曲线以线性锥贴地，而不是抛物线。
+
+\textbf{(d) 定性差异的根源。}
+\begin{itemize}
+\item \emph{对称性：}$J_x=J_y$ 时绕 $z$ 轴的自旋旋转 $U(1)$ 对称，映射后 $J_x-J_y=0$，配对通道恰好消失；$J_x\neq J_y$ 只剩下 $Z_2$（$\sigma^x\to-\sigma^x$）对称，$D\neq0$ 的 $p$ 波配对通道打开。因此前者有序相破缺连续对称（一维中表现为代数长程 $xy$ 序），后者破缺离散对称（真长程 Ising 序）。
+\item \emph{临界指数：}$D=0$ 时能隙只在带边（$k=0,\pi$）闭合，且以二次型 $E\propto(k-k_c)^2$ 闭合——这正是稀薄硬核玻色子（一维相互作用玻色子）在真空--超流转变处的普适行为，$z=2$。$D\neq0$ 时配对项 $2D\sin k$ 在带边附近线性主导，$E\propto|k-k_c|$，$z=1$，属 Ising/相对论型普适类。
+\item \emph{谱的整体形状：}$J_x=J_y$ 的谱 $E_k=|\,\text{cosine}\,|$ 在整个无能隙相中都带尖点（cusp）；$J_x\neq J_y$ 的谱 $E_k=\sqrt{\xi_k^2+4D^2\sin^2k}$ 除触零点外处处光滑。两种模型虽都有“两次相变、三相比 2:1:1（按 $J$ 区间宽度为 $\alpha:(1-\alpha)\cdot$适当比例）”的相同拓扑结构，但低能理论的动力学指数与对称性完全不同。
+\end{itemize}
+
+\emph{（译注：题面"$J_x=\alpha J_y=J$"按链式等式的字面读法取 $J_x=J$、$J_y=J/\alpha$（$J_y>|J_x|$）。若按另一读法 $J_x=\alpha J$、$J_y=J$，只需把正文各式中的 $J$ 换成 $\alpha J$，临界值即改为 $J_c=\mp B/[2(1+\alpha)]$；$J_x-J_y\neq0$ 及全部定性结论不变。）}
+
+\section*{问题 4.1.4}
+\begin{problem}
+用马约拉纳费米子 $\lambda_{1,i}=(c_i+c^\dagger_i)/\sqrt2$、$\lambda_{2,i}=(c_i-c^\dagger_i)/(\mathrm{i}\sqrt2)$ 求解超导哈密顿量 (4.1.6)：证明 $\lambda_{ai}$ 满足马约拉纳代数，求出全部能量本征态与本征值，并与问题 4.1.2 比较。
+\end{problem}
+\solution
+\textbf{(a) 马约拉纳代数。}$\lambda_{ai}$ 均厄米：$(\lambda_{1,i})^\dagger=\lambda_{1,i}$，$(\lambda_{2,i})^\dagger=\lambda_{2,i}$。反对易子：
+\begin{align*}
+\{\lambda_{1,i},\lambda_{1,i}\}&=\tfrac12\{c+c^\dagger,c+c^\dagger\}=\tfrac12(1+1)=1,\qquad
+\{\lambda_{2,i},\lambda_{2,i}\}=-\tfrac12\{c-c^\dagger,c-c^\dagger\}=1,\\
+\{\lambda_{1,i},\lambda_{2,i}\}&=\tfrac{1}{2\mathrm{i}}\{c+c^\dagger,c-c^\dagger\}=\tfrac{1}{2\mathrm{i}}(-1+1)=0,
+\end{align*}
+不同格点上算符全对易，反对易子为零。故 $\{\lambda_{ai},\lambda_{bj}\}=\delta_{ab}\delta_{ij}$。反解得 $c_i=(\lambda_{1,i}+\mathrm{i}\lambda_{2,i})/\sqrt2$，$c^\dagger_i=(\lambda_{1,i}-\mathrm{i}\lambda_{2,i})/\sqrt2$。
+
+\textbf{(b) 哈密顿量的马约拉纳形式。}逐键代入并利用异格点马约拉纳算符的反对易性：
+\begin{align*}
+tc^\dagger_ic_{i+1}+t\,c^\dagger_{i+1}c_i
+&=\frac{t}{2}\big[(\lambda_{1i}-\mathrm{i}\lambda_{2i})(\lambda_{1,i+1}+\mathrm{i}\lambda_{2,i+1})+(\lambda_{1,i+1}-\mathrm{i}\lambda_{2,i+1})(\lambda_{1i}+\mathrm{i}\lambda_{2i})\big]\\
+&=\mathrm{i}t\big(\lambda_{1i}\lambda_{2,i+1}+\lambda_{1,i+1}\lambda_{2i}\big),\\
+\eta c^\dagger_ic^\dagger_{i+1}+\eta\,c_{i+1}c_i
+&=\frac{\eta}{2}\big[(\lambda_{1i}-\mathrm{i}\lambda_{2i})(\lambda_{1,i+1}-\mathrm{i}\lambda_{2,i+1})+(\lambda_{1,i+1}+\mathrm{i}\lambda_{2,i+1})(\lambda_{1i}+\mathrm{i}\lambda_{2i})\big]\\
+&=-\mathrm{i}\eta\big(\lambda_{1i}\lambda_{2,i+1}+\lambda_{2i}\lambda_{1,i+1}\big).
+\end{align*}
+（同种马约拉纳跨键的项 $\lambda_{1i}\lambda_{1,i+1}$、$\lambda_{2i}\lambda_{2,i+1}$ 因反对易而两两抵消。）合并并注意 $\lambda_{2i}\lambda_{1,i+1}=-\lambda_{1,i+1}\lambda_{2i}$：
+\begin{equation*}
+\boxed{\;H=\sum_i\Big[\mathrm{i}(t-\eta)\,\lambda_{1i}\lambda_{2,i+1}
++\mathrm{i}(t+\eta)\,\lambda_{1,i+1}\lambda_{2i}\Big]\;}
+\end{equation*}
+这正是无化学势的 Kitaev 链。$t=\eta$ 时只存一个方向的键合 $H=2\mathrm{i}t\sum_i\lambda_{1,i+1}\lambda_{2i}$——马约拉纳“未配对”固定点，谱应为平带（见下）。
+
+\textbf{(c) 对角化。}把一维链分成二格点元胞，$\lambda_{1i}$ 与 $\lambda_{2i}$ 为两个子格，元胞动量 $q$。由 $\lambda_{ai}=\mathcal{N}^{-1/2}\sum_qe^{\mathrm{i}qi}a_a(q)$（$a_a(-q)=a^\dagger_a(q)$，$\{a_a(q),a^\dagger_b(q')\}=\delta_{ab}\delta_{qq'}$）：
+\begin{equation*}
+H=\sum_qG(q)\,a_1(q)a_2(-q),\qquad
+G(q)=\mathrm{i}\big[(t-\eta)e^{-\mathrm{i}q}+(t+\eta)e^{\mathrm{i}q}\big]
+=2\mathrm{i}t\cos q-2\eta\sin q .
+\end{equation*}
+写成单体跃迁（hopping）问题的 $2\times2$ 矩阵：
+\begin{equation*}
+H_q=\big(a_1^\dagger(q)\;\;a_2(q)\big)
+\begin{pmatrix}0&G^*(q)\\-G(q)&0\end{pmatrix}
+\binom{a_1(q)}{a_2(q)} ,
+\end{equation*}
+（$G^*(q)$ 为 $a_2\to a_1$ 的跃迁幅度，$-G(q)$ 为 $a_1\to a_2$ 的幅度；这与 $H_q=G(q)a_1a_2^\dagger+G^*(q)a_1^\dagger a_2$ 逐项一致。）单体矩阵本征值为 $\pm\,\mathrm{i}|G(q)|$（$\lambda^2=-|G|^2$），对应多体激发能 $E(q)=|G(q)|$。把 $G=|G|e^{\mathrm{i}\varphi_q}$ 的相位吸收进子格基的定义，即得对角形
+\begin{equation*}
+\boxed{\;H=E_g+\sum_{q>0}E(q)\big(n_{1,q}+n_{2,q}\big),\qquad
+E(q)=|G(q)|=2\sqrt{t^2\cos^2q+\eta^2\sin^2q}\;}
+\end{equation*}
+本征态为费米海型 Fock 态 $|\{n_{1,q},n_{2,q}\}\rangle=\prod_{q>0}(d^\dagger_{1,q})^{n_{1,q}}(d^\dagger_{2,q})^{n_{2,q}}|0\rangle$，能量 $E_g+\sum_{q>0}E(q)(n_{1,q}+n_{2,q})$。
+
+\textbf{(d) 基态能量与比较。}
+\begin{equation*}
+E_g=-\sum_{q>0}E(q)=-\frac12\sum_kE_k,
+\end{equation*}
+（$k$ 为原来单体元胞动量；因 $\sum_k\epsilon_k=2t\sum_k\cos k=0$，与问题 4.1.2 的 $E_g=\frac12\sum_k(\epsilon_k-E_k)$ 完全一致。）谱 $E(q)=2\sqrt{t^2\cos^2q+\eta^2\sin^2q}$ 与问题 4.1.2 的 $E_k$ 相同（本就是同一个 $H$），且因 $\cos^2,\sin^2$ 以 $\pi$ 为周期，二格点折叠无损。检验：$t=\eta$ 时 $E(q)=2t$ 为平带，正是 Kitaev 链固定点；$\eta=0$ 时 $E=2|t\cos q|$ 回到自由金属谱。马约拉纳表述的优点是：配对与跃迁统一成“马约拉纳键合”，$t\pm\eta$ 直接给出两套键强，$t=\eta$ 处单键解耦的结构一目了然。
+
+\section*{问题 4.1.5}
+\begin{problem}
+证明费米子跃迁算符 $\hat t_{ij}=c^\dagger_ic_j$ 满足费米子跃迁代数（式 (4.1.9)）：对互不相同的 $i,j,k,l$，$\hat t_{lk}\hat t_{il}\hat t_{lj}=-\hat t_{lj}\hat t_{il}\hat t_{lk}$。
+\end{problem}
+\solution
+直接用正则反对易关系 $\{c_a,c_b\}=\{c^\dagger_a,c^\dagger_b\}=0$、$\{c_a,c^\dagger_b\}=\delta_{ab}$ 逐步重排。左端
+\begin{align*}
+\hat t_{lk}\hat t_{il}\hat t_{lj}
+&=(c^\dagger_lc_k)(c^\dagger_ic_l)(c^\dagger_lc_j)\\
+&=c^\dagger_l\,c_kc^\dagger_i\,c_lc^\dagger_l\,c_j
+=-c^\dagger_lc^\dagger_i\,c_k(1-n_l)\,c_j
+=-c^\dagger_lc^\dagger_i(1-n_l)\,c_kc_j ,
+\end{align*}
+其中用了 $c_kc^\dagger_i=-c^\dagger_ic_k$（$k\ne i$）、$c_lc^\dagger_l=1-n_l$，且 $c_k$ 与 $n_l$ 对易（异格点）。右端
+\begin{align*}
+\hat t_{lj}\hat t_{il}\hat t_{lk}
+&=(c^\dagger_lc_j)(c^\dagger_ic_l)(c^\dagger_lc_k)
+=-c^\dagger_lc^\dagger_i\,c_j(1-n_l)c_k
+=-c^\dagger_lc^\dagger_i(1-n_l)\,c_jc_k .
+\end{align*}
+由 $c_kc_j=-c_jc_k$ 立即得
+\begin{equation*}
+\hat t_{lk}\hat t_{il}\hat t_{lj}
+=+c^\dagger_lc^\dagger_i(1-n_l)c_jc_k
+=-\hat t_{lj}\hat t_{il}\hat t_{lk}. \qquad\blacksquare
+\end{equation*}
+（物理解读：三个跃迁都经过格点 $l$， $c_lc^\dagger_l=1-n_l$ 探测 $l$ 的占据；两次交换 $c_k$、$c_j$ 越过费米算符各产生一个负号，恰剩下费米统计所要求的那个负号。）
+
+\section*{问题 4.1.6}
+\begin{problem}
+弦算符 $\hat W_{ij}=\hat t_{il}\hat t_{lm}\ldots\hat t_{nj}$ 在 $i$ 产生、在 $j$ 湮灭一个粒子，可写成 $\hat W_{ij}=C^+_iC^-_j$。(a) 证明：若 $\hat t_{ij}$ 满足费米子跃迁代数 (4.1.9)，则（设三条弦仅在一点 $l$ 相交）$\hat W_{lk}\hat W_{il}\hat W_{lj}=-\hat W_{lj}\hat W_{il}\hat W_{lk}$。(b) 证明 $C^\pm_i$ 与 $C^\pm_j$ 不能对易（$i\ne j$，距离任意）；但若它们反对易，则 (4.1.9) 可以得到满足。
+\end{problem}
+\solution
+\textbf{(a)} 把三条弦写成“远离 $l$ 的弦段 $+$ 紧邻 $l$ 的一跳”的乘积：$W_{lj}=t_{lj_1}R_j$（最后一跳 $t_{lj_1}$ 落入 $l$，$R_j$ 为 $j$ 弦其余各跳），$W_{il}=R_i\,t_{i_1l}$（第一跳 $t_{i_1l}$ 离开 $l$），$W_{lk}=t_{lk_1}R_k$。三个弦段 $R_i,R_j,R_k$ 的指标集互不相交（三条弦仅在 $l$ 相交），故它们彼此对易，且与来自其他弦的“邻 $l$ 一跳”对易。两种排序为
+\begin{align*}
+\hat W_{lk}\hat W_{il}\hat W_{lj}&=t_{lk_1}\,R_k\,R_i\,t_{i_1l}\;t_{lj_1}\,R_j,\\
+\hat W_{lj}\hat W_{il}\hat W_{lk}&=t_{lj_1}\,R_j\,R_i\,t_{i_1l}\;t_{lk_1}\,R_k .
+\end{align*}
+用对易性把 $R_k$ 移到 $R_j$ 旁、$R_j$ 移到 $R_k$ 旁，并把 $R_i$ 与 $R_j/R_k$ 一起挪到最左端（$R_i$ 与 $t_{i_1l}$ 的相邻次序在两种排序中相同，不必越过）：
+\begin{align*}
+\hat W_{lk}\hat W_{il}\hat W_{lj}&=R_iR_jR_k\;\,t_{lk_1}t_{i_1l}t_{lj_1},\\
+\hat W_{lj}\hat W_{il}\hat W_{lk}&=R_iR_jR_k\;\,t_{lj_1}t_{i_1l}t_{lk_1}.
+\end{align*}
+三个邻 $l$ 的跃迁 $t_{lk_1},t_{i_1l},t_{lj_1}$ 涉及四个互不相同的格点 $l,k_1,i_1,j_1$，恰好是式 (4.1.9) 的结构：$t_{lk_1}t_{i_1l}t_{lj_1}=-t_{lj_1}t_{i_1l}t_{lk_1}$。故
+\begin{equation*}
+\hat W_{lk}\hat W_{il}\hat W_{lj}=-\hat W_{lj}\hat W_{il}\hat W_{lk}. \qquad\blacksquare
+\end{equation*}
+即弦算符继承了其基本组成——邻 $l$ 三跳——的费米代数。
+
+\textbf{(b) 不能对易。}反证：设 $i\ne j$ 时所有 $C^\pm_i$ 与 $C^\pm_j$ 对易（同格点仍设 $\{C^+_l,C^-_l\}=1$，$C^+_lC^-_l=n_l$），并设 $t_{ij}=C^+_iC^-_j$。计算 $l$-三重积（$i,j,k,l$ 互异）：
+\begin{align*}
+t_{lk}t_{il}t_{lj}&=C^+_lC^-_k\,C^+_iC^-_l\,C^+_lC^-_j
+=C^+_lC^-_kC^+_i(1-n_l)C^-_j ,\\
+t_{lj}t_{il}t_{lk}&=C^+_lC^-_j\,C^+_iC^-_l\,C^+_lC^-_k
+=C^+_lC^-_jC^+_i(1-n_l)C^-_k .
+\end{align*}
+在对易假设下可自由重排（$n_l$ 与异格点算符对易，$C^+_l(1-n_l)=C^+_l$）：
+\begin{equation*}
+t_{lk}t_{il}t_{lj}=C^+_lC^+_iC^-_jC^-_k(1-n_l)
+=t_{lj}t_{il}t_{lk},
+\end{equation*}
+得到 $+$ 号而非费米代数要求的 $-$ 号——即对易的 $C$ 算符只能给出硬核玻色子，不可能实现费米统计。所以 $C^\pm_i$ 与 $C^\pm_j$ 必不对易，无论 $i,j$ 相距多远。物理原因：$C^-_j$（弦的湮灭端）携带贯穿系统的 Jordan--Wigner 型弦，$C^\pm_i$ 与 $C^\pm_j$ 的“弦尾”在远处仍然交叠，本质上是\emph{非局域}算符（这正是 4.1.1 节“费米子是非局域客体”的另一面）。
+
+\textbf{反对易则代数成立。}设 $i\ne j$ 时所有 $C$ 算符相互反对易，且 $\{C^+_l,C^-_l\}=1$。仍计算
+\begin{align*}
+t_{lk}t_{il}t_{lj}
+&=C^+_lC^-_kC^+_iC^-_lC^+_lC^-_j\\
+&=-C^+_lC^+_iC^-_kC^-_lC^+_lC^-_j
+=+C^+_lC^+_iC^-_lC^-_kC^+_lC^-_j
+=-C^+_lC^+_iC^-_lC^+_lC^-_kC^-_j\\
+&=-C^+_lC^+_i(1-n_l)C^-_kC^-_j
+=-C^+_lC^+_iC^-_kC^-_j ,
+\end{align*}
+其中依次用了 $\{C^-_k,C^+_i\}=0$、$\{C^-_k,C^-_l\}=0$、$\{C^-_k,C^+_l\}=0$、$C^-_lC^+_l=1-n_l$、$n_lC^+_l=C^+_lC^+_lC^-_l=0$。同理（交换 $j\leftrightarrow k$）
+\begin{equation*}
+t_{lj}t_{il}t_{lk}=-C^+_lC^+_iC^-_jC^-_k=+C^+_lC^+_iC^-_kC^-_j .
+\end{equation*}
+两式比较即得 $t_{lk}t_{il}t_{lj}=-t_{lj}t_{il}t_{lk}$：只要端点算符反对易，弦算符的乘积就自动满足费米子跃迁代数 (4.1.9)。这也是把 $c_i$（而非局域玻色算符）当作物质场时为何必须使用反对易代数的原因。
+
+\section*{问题 4.2.1}
+\begin{problem}
+证明虚时格林函数的平移不变性与反周期性（式 (4.2.7)）：$\mathcal{G}^\beta(\tau_1,\tau_2,\pmb{k})=\mathcal{G}^\beta(\tau_1-\tau_2,\pmb{k})$ 且 $\mathcal{G}^\beta(\tau,\pmb{k})=-\mathcal{G}^\beta(\tau+\beta,\pmb{k})$；并证明其傅里叶变换为式 (4.2.9)：$\mathcal{G}^\beta(\omega_\gamma,\pmb{k})=1/(-\mathrm{i}\omega_\gamma+\xi_{\pmb{k}})$。
+\end{problem}
+\solution
+\textbf{(1) 只依赖 $\tau_1-\tau_2$。}对 $\tau_1>\tau_2$，由 $c_{\pmb{k}}(\tau)=\mathrm{e}^{H\tau}c_{\pmb{k}}\mathrm{e}^{-H\tau}$ 与 $[H,\mathrm{e}^{-\beta H}]=0$：
+\begin{equation*}
+\mathrm{Tr}\big[\mathrm{e}^{-\beta H}c_{\pmb{k}}(\tau_1)c^\dagger_{\pmb{k}}(\tau_2)\big]
+=\mathrm{Tr}\big[\mathrm{e}^{-\beta H}\mathrm{e}^{H\tau_1}c_{\pmb{k}}\,\mathrm{e}^{-H(\tau_1-\tau_2)}c^\dagger_{\pmb{k}}\,\mathrm{e}^{-H\tau_2}\big].
+\end{equation*}
+把迹做循环置换，将 $\mathrm{e}^{-\beta H}\mathrm{e}^{H\tau_1}$ 转到最后，并用 $\mathrm{e}^{-H\tau_2}\mathrm{e}^{-\beta H}\mathrm{e}^{H\tau_1}=\mathrm{e}^{-\beta H}\mathrm{e}^{-H(\tau_1-\tau_2)}$，得
+\begin{equation*}
+=\mathrm{Tr}\big[\mathrm{e}^{-\beta H}c_{\pmb{k}}\,\mathrm{e}^{-H(\tau_1-\tau_2)}c^\dagger_{\pmb{k}}\big]
+=\mathrm{Tr}\big[\mathrm{e}^{-\beta H}c_{\pmb{k}}(\tau_1-\tau_2)c^\dagger_{\pmb{k}}\big].
+\end{equation*}
+$\tau_1<\tau_2$ 的情形（多一个负号）同理。故 $\mathcal{G}^\beta$ 只依赖差 $\tau=\tau_1-\tau_2$（对自由费米子再由动量守恒得到对 $\pmb{k}$ 的对角依赖）。
+
+\textbf{(2) 反周期性。}取 $0<\tau<\beta$，用能量本征态完备基 $\sum_n|n\rangle\langle n|=1$（$H|n\rangle=\epsilon_n|n\rangle$）：
+\begin{align*}
+\mathcal{G}^\beta(\tau,\pmb{k})&=\frac{1}{Z}\sum_{n,m}\mathrm{e}^{-\beta\epsilon_n}\mathrm{e}^{(\epsilon_n-\epsilon_m)\tau}\langle n|c_{\pmb{k}}|m\rangle\langle m|c^\dagger_{\pmb{k}}|n\rangle,\\
+\mathcal{G}^\beta(\tau-\beta,\pmb{k})&=-\frac{1}{Z}\sum_{n,m}\mathrm{e}^{-\beta\epsilon_n}\mathrm{e}^{(\epsilon_n-\epsilon_m)(\tau-\beta)}\langle n|c^\dagger_{\pmb{k}}|m\rangle\langle m|c_{\pmb{k}}|n\rangle .
+\end{align*}
+在第二式中交换求和指标 $m\leftrightarrow n$：
+\begin{equation*}
+\mathcal{G}^\beta(\tau-\beta,\pmb{k})
+=-\frac{1}{Z}\sum_{n,m}\mathrm{e}^{-\beta\epsilon_m}\mathrm{e}^{(\epsilon_m-\epsilon_n)(\tau-\beta)}\langle n|c_{\pmb{k}}|m\rangle\langle m|c^\dagger_{\pmb{k}}|n\rangle
+=-\frac{1}{Z}\sum_{n,m}\mathrm{e}^{-\beta\epsilon_n}\mathrm{e}^{(\epsilon_n-\epsilon_m)\tau}\langle n|c_{\pmb{k}}|m\rangle\langle m|c^\dagger_{\pmb{k}}|n\rangle,
+\end{equation*}
+（用了 $\mathrm{e}^{-\beta\epsilon_m}\mathrm{e}^{-(\epsilon_m-\epsilon_n)\beta}=\mathrm{e}^{-\beta\epsilon_n}$）。这正是 $-\mathcal{G}^\beta(\tau,\pmb{k})$，即 $\mathcal{G}^\beta(\tau)=-\mathcal{G}^\beta(\tau-\beta)$，等价于式 (4.2.7) 的反周期条件。物理来源：虚时平移 $\beta$ 等价于绕温度方向转一圈，费米子统计在热密度矩阵下贡献一个负号（KMS 条件）。
+
+\textbf{(3) 频率空间。}由式 (4.2.8)，在 $0<\tau<\beta$ 内 $\mathcal{G}^\beta(\tau,\pmb{k})=(1-n_F)\mathrm{e}^{-\tau\xi_{\pmb{k}}}$，故
+\begin{equation*}
+\mathcal{G}^\beta(\omega_\gamma,\pmb{k})
+=(1-n_F)\int_0^\beta\mathrm{d}\tau\,\mathrm{e}^{(\mathrm{i}\omega_\gamma-\xi_{\pmb{k}})\tau}
+=(1-n_F)\,\frac{\mathrm{e}^{(\mathrm{i}\omega_\gamma-\xi_{\pmb{k}})\beta}-1}{\mathrm{i}\omega_\gamma-\xi_{\pmb{k}}}.
+\end{equation*}
+Matsubara（松原）频率 $\omega_\gamma=2\pi T(\frac12+\text{整数})$ 满足 $\mathrm{e}^{\mathrm{i}\omega_\gamma\beta}=-1$，于是分子为 $-(\mathrm{e}^{-\beta\xi_{\pmb{k}}}+1)$；再用
+\begin{equation*}
+1-n_F(\xi_{\pmb{k}})=\frac{1}{1+\mathrm{e}^{-\beta\xi_{\pmb{k}}}},
+\end{equation*}
+得
+\begin{equation*}
+\boxed{\;\mathcal{G}^\beta(\omega_\gamma,\pmb{k})
+=(1-n_F)\,\frac{-\big(\mathrm{e}^{-\beta\xi_{\pmb{k}}}+1\big)}{\mathrm{i}\omega_\gamma-\xi_{\pmb{k}}}
+=\frac{1}{-\mathrm{i}\omega_\gamma+\xi_{\pmb{k}}}\;}
+\end{equation*}
+（反周期性 $\mathrm{e}^{\mathrm{i}\omega_\gamma\beta}=-1$ 正是使 $\beta$-积分的端点相消、结果失去温度依赖的关键；这也解释了为何自由费米子的虚时格林函数在 Matsubara 基频下形式与零温相同。）
+
+\section*{问题 4.2.2}
+\begin{problem}
+由定义 (4.2.6) 推导自由费米子的虚时格林函数 (4.2.8)：$\mathcal{G}^\beta(\tau,\pmb{k})=+\Theta(\tau)(1-n_F)\mathrm{e}^{-\tau\xi_{\pmb{k}}}-\Theta(-\tau)n_F\,\mathrm{e}^{-\tau\xi_{\pmb{k}}}$。
+\end{problem}
+\solution
+由 $[H,c_{\pmb{k}}]=-\xi_{\pmb{k}}c_{\pmb{k}}$ 得虚时演化 $c_{\pmb{k}}(\tau)=\mathrm{e}^{-\tau\xi_{\pmb{k}}}c_{\pmb{k}}$，$c^\dagger_{\pmb{k}}(\tau)=\mathrm{e}^{+\tau\xi_{\pmb{k}}}c^\dagger_{\pmb{k}}$。
+
+\textbf{$\tau>0$：}
+\begin{equation*}
+\mathcal{G}^\beta(\tau,\pmb{k})=\frac{\mathrm{Tr}[\mathrm{e}^{-\beta H}c_{\pmb{k}}(\tau)c^\dagger_{\pmb{k}}]}{Z}
+=\mathrm{e}^{-\tau\xi_{\pmb{k}}}\,\langle c_{\pmb{k}}c^\dagger_{\pmb{k}}\rangle
+=\mathrm{e}^{-\tau\xi_{\pmb{k}}}\big(1-\langle c^\dagger_{\pmb{k}}c_{\pmb{k}}\rangle\big)
+=(1-n_F(\xi_{\pmb{k}}))\,\mathrm{e}^{-\tau\xi_{\pmb{k}}}.
+\end{equation*}
+
+\textbf{$\tau<0$：}编时定义给出负号，且 $c_{\pmb{k}}(\tau)=\mathrm{e}^{-\tau\xi_{\pmb{k}}}c_{\pmb{k}}$ 仍成立（$-\beta<\tau<0$ 时可直接验证 $\mathrm{Tr}[\mathrm{e}^{-\beta H}\cdots]$ 的收敛性）：
+\begin{equation*}
+\mathcal{G}^\beta(\tau,\pmb{k})=-\frac{\mathrm{Tr}[\mathrm{e}^{-\beta H}c^\dagger_{\pmb{k}}c_{\pmb{k}}(\tau)]}{Z}
+=-\mathrm{e}^{-\tau\xi_{\pmb{k}}}\langle c^\dagger_{\pmb{k}}c_{\pmb{k}}\rangle
+=-n_F(\xi_{\pmb{k}})\,\mathrm{e}^{-\tau\xi_{\pmb{k}}}.
+\end{equation*}
+两段合并即式 (4.2.8)。检验：$\tau\to0^{+}$ 与 $\tau\to0^{-}$ 之差 $\mathcal{G}(0^{+})-\mathcal{G}(0^{-})=(1-n_F)+n_F=1=\langle\{c_{\pmb{k}},c^\dagger_{\pmb{k}}\}\rangle$，与等时反对易子一致；且 $\mathcal{G}(\tau-\beta)$ 与 $\mathcal{G}(\tau)$ 满足问题 4.2.1 的反周期性。
+
+\section*{问题 4.2.3}
+\begin{problem}
+证明式 (4.2.10)：$\langle T(c_{\omega_\gamma\pmb{k}}c^\dagger_{\omega'_\gamma\pmb{k}})\rangle=\mathcal{G}^\beta(\omega_\gamma,\pmb{k})\,\delta_{\omega_\gamma\omega'_\gamma}$，其中 $c_{\omega_\gamma\pmb{k}}=\int_0^\beta\mathrm{d}\tau\,c_{\pmb{k}}(\tau)\beta^{-1/2}\mathrm{e}^{\mathrm{i}\omega_\gamma\tau}$。
+\end{problem}
+\solution
+按定义把左右两端都用 $\mathcal{G}^\beta(\tau-\tau')$ 写出：
+\begin{equation*}
+\big\langle T(c_{\omega\pmb{k}}c^\dagger_{\omega'\pmb{k}})\big\rangle
+=\frac{1}{\beta}\int_0^\beta\!\!\int_0^\beta\mathrm{d}\tau\,\mathrm{d}\tau'\,
+\mathrm{e}^{\mathrm{i}\omega\tau-\mathrm{i}\omega'\tau'}\,\mathcal{G}^\beta(\tau-\tau',\pmb{k}).
+\end{equation*}
+作变量替换 $\tau=\tau'+s$。被积函数对 $s$ 满足
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}\omega(s-\beta)}\mathcal{G}^\beta(s-\beta)
+=\mathrm{e}^{\mathrm{i}\omega s}\underbrace{\mathrm{e}^{-\mathrm{i}\omega_\gamma\beta}}_{=-1}\cdot\big(-\mathcal{G}^\beta(s)\big)
+=\mathrm{e}^{\mathrm{i}\omega s}\mathcal{G}^\beta(s),
+\end{equation*}
+即以 $\beta$ 为周期（费米反周期性乘以 $\mathrm{e}^{-\mathrm{i}\omega_\gamma\beta}=-1$ 后变为周期性）。因此对固定的 $\tau'$，长为 $\beta$ 的积分窗 $s\in[-\tau',\beta-\tau']$ 可整体平移到 $[0,\beta)$ 而不改变积分值：
+\begin{equation*}
+\int_{-\tau'}^{\beta-\tau'}\mathrm{d}s\,\mathrm{e}^{\mathrm{i}\omega s}\mathcal{G}^\beta(s,\pmb{k})
+=\int_0^\beta\mathrm{d}s\,\mathrm{e}^{\mathrm{i}\omega s}\mathcal{G}^\beta(s,\pmb{k})
+=\beta\,\mathcal{G}^\beta(\omega,\pmb{k}).
+\end{equation*}
+代回并利用 Matsubara 频率的正交性 $\frac{1}{\beta}\int_0^\beta\mathrm{d}\tau'\,\mathrm{e}^{\mathrm{i}(\omega-\omega')\tau'}=\delta_{\omega\omega'}$：
+\begin{equation*}
+\big\langle T(c_{\omega\pmb{k}}c^\dagger_{\omega'\pmb{k}})\big\rangle
+=\frac{1}{\beta}\int_0^\beta\mathrm{d}\tau'\,\mathrm{e}^{-\mathrm{i}\omega'\tau'}\,\beta\,\mathcal{G}^\beta(\omega,\pmb{k})
+=\boxed{\;\mathcal{G}^\beta(\omega_\gamma,\pmb{k})\,\delta_{\omega_\gamma\omega'_\gamma}\;}
+\end{equation*}
+即式 (4.2.10)。这说明在虚时编时平均中 $c_{\omega\pmb{k}}$ 与 $c^\dagger_{\omega\pmb{k}}$ 的行为如同反对易的数——对每个 $(\omega,\pmb{k})$ 模式成立 $\langle T(c^\dagger c)\rangle=-\langle T(cc^\dagger)\rangle$。
+
+
+\section*{问题 4.2.4}
+\begin{problem}
+就 $W=c_{k_1}c^\dagger_{k_2}c_{k_3}c^\dagger_{k_4}$ 与 $W=c_{k_1}c_{k_2}c^\dagger_{k_3}c^\dagger_{k_4}$ 两种情形验证 Wick 定理 (4.2.11)。
+\end{problem}
+\solution
+记 $\delta_{ij}\equiv\delta_{k_ik_j}$，真空满足 $\langle0|c^\dagger_ic_j|0\rangle=0$、$\langle0|c_ic^\dagger_j|0\rangle=\delta_{ij}$，故唯一非零收缩是“$c$ 在前、$c^\dagger$ 在后”的有序对。验证方法：用 $c_ic^\dagger_j=\delta_{ij}-c^\dagger_jc_i$ 把 $W$ 直接约化成“正规乘积 $+$ 收缩项”，再与 (4.2.11) 逐项对照。
+
+\textbf{情形一：}$W=c_1c^\dagger_2c_3c^\dagger_4$（简记）。正规次序需 3 次置换，$:W:=-c^\dagger_2c^\dagger_4c_1c_3$。直接约化：
+\begin{align*}
+W&=(\delta_{12}-c^\dagger_2c_1)c_3c^\dagger_4
+=\delta_{12}(\delta_{34}-c^\dagger_4c_3)-c^\dagger_2c_1(\delta_{34}-c^\dagger_4c_3)\\
+&=\delta_{12}\delta_{34}-\delta_{12}c^\dagger_4c_3-\delta_{34}c^\dagger_2c_1+\delta_{14}c^\dagger_2c_3+c^\dagger_2c^\dagger_4c_1c_3 .
+\end{align*}
+对照 (4.2.11)：有序对 $(1,2)$、$(3,4)$、$(1,4)$ 的符号因子 $(-1)^{j-i-1}$ 均为 $+1$（对 $(1,4)$ 须把 $c^\dagger_4$ 移过 $c_3$，$4-1-1=2$ 为偶；并把 $:c^\dagger_2c_3:=+c^\dagger_2c_3$），双对 $(1,2)(3,4)$ 无交换取 $+$；又 $:c_3c^\dagger_4:=-c^\dagger_4c_3$、$:c_1c^\dagger_2:=-c^\dagger_2c_1$。于是 Wick 展开为
+\begin{equation*}
+W=:\!W\!:\;-\,\delta_{12}c^\dagger_4c_3\;+\;\delta_{14}c^\dagger_2c_3\;-\,\delta_{34}c^\dagger_2c_1\;+\;\delta_{12}\delta_{34},
+\end{equation*}
+与直接约化逐项相同，\textbf{Wick 定理成立}。取真空期望即 $\langle W\rangle=\delta_{12}\delta_{34}$。
+
+\textbf{情形二：}$W=c_1c_2c^\dagger_3c^\dagger_4$。正规次序需 4 次置换，$:W:=+c^\dagger_3c^\dagger_4c_1c_2$。直接约化：
+\begin{align*}
+W&=c_1(\delta_{23}-c^\dagger_3c_2)c^\dagger_4
+=\delta_{23}(\delta_{14}-c^\dagger_4c_1)-(\delta_{13}-c^\dagger_3c_1)(\delta_{24}-c^\dagger_4c_2)\\
+&=\delta_{14}\delta_{23}-\delta_{23}c^\dagger_4c_1-\delta_{13}\delta_{24}+\delta_{13}c^\dagger_4c_2+\delta_{24}c^\dagger_3c_1-c^\dagger_3c^\dagger_4c_1c_2 .
+\end{align*}
+按 (4.2.11) 逐项核对 Wick 展开的符号（对每一对 $(i,j)$ 数把 $O_j$ 移到 $O_i$ 右侧所需的费米子交换次数）：
+\begin{align*}
+(1,3)&:\ \text{移过 }c_2\text{ 一次，符号 }-:\quad-\delta_{13}:c_2c^\dagger_4:=-\delta_{13}c^\dagger_4c_2,\\
+(1,4)&:\ \text{移过 }c_2,c^\dagger_3\text{ 两次，符号 }+:\quad+\delta_{14}:c^\dagger_3c_2:=+\delta_{14}c^\dagger_3c_2,\\
+(2,3)&:\ \text{已相邻，符号 }+:\quad+\delta_{23}:c_1c^\dagger_4:=-\delta_{23}c^\dagger_4c_1,\\
+(2,4)&:\ \text{移过 }c^\dagger_3\text{ 一次，符号 }-:\quad-\delta_{24}:c_1c^\dagger_3:=+\delta_{24}c^\dagger_3c_1,\\
+(1,3)(2,4)&:\ \text{移位 }1+0=1\text{ 次，符号 }-:\quad-\delta_{13}\delta_{24},\\
+(1,4)(2,3)&:\ \text{移位 }2+0=2\text{ 次，符号 }+:\quad+\delta_{14}\delta_{23}.
+\end{align*}
+汇总得
+\begin{equation*}
+W=:\!W\!:\;-\,\delta_{13}c^\dagger_4c_2+\delta_{14}c^\dagger_3c_2-\delta_{23}c^\dagger_4c_1+\delta_{24}c^\dagger_3c_1
+-\delta_{13}\delta_{24}+\delta_{14}\delta_{23},
+\end{equation*}
+与直接约化完全一致，\textbf{Wick 定理成立}。真空期望值
+\begin{equation*}
+\langle0|c_1c^\dagger_2c_3c^\dagger_4|0\rangle=\delta_{12}\delta_{34},\qquad
+\langle0|c_1c_2c^\dagger_3c^\dagger_4|0\rangle=\delta_{14}\delta_{23}-\delta_{13}\delta_{24}.
+\end{equation*}
+第二个结果中双收缩的负号正是费米子反对易的体现（玻色子情形为 $+$），也再次印证：编时平均中 $c$ 与 $c^\dagger$ 如同反对易的数。
+
+\section*{问题 4.2.5}
+\begin{problem}
+计算 $d=1$ 自由费米子的实时编时格林函数 $\mathrm{i}G(t,x)=\int\frac{\mathrm{d}k}{2\pi}\,\mathrm{i}G(t,k)\mathrm{e}^{\mathrm{i}kx}$ 在 $(t,x)\to\infty$ 极限下的结果（$t/x$ 任意），并在 $t/x\to0$ 与 $t/x\to\infty$ 极限下检验。
+\end{problem}
+\solution
+长时、长距行为由两费米点 $\pm k_F$ 附近的贡献主导，把色散线性化：$\xi_{k_F+q}\approx v_Fq$（右移费米子），$\xi_{-k_F+q}\approx -v_Fq$（左移费米子）。代入式 (4.2.3) 的 $\mathrm{i}G(t,k)=\Theta(t)\Theta(\xi_k)\mathrm{e}^{-\mathrm{i}t\xi_k}-\Theta(-t)\Theta(-\xi_k)\mathrm{e}^{-\mathrm{i}t\xi_k}$：
+
+\textbf{右移支（$k=k_F+q$）：}被占据的是 $q<0$，空的是 $q>0$：
+\begin{equation*}
+\mathrm{i}G_R(t,x)=\mathrm{e}^{\mathrm{i}k_Fx}\Big[\Theta(t)\!\int_0^\infty\!\frac{\mathrm{d}q}{2\pi}\mathrm{e}^{\mathrm{i}q(x-v_Ft)}
+-\Theta(-t)\!\int_{-\infty}^0\!\frac{\mathrm{d}q}{2\pi}\mathrm{e}^{\mathrm{i}q(x-v_Ft)}\Big].
+\end{equation*}
+\textbf{左移支（$k=-k_F+q$）：}$\mathrm{e}^{\mathrm{i}kx}=\mathrm{e}^{-\mathrm{i}k_Fx}\mathrm{e}^{\mathrm{i}qx}$，$\xi=-v_Fq$，被占据的是 $q>0$：
+\begin{equation*}
+\mathrm{i}G_L(t,x)=\mathrm{e}^{-\mathrm{i}k_Fx}\Big[\Theta(t)\!\int_{-\infty}^0\!\frac{\mathrm{d}q}{2\pi}\mathrm{e}^{\mathrm{i}q(x+v_Ft)}
+-\Theta(-t)\!\int_0^\infty\!\frac{\mathrm{d}q}{2\pi}\mathrm{e}^{\mathrm{i}q(x+v_Ft)}\Big].
+\end{equation*}
+用 $\int_0^\infty\frac{\mathrm{d}q}{2\pi}\mathrm{e}^{\mathrm{i}q\alpha}=\frac{\mathrm{i}}{2\pi(\alpha+\mathrm{i}0^+)}$、$\int_{-\infty}^0\frac{\mathrm{d}q}{2\pi}\mathrm{e}^{\mathrm{i}q\alpha}=\frac{-\mathrm{i}}{2\pi(\alpha-\mathrm{i}0^+)}$，得
+\begin{equation*}
+\boxed{\;\mathrm{i}G(t,x)=\frac{\mathrm{i}}{2\pi}\Big\{\Theta(t)\Big[\frac{\mathrm{e}^{\mathrm{i}k_Fx}}{x-v_Ft+\mathrm{i}0^+}-\frac{\mathrm{e}^{-\mathrm{i}k_Fx}}{x+v_Ft-\mathrm{i}0^+}\Big]
++\Theta(-t)\Big[\frac{\mathrm{e}^{\mathrm{i}k_Fx}}{x-v_Ft-\mathrm{i}0^+}-\frac{\mathrm{e}^{-\mathrm{i}k_Fx}}{x+v_Ft+\mathrm{i}0^+}\Big]\Big\}\;}
+\end{equation*}
+即格林函数的全部权重位于两支“光锥”$x=\pm v_Ft$ 的极点上——右移与左移的激发。
+
+\textbf{检验 1（$t/x\to0$，等时极限）：}取 $t=-0^+$：
+\begin{equation*}
+\mathrm{i}G(-0^+,x)=\frac{\mathrm{i}}{2\pi x}\big(\mathrm{e}^{\mathrm{i}k_Fx}-\mathrm{e}^{-\mathrm{i}k_Fx}\big)
+=-\frac{\sin(k_Fx)}{\pi x},
+\end{equation*}
+与等时格林函数的严格结果 $-\int_{-k_F}^{k_F}\frac{\mathrm{d}k}{2\pi}\mathrm{e}^{\mathrm{i}kx}=-\frac{\sin(k_Fx)}{\pi x}$ 完全一致（亦与 4.2.5 节正文中 $d=1$ 的 $\mathrm{i}G(-0^+,x)\propto\cos(k_Fx-\frac{\pi}{2})/x=\sin(k_Fx)/x$ 相符）。
+
+\textbf{检验 2（$t/x\to\infty$，等空间极限）：}取 $x=0$、$t>0$：
+\begin{equation*}
+\mathrm{i}G(t,0)=\frac{\mathrm{i}}{2\pi}\Big[\frac{1}{-v_Ft+\mathrm{i}0^+}-\frac{1}{v_Ft-\mathrm{i}0^+}\Big]
+=-\frac{\mathrm{i}}{\pi v_Ft},
+\qquad
+G(t,0)=-\frac{1}{\pi v_F}\frac{1}{t}=-\frac{N(E_F)}{t},
+\end{equation*}
+其中用了 $d=1$ 的态密度 $N(E_F)=1/\pi v_F$，正是 4.2.2 节的 $G(t,0)=-N(E_F)/(t-\mathrm{i}0^+\,\mathrm{sgn}\,t)$。\textbf{两支圆锥在等空间点叠加后给出代数衰减 $1/t$}；一般 $(t,x)$ 处则由 $x\mp v_Ft$ 的极点描写。
+
+\section*{问题 4.2.6}
+\begin{problem}
+两个相同的一维自由费米子系统在 $x=0$ 与 $x=a$ 两点相接，$H_T=\Gamma\big[c_L(0)c_R^\dagger(0)+c_L(a)c_R^\dagger(a)+\text{h.c.}\big]$。利用问题 4.2.5 求隧穿电导随 $a$ 的函数。
+\end{problem}
+\solution
+隧穿算符 $I(t)=\Gamma\sum_{j=0,a}c_L(t,x_j)c_R^\dagger(t,x_j)$。按式 (4.2.15)（Wick 因子化）：
+\begin{equation*}
+\big\langle\big[I(t),I^\dagger(0)\big]\big\rangle
+=\Gamma^2\sum_{j,j'}\Big[(\mathrm{i}G_L(t,\Delta_{jj'}))(-\mathrm{i}G_R(-t,\Delta_{jj'}))
+-(-\mathrm{i}G_L(-t,\Delta_{jj'}))(\mathrm{i}G_R(t,\Delta_{jj'}))\Big],
+\end{equation*}
+其中 $\Delta_{jj'}=x_j-x_{j'}\in\{0,\pm a\}$（不同接触点之间的关联由 $G(t,\pm a)$ 承载）。由问题 4.2.5，大 $t$ 时
+\begin{equation*}
+\mathrm{i}G(t,\Delta)=-\frac{\mathrm{i}\cos(k_F\Delta)}{\pi v_F\,t},\qquad
+\mathrm{i}G(-t,\Delta)=+\frac{\cos(k_F\Delta)}{\pi v_F\,t}\qquad(t>0),
+\end{equation*}
+于是每一对 $(j,j')$ 的两项之和为 $-\dfrac{2\mathrm{i}\Gamma^2}{\pi^2v_F^2t^2}\cos^2(k_F\Delta_{jj'})$。对四个 $(j,j')$ 求和（$\cos^2 0=1$ 两次，$\cos^2(k_Fa)$ 两次）：
+\begin{equation*}
+\big\langle\big[I(t),I^\dagger(0)\big]\big\rangle
+=-\frac{2\mathrm{i}\Gamma^2}{\pi^2v_F^2t^2}\,2\big[1+\cos^2(k_Fa)\big].
+\end{equation*}
+重复 3.7.4 节的计算 $\langle j_T\rangle=2\Gamma^2\,\mathrm{Im}\,D^\beta(V)$、$D^\beta(V)=\int_0^\infty\mathrm{d}t\,\mathrm{e}^{\mathrm{i}Vt}\langle[I(t),I^\dagger(0)]\rangle$，在 $V\to0$ 的线性响应极限下
+\begin{equation*}
+\boxed{\;G(a)\;=\;G_1\Big[2+2\cos^2(k_Fa)\Big]\;=\;G_1\Big[3+\cos(2k_Fa)\Big]\;}
+\end{equation*}
+其中 $G_1$ 为单个接触点的电导（$a\to$ 两接触独立贡献时交叉项消失，$G\to2G_1$）。
+
+\textbf{物理解读：}隧穿进 L 的电子可以传播距离 $a$ 后再从另一个接触点隧穿回来，传播振幅 $\mathrm{e}^{\pm\mathrm{i}k_Fa}$（右/左移两支）相干叠加给出 $\cos k_Fa$；两个接触点的四种隧穿路径相干相加，电导以周期 $\pi/k_F$ 随 $a$ 振荡——这是 $2k_F$ 振荡（与 RKKY 相互作用同源），是大费米面相位的直接体现。有限温度或有限寿命会把交叉项压制：当热长度 $v_F/T\lesssim a$ 或 $\ell_{\text{phase}}\lesssim a$ 时 $G(a)\to2G_1$。
+
+\section*{问题 4.2.7}
+\begin{problem}
+证明有限温度下的谱求和规则 $\int\mathrm{d}\omega\,\big(A_+(\omega,\pmb{k})+A_-(\omega,\pmb{k})\big)=1$。
+\end{problem}
+\solution
+按谱函数定义（4.2 节）：
+\begin{align*}
+A_+(\nu,\pmb{k})&=\sum_{m,n}\delta\big[\nu-(\epsilon_m-\epsilon_n)\big]\,
+\langle\psi_n|c_{\pmb{k}}|\psi_m\rangle\langle\psi_m|c^\dagger_{\pmb{k}}|\psi_n\rangle\frac{\mathrm{e}^{-\beta\epsilon_n}}{Z},\\
+A_-(\nu,\pmb{k})&=\sum_{m,n}\delta\big[\nu+(\epsilon_m-\epsilon_n)\big]\,
+\langle\psi_n|c^\dagger_{\pmb{k}}|\psi_m\rangle\langle\psi_m|c_{\pmb{k}}|\psi_n\rangle\frac{\mathrm{e}^{-\beta\epsilon_n}}{Z}.
+\end{align*}
+对 $\nu$ 积分，两个 $\delta$ 函数均被消去（第二式中令 $m\leftrightarrow n$ 重标记 $\delta[\nu+(\epsilon_m-\epsilon_n)]$ 积分后同样不给约束）：
+\begin{align*}
+\int\mathrm{d}\nu\,A_+(\nu,\pmb{k})
+&=\frac{1}{Z}\sum_{n,m}\mathrm{e}^{-\beta\epsilon_n}\langle\psi_n|c_{\pmb{k}}|\psi_m\rangle\langle\psi_m|c^\dagger_{\pmb{k}}|\psi_n\rangle
+=\frac{1}{Z}\sum_n\mathrm{e}^{-\beta\epsilon_n}\langle\psi_n|c_{\pmb{k}}c^\dagger_{\pmb{k}}|\psi_n\rangle,\\
+\int\mathrm{d}\nu\,A_-(\nu,\pmb{k})
+&=\frac{1}{Z}\sum_{n,m}\mathrm{e}^{-\beta\epsilon_n}\langle\psi_n|c^\dagger_{\pmb{k}}|\psi_m\rangle\langle\psi_m|c_{\pmb{k}}|\psi_n\rangle
+=\frac{1}{Z}\sum_n\mathrm{e}^{-\beta\epsilon_n}\langle\psi_n|c^\dagger_{\pmb{k}}c_{\pmb{k}}|\psi_n\rangle .
+\end{align*}
+相加并用 $\{c_{\pmb{k}},c^\dagger_{\pmb{k}}\}=1$：
+\begin{equation*}
+\int\mathrm{d}\nu\,\big(A_+ + A_-\big)
+=\frac{1}{Z}\sum_n\mathrm{e}^{-\beta\epsilon_n}\big\langle\psi_n\big|\{c_{\pmb{k}},c^\dagger_{\pmb{k}}\}\big|\psi_n\big\rangle
+=\frac{1}{Z}\sum_n\mathrm{e}^{-\beta\epsilon_n}=\boxed{\;1\;}
+\end{equation*}
+与温度无关。物理含义：在给定 $(\omega,\pmb{k})$ 模式上“加一个费米子”（$A_+$）与“减一个费米子”（$A_-$）的谱权重之和恰为反对易子的期望值 1；这也是检验任何近似谱函数（如式 (4.3.15) 的修正洛伦兹子）自洽性的判据 (2.2.28) 之根源。
+
+\section*{问题 4.2.8}
+\begin{problem}
+两个相同的二维自由费米子系统由保持二维动量守恒的竖直隧穿结连接：$H_T=A\sum_{\pmb{k}}[c_{L\pmb{k}}c^\dagger_{R\pmb{k}}+\text{h.c.}]$。平行于层面的磁场 $B$ 使两层动量错移 $\epsilon_{R\pmb{k}}=\epsilon_{\pmb{k}-\frac12\pmb{Q}}$、$\epsilon_{L\pmb{k}}=\epsilon_{\pmb{k}+\frac12\pmb{Q}}$（$\pmb{Q}\propto B$，$\pmb{Q}\cdot\pmb{B}=0$）。(1) 证明自由费米子在 $B=0$、$V\neq0$ 时有限温隧穿电流为零。(2) 谱函数取 $A_{\pm}(\omega,\pmb{k})=(1\mp n_F(\omega))\frac{\pi^{-1}\Gamma}{(\omega-\xi_{\pmb{k}})^2+\Gamma^2}$，求 $T\ll E_F$ 的隧穿电流。(3) $B=0$ 时 $T\to0$ 与 $T\gg\Gamma$ 极限下隧穿电导的温度依赖；估算 $T=0$ 单位面积电导。(4) 以 $\sigma_0$ 估算有限 $\pmb{Q}$ 的 $\sigma_{\pmb{Q}}$，讨论 $\pmb{Q}\to0$ 与 $\pmb{Q}\to2k_F$ 的行为。
+\end{problem}
+\solution
+\textbf{(1) 自由费米子：电流恒为零。}自由费米子的谱函数为 $A_+(\omega,\pmb{k})=(1-n_F(\xi_{\pmb{k}}))\delta(\omega-\xi_{\pmb{k}})$、$A_-(\omega,\pmb{k})=n_F(\xi_{\pmb{k}})\delta(\omega-\xi_{\pmb{k}})$。代入式 (4.2.17)（保留动量分辨）：
+\begin{equation*}
+\langle j_T\rangle=2\pi A^2\!\int\!\mathrm{d}\nu\sum_{\pmb{k}}\Big[A_{L-}(\nu,\pmb{k})A_{R+}(\nu-V,\pmb{k})-A_{L+}(\nu,\pmb{k})A_{R-}(\nu-V,\pmb{k})\Big].
+\end{equation*}
+$B=0$ 时两层色散相同，每个乘积含 $\delta(\nu-\xi_{\pmb{k}})\,\delta(\nu-V-\xi_{\pmb{k}})$：两个 $\delta$ 同时成立要求 $V=0$。故对\emph{任意} $V\neq0$（任意温度）$\langle j_T\rangle=0$。物理解读：动量守恒的弹性隧穿只能把电子从能量 $\xi_{\pmb{k}}$ 的态送到同动量的同能量态；偏压 $V$ 要求能量改变 $V$，而末态处（同一 $\pmb{k}$、能量 $\xi_{\pmb{k}}+V$）没有态与之共振——谱函数的 $\delta$ 峰错过。
+
+\textbf{(2) 洛伦兹子谱函数的隧穿电流。}把给定的 $A_\pm$ 代入 (4.2.17)。费米子因子合并（利用 $n_F(\nu)(1-n_F(\nu-V))-(1-n_F(\nu))n_F(\nu-V)=n_F(\nu)-n_F(\nu-V)$）：
+\begin{equation*}
+\langle j_T\rangle=\frac{2A^2\Gamma^2}{\pi}\int\mathrm{d}\nu\int\frac{\mathrm{d}^2k}{(2\pi)^2}\,
+\frac{n_F(\nu)-n_F(\nu-V)}
+{\big[(\nu-\xi_{\pmb{k}})^2+\Gamma^2\big]\big[(\nu-V-\xi_{\pmb{k}})^2+\Gamma^2\big]} .
+\end{equation*}
+（按 $V>0$ 时 $n_F(\nu-V)>n_F(\nu)$，电流方向取从 R 到 L 为正；下同。）二维态密度为常数 $N(\xi)=N(E_F)=m/2\pi$，先做 $\xi_{\pmb{k}}$ 积分：
+\begin{equation*}
+J(V)\equiv\int_{-\infty}^{\infty}\mathrm{d}\xi\,
+\frac{1}{(\xi^2+\Gamma^2)\big((\xi+V)^2+\Gamma^2\big)}
+=\frac{2\pi}{\Gamma\,(V^2+4\Gamma^2)},
+\end{equation*}
+（用卷积定理：$\frac{1}{\xi^2+\Gamma^2}$ 的傅里叶变换为 $\frac{\pi}{\Gamma}\mathrm{e}^{-\Gamma|s|}$，故 $J=\frac{\pi^2}{\Gamma^2}\int\frac{\mathrm{d}s}{2\pi}\mathrm{e}^{-2\Gamma|s|}\mathrm{e}^{\mathrm{i}sV}=\frac{2\pi}{\Gamma(V^2+4\Gamma^2)}$。）再用恒等式
+\begin{equation*}
+\int_{-\infty}^{\infty}\mathrm{d}\nu\,\big[n_F(\nu)-n_F(\nu-V)\big]=-\,V
+\quad(\text{对任意 }T\text{ 精确成立，分部积分即得}),
+\end{equation*}
+得
+\begin{equation*}
+\boxed{\;\langle j_T\rangle=-\frac{4A^2\Gamma N(E_F)\,V}{V^2+4\Gamma^2}
+\qquad(T\ll E_F)\;}
+\end{equation*}
+零偏压峰为宽度 $2\Gamma$ 的洛伦兹型峰，峰高 $\propto1/\Gamma$：寿命展宽把 (1) 中错过的 $\delta$ 共振展宽成有限峰。
+
+\textbf{(3) 电导的温度依赖与估算。}零偏压电导
+\begin{equation*}
+\sigma\equiv\frac{\partial\langle j_T\rangle}{\partial V}\Big|_{V=0}=\frac{A^2N(E_F)}{\Gamma}.
+\end{equation*}
+值得注意：在本模型内 $\sigma$ \emph{与 $T$ 无关}（$T\to0$ 与 $T\gg\Gamma$ 给出同一值）。原因有二：(i) 二维态密度为常数，使 $\xi$ 积分与 $\nu$ 积分“平移不变”地因子化为 $J(V)$；(ii) $\int\mathrm{d}\nu[n_F(\nu)-n_F(\nu-V)]=-V$ 对任意 $T$ 精确成立。因此热展宽既不改变峰高也不改变峰形；温度的显式效应只来自 $T\ll E_F$ 之外（态密度弯曲、$\Gamma(T)$ 自身随温度变化、以及动量不守恒的散射等模型外因素）——实验上观察到的零偏压峰热压制正源于后者。
+$T=0$ 单位面积电导的估算：
+\begin{equation*}
+\boxed{\;\sigma=\frac{A^2N(E_F)}{\Gamma}=\frac{A^2}{\Gamma}\cdot\frac{m}{2\pi}\;}
+\end{equation*}
+（$\Gamma\to0$ 时发散，正是 (1) 中自由费米子 $\delta$ 峰的极限。）
+
+\textbf{(4) 有限错移 $\pmb{Q}$ 的电导。}错移后 $A_{R\pm}$ 的洛伦兹子中心移到 $\xi_{\pmb{k}-\pmb{Q}/2}$。零偏压电导正比于“错移联合谱权重”：
+\begin{equation*}
+\sigma_{\pmb{Q}}\ \propto\ \Sigma_{\Gamma}(\pmb{Q})\equiv\int\frac{\mathrm{d}^2k}{(2\pi)^2}\,
+L\big(\xi_{\pmb{k}+\frac{\pmb{Q}}{2}}\big)\,L\big(\xi_{\pmb{k}-\frac{\pmb{Q}}{2}}\big),
+\qquad L(\xi)=\frac{\Gamma/\pi}{\xi^2+\Gamma^2}.
+\end{equation*}
+$\sigma_0\propto\Sigma_\Gamma(0)=N(E_F)/(2\pi\Gamma)$（由 $\int\mathrm{d}\xi\,L^2=1/(2\pi\Gamma)$）。取 $\Gamma\to0$（$L\to\pi\delta$）求联合态密度：令 $\pmb{k}+\frac{\pmb{Q}}{2}$ 落在费米圆上（$\delta(\xi_{\pmb{k}+\pmb{Q}/2})=\frac{m}{k_F}\delta(k-k_F)$），剩下一个方位角积分
+\begin{equation*}
+\int_0^{2\pi}\mathrm{d}\theta\,\delta(\xi_{k_F\hat{\pmb{p}}-\pmb{Q}})
+=\frac{m}{Qk_F}\int_0^{2\pi}\mathrm{d}\theta\,\delta\Big(\cos\theta-\frac{Q}{2k_F}\Big)
+=\frac{2m}{Qk_F}\frac{\Theta(2k_F-Q)}{\sqrt{1-\big(\frac{Q}{2k_F}\big)^2}} ,
+\end{equation*}
+（两圆相交于两点，要求 $Q<2k_F$）。于是
+\begin{equation*}
+\frac{\sigma_{\pmb{Q}}}{\sigma_0}\ \approx\ \frac{2\pi^2\Gamma}{v_F Q}\,
+\frac{\Theta(2k_F-Q)}{\sqrt{1-\big(\frac{Q}{2k_F}\big)^2}}
+\qquad(\text{在右端}\le1\text{ 的范围内；否则饱和为 }1).
+\end{equation*}
+行为总结：
+\begin{itemize}
+\item $\pmb{Q}\to0$：$\sigma_{\pmb{Q}}\to\sigma_0$，光滑（当 $v_FQ\lesssim\Gamma$ 时洛伦兹子尾部完全交叠，错移探测不到）。
+\item $\Gamma/v_F\ll Q\ll2k_F$：$\sigma_{\pmb{Q}}/\sigma_0\sim2\pi^2\Gamma/(v_FQ)$，随错移按 $\sim1/Q$ 压制——能移 $v_FQ$ 超过寿命展宽 $\Gamma$ 后，两圆“共振弦”上能同时满足双方能量窗（宽 $\Gamma$）的态只占 $\sim\Gamma/v_FQ$。
+\item $\pmb{Q}\to2k_F^-$：两圆内切，交点附近两梯度几乎平行，联合态密度出现 van Hove 型增强 $1/\sqrt{1-(Q/2k_F)^2}$（有限 $\Gamma$ 把它调节成高度 $\sim\sigma_0\sqrt{k_F\Gamma}/\Gamma$ 量级的有限峰）；$Q>2k_F$ 后两圆分离，$\Theta$ 因子使 $\sigma_{\pmb{Q}}$ 陡降为零（仅剩 $\Gamma$ 尾部的指数小贡献）。
+\end{itemize}
+这正是 Eisenstein 等人的实验图景：平行磁场扫动错移 $\pmb{Q}$，零偏压电导先是平台、中间被压制、在 $2k_F$ 附近出现结构后坍缩。
+
+\section*{问题 4.3.1}
+\begin{problem}
+计算一维自由费米子在大 $(x,t)$ 处的 $T=0$ 编时密度关联 $\langle T\rho(x,t)\rho(0)\rangle$（用问题 4.2.5 的结果），证明它是式 (3.6.2)（一维相互作用玻色子密度关联）的特例，并确定该式中的 $\chi$、$v$、$K_n$、$C_n$。
+\end{problem}
+\solution
+密度关联的 Wick 分解（式 (4.2 节)）：$\mathrm{i}P^{00}(t,x)=\rho_0^2-\mathrm{i}G(-t,-x)\,\mathrm{i}G(t,x)$。代入问题 4.2.5 的线性化结果（取 $t>0$；一般情形 $i0^+\to i0^+\,\mathrm{sgn}\,t$）：
+\begin{equation*}
+\mathrm{i}G(t,x)=\frac{\mathrm{i}}{2\pi}\Big[\frac{\mathrm{e}^{\mathrm{i}k_Fx}}{x-v_Ft+\mathrm{i}0^+}-\frac{\mathrm{e}^{-\mathrm{i}k_Fx}}{x+v_Ft-\mathrm{i}0^+}\Big],
+\qquad
+\mathrm{i}G(-t,-x)=\frac{\mathrm{i}}{2\pi}\Big[\frac{\mathrm{e}^{\mathrm{i}k_Fx}}{x+v_Ft-\mathrm{i}0^+}-\frac{\mathrm{e}^{-\mathrm{i}k_Fx}}{x-v_Ft+\mathrm{i}0^+}\Big].
+\end{equation*}
+逐项相乘：两支“同支”乘积在 $x\mp v_Ft$ 处夹住极点（pinch），给出纯 $2k_F$ 相位的平方衰减；两支“交叉”乘积无夹极点，给出光滑部分：
+\begin{align*}
+\mathrm{i}G(t,x)\,\mathrm{i}G(-t,-x)
+&=-\frac{1}{4\pi^2}\Big[\frac{\mathrm{e}^{2\mathrm{i}k_Fx}}{(x-v_Ft+\mathrm{i}0^+)(x+v_Ft-\mathrm{i}0^+)}+\frac{\mathrm{e}^{-2\mathrm{i}k_Fx}}{(x+v_Ft-\mathrm{i}0^+)(x-v_Ft+\mathrm{i}0^+)}\Big]\\
+&\quad+\frac{1}{4\pi^2}\Big[\frac{1}{(x-v_Ft+\mathrm{i}0^+)^2}+\frac{1}{(x+v_Ft-\mathrm{i}0^+)^2}\Big].
+\end{align*}
+于是
+\begin{equation*}
+\boxed{\;\langle T\rho(t,x)\rho(0,0)\rangle=\rho_0^2
+-\frac{1}{4\pi^2}\Big[\frac{1}{(x-v_Ft+\mathrm{i}0^+)^2}+\frac{1}{(x+v_Ft-\mathrm{i}0^+)^2}\Big]
++\frac{\cos(2k_Fx)}{2\pi^2\,(x-v_Ft+\mathrm{i}0^+)(x+v_Ft-\mathrm{i}0^+)}\;}
+\end{equation*}
+（对 $t<0$ 取 $\mathrm{i}0^+\to-\mathrm{i}0^+$；该式满足 $P^{00}(t,x)=P^{00}(-t,-x)$。）等时检验：$t\to0$ 时 $-\frac{1-\cos2k_Fx}{2\pi^2x^2}=-\frac{\sin^2k_Fx}{\pi^2x^2}$，与严格等时结果 $\langle\rho\rho\rangle-\rho_0^2=-|\langle c^\dagger(x)c(0)\rangle|^2=-\frac{\sin^2(k_Fx)}{\pi^2x^2}$ 一致。
+
+\textbf{与式 (3.6.2) 比较。}式 (3.6.2) 为
+\begin{equation*}
+\langle\rho(t,x)\rho(0,0)\rangle
+=\rho_0^2-\frac{\chi v}{4\pi}\Big(\frac{1}{(x-vt)^2}+\frac{1}{(x+vt)^2}\Big)
++\sum_n|C_n|^2\mathrm{e}^{\mathrm{i}K_nx}
+\Big(\frac{l^2\mathrm{e}^{-\mathrm{i}\pi\Theta(v^2t^2-x^2)}}{|x^2-v^2t^2|}\Big)^{n^2\pi\chi v}.
+\end{equation*}
+逐项对照：
+
+\textbf{(a) 光滑部分：}$-\frac{\chi v}{4\pi}=-\frac{1}{4\pi^2}$ 给
+\begin{equation*}
+\boxed{\;\chi\,v=\frac{1}{\pi}\;}
+\end{equation*}
+
+\textbf{(b) 声速与压缩率参数：}激发速度即费米速度，故 $v=v_F$，$\chi=\dfrac{1}{\pi v_F}=N(E_F)$——恰为一维自由费米子在费米面的态密度，与 4.3.1 节的普遍结论 $\chi(\pmb{k})=N(E_F)$ 一致。
+
+\textbf{(c) 振荡谐波：}自由费米子的密度算符只含 $2k_F$ 谐波（Wick 分解只有一个 $G\times G$ 收缩），故只有 $n=\pm1$ 项：
+\begin{equation*}
+\boxed{\;K_{\pm1}=\pm2k_F,\qquad C_n=0\ \ (|n|\ge2)\;}
+\end{equation*}
+
+\textbf{(d) 谐波指数与幅度：}式 (3.6.2) 的指数 $n^2\pi\chi v=\pi\chi v$ 须等于 $\pm1$ 谐波的衰减幂次 $1$：由 (a) 的 $\pi\chi v=1$ 自动满足。相位因子：$\frac{1}{(x-v_Ft+\mathrm{i}0^+\,\mathrm{sgn}t)(x+v_Ft-\mathrm{i}0^+\,\mathrm{sgn}t)}=\frac{\mathrm{e}^{-\mathrm{i}\pi\Theta(v^2t^2-x^2)}}{|x^2-v_F^2t^2|}$（类空间时相位为 0，类时区跳变 $\mathrm{e}^{\pm\mathrm{i}\pi}=1$，两侧一致），与式 (3.6.2) 的相位结构完全相同。幅度要求
+\begin{equation*}
+2\,|C_1|^2\,l^{\,2\pi\chi v}=2|C_1|^2l^2=\frac{1}{2\pi^2}
+\quad\Longrightarrow\quad
+\boxed{\;|C_1|=\frac{1}{2\pi l}\;}
+\end{equation*}
+（$l$ 为式 (3.6.2) 中的紫外截断；$C_{\pm1}$ 的公共相位可任选，已并入上面的约定。）
+
+结论：一维自由费米子正是 $K$（玻色化参数）$=\pi\chi v=1$ 的相互作用玻色子特例：$\chi v=\frac{1}{\pi}$、$v=v_F$、只有 $2k_F$ 一组谐波、$\pi\chi v=1$ 使谐波以 $|x^2-v^2t^2|^{-1}$ 衰减。任何相互作用玻色子在 $\pi\chi v\to1$（即硬核/自由费米子点）时就回到上述结果。
+
+\section*{问题 4.3.2}
+\begin{problem}
+对二维自由费米子系统，计算小 $(\omega,k)$ 处虚时零温编时密度关联 $\mathcal{P}^{00}(\omega,k)$，并解析延拓得到实频的 $\Pi^{00}$。
+\end{problem}
+\solution
+$T=0$ 的虚时密度响应（Lindhard 函数）
+\begin{equation*}
+\mathcal{P}^{00}(\mathrm{i}\omega_n,k)
+=\int\frac{\mathrm{d}^2q}{(2\pi)^2}\,
+\frac{n_F(\xi_{\pmb q})-n_F(\xi_{\pmb q+\pmb k})}{\mathrm{i}\omega_n+\xi_{\pmb q}-\xi_{\pmb q+\pmb k}} .
+\end{equation*}
+小 $k,\omega$（$k\ll k_F$，$|\omega_n|\ll E_F$）时只有费米面附近的态贡献。取 $\pmb k$ 沿 $x$ 方向，$\xi_{\pmb q+\pmb k}-\xi_{\pmb q}\approx\pmb k\cdot\pmb v_F=v_Fk\cos\theta$，$\frac{\partial n_F}{\partial\xi}=-\delta(\xi)$：
+\begin{equation*}
+n_F(\xi_{\pmb q})-n_F(\xi_{\pmb q+\pmb k})
+\approx-\frac{\partial n_F}{\partial\xi}\big(\xi_{\pmb q+\pmb k}-\xi_{\pmb q}\big)
+=\delta(\xi_{\pmb q})\,v_Fk\cos\theta ,
+\end{equation*}
+对径向动量积分（$q^2/2m$ 处放 $\delta$，$q\to k_F$）：
+\begin{equation*}
+\mathcal{P}^{00}(\mathrm{i}\omega_n,k)
+=\frac{k_F}{(2\pi)^2}\int_0^{2\pi}\mathrm{d}\theta\;
+\frac{v_Fk\cos\theta}{\mathrm{i}\omega_n-v_Fk\cos\theta} .
+\end{equation*}
+利用 $\frac{c\cos\theta}{\mathrm{i}\omega_n-c\cos\theta}=-1+\frac{\mathrm{i}\omega_n}{\mathrm{i}\omega_n-c\cos\theta}$ 与标准积分（由 $\tan\frac{\theta}{2}=u$ 化为对实轴的围道积分，或直接留数法）
+\begin{equation*}
+\int_0^{2\pi}\frac{\mathrm{d}\theta}{a-b\cos\theta}=\frac{2\pi}{\sqrt{a^2-b^2}}\qquad
+(\text{分支取 }\sqrt{a^2-b^2}\to a,\ |a|\to\infty),
+\end{equation*}
+（对 $\mathrm{i}\omega_n$ 与 $v_Fk$：$\sqrt{(\mathrm{i}\omega_n)^2-(v_Fk)^2}=\mathrm{i}\,\mathrm{sgn}(\omega_n)\sqrt{\omega_n^2+v_F^2k^2}$，分支选择保证 $|\omega_n|\to\infty$ 时 $\mathcal{P}^{00}\to0$，）得
+\begin{align*}
+\mathcal{P}^{00}(\mathrm{i}\omega_n,k)
+&=\frac{k_F}{4\pi^2}\Big[-2\pi+\frac{2\pi\,|\omega_n|}{\sqrt{\omega_n^2+v_F^2k^2}}\Big]
+=-N(E_F)\Big[1-\frac{|\omega_n|}{\sqrt{\omega_n^2+v_F^2k^2}}\Big],
+\end{align*}
+其中 $N(E_F)=k_F/2\pi=m/2\pi$。检验：$\omega_n\to0$ 给 $\mathcal{P}^{00}(0,k)=-N(E_F)$，即压缩率等于费米面态密度（正文 $\chi(\pmb{k})=N(E_F)$）；$|\omega_n|\gg v_Fk$ 给 $\mathcal{P}^{00}\approx-N(E_F)\frac{v_F^2k^2}{2\omega_n^2}\to0$。
+
+\textbf{解析延拓 $\mathrm{i}\omega_n\to\omega+\mathrm{i}0^+$。}把结果改写为分支友好的形式
+\begin{equation*}
+\mathcal{P}^{00}(\mathrm{i}\omega_n,k)
+=-N(E_F)\Big[1-\frac{\mathrm{i}\omega_n}{\sqrt{(\mathrm{i}\omega_n)^2-v_F^2k^2}}\Big],
+\qquad
+W(z)\equiv\sqrt{z^2-(v_Fk)^2},\ W(z)\xrightarrow{|z|\to\infty}z ,
+\end{equation*}
+（割线沿 $[-v_Fk,\,v_Fk]$，$W(\mathrm{i}\omega_n)=\mathrm{i}\,\mathrm{sgn}\,\omega_n\sqrt{\omega_n^2+v_F^2k^2}$）。延拓 $\mathrm{i}\omega_n\to\omega+\mathrm{i}0^+$ 后，
+\begin{equation*}
+W(\omega+\mathrm{i}0^+)=
+\begin{cases}
++\sqrt{\omega^2-v_F^2k^2}, & |\omega|>v_Fk,\\[1ex]
++\mathrm{i}\,\mathrm{sgn}(\omega)\sqrt{v_F^2k^2-\omega^2}, & |\omega|<v_Fk
+\end{cases}
+\end{equation*}
+（$|\omega|<v_Fk$ 时从割线上方接近，$\sqrt{(\omega+\mathrm{i}0)^2-c^2}=\sqrt{-A+\mathrm{i}0^+\cdot2\omega}=+\mathrm{i}\,\mathrm{sgn}\,\omega\sqrt{A}$）。于是
+\begin{equation*}
+\boxed{\;\Pi^{00}(\omega,k)=-N(E_F)\Big[1-\frac{\omega\,\Theta(|\omega|-v_Fk)}{\sqrt{\omega^2-v_F^2k^2}}
+-\mathrm{i}\,\frac{\omega\,\Theta(v_Fk-|\omega|)}{\sqrt{v_F^2k^2-\omega^2}}\Big]\;}
+\end{equation*}
+正是式 (4.3.2) 第二行（$d=2$）。虚部为
+\begin{equation*}
+\mathrm{Im}\,\Pi^{00}(\omega,k)=-N(E_F)\frac{\omega}{v_Fk}\frac{\Theta(v_Fk-|\omega|)}{\sqrt{1-(\omega/v_Fk)^2}}
+=-\frac{\omega}{v_Fk}\frac{k_F}{2\pi v_F}\frac{\Theta(v_Fk-|\omega|)}{\sqrt{1-(\omega/v_Fk)^2}},
+\end{equation*}
+与正文给出的 $\mathrm{Im}\Pi^{00}=-(\omega/v_Fk)(k_F/2\pi v_F)(1/\sqrt{1-(\omega/v_Fk)^2})\Theta(v_Fk-|\omega|)$ 一致：只在粒子--空穴连续区 $|\omega|<v_Fk$ 内非零，符号满足因果性（$\omega>0$ 时 $\mathrm{Im}\Pi<0$）。实部在 $|\omega|=v_Fk$ 处因 $\mathrm{Im}\Pi$ 的跳变而对数/平方根奇异，连续区内为 $\mathrm{Re}\Pi=-N(E_F)\big[1-\frac{|\omega|}{\sqrt{\omega^2-v_F^2k^2}}\big]$。
+
+\section*{问题 4.3.3}
+\begin{problem}
+规范不变性与流守恒。(1) 证明规范化哈密顿量 (4.3.4)：$H=\int\mathrm{d}^dx\;c^\dagger(\pmb x)\,\epsilon(-\mathrm{i}\partial_i+A_i(\pmb x))\,c(\pmb x)$ 在 $c\to\mathrm{e}^{-\mathrm{i}\phi}c$、$A_i\to A_i+\partial_i\phi$ 下不变。(2) 在一维用 (4.3.4) 计算 $\partial_t(c^\dagger c)$，证明由 $J=\delta H/\delta A$ 定义的流满足 $\partial_t\rho+\partial_xJ=0$。
+\end{problem}
+\solution
+\textbf{(1) 规范协变性。}定义协变导数 $D_i\equiv-\mathrm{i}\partial_i+A_i$。在上述变换下（$\phi$ 为实函数）：
+\begin{equation*}
+D_i\,(\mathrm{e}^{-\mathrm{i}\phi}c)
+=-\mathrm{i}\,\partial_i(\mathrm{e}^{-\mathrm{i}\phi}c)+A_i\,\mathrm{e}^{-\mathrm{i}\phi}c
+=\mathrm{e}^{-\mathrm{i}\phi}\big[-\mathrm{i}\partial_ic-(\partial_i\phi)c\big]+A_i\mathrm{e}^{-\mathrm{i}\phi}c
+=\mathrm{e}^{-\mathrm{i}\phi}\big[-\mathrm{i}\partial_i\phi\cdot0+(\text{合并后})\big]
+\end{equation*}
+逐项写出：$-\mathrm{i}\partial_i(\mathrm{e}^{-\mathrm{i}\phi}c)=\mathrm{e}^{-\mathrm{i}\phi}(-\mathrm{i}\partial_ic)-(\partial_i\phi)\mathrm{e}^{-\mathrm{i}\phi}c$，与 $A_i$ 项、以及 $A_i\to A_i+\partial_i\phi$ 新增的 $+(\partial_i\phi)\mathrm{e}^{-\mathrm{i}\phi}c$ 相加，$-(\partial_i\phi)$ 与 $+(\partial_i\phi)$ 恰好相消：
+\begin{equation*}
+D'_i\,c'=\big(-\mathrm{i}\partial_i+A_i+\partial_i\phi\big)(\mathrm{e}^{-\mathrm{i}\phi}c)
+=\mathrm{e}^{-\mathrm{i}\phi}\,D_i\,c .
+\end{equation*}
+即 $D$ 按 $D'=\mathrm{e}^{-\mathrm{i}\phi}D\,\mathrm{e}^{+\mathrm{i}\phi}$（共轭作用）协变。由于 $\epsilon(D)$ 是 $D$ 的（幂级数/谱函数）泛函，$\epsilon(D')\,c'=\mathrm{e}^{-\mathrm{i}\phi}\epsilon(D)\,c$，于是
+\begin{equation*}
+H[A']=\int\mathrm{d}^dx\;c^{\prime\dagger}\epsilon(D')c'
+=\int\mathrm{d}^dx\;\big(c^\dagger\mathrm{e}^{+\mathrm{i}\phi}\big)\mathrm{e}^{-\mathrm{i}\phi}\epsilon(D)c
+=H[A]:\qquad\text{规范不变}.\qquad\blacksquare
+\end{equation*}
+
+\textbf{(2) 流守恒。}取 $d=1$、$\epsilon(k)=k^2/2m$，$H=\frac{1}{2m}\int\mathrm{d}x\;c^\dagger D^2c$，$D=-\mathrm{i}\partial_x+A$。海森堡方程 $\partial_t c=\mathrm{i}[H,c]$ 给 $\partial_tc=-\mathrm{i}D^2c/2m$、$\partial_tc^\dagger=+\mathrm{i}c^\dagger D^{\dagger2}/2m$（$D^\dagger=+\mathrm{i}\overleftarrow\partial_x+A$）。为避免等时点奇异性，先对任一光滑检验函数 $f(x)$ 计算
+\begin{equation*}
+\partial_tN_f=\partial_t\!\int\!\mathrm{d}x\,f\rho=\mathrm{i}[H,N_f],
+\qquad N_f=\int\mathrm{d}x\,f\,c^\dagger c,
+\end{equation*}
+用单体算符的对易关系 $[D^2/2m,\,f]=-\frac{1}{2m}\big(f''+2f'\partial_x+2\mathrm{i}f'A\big)$（$f$ 为乘法算符，$[D,f]=-\mathrm{i}f'$，$[D^2,f]=[D,f]D+D[D,f]$）：
+\begin{equation*}
+\partial_tN_f=\frac{\mathrm{i}}{2m}\int\mathrm{d}x\;c^\dagger\big(-f''-2f'\partial_x-2\mathrm{i}f'A\big)c .
+\end{equation*}
+对 $f$ 分部积分（提取 $\partial_tf(x)$）：
+\begin{align*}
+\partial_tN_f
+&=\int\mathrm{d}x\,f\Big[-\frac{\mathrm{i}}{2m}(\rho)''+\frac{\mathrm{i}}{m}\big(c^\dagger\partial_xc\big)'-\frac{1}{m}(A\rho)'\Big],
+\end{align*}
+故
+\begin{equation*}
+\partial_t\rho=-\partial_xJ,\qquad
+J=\frac{\mathrm{i}}{2m}\rho'-\frac{\mathrm{i}}{m}c^\dagger\partial_xc+\frac{A}{m}\rho
+=\boxed{\;\frac{1}{2m}\Big[c^\dagger(-\mathrm{i}\partial_x)c+(\mathrm{i}\partial_xc^\dagger)c\Big]+\frac{A}{m}\rho\;}
+\end{equation*}
+其中 $\big(c^\dagger\partial_xc\big)'=(\partial_xc^\dagger)\partial_xc+c^\dagger\partial_x^2c$ 用于化简，且 $-\frac{\mathrm{i}}{2m}(c^\dagger c)'=-\frac{\mathrm{i}}{2m}[(\partial c^\dagger)c+c^\dagger\partial c]$ 与 $\frac{\mathrm{i}}{m}c^\dagger\partial c$ 合并成上式的对称形式。这正是式 (4.3.6)（$d=1$）：第一项是顺磁流 $\frac{1}{2m}[c^\dagger(-\mathrm{i}\partial)c+(\mathrm{i}\partial c^\dagger)c]$（平面波本征态 $e^{\mathrm{i}px}$ 下给出 $p/m$），第二项是逆磁流 $A\rho/m$（形式为 $v\rho$，$v=(p+A)/m$）。
+
+\emph{（译注：式 (4.3.6) 原书把第二项印作 $-\frac{1}{2m}(\mathrm{i}\partial_ic^\dagger)c$；按 $J=\delta H/\delta A$（即对称化的 $\frac{1}{2m}[c^\dagger D c+(D^\dagger c)^\dagger c]$）与连续性方程，该项应为正号，否则平面波流为零、$\partial_t\rho+\partial_xJ=0$ 不成立。上文已按正确符号书写。）}
+
+检验（$A=0$、平面波 $e^{\mathrm{i}px}$）：$J=p\rho/m$；含 $A$ 时 $J=(p+A)\rho/m=v\rho$，符合“流 $=$ 速度 $\times$ 密度”的物理要求。且 $J$ 在规范变换下不变：$c^\dagger(-\mathrm{i}\partial) c$ 型组合的变换规律与 $D$ 相同（由 (1) 的协变性），$A\rho$ 项补偿显式项。
+
+\section*{问题 4.3.4}
+\begin{problem}
+求二维自由费米子系统（色散 $\epsilon_k=\frac{k^2}{2m}+\gamma k^4$）的流算符 $J^i$。
+\end{problem}
+\solution
+用式 (4.3.7)（小动量极限，$\partial_i$ 与 $A_j$ 视为对易）：
+\begin{equation*}
+J^i=\frac{1}{2}\Big[c^\dagger v^i(-\mathrm{i}\partial)c+\big(v^i(\mathrm{i}\partial)c^\dagger\big)c\Big]
++\frac{1}{2}A_j\Big[c^\dagger K^{ij}(-\mathrm{i}\partial)c+\big(K^{ij}(\mathrm{i}\partial)c^\dagger\big)c\Big]+O(A^2),
+\end{equation*}
+先算速度与有效质量张量（$\partial\epsilon/\partial k_i$、$\partial^2\epsilon/\partial k_i\partial k_j$，$k^2=\sum_lk_lk_l$）：
+\begin{align*}
+v^i(\pmb k)&=\frac{\partial}{\partial k_i}\Big(\frac{k^2}{2m}+\gamma(k^2)^2\Big)=\frac{k_i}{m}+4\gamma k^2k_i,\\
+K^{ij}(\pmb k)&=\frac{\partial^2\epsilon}{\partial k_i\partial k_j}
+=\frac{\delta^{ij}}{m}+4\gamma\big(\delta^{ij}k^2+2k_ik_j\big).
+\end{align*}
+把 $k_i\to-\mathrm{i}\partial_i$（作用于右边的 $c$）、$k_i\to+\mathrm{i}\partial_i$（作用于左边的 $c^\dagger$）、$k^2\to-\partial^2$ 代入，得
+整理成更紧凑的形式（保留到 $O(A)$）：
+\begin{align*}
+J^i&=\frac{1}{2m}\Big[c^\dagger(-\mathrm{i}\partial_i)c+(\mathrm{i}\partial_ic^\dagger)c\Big]+\frac{A^i}{m}\rho\\
+&\quad+2\gamma\Big[c^\dagger(\partial^2(-\mathrm{i}\partial_i))c+\big(\partial^2(\mathrm{i}\partial_i)c^\dagger\big)c\Big]
++2\gamma A_j\Big[c^\dagger\big(\delta^{ij}(-\partial^2)-2\,\partial_i\partial_j\big)c+\big(\delta^{ij}(-\partial^2)-2\,\partial_i\partial_j\big)(\mathrm{i}\partial)c^\dagger\,c\Big],
+\end{align*}
+其中第二行含 $k^4$ 贡献的顺磁流与 $A$ 的偶合项（注意 $K^{ij}(k)=\delta^{ij}/m+4\gamma(\delta^{ij}k^2+2k_ik_j)$，故 $\delta^{ij}/m$ 部分已并入第一行的 $A^i\rho/m$）。动量空间（对 $\pmb A=0$ 的部分，按式 (4.3.9)）：
+\begin{equation*}
+j^i_{\pmb q}=\sum_{\pmb k}c^\dagger_{\pmb k}c_{\pmb k+\pmb q}\,
+\frac{v^i(\pmb k)+v^i(\pmb k+\pmb q)}{2}
+=\sum_{\pmb k}c^\dagger_{\pmb k}c_{\pmb k+\pmb q}\,
+\Big[\frac{2k_i+q_i}{2m}+2\gamma\big(k^2k_i+(\pmb k+\pmb q)^2(\pmb k+\pmb q)_i\big)\Big].
+\end{equation*}
+检验：$q\to0$ 时 $j^i\to\sum_kc^\dagger_kc_k\,v^i(k)$，$v^i(k)=(k_i/m)(1+4\gamma k^2)$ 正是色散的群速度 ✓；$4\gamma$ 项在 $\gamma\to0$ 时退回式 (4.3.6) ✓。
+
+\section*{问题 4.3.5}
+\begin{problem}
+一维自由费米子系统：精确计算 $\Pi^{\mu\nu}(\omega,k)$；画出 $\mathrm{Im}\Pi^{00}\neq0$ 的区域，标出 $\Pi^{00}(\omega,k)$ 非解析的所有边界线，并指出对应的粒子--空穴激发。
+\end{problem}
+\solution
+\textbf{(1) 密度响应的精确计算。}由式 (4.3.1)（$T=0$）：
+\begin{equation*}
+\Pi^{00}(\omega,q)=\int\frac{\mathrm{d}p}{2\pi}\,
+\frac{\Theta(-\xi_p)-\Theta(-\xi_{p+q})}{\omega+\xi_p-\xi_{p+q}+\mathrm{i}0^+},
+\qquad \xi_p=\frac{p^2}{2m}-E_F .
+\end{equation*}
+分子只在两段“错位区间”上非零：$+1$ 于 $p\in(k_F-q,\,k_F]$（占位的 $p$ 出海），$-1$ 于 $p\in[-k_F-q,\,-k_F)$（入海的 $p+q$）。作 $u=pq/m+q^2/2m=\xi_{p+q}-\xi_p$（$\mathrm{d}u=\frac{q}{m}\mathrm{d}p$），记
+\begin{equation*}
+a\equiv\frac{qk_F}{m}-\frac{q^2}{2m}=v_Fq-\frac{q^2}{2m},\qquad
+b\equiv\frac{qk_F}{m}+\frac{q^2}{2m}=v_Fq+\frac{q^2}{2m},
+\end{equation*}
+两段分别对应 $u\in[a,b]$ 与 $u\in[-b,-a]$，于是
+\begin{equation*}
+\Pi^{00}(\omega,q)=\frac{m}{2\pi q}\Big[\int_a^b\frac{\mathrm{d}u}{\omega-u+\mathrm{i}0^+}-\int_{-b}^{-a}\frac{\mathrm{d}u}{\omega-u+\mathrm{i}0^+}\Big]
+=\boxed{\;\frac{m}{2\pi q}\,
+\ln\frac{\big((\omega+\mathrm{i}0^+)^2-a^2\big)}{\big((\omega+\mathrm{i}0^+)^2-b^2\big)}\;}
+\end{equation*}
+（对 $q>0$；$q<0$ 由 $\Pi^{00}(\omega,q)=\Pi^{00}(\omega,-q)$ 延拓。）这是二次型色散下的\emph{精确}一维 Lindhard 函数。
+
+\textbf{(2) 小 $(\omega,q)$ 极限与线性化精确结果。}线性化（$\xi\approx\pm v_F(k\mp k_F)$）等价于在精确式中取 $a,b\to v_Fq$ 前先把色散线性化；直接用两支手征费米子（$v_R=+v_F$，$v_L=-v_F$；各自占据 $q<0$ 与 $q>0$）计算：
+\begin{align*}
+\Pi_R(\omega,q)&=\int_{-q}^{0}\frac{\mathrm{d}p}{2\pi}\,
+\frac{1}{\omega-v_Fq+\mathrm{i}0^+}=\frac{q}{2\pi(\omega-v_Fq+\mathrm{i}0^+)},\\
+\Pi_L(\omega,q)&=-\int_{-q}^{0}\frac{\mathrm{d}p}{2\pi}\,
+\frac{1}{\omega+v_Fq+\mathrm{i}0^+}=-\frac{q}{2\pi(\omega+v_Fq+\mathrm{i}0^+)},
+\end{align*}
+（$\Pi_R$：分子 $+1$ 的错位区间在右费米点；$\Pi_L$：分子 $-1$ 在左费米点。）于是
+\begin{equation*}
+\boxed{\;\Pi^{00}(\omega,q)=\Pi_R+\Pi_L
+=\frac{1}{\pi}\,\frac{v_Fq^2}{(\omega+\mathrm{i}0^+)^2-v_F^2q^2}\;}
+\end{equation*}
+正是式 (4.3.2) 的 $d=1$ 行。检验：$\omega=0$ 给 $\Pi^{00}(0,q)=-1/(\pi v_F)=-N_{\text{lin}}(E_F)$（线性化模型的压缩率）；由精确式取 $\omega=0$：$\Pi^{00}(0,q)=-\frac{m}{\pi q}\ln\frac{b}{a}=-\frac{m}{\pi q}\ln\frac{2k_F+q}{2k_F-q}\xrightarrow{q\to0}-\frac{m}{\pi v_F}=-N(E_F)$，且在 $q=2k_F$ 处对数发散（嵌套/CDW 不稳定性的种子）。
+
+\textbf{(3) $\mathrm{Im}\Pi^{00}\neq0$ 的区域与边界线。}利用 $\mathrm{Im}\ln\big((\omega+\mathrm{i}0^+)^2-c^2\big)=+\pi\,\mathrm{sgn}(\omega)\,\Theta(c^2-\omega^2)$（$c>0$），得
+\begin{equation*}
+\mathrm{Im}\,\Pi^{00}(\omega,q)
+=\frac{m}{2q}\,\mathrm{sgn}(\omega)\,
+\Big[\Theta\big(a^2-\omega^2\big)-\Theta\big(b^2-\omega^2\big)\Big]
+=-\frac{m}{2q}\,\mathrm{sgn}(\omega)\,\Theta\big(\omega^2-a^2\big)\Theta\big(b^2-\omega^2\big),
+\end{equation*}
+即精确结果给出\textbf{两个连续谱带}：
+\begin{equation*}
+v_Fq-\frac{q^2}{2m}<|\omega|<v_Fq+\frac{q^2}{2m}\qquad(0<q<2k_F),
+\end{equation*}
+即 $(\omega,q)$ 平面上以两条直线族
+\begin{equation*}
+\boxed{\;\omega=\pm\Big(v_Fq-\frac{q^2}{2m}\Big),\qquad
+\omega=\pm\Big(v_Fq+\frac{q^2}{2m}\Big)\;}
+\end{equation*}
+为边界的四个窄带（上下对称）。在线性化极限 $q\ll k_F$，每条带坍缩为一条线：
+\begin{equation*}
+\omega=\pm v_Fq ,
+\end{equation*}
+此时 $\mathrm{Im}\Pi^{00}=-\frac{|q|}{2\pi}\big[\delta(\omega-v_F|q|)-\delta(\omega+v_F|q|)\big]$，权重全部集中在这两条“费米点光锥”上。
+
+\textbf{(4) 边界线对应的粒子--空穴激发。}
+\begin{itemize}
+\item $\omega=+(v_Fq-\frac{q^2}{2m})$（下界）：空穴在 $k_F-q$、粒子恰在 $k_F$ 的右支粒子--空穴对（$q_2=0$ 端点）；左支镜像给出 $-下界$。
+\item $\omega=+(v_Fq+\frac{q^2}{2m})$（上界）：空穴恰在 $k_F$、粒子在 $k_F+q$（$q_1=0$ 端点）；左支镜像同理。
+\item 带内部（$a<\omega<b$）：空穴在 $k_F-q_1$、粒子在 $k_F+q_2$，$q_1+q_2=q$ 的所有组合，$\omega=v_Fq+(q_2^2-q_1^2)/2m$ 连续填充能带。线性化后 $q_1^2,q_2^2$ 项消失，全部激发简并到 $\omega=v_Fq$ 一条线上——这是一维特有的“连续谱塌缩”。
+\item 跨支激发（粒子在 $+k_F$ 附近、空穴在 $-k_F$ 附近）能量 $\omega\approx2E_F+O(v_Fq)$，远在小 $(\omega,q)$ 窗口之外，不进入上述边界；它只在 $\omega\approx\pm2E_F$ 处产生另外的（ здесь 不画的）连续谱带。
+\end{itemize}
+
+\textbf{(5) 流响应 $\Pi^{xx}$。}线性化模型中流算符 $j=v_F(\rho_R-\rho_L)$，顶点权重 $(1,\pm v_F)$：
+\begin{align*}
+\Pi^{0x}(\omega,q)&=\frac{v_Fq}{2\pi}\Big[\frac{1}{\omega-v_Fq+\mathrm{i}0^+}+\frac{1}{\omega+v_Fq+\mathrm{i}0^+}\Big]
+=\frac{v_Fq}{\pi}\,\frac{\omega}{(\omega+\mathrm{i}0^+)^2-v_F^2q^2},\\
+\Pi^{xx}(\omega,q)&=\frac{v_F^2q}{2\pi}\Big[\frac{1}{\omega-v_Fq+\mathrm{i}0^+}-\frac{1}{\omega+v_Fq+\mathrm{i}0^+}\Big]
+=v_F^2\,\Pi^{00}
+=\frac{1}{\pi}\,\frac{v_F^3q^2}{(\omega+\mathrm{i}0^+)^2-v_F^2q^2}.
+\end{align*}
+电导 $\sigma(\omega)=-\lim_{q\to0}\mathrm{Im}\frac{\omega}{q^2}\Pi^{xx}$：$\mathrm{Im}\Pi^{xx}\propto-q^2\delta(\omega)$ 型，故 $\sigma(\omega)=0$（$\omega\neq0$）——伽利略不变的自由系统无耗散，只在 $\omega=0$ 有 Drude 权重，与正文一致。
+
+\textbf{(6) 精确（非线性化）的流响应。}对二次型色散，Ward 恒等式（流守恒）把唯的一维流响应完全固定：
+\begin{equation*}
+\Pi^{xx}(\omega,q)=\frac{\omega^2}{q^2}\Big[\Pi^{00}(\omega,q)-\Pi^{00}(0,q)\Big],
+\qquad
+\Pi^{00}(0,q)=-\frac{m}{\pi q}\ln\frac{2k_F+q}{2k_F-q} .
+\end{equation*}
+其中 $-\Pi^{00}(0,q)$ 正是实现 $\rho/m$ 逆磁项的接触项：$\sigma(\omega)=-\lim_{q\to0}\mathrm{Im}\frac{\omega}{q^2}\Pi^{xx}=0$（$\omega\neq0$）自动成立，与 4.3.3 节“接触项恰抵消常数项”的讨论一致。线性化模型不满足伽利略不变性，故其 $\Pi^{xx}=v_F^2\Pi^{00}$ 缺少该接触项——这正是两套结果的物理区别。
+
+\section*{问题 4.4.1}
+\begin{problem}
+对哈密顿量 (4.4.4)（$H=\sum_{\pmb k}c^\dagger_{\pmb k}M(\pmb k)c_{\pmb k}$，$c_{\pmb i}$ 有 $n$ 个分量），若 $a=1$ 能带被部分填充，证明霍尔电导由被填充能级的积分给出：
+$\sigma_{xy}=\frac{e^2}{h}\frac{1}{2\pi}\int_{\text{filled}}\mathrm{d}^2\pmb k\;
+\mathrm{i}\big[(\partial_{k_x}\psi^\dagger_{1,\pmb k})(\partial_{k_y}\psi_{1,\pmb k})-(\partial_{k_y}\psi^\dagger_{1,\pmb k})(\partial_{k_x}\psi_{1,\pmb k})\big]$；
+有限温下 $\sigma_{xy}=\frac{e^2}{h}\frac{1}{2\pi}\int\mathrm{d}^2\pmb k\;n_F(\epsilon_{\pmb k})\,
+\mathrm{i}\big[(\partial_{k_x}\psi^\dagger)(\partial_{k_y}\psi)-(\partial_{k_y}\psi^\dagger)(\partial_{k_x}\psi)\big]$。
+（注意：部分填充时 $K$ 不量子化，因 $|\pmb\theta\rangle$ 无 $2\pi$ 周期性。）
+\end{problem}
+\solution
+\textbf{(1) 从贝里相到布里渊区积分。}均匀规范场 $A_i=\theta_i/L_i$（式 (4.4.1)）等价于把每个晶体动量平移 $\pmb k'=\pmb k+\pmb\theta/L$，故 $|\pmb\theta\rangle=\otimes_{\pmb k}|\psi^{\pmb\theta}_{1,\pmb k}\rangle=|\psi_{1,\pmb k'}\rangle$。沿回路 $C$ 移动 $\pmb\theta$ 一圈时，每个 $\pmb k'$ 在布里渊区内绕过一个小回路。由贝里相的可加性（式 (4.4.5)）：
+\begin{equation*}
+\oint_C\mathrm{d}\pmb\theta\cdot\langle\pmb\theta|\mathrm{i}\partial_{\pmb\theta}|\pmb\theta\rangle
+=\sum_{\pmb k\in\text{filled}}\oint_C\mathrm{d}\pmb\theta\;
+(\psi_{1,\pmb k'}^{\pmb\theta})^\dagger\mathrm{i}\partial_{\pmb\theta}\psi^{\pmb\theta}_{1,\pmb k'} .
+\end{equation*}
+\textbf{满带情形}：小回路互不重叠地铺满整个布里渊区（图 4.17），来自内部连线的贡献两两相消，求和等于 $\psi_{1,\pmb k}$ 沿包围全布里渊区的大回路 $C_{\pmb k}$ 的回路积分，再用斯托克斯定理化为曲面积分（式 (4.4.6)）：
+\begin{equation*}
+2\pi K=\int_{\text{BZ}}\mathrm{d}^2\pmb k\;
+\mathrm{i}\big[(\partial_{k_x}\psi^\dagger_{1,\pmb k})(\partial_{k_y}\psi_{1,\pmb k})-(\partial_{k_y}\psi^\dagger_{1,\pmb k})(\partial_{k_x}\psi_{1,\pmb k})\big],
+\end{equation*}
+积分曲率为陈数（整数），给出 $\sigma_{xy}=(e^2/h)K$ 的量子化。
+
+\textbf{(2) 部分填充。}部分填充时，热力学基态只把 $\epsilon_{\pmb k}<\mu$ 的单粒子态填满。上式的求和仍可逐 $\pmb k$ 进行，但小回路只铺满\emph{被填充的那部分布里渊区}：
+\begin{equation*}
+\oint_C\mathrm{d}\pmb\theta\cdot\langle\pmb\theta|\mathrm{i}\partial_{\pmb\theta}|\pmb\theta\rangle
+=\int_{\text{filled}}\mathrm{d}^2\pmb k\;
+\mathrm{i}\big[(\partial_{k_x}\psi^\dagger_{1,\pmb k})(\partial_{k_y}\psi_{1,\pmb k})-(\partial_{k_y}\psi^\dagger_{1,\pmb k})(\partial_{k_x}\psi_{1,\pmb k})\big],
+\end{equation*}
+于是
+\begin{equation*}
+\boxed{\;\sigma_{xy}=\frac{e^2}{h}\,\frac{1}{2\pi}\int_{\text{filled}}\mathrm{d}^2\pmb k\;
+\mathrm{i}\big[(\partial_{k_x}\psi^\dagger_{1,\pmb k})(\partial_{k_y}\psi_{1,\pmb k})-(\partial_{k_y}\psi^\dagger_{1,\pmb k})(\partial_{k_x}\psi_{1,\pmb k})\big]\;}
+\end{equation*}
+\textbf{为何不量子化}：量子化的证明依赖 $|\pmb\theta\rangle$ 的 $2\pi$ 准周期结构（式 (4.4.7)–(4.4.9)）：$W_{1,2}$ 把 $|\pmb\theta\rangle$ 映到同一物理态，从而 $f_2(2\pi,0)-f_2(0,0)=2\pi\times$整数。满带时 $\pmb\theta\to\pmb\theta+2\pi$ 只是把每个 $\pmb k$ 平移一整周，多体基态张成相同的 Slater 行列式；部分填充时，$2\pi$ 的大规范变换把费米面附近的占据组态挪动（粒子穿过系统边界，等价于插入一个整量子磁通），$|\theta_1+2\pi,\theta_2\rangle$ 与 $|\theta_1,\theta_2\rangle$ 不再由规范变换相连（式 (4.4.9) 失效），$f_2$ 的端点差不必是 $2\pi$ 的整数倍。几何上：填充区域是带边界的子区域（边界即费米面），其上的曲率积分不必是陈数（整数）。故 $K$（因而 $\sigma_{xy}$）随填充连续变化、不量子化。
+
+\textbf{(3) 有限温度。}用 Kubo 公式（式 (3.7.6)）对非相互作用电子做能带展开。速度算符 $v_\mu(\pmb k)=\frac{1}{\hbar}\partial_{k_\mu}M(\pmb k)$，插入能量本征态并把矩阵元限制在同一能带内：
+\begin{equation*}
+\sigma_{xy}=\frac{\mathrm{i}e^2}{\mathcal V}\sum_{\alpha\neq\beta}
+\frac{n_F(\epsilon_\alpha)-n_F(\epsilon_\beta)}{(\epsilon_\alpha-\epsilon_\beta)^2}
+\langle\alpha|v_x|\beta\rangle\langle\beta|v_y|\alpha\rangle .
+\end{equation*}
+关键步骤是把 $\partial_{k_\mu}M$ 的矩阵元用 $|\psi_{1,\pmb k}\rangle$ 及其导数表出：
+\begin{equation*}
+\partial_{k_\mu}M(\pmb k)|\psi_{1,\pmb k}\rangle
+=(\partial_{k_\mu}\epsilon_{\pmb k})|\psi_{1,\pmb k}\rangle+\epsilon_{\pmb k}|\partial_{k_\mu}\psi_{1,\pmb k}\rangle,
+\end{equation*}
+代入后，含 $\partial_{k_\mu}\epsilon$ 的项在 $(x\leftrightarrow y)$ 反对称组合中相消（它们对指标对称），剩下的 $\epsilon^2$ 阶项利用归一化 $\langle\partial_{k_\mu}\psi|\psi\rangle=-\langle\psi|\partial_{k_\mu}\psi\rangle$ 与费米子权重因子的部分分式
+\begin{equation*}
+\frac{n_F(\epsilon_{\pmb k})-n_F(\epsilon_{\pmb k}+\delta)}{\delta^2}\;\xrightarrow{\delta\to0}\;-\frac{\partial n_F}{\partial\epsilon}\cdot\frac{1}{\delta}\ \text{的对称组合},
+\end{equation*}
+经求和指标连续化（$\sum_{\pmb k}\to\mathcal V\int\frac{\mathrm{d}^2k}{(2\pi)^2}$）后合并为（久保公式对孤立能带的标准结果，等价于 St\v{r}eda 公式的组成部分）
+\begin{equation*}
+\boxed{\;\sigma_{xy}(T)=\frac{e^2}{h}\,\frac{1}{2\pi}\int\mathrm{d}^2\pmb k\;n_F(\epsilon_{\pmb k})\,
+\mathrm{i}\big[(\partial_{k_x}\psi^\dagger_{1,\pmb k})(\partial_{k_y}\psi_{1,\pmb k})-(\partial_{k_y}\psi^\dagger_{1,\pmb k})(\partial_{k_x}\psi_{1,\pmb k})\big]\;}
+\end{equation*}
+即把零温公式中的区域指示函数 $\Theta(\mu-\epsilon_{\pmb k})$ 换成费米分布 $n_F(\epsilon_{\pmb k})$。检验：
+\begin{itemize}
+\item $T\to0$：$n_F\to\Theta(\mu-\epsilon)$，回到 (2) 的部分填充公式；
+\item 满带且 $T$ 小于带隙：$n_F\approx1$（价带）、$0$（导带），积分回到陈数，$\sigma_{xy}=(e^2/h)K$ 仍量子化；
+\item 部分填充加有限温：$n_F$ 在费米面附近抹平，$\sigma_{xy}$ 随 $\mu,T$ 连续变化——不量子化，与正文的论断一致。
+\end{itemize}
+（注意此公式的适用前提：化学势处于能隙内或费米面附近无简并退化；若费米面落在能带交叉（陈数未定义）处，需引入简并能带的非阿贝尔贝里曲率推广。）

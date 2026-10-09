@@ -1,0 +1,954 @@
+% ch07 第7章习题解答（22 题）
+\chapter{量子霍尔态理论}
+
+\section*{问题 7.1.1}
+\begin{problem}
+一束电荷为 $e$、动量为 $\pmb{k}$ 的粒子穿过一排不可穿透的磁通管（图 7.3），管子排成一行、相邻间距为 $d$，每根管子内含磁通 $\Phi$。管子外磁场为零，粒子不受任何经典的力。试计算粒子束的偏转角 $\theta$。
+\end{problem}
+\solution
+把管子横截面（垂直于平面的磁通管在平面上的交点）取在 $x=0$ 处、中心位于 $y_j=jd$（$j$ 为整数），入射束沿 $+x$ 方向，$|\pmb{k}|=k$。由于管子不可穿透，粒子只能从相邻管子之间的空隙穿过。
+
+关键在于整体相位。取一条穿过第 $j$ 个空隙（位于 $y=(j+\tfrac12)d$）的经典路径，并把它在 $x=+\infty$ 处用一条大半圆闭合。由于空间挖去了所有管子所在点，这条闭合回路不可缩，其整体相位等于它所缠绕的管子数乘以 $\mathrm{e}^{\mathrm{i}e\Phi}$。比较穿过第 $j$ 个空隙与第 $j-1$ 个空隙的两条路径：二者合起来恰好环绕一根管子（第 $j$ 根），故两条路径的相位差为 $e\Phi$，而穿过相邻空隙的粒子横向坐标相差 $d$。因此透过栅格后的波幅在横向获得一个线性的相位坡：
+\begin{equation*}
+t(y)\;\propto\;\mathrm{e}^{\mathrm{i}(e\Phi/d)\,y}.
+\end{equation*}
+一个线性相位坡等价于给波叠加一个确定的横向动量：出射波为
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}kx}\,\mathrm{e}^{\mathrm{i}(e\Phi/d)y}
+=\mathrm{e}^{\mathrm{i}k_xx}\,\mathrm{e}^{\mathrm{i}k_yy},
+\qquad k_x=k,\quad k_y=\frac{e\Phi}{d}.
+\end{equation*}
+这是一束沿新方向传播的平面波，偏转角 $\theta$ 满足
+\begin{equation*}
+\boxed{\;\tan\theta=\frac{k_y}{k_x}=\frac{e\Phi}{kd}\;}
+\qquad\left(\theta\approx\frac{e\Phi}{kd}\ \text{（小角）}\right).
+\end{equation*}
+\textbf{物理解释。}粒子全程处于 $\pmb{B}=0$ 的区域（管内磁通被不可穿透性排除），不受任何洛伦兹力；偏转完全来自不可缩回路上的整体（A--B）相位。相位 $e\Phi$ 以 $2\pi$ 为周期：当 $e\Phi=2\pi\times$整数 时 $k_y=2\pi n/d$，回到普通光栅的第 $n$ 级衍射方向。这正是"A--B 效应：不接触而使其偏转"——整体相位虽然不产生经典的力，却改变量子干涉，从而改变波的传播方向。
+
+\section*{问题 7.1.2}
+\begin{problem}
+极坐标 $(r,\phi)$ 中，式 (7.1.2) 的涡旋解为 $\Phi_q=f(r)\mathrm{e}^{\mathrm{i}\phi}$，$f(\infty)=\langle\Phi_q\rangle$。\textbf{(a)} 证明若 $a_\mu=0$，涡旋能量按 $\ln L$ 发散（$L$ 为系统尺寸）；\textbf{(b)} 求使涡旋能量有限的 $\pmb{a}(r,\phi)$；\textbf{(c)} 证明该 $\pmb{a}$ 的总磁通为 $2\pi/q$。
+\end{problem}
+\solution
+\textbf{(a)} 取 $a_\mu=0$。静态能量（梯度部分）为
+\begin{equation*}
+E=\int\mathrm{d}^2x\,\frac12\left|\pmb{\nabla}\Phi_q\right|^2
+=\frac12\int r\,\mathrm{d}r\,\mathrm{d}\phi\,
+\left[f'(r)^2+\frac{f(r)^2}{r^2}\right],
+\end{equation*}
+其中用了 $\pmb{\nabla}\big(f\mathrm{e}^{\mathrm{i}\phi}\big)
+=\big(f'\hat{\pmb r}+\tfrac{f}{r}\hat{\pmb\phi}\big)\mathrm{e}^{\mathrm{i}\phi}$。在 $r\to\infty$ 处 $f(r)\to\langle\Phi_q\rangle\equiv v$，于是大 $r$ 处被积函数 $\sim v^2/r^2$，从而
+\begin{equation*}
+E\;\sim\;\frac12\,v^2\int^L\frac{r\,\mathrm{d}r\,\mathrm{d}\phi}{r^2}
+=\pi v^2\ln\frac{L}{r_c}+O(1),
+\end{equation*}
+其中 $r_c$ 为芯尺寸（$f(r)\to0$ 的尺度）。
+\begin{equation*}
+\boxed{\;E\propto\ln L\;\text{：无规范场时涡旋能量按}\ \ln L\ \text{发散}\;}
+\end{equation*}
+
+\textbf{(b)} 发散来自角向梯度项 $f^2/r^2$。为消去它，让规范场承担角向联络：协变导数
+\begin{equation*}
+D_\phi\Phi_q=\frac{1}{r}\partial_\phi\Phi_q-\mathrm{i}q\,a_\phi\,\Phi_q
+=\mathrm{i}\left(\frac{1}{r}-q\,a_\phi\right)f(r)\,\mathrm{e}^{\mathrm{i}\phi}.
+\end{equation*}
+要求大 $r$ 处 $D_\phi\Phi_q\to0$，即
+\begin{equation*}
+a_\phi(r)\;\longrightarrow\;\frac{1}{q\,r}\qquad(r\to\infty).
+\end{equation*}
+在直角坐标中（$\hat{\pmb\phi}=(-\sin\phi,\cos\phi)$）：
+\begin{equation*}
+\boxed{\;\pmb{a}(r,\phi)=\frac{1}{q\,r}\,\hat{\pmb\phi}
+=\left(-\frac{y}{q\,r^2},\ \frac{x}{q\,r^2}\right)\;}
+\end{equation*}
+（芯内 $r\to0$ 处应有 $a_\phi\to0$ 以保持 $\pmb{a}$ 正则；把上式乘以任意满足 $a_\phi(r)\to1/(qr)$、$a_\phi(0)=0$ 的剖面函数均可，渐近形式即已足够。）此时能量密度在大 $r$ 处 $\sim\tfrac12f'^2\to0$，能量有限。
+
+\textbf{(c)} 总磁通为 $\pmb{a}$ 沿大圆的环路积分：
+\begin{equation*}
+\oint\pmb{a}\cdot\mathrm{d}\pmb{x}
+=\int_0^{2\pi}a_\phi\,r\,\mathrm{d}\phi
+=\int_0^{2\pi}\frac{1}{q\,r}\,r\,\mathrm{d}\phi
+=\boxed{\frac{2\pi}{q}}.
+\end{equation*}
+即凝聚体中的涡旋恰好携带 $1/q$ 根磁通管（以 $\hbar=c=1$ 的磁通量子为单位）。这正是正文用 $q=2$ 的 BCS 超导体与 $q>2$ 的任意子讨论的基础：涡旋 $2\pi/q$ 与一个玻色子 $\phi$ 束缚后的交换相位为 $\theta=\tfrac12\cdot\frac{2\pi}{q}+\tfrac12\cdot\frac{2\pi}{q}=\frac{2\pi}{q}$。
+
+\section*{问题 7.2.1}
+\begin{problem}
+求电子在谐振子势 $V=\frac12m\omega_0^2r^2$ 与均匀磁场 $B$（对称规范，$H=\frac{1}{2m}(\pmb{p}-q_e\pmb{A})^2+\frac12m\omega_0^2r^2$）中的能级。
+\end{problem}
+\solution
+展开动能项（$\hbar=c=1$，对称规范 $A_x=-\frac{B}{2}y,\ A_y=\frac{B}{2}x$）：
+\begin{align*}
+H&=-\frac{1}{2m}\nabla^2+\frac{\mathrm{i}q_e}{m}\pmb{A}\cdot\pmb{\nabla}
++\frac{q_e^2}{2m}\pmb{A}^2+\frac12m\omega_0^2r^2\\
+&=-\frac{1}{2m}\nabla^2+\frac{\mathrm{i}q_eB}{2m}(x\partial_y-y\partial_x)
++\frac{m}{8}\big(\omega_c^2+4\omega_0^2\big)r^2,
+\end{align*}
+其中 $\omega_c=q_eB/mc$ 为（带符号的）回旋频率。利用角动量算符 $L_z=-\mathrm{i}(x\partial_y-y\partial_x)$，有 $\frac{\mathrm{i}q_eB}{2m}(x\partial_y-y\partial_x)=-\frac{\omega_c}{2}L_z$，于是
+\begin{equation*}
+H=\underbrace{\left[-\frac{1}{2m}\nabla^2+\frac12m\Omega^2r^2\right]}_{H_{\text{osc}}}
+-\frac{\omega_c}{2}L_z,
+\qquad
+\Omega\equiv\sqrt{\omega_0^2+\frac{\omega_c^2}{4}} .
+\end{equation*}
+即一个频率为 $\Omega$ 的二维各向同性谐振子加上正比于 $L_z$ 的项。二维振子的本征态 $|n,m\rangle$（径向量子数 $n=0,1,2,\dots$，角动量 $m\in\mathbb Z$）满足
+\begin{equation*}
+H_{\text{osc}}|n,m\rangle=\Omega\,(2n+|m|+1)\,|n,m\rangle,
+\qquad L_z|n,m\rangle=m|n,m\rangle ,
+\end{equation*}
+两者共同对角化 $H$，故能级为（Fock--Darwin 能谱）
+\begin{equation*}
+\boxed{\;E_{n,m}=\Omega\,(2n+|m|+1)-\frac{\omega_c}{2}\,m,
+\qquad \Omega=\sqrt{\omega_0^2+\frac{\omega_c^2}{4}}\;}
+\end{equation*}
+\textbf{极限核对。}
+（1）$B\to0$（$\omega_c\to0$）：$E=\omega_0(2n+|m|+1)$，回到纯二维振子。
+（2）$\omega_0\to0$、$q_eB>0$（$\omega_c>0$）：$\Omega=|\omega_c|/2$，
+\begin{equation*}
+E_{n,m}=\frac{\omega_c}{2}\,(2n+|m|+1-m):
+\end{equation*}
+$n=0,\ m\geqslant0$ 给出 $E=\tfrac12\omega_c$——正是第零朗道能级；$n=0,\ m<0$ 给出 $(2|m|+1)\omega_c/2$，即更高的朗道能级。与式 (7.2.1) 之后的朗道能谱一致。
+（3）等价表述：系统能量也可写作两个简正模式 $\omega_\pm=\Omega\mp\omega_c/2$ 的量子之和，
+$E=\hbar\omega_+(n_++\tfrac12)+\hbar\omega_-(n_-+\tfrac12)$，物理图像为回旋运动与 $\pmb{E}\times\pmb{B}$ 漂移两种圆运动的叠加。
+
+\section*{问题 7.2.2}
+\begin{problem}
+\textbf{(a)} 证明磁平移 $G_{\pmb{a}}T_{\pmb{a}}$ 是均匀磁场中哈密顿量 (7.2.1) 的对称性，其中 $G_{\pmb{a}}=\exp\big[\mathrm{i}\frac{q_eB}{2}(xa^y-ya^x)\big]$。\textbf{(b)} 证明磁平移满足代数关系 (7.2.3)。
+\end{problem}
+\solution
+\textbf{记号约定。}取平移算符作用在波函数上为 $(T_{\pmb{a}}\psi)(\pmb{x})=\psi(\pmb{x}+\pmb{a})$，即 $T_{\pmb{a}}=\mathrm{e}^{\pmb{a}\cdot\pmb{\nabla}_{\!x}}$（书中记号 $T_{\pmb{a}}=\mathrm{e}^{-\pmb{a}\cdot\pmb{\nabla}_x}$ 是其对态矢的约定，与下文相差一个记号上的逆；物理结论相同）。哈密顿量记为 $H[\pmb{A}]=\frac{1}{2m}(-\mathrm{i}\pmb{\nabla}-q_e\pmb{A}(\pmb{x}))^2$，$\pmb{A}(\pmb{x})=\frac{B}{2}(-y,x)$。
+
+\textbf{(a)} 分两步。
+
+（一）平移共轭只移动系数场：直接验证（或用 $\mathrm{e}^{\pmb{a}\cdot\nabla}f(\pmb{x})\,\mathrm{e}^{-\pmb{a}\cdot\nabla}=f(\pmb{x}+\pmb{a})$）
+\begin{equation*}
+T_{\pmb{a}}\,H[\pmb{A}(\pmb{x})]\,T_{\pmb{a}}^{\dagger}=H[\pmb{A}(\pmb{x}+\pmb{a})].
+\end{equation*}
+（二）规范共轭移动联络：对 $G_\lambda=\mathrm{e}^{\mathrm{i}q_e\lambda(\pmb{x})}$ 有
+\begin{equation*}
+G_\lambda\,H[\pmb{A}]\,G_\lambda^{\dagger}=H[\pmb{A}+\pmb{\nabla}\lambda].
+\end{equation*}
+取书中给定的规范函数 $\lambda(\pmb{x})=\frac{B}{2}(xa^y-ya^x)$，则
+\begin{equation*}
+\pmb{\nabla}\lambda=\frac{B}{2}(a^y,\,-a^x),
+\qquad
+\pmb{A}(\pmb{x}+\pmb{a})=\pmb{A}(\pmb{x})+\frac{B}{2}(-a^y,\,a^x).
+\end{equation*}
+两式恰好相消，于是
+\begin{equation*}
+\boxed{\;G_{\pmb{a}}T_{\pmb{a}}\,H\,(G_{\pmb{a}}T_{\pmb{a}})^{\dagger}
+=G_{\pmb{a}}\,H[\pmb{A}(\pmb{x}+\pmb{a})]\,G_{\pmb{a}}^{\dagger}
+=H[\pmb{A}(\pmb{x})]=H\;}
+\end{equation*}
+即"平移 $+$ 补偿性规范变换"（磁平移）是 $H$ 的对称性。物理解释：均匀磁场中单纯平移会把矢量势平移出规范，规范相位 $\lambda$ 的环量 $\oint\nabla\lambda\cdot\mathrm{d}\pmb{x}=0$ 保证它是单值的正规变换；其作用是抵消平移造成的 $\pmb{A}$ 的改变。
+
+\textbf{(b)} 计算两个磁平移的乘积。先注意 $T_{\pmb{a}}G_{\pmb{b}}T_{\pmb{a}}^{\dagger}=\mathrm{e}^{\mathrm{i}q_e\lambda_{\pmb{b}}(\pmb{x}+\pmb{a})}$，故
+\begin{align*}
+(G_{\pmb{a}}T_{\pmb{a}})(G_{\pmb{b}}T_{\pmb{b}})
+&=\mathrm{e}^{\mathrm{i}q_e\lambda_{\pmb{a}}(\pmb{x})}\,
+\mathrm{e}^{\mathrm{i}q_e\lambda_{\pmb{b}}(\pmb{x}+\pmb{a})}\,T_{\pmb{a}+\pmb{b}},\\
+(G_{\pmb{b}}T_{\pmb{b}})(G_{\pmb{a}}T_{\pmb{a}})
+&=\mathrm{e}^{\mathrm{i}q_e\lambda_{\pmb{b}}(\pmb{x})}\,
+\mathrm{e}^{\mathrm{i}q_e\lambda_{\pmb{a}}(\pmb{x}+\pmb{b})}\,T_{\pmb{a}+\pmb{b}} .
+\end{align*}
+平移部分相同（普通平移彼此对易），只有相位因子不同。由 $\lambda_{\pmb{b}}(\pmb{x}+\pmb{a})=\lambda_{\pmb{b}}(\pmb{x})+\frac{B}{2}(a^xb^y-a^yb^x)$ 及 $\lambda_{\pmb{a}}(\pmb{x}+\pmb{b})=\lambda_{\pmb{a}}(\pmb{x})-\frac{B}{2}(a^xb^y-a^yb^x)$，得
+\begin{equation*}
+\boxed{\;(G_{\pmb{a}}T_{\pmb{a}})(G_{\pmb{b}}T_{\pmb{b}})
+=\mathrm{e}^{\,\mathrm{i}q_eB(a^xb^y-a^yb^x)}
+\,(G_{\pmb{b}}T_{\pmb{b}})(G_{\pmb{a}}T_{\pmb{a}})\;}
+\end{equation*}
+（若采用书中对态矢的 $T_{\pmb{a}}=\mathrm{e}^{-\pmb{a}\cdot\pmb{\nabla}}$ 记号，右端指数变号为 $-\mathrm{i}q_eB(a^xb^y-a^yb^x)$，即式 (7.2.3)；差别仅是回路取向的约定。）
+
+\textbf{物理解释。}相位 $q_eB(a^xb^y-a^yb^x)$ 恰好是把电荷 $q_e$ 沿 $\pmb{a}$、$\pmb{b}$ 张成的平行四边形 $P_{\pmb{a}\pmb{b}}$ 绕一周所积累的 A--B 相位（穿过平行四边形的磁通 $\times\,q_e$）。因此尽管两个方向的磁平移都是对称性，它们互不对易；$H$ 的本征态不能用二维动量 $(k_x,k_y)$ 标记，朗道能级的简并结构正来自这一投影式（projective）表示。
+
+\section*{问题 7.2.3}
+\begin{problem}
+证明对理想哈密顿量 (7.2.5) 有 $\langle\Psi_3|H|\Psi_3\rangle=\frac12N\hbar\omega_c$；并为 $\nu=1/m$ 的 Laughlin 态 $\Psi_m$ 找一个理想哈密顿量。
+\end{problem}
+\solution
+理想哈密顿量为
+\begin{equation*}
+H=\frac{1}{2m}\sum_i\big(\pmb{\partial}_i-\mathrm{i}q_e\pmb{A}\big)^2
+-U\sum_{i<j}V(\pmb{r}_i-\pmb{r}_j),
+\qquad V(\pmb{r})=\nabla_{\!r}^2\delta(\pmb{r}),
+\end{equation*}
+（本小题中 $m$ 的位置记号 $m$ 表示质量，与 Laughlin 指数 3 无关；$U>0$。）
+
+\textbf{第一步：动能部分。}$\Psi_3=\prod_{i<j}(z_i-z_j)^3\mathrm{e}^{-\sum|z_i|^2/4l_B^2}$ 是"全纯函数 $\times$ 高斯因子"的形式，故完全处于第零朗道能级。动能算符 $T=\sum_i\frac{1}{2m}(\partial_i-\mathrm{i}q_eA_i)^2$ 在第零朗道能级整体上是本征值为 $\tfrac12\hbar\omega_c$ 的简并子空间，因此
+\begin{equation*}
+\langle\Psi_3|T|\Psi_3\rangle=\frac12N\hbar\omega_c .
+\end{equation*}
+
+\textbf{第二步：势能部分为零。}把归一化波函数记为 $\Psi_3$，二体势的期望值为
+\begin{equation*}
+\big\langle V(\pmb{r}_1-\pmb{r}_2)\big\rangle
+=\int\mathrm{d}^2x_1\,\mathrm{d}^2x_2\;|\Psi_3|^2\,
+\nabla_{\!2}^2\delta(\pmb{x}_1-\pmb{x}_2)
+=\int\mathrm{d}^2x_1\;\Big[\nabla_{\!2}^2|\Psi_3|^2\Big]_{\pmb{x}_2=\pmb{x}_1}.
+\end{equation*}
+关键点：当 $\pmb{x}_2\to\pmb{x}_1$ 时 $\Psi_3\propto(z_1-z_2)^3$，故 $|\Psi_3|^2=|\pmb{x}_1-\pmb{x}_2|^6\,h(\pmb{x}_1,\pmb{x}_2)$，$h$ 为光滑函数。记 $\pmb{s}=\pmb{x}_1-\pmb{x}_2$，用 $\nabla^2r^{6}=36r^4$、$\pmb{\nabla}r^6=6r^4\hat{\pmb r}$（二维）得
+\begin{equation*}
+\nabla_{\!s}^2\big(|\pmb{s}|^6h\big)\Big|_{\pmb{s}=0}
+=\big(\nabla^2|\pmb{s}|^6\big)h\big|_{0}
++2\pmb{\nabla}|\pmb{s}|^6\cdot\pmb{\nabla}h\big|_{0}
++|\pmb{s}|^6\nabla^2h\big|_{0}=0 .
+\end{equation*}
+所以每一对的势能期望值严格为零，$-U\sum_{i<j}\langle V\rangle=0$，从而
+\begin{equation*}
+\boxed{\;\langle\Psi_3|H|\Psi_3\rangle=\frac12N\hbar\omega_c\;}
+\end{equation*}
+
+\textbf{第三步：$H$ 以 $\Psi_3$ 为基态。}作为算符，$-U\,V=-U\nabla^2\delta$ 的傅里叶变换为 $+Uk^2\geqslant0$，即 $-U\sum_{i<j}V$ 是正算符；又动能满足 $T\geqslant N\cdot\tfrac12\hbar\omega_c$（单粒子动能 $\geqslant\tfrac12\hbar\omega_c$）。故对任意 $\psi$ 有 $\langle\psi|H|\psi\rangle\geqslant\tfrac12N\hbar\omega_c$，而 $\Psi_3$ 使等号成立：$\Psi_3$ 是 $H$ 的精确基态。
+
+\textbf{第四步：推广到 $\nu=1/m$。}要使 $-UV_m$ 仍是正算符，$V_m$ 的傅里叶变换必须为负；$\nabla^{2k}\delta$ 的傅里叶变换是 $(-k^2)^k=(-1)^k|k|^{2k}$，故 $k$ 必须为奇数。另一方面，要使势能在 $\Psi_m$ 上期望值为零，需要 $\nabla^{2k}\delta$ 碰上 $|\Psi_m|^2\propto|\pmb{r}|^{2m}\times$光滑函数时给零：逐次作用拉普拉斯算符每次把幂次降 2，$\nabla^{2k}(|\pmb{r}|^{2m}h)\big|_{0}\propto r^{2m-2k}|_{0}$，在 $2m-2k\geqslant2$ 即 $k\leqslant m-1$ 时为零。取最大允许的奇数 $k=m-2$（$m$ 为奇整数时 $m-2$ 为奇），得理想哈密顿量
+\begin{equation*}
+\boxed{\;H_m=\frac{1}{2m}\sum_i\big(\pmb{\partial}_i-\mathrm{i}q_e\pmb{A}\big)^2
+-U\sum_{i<j}\big(\nabla^2\big)^{m-2}\delta(\pmb{r}_i-\pmb{r}_j)\;}
+\end{equation*}
+对它有：$-U(\nabla^2)^{m-2}\delta$ 的傅里叶变换为 $+U|k|^{2m-4}\geqslant0$（正算符），且 $\big\langle\big(\nabla^2\big)^{m-2}\delta\big\rangle_{\Psi_m}=0$，因此
+$\langle\psi|H_m|\psi\rangle\geqslant\tfrac12N\hbar\omega_c$、$\langle\Psi_m|H_m|\Psi_m\rangle=\tfrac12N\hbar\omega_c$：$\Psi_m$ 是 $H_m$ 的精确零（相对）能基态。
+$m=3$ 时 $(\nabla^2)^{1}\delta=\nabla^2\delta$ 正是式 (7.2.5)；$m=1$（$\nu=1$）时不存在这样的理想势（费米统计本身已给出不可压缩性）。
+
+\section*{问题 7.2.4}
+\begin{problem}
+双层 $(lmn)$ 态由 $\Psi_{lmn}=\prod_{i<j}(z_i-z_j)^l\prod_{i<j}(w_i-w_j)^m\prod_{i,j}(z_i-w_j)^n\,\mathrm{e}^{-\sum|z|^2/4l_B^2-\sum|w|^2/4l_B^2}$ 描述，两层电子数分别为 $N_1,N_2$。求使两液滴尺寸相等的 $N_1/N_2$，并求总填充因子（可先设 $n=0$）。
+\end{problem}
+\solution
+\textbf{液滴半径。}$|\Psi_{lmn}|^2$ 旋转不变，两层的液滴都是圆形。第 1 层波函数中 $z_i$ 的最高次幂（即第 1 层单个电子所能携带的最大角动量）为
+\begin{equation*}
+M_1^{\max}=l\,(N_1-1)+n\,N_2,
+\end{equation*}
+（$l(N_1-1)$ 来自同层因子，$nN_2$ 来自跨层因子 $\prod_{i,j}(z_i-w_j)^n$），故第 1 层液滴半径 $r_1=\sqrt{2M_1^{\max}}\,l_B$（与 $\nu=1/3$ 液滴的论证相同：最高角动量 $M$ 的轨道半径为 $\sqrt{2M}\,l_B$）。同理第 2 层
+\begin{equation*}
+M_2^{\max}=m\,(N_2-1)+n\,N_1,
+\qquad r_2=\sqrt{2M_2^{\max}}\,l_B .
+\end{equation*}
+
+\textbf{(i) 先设 $n=0$。}两层是独立的 $\nu=1/l$ 与 $\nu=1/m$ Laughlin 液体：$lN_1\simeq mN_2\simeq N_\phi$（每层液滴面积上的磁通量子数，见等离子体中性化），立得
+\begin{equation*}
+\frac{N_1}{N_2}=\frac{m}{l},
+\qquad
+\nu=\frac{N_1+N_2}{N_\phi}=\frac1l+\frac1m .
+\end{equation*}
+
+\textbf{(ii) 一般 $n$。}尺寸相等要求 $M_1^{\max}=M_2^{\max}$：
+\begin{equation*}
+l(N_1-1)+nN_2=m(N_2-1)+nN_1
+\;\Longrightarrow\;
+\boxed{\;\frac{N_1}{N_2}=\frac{m-n}{l-n}\;}
+\end{equation*}
+（热力学极限下略去 $O(1)$ 项；要求 $l,n$ 使右端为正，例如 $l,m>n$。）
+
+\textbf{总填充因子。}两液滴重合，总面积 $\pi r^2$ 对应磁通量子数
+\begin{equation*}
+N_\phi=\frac{r^2}{2l_B^2}=l(N_1-1)+nN_2 .
+\end{equation*}
+代入 $N_1=\alpha(m-n)$、$N_2=\alpha(l-n)$（$\alpha$ 为比例常数）：
+\begin{equation*}
+N_\phi=\alpha\big[l(m-n)+n(l-n)\big]=\alpha\,(lm-n^2),
+\qquad
+N_1+N_2=\alpha\,(l+m-2n),
+\end{equation*}
+于是
+\begin{equation*}
+\boxed{\;\nu=\frac{N_1+N_2}{N_\phi}=\frac{l+m-2n}{lm-n^2}\;}
+\end{equation*}
+\textbf{核对。}$(330)$：$N_1/N_2=1$，$\nu=6/9=2/3$；$(332)$：$N_1/N_2=1/2$，$\nu=2/5$；$(331)$：$\nu=4/8=1/2$；$(111)$：$\nu=1$。均与表 7.2 及已知结果一致。一般 $n$ 时跨层因子使两层互相挤占面积，故 $N_1/N_2$ 偏离简单的 $m/l$。
+
+\section*{问题 7.2.5}
+\begin{problem}
+对双层 $(lmn)$ 态，第一层准空穴为 $\Psi^h_1(\xi_1)=\prod_i(\xi_1-z_i)\Psi_{lmn}$，第二层准空穴为 $\Psi^h_2(\xi_2)=\prod_i(\xi_2-w_i)\Psi_{lmn}$。求两层准空穴的分数电荷与分数统计，以及两类准空穴之间的互统计（把一个绕另一个一周的贝里相位）。
+\end{problem}
+\solution
+\textbf{矩阵等离子体类比。}取 $\beta=2$，把 $|\Psi_{lmn}|^2=\mathrm{e}^{-2V}$ 写成对数等离子体：
+\begin{equation*}
+V=-l\!\!\sum_{i<j\in z}\!\!\ln|z_i-z_j|-m\!\!\sum_{j<k\in w}\!\!\ln|w_j-w_k|
+-n\!\!\sum_{i,j}\!\!\ln|z_i-w_j|
++\frac{1}{4l_B^2}\Big(\sum_i|z_i|^2+\sum_j|w_j|^2\Big).
+\end{equation*}
+各相互作用系数排成耦合矩阵
+\begin{equation*}
+K=\begin{pmatrix} l & n\\ n & m\end{pmatrix},
+\end{equation*}
+高斯项由两层各自密度为 $\rho_\phi=\frac{1}{2\pi l_B^2}$（磁通量子密度）的背景"电荷"产生。由能量对液滴尺寸的驻点条件（广义电荷中性化）：
+\begin{equation*}
+l\,n_1+n\,n_2=\rho_\phi,
+\qquad
+n\,n_1+m\,n_2=\rho_\phi ,
+\end{equation*}
+解得基态密度
+\begin{equation*}
+\begin{pmatrix} n_1\\ n_2\end{pmatrix}
+=K^{-1}\begin{pmatrix}\rho_\phi\\ \rho_\phi\end{pmatrix}
+=\frac{\rho_\phi}{lm-n^2}\begin{pmatrix} m-n\\ l-n\end{pmatrix},
+\end{equation*}
+这正是问题 7.2.4 的结果 $N_1/N_\phi=(m-n)/(lm-n^2)$，说明该类比的正确性。
+
+\textbf{分数电荷。}第一层准空穴 $\prod_i(\xi_1-z_i)$ 在 $V$ 中加入一项 $-\sum_i\ln|\xi_1-z_i|$，即一个只与第 1 类粒子耦合（耦合矢量为 $\pmb{l}=(1,0)$）的插入"电荷"。与单层情形相同，等离子体的完全屏蔽要求插入电荷被反号的密度亏损中和；在矩阵等离子体中，屏蔽条件是耦合矢量被 $K$ 加权的密度亏损抵消：
+\begin{equation*}
+\sum_J K_{IJ}\,\delta n_J=l_I
+\qquad\Longrightarrow\qquad
+\delta\pmb{n}=K^{-1}\pmb{l}
+\end{equation*}
+（单层核对：$K=(m)$，$\delta n=1/m$，即书中"每个准空穴挤走 $1/m$ 个电子"）。对第一层准空穴，$\delta\pmb{n}=\frac{1}{lm-n^2}(m,\,-n)$：第 1 层缺少 $m/(lm-n^2)$ 个电子、第 2 层富集 $n/(lm-n^2)$ 个电子，净电子数亏损为 $\frac{m-n}{lm-n^2}$ 个，故（第二层同理）：
+\begin{equation*}
+\boxed{\;Q_1=e\,\frac{m-n}{lm-n^2},
+\qquad
+Q_2=e\,\frac{l-n}{lm-n^2}\;}
+\end{equation*}
+$n=0$ 时退化为两个独立 Laughlin 液体的结果 $e/l$、$e/m$。核对：$(330)$ 给 $e/3$；$(331)$ 给 $e/4$；$(332)$ 给 $e/5$。
+
+\textbf{分数统计。}两个准空穴的有效（屏蔽后）相互作用为 $V\supset-\big(\pmb{l}_1^{\top}K^{-1}\pmb{l}_2\big)\ln|\xi_1-\xi_2|$（单层核对：$1\cdot\frac{1}{m}\cdot1=\frac1m$，正是书中 $|\xi_1-\xi_2|^{2/m}$ 项的来源）。于是归一化后的准空穴波函数带有因子 $|\xi_1-\xi_2|^{-\pmb{l}_1^{\top}K^{-1}\pmb{l}_2}$；把 $\xi_1$ 绕 $\xi_2$ 一周诱导相位 $2\pi\,\pmb{l}_1^{\top}K^{-1}\pmb{l}_2$，交换（半周）诱导其一半。故
+\begin{equation*}
+\boxed{\;\theta_1=\pi\,\frac{m}{lm-n^2},
+\qquad
+\theta_2=\pi\,\frac{l}{lm-n^2},\qquad
+\theta_{12}=2\pi\,(K^{-1})_{12}=\frac{2\pi n}{lm-n^2}\ \text{（模 }2\pi\text{）}\;}
+\end{equation*}
+其中 $\theta_{1,2}$ 为同类两准空穴的交换角，$\theta_{12}$ 为互统计角（上式取绕行方向使 $n>0$ 给正相位的约定，符号随取向翻转）。核对：$(330)$：$\theta_1=\theta_2=\pi/3$，$\theta_{12}=2\pi/3$；$(331)$：$Q=e/4$、$\theta=3\pi/8$、$\theta_{12}=\pi/4$，与文献一致；$n=0$：$\theta_1=\pi/l$、$\theta_2=\pi/m$、$\theta_{12}=0$，两层互不相干。这些结果与用有效理论 (7.3.15) 与 (7.3.32) 所得（见问题 7.3.5）完全一致。
+
+\section*{问题 7.3.1}
+\begin{problem}
+证明式 (7.3.8)：带 $a_\mu$ 荷 $l_1$ 与 $l_2$ 的两个激发，把一个绕另一个一周诱导相位 $2\pi l_1l_2/m$。（提示：从 $\mathcal{L}=-\frac12\frac{m}{2\pi}a_\mu\partial_\nu a_\lambda\varepsilon^{\mu\nu\lambda}+j^\mu a_\mu$ 出发，积掉 $a_\mu$，交叉项 $\int j_1^\mu f_\mu$ 中 $f_\mu$ 满足 $\frac{m}{2\pi}\partial_\lambda\epsilon^{\mu\lambda\nu}f_\nu=j_2^\mu$；设 $\pmb{x}_2=\dot{\pmb{x}}_2=0$ 求 $f_i$。）
+\end{problem}
+\solution
+两个点状激发的流为 $j^\mu=j_1^\mu+j_2^\mu$，
+\begin{equation*}
+j_a^0=l_a\delta(\pmb{x}-\pmb{x}_a(t)),\qquad
+j_a^i=l_a\dot{x}_a^i\,\delta(\pmb{x}-\pmb{x}_a(t)),
+\qquad a=1,2 .
+\end{equation*}
+\textbf{（1）积掉规范场。}$\mathcal{L}=-\frac12a_\mu\mathcal{K}^{\mu\nu}a_\nu+j^\mu a_\mu$，核为 $\mathcal{K}^{\mu\nu}=\frac{m}{2\pi}\partial_\lambda\epsilon^{\mu\lambda\nu}$。高斯积分给出有效作用量
+\begin{equation*}
+S_{\text{eff}}=\int\mathrm{d}^3x\;\frac12\,j^\mu
+\Big(\tfrac{m}{2\pi}\partial_\lambda\epsilon^{\mu\lambda\nu}\Big)^{\!-1}j^\nu ,
+\end{equation*}
+其中逆在形式意义上由 $\frac{m}{2\pi}\partial_\lambda\epsilon^{\mu\lambda\nu}f_\nu=j^\mu$ 定义（即 $f$ 是 $j$ 产生的 Chern--Simons 规范场）。分出交叉项：
+\begin{equation*}
+S_{12}=\int\mathrm{d}^3x\;j_1^\mu f_\mu ,
+\qquad
+\frac{m}{2\pi}\partial_\lambda\epsilon^{\mu\lambda\nu}f_\nu=j_2^\mu .
+\end{equation*}
+
+\textbf{（2）求 $f_\mu$。}取静止情形 $\pmb{x}_2=\dot{\pmb{x}}_2=0$，即 $j_2^0=l_2\delta^{(2)}(\pmb{x})$，$j_2^i=0$。
+$\mu=0$ 分量：
+\begin{equation*}
+\frac{m}{2\pi}\partial_i\big(\epsilon^{ij}f_j\big)=l_2\,\delta^{(2)}(\pmb{x})
+\;\Longrightarrow\;
+\oint\pmb{f}\cdot\mathrm{d}\pmb{x}=\frac{2\pi l_2}{m},
+\end{equation*}
+即 $f_i$ 是一根位于原点、通量为 $2\pi l_2/m$ 的磁通管的矢量势，
+$f_i=\frac{l_2}{m}\epsilon_{ij}x^j/r^2$。
+$\mu=i$ 分量：$\frac{m}{2\pi}\big[\partial_0\epsilon^{ij}f_j+\partial_k\epsilon^{ikj}f_0\big]=0$，取静态解 $f_0=0$ 满足。
+
+\textbf{（3）交叉相位。}把激发 1 缓慢绕原点一周：
+\begin{equation*}
+S_{12}=\int\mathrm{d}t\,j_1^i f_i=\int\mathrm{d}t\,l_1\dot{\pmb{x}}_1\cdot\pmb{f}(\pmb{x}_1)
+=l_1\oint\pmb{f}\cdot\mathrm{d}\pmb{x}_1
+=l_1\,\frac{2\pi l_2}{m},
+\end{equation*}
+\begin{equation*}
+\boxed{\;\text{绕一周的相位}=\frac{2\pi l_1l_2}{m}\;}
+\end{equation*}
+即式 (7.3.8)。取 $l_1=l_2=l$ 并除以 2（交换是半周）得统计角 $\theta=\pi l^2/m$，即式 (7.3.9)；取 $l=m$ 得电子的 $\theta=\pi m$。
+
+\textbf{（4）为何没有"两倍"贡献。}朴素通量--电荷图像（图 7.8）似乎给出 $2\pi\frac{l_1}{m}l_2+2\pi\frac{l_2}{m}l_1$。上面的计算表明这是重复计数：$f_\mu$ 是 $j_2$ 产生的场，"$l_1$ 绕 $l_2$"与"$l_2$ 绕 $l_1$"是同一个相对运动（一条闭合回路的两种说法），Chern--Simons 项求出的自洽解只含一次电荷--绕--通量的贡献，系数恰好是 $\frac{2\pi l_1l_2}{m}$。（自能项 $\frac12j_a\cdot f_a$ 各给出 $\pi l_a^2/m$，即各自的统计角，不属于交叉项。）
+
+\section*{问题 7.3.2}
+\begin{problem}
+在有效理论中加入 Maxwell 项：$\mathcal{L}=-\frac{m}{4\pi}a_\mu\partial_\nu a_\lambda\varepsilon^{\mu\nu\lambda}+\frac{1}{2g_1}e^2-\frac{1}{2g_2}b^2$，其中 $e_i=\dot{a}_i-\partial_ia^0$，$b=\partial_1a_2-\partial_2a_1$。求集体涨落的运动方程与能隙；设 $1/m$ 态能隙为 $e^2/m^2l_B$ 量级、准空穴尺寸为 $l_B$ 量级，估计 $g_1,g_2$。
+\end{problem}
+\solution
+\textbf{运动方程。}对 $a_\mu$ 变分（Chern--Simons 项的变分 $\delta\mathcal{L}_{\text{CS}}=-\frac{m}{2\pi}\varepsilon^{\mu\nu\lambda}\delta a_\mu\partial_\nu a_\lambda$）：
+\begin{align*}
+a_0:&\quad -\frac{m}{2\pi}\,b+\frac{1}{g_1}\partial_ie_i=0
+\;\Longrightarrow\;
+\partial_ie_i=\frac{mg_1}{2\pi}\,b,\\
+a_i:&\quad \frac{m}{2\pi}\varepsilon^{ij}e_j-\frac{1}{g_1}\partial_te_i+\frac{1}{g_2}\varepsilon^{ij}\partial_jb=0 .
+\end{align*}
+第二式乘以 $\varepsilon^{ki}$ 再取散度，用 $\varepsilon^{ki}\partial_k\partial_te_i=\partial_tb$ 与第一式，得单一标量方程
+\begin{equation*}
+\boxed{\;\partial_tb=\frac{m^2g_1g_2}{4\pi^2}\,b-\frac{g_1g_2}{2\pi}\,\nabla^2 b\;}
+\end{equation*}
+（同时 $\nabla\cdot\pmb{e}=\frac{mg_1}{2\pi}b$，即 Chern--Simons 的 Gauss 约束把电场与磁通绑定。）
+
+\textbf{色散与能隙。}代入平面波 $b\propto\mathrm{e}^{\mathrm{i}(\pmb{k}\cdot\pmb{x}-\omega t)}$：
+\begin{equation*}
+\boxed{\;\omega^2=\Big(\frac{mg_1}{2\pi}\Big)^{2}+\frac{g_1}{g_2}\,k^2\;}
+\end{equation*}
+集体激发是一条有能隙的分支：能隙 $\omega_{\text{gap}}=\frac{mg_1}{2\pi}$（$\hbar=1$），速度 $v=\sqrt{g_1/g_2}$。这正是 FQH 态中不可压缩性的场论体现——密度涨落（即准空穴--准粒子对）具有有限能隙。
+
+\textbf{估计 $g_1,\ g_2$。}
+（1）能隙：$\frac{mg_1}{2\pi}\sim\frac{e^2}{m^2l_B}$ 给出
+\begin{equation*}
+g_1\sim\frac{e^2}{m^3\,l_B}\quad(\text{精确到}\ 2\pi\ \text{因子}).
+\end{equation*}
+（2）速度：库仑相互作用的特征能量为 $e^2/l_B$、特征波矢为 $1/l_B$，故特征速度 $v\sim\frac{e^2/l_B}{1/l_B}\cdot\frac{1}{m}=\frac{e^2}{m\,l_B}$（除以质量 $m$ 是因为能隙本身 $\propto1/m^2$），由 $v=\sqrt{g_1/g_2}$ 得
+\begin{equation*}
+g_2\sim\frac{l_B}{m\,e^2}\quad(\text{精确到}\ 2\pi\ \text{因子})
+\qquad
+\sqrt{\frac{g_1}{g_2}}=\frac{e^2}{m\,l_B}.
+\end{equation*}
+量纲核对：$[g_1]=$频率（能隙 $\frac{mg_1}{2\pi}$ 为能量），$[g_2]=\text{频率}/\text{波矢}^2$，故 $\sqrt{g_1/g_2}$ 为速度，自洽。
+
+\section*{问题 7.3.3}
+\begin{problem}
+证明式 (7.3.24) 之下列出的四条性质：由 $l_{eI}=K_{IJ}L_J$（$L_I$ 为整数，$q_IL_I=1$）定义的电子型激发 (i) 携带单位电荷；(ii) 具有费米统计；(iii) 绕任意准粒子 $\psi_{\pmb{l}}$ 一周诱导 $2\pi$ 整数倍的相位；(iv) 满足这三条性质的激发全部具有这种形式。
+\end{problem}
+\solution
+取分级基：$K$ 为整数对称矩阵，$K_{II}|_{I=1}$ 为奇、$K_{II}|_{I>1}$ 为偶，$\pmb{q}^{\top}=(1,0,\dots,0)$；准粒子 $\psi_{\pmb{l}}$ 的电荷 $Q_{\pmb{l}}=-e\,\pmb{q}^{\top}K^{-1}\pmb{l}$、统计角 $\theta_{\pmb{l}}=\pi\pmb{l}^{\top}K^{-1}\pmb{l}$、与 $\psi_{\pmb{l}'}$ 的互统计相位 $2\pi\pmb{l}^{\top}K^{-1}\pmb{l}'$。
+
+\textbf{(i) 单位电荷。}
+\begin{equation*}
+Q_e=-e\,\pmb{q}^{\top}K^{-1}\pmb{l}_e
+=-e\,\pmb{q}^{\top}K^{-1}K\pmb{L}
+=-e\,\pmb{q}^{\top}\pmb{L}
+=-e\sum_Iq_IL_I=-e .
+\end{equation*}
+
+\textbf{(ii) 费米统计。}
+\begin{equation*}
+\theta_e=\pi\,\pmb{l}_e^{\top}K^{-1}\pmb{l}_e
+=\pi\,\pmb{L}^{\top}K\pmb{L}
+=\pi\Big[\sum_IK_{II}L_I^2+2\sum_{I<J}K_{IJ}L_IL_J\Big].
+\end{equation*}
+对 2 取模：交叉项为偶，$L_I^2\equiv L_I$，故 $\pmb{L}^{\top}K\pmb{L}\equiv K_{11}L_1\ (\mathrm{mod}\ 2)$。而 $q_IL_I=1$（即 $L_1=1$）与 $K_{11}$ 为奇给出 $\pmb{L}^{\top}K\pmb{L}\equiv1\ (\mathrm{mod}\ 2)$，于是 $\theta_e=\pi\times$奇数：费米子。
+
+\textbf{(iii) 与任意准粒子的互统计平凡。}
+\begin{equation*}
+\text{相位}=2\pi\,\pmb{l}^{\top}K^{-1}\pmb{l}_e
+=2\pi\,\pmb{l}^{\top}K^{-1}K\pmb{L}
+=2\pi\,\pmb{l}^{\top}\pmb{L}=2\pi\times\text{整数},
+\end{equation*}
+保证电子波函数单值。
+
+\textbf{(iv) 完备性。}先证一条引理：\emph{与所有准粒子互统计均为 $2\pi$ 整数倍（"透明"）的 $\pmb{l}$ 必满足 $\pmb{l}=K\pmb{L}$，$\pmb{L}$ 为整矢量。}事实上，透明性要求 $2\pi\pmb{l}^{\top}K^{-1}\pmb{l}'\in2\pi\mathbb Z$ 对一切 $\pmb{l}'\in\mathbb Z^n$ 成立；取基矢 $\pmb{l}'=\pmb{e}_J$ 得 $(K^{-1}\pmb{l})_J\in\mathbb Z$ 对每个 $J$，即 $K^{-1}\pmb{l}\in\mathbb Z^n$，故 $\pmb{l}=K(K^{-1}\pmb{l})$。
+
+现在设 $\pmb{l}\in\mathbb Z^n$ 满足单位电荷 $\pmb{q}^{\top}K^{-1}\pmb{l}=1$ 与费米统计 $\pmb{l}^{\top}K^{-1}\pmb{l}\equiv1\ (\mathrm{mod}\ 2)$。取任一电子 $\pmb{l}_e=K\pmb{L}$（$q^{\top}\pmb{L}=1$），令 $\pmb{l}'=\pmb{l}-\pmb{l}_e$，则：
+\begin{itemize}
+\item 中性：$\pmb{q}^{\top}K^{-1}\pmb{l}'=1-1=0$；
+\item 透明：$2\pi\pmb{l}'^{\top}K^{-1}\pmb{l}''=2\pi(\pmb{l}^{\top}\pmb{L}''-\pmb{L}^{\top}\pmb{l}'')\in2\pi\mathbb Z$ 对一切 $\pmb{l}''$；
+\item 玻色性：$\pmb{l}'^{\top}K^{-1}\pmb{l}'=\underbrace{\pmb{l}^{\top}K^{-1}\pmb{l}}_{\text{奇}}-2\pmb{l}^{\top}\pmb{L}+\underbrace{\pmb{L}^{\top}K\pmb{L}}_{\text{奇}}\equiv$ 偶。
+\end{itemize}
+由引理，透明的 $\pmb{l}'$ 必为 $\pmb{l}'=K\pmb{L}'$，且其电荷为零给出 $\pmb{q}^{\top}\pmb{L}'=\pmb{q}^{\top}K^{-1}\pmb{l}'=0$。于是
+\begin{equation*}
+\pmb{l}=\pmb{l}_e+\pmb{l}'=K(\pmb{L}+\pmb{L}'),\qquad
+\pmb{q}^{\top}(\pmb{L}+\pmb{L}')=1+0=1 ,
+\end{equation*}
+即 $\pmb{l}$ 具有式 (7.3.24) 的形式。反之 (i)--(iii) 已证。故式 (7.3.24) 给出且只给出全部"单位电荷 $+$ 费米统计 $+$ 与电子互统计平凡"的激发——它们就是电子（的不同风味，真实的电子算符是它们的叠加）。
+
+\emph{（核对例：}对 $\nu=2/5$，$K=\begin{pmatrix}3&-1\\-1&2\end{pmatrix}$，$\pmb{q}=(1,0)$：单位电荷条件 $2l_1+l_2=5$ 的全部解 $(3,-1),(2,1),(1,3),(0,5),(4,-3),(5,-5),\dots$ 均有奇整数的 $\pmb{l}^{\top}K^{-1}\pmb{l}=3,3,7,15,7,15,\dots$，且都等于 $K(1,L_2)$，$L_2=0,1,2,3,-1,-2,\dots$，与四条性质一致。$)$
+
+\section*{问题 7.3.4}
+\begin{problem}
+先忽略自旋矢量 $\pmb{s}$：证明表 7.1 中单层 2/5 态 $(K_1,\pmb{q}_1)$ 与表 7.2 中双层 (332) 态 $(K_2,\pmb{q}_2)$ 等价；再证明两者完整的 $(K,\pmb{q},\pmb{s})$ 并不等价。
+\end{problem}
+\solution
+单层 2/5：$K_1=\begin{pmatrix}3&-1\\-1&2\end{pmatrix}$，$\pmb{q}_1=\begin{pmatrix}1\\0\end{pmatrix}$，$\pmb{s}_1=\begin{pmatrix}1/2\\1\end{pmatrix}$；
+双层 (332)：$K_2=\begin{pmatrix}3&2\\2&3\end{pmatrix}$，$\pmb{q}_2=\begin{pmatrix}1\\1\end{pmatrix}$，$\pmb{s}_2=\begin{pmatrix}3/2\\3/2\end{pmatrix}$。
+
+\textbf{（一）$(K,\pmb{q})$ 等价。}取
+\begin{equation*}
+W=\begin{pmatrix}1&0\\1&1\end{pmatrix},\qquad \det W=1\ (W\in SL(2,\mathbb Z)).
+\end{equation*}
+逐条验证：
+\begin{align*}
+W\pmb{q}_1&=\begin{pmatrix}1\\1\end{pmatrix}=\pmb{q}_2,\\
+W K_1 W^{\top}&=\begin{pmatrix}1&0\\1&1\end{pmatrix}
+\begin{pmatrix}3&-1\\-1&2\end{pmatrix}
+\begin{pmatrix}1&1\\0&1\end{pmatrix}
+=\begin{pmatrix}3&-1\\2&1\end{pmatrix}
+\begin{pmatrix}1&1\\0&1\end{pmatrix}
+=\begin{pmatrix}3&2\\2&3\end{pmatrix}=K_2 .
+\end{align*}
+故按式 (7.3.26)，两个 2/5 态在忽略 $\pmb{s}$ 时属同一普适类（如在无序样品中层间隧穿由弱变强时可以平滑渡越）。核对填充因子：$\pmb{q}^{\top}K^{-1}\pmb{q}=2/5$ 对两者都成立（等价变换下不变）。另外可以证明满足 $W\pmb{q}_1=\pmb{q}_2$、$WK_1W^{\top}=K_2$ 的 $W\in SL(2,\mathbb Z)$ 是唯一的：设 $W=\begin{pmatrix}a&b\\c&d\end{pmatrix}$，$W\pmb{q}_1=\pmb{q}_2$ 给 $a=1,c=1$，$WK_1W^{\top}=K_2$ 的对角元给 $2b^2-2b=0,\ 2d^2-2d=0$，$\det W=d-b=1$ 定出 $(b,d)=(0,1)$。
+
+\textbf{（二）含 $\pmb{s}$ 时不等价。}存在 $\pmb{s}$ 时等价条件为 $\pmb{s}_2=W\pmb{s}_1$。用上面唯一的 $W$：
+\begin{equation*}
+W\pmb{s}_1=\begin{pmatrix}1&0\\1&1\end{pmatrix}\begin{pmatrix}1/2\\1\end{pmatrix}
+=\begin{pmatrix}1/2\\3/2\end{pmatrix}\neq\begin{pmatrix}3/2\\3/2\end{pmatrix}=\pmb{s}_2 .
+\end{equation*}
+由于满足 $(K,\pmb{q})$ 等价的 $W$ 唯一，不存在同时匹配 $\pmb{s}$ 的 $SL(2,\mathbb Z)$ 变换。故完整的 $(K,\pmb{q},\pmb{s})$ 不等价：对旋转不变的系统，双层 (332) 态与单层 2/5 态被一级相变分隔，不可能平滑过渡。
+
+\section*{问题 7.3.5}
+\begin{problem}
+用有效理论 (7.3.15) 与 (7.3.32) 求双层 $(lmn)$ 态的填充因子，以及第一、二层准空穴的分数电荷与分数统计（与问题 7.2.5 比较）。
+\end{problem}
+\solution
+$(lmn)$ 态由 $K=\begin{pmatrix}l&n\\n\\m\end{pmatrix}$、$\pmb{q}^{\top}=(1,1)$ 描述。
+
+\textbf{填充因子。}由 $\nu=\pmb{q}^{\top}K^{-1}\pmb{q}$，$K^{-1}=\frac{1}{lm-n^2}\begin{pmatrix}m&-n\\-n&l\end{pmatrix}$：
+\begin{equation*}
+\nu=(1,1)\,\frac{1}{lm-n^2}\begin{pmatrix}m-n\ l-n\end{pmatrix}
+\;\Longrightarrow\;
+\boxed{\;\nu=\frac{l+m-2n}{lm-n^2}\;}
+\end{equation*}
+与问题 7.2.4 的波函数计数一致。（等价地由运动方程 $\delta\mathcal{L}/\delta a_{I0}=0$：$-eB\,q_I=K_{IJ}b_J$，解出 $\sum_Ib_I=\nu(-eB)$。）
+
+\textbf{准空穴量子数。}第 1 层准空穴是第 1 个凝聚体的涡旋，由源 $-a_{1\mu}j^\mu$ 产生，即 $\pmb{l}=(-1,0)$；第 2 层准空穴 $\pmb{l}=(0,-1)$。代入式 (7.3.23)：
+\begin{align*}
+Q_1&=-e\,\pmb{q}^{\top}K^{-1}\,\pmb{l}=+e\,\frac{m-n}{lm-n^2},
+&Q_2&=+e\,\frac{l-n}{lm-n^2},\\
+\theta_1&=\pi\,\pmb{l}^{\top}K^{-1}\pmb{l}=\pi\,\frac{m}{lm-n^2},
+&\theta_2&=\pi\,\frac{l}{lm-n^2},\\
+\theta_{12}&=2\pi\,\pmb{l}_1^{\top}K^{-1}\pmb{l}_2=-\frac{2\pi n}{lm-n^2}
+\ \Big(=\frac{2\pi n}{lm-n^2}\ \text{模 }2\pi\Big).
+\end{align*}
+\begin{equation*}
+\boxed{\;Q_{1,2}=e\,\frac{m-n\ \text{或}\ l-n}{lm-n^2},
+\qquad
+\theta_{1,2}=\pi\,\frac{m\ \text{或}\ l}{lm-n^2},
+\qquad
+\theta_{12}=\frac{2\pi n}{lm-n^2}\;}
+\end{equation*}
+与问题 7.2.5 的等离子体结果完全一致。核对：$(330)$：$Q=e/3$，$\theta=\pi/3$，$\theta_{12}=2\pi/3$；$(331)$：$Q=e/4$，$\theta=3\pi/8$，$\theta_{12}=\pi/4$；$(332)$：$Q=e/5$，$\theta=3\pi/5$，$\theta_{12}=4\pi/5$。
+
+\section*{问题 7.3.6}
+\begin{problem}
+设 $(mmm)$ 双层态的有效理论为 $\mathcal{L}=-\frac{1}{4\pi}K_{IJ}a_{I\mu}\partial_\nu a_{J\lambda}\varepsilon^{\mu\nu\lambda}+\frac{1}{2g_1}\pmb{e}_I\cdot\pmb{e}_I-\frac{1}{2g_2}b_Ib_I$（对 $I=1,2$ 求和），$K=m\begin{pmatrix}1&1\\1&1\end{pmatrix}$。\textbf{(1)} 证明其如超流体一样有无能隙激发并求速度；\textbf{(2)} 求能量最小的涡旋的 $\gamma$（$E=\gamma\ln L$，$a_I$ 荷量子化为整数）；\textbf{(3)} 若把 $(mmm)$ 当作超流体，辨认破缺的对称性与序参量。
+\end{problem}
+\solution
+$\det K=0$ 是 $(mmm)$ 态的特殊之处。作正交组合
+\begin{equation*}
+a_\pm=\frac{a_1\pm a_2}{\sqrt2},\qquad
+\pmb{e}_\pm=\frac{\pmb{e}_1\pm\pmb{e}_2}{\sqrt2},\qquad
+b_\pm=\frac{b_1\pm b_2}{\sqrt2},
+\end{equation*}
+则 $\pmb{e}_1^2+\pmb{e}_2^2=\pmb{e}_+^2+\pmb{e}_-^2$、$b_1^2+b_2^2=b_+^2+b_-^2$，而 Chern--Simons 项只含 $+$ 组合：
+\begin{equation*}
+\mathcal{L}=\underbrace{-\frac{2m}{4\pi}a_{+\mu}\partial_\nu a_{+\lambda}\varepsilon^{\mu\nu\lambda}
++\frac{1}{2g_1}\pmb{e}_+^2-\frac{1}{2g_2}b_+^2}_{\text{有能隙（同问题 7.3.2）}}
+\;+\;\underbrace{\frac{1}{2g_1}\pmb{e}_-^2-\frac{1}{2g_2}b_-^2}_{\text{纯 }2+1\text{ 维 Maxwell}} .
+\end{equation*}
+
+\textbf{(1) 无能隙激发。}$a_-$ 扇区没有 Chern--Simons"质量"项，是一支自由的 $2+1$ 维 Maxwell 光子。其横向模式的运动方程给出（与问题 7.3.2 中去掉 CS 项的计算相同）
+\begin{equation*}
+\omega^2=\frac{g_1}{g_2}\,k^2
+\qquad\Longrightarrow\qquad
+\boxed{\;\omega=v\,|k|,\qquad v=\sqrt{\frac{g_1}{g_2}}\;}
+\end{equation*}
+与超流体的声子完全类似：无能隙、线性色散、单一速度。（$a_+$ 扇区有能隙 $2m\cdot\frac{m\text{-质量}}{2\pi}$，不参与低能物理。）
+
+\textbf{(2) 涡旋能量。}涡旋是不能被屏蔽的激发：广义中性化条件 $K_{IJ}\delta n_J=l_I$ 有解要求 $\pmb{l}$ 与 $K$ 的零模 $\begin{pmatrix}1\\-1\end{pmatrix}$ 正交，即 $l_1=l_2$；$l_1\neq l_2$ 的激发带有 $a_-$"荷"
+\begin{equation*}
+l_-=\frac{l_1-l_2}{\sqrt2},
+\end{equation*}
+它与 $a_-$ 光子（质量无能隙）发生库仑作用，能量对数发散。由 $\mathcal{L}_-\supset l_-a_{-0}\delta^{(2)}(\pmb{x})$，Gauss 定律给出
+$\nabla\cdot\pmb{e}_-=g_1l_-\delta^{(2)}(\pmb{x})$，即 $\pmb{e}_-=\frac{g_1l_-}{2\pi r}\hat{\pmb r}$，于是
+\begin{equation*}
+E=\int\mathrm{d}^2x\,\frac{\pmb{e}_-^2}{2g_1}
+=\frac{1}{2g_1}\Big(\frac{g_1l_-}{2\pi}\Big)^{2}2\pi\ln\frac{L}{a}
+=\frac{g_1}{4\pi}\,(l_1-l_2)^2\,\ln\frac{L}{a},
+\qquad
+\gamma=\frac{g_1}{8\pi}\,(l_1-l_2)^2 .
+\end{equation*}
+$a_I$ 荷量子化为整数，故 $|l_1-l_2|\geqslant1$ 的最小整涡旋（例如 $(l_1,l_2)=(1,0)$，即相对相位绕 $2\pi$）具有
+\begin{equation*}
+\boxed{\;\gamma_{\min}=\frac{g_1}{8\pi}\;}
+\end{equation*}
+（精确到 $\pm$ 归一化约定的 $2\pi$ 因子；能量只依赖相对荷 $l_1-l_2$。）
+
+\textbf{(3) 破缺对称性与序参量。}$(mmm)$ 态是两个凝聚体 $\langle\Psi_1\rangle=\langle\Psi_2\rangle\neq0$ 的态，两层的相对相位被锁定。它自发破缺的对称性是\emph{相对} $U(1)$：
+\begin{equation*}
+\Psi_1\to\mathrm{e}^{\mathrm{i}\alpha}\Psi_1,\qquad
+\Psi_2\to\mathrm{e}^{-\mathrm{i}\alpha}\Psi_2 .
+\end{equation*}
+（电磁 $U(1)$ 变换 $\Psi_I\to\mathrm{e}^{\mathrm{i}\beta}\Psi_I$ 没有破缺。）序参量是规范不变的复合算符
+\begin{equation*}
+\boxed{\;\big\langle\Psi_1\,\Psi_2^{\dagger}\big\rangle\neq0\;}
+\end{equation*}
+（电磁中性，故 $(mmm)$ 是\emph{中性}超流体）。第 (1) 问的无能隙模式正是该序参量的相位（戈尔迪斯通）模，第 (2) 问的对数涡旋正是它的涡旋——两个特征都与超流体一一对应。
+
+\section*{问题 7.4.1}
+\begin{problem}
+证明 IQH 边缘激发的速度 $v=\partial E(k)/\partial k$ 由 $cE/B$ 给出（$E=-\partial V/\partial r$ 为约束势在边缘处的电场），并求含 $N$ 个电子的 $\nu=1$ 液滴所对应手征费米液体的费米动量 $k_F$。
+\end{problem}
+\solution
+\textbf{速度。}第零朗道能级中角动量 $m$ 的单电子态是半径 $r_m=\sqrt{2m}\,l_B$ 的圆环，能量 $E_m=\frac12\hbar\omega_c+V(r_m)$。边缘的低能激发是把电子从边缘附近的占据态搬到相邻的空态。沿边缘的（一维）动量按态的几何分布定义：液滴周长 $L=2\pi R$（$R$ 为边缘半径），共有 $N_\phi=R^2/2l_B^2$ 个态均匀分布在边缘上，故
+\begin{equation*}
+k=\frac{2\pi\,\Delta m}{L},\qquad
+\frac{\mathrm{d}k}{\mathrm{d}m}=\frac{2\pi}{L}=\frac1R .
+\end{equation*}
+在边缘附近 $r_m=R+(m-N_\phi)l_B^2$（因为相邻圆环的面积差恒为 $2\pi l_B^2$，即 $\mathrm{d}r_m/\mathrm{d}m=l_B^2/r_m\to l_B^2/R$）。于是群速度
+\begin{equation*}
+v=\frac{\partial E}{\partial k}
+=\frac{\mathrm{d}E/\mathrm{d}m}{\mathrm{d}k/\mathrm{d}m}
+=R\,V'(R)\,\frac{l_B^2}{R}
+=l_B^2V'(R)
+=-l_B^2E
+=-\frac{\hbar c}{eB}\,E ,
+\end{equation*}
+取大小（方向由边缘处 $\pmb{E}\times\pmb{B}$ 决定）：
+\begin{equation*}
+\boxed{\;v=\frac{cE}{B}\;}
+\end{equation*}
+这正是经典 $\pmb{E}\times\pmb{B}$ 漂移速度：边缘处约束势的电场驱动了无耗散的手征边缘流。
+\emph{（译注：若按正文 $E(k)=\frac12\hbar\omega_c+V(2l_B^2k)$（即由 $k=m/r_m$ 整体反解 $r_m=2l_B^2k$）直接求导，会得到 $2cE/B$，多出因子 2。原因是以 $k=m/r_m$ 定义边缘动量是粗糙的整体对应；正确的定义应使态密度均匀——每 $2\pi l_B^2$ 面积一个态对应边缘上长度 $2\pi l_B^2$，即 $k=2\pi\Delta m/L$，如上所述。物理上的边缘速度即漂移速度 $cE/B$。）}
+
+\textbf{费米动量。}$N$ 个电子填满 $m=0,1,\dots,N-1$，最高占据态的边缘动量即
+\begin{equation*}
+k_F=\frac{2\pi(N-1)}{L}=\frac{N-1}{R}
+\;\xrightarrow{N\to\infty}\;
+\boxed{\;k_F=\frac{N}{R}=\frac{\sqrt{N/2}}{l_B}=\frac{R}{2l_B^2}\;}
+\end{equation*}
+（用了 $R=\sqrt{2N}\,l_B$，来自 $\nu=1$ 时液滴面积等于磁通：$R^2=2Nl_B^2$。）
+
+\section*{问题 7.4.2}
+\begin{problem}
+$\nu=1$ IQH 态被圆势 $V(r)$ 约束、含 $N$ 个电子。求基态总角动量 $M_0$；求总角动量为 $M_0+m$ 的低能粒子--空穴激发数目（$m=-1,1,2,3,4,5$）；并证明热力学极限下相同总角动量的激发能量相同。
+\end{problem}
+\solution
+\textbf{基态角动量。}依次填充 $m=0,1,\dots,N-1$：
+\begin{equation*}
+\boxed{\;M_0=\sum_{m=0}^{N-1}m=\frac{N(N-1)}{2}\;}
+\end{equation*}
+
+\textbf{激发计数。}低能激发由若干"粒子--空穴对"组成：把角动量 $h$ 的占据态电子搬到空态 $p>N-1$（或对 $m<0$，搬到液滴内部空态 $p<0$）。每对贡献 $\Delta M=p-h$；总角动量 $M_0+m$ 即 $\sum_j(p_j-h_j)=m$。当 $N\gg m$ 时，各对的贡献相互独立，激发态与"整数 $m$ 的分拆"一一对应：总增量 $m$ 写成正整数 $\kappa_j$ 之和的方式（$\kappa_j\equiv p_j-h_j$ 的取值集合，允许重复），数目为分拆数 $p(m)$。由生成函数 $\prod_{\kappa\geqslant1}(1-x^{\kappa})^{-1}$：
+\begin{equation*}
+\begin{array}{c|cccccc}
+m & -1 & 1 & 2 & 3 & 4 & 5\\ \hline
+\text{数目} & 1 & 1 & 2 & 3 & 5 & 7
+\end{array}
+\end{equation*}
+（逐项列出：$m=1$：$\{1\}$；$m=2$：$\{2\},\{1+1\}$；$m=3$：$\{3\},\{2+1\},\{1+1+1\}$；$m=4$：$\{4\},\{3+1\},\{2+2\},\{2+1+1\},\{1+1+1+1\}$；$m=5$ 共 7 种。$m=-1$ 只有唯一一种：把 $h=0$ 的电子搬到 $p=-1$ 的内侧空轨道。）
+\begin{equation*}
+\boxed{\;D(m)=p(m):\quad 1,2,3,5,7\quad(m=1,\dots,5),\qquad D(-1)=1\;}
+\end{equation*}
+（与 7.4.5 节玻色模型的前五个能级一致；也与式 (7.4.12) 在 $\nu=1$ 情形的简并度一致。）
+
+\textbf{等能性。}设边缘附近 $V$ 近似线性：$E_m=\frac12\hbar\omega_c+V(r_m)$，在 $r_m\approx R$ 处 $E_m\approx E_F+(m-m_F)\cdot\frac{2\pi v}{L}$（$\mathrm{d}E_m/\mathrm{d}m=V'\,\mathrm{d}r_m/\mathrm{d}m=V'l_B^2=2\pi v/L$，$v=cE/B$）。一个粒子--空穴对的能量为 $(p-h)\frac{2\pi v}{L}+O(1/L^2)$，故总激发能为
+\begin{equation*}
+\Delta E=\sum_j(p_j-h_j)\,\frac{2\pi v}{L}+O\Big(\frac1{L^2}\Big)
+=\frac{2\pi v}{L}\,m+O\Big(\frac{1}{L^{2}}\Big),
+\end{equation*}
+只依赖总增量 $m$：热力学极限 $L\to\infty$ 下，具有相同总角动量 $M_0+m$ 的所有激发（无论分成几对、如何分配）都简并到能量 $\frac{2\pi v}{L}m$，简并在一阶意义下是精确的。（$m=-1$ 的内侧激发例外地不以 $v$ 为色散斜率，但它本身无简并。）
+
+\section*{问题 7.4.3}
+\begin{problem}
+一维无相互作用费米子 $H=\sum_k(v_1kc^{\dagger}_{1,k}c_{1,k}+v_2kc^{\dagger}_{2,k}c_{2,k})$。证明：混合项 $\sum_k(\gamma c^{\dagger}_{1,k}c_{2,k}+\text{h.c.})$ 当 $v_1v_2<0$（双向成分）时打开有限能隙；当 $v_1v_2>0$（纯手征）时不产生能隙；并说明手征费米液体的无能隙激发对所有微扰都是稳健的。
+\end{problem}
+\solution
+\textbf{能谱。}固定 $k$，把 $H$ 写成 $2\times2$ 矩阵
+\begin{equation*}
+H(k)=\begin{pmatrix} v_1k & \gamma\\ \gamma^{*} & v_2k\end{pmatrix},
+\qquad
+E_{\pm}(k)=\frac{(v_1+v_2)k}{2}\pm\sqrt{\Big(\frac{(v_1-v_2)k}{2}\Big)^{2}+|\gamma|^2} .
+\end{equation*}
+
+\textbf{(i) $v_1v_2<0$（右移 $+$ 左移）。}两条裸色散在 $k=0$ 处交叉，混合把它顶开：最小能量差为
+\begin{equation*}
+E_+(0)-E_-(0)=2|\gamma| ,
+\end{equation*}
+无论 $\gamma$ 多小都打开有限能隙 $\Delta=2|\gamma|$：混合项是相关微扰，剧烈改变低能性质（系统变成有能隙的态，无理数化/临界行为消失）。
+
+\textbf{(ii) $v_1v_2>0$（纯手征）。}$E_-(k)=0$ 有解的条件是 $(\frac{v_1+v_2}{2})^2k^2=(\frac{v_1-v_2}{2})^2k^2+|\gamma|^2$，即
+\begin{equation*}
+k^2\,v_1v_2=|\gamma|^2 .
+\end{equation*}
+$v_1v_2>0$ 时总有解 $k=|\gamma|/\sqrt{v_1v_2}$：谱中存在 $E=0$ 的费米点，混合只是把两条同向分支"杂化"并使费米点位移，
+\begin{equation*}
+\boxed{\;v_1v_2>0\ \text{时无能隙}\;}
+\end{equation*}
+（直观看：同向传播的两支没有背散射通道，$\gamma c_1^{\dagger}c_2$ 只能重新参数化基，不能把交叉点顶开。）
+
+\textbf{(iii) 一般微扰的稳健性。}纯手征费米液体的无能隙性是拓扑保护的，理由有三：
+（1）\emph{无背散射通道}：打开能隙需要把右移模式与左移模式配对（费米面处的粒子--空穴凝聚），而手征液体只有一个费米点、所有低能激发同向运动，任何局域微扰都不能提供反向成分；
+（2）\emph{对称性分析}：保持电荷 $U(1)$ 的微扰用玻色子语言写为 $\cos(\alpha\phi)$ 的形式，只有 $\alpha=0$（即恒等算符）是局域且中性的，其余要么改变边缘电荷（被 $U(1)$ 禁戒）要么不在算符谱内；相互作用只能重整化速度与 Luttinger 参数，不能产生质量；
+（3）\emph{体--边对应}：手征边缘模式携带反常（手征）中心荷/霍尔电导，它与体内 IQH 态的拓扑（Chern 数 1）锁定。若边缘被打上能隙，体内--边缘的异常匹配（反常流入）将被破坏，这在二维有能隙、非简并的体内是不可能的。
+因此一维手征费米液体中的无能隙激发对一切微扰稳健——这正是它能承担 QH 样品无耗散输运的原因。
+
+\section*{问题 7.4.4}
+\begin{problem}
+证明式 (7.4.8)：$\Psi(x)\Psi(x')=(-1)^{1/\nu}\Psi(x')\Psi(x)$，其中 $\Psi\propto\mathrm{e}^{\mathrm{i}\phi/\nu}$。（提示：先证 $[\phi(x),\phi(y)]=\frac{\pi}{q}\operatorname{sgn}(x-y)$；\emph{译注：}原式之 $q$ 疑为 $\nu$ 之误。）
+\end{problem}
+\solution
+\textbf{第一步：$[\phi,\phi]$ 代数。}由正文，$\rho=\frac{1}{2\pi}\partial_x\phi$ 且 $[\rho(x_1),\phi(x_2)]=-\mathrm{i}\nu\,\delta(x_1-x_2)$（这是 $[\rho_k,\rho_{k'}]=\frac{\nu}{2\pi}k\delta_{k+k'}$ 的坐标表述）。对 $x$ 积分（$\phi(x)=2\pi\int^x\mathrm{d}x'\rho(x')$）：
+\begin{equation*}
+[\phi(x),\phi(y)]=2\pi\int^x\!\mathrm{d}x'\,[\rho(x'),\phi(y)]
+=-2\pi\mathrm{i}\nu\!\int^x\!\mathrm{d}x'\,\delta(x'-y)
+=-\mathrm{i}\pi\nu\,\operatorname{sgn}(x-y),
+\end{equation*}
+（积分下限贡献一个可加常数；用到 $\frac{\mathrm{d}}{\mathrm{d}x}\operatorname{sgn}(x-y)=2\delta(x-y)$。）
+\begin{equation*}
+\boxed{\;[\phi(x),\phi(y)]=-\mathrm{i}\pi\nu\,\operatorname{sgn}(x-y)\;}
+\end{equation*}
+（即提示中的 $\frac{\pi}{q}\operatorname{sgn}$，$q\to\nu$，相差一个 $\mathrm{i}$ 与符号，取决于手性取向约定。）
+
+\textbf{第二步：交换相位。}$[\phi,\phi]$ 是 c 数（中心元），Baker--Campbell--Hausdorff 精确到该项：
+\begin{equation*}
+\mathrm{e}^{A}\mathrm{e}^{B}=\mathrm{e}^{B}\mathrm{e}^{A}\mathrm{e}^{[A,B]} .
+\end{equation*}
+取 $A=\frac{\mathrm{i}}{\nu}\phi(x)$、$B=\frac{\mathrm{i}}{\nu}\phi(x')$：
+\begin{equation*}
+\Psi(x)\Psi(x')
+=\mathrm{e}^{\frac{\mathrm{i}}{\nu}\phi(x)}\mathrm{e}^{\frac{\mathrm{i}}{\nu}\phi(x')}
+=\mathrm{e}^{\frac{\mathrm{i}}{\nu}\phi(x')}\mathrm{e}^{\frac{\mathrm{i}}{\nu}\phi(x)}
+\,\mathrm{e}^{-\frac{1}{\nu^2}[\phi(x),\phi(x')]}
+=\Psi(x')\Psi(x)\,\mathrm{e}^{\,\mathrm{i}\pi\,\operatorname{sgn}(x-x')/\nu}.
+\end{equation*}
+对 $x>x'$：$\operatorname{sgn}=+1$，
+\begin{equation*}
+\boxed{\;\Psi(x)\Psi(x')=(-1)^{1/\nu}\,\Psi(x')\Psi(x)\qquad(x>x')\;}
+\end{equation*}
+即式 (7.4.8)。因此 $\Psi$ 为费米型算符当且仅当 $1/\nu=m$ 为奇整数——这正是 Laughlin 态的情形；这也说明指数 $m=1/\nu$ 是量子化的：它与统计（一个拓扑量）直接挂钩。
+
+\section*{问题 7.4.5}
+\begin{problem}
+玻色化与费米化：$m=1$ 时手征声子理论 $H_b=2\pi v\sum_{k>0}\rho_k^{\dagger}\rho_k$（$[\rho_k,\rho_{k'}]=\frac{k}{2\pi}\delta_{k+k'}$）与自由手征费米子 $H_f=\sum_k vk\!:\!c_k^{\dagger}c_k\!:$ 描述同一 $\nu=1$ 边缘。\textbf{(1)} 求玻色模型前五个能级与简并度，与问题 7.4.2 比较；\textbf{(2)} 证明 $\rho_{f,k}=\sum_q\!'\!:\!c_q^{\dagger}c_{q+k}\!:$ 满足同样的 K--M 代数；\textbf{(3)} 证明 $H_f=2\pi v\sum_{k>0}\rho_{f,k}^{\dagger}\rho_{f,k}$。
+\end{problem}
+\solution
+\textbf{(1) 玻色模型能谱。}对 $k>0$ 定义谐振子 $b_k=\sqrt{\frac{2\pi}{k}}\,\rho_k$，则
+\begin{equation*}
+[b_k,b_{k'}^{\dagger}]=\frac{2\pi}{\sqrt{kk'}}\frac{k}{2\pi}\delta_{kk'}=\delta_{kk'},
+\qquad
+H_b=2\pi v\sum_{k>0}\frac{k}{2\pi}b_k^{\dagger}b_k=\sum_{k>0}vk\,b_k^{\dagger}b_k .
+\end{equation*}
+$k=\frac{2\pi\kappa}{L}$（$\kappa$ 为正整数），故能级 $E=\frac{2\pi v}{L}\Delta M$，$\Delta M=\sum_\kappa\kappa N_\kappa$，简并度为把 $\Delta M$ 分拆成有序求和的方式数，即分拆数 $p(\Delta M)$：
+\begin{equation*}
+\begin{array}{c|ccccc}
+\Delta M & 1 & 2 & 3 & 4 & 5\\ \hline
+E/(2\pi v/L) & 1 & 2 & 3 & 4 & 5\\
+\text{简并度 }p(\Delta M) & 1 & 2 & 3 & 5 & 7
+\end{array}
+\end{equation*}
+与问题 7.4.2 中手征费米液体粒子--空穴谱完全一致——这是两者等价的第一证据。
+
+\textbf{(2) 费米子密度满足 K--M 代数。}$\rho_{f,k}=\sum_q\!'\!:\!c_q^{\dagger}c_{q+k}\!:$（$q$ 限制在窗口 $|q|,|q+k|\leqslant\Lambda$ 内）。直接计算对易子：
+\begin{equation*}
+[\rho_{f,k},\rho_{f,k'}]=\sum_{q,r}
+\big(\delta_{q+k,r}\,c_q^{\dagger}c_{r+k'}-\delta_{q,r+k'}\,c_r^{\dagger}c_{q+k}\big)
+=\sum_{q\in W}\big(c_q^{\dagger}c_{q+k+k'}-c_{q+k'}^{\dagger}c_{q+k}\big).
+\end{equation*}
+把两项都写成正规排序并减去（相对费米海的）期望值：正规排序的双线性乘积之差为
+\begin{equation*}
+[\rho_{f,k},\rho_{f,k'}]=\Big(\langle\rho_{f,k}\rho_{f,k'}\rangle-\langle\rho_{f,k'}\rho_{f,k}\rangle\Big)\,\delta_{k+k',0}
+=\sum_{q\in W}n_q\big(n_{q-k}-n_{q+k}\big)\,\delta_{k+k',0},
+\end{equation*}
+其中 $n_q=\theta(-q)$ 为（相对费米点 $k_F=0$ 的）海占据。取 $k>0,\ k'=-k$：只有 $q\in(0,k)$ 的项非零，每项贡献 $n_q(n_{q-k}-n_{q+k})=0-0\cdot$……逐段：$q\in(0,k)$：$n_q=0$；$q\in(-k,0)$：$n_q=1,\ n_{q-k}=0,\ n_{q+k}=0$？注意 $n_{q+k}$：$q\in(-k,0)\Rightarrow q+k\in(0,k)\Rightarrow n_{q+k}=0$，而 $n_{q-k}=1$（更深的海内）：
+\begin{equation*}
+[\rho_{f,k},\rho_{f,-k}]=\sum_{-k<q<0}\!\!\big(1-0\big)\cdot\frac{L}{2\pi}
+=\frac{kL}{2\pi},
+\end{equation*}
+（$q$ 的模式间距为 $2\pi/L$，$(-k,0)$ 内恰有 $\frac{kL}{2\pi}$ 个模式）。其余 $k+k'\neq0$ 的项在窗口正规排序下无 c 数贡献。以 $1/\sqrt{L}$ 归一后即
+\begin{equation*}
+\boxed{\;[\rho_{f,k},\rho_{f,k'}]=\frac{k}{2\pi}\,\delta_{k+k',0}\;}
+\end{equation*}
+与式 (7.4.5) 取 $\nu=1$ 相同。（窗口的有限性保证了 Schwinger 项是有限且精确的；窗口外的算符项只联系高能态，不影响低能扇区。）
+
+\textbf{(3) 哈密顿量相等。}$H_f=E_0+\sum_{k>0}vk\big(\!:\!c_k^{\dagger}c_k\!:\;-\,:\!c_{-k}^{\dagger}c_{-k}\!:\big)$。另一方面，把 $\rho_{f,k}$ 作用于任一粒子--空穴态 $|\{N_k\}\rangle$（$N_k$ 为分离为 $k$ 的对数）：$\rho_k$ 湮灭一个分离为 $k$ 的对并带增益 $\sqrt{k/2\pi}$，$\rho_k|\{N_k\}\rangle=\sqrt{\frac{k}{2\pi}}\sum_j|N_k-1_j\rangle$，于是
+\begin{equation*}
+2\pi v\,\rho_{-k}\rho_k\,|\{N_k\}\rangle
+=2\pi v\,\frac{k}{2\pi}\,N_k\,|\{N_k\}\rangle+\text{（同简并空间内的非对角项）} .
+\end{equation*}
+用 $\rho_{f,-k}=\rho_{f,k}^{\dagger}$ 与诸 $b_k=\sqrt{2\pi/k}\,\rho_{f,k}$（由 (2) 它们是标准玻色子），在该低能扇区上
+\begin{equation*}
+2\pi v\sum_{k>0}\rho_{f,-k}\rho_{f,k}=\sum_{k>0}vk\,b_k^{\dagger}b_k
+\;\Longrightarrow\;
+\boxed{\;H_f=E_0+2\pi v\sum_{k>0}\rho_{f,k}^{\dagger}\rho_{f,k}\;}
+\end{equation*}
+（$E_0=\sum_{k<0}vk$ 为海的基态能量，作正规排序吸收）。核对本征值：粒子--空穴态的 $H_f$ 能量为 $v\sum_j k_j=v\sum_kkN_k$，与上式一致；简并度 $p(\Delta M)$ 也与 (1) 一致。这就是 $\nu=1$ 边缘的玻色化：$c(x)\propto\mathrm{e}^{\mathrm{i}\phi(x)}$（Mandelstam），费米化为其逆。
+
+\section*{问题 7.4.6}
+\begin{problem}
+一维相互作用费米子的玻色化：$H_0=\sum_k\epsilon_k\!:\!c_k^{\dagger}c_k\!:$（$\epsilon_{\pm k_F}=0$）。
+\textbf{(1)} 证明 $\rho_{I,k}$（$I=1,2$ 分别为 $\pm k_F$ 附近的窗口密度）满足 $[\rho_{I,k},\rho_{J,k'}]=\frac{\nu_I}{2\pi}k\delta_{IJ}\delta_{k+k'}$，$\nu_1=1$、$\nu_2=-1$，且 $H_0=2\pi v_F\sum_{k>0}(\rho_{1,k}\rho_{1,-k}-\rho_{2,-k}\rho_{2,k})$；\textbf{(2)} 用 $\phi_I$ 表示 $c(x)$；\textbf{(3)} 证明相互作用项限制到两费米点附近变为 $2\pi\sum V_{IJ}\rho_{I,-k}\rho_{J,k}+$ 常数并求 $V_{IJ}$；\textbf{(4)} 计算相互作用模型的电子格林函数。
+\end{problem}
+\solution
+\textbf{(1) K--M 代数与自由哈密顿量。}窗口化密度 $\rho_{1,k}=\sum_{q\sim k_F}\!'\!:\!c_q^{\dagger}c_{q+k}\!:$，$\rho_{2,k}=\sum_{q\sim-k_F}\!'\!:\!c_q^{\dagger}c_{q+k}\!:$（$k<\Lambda<k_F$）。与问题 7.4.5(2) 同样的计算，Schwinger 项来自窗口跨过费米面的部分：
+\begin{equation*}
+[\rho_{I,k},\rho_{I,k'}]=\sum_{q\in W_I}n_q^{(I)}\big(n^{(I)}_{q-k}-n^{(I)}_{q+k}\big)\delta_{k+k',0}
+=\nu_I\,\frac{kL}{2\pi}\,\delta_{k+k',0},
+\end{equation*}
+其中 $n_q^{(1)}=\theta(-q)$（$k_F$ 附近 $q<0$ 已填）给出 $\nu_1=+1$；$n_q^{(2)}=\theta(q)$（$-k_F$ 附近 $q>0$ 已填，色散斜率为负）给出 $\nu_2=-1$。归一化后即
+\begin{equation*}
+\boxed{\;[\rho_{I,k},\rho_{J,k'}]=\frac{\nu_I}{2\pi}\,k\,\delta_{IJ}\delta_{k+k'},\qquad(\nu_1,\nu_2)=(1,-1)\;}
+\end{equation*}
+即式 (7.4.19)（两支的"填充因子"异号正是双向手征性的代数表述）。
+
+对自由哈密顿量，线性化 $\epsilon_{k_F+q}=v_Fq$、$\epsilon_{-k_F+q}=-v_Fq$：
+\begin{equation*}
+H_0=E_0+v_F\!\sum_q\!q\big(\!:\!c_{k_F+q}^{\dagger}c_{k_F+q}\!:\;-\;:\!c_{-k_F+q}^{\dagger}c_{-k_F+q}\!:\big) .
+\end{equation*}
+由问题 7.4.5(3) 的逐支结果（把 $\rho_{\pm k}$ 换成 $\rho_{1,k}$、$\rho_{2,-k}$，注意第二支增益带负号），
+\begin{equation*}
+\boxed{\;H_0=E_0+2\pi v_F\sum_{k>0}\big(\rho_{1,k}\rho_{1,-k}-\rho_{2,-k}\rho_{2,k}\big)\;}
+\end{equation*}
+（核对：$[H_0,c_{k_F+q}^{\dagger}]=v_Fqc_{k_F+q}^{\dagger}$、$[H_0,c_{-k_F+q}^{\dagger}]=-v_Fqc_{-k_F+q}^{\dagger}$ 与右端一致；本征值按分拆计数与严格谱一致。）一维自由费米子由此被玻色化。
+
+\textbf{(2) 电子算符的玻色化。}要求 $\big(\frac{1}{2\pi}\big)\partial_x\phi_I=\rho_I$，由 $[\rho_I(x),\phi_I(y)]=\mp\mathrm{i}\pi\delta(x-y)$（$\mp$ 对应 $\nu_I=\pm1$）易验证局域电荷条件 $[\rho_I(x),\psi_I(x')]=\delta(x-x')\psi_I(x')$ 由下式满足：
+\begin{equation*}
+\psi_1(x)=\frac{\eta_1}{\sqrt{2\pi\alpha}}\,\mathrm{e}^{\,+\mathrm{i}\phi_1(x)},
+\qquad
+\psi_2(x)=\frac{\eta_2}{\sqrt{2\pi\alpha}}\,\mathrm{e}^{\,-\mathrm{i}\phi_2(x)},
+\qquad
+\boxed{\;c(x)=\psi_1(x)+\psi_2(x)\;}
+\end{equation*}
+其中 $\alpha$ 为紫外截断，$\eta_I$ 是 $\{\eta_I,\eta_J\}=2\delta_{IJ}$ 的 Klein 因子，保证不同支算符反对易、$c(x)$ 满足费米统计（同支的反对易来自 $[\phi_1,\phi_1]=-\mathrm{i}\pi\operatorname{sgn}$，见问题 7.4.4）。
+
+\textbf{(3) 相互作用项。}$\rho(x)=:\!c^{\dagger}(x)c(x)\!:$ 限制到两个费米点附近分解为 $\rho_1(x)+\rho_2(x)$ 加上快变项 $\sim\mathrm{e}^{\pm2\mathrm{i}k_Fx}$（后者在密度--密度前向散射中平均为零，只给出背散射 $\cos(\cdots)$ 项，此处不计）。于是
+\begin{equation*}
+H_V=\sum_q V_q\big(\rho_{1,q}+\rho_{2,q}\big)\big(\rho_{1,-q}+\rho_{2,-q}\big)+\text{常数}
+\;\longrightarrow\;
+2\pi\sum_{I,J}V_{IJ}\,\rho_{I,-k}\,\rho_{J,k}+\text{常数} ,
+\end{equation*}
+\begin{equation*}
+\boxed{\;V_{11}=V_{22}=V_{12}=V_0\equiv V_{q\to0}\;}
+\end{equation*}
+（直接（Hartree）通道的动量转移 $q\approx0$，对四项组合给出同一个 $V_0$。）
+
+\textbf{(4) 相互作用模型的格林函数。}这正是 7.4.6 节 $\nu_1=1,\ \nu_2=-1$ 的对角化问题。把自由部分并入对角系数：$V_{11}\to v_F+V_0$，$V_{22}\to v_F-V_0$。由式 (7.4.27)（$\nu_1\nu_2<0$，用 $\cosh$ 变换）：
+\begin{equation*}
+\tanh 2\theta=\frac{2V_{12}}{|v_1|+|v_2|}=\frac{2V_0}{(v_F+V_0)+(v_F-V_0)}=\frac{V_0}{v_F},
+\end{equation*}
+对角化后两支速度反号：$v_1>0>v_2$，且（式 (7.4.28)）
+\begin{equation*}
+v_1=\frac{v_F+V_0\cosh2\theta}{\cosh2\theta}=\frac{v_F}{\cosh2\theta}+V_0 .
+\end{equation*}
+由式 (7.4.27) 之逆，$\phi_1=\cosh\theta\,\tilde{\phi}_1-\sinh\theta\,\tilde{\phi}_2$、$\phi_2=-\sinh\theta\,\tilde{\phi}_1+\cosh\theta\,\tilde{\phi}_2$；代入式 (7.4.29)（$n=0$，$\nu_1=1,\nu_2=-1$）得 $\psi_1$ 的指数
+\begin{equation*}
+\gamma_1=\big[\sqrt{|\nu_1|}\cosh\theta\,\big]^2=\cosh^2\theta,
+\qquad
+\gamma_2=\big[\sqrt{|\nu_2|}\sinh\theta\,\big]^2=\sinh^2\theta ,
+\end{equation*}
+$\psi_2=\mathrm{e}^{-\mathrm{i}\phi_2}$ 的指数相同但两支互换。于是
+\begin{equation*}
+\boxed{\;
+\langle c^{\dagger}(x,t)c(0)\rangle
+\propto\mathrm{e}^{\mathrm{i}k_Fx}\frac{1}{(x-v_1t)^{\cosh^2\theta}\,(x-v_2t)^{\sinh^2\theta}}
++\mathrm{e}^{-\mathrm{i}k_Fx}\frac{1}{(x+v_1t)^{\cosh^2\theta}\,(x+v_2t)^{\sinh^2\theta}}\;}
+\end{equation*}
+核对：$V_0\to0$（$\theta\to0$，$v_1\to v_F,\ v_2\to-v_F$）回到自由费米子 $G\propto\mathrm{e}^{\pm\mathrm{i}k_Fx}/(x\mp v_Ft)$。等时长时间衰减的总指数为
+\begin{equation*}
+\cosh^2\theta+\sinh^2\theta=\cosh2\theta=\frac12\Big(K+\frac1K\Big)\geqslant1,
+\qquad K=\mathrm{e}^{-2\theta},
+\end{equation*}
+即 Tomonaga--Luttinger 液体的标志性反常指数：排斥作用（$V_0>0$，$K<1$）使电子关联衰减快于自由情形。这与 7.4.6 节的一般公式（尤其求和规则 (7.4.48)）完全一致。
+
+\section*{问题 7.4.7}
+\begin{problem}
+证明：手征玻色子作用量 $S=-\frac{m}{4\pi}\int\mathrm{d}t\,\mathrm{d}x\,(\partial_t+v\partial_x)\phi\,\partial_x\phi$（式 (7.4.35)）量子化后由式 (7.4.36) 描述：
+$[\rho_k,\rho_{k'}]=\frac{k\,\delta_{k+k'}}{2\pi m}$，$H=2\pi mv\sum_{k>0}\rho_k^{\dagger}\rho_k$，$\rho=\frac{1}{2\pi}\partial_x\phi$。
+\end{problem}
+\solution
+\textbf{（1）动量空间的作用量与正则结构。}把 $\phi(x,t)=\sum_k\mathrm{e}^{\mathrm{i}kx}\phi_k/\sqrt{L}$ 代入式 (7.4.35)（注意 $\partial_t\phi\,\partial_x\phi$ 在动量空间给出 $(m/2\pi)\sum_{k>0}(\mathrm{i}k\dot{\phi}_k\phi_{-k}-vk^2\phi_k\phi_{-k})$）：
+\begin{equation*}
+L=\sum_{k>0}\frac{m}{2\pi}\Big(\mathrm{i}k\,\dot{\phi}_k\,\phi_{-k}-vk^2\,\phi_k\phi_{-k}\Big) .
+\end{equation*}
+动量为约束系统（$\dot{\phi}_{-k}$ 与 $\phi_{-k}$ 耦合）：
+\begin{equation*}
+\pi_k=\frac{\partial L}{\partial\dot{\phi}_k}=\mathrm{i}\,\frac{mk}{2\pi}\,\phi_{-k},
+\qquad
+\pi_{-k}=-\mathrm{i}\,\frac{mk}{2\pi}\,\phi_k ,
+\end{equation*}
+即 $\phi_{-k}$（$k>0$）扮演 $\phi_k$ 的正则动量。勒让德变换给出哈密顿量（约束项消去 $\dot{\phi}$）：
+\begin{equation*}
+H=\sum_{k>0}\pi_k\dot{\phi}_k-L
+=\sum_{k>0}\frac{mvk^2}{2\pi}\,\phi_{-k}\phi_k .
+\end{equation*}
+\textbf{（2）量子化。}把 $k>0$ 的 $\phi_k$ 视为坐标，$[\phi_k,\pi_{k'}]=\mathrm{i}\delta_{kk'}$。由 $\pi_k=\mathrm{i}\frac{mk}{2\pi}\phi_{-k}$ 反解 $\phi_{-k}=\frac{2\pi}{\mathrm{i}mk}\pi_k$，得
+\begin{equation*}
+[\phi_k,\phi_{-k'}]=\frac{2\pi}{\mathrm{i}mk'}\,\mathrm{i}\delta_{kk'}=\frac{2\pi}{mk}\,\delta_{kk'} .
+\end{equation*}
+代入 $\rho_k=\frac{1}{2\pi}\partial_x\phi\ \Rightarrow\ \rho_k=\frac{\mathrm{i}k}{2\pi}\phi_k$：
+\begin{equation*}
+[\rho_k,\rho_{k'}]=\frac{\mathrm{i}k}{2\pi}\frac{\mathrm{i}k'}{2\pi}\,[\phi_k,\phi_{k'}]
+=\frac{\mathrm{i}k}{2\pi}\frac{\mathrm{i}k'}{2\pi}\cdot\frac{2\pi}{m(-k')}\delta_{k+k'}
+\;\Longrightarrow\;
+\boxed{\;[\rho_k,\rho_{k'}]=\frac{k}{2\pi m}\,\delta_{k+k'}\;}
+\end{equation*}
+（在 $\delta_{k+k'}$ 支持下取 $k'=-k$）。这就是式 (7.4.36) 的代数：$1/m$ 态的 K--M 代数，"填充因子" $\nu=1/m$。
+
+\textbf{（3）哈密顿量。}改写为 $\rho$ 的语言。由 $\rho_k=\frac{\mathrm{i}k}{2\pi}\phi_k$ 得 $\phi_k=\frac{2\pi}{\mathrm{i}k}\rho_k$、$\phi_{-k}=\frac{2\pi\mathrm{i}}{k}\rho_{-k}$，代入 $H$：
+\begin{equation*}
+H=\sum_{k>0}\frac{mvk^2}{2\pi}\cdot\frac{2\pi\mathrm{i}}{k}\,\rho_{-k}\cdot\frac{2\pi}{\mathrm{i}k}\,\rho_k
+=\sum_{k>0}\frac{mvk^2}{2\pi}\cdot\frac{4\pi^2}{k^2}\,\rho_{-k}\rho_k
+=2\pi mv\sum_{k>0}\rho_k^{\dagger}\rho_k ,
+\end{equation*}
+\begin{equation*}
+\boxed{\;H=2\pi mv\sum_{k>0}\rho_k^{\dagger}\rho_k\;}
+\end{equation*}
+（差一个可加常数，已吸收）。这正是式 (7.4.36)：一组退耦的"手征声子"。
+
+\textbf{（4）自洽性（下界）。}$[\rho_k,\rho_k^{\dagger}]=\frac{k}{2\pi m}$。若 $m>0$，可令 $\rho_k=\sqrt{\frac{k}{2\pi m}}\,b_k$（$[b,b^{\dagger}]=1$），$H=2\pi mv\sum\frac{k}{2\pi m}b_k^{\dagger}b_k=v\sum kb_k^{\dagger}b_k$，下界要求 $v<0$；若 $m<0$，则 $\rho_k^{\dagger}$ 才是湮灭算符，$H=2\pi mv\sum(\frac{k}{2\pi|m|})b_kb_k^{\dagger}=(\text{负系数})(b^{\dagger}b+1)$，下界同样要求 $mv<0$。故
+\begin{equation*}
+\boxed{\;vm<0\;}
+\end{equation*}
+边缘激发速度的符号（手性）由 Chern--Simons 系数 $m$ 的符号决定，速度的大小 $v$ 是式 (7.4.32) 规范固定条件中引入的物理参量。这与 7.4.2 节流体动力学的结果（$\nu=1/m$ 态边缘沿单一方向传播、代数 $[\rho,\rho]=\frac{\nu k}{2\pi}\delta$、$H=2\pi\frac{v}{\nu}\rho^{\dagger}\rho$）完全一致。
+
+\section*{问题 7.4.8}
+\begin{problem}
+证明式 (7.4.41) 中的准粒子算符 $\Psi_{\pmb{l}}\propto\mathrm{e}^{\mathrm{i}\sum_Il_I\phi_I}$ 满足式 (7.4.40)：
+\begin{equation*}
+[\rho_I(x),\Psi_{\pmb{l}}(x')]=l_J(K^{-1})_{JI}\,\delta(x-x')\,\Psi_{\pmb{l}}(x')。
+\end{equation*}
+\end{problem}
+\solution
+\textbf{第一步：$[\rho_I,\phi_J]$ 代数。}由 K--M 代数 (7.4.38)，$[\rho_{Ik},\rho_{Jk'}]=(K^{-1})_{IJ}\frac{k}{2\pi}\delta_{k+k'}$，且 $\rho_{Ik}=\frac{\mathrm{i}k}{2\pi}\phi_{Ik}$。于是（与 7.4.2 节单模情形 $[\rho,\phi]=-\mathrm{i}\nu\delta$ 的推导相同，把 $\nu$ 换成 $(K^{-1})_{IJ}$）
+\begin{equation*}
+[\rho_I(x),\phi_J(y)]
+=\int\frac{\mathrm{d}k}{2\pi}\,\mathrm{e}^{-\mathrm{i}k(x-y)}\,[\rho_{Ik},\phi_{J,-k}]
+=-\mathrm{i}\,(K^{-1})_{IJ}\,\delta(x-y),
+\end{equation*}
+（用了 $[\rho_{Ik},\phi_{J,-k}]=(K^{-1})_{IJ}\frac{k}{2\pi}\cdot\frac{2\pi}{\mathrm{i}(-k)}=-\mathrm{i}(K^{-1})_{IJ}$。）
+
+\textbf{第二步：指数算符的对易子。}$\Psi_{\pmb{l}}(x')=\mathrm{e}^{\mathrm{i}\sum_Il_I\phi_I(x')}$，指数上是场的线性组合，其与 $\rho_I$ 的对易子是 c 数，故可精确计算：
+\begin{equation*}
+[\rho_I(x),\Psi_{\pmb{l}}(x')]
+=[\rho_I(x),\mathrm{i}l_J\phi_J(x')]\,\mathrm{e}^{\mathrm{i}\sum_Jl_J\phi_J(x')}
+=\mathrm{i}\,l_J\big(-\mathrm{i}(K^{-1})_{JI}\,\delta(x-x')\big)\Psi_{\pmb{l}}(x') ,
+\end{equation*}
+\begin{equation*}
+\boxed{\;[\rho_I(x),\Psi_{\pmb{l}}(x')]
+=l_J(K^{-1})_{JI}\,\delta(x-x')\,\Psi_{\pmb{l}}(x')\;}
+\end{equation*}
+即式 (7.4.40)。
+
+\textbf{物理解释。}该对易子表明：把准粒子 $\Psi_{\pmb{l}}$ 插到边缘上，会使第 $I$ 个凝聚体的边缘密度局域地改变 $l_J(K^{-1})_{JI}$——对 $x'$ 积分正得 $\int\mathrm{d}x\,\delta\rho_I=(\pmb{l}^{\top}K^{-1})_I$，即式 (7.3.22)。所以 $\Psi_{\pmb{l}}$ 携带的电荷是
+\begin{equation*}
+Q_{\pmb{l}}=\int\mathrm{d}x\,\rho_e=-e\,q_I\!\int\!\mathrm{d}x\,\delta\rho_I
+=-e\,\pmb{q}^{\top}K^{-1}\pmb{l},
+\end{equation*}
+与体有效理论的结果 (7.4.42) 一致；对电子型 $\pmb{l}=K\pmb{L}$（$q^{\top}\pmb{L}=1$）得单位电荷，自洽。
+
+\section*{问题 7.4.9}
+\begin{problem}
+利用有限电压 $V$ 下隧穿算符的关联 $\langle A(t)A(0)\rangle$，推导噪声谱奇异性公式 (7.4.49)：$S(f)\sim\big|f-\frac{QV}{h}\big|^{2g-1}$。
+\end{problem}
+\solution
+\textbf{（1）有限偏压下的隧穿算符关联。}两条边缘分别处于化学势 $\mu_1$、$\mu_2=\mu_1+V$（隧穿电荷 $Q$ 从边缘 2 进入边缘 1 获得能量 $QV$）。隧穿算符 $A\propto\Psi_{1}\Psi_{2}^{\dagger}$ 的关联函数是两条边缘传播子的乘积，边缘的非平衡密度矩阵把化学势差化为一个时间相位：
+\begin{equation*}
+\langle A(t)A^{\dagger}(0)\rangle
+=|C|^2\,\mathrm{e}^{\,\mathrm{i}QVt/\hbar}\;|t|^{-2g},
+\qquad
+\langle A^{\dagger}(t)A(0)\rangle
+=|C|^2\,\mathrm{e}^{-\mathrm{i}QVt/\hbar}\;|t|^{-2g},
+\end{equation*}
+其中 $g=g_e$（电子隧穿，情形 (i)）或 $g=g_q$（准粒子隧穿，情形 (ii)），$|C|^2\propto|\Lambda|^{2-2g}$ 由紫外截断 $\Lambda$ 定标。（相位来源：$\langle A(t)\rangle=\langle A\rangle\mathrm{e}^{\mathrm{i}\Delta\mu Nt/\hbar}$，$A$ 改变两边缘的电荷数差 $N$；方向相反的隧穿给出相反的相位。）
+
+\textbf{（2）噪声谱。}电流算符 $\hat{I}=\mathrm{i}e(A^{\dagger}-A)/\hbar$，对称化噪声
+\begin{equation*}
+S(f)=2\int_{-\infty}^{\infty}\mathrm{d}t\;\mathrm{e}^{2\pi\mathrm{i}ft}\;
+\langle\tfrac12\{\delta\hat{I}(t),\delta\hat{I}(0)\}\rangle .
+\end{equation*}
+代入上式，含时的振荡因子给 $\omega_\pm=2\pi f\mp QV/\hbar$，问题归结为傅里叶变换
+\begin{equation*}
+\int_{-\infty}^{\infty}\mathrm{d}t\;\mathrm{e}^{\mathrm{i}\omega t}\,|t|^{-2g}
+=\int_0^\infty\mathrm{d}t\;t^{-2g}\big(\mathrm{e}^{\mathrm{i}\omega t}+\mathrm{e}^{-\mathrm{i}\omega t}\big)
+=2\,\Gamma(1-2g)\,\cos\!\big[\pi(1-g)\big]\,|\omega|^{\,2g-1},
+\end{equation*}
+（先在 $2g<1$、加红外截断 $\mathrm{e}^{-\epsilon|t|}$ 下计算，再解析延拓；尺度上只需 $\int\mathrm{d}t\,\mathrm{e}^{\mathrm{i}\omega t}t^{-2g}\propto\omega^{2g-1}$：把 $t\to t/\omega$ 看出幂次）。于是
+\begin{equation*}
+S(f)\;\propto\;\big|2\pi f-\tfrac{QV}{\hbar}\big|^{2g-1}
++\big|2\pi f+\tfrac{QV}{\hbar}\big|^{2g-1}
++\text{（光滑背景）}.
+\end{equation*}
+\textbf{（3）结论。}用 $h=2\pi\hbar$ 改写 $2\pi f=2\pi h\frac{f}{h}$，奇异性位于 $f=\pm\frac{QV}{h}$：
+\begin{equation*}
+\boxed{\;S(f)\sim\Big|f-\frac{QV}{h}\Big|^{2g-1}\;}
+\end{equation*}
+即式 (7.4.49)：噪声谱在频率 $f=QV/h$（隧穿电荷以 Josephson 频率 $QV/h$ 穿越结的频率）处呈幂律奇异性，指数为 $2g-1$。
+
+\textbf{（4）自洽核对。}
+（i）由同一关联函数对时间（而非频率）积分可得直流隧穿电流 $I\propto V^{2g-1}$，微分电导 $\frac{\mathrm{d}I}{\mathrm{d}V}\propto V^{2g-2}$，与 7.4.7 节 $\sigma\propto T^{2g-2}$ 的有限温标度一致（$V\leftrightarrow T$ 对应）。
+（ii）对 $\nu=1/m$ 的 Laughlin 态：准粒子隧穿 $g=g_q=1/m$：奇异性指数 $2/m-1<0$，表现为尖峰——这正是实验上用噪声峰位 $\left(f=\frac{e}{m}\frac{V}{h}\right)$ 测量分数电荷 $e/m$ 的原理；电子隧穿 $g=g_e=m$：指数 $2m-1>0$，为低偏压压制的谷。
+（iii）$g=1$（自由费米子极限）时 $S(f)$ 在 $f=QV/h$ 处指数为 1 的尖折点，回到熟知的两化学势费米海的散粒噪声结构。

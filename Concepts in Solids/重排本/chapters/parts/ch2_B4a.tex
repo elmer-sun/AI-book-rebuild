@@ -1,0 +1,183 @@
+% ch2 B.4 前半 OPW 方法 (原书页 61–69 / PDF p076–p084)
+
+\subsection{O.P.W.（正交化平面波）方法}
+
+% 衔接说明：本文件自原书 p.61 的小节标题 “4. The O.P.W. Method” 起译；
+% p076 顶部（标题之前）为 B.3 小节的收尾两段及脚注 1（Van Vleck 注），归前一文件负责，此处从略。
+
+% ---- 原书 p.61 (PDF p076) ----
+现在我们接着来研究一种方法：它迄今在计算结合能方面从未十分成功过，但在计算能带结构方面却极为成功。这一强有力的方法得以幸运地重新兴起，恰逢多种实验方法已经可以用来细致研究复杂的能带结构——除碱金属外，所有的能带结构都是复杂的——这就使得最近 10 年间人们对固体中电子行为的理解发生了一场彻底的革命。
+
+O.P.W. 方法由 Herring 于 1940 年发明 (34)，Herring 和 Hill (35) 用它计算了 Be 的结合能。所得结合能不太好的这一事实，相当程度上掩盖了如下事实：这一计算很可能给出了非常好的能带结构——正如 Herring 在原始论文中所评论的那样。基本想法如下：基于近自由电子微扰论——亦即以真正的平面波作为初始本征函数——的计算，要想在真实固体中切实可行，希望是微乎其微的。这有两条理由。第一条是：原子芯的势在靠近原子核的区域内实际上变得极其巨大，
+
+% ---- 原书 p.62 (PDF p077) ----
+因此根本谈不上把它当作微扰来处理。在某种意义上，我们必须在这个区域内引进一个更加接近精确的解，因为真实的本征函数在那里必定变化迅速，而这种变化只有用 $k$ 矢量非常高的平面波才能描述。
+
+第二条理由更加有说服力。它说的是：即使我们成功地用平面波把这个计算做到无限高阶，其结果多半也不会收敛到对我们的目的而言正确的答案。原因在于：在所有真实金属中都存在若干芯能级（core levels）——在 Be 或 C 中是 $(1s)^2$，在更复杂的原子中还要多得多——相对于我们所关心的价电子能级，它们具有非常大的结合能。于是，在布里渊区内的任何一个 $k$ 处，都存在一个或多个芯带能级，而一个正确计算的最低本征值将趋于这些能级。众所周知，较高本征值的计算是相对困难的事情。
+
+Herring 对这个问题的解法几乎是显而易见的：取作初始波函数的不是平面波，而是对芯能级的波函数正交化了的平面波。只要芯波函数选得相当合理，这至少会解决第二个困难。幸运的是，由于芯能级大多位于来自原子核的强势区——这个势相对来说也已了解得比较清楚——即便是 Hartree 近似对它们也确实相当精确，因为电子-电子相互作用的效应并不十分严重。因此，芯函数的选取并不是一个敏感问题。
+
+Herring 还注意到，选取正交化平面波作为初始函数，至少也部分地解决了第一个问题。在把平滑变化的平面波函数对芯能级正交化的过程中，人们往平面波里引入了在原子核附近聚成尖峰的快速变化。起初人们只是从经验上观察到：这种快速变化似乎恰好能使初始函数成为芯势强区域中波动方程的一个过得去的解，因而这一步骤的收敛速率看来确实快得尚可应付。
+
+现在让我们把理论正式写下来。以某种方式——例如由自由原子的 Hartree-Fock 理论——得到的芯函数，我们记作
+\begin{equation*}
+\chi_n(\mathbf{r}-\mathbf{R}_j)
+\end{equation*}
+其中它就是围绕第 $j$ 个原子的第 $n$ 个芯轨道。如果 $\chi$ 确实是一个芯轨道，那么“由 $\mathbf{R}_j$ 到 $\mathbf{R}_j+\mathbf{a}$ 的交叠可以忽略”就必须是一个足够好的近似。（Herring 设计了一些办法，可以对任何残余的交叠作微扰论处理。）于是
+\begin{equation*}
+\left(\chi_n(\mathbf{r}-\mathbf{R}_j),\ \chi_m(\mathbf{r}-\mathbf{R}_k)\right)=\delta_{nm}\,\delta_{jk}\tag{13}
+\end{equation*}
+于是，对第一布里渊区内一个给定的 $k$，相应的能带函数恰好就是“紧束缚”函数
+
+% ---- 原书 p.63 (PDF p078) ----
+\begin{equation*}
+\phi_k^n=\frac{1}{N^{1/2}}\sum_j \exp(i\mathbf{k}\cdot\mathbf{R}_j)\,\chi_n(\mathbf{r}-\mathbf{R}_j)
+\end{equation*}
+如果式 (13) 得到满足，这些函数同样既正交又归一化。
+
+属于第一布里渊区中给定 $k$ 的各种可能的平面波，可以用倒格子矢量 $K$ 来标记：
+\begin{equation*}
+\phi_{k,K}(\mathbf{r})=\frac{1}{V^{1/2}}\,e^{i(\mathbf{k}+\mathbf{K})\cdot\mathbf{r}}
+\end{equation*}
+于是，正交化平面波函数便是
+\begin{equation*}
+\psi_{k,K}(\mathbf{r})=\phi_{k,K}(\mathbf{r})-\sum_n\left(\phi_{k,K},\ \phi_k^n\right)\phi_k^n(\mathbf{r})\tag{14}
+\end{equation*}
+其中
+\begin{equation*}
+\left(\phi_{k,K},\ \phi_k^n\right)=a_{K,n}\tag{15}
+\end{equation*}
+是平面波与芯函数之间的交叠积分（overlap integral）：
+\begin{align*}
+a_{K,n}&=\frac{1}{\sqrt{NV}}\int \mathrm{d}\mathbf{r}\ \exp\left[-i(\mathbf{k}+\mathbf{K})\cdot\mathbf{r}\right]\sum_j\ e^{i\mathbf{k}\cdot\mathbf{R}_j}\chi_n(\mathbf{r}-\mathbf{R}_j)\\
+&=\frac{1}{\Omega^{1/2}}\int \mathrm{d}\mathbf{r}\ e^{-i(\mathbf{k}+\mathbf{K})\cdot(\mathbf{r}-\mathbf{R}_j)}\chi_n(\mathbf{r}-\mathbf{R}_j)\\
+&=\frac{1}{\Omega^{1/2}}\int \mathrm{d}\mathbf{r}\ e^{-i(\mathbf{k}+\mathbf{K})\cdot\mathbf{r}}\chi_n(\mathbf{r})
+\end{align*}
+这正是 $\chi$ 的波矢为 $(\mathbf{k}+\mathbf{K})$ 的那个 Fourier 分量；或者说，如果你愿意这么看，它是动量空间波函数 $\chi_n(\mathbf{p})$ 在 $\mathbf{p}=\mathbf{k}+\mathbf{K}$ 处的振幅：
+\begin{equation*}
+a_{K,n}=\chi_n(\mathbf{p}=\mathbf{k}+\mathbf{K})
+\end{equation*}
+遗憾的是，正交化平面波——即式 (14)——既不归一，彼此之间也不正交。因此我们必须采用处理非正交归一函数的标准做法：
+
+% ---- 原书 p.64 (PDF p079) ----
+必须对久期行列式（secular determinant）求解本征值 $E$：
+\begin{equation*}
+\left|\left(\psi_{k,K},\ (\mathcal{H}-E)\,\psi_{k,K'}\right)\right|=0\tag{16}
+\end{equation*}
+其中 $E$ 也会出现在某些非对角元之中。式 (16) 的一般元素是可以算出的，只是要付出相当繁重的劳动，它就是
+\begin{align*}
+E\left(\delta_{KK'}-\sum_n a_{Kn}^{*}\,a_{K'n}\right)&=E_{k+K}^{0}\,\delta_{KK'}\\
+&\quad-\left(E_{k+K}^{0}+E_{k+K'}^{0}\right)\sum_n a_{Kn}^{*}\,a_{K'n}+V_{KK'}\\
+&\quad-\sum_n\Bigl\{a_{Kn}^{*}\left(\chi_n,\ V\phi_{k,K'}\right)+a_{K'n}\left(\phi_{k,K},\ V\chi_n\right)\Bigr\}\\
+&\quad+\sum_n a_{Kn}^{*}\,a_{K'n}\,E_n
+\end{align*}
+$E_n$ 是第 $n$ 个芯能级。我们已经假定芯带非常窄——交叠为零正蕴含着这一点。$E_k^0$ 是自由电子动能 $\hbar^2k^2/2m$。如你所见，这是一个相当复杂的表达式，不过只要知道了 $V(\mathbf{r})$ 和各芯能级，它的每一项原则上都能直接算出。
+
+当然，实际做法不是求解无限行列式 (16)，而是求解一个有限的行列式，它由审慎地截断所考虑的平面波数目而得到。一般说来，留待求解的久期行列式可能仍然相当大——尽管用现代计算机可以使用相当多的平面波，多达 20 个或更多——但为了容易得到结果并检验收敛性，人们通常把注意力集中在布里渊区的少数几个特殊对称点上。在对称点上，我们可以像前面结合近自由电子模型所讨论的那样，把平面波组成不同对称类型的对称化组合；而周期势的作用不能使不同对称类型相混合。
+
+例如各位当还记得：对 f.c.c. 空间格子、$\mathbf{k}=0$ 的情形，我们可以构成下列几组对称化平面波（symmetrized plane waves），它们全都来自与 $\mathbf{K}=2\pi/a\,(\pm 1,\pm 1,\pm 1)$ 相对应的八个函数的线性组合：
+
+% ---- 原书 p.65 (PDF p080) ----
+\begin{align*}
+\Gamma_1&:\ \cos\frac{2\pi x}{a}\ \cos\frac{2\pi y}{a}\ \cos\frac{2\pi z}{a} &&\qquad 1\\
+\Gamma_2'&:\ \sin\frac{2\pi x}{a}\ \sin\frac{2\pi y}{a}\ \sin\frac{2\pi z}{a} &&\qquad 1\\
+\Gamma_{15}&:\ \cos\frac{2\pi x}{a}\ \cos\frac{2\pi y}{a}\ \sin\frac{2\pi z}{a}\ +\ \text{置换} &&\qquad 3\\
+\Gamma_{25}'&:\ \cos\frac{2\pi x}{a}\ \sin\frac{2\pi y}{a}\ \sin\frac{2\pi z}{a}\ +\ \text{置换} &&\qquad 3
+\end{align*}
+在所有这些当中，只有 $\Gamma_1$ 与 $\mathbf{K}=0$ 的平面波 $\phi_0=1$ 相联系。于是，只需求解一个关于 $\Gamma_1$ 的 $2\times 2$ 方程，此外除了对角元的计算以外不需要任何别的方程，我们就已经把九个平面波考虑在内了。我们还可以在此之上再加入 $\mathbf{K}=2\pi/a\,(\pm 2,0,0)$ 等处的六个平面波，办法是把六个对称化平面波
+\begin{align*}
+\Gamma_{15}&:\ \sin\frac{4\pi x}{a},\ \text{等等} &&\qquad 3\\
+\Gamma_1&:\ \cos\frac{4\pi x}{a}\ +\ \cos\frac{4\pi y}{a}\ +\ \cos\frac{4\pi z}{a} &&\qquad 1
+\end{align*}
+以及一个二维表示 $\Gamma_{12}:\ \cos(4\pi x/a)-\cos(4\pi y/a)$（2）包括进来。这样，我们实际上就把 15 个平面波包括了进来，而所需的久期方程至多是三阶的，并且只有对那三个 $\Gamma_1$ 波才是如此。
+
+遗憾的是，与这一优点相伴的还有一个缺点：在这样的对称点上，正交化过程不仅被简化，而且被过分简化了。在上面的例子中，不妨设想所研究的物质只有 $1s$ 芯电子（这是一个虚构的情形，但足以说明原理）。于是，唯一不会因对称性而自动与芯正交的正交化平面波集合，是对称性为 $\Gamma_1$ 的那些：$\cos(2\pi x/a)\times\cos\times\cos$；$\cos(4\pi x/a)+\cos+\cos$；以及平面波 $\mathbf{k}=0$。这些全都必须对 $1s$ 函数正交化，并把完整的久期行列式解出来——当然，现在它并不十分复杂。在所有其他情形，我们直接只用平面波来做，对其而言久期行列式只不过是
+\begin{equation*}
+\left|\left(E_{k+K}-E\right)\delta_{KK'}+V_{KK'}\right|=0
+\end{equation*}
+而且至多是二阶的。
+
+一般说来，在任何一个对称点，总会有某些平面波集合出现这种情形。在 Si 中，需要作 $1s$、$2s$、$2p$ 三种正交化：前两种对着 $\Gamma_1$ 集合，后一种对着 $\Gamma_{15}$。另一方面，$\Gamma_{25}'$ 和 $\Gamma_{12}$ 集合仍然自动地与所有芯正交，因为它们在原子附近具有 d 型对称性；而 $\Gamma_2$ 则好比 $xyz$，是一个 f 型对称性的态：对它来说，直到 Lu 为止都无须作任何正交化。
+
+% ---- 原书 p.66 (PDF p081) ----
+这在省去大量麻烦的同时也带来了麻烦，因为这些函数于是保留了十足的平面波特征，在原子芯附近毫无原子型的貌相。为了赋予它们 Bloch 函数所特有的、在芯附近的急速变化，在截断之前必须引入比较多的平面波；O.P.W. 方法对这些函数的收敛相对较慢。不过它并不像人们可能担心的那样慢，因为单从这个例子已经可以看到，我们必须走到相当大的 $K$ 矢量才能找到可与它们组合的波；这背后有一个物理原因，我们很快就会明白。
+
+从一开始，物理上就很清楚：久期方程 (16) 中的各大项之间必定存在大量的相互抵消（cancellation）。矩阵元 $V_{KK'}$ 的性质是：如果没有正交化项，所得能量将会是芯能级非常大的结合能——例如在金刚石中为 $-22.7$ ryd。正交化项以某种方式成功地保证了：没有任何波函数以深于约 $-2$ ryd 的能量被束缚；这个值正是价电子壳层中原子函数的最低能量。因此，在某种意义上，对于被迫与芯能级正交的那些函数，$V(\mathbf{r})$ 这一巨大的吸引性势能除 10\% 之外已全部被抵消掉了。
+
+这种抵消的底层理论——我把它称作“Phillips 消去理论”——Phillips 已勾勒过其轮廓，Cohen 和 Heine (36) 则作了非常漂亮的表述。这里我将沿用后者的讨论。另一篇重要文献是 Austin、Heine 和 Sham (37)。
+
+消去理论的基本想法是：我们要试图找出的波动方程，其满足者不是真实波函数 $\psi_k$——它满足 $[(\mathbf{p}^2/2m)+V(\mathbf{r})]\,\psi_k=E_k\psi_k$——而是 Phillips 所称的 $\psi$ 的“光滑”部分；在本情形中，即平面波部分 $\phi$，正交化项正是要从它里面减去。
+
+那么我们就来做这件事。若严格波函数由式 (14) 给出：
+\begin{equation*}
+\psi_k=\phi_k-\sum_n\left(\phi_k,\ \phi_k^n\right)\phi_k^n
+\end{equation*}
+（其中 $E_k^n$ 为芯能级。译注：原书此处印作 $\phi_k^n$，按上下文应为 $E_k^n$。）我们便有
+\begin{align*}
+\left(\frac{\mathbf{p}^2}{2m}+V\right)\psi_k&=\left(\frac{\mathbf{p}^2}{2m}+V\right)\phi_k\\
+&\quad-\sum_n\left(\phi_k,\ \phi_k^n\right)\left(\frac{\mathbf{p}^2}{2m}+V\right)\phi_k^n=E_k\left(\phi_k-\sum_n\left(\phi_k,\ \phi_k^n\right)\cdot\phi_k^n\right)
+\end{align*}
+
+% ---- 原书 p.67 (PDF p082) ----
+或者，
+\begin{equation*}
+\left(\frac{\mathbf{p}^2}{2m}+V+V_R\right)\phi_k=E_k\,\phi_k
+\end{equation*}
+其中
+\begin{equation*}
+V_R=\sum_n\left(E_k-E_n\right)\ \frac{\phi_k^n}{\phi_k}\ \left(\phi_k,\ \phi_k^n\right)
+\end{equation*}
+$V_R$ 这样通过用 $\phi_k$ 相除来定义是相当任意的；但当我们看到——但愿如此——$\phi_k$ 在芯区内的变化相对于 $\phi_k^n$ 来说非常小，因而用 $\phi_k$ 相除只不过给出 $\phi_k^n$ 的一个常数倍；而且 $E_k$ 一般比芯结合能 $E_n$ 小，故其变化可以忽略——这时 $V_R$ 便取得了真实的意义。这样一来，$V$ 就有点像一个真正的势了。
+
+它究竟是什么，Cohen 和 Heine 已经讲明白了：它是我们的老朋友——一个非局域势。也就是
+\begin{align*}
+V_R\phi_k(\mathbf{r})&=\int \mathrm{d}\mathbf{r}'\ V_R(\mathbf{r},\mathbf{r}')\,\phi_k(\mathbf{r}')\\
+V_R(\mathbf{r},\mathbf{r}')&=\sum_n\left(E_k-E_n\right)\phi_k^n(\mathbf{r})\left(\phi_k^n(\mathbf{r}')\right)^*
+\end{align*}
+这一点通过积分立即可见。Phillips 的论断——实质上就是上面的物理推理——是：$V_R$ 是一个排斥势（因为 $E_n$ 为负），它常常几乎把 $V$ 完全抵消掉。
+
+Cohen 和 Heine 用下面的办法在数学上证明了这个抵消：考察方程 (14)——它实质上是以严格波函数 $\psi_k$ 来定义“光滑”波函数 $\phi_k$ 的——我们看到，这个定义绝非唯一。毕竟，在我们所考虑的应用中，平面波集合 $\phi_{k+K}$ 是一个完备集（complete set），因此即便是函数 $\phi_k^n$ 也可以用它们来展开。于是，如果我们愿意，实际上可以不用正交化、完全用平面波集合写出 $\psi_k$，但这当然会给出一个收敛性极差的平面波展开；或者，原则上我们也可以把正交化项以任意选定的比例分配在 $\phi$ 与显式项之间。
+
+% ---- 原书 p.68 (PDF p083) ----
+这意味着，我们必须凭某个附加的明确条件来规定所谓“光滑波函数 $\phi$”的含义。实际上我们清楚它指的是什么：它就是我们所能侥幸得到的最接近于少数几个平面波的那个东西。Cohen 和 Heine 指出，表达这一想法的一个数学方式，是要求有效势 $(V+V_R)$ 尽可能地弱：
+\begin{equation*}
+\left(\phi,\ (V+V_R)\,\phi\right)/\left(\phi,\phi\right)=\text{minimum}
+\end{equation*}
+由这一条件出发，经直接的数学演算，可以得到 $(V+V_R)\phi$ 所满足的如下方程：
+\begin{align*}
+(V+V_R)\phi&=V\phi-\sum_n\left(\phi_k^n,\ V\phi\right)\phi_k^n\\
+&\quad+\left(\phi,\ \left[V+V_R\right]\phi\right)\sum_n\left(\phi_k^n,\ \phi\right)\phi_k^n
+\end{align*}
+于是这一有效势的对角元就是
+\begin{equation*}
+\left(\phi,\ \left[V+V_R\right]\phi\right)=\frac{\left(\phi,\ V\phi\right)-\sum_n\left(\phi,\phi_k^n\right)\left(\phi_k^n,\ V\phi\right)}{1-\sum_n\left|\left(\phi_k^n,\ \phi\right)\right|^2}
+\end{equation*}
+相应的非局域势就是
+\begin{equation*}
+(V+V_R)(\mathbf{r},\mathbf{r}')=V(\mathbf{r})\left\{\frac{\delta(\mathbf{r}-\mathbf{r}')-\sum_n\phi_k^{*n}(\mathbf{r})\,\phi_k^n(\mathbf{r}')}{1-\sum_n\left|\left(\phi,\ \phi_k^n\right)\right|^2}\right\}\tag{17}
+\end{equation*}
+（注：Austin、Heine 和 Sham (37) 后来已经证明，这个分母是不必要的。）
+
+这样我们就证明了两件事：我们所使用的有效势在上述意义下是可能的最弱者；而且它可以写成式 (17) 的形式。现在请注意
+\begin{equation*}
+\sum_{\text{all states}}\phi_k^{*n}(\mathbf{r})\,\phi_k^n(\mathbf{r}')=\delta(\mathbf{r}-\mathbf{r}')\tag{18}
+\end{equation*}
+
+% ---- 原书 p.69 (PDF p084) ----
+因此，除了分母中的归一化因子之外，\emph{这个势已被束缚态的一个线性组合抵消到了它所能达到的最有效程度}。换一种说法：抵消的程度正比于束缚态在 $V$ 很大的区域内构成完备集的程度。Cohen 和 Heine 为 Si 给出了一幅令人赞叹的图，显示这种抵消可以达到何等好的程度。（图 15）（把图画成一个局域势时，是利用了如下事实：对 $s$ 态来说，就与芯函数作积分的目的而言，$\phi$ 是一个常数，因而\emph{对给定的 $l$}，非局域性无关紧要。）
+
+%FIG{15}: 图 15　Si 中势的抵消：$V$ 与 $V+V_R$ 的有效电荷 $Z_{\mathrm{eff}}$ 随 $r$ 的变化（纵轴刻度自上而下为 4、8、12、14），$V$ 在芯区内深达 14，$V+V_R$ 很快趋于虚线所示的约 4 的浅势；横轴 $r$ 标 1、2、3（原书图注仅作 “Figure 15”）
+
+典型地说，归一化因子 $1\big/\left(1-\sum_n\left|\left(\phi,\ \phi_k^n\right)\right|^2\right)$ 相当接近于 1：大约在 1.1 左右（见上面的注）。
+
+注意，势的非局域性对于使势对不同 $l$ 值表现得颇为不同这一点至关重要。例如，正如我们已经指出过的，当芯能级中没有 p 型的能级时，p 能级就不存在抵消；我们可以由观察到此时
+\begin{equation*}
+\int \mathrm{d}\mathbf{r}'\ V_R(\mathbf{r}-\mathbf{r}')\,\phi_p(\mathbf{r}')=0
+\end{equation*}
+看出这一点，因为它等同于
+\begin{equation*}
+\int \mathrm{d}\mathbf{r}'\ V(\mathbf{r})\,\phi_{1s}(\mathbf{r})\,\phi_{1s}(\mathbf{r}')\,\phi_p(\mathbf{r}')
+\end{equation*}
+这里的 $\phi_p$ 是指某个必然具有 p 对称性的对称化平面波，例如一个 $\Gamma_{15}$ 组合。一般说来，这种抵消就不那么
+
+% 衔接说明：末句在原书 p.69 末行中断（p.85 起首为 “complete for higher and higher l values.”），由下一文件续译。

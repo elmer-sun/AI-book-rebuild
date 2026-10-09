@@ -1,0 +1,2057 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 附录 A-J
+
+% 附录A Maps between Manifolds
+% 注：书页 428（p443）为空白页，附录 B 自书页 429（p444）始。
+
+\chapter{流形之间的映射}
+
+我们在第 2 章讨论流形时，曾经引入两个不同流形之间的映射，以及映射如何复合。这里我们将远为细致地考察这类映射，重点关注如何利用它们把张量场从一个流形携带到另一个流形。所讨论的流形，最终可能是一个子流形（submanifold）与它所嵌入的更大空间，也可能只是同一个抽象流形的两份不同副本彼此映射。
+
+考虑两个流形 $M$ 和 $N$，维数可以不同，分别配有坐标系 $x^{\mu}$ 和 $y^{\alpha}$。设想我们有一个映射 $\phi : M \to N$，以及一个函数 $f : N \to \mathbf{R}$。显然，我们可以把 $\phi$ 与 $f$ 复合，构造出映射 $(f\circ\phi) : M \to \mathbf{R}$，它不过是 $M$ 上的一个函数。这种构造非常有用，足以让它拥有自己的名字；我们把 $f$ 被 $\phi$ 的\textbf{拉回}（pullback）记作 $\phi^{*}f$，定义为
+\begin{equation*}
+\phi^{*}f = (f\circ\phi).
+\tag{A.1}
+\end{equation*}
+这个名字很有道理：我们把 $\phi^{*}$ 设想成把函数 $f$ 从 $N$ “拉回”到 $M$（见图 A.1）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_A.1.pdf}
+\caption*{图 A.1\quad 映射 $\phi : M \to N$ 把函数 $f$ 从 $N$ 拉回到 $M$，所得无非是 $\phi$ 与 $f$ 的复合。}
+\end{figure}
+
+我们可以把函数拉回，却不能把函数推前。如果我们有一个函数 $g : M \to \mathbf{R}$，就没有办法把 $g$ 与 $\phi$ 复合而创造出 $N$ 上的函数——箭头无法正确地衔接起来。但是回想一下，矢量可以看成一种把光滑函数映为实数的导数算符。这使我们能够定义矢量的\textbf{推前}（pushforward）；若 $V(p)$ 是 $M$ 上点 $p$ 处的一个矢量，我们就通过给出它对 $N$ 上函数的作用，来定义 $N$ 上点 $\phi(p)$ 处的推前矢量 $\phi_{*}V$：
+\begin{equation*}
+(\phi_{*}V)(f) = V(\phi^{*}f).
+\tag{A.2}
+\end{equation*}
+于是，要推前一个矢量场，我们可以说：“$\phi_{*}V$ 对任何函数的作用，无非就是 $V$ 对该函数之拉回的作用。”\footnote{遗憾的是，星号所在的位置并没有完全统一的标准；有些文献用上标 $*$ 表示推前、用下标 $*$ 表示拉回，所以要当心。}
+
+这番讨论有点抽象，若能有一个更具体的描述就好了。我们知道，$M$ 上矢量的一个基由偏导数集合 $\partial_{\mu} = \partial/\partial x^{\mu}$ 给出，而 $N$ 上的基由偏导数集合 $\partial_{\alpha} = \partial/\partial y^{\alpha}$ 给出。因此，我们希望把 $V = V^{\mu}\partial_{\mu}$ 的分量与 $(\phi_{*}V) = (\phi_{*}V)^{\alpha}\partial_{\alpha}$ 的分量联系起来。把推前后的矢量作用到一个检验函数（test function）上，并利用链式法则 (2.12)，就能找到想要的关系：
+\begin{align*}
+(\phi_{*}V)^{\alpha}\partial_{\alpha}f &= V^{\mu}\partial_{\mu}(\phi^{*}f)\\
+ &= V^{\mu}\partial_{\mu}(f\circ\phi)\\
+ &= V^{\mu}\frac{\partial y^{\alpha}}{\partial x^{\mu}}\partial_{\alpha}f.
+\tag{A.3}
+\end{align*}
+这个简单的公式让人难以抗拒地把推前操作 $\phi_{*}$ 看成一个矩阵算符 $(\phi_{*}V)^{\alpha} = (\phi_{*})^{\alpha}{}_{\mu}V^{\mu}$，其矩阵为
+\begin{equation*}
+(\phi_{*})^{\alpha}{}_{\mu} = \frac{\partial y^{\alpha}}{\partial x^{\mu}}.
+\tag{A.4}
+\end{equation*}
+矢量在推前之下的这种行为，与坐标变换下矢量的变换定律有着不容误认的相似之处。事实上它是后者的推广，因为当 $M$ 与 $N$ 是同一个流形时，两种构造（正如我们将要讨论的）完全同一；但不要被迷惑，因为一般而言 $\mu$ 和 $\alpha$ 允许的取值并不相同，而且矩阵 $\partial y^{\alpha}/\partial x^{\mu}$ 也没有理由必须可逆。
+
+让自己确信下面这件事是一次很有收获的练习：虽然给定映射 $\phi : M \to N$，你可以把矢量从 $M$ 推前到 $N$，但一般情况下你却不能把它们拉回——只管不断尝试去发明某种合适的构造，直到这种尝试的徒劳变得一目了然。由于 1-形式（one-form）与矢量对偶，听到 1-形式可以被拉回（但一般不能被推前）时，你不应感到惊讶。为了做到这一点，请记住 1-形式是从矢量到实数的线性映射。于是，$N$ 上 1-形式 $\omega$ 的拉回 $\phi^{*}\omega$ 可以通过它对一个 $M$ 上的矢量 $V$ 的作用来定义：让它等同于 $\omega$ 本身作用在 $V$ 的推前上：
+\begin{equation*}
+(\phi^{*}\omega)(V) = \omega(\phi_{*}V).
+\tag{A.5}
+\end{equation*}
+再一次，形式上的拉回算符有一个简单的矩阵描述 $(\phi^{*}\omega)_{\mu} = (\phi^{*})_{\mu}{}^{\alpha}\omega_{\alpha}$，我们可以用链式法则把它推导出来。它由下式给出：
+\begin{equation*}
+(\phi^{*})_{\mu}{}^{\alpha} = \frac{\partial y^{\alpha}}{\partial x^{\mu}}.
+\tag{A.6}
+\end{equation*}
+也就是说，它与推前式 (A.4) 中的矩阵是同一个，只不过当这个矩阵去拉回 1-形式时，缩并的当然是不同的指标。
+
+有一种思考方式可以解释为什么拉回和推前只对某些对象有效、对另一些则不然，或许会有所帮助。如果我们把 $M$ 上光滑函数的集合记为 $\mathcal{F}(M)$，那么 $M$ 上点 $p$ 处的矢量 $V(p)$（也就是切空间 $T_{p}M$ 的一个元素）可以看成从 $\mathcal{F}(M)$ 到 $\mathbf{R}$ 的一个算符。但我们已经知道，函数上的拉回算符把 $\mathcal{F}(N)$ 映到 $\mathcal{F}(M)$，正如 $\phi$ 本身把 $M$ 映到 $N$，只是方向相反。因此，作用在矢量上的推前 $\phi_{*}$ 可以简单地通过映射的复合来定义，正如我们最初定义函数的拉回那样；如图 A.2 所示。类似地，若 $T_{q}N$ 是 $N$ 上点 $q$ 处的切空间，那么 $q$ 处的 1-形式 $\omega$（也就是余切空间 $T_{q}^{*}N$ 的一个元素）可以看成从 $T_{q}N$ 到 $\mathbf{R}$ 的一个算符。由于推前 $\phi_{*}$ 把 $T_{p}M$ 映到 $T_{\phi(p)}N$，1-形式的拉回 $\phi^{*}$ 同样可以看成单纯的映射复合，如图 A.3 所示。如果这种看法对你没有帮助，不必在意。但务必分清哪些东西存在、哪些不存在；概念本身很简单，引人误入歧途的只是忘掉了哪个映射朝哪个方向走。
+
+你还会记得，$(0,l)$ 张量——即有 $l$ 个下指标而没有上指标的张量——是从 $l$ 个矢量的直积到 $\mathbf{R}$ 的线性映射。因此，我们不仅能拉回 1-形式，还能拉回具有任意数目下指标的张量。定义无非就是让原来的张量作用在推前后的矢量上：
+\begin{equation*}
+(\phi^{*}T)(V^{(1)},V^{(2)},\ldots,V^{(l)}) = T(\phi_{*}V^{(1)},\phi_{*}V^{(2)},\ldots,\phi_{*}V^{(l)}),
+\tag{A.7}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_A.2.pdf}
+\caption*{图 A.2\quad 矢量的推前，看成 $N$ 与 $M$ 上函数空间之间的一个映射，与从 $M$ 上的函数到 $\mathbf{R}$ 的一个映射的复合。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_A.3.pdf}
+\caption*{图 A.3\quad 1-形式的拉回，看成切空间 $T_{p}M$ 与 $T_{\phi(p)}N$ 之间的一个映射，与从 $T_{\phi(p)}N$ 到 $\mathbf{R}$ 的一个映射的复合。}
+\end{figure}
+
+其中 $T_{\alpha_{1}\cdots\alpha_{l}}$ 是 $N$ 上的一个 $(0,l)$ 张量。类似地，我们可以推前任意 $(k,0)$ 张量 $S^{\mu_{1}\cdots\mu_{k}}$，只要让它作用在拉回后的 1-形式上：
+\begin{equation*}
+(\phi_{*}S)(\omega^{(1)},\omega^{(2)},\ldots,\omega^{(k)}) = S(\phi^{*}\omega^{(1)},\phi^{*}\omega^{(2)},\ldots,\phi^{*}\omega^{(k)}).
+\tag{A.8}
+\end{equation*}
+幸运的是，推前式 (A.4) 与拉回式 (A.6) 的矩阵表示可以推广到更高阶的张量，只需给每个指标指派一个矩阵即可；于是，对于 $(0,l)$ 张量的拉回，我们有
+\begin{equation*}
+\boxed{\,(\phi^{*}T)_{\mu_{1}\cdots\mu_{l}} = \frac{\partial y^{\alpha_{1}}}{\partial x^{\mu_{1}}}\cdots\frac{\partial y^{\alpha_{l}}}{\partial x^{\mu_{l}}}\,T_{\alpha_{1}\cdots\alpha_{l}},\,}
+\tag{A.9}
+\end{equation*}
+而对于 $(k,0)$ 张量的推前，则有
+\begin{equation*}
+\boxed{\,(\phi_{*}S)^{\alpha_{1}\cdots\alpha_{k}} = \frac{\partial y^{\alpha_{1}}}{\partial x^{\mu_{1}}}\cdots\frac{\partial y^{\alpha_{k}}}{\partial x^{\mu_{k}}}\,S^{\mu_{1}\cdots\mu_{k}}.\,}
+\tag{A.10}
+\end{equation*}
+于是，我们完整的图像如图 A.4 所示。注意，既有上指标又有下指标的张量，一般来说既不能被推前也不能被拉回。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_A.4.pdf}
+\caption*{图 A.4\quad 映射 $\phi : M \to N$ 使我们能够拉回 $(0,l)$ 张量并推前 $(k,0)$ 张量。}
+\end{figure}
+
+一旦在一个简单的例子中看到这套机器运转起来，它就显得不那么令人生畏了。两个流形之间出现映射的一种常见情形，是 $M$ 实际上是 $N$ 的一个子流形，我们将在附录 C 中更仔细地讨论这种情形。基本想法是：存在一个从 $M$ 到 $N$ 的映射，它只是把 $M$ 的一个元素带到 $N$ 中“同一个”元素上。考虑嵌入 $\mathbf{R}^{3}$ 中的\emph{二维球面}（two-sphere），把它看成与原点相距单位距离的点的轨迹。如果在 $M = S^{2}$ 上取坐标 $x^{\mu} = (\theta,\phi)$，在 $N = \mathbf{R}^{3}$ 上取坐标 $y^{\alpha} = (x, y, z)$，那么映射 $\phi : M \to N$ 就由下式给出：
+\begin{equation*}
+\phi(\theta,\phi) = (\sin\theta\cos\phi,\ \sin\theta\sin\phi,\ \cos\theta).
+\tag{A.11}
+\end{equation*}
+以这种方式把球面插进 $\mathbf{R}^{3}$，会在 $S^{2}$ 上诱导出一个度规，它正是平直空间度规的拉回。求出它的一个头脑简单的办法，是从 $\mathbf{R}^{3}$ 上的度规 $\mathrm{d}s^{2} = \mathrm{d}x^{2} + \mathrm{d}y^{2} + \mathrm{d}z^{2}$ 出发，把式 (A.11) 代入这个表达式，得到 $S^{2}$ 上的度规 $\mathrm{d}\theta^{2} + \sin^{2}\theta\,\mathrm{d}\phi^{2}$。让我们看看，用更体面的形式化方法，这个答案是如何得来的。（当然，如果我们在 $\mathbf{R}^{3}$ 上用球坐标来做，事情会更容易；但用费劲的办法做更有启发性。）偏导数矩阵由下式给出：
+\begin{equation*}
+\frac{\partial y^{\alpha}}{\partial x^{\mu}} =
+\begin{pmatrix}
+\cos\theta\cos\phi & \cos\theta\sin\phi & -\sin\theta\\
+-\sin\theta\sin\phi & \sin\theta\cos\phi & 0
+\end{pmatrix}.
+\tag{A.12}
+\end{equation*}
+$S^{2}$ 上的度规只需把 $\mathbf{R}^{3}$ 的度规拉回就能得到，
+\begin{align*}
+(\phi^{*}g)_{\mu\nu} &= \frac{\partial y^{\alpha}}{\partial x^{\mu}}\frac{\partial y^{\beta}}{\partial x^{\nu}}\,g_{\alpha\beta}\\
+ &= \begin{pmatrix} 1 & 0\\ 0 & \sin^{2}\theta \end{pmatrix},
+\tag{A.13}
+\end{align*}
+这一点你可以轻易检验。所以，答案确实与朴素代入所得的相同，只不过现在我们知道了为什么。
+
+% 附录B Diffeomorphisms and Lie Derivatives
+
+\chapter{微分同胚与李导数}
+
+% ---- 书页 429 / p444 ----
+在本附录中，我们继续前一附录的探索，现在聚焦于两个流形其实是同一个流形这一特殊情形。到目前为止，我们一直谨慎地强调：映射 $\phi: M \to N$ 可以用来把某些东西拉回（式 (A.9)），并把另一些东西推前（式 (A.10)）。一般之所以不能两头都做，其原因可以追溯到 $\phi$ 可能不可逆。如果 $\phi$ 可逆（而且 $\phi$ 与 $\phi^{-1}$ 都是光滑的——我们总是隐含地如此假定），那么它就定义了 $M$ 与 $N$ 之间的一个微分同胚（diffeomorphism）。这只有在 $M$ 与 $N$ 实际上是同一个抽象流形时才可能成立；事实上，微分同胚的存在性正是“两个流形相同”的定义。微分同胚的美妙之处在于，我们既可以利用 $\phi$ 也可以利用 $\phi^{-1}$ 把张量从 $M$ 搬到 $N$；这将使我们能够定义任意张量的推前（pushforward）与拉回（pullback）。具体地说，对于 $M$ 上的一个 $(k,l)$ 型张量场 $T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}$，我们定义其推前为
+\begin{equation*}
+\begin{aligned}
+(&\phi_* T)(\omega^{(1)}, \ldots, \omega^{(k)}, V^{(1)}, \ldots, V^{(l)}) \\
+&= T(\phi^*\omega^{(1)}, \ldots, \phi^*\omega^{(k)}, [\phi^{-1}]_* V^{(1)}, \ldots, [\phi^{-1}]_* V^{(l)}),
+\end{aligned}
+\tag{B.1}
+\end{equation*}
+其中诸 $\omega^{(i)}$ 是 $N$ 上的 1-形式，诸 $V^{(i)}$ 是 $N$ 上的矢量。写成分量，这就变成
+\begin{equation*}
+(\phi_* T)^{\alpha_1\cdots\alpha_k}{}_{\beta_1\cdots\beta_l}
+= \frac{\partial y^{\alpha_1}}{\partial x^{\mu_1}} \cdots \frac{\partial y^{\alpha_k}}{\partial x^{\mu_k}}
+\frac{\partial x^{\nu_1}}{\partial y^{\beta_1}} \cdots \frac{\partial x^{\nu_l}}{\partial y^{\beta_l}}
+T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}.
+\tag{B.2}
+\end{equation*}
+逆矩阵 $\partial x^\nu/\partial y^\beta$ 的出现是合理的，因为 $\phi$ 可逆。注意，我们也可以按显而易见的方式定义拉回，但没有必要另写一套公式，因为拉回 $\phi^*$ 与经由逆映射的推前 $[\phi^{-1}]_*$ 是同一回事。
+
+现在我们可以阐明微分同胚与坐标变换之间的关系了：它们是做同一件事的两种不同方式。如果你愿意这么说，微分同胚是“主动坐标变换”（active coordinate transformations），而传统的坐标变换则是“被动的”。考虑一个 $n$ 维流形 $M$，它带有坐标函数 $x^\mu : M \to \mathbf{R}^n$。要改变坐标，我们要么可以简单地引入新的函数 $y^\mu : M \to \mathbf{R}^n$（“保持流形不动，更换坐标映射”），要么也完全可以引入一个微分同胚 $\phi : M \to M$，此后坐标就成了拉回 $(\phi^* x)^\mu : M \to \mathbf{R}^n$（“移动流形上的点，然后求出这些新点的坐标”），如图 B.1 所示。在这个意义上，式 (B.2) 确实就是张量变换律，只不过是换了一个视角来看待它而已。
+
+% ---- 书页 430 / p445 ----
+由于微分同胚使我们能够对任意张量既作拉回又作推前，它提供了另一种比较流形上不同点处的张量的办法。给定一个微分同胚 $\phi : M \to M$ 和一个张量场 $T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(x)$，我们可以构造张量在某点 $p$ 处的值与 $\phi^*[T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(\phi(p))]$——即它在 $\phi(p)$ 处的值被拉回到 $p$——之间的差。这提示我们，可以定义另一种作用在张量场上的导数算符，用它来刻画张量在微分同胚的流动之下变化的快慢。然而，要做到这一点，单个离散的微分同胚是不够的；我们需要一个单参数族的微分同胚 $\phi_t$。这个族可以看成是一个光滑映射 $\mathbf{R} \times M \to M$，使得对每个 $t \in \mathbf{R}$ 我们都有一个微分同胚 $\phi_t$，并且满足 $\phi_s \circ \phi_t = \phi_{s+t}$。后面这个条件意味着 $\phi_0$ 是恒等映射。
+
+单参数族的微分同胚可以看成是由矢量场产生的（反之亦然）。如果我们考察点 $p$ 在整个族 $\phi_t$ 之下的去向，显然它会描绘出 $M$ 中的一条曲线；由于 $M$ 上的每个点都是如此，这些曲线充满了流形（尽管在微分同胚具有不动点的地方可能会有退化）。我们可以把矢量场 $V^\mu(x)$ 定义为这些曲线中每一条在每一点处的切矢量组成的集合，取 $t = 0$ 时的值。$\mathbf{S}^2$ 上的一个例子由微分同胚 $\phi_t(\theta, \phi) = (\theta, \phi + t)$ 给出，如图 B.2 所示。我们可以把这一构造反过来，从任意一个矢量场出发定义一个单参数族的微分同胚。给定矢量场 $V^\mu(x)$，我们把该矢量场的\textbf{积分曲线}（integral curves）定义为求解下式的那些曲线 $x^\mu(t)$：
+\begin{equation*}
+\frac{d x^\mu}{d t} = V^\mu.
+\tag{B.3}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_B.1.pdf}
+\caption*{图 B.1\quad 由微分同胚 $\phi: M \to M$ 诱导的坐标变换。}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_B.2.pdf}
+\caption*{图 B.2\quad 二维球面上的一个微分同胚，由绕其轴的旋转给出。}
+\end{figure}
+
+% ---- 书页 431 / p446 ----
+注意，这个看似眼熟的方程现在要按照与我们通常用法相反的意义来理解：我们给定的是矢量，由矢量来定义曲线。只要我们不干诸如撞上流形边缘之类的蠢事，式 (B.3) 的解保证存在；其证明归结为找到一个坐标系，使问题化为常微分方程的基本定理。我们的微分同胚 $\phi_t$ 表现的是“沿积分曲线流下去”，而与之相应的矢量场就称为该微分同胚的\textbf{生成元}（generator）。（令人混淆的是，矢量场及其积分曲线也会出现在类光超曲面的语境里，不过在那种场合被称为“生成元”（generators）的是曲线，而不是矢量场。）积分曲线在初等物理里无时无刻不在使用，只是没有被冠以这个名字。磁铁旁边铁屑描出的“磁感线”（lines of magnetic flux）不过是磁场矢量 $\mathbf{B}$ 的积分曲线罢了。
+
+于是，给定矢量场 $V^\mu(x)$，我们就有了一个以 $t$ 为参数的微分同胚族，从而可以问：当我们沿积分曲线往下行进时，张量变化得有多快。对每个 $t$，我们可以把这个变化定义为张量被拉回到 $p$ 的值与它在 $p$ 处原有值之差，
+\begin{equation*}
+\Delta_t T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(p)
+= \phi_t^*\left[T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(\phi_t(p))\right]
+- T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(p).
+\tag{B.4}
+\end{equation*}
+注意，右端两项都是 $p$ 处的张量，如图 B.3 所示。于是我们把张量沿矢量场的\textbf{李导数}（Lie derivative）定义为
+\begin{equation*}
+\mathcal{L}_V T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}
+= \lim_{t \to 0} \left( \frac{\Delta_t T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}}{t} \right).
+\tag{B.5}
+\end{equation*}
+李导数是一个从 $(k,l)$ 型张量场到 $(k,l)$ 型张量场的映射，显然与坐标无关。由于这个定义实质上不过是把普通导数的传统定义用到张量的分量函数上，显然它是线性的，
+\begin{equation*}
+\mathcal{L}_V (a T + b S) = a \mathcal{L}_V T + b \mathcal{L}_V S,
+\tag{B.6}
+\end{equation*}
+
+% ---- 书页 432 / p447 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_B.3.pdf}
+\caption*{图 B.3\quad 张量沿矢量场积分曲线的变化速率，由如下方法算得：把点 $p$ 处原来的张量 $T(p)$ 与张量在点 $\phi_t(p)$ 处的值相比较——即把 $T(\phi_t(p))$ 拉回到 $p$。}
+\end{figure}
+
+并且服从 Leibniz 法则，
+\begin{equation*}
+\mathcal{L}_V (T \otimes S) = (\mathcal{L}_V T) \otimes S + T \otimes (\mathcal{L}_V S),
+\tag{B.7}
+\end{equation*}
+其中 $S$ 和 $T$ 是张量，$a$ 和 $b$ 是常数。李导数实际上是比协变导数更原初的概念，因为它不需要指定联络（当然，它确实需要一个矢量场）。稍加思索你就会相信，作用在函数上时它就归结为普通的方向导数，
+\begin{equation*}
+\mathcal{L}_V f = V(f) = V^\mu \partial_\mu f.
+\tag{B.8}
+\end{equation*}
+
+为了借助我们已知的其他运算来讨论李导数对张量的作用，选取一个适配于我们问题的坐标系是很方便的。具体地，我们将在坐标 $x^\mu = (x^1, \ldots, x^n)$ 中工作，其中 $x^1$ 是沿积分曲线的参数，其余坐标则随我们任意选取。于是矢量场取 $V = \partial/\partial x^1$ 的形式；也就是说，它的分量为 $V^\mu = (1, 0, 0, \ldots, 0)$。这个坐标系的魔力在于，参数为 $t$ 的微分同胚相当于一个从 $x^\mu$ 到 $y^\mu = (x^1 + t, x^2, \ldots, x^n)$ 的坐标变换。这样，由式 (A.6)，拉回矩阵简单地就是
+\begin{equation*}
+(\phi_t^*)_\mu{}^\nu = \delta_\mu{}^\nu,
+\tag{B.9}
+\end{equation*}
+而从 $\phi_t(p)$ 拉回到 $p$ 的张量的分量就简单地是
+\begin{equation*}
+\phi_t^*\left[T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(\phi_t(p))\right]
+= T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(x^1 + t, x^2, \ldots, x^n).
+\tag{B.10}
+\end{equation*}
+
+% ---- 书页 433 / p448 ----
+于是在这个坐标系中，李导数就成为
+\begin{equation*}
+\mathcal{L}_V T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}
+= \frac{\partial}{\partial x^1} T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l},
+\tag{B.11}
+\end{equation*}
+特别地，矢量场 $U^\mu(x)$ 的导数是
+\begin{equation*}
+\mathcal{L}_V U^\mu = \frac{\partial U^\mu}{\partial x^1}.
+\tag{B.12}
+\end{equation*}
+虽然这个表达式显然不是协变的，但我们知道对易子 $[V, U]$ 是一个良定义的张量，而且在这个坐标系中
+\begin{align*}
+[V, U]^\mu &= V^\nu \partial_\nu U^\mu - U^\nu \partial_\nu V^\mu \\
+&= \frac{\partial U^\mu}{\partial x^1}. \tag{B.13}
+\end{align*}
+因此，$U$ 相对于 $V$ 的李导数在这个坐标系中的分量与 $V$ 和 $U$ 的对易子相同；但由于两者都是矢量，它们在任何坐标系中都必须相等：
+\begin{equation*}
+\mathcal{L}_V U^\mu = [V, U]^\mu.
+\tag{B.14}
+\end{equation*}
+作为一个直接的推论，我们有 $\mathcal{L}_V U = -\mathcal{L}_U V$。正是因为式 (B.14)，对易子有时也被称为\textbf{李括号}（Lie bracket）。
+
+为了导出 $\mathcal{L}_V$ 作用在 1-形式 $\omega_\mu$ 上的结果，我们先考虑它作用在标量 $\omega_\mu U^\mu$ 上的情形，这里 $U^\mu$ 是任意矢量场。首先利用这样一个事实：当作用在标量上时，对矢量场的李导数就归结为该矢量本身的作用：
+\begin{align*}
+\mathcal{L}_V (\omega_\mu U^\mu) &= V(\omega_\mu U^\mu) \\
+&= V^\nu \partial_\nu (\omega_\mu U^\mu) \\
+&= V^\nu (\partial_\nu \omega_\mu) U^\mu + V^\nu \omega_\mu (\partial_\nu U^\mu). \tag{B.15}
+\end{align*}
+然后对原来的标量使用 Leibniz 法则：
+\begin{align*}
+\mathcal{L}_V (\omega_\mu U^\mu) &= (\mathcal{L}_V \omega)_\mu U^\mu + \omega_\mu (\mathcal{L}_V U)^\mu \\
+&= (\mathcal{L}_V \omega)_\mu U^\mu + \omega_\mu V^\nu \partial_\nu U^\mu - \omega_\mu U^\nu \partial_\nu V^\mu. \tag{B.16}
+\end{align*}
+令这两个表达式相等，并要求等式对任意 $U^\mu$ 都成立，我们就得到
+\begin{equation*}
+\mathcal{L}_V \omega_\mu = V^\nu \partial_\nu \omega_\mu + (\partial_\mu V^\nu) \omega_\nu,
+\tag{B.17}
+\end{equation*}
+此式（正如对易子的定义那样）是完全协变的，尽管从表面上不容易看出来。
+
+% ---- 书页 434 / p449 ----
+用类似的步骤，我们可以定义任意张量场的李导数。答案可以写成
+\begin{equation*}
+\boxed{
+\begin{aligned}
+\mathcal{L}_V T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} ={}& V^\sigma \partial_\sigma T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\partial_\lambda V^{\mu_1}) T^{\lambda\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\partial_\lambda V^{\mu_2}) T^{\mu_1\lambda\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} - \cdots \\
+&+ (\partial_{\nu_1} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\lambda\nu_2\cdots\nu_l} \\
+&+ (\partial_{\nu_2} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\lambda\cdots\nu_l} + \cdots.
+\end{aligned}
+}
+\tag{B.18}
+\end{equation*}
+尽管表面上看起来不是这样，这个表达式再一次是协变的。不过，倘若能有一个看上去明显是张量式的等价表达式，无疑会更让人安心。事实上我们可以写出
+\begin{align*}
+\mathcal{L}_V T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} ={}& V^\sigma \nabla_\sigma T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\nabla_\lambda V^{\mu_1}) T^{\lambda\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\nabla_\lambda V^{\mu_2}) T^{\mu_1\lambda\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} - \cdots \\
+&+ (\nabla_{\nu_1} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\lambda\nu_2\cdots\nu_l} \\
+&+ (\nabla_{\nu_2} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\lambda\cdots\nu_l} + \cdots, \tag{B.19}
+\end{align*}
+其中 $\nabla_\mu$ 代表\emph{任何}一个对称（无挠）的协变导数（当然也包括由度规导出的那些）。你可以验证，如果我们展开式 (B.19)，所有涉及联络系数的项都会相消，只剩下式 (B.18)。李导数公式的这两个版本在不同的场合各有用处。一个特别有用的公式是度规的李导数：
+\begin{align*}
+\mathcal{L}_V g_{\mu\nu} &= V^\sigma \nabla_\sigma g_{\mu\nu} + (\nabla_\mu V^\lambda) g_{\lambda\nu} + (\nabla_\nu V^\lambda) g_{\mu\lambda} \\
+&= \nabla_\mu V_\nu + \nabla_\nu V_\mu, \tag{B.20}
+\end{align*}
+或者
+\begin{equation*}
+\boxed{\mathcal{L}_V g_{\mu\nu} = 2 \nabla_{(\mu} V_{\nu)},}
+\tag{B.21}
+\end{equation*}
+其中 $\nabla_\mu$ 是由 $g_{\mu\nu}$ 导出的协变导数。
+
+让我们把其中的某些想法放到广义相对论的语境中来。你会常常听到人们宣称，GR 是一个“微分同胚不变”的理论。这句话的意思是：如果宇宙由一个流形 $M$ 连同度规 $g_{\mu\nu}$ 和物质场 $\psi$ 来表示，而 $\phi : M \to M$ 是一个微分同胚，那么 $(M, g_{\mu\nu}, \psi)$ 与 $(M, \phi^* g_{\mu\nu}, \phi^* \psi)$ 这两组对象代表的是同一个物理情形。由于微分同胚不过是主动坐标变换，这其实是“该理论是坐标不变的”的一种高深说法。%
+% ---- 书页 435 / p450 ----
+这种说法虽然没错，却是极大的误解之源，原因很简单：它几乎没有传达任何信息。任何还算像样的物理理论都是坐标不变的，包括那些基于狭义相对论或 Newton 力学的理论；GR 在这方面并非独一无二。当人们说 GR 是微分同胚不变的时候，他们十有八九想的是两个（密切相关的）概念之一：这个理论不含“先验几何”（prior geometry），而且时空没有\emph{优先}的坐标系。其中第一点来源于这样的事实：度规是一个动力学变量，联络、体积元等等也随之而来。没有任何东西是事先提供给我们的，这与经典力学或 SR 不同。其后果是，我们无法靠死守某个适配于几何中某些绝对要素的特定坐标系来让日子好过一点。这种局面迫使我们格外小心；GR 中两个号称不同的位形（物质与度规的位形）有可能实际上是“相同的”——它们通过一个微分同胚彼此联系。在量子引力的路径积分方法中，我们希望对所有可能的位形求和，这时必须格外小心，不要让物理上无法区分的位形贡献不止一次，造成重复计数。而在 SR 或 Newton 力学中，一组优先坐标的存在把我们从这种含糊性中解救了出来。“GR 没有优先坐标系”这一事实常常被歪曲成这样的说法：它是坐标不变的（或“广义协变的”，或“微分同胚不变的”）；这两种说法都对，但其中一个比另一个更有内容。
+
+另一方面，微分同胚不变性这一事实也可以好好地加以利用。回忆一下，引力与一组物质场 $\psi^i$ 耦合时的完整作用量，由 GR 的 Hilbert 作用量加上物质作用量之和给出，
+\begin{equation*}
+S = \frac{1}{16\pi G} S_H[g_{\mu\nu}] + S_M[g_{\mu\nu}, \psi^i].
+\tag{B.22}
+\end{equation*}
+Hilbert 作用量 $S_H$ 单独拿出来看是微分同胚不变的，因此如果要整个作用量不变，物质作用量 $S_M$ 也必须如此。我们可以把微分同胚之下 $S_M$ 的变分写成
+\begin{equation*}
+\delta S_M = \int d^n x \, \frac{\delta S_M}{\delta g_{\mu\nu}} \delta g_{\mu\nu}
++ \int d^n x \, \frac{\delta S_M}{\delta \psi^i} \delta \psi^i.
+\tag{B.23}
+\end{equation*}
+我们考虑的不是场的任意变分，而只是由微分同胚产生的那些变分。尽管如此，物质的运动方程告诉我们，$S_M$ 对 $\psi^i$ 的变分对任何变分都为零，因为作用量的引力部分不含物质场。于是，对一个微分同胚不变的理论而言，式 (B.23) 右端第一项也必须为零。如果微分同胚由一个无穷小矢量场 $V^\mu(x)$ 生成，度规的无穷小改变就简单地由它沿 $V^\mu$ 的李导数给出；由式 (B.20) 我们有
+
+% ---- 书页 436 / p451 ----
+\begin{align*}
+\delta g_{\mu\nu} &= \mathcal{L}_V g_{\mu\nu} \\
+&= 2 \nabla_{(\mu} V_{\nu)}. \tag{B.24}
+\end{align*}
+令 $\delta S_M = 0$ 便意味着
+\begin{align*}
+0 &= \int d^n x \, \frac{\delta S_M}{\delta g_{\mu\nu}} \nabla_\mu V_\nu \\
+&= - \int d^n x \, \sqrt{-g} \, V_\nu \nabla_\mu \left( \frac{1}{\sqrt{-g}} \frac{\delta S_M}{\delta g_{\mu\nu}} \right), \tag{B.25}
+\end{align*}
+其中我们能够去掉 $\nabla_{(\mu} V_{\nu)}$ 的对称化，因为 $\delta S_M/\delta g_{\mu\nu}$ 本来就是对称的。要求式 (B.25) 对由任意矢量场 $V^\mu$ 生成的微分同胚都成立，并利用能动张量（energy-momentum tensor）的定义，即式 (4.75)，我们便恰好得到能量-动量守恒定律，
+\begin{equation*}
+\nabla_\mu T^{\mu\nu} = 0.
+\tag{B.26}
+\end{equation*}
+$T_{\mu\nu}$ 的守恒是一个强有力的论断；我们竟然从微分同胚不变性这么弱的要求把它导了出来，这也许会让人吃惊。实际上我们偷偷夹带了一个强得多的假设，即“物质的”作用量与“引力的”作用量之间有一刀两断的分离（意思是没有物质场出现在引力作用量之中）。比方说，如果有一个标量场既乘在标量曲率上，又出现在物质作用量中（正如第 4 章讨论过的标量-张量理论那样），这个假设就被破坏了，$T_{\mu\nu}$ 自身也就不再守恒。
+
+回忆一下，在第 3 章里我们谈到过对称性和 Killing 矢量，并一再提请读者参阅附录。现在我们对微分同胚已经有了更多的了解，理解对称性便是水到渠成的事了。如果张量经 $\phi$ 拉回之后保持不变，我们就说微分同胚 $\phi$ 是某个张量 $T$ 的一个\textbf{对称性}（symmetry）：
+\begin{equation*}
+\phi^* T = T.
+\tag{B.27}
+\end{equation*}
+虽然对称性可以是分立的，但拥有一个单参数族的对称性 $\phi_t$ 也很常见。如果这个族由矢量场 $V^\mu(x)$ 生成，那么式 (B.27) 就相当于
+\begin{equation*}
+\mathcal{L}_V T = 0.
+\tag{B.28}
+\end{equation*}
+由式 (B.12)，对称性的一个推论是：如果 $T$ 在某个单参数族的微分同胚下对称，我们总能找到一个坐标系，使得 $T$ 的全部分量都与其中一个坐标无关（即矢量场的积分曲线坐标）。%
+% ---- 书页 437 / p452 ----
+反之亦然：如果全部分量都与其中一个坐标无关，那么与该坐标相联系的偏导数矢量场就生成该张量的一个对称性。
+
+最重要的对称性是度规的对称性，即 $\phi^* g_{\mu\nu} = g_{\mu\nu}$ 的情形。这种类型的微分同胚称为等距变换（isometry）。如果单参数族的等距变换由矢量场 $K^\mu(x)$ 生成，那么 $K^\mu$ 就是一个 Killing 矢量场。$K^\mu$ 为 Killing 矢量的条件于是就是
+\begin{equation*}
+\mathcal{L}_K g_{\mu\nu} = 0,
+\tag{B.29}
+\end{equation*}
+或者由式 (B.20)，
+\begin{equation*}
+\nabla_{(\mu} K_{\nu)} = 0.
+\tag{B.30}
+\end{equation*}
+我们认得出来，最后一个版本正是 Killing 方程，即式 (3.174)。从第 3 章的讨论我们知道，如果时空有一个 Killing 矢量，我们就能找到一个坐标系，使度规与其中一个坐标无关，并且量 $p_\mu K^\mu$ 沿具有切矢量 $p^\mu$ 的测地线保持常数。一旦我们建立起微分同胚与李导数的这套机制，Killing 矢量的推导就要优雅得多。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 在欧几里得三维空间中，求出并画出下列矢量场的积分曲线：
+\begin{equation*}
+A = \frac{y - x}{r} \frac{\partial}{\partial x} - \frac{x + y}{r} \frac{\partial}{\partial y}
+\end{equation*}
+和
+\begin{equation*}
+B = x y \frac{\partial}{\partial x} - y^2 \frac{\partial}{\partial y}.
+\end{equation*}
+计算 $C = \mathcal{L}_A B$，并画出 $C$ 的积分曲线。
+
+% ---- 书页 438 / p453 ----
+% （本页为空白页）
+
+% 附录C Submanifolds
+
+\chapter{子流形}
+
+% ---- 书页 439 / p454 ----
+子流形（submanifold）的概念——某个另一流形的子集，其维数可能（而且通常确实）更低——在直观上直截了当；然而，若了解到随之而来还有一套形式理论，也不必惊讶。子流形在广义相对论中无处不在——作为时空的边界、固定时刻的超曲面、更大的空间在对称性作用下被叶状分层而成的空间——因此值得我们花力气去理解它们究竟是如何运作的。
+
+考虑一个 $n$ 维流形 $M$ 和一个 $m$ 维流形 $S$，其中 $m \leq n$，以及一个映射 $\phi : S \to M$。如果映射 $\phi$ 既是 $C^\infty$ 的又是单射（one-to-one），而且逆映射 $\phi^{-1} : \phi[S] \to S$ 也是 $C^\infty$ 的，那么我们就说像 $\phi[S]$ 是 $M$ 的一个\textbf{嵌入子流形}（embedded submanifold）。如果 $\phi$ 局部是单射但不必全局是单射（也就是说，$\phi[S]$ 在 $M$ 中可能有自交），那么我们就说 $\phi[S]$ 是 $M$ 的一个\textbf{浸入子流形}（immersed submanifold）。当我们不加任何限定语地说到“子流形”时，我们心目中想的是嵌入的情形。$n$ 维流形的一个 $m$ 维子流形被称为具有\textbf{余维数}（codimension）$n - m$。
+
+如附录 A 所讨论的，映射 $\phi : S \to M$ 可以用来把 $(k,0)$ 型张量从 $S$ 推前到 $M$，并把 $(0,l)$ 型张量从 $M$ 拉回到 $S$。特别地，给定点 $q \in S$ 及其像 $\phi(q) \in M$，切空间 $T_{\phi(q)}\phi[S]$ 自然地被等同于 $n$ 维矢量空间 $T_{\phi(q)}M$ 的一个 $m$ 维子空间。如果你想一想把矢量定义为沿曲线的方向导数，这就完全讲得通了；任何曲线 $\gamma : \mathbf{R} \to S$ 显然通过复合在 $M$ 中定义了一条曲线（$\phi \circ \gamma : \mathbf{R} \to M$），后者又定义了一个方向导数。类似地，$M$ 上的微分形式也可以拉回到 $S$，办法是把它们的作用限制在子空间 $T_{\phi(q)}\phi[S]$ 中的矢量上。
+
+定义子流形的另一种方式，是把它定义为一族函数取某组指定固定值的地方。$M$ 的一个 $m$ 维子流形可以用 $n - m$ 个函数 $f^a(x)$（其中 $a$ 从 1 取到 $n - m$）规定为使诸 $f^a$ 等于某些常数 $f^a_*$ 的那些点 $x$ 组成的集合：
+\begin{gather*}
+f^1(x) = f^1_* \\
+f^2(x) = f^2_* \\[1em]
+f^{n-m}(x) = f^{n-m}_*. \tag{C.1}
+\end{gather*}
+
+% ---- 书页 440 / p455 ----
+这些函数应当是非退化的，这样子流形才真正具有维数 $m$。注意，以这种方式定义的子流形是 $M$ 的一个实实在在的子集；它与我们在前面定义中所说的 $\phi[S]$ 等价。为方便起见，从今往后我们会倾向于模糊原来的空间与其作为子流形的嵌入之间的区别，径直称之为“子流形 $S$”。
+
+为了看清子流形这两种定义之间的关系，设想在 $\phi[S] \subset M$ 的一个邻域内构造一组坐标 $x^\mu = \{f^a, y^\alpha\}$，它由这 $n - m$ 个函数 $f^a$ 再加上另外 $m$ 个函数 $y^\alpha$ 组成。于是我们可以把函数 $y^\alpha$ 拉回来充当 $S$ 上的坐标，而映射 $\phi : S \to M$ 就简单地由下式给出：
+\begin{equation*}
+\phi : (y^\alpha) \to (f^a_*, y^\alpha).
+\tag{C.2}
+\end{equation*}
+一个简单的例子是二维球面 $S^2$，事实上我们当初就是把它定义为 $\mathbf{R}^3$ 中到原点距离为单位长度的那些点的集合。在球坐标 $(r, \theta, \phi)$ 下，这等价于要求 $r = 1$，于是坐标 $r$ 就扮演了函数 $f(x)$ 的角色，而 $\theta$ 和 $\phi$ 则是 $S^2$ 上的诱导坐标（induced coordinates）。
+
+我们在式 (B.3) 处已经提到，指定单个矢量场会导致一族积分曲线，它们正是一维子流形。我们可能会想到推广这一构造：用一组若干个矢量场来定义更高维的子流形。设想我们有一个 $n$ 维流形 $M$、一个 $m$ 维子流形 $S$，以及一组 $p$ 个线性无关的矢量场 $V^\mu_{(a)}$，其中 $p \geq m$。这些矢量场“拼合起来定义了 $S$”这一说法意味着每个矢量处处都与 $S$ 相切，从而诸 $V^\mu_{(a)}$ 张成每一个切空间 $T_pS$；我们说 $S$ 是这些矢量场的一个\textbf{积分子流形}（integral submanifold）。然而，任意给定的一组矢量场未必真的能拼合起来定义这样的子流形。它们能否做到，由 \textbf{Frobenius 定理}揭示：一组矢量场 $V^\mu_{(a)}$ 能拼合起来定义积分子流形，当且仅当它们的全部对易子都落在由诸 $V^\mu_{(a)}$ 张成的空间之中；也就是说，若
+\begin{equation*}
+[V_{(a)}, V_{(b)}]^\mu = \alpha^c V^\mu_{(c)}
+\tag{C.3}
+\end{equation*}
+对某一组系数 $\alpha^c(x)$ 成立。（用群论的语言说，这意味着这些矢量场构成一个李代数（Lie algebra）。）我们不打算给出证明，但希望这个结果在数学上讲得通。如果这些矢量场要拼合起来构成一个子流形 $S$，它们必须处处保持与 $S$ 相切。但对易子 $[V, W]$ 等价于李导数 $\mathcal{L}_V W$，后者量度的正是当我们沿着 $V$ 行进时 $W$ 如何变化。如果这个李导数不留在由这些矢量所定义的空间之内，那就意味着 $W$ 开始伸出子流形 $S$ 之外。矢量场拼合起来构成子流形的例子很容易找；在第 5.2 节我们讨论过，与球对称性相联系的三个 Killing 矢量如何把一个三维空间叶状分层成二维球面。（注意，积分子流形的维数可以小于矢量场的数目。）关于 Frobenius 定理的讨论，可参见 Schutz (1980)。
+
+% ---- 书页 441 / p456 ----
+Frobenius 定理有一个有趣的替代表述，它使用微分形式。首先注意，任意一组 $p$ 个线性无关的 1-形式 $\omega_\mu^{(a)}$ 定义了 $T_pM$ 的一个 $(n-p)$ 维矢量子空间，称为这组形式的\textbf{零化子}（annihilator），它由 $T_pM$ 中满足
+\begin{equation*}
+\omega_\mu^{(a)} V^\mu = 0
+\tag{C.4}
+\end{equation*}
+（对每一个 $\omega_\mu^{(a)}$ 都满足）的那些矢量 $V^\mu$ 组成。因此，我们可以不问一组矢量场是否拼合起来定义了一组子流形，而是问一组 1-形式 $\omega_\mu^{(a)}$ 所定义的一组矢量子空间是否拼合起来，充当一组子流形的切空间。为了理解何时会发生这种情形，回想式 (C.1) 中 $m$ 维子流形的定义：它是使一组 $p = n - m$ 个函数 $f^a(x)$ 被取为常数值的地方。常函数是其外微分为零（$(\mathrm{d}f^a)_\mu = \nabla_\mu f^a$ 为零）的函数；但如果一个函数只是沿某个子流形才为常数，那就意味着
+\begin{equation*}
+\mathrm{d}f^a(V) = V^\mu \nabla_\mu f^a = 0
+\tag{C.5}
+\end{equation*}
+对所有与该子流形相切的矢量 $V^\mu \in T_pS$ 成立。反过来也对：如果一个矢量 $V^\mu$ 被所有梯度 $\nabla_\mu f^a$ 零化，它必然与相应的子流形 $S$ 相切。因此，如果一组 1-形式各自都是恰当的，$\omega_\mu^{(a)} = \nabla_\mu f^a$，那么它们所零化的矢量空间肯定定义子流形，即诸 $f^a$ 沿之为常数的那些子流形。但是，如果一组 $p$ 个 1-形式零化某个子空间，那么作为原来诸形式之线性组合的任何另一组 $p$ 个 1-形式也同样会零化它。因此我们说，一组 1-形式 $\omega_\mu^{(a)}$ 是\textbf{成面的}（surface-forming），如果其中每一个成员都能表示成一组恰当形式的线性组合；也就是说，如果存在函数 $g^a{}_b(x)$ 和 $f^a(x)$ 使得
+\begin{equation*}
+\omega_\mu^{(a)} = \sum_b g^a{}_b \nabla_\mu f^b.
+\tag{C.6}
+\end{equation*}
+当然，手里拿到一组形式时，可能很难判断是否存在函数使这一条件得到满足；这正是 Frobenius 定理的对偶表述派上用场的地方。这一定理的版本断言：一组 1-形式 $\omega_\mu^{(a)}$ 是成面的，当且仅当零化子中的每一对矢量同时也被外微分 $\mathrm{d}\omega^{(a)}$ 所零化。换句话说，形式组 $\omega_\mu^{(a)}$ 将满足式 (C.6)，当且仅当对每一对满足 $\omega_\mu^{(a)} V^\mu = 0$ 与 $\omega_\mu^{(a)} W^\mu = 0$（对所有 $a$）的矢量 $V^\mu$ 和 $W^\mu$，我们还有
+\begin{equation*}
+\nabla_{[\mu} \omega_{\nu]}^{(a)} V^\mu W^\nu = 0.
+\tag{C.7}
+\end{equation*}
+
+% ---- 书页 442 / p457 ----
+满足这一条件的一组形式有时被称为“闭的”（closed），这显然是单个形式为闭（即其外微分为零）这一概念的推广。我们不去证明 Frobenius 定理的对偶表述与矢量场版本的等价性，但其中显然涉及把我们的这组形式作用在矢量场的对易子（C.3）上。
+
+% ---- 书页 443 / p458 ----
+% 附录D Hypersurfaces
+\chapter{超曲面}
+
+超曲面（hypersurface）是 $n$ 维流形 $M$ 的一个 $(n-1)$ 维（余维数为一）子流形 $\Sigma$。（当然，如果 $n = 3$，$\Sigma$ 本也完全可以就叫“曲面”，但为了统一起见，我们将继续使用“超”字。）超曲面在广义相对论中极为有用，随之而来的是大量的形式理论。在本附录中，我们汇集超曲面研究中的一批结果：法矢量、类光超曲面的生成元、超曲面的 Frobenius 定理、高斯法坐标、诱导度规、投影张量、外曲率，以及带边流形。这有点像一桌自助餐（smorgasbord），难免带着可想而知的一团杂乱，但希望它同样可口而富于营养。
+
+规定超曲面 $\Sigma$ 的一种方式，是令单个函数等于一个常数，
+\begin{equation*}
+f(x) = f_*.
+\tag{D.1}
+\end{equation*}
+矢量场
+\begin{equation*}
+\zeta^\mu = g^{\mu\nu} \nabla_\nu f
+\tag{D.2}
+\end{equation*}
+将是该曲面的法矢量，其意义是它与 $T_p\Sigma \subset T_pM$ 中的所有矢量都正交。如果 $\zeta^\mu$ 是类时的，就称该超曲面是类空的；如果 $\zeta^\mu$ 是类空的，超曲面就是类时的；而如果 $\zeta^\mu$ 是类光的，超曲面也是类光的。任何与某个法矢量场成比例的矢量场，
+\begin{equation*}
+\xi^\mu = h(x) \nabla^\mu f
+\tag{D.3}
+\end{equation*}
+（其中 $h(x)$ 是某个函数）本身就是法矢量场；由于法矢量在相差一个标度因子的意义下唯一，任何法矢量都可以写成这种形式。因此，对类时和类空超曲面，我们可以定义法矢量的归一化版本，
+\begin{equation*}
+n^\mu = \pm \frac{\zeta^\mu}{|\zeta_\mu \zeta^\mu|^{1/2}}.
+\tag{D.4}
+\end{equation*}
+于是，对类空曲面有 $n^\mu n_\mu = -1$，对类时曲面有 $n^\mu n_\mu = +1$；除一个整体定向之外，这样的法矢量场是唯一的。对类空曲面，这个符号通常选得使 $n^\mu$ 指向未来（future-directed）。
+
+类光超曲面有一个特殊性质：它们可以分解成一族类光测地线，称为该超曲面的\textbf{生成元}（generators）。让我们看看这是怎么回事。
+
+% ---- 书页 444 / p459 ----
+注意，法矢量 $\zeta^\mu$ 除了与 $\Sigma$ 正交之外，还与 $\Sigma$ 相切，因为类光矢量与自身正交。因此，满足
+\begin{equation*}
+\zeta^\mu = \frac{d x^\mu}{d\alpha},
+\tag{D.5}
+\end{equation*}
+的积分曲线将是包含在超曲面之内的类光曲线。这些曲线 $x^\mu(\alpha)$ 必然是测地线，尽管 $\alpha$ 未必是仿射参量。为了验证这一论断，回想测地线方程的一般形式可以表示为
+\begin{equation*}
+\zeta^\mu \nabla_\mu \zeta_\nu = \eta(\alpha) \zeta_\nu,
+\tag{D.6}
+\end{equation*}
+其中 $\eta(\alpha)$ 是一个函数，若 $\alpha$ 是仿射参量它将为零。我们直接代入式 (D.2) 并计算：
+\begin{align*}
+\zeta^\mu \nabla_\mu \zeta_\nu &= \zeta^\mu \nabla_\mu \nabla_\nu f \\
+&= \zeta^\mu \nabla_\nu \nabla_\mu f \\
+&= \zeta^\mu \nabla_\nu \zeta_\mu \\
+&= \frac{1}{2} \nabla_\nu (\zeta^\mu \zeta_\mu).
+\tag{D.7}
+\end{align*}
+在第二行中我们用到了无挠条件，即作用在标量上的协变导数是对易的。注意，尽管在 $\Sigma$ 本身上 $\zeta^\mu \zeta_\mu = 0$，我们不能确定 $\nabla_\nu (\zeta^\mu \zeta_\mu)$ 为零，因为在超曲面之外 $\zeta^\mu \zeta_\mu$ 可能非零。如果这个梯度为零，式 (D.7) 就是测地线方程，我们就证完了。但如果它不为零，我们可以用 $\zeta^\mu \zeta_\mu = 0$ 作为定义子流形 $\Sigma$ 的另一种方式，而它的导数就定义了一个法矢量。因此，必有
+\begin{equation*}
+\nabla_\mu (\zeta^\nu \zeta_\nu) = g \nabla_\mu f = g \zeta_\mu,
+\tag{D.8}
+\end{equation*}
+其中 $g(x)$ 是某个标量函数。把它代入式 (D.7) 就得到
+\begin{equation*}
+\zeta^\mu \nabla_\mu \zeta_\nu = \frac{1}{2} g \zeta_\nu,
+\tag{D.9}
+\end{equation*}
+它与测地线方程 (D.6) 等价。当然，一旦我们知道路径 $x^\mu(\alpha)$ 是测地线，就可以随意用仿射参量 $\lambda(\alpha)$ 对它重新参数化。等价地说，我们用一个标量函数 $h(x)$ 去缩放法矢量场，
+\begin{equation*}
+\xi^\mu = h \zeta^\mu,
+\tag{D.10}
+\end{equation*}
+使得 $\xi^\mu \nabla_\mu \xi^\nu = 0$。惯例正是这么做的，并使用相应的切矢量
+\begin{equation*}
+\xi^\mu = \frac{d x^\mu}{d\lambda}
+\tag{D.11}
+\end{equation*}
+
+% ---- 书页 445 / p460 ----
+作为 $\Sigma$ 的法矢量。类光测地线 $x^\mu(\lambda)$ 的并集就是类光超曲面 $\Sigma$，它们便是 $\Sigma$ 的生成元。
+
+由式 (D.3) 我们知道，与超曲面正交的矢量场可以写成 $\xi^\mu = h \nabla^\mu f$ 的形式。在第 4 章的习题中曾请你证明，这蕴含
+\begin{equation*}
+\xi_{[\mu} \nabla_\nu \xi_{\sigma]} = 0,
+\tag{D.12}
+\end{equation*}
+或者用微分形式的记号，
+\begin{equation*}
+\xi \wedge \mathrm{d}\xi = 0.
+\tag{D.13}
+\end{equation*}
+其逆命题——任何满足此方程的矢量场都与某个超曲面正交——从基本原理出发较难证明，但它是 Frobenius 定理对偶表述的直接推论。设想我们有两个矢量 $V^\mu$ 和 $W^\mu$，两者都被一个服从式 (D.12) 的 1-形式 $\xi_\mu$ 所零化。由 Frobenius 定理（式 (C.7)），$\xi_\mu$ 将定义一个超曲面，当且仅当
+\begin{equation*}
+\nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu = 0.
+\tag{D.14}
+\end{equation*}
+把式 (D.12) 中的表达式作用到 $V^\mu W^\nu$ 上，并展开反对称化括号，我们得到
+\begin{align*}
+\xi_{[\mu} \nabla_\nu \xi_{\sigma]} V^\mu W^\nu
+&= \tfrac{1}{3} \left( \xi_\mu \nabla_{[\nu} \xi_{\sigma]} + \xi_\nu \nabla_{[\sigma} \xi_{\mu]} \right) V^\mu W^\nu + \tfrac{1}{3} \xi_\sigma \nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu \\
+&= \tfrac{1}{3} \xi_\sigma \nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu,
+\tag{D.15}
+\end{align*}
+其中在最后一行我们用到了 $V^\mu$ 和 $W^\mu$ 被 $\xi_\mu$ 零化这一事实。但由于 $\nabla_{[\mu} \xi_{\nu]} V^\mu W^\nu$ 是一个标量而 $\xi_\sigma$ 是一个非零的 1-形式，式 (D.15) 能为零的唯一办法就是式 (D.14) 成立。因此，式 (D.12) 为真当且仅当 $\xi_\mu$ 超曲面正交（hypersurface-orthogonal）。
+
+在流形（或其一部分）上放置一个自然适配于某个超曲面 $\Sigma$ 的坐标系往往很方便；高斯法坐标（Gaussian normal coordinates）就提供了做到这一点的一种便捷办法。先在 $\Sigma$ 上选取坐标 $y^i = \{y^1, \ldots, y^{n-1}\}$。在每一点 $p \in \Sigma$ 处，构造以 $n^\mu$ 为在 $p$ 处切矢量的那条（唯一的）测地线。令 $z$ 为每条测地线上的仿射参量。[如果 $n^\mu$ 已归一化且 $z(p) = 0$，则这个参量是唯一的。]$\Sigma$ 邻域中的任何一点 $q$ 都位于某条这样的测地线上。对每个这样的点，我们指派坐标 $\{z, y^1, \ldots, y^{n-1}\}$，其中诸 $y^i$ 是由我们所构造的测地线连到 $q$ 的那个点 $p$ 的坐标。这些坐标 $\{z, y^1, \ldots, y^{n-1}\}$ 就称为\textbf{高斯法坐标}（Gaussian normal coordinates）（不要与“Riemann 法坐标”相混淆，后者是从单个点 $p$ 出发沿所有方向走测地线构造出来的）。如果我们走到测地线聚焦并相交的地方，这些坐标终将失去良好定义，但在包含 $\Sigma$ 的某个区域内它们总是存在的。关于高斯法坐标的所有陈述都应理解为在其良好定义的区域内适用。
+
+% ---- 书页 446 / p461 ----
+与坐标函数 $\{z, y^1, \ldots, y^{n-1}\}$ 相联系的是坐标基矢量场 $\{\partial_z, \partial_1, \ldots, \partial_{n-1}\}$。为记号方便，让我们把这些矢量场记作
+\begin{gather*}
+(\partial_z)^\mu = n^\mu, \\
+(\partial_i)^\mu = Y^\mu_{(i)},
+\tag{D.16}
+\end{gather*}
+其中第一行是有意义的，因为 $\partial_z$ 不过是原来的法矢量 $n^\mu$ 沿测地线的延拓。相对于这组基矢量，度规取一种简单的形式。首先，我们知道
+\begin{equation*}
+g_{zz} = ds^2 (\partial_z, \partial_z) = n_\mu n^\mu = \pm 1,
+\tag{D.17}
+\end{equation*}
+因为 $n^\mu$ 正是从 $\Sigma$ 发出的那些测地线的归一化切矢量。为了把这一符号歧义打包起来，让我们把它记作 $\sigma$：
+\begin{equation*}
+\sigma = n_\mu n^\mu = \pm 1.
+\tag{D.18}
+\end{equation*}
+但我们也有 $g_{zi} = n_\mu Y^\mu_{(i)} = 0$，这可以直接验证。从原来的曲面 $\Sigma$ 出发，在那里按假设有 $n_\mu Y^\mu_{(i)} = 0$（因为 $n^\mu$ 与 $\Sigma$ 正交）。然后我们计算
+\begin{align*}
+\frac{D}{dz} \left( n_\mu Y^\mu_{(i)} \right) &= n^\nu \nabla_\nu \left( n_\mu Y^\mu_{(i)} \right) \\
+&= n^\nu n_\mu \nabla_\nu Y^\mu_{(i)} \\
+&= Y^\nu_{(i)} n_\mu \nabla_\nu n^\mu \\
+&= \frac{1}{2} Y^\nu_{(i)} \nabla_\nu \left( n_\mu n^\mu \right) \\
+&= 0.
+\tag{D.19}
+\end{align*}
+让我们逐行解释这个推导。第一行就是方向协变导数 $D/dz$ 的定义。第二行用了 Leibniz 法则，再加上 $n_\mu$ 沿测地线被平行移动这一事实（$n^\nu \nabla_\nu n_\mu = 0$）。第三行用了 $n^\mu$ 与 $Y^\nu_{(i)}$ 都是坐标基矢量、因而其李括号为零这一事实：$[n, Y_{(i)}]^\mu = n^\nu \nabla_\nu Y^\mu_{(i)} - Y^\nu_{(i)} \nabla_\nu n^\mu = 0$。第四行再次用了 Leibniz 法则和 $n_\mu$ 被平行移动的事实，而第五行则仅仅反映了 $n_\mu n^\mu = \sigma$ 为常数这一事实。
+
+于是我们可以把高斯法坐标下的度规写成
+\begin{equation*}
+\boxed{\, ds^2 = \sigma \, \mathrm{d}z^2 + \gamma_{ij} \, \mathrm{d}y^i \mathrm{d}y^j, \,}
+\tag{D.20}
+\end{equation*}
+其中 $\gamma_{ij} = g(\partial_i, \partial_j)$ 一般而言是所有坐标 $\{z, y^1, \ldots, y^{n-1}\}$ 的函数。我们没有对几何作任何假设；我们只是选取了一个使度规取特定形式的坐标系。
+
+% ---- 书页 447 / p462 ----
+注意，令 $z$ 等于常数定义了一族与原来曲面 $\Sigma$ 微分同胚的超曲面；式 (D.20) 中不出现非对角项 $g_{zi}$，这反映的正是矢量场 $n^\mu$ 与所有这些曲面都正交，而不只是与原来那一个正交这一事实。高斯法坐标绝不冷僻；我们时时刻刻都在使用它们。简单的例子有 Minkowski 空间中的惯性坐标，
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + \mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2,
+\tag{D.21}
+\end{equation*}
+或者欧几里得三维空间中的球坐标，
+\begin{equation*}
+ds^2 = \mathrm{d}r^2 + r^2 \mathrm{d}\theta^2 + r^2 \sin^2 \theta \, \mathrm{d}\phi^2.
+\tag{D.22}
+\end{equation*}
+宇宙学中通常的 Robertson--Walker 坐标则给出了一个稍不那么平凡的例子，
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + a^2(t) \left[ \frac{\mathrm{d}r^2}{1 - \kappa r^2} + r^2 \mathrm{d}\Omega^2 \right].
+\tag{D.23}
+\end{equation*}
+当然，RW 几何是高度对称的（均匀且各向同性）。但是，既然我们刚刚看到高斯法坐标总可以被定义，我们就知道，通过改动度规的空间分量，便可以描述完全一般的几何。这提供了一种流行的描述宇宙学微扰的方式；对平直空间切片，我们把“同步规范”（synchronous gauge）定义为
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + a^2(t) (\delta_{ij} + h_{ij}) \mathrm{d}x^i \mathrm{d}x^j,
+\tag{D.24}
+\end{equation*}
+其中 $h_{ij}(t, \mathbf{x})$ 是度规微扰。（推广到弯曲的空间切片是直截了当的。）再一次，我们没有对几何作任何假设，只是选了一个可能方便的坐标系。
+
+回想把任意子流形嵌入的映射 $\phi : \Sigma \to M$ 使我们能够把度规从 $M$ 拉回到 $\Sigma$。给定 $\Sigma$ 上的坐标 $y^i$ 和 $M$ 上的坐标 $x^\mu$，我们把子流形上的\textbf{诱导度规}（induced metric）定义为
+\begin{equation*}
+(\phi^* g)_{ij} = \frac{\partial x^\mu}{\partial y^i} \frac{\partial x^\nu}{\partial y^j} g_{\mu\nu}.
+\tag{D.25}
+\end{equation*}
+当子流形是一个超曲面时，这个诱导度规恰好就是在式 (D.20) 中出现的 $\gamma_{ij}$。为看清这一点，注意高斯法坐标是式 (C.2) 所描述的自然嵌入坐标的特例。我们有一个在 $M$ 上由 $z = z_*$ 定义的超曲面 $\Sigma$，在 $\Sigma$ 上定义了坐标 $y^i$，以及一个由下式给出的映射 $\phi : \Sigma \to M$：
+\begin{equation*}
+\phi : y^i \to x^\mu = (z_*, y^i).
+\tag{D.26}
+\end{equation*}
+给定 $M$ 上度规的形式 (D.20)，立即可知在这个映射下拉回 (D.25) 就简单地是
+\begin{equation*}
+(\phi^* g)_{ij} = \gamma_{ij}.
+\tag{D.27}
+\end{equation*}
+
+% ---- 书页 448 / p463 ----
+请记住，这个方程只应在高斯法坐标中求值；否则右端连意义都没有。
+
+与诱导度规一道，子流形还从它们所嵌入的流形那里继承一个诱导体积元。回想带有度规 $g_{\mu\nu}$ 的 $n$ 维流形上的体积元由 Levi-Civita 张量给出，后者可以表示为
+\begin{equation*}
+\epsilon = \sqrt{|g|} \, \mathrm{d}x^1 \wedge \cdots \wedge \mathrm{d}x^n.
+\tag{D.28}
+\end{equation*}
+为了得到子流形 $\Sigma$ 上的体积元，方便的做法是引入高斯法坐标 $(z, y^1, \ldots, y^{n-1})$，在其中度规取式 (D.20) 的形式。于是 $\Sigma$ 上的体积元 $\widehat{\epsilon}$ 将取如下形式：
+\begin{equation*}
+\widehat{\epsilon} = \sqrt{|\gamma|} \, \mathrm{d}y^1 \wedge \cdots \wedge \mathrm{d}y^{n-1}.
+\tag{D.29}
+\end{equation*}
+（通过选取第一个坐标为垂直于超曲面的那个坐标，我们已经在如何由 $M$ 上的定向定义 $\Sigma$ 上的定向这一问题上隐含地选定了一个约定。）在这些坐标中我们有
+\begin{equation*}
+\sqrt{|g|} = \sqrt{|\gamma|},
+\tag{D.30}
+\end{equation*}
+于是 $M$ 上的体积元就变成
+\begin{equation*}
+\epsilon = \sqrt{|\gamma|} \, \mathrm{d}z \wedge \mathrm{d}y^1 \wedge \cdots \wedge \mathrm{d}y^{n-1}.
+\tag{D.31}
+\end{equation*}
+我们可以利用 $\Sigma$ 的法矢量把这两个体积元联系起来，该法矢量的分量为
+\begin{equation*}
+n^\mu = (1, 0, \ldots, 0).
+\tag{D.32}
+\end{equation*}
+$\epsilon$ 与 $n^\mu$ 的缩并可以记为
+\begin{equation*}
+[\epsilon(n)]_{\mu_1 \cdots \mu_{n-1}} = n^\lambda \epsilon_{\lambda \mu_1 \cdots \mu_{n-1}}.
+\tag{D.33}
+\end{equation*}
+于是显然，在这些坐标中我们有
+\begin{gather*}
+\epsilon(n) = \sqrt{|\gamma|} \, \mathrm{d}y^1 \wedge \cdots \wedge \mathrm{d}y^{n-1} \\
+= \widehat{\epsilon}. \tag{D.34}
+\end{gather*}
+因此，诱导体积元的分量为
+\begin{equation*}
+\widehat{\epsilon}_{\mu_1 \cdots \mu_{n-1}} = n^\lambda \epsilon_{\lambda \mu_1 \cdots \mu_{n-1}}.
+\tag{D.35}
+\end{equation*}
+但这是张量之间的关系，所以在任何坐标系中都成立。我们也可以由 $\widehat{\epsilon}$ 和 $n^\mu$ 重建 $\epsilon$，途径是
+\begin{equation*}
+\frac{1}{n} \epsilon_{\nu \mu_1 \cdots \mu_{n-1}} = n_{[\nu} \widehat{\epsilon}_{\mu_1 \cdots \mu_{n-1}]},
+\tag{D.36}
+\end{equation*}
+
+% ---- 书页 449 / p464 ----
+这很容易通过与 $n^\nu$ 作缩并来检验。子流形体积元的概念在我们下文讨论 Stokes 定理时将至关重要。
+
+与超曲面上诱导度规密切相关的另一个概念，是带有单位法矢量 $n^\mu$ 的超曲面 $\Sigma$ 的\textbf{投影张量}（projection tensor），由下式给出：
+\begin{equation*}
+P_{\mu\nu} = g_{\mu\nu} - \sigma n_\mu n_\nu,
+\tag{D.37}
+\end{equation*}
+其中 $\sigma = n_\mu n^\mu$。让我们收集这个对象的一些有用性质。给定 $T_pM$ 中的任何矢量 $V^\mu$，$P_{\mu\nu}$ 会把它投影成与超曲面相切（也就是说，与 $n^\mu$ 正交）：
+\begin{align*}
+(P_{\mu\nu} V^\mu) n^\nu &= g_{\mu\nu} V^\mu n^\nu - \sigma n_\mu n_\nu V^\mu n^\nu \\
+&= V^\mu n_\mu - \sigma^2 V^\mu n_\mu \\
+&= 0.
+\tag{D.38}
+\end{align*}
+作用在任何两个已经与 $\Sigma$ 相切的矢量 $V^\mu$ 和 $W^\nu$ 上时，投影张量的表现就像度规一样：
+\begin{align*}
+P_{\mu\nu} V^\mu W^\nu &= g_{\mu\nu} V^\mu W^\nu - \sigma n_\mu n_\nu V^\mu W^\nu \\
+&= g_{\mu\nu} V^\mu W^\nu.
+\tag{D.39}
+\end{align*}
+最后，投影张量是幂等的（idempotent）；作用两次（或更多次）与只作用一次产生同样的结果：
+\begin{align*}
+P^\mu{}_\lambda P^\lambda{}_\nu &= (\delta^\mu_\lambda - \sigma n^\mu n_\lambda) (\delta^\lambda_\nu - \sigma n^\lambda n_\nu) \\
+&= \delta^\mu_\nu - \sigma n^\mu n_\nu - \sigma n^\mu n_\nu + \sigma^3 n^\mu n_\nu \\
+&= P^\mu{}_\nu.
+\tag{D.40}
+\end{align*}
+$P_{\mu\nu}$ 有时被称为超曲面的\textbf{第一基本形式}（first fundamental form）。因为它对与 $\Sigma$ 相切的矢量确实像度规那样起作用，而超曲面又常常是类空的，你有时会看到它被称为“空间度规”（spatial metric）。
+
+很久以前，当我们初次谈到流形与曲率时，我们曾小心区分一个空间的“内蕴”曲率——由 Riemann 张量所量度的——与“外在”曲率，后者依赖于这个空间如何嵌入某个更大的空间。例如，二维环面可以具有平直的度规，但它在 $\mathbf{R}^3$ 中的任何嵌入都使它看上去是弯曲的。现在我们有条件对这一概念给出一个正式定义，它对超曲面是有意义的。设我们有一族超曲面 $\Sigma$，带有单位矢量场 $n^\mu$，并且我们把 $n^\mu$ 延拓过一个区域（以我们喜欢的任何方式）。那么 $\Sigma$ 的\textbf{外曲率}（extrinsic curvature）就简单地由投影张量沿法矢量场的李导数给出：
+\begin{equation*}
+K_{\mu\nu} = \frac{1}{2} \mathcal{L}_n P_{\mu\nu}.
+\tag{D.41}
+\end{equation*}
+
+% ---- 书页 450 / p465 ----
+外曲率，有时称为子流形的\textbf{第二基本形式}（second fundamental form），由此被解释为当我们沿法矢量场行进时投影张量（若 $\Sigma$ 类空，即空间度规）的变化率；它与 $n^\mu$ 在 $\Sigma$ 之外的延拓方式无关。只需几行计算就可以证明，这个定义等价于度规本身被投影的李导数：
+\begin{equation*}
+K_{\mu\nu} = \frac{1}{2} P^\alpha{}_\mu P^\beta{}_\nu \mathcal{L}_n g_{\alpha\beta}.
+\tag{D.42}
+\end{equation*}
+由式 (B.20) 我们知道，$g_{\mu\nu}$ 的李导数由法矢量的对称化协变导数给出，于是有
+\begin{equation*}
+K_{\mu\nu} = P^\alpha{}_\mu P^\beta{}_\nu \nabla_{(\alpha} n_{\beta)}.
+\tag{D.43}
+\end{equation*}
+由于我们不假定 $n^\mu$ 的积分曲线是测地线，我们可以把加速度定义为
+\begin{equation*}
+a^\mu = n^\nu \nabla_\nu n^\mu.
+\tag{D.44}
+\end{equation*}
+然后再花几行功夫就能证明，式 (D.43) 等价于
+\begin{equation*}
+\boxed{\, K_{\mu\nu} = \nabla_\mu n_\nu - \sigma n_\mu a_\nu. \,}
+\tag{D.45}
+\end{equation*}
+外曲率有许多好的性质。它是对称的，
+\begin{equation*}
+K_{\mu\nu} = K_{\nu\mu},
+\tag{D.46}
+\end{equation*}
+从式 (D.41) 看这很显然，尽管从式 (D.45) 看不出来。你可以利用 $n^\mu$ 超曲面正交这一事实，检验式 (D.45) 确实是对称的。外曲率还与法方向正交（“纯空间的”）：
+\begin{align*}
+n^\mu K_{\mu\nu} &= n^\mu \nabla_\mu n_\nu - \sigma n^\mu n_\mu a_\nu \\
+&= a_\nu - \sigma^2 a_\nu \\
+&= 0.
+\tag{D.47}
+\end{align*}
+我们可以定义一个沿超曲面作用的协变导数 $\widehat{\nabla}_\mu$，办法是取一个普通协变导数再作投影。例如，对一个 $(1,1)$ 型张量 $X^\mu{}_\nu$，我们有
+\begin{equation*}
+\widehat{\nabla}_\sigma X^\mu{}_\nu = P^\alpha{}_\sigma P^\mu{}_\beta P^\gamma{}_\nu \nabla_\alpha X^\beta{}_\gamma.
+\tag{D.48}
+\end{equation*}
+由此我们可以构造超曲面上的曲率张量 $\widehat{R}^\rho{}_{\sigma\mu\nu}$，例如通过考虑作用在与超曲面相切的矢量场 $V^\mu$（即 $P^\mu{}_\nu V^\nu = V^\mu$）上的协变导数的对易子：
+\begin{equation*}
+[\widehat{\nabla}_\mu, \widehat{\nabla}_\nu] V^\rho = \widehat{R}^\rho{}_{\sigma\mu\nu} V^\sigma.
+\tag{D.49}
+\end{equation*}
+
+% ---- 书页 451 / p466 ----
+有两个重要方程把 $n$ 维 Riemann 曲率与超曲面 Riemann 曲率以及外曲率联系起来。\textbf{Gauss 方程}是
+\begin{equation*}
+\widehat{R}^\rho{}_{\sigma\mu\nu} = P^\rho{}_\alpha P^\beta{}_\sigma P^\gamma{}_\mu P^\delta{}_\nu R^\alpha{}_{\beta\gamma\delta} + \sigma (K^\rho{}_\mu K_{\sigma\nu} - K^\rho{}_\nu K_{\sigma\mu}).
+\tag{D.50}
+\end{equation*}
+（译注：原书第二个投影因子误印为 $P^\beta{}_\rho$，按自由指标 $\sigma$ 的结构应为 $P^\beta{}_\sigma$，此处已按本意改正。）
+我们可以取适当的迹，得到超曲面标量曲率，
+\begin{equation*}
+\widehat{R} = P^{\sigma\nu} \widehat{R}^\lambda{}_{\sigma\lambda\nu} = R - \sigma (2 R_{\mu\nu} n^\mu n^\nu + K^2 - K^{\mu\nu} K_{\mu\nu}),
+\tag{D.51}
+\end{equation*}
+其中 $K = g^{\mu\nu} K_{\mu\nu}$。我们还有 \textbf{Codazzi 方程}，
+\begin{equation*}
+\widehat{\nabla}_{[\mu} K_{\nu]}{}^\mu = \frac{1}{2} P^\sigma{}_\nu R_{\rho\sigma} n^\rho.
+\tag{D.52}
+\end{equation*}
+式 (D.50) 与式 (D.52) 合在一起——这称呼倒是颇具想象力——称为 Gauss--Codazzi 方程。
+
+为免混淆，我们应当指出，外曲率的定义往往因文献而异。在有些文献中，法矢量场被取为处处测地的（$a^\mu = 0$）；此时事情大大简化，并且容易证明在这种情形下有
+\begin{align*}
+K_{\mu\nu} &= \frac{1}{2} \mathcal{L}_n P_{\mu\nu} \\
+&= \frac{1}{2} \mathcal{L}_n g_{\mu\nu} \\
+&= \nabla_\mu n_\nu.
+\tag{D.53}
+\end{align*}
+（如果我们事先被给定的是整族超曲面，就不能简单假设单位法矢量场的积分曲线是测地线。然而，我们常常只被给定单个曲面，这时就允许通过求解测地线方程把法矢量场延拓到曲面之外。）另一些文献则倾向于把外曲率看成生活在 $\Sigma$ 上而非 $M$ 中的张量 $\widehat{K}_{ij}$。如果我们有一个嵌入 $\phi : y^i \to x^\mu$，这个版本的外曲率由拉回给出：
+\begin{align*}
+\widehat{K}_{ij} &= (\phi^* K)_{ij} \\
+&= \frac{\partial x^\mu}{\partial y^i} \frac{\partial x^\nu}{\partial y^j} K_{\mu\nu}.
+\tag{D.54}
+\end{align*}
+最后，有些文献喜欢把外曲率定义为我们的定义的负值。在不同的约定之间来回换算应当是直截了当的。
+
+在结束讨论之前，我们提一下超曲面的一种非常常见的出现方式：作为流形 $M$ 的一个闭区域 $N$ 的\textbf{边界}（boundary），按惯例记作 $\partial N$。例如，如果 $N$ 由 $\mathbf{R}^n$ 中所有与原点的距离 $r \leq 1$ 的元素组成，那么边界 $\partial N$ 显然就是由 $r = 1$ 定义的 $(n-1)$ 维球面。我们可以把这个概念推广到考虑的不是闭区域、而是带有一个边界的整个流形的情形。
+
+% ---- 书页 452 / p467 ----
+所谓\textbf{带边流形}（manifold with boundary），是一个装备了坐标卡片图册的集合，与第 2 章中我们对流形的定义完全一样，只是卡片被取为映到 $\mathbf{R}^n$ 上半部分的映射：即由满足 $x^1 \geq 0$ 的 $n$ 元组 $\{x^1, \ldots, x^n\}$ 组成的集合。边界 $\partial M$ 是被卡片映射到 $x^1 = 0$ 的那些点组成的集合。于是 $\partial M$ 自然是一个 $(n-1)$ 维子流形（本身没有边界）。流形之边界的一个例子将出现在我们后面关于共形图（conformal diagrams）的讨论中，在那里共形无限远可以被看成时空的一个边界。凭借连续性，我们可以把边界当作超曲面来对待，包括诱导度规等等；偶尔在边界上取导数时需要小心，但大多数情况下我们可以相信自己的直觉。
+
+% 附录E Stokes's Theorem
+
+\chapter{Stokes 定理}
+
+% ---- 书页 453 / p468 ----
+在 2.10 节中我们引入了这样一种观念：流形上的积分把 $n$-形式场映为实数。这一观点使我们能够把微分几何中最强有力的定理之一——Stokes 定理——表述得十分优雅。这个定理是微积分基本定理 $\int_b^a dx = a - b$ 的推广。设想我们有一个 $n$ 维区域 $M$（它可能是一个完整的流形），带有边界 $\partial M$，并且在 $M$ 上有一个 $(n-1)$-形式 $\omega$。我们马上就会解释流形的边界指的是什么。于是 $d\omega$ 是一个 $n$-形式，可以在 $M$ 上积分，而 $\omega$ 本身可以在 $\partial M$ 上积分。Stokes 定理说的无非就是
+\begin{equation*}
+\boxed{\int_M d\omega = \int_{\partial M} \omega.}
+\tag{E.1}
+\end{equation*}
+这个定理的各种特殊情形不仅包括微积分基本定理，还包括三维矢量微积分中大家熟悉的 Green 定理、Gauss 定理和 Stokes 定理。
+
+式 (E.1) 对 Stokes 定理的这种表述极其优雅，甚至优雅得有些中看不中用。幸运的是，我们可以把它改写成平实的坐标加指标记号。方便的做法是先把 $(n-1)$-形式 $\omega$ 写成一个 1-形式 $V$ 的 Hodge 对偶，
+\begin{equation*}
+\omega = *V,
+\tag{E.2}
+\end{equation*}
+其分量为
+\begin{equation*}
+\begin{aligned}
+\omega_{\mu_1\cdots\mu_{n-1}} &= (*V)_{\mu_1\cdots\mu_{n-1}} \\
+&= \epsilon^\nu{}_{\mu_1\cdots\mu_{n-1}} V_\nu \\
+&= \epsilon_{\nu\mu_1\cdots\mu_{n-1}} V^\nu,
+\end{aligned}
+\tag{E.3}
+\end{equation*}
+其中 $\epsilon$ 是 $M$ 上的 Levi–Civita $n$-形式，并且我们在最后一行把 $V$ 的指标升了上去。如果想从 $\omega$ 构造出 $V$，只需再作用一次 Hodge 算符，便得到
+\begin{equation*}
+V = (-1)^{s+n-1} **V = (-1)^{s+n-1} *\omega,
+\tag{E.4}
+\end{equation*}
+% ---- 书页 454 / p469 ----
+其中当号差为洛伦兹型时 $s$ 取 $-1$，为欧几里得型时取 $+1$。$\omega = *V$ 的外微分是一个 $n$-形式，由下式给出：
+\begin{align*}
+(d\omega)_{\lambda\mu_1\cdots\mu_{n-1}} &= (d*V)_{\lambda\mu_1\cdots\mu_{n-1}} \\
+&= n\nabla_{[\lambda}\left(\epsilon_{|\nu|\mu_1\cdots\mu_{n-1}]}V^\nu\right) \\
+&= n\epsilon_{\nu[\mu_1\cdots\mu_{n-1}}\nabla_{\lambda]}V^\nu,
+\tag{E.5}
+\end{align*}
+其中 $n$ 是区域的维数，不要把它与边界的法矢量 $n^\mu$ 混淆。不过，任何 $n$-形式都可以写成一个函数 $f(x)$ 乘以 $\epsilon$，或者等价地写成 $f(x)$ 的 Hodge 对偶，
+\begin{equation*}
+d\omega = f\epsilon = *f.
+\tag{E.6}
+\end{equation*}
+对两边取对偶，给出
+\begin{equation*}
+f = (-1)^s **f = (-1)^s *d\omega.
+\tag{E.7}
+\end{equation*}
+在我们的情形，
+\begin{align*}
+*d\omega &= *d*V \\
+&= \frac{1}{n!}\epsilon^{\lambda\mu_1\cdots\mu_{n-1}}\left(n\epsilon_{\nu[\mu_1\cdots\mu_{n-1}}\nabla_{\lambda]}V^\nu\right) \\
+&= \frac{1}{(n-1)!}(-1)^s(n-1)!\delta^\lambda_\nu\nabla_\lambda V^\nu \\
+&= (-1)^s\nabla_\nu V^\nu.
+\tag{E.8}
+\end{align*}
+最后我们回忆起，Levi–Civita 张量其实就是体积元，
+\begin{align*}
+\epsilon &= \sqrt{|g|}\,dx^1\wedge\cdots\wedge dx^n \\
+&= \sqrt{|g|}\,d^nx.
+\tag{E.9}
+\end{align*}
+把所有这些合在一起，我们发现
+\begin{equation*}
+d\omega = \nabla_\nu V^\nu\sqrt{|g|}\,d^nx.
+\tag{E.10}
+\end{equation*}
+所以，$n$ 维流形上 $(n-1)$-形式的外微分，不过是用一种利落的方式来表示一个矢量的散度（乘以度规体积元）罢了。
+
+为了弄明白式 (E.1) 的右边是什么意思，我们从上一个附录回忆起，超曲面（比如边界）上的诱导体积元由下式给出：
+\begin{equation*}
+\widehat{\epsilon} = \sqrt{|\gamma|}\,d^{n-1}y,
+\tag{E.11}
+\end{equation*}
+其中 $\gamma_{ij}$ 是边界上采用坐标 $y^i$ 时的诱导度规。$\widehat{\epsilon}$ 在 $M$ 的 $x^\mu$ 坐标下的分量为
+\begin{equation*}
+\widehat{\epsilon}_{\mu_1\cdots\mu_{n-1}} = n^\lambda\epsilon_{\lambda\mu_1\cdots\mu_{n-1}},
+\tag{E.12}
+\end{equation*}
+% ---- 书页 455 / p470 ----
+其中 $n^\mu$ 是边界的单位法矢量。对一般的超曲面而言，$n^\mu$ 的符号是任意的；但当超曲面是某个区域的边界时，我们就有指向内（inward-pointing）与指向外（outward-pointing）之分。至关重要的一点是：为了正确地恢复 Stokes 定理，$n^\mu$ 应当这样选取——若边界是类时的则指向内，若边界是类空的则指向外。既然 $\omega$ 是一个 $(n-1)$-形式，把它限制到 $(n-1)$ 维边界上时必然与 $\widehat{\epsilon}$ 成正比。沿着上一段的思路，我们可以导出
+\begin{equation*}
+\omega = n_\mu V^\mu\sqrt{|\gamma|}\,d^{n-1}y.
+\tag{E.13}
+\end{equation*}
+于是，Stokes 定理把矢量场的散度与它在边界上的取值联系了起来：
+\begin{equation*}
+\boxed{\int_M d^nx\,\sqrt{|g|}\,\nabla_\mu V^\mu = \int_{\partial M} d^{n-1}y\,\sqrt{|\gamma|}\,n_\mu V^\mu.}
+\tag{E.14}
+\end{equation*}
+这是广义相对论中最常见的 Stokes 定理形式。
+
+大家可别留下这样的印象，仿佛要使用 Stokes 定理就必须退回到指标记号。作为一个简单的反例，让我们来证明：与一个守恒流相联系的电荷在一种非常普遍的意义上是“守恒”的——它不仅在某个特定坐标系中不随时间变化，而且（在合理假设下）穿过一个类空超曲面 $\Sigma$ 的电荷完全与超曲面的选取无关。先设想我们有一个守恒的流 $J^\mu$，守恒的意思是
+\begin{equation*}
+\nabla_\mu J^\mu = 0.
+\tag{E.15}
+\end{equation*}
+用 1-形式 $J_\mu = g_{\mu\nu}J^\nu$ 来表示，我们可以把守恒条件翻译成
+\begin{equation*}
+d(*J) = 0.
+\tag{E.16}
+\end{equation*}
+然后我们如下定义穿过超曲面 $\Sigma$ 的电荷：
+\begin{equation*}
+Q_\Sigma = -\int_\Sigma *J.
+\tag{E.17}
+\end{equation*}
+通常我们会把 $\Sigma$ 选成常数时间的超曲面，这样 $Q_\Sigma$ 就是该时刻遍布空间的全部电荷；但这个公式的适用范围更广。那个负号是一种约定，通过（暂时）换回分量可以理解它。与式 (E.2) 和式 (E.13) 相比较，我们可以把式 (E.17) 变成
+\begin{equation*}
+Q_\Sigma = -\int_\Sigma d^{n-1}y\,\sqrt{|\gamma|}\,n_\mu J^\mu.
+\tag{E.18}
+\end{equation*}
+我们看到，这个负号的作用是补偿 $n^\mu$ 的分量在降指标时其时间分量所获得的负号，从而保证正的电荷%
+% ---- 书页 456 / p471 ----
+密度 $\rho = J^0$ 给出正的总积分电荷。接着设想一个四维时空区域 $R$，它定义为两个类空超曲面 $\Sigma_1$ 与 $\Sigma_2$ 之间的区域，如图 E.1 所示；连接这两个超曲面的那部分边界被假定挪到了无穷远处，在那里所有的场都为零，因而可以忽略。守恒律 (E.16) 与 Stokes 定理 (E.1) 于是给出
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_E.1.pdf}
+\caption*{图 E.1\quad 时空中的一个区域 $R$，其空间边界位于无穷远；未来与过去边界包含两个类空超曲面 $\Sigma_1$ 和 $\Sigma_2$。}
+\end{figure}
+
+\begin{align*}
+0 &= \int_R d(*J) \\
+&= \int_{\partial R} *J \\
+&= \int_{\Sigma_1} *J - \int_{\Sigma_2} *J \\
+&= Q_1 - Q_2.
+\tag{E.19}
+\end{align*}
+第三行中的负号来源于 $\Sigma_2$ 上从 $R$ 继承而来的定向；此时法矢量指向内，与在 $\Sigma_2$ 上积分时惯常的取法恰好相反。我们看到，只要所选的类空超曲面 $\Sigma$ 满足流在无穷远处为零，$Q_\Sigma$ 对任何这样的超曲面都是相同的。这样，Stokes 定理表明了无散（divergenceless）流的存在如何蕴含着一个守恒电荷的存在。
+
+Stokes 定理的另一个用途（对应于三维欧几里得空间中 Gauss 定理的惯常用法）是真正通过在超曲面上积分来算出这个电荷 $Q$。暂时想想真实世界，让我们考虑四维时空中的麦克斯韦方程组。这些方程描述电磁场强张量 $F_{\mu\nu}$ 如何对守恒的电流四矢量作出响应：
+\begin{equation*}
+\nabla_\mu F^{\nu\mu} = J^\nu.
+\tag{E.20}
+\end{equation*}
+于是我们可以把 $\nabla_\mu F^{\nu\mu}$ 代入式 (E.18) 来计算电荷：
+\begin{equation*}
+Q = -\int_\Sigma d^3y\,\sqrt{|\gamma|}\,n_\mu\nabla_\nu F^{\mu\nu}.
+\tag{E.21}
+\end{equation*}
+每当遇到一个反对称张量场 $F^{\mu\nu} = -F^{\nu\mu}$ 的散度在超曲面 $\Sigma$ 上的积分时，我们都可以仿照导出式 (E.14) 的步骤，把散度与 $F^{\mu\nu}$ 在边界上的取值联系起来，不过这次是在空间无穷远处（前提是该超曲面是类时的）：
+\begin{equation*}
+\boxed{\int_\Sigma d^{n-1}y\,\sqrt{|\gamma|}\,n_\mu\nabla_\nu F^{\mu\nu} = \int_{\partial\Sigma} d^{n-2}z\,\sqrt{|\gamma^{(\partial\Sigma)}|}\,n_\mu\sigma_\nu F^{\mu\nu},}
+\tag{E.22}
+\end{equation*}
+其中诸 $z^a$ 是 $\partial\Sigma$ 上的坐标，$\gamma^{(\partial\Sigma)}_{ab}$ 是 $\partial\Sigma$ 上的诱导度规，而 $\sigma^\mu$ 是 $\partial\Sigma$ 的单位法矢量。你可能会担心对 $\partial\Sigma$ 的积分，因为%
+% ---- 书页 457 / p472 ----
+边界的边界为零；但 $\Sigma$ 并不是任何区域的完整边界，而只是其中一块，所以它当然可以有自己的边界。
+
+为了确认我们清楚自己正在做什么，让我们验证一下确实能在 Minkowski 空间中恢复出一个点粒子的电荷。把度规写成极坐标形式：
+\begin{equation*}
+ds^2 = -dt^2 + dr^2 + r^2d\theta^2 + r^2\sin^2\theta\,d\phi^2.
+\tag{E.23}
+\end{equation*}
+在我们的单位制下（Lorentz–Heaviside 约定，麦克斯韦方程组中不出现 $4\pi$），电荷 $q$ 的电场为
+\begin{equation*}
+E^r = \frac{q}{4\pi r^2},
+\tag{E.24}
+\end{equation*}
+其余分量为零；它与场强张量的关系是
+\begin{equation*}
+F^{tr} = -F^{rt} = E^r.
+\tag{E.25}
+\end{equation*}
+单位法矢量为
+\begin{equation*}
+n^\mu = (1,\,0,\,0,\,0),\qquad \sigma^\mu = (0,\,1,\,0,\,0),
+\tag{E.26}
+\end{equation*}
+于是
+\begin{equation*}
+n_\mu\sigma_\nu F^{\mu\nu} = -E^r = -\frac{q}{4\pi r^2}.
+\tag{E.27}
+\end{equation*}
+空间无穷远处二维球面上的度规为
+\begin{equation*}
+\gamma^{(S^2)}_{ab}\,dz^a dz^b = r^2d\theta^2 + r^2\sin^2\theta\,d\phi^2,
+\tag{E.28}
+\end{equation*}
+所以体积元为
+\begin{equation*}
+d^2z\sqrt{\gamma^{(S^2)}} = r^2\sin\theta\,d\theta\,d\phi.
+\tag{E.29}
+\end{equation*}
+把式 (E.27)、式 (E.29) 和式 (E.21) 代入式 (E.22)，给出
+\begin{align*}
+Q &= -\lim_{r\to\infty}\int_{S^2} d\theta\,d\phi\,r^2\sin\theta\left(-\frac{q}{4\pi r^2}\right) \\
+&= q,
+\tag{E.30}
+\end{align*}
+这正是我们要找的答案。
+
+% ---- 书页 458 / p473 ----
+% （本页为空白页）
+
+% 附录F Geodesic Congruences
+\chapter{测地线汇}
+
+% ---- 书页 459 / p474 ----
+在 3.10 节中我们导出了测地偏离方程，它支配着连接一个单参数邻近测地线族的分离矢量（separation vector）的演化。要更全面地了解邻近测地线的行为，就不能只考虑单参数族，而要考虑一整个测地线汇（congruence）。线汇是时空开区域中的一组曲线，使得区域中的每一点恰好落在其中一条曲线上。我们可以把测地线汇想象成描画一组互不相互作用的粒子在时空中沿互不相交的路径运动的轨迹。如果测地线相交，线汇就必然在该点终止。显然，在一个多维线汇中有很多信息需要追踪；我们感兴趣的将是单条测地线邻域内的局域行为，对此问题会变得相当容易处理。
+
+令 $U^\mu = dx^\mu/d\tau$ 为一个四维类时测地线汇的切矢量场；等价地说，它是某种无压流体（pressureless fluid）的四速度场。（倘若流体不是无压的，$U^\mu$ 的积分曲线一般就不会描述测地线。）类光测地线会带来一些特殊问题，我们稍后再回来讨论；现在只考虑类时的情形。作为参考，我们回忆一下，这个切矢量场是归一化的，并且满足测地线方程：
+\begin{equation*}
+U_\mu U^\mu = -1,\qquad U^\lambda\nabla_\lambda U^\mu = 0.
+\tag{F.1}
+\end{equation*}
+在 3.10 节讨论测地偏离方程时，我们考虑了从一个测地线指向邻近测地线的分离矢量 $V^\mu$，并发现它满足
+\begin{equation*}
+\frac{DV^\mu}{d\tau} \equiv U^\nu\nabla_\nu V^\mu = B^\mu{}_\nu V^\nu,
+\tag{F.2}
+\end{equation*}
+其中
+\begin{equation*}
+B^\mu{}_\nu = \nabla_\nu U^\mu.
+\tag{F.3}
+\end{equation*}
+（在第 3 章中我们用 $T$ 代替 $U$，用 $S$ 代替 $V$。）因此，张量 $B_{\mu\nu}$ 可以看成是在量度 $V^\mu$ 沿线汇不被平行移动的程度；换言之，它描述的是邻近测地线偏离完全平行的程度。
+
+为了处理一整个线汇而不只是单参数曲线族，我们可以想象架设一组与我们的%
+% ---- 书页 460 / p475 ----
+类时测地线正交的法矢量，并追踪它们的演化。这一组矢量不被平行移动这一事实，将告诉我们线汇中邻近的测地线如何演化。等价地，我们可以想象在某个点处放置一小球检验粒子，并想要定量描述这些粒子相对于其中心测地线的演化。幸运的是，所有我们需要追踪的只是 $B_{\mu\nu}$ 的行为。
+
+给定矢量场 $U^\mu$，在每一点 $p$ 我们考虑 $T_pM$ 中与 $U^\mu$ 垂直的矢量所对应的子空间。$T_pM$ 中的任何矢量都可以借助投影张量（projection tensor）投影到这个子空间中：
+\begin{equation*}
+P^\mu{}_\nu = \delta^\mu_\nu + U^\mu U_\nu,
+\tag{F.4}
+\end{equation*}
+这在我们讨论附录 D 的子流形时已经见过。这里我们不是投影到一个子流形上，而只是投影到切空间的一个矢量子空间上，但想法是一样的。我们注意到，$B_{\mu\nu}$ 已经处于法向子空间之中，因为
+\begin{align*}
+U^\mu B_{\mu\nu} &= U^\mu\nabla_\nu U_\mu = 0 \\
+U^\nu B_{\mu\nu} &= U^\nu\nabla_\nu U_\mu = 0.
+\tag{F.5}
+\end{align*}
+其中第一式来自 $\nabla_\nu(U^\mu U_\mu) = \nabla_\nu(-1) = 0$，第二式则来自测地线方程。我们不应把 $B_{\mu\nu}$ 与式 (D.53) 中的外曲率 $K_{\mu\nu}$ 混淆起来；区别在于，我们的切矢量场 $U^\mu$ 一般不会与任何超曲面正交。
+
+作为一个 (0, 2) 型张量，$B_{\mu\nu}$ 可以分解为对称部分与反对称部分，而对称部分还可以进一步分解为迹与无迹（trace-free）部分。由于 $B_{\mu\nu}$ 处于法向子空间中，我们可以用 $P_{\mu\nu}$ 来取这个分解中的迹。结果可以写成
+\begin{equation*}
+B_{\mu\nu} = \frac{1}{3}\theta P_{\mu\nu} + \sigma_{\mu\nu} + \omega_{\mu\nu}.
+\tag{F.6}
+\end{equation*}
+这里我们引入了三个描述这一分解的量，首先是线汇的\textbf{膨胀}（expansion）$\theta$，
+\begin{equation*}
+\theta = P^{\mu\nu}B_{\mu\nu} = \nabla_\mu U^\mu,
+\tag{F.7}
+\end{equation*}
+它就是 $B_{\mu\nu}$ 的迹。膨胀描述的是以我们的测地线为中心的检验粒子球的体积变化。它显然是一个标量，这也讲得通，因为体积的整体膨胀/收缩正是由一个单一的数来描述的。\textbf{切变}（shear）$\sigma_{\mu\nu}$ 由下式给出：
+\begin{equation*}
+\sigma_{\mu\nu} = B_{(\mu\nu)} - \frac{1}{3}\theta P_{\mu\nu}.
+\tag{F.8}
+\end{equation*}
+它是对称且无迹的。切变表示的是检验粒子集合形状上的畸变，即从初始的球变成椭球；其对称性代表了这样一个事实：沿（比方说）$x$ 方向的拉长%
+% ---- 书页 461 / p476 ----
+与沿 $-x$ 方向的拉长是同一回事。最后是\textbf{转动}（rotation）$\omega_{\mu\nu}$，由下式给出：
+\begin{equation*}
+\omega_{\mu\nu} = B_{[\mu\nu]}.
+\tag{F.9}
+\end{equation*}
+它是一个反对称张量，这也合乎情理；比如 $xy$ 分量描述的是绕 $z$ 轴的转动，而 $yx$ 分量描述的是绕同一轴反方向的转动。
+
+线汇的演化由这些量沿路径的协变导数 $D/d\tau = U^\sigma\nabla_\sigma$ 来描述。我们可以对整个张量 $B_{\mu\nu}$ 直接进行计算，然后再取相应的分解。我们得到
+\begin{align*}
+\frac{DB_{\mu\nu}}{d\tau} &\equiv U^\sigma\nabla_\sigma B_{\mu\nu} = U^\sigma\nabla_\sigma\nabla_\nu U_\mu \\
+&= U^\sigma\nabla_\nu\nabla_\sigma U_\mu + U^\sigma R^\lambda{}_{\mu\nu\sigma}U_\lambda \\
+&= \nabla_\nu(U^\sigma\nabla_\sigma U_\mu) - (\nabla_\nu U^\sigma)(\nabla_\sigma U_\mu) - R_{\lambda\mu\nu\sigma}U^\sigma U^\lambda \\
+&= -B^\sigma{}_\nu B_{\mu\sigma} - R_{\lambda\mu\nu\sigma}U^\sigma U^\lambda.
+\tag{F.10}
+\end{align*}
+对这个方程取迹，就得到膨胀的一个演化方程，
+\begin{equation*}
+\boxed{\frac{d\theta}{d\tau} = -\frac{1}{3}\theta^2 - \sigma_{\mu\nu}\sigma^{\mu\nu} + \omega_{\mu\nu}\omega^{\mu\nu} - R_{\mu\nu}U^\mu U^\nu.}
+\tag{F.11}
+\end{equation*}
+这就是 Raychaudhuri 方程，它在奇点定理的证明中起着关键作用。【有时也放弃线汇必须服从测地线方程的要求；这不过是在右边额外添加一项 $\nabla_\mu(U^\nu\nabla_\nu U^\mu)$ 而已。】类似地，式 (F.10) 的对称无迹部分为
+\begin{align*}
+\frac{D\sigma_{\mu\nu}}{d\tau} &= -\frac{2}{3}\theta\sigma_{\mu\nu} - \sigma_{\mu\alpha}\sigma^\alpha{}_\nu - \omega_{\mu\rho}\omega^\rho{}_\nu + \frac{1}{3}P_{\mu\nu}\left(\sigma_{\alpha\beta}\sigma^{\alpha\beta} - \omega_{\alpha\beta}\omega^{\alpha\beta}\right) \\
+&\quad + C_{\alpha\nu\mu\beta}U^\alpha U^\beta + \frac{1}{2}\bar{R}_{\mu\nu},
+\tag{F.12}
+\end{align*}
+其中 $\bar{R}_{\mu\nu}$ 是 $R_{\mu\nu}$ 经空间投影后的无迹部分，
+\begin{equation*}
+\bar{R}_{\mu\nu} = P^\alpha{}_\mu P^\beta{}_\nu R_{\alpha\beta} - \frac{1}{3}P_{\mu\nu}P^{\alpha\beta}R_{\alpha\beta},
+\tag{F.13}
+\end{equation*}
+而式 (F.10) 的反对称部分为
+\begin{equation*}
+\frac{D\omega_{\mu\nu}}{d\tau} = -\frac{2}{3}\theta\omega_{\mu\nu} + \sigma_\mu{}^\alpha\omega_{\nu\alpha} - \sigma_\nu{}^\alpha\omega_{\mu\alpha}.
+\tag{F.14}
+\end{equation*}
+这些方程用得不像 Raychaudhuri 方程那样频繁，但有它们在手总是好事。
+
+% ---- 书页 462 / p477 ----
+让我们简要举一个 Raychaudhuri 方程用法的例子。首先注意到，由于切变和转动都是“空间的”张量，我们有
+\begin{equation*}
+\sigma_{\mu\nu}\sigma^{\mu\nu} \geq 0,\qquad \omega_{\mu\nu}\omega^{\mu\nu} \geq 0.
+\tag{F.15}
+\end{equation*}
+其次注意到，式 (F.11) 中的最后一项，恰恰就是把 Einstein 方程与强能量条件（Strong Energy Condition, SEC）结合起来时所出现的那一项；由 Einstein 方程我们知道
+\begin{equation*}
+R_{\mu\nu}U^\mu U^\nu = 8\pi G\left(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\right)U^\mu U^\nu,
+\tag{F.16}
+\end{equation*}
+而强能量条件要求这个表达式的右边对任何类时 $U^\mu$ 都非负。于是我们有
+\begin{equation*}
+R_{\mu\nu}U^\mu U^\nu \geq 0
+\tag{F.17}
+\end{equation*}
+倘若强能量条件成立。最后注意到，$\omega_{\mu\nu} = 0$ 当且仅当矢量场 $U^\mu$ 与一族超曲面正交。这可以直接从如下事实得到：转动是一个空间张量（$U^\mu\omega_{\mu\nu} = 0$），而由 Frobenius 定理，矢量场 $U^\mu$ 超曲面正交（hypersurface-orthogonal）的充要条件是 $U_{[\mu}\nabla_\nu U_{\rho]}$；细节留给大家自行核验。因此，如果我们有一个切矢量场超曲面正交的线汇，而时空又服从 Einstein 方程和强能量条件，则 Raychaudhuri 方程蕴含
+\begin{equation*}
+\frac{d\theta}{d\tau} \leq -\frac{1}{3}\theta^2.
+\tag{F.18}
+\end{equation*}
+这个方程容易积分，得到
+\begin{equation*}
+\theta^{-1}(\tau) \geq \theta_0^{-1} + \frac{1}{3}\tau.
+\tag{F.19}
+\end{equation*}
+考虑一个超曲面正交的线汇，它初始时是会聚的（$\theta_0 < 0$）而不是膨胀的。那么式 (F.19) 告诉我们，会聚将持续下去，并且我们必然在有限固有时 $\tau \leq -3\theta_0^{-1}$ 内碰到一个焦散（caustic，即测地线相交之处）。换言之，服从强能量条件的物质永远不可能开始把测地线推开，它只会增大测地线会聚的速率。当然，这个结果只适用于某个任意选定的线汇，而且焦散的出现肯定不代表时空中存在任何奇点（测地线时时刻刻都在相交，即便在平直时空中也是如此）。但奇点定理的许多证明正是利用 Raychaudhuri 方程的这一性质，来证明时空必定在某种意义上测地不完备。
+
+接下来我们转向类光测地线汇的行为。这要更棘手一些，根本原因在于我们的出发点（研究切矢量场法向的三维子空间中矢量的演化）不再那么有意义，因为类光曲线的切矢量与它自身正交。相反，在类光情形下我们关心的是这样的二维子空间中矢量的演化：它由与类光切矢量场 $k^\mu = dx^\mu/d\lambda$ 正交的“空间”矢量组成。
+
+% ---- 书页 463 / p478 ----
+遗憾的是，定义这个子空间并没有唯一的方法，因为处于不同洛伦兹系中的观者对什么算作空间矢量有不同的看法。面对这一困境，我们有两种说得过去的做法。一种巧妙的做法，是从与 $k^\mu$ 正交的三维矢量空间出发，取等价类——两个矢量若相差 $k^\mu$ 的倍数就算等价——由此定义一个抽象的二维矢量空间。另一种比较笨拙的做法（我们将采用的就是这一种），则是干脆再选一个“辅助”（auxiliary）类光矢量 $l^\mu$，它（在某个参考系中）指向与 $k^\mu$ 相反的空间方向，并归一化为
+\begin{equation*}
+l^\mu l_\mu = 0,\qquad l^\mu k_\mu = -1.
+\tag{F.20}
+\end{equation*}
+我们进一步要求这个辅助矢量是被平行移动的：
+\begin{equation*}
+k^\mu\nabla_\mu l^\nu = 0,
+\tag{F.21}
+\end{equation*}
+这与式 (F.20) 相容，因为平行移动保持内积。辅助类光矢量 $l^\mu$ 绝不是唯一的，因为我们刚刚指出，“指向相反的空间方向”这一概念依赖于参考系。尽管如此，我们可以作出一个选择，并希望重要的量不依赖于这个任意的选取。这样做了之后，我们感兴趣的二维法向矢量空间记作 $T_\perp$，它恰好由与 $k^\mu$ 和 $l^\mu$ 都正交的那些矢量 $V^\mu$ 组成：
+\begin{equation*}
+T_\perp = \{V^\mu \mid V^\mu k_\mu = 0,\, V^\mu l_\mu = 0\}.
+\tag{F.22}
+\end{equation*}
+我们现在的任务，就是追踪生活在这个子空间中的偏离矢量（它们代表一族邻近的类光测地线）的演化。
+
+投影到法向子空间 $T_\perp$ 需要对投影张量的定义稍作修改；结果发现
+\begin{equation*}
+Q_{\mu\nu} = g_{\mu\nu} + k_\mu l_\nu + k_\nu l_\mu
+\tag{F.23}
+\end{equation*}
+就能奏效。也就是说，作用在 $T_\perp$ 中的矢量 $V^\mu$、$W^\mu$ 上时，$Q_{\mu\nu}$ 的表现如同度规，而作用在任何与 $k^\mu$ 或 $l^\mu$ 成比例的东西上都给出零。这个投影张量的一些有用性质包括
+\begin{gather*}
+Q_{\mu\nu}V^\mu W^\nu = g_{\mu\nu}V^\mu W^\nu \\
+Q^\mu{}_\nu V^\nu = V^\mu \\
+Q^\mu{}_\nu k^\nu = 0 \\
+Q^\mu{}_\nu l^\nu = 0 \\
+Q^\mu{}_\nu Q^\nu{}_\sigma = Q^\mu{}_\sigma \\
+k^\sigma\nabla_\sigma Q^\mu{}_\nu = 0.
+\tag{F.24}
+\end{gather*}
+（译注：原书第一行左端印作 $Q_{\mu\nu}V^\nu W^\nu$，指标显然误排，现按右端之意改为 $V^\mu W^\nu$。）
+
+% ---- 书页 464 / p479 ----
+正如类时测地线的情形，法向偏离矢量 $V^\mu$ 不被平行传播，由张量 $B^\mu{}_\nu = \nabla_\nu k^\mu$ 支配，具体说来就是
+\begin{equation*}
+\frac{DV^\mu}{d\lambda} \equiv k^\nu\nabla_\nu V^\mu = B^\mu{}_\nu V^\nu.
+\tag{F.25}
+\end{equation*}
+然而，在类光情形下，张量 $B_{\mu\nu}$ 实际上超出了我们的需要；相关信息完全包含在投影之后的版本中，
+\begin{equation*}
+\widehat{B}^\mu{}_\nu = Q^\mu{}_\alpha Q^\beta{}_\nu B^\alpha{}_\beta.
+\tag{F.26}
+\end{equation*}
+要看清这一点，我们只需摆弄一下式 (F.25)，并用上式 (F.24) 中的各条性质：
+\begin{align*}
+\frac{DV^\mu}{d\lambda} &= k^\nu\nabla_\nu V^\mu \\
+&= k^\nu\nabla_\nu(Q^\mu{}_\rho V^\rho) \\
+&= Q^\mu{}_\rho k^\nu\nabla_\nu V^\rho \\
+&= Q^\mu{}_\rho B^\rho{}_\nu V^\nu \\
+&= Q^\mu{}_\rho B^\rho{}_\nu Q^\nu{}_\sigma V^\sigma \\
+&= \widehat{B}^\mu{}_\sigma V^\sigma.
+\tag{F.27}
+\end{align*}
+所以我们只需追踪这个投影后张量的演化，而不必理会完整的 $B_{\mu\nu}$。
+
+为了理解这一演化，我们再次把它分解成膨胀、切变和转动：
+\begin{equation*}
+\widehat{B}_{\mu\nu} = \frac{1}{2}\theta Q_{\mu\nu} + \widehat{\sigma}_{\mu\nu} + \widehat{\omega}_{\mu\nu},
+\tag{F.28}
+\end{equation*}
+其中
+\begin{gather*}
+\theta = Q^{\mu\nu}\widehat{B}_{\mu\nu} = \widehat{B}^\mu{}_\mu \\
+\widehat{\sigma}_{\mu\nu} = \widehat{B}_{(\mu\nu)} - \frac{1}{2}\theta Q_{\mu\nu} \\
+\widehat{\omega}_{\mu\nu} = \widehat{B}_{[\mu\nu]}.
+\tag{F.29}
+\end{gather*}
+我们这里出现的是因子 $1/2$ 而不是 $1/3$，因为我们的法向空间 $T_\perp$ 是二维的，这也体现在 $Q^{\mu\nu}Q_{\mu\nu} = 2$ 这一事实之中。与类时情形一样，$\widehat{\omega}_{\mu\nu} = 0$ 是线汇超曲面正交的充要条件。$\widehat{B}_{\mu\nu}$ 沿路径的演化由下式给出：
+\begin{align*}
+\frac{D\widehat{B}_{\mu\nu}}{d\lambda} &\equiv k^\sigma\nabla_\sigma\widehat{B}_{\mu\nu} = k^\sigma\nabla_\sigma(Q^\alpha{}_\mu Q^\beta{}_\nu\nabla_\alpha k_\beta) \\
+&= Q^\alpha{}_\mu Q^\beta{}_\nu k^\sigma\nabla_\sigma\nabla_\alpha k_\beta \\
+% ---- 书页 465 / p480 ----
+&= -Q^\alpha{}_\mu Q^\beta{}_\nu\left(B_\alpha{}^\sigma B_{\beta\sigma} + R_{\alpha\lambda\beta\sigma}k^\lambda k^\sigma\right) \\
+&= -\widehat{B}_\mu{}^\sigma\widehat{B}_{\nu\sigma} - Q^\alpha{}_\mu Q^\beta{}_\nu R_{\alpha\lambda\beta\sigma}k^\lambda k^\sigma.
+\tag{F.30}
+\end{align*}
+（译注：原书 (F.30) 末行曲率项印作 $R_{\mu\lambda\nu\sigma}$，但这样与其前面的 $Q^\alpha{}_\mu Q^\beta{}_\nu$ 相配则指标失衡；按上行的 $R_{\alpha\lambda\beta\sigma}$ 改正。）
+
+继续沿着我们以前的逻辑，对这个方程取迹，就可以得到类光测地线膨胀的演化方程，
+\begin{equation*}
+\frac{d\theta}{d\lambda} = -\frac{1}{2}\theta^2 - \widehat{\sigma}_{\mu\nu}\widehat{\sigma}^{\mu\nu} + \widehat{\omega}_{\mu\nu}\widehat{\omega}^{\mu\nu} - R_{\mu\nu}k^\mu k^\nu.
+\tag{F.31}
+\end{equation*}
+令人欣喜的是，这个方程最终与我们任意选定的辅助矢量 $l^\mu$ 完全无关。首先，膨胀本身就与 $l^\mu$ 无关，这很容易验证：
+\begin{align*}
+\theta &= Q^{\mu\nu}\widehat{B}_{\mu\nu} \\
+&= Q^{\mu\nu}B_{\mu\nu} \\
+&= g^{\mu\nu}B_{\mu\nu},
+\tag{F.32}
+\end{align*}
+其中第二步用了 $Q^{\mu\nu}Q^\alpha{}_\nu = Q^{\mu\alpha}$，第三步用了 $k^\mu B_{\mu\nu} = k^\nu B_{\mu\nu} = 0$。（这就是为什么我们从头到尾都不必给 $\theta$ 戴帽子。）其次，$\widehat{\sigma}_{\mu\nu}\widehat{\sigma}^{\mu\nu}$ 与 $\widehat{\omega}_{\mu\nu}\widehat{\omega}^{\mu\nu}$ 同样与 $l^\mu$ 无关（欢迎大家自行验证），尽管 $\widehat{\sigma}_{\mu\nu}$ 和 $\widehat{\omega}_{\mu\nu}$ 本身并非如此。最后，在取迹时，投影张量从曲率张量那一项中消失了。因此，我们得到了关于膨胀演化的一个良定义的概念，它与我们作出的任何任意选择无关。注意到，由于 $k^\mu$ 是类光的，Einstein 方程蕴含
+\begin{align*}
+R_{\mu\nu}k^\mu k^\nu &= 8\pi G\left(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\right)k^\mu k^\nu \\
+&= 8\pi G T_{\mu\nu}k^\mu k^\nu.
+\tag{F.33}
+\end{align*}
+要使它非负，我们只需援引类光能量条件（Null Energy Condition）——在第 3 章讨论过的所有能量条件中，这是限制最弱的一个。于是，与类时测地线相比，类光测地线在更一般的条件下就会会聚成焦散。
+
+我们还可以继续下去，得到切变的演化方程，
+\begin{equation*}
+\frac{D\widehat{\sigma}_{\mu\nu}}{d\lambda} = -\theta\widehat{\sigma}_{\mu\nu} - Q^\alpha{}_\mu Q^\beta{}_\nu C_{\alpha\lambda\beta\sigma}k^\lambda k^\sigma,
+\tag{F.34}
+\end{equation*}
+（译注：原书此式曲率项印作 $C_{\mu\lambda\nu\sigma}$，与 $Q^\alpha{}_\mu Q^\beta{}_\nu$ 相配则指标失衡，现按 (F.30) 同样的思路改为 $C_{\alpha\lambda\beta\sigma}$。）
+以及转动的演化方程，
+\begin{equation*}
+\frac{D\widehat{\omega}_{\mu\nu}}{d\lambda} = -\theta\widehat{\omega}_{\mu\nu}.
+\tag{F.35}
+\end{equation*}
+这些方程不如膨胀的那个方程来得自然，因为切变和转动确实依赖于我们对 $l^\mu$ 的选取；尽管如此，在具体情形中它们仍然可能有用。
+
+% ---- 书页 466 / p481 ----
+% （本页为空白页）
+
+% 附录G Conformal Transformations
+
+\chapter{共形变换}
+
+% ---- 书页 467 / p482 ----
+\textbf{共形变换}（conformal transformation）本质上是一种局部的标度改变。由于距离是靠度规来量度的，这类变换是通过用一个依赖于时空位置的（非零）函数去乘度规来实现的：
+\begin{equation*}
+\tilde{g}_{\mu\nu} = \omega^{2}(x) g_{\mu\nu},
+\tag{G.1}
+\end{equation*}
+或等价地
+\begin{equation*}
+\widetilde{ds}^{2} = \omega^{2}(x) ds^{2},
+\tag{G.2}
+\end{equation*}
+其中 $\omega(x)$ 是某个非零函数。（这里用 $x$ 表示时空坐标 $x^{\mu}$ 的全体。）注意，逆共形变换是平凡的：$g_{\mu\nu} = \omega^{-2}\tilde{g}_{\mu\nu}$。这类变换在广义相对论中有许多用途；我们最钟爱的两个用途是：在标量-张量理论中更换动力学变量（如 4.8 节所述），以及把时空重新映射成便于使用的共形图（见下一个附录）。
+
+我们首先指出一个关键事实：\emph{类光曲线在共形变换下保持不变}。这句话的意思很简单：如果 $x^{\mu}(\lambda)$ 是一条关于 $g_{\mu\nu}$ 为类光的曲线，那么它关于 $\tilde{g}_{\mu\nu}$ 也是类光的。只要我们明白“曲线 $x^{\mu}(\lambda)$ 为类光，当且仅当它的切矢量 $\mathrm{d}x^{\mu}/\mathrm{d}\lambda$ 为类光”，这一点便立即得证：
+\begin{equation*}
+g_{\mu\nu}\frac{dx^{\mu}}{d\lambda}\frac{dx^{\nu}}{d\lambda} = 0.
+\tag{G.3}
+\end{equation*}
+于是，在与它共形相关的度规中，我们有
+\begin{equation*}
+\tilde{g}_{\mu\nu}\frac{dx^{\mu}}{d\lambda}\frac{dx^{\nu}}{d\lambda}
+= \omega^{2}(x) g_{\mu\nu}\frac{dx^{\mu}}{d\lambda}\frac{dx^{\nu}}{d\lambda} = 0.
+\tag{G.4}
+\end{equation*}
+这样，按一个度规定义为类光的曲线，按任何与它共形相关的度规定义也是类光的。我们可以说，“共形变换保持光锥不变。”（事实上，你可以验证它们也保持任意两个四维矢量之间的夹角不变；我们的共形变换与复分析中人们熟悉的共形变换正共享这一特点。）
+
+接下来让我们考虑几何量在共形变换下如何改变。共形变换不是坐标变换，而是几何本身的实际改变——例如，$\tilde{g}_{\mu\nu}$ 的类时测地线一般会不同于 $g_{\mu\nu}$ 的类时测地线。不过，我们可以利用共形变换来更换动力学变量：任何作为 $g_{\mu\nu}$ 的函数的量，都同样可以看作 $\tilde{g}_{\mu\nu}$ 与 $\omega(x)$ 的函数。这时我们说这些量被表达在\textbf{共形框架}（conformal frame）之中。在本附录里，我们汇集一些表达式，说明原度规 $g_{\mu\nu}$ 中的各量如何与共形度规 $\tilde{g}_{\mu\nu}$ 中的各量相联系。
+
+% ---- 书页 468 / p483 ----
+我们先从 Christoffel 符号开始考察。由于联络系数对度规的导数是线性的，对逆度规也是线性的，经共形变换后的联络具有如下形式：
+\begin{equation*}
+\widetilde{\Gamma}^{\rho}{}_{\mu\nu} = \Gamma^{\rho}{}_{\mu\nu} + C^{\rho}{}_{\mu\nu}.
+\tag{G.5}
+\end{equation*}
+$C^{\rho}{}_{\mu\nu}$ 显然是一个张量，因为它是两个联络之差。显式计算表明它由下式给出：
+\begin{equation*}
+C^{\rho}{}_{\mu\nu} = \omega^{-1}\left(\delta^{\rho}_{\mu}\nabla_{\nu}\omega + \delta^{\rho}_{\nu}\nabla_{\mu}\omega - g_{\mu\nu}g^{\rho\lambda}\nabla_{\lambda}\omega\right).
+\tag{G.6}
+\end{equation*}
+当我们考虑 Riemann 张量在共形变换下的行为时，这个公式立刻就派上了用场。事实上，对任何形如式 (G.5) 的联络改变，我们都有
+\begin{equation*}
+\widetilde{R}^{\rho}{}_{\sigma\mu\nu} = R^{\rho}{}_{\sigma\mu\nu} + \nabla_{\mu}C^{\rho}{}_{\nu\sigma} - \nabla_{\nu}C^{\rho}{}_{\mu\sigma} + C^{\rho}{}_{\mu\lambda}C^{\lambda}{}_{\nu\sigma} - C^{\rho}{}_{\nu\lambda}C^{\lambda}{}_{\mu\sigma}.
+\tag{G.7}
+\end{equation*}
+于是，只需代入并埋头演算，就得到
+\begin{align*}
+\widetilde{R}^{\rho}{}_{\sigma\mu\nu} = R^{\rho}{}_{\sigma\mu\nu} &- 2\left(\delta^{\rho}_{[\mu}\delta^{\alpha}_{\nu]}\delta^{\beta}_{\sigma} - g_{\sigma[\mu}\delta^{\alpha}_{\nu]}g^{\rho\beta}\right)\omega^{-1}(\nabla_{\alpha}\nabla_{\beta}\omega) \\
+&+ 2\left(2\delta^{\rho}_{[\mu}\delta^{\alpha}_{\nu]}\delta^{\beta}_{\sigma} - 2g_{\sigma[\mu}\delta^{\alpha}_{\nu]}g^{\rho\beta} + g_{\sigma[\mu}\delta^{\rho}_{\nu]}g^{\alpha\beta}\right)\omega^{-2}(\nabla_{\alpha}\omega)(\nabla_{\beta}\omega).
+\tag{G.8}
+\end{align*}
+把第一个和第三个指标缩并，就得到 Ricci 张量，
+\begin{align*}
+\widetilde{R}_{\sigma\nu} = R_{\sigma\nu} &- \left[(n-2)\delta^{\alpha}_{\sigma}\delta^{\beta}_{\nu} + g_{\sigma\nu}g^{\alpha\beta}\right]\omega^{-1}(\nabla_{\alpha}\nabla_{\beta}\omega) \\
+&+ \left[2(n-2)\delta^{\alpha}_{\sigma}\delta^{\beta}_{\nu} - (n-3)g_{\sigma\nu}g^{\alpha\beta}\right]\omega^{-2}(\nabla_{\alpha}\omega)(\nabla_{\beta}\omega),
+\tag{G.9}
+\end{align*}
+其中 $n$ 是维数。提升一个指标（利用 $\tilde{g}^{\mu\nu} = \omega^{-2}g^{\mu\nu}$）并再作一次缩并，就得到标量曲率，
+\begin{equation*}
+\widetilde{R} = \omega^{-2}R - 2(n-1)g^{\alpha\beta}\omega^{-3}(\nabla_{\alpha}\nabla_{\beta}\omega) - (n-1)(n-4)g^{\alpha\beta}\omega^{-4}(\nabla_{\alpha}\omega)(\nabla_{\beta}\omega).
+\tag{G.10}
+\end{equation*}
+另一个有用的量是标量场 $\phi$ 的协变导数。一阶协变导数在原框架与共形框架中是相等的，因为二者都等于偏导数：
+\begin{equation*}
+\widetilde{\nabla}_{\mu}\phi = \nabla_{\mu}\phi = \partial_{\mu}\phi.
+\tag{G.11}
+\end{equation*}
+
+% ---- 书页 469 / p484 ----
+不过，二阶导数涉及 Christoffel 符号，因此具有非平凡的变换律：
+\begin{equation*}
+\widetilde{\nabla}_{\mu}\widetilde{\nabla}_{\nu}\phi = \nabla_{\mu}\nabla_{\nu}\phi - \left(\delta^{\alpha}_{\mu}\delta^{\beta}_{\nu} + \delta^{\beta}_{\mu}\delta^{\alpha}_{\nu} - g_{\mu\nu}g^{\alpha\beta}\right)\omega^{-1}(\nabla_{\alpha}\omega)(\nabla_{\beta}\phi).
+\tag{G.12}
+\end{equation*}
+我们可以用 $\tilde{g}^{\mu\nu}$ 对它缩并，得到 d'Alembert 算符，
+\begin{equation*}
+\widetilde{\Box}\phi = \omega^{-2}\Box\phi + (n-2)g^{\alpha\beta}\omega^{-3}(\nabla_{\alpha}\omega)(\nabla_{\beta}\phi).
+\tag{G.13}
+\end{equation*}
+最后，我们也许想反其道而行，用共形度规来表达原度规中的各个量。这不过是件繁琐的计算活儿；为方便起见，这里把答案抄录如下。曲率张量及其缩并为
+\begin{align*}
+R^{\rho}{}_{\sigma\mu\nu} = \widetilde{R}^{\rho}{}_{\sigma\mu\nu} &+ 2\left(\delta^{\rho}_{[\mu}\delta^{\alpha}_{\nu]}\delta^{\beta}_{\sigma} - \tilde{g}_{\sigma[\mu}\delta^{\alpha}_{\nu]}\tilde{g}^{\rho\beta}\right)\omega^{-1}(\widetilde{\nabla}_{\alpha}\widetilde{\nabla}_{\beta}\omega) \\
+&+ 2\tilde{g}_{\sigma[\mu}\delta^{\rho}_{\nu]}\tilde{g}^{\alpha\beta}\,\omega^{-2}(\widetilde{\nabla}_{\alpha}\omega)(\widetilde{\nabla}_{\beta}\omega),
+\tag{G.14}
+\end{align*}
+\begin{align*}
+R_{\sigma\nu} = \widetilde{R}_{\sigma\nu} &+ \left[(n-2)\delta^{\alpha}_{\sigma}\delta^{\beta}_{\nu} + \tilde{g}_{\sigma\nu}\tilde{g}^{\alpha\beta}\right]\omega^{-1}(\widetilde{\nabla}_{\alpha}\widetilde{\nabla}_{\beta}\omega) \\
+&- (n-1)\tilde{g}_{\sigma\nu}\tilde{g}^{\alpha\beta}\,\omega^{-2}(\widetilde{\nabla}_{\alpha}\omega)(\widetilde{\nabla}_{\beta}\omega),
+\tag{G.15}
+\end{align*}
+以及
+\begin{equation*}
+R = \omega^{2}\widetilde{R} + 2(n-1)\tilde{g}^{\alpha\beta}\omega(\widetilde{\nabla}_{\alpha}\widetilde{\nabla}_{\beta}\omega) - n(n-1)\tilde{g}^{\alpha\beta}(\widetilde{\nabla}_{\alpha}\omega)(\widetilde{\nabla}_{\beta}\omega),
+\tag{G.16}
+\end{equation*}
+而标量场的协变导数则由下式给出：
+\begin{equation*}
+\nabla_{\mu}\nabla_{\nu}\phi = \widetilde{\nabla}_{\mu}\widetilde{\nabla}_{\nu}\phi + \left(\delta^{\alpha}_{\mu}\delta^{\beta}_{\nu} + \delta^{\beta}_{\mu}\delta^{\alpha}_{\nu} - \tilde{g}_{\mu\nu}\tilde{g}^{\alpha\beta}\right)\omega^{-1}(\widetilde{\nabla}_{\alpha}\omega)(\widetilde{\nabla}_{\beta}\phi)
+\tag{G.17}
+\end{equation*}
+以及
+\begin{equation*}
+\Box\phi = \omega^{2}\widetilde{\Box}\phi - (n-2)\tilde{g}^{\alpha\beta}\omega(\widetilde{\nabla}_{\alpha}\omega)(\widetilde{\nabla}_{\beta}\phi).
+\tag{G.18}
+\end{equation*}
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 证明共形变换保持类光测地线不变，也就是说，$g_{\mu\nu}$ 的类光测地线与 $\omega^{2}g_{\mu\nu}$ 的类光测地线相同。（我们已经知道它们保持类光\emph{曲线}不变；你还需要证明变换后的曲线仍然是测地线。）原度规与共形度规中的仿射参量之间是什么关系？
+
+\textbf{2.}\quad 证明在二维情形下，总能找到一个共形变换（只要算符 $\nabla^{\mu}\nabla_{\mu}$ 可逆），使得变换后的度规的曲率至少在某个坐标卡片中为零。（一般无法在整个流形上同时做到这一点。）这意味着任何二维度规都可以局部地写成一个平直度规乘以一个共形因子。
+
+\textbf{3.}\quad 假设两个度规由如下形式的整体共形变换相联系：
+\begin{equation*}
+\tilde{g}_{\mu\nu} = e^{\alpha(x)} g_{\mu\nu}.
+\tag{G.19}
+\end{equation*}
+
+% ---- 书页 470 / p485 ----
+\textbf{(a)}\quad 证明：如果 $\xi^{\mu}$ 是度规 $g_{\mu\nu}$ 的一个 Killing 矢量，那么它是度规 $\tilde{g}_{\mu\nu}$ 的一个共形 Killing 矢量。\textbf{共形 Killing 矢量}（conformal Killing vector）满足方程
+\begin{equation*}
+\nabla_{\mu}\xi_{\nu} + \nabla_{\nu}\xi_{\mu} = (\nabla_{\lambda}\alpha)\xi^{\lambda} g_{\mu\nu}.
+\tag{G.20}
+\end{equation*}
+
+\textbf{(b)}\quad 证明 $\xi_{\mu}k^{\mu}$ 沿 $\tilde{g}_{\mu\nu}$ 中的光子测地线为常数。这里 $k^{\mu}$ 是光子的四维动量。
+
+\textbf{(c)}\quad 证明共形时间 $\eta = \int dt/R(t)$ 与一个共形 Killing 矢量 $\xi = \partial_{\eta}$ 相联系。
+
+\textbf{(d)}\quad 利用（c）小题重新导出尺度因子与红移之间的关系。
+
+% 附录H Conformal Diagrams
+\chapter{共形图}
+
+% ---- 书页 471 / p486 ----
+弯曲时空流形原则上可以复杂得超乎想象；幸运的是，我们常常可以用具有高度对称性（尤其是球对称性）的流形来近似物理上现实的情形。然而，即便是对称的时空，如果我们试图想象这类流形的整体结构，它们也会对我们的直观想象能力构成可怕的挑战。因此，能够画出一种标准化的时空图，用来刻画足够对称的时空的整体性质与因果结构，是很有用的。（所谓“因果结构”，指的是由光锥定义的不同事件的过去与未来之间的关系。）\textbf{共形图}（conformal diagrams，亦称 Carter--Penrose 图，或干脆叫彭罗斯图）优雅地实现了这一愿望。
+
+共形图不过是一张普通的时空图，只不过我们对其度规实施了一个特别聪明的坐标变换。由于我们的目标是描绘时空的因果结构，而因果结构由光锥定义，所谓“聪明”，就是指新坐标 $x^{\mu'}$ 具有“类时”坐标与“径向”坐标，且径向光锥在时空图上可以始终如一地画成 $45^{\circ}$。此外，我们追求的是使“无限远”只离有限坐标值之遥的坐标，好让整个时空的结构一目了然。
+
+正如前一个附录中所解释的，共形变换保持光锥不变。既然我们想找到光锥成 $45^{\circ}$ 的坐标，我们只需找到这样一组坐标，使得所关心的度规与另一个我们已知其光锥成 $45^{\circ}$ 的度规共形相关。（当然，光锥画成什么角度取决于我们所用的单位，或者说取决于我们如何画坐标轴；我们真正的意思，是取一组坐标 $T$、$R$，使得径向类光线满足 $dT/dR = \pm 1$。）
+
+让我们从 Minkowski 空间开始，看看这个技巧如何施展。极坐标下的 Minkowski 度规为
+\begin{equation*}
+ds^{2} = -\mathrm{d}t^{2} + \mathrm{d}r^{2} + r^{2}d\Omega^{2},
+\tag{H.1}
+\end{equation*}
+其中 $d\Omega^{2} = \mathrm{d}\theta^{2} + \sin^{2}\theta\,\mathrm{d}\phi^{2}$ 是单位二维球面上的度规。在这里，我们其实已经可以在每一处都把光锥画成 $45^{\circ}$（轨迹 $t = \pm r$ 是类光的），但我们希望通过换用取值范围有限的坐标，让整个时空的因果结构更加清晰。$\theta$、$\phi$ 坐标不会有什么异样，但我们会想仔细记下另外两个坐标的取值范围。
+
+% ---- 书页 472 / p487 ----
+首先当然有
+\begin{equation*}
+-\infty < t < \infty, \qquad 0 \le r < \infty.
+\tag{H.2}
+\end{equation*}
+严格说来，世界线 $r = 0$ 代表一个坐标奇点，本应由另一张片（patch）来覆盖；但大家都明白这是怎么回事，所以我们就索性装作 $r = 0$ 表现良好。
+
+第一种尝试（结果发现行不通）也许就是简单地重新缩放类时坐标与径向坐标，让它们覆盖一个有限的范围。一个不错的候选是利用反正切函数（如图 H.1 所示），定义 $\bar{t} = \arctan t$、$\bar{r} = \arctan r$。这样度规将取如下形式［利用 $\mathrm{d}\tan x = (1/\cos^{2}x)\mathrm{d}x$］：
+\begin{equation*}
+ds^{2} = -\frac{1}{\cos^{4}\bar{t}}\,\mathrm{d}\bar{t}^{2} + \frac{1}{\cos^{4}\bar{r}}\,\mathrm{d}\bar{r}^{2} + \tan^{2}\bar{r}\,d\Omega^{2},
+\tag{H.3}
+\end{equation*}
+其取值范围为
+\begin{equation*}
+\begin{gathered}
+-\frac{\pi}{2} < \bar{t} < \frac{\pi}{2} \\
+0 \le \bar{r} < \frac{\pi}{2}.
+\end{gathered}
+\tag{H.4}
+\end{equation*}
+好消息是新坐标的取值范围有限；坏消息是光锥的斜率（由 $\mathrm{d}\bar{t}/\mathrm{d}\bar{r} = \pm\cos^{2}\bar{t}/\cos^{2}\bar{r}$ 给出）并不像我们希望的那样等于 $\pm 1$。如果我们据此画出相应的时空图（你不妨画着玩玩），类光线走的是哪条路将无从辨认，在时空的边缘处尤其如此。
+
+走出这条死胡同的办法是：不再直来直去地摆弄原坐标 $t$ 和 $r$，而是变得更聪明一点，改用类光坐标：
+\begin{equation*}
+\begin{aligned}
+u &= t - r \\
+v &= t + r,
+\end{aligned}
+\tag{H.5}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_H.1.pdf}
+\caption*{图 H.1\quad 反正切函数把实线映射到一个有限区间。}
+\end{figure}
+
+% ---- 书页 473 / p488 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_H.2.pdf}
+\caption*{图 H.2\quad Minkowski 空间上的类光径向坐标。}
+\end{figure}
+
+其相应的取值范围为
+\begin{equation*}
+-\infty < u < \infty, \qquad -\infty < v < \infty, \qquad u \le v.
+\tag{H.6}
+\end{equation*}
+这些坐标如图 H.2 所示，图中每个点代表一个半径为 $r = \frac{1}{2}(v-u)$ 的二维球面。类光坐标下的 Minkowski 度规为
+\begin{equation*}
+ds^{2} = -\frac{1}{2}(\mathrm{d}u\,\mathrm{d}v + \mathrm{d}v\,\mathrm{d}u) + \frac{1}{4}(v-u)^{2}d\Omega^{2}.
+\tag{H.7}
+\end{equation*}
+现在我们利用反正切把无限远拉到有限的坐标值处，令
+\begin{equation*}
+\begin{aligned}
+U &= \arctan u \\
+V &= \arctan v,
+\end{aligned}
+\tag{H.8}
+\end{equation*}
+其取值范围为
+\begin{equation*}
+-\pi/2 < U < \pi/2, \qquad -\pi/2 < V < \pi/2, \qquad U \le V.
+\tag{H.9}
+\end{equation*}
+于是我们有
+\begin{equation*}
+\mathrm{d}u\,\mathrm{d}v + \mathrm{d}v\,\mathrm{d}u = \frac{1}{\cos^{2}U\cos^{2}V}(\mathrm{d}U\,\mathrm{d}V + \mathrm{d}V\,\mathrm{d}U),
+\tag{H.10}
+\end{equation*}
+以及
+\begin{align*}
+(v-u)^{2} &= (\tan V - \tan U)^{2} = \frac{1}{\cos^{2}U\cos^{2}V}\left(\sin V\cos U - \cos V\sin U\right)^{2} \\
+&= \frac{1}{\cos^{2}U\cos^{2}V}\sin^{2}(V-U),
+\tag{H.11}
+\end{align*}
+
+% ---- 书页 474 / p489 ----
+于是度规式 (H.7) 在这些坐标下成为
+\begin{equation*}
+ds^{2} = \frac{1}{4\cos^{2}U\cos^{2}V}\left[-2(\mathrm{d}U\,\mathrm{d}V + \mathrm{d}V\,\mathrm{d}U) + \sin^{2}(V-U)\,d\Omega^{2}\right].
+\tag{H.12}
+\end{equation*}
+这种形式有一定的魅力，因为度规看起来就像一个相当简单的表达式乘以一个整体因子。我们还可以更进一步，通过如下变换回到一个类时坐标 $T$ 与一个径向坐标 $R$：
+\begin{equation*}
+T = V + U, \qquad R = V - U,
+\tag{H.13}
+\end{equation*}
+其取值范围为
+\begin{equation*}
+0 \le R < \pi, \qquad |T| + R < \pi.
+\tag{H.14}
+\end{equation*}
+现在度规为
+\begin{equation*}
+ds^{2} = \omega^{-2}(T,R)\left(-\mathrm{d}T^{2} + \mathrm{d}R^{2} + \sin^{2}R\,d\Omega^{2}\right),
+\tag{H.15}
+\end{equation*}
+其中
+\begin{align*}
+\omega &= 2\cos U\cos V \\
+&= 2\cos\left[\frac{1}{2}(T-R)\right]\cos\left[\frac{1}{2}(T+R)\right] \\
+&= \cos T + \cos R.
+\tag{H.16}
+\end{align*}
+因此，我们记作 $ds^{2}$ 的原 Minkowski 度规，可以看作经由一个共形变换与如下“非物理”度规相联系：
+\begin{equation*}
+\begin{aligned}
+\widetilde{ds}^{2} &= \omega^{2}(T,R)\,ds^{2} \\
+&= -\mathrm{d}T^{2} + \mathrm{d}R^{2} + \sin^{2}R\,d\Omega^{2}.
+\end{aligned}
+\tag{H.17}
+\end{equation*}
+这描述的是流形 $\mathbf{R} \times S^{3}$，其中的三维球面是纯类空的、完全浑圆的，且不随时间改变。这个度规是有曲率的，这与 Minkowski 时空不同。但这本不该困扰我们，因为它是非物理的；经由共形变换得到的真正物理的度规，无论我们选择什么坐标，都恰恰是平直时空。事实上，度规式 (H.17) 正是“Einstein 静态宇宙”的度规——它是 Einstein 方程带一个理想流体和一个宇宙学常数的静态解（图 H.3）。当然，$\mathbf{R} \times S^{3}$ 上坐标的完整取值范围通常是 $-\infty < T < \infty$、$0 \le R \le \pi$，而 Minkowski 空间则被映射到由式 (H.14) 定义的子空间中。整个 $\mathbf{R} \times S^{3}$ 可以画成一个柱面，其中每个 $T$ 为常数的圆周代表一个三维球面。阴影区域代表 Minkowski 空间。我们可以把阴影区域摊开，把 Minkowski 空间表示成一个三角形，如图 H.4 所示。这就是共形图。图中每个点代表一个二维球面。
+
+% ---- 书页 475 / p490 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_H.3.pdf}
+\caption*{图 H.3\quad Einstein 静态宇宙 $\mathbf{R} \times S^{3}$，描绘成一个柱面。阴影区域与 Minkowski 空间共形相关。}
+\end{figure}
+
+事实上，Minkowski 空间只是上图（包括 $R = 0$ 在内）的\emph{内部}；边界并不属于原来的时空。这些边界被称为\textbf{共形无限远}（conformal infinity），而原时空与共形无限远之并集则称为\textbf{共形紧化}（conformal compactification），它是一个带边流形。共形图的结构使我们可以把共形无限远再细分成几个不同的区域：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_H.4.pdf}
+\caption*{图 H.4\quad Minkowski 空间的共形图。整幅图中光锥都张成 $\pm 45^{\circ}$。}
+\end{figure}
+
+% ---- 书页 476 / p491 ----
+\begin{equation*}
+\begin{aligned}
+i^{+} &= \text{未来类时无限远}\ (T=\pi,\ R=0)\\
+i^{0} &= \text{类空无限远}\ (T=0,\ R=\pi)\\
+i^{-} &= \text{过去类时无限远}\ (T=-\pi,\ R=0)\\
+\mathscr{I}^{+} &= \text{未来类光无限远}\ (T=\pi-R,\ 0<R<\pi)\\
+\mathscr{I}^{-} &= \text{过去类光无限远}\ (T=-\pi+R,\ 0<R<\pi)
+\end{aligned}
+\end{equation*}
+（$\mathscr{I}^{+}$ 与 $\mathscr{I}^{-}$ 分别读作“scri-plus”与“scri-minus”。）注意，$i^{+}$、$i^{0}$ 与 $i^{-}$ 其实是\emph{点}，因为 $R = 0$ 与 $R = \pi$ 是 $S^{3}$ 的北极和南极。而 $\mathscr{I}^{+}$ 与 $\mathscr{I}^{-}$ 则实际上是类光曲面，具有 $\mathbf{R} \times S^{2}$ 的拓扑。
+
+Minkowski 时空的共形图包含若干重要特征。图中径向类光测地线成 $\pm 45^{\circ}$。所有类时测地线都始于 $i^{-}$、终于 $i^{+}$；所有类光测地线都始于 $\mathscr{I}^{-}$、终于 $\mathscr{I}^{+}$；所有类空测地线则既始于 $i^{0}$ 又终于 $i^{0}$。另一方面，也可以存在终于类光无限远的非测地类时曲线，只要它们变得“渐近类光”。
+
+能把整个 Minkowski 空间塞进一小张纸片上固然惬意，但其实我们并没有由此学到多少原来不知道的东西。共形图真正更有用武之地，是当我们想表示稍微复杂一些的时空的时候，比如黑洞的时空。如第 6 章所讨论的，渐近平直时空（或时空的一个区域）是指那些其 $\mathscr{I}^{+}$、$i^{0}$ 与 $\mathscr{I}^{-}$ 的结构与 Minkowski 空间相同的时空。同样重要的是，共形图让我们得以了解时空的因果结构，比如两个指定点的过去或未来光锥是否相交。在 Minkowski 空间中，任何两点都是如此；但弯曲时空可以更有趣，正如我们在第 2 章膨胀宇宙的例子中看到的那样。
+
+让我们考虑第 2 章引入的那个宇宙学时空的共形图，它生动地展示了这一技术的用处。在空间上取极坐标后，度规变为
+\begin{equation*}
+ds^{2} = -\mathrm{d}t^{2} + t^{2q}\left(\mathrm{d}r^{2} + r^{2}d\Omega^{2}\right),
+\tag{H.18}
+\end{equation*}
+其中我们对尺度因子选择了幂律行为 $a(t) = t^{q}$，且 $0 < q < 1$。这个度规与 Minkowski 空间度规的一个关键差别，在于 $t = 0$ 处存在奇点，它限制了坐标的取值范围：
+\begin{equation*}
+0 < t < \infty
+\tag{H.19}
+\end{equation*}
+\begin{equation*}
+0 \le r < \infty.
+\tag{H.20}
+\end{equation*}
+除了这一受限制的坐标范围之外，我们的分析几乎完全照搬平直时空的情形。这是因为我们可以把度规式 (H.18) 化成平直时空乘以一个共形因子的形式；一旦做到这一点，我们只需重复之前的坐标变换，就能把膨胀宇宙的度规表达为 Einstein 静态宇宙的度规乘以一个共形因子。
+
+% ---- 书页 477 / p492 ----
+我们首先选取一个新的时间坐标 $\eta$，它有时被称为\textbf{共形时间}（conformal time），满足
+\begin{equation*}
+\mathrm{d}t^{2} = t^{2q}\mathrm{d}\eta^{2},
+\tag{H.21}
+\end{equation*}
+亦即
+\begin{equation*}
+\eta = \frac{1}{1-q}\,t^{1-q}.
+\tag{H.22}
+\end{equation*}
+这一简单选择让我们得以把尺度因子提取成一个整体共形因子：
+\begin{equation*}
+ds^{2} = \left[(1-q)\eta\right]^{2q/(1-q)}\left(-\mathrm{d}\eta^{2} + \mathrm{d}r^{2} + r^{2}d\Omega^{2}\right).
+\tag{H.23}
+\end{equation*}
+$\eta$ 的取值范围与 $t$ 相同，
+\begin{equation*}
+0 < \eta < \infty.
+\tag{H.24}
+\end{equation*}
+注意，$\eta$ 是一个类时坐标［意义是矢量 $\partial_{\eta}$ 是类时的，$ds^{2}(\partial_{\eta},\partial_{\eta}) < 0$］，但它并不量度共动时钟（空间坐标为常数的时钟）的固有时。如果我们考虑轨迹 $x^{\mu}(\lambda) = (\eta(\lambda), 0, 0, 0)$，并计算固有时 $\tau(\eta)$，就会发现它等于我们先前的那个时间坐标，而不是新的这个：$\tau \propto t \propto \eta^{1/(1-q)}$。所以 $\eta$ 是类时坐标，却不是任何人实际会测到的时间。这完全没有问题，恰好可以作为一个例证，说明可观测量与时空坐标这两个概念是彼此独立的。
+
+既然膨胀宇宙的度规已经写成了共形因子乘 Minkowski 度规的形式，我们就可以施行同一串坐标变换——式 (H.5)、(H.8) 与 (H.13)——只不过让 $\eta$ 顶替 $t$ 的位置。这些变换把我们的坐标从 $(\eta, r)$ 变到 $(T, R)$，此时的取值范围为
+\begin{equation*}
+0 \le R, \qquad 0 < T, \qquad T + R < \pi.
+\tag{H.25}
+\end{equation*}
+度规式 (H.23) 变为
+\begin{equation*}
+ds^{2} = \omega^{-2}(T,R)\left(-\mathrm{d}T^{2} + \mathrm{d}R^{2} + \sin^{2}R\,d\Omega^{2}\right),
+\tag{H.26}
+\end{equation*}
+其中，经过对三角恒等式的一番英勇运用，可以发现共形因子形如
+\begin{equation*}
+\omega(T,R) = \left(\frac{\cos T + \cos R}{2\sin T}\right)^{2q}(\cos T + \cos R).
+\tag{H.27}
+\end{equation*}
+共形因子的精确形状其实并非头等重要；关键的特征是，我们又一次把度规表达成了 Einstein 静态宇宙的度规乘以一个共形因子。这个情形与平直时空情形的重要区别在于，类时坐标终止于 $T = 0$ 处的奇点；除此之外，时空图完全相同。
+
+% ---- 书页 478 / p493 ----
+于是我们得到图 H.5 的共形图，它看上去像 Minkowski 图（图 H.4）的上半部分。光锥依旧张成 $45^{\circ}$。我们看到共形图如何让因果结构一目了然：很容易在时空中选出两个事件，使得它们的过去光锥在相交之前先撞上奇点（而未来光锥则总会交叠）。对于更复杂的几何，这种表示时空的便利方式将更加有用。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_H.5.pdf}
+\caption*{图 H.5\quad Robertson--Walker 宇宙（$a(t) \propto t^{q}$，$0<q<1$）的共形图。虚线代表 $t = 0$ 处的奇点（它同时对应于 $T = 0$）。}
+\end{figure}
+
+% 附录I The Parallel Propagator
+
+\chapter{平行移动传播子}
+
+沿一条曲线把一个张量平行移动的想法，显然在广义相对论中具有核心的重要性。对于一个沿路径 $x^\mu(\lambda)$ 被输运的矢量 $V^\mu$，平行移动方程为
+\begin{equation*}
+\frac{dx^\mu}{d\lambda}\nabla_\mu V^\nu \equiv \frac{dx^\mu}{d\lambda}\partial_\mu V^\nu + \frac{dx^\mu}{d\lambda}\Gamma^\nu_{\mu\sigma}V^\sigma = 0.
+\tag{I.1}
+\end{equation*}
+
+结果表明，可以对这个方程写下一个显式而一般的解；这个解有些形式化，但无论是其本身，还是它同量子场论中一些技术的联系，都颇有意思。
+
+我们首先注意到，对某条路径 $\gamma:\lambda\to x^\sigma(\lambda)$，求解矢量 $V^\mu$ 的平行移动方程就相当于寻找一个矩阵 $P^\mu{}_\rho(\lambda,\lambda_0)$，它把矢量的初始值 $V^\mu(\lambda_0)$ 与它沿路径稍后某处的值联系起来：
+\begin{equation*}
+V^\mu(\lambda) = P^\mu{}_\rho(\lambda,\lambda_0)V^\rho(\lambda_0).
+\tag{I.2}
+\end{equation*}
+
+当然，这个被称为\textbf{平行移动传播子}（parallel propagator）的矩阵 $P^\mu{}_\rho(\lambda,\lambda_0)$ 依赖于路径 $\gamma$（尽管很难找到一种记号来表明这一点，而又不让 $\gamma$ 看起来像一个指标）。如果我们定义
+\begin{equation*}
+A^\mu{}_\rho(\lambda) = -\Gamma^\mu_{\sigma\rho}\frac{dx^\sigma}{d\lambda},
+\tag{I.3}
+\end{equation*}
+其中右端的量在 $x^\nu(\lambda)$ 处取值，那么平行移动方程就变成
+\begin{equation*}
+\frac{d}{d\lambda}V^\mu = A^\mu{}_\rho V^\rho.
+\tag{I.4}
+\end{equation*}
+
+由于平行移动传播子必须对任何矢量都适用，把式 (I.2) 代入式 (I.4) 可知，$P^\mu{}_\rho(\lambda,\lambda_0)$ 也服从这个方程：
+\begin{equation*}
+\frac{d}{d\lambda}P^\mu{}_\rho(\lambda,\lambda_0) = A^\mu{}_\sigma(\lambda)P^\sigma{}_\rho(\lambda,\lambda_0).
+\tag{I.5}
+\end{equation*}
+
+为了求解这个方程，先对两边积分：
+\begin{equation*}
+P^\mu{}_\rho(\lambda,\lambda_0) = \delta^\mu_\rho + \int_{\lambda_0}^{\lambda} A^\mu{}_\sigma(\eta)P^\sigma{}_\rho(\eta,\lambda_0)\,d\eta.
+\tag{I.6}
+\end{equation*}
+
+容易看出，Kronecker $\delta$ 符号（Kronecker delta）在 $\lambda=\lambda_0$ 时给出了正确的归一化。
+
+我们可以用迭代法求解式 (I.6)：把右端代入它自身，如此反复，便得到
+\begin{equation*}
+P^\mu{}_\rho(\lambda,\lambda_0) = \delta^\mu_\rho + \int_{\lambda_0}^{\lambda} A^\mu{}_\rho(\eta)\,d\eta + \int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta} A^\mu{}_\sigma(\eta)A^\sigma{}_\rho(\eta')\,d\eta'\,d\eta + \cdots.
+\tag{I.7}
+\end{equation*}
+
+这个级数中的第 $n$ 项是在一个 $n$ 维直角三角形——即 $n$ 维单纯形（$n$-simplex）——上的积分：
+\begin{align*}
+&\int_{\lambda_0}^{\lambda} A(\eta_1)\,d\eta_1 \\
+&\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta_2} A(\eta_2)A(\eta_1)\,d\eta_1 d\eta_2 \\
+&\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta_3}\int_{\lambda_0}^{\eta_2} A(\eta_3)A(\eta_2)A(\eta_1)\,d^3\eta.
+\end{align*}
+见图 I.1。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_I.1.pdf}
+\caption*{图 I.1\quad $n$ 维单纯形（$n$ 维直角三角形），$n = 1, 2, 3$。}
+\end{figure}
+
+如果我们能把这样的积分看成是在一个 $n$ 维立方体（$n$-cube）而不是 $n$ 维单纯形上进行，事情会简单一些。有没有办法做到这一点呢？每个立方体中有 $n!$ 个这样的单纯形，所以我们必须乘以 $1/n!$ 来补偿这块多出来的体积。但我们还想把被积函数也弄对；用矩阵记号，$n$ 阶的被积函数是 $A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)$，只是附带一个特殊性质：$\eta_n \ge \eta_{n-1} \ge \cdots \ge \eta_1$。因此我们定义\textbf{路径排序符号}（path-ordering symbol）$\mathcal{P}$，用它来保证这个条件成立。换句话说，表达式
+\begin{equation*}
+\mathcal{P}\left[A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\right]
+\tag{I.8}
+\end{equation*}
+代表这 $n$ 个矩阵 $A(\eta_i)$ 的乘积，其排序方式为：$\eta_i$ 值最大者排在最左边，其后每个 $\eta_i$ 的值都小于或等于前一个值。于是我们可以把式 (I.7) 中的 $n$ 阶项写成
+\begin{align*}
+&\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\eta_n}\cdots\int_{\lambda_0}^{\eta_2} A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\,d^n\eta \\
+&\quad = \frac{1}{n!}\int_{\lambda_0}^{\lambda}\int_{\lambda_0}^{\lambda}\cdots\int_{\lambda_0}^{\lambda} \mathcal{P}\left[A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\right] d^n\eta.
+\tag{I.9}
+\end{align*}
+
+这个表达式对矩阵 $A(\eta_i)$ 没有给出任何实质性的陈述；它纯粹是一种记号。但现在我们可以把式 (I.7) 写成矩阵形式：
+\begin{equation*}
+P(\lambda,\lambda_0) = \mathbf{1} + \sum_{n=1}^{\infty} \frac{1}{n!}\int_{\lambda_0}^{\lambda} \mathcal{P}\left[A(\eta_n)A(\eta_{n-1})\cdots A(\eta_1)\right] d^n\eta.
+\tag{I.10}
+\end{equation*}
+
+这个公式正是指数函数的级数表达式；因此我们说，平行移动传播子由路径排序指数（path-ordered exponential）给出
+\begin{equation*}
+P(\lambda,\lambda_0) = \mathcal{P}\exp\left(\int_{\lambda_0}^{\lambda} A(\eta)\,d\eta\right),
+\tag{I.11}
+\end{equation*}
+这同样只是记号；路径排序指数就定义为式 (I.10) 的右端。我们可以把它写得更显式一些：
+\begin{equation*}
+\boxed{\,P^\mu{}_\nu(\lambda,\lambda_0) = \mathcal{P}\exp\left(-\int_{\lambda_0}^{\lambda} \Gamma^\mu_{\sigma\nu}\frac{dx^\sigma}{d\eta}\,d\eta\right).}
+\tag{I.12}
+\end{equation*}
+
+能有一个显式公式总归是件好事，哪怕它相当抽象。同样类型的表达式也出现在量子场论中，即所谓的“Dyson 公式”（Dyson's Formula）；它之所以在那里出现，是因为时间演化算符的 Schrödinger 方程与式 (I.5) 具有相同的形式。
+
+平行移动传播子一个特别有意思的例子出现在路径是一个回路（loop）——即从同一点出发、又终止于同一点——的情形。这时，如果联络是度规相容的，所得到的矩阵就恰好是切空间在该点处的一个洛伦兹变换。这个变换就是所谓的这条回路的“和乐”（holonomy）。如果你知道每一条可能回路的和乐，事实证明这等价于知道度规。于是人们可以在“圈表示”（loop representation）中考察广义相对论，其中基本变量是和乐而不是显式的度规。有一个名为“圈量子引力”（loop quantum gravity）的研究纲领，试图用这些变量直接把广义相对论量子化（有别于弦论那样的进路——在弦论中，GR 会在某个极限下自动出现）。在这个方向上已经取得了大量的数学进展，但根本性的障碍依然存在。\footnote{关于这一进路的综述，见 C.~Rovelli, “Loop quantum gravity,” \emph{Living Rev.~Rel.}~\textbf{1}, 1 (1998), \texttt{http://arxiv.org/gr-qc/9710008}。}
+
+% 书页 482（p497）为空白页，无正文内容；附录 J 自书页 483 起，由另一块负责。
+
+% 附录J Noncoordinate Bases
+
+\chapter{非坐标基}
+
+% ---- 书页 483 / p498 ----
+在研究流形的早期，我们曾决定为切空间选取与坐标相适配的基。既出于审美也出于实用的理由，我们应当再一次考察联络与曲率的形式体系，但这一次在切空间中使用一组\emph{并非}取自任何坐标系的基矢量。将会看到，这一侧重点上的小小改变，会揭示出看待联络与曲率的另一种视角；在这种视角下，它与粒子物理中规范理论（gauge theories）的联系要透明得多。事实上，将要引入的概念非常直截了当，只是这套记号是一场噩梦，所以它看起来比实际上更难。
+
+迄今为止，我们一直在利用这样一个事实：在点 $p$ 处，切空间 $T_{p}$ 的一个自然基由对该点坐标的偏导数给出，即 $\hat{e}_{(\mu)} = \partial_{\mu}$；类似地，余切空间 $T_{p}^{*}$ 的一个基由坐标函数的梯度给出，即 $\hat{\theta}^{(\mu)} = \mathrm{d}x^{\mu}$。然而，没有什么能阻止我们随自己的心意搭建任意的基。因此，让我们设想在流形的每一点引入一组基矢量 $\hat{e}_{(a)}$（用拉丁字母而非希腊字母作指标，以提醒我们它们不与任何坐标系相联系）。我们将把这些基矢量选成“正交归一的”（orthonormal），其含义与我们所工作的流形的号差相适配。也就是说，如果度规的规范形式写作 $\eta_{ab}$，我们就要求基矢量的内积为
+\begin{equation*}
+g(\hat{e}_{(a)}, \hat{e}_{(b)}) = \eta_{ab},
+\tag{J.1}
+\end{equation*}
+其中 $g(\ ,\ )$ 是通常的度规张量。于是，在洛伦兹型时空中 $\eta_{ab}$ 代表 Minkowski 度规，而在具有正定度规的空间中它则代表欧几里得度规。构成正交归一基的这组矢量有时被称为一个 \textbf{tetrad}（即“四标架”，源自希腊语 tetras，“四个一组”）或 \textbf{vielbein}（源自德语，意为“许多条腿”）。在不同的维数下，它偶尔也被称为 \emph{vierbein}（四）、\emph{dreibein}（三）、\emph{zweibein}（二），等等。正如我们一般找不到覆盖整个流形的坐标卡片，我们也常常无法找到一组处处有定义的光滑基矢量场。照例，我们可以通过在不同的片（patch）上工作、并确保各片在交叠处表现良好来克服这个问题。
+
+拥有一个基的意义在于：任何矢量都可以表示为基矢量的线性组合。具体地说，我们可以把原来的基矢量
+
+% ---- 书页 484 / p499 ----
+$\hat{e}_{(\mu)} = \partial_{\mu}$ 用新的基表示出来：
+\begin{equation*}
+\hat{e}_{(\mu)} = e_{\mu}{}^{a}\hat{e}_{(a)}.
+\tag{J.2}
+\end{equation*}
+分量 $e_{\mu}{}^{a}$ 构成一个 $n\times n$ 的可逆矩阵。（按照我们通常把对象与其分量混为一谈的做法，我们将把 $e_{\mu}{}^{a}$ 称为 tetrad 或 vielbein，而且常用其复数形式“vielbeins”。）我们把指标换位来表示它们的逆，得到 $e^{\mu}{}_{a}$，它们满足
+\begin{equation*}
+e^{\mu}{}_{a}e_{\nu}{}^{a} = \delta^{\mu}_{\nu}, \qquad e_{\mu}{}^{a}e^{\mu}{}_{b} = \delta^{a}_{b}.
+\tag{J.3}
+\end{equation*}
+它们正是矢量 $\hat{e}_{(a)}$ 在坐标基下的分量：
+\begin{equation*}
+\hat{e}_{(a)} = e^{\mu}{}_{a}\hat{e}_{(\mu)}.
+\tag{J.4}
+\end{equation*}
+用逆 vielbein 表示，式 (J.1) 变为
+\begin{equation*}
+g_{\mu\nu}e^{\mu}{}_{a}e^{\nu}{}_{b} = \eta_{ab},
+\tag{J.5}
+\end{equation*}
+或者等价地
+\begin{equation*}
+g_{\mu\nu} = e_{\mu}{}^{a}e_{\nu}{}^{b}\eta_{ab}.
+\tag{J.6}
+\end{equation*}
+这最后一个方程有时使人们说，vielbein 是度规的“平方根”。
+
+我们可以类似地在 $T_{p}$ 中搭建一组正交归一的 1-形式基，记作 $\hat{\theta}^{(a)}$。可以选取它们与基矢量相容，也就是说
+\begin{equation*}
+\hat{\theta}^{(a)}(\hat{e}_{(b)}) = \delta^{a}_{b}.
+\tag{J.7}
+\end{equation*}
+一个直接的推论是：这组正交归一 1-形式与其基于坐标的表亲 $\hat{\theta}^{(\mu)} = \mathrm{d}x^{\mu}$ 之间的关系为
+\begin{equation*}
+\hat{\theta}^{(\mu)} = e^{\mu}{}_{a}\hat{\theta}^{(a)}
+\tag{J.8}
+\end{equation*}
+以及
+\begin{equation*}
+\hat{\theta}^{(a)} = e_{\mu}{}^{a}\hat{\theta}^{(\mu)}.
+\tag{J.9}
+\end{equation*}
+于是，vielbein $e_{\mu}{}^{a}$ 身兼二职：既是坐标基矢量用正交归一基矢量表出的分量，又是正交归一基 1-形式用坐标基 1-形式表出的分量；而逆 vielbein 则既是正交归一基矢量用坐标基表出的分量，又是坐标基 1-形式用正交归一基表出的分量。
+
+% ---- 书页 485 / p500 ----
+任何其他矢量也可以用它在正交归一基中的分量来表示。如果矢量 $V$ 在坐标基中写作 $V^{\mu}\hat{e}_{(\mu)}$，在正交归一基中写作 $V^{a}\hat{e}_{(a)}$，那么这两组分量之间的关系为
+\begin{equation*}
+V^{a} = e_{\mu}{}^{a}V^{\mu}.
+\tag{J.10}
+\end{equation*}
+这样，vielbein 让我们可以“在拉丁指标和希腊指标之间来回切换”。张量的一个美妙性质——基于指标的位置，通常只有一种合理的做法——在这里帮了大忙。我们可以进一步用两种基中的任何一种来标记多指标张量，甚至用混合分量来标记：
+\begin{equation*}
+V^{a}{}_{b} = e_{\mu}{}^{a}V^{\mu}{}_{b} = e^{\nu}{}_{b}V^{a}{}_{\nu} = e_{\mu}{}^{a}e^{\nu}{}_{b}V^{\mu}{}_{\nu}.
+\tag{J.11}
+\end{equation*}
+回头看式 (J.5)，我们看到度规张量在正交归一基中的分量恰好就是平直度规的分量 $\eta_{ab}$。（正因如此，希腊指标有时被称为“弯曲的”（curved），拉丁指标则被称为“平直的”（flat）。）事实上，我们甚至可以用平直度规及其逆 $\eta^{ab}$ 来升降拉丁指标。你可以自行验证一切都行之有效（例如，用度规降低指标的操作与在正交归一基和坐标基之间切换是相互对易的）。特别地，我们对逆 vielbein 的定义与我们通常的指标升降规则是一致的：
+\begin{equation*}
+e^{\mu}{}_{a} = g^{\mu\nu}\eta_{ab}e_{\nu}{}^{b}.
+\tag{J.12}
+\end{equation*}
+
+我们引入 vielbein $e_{\nu}{}^{a}$ 时，是把它们当作一组基矢量在另一个基下求出的分量。这等价于把它们看作一个 $(1,1)$ 型张量的分量：
+\begin{equation*}
+e = e_{\nu}{}^{a}\mathrm{d}x^{\nu}\otimes\hat{e}_{(a)}.
+\tag{J.13}
+\end{equation*}
+但这其实是一个我们早已熟知且喜爱的张量：恒等映射。让这个张量作用在一个矢量上，得到的仍是同一个矢量，只不过换了一个基；这正是式 (J.10) 的内容。同样，如果用逆 vielbein $e^{\mu}{}_{a}$ 把 $e_{\nu}{}^{a}$ 上的拉丁指标换成希腊指标，根据式 (J.3) 就得到 Kronecker delta $\delta^{\mu}_{\nu}$，它当然就是作用在矢量（或 1-形式）上的恒等映射。这一点值得强调，因为我们也可以选择把 $e_{\nu}{}^{a}$ 解释为一组矢量分量（有些参考文献正是这么做的），那样的话协变导数的形式会有所不同。引入了一组新的基矢量和 1-形式之后，我们便不得不重提我们最爱讨论的话题：变换性质。一直以来我们都小心强调，张量变换律只是坐标变换的间接结果；真正的问题在于基的改变。如今我们有了非坐标基，这些基就可以独立于坐标而改变。唯一的限制是必须保持正交归一性条件 (J.1)。但我们知道什么样的变换保持平直度规——在欧几里得号差的度规下它们是正交变
+
+% ---- 书页 486 / p501 ----
+换，而在洛伦兹号差的度规下则是洛伦兹变换。因此我们考虑如下形式的基变换：
+\begin{equation*}
+\hat{e}_{(a)} \to \hat{e}_{(a')} = \Lambda^{a}{}_{a'}(x)\hat{e}_{(a)},
+\tag{J.14}
+\end{equation*}
+其中矩阵 $\Lambda^{a}{}_{a'}(x)$ 表示依赖于位置的变换，它们（在每一点）保持度规的规范形式不变：
+\begin{equation*}
+\Lambda^{a}{}_{a'}\Lambda^{b}{}_{b'}\eta_{ab} = \eta_{a'b'}.
+\tag{J.15}
+\end{equation*}
+事实上，这些矩阵对应于我们在平直空间中所说的逆洛伦兹变换（作用在基矢量上的那类）；与之前一样，我们也有普通的洛伦兹变换 $\Lambda^{a'}{}_{a}$，它变换基 1-形式。就分量而言，与之前一样，我们用 $\Lambda^{a'}{}_{a}$ 变换上指标，用 $\Lambda^{a}{}_{a'}$ 变换下指标。
+
+于是，我们现在获得了在空间的每一点都实施一个洛伦兹变换的自由（视号差而定，也可以是普通的欧几里得转动）。这些变换因此被称为\textbf{局部洛伦兹变换}（local Lorentz transformations），简称 LLT。我们仍然保有通常的改变坐标的自由，这被称为\textbf{广义坐标变换}（general coordinate transformations），简称 GCT。两者可以同时发生，由此得到一个混合的张量变换律：
+\begin{equation*}
+T^{a'\mu'}{}_{b'\nu'} = \Lambda^{a'}{}_{a}\frac{\partial x^{\mu'}}{\partial x^{\mu}}\Lambda^{b}{}_{b'}\frac{\partial x^{\nu}}{\partial x^{\nu'}}T^{a\mu}{}_{b\nu}.
+\tag{J.16}
+\end{equation*}
+把我们关于张量的知识翻译成非坐标基的语言，在多数情况下只不过是把 vielbein 塞到正确的位置而已。关键的例外出现在我们要对东西求导的时候。在我们通常的形式体系中，张量的协变导数等于它的偏导数再加上若干修正项——每个指标一项——涉及该张量与联络系数。同样的程序对非坐标基依然成立，只是要把通常的联络系数 $\Gamma^{\lambda}_{\mu\nu}$ 换成\textbf{自旋联络}（spin connection），记作 $\omega_{\mu}{}^{a}{}_{b}$。每个拉丁指标都以通常的方式配上一项自旋联络：
+\begin{equation*}
+\nabla_{\mu}X^{a}{}_{b} = \partial_{\mu}X^{a}{}_{b} + \omega_{\mu}{}^{a}{}_{c}X^{c}{}_{b} - \omega_{\mu}{}^{c}{}_{b}X^{a}{}_{c}.
+\tag{J.17}
+\end{equation*}
+（“自旋联络”这个名字源于这样一个事实：可以用它来对旋量求协变导数，而用常规的联络系数这实际上是做不到的。）当拉丁指标和希腊指标混合出现时，我们会同时得到两种类型的项。
+
+张量应当与其写法无关这一通常要求，让我们得以推导自旋联络、vielbein 与 $\Gamma^{\lambda}_{\mu\nu}$ 之间的关系。考虑矢量 $X$ 的协变导数，先在纯坐标基中：
+\begin{align*}
+\nabla X &= (\nabla_{\mu}X^{\nu})\mathrm{d}x^{\mu}\otimes\partial_{\nu} \\
+&= (\partial_{\mu}X^{\nu} + \Gamma^{\nu}_{\mu\lambda}X^{\lambda})\mathrm{d}x^{\mu}\otimes\partial_{\nu}. \tag{J.18}
+\end{align*}
+
+% ---- 书页 487 / p502 ----
+现在在混合基中求同一个对象，再转换到坐标基：
+\begin{align*}
+\nabla X &= (\nabla_{\mu}X^{a})\mathrm{d}x^{\mu}\otimes\hat{e}_{(a)} \\
+&= (\partial_{\mu}X^{a} + \omega_{\mu}{}^{a}{}_{b}X^{b})\mathrm{d}x^{\mu}\otimes\hat{e}_{(a)} \\
+&= \big(\partial_{\mu}(e_{\nu}{}^{a}X^{\nu}) + \omega_{\mu}{}^{a}{}_{b}e_{\lambda}{}^{b}X^{\lambda}\big)\mathrm{d}x^{\mu}\otimes(e^{\sigma}{}_{a}\partial_{\sigma}) \\
+&= e^{\sigma}{}_{a}\big(e_{\nu}{}^{a}\partial_{\mu}X^{\nu} + X^{\nu}\partial_{\mu}e_{\nu}{}^{a} + \omega_{\mu}{}^{a}{}_{b}e_{\lambda}{}^{b}X^{\lambda}\big)\mathrm{d}x^{\mu}\otimes\partial_{\sigma} \\
+&= \big(\partial_{\mu}X^{\nu} + e^{\nu}{}_{a}\partial_{\mu}e_{\lambda}{}^{a}X^{\lambda} + e^{\nu}{}_{a}e_{\lambda}{}^{b}\omega_{\mu}{}^{a}{}_{b}X^{\lambda}\big)\mathrm{d}x^{\mu}\otimes\partial_{\nu}. \tag{J.19}
+\end{align*}
+与式 (J.18) 比较可得
+\begin{equation*}
+\Gamma^{\nu}_{\mu\lambda} = e^{\nu}{}_{a}\partial_{\mu}e_{\lambda}{}^{a} + e^{\nu}{}_{a}e_{\lambda}{}^{b}\omega_{\mu}{}^{a}{}_{b},
+\tag{J.20}
+\end{equation*}
+或者等价地
+\begin{equation*}
+\omega_{\mu}{}^{a}{}_{b} = e_{\nu}{}^{a}e^{\lambda}{}_{b}\Gamma^{\nu}_{\mu\lambda} - e^{\lambda}{}_{b}\partial_{\mu}e_{\lambda}{}^{a}.
+\tag{J.21}
+\end{equation*}
+稍作处理，就可以把这个关系写成 vielbein 的协变导数为零：
+\begin{align*}
+\nabla_{\mu}e_{\nu}{}^{a} &= \partial_{\mu}e_{\nu}{}^{a} - \Gamma^{\lambda}_{\mu\nu}e_{\lambda}{}^{a} + \omega_{\mu}{}^{a}{}_{b}e_{\nu}{}^{b} \\
+&= 0, \tag{J.22}
+\end{align*}
+它有时被称为“tetrad 假设”（tetrad postulate）。注意，它总是成立的；推导它并不需要对联络作任何假设。具体地说，我们不需要假设联络是度规相容的或无挠的。不过，我们确实隐含地取 $e_{\nu}{}^{a}$ 代表 $(1,1)$ 型张量 (J.13)；既然这个张量就是恒等映射，它的协变导数为零也就不足为奇了。（并非所有文献都持这种观点，所以要当心。）
+
+既然联络可以被看作我们为修补协变导数的变换律而不得不引入的东西，那么自旋联络本身不服从张量变换律也就不足为怪了。实际上，在 GCT 之下，那个下希腊指标确实按正确的方式变换，即像 1-形式那样。但在 LLT 之下，自旋联络非齐次地变换：
+\begin{equation*}
+\omega_{\mu}{}^{a'}{}_{b'} = \Lambda^{a'}{}_{a}\Lambda^{b}{}_{b'}\omega_{\mu}{}^{a}{}_{b} - \Lambda^{c}{}_{b'}\partial_{\mu}\Lambda^{a'}{}_{c}.
+\tag{J.23}
+\end{equation*}
+建议你自行验证，这确实能使协变导数按正确的方式变换。
+
+到目前为止，我们做的不过是空洞的形式主义——把已经知道的东西翻译成一套新记号。但我们做的这些工作确实换来了两样东西。第一样我们已经提到过：能够描述时空上的旋量场并对它们求协变导数；这里我们不再深入。第二样是视角的改变：我们可以把各种张量看作张量值的微分形式（tensor-valued differential forms）。例如，像 $X_{\mu}{}^{a}$ 这样的对象——我们
+
+% ---- 书页 488 / p503 ----
+把它看作带混合指标的 $(1,1)$ 型张量——也可以看作一个“矢量值的 1-形式”（vector-valued one-form）。它有一个下希腊指标，所以我们把它当作 1-形式，但对下指标的每一个取值它又是一个矢量。类似地，张量 $A_{\mu\nu}{}^{a}{}_{b}$（在 $\mu$ 和 $\nu$ 上反对称）可以看作一个“(1,1) 型张量值的 2-形式”。于是，任何带有若干个反对称下希腊指标和若干个拉丁指标的张量，都可以看作一个微分形式，只是取值于张量丛。（普通的微分形式简单来说就是标量值的形式。）当我们考虑外微分时，这一视角的用处就显现出来。如果我们想把 $X_{\mu}{}^{a}$ 当作矢量值的 1-形式，我们自然会想取它的外微分：
+\begin{equation*}
+(\mathrm{d}X)_{\mu\nu}{}^{a} = \partial_{\mu}X_{\nu}{}^{a} - \partial_{\nu}X_{\mu}{}^{a}.
+\tag{J.24}
+\end{equation*}
+容易验证，这个对象在 GCT 之下像 2-形式一样变换［也就是说，按照 $(0,2)$ 型张量的变换律］，但在 LLT 之下却不像矢量那样变换（洛伦兹变换依赖于位置，这会在变换律中引入一个非齐次项）。不过，我们可以明智地运用自旋联络来修复这一点；由于非张量性的变换律 (J.23)，自旋联络可以被看作一个 1-形式，却不是张量值的 1-形式。于是，对象
+\begin{equation*}
+(\mathrm{d}X)_{\mu\nu}{}^{a} + (\omega\wedge X)_{\mu\nu}{}^{a} = \partial_{\mu}X_{\nu}{}^{a} - \partial_{\nu}X_{\mu}{}^{a} + \omega_{\mu}{}^{a}{}_{b}X_{\nu}{}^{b} - \omega_{\nu}{}^{a}{}_{b}X_{\mu}{}^{b},
+\tag{J.25}
+\end{equation*}
+你可以自行验证，它会像一个正规的张量那样变换。
+
+这套形式体系的一个直接应用是挠率和曲率的表达式——它们是刻画任何给定联络的两个张量。挠率带有两个反对称下指标，可以看作矢量值的 2-形式 $T_{\mu\nu}{}^{a}$。曲率总是在最后两个指标上反对称，是 $(1,1)$ 型张量值的 2-形式 $R^{a}{}_{b\mu\nu}$。利用我们在微分形式上省略指标的自由，可以用基 1-形式把它们表达为
+\begin{equation*}
+e^{a} = e_{\mu}{}^{a}\mathrm{d}x^{\mu}
+\tag{J.26}
+\end{equation*}
+以及自旋联络 1-形式
+\begin{equation*}
+\omega^{a}{}_{b} = \omega_{\mu}{}^{a}{}_{b}\mathrm{d}x^{\mu}.
+\tag{J.27}
+\end{equation*}
+注意我们已经更换了记号，定义 $e^{a} \equiv \hat{\theta}^{(a)}$。这是相当惯用的做法，而且更简洁。于是挠率和曲率的定义关系就是
+\begin{equation*}
+T^{a} = \mathrm{d}e^{a} + \omega^{a}{}_{b}\wedge e^{b}
+\tag{J.28}
+\end{equation*}
+以及
+\begin{equation*}
+R^{a}{}_{b} = \mathrm{d}\omega^{a}{}_{b} + \omega^{a}{}_{c}\wedge\omega^{c}{}_{b}.
+\tag{J.29}
+\end{equation*}
+
+% ---- 书页 489 / p504 ----
+请记住，$R^{a}{}_{b}$ 代表整个 Riemann 张量（希腊指标被省略了）；不要把它与 Ricci 张量混淆。这两个式子就是所谓的 \textbf{Cartan 结构方程}（Cartan structure equations）。它们与通常的定义等价；让我们就挠率作一番证明练习，曲率的验证留给你自己完成。我们有
+\begin{align*}
+T_{\mu\nu}{}^{\lambda} &= e^{\lambda}{}_{a}T_{\mu\nu}{}^{a} \\
+&= e^{\lambda}{}_{a}\big(\partial_{\mu}e_{\nu}{}^{a} - \partial_{\nu}e_{\mu}{}^{a} + \omega_{\mu}{}^{a}{}_{b}e_{\nu}{}^{b} - \omega_{\nu}{}^{a}{}_{b}e_{\mu}{}^{b}\big) \\
+&= \Gamma^{\lambda}_{\mu\nu} - \Gamma^{\lambda}_{\nu\mu}, \tag{J.30}
+\end{align*}
+这正是我们最初给出的定义。这里我们用到了式 (J.20)，即用 vielbein 和自旋联络表出的 $\Gamma^{\lambda}_{\mu\nu}$。我们还可以把这些张量所满足的恒等式表达为
+\begin{equation*}
+\mathrm{d}T^{a} + \omega^{a}{}_{b}\wedge T^{b} = R^{a}{}_{b}\wedge e^{b}
+\tag{J.31}
+\end{equation*}
+以及
+\begin{equation*}
+\mathrm{d}R^{a}{}_{b} + \omega^{a}{}_{c}\wedge R^{c}{}_{b} - R^{a}{}_{c}\wedge\omega^{c}{}_{b} = 0.
+\tag{J.32}
+\end{equation*}
+其中第一式是 $R^{\rho}{}_{[\sigma\mu\nu]} = 0$ 的推广，第二式则是 Bianchi 恒等式 $\nabla_{[\lambda}R^{\rho}{}_{|\sigma|\mu\nu]} = 0$。（有时这两个方程都被称作 Bianchi 恒等式。）
+
+这些表达式的形式会诱使人几乎无法抗拒地去定义一个“协变外微分”（covariant-exterior derivative）：它作用在张量值形式上，先取通常的外微分，再添上带自旋联络的适当项——每个拉丁指标一项。虽然这里我们不打算这样做，但向这种诱惑屈服也无妨；事实上，式 (J.28) 的右边以及式 (J.31) 和式 (J.32) 的左边，正可以看作这样的协变外微分。但要小心，式 (J.29) 却不能这样看；你不能对自旋联络取任何一种协变导数，因为它不是张量。
+
+到目前为止，我们的方程对一般联络都成立；现在看看对 Christoffel 联络会得到什么。无挠要求就是 (J.28) 为零；这并不会直接给出关于自旋联络系数的任何简单表述。度规相容性则表现为度规的协变导数为零：$\nabla g = 0$。当我们把度规用正交归一基表达——此时它的分量就是简单的 $\eta_{ab}$——就能看到这会导出什么：
+\begin{align*}
+\nabla_{\mu}\eta_{ab} &= \partial_{\mu}\eta_{ab} - \omega_{\mu}{}^{c}{}_{a}\eta_{cb} - \omega_{\mu}{}^{c}{}_{b}\eta_{ac} \\
+&= -\omega_{\mu ab} - \omega_{\mu ba}. \tag{J.33}
+\end{align*}
+于是令它等于零就意味着
+\begin{equation*}
+\omega_{\mu ab} = -\omega_{\mu ba}.
+\tag{J.34}
+\end{equation*}
+
+% ---- 书页 490 / p505 ----
+这样，度规相容性就等价于自旋联络在其拉丁指标上的反对称性。（和之前一样，只有当两个指标都在上或都在下时，这种说法才有意义。）这两个条件合在一起，让我们可以把自旋联络用 vielbein 表达出来。这个解有一个显式公式，但实践中更容易的做法是直接求解无挠条件
+\begin{equation*}
+\omega^{a}{}_{b}\wedge e^{b} = -\mathrm{d}e^{a},
+\tag{J.35}
+\end{equation*}
+再利用自旋联络的非对称性求出各个分量。
+
+思考非坐标基的最好理由之一是：在某些情形——包括计算曲率张量——它们确实能带来巨大的简化。让我们通过一个简单例子看看这是如何运作的：一个空间平直的膨胀宇宙，其度规为
+\begin{equation*}
+ds^{2} = -\mathrm{d}t^{2} + a^{2}(t)\delta_{ij}\mathrm{d}x^{i}\mathrm{d}x^{j}.
+\tag{J.36}
+\end{equation*}
+我们将使用式 (J.26) 和式 (J.27) 的微分形式记号；像这样的计算就是很好的证据，说明这套语言不仅优雅而且确实实用。于是度规可以写成（对任何几何都成立）
+\begin{equation*}
+ds^{2} = \eta_{ab}e^{a}\otimes e^{b}.
+\tag{J.37}
+\end{equation*}
+我们需要选取基 1-形式 $e^{a}$，使得上式与我们的度规 (J.36) 相吻合。有多种选择（它们由局部洛伦兹变换相联系），但其中有一个是显而易见的：
+\begin{align*}
+e^{0} &= \mathrm{d}t \\
+e^{i} &= a\,\mathrm{d}x^{i}. \tag{J.38}
+\end{align*}
+现在我们想利用式 (J.35) 解出自旋联络。好消息是，基本上靠猜测就能做到。首先，适当地升降指标（用 $\eta^{ab}$ 和 $\eta_{ab}$），我们导出 $\omega_{ab}$ 反对称性的推论：
+\begin{align*}
+\omega^{0}{}_{0} &= 0 \\
+\omega^{0}{}_{j} &= \omega^{j}{}_{0} \\
+\omega^{i}{}_{j} &= -\omega^{j}{}_{i}. \tag{J.39}
+\end{align*}
+接下来计算式 (J.35) 的右边：
+\begin{align*}
+\mathrm{d}e^{0} &= 0 \\
+\mathrm{d}e^{i} &= \mathrm{d}a\wedge\mathrm{d}x^{i} = \dot{a}\,\mathrm{d}t\wedge\mathrm{d}x^{i}, \tag{J.40}
+\end{align*}
+
+% ---- 书页 491 / p506 ----
+然后再看左边：
+\begin{align*}
+\omega^{0}{}_{b}\wedge e^{b} &= \omega^{0}{}_{j}\wedge e^{j} = a\,\omega^{0}{}_{j}\wedge\mathrm{d}x^{j} \\
+\omega^{i}{}_{b}\wedge e^{b} &= \omega^{i}{}_{0}\wedge e^{0} + \omega^{i}{}_{j}\wedge e^{j} = \omega^{i}{}_{0}\wedge\mathrm{d}t + \omega^{i}{}_{j}\wedge\mathrm{d}x^{j}. \tag{J.41}
+\end{align*}
+代入式 (J.35) 得到
+\begin{align*}
+\omega^{0}{}_{j}\wedge\mathrm{d}x^{j} &= 0 \\
+\omega^{i}{}_{0}\wedge\mathrm{d}t + \omega^{i}{}_{j}\wedge\mathrm{d}x^{j} &= -\dot{a}\,\mathrm{d}t\wedge\mathrm{d}x^{i}. \tag{J.42}
+\end{align*}
+我们想从这些方程解出 $\omega^{a}{}_{b}$。很容易想到猜 $\omega^{0}{}_{j} = 0$；但这样一来，为了解第二个方程就需要 $\omega^{i}{}_{j} = -\dot{a}\delta^{i}_{j}\mathrm{d}t$，这与式 (J.39) 中的 $\omega^{i}{}_{j} = -\omega^{j}{}_{i}$ 不相容。不过，考虑到楔积的反对称性，我们可以令 $\omega^{0}{}_{j}$ 正比于 $\mathrm{d}x^{j}$ 来解第一个方程。确实，如果选取
+\begin{equation*}
+\omega^{0}{}_{j} = \dot{a}\,\mathrm{d}x^{j}, \qquad \omega^{i}{}_{0} = \dot{a}\,\mathrm{d}x^{i},
+\tag{J.43}
+\end{equation*}
+就会发现，只要令
+\begin{equation*}
+\omega^{i}{}_{j} = 0.
+\tag{J.44}
+\end{equation*}
+式 (J.42) 中的两个方程便都得到满足。
+
+既然已经知道自旋联络，我们就能通过下式轻松得到曲率：
+\begin{equation*}
+R^{a}{}_{b} = \mathrm{d}\omega^{a}{}_{b} + \omega^{a}{}_{c}\wedge\omega^{c}{}_{b}.
+\tag{J.45}
+\end{equation*}
+我们先计算自旋联络形式的外微分：
+\begin{align*}
+\mathrm{d}\omega^{i}{}_{0} &= \ddot{a}\,\mathrm{d}t\wedge\mathrm{d}x^{i} \\
+\mathrm{d}\omega^{0}{}_{j} &= \ddot{a}\,\mathrm{d}t\wedge\mathrm{d}x^{j} \\
+\mathrm{d}\omega^{i}{}_{j} &= 0, \tag{J.46}
+\end{align*}
+然后计算楔积：
+\begin{align*}
+\omega^{0}{}_{c}\wedge\omega^{c}{}_{0} &= 0 \\
+\omega^{i}{}_{c}\wedge\omega^{c}{}_{0} &= 0 \\
+\omega^{i}{}_{c}\wedge\omega^{c}{}_{j} &= \dot{a}^{2}\mathrm{d}x^{i}\wedge\mathrm{d}x^{j}. \tag{J.47}
+\end{align*}
+于是我们得到曲率 2-形式：
+\begin{align*}
+R^{0}{}_{0} &= 0 \\
+R^{0}{}_{j} &= \ddot{a}\,\mathrm{d}t\wedge\mathrm{d}x^{j} \\
+R^{i}{}_{0} &= \ddot{a}\,\mathrm{d}t\wedge\mathrm{d}x^{i} \\
+R^{i}{}_{j} &= \dot{a}^{2}\mathrm{d}x^{i}\wedge\mathrm{d}x^{j}. \tag{J.48}
+\end{align*}
+
+% ---- 书页 492 / p507 ----
+为了便于比较，我们可以用 vielbein 把 $R^{a}{}_{b\mu\nu}$ 换算成我们惯用的表达式 $R^{\rho}{}_{\sigma\mu\nu}$：
+\begin{equation*}
+R^{\rho}{}_{\sigma\mu\nu} = e^{\rho}{}_{a}e_{\sigma}{}^{b}R^{a}{}_{b\mu\nu}.
+\tag{J.49}
+\end{equation*}
+用分量形式写出，vielbein (J.38) 及其逆为
+\begin{equation*}
+e_{\mu}{}^{a} = \begin{pmatrix} 1 & & & \\ & a & & \\ & & a & \\ & & & a \end{pmatrix}, \qquad e^{\nu}{}_{b} = \begin{pmatrix} 1 & & & \\ & a^{-1} & & \\ & & a^{-1} & \\ & & & a^{-1} \end{pmatrix}. \tag{J.50}
+\end{equation*}
+我们还需要计算基形式的楔积的分量，这相当直接：
+\begin{equation*}
+(\mathrm{d}x^{\alpha}\wedge\mathrm{d}x^{\beta})_{\mu\nu} = \delta^{\alpha}_{\mu}\delta^{\beta}_{\nu} - \delta^{\alpha}_{\nu}\delta^{\beta}_{\mu}.
+\tag{J.51}
+\end{equation*}
+把所有这些放在一起，就得到 $R^{\rho}{}_{\sigma\mu\nu}$ 的分量：
+\begin{align*}
+R^{0}{}_{j0l} &= a\ddot{a}\delta_{jl} \\
+R^{i}{}_{0k0} &= -\frac{\ddot{a}}{a}\delta^{i}_{k} \\
+R^{i}{}_{jkl} &= \dot{a}^{2}(\delta^{i}_{k}\delta_{jl} - \delta^{i}_{l}\delta_{jk}), \tag{J.52}
+\end{align*}
+以及在最后两个指标上作反对称得到的那些分量。我们可以缩并，得到 Ricci 张量 $R_{\sigma\nu} = R^{\lambda}{}_{\sigma\lambda\nu}$ 的分量：
+\begin{align*}
+R_{00} &= -3\frac{\ddot{a}}{a} \\
+R_{i0} &= 0 \\
+R_{ij} &= (a\ddot{a} + 2\dot{a}^{2})\delta_{ij}. \tag{J.53}
+\end{align*}
+你可以验证，这与我们在第 8 章得到的结果一致。仅在这个简单的例子里，tetrad 方法在计算上就已经比坐标基方法简单；对于更复杂的度规，这种相对优势还会继续扩大。
+
+借助于非坐标基的语言，我们可以把黎曼几何中联络与曲率的形式体系，同粒子物理中规范理论的形式体系加以比较。在这两种情形下，我们感兴趣的场都生活在指派给时空每一点的矢量空间里。在黎曼几何中，这些矢量空间包括切空间、余切空间以及由它们构造的高阶张量空间。而在规范理论中，我们关心的是“内部”矢量空间。区别在于：切空间及其同类与流形本身紧密相连，一旦流形被搭建起来，它们便自然地得到定义；例如，切空间可以看作一点处方向导数的空间。与此相反，内部矢量
+
+% ---- 书页 493 / p508 ----
+空间则可以有我们想要的任何维数，并且必须作为流形之外的一种独立添加来定义。用数学行话说，底流形与内部矢量空间（在每一点定义）的并就是一个\textbf{纤维丛}（fiber bundle），而矢量空间的每一份拷贝都被称为一根“纤维”（fiber）（与我们定义切丛的方式一致）。
+
+除了底流形（对我们而言就是时空）和纤维之外，纤维丛定义中的另一个重要要素是“结构群”（structure group）：一个作用在纤维上的李群，它描述各纤维在相互交叠的坐标片上如何被缝合在一起。不深入细节地说，四维时空中切丛的结构群一般是 $\mathrm{GL}(4,\mathbf{R})$，即实可逆 $4\times4$ 矩阵群；如果有洛伦兹型度规，它可以约化为洛伦兹群 $SO(3,1)$。现在设想我们引入一个内部三维矢量空间，并用普通的转动把纤维缝合起来；这个新丛的结构群便是 $SO(3)$。生活在该丛中的场可以记作 $\phi^{A}(x^{\mu})$，其中 $A$ 从一取到三；它在流形的每一点上都是一个三维矢量（内部的，与时空无关）。我们可以随意选择纤维中的基；这意味着“物理量”应当在如下形式的局部 $SO(3)$ 变换下保持不变：
+\begin{equation*}
+\phi^{A}(x^{\mu}) \to \phi^{A'}(x^{\mu}) = O^{A'}{}_{A}(x^{\mu})\phi^{A}(x^{\mu}),
+\tag{J.54}
+\end{equation*}
+其中 $O^{A'}{}_{A}(x^{\mu})$ 是 $SO(3)$ 中一个依赖于时空的矩阵。这类变换被称为\textbf{规范变换}（gauge transformations），在其下不变的理论被称为“规范理论”（gauge theories）。
+
+在多数情况下，不难把事情安排得让物理量在规范变换下不变。唯一的困难出现在我们考虑偏导数 $\partial_{\mu}\phi^{A}$ 的时候。由于矩阵 $O^{A'}{}_{A}(x^{\mu})$ 依赖于时空，它会给偏导数的变换贡献一个不想要的项。到现在你应该已经能猜到解决方案了：引入一个联络，来修正变换律中的非齐次项。于是，我们把纤维丛上的联络定义为对象 $A_{\mu}{}^{A}{}_{B}$：它带两个“群指标”和一个时空指标。在 GCT 之下它像 1-形式那样变换，而在规范变换之下它的变换律是
+\begin{equation*}
+A_{\mu}{}^{A'}{}_{B'} = O^{A'}{}_{A}O^{B}{}_{B'}A_{\mu}{}^{A}{}_{B} - O^{C}{}_{B'}\partial_{\mu}O^{A'}{}_{C}.
+\tag{J.55}
+\end{equation*}
+（当心：我们的约定与粒子物理文献中的约定不同。）在这个变换律下，“规范协变导数”（gauge covariant derivative）
+\begin{equation*}
+D_{\mu}\phi^{A} = \partial_{\mu}\phi^{A} + A_{\mu}{}^{A}{}_{B}\phi^{B}
+\tag{J.56}
+\end{equation*}
+在规范变换下“像张量那样”变换，欢迎你自行验证。［在普通的电磁学中，联络就是惯用的矢势。不需要任何指标，因为结构群 $U(1)$ 是一维的。］
+
+% ---- 书页 494 / p509 ----
+显然，内部纤维丛上联络的这一概念，与切丛上的联络密切相关，尤其是在我们一直讨论的正交归一标架图像中。例如，变换律 (J.55) 就与自旋联络的变换律 (J.23) 完全相同。我们还可以定义一个曲率张量，或称“场强”（field strength）张量，它是一个 2-形式：
+\begin{equation*}
+F^{A}{}_{B} = \mathrm{d}A^{A}{}_{B} + A^{A}{}_{C}\wedge A^{C}{}_{B},
+\tag{J.57}
+\end{equation*}
+与式 (J.29) 完全对应。我们可以沿路径平行移动物体，也有一个与平行移动传播子类似的结构；把一个矢量沿闭合曲线平行移动一周，所得矩阵的迹被称为“Wilson 圈”（Wilson loop）。
+
+我们本可以继续发展切丛与内部矢量丛之间的关系，但那就得另写一本书了。让我们转而通过强调这两种构造之间的重要\emph{差异}来收尾。差异源于这样一个事实：切丛与底流形紧密相关，而其他纤维丛则是事后才附加上去的。说 $p$ 点切空间中的一个矢量“指向沿一条穿过 $p$ 的路径的方向”是有意义的；但对内部矢量丛来说，这种说法毫无意义。因此，内部空间没有坐标基的类似物——沿曲线的偏导数与内部矢量毫无关系。依次推下去，也就没有类似 vielbein 那样把正交归一基与坐标基联系起来的东西。特别是挠率张量，只对切丛上的联络才有定义，对任何规范理论联络都没有；它可以被看作 vielbein 的协变外微分，而内部丛上没有这样的构造。你应当领会联络这一概念的不同用法之间的联系，但同时也别忘乎所以。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 在式 (J.37) 中我们提过，度规在正交归一基中可以写成
+\begin{equation*}
+ds^{2} = \eta_{ab}e^{a}\otimes e^{b}.
+\tag{J.58}
+\end{equation*}
+这怎么可能呢？如果度规的分量处处都是 $\eta_{ab}$，我们怎么可能知道几何是什么？
+
+\textbf{2.}\quad 计算 Mixmaster 宇宙（Mixmaster universe）的联络 1-形式、曲率 2-形式，进而求出 Riemann 张量的分量。度规为
+\begin{equation*}
+ds^{2} = -\mathrm{d}t\otimes\mathrm{d}t + \alpha^{2}\sigma^{1}\otimes\sigma^{1} + \beta^{2}\sigma^{2}\otimes\sigma^{2} + \gamma^{2}\sigma^{3}\otimes\sigma^{3}.
+\end{equation*}
+其中 $\alpha$、$\beta$、$\gamma$ 只是 $t$ 的函数，而 1-形式 $\sigma^{i}$ 为
+\begin{align*}
+\sigma^{1} &= \cos\psi\,\mathrm{d}\theta + \sin\psi\sin\theta\,\mathrm{d}\phi \\
+\sigma^{2} &= \sin\psi\,\mathrm{d}\theta - \cos\psi\sin\theta\,\mathrm{d}\phi \\
+\sigma^{3} &= \mathrm{d}\psi + \cos\theta\,\mathrm{d}\phi.
+\end{align*}

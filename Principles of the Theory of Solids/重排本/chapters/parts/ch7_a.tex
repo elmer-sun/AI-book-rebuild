@@ -1,0 +1,252 @@
+% ch7_a §7.1–7.2 (书页 211–218 / p225–p232)
+% 第7章 Transport Properties
+
+\chapter{输运性质}
+
+\epigraphbook{没有谁喊“一、二、三，预备——跑！”，\\ 它们喜欢什么时候开始跑就什么时候开始跑，喜欢什么时候停就什么时候停，\\ 所以很难说清这场比赛究竟什么时候才算结束。}{LEWIS CARROLL}
+
+\section{Boltzmann 方程}
+
+金属或半导体中的载流子会受到外场的影响，也会受到温度梯度的影响。它们还会遭受来自杂质、格波等的散射。这些效应必须相互达到平衡——我们必须考虑这样的情形：电子被电场加速，却又通过散射失去其多余的能量和动量。在本章中，我们将考虑“普通的”输运性质，也就是加上恒定场时所观察到的那些性质。
+
+一般说来，处理这个问题远为最简单的途径，是建立输运方程（transport equation）即 Boltzmann 方程。我们研究一个量 $f_{\mathbf{k}}(\mathbf{r})$，它表示在空间中点 $\mathbf{r}$ 附近处于态 $\mathbf{k}$ 的载流子的局域浓度。严格地说，这个量只能借助细粒度分布、系综平均、密度矩阵等来定义。关于这一点已有相当多的文献——但它更多属于量子统计力学的形式理论，而不是固体理论。
+
+现在考虑 $f_{\mathbf{k}}(\mathbf{r})$ 如何随时间变化。有三类效应：
+
+（i）载流子会流入和流出区域 $\mathbf{r}$。设 $\mathbf{v}_{\mathbf{k}}$ 是态 $\mathbf{k}$ 中载流子的速度。那么，在时间间隔 $t$ 内，这个态中的载流子移动一段距离 $t\mathbf{v}_{\mathbf{k}}$。于是，根据 Liouville 关于相空间中所占据体积不变的定理，$t$ 时刻位于 $\mathbf{r}$ 附近的载流子数目，等于 $0$ 时刻位于 $\mathbf{r}-t\mathbf{v}_{\mathbf{k}}$ 附近的数目：
+\begin{equation*}
+f_{\mathbf{k}}(\mathbf{r},t)=f_{\mathbf{k}}(\mathbf{r}-t\mathbf{v}_{\mathbf{k}},0).\tag{7.1}
+\end{equation*}
+这意味着，由于扩散引起的分布的变化率为
+\begin{equation*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{diff.}}
+=-\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}}{\partial \mathbf{r}}
+=-\mathbf{v}_{\mathbf{k}}\cdot\nabla f_{\mathbf{k}}.\tag{7.2}
+\end{equation*}
+
+（ii）外场会改变每个载流子的 $\mathbf{k}$ 矢量，其变化率为式 (6.40)，即
+\begin{equation*}
+\dot{\mathbf{k}}=\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right).\tag{7.3}
+\end{equation*}
+我们可以把它看作载流子在 $\mathbf{k}$ 空间中的速度，于是，通过与式 (7.1) 类比，
+\begin{equation*}
+f_{\mathbf{k}}(\mathbf{r},t)=f_{\mathbf{k}-\dot{\mathbf{k}}t}(\mathbf{r},0);\tag{7.4}
+\end{equation*}
+也就是说，由于场（\emph{fields}）的作用，分布以下列速率变化：
+\begin{align*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{field}}
+&=-\dot{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{k}}\\
+&=-\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{k}}\tag{7.5}
+\end{align*}
+（其中我们把 $\partial/\partial\mathbf{k}$ 写作 $\mathbf{k}$ 空间中的梯度——即算符 $\nabla_{\mathbf{k}}$）。
+
+（iii）散射的效应更为复杂。但我们在此主要限于弹性散射。它使 $f_{\mathbf{k}}$ 获得一个变化率
+\begin{equation*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
+=\int\{f_{\mathbf{k}'}(1-f_{\mathbf{k}})-f_{\mathbf{k}}(1-f_{\mathbf{k}'})\}\,Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'.\tag{7.6}
+\end{equation*}
+由 $\mathbf{k}$ 散射到 $\mathbf{k}'$ 的过程使 $f_{\mathbf{k}}$ 减小。这一过程的概率既取决于 $f_{\mathbf{k}}$，即态 $\mathbf{k}$ 中载流子的数目，也取决于 $(1-f_{\mathbf{k}'})$，即末态中可供占用的空位数目。同时还存在逆过程，即从 $\mathbf{k}'$ 进入 $\mathbf{k}$ 的过程，它使 $f_{\mathbf{k}}$ 增大，其权重为 $f_{\mathbf{k}'}(1-f_{\mathbf{k}})$。我们对所有其他可能的态 $\mathbf{k}'$ 求和。不过，对于每一对 $\mathbf{k}$ 和 $\mathbf{k}'$，都存在一个基本跃迁概率 $Q(\mathbf{k},\mathbf{k}')$，它量度跃迁速率——比如说，在已知 $\mathbf{k}$ 被占据而 $\mathbf{k}'$ 为空的情形下。\emph{微观可逆性}（microscopic reversibility）原理告诉我们，同一个函数也给出从 $\mathbf{k}'$ 到 $\mathbf{k}$ 的跃迁速率，所以它是被积函数中的一个公共因子。
+
+Boltzmann 方程说：在任一点、对任意的 $\mathbf{k}$ 值，$f_{\mathbf{k}}(\mathbf{r})$ 的净变化率为零，即
+\begin{equation*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
++\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{field}}
++\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{diff.}}=0.\tag{7.7}
+\end{equation*}
+
+注意，这是一个\emph{定常态}（steady state），而不是\emph{平衡态}（equilibrium state）；平衡态我们记作 $f_{\mathbf{k}}^{0}$，它在没有场和温度梯度时成立。如果外场本身随时间变化，那么这三项之和必须等于 $f_{\mathbf{k}}$ 在此力作用下随时间的变化（见 §8.6）。
+
+但我们假定，定态分布不会偏离平衡太远。我们写出
+\begin{equation*}
+g_{\mathbf{k}}=f_{\mathbf{k}}-f_{\mathbf{k}}^{0},\tag{7.8}
+\end{equation*}
+其中，如 §4.5 中那样，
+\begin{equation*}
+f_{\mathbf{k}}^{0}=\frac{1}{\exp\{(\mathcal{E}_{\mathbf{k}}-\zeta)/kT\}+1}=f^{0}(\mathcal{E}_{\mathbf{k}}).\tag{7.9}
+\end{equation*}
+
+这里我们必须稍稍小心一点：当温度逐点各不相同时，$f_{\mathbf{k}}^{0}$ 该如何定义？我们假定每一点都有一个明确确定的温度 $T(\mathbf{r})$，并写出
+\begin{equation*}
+g_{\mathbf{k}}(\mathbf{r})=f_{\mathbf{k}}(\mathbf{r})-f_{\mathbf{k}}^{0}\{T(\mathbf{r})\}.\tag{7.10}
+\end{equation*}
+如果难以确定 $T(\mathbf{r})$ 应当取什么，我们可以坚持要求最终解满足某个附加条件，例如
+\begin{equation*}
+\int g_{\mathbf{k}}(\mathbf{r})\,\mathrm{d}\mathbf{k}=0.\tag{7.11}
+\end{equation*}
+
+把式 (7.8) 代入式 (7.7)，并利用式 (7.2) 和式 (7.5)，Boltzmann 方程变为
+\begin{equation*}
+-\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{r}}
+-\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{k}}
+=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}},\tag{7.12}
+\end{equation*}
+亦即
+\begin{align*}
+-\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}^{0}}{\partial T}\nabla T
+-\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial f_{\mathbf{k}}^{0}}{\partial\mathbf{k}}\\
+=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
++\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}}
++\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{k}}.\tag{7.13}
+\end{align*}
+
+借助式 (7.9) 以及运动学关系式 (6.2)，我们可以把它写成
+\begin{align*}
+\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)
+\mathbf{v}_{\mathbf{k}}\cdot\left\{-\frac{\mathcal{E}(\mathbf{k})-\zeta}{T}\nabla T
++e\left(\mathbf{E}-\frac{1}{e}\nabla\zeta\right)\right\}\\
+=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
++\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}}
++\frac{e}{\hbar c}(\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H})\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{k}}.\tag{7.14}
+\end{align*}
+
+这就是线性化的 Boltzmann 方程。我们略去了 $(\mathbf{E}\cdot\partial g_{\mathbf{k}}/\partial\mathbf{k})$ 这一项，它是 $E^{2}$ 量级的，对应于对 Ohm 定律的偏离。我们还可以去掉 $(\mathbf{v}_{\mathbf{k}}\cdot\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H})$ 这一项，它恒等于零；于是磁场不出现在左端。
+
+如果把式 (7.6) 代入式 (7.14)，我们就会看到，Boltzmann 方程是关于分布函数的“失衡”部分 $g_{\mathbf{k}}(\mathbf{r})$ 的一个线性积分微分方程。这个函数的值由电场的强度和温度梯度通过左端的驱动项来确定。本章其余部分将讨论在越来越复杂的条件下求这个方程的解。
+
+具有批判眼光的读者读到此处，恐怕早已对这种以头脑简单的方式使用准经典概念来描述量子力学系统行为的做法感到反感了。难道真的能够以这样满不在乎的方式忽略电子波包之间的干涉吗？
+
+要回答这类问题，我们需要一种更先进的技术，即使用密度矩阵和（或）Green 函数的技术。如 §5.1 中那样，外场被当作作用在我们多粒子系统平衡态上的一个小微扰，它激发出一个\emph{线性响应}（linear response），其大小量度相应的输运系数。例如，电导率张量可以抽象地用 \emph{Kubo 公式}表出：
+\begin{equation*}
+\sigma_{\mu\nu}=\frac{1}{kT}\int_{0}^{\infty}\langle j_{\mu}(t)\,j_{\nu}(0)\rangle\,\mathrm{d}t.\tag{7.15}
+\end{equation*}
+换言之，电导率取决于电流算符在零时刻的分量 $j_{\nu}(0)$ 与稍后某一时刻 $t$ 的分量 $j_{\mu}(t)$ 之间的\emph{时间关联}（time correlation）（对照 §2.8）；对全部时间积分，并把乘积的期望值对平衡系综取平均。当然，$j(t)$ 本身的平均值是零，但电流中\emph{涨落}（fluctuations）的衰减，恰恰取决于与它对外场响应所依赖的完全相同的系统特征——杂质散射，等等。
+
+这类公式十分优雅，并且为涉及输运系数的各种定理提供了严格的基础——例如不可逆过程的 Onsager 关系（§7.9）。但是，要用散射截面等量把式 (7.15) 这样的表达式显式计算出来却格外微妙，至今只在少数简单的标准情形中完成过。所幸其结果几乎证实了由 Boltzmann 方法远为直接地得到的全部结论。
+
+\section{电导率}
+
+假定我们只有一个电场 $\mathbf{E}$，介质是“无限”的并保持恒温。方程变为
+\begin{align*}
+\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{E}
+&=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}\\
+&=\int(f_{\mathbf{k}}-f_{\mathbf{k}'})\,Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'\\
+&=\int(g_{\mathbf{k}}-g_{\mathbf{k}'})\,Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'\tag{7.16}
+\end{align*}
+（由式 (7.6)）。这是关于未知函数 $g_{\mathbf{k}}$ 的一个简单的积分方程。
+
+我们不直接求解这个方程，而是作如下的唯象假设：
+\begin{equation*}
+-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}=\frac{1}{\tau}\,g_{\mathbf{k}}.\tag{7.17}
+\end{equation*}
+也就是说，我们引入一个\emph{弛豫时间}（relaxation time）$\tau$。如果撤去电场，那么任何失衡量 $g_{\mathbf{k}}$ 都将按
+\begin{equation*}
+-\frac{\partial g_{\mathbf{k}}}{\partial t}=\frac{g_{\mathbf{k}}}{\tau},
+\end{equation*}
+即
+\begin{equation*}
+g_{\mathbf{k}}(t)=g_{\mathbf{k}}(0)\,e^{-t/\tau}\tag{7.18}
+\end{equation*}
+而衰减到零。这个假设看起来是合理的——但需要论证，我们将在 §7.3 中给出。
+
+把式 (7.17) 代入式 (7.16)，得到
+\begin{equation*}
+g_{\mathbf{k}}=\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\tau\,\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{E}.\tag{7.19}
+\end{equation*}
+为了计算电导率，我们需要相应的电流密度
+\begin{align*}
+\mathbf{J}&=2\int e\mathbf{v}_{\mathbf{k}}f_{\mathbf{k}}\,\mathrm{d}\mathbf{k}\\
+&=2\int e\mathbf{v}_{\mathbf{k}}g_{\mathbf{k}}\,\mathrm{d}\mathbf{k}\quad\left(\text{由于}\int e\mathbf{v}_{\mathbf{k}}f_{\mathbf{k}}^{0}\,\mathrm{d}\mathbf{k}\equiv 0\right)\\
+&=\frac{1}{4\pi^{3}}\iint e^{2}\tau\,\mathbf{v}_{\mathbf{k}}(\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E})\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\frac{\mathrm{d}S}{\hbar v_{\mathbf{k}}}\,\mathrm{d}\mathcal{E},\tag{7.20}
+\end{align*}
+这里利用式 (2.66) 和式 (4.6)，把对 $\mathbf{k}$ 空间一个体积的积分变换为对恒定能量面的积分。
+
+按 §4.5，在金属中函数 $(-\partial f^{0}/\partial\mathcal{E})$ 的行为如同 费米能级处的一个 delta 函数；于是剩下的只是展布于 费米面上的一个积分。这样，
+\begin{equation*}
+\mathbf{J}=\frac{1}{4\pi^{3}}\frac{e^{2}\tau}{\hbar}\int\frac{\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\,\mathrm{d}S_{F}}{v_{\mathbf{k}}}\cdot\mathbf{E}.\tag{7.21}
+\end{equation*}
+我们将它与标准的宏观方程
+\begin{equation*}
+\mathbf{J}=\boldsymbol{\sigma}\cdot\mathbf{E},\tag{7.22}
+\end{equation*}
+相比较，其中 $\boldsymbol{\sigma}$ 是一个张量。用并矢（dyadic）记号，
+\begin{equation*}
+\boldsymbol{\sigma}=\frac{1}{4\pi^{3}}\frac{e^{2}\tau}{\hbar}\int\frac{\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\,\mathrm{d}S_{F}}{v_{\mathbf{k}}}.\tag{7.23}
+\end{equation*}
+
+要从 Kubo 公式 (7.15) 出发导出此式，我们可以把 $\tau$ 定义为态 $\mathbf{k}$ 中电流 $e\mathbf{v}_{\mathbf{k}}$ 的一个涨落的衰减时间。在系综平均中，这些涨落由 费米–狄拉克 分布支配，它在式 (7.23) 中以一个态密度因子代替 $1/kT$。
+
+我们通常处理的是具有立方对称性的晶体，这时\emph{电导率张量}（conductivity tensor）约化为一个标量。考虑 $\mathbf{E}$ 和 $\mathbf{J}$ 都沿 $x$ 方向的情形，我们在被积函数中得到
+\begin{equation*}
+(\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E})_{x}=v_{x}^{2}E,\tag{7.24}
+\end{equation*}
+它是总速度的平方的贡献 $v^{2}E$ 的 $1/3$。于是
+\begin{align*}
+\sigma&=\frac{1}{4\pi^{3}}\frac{e^{2}\tau}{\hbar}\,\frac{1}{3}\int v\,\mathrm{d}S_{F}\\
+&=\frac{1}{4\pi^{3}}\frac{e^{2}}{\hbar}\,\frac{1}{3}\int\Lambda\,\mathrm{d}S_{F},\tag{7.25}
+\end{align*}
+其中我们引入\emph{平均自由程}（mean free path）
+\begin{equation*}
+\Lambda=\tau v.\tag{7.26}
+\end{equation*}
+这就是计算电导率的基本公式。
+
+观察一下由式 (7.8) 定义的分布函数 $f_{\mathbf{k}}$ 的形式（图 122）是很有意思的。由式 (7.19) 可见，$g_{\mathbf{k}}$ 只在 费米面处才大。在 $\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{E}$ 为正的一侧——也就是电子被电场加速的那一侧——加上一小块；同时在另一侧减去同样大小的一块。
+
+实际上，我们有
+\begin{align*}
+f_{\mathbf{k}}&=f_{\mathbf{k}}^{0}-\frac{\partial f_{\mathbf{k}}^{0}}{\partial\mathcal{E}(\mathbf{k})}\,\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}\cdot\frac{e\tau}{\hbar}\mathbf{E}\\
+&=f^{0}\left(\mathbf{k}-\frac{e\tau}{\hbar}\mathbf{E}\right),\tag{7.27}
+\end{align*}
+这由 Taylor 定理得到。这就好像整个 费米面在 $\mathbf{k}$ 空间中移动了一个数量 $(e\tau/\hbar)\mathbf{E}$。但这是一个稍微令人误解的概念。能带底部附近、深入 Fermi 球内部的那些态，实际上并不受电场影响。Pauli 原理使它们既不会被电场加速，也不会被杂质散射。
+
+不过我们注意到，电导率是与温度无关的（也许除了 $\tau$ 随温度的变化之外）。同样的公式在 $T=0$ 时也成立，此时 费米分布的边缘是完全陡峭的。我们可以说，电导率可以根据一个\emph{坚硬 费米面}（hard Fermi surface）的位移计算出来。
+
+%FIG{122}: {（a）移位的 费米面。（b）移位的 费米分布。}
+
+另一个值得注意之点是，式 (7.27) 可以写成
+\begin{equation*}
+f_{\mathbf{k}}=f^{0}(\mathcal{E}_{\mathbf{k}}-e\tau\,\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}),\tag{7.28}
+\end{equation*}
+就好像态 $\mathbf{k}$ 中的电子获得了大小为
+\begin{equation*}
+\delta\mathcal{E}_{\mathbf{k}}=e\tau\,\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}.\tag{7.29}
+\end{equation*}
+的能量。这正是经典图像中它应有的行为：假如它以速度 $\mathbf{v}_{\mathbf{k}}$ 在电场 $\mathbf{E}$ 中运动一段平均时间 $\tau$，就会得到这样一份能量。处理输运问题的\emph{分子运动论方法}（kinetic method）正是以这一论证为基础的。在与杂质两次碰撞之间获得的这份额外能量，等价于沿场方向的一个\emph{漂移速度}（drift velocity）$\delta\mathbf{v}$，它满足
+\begin{equation*}
+\delta\mathbf{v}\cdot\frac{\partial\mathcal{E}}{\partial\mathbf{v}}=e\mathbf{v}\cdot\mathbf{E}\,\tau,\tag{7.30}
+\end{equation*}
+即
+\begin{equation*}
+\delta\mathbf{v}=\frac{e\tau v}{mv}\,\mathbf{E},\tag{7.31}
+\end{equation*}
+这是对质量为 $m$ 的经典粒子而言的。
+
+如果每单位体积有 $n$ 个粒子，则净电流密度为
+\begin{equation*}
+\mathbf{J}=ne\,\delta\mathbf{v},\tag{7.32}
+\end{equation*}
+而把式 (7.31)、(7.32) 与式 (7.22) 相比较，就得到
+\begin{equation*}
+\sigma=\frac{ne^{2}\tau}{m}.\tag{7.33}
+\end{equation*}
+
+很容易证明，对自由电子气而言，式 (7.25) 与式 (7.33) 给出相同的结果；但对金属来说，前者在原理上是好得多的公式。从线性响应理论的观点看，把它写成
+\begin{equation*}
+\sigma=\frac{1}{3}\,j_{F}^{2}\tau\,\mathcal{N}(\mathcal{E}_{F})\tag{7.34}
+\end{equation*}
+甚至还要更好，这表明电导率只取决于 费米能级处电子的性质，而不取决于金属中电子的总数。金属的高电导率应归因于 费米分布顶端的少数电子所携带的大电流 $j_{F}=ev_{F}$，而不是归因于可以被拉动而缓慢漂移的自由电子具有很高的总密度。
+
+基本公式 (7.25) 还表明，如果自由 费米面的面积因与区边界的相互作用而减小，情况会怎样；它还把使 费米面上电子的有效速度降低的晶格效应考虑在内。这类效应在诸如 Bi 这样的金属中肯定可以观察到。
+
+另一方面，分子运动论公式 (7.33) 则适用于半导体，其中 $n$ 是自由载流子的数目。习惯上写成
+\begin{equation*}
+\sigma=n\,|e|\,\mu,\tag{7.35}
+\end{equation*}
+其中
+\begin{equation*}
+\mu=\frac{|e|\tau}{m}\tag{7.36}
+\end{equation*}
+是载流子的\emph{迁移率}（mobility）。更一般地，人们假定电子和空穴分别对电流作出贡献，于是写成
+\begin{equation*}
+\sigma=n_{e}|e|\,\mu_{e}+n_{h}|e|\,\mu_{h},\tag{7.37}
+\end{equation*}
+并分别定义\emph{电子迁移率}（electron mobility）与\emph{空穴迁移率}（hole mobility）。
+
+比如说，从式 (7.20) 出发推导式 (7.35) 并不困难：对 $f^{0}$ 采用类似式 (4.32) 的经典分布函数，并计算像式 (4.36) 那样的积分。这时要假定 $\tau$ 可以是能量的函数，于是求得其平均值（用以代入式 (7.36)）为
+\begin{equation*}
+\bar{\tau}=\frac{2}{3kT}\int\mathcal{E}\,\tau(\mathcal{E})\,e^{-\mathcal{E}/kT}\mathcal{N}(\mathcal{E})\,\mathrm{d}\mathcal{E}\;\bigg/\int e^{-\mathcal{E}/kT}\mathcal{N}(\mathcal{E})\,\mathrm{d}\mathcal{E},\tag{7.38}
+\end{equation*}
+其中 $\mathcal{N}(\mathcal{E})$ 是载流子所在的那个特定能带中的态密度。于是
+\begin{equation*}
+\mu_{e}=\frac{|e|\,\bar{\tau}_{e}}{m_{e}},\tag{7.39}
+\end{equation*}

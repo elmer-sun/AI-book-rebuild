@@ -1,0 +1,80 @@
+% 《时空与几何》中文重排本
+% Sean M. Carroll, Spacetime and Geometry: An Introduction to General Relativity
+% (Pearson New International Edition, 2014；内容同 Addison–Wesley 2004 第一版)
+% 编译：xelatex ×3
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+\usepackage{amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\ctexset{
+  chapter/name = {第,章},
+  section/format = \Large\bfseries,
+}
+\allowdisplaybreaks
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \predisplaypenalty=10000
+\graphicspath{{figures/}}
+\xeCJKDeclareCharClass{CJK}{"201C, "201D, "2018, "2019}
+
+% 插入的空白衬页真正空白（无页眉页脚）
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% 插图占位（翻译阶段先占位，图重绘后替换为 \includegraphics）
+\newcommand{\figplaceholder}[2]{%
+  \begin{figure}[H]\centering
+  \fbox{\parbox[c][5cm][c]{0.8\textwidth}{\centering 图 #1 重绘占位\\ #2}}
+  \caption*{图 #1\quad #2}\label{fig:auto:#1}
+  \end{figure}}
+
+% 章首题词（原书卷首引语）
+\newcommand{\epigraphbook}[2]{%
+  \begin{center}\itshape #1\\[0.3em]\scshape #2\end{center}}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\centering
+{\Huge\bfseries 时空与几何\\[1.2em]}
+{\LARGE 广义相对论导论\\[5em]}
+{\Large Spacetime and Geometry:\\
+An Introduction to General Relativity\\[3em]}
+{\Large Sean M. Carroll（S. M. 卡罗尔）\quad 著\\[1em]}
+{\large Pearson New International Edition（2014）\\[5em]}
+{\large 中文重排本\\[0.5em]}
+{\large 依据 Pearson New International Edition 扫描件\\[0.3em]
+识别、翻译并重新排版\\[0.3em]
+仅供个人学习研究使用\\[3em]}
+\end{titlepage}
+\thispagestyle{empty}\mbox{}\clearpage
+\frontmatter
+\input{chapters/ch00_front}
+\tableofcontents
+
+\mainmatter
+
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+\input{chapters/ch08}
+\input{chapters/ch09}
+
+\appendix
+\input{chapters/ch10_appendix}
+
+\input{chapters/ch11_bib}
+
+\end{document}

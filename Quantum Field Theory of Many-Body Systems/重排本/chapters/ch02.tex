@@ -1,0 +1,1748 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第2章 量子力学的路径积分表述
+
+%--A-TAIL--
+\begin{align*}
+\operatorname{Det}(M_N) &= 2\cosh(u)\operatorname{Det}(M_{N-1}) - \operatorname{Det}(M_{N-2}),\\
+\operatorname{Det}(M_1) &= 2\cosh(u), \qquad \operatorname{Det}(M_2) = 4\cosh^2(u) - 1.
+\end{align*}
+% 第2章 PATH INTEGRAL FORMULATION OF QUANTUM MECHANICS
+\chapter{量子力学的路径积分表述}
+
+本书讨论多体系统的量子行为。然而，以波函数和薛定谔方程为核心的标准量子理论表述并不适用于多体系统。在本章中，我们为量子理论引入半经典图像（semiclassical picture）与路径积分（path integral）表述。路径积分表述可以很方便地应用于多体系统。这里，我们将以单粒子系统为具体例子来建立这套表述。我们还将应用路径积分表述来研究量子摩擦、简单量子线路等问题。
+
+\section{半经典图像与路径积分}
+
+\begin{keypoints}
+\item 半经典图像与路径积分表述使我们能够直观地构想量子行为；它们给了我们一个量子系统的全局图像。
+\end{keypoints}
+
+当我们在思考一个物理问题或试图理解一个现象时，在头脑中有一幅图像、从而能在心里构想出谜题各个碎片之间的联系，是非常重要的。对于经典系统，这种心理构想要容易些，因为经典系统的图像与我们日常生活实际所见相当接近。然而，当我们考虑量子系统时，构想就困难得多了。这是因为量子世界与我们每天所见并不相似。在经典世界中，我们看到各种物体。稍加抽象，我们便把这些物体视为粒子的集合。粒子的概念是经典物理学中最重要的概念。它如此简单而平淡，以至于人们视之为理所当然，懒得去为这样一个显而易见的真理专门表述成一条物理定律。然而，正是这个显而易见的真理在量子世界中被证明是错误的。具有位置和速度的粒子概念在量子世界中根本不存在。于是，挑战就在于：在一个连粒子（即构成物体的积木块）概念都不存在的量子世界里，如何去构想任何东西。
+
+路径积分表述正是用经典世界的图像来描述量子世界的一种尝试。换言之，它是架在经典世界（我们拥有经验与图像之处）与量子世界（代表实在之处）之间的一座桥梁。路径积分表述将帮助我们借助相应经典系统的图像来直观地把握量子行为。
+
+\subsection{粒子的传播子}
+
+\begin{keypoints}
+\item 传播子的概念。
+\item 传播子在 $\omega$ 空间中的极点结构。
+\end{keypoints}
+
+考虑一个一维粒子：
+\begin{equation*}
+H = \frac{1}{2m}p^2 + V(x) \tag{2.1.1}
+\end{equation*}
+时间演化算符（time evolution operator）
+\begin{equation*}
+U(t_b,t_a) = \mathrm{e}^{-\mathrm{i}\hbar^{-1}(t_b-t_a)H} = \mathrm{e}^{-\mathrm{i}(t_b-t_a)H}
+\end{equation*}
+完全决定了系统的行为与性质。本节中我们总假定 $t_b > t_a$。全书我们取 $\hbar = 1$。
+
+$U$ 在坐标基下的矩阵元为
+\begin{equation*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) \equiv \langle x_b|U(t_b,t_a)|x_a\rangle
+\end{equation*}
+它表示：若粒子在时刻 $t_a$ 位于 $x_a$，则在时刻 $t_b$ 于位置 $x_b$ 找到该粒子的概率振幅。这里 $G(x_b,t_b,x_a,t_a)$ 称为传播子（propagator），它对我们的单粒子量子系统给出了完整而完备的描述。
+
+显然，传播子 $G$ 满足薛定谔方程
+\begin{equation*}
+\mathrm{i}\partial_t G(x,t,x_a,t_a) = H G(x,t,x_a,t_a)
+\end{equation*}
+初条件为
+\begin{equation*}
+G(x,t_a,x_a,t_a) = (-\mathrm{i})\,\delta(x-x_a)
+\end{equation*}
+求解薛定谔方程，得到 $V(x)=0$ 时自由粒子的传播子
+\begin{equation*}
+G(x_b,x_a,t) = (-\mathrm{i})\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2} \exp\left[\frac{\mathrm{i}m(x_b-x_a)^2}{2t}\right] \tag{2.1.2}
+\end{equation*}
+其中 $t = t_b - t_a$。
+
+我们也可以用能量本征态 $|n\rangle$（能量为 $\epsilon_n$）来展开 $U$。在新基下，传播子具有以下更简单的形式：
+\begin{equation*}
+G_E(n_b,t_b,n_a,t_a) \equiv (-\mathrm{i})\langle n_b|U(t_b,t_a)|n_a\rangle = (-\mathrm{i})\mathrm{e}^{-\mathrm{i}\epsilon_n(t_b-t_a)}\delta_{n_b,n_a}
+\end{equation*}
+在频率空间中，它由下式给出：
+\begin{align*}
+G_E(n_b,n_a,\omega) &\equiv \int_0^{\infty} \mathrm{d}t\, G_E(n_b,t_a+t,n_a,t_a)\,\mathrm{e}^{\mathrm{i}t\omega-0^+t}\\
+&= \frac{1}{\omega-\epsilon_{n_a}+\mathrm{i}0^+}\,\delta_{n_b,n_a}
+\end{align*}
+它在每个能量本征值处都有一个单极点。这里 $0^+$ 是一个无穷小的正数，引入它是为了使积分收敛。坐标空间中的传播子具有类似的结构：
+\begin{align*}
+G(x_b,x_a,t) &= \sum_n \langle x_b|n\rangle\langle n|x_a\rangle G_E(n,n,t) = \sum_n \langle x_b|n\rangle\langle n|x_a\rangle(-\mathrm{i})\mathrm{e}^{-\mathrm{i}\epsilon_n t}\\
+G(x_b,x_a,\omega) &= \sum_n \frac{\langle x_b|n\rangle\langle n|x_a\rangle}{\omega-\epsilon_n+\mathrm{i}0^+}
+\end{align*}
+我们看到，通过分析 $G(x_b,x_a,\omega)$ 的极点结构，可以获得关于能量本征值的信息。
+
+为了重新得到时间中的传播子
+\begin{equation*}
+G_E(n_b,n_a,t) = \int \frac{\mathrm{d}\omega}{2\pi}\, \frac{1}{\omega-\epsilon_{n_a}+\mathrm{i}0^+}\,\delta_{n_b,n_a}\,\mathrm{e}^{-\mathrm{i}t\omega}
+\end{equation*}
+当 $t>0$ 时，我们需要在复 $\omega$ 平面的下半平面选取围道，$t<0$ 时则需在上半平面选取围道，以使沿围道的积分有限。由于 $0^+$ 使极点出现在复 $\omega$ 平面实轴的略下方，我们得到
+\begin{equation*}
+G_E(n_b,n_a,t) = (-\mathrm{i})\,\mathrm{e}^{-\mathrm{i}\epsilon_n(t_b-t_a)}\delta_{n_b,n_a}\,\Theta(t)
+\end{equation*}
+其中
+\begin{equation*}
+\Theta(t) = \left\{\begin{array}{ll} 1, & t>0\\ 0, & t<0 \end{array}\right. \tag{2.1.3}
+\end{equation*}
+
+\subsection*{问题 2.1.1}
+
+证明：在频率空间中，有
+\begin{equation*}
+G(x_b,x_a,\omega) = \sum_n \frac{\psi_n(x_b)\psi_n^{\dagger}(x_a)}{\omega-\epsilon_n}
+\end{equation*}
+其中 $\psi_n$ 为能量本征函数。谐振子的传播子具有如下形式：
+\begin{equation*}
+G(x_b,t,x_a,0) = (-\mathrm{i})\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin(t\omega_0)}\right)^{1/2} \exp\left(\frac{\mathrm{i}m\omega_0}{2\pi\sin(t\omega_0)}\big[(x_b^2+x_a^2)\cos(\omega_0 t) - 2x_bx_a\big]\right)
+\end{equation*}
+（译注：按标准结果并参照问题 2.1.6，指数上的分母应为 $2\sin(t\omega_0)$，原书排印为 $2\pi\sin(t\omega_0)$。）研究并解释谐振子的 $G(0,0,\omega)$ 的极点结构。（提示：尝试把 $G(0,t,0,0)$ 展开成 $\sum C_n\mathrm{e}^{-\mathrm{i}t\epsilon_n}$ 的形式。）
+
+\subsection*{问题 2.1.2}
+
+试求三维自由粒子在波矢与频率空间中的传播子 $G_E(k_b,k_a,\omega)$。
+
+\subsection{传播子的路径积分表示}
+
+\begin{keypoints}
+\item 路径积分是量子物理中叠加原理的一种特殊表示。
+\end{keypoints}
+
+量子系统的路径积分表述，其精神实质非常简单。考虑一个粒子经由中间态 $|n\rangle$（$n = 1, 2, \dots$）从位置 $|x_a\rangle$ 传播到位置 $|x_b\rangle$。设经由态 $|n\rangle$ 从 $|x_a\rangle$ 到 $|x_b\rangle$ 的振幅为 $A_n$，则从 $|x_a\rangle$ 到 $|x_b\rangle$ 的总振幅为 $\sum_n A_n$。现在设想我们把从 $|x_a\rangle$ 到 $|x_b\rangle$ 的传播分成许多时间切片，每个时间切片拥有自己的一组中间态。从 $|x_a\rangle$ 到 $|x_b\rangle$ 的传播可以看成穿过各时间切片上中间态的所有路径之和。这就给出了传播振幅的路径积分表示的一幅图像。
+
+为了给上述图像找到一个数学表示，我们注意到从 $|x_a\rangle$ 到 $|x_b\rangle$ 的振幅由时间演化算符 $U$ 在位置空间中的矩阵元描述。$U$ 满足
+\begin{equation*}
+U(t_b,t_a) = U(t_b,t)\,U(t,t_a)
+\end{equation*}
+于是，传播子满足
+\begin{equation*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) = \int \mathrm{d}x\; \mathrm{i}G(x_b,t_b,x,t)\,\mathrm{i}G(x,t,x_a,t_a) \tag{2.1.4}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.1.pdf}
+\caption*{图 2.1\quad 总振幅是连接 $x_a$ 与 $x_b$ 的所有路径所对应的振幅之和。}
+\end{figure}
+
+让我们把时间区间 $[t_a,t_b]$ 分成 $N$ 个等长的小段，每段长度 $\Delta t = \frac{t_b-t_a}{N}$。将式 (2.1.4) 使用 $N-1$ 次，我们得到
+\begin{align*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) &= \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \prod_{j=1}^{N} \mathrm{i}G(x_j,t_j,x_{j-1},t_{j-1})\\
+&= A^N \int \prod_i \mathrm{d}x_i\, \exp\left(\mathrm{i} \sum \Delta t\, L\Big(t_j, \frac{x_j+x_{j-1}}{2}, \frac{x_j-x_{j-1}}{\Delta t}\Big)\right)\\
+&\equiv \int \mathcal{D}[x(t)]\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\, L(t,x,\dot{x})} \tag{2.1.5}
+\end{align*}
+其中 $(t_0,x_0)=(t_a,x_a)$，$(t_N,x_N)=(t_b,x_b)$，且
+\begin{equation*}
+\mathrm{i}\Delta t\, L\Big(t_i, \frac{x_i+x_{i-1}}{2}, \frac{x_i-x_{i-1}}{\Delta t}\Big) = \ln[\mathrm{i}G(x_i,t_i,x_{i-1},t_{i-1})/A] \tag{2.1.6}
+\end{equation*}
+
+假定适当选取 $A$ 之后，式 (2.1.6) 中 $L$ 的定义在 $\Delta t \to 0$ 极限下有意义，那么式 (2.1.5) 就是传播子的路径积分表示。
+
+在路径积分表示中，每条路径都被赋予一个振幅 $\mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,L}$。传播子不过是连接 $x_a$ 与 $x_b$ 的所有路径所对应的振幅之和（图 2.1）。这样的求和是一个无穷维积分，而式 (2.1.5) 给出了计算这种无穷维积分的一种方式。
+
+现在让我们对我们的单粒子系统 (2.1.1) 计算 $L(t,x,\dot{x})$。对于自由粒子系统，我们可以利用式 (2.1.2) 来计算 $L(t,x,\dot{x})$。下面我们将对由 $H = \frac{p^2}{2m} + V(x)$ 描述的更一般的单粒子系统计算 $L$。注意到，对于小的 $\Delta t$，有
+\begin{equation*}
+\exp\left(-\mathrm{i}\Big[\frac{p^2}{2m} + V(x)\Big]\Delta t\right) = \exp\left(-\mathrm{i}\frac{p^2}{2m}\Delta t\right)\exp\left(-\mathrm{i}V(x)\Delta t\right) + O(\Delta t^2)
+\end{equation*}
+因此
+\begin{align*}
+&\mathrm{i}G(x_{i-1},t_{i-1},x_i,t_i)\\
+&\qquad = \langle x_i| \exp\left(-\mathrm{i}\frac{p^2}{2m}\Delta t\right)\exp\left(-\mathrm{i}V(x)\Delta t\right) |x_{i-1}\rangle + O(\Delta t^2)\\
+&\qquad = \langle x_i| \exp\left(-\mathrm{i}\frac{p^2}{2m}\Delta t\right) |x_{i-1}\rangle\, \exp\left(-\mathrm{i}V(x_{i-1})\Delta t\right) + O(\Delta t^2)
+\end{align*}
+插入 $\int |p\rangle \frac{\mathrm{d}p}{2\pi}\langle p| = 1$ 并利用 $\langle p|x\rangle = \exp(-\mathrm{i}px)$，我们得到
+\begin{align*}
+&\mathrm{i}G(x_{i-1},t_{i-1},x_i,t_i)\\
+&\qquad = \int \frac{\mathrm{d}p_i}{2\pi}\, \exp\left(\mathrm{i}\big[p_i\frac{x_i-x_{i-1}}{\Delta t} - \frac{p_i^2}{2m} - V(x_i)\big]\Delta t\right) + O(\Delta t^2) \tag{2.1.7}\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{1/2} \exp\left(\mathrm{i}\big[\frac{m}{2}\frac{(x_i-x_{i-1})^2}{\Delta t^2} - V\big(\frac{x_i+x_{i-1}}{2}\big)\big]\Delta t\right) \tag{2.1.8}
+\end{align*}
+由式 (2.1.6) 可见
+\begin{align*}
+&L(x,\dot{x}) = \frac{m}{2}\dot{x}^2 - V(x) \tag{2.1.9}\\
+&A \equiv \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{1/2}
+\end{align*}
+于是，传播子的路径积分表示为
+\begin{align*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) &= \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \prod_{j=1}^{N} \mathrm{i}G(x_j,t_j,x_{j-1},t_{j-1})\\
+&= \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \int \mathrm{d}x_1...\mathrm{d}x_{N-1}\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,[\frac{m}{2}\dot{x}^2 - V(x)]} \tag{2.1.10}
+\end{align*}
+
+上面算出的 $L(x,\dot{x})$ 正是相应经典系统的拉格朗日量。因此，原则上一旦我们了解了一个经典系统（通过拉格朗日量来描述），就可以利用同一个拉格朗日量，通过路径积分得到相应的量子系统。
+
+我们也可以把式 (2.1.7) 代入式 (2.1.5)，得到
+\begin{align*}
+&\mathrm{i}G(x_b,t_b,x_a,t_a)\\
+&\qquad = \left(\frac{1}{2\pi}\right)^{N} \int \mathrm{d}x_1...\mathrm{d}x_{N-1}\,\mathrm{d}p_1...\mathrm{d}p_N\; \exp\left(\mathrm{i}\sum_{i=1}^{N}\big[p_i\frac{x_i-x_{i-1}}{\Delta t} - \frac{p_i^2}{2m} - V(x_i)\big]\right)\\
+&\qquad \equiv \int \mathcal{D}[x(t)]\,\mathcal{D}[p(t)]\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,[p\dot{x} - H(x,p)]} \tag{2.1.11}
+\end{align*}
+这是相空间（phase space）中的路径积分。这里 $H(x,p)$ 是经典哈密顿量。如果我们把相空间测度定义为
+\begin{equation*}
+\mathcal{D}[x(t)]\,\mathcal{D}[p(t)] \equiv \prod_1^{N-1} \mathrm{d}x_i \prod_1^{N} \frac{\mathrm{d}p_i}{2\pi} \tag{2.1.12}
+\end{equation*}
+那么哈密顿量 $H$ 就与经典的完全相同。看起来，相空间路径积分比坐标空间路径积分更为基本，因为那个讨厌的系数 $A$（见式 (2.1.9)）不再出现在路径积分的测度之中。我们还注意到，上述相空间测度含有 $N-1$ 个 $\mathrm{d}x$ 积分和 $N$ 个 $\mathrm{d}p$ 积分。
+
+我们知道，给拉格朗日量加上一个全时间导数项，即 $L \to L + \frac{\mathrm{d}f(x)}{\mathrm{d}t}$，并不影响经典动力学。然而，这样的改变确实会影响量子传播子，只是以一种平凡的方式：
+\begin{equation*}
+G(x_b,t_b,x_a,t_a) \to G(x_b,t_b,x_a,t_a)\,\mathrm{e}^{\mathrm{i}[f(x_b)-f(x_a)]}
+\end{equation*}
+
+\subsection*{问题 2.1.3}
+
+相干态路径积分：
+
+考虑谐振子 $H = \omega\hat{a}^{\dagger}\hat{a}$。由复数 $a$ 标记的相干态（coherent state）$|a\rangle$ 是 $\hat{a}$ 的本征态：$\hat{a}|a\rangle = a|a\rangle$。我们可以定义相干态传播子
+\begin{equation*}
+\mathrm{i}G(a_b,t_b,a_a,t_a) = \langle a_b|U(t_b,t_a)|a_a\rangle
+\end{equation*}
+利用相干态的完备性
+\begin{equation*}
+\int \frac{\mathrm{d}^2a}{\pi} |a\rangle\langle a| = 1
+\end{equation*}
+（其中 $\mathrm{d}^2a = \mathrm{d}\mathrm{Re}(a)\,\mathrm{d}\mathrm{Im}(a)$）以及内积
+\begin{equation*}
+\langle a|a'\rangle = \mathrm{e}^{-|a|^2/2}\,\mathrm{e}^{-|a'|^2/2}\,\mathrm{e}^{a^*a'}
+\end{equation*}
+证明 $G$ 的路径积分表示为
+\begin{equation*}
+\mathrm{i}G(a_b,t_b,a_a,t_a) = \int \pi^{-N+1}\mathcal{D}^2[a(t)]\; \mathrm{e}^{\mathrm{i}\int_{t_a}^{t_b}\mathrm{d}t\,[\mathrm{i}\frac{1}{2}(a^{\dagger}\dot{a} - a\dot{a}^{\dagger}) - \omega a^{\dagger}a]}
+\end{equation*}
+其中 $\mathcal{D}^2[a(t)] = \prod_{j=1}^{N-1}\mathrm{d}^2a_j$。证明相干态路径积分中的拉格朗日量
+\begin{equation*}
+L = \mathrm{i}\frac{1}{2}(a^{\dagger}\dot{a} - a\dot{a}^{\dagger}) - \omega a^{\dagger}a
+\end{equation*}
+与相空间路径积分中的拉格朗日量
+\begin{equation*}
+L = p\dot{x} - H
+\end{equation*}
+仅相差一个全时间导数项。
+
+\subsection{配分函数的路径积分表示}
+
+\begin{keypoints}
+\item 路径积分也可以用来研究统计系统。
+\end{keypoints}
+
+当我们考虑量子系统在有限温度下的统计性质时，配分函数（partition function）非常有用。我们的单粒子系统 (2.1.1) 的配分函数为
+\begin{equation*}
+Z(\beta) = \operatorname{Tr}\left(\mathrm{e}^{-\beta H}\right) = \int \mathrm{d}x\; \mathcal{G}(x,x,\beta)
+\end{equation*}
+其中 $\beta = \frac{1}{T}$ 是温度的倒数，而
+\begin{equation*}
+\mathcal{G}(x_b,x_a,\beta) \equiv \langle x_b|\mathrm{e}^{-\beta H}|x_a\rangle
+\end{equation*}
+可以看作虚时（imaginary time）中的传播子。上一节的计算可以重复进行，我们得到 $\mathcal{G}$ 的如下路径积分表示：
+\begin{equation*}
+\mathcal{G}(x_b,x_a,\tau) = A_{\tau}^N \int \mathcal{D}[x(\tau)]\; \mathrm{e}^{-\int_0^{\tau} \big[\frac{m}{2}\big(\frac{\mathrm{d}x}{\mathrm{d}\tau}\big)^2 + V(x)\big]\mathrm{d}\tau'} \tag{2.1.13}
+\end{equation*}
+\begin{equation*}
+A_{\tau} \equiv \left(\frac{m}{2\pi\Delta\tau}\right)^{1/2} \tag{2.1.14}
+\end{equation*}
+相应的相空间路径积分为
+\begin{equation*}
+\mathcal{G}(x_b,x_a,\tau) = \int \mathcal{D}[x(\tau)]\,\mathcal{D}[p(\tau)]\; \mathrm{e}^{-\int_0^{\tau} \big[\frac{p^2}{2m} + V(x) - \mathrm{i}p\frac{\mathrm{d}x}{\mathrm{d}\tau}\big]\mathrm{d}\tau'} \tag{2.1.15}
+\end{equation*}
+于是，配分函数可以写成
+\begin{align*}
+Z(\beta) &= \int \mathcal{D}[x(\tau)]\,\mathcal{D}[p(\tau)]\; \mathrm{e}^{-\oint \big[\frac{p^2}{2m} + V(x) - \mathrm{i}p\frac{\mathrm{d}x}{\mathrm{d}\tau}\big]\mathrm{d}\tau'}\\
+&= A_{\tau}^N \int \mathcal{D}[x(\tau)]\; \mathrm{e}^{-\oint \big[\frac{m}{2}\big(\frac{\mathrm{d}x}{\mathrm{d}\tau}\big)^2 + V(x)\big]\mathrm{d}\tau'}
+\end{align*}
+其中 $x(0) = x(\beta)$，$p(0) = p(\beta)$，测度略有不同：$\mathcal{D}[x(\tau)] = \prod_1^{N}\mathrm{d}x_j$，$\mathcal{D}[x(\tau)]\mathcal{D}[p(\tau)] = \prod_1^{N}\frac{\mathrm{d}x_j\mathrm{d}p_j}{2\pi}$。如果我们把虚时方向紧致化，那么配分函数就不过是缠绕在虚时方向上的各条加权回路的和。
+
+路径积分 (2.1.13) 与 (2.1.15) 常被称为虚时路径积分，因为通过解析延拓（analytic continuation）
+\begin{equation*}
+\tau \to \mathrm{e}^{\mathrm{i}\theta}t \to \mathrm{i}t
+\end{equation*}
+即让 $\theta$ 从 $0$ 连续变到 $\frac{\pi}{2}$，它们可以被映射为实时路径积分 (2.1.5) 与 (2.1.11)。在虚时路径积分中把 $\tau$ 换成 $\mathrm{e}^{\mathrm{i}\theta}t$ 之后，我们得到
+\begin{equation*}
+\mathcal{G}\big(x_b,x_a,t\mathrm{e}^{\mathrm{i}\theta}\big) = \left(\frac{m}{2\pi\mathrm{e}^{\mathrm{i}\theta}\Delta t}\right)^{N/2} \int \mathcal{D}[x(t)]\; \mathrm{e}^{-\int_0^{t} \big[\frac{m}{2}\big(\frac{\mathrm{d}x}{\mathrm{d}t}\big)^2\mathrm{e}^{-\mathrm{i}\theta} + V(x)\mathrm{e}^{\mathrm{i}\theta}\big]\mathrm{d}t'}
+\end{equation*}
+可以发现，只要 $-\frac{\pi}{2} < \theta < \frac{\pi}{2}$，这些积分总是收敛的。
+
+作为解析延拓的结果，实时传播子与虚时传播子之间的关系为
+\begin{equation*}
+\boxed{\;\mathcal{G}(x_b,x_a,\tau)\big|_{\tau=\mathrm{i}t} = \mathrm{i}G(x_b,x_a,t)\;}
+\end{equation*}
+借助解析延拓，我们常常可以通过计算相应的虚时传播子来得到实时传播子，而虚时传播子的计算往往更为简单。
+
+\subsection*{问题 2.1.4}
+
+推导式 (2.1.13) 与式 (2.1.15) 所给出的虚时传播子的路径积分表示。
+
+\subsection{路径积分的计算}
+
+\begin{keypoints}
+\item 当量子涨落不强时，驻定路径（stationary path）以及驻定路径附近的二次涨落支配着路径积分。
+\item 驻定路径是经典运动方程的解。
+\end{keypoints}
+
+上面我们推导了量子传播子的一种路径积分表示。这里我们将直接计算路径积分，并证实路径积分确实重新给出量子传播子。这一计算也使我们得以对路径积分和量子传播子获得一些直观的理解。
+
+让我们考虑半经典极限，即典型路径的作用量（action）远大于 $\hbar = 1$ 的极限。在这个极限下，当我们对一段范围内的路径积分时，相位 $\mathrm{e}^{\mathrm{i}S}$ 变化剧烈，不同路径的贡献相互抵消。然而，在满足
+\begin{equation*}
+S[x_c(t) + \delta x(t)] = S[x_c(t)] + O[(\delta x)^2] \tag{2.1.16}
+\end{equation*}
+的驻定路径 $x_c(t)$ 附近，所有路径都具有相同的相位，发生相长干涉。因此，在半经典极限下，驻定路径及其邻近的路径对路径积分的贡献占主导地位。我们还注意到，驻定路径不过是作用量 $S[x(t)]$ 的经典运动路径。这样，路径积分表示使我们能清楚地看到经典运动与量子传播子之间的关系：粒子的量子传播基本上沿着由经典运动方程确定的路径行进，只是带有某种“晃动”。这种晃动称为量子涨落（quantum fluctuation）。路径积分表示使我们能够估计量子涨落的大小。更确切地说，围绕驻定路径 $x_c(t)$ 的、满足
+\begin{equation*}
+\big|S[x_c(t)+\delta x(t)] - S[x_c(t)]\big| \sim \pi/2
+\end{equation*}
+的涨落 $\delta x(t)$ 会对传播子有很大贡献，因而代表一个典型的量子涨落。
+
+让我们先对自由粒子计算路径积分 (2.1.5)。此时，式 (2.1.5) 成为
+\begin{align*}
+&\mathrm{i}G(x_b,t_b,x_a,t_a)\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \prod_{i=1}^{N} \exp\left(\mathrm{i}\big[\frac{m}{2}\frac{(x_i-x_{i-1})^2}{\Delta t^2}\big]\Delta t\right) \tag{2.1.17}
+\end{align*}
+自由粒子的经典路径（即驻定路径）为
+\begin{equation*}
+x_c(t) = x_a + \frac{x_b-x_a}{t_b-t_a}(t-t_a)
+\end{equation*}
+其经典作用量为
+\begin{equation*}
+S_c(x_b,t_b,x_a,t_a) = \frac{m(x_b-x_a)^2}{2(t_b-t_a)}
+\end{equation*}
+引入围绕经典路径的涨落
+\begin{equation*}
+\delta x_j = x_j - x_c(t_j), \qquad t_j = t_a + j\Delta t
+\end{equation*}
+路径积分 (2.1.17) 可以改写为
+\begin{align*}
+&\mathrm{i}G(x_b,t_b,x_a,t_a)\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \mathrm{e}^{\mathrm{i}S_c} \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \exp\left(\mathrm{i}\sum_{j,k=1,N-1} \delta x_j M_{jk}\delta x_k\right)\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \sqrt{\frac{\pi^{N-1}}{\operatorname{Det}(-\mathrm{i}M)}}\; \mathrm{e}^{\mathrm{i}S_c}
+\end{align*}
+其中这个 $(N-1)\times(N-1)$ 矩阵为
+\begin{equation*}
+M = \frac{m}{2\Delta t}\left(\begin{array}{cccc} 2 & -1 & 0 & \dots\\ -1 & 2 & -1 & \dots\\ 0 & -1 & 2 & \dots\\ \dots & \dots & \dots & \dots \end{array}\right)
+\end{equation*}
+在上面的例子中，我们用到了以下关于高斯积分（Gaussian integral）的重要公式：
+\begin{equation*}
+\int \mathrm{d}x_1...\mathrm{d}x_{N-1}\; \exp\left(\mathrm{i}\sum_{j,k=1,N-1} x_j M_{jk}x_k\right) = \frac{\sqrt{\pi}^{\,N-1}}{\sqrt{\operatorname{Det}(-\mathrm{i}M)}}
+\end{equation*}
+我们看到，传播子由经典作用量 $\mathrm{e}^{\mathrm{i}S_c}$ 乘以一个由高斯积分（或相应的行列式）给出的系数构成。该系数由围绕经典路径的量子涨落 $\delta x$ 决定。
+
+我们注意到，只有 $\mathrm{e}^{\mathrm{i}S_c}$ 项依赖 $x_a$ 与 $x_b$，其余各项仅依赖 $t_b - t_a \equiv t$。于是我们有
+\begin{equation*}
+G(x_b,t_b,x_a,t_a) = A(t_b-t_a)\,\mathrm{e}^{\mathrm{i}S_c(x_b,t_b,x_a,t_a)} \tag{2.1.18}
+\end{equation*}
+由归一化条件
+\begin{equation*}
+\int \mathrm{d}x_b\; G(x_b,t_b,x_a,t_a)G^*(x_b,t_b,x_a',t_a) = \delta(x_a-x_a')
+\end{equation*}
+我们得到
+\begin{equation*}
+A(t) = \left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\mathrm{e}^{\mathrm{i}\phi}
+\end{equation*}
+只要取相位 $\phi = 0$，它就与标准结果一致。
+
+要直接计算 $A(t)$，我们需要计算 $\operatorname{Det}(M)$。下面我们将讨论一些可用于计算行列式的技巧。我们先考虑以下 $N\times N$ 矩阵：
+\begin{equation*}
+M_N = \left(\begin{array}{cccc} 2\cosh(u) & -1 & 0 & \dots\\ -1 & 2\cosh(u) & -1 & \dots\\ 0 & -1 & 2\cosh(u) & \dots\\ \dots & \dots & \dots & \dots \end{array}\right)
+\end{equation*}
+可以证明
+
+% ------------------------------------------------------------
+% 新增术语（ch2_a，待并入术语表"新增术语"区）：
+%   stationary path 驻定路径
+%   analytic continuation 解析延拓
+%   phase space 相空间
+%   Gaussian integral 高斯积分
+%   time evolution operator 时间演化算符
+%   contour 围道
+%   constructive interference 相长干涉
+%   action 作用量
+%   law of superposition 叠加原理
+%   energy eigenstate 能量本征态
+%   energy eigenfunction 能量本征函数
+%   time slice 时间切片
+%   quantum friction 量子摩擦
+%   quantum circuit 量子线路
+%   matrix element 矩阵元
+% ------------------------------------------------------------
+
+上面的差分方程可以用拟设 $\operatorname{Det}(M_N)=a\mathrm{e}^{nu}+b\mathrm{e}^{-nu}$ 求解。我们得到
+\begin{equation*}
+\operatorname{Det}(M_N)=\frac{\sinh((N+1)u)}{\sinh(u)}
+\end{equation*}
+当 $u=0$ 时，有
+\begin{equation*}
+\operatorname{Det}(M_N)=N+1
+\end{equation*}
+这意味着 $\operatorname{Det}(M)=\left(\frac{m}{2\Delta t}\right)^{N-1}N$。把所有这些结果放到一起，我们得到
+\begin{equation*}
+G(x_b,t_b,x_a,t_a)=\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\mathrm{e}^{\mathrm{i}S_c(x_b,t_b,x_a,t_a)}
+\end{equation*}
+这正是自由粒子的量子传播子。
+
+对于在 $x$ 和 $\dot{x}$ 上为二次的作用量，路径积分可以精确求值。最一般的二次型作用量具有形式
+\begin{equation*}
+L=\frac{1}{2}m\dot{x}^2-bx-\frac{1}{2}m\omega^2x^2
+\end{equation*}
+容易验证，$G$ 由式 (2.1.18) 给出，其中
+\begin{equation*}
+A(t)=-\mathrm{i}\left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2}\int \mathcal{D}[x(t')]\exp\left(\mathrm{i}\int_0^t\mathrm{d}t'\,\left[\frac{1}{2}m\delta\dot{x}^2-\frac{1}{2}m\omega^2\delta x^2\right]\right)
+\end{equation*}
+其中 $\delta x(0)=\delta x(t)=0$。上述路径积分可以用 $\operatorname{Det}(M_N)$ 的公式来计算，得到
+\begin{equation*}
+\mathrm{i}A(t)=\left(\frac{m\omega}{2\pi\mathrm{i}\sin(t\omega)}\right)^{1/2}\tag{2.1.19}
+\end{equation*}
+
+\subsection*{问题 2.1.5}
+
+考虑一维粒子受恒力 $f$（势为 $V(x)=-fx$）。证明其传播子为
+\begin{equation*}
+\mathrm{i}G(x_b,t,x_a,0)=\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\exp\left[\mathrm{i}\left(\frac{m(x_b-x_a)^2}{2t}+\frac{1}{2}ft(x_b+x_a)-\frac{f^2t^3}{24m}\right)\right]
+\end{equation*}
+
+\subsection*{问题 2.1.6}
+
+证明谐振子的传播子具有形式
+\begin{equation*}
+G(x_b,t,x_a,0)=A(t)\exp\left(\frac{\mathrm{i}m\omega_0}{2\sin(t\omega_0)}\left[(x_b^2+x_a^2)\cos(\omega_0 t)-2x_bx_a\right]\right)
+\end{equation*}
+并利用归一化条件或路径积分证明
+\begin{equation*}
+A(t)=\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin(t\omega_0)}\right)^{1/2}\mathrm{e}^{\mathrm{i}\phi(t)}
+\end{equation*}
+
+\subsection*{问题 2.1.7}
+
+用虚时路径积分计算自由粒子在虚时中的传播子。施行适当的解析延拓，恢复出实时传播子。
+
+\subsection*{问题 2.1.8}
+
+用虚时路径积分计算谐振子在虚时中的传播子 $\mathcal{G}(0,0,\tau)$。由 $\tau\to\infty$ 极限下 $\mathcal{G}(0,0,\tau)$ 的衰减，求出基态能量。
+
+\section{线性响应与关联函数}
+
+\begin{keypoints}
+\item 线性响应（如响应率）易于测量。它们是使我们得以观察并研究物质性质的窗口。
+\end{keypoints}
+
+对实验学家而言，每一个物理系统都是一个黑箱。为了探查一个物理系统的性质，实验学家扰动这个系统并观察它如何响应。虽然谁也没有见过氢原子的内部，我们却是这样了解氢原子内部结构的：我们敲击原子（即用光、电子或原子束去激发它），然后聆听它如何鸣响（即观察受激原子的发射光谱）。由于大多数微扰都很弱，实验学家通常观察到的是线性响应，即响应与微扰成正比。测量线性响应的实验有很多类型，例如弹性、磁化率、电导等的测量。中子散射、核磁共振、X 射线衍射等也都测量系统的线性响应。因此，要为一个系统建立理论，从理论出发计算各种线性响应是十分重要的，因为这些结果通常是最容易用实验检验的。本节我们将考虑一个非常简单系统的线性响应。通过这项研究，我们将得到线性响应的一般理论。
+
+实验在任何理论中都非常重要，而且是唯一真正要紧的东西。事实上，每一项理论研究的目标都是理解其实验后果。不过，本书不会太多地讨论实验，而是会大量讨论线性响应，或更一般地，关联函数。由于实验与关联函数之间的密切关系，我们将把关联函数视为我们的“实验结果”。本书的讨论正是围绕这些“实验结果”展开的。当我们讨论一个模型时，讨论的目的就是理解并计算各种关联函数。在本书中，我们将把关联函数当作系统的物理性质。
+
+由以上讨论引出一个哲学问题：什么是实在？想象一个只能测量线性响应的世界。那么在那个世界里，线性响应就将代表全部实在，而物理理论也将是关于线性响应的理论。在我们的世界里，我们可以测量线性响应之外的东西；然而，看来我们也走不了太远。在我们的世界上所能测量的一切似乎都是关联函数。因此，很自然地可以把我们世界的物理理论定义为关于关联函数的理论，而关联函数或许就代表着我们世界的实在。
+
+这一点很重要，因为物理理论中的许多概念和构件并不代表实在。当新理论发展起来时，这些概念可能会改变。例如，点粒子（具有位置和速度）是牛顿经典理论的一个基本概念。我们曾经相信万物皆由粒子构成，粒子是实在的构件。量子理论发展起来之后，我们现在相信粒子并不代表实在；代表实在的是线性希尔伯特空间中的量子态。然而，量子态并不是我们能直接测量的东西。没有人能保证，当超越量子理论的新理论发展起来时，量子态的概念不会有与粒子概念同样的命运。（我希望读者同意我的看法：我们现有的任何物理理论都不是终极正确的，都不代表最终的真理。）
+
+物理学是一门测量的科学。遗憾的是，物理理论通常包含许多不代表实在的东西（例如牛顿经典力学中粒子的概念）。完全不同的两种理论（甚至可能基于不同的概念）却可以描写同一个实在。因此，透过理论中形式体系和虚假概念的烟幕，始终盯住实在（如关联函数和可测量量）是非常重要的。把这种思路推向极端，我们可以把量子态和量子算符当作非实在的对象，把它们仅仅看作用来计算可在实验中测量的关联函数的数学工具。
+
+\subsection{线性响应与响应函数}
+
+\begin{keypoints}
+\item 线性响应可以由相应算符的一类关联函数——响应函数——计算出来。
+\end{keypoints}
+
+为理解线性响应理论的一般结构，让我们先研究一个简单量子系统——谐振子的极化——的线性响应：
+\begin{equation*}
+H_0=\frac{p^2}{2m}+\frac{1}{2}m\omega_0^2x^2.
+\end{equation*}
+电场 $\mathcal{E}$ 与偶极算符 $ex$ 耦合：
+\begin{equation*}
+H_1=-ex\mathcal{E}
+\end{equation*}
+感生偶极矩为
+\begin{equation*}
+d=\langle\psi|ex|\psi\rangle
+\end{equation*}
+其中 $|\psi\rangle$ 是 $H_0+H_1$ 的基态。准确到微扰论的一阶，
+\begin{equation*}
+|\psi\rangle=|0\rangle+\sum_{n=1,2,\dots}|n\rangle\frac{\langle n|H_1|0\rangle}{E_0-E_n}
+\end{equation*}
+于是我们有
+\begin{equation*}
+d=-2\mathcal{E}\sum_{n=1,2,\dots}\frac{\langle 0|ex|n\rangle\langle n|ex|0\rangle}{E_0-E_n}=2e^2\frac{\langle 0|x^2|0\rangle}{\omega_0}\mathcal{E}\tag{2.2.1}
+\end{equation*}
+
+响应率 $\chi$ 由 $\chi=2e^2\frac{\langle 0|x^2|0\rangle}{\omega_0}$ 给出。
+
+上述结果可以用关联函数来表达。为理解线性响应与关联函数之间的一般关系，我们考虑一个由 $H_0$ 描写的一般量子系统。我们缓慢地开启再关闭微扰，并用含时微扰论计算线性响应。
+
+计入含时微扰 $f(t)O_1$ 之后，总哈密顿量为
+\begin{equation*}
+H(t)=H_0+f(t)O_1
+\end{equation*}
+我们假设微扰在有限时刻开启，也就是说，在起始时刻 $t_{start}$ 之前 $f(t)=0$。为得到 $H_0$ 的本征态 $|\psi_n\rangle$ 在微扰 $f(t)O_1$ 下的响应，我们从 $t=t_{-\infty}=-\infty$ 时的 $|\psi_n\rangle$ 出发。在有限时刻，态 $|\psi_n\rangle$ 演化为
+\begin{equation*}
+|\psi_n(t)\rangle=T\left(\mathrm{e}^{-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,H(t)}\right)|\psi_n\rangle\tag{2.2.2}
+\end{equation*}
+其中 $T(\dots)$ 是编时算符：
+\begin{equation*}
+T(O(t_1)O(t_2))=\left\{\begin{array}{ll}
+O(t_1)O(t_2), & \text{若 } t_1>t_2\\
+O(t_2)O(t_1), & \text{若 } t_2>t_1
+\end{array}\right.
+\end{equation*}
+我们可以把 $|\psi_n(t)\rangle$ 按 $O_1$ 展开到一阶：
+\begin{equation*}
+|\psi_n(t)\rangle=\mathrm{e}^{-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,H_0}|\psi_n\rangle+\delta|\psi_n(t)\rangle,
+\end{equation*}
+（译注：原文此式右端首项为 $\mathrm{e}^{-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,H_0}|\psi_n(t)\rangle$，按物理意义应为 $|\psi_n\rangle$，疑为排印之误。）其中
+\begin{equation*}
+\begin{aligned}
+\delta|\psi_n(t)\rangle&=-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,f(t')\mathrm{e}^{-\mathrm{i}H_0(t-t')}O_1\mathrm{e}^{-\mathrm{i}H_0(t'-t_{-\infty})}|\psi_n\rangle\\
+&=-\mathrm{i}\int_{t_{-\infty}}^t\mathrm{d}t'\,f(t')\mathrm{e}^{-\mathrm{i}H_0(t-t_{-\infty})}O_1(t')|\psi_n\rangle
+\end{aligned}
+\end{equation*}
+上面我们引入了 $O_1(t)=\mathrm{e}^{\mathrm{i}H_0(t-t_{-\infty})}O_1\mathrm{e}^{-\mathrm{i}H_0(t-t_{-\infty})}$。为得到物理量 $O_2$ 因响应微扰 $f(t)O_1$ 而发生的变化，我们计算
+\begin{align*}
+&\ \langle\psi_n(t)|O_2|\psi_n(t)\rangle-\langle\psi_n|\mathrm{e}^{\mathrm{i}H_0(t-t_{-\infty})}O_2\mathrm{e}^{-\mathrm{i}H_0(t-t_{-\infty})}|\psi_n\rangle\\
+&\quad\equiv\delta\langle\psi_n(t)|O_2|\psi_n(t)\rangle\\
+&\quad=-\mathrm{i}\int_{-\infty}^{t}\mathrm{d}t'\,f(t')\langle\psi_n|[O_2(t),O_1(t')]|\psi_n\rangle+O(f^2)\\
+&\quad=\int_{-\infty}^{\infty}\mathrm{d}t'\,D(t,t')f(t')+O(f^2)\tag{2.2.3}
+\end{align*}
+其中 $D(t,t')$ 是响应函数，定义为
+\begin{equation*}
+D(t,t')=-\mathrm{i}\Theta(t-t')\langle\psi_n|[O_2(t),O_1(t')]|\psi_n\rangle\tag{2.2.4}
+\end{equation*}
+而
+\begin{equation*}
+\Theta(t)=\left\{\begin{array}{ll}
+1 & \text{当 } t>0\\
+0 & \text{当 } t<0
+\end{array}\right.
+\end{equation*}
+在零温下，应取 $|\psi_n\rangle$ 为基态，于是得到如下零温响应函数：
+\begin{equation*}
+D(t,t')=-\mathrm{i}\Theta(t-t')\langle\psi_0|[O_2(t),O_1(t')]|\psi_0\rangle\tag{2.2.5}
+\end{equation*}
+由于 $H_0$ 与 $t$ 无关，可以证明 $D(t,t')$ 只是 $t-t'$ 的函数。我们将把 $D(t,t')$ 写作 $D(t-t')$。基态的响应 $\delta\langle O_2\rangle$ 为
+\begin{equation*}
+\delta\langle O_2\rangle=\int_{-\infty}^{\infty}\mathrm{d}t'\,D(t-t')f(t')\tag{2.2.6}
+\end{equation*}
+为检验式 (2.2.6) 是否再现谐振子的结果 (2.2.1)，我们注意到 $-e\mathcal{E}$ 扮演 $f(t)$ 的角色，而且 $O_1=O_2=ex$。为了应用式 (2.2.6)，需要计算响应函数
+\begin{equation*}
+D(t-t')=-\mathrm{i}\Theta(t-t')\langle 0|[x(t),x(t')]|0\rangle=-2\langle 0|x^2|0\rangle\Theta(t-t')\sin(\omega(t-t'))\tag{2.2.7}
+\end{equation*}
+为从式 (2.2.6) 得到感生偶极矩，需要假设电场开启与关闭都很缓慢，即 $\mathcal{E}(t)=\mathcal{E}\mathrm{e}^{-0^+|t|}$。我们得到
+\begin{equation*}
+d=\int_{-\infty}^{\infty}\mathrm{d}t'\,e^2D(t-t')\mathrm{e}^{0^+t'}(-\mathcal{E})=-e^2D_{\omega=0}\mathcal{E}=\frac{2e^2\langle 0|x^2|0\rangle}{\omega_0}\mathcal{E}\tag{2.2.8}
+\end{equation*}
+其中 $D_\omega=\int\mathrm{d}t\,D(t)\mathrm{e}^{\mathrm{i}\omega t}$。
+
+我们看到，电偶极子对电场的线性响应与偶极算符 $ex$ 的关联相联系。事实上，所有其他线性响应都具有类似的结构。线性响应的系数可以由相应算符的关联函数算出。例如，电导可以由流算符的关联函数算出。
+
+\subsection{编时关联函数与路径积分}
+
+\begin{keypoints}
+\item 响应函数可以用编时关联函数表示。
+\item 编时关联函数可以通过路径积分计算。
+\end{keypoints}
+
+本节我们想讨论如何用路径积分计算响应函数。首先注意到，当 $t>t'$ 时，响应函数 $D(t,t')$ 含有两项 $\langle 0|O_2(t)O_1(t')|0\rangle$ 和 $\langle 0|O_1(t')O_2(t)|0\rangle$。第一项可以写为
+\begin{align*}
+\mathrm{i}G(t,t')&=\langle 0|O_2(t)O_1(t')|0\rangle\nonumber\\
+&=\langle 0|U^\dagger(t,-\infty)O_2(t)U(t,t')O_1(t')U(t',-\infty)|0\rangle\nonumber\\
+&=\frac{\langle 0|U^\dagger(\infty,t)O_2(t)U(t,t')O_1(t')U(t',-\infty)|0\rangle}{\langle 0|U^\dagger(\infty,-\infty)|0\rangle}\tag{2.2.9}
+\end{align*}
+其中 $U(t,t')$ 由 $\mathrm{e}^{-\mathrm{i}(t-t')H_0}$ 给出。
+
+我们知道，时间演化算符 $U(t,t')$ 可以用路径积分表示。但这还不够：要用路径积分计算 $G(t,t')$，我们还需要知道基态 $|0\rangle$。下面我们将讨论一个技巧，它使我们不必知道基态波函数 $|0\rangle$ 就能计算 $G(t,t')$。首先，我们想通过引入修改的演化算符
+\begin{equation*}
+U^\theta(t_b,t_a)\equiv\mathrm{e}^{-\mathrm{i}(t_b-t_a)H\mathrm{e}^{-\mathrm{i}\theta}}
+\end{equation*}
+把式 (2.2.9) 推广到复时间，其中 $\theta$ 是一个小正数（我们已假定 $t_b-t_a>0$）。注意，当 $t_b-t_a$ 大时，只有基态 $|0\rangle$ 对 $\langle\psi|U^\theta(t_b,t_a)|\psi\rangle$ 有贡献，这里 $|\psi\rangle$ 是任意态。这样，算符 $U^\theta(t_b,t_a)$ 就实现了向基态的投影。于是我们可以把 $G_x$ 写成
+\begin{equation*}
+\mathrm{i}G(t_b,t_a)=\frac{\langle\psi|U^\theta(\infty,t_b)O_2U^\theta(t_b,t_a)O_1U^\theta(t_a,-\infty)|\psi\rangle}{\langle\psi|U^\theta(\infty,-\infty)|\psi\rangle}\tag{2.2.10}
+\end{equation*}
+如果取 $|\psi\rangle=\delta(x)$，则式 (2.2.10) 可以直接写成路径积分：
+\begin{equation*}
+\mathrm{i}G(t_b,t_a)\equiv\frac{\int\mathcal{D}x\,O_2(t_b)O_1(t_a)\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,L(x,\dot{x})}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,L(x,\dot{x})}}\tag{2.2.11}
+\end{equation*}
+这里理解为 $x(t)$ 在边界 $t=\pm\infty$ 处为零，并且时间 $t$ 带有一个小的虚部，即 $t\to t\mathrm{e}^{-\mathrm{i}\theta}$。我们注意到，传播子的路径积分表示中那个“讨厌的”系数在计算关联函数时会抵消掉。这大大简化了路径积分计算。
+
+我们想指出，路径积分 (2.2.11) 中定义的关联 $G(t_2,t_1)$ 就是所谓的编时关联函数。这是因为，当 $t_2>t_1$ 时，它等于
+\begin{equation*}
+\mathrm{i}G(t_2,t_1)=\frac{\langle 0|U(\infty,t_2)O_2U(t_2,t_1)O_1U(t_1,-\infty)|0\rangle}{\langle 0|U(\infty,-\infty)|0\rangle}
+\end{equation*}
+而当 $t_2<t_1$ 时，它等于
+\begin{equation*}
+\mathrm{i}G(t_2,t_1)=\frac{\langle 0|U(\infty,t_1)O_1U(t_1,t_2)O_2U(t_2,-\infty)|0\rangle}{\langle 0|U(\infty,-\infty)|0\rangle}
+\end{equation*}
+由上述表达式可以证明，$G(t_2,t_1)$ 只依赖于 $t_2-t_1$，可以写作 $G(t_2,t_1)=G(t_2-t_1)$。引入 $O_{1,2}(t)=U^\dagger(t,-\infty)O_{1,2}U(t,-\infty)$ 之后，编时关联函数可以写成如下更紧凑的形式（在海森堡绘景中）：
+\begin{equation*}
+G(t_2,t_1)=-\mathrm{i}\langle 0|T(O_2(t_2)O_1(t_1))|0\rangle=\left\{\begin{array}{ll}
+-\mathrm{i}\langle 0|O_2(t_2)O_1(t_1)|0\rangle & \text{当 } t_2>t_1\\
+-\mathrm{i}\langle 0|O_1(t_1)O_2(t_2)|0\rangle & \text{当 } t_1>t_2
+\end{array}\right.\tag{2.2.12}
+\end{equation*}
+
+作为应用，让我们用路径积分计算谐振子 $H_0=\frac{p^2}{2m}+\frac{1}{2}m\omega_0^2x^2$ 中的编时关联 $G(t_2,t_1)=-\mathrm{i}\langle 0|T(x(t_2)x(t_1))|0\rangle$。计入时间的小虚部，即 $t\to t\mathrm{e}^{-\mathrm{i}\theta}$（$\theta=0^+$）之后，振子的作用量变为 $S=\int\mathrm{d}t\,\frac{\mathrm{e}^{-\mathrm{i}\theta}}{2}x\left(-m\mathrm{e}^{2\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2-m\omega_0^2\right)x$，而式 (2.2.11) 变为
+\begin{equation*}
+\mathrm{i}G_x(t_2,t_1)\equiv\frac{\int\mathcal{D}x\,x(t_2)x(t_1)\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,\frac{\mathrm{e}^{-\mathrm{i}\theta}}{2}x\left(-m\mathrm{e}^{2\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2-m\omega_0^2\right)x}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int_{-\infty}^{+\infty}\mathrm{d}t\,\frac{\mathrm{e}^{-\mathrm{i}\theta}}{2}x\left(-m\mathrm{e}^{2\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2-m\omega_0^2\right)x}}\tag{2.2.13}
+\end{equation*}
+我们可以用如下公式（见问题 2.2.1）来求出上述比值：
+\begin{equation*}
+\frac{\int\prod_i\mathrm{d}x_i\,x_{i_1}x_{i_2}\,\mathrm{e}^{-\frac{1}{2}x_iA_{ij}x_j}}{\int\prod_i\mathrm{d}x_i\,\mathrm{e}^{-\frac{1}{2}x_iA_{ij}x_j}}=(A^{-1})_{i_1j_2}\tag{2.2.14}
+\end{equation*}
+唯一的差别是，式 (2.2.14) 中的矢量 $x_i$ 和矩阵 $A_{ij}$ 用整数标记，而式 (2.2.13) 中的矢量 $x(t)$ 和矩阵 $m\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+m\omega_0^2$ 是实数 $t$ 的函数。比较式 (2.2.13) 与 (2.2.14)，我们看到 $\mathrm{i}G_x(t_2,t_1)$ 正是算符 $\left(-\mathrm{i}m\left(\mathrm{e}^{\mathrm{i}\theta}\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+\omega_0^2\mathrm{e}^{-\mathrm{i}\theta}\right)\right)^{-1}$ 的矩阵元。换言之，它满足
+\begin{equation*}
+\mathrm{e}^{-\mathrm{i}\theta}\left(-m\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2\mathrm{e}^{2\mathrm{i}\theta}-m\omega_0^2\right)G_x(t-t')=\delta(t-t')\tag{2.2.15}
+\end{equation*}
+对 $0<\theta\leqslant\frac{\pi}{2}$，式 (2.2.15) 有一个解
+\begin{equation*}
+G_x(t-t')=-\frac{\mathrm{i}}{2m\omega_0}\mathrm{e}^{-\mathrm{i}\mathrm{e}^{-\mathrm{i}\theta}|t-t'|\omega_0}
+\end{equation*}
+它在 $t-t'\to\pm\infty$ 时有限。当 $\theta\to 0^+$ 时，上式变为
+\begin{equation*}
+G_x(t)=-\mathrm{i}\frac{1}{2m\omega_0}\mathrm{e}^{-\mathrm{i}|t|\omega_0(1-\mathrm{i}0^+)}\tag{2.2.16}
+\end{equation*}
+在频率空间中，该关联为
+\begin{equation*}
+G_x(\omega)\equiv\int\mathrm{d}t\,G_x(t,0)\mathrm{e}^{\mathrm{i}\omega t}=\frac{m^{-1}}{\omega^2-\omega_0^2+\mathrm{i}0^+}\tag{2.2.17}
+\end{equation*}
+总结起来：
+\begin{equation*}
+\boxed{\begin{gathered}
+G_x(\omega)\ \text{正是算符}\ -m\frac{\mathrm{d}^2}{\mathrm{d}t^2}-m\omega_0^2\ \text{的逆，}\\
+\text{该算符出现于作用量}\ S=\int\mathrm{d}t\,\frac{1}{2}x(t)\left(-m\frac{\mathrm{d}^2}{\mathrm{d}t^2}-m\omega_0^2\right)x(t)\ \text{之中。}
+\end{gathered}}
+\end{equation*}
+上面冗长的计算以及用 $t\mathrm{e}^{-\mathrm{i}\theta}$ 替换 $t$ 的技巧，只是告诉我们如何引入这个无穷小却十分重要的 $0^+$。
+
+响应函数 $D(t,t')$ 中的第二项，即 $\langle 0|O_1(t')O_2(t)|0\rangle$，由于 $t>t'$ 而具有不正确的时间次序。不过，注意到 $\langle 0|O_1(t')O_2(t)|0\rangle=\langle 0|O_2^\dagger(t)O_1^\dagger(t')|0\rangle^*$，这一点即可弥补。因此，响应函数可以用编时关联函数表示：
+\begin{equation*}
+\mathrm{i}D(t,t')=\Theta(t-t')\left(\langle 0|T(O_2(t)O_1(t'))|0\rangle-\langle 0|T(O_2^\dagger(t)O_1^\dagger(t'))|0\rangle^*\right)
+\end{equation*}
+这样，我们就能通过编时关联函数用路径积分计算响应函数。
+
+当 $O_{1,2}$ 为厄米算符时，我们有
+\begin{equation*}
+D(t)=2\Theta(t)\mathrm{Re}\,G(t)\tag{2.2.18}
+\end{equation*}
+当 $O_1=O_2=O_1^\dagger$ 时，有 $G(t)=G(-t)$。可以证明，在 $\omega$ 空间中
+\begin{equation*}
+\boxed{\ \mathrm{Re}\,D_\omega=\mathrm{Re}\,G(\omega),\qquad \mathrm{Im}\,D_\omega=\mathrm{sgn}(\omega)\,\mathrm{Im}\,G(\omega)\ }\tag{2.2.19}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.2.pdf}
+\caption*{图 2.2\quad 电容器中含偶极子的 CL 电路。}
+\end{figure}
+
+\subsection*{问题 2.2.1}
+
+证明式 (2.2.14)。（提示：计算 $\int\prod_i\mathrm{d}x_i\,\mathrm{e}^{J_ix_i}\mathrm{e}^{-\frac{1}{2}x_i\Lambda_{ij}x_j}$，并把结果展开到 $J$ 的二阶。）
+
+\subsection*{问题 2.2.2}
+
+\begin{enumerate}
+\item[(a)] 用相干态路径积分和生成泛函 $\frac{Z[\eta(t),\bar{\eta}(t)]}{Z[0,0]}$，其中
+\begin{equation*}
+Z[\eta(t),\bar{\eta}(t)]=\int\mathcal{D}^2[a(t)]\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\left[\mathrm{i}\frac{1}{2}\left(a^*\frac{\mathrm{d}}{\mathrm{d}t}a-a\frac{\mathrm{d}}{\mathrm{d}t}a^*\right)-\omega_0a^*a-\bar{\eta}a-\eta a^*\right]}
+\end{equation*}
+计算实空间与频率空间中的关联 $\mathrm{i}G(t)=\langle a(t)a^*(0)\rangle$。（提示：用复时间 $t\to t\mathrm{e}^{-\mathrm{i}0^+}$。）
+\item[(b)] 在 $t>0$ 与 $t<0$ 两种情形下，把你的结果与相应的编时关联函数 $\langle 0|T(\hat{a}(t)\hat{a}^\dagger(0))|0\rangle$ 进行比较。并注意 $t\to 0^\pm$ 的极限。
+\item[(c)] 现在我们想用相干态路径积分计算 $\langle 0|\hat{a}^\dagger\hat{a}|0\rangle$ 和 $\langle 0|\hat{a}\hat{a}^\dagger|0\rangle$。问题在于，在路径积分中这两个算符都变成了 $a^*a$。结合上述计算，我们该如何解决这一问题？请描述如何用路径积分计算如下关联：$\langle 0|(\hat{a}\hat{a}^\dagger)_{t_1}(\hat{a}\hat{a}^\dagger)_{t_2}|0\rangle$。
+\end{enumerate}
+
+\subsection{有效理论}
+
+\begin{keypoints}
+\item 有效理论是一个非常重要的概念。如果你只想记住场论中的一件事，那就记住有效理论。
+\end{keypoints}
+
+我们知道，电偶极矩与电场 $\mathcal{E}$ 耦合。为考察这种耦合如何影响电场的动力学，让我们考虑一个 CL 电路（见图 2.2）。在没有偶极矩时，电容器中电场的动力学由作用量 $S_0(\mathcal{E})=\int\mathrm{d}t\,\frac{1}{2g}(\dot{\mathcal{E}}^2-\omega_{CL}^2\mathcal{E}^2)$ 描写，其中 $\omega_{CL}$ 是 CL 电路的振荡频率。耦合系统由下式描写：
+\begin{equation*}
+Z=\int\mathcal{D}x\,\mathcal{D}\mathcal{E}\,\mathrm{e}^{\mathrm{i}S_0(\mathcal{E})+\mathrm{i}\int\mathrm{d}t\,[L(x,\dot{x})+ex\mathcal{E}]}
+\end{equation*}
+其中 $L(x,\dot{x})$ 描写偶极子的动力学，而 $ex\mathcal{E}$ 描写偶极子与电场之间的耦合。
+
+让我们假设 $\omega_0\gg\omega_{CL}$，并积掉高频运动 $x(t)$。我们得到只含 $\mathcal{E}(t)$ 的路径积分：
+\begin{equation*}
+\begin{gathered}
+Z=\int\mathcal{D}\mathcal{E}\,\mathrm{e}^{\mathrm{i}S_0(\mathcal{E})+\mathrm{i}S_I(\mathcal{E})},\\
+\mathrm{e}^{\mathrm{i}S_I}=\frac{Z[\mathcal{E}]}{Z[0]},\qquad Z[\mathcal{E}]=\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\left[\frac{m}{2}\dot{x}^2-\frac{m\omega_0^2}{2}x^2+ex\mathcal{E}\right]}
+\end{gathered}
+\end{equation*}
+我们看到，耦合系统的电场动力学由一个新的作用量 $S_{eff}=S_0+S_I$ 描写，我们称之为有效作用量。完成高斯积分后，我们得到
+\begin{align*}
+S_I&=\int\mathrm{d}t\,\frac{1}{2m}\mathcal{E}(t)\left(\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+\omega_0^2\right)^{-1}\mathcal{E}(t)\nonumber\\
+&=-\int\mathrm{d}t\,\mathrm{d}t'\,\frac{e^2}{2}\mathcal{E}(t)G_x(t-t')\mathcal{E}(t')=-\int\frac{\mathrm{d}\omega}{2\pi}\,\frac{e^2}{2}\mathcal{E}_{-\omega}G_x(\omega)\mathcal{E}_\omega
+\end{align*}
+这进而给出电场的有效拉格朗日量：
+\begin{equation*}
+L_{\mathrm{eff}}=\frac{1}{2g}(\dot{\mathcal{E}}^2-\omega_{CL}^2\mathcal{E}^2)+\frac{e^2}{2m}\mathcal{E}\left(\left(\frac{\mathrm{d}}{\mathrm{d}t}\right)^2+\omega_0^2\right)^{-1}\mathcal{E}.
+\end{equation*}
+在 $\omega_0\gg\omega_{CL}$ 的极限下，$L_{\mathrm{eff}}$ 可以简化为
+\begin{equation*}
+L_{\mathrm{eff}}=\frac{1}{2g}(\dot{\mathcal{E}}^2-(\omega_{CL}^*)^2\mathcal{E}^2),\qquad \omega_{CL}^*=\sqrt{\omega_{CL}^2-\frac{ge^2}{m\omega_0^2}}.
+\end{equation*}
+我们看到，积掉高频的 $x(t)$ 之后，低频电场由一个简单的有效拉格朗日量描写。与偶极子的耦合把电场的振荡频率移到了一个较低的值 $\omega_{CL}^*$。
+
+\subsection*{问题 2.2.3}
+
+\textbf{两个耦合谐振子的低能有效理论：}考虑一个由两个耦合谐振子组成的系统：
+\begin{equation*}
+Z=\int\mathcal{D}x\,\mathcal{D}X\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,L(x,X)}
+\end{equation*}
+其中
+\begin{equation*}
+L(x,X)=\frac{1}{2}m\dot{x}^2-\frac{1}{2}m\omega^2x^2+\frac{1}{2}M\dot{X}^2-\frac{1}{2}M\Omega^2X^2-gxX
+\end{equation*}
+这里我们假设 $\Omega\gg\omega$、$g\sim m\omega^2$ 且 $m\sim M$。此时 $X$ 是一个围绕 $X=0$ 振荡的高能自由度。试通过积掉 $X$，求出描写软自由度 $x$ 的低能动力学的低能有效理论 $L_{\mathrm{eff}}(x)$。（至少应包含领头的 $\frac{1}{\Omega}$ 修正。）特别地，求出有效质量 $m^*$ 和有效弹簧常数 $m^*(\omega^*)^2$。
+
+\subsection{含时响应与耗散}
+
+\begin{keypoints}
+\item 响应函数给出响应率的正确实部和虚部，而编时关联函数只给出响应率的正确实部。
+\end{keypoints}
+
+我们也可以用路径积分计算对含时电场的响应。注意到 $t$ 时刻的平均偶极矩可以表示为
+\begin{equation*}
+\begin{aligned}
+d(t)=\langle ex(t)\rangle&=e\,\frac{\int\mathcal{D}x\,x(t)\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t'\,[L(x,\dot{x})+ex\mathcal{E}]}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t'\,[L(x,\dot{x})+ex\mathcal{E}]}}\\
+&=-\int_{-\infty}^{+\infty}\mathrm{d}t'\,e^2G_x(t-t')\mathcal{E}(t')+O(\mathcal{E}^2)
+\end{aligned}
+\end{equation*}
+其中
+\begin{equation*}
+\mathrm{i}G_x(t_1-t_2)=\frac{\int\mathcal{D}x\,x(t_1)x(t_2)\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,L(x,\dot{x})}}{\int\mathcal{D}x\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t'\,L(x,\dot{x})}}
+\end{equation*}
+在频率空间中，上式变为 $d_\omega=-e^2G_x(\omega)E_\omega$。我们求得有限频率响应率 $\chi(\omega)$ 为
+\begin{equation*}
+\chi(\omega)=-e^2G_x(\omega)=-\frac{e^2m^{-1}}{\omega^2-\omega_0^2+\mathrm{i}0^+}\tag{2.2.20}
+\end{equation*}
+虚部 $\mathrm{i}0^+$ 已在 2.2.2 节中算出。
+
+上述对有限频率响应率的路径积分计算属于一类被称为“形式计算”的计算。用路径积分我们可以“形式地”计算很多东西。然而，对“形式”计算得到的结果必须持保留态度。这些结果通常或多或少是正确的，但未必完全正确。正如我们将在 2.4.3 节看到的，$\mathrm{Im}\chi(\omega)\omega$ 有其物理意义：它代表频率 $\omega$ 处的摩擦系数。由于 $\mathrm{Im}G(\omega)$ 总是负的，我们发现当 $\omega>0$ 时 $\mathrm{Im}\chi(\omega)\omega>0$，而当 $\omega<0$ 时 $\mathrm{Im}\chi(\omega)\omega<0$。$\omega<0$ 时摩擦系数为负是一个非物理且错误的结果。因此，式 (2.2.20) 并不完全正确，它与先前的结果 (2.2.8) 不一致。
+
+事实上，只要把编时关联 $G_x$ 换成响应函数 $D$，就能从这个错误的结果得到正确的结果 (2.2.8)：
+\begin{equation*}
+d(t)=-\int_{-\infty}^{+\infty}\mathrm{d}t'\,e^2D(t-t')\mathcal{E}(t')+O(\mathcal{E}^2)
+\end{equation*}
+\begin{equation*}
+\chi(\omega)=-e^2D(\omega)=-\frac{e^2m^{-1}}{\omega^2-\omega_0^2+\mathrm{i}\,\mathrm{sgn}(\omega)0^+}
+\end{equation*}
+此时，$\mathrm{Im}\chi(\omega)\omega$ 总是正的。
+
+% 新增术语（本块新增，供术语表维护者收录）：
+% response function -> 响应函数
+% time-ordered correlation function -> 编时关联函数
+% time-ordering operator -> 编时算符
+% effective action -> 有效作用量
+% effective Lagrangian -> 有效拉格朗日量
+% Gaussian integral -> 高斯积分
+% CL circuit -> CL 电路
+% capacitor -> 电容器
+% dipole moment -> 偶极矩
+% Heisenberg picture -> 海森堡绘景
+% formal calculation -> 形式计算
+% friction coefficient -> 摩擦系数
+% spring constant -> 弹簧常数
+
+在上面的路径积分计算中，我们犯了一个错误：把路径积分平均 $\frac{\int \mathcal{D}x\, x(t)\mathrm{e}^{\mathrm{i}S}}{\int \mathcal{D}x\, \mathrm{e}^{\mathrm{i}S}}$ 与量子力学平均 $\langle\psi(t)|x|\psi(t)\rangle$ 混为一谈。要使路径积分计算有效，我们需要假定在电场存在时这两种平均是相同的。也就是说，
+\begin{equation*}
+\langle 0|U^{\dagger}(t,-\infty)\, x\, U(t,-\infty)|0\rangle = \frac{\langle 0|U(\infty,t)\, x\, U(t,-\infty)|0\rangle}{\langle 0|U(\infty,-\infty)|0\rangle} \tag{2.2.21}
+\end{equation*}
+其中右端是路径积分平均，左端是量子力学平均。只有当我们缓慢地开启再关闭电场，使得基态 $|0\rangle$ 从 $t=-\infty$ 到 $t=\infty$ 演化回同一个基态时，这一假定才是正确的：
+\begin{equation*}
+|0\rangle = \mathrm{e}^{\mathrm{i}\theta} U(\infty,-\infty)|0\rangle \tag{2.2.22}
+\end{equation*}
+在这种情况下，
+\begin{equation*}
+\langle 0|U^{\dagger}(t,-\infty) = \langle 0|U(-\infty,\infty)U(\infty,t) = \mathrm{e}^{\mathrm{i}\theta}\langle 0|U(\infty,t)
+\end{equation*}
+于是我们看到，式 (2.2.21) 在条件 (2.2.22) 之下确实成立。然而，若 $\mathcal{E}(t)$ 变化迅速，把振子激发到越来越高的激发态，那么式 (2.2.22) 将不再正确，而且更糟的是，当存在耗散时 $\langle 0|U(\infty,-\infty)|0\rangle$ 可能会变为零。
+
+这里我们学到了两点。其一，在存在耗散时路径积分的结果可能不正确；其二，这个毛病可以用响应函数替换编时关联函数来纠正。
+
+\subsection*{问题 2.2.4}
+
+考虑一个谐振子。计算（编时）流关联函数 $\mathrm{i}G_j(t) = \langle j(t)j(0)\rangle$ 在频率空间中的形式，即 $G_j(\omega) = \int \mathrm{d}t\, G_j(t)\mathrm{e}^{\mathrm{i}\omega t}$，其中流算符为 $j = e\dot{x}$。利用（比如说）经典物理计算有限频率电导 $\sigma(\omega)$（定义为 $j(\omega) = \sigma(\omega)E_{\omega}$）。（你可以加入少量摩擦以得到耗散项。）证明：对 $\omega > 0$，$\sigma(\omega)$ 具有形式 $\sigma(\omega) = C\frac{G_j(\omega)}{\omega}$，并求出系数 $C$。证明：$\sigma(\omega)$ 仅在 $\omega = \omega_0$ 处才有非零实部。（提示：保留 $G_j$ 中的 $\mathrm{i}0^{+}$ 项。）在这个频率上，振子可以通过跃迁到较高的激发态来吸收能量。我们看到，要有有限的实直流电导，就需要有无能隙激发。
+
+\subsection{有限温度下的关联函数}
+
+在有限温度下，线性响应是所有激发态的响应以玻尔兹曼因子（Boltzmann factor）加权后的平均。由于态 $|\psi_n\rangle$ 的响应函数由式 (2.2.4) 给出，有限温度响应函数即为
+\begin{equation*}
+D^{\beta}(t-t') = \sum_n -\mathrm{i}\,\Theta(t-t')\,\langle\psi_n|[O_2(t), O_1(t')]\,|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n/T}}{Z}
+\end{equation*}
+我们再次看到，线性响应可以由相应的关联函数来描述。在频率空间中，
+\begin{equation*}
+\langle O_2\rangle_{\omega} = D^{\beta}_{\omega} f_{\omega}
+\end{equation*}
+对有限温度成立。于是，
+\begin{equation*}
+D^{\beta}_{\omega} = \int \mathrm{d}t\, D^{\beta}(t)\,\mathrm{e}^{\mathrm{i}t\omega}
+\end{equation*}
+可以视为有限温度下的有限频率响应率。
+
+类似地，我们定义编时的有限温度关联函数
+\begin{equation*}
+\mathrm{i}G^{\beta}(t) = \sum_n \langle\psi_n|T(O_2(t)O_1(0))|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{equation*}
+有了这个定义，式 (2.2.18) 可以推广到有限温度：
+\begin{equation*}
+D^{\beta}(t) = 2\Theta(t)\operatorname{Re} G^{\beta}(t) \tag{2.2.23}
+\end{equation*}
+
+\subsection{关联函数之间的关系}
+
+\begin{keypoints}
+\item 有限温度下的响应函数、编时关联函数和谱函数（spectral function），都可以通过适当的解析延拓由有限温度虚时关联函数计算出来。
+\end{keypoints}
+
+我们已经引入了好几种关联函数。响应函数与线性响应实验中所测量的各种响应率直接相关；编时关联函数则容易用路径积分计算。本节我们将讨论这些关联函数之间的关系。这些关系使我们能够由编时关联函数得到响应函数。本节中的计算相当形式化，但结果是有用的。如果你不喜欢形式计算，可以跳过本节；你只需知道方框公式中的那些关系即可。
+
+首先，我们来研究两个算符 $O_1$ 与 $O_2$ 的有限温度关联在实时与虚时之间的关系：$\mathrm{i}G^{\beta}(t) = \langle T[O_2(t)O_1(0)]\rangle$ 与 $\mathcal{G}^{\beta}(\tau) = \langle T_{\tau}[O_2(\tau)O_1(0)]\rangle$。为了得到稍后用于费米子系统的更普遍的结果，我们把 $G^{\beta}(t)$ 与 $\mathcal{G}^{\beta}(\tau)$ 的定义推广如下：
+\begin{align*}
+\mathrm{i}G^{\beta}(t)\bigr|_{t>0} &= \langle O_2(t)O_1(0)\rangle
+& \mathrm{i}G^{\beta}(t)\bigr|_{t<0} &= \eta\,\langle O_1(0)O_2(t)\rangle
+\\
+\mathcal{G}^{\beta}(\tau)\bigr|_{\tau>0} &= \langle O_2(\tau)O_1(0)\rangle
+& \mathcal{G}^{\beta}(\tau)\bigr|_{\tau<0} &= \eta\,\langle O_1(0)O_2(\tau)\rangle
+\end{align*}
+其中 $\eta = \pm$。当 $\eta = +$ 时，这些关联称为玻色型的；当 $\eta = -$ 时，称为费米型的。注意这里我们并不假定 $O_{1,2} = O^{\dagger}_{1,2}$。利用
+\begin{align*}
+\langle\psi_n|O_2(t)O_1(0)|\psi_n\rangle &= \frac{\langle\psi_n|O_2\, U(t,0)\, O_1|\psi_n\rangle}{\langle\psi_n|U(t,0)|\psi_n\rangle}
+\\
+&= \sum_m \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \mathrm{e}^{-\mathrm{i}(\epsilon_m - \epsilon_n)t}
+\end{align*}
+我们求得 $G^{\beta}(t)$ 的谱表示为
+\begin{align*}
+\mathrm{i}G^{\beta}(t)\bigr|_{t>0} &= \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta - \mathrm{i}(\epsilon_m - \epsilon_n)t}}{Z}
+\\
+\mathrm{i}G^{\beta}(t)\bigr|_{t<0} &= \eta \sum_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta + \mathrm{i}(\epsilon_m - \epsilon_n)t}}{Z} \tag{2.2.24}
+\end{align*}
+如果我们如下引入有限温度谱函数：
+\begin{align*}
+A^{\beta}_{+}(\nu) &= \sum_{m,n} \delta[\nu - (\epsilon_m - \epsilon_n)]\, \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\\
+A^{\beta}_{-}(\nu) &= \sum_{m,n} \delta[\nu + (\epsilon_m - \epsilon_n)]\, \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{align*}
+便可把 $G^{\beta}$ 改写为
+\begin{equation*}
+\mathrm{i}G^{\beta}(t)\bigr|_{t>0} = \int \mathrm{d}\nu\, A^{\beta}_{+}(\nu)\,\mathrm{e}^{-\mathrm{i}\nu t}, \qquad \mathrm{i}G^{\beta}(t)\bigr|_{t<0} = \eta \int \mathrm{d}\nu\, A^{\beta}_{-}(\nu)\,\mathrm{e}^{-\mathrm{i}\nu t} \tag{2.2.25}
+\end{equation*}
+
+为理解谱函数的含义，我们来考虑零温谱函数 $A_{+}(\nu) \allowbreak= \sum_m \delta[\nu - (\epsilon_m - \epsilon_0)]\allowbreak\langle 0|O_2|\psi_m\rangle\allowbreak\langle\psi_m|O_1|0\rangle$。我们看到，当 $O_1$ 与 $O_2$ 作用在基态 $|0\rangle$ 上时，它们产生激发态 $O_1|0\rangle = \sum_m C_{1,m}|\psi_m\rangle$ 与 $O_2|0\rangle = \sum_m C_{2,m}|\psi_m\rangle$，振幅分别为 $C_{1,m}$ 与 $C_{2,m}$。函数 $A_{+}(\nu)$ 恰是 $C_{1,m}$ 与 $C_{2,m}$ 的乘积：$A_{+}(\nu) = \sum_m \delta[\nu - (\epsilon_m - \epsilon_0)]\, C^{\dagger}_{2,m}C_{1,m}$。若 $A_{+}(\nu) \neq 0$，则一个能量为 $\epsilon_0 + \nu$ 的激发态同时被 $O_1$ 和 $O_2$ 产生。当 $O_1 = O_2$ 时，$A_{+}(\nu)$ 就是 $O_1$ 所产生的能量为 $\nu$ 的诸态的权重。
+
+我们注意，有限温度谱函数可以改写为
+\begin{align*}
+A^{\beta}_{+}(\omega) &= \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}\, \delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr)
+\\
+&= \mathrm{e}^{\beta\omega/2} \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr) \tag{2.2.26}
+\end{align*}
+\begin{align*}
+A^{\beta}_{-}(\omega) &= \sum_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}\, \delta\bigl(\omega + (\epsilon_m - \epsilon_n)\bigr) \tag{2.2.27}
+\\
+&= \mathrm{e}^{-\beta\omega/2} \sum_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \delta\bigl(\omega + (\epsilon_m - \epsilon_n)\bigr)
+\\
+&= \mathrm{e}^{-\beta\omega/2} \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr)
+\end{align*}
+在式 (2.2.27) 的最后一行中我们交换了 $m$ 与 $n$。在这种形式下，可以看出有限温度下 $A^{\beta}_{+}$ 与 $A^{\beta}_{-}$ 之间一个非常简单的关系：
+\begin{equation*}
+\boxed{\; A^{\beta}_{+}(\omega) = \mathrm{e}^{\beta\omega} A^{\beta}_{-}(\omega) \;} \tag{2.2.28}
+\end{equation*}
+我们还注意，当 $\omega \lesssim -T$ 时 $A^{\beta}_{+}$ 几乎为零，而当 $\omega \gtrsim -T$ 时 $A^{\beta}_{-}$ 几乎为零。在零温下，我们有
+\begin{equation*}
+A_{+}(\omega < 0) = 0, \qquad A_{-}(\omega > 0) = 0
+\end{equation*}
+为了在频率空间中把 $G^{\beta}$ 的谱函数 $A^{\beta}_{\pm}$ 联系起来，我们需要引入
+\begin{equation*}
+G^{\beta}_{+}(t) = \Theta(t)G^{\beta}(t), \qquad G^{\beta}_{-}(t) = \Theta(-t)G^{\beta}(t)
+\end{equation*}
+在频率空间中，我们有
+\begin{align*}
+G^{\beta}_{+}(\omega) &= \sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\omega - (\epsilon_m - \epsilon_n) + \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\\
+G^{\beta}_{-}(\omega) &= \eta \sum_{m,n} \frac{\langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle}{-\omega - (\epsilon_m - \epsilon_n) + \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{align*}
+我们发现
+\begin{equation*}
+\boxed{\; G^{\beta}_{+}(\omega) = \int \mathrm{d}\nu\, \frac{A^{\beta}_{+}(\nu)}{\omega - \nu + \mathrm{i}0^{+}} \qquad G^{\beta}_{-}(\omega) = -\eta \int \mathrm{d}\nu\, \frac{A^{\beta}_{-}(\nu)}{\omega - \nu - \mathrm{i}0^{+}} \;} \tag{2.2.29}
+\end{equation*}
+以及 $G^{\beta}(\omega) = G^{\beta}_{+}(\omega) + G^{\beta}_{-}(\omega)$。
+
+接下来，我们考虑响应函数 $D^{\beta}(t)$，把它推广为
+\begin{equation*}
+D^{\beta}(t-t') = \sum_n -\mathrm{i}\,\Theta(t-t')\,\langle\psi_n|O_2(t)O_1(t') - \eta\, O_1(t')O_2(t)\,|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n/T}}{Z} \tag{2.2.30}
+\end{equation*}
+它有如下谱展开：
+\begin{align*}
+D^{\beta}(\omega) &= \sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\omega - (\epsilon_m - \epsilon_n) + \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\\
+&\quad + \eta \sum_{m,n} \frac{\langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle}{-\omega - (\epsilon_m - \epsilon_n) - \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z} \tag{2.2.31}
+\end{align*}
+我们发现
+\begin{equation*}
+\boxed{\; D^{\beta}(\omega) = \int \mathrm{d}\nu\, \frac{A^{\beta}_{+}(\nu)}{\omega - \nu + \mathrm{i}0^{+}} - \eta \int \mathrm{d}\nu\, \frac{A^{\beta}_{-}(\nu)}{\omega - \nu + \mathrm{i}0^{+}} \;} \tag{2.2.32}
+\end{equation*}
+我们看到，由谱函数 $A^{\beta}_{\pm}$ 可以同时确定编时关联函数 $G^{\beta}$ 与响应函数 $D^{\beta}$。
+
+从路径积分出发计算谱函数的一个办法，是使用编时的虚时关联函数
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_2, \tau_1) = Z^{-1}\operatorname{Tr}\left( T_{\tau}(O_2(\tau_2)O_1(\tau_1))\, \mathrm{e}^{-\beta H} \right)
+\end{equation*}
+其中 $0 < \tau_{1,2} < \beta$。函数 $\mathcal{G}^{\beta}(\tau_2, \tau_1)$ 也可以写为
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_2, \tau_1) =
+\begin{cases}
+\dfrac{\operatorname{Tr}\bigl(\mathrm{e}^{-(\beta - \tau_2)H}\, O_2\, \mathrm{e}^{-(\tau_2 - \tau_1)H}\, O_1\, \mathrm{e}^{-\tau_1 H}\bigr)}{\operatorname{Tr}(\mathrm{e}^{-\beta H})}, & \tau_2 > \tau_1 \\[3ex]
+\eta\, \dfrac{\operatorname{Tr}\bigl(\mathrm{e}^{-(\beta - \tau_1)H}\, O_1\, \mathrm{e}^{-(\tau_1 - \tau_2)H}\, O_2\, \mathrm{e}^{-\tau_2 H}\bigr)}{\operatorname{Tr}(\mathrm{e}^{-\beta H})}, & \tau_1 > \tau_2
+\end{cases}
+\end{equation*}
+由此可以证明
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_2, \tau_1) = \mathcal{G}^{\beta}(\tau_2 - \tau_1, 0) \equiv \mathcal{G}^{\beta}(\tau_2 - \tau_1), \qquad \mathcal{G}^{\beta}(\tau) = \eta\, \mathcal{G}^{\beta}(\tau + \beta)
+\end{equation*}
+函数 $\mathcal{G}^{\beta}(\tau)$ 也有谱表示。对 $0 < \tau < \beta$，我们有
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau) =
+\begin{cases}
+\sum\limits_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \dfrac{\mathrm{e}^{-\epsilon_n\beta - (\epsilon_m - \epsilon_n)\tau}}{Z}, & \tau > 0 \\[3ex]
+\eta \sum\limits_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \dfrac{\mathrm{e}^{-\epsilon_n\beta + (\epsilon_m - \epsilon_n)\tau}}{Z}, & \tau < 0
+\end{cases} \tag{2.2.33}
+\end{equation*}
+比较式 (2.2.24) 与式 (2.2.33)，我们看到 $G^{\beta}$ 与 $\mathcal{G}^{\beta}$ 之间有如下关系：
+\begin{equation*}
+\boxed{\; \mathrm{i}G^{\beta}(t) = \mathcal{G}^{\beta}\bigl(\mathrm{i}t + \mathrm{sgn}(t)0^{+}\bigr) \;} \tag{2.2.34}
+\end{equation*}
+即使在有限温度下，实时格林函数也可以由虚时格林函数算出。
+
+由于 $\mathcal{G}^{\beta}(\tau)$ 是（反）周期的，其频率是离散的：$\eta = +$ 时 $\omega_l = 2\pi T \times$ 整数，$\eta = -$ 时 $\omega_l = 2\pi T \times (\text{整数} + \frac{1}{2})$。在频率空间中，我们天真地得到
+\begin{align*}
+\mathcal{G}^{\beta}(\omega_l) &= \int_0^{\beta} \mathrm{d}\tau\, \mathcal{G}^{\beta}(\tau)\, \mathrm{e}^{\mathrm{i}\omega_l \tau}
+\\
+&= -\sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\mathrm{i}\omega_l - \epsilon_m + \epsilon_n}\, \frac{\mathrm{e}^{-\epsilon_n\beta} - \eta\,\mathrm{e}^{-\epsilon_m\beta}}{Z}
+\end{align*}
+然而，当 $\eta = 1$ 且 $\omega_l = 0$ 时，$m = n$ 的那些项没有定义。这些项应当是 $\langle\psi_n|O_2|\psi_n\rangle\allowbreak\langle\psi_n|O_1|\psi_n\rangle \beta\allowbreak\, \mathrm{e}^{-\epsilon_n\beta}/Z$。所以，严格地说，我们有
+\begin{align*}
+\mathcal{G}^{\beta}(\omega_l) &= -\sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\mathrm{i}\omega_l - \epsilon_m + \epsilon_n + T\delta}\, \frac{\mathrm{e}^{-\epsilon_n\beta} - (\eta + \delta)\,\mathrm{e}^{-\epsilon_m\beta}}{Z} \tag{2.2.35}
+\\
+&= -\sum_{m,n} \left( \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\mathrm{i}\omega_l - (\epsilon_m - \epsilon_n) + T\delta} + (\eta + \delta)\, \frac{\langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle}{-\mathrm{i}\omega_l - (\epsilon_m - \epsilon_n) - T\delta} \right) \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{align*}
+其中 $\delta$ 是一个小的复数。这使我们能够得到，对 $\omega \neq 0$，
+\begin{align*}
+&\frac{1}{2\mathrm{i}}\left[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \right] \tag{2.2.36}
+\\
+&\quad = \bigl(\mathrm{e}^{\beta\omega/2} - \eta\,\mathrm{e}^{-\beta\omega/2}\bigr) \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \pi\delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr).
+\end{align*}
+注意，当 $\omega \neq 0$ 时 $\delta$ 不起作用，可以略去。最后，把式 (2.2.36) 与式 (2.2.26)、式 (2.2.27) 相比较，便能借助 $\mathcal{G}^{\beta}(\omega_l)$ 表示 $A^{\beta}_{\pm}$。对 $\omega \neq 0$，我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+A^{\beta}_{+}(\omega) &= [1 + \eta\, n_{\eta}(\omega)]\,(\pi)^{-1} \frac{1}{2\mathrm{i}}\left[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \right]
+\\
+A^{\beta}_{-}(\omega) &= n_{\eta}(\omega)\,(\pi)^{-1} \frac{1}{2\mathrm{i}}\left[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \right]
+\end{aligned}
+} \tag{2.2.37}
+\end{equation*}
+其中 $n_{+}(\omega) = n_B(\omega) = \frac{1}{\mathrm{e}^{\beta\omega} - 1}$ 与 $n_{-}(\omega) = n_F(\omega) = \frac{1}{\mathrm{e}^{\beta\omega} + 1}$ 分别是玻色子与费米子的占据数。这样我们便能由 $\mathcal{G}^{\beta}$ 确定 $G^{\beta}$ 与 $D^{\beta}$。特别地，比较式 (2.2.31) 与式 (2.2.35)，我们看到 $D^{\beta}(\omega)$ 与 $\mathcal{G}^{\beta}(\omega_l)$ 之间有一个非常简单的关系：
+\begin{equation*}
+\boxed{\; D(\omega) = -\mathcal{G}^{\beta}(\omega_l)\bigr|_{\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}}, \qquad \text{对 } \omega \neq 0. \;} \tag{2.2.38}
+\end{equation*}
+同样，由于 $\omega \neq 0$，$\delta$ 已被略去。
+
+有趣的是，$\mathcal{G}^{\beta}(\tau)$ 的傅里叶变换与解析延拓两者不可交换：若先做解析延拓，便得到编时关联函数 $G^{\beta}(t)$；若先做傅里叶变换，便得到响应函数 $D^{\beta}(\omega)$。有人或许想换用另一种解析延拓 $\mathrm{i}\omega_n \to \omega(1 + \mathrm{i}0^{+})$，它其实更为自然。从我们的谱表示可以看出，新的解析延拓仍然无法把 $\mathcal{G}^{\beta}(\omega_n)$ 变成 $G^{\beta}(\omega)$。不过在零温下，我们确实有
+\begin{equation*}
+\boxed{\; G(\omega) = -\mathcal{G}(\omega)\bigr|_{\mathrm{i}\omega \to \omega(1 + \mathrm{i}0^{+})} \;} \tag{2.2.39}
+\end{equation*}
+
+以上所有结果都是在非常一般的情形下得到的，其中 $O_{1,2}$ 甚至未必是厄米的。当 $O_1 = O^{\dagger}_1$ 且 $O_2 = O^{\dagger}_2$ 时，结果可以取更简单的形式。在 $T = 0$ 且 $\omega \neq 0$ 时，我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+D(t) &= 2\Theta(t)\operatorname{Re} G(t), & \mathrm{i}G(t) &= \mathcal{G}\bigl(\mathrm{i}t + \mathrm{sgn}(t)0^{+}\bigr)
+\\
+D(\omega) &= \operatorname{Re} G(\omega) + \mathrm{i}\,\mathrm{sgn}(\omega)\operatorname{Im} G(\omega), & D(\omega) &= -\mathcal{G}(\omega)\bigr|_{\mathrm{i}\omega \to \omega + \mathrm{i}0^{+}}
+\end{aligned}
+} \tag{2.2.40}
+\end{equation*}
+对 $T \neq 0$ 且 $\omega \neq 0$，我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+D^{\beta}(t) &= 2\Theta(t)\operatorname{Re} G^{\beta}(t), & \mathrm{i}G^{\beta}(t) &= \mathcal{G}^{\beta}\bigl(\mathrm{i}t + \mathrm{sgn}(t)0^{+}\bigr)
+\\
+D^{\beta}(\omega) &= G^{\beta}_{+}(\omega) + \left( G^{\beta}_{+}(-\omega) \right)^{*}, & D^{\beta}(\omega) &= -\mathcal{G}^{\beta}(\omega_l)\bigr|_{\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}}
+\end{aligned}
+} \tag{2.2.41}
+\end{equation*}
+$D^{\beta}(\omega)$ 与 $G^{\beta}(\omega)$ 之间没有简单的关系。
+
+当 $O_1 = O^{\dagger}_2$ 时，函数 $A^{\beta}_{\pm}$ 是实且正的，并且 $\frac{1}{2\mathrm{i}}\bigl[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \bigr] = \operatorname{Im} \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+})$。我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+A^{\beta}_{+}(\omega) &= [1 + \eta\, n_{\eta}(\omega)]\,(\pi)^{-1} \operatorname{Im} \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+})
+\\
+&= -[1 + \eta\, n_{\eta}(\omega)]\,(\pi)^{-1} \operatorname{Im} D^{\beta}(\omega)
+\\
+&= -\frac{1}{1 + \eta\,\mathrm{e}^{-\beta\omega}}\,(\pi)^{-1} \operatorname{Im} G^{\beta}(\omega)
+\end{aligned}
+} \tag{2.2.42}
+\end{equation*}
+我们看到，谱函数 $A^{\beta}_{\pm}$ 可以由 $G^{\beta}$、$D^{\beta}$ 或 $\mathcal{G}^{\beta}$ 之一确定，进而确定其余的关联函数。
+
+作为例子，我们来计算振子问题在有限温度下的响应率。在频率空间中，虚时路径积分取如下形式
+\begin{equation*}
+Z = \int \mathcal{D}[x(\tau)]\; \mathrm{e}^{-\int_0^{\beta} \mathrm{d}\tau\, [\frac{m}{2}\dot{x}^2 + \frac{m\omega_0^2}{2} x^2]} = \int \mathcal{D}x_{\omega}\; \mathrm{e}^{-\frac{1}{2} \sum_{\omega_n = -\infty}^{\infty} x_{-\omega_n}\left[ m\omega_n^2 + m\omega_0^2 \right] x_{\omega_n}}
+\end{equation*}
+其中 $x_{\omega_n} = \int_0^{\beta} \mathrm{d}\tau\, x(\tau)\beta^{-1/2}\mathrm{e}^{\mathrm{i}\tau\omega_n}$。我们求得
+\begin{equation*}
+\mathcal{G}^{\beta}_{x}(\omega_n) = \langle x_{\omega_n} x_{-\omega_n} \rangle = \frac{m^{-1}}{\omega_n^2 + \omega_0^2} \tag{2.2.43}
+\end{equation*}
+于是有限温度响应率为
+\begin{equation*}
+\chi(\omega) = -D(\omega) = \mathcal{G}^{\beta}_{x}\bigl(-\mathrm{i}(\omega + \mathrm{i}0^{+})\bigr) = \frac{m^{-1}}{\omega_0^2 - \omega^2 - \mathrm{i}\,\mathrm{sgn}(\omega)0^{+}}
+\end{equation*}
+如预期的那样，它与温度无关。
+
+\subsection*{问题 2.2.5}
+
+用谱表示证明式 (2.2.39)。
+
+\subsection*{问题 2.2.6}
+
+从 $\mathcal{G}^{\beta}(\tau)$ 的定义出发证明式 (2.2.35)。
+
+\subsection*{问题 2.2.7}
+
+证明式 (2.2.43)。计算有限温度下的 $\langle x^2\rangle = \mathcal{G}^{\beta}_{x}(\tau)\bigr|_{\tau = 0}$。检查 $T \to 0$ 与 $T \to \infty$ 极限。（提示：下面的技巧在有限温度计算中经常用到，可能有用：
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.3.pdf}
+\caption*{图 2.3\quad 围道 $C_1$ 与 $C_2$。}
+\end{figure}
+\begin{equation*}
+\sum_{n = -\infty}^{\infty} \frac{T}{\omega_n^2 + \omega_0^2} = \oint_{C_1} \frac{\mathrm{d}z}{2\pi\mathrm{i}}\; \frac{1}{(-\mathrm{i}z)^2 + \omega_0^2}\; \frac{1}{\mathrm{e}^{\beta z} - 1}, \qquad \oint_{C_2} \frac{\mathrm{d}z}{2\pi\mathrm{i}}\; \frac{1}{(-\mathrm{i}z)^2 + \omega_0^2}\; \frac{1}{\mathrm{e}^{\beta z} - 1} = 0
+\end{equation*}
+其中 $C_1$ 是围绕虚 $z$ 轴的围道（contour），$C_2$ 是围绕 $z = 0$ 的无穷大圆围道，见图 2.3。）
+
+\section{量子自旋、贝里相与路径积分}
+
+\subsection{量子自旋的路径积分表示}
+
+\begin{keypoints}
+\item 贝里相来自一族量子态的相干态表示。贝里相是一个几何相（geometric phase），由相干态之间的交叠（内积）决定。
+\item 相干态路径积分的作用量含有一个贝里相项。
+\end{keypoints}
+
+考虑一个由哈密顿量 $H = 0$ 描述的自旋 $S = \frac{1}{2}$ 系统。这样一个自旋系统会有路径积分表述吗？首先，只有两个零能态 $|s_z\rangle$（$s_z = \pm\frac{1}{2}$）的自旋系统似乎太简单，不至于有路径积分表述。其次，作为含时自旋 $s_z(t)$ 的路径不是连续函数。所以，为了得到路径积分表述，我们先把这个简单的自旋系统变复杂一些：不用 $|s_z\rangle$，而用相干态 $|\pmb{n}\rangle$ 来描述不同的自旋态。
+
+相干态 $|\pmb{n}\rangle$ 用单位矢量 $\pmb{n}$ 标记。它是 $\pmb{n}$ 方向上自旋算符的本征态，即 $\pmb{n}\cdot\pmb{S}|\pmb{n}\rangle = S|\pmb{n}\rangle$，并且由下式给出：
+\begin{equation*}
+|\pmb{n}\rangle = |z\rangle = \begin{pmatrix} z_1 \\ z_2 \end{pmatrix}
+\end{equation*}
+\begin{equation*}
+\pmb{n} = z^{\dagger}\sigma z, \qquad |z_1|^2 + |z_2|^2 = 1
+\end{equation*}
+其中 $\sigma$ 是泡利矩阵。关系 $\pmb{n} = z^{\dagger}\sigma z$ 也称为矢量的旋量表示（spinor representation）。注意，对一个给定的矢量 $\pmb{n}$，旋量 $z$ 的总相位是不确定的，也就是说 $z$ 与 $\mathrm{e}^{\mathrm{i}\theta}z$ 给出同一个 $\pmb{n}$。不过我们可以选定一个相位，取
+\begin{equation*}
+z = \begin{pmatrix} \mathrm{e}^{-\mathrm{i}\phi}\cos\frac{\theta}{2} \\[0.5ex] \sin\frac{\theta}{2} \end{pmatrix} \tag{2.3.1}
+\end{equation*}
+其中 $(\theta, \phi)$ 是 $\pmb{n}$ 的球面角。
+
+由于态 $|\pmb{n}\rangle$ 的势能与动能都为零，人们或许以为相干态路径积分中的拉格朗日量 $L(\dot{\pmb{n}}, \pmb{n})$ 就简单地是零。结果表明，这个拉格朗日量相当不平凡。
+
+为计算拉格朗日量，我们注意相干态 $|\pmb{n}\rangle$ 是完备的：
+\begin{equation*}
+\int \frac{\mathrm{d}^2\pmb{n}}{2\pi}\, |\pmb{n}\rangle\langle\pmb{n}| = I_{2\times 2} \tag{2.3.2}
+\end{equation*}
+（因子 $\frac{1}{2\pi}$ 可以在上式两边取迹、并注意 $\operatorname{Tr}(|\pmb{n}\rangle\langle\pmb{n}|) = 1$ 而得到。）
+
+在时间区间 $[0, t]$ 中插入许多个 $\int \frac{\mathrm{d}^2\pmb{n}}{2\pi}|\pmb{n}\rangle\langle\pmb{n}|$，我们得到传播子 $\langle\pmb{n}_2|U(t,0)|\pmb{n}_1\rangle$ 的路径积分表示：\footnote{注意 $\langle\pmb{n}(\delta t)|\pmb{n}(0)\rangle = z^{\dagger}(\delta t)z(0) = 1 - z^{\dagger}(\delta t)[z(\delta t) - z(0)] \approx \mathrm{e}^{-z^{\dagger}\dot{z}\delta t}$。}
+\begin{align*}
+\mathrm{i}G(\pmb{n}_2, \pmb{n}_1, t) &= \langle\pmb{n}_2|U(t,0)|\pmb{n}_1\rangle
+\\
+&= \int \prod_{i=1}^{N} \frac{\mathrm{d}^2\pmb{n}(t_i)}{2\pi}\, \bigr]\lim_{N \to \infty} \langle\pmb{n}(t)|\pmb{n}(t_N)\rangle...\langle\pmb{n}(t_2)|\pmb{n}(t_1)\rangle\langle\pmb{n}(t_1)|\pmb{n}(0)\rangle
+\\
+&= \int \mathcal{D}^2\Bigl[\frac{\pmb{n}(t)}{2\pi}\Bigr]\, \mathrm{e}^{\mathrm{i}S[\pmb{n}(t)]}
+\\
+S[\pmb{n}(t)] &= \int_0^t \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z} \tag{2.3.3}
+\end{align*}
+相位项 $\mathrm{e}^{\mathrm{i}\int_0^t \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z}}$ 纯粹是一种量子效应，称为贝里相（Berry, 1984）。注意，相干态路径积分中出现的 $a^{*}\dot{a}$ 项也是一个贝里相。可见贝里相相当普遍地出现在相干态路径积分中。我们可以作如下三点观察。
+
+(a) $U(t,0)$ 是恒等算符。于是，式 (2.3.3) 算的竟是恒等算符的矩阵元！
+
+(b) 尽管 $H = 0$，作用量却不为零。不过，由于作用量只含一阶时间导数项，这个非零作用量与 $H = 0$ 是相容的。若自旋具有有限能量 $E$，则作用量中将含一个正比于时间的项：$S = -tE$。贝里相是 $t^0$ 量级的，与能量项不同。
+
+(c) 作用量 $S(z) = S(\theta, \phi) = \int \mathrm{d}t\; [-\frac{1}{2}\cos(\theta)\dot{\phi} - \frac{1}{2}\dot{\phi}]$ 的路径积分是一个相空间路径积分（见式 (2.1.11)）。于是，$(\theta, \phi)$ 正如 $(q, p)$ 一样，参数化了一个二维相空间。然而，与参数化平坦相空间的 $(q, p)$ 不同，$(\theta, \phi)$ 参数化的是一个弯曲的相空间（一个二维球面）。
+
+\subsection{作为绝热演化中额外相的贝里相}
+
+让我们从另一个角度来看贝里相。考虑处于恒定磁场 $\pmb{B} = -B\pmb{n}$ 中的一个自旋。基态的演化由下式给出：
+\begin{equation*}
+\langle\pmb{n}|\,\mathrm{e}^{-\mathrm{i}\int_0^T \mathrm{d}t\; \pmb{B}\cdot\pmb{S}}|\pmb{n}\rangle = \mathrm{e}^{-\mathrm{i}E_0 T}
+\end{equation*}
+其中 $E_0$ 是基态能量。我们把 $-E_0 T$ 称为这一演化的作用量。现在让 $\pmb{B}$ 的取向随时间缓慢变化，即 $\pmb{B} = -B\pmb{n}(t)$。在这种绝热运动下，基态演化为 $|\pmb{n}(t)\rangle$。这种演化的作用量 $S$ 由下式给出：
+\begin{equation*}
+\langle\pmb{n}|\,\mathrm{e}^{-\mathrm{i}\int_0^T \mathrm{d}t\; \pmb{B}(t)\cdot\pmb{S}}|\pmb{n}\rangle = \mathrm{e}^{\mathrm{i}S}
+\end{equation*}
+人们可能猜想 $S = -E_0 T$，因为基态能量（在任何给定时刻）仍是 $E_0$。在 $[0, T]$ 中插入许多个恒等式 (2.3.2)，我们看到实际上
+\begin{equation*}
+\langle\pmb{n}|\,\mathrm{e}^{-\mathrm{i}\int_0^T \mathrm{d}t\; \pmb{B}(t)\cdot\pmb{S}}|\pmb{n}\rangle = \mathrm{e}^{-\mathrm{i}E_0 T}\, \mathrm{e}^{\mathrm{i}\int_0^T \mathrm{d}t\; \mathrm{i}\langle\pmb{n}(t)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle}
+\end{equation*}
+作用量为
+\begin{equation*}
+S = -E_0 T + \int_0^T \mathrm{d}t\; \mathrm{i}\langle\pmb{n}(t)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle = -E_0 T + \int_0^T \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z} \tag{2.3.4}
+\end{equation*}
+多出了一个额外的贝里相。
+
+\subsection{贝里相与平行移动}
+
+\begin{keypoints}
+\item 只有对闭合路径，贝里相才是良定义的。
+\item 贝里相代表着给所有相干态指定共同相位时的阻挫（frustration）。
+\end{keypoints}
+
+贝里相有一些特殊的性质。与连接 $\pmb{n}(0)$ 和 $\pmb{n}(T)$ 的路径 $\pmb{n}(t)$ 相联系的贝里相由 $\mathrm{e}^{\mathrm{i}\theta_B} = \mathrm{e}^{-\int_0^T \mathrm{d}t\, \langle\pmb{n}(t)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle} = \mathrm{e}^{\mathrm{i}\int_0^T \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z}}$ 给出。这个式子告诉我们，开放路径的贝里相不是良定义的。这是因为描述 $\pmb{n}$ 方向自旋的态 $|\pmb{n}\rangle$ 可以有任意相位，而这样的相位是非物理的。如果我们改变各态的相位，即 $|\pmb{n}(t)\rangle \to \mathrm{e}^{\mathrm{i}\phi(t)}|\pmb{n}(t)\rangle$，则
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.4.pdf}
+\caption*{图 2.4\quad 自旋 1 相干态 $|\pmb{n}(t)\rangle$ 的相位的平行移动的几何表示。$|\pmb{n}(t)\rangle$ 的相位可以用单位球面上 $\pmb{n}(t)$ 点处切平面内的一个二维单位矢量来表示。在这种表示下，平行移动可以分解为两个几何操作：把二维矢量在三维空间中平移，再投影回倾斜的切平面。让一个二维切矢量绕闭合回路平行移动一周会使矢量转动，转角就是自旋 1 态的贝里相。（小回路的转角除以回路所围的面积即为球面的曲率。按照爱因斯坦的广义相对论，空间的曲率 $=$ 引力。）}
+\end{figure}
+贝里相也随之改变，即 $\theta_B \to \theta_B + \phi(0) - \phi(T)$。换言之，同一条路径 $\pmb{n}(t)$ 可以有不同的旋量表示 $z(t)$。不同的旋量表示给出不同的贝里相。
+
+上面的讨论似乎表明，正如自旋态 $|\pmb{n}\rangle$ 的相位一样，贝里相也是非物理的。贝里相的起源似乎在于我们对不同自旋态相位的任意选取。于是，如果能为所有自旋态选出一个“共同”相位，就不会有贝里相。
+
+让我们尝试沿路径 $\pmb{n}(t)$ 为自旋态 $|\pmb{n}(t)\rangle$ 选取一个共同相位，以便消去贝里相。我们先为路径起点的自旋态 $|\pmb{n}(0)\rangle$ 选定一个相位。然后在下一点为自旋态 $|\pmb{n}(\Delta t)\rangle$ 选取“相同相位”。这里的问题是：当 $\pmb{n}(0)$ 与 $\pmb{n}(\Delta t)$ 不同时，“相同相位”是什么意思？由于 $\pmb{n}(0)$ 与 $\pmb{n}(\Delta t)$ 近乎平行，$|\pmb{n}(0)\rangle$ 与 $|\pmb{n}(\Delta t)\rangle$ 几乎是同一个态。这意味着 $\bigl|\langle\pmb{n}(0)|\pmb{n}(\Delta t)\rangle\bigr| \approx 1$。于是我们可以定义：若 $\langle\pmb{n}(0)|\pmb{n}(\Delta t)\rangle$ 为实且正，则 $|\pmb{n}(0)\rangle$ 与 $|\pmb{n}(\Delta t)\rangle$ 具有相同相位。如果沿路径 $\pmb{n}(t)$ 对所有的态都这样选取相位，我们就定义了沿路径的一种“平行移动”（parallel transportation）（见图 2.4）。对这样的路径，我们有 $\langle\pmb{n}(0)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle = 0$。如果我们为路径上所有的自旋态选取了共同相位，贝里相就消失。
+
+% ==================================================================
+% 新增术语（ch2_c 新增，供术语表追加）：
+%   spectral representation / spectral expansion 谱表示 / 谱展开；
+%   analytic continuation 解析延拓；susceptibility（电介质与一般线性响应情形） 响应率；
+%   conductance 电导；d.c. conductance 直流电导；Boltzmann factor 玻尔兹曼因子；
+%   bosonic / fermionic (correlation) 玻色型 / 费米型（关联）；
+%   (anti-)periodic （反）周期的；
+%   contour 围道；spherical angles 球面角；solid angle 立体角；
+%   spinor representation 旋量表示；parallel transportation 平行移动；
+%   frustration 阻挫；geometric phase 几何相；tangent plane 切平面；
+%   curvature 曲率；identity operator 恒等算符；direct product 直积；
+%   equation of motion 运动方程；phase-space path integral 相空间路径积分
+% ==================================================================
+
+然而，对于闭合路径，我们也许无法为路径上所有的态挑选出一个共同的相位。这是因为，对于闭合路径，$|\pmb{n}(T)\rangle$ 与 $|\pmb{n}(0)\rangle$ 表示同一个自旋态，而由平行输运所确定的二者的相位选择可能并不一致。这一偏差恰好就是闭合路径的贝里相。选取自旋态的不同相位，即 $|\pmb{n}(t)\rangle \to \mathrm{e}^{\mathrm{i}\phi(t)}|\pmb{n}(t)\rangle$，会引起贝里相的改变 $\theta_B \to \theta_B + \phi(0) - \phi(T)$；由此我们看到，对于 $\pmb{n}(0) = \pmb{n}(T)$ 的闭合路径，贝里相是良定义的（在相差 $2\pi$ 的整数倍的意义下），因为 $\mathrm{e}^{\mathrm{i}\phi(0)} = \mathrm{e}^{\mathrm{i}\phi(T)}$。因此，讨论闭合路径的贝里相，或者比较具有相同起点与终点的两条路径的贝里相之差，都是有意义的。
+
+我们看到，如果能为所有的态定义一个共同的相位，贝里相就为零。环路具有非零的贝里相，意味着不可能为环上所有的态选出一个共同的相位。贝里相的数值表示定义这种共同相位时的阻挫（frustration）程度。平行输运以及平行输运中的阻挫这些概念非常重要。电磁场与引力场都是广义的贝里相，它们描述的是某些更一般的矢量（而不是如上面所讨论的二维矢量，即复数）在平行输运中的阻挫。
+
+贝里相是一种几何相位：只要两条路径 $\pmb{n}_1(t)$ 与 $\pmb{n}_2(t)$ 在单位球上描出相同的轨迹，它们就具有相同的贝里相。如果单位球上的轨迹 $\pmb{n}(t)$ 张出的立体角为 $\Omega$，那么该路径的贝里相就由下式给出（见问题 2.3.4）：
+\begin{equation*}
+\theta_B = \frac{\Omega}{2}\tag{2.3.5}
+\end{equation*}
+
+\subsection{贝里相与运动方程}
+
+\begin{keypoints}
+\item 贝里相可以影响系统的动力学性质。它可以改变运动方程。
+\end{keypoints}
+
+路径积分表示 (2.3.3) 可以推广到自旋-$S$ 系统，也可以推广到非零哈密顿量 $H = \pmb{B}\cdot\pmb{S}$ 的情形。相干态（即 $\pmb{n}\cdot\pmb{S}$ 的本征值最大（为 $S$）的本征态），记作 $|\pmb{n}\rangle$，可以写成上面讨论过的 $2S$ 个自旋-$\frac{1}{2}$ 相干态的直积：
+\begin{equation*}
+|\pmb{n}\rangle = |z\rangle \otimes |z\rangle \otimes \dots \otimes |z\rangle
+\end{equation*}
+于是，贝里相是自旋-$\frac{1}{2}$ 贝里相的 $2S$ 倍：
+\begin{equation*}
+\theta_B = \oint dt\, 2S\,\mathrm{i}\, z^{\dagger}\dot{z} = S\Omega\tag{2.3.6}
+\end{equation*}
+路径积分表示于是成为
+\begin{equation*}
+\mathrm{i}G(\pmb{n}_2, \pmb{n}_1, t) = \langle \pmb{n}_2 | U(t,0) | \pmb{n}_1 \rangle = \int \mathcal{D}\Big[\frac{\pmb{n}(t)}{2\pi}\Big]\, \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\, [2S\,\mathrm{i}z^{\dagger}\dot{z} - \pmb{B}\cdot\pmb{n}S]}\tag{2.3.7}
+\end{equation*}
+让我们把
+\begin{equation*}
+S[\pmb{n}(t)] = \int \mathrm{d}t\, [2S\,\mathrm{i}z^{\dagger}\dot{z} - \pmb{B}\cdot\pmb{n}S]\tag{2.3.8}
+\end{equation*}
+当作一个经典作用量，并考虑由这样一个作用量所支配的自旋的经典运动。为得到经典运动方程，让我们比较 $S[\pmb{n}(t)]$ 与 $S[\pmb{n}(t)+\delta\pmb{n}(t)]$。（注意，路径 $\pmb{n}(t)$ 与 $\pmb{n}(t)+\delta\pmb{n}(t)$ 具有相同的起点和终点。）由贝里相 (2.3.6) 的几何解释可以发现，两条路径的贝里相之差等于 $S$ 乘以两条轨迹之间的面积：$\delta\theta_B = \int dt\, [S\pmb{n}\cdot(\dot{\pmb{n}}\times\delta\pmb{n})]$。于是，
+\begin{equation*}
+S[\pmb{n}(t)+\delta\pmb{n}(t)] - S[\pmb{n}(t)] = \int \mathrm{d}t\, [S\pmb{n}\cdot(\dot{\pmb{n}}\times\delta\pmb{n}) - \pmb{B}\cdot\delta\pmb{n}\,S]
+\end{equation*}
+这给出运动方程
+\begin{equation*}
+\pmb{n}\times\dot{\pmb{n}} = \pmb{B} - \pmb{n}(\pmb{n}\cdot\pmb{B})
+\end{equation*}
+（注意 $\delta\pmb{n}$ 总是垂直于 $\pmb{n}$），或者
+\begin{equation*}
+\dot{\pmb{S}} = \pmb{B}\times\pmb{S}\tag{2.3.9}
+\end{equation*}
+其中 $\pmb{S} = S\pmb{n}$ 对应于经典自旋矢量。这是一个奇怪的运动方程：速度（而不是加速度）正比于 $\pmb{B}$ 所代表的力。更奇怪的是，速度指向与力垂直的方向。然而，这恰好就是自旋的正确运动方程。我们看到，要恢复正确的自旋运动方程，贝里相是必不可少的。
+
+\subsection*{问题 2.3.1}
+证明图 2.4 中定义的 $\theta_B$ 实际上就是自旋-1 自旋的贝里相。
+
+\subsection*{问题 2.3.2}
+实际上，用不连续的路径 $s_z(t)$ 来描述自旋-$\frac{1}{2}$ 系统的路径积分表述也是可能的。设自旋-$\frac{1}{2}$ 系统的 $H = a\pmb{\sigma}^1 + b\pmb{\sigma}^3$，求时间演化算符 $\langle s_z'|U(t,0)|s_z\rangle$ 的路径积分表示。（提示：$\sum_{s_z=\pm 1/2}|s_z\rangle\langle s_z| = 1$。）
+
+\subsection*{问题 2.3.3}
+用旋量表示 (2.3.1) 计算闭合路径（$\phi = 0 \to 2\pi$，$\theta$ 固定）的贝里相。
+
+对同一路径改用另一种旋量表示，计算贝里相：
+\begin{equation*}
+z = \begin{pmatrix} \cos\frac{\theta}{2} \\[2pt] \mathrm{e}^{-\mathrm{i}\phi}\sin\frac{\theta}{2} \end{pmatrix}
+\end{equation*}
+从这个例子我们看到，贝里相具有 $2\pi$ 的模糊性，依赖于所选的旋量表示。因此，贝里相 $\theta_B$ 不能直接用路径 $\pmb{n}$ 表示出来。这正是我们必须引入旋量表示来表述贝里相的原因。然而，$\mathrm{e}^{\mathrm{i}\theta_B}$ 是良定义的，并且只依赖于路径 $\pmb{n}(t)$。要得到一个良定义的路径积分，这已经足够。
+
+\subsection*{问题 2.3.4}
+对小闭合路径 $(\theta,\phi) \to (\theta+d\theta, \phi) \to (\theta+d\theta, \phi+d\phi) \to (\theta, \phi+d\phi) \to (\theta, \phi)$ 证明式 (2.3.5)。
+
+对一般的大闭合路径证明式 (2.3.5)。
+
+\subsection*{问题 2.3.5}
+自旋与球面上的粒子：
+\begin{enumerate}
+\item 证明：设 $\pmb{B} = 0$，自旋作用量 (2.3.8) 可以写成
+\begin{equation*}
+S[\pmb{n}(t)] = \int \mathrm{d}t\, (A_{\theta}\dot{\theta} + A_{\phi}\dot{\phi})
+\end{equation*}
+求 $A_{\theta}$ 与 $A_{\phi}$。
+\item 上述作用量可以看作下面这个作用量在 $m \to 0$ 极限下的结果：
+\begin{equation*}
+S_p[\pmb{n}(t)] = \int \mathrm{d}t\, \Big(A_{\theta}\dot{\theta} + A_{\phi}\dot{\phi} + \frac{1}{2}m\dot{\pmb{n}}^2\Big)
+\end{equation*}
+$S_p$ 描述一个质量为 $m$ 的粒子在单位球面上的运动。该粒子还经受一个由 $(A_{\phi}, A_{\theta})$ 所描述的磁场。证明 $(A_{\phi}, A_{\theta})$ 给出一个均匀磁场，并证明球面上的总磁通量子数为 $2S$。
+\item 我们知道，均匀磁场中的粒子具有朗道能级结构。同一朗道能级中的所有态都具有相同的能量。各朗道能级被恒定的能隙 $\hbar\omega_c$ 分开，并且当 $m \to 0$ 时 $\omega_c \to \infty$。因此，在 $m \to 0$ 的极限下，只有第一朗道能级中的态出现在低能希尔伯特空间中。若均匀磁场的总磁通量子数为 $N_{\phi}$，求球面上粒子第一朗道能级中的态数。
+\end{enumerate}
+
+\subsection*{问题 2.3.6}
+自旋波：考虑自旋-$S$ 量子自旋链 $H = \sum_i J\pmb{S}_i\cdot\pmb{S}_{i+1}$。当 $J < 0$ 时，经典基态是 $\pmb{S}_i = S\hat{z}$ 的铁磁态；当 $J > 0$ 时，是 $\pmb{S}_i = S\hat{z}(-)^i$ 的反铁磁态。
+\begin{enumerate}
+\item 写出自旋链的作用量。
+\item 求围绕铁磁基态的小涨落 $\delta\pmb{S}_i = \pmb{S}_i - S\hat{z}$ 的运动方程。把运动方程变换到频率空间和动量空间，求出色散关系。证明对小的 $k$ 有 $\omega \propto k^2$。
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.5.pdf}
+\caption*{图 2.5\quad 双势阱。}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.6.pdf}
+\caption*{图 2.6\quad (a) 单个瞬子解可以视为倒转势的两个极大点之间的一种运动。(b) 同一运动在时空中的作图。}
+\end{figure}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item 求围绕反铁磁基态的小涨落 $\delta\pmb{S}_i = \pmb{S}_i - S\hat{z}(-)^i$ 的运动方程。求出色散关系。证明当 $k$ 接近 $\pi$ 时 $\omega \propto |k - \pi|$。
+\end{enumerate}
+
+有趣的是，铁磁态之上与反铁磁态之上的自旋波具有非常不同的色散。在经典统计物理中，铁磁态与反铁磁态具有相同的热力学性质；而正是贝里相使二者在量子层次上大不相同。
+
+\section{路径积分表述的应用}
+
+\subsection{穿越势垒的隧穿}
+
+\begin{keypoints}
+\item 有时，初始组态与最终组态由几条驻定路径相连。作用量最小的路径代表默认路径，其余路径代表瞬子效应。
+\item 穿越势垒的隧穿是一种瞬子效应。
+\end{keypoints}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.7.pdf}
+\caption*{图 2.7\quad 多瞬子组态——瞬子气体。}
+\end{figure}
+
+路径积分不仅使我们能够计算诸如线性响应之类的微扰效应，还能使我们计算非微扰效应。这里我们想研究一个简单的例子，以理解路径积分如何给出非微扰的结果。我们将研究双势阱（图 2.5）中的隧穿。在没有隧穿时，粒子在某一极小点附近涨落，可用频率为 $\omega_0$ 的谐振子来描述。这些涨落给出如下传播子：
+\begin{equation*}
+\langle x_0|\mathrm{e}^{-TH}|x_0\rangle = \langle -x_0|\mathrm{e}^{-TH}|-x_0\rangle = \mathrm{e}^{-T\omega_0/2}, \quad \langle x_0|\mathrm{e}^{-TH}|-x_0\rangle = 0.
+\end{equation*}
+然而，由于隧穿，上述结果并不完全正确。有隧穿时，粒子可以在两个极小点之间来回穿行，传播子会获得一些额外的贡献。我们指出，隧穿是一种非微扰效应：围绕某一个极小点做微扰永远不可能给出隧穿。
+
+为了研究隧穿效应，我们采用虚时路径积分和鞍点近似。除了分别连接 $x_0$ 到 $x_0$ 与 $-x_0$ 到 $-x_0$ 的两条平庸驻定路径 $x(t) = x_0$ 和 $x(t) = -x_0$ 之外，还有另一条连接 $x_0$ 与 $-x_0$ 的驻定路径。这样的路径使作用量 $\int \mathrm{d}\tau\,[\frac{1}{2}m\dot{x}^2 + V(x)]$ 取极小，并满足 $m\frac{\mathrm{d}^2 x}{\mathrm{d}\tau^2} = V'(x)$（译注：原文这两个公式分别印作含 $V'(x)$ 的作用量与 $m\frac{\mathrm{d}^2 x}{\mathrm{d}\tau^2} = V(x)$，撇号位置互易）。这是倒转势 $-V(x)$ 的牛顿方程（图 2.6(a)），其解如图 2.6(b) 所示。我们看到，在 $\pm x_0$ 之间的切换发生在一段很短的时间间隔内，这一事件称为一个瞬子（instanton）。图 2.6(b) 中的路径并不是连接 $x_0$ 与 $-x_0$ 的唯一驻定路径，图 2.7 中的多瞬子路径也是一条驻定路径。类似地，多瞬子路径还给出连接 $x_0$ 到 $x_0$ 以及 $-x_0$ 到 $-x_0$ 的其他驻定路径。
+
+于是，为了计算传播子，我们需要对来自不同驻定路径的所有贡献求和。对于从 $x_0$ 到 $x_0$ 的传播子，我们有
+\begin{align*}
+\langle x_0|\mathrm{e}^{-TH}|x_0\rangle &= \mathrm{e}^{-T\omega_0/2} \sum_{n=\mathrm{even}} \int_0^T \mathrm{d}\tau_n \dots \int_0^{\tau_2} \mathrm{d}\tau_1 \left(K\mathrm{e}^{-S_0}\right)^n \\
+&= \mathrm{e}^{-T\omega_0/2} \sum_{n=\mathrm{even}} \frac{T^n}{n!} \left(K\mathrm{e}^{-S_0}\right)^n = \cosh(TK\mathrm{e}^{-S_0})
+\end{align*}
+其中 $S_0$ 是瞬子的最小作用量，$K$ 来自围绕单个瞬子的涨落的路径积分。$K$ 应当具有频率的量纲，其数值大致由粒子撞击势垒的频率给出。类似地，我们还有
+\begin{align*}
+\langle x_0|\mathrm{e}^{-TH}|-x_0\rangle &= \mathrm{e}^{-T\omega_0/2} \sum_{n=\mathrm{odd}} \int_0^T \mathrm{d}\tau_n \dots \int_0^{\tau_2} \mathrm{d}\tau_1 \left(K\mathrm{e}^{-S_0}\right)^n \\
+&= \mathrm{e}^{-T\omega_0/2} \sum_{n=\mathrm{odd}} \frac{T^n}{n!} \left(K\mathrm{e}^{-S_0}\right)^n = \sinh(TK\mathrm{e}^{-S_0})
+\end{align*}
+因此，
+\begin{equation*}
+\langle \psi_{\pm}|\mathrm{e}^{-TH}|\psi_{\pm}\rangle = \mathrm{e}^{-T\omega_0/2}\left[\cosh(TK\mathrm{e}^{-S_0}) \pm \sinh(TK\mathrm{e}^{-S_0})\right] = \mathrm{e}^{-T(\frac{\omega_0}{2} \pm K\mathrm{e}^{-S_0})}
+\end{equation*}
+其中 $|\psi_{\pm}\rangle = \frac{|x_0\rangle \pm |-x_0\rangle}{\sqrt{2}}$。我们看到 $|\psi_{\pm}\rangle$ 是能量本征态，其能量为 $E = \frac{\omega_0}{2} \pm K\mathrm{e}^{-S_0}$。
+
+为了求出 $S_0$，注意到由能量守恒有 $\dot{x} = \sqrt{2V(x)/m}$。于是，
+\begin{equation*}
+S_0 = \int_{-\infty}^{+\infty} \mathrm{d}\tau\, \Big[\frac{1}{2}m\dot{x}^2 + V(x)\Big] = \int_{-x_0}^{+x_0} \mathrm{d}x\, \sqrt{2mV(x)}
+\end{equation*}
+恢复 $\hbar$ 后，我们得到 $\Delta E = 2K\mathrm{e}^{-\hbar^{-1}\int_{-x_0}^{+x_0} \mathrm{d}x\, \sqrt{2mV(x)}}$，这正是 WKB 结果。然而，路径积分确实教给我们一件新东西，即隧穿时间 $t_{tun}$——与单个瞬子相联系的时间尺度。对于粒子穿过一个势垒需要多长时间，我们有了一幅非常简单的图像。
+
+\subsection*{问题 2.4.1}
+设双势阱势由 $V(x) = \frac{g}{4}(x^2 - x_0^2)^2$ 给出。
+\begin{enumerate}
+\item 估算 $S_0$ 和隧穿时间 $t_{tun}$（即瞬子的大小）。
+\item 设 $K \sim \sqrt{\frac{g x_0^2}{m}}$（这是极小点之一附近的振动频率），估算时间方向上瞬子的（平均）密度。
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.8.pdf}
+\caption*{图 2.8\quad 具有亚稳态的势。}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.9.pdf}
+\caption*{图 2.9\quad (a) 单次反弹解可以视为倒转势中的一种运动。(b) 同一运动在时空中的作图。}
+\end{figure}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item 若 $S_0 \gg 1$ 并且各瞬子互不重叠，半经典图像就是对隧穿的一种良好描述。问 $g$ 和 $x_0$ 取什么值时，上述两个条件都能满足？
+\end{enumerate}
+
+\subsection{亚稳态的命运}
+
+\begin{keypoints}
+\item 亚稳态的衰变也是一种瞬子效应。
+\end{keypoints}
+
+在本节中，我们考虑图 2.8 所示势 $V(x)$ 中的一个粒子。粒子初始时位于 $x_0$。我们想计算粒子穿过势垒逃逸的衰变率。为此我们计算 $\langle x_0|\mathrm{e}^{-TH}|x_0\rangle$。如果只考虑围绕 $x_0$ 的小涨落，则可以作近似 $V(x) = \frac{1}{2}m\omega_0^2(x - x_0)^2$，并对大的 $T$ 得到 $\langle x_0|\mathrm{e}^{-TH}|x_0\rangle = \mathrm{e}^{-T\omega_0/2}$。解析延拓到实时，我们看到 $\langle x_0|\mathrm{e}^{-\mathrm{i}TH}|x_0\rangle = \mathrm{e}^{-\mathrm{i}T\omega_0/2}$，没有衰变。为了找到衰变，我们需要寻找一个能使 $|\langle x_0|\mathrm{e}^{-\mathrm{i}TH}|x_0\rangle|$ 随时间减小的过程。我们将看到，隧穿可以引起衰变。在路径积分中，隧穿同样由瞬子来描述。
+
+虚时拉格朗日量 $L = \frac{1}{2}m\dot{x}^2 + V(x)$ 有一条连接 $x_0$ 到 $x_0$ 的非平庸驻定路径 $x_c(t)$。这条驻定路径（称为一次反弹（bounce）或一个瞬子）的存在，可以从势 $-V(x)$ 中的经典运动看出来（图 2.9）。把反弹包括进来，并重复 2.4.1 节中的步骤，我们发现
+\begin{align*}
+\langle x_0|\mathrm{e}^{-TH}|x_0\rangle &= \mathrm{e}^{-T\omega_0/2} \sum_n \int_0^T \mathrm{d}\tau_n \int_0^{\tau_n} \mathrm{d}\tau_{n-1} \dots \int_0^{\tau_2} \mathrm{d}\tau_1 \left(K\mathrm{e}^{-S_0}\right)^n \\
+&= \mathrm{e}^{-T(\frac{\omega_0}{2} - K\mathrm{e}^{-S_0})}\tag{2.4.1}
+\end{align*}
+其中 $S_0$ 是反弹的作用量，$K$ 是围绕反弹的涨落所产生的系数。乍看之下，反弹似乎只是把基态能量 $\frac{\omega_0}{2}$ 修正了一小量 $\Delta E = -K\mathrm{e}^{-S_0}$。由于反弹在经过很长时间后又回到 $x_0$，很难看出任何衰变。事实上我们将看到，系数 $K$ 是虚数，并且在实时 $\langle x_0|\mathrm{e}^{-\mathrm{i}TH}|x_0\rangle = \mathrm{e}^{-\mathrm{i}T\frac{\omega_0}{2} - T|K|\mathrm{e}^{-S_0}}$。反弹精确地描述了 $|x_0\rangle$ 态的衰变。这是一个相当惊人的结果。
+
+为了理解 $K$ 为什么是虚数，我们需要讨论如何计算 $K$。这里的讨论同样适用于 2.4.1 节中隧穿振幅里的 $K$。
+
+从我们在式 (2.4.1) 中纳入反弹的方式可以看到，$K\mathrm{e}^{-S_0}$ 是围绕 $x_c(t)$ 与围绕 $x = x_0$ 的两个路径积分之比：
+\begin{equation*}
+K\mathrm{e}^{-S_0} = \frac{\int_{x_c} \mathcal{D}\delta x\, \mathrm{e}^{-S}}{\int_{x=x_0} \mathcal{D}\delta x\, \mathrm{e}^{-S}}\tag{2.4.2}
+\end{equation*}
+对于小涨落，拉格朗日量可以展开到二阶。在 $x_c$ 附近，我们有
+\begin{equation*}
+S = S_0 + \int \mathrm{d}\tau\, \delta x \frac{1}{2}\Big[-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c(\tau))\Big]\delta x
+\end{equation*}
+而在 $x = x_0$ 附近有
+\begin{equation*}
+S = \int \mathrm{d}\tau\, \delta x \frac{1}{2}\Big[-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_0)\Big]\delta x
+\end{equation*}
+于是，完成高斯积分后，我们得到
+\begin{align*}
+K &= \frac{\int_{x_c} \mathcal{D}\delta x\, \mathrm{e}^{-\int \mathrm{d}\tau\, \frac{1}{2}\delta x[-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c(\tau))]\delta x}}{\int_{x=x_0} \mathcal{D}\delta x\, \mathrm{e}^{-\int \mathrm{d}\tau\, \frac{1}{2}\delta x[-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_0)]\delta x}} \\
+&= \left(\frac{\operatorname{Det}\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_0)\right)}{\operatorname{Det}\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)\right)}\right)^{1/2}\tag{2.4.3}
+\end{align*}
+然而，式 (2.4.3) 是没有意义的，因为算符 $-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)$ 具有一个零本征值。为了看清这一点，我们注意到 $x_c(\tau)$ 与 $x_c(\tau + \eta)$ 都是驻定路径，它们满足运动方程
+\begin{equation*}
+-m\frac{\mathrm{d}^2 x_c(\tau)}{\mathrm{d}\tau^2} + V'(x_c(\tau)) = -m\frac{\mathrm{d}^2 x_c(\tau+\eta)}{\mathrm{d}\tau^2} + V'(x_c(\tau+\eta)) = 0
+\end{equation*}
+将上式展开到 $\eta$ 的线性阶，我们发现 $\eta\dot{x}_c(\tau) = x_c(\tau+\eta) - x_c(\tau)$ 满足
+\begin{equation*}
+\Big[-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c(\tau))\Big]\dot{x}_c(\tau) = 0
+\end{equation*}
+于是，$\dot{x}_c(\tau)$ 是 $\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)\right)$ 的一个零本征值本征态。
+
+从上面的讨论同样可以清楚地看到，零模 $\eta\dot{x}_c(\tau)$ 对应于反弹的位置，而反弹的位置在式 (2.4.1) 中已经被积分过了。因此，式 (2.4.2) 并不完全正确。实际上我们有
+\begin{equation*}
+\int \mathrm{d}\tau_1\, K\mathrm{e}^{-S_0} = \frac{\int_{x_c} \mathcal{D}\delta x\, \mathrm{e}^{-S}}{\int_{x=x_0} \mathcal{D}\delta x\, \mathrm{e}^{-S}}\tag{2.4.4}
+\end{equation*}
+为了计算式 (2.4.4)，我们需要更仔细地定义路径积分。设 $x_n(\tau)$ 是算符 $-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)$ 的第 $n$ 个归一化本征态，则 $\delta x$ 可以写成 $\delta x = \sum c_n x_n(\tau)$，并且可以定义一个截断的“配分函数”：
+\begin{align*}
+Z_N(x_c) &\equiv A_N \int \prod_1^N \frac{\mathrm{d}c_n}{\sqrt{2\pi}}\, \mathrm{e}^{-\int \mathrm{d}\tau\, \frac{1}{2}\delta x(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c(\tau))]\delta x} \\
+&= A_N \left(\operatorname{Det}_N\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)\right)\right)^{-1/2}
+\end{align*}
+其中 $\operatorname{Det}_N$ 只包括前 $N$ 个本征值的乘积。真正的“配分函数” $Z$ 是 $Z_N$ 在 $N \to \infty$ 下的极限。由于零模 $x_1(\tau)$，上述结果需要修改。我们需要把零模分离出来，得到
+\begin{equation*}
+Z_N(x_c) = A_N \int \frac{\mathrm{d}c_1}{\sqrt{2\pi}} \left(\operatorname{Det}_N'\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)\right)\right)^{-1/2}
+\end{equation*}
+其中 $\operatorname{Det}'$ 表示不包含零本征值。
+
+积分 $\int \mathrm{d}c_1$ 实际上是对反弹位置的积分，也就是 $\int \mathrm{d}\tau_1$。可以求出 $c_1$ 与 $\tau_1$ 通过 $\mathrm{d}\tau_1 = \frac{\mathrm{d}c_1}{\sqrt{S_0/m}}$ 相联系。\footnote{我们注意到
+\begin{equation*}
+\frac{m}{2}\frac{\mathrm{d}}{\mathrm{d}\tau}(\dot{x}_c)^2 = m\dot{x}_c\ddot{x}_c = \dot{x}_c V'(x_c) = \frac{\mathrm{d}}{\mathrm{d}\tau}V(x_c)
+\end{equation*}
+因此，若假定 $V(x_0) = 0$，则有 $\frac{m}{2}(\dot{x}_c)^2 = V(x_c)$。由于
+\begin{equation*}
+S_0 = \int \mathrm{d}\tau\, \Big[\frac{1}{2}m\dot{x}_c^2 + V(x_c)\Big] = \int \mathrm{d}\tau\, m\dot{x}_c^2
+\end{equation*}
+归一化的零模具有如下形式：
+\begin{equation*}
+x_1(\tau) = \frac{\dot{x}_c(\tau)}{\sqrt{S_0/m}}
+\end{equation*}
+于是，$\delta x = c_1 x_1$ 将使反弹产生位移 $\delta\tau = \frac{c_1}{\sqrt{S_0/m}}$。这使我们能够把 $\mathrm{d}c_1$ 换成 $\mathrm{d}\tau_1$。}
+
+因此，
+\begin{equation*}
+Z_N(x_c) = A_N \int \mathrm{d}\tau_1\, \sqrt{\frac{S_0}{2\pi m}} \left(\operatorname{Det}_N'\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)\right)\right)^{-1/2}\tag{2.4.5}
+\end{equation*}
+类似地，对于围绕 $x = x_0$ 的路径积分，我们也可以引入 $Z_N(x_0)$：
+\begin{equation*}
+Z_N(x_0) = A_N \left(\operatorname{Det}_N\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_0)\right)\right)^{-1/2}\tag{2.4.6}
+\end{equation*}
+现在我们可以写出
+\begin{equation*}
+\int \mathrm{d}\tau\, K = \lim_{N\to\infty} \frac{Z_N(x_c)}{Z_N(x_0)}
+\end{equation*}
+由此得到
+\begin{align*}
+K &= \sqrt{\frac{S_0}{2\pi m}} \left(\frac{\operatorname{Det}\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_0)\right)}{\operatorname{Det}'\left(-m\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + V''(x_c)\right)}\right)^{1/2} \\
+&= \sqrt{\frac{S_0}{2\pi}} \left(\frac{\operatorname{Det}\left(-\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + m^{-1}V''(x_0)\right)}{\operatorname{Det}'\left(-\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + m^{-1}V''(x_c)\right)}\right)^{1/2}\tag{2.4.7}
+\end{align*}
+其中用到了这样一个事实：$\operatorname{Det}$ 比 $\operatorname{Det}'$ 多包含一个本征值。同一事实还告诉我们，$K$ 具有 $\tau^{-1}$ 的量纲。
+
+$-\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + m^{-1}V''(x_0)$ 的所有本征值都是正的。算符 $-\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + m^{-1}V''(x_c)$ 包含一个零模 $\dot{x}_c(\tau)$，它有一个节点。因此，$-\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + m^{-1}V''(x_c)$ 有一个、并且只有一个负本征值，正是它使 $K$ 成为虚数。
+
+同一公式 (2.4.7) 也适用于 2.4.1 节中所考虑的隧穿问题。不过，在该情形中零模 $\dot{x}_c$ 没有节点，$-\frac{\mathrm{d}^2}{\mathrm{d}\tau^2} + m^{-1}V''(x_c)$ 没有负本征值。因此，对隧穿问题来说 $K$ 是实数。
+
+我们已经提到，系数 $K$ 来自围绕驻定路径的涨落。从上面的计算我们看到，如果只计入小涨落，$K$ 就可以用算符行列式来表示。Coleman (1985) 讨论过计算行列式之比的若干方法，我在此不再深入。
+
+可能有人已经意识到，眼前这个问题用 WKB 方法很容易解决。路径积分方法实在太繁琐了，人们也许会问，为什么我们还要费心讨论它。进行这一讨论的动机，首先在于它展示了一次典型的路径积分计算中的各个步骤及其微妙之处；其次，也是更重要的一点，同一方法可以用来研究场论中亚稳态的衰变。
+
+\subsection*{问题 2.4.2}
+带有衰变亚稳态的最简单场论模型由下式给出：
+\begin{equation*}
+S = \int \mathrm{d}t\, \mathrm{d}^d\pmb{x}\, \left[\frac{1}{2}\left[(\partial_t m)^2 - v^2(\partial_{\pmb{x}} m)^2\right] - \frac{g}{4}(m^2 - m_0^2)^2 - Bm\right]
+\end{equation*}
+其中 $m(t, \pmb{x})$ 是一个实场，可以把它看作磁矩的密度。我们将选取单位使速度 $v = 1$。当磁场 $B$ 为零时，系统有两个简并的基态 $m = \pm m_0$，它们是势 $V(m) = \frac{g}{4}(m^2 - m_0^2)^2 + Bm$ 的两个极小点。
+\begin{enumerate}
+\item 证明：当 $B$ 较小时，系统有一个基态 $m = m_+$ 和一个亚稳态 $m = m_-$。但当 $B$ 超过临界值 $B_c$ 时，亚稳态便不复存在。求 $B_c$ 的值。
+\item 写出虚时中的作用量。Coleman 证明，该作用量总有如下形式的反弹解（一条驻定路径）：
+\begin{equation*}
+m = f\left(\sqrt{(\tau - \tau_0)^2 + (\pmb{x} - \pmb{x}_0)^2}\right) + m_-, \qquad f(\infty) = 0
+\end{equation*}
+其中 $(\tau_0, \pmb{x}_0)$ 是反弹的位置。
+\item 假定在没有反弹时 $\langle m_-|\mathrm{e}^{-TH}|m_-\rangle = \mathrm{e}^{-TE_0}$。把反弹包括进来之后，我们有
+\begin{equation*}
+\langle m_-|\mathrm{e}^{-TH}|m_-\rangle = \mathrm{e}^{-TE_0} \sum_n \frac{1}{n!} \int \prod_{i=1}^n \mathrm{d}\tau_i\, \mathrm{d}^d\pmb{x}_i\, K^n \mathrm{e}^{-nS_0}
+\end{equation*}
+其中 $S_0$ 是反弹的作用量，$(\tau_i, \pmb{x}_i)$ 是各个反弹的位置。（注意，现在一个反弹由它在时间与空间两个方面的位置来参数化。）若 $K$ 是虚数，亚稳态 $|m_-\rangle$ 的衰变率是多少？单位体积的衰变率是多少？
+\item 设 $B = \frac{B_c}{2}$，估算 $S_0$ 的值。（提示：对 $(\tau, \pmb{x})$ 和 $m$ 重新标度，把 $S$ 改写为 $S = \text{constant} \times S'$，使 $S'$ 中所有系数都是 1 的量级。）（用这一方法也可以估计反弹在时空中的大小。）
+\item 设 $B = \frac{B_c}{2}$，估算 $K$ 的值。（提示：考虑当 $S \to aS$ 时 $K$ 如何标度。）
+\end{enumerate}
+
+% ------------------------------------------------------------
+% 块边界备注：
+%   起点：书页 46（ch2_c）末段完整结束（"...The Berry phase vanishes if we
+%   choose a common phase for all of the spin states on the path."），
+%   书页 47 顶部为空格缩进的新段落（However, for a closed path...），
+%   故本块正文直接以该新段开始，无需 %JOIN%，也无 ch2_c 收尾内容可写入
+%   %--C-TAIL-- 区（按 assemble.py 约定该区只放"上一文件收尾"）。
+%   终点：书页 57 末为止于问题 2.4.2 第 5 问；书页 58 顶部为第 6 问
+%   （Discuss for which values of g and m_0 ...），按装配约定归 ch2_e
+%   的 %--D-TAIL--，本块未收，ch2_e 请勿重复翻译本块已有的第 1–5 问。
+% ------------------------------------------------------------
+% 新增术语（ch2_d，待并入术语表"新增术语"区）：
+%   instanton 瞬子
+%   multi-instanton 多瞬子
+%   instanton gas 瞬子气体
+%   bounce 反弹
+%   tunneling 隧穿
+%   tunneling time 隧穿时间
+%   barrier 势垒
+%   double-well potential 双势阱
+%   meta-stable state 亚稳态
+%   decay rate 衰变率
+%   frustration 阻挫
+%   parallel transportation 平行输运
+%   geometric phase 几何相位
+%   solid angle 立体角
+%   direct product 直积
+%   spin chain 自旋链
+%   spin wave 自旋波
+%   ferromagnetic state 铁磁态
+%   anti-ferromagnetic state 反铁磁态
+%   dispersion relation 色散关系
+%   non-perturbative effect 非微扰效应
+%   zero mode 零模
+%   zero eigenvalue 零本征值
+%   node 节点
+%   determinant 行列式
+%   Hilbert space 希尔伯特空间
+%   Newton's equation 牛顿方程
+%   magnetic moment 磁矩
+%   flux quanta 磁通量子
+%   Landau level structure 朗道能级结构
+% ------------------------------------------------------------
+
+% 本块顶部为问题 2.4.2 的第 6 问（题干与小问 1–5 在 ch2_d 末尾），装配器会接回第 5 问之后。
+\begin{enumerate}
+\item[6.] 讨论对 $g$ 与 $m_0$ 的哪些取值，半经典隧穿（tunneling）图像才是对亚稳态（meta-stable state）衰变的一个好的描述。
+\end{enumerate}
+%--D-TAIL 结束--
+
+\subsection{摩擦的量子理论}
+
+\begin{keypoints}
+\item 量子系统中的耗散（摩擦）可以通过让系统与一个热库（heat bath，即一组谐振子）耦合来模拟。
+\end{keypoints}
+
+粒子受到的摩擦来自它与环境的耦合。由于这种耦合，粒子会把能量丢失到环境中。因此，要建立摩擦的量子理论，我们必须把与环境的耦合包含进来。这里我们用一组谐振子来模拟环境（Caldeira and Leggett, 1981）。我们需要搭建一个能给出有限摩擦系数（friction coefficient）的恰当环境。这使我们能够理解存在摩擦时粒子的量子运动。
+
+我们的模型由如下路径积分描述：
+\begin{equation*}
+Z = \text{常数} \times \int \mathcal{D}[x(t)]\,\mathcal{D}[h_i(t)]\;\mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,\left(\frac{1}{2}m\dot{x}^2 + \sum_i \frac{1}{2}\dot{h}_i^2 - \frac{1}{2}(\Omega_i h_i + g_i x)^2\right)}
+\end{equation*}
+（译注：原书此式指数中第一项误排为 $\frac{1}{2}m\dot{x}$，遗漏了平方；现按式 (2.4.8) 改正为 $\frac{1}{2}m\dot{x}^2$。）
+
+其中 $x$ 是粒子的坐标，诸 $h_i$ 描述一簇谐振子。注意我们的系统具有平移对称性 $x \to x + \text{常数}$。把 $h_i$ 积掉之后，我们得到（见 2.2.3 节）
+\begin{equation*}
+Z = \text{常数} \times \int \mathcal{D}[x(t)]\;\mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,\frac{m}{2}\dot{x}^2 + \mathrm{i}\int \mathrm{d}t\,\mathrm{d}t'\,\frac{1}{4}G_{\mathrm{os}}(t-t')(x(t)-x(t'))^2} \tag{2.4.8}
+\end{equation*}
+其中
+\begin{align*}
+G_{\mathrm{os}}(t-t') &= \sum_i \Omega_i^2 g_i^2 (-\mathrm{i})\langle h_i(t)h_i(0)\rangle = -\mathrm{i}\sum_i \frac{g_i^2\Omega_i}{2}\,\mathrm{e}^{-\mathrm{i}|t-t'|\Omega_i}\\
+&= -\mathrm{i}\int_0^{\infty} \mathrm{d}\Omega\; n(\Omega)\,\frac{\Omega g^2(\Omega)}{2}\,\mathrm{e}^{-\mathrm{i}|t-t'|\Omega},
+\end{align*}
+$n(\Omega) \equiv \sum_i \delta(\Omega - \Omega_i)$ 是态密度（density of states），而 $g^2(\Omega) \equiv \sum_i g_i^2\delta(\Omega - \Omega_i)/\sum_i \delta(\Omega - \Omega_i)$。式 (2.4.8) 中的双时作用量（double-time action）给出如下运动方程：
+\begin{equation*}
+-\omega^2 m x_\omega = -(G_{\mathrm{os}}(\omega) - G_{\mathrm{os}}(0))\, x_\omega,
+\end{equation*}
+它可以改写为\footnote{这里我们用了 $\mathrm{Im}G_{\mathrm{os}}(\omega = 0) = 0$。注意 $\mathrm{Im}D_{\mathrm{os}}(\omega) = -\mathrm{Im}D_{\mathrm{os}}(-\omega)$，因而 $\mathrm{Im}D_{\mathrm{os}}(\omega = 0) = 0$。由于 $\mathrm{Im}G_{\mathrm{os}}(\omega) = \mathrm{sgn}(\omega)\mathrm{Im}D_{\mathrm{os}}(\omega)$，我们发现 $\mathrm{Im}G_{\mathrm{os}}(\omega = 0) = 0$。}
+\begin{align*}
+-\omega^2 m^* x_\omega &= -(-\mathrm{i}\omega)\gamma x_\omega, \tag{2.4.9}\\
+m^* &= m - \frac{\mathrm{Re}(G_{\mathrm{os}}(\omega) - G_{\mathrm{os}}(0))}{\omega^2}, \qquad \gamma = -\frac{\mathrm{Im}G_{\mathrm{os}}(\omega)}{\omega}
+\end{align*}
+若 $m^*$ 与 $\gamma$ 在小 $\omega$ 下有限，则式 (2.4.9) 变为 $m^*\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -\gamma\frac{\mathrm{d}x}{\mathrm{d}t}$，它描写一个质量为 $m^*$ 的粒子，其摩擦由摩擦系数 $\gamma$ 描述。我们看到，与一簇谐振子的耦合可以在粒子上产生摩擦。摩擦（因而是耗散）来自关联的虚部 $\mathrm{Im}G_{\mathrm{os}}(\omega)$。这种耦合还把粒子的质量从 $m$ 改变为 $m^*$。这里 $m^*$ 称为粒子的有效质量（effective mass）。修正量 $m^* - m$ 来自关联的实部 $\mathrm{Re}G_{\mathrm{os}}(\omega)$。物理上，粒子使谐振子发生形变，形变随粒子一起运动，从而改变了粒子的有效质量。
+
+上面的摩擦量子理论有一个问题。由于 $\mathrm{Im}G_{\mathrm{os}}(\omega) < 0$，我们看到摩擦系数 $\gamma(\omega) > 0$（当 $\omega > 0$），这是正确的；然而当 $\omega < 0$ 时 $\gamma(\omega) < 0$，这似乎毫无道理。我们注意到，式 (2.4.8) 中的有效作用量在时间反演（time reversal）$t \to -t$ 下不变。其后果是：如果 $\omega > 0$ 的解对应于衰减过程，那么 $\omega < 0$ 的解就对应于衰减过程的逆过程。
+
+要真正地描述摩擦，我们需要一个不具有时间反演不变性的形式框架。为此，重要的是注意到：在存在摩擦时，$t = -\infty$ 处的态（即 $|0_-\rangle$）与 $t = \infty$ 处的态（即 $|0_+\rangle$）是非常不同的，因为随着粒子慢下来，谐振子被激发到越来越高的态。这使得我们的路径积分 $Z = \langle 0|U(\infty,-\infty)|0\rangle$ 成为一个糟糕的出发点，因为它等于零。于是，这里的问题是为非平衡系统构造路径积分。闭合时间路径积分（closed-time path integral），或称 Schwinger–Keldysh 形式（Schwinger, 1961; Keldysh, 1965; Rammer and Smith, 1986），是解决这些问题的一条途径。Schwinger–Keldysh 形式从一个不同的路径积分 $Z_{\mathrm{close}} = \langle 0|U(-\infty,\infty)U(\infty,-\infty)|0\rangle$ 出发，它从 $t = -\infty$ 走到 $t = +\infty$ 再返回 $t = -\infty$。
+
+上面发展的双时路径积分（double-time path integral）(2.4.8) 只能描写耗散系统的平衡性质，例如存在摩擦/耗散时围绕基态的涨落。它不能描写非平衡性质，例如由摩擦引起的速度减慢，因为这涉及 $t = \pm\infty$ 处两个不同的态 $|0_-\rangle$ 与 $|0_+\rangle$。
+
+这里遇到的问题与 2.2 节中遇到的问题类似，在那里我们曾试图用路径积分计算响应率的虚部——它同样与耗散相联系。在那里，问题是靠把编时关联函数换成响应函数而解决的。这里的问题可以用同样的方式解决（或者更确切地说，用手工方式加以修正）。如果在\emph{运动方程}中把 $G_{\mathrm{os}}(\omega)$ 换成 $D_{\mathrm{os}}(\omega)$（注意 $D_{\mathrm{os}}(t) = 2\Theta(t)\mathrm{Re}G_{\mathrm{os}}(t)$）——但在双时路径积分中不作这种替换——那么摩擦系数 $\gamma$ 将由
+\begin{equation*}
+\gamma = -\frac{\mathrm{Im}D_{\mathrm{os}}(\omega)}{\omega} \tag{2.4.10}
+\end{equation*}
+给出，它对 $\omega > 0$ 与 $\omega < 0$ 都总是正的。在记住上述限制的前提下，我们可以说双时路径积分 (2.4.8) 能够描述一个有摩擦的系统。摩擦系数由式 (2.4.10) 给出。
+
+由于
+\begin{equation*}
+G_{\mathrm{os}}(\omega) = \int_0^{\infty} \mathrm{d}\Omega\;\frac{\Omega^2 n(\Omega)g^2(\Omega)}{\omega^2 - \Omega^2 + \mathrm{i}0^+},
+\end{equation*}
+我们求得 $\mathrm{Im}G_{\mathrm{os}}(\omega) = -\frac{\pi}{2}|\omega|n(|\omega|)g^2(|\omega|)$。利用 $\mathrm{Im}D_{\mathrm{os}}(\omega) = \mathrm{sgn}(\omega)\mathrm{Im}G_{\mathrm{os}}(\omega)$ 这一事实，我们求得对小 $\omega$ 值
+\begin{equation*}
+\gamma = \frac{\pi}{2}\, n(|\omega|)\, g^2(|\omega|) \tag{2.4.11}
+\end{equation*}
+因此，要使 $\gamma$ 在小 $\omega$ 下有限，我们要求当 $\Omega \to 0$ 时 $n(\Omega)g^2(\Omega)$ 有限。
+
+让我们假设当 $\Omega < \Omega_0$ 时 $n(\Omega)g^2(\Omega) = n_0 g_0^2$，而当 $\Omega > \Omega_0$ 时 $n(\Omega)g^2(\Omega) = 0$。我们求得
+\begin{align*}
+G_{\mathrm{os}}(\omega) &= -n_0 g_0^2 \Omega_0 + \frac{n_0 g_0^2|\omega|}{2}\ln\left|\frac{\Omega_0 + |\omega|}{\Omega_0 - |\omega|}\right| - \mathrm{i}\,\frac{\pi}{2}|\omega|\, n_0 g_0^2\\
+G_{\mathrm{os}}(t) &= \mathrm{i}\,\frac{n_0 g_0^2}{2t^2}\left(1 - (\mathrm{i}|t|\Omega_0 + 1)\,\mathrm{e}^{-\mathrm{i}|t|\Omega_0}\right)
+\end{align*}
+除了有限的摩擦系数 $\gamma = \frac{\pi}{2}n_0 g_0^2$ 之外，我们还得到有效质量 $m^* = m - \frac{n_0 g_0^2}{\Omega_0^2}$。
+
+我们想指出，$G_{\mathrm{os}}(t)$ 中的 $(\mathrm{i}|t|\Omega_0 + 1)\mathrm{e}^{-\mathrm{i}|t|\Omega_0}$ 项来自 $n(\Omega)g^2(\Omega)$ 在 $\Omega = \Omega_0$ 处的不连续性。如果 $n(\Omega)g^2(\Omega)$ 是 $\Omega$ 的光滑函数，那么这一项在大 $t$ 极限下将指数式地消失。例如，若选取 $n(\Omega)g^2(\Omega) = n_0 g_0^2\,\mathrm{e}^{-\Omega^2/\Omega_0^2}$，则在大 $t$ 极限下将有 $G_{\mathrm{os}}(t) = \mathrm{i}\frac{n_0 g_0^2}{2t^2}$。摩擦系数仍由 $\gamma = \mathrm{sgn}(\omega)\frac{\pi}{2}n_0 g_0^2$ 给出。采用这样的 $n(\Omega)g^2(\Omega)$ 选择之后，我们发现一个具有摩擦 $\gamma = \frac{\pi}{2}n_0 g_0^2$ 的粒子由如下双时作用量描述：
+\begin{equation*}
+S = \int \mathrm{d}t\;\frac{m}{2}\dot{x}^2 + \mathrm{i}\int \mathrm{d}t\,\mathrm{d}t'\;\frac{\gamma\,(x(t) - x(t'))^2}{4\pi(t - t')^2} \tag{2.4.12}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.10.pdf}
+\caption*{图 2.10\quad 一个 RCL 电路。}
+\end{figure}
+
+\subsection*{问题 2.4.3}
+
+\textbf{有效质量：}
+\begin{enumerate}
+\item[1.] 假设对小 $\Omega$ 有 $n(\Omega)g^2(\Omega) \propto \Omega^\alpha$，且当 $\Omega > \Omega_0$ 时 $n(\Omega)g^2(\Omega) = 0$。求出使有效质量 $m^*$ 发散的 $\alpha$ 值。
+\item[2.] 考虑 $n(\Omega)g^2(\Omega) = N_0\,\mathrm{e}^{-\Omega/\Omega_0}$ 与 $n(\Omega)g^2(\Omega) = N_0\,\mathrm{e}^{-(\Omega/\Omega_0)^2}$ 两种情形。哪一种情形的有效质量发散？
+\end{enumerate}
+
+\subsection{RCL 电路的量子理论}
+
+\begin{keypoints}
+\item RCL 电路的量子动力学与一个带摩擦粒子的量子动力学类似。
+\item 如何在一个量子 RCL 电路中纳入电荷量子化（charge quantization）。
+\end{keypoints}
+
+RCL 电路是一个简单的电路，我们知道如何在经典层次上描述它。既然一切都被认为是用量子理论描述的，问题就产生了：如何用量子力学来描述一个 RCL 电路？
+
+让我们先考虑电容为 $C$ 的一个理想电容器。电容器的态由其电荷 $q$ 描述；如果我们忽略电荷量子化，$q$ 是一个实数。理想电容器的量子理论很简单：希尔伯特空间由态 $\{|q\rangle\}$ 张成，哈密顿量为 $H = \frac{\hat{q}^2}{2C}$，其中电荷算符 $\hat{q}$ 定义为 $\hat{q}|q\rangle = q|q\rangle$。于是，一个量子电容器等价于一条直线上的自由粒子，$q$ 是它的“动量”。哈密顿量 $H = \frac{\hat{q}^2}{2C}$ 的形式告诉我们，这个粒子的质量恰为 $C$。相应的经典拉格朗日量为 $L = \frac{1}{2}C\dot{x}^2$。
+
+为了描述一个 CL 电路，我们加入一个势能项，考虑
+\begin{equation*}
+L_{\mathrm{CL}} = \frac{C}{2}\dot{x}^2 - \frac{1}{2L}x^2 \tag{2.4.13}
+\end{equation*}
+由此得到的运动方程为
+\begin{equation*}
+C\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -\frac{x}{L}
+\end{equation*}
+如果我们把 $x/L$ 解释为电流 $I$、把 $L$ 解释为电感，它与 CL 电路的方程
+\begin{equation*}
+V = \frac{q}{C} = L\frac{\mathrm{d}I}{\mathrm{d}t}, \qquad\qquad I = -\frac{\mathrm{d}q}{\mathrm{d}t},
+\end{equation*}
+等价。我们看到，CL 电路等价于一个坐标为 $x$、质量为 $C$、弹簧常数为 $1/L$ 的谐振子。于是，量子 CL 电路由哈密顿量
+\begin{equation*}
+H = \frac{1}{2C}\hat{q}^2 + \frac{1}{2L}\hat{x}^2 \tag{2.4.14}
+\end{equation*}
+描述，其中 $\hat{q}$ 是电荷算符；它也是与 $\hat{x}$ 共轭的动量算符，满足 $[\hat{q}, \hat{x}] = \mathrm{i}$。流算符由 $\hat{I} \equiv \hat{x}/L$ 给出。
+
+我们也可以把 $q$ 视为坐标，而把 $-x$ 视为相应的“动量”。在这种观点下，哈密顿量 (2.4.14) 给出如下拉格朗日量，它是式 (2.4.13) 的对偶形式（dual form）：
+\begin{equation*}
+L_{\mathrm{CL}}^d = \frac{L}{2}\dot{q}^2 - \frac{1}{2C}q^2 \tag{2.4.15}
+\end{equation*}
+如图 2.10 所示，在加入一个电阻器之后，经典运动方程变为
+\begin{equation*}
+V = \frac{q}{C} = L\frac{\mathrm{d}I}{\mathrm{d}t}, \qquad\qquad I = -\frac{\mathrm{d}q}{\mathrm{d}t} - V/R
+\end{equation*}
+由此得到
+\begin{equation*}
+C\frac{\mathrm{d}^2x}{\mathrm{d}t^2} = -\frac{x}{L} - \frac{1}{R}\frac{\mathrm{d}x}{\mathrm{d}t} \tag{2.4.16}
+\end{equation*}
+这正是摩擦系数为 $\gamma = 1/R$ 的粒子的运动方程。这样的系统可以用一个双时作用量描述（见式 (2.4.12)）：
+\begin{equation*}
+S_{\mathrm{RCL}} = \int \mathrm{d}t\,\left(\frac{1}{2}C\dot{x}^2 - \frac{1}{2L}x^2\right) + \mathrm{i}\int \mathrm{d}t\,\mathrm{d}t'\;\frac{(x(t) - x(t'))^2}{4\pi R(t - t')^2} \tag{2.4.17}
+\end{equation*}
+RCL 电路的许多量子动力学性质都可以由上述作用量计算出来。
+
+如果我们计入电荷量子化，那么电荷为 $q = e^{*} \times \text{整数}$。由于电荷 $q$ 也是 $x$ 的动量，动量的量子化意味着粒子生活在一个圆上。电荷（即动量）量子 $e^{*}$ 意味着 $x$ 与 $x + \frac{2\pi}{e^{*}}$ 应当被视为同一个点。
+
+由于电荷量子化蕴含 $x$ 的周期性，描述带电荷量子化的 RCL 电路的作用量必须是 $x$ 的周期函数。
+
+有许多办法可以使式 (2.4.17) 周期化。最简单的周期双时作用量之一由下式给出：
+\begin{equation*}
+S_{\mathrm{RCL}} = \int \mathrm{d}t\,\left(\frac{C}{2}\dot{x}^2 - \frac{1 - \cos(e^{*}x)}{Le^{*2}}\right) + \mathrm{i}\int \mathrm{d}t\,\mathrm{d}t'\;\frac{\sin^2\!\left(\frac{e^{*}}{2}[x(t) - x(t')]\right)}{\pi R e^{*2}(t - t')^2} \tag{2.4.18}
+\end{equation*}
+我们注意到，在 $e^{*} \to 0$ 极限下式 (2.4.18) 变为式 (2.4.17)。式 (2.4.18) 描述了带电荷量子化的 RCL 电路的量子动力学性质。
+
+\subsection{耗散与涨落之间的关系}
+
+\begin{keypoints}
+\item 耗散与涨落总是同时出现。我们可以由其一确定另一个。
+\end{keypoints}
+
+双时作用量 (2.4.12) 与 (2.4.17) 适合于计算平衡性质。让我们计算 $x$ 与速度 $v = \dot{x}$ 的平衡量子涨落。$x$ 的涨落由噪声功率谱（noise power spectrum）表征。为了定义噪声功率谱，让我们先考虑一个经典涨落量 $x(t)$。总功率（包括所有频率）定义为
+\begin{equation*}
+P_{\mathrm{tot}} \equiv \int_0^{t_\infty} \mathrm{d}t\,|x(t)|^2/t_\infty = 2\int_0^{\infty} \frac{\mathrm{d}\omega}{2\pi}\,x_{-\omega}x_{\omega}/t_\infty
+\end{equation*}
+其中 $x_\omega = \int_0^{t_\infty} \mathrm{d}t\;x(t)\,\mathrm{e}^{\mathrm{i}\omega t}$，而 $t_\infty \to \infty$。于是，我们可以把 $x_{-\omega}x_\omega/t_\infty$ 认作噪声功率谱。量子噪声功率谱则由对 $x_{-\omega}x_\omega/t_\infty$ 取量子平均而得到：\footnote{这里我们用了
+\begin{align*}
+2\langle x_{-\omega}x_\omega\rangle/t_\infty &= \int_0^{t_\infty} \mathrm{d}t_1\,\mathrm{d}t_2\;\left[\langle x(t_1)x(t_2)\rangle + \langle x(t_2)x(t_1)\rangle\right]\mathrm{e}^{\mathrm{i}\omega(t_1 - t_2)}/t_\infty\\
+&= \int_0^{t_\infty} \mathrm{d}t_1\,\mathrm{d}t_2\;\left[\langle T(x(t_1)x(t_2))\rangle + \langle T(x(t_1)x(t_2))\rangle^{*}\right]\mathrm{e}^{\mathrm{i}\omega(t_1 - t_2)}/t_\infty\\
+&= \int_0^{t_\infty} \mathrm{d}t_1\,\mathrm{d}t_2\;\left[\langle T(x(t_1)x(t_2))\rangle + \langle T(x(t_2)x(t_1))\rangle^{*}\right]\mathrm{e}^{\mathrm{i}\omega(t_1 - t_2)}/t_\infty\\
+&= 2\,\mathrm{Re}\int_{-\infty}^{+\infty} \mathrm{d}t\;\langle T(x(t)x(0))\rangle\,\mathrm{e}^{\mathrm{i}\omega t} = -2\mathrm{Im}G_\omega
+\end{align*}}
+\begin{equation*}
+P(\omega) = 2\langle x_{-\omega}x_\omega\rangle/t_\infty = -2\mathrm{Im}G_\omega \tag{2.4.19}
+\end{equation*}
+由 $\mathrm{Im}D$ 与 $\mathrm{Im}G$ 之间的如下关系（见式 (2.2.42)）：
+\begin{equation*}
+\mathrm{Im}G(\omega) = \frac{\mathrm{Im}D}{\tanh(\beta\omega/2)}, \tag{2.4.20}
+\end{equation*}
+我们看到 $\mathrm{Im}G$（从而 $P(\omega)$）可以由响应函数 $D$ 确定。
+
+响应函数可以由运动方程算出。对于带摩擦的粒子，运动方程为
+\begin{equation*}
+m\ddot{x} = -Kx - \gamma\dot{x} + f(t) \tag{2.4.21}
+\end{equation*}
+其中 $f$ 是外力。运动方程的解可以形式地写为
+\begin{equation*}
+x(t) = -\left(\frac{1}{-m\frac{\mathrm{d}^2}{\mathrm{d}t^2} - \gamma\frac{\mathrm{d}}{\mathrm{d}t} - K}\right)f
+\end{equation*}
+这个解可以解释为 $x$ 对微扰 $\delta H = -f(t)x$ 的响应：$x(t) = \int \mathrm{d}t'\;D(t - t')(-f(t')) \equiv -Df$（见式 (2.2.3)，取 $O_1 = O_2 = x$）。因此，运动方程决定了 $x$ 的如下响应函数：
+\begin{equation*}
+D = \frac{1}{-m\frac{\mathrm{d}^2}{\mathrm{d}t^2} - \gamma\frac{\mathrm{d}}{\mathrm{d}t} - K}
+\end{equation*}
+现在清楚了：响应函数的 $\mathrm{Im}D$ 描写运动粒子的摩擦（即耗散），而关联函数的 $\mathrm{Im}G$ 描写涨落的功率谱。式 (2.4.20) 是耗散与涨落之间的一个直接关系。
+
+由 $D$ 的表达式，我们求得 $x$ 涨落的功率谱为（见式 (2.4.19)）
+\begin{align*}
+P(\omega) &= -2\left(\tanh(\beta\omega/2)\right)^{-1}\mathrm{Im}D\\
+&= \frac{1}{\tanh(\omega\hbar/2T)}\;\frac{2\gamma\omega\hbar}{(m\omega^2 - K)^2 + \gamma^2\omega^2} \tag{2.4.22}
+\end{align*}
+速度涨落的功率谱为
+\begin{equation*}
+P^v(\omega) = \omega^2 P(\omega) = \frac{1}{\tanh(\omega\hbar/2T)}\;\frac{2\gamma\omega\hbar}{(m\omega - \frac{K}{\omega})^2 + \gamma^2}
+\end{equation*}
+我们注意到，运动方程 (2.4.21) 与式 (2.4.16) 给出的 RCL 电路的运动方程完全相同，只需把 $(C, L^{-1}, R^{-1})$ 换成 $(m, K, \gamma)$。电压由 $V = \dot{x}$ 给出。于是，RCL 电路中电压涨落的功率谱为
+\begin{equation*}
+P^V(\omega) = \frac{1}{\tanh(\hbar\beta\omega/2)}\;\frac{2\hbar R\omega}{(RC\omega - \frac{R}{L\omega})^2 + 1} \tag{2.4.23}
+\end{equation*}
+当 $\hbar\omega \ll T$ 时，我们有
+\begin{equation*}
+P_{\mathrm{c}}^V(\omega) = \frac{4TR}{(RC\omega - \frac{R}{L\omega})^2 + 1}
+\end{equation*}
+这就是 RCL 系统的经典噪声谱。当 $L = \infty$ 且 $C = 0$ 时，上式变为一个电阻器两端的噪声谱，即 $P_{\mathrm{c}}^V(\omega) = 4TR$。
+
+有趣的是，有限温度噪声谱 $P^V$ 与零温噪声谱 $P_0^V$ 之间有如下紧密的联系：
+\begin{equation*}
+P^V(\omega) = \frac{1}{\tanh(\hbar|\omega|/2T)}\,P_0^V(\omega) \tag{2.4.24}
+\end{equation*}
+$P^V(\omega)$ 也可以由经典噪声谱 $P_{\mathrm{c}}^V(\omega)$ 得到：
+\begin{equation*}
+P^V(\omega) = \frac{\hbar\omega}{2T\tanh(\hbar\omega/2T)}\,P_{\mathrm{c}}^V(\omega)
+\end{equation*}
+上述关系非常普遍，适用于所有谐系统（见下面的问题 2.4.5）。
+
+\subsection*{问题 2.4.4}
+
+\textbf{布朗运动（Brownian motion）：}
+\begin{enumerate}
+\item[(a)] 一个质量为 $m$ 的粒子受到由 $\gamma$ 描述的摩擦。如果在 $x = 0$ 处释放粒子，经过时间 $t$ 之后它能够游荡到多远？（即在时刻 $t$ 计算 $\bar{x} = \sqrt{\langle x^2\rangle}$。）（提示：考虑 $\omega = 0$ 处速度的功率谱。）
+\item[(b)] 对悬浮在水中的一个塑料球，求出（或估计）1 分钟之后 $\bar{x}$ 的数值。球的直径为 1 cm。再对水中的一粒花粉重复这一计算，我们把花粉建模为用同样塑料做成的、尺寸小 10000 倍的球。20°C 时水的黏度为 0.01 泊（1 泊 = 1 达因·秒/cm$^2$）。
+\end{enumerate}
+
+\subsection*{问题 2.4.5}
+
+直接考虑一个具有任意 $g_i$ 与 $\Omega_i$ 的耦合振子系统（见式 (2.4.8)），证明式 (2.4.24)。（提示：考虑振子在 $T = 0$ 与 $T \neq 0$ 时的 $\langle x^2\rangle$。）
+
+\subsection{随机微分方程的路径积分描述}
+
+\begin{keypoints}
+\item 随机微分方程之解的统计性质可以用路径积分来描述。
+\end{keypoints}
+
+按照运动方程 (2.4.21)，如果把粒子在某处释放，那么当 $f = 0$ 时，粒子经过很长时间后最终会停在 $x = 0$ 处。
+
+然而，耗散/涨落定理告诉我们，上述图像并不正确，粒子并非只停留在 $x = 0$ 处。摩擦的存在蕴含着涨落的存在，因此粒子会围绕 $x = 0$ 涨落。要得到一个描写耗散系统的更正确的运动方程，我们需要加入一个产生涨落的项。一种办法是让力项 $f(t)$ 随时间随机涨落。现在有两个问题。第一，随机力项能模拟涨落吗——特别是量子涨落？如果答案是可以，那么第二，我们如何找到能产生正确涨落的随机力的概率分布？为解决这个问题，我们需要计算式 (2.4.21) 的随机解的平均关联 $\langle x(t)x(0)\rangle$，然后考察是否可能选出一个恰当的 $f(t)$ 分布，使其重现功率谱 (2.4.22)。
+
+我们注意到
+\begin{equation*}
+\langle x(t_b)x(t_a)\rangle = \int \mathcal{D}[f(t)]\,\mathcal{D}[x(t)]\;x(t_b)\,x(t_a)\,P[f(t)]\,\delta[x(t) - x^f(t)]
+\end{equation*}
+这里 $x^f = \mathcal{K}^{-1}f$ 是式 (2.4.21) 的解，其中 $\mathcal{K} = m\frac{\mathrm{d}^2}{\mathrm{d}t^2} + \gamma\frac{\mathrm{d}}{\mathrm{d}t} + K$，而 $P[f(t)]$ 是 $f(t)$ 的概率分布（probability distribution）。我们注意到 $\mathcal{K} = -D^{-1}$。由于算符 $\mathcal{K}$ 不依赖于 $f$，我们有
+\begin{equation*}
+\delta[x(t) - x^f(t)] \propto \delta[\mathcal{K}x(t) - f(t)]
+\end{equation*}
+于是，
+\begin{align*}
+\langle x(t_b)x(t_a)\rangle &= \frac{\int \mathcal{D}[f(t)]\,\mathcal{D}[x(t)]\;x(t_b)x(t_a)\,P[f(t)]\,\delta[\mathcal{K}x(t) - f(t)]}{\int \mathcal{D}[f(t)]\,\mathcal{D}[x(t)]\;P[f(t)]\,\delta[\mathcal{K}x(t) - f(t)]}\\
+&= \frac{\int \mathcal{D}[f(t)]\,\mathcal{D}[x(t)]\,\mathcal{D}[\lambda(t)]\;x(t_b)x(t_a)\,P[f(t)]\,\mathrm{e}^{\mathrm{i}\int \lambda[\mathcal{K}x - f]}}{\int \mathcal{D}[f(t)]\,\mathcal{D}[x(t)]\,\mathcal{D}[\lambda(t)]\;P[f(t)]\,\mathrm{e}^{\mathrm{i}\int \lambda[\mathcal{K}x - f]}}
+\end{align*}
+这是一个相当有趣的结果。我们已经看到，路径积分可以描述哈密顿量——量子系统中的一个线性算符；它也能描述经典及量子统计系统中的热平均。从上面我们看到，路径积分甚至可以描述一个随机微分方程（random differential equation）。
+
+现在让我们假设随机项的分布是高斯型的：
+\begin{equation*}
+P[f(t)] \propto \mathrm{e}^{-\frac{1}{2}\int f\mathcal{V}f}
+\end{equation*}
+其中 $\int f\mathcal{V}f \equiv \int \mathrm{d}t\,\mathrm{d}t'\;f(t)\mathcal{V}(t,t')f(t')$。我们可以把 $f$ 与 $\lambda$ 依次积掉，如下：
+\begin{align*}
+\langle x(t_b)x(t_a)\rangle &= \frac{\int \mathcal{D}[x(t)]\,\mathcal{D}[\lambda(t)]\;x(t_b)x(t_a)\,\mathrm{e}^{\int \mathrm{i}\lambda\mathcal{K}x - \frac{1}{2}\lambda\mathcal{V}^{-1}\lambda}}{\int \mathcal{D}[x(t)]\,\mathcal{D}[\lambda(t)]\;\mathrm{e}^{\int \mathrm{i}\lambda\mathcal{K}x - \frac{1}{2}\lambda\mathcal{V}^{-1}\lambda}}\\
+&= \frac{\int \mathcal{D}[x(t)]\;x(t_b)x(t_a)\,\mathrm{e}^{-\int \frac{1}{2}x\mathcal{K}^{\top}\mathcal{V}\mathcal{K}x}}{\int \mathcal{D}[x(t)]\;\mathrm{e}^{-\int \frac{1}{2}x\mathcal{K}^{\top}\mathcal{V}\mathcal{K}x}}\\
+&= (\mathcal{K}^{\top}\mathcal{V}\mathcal{K})^{-1}(t_b - t_a)
+\end{align*}
+这里，算符 $\mathcal{K}^{\top}\mathcal{V}\mathcal{K}(t)$ 的逆被理解为 $\mathcal{G}(t - t')$，使得 $\mathcal{K}^{\top}\mathcal{V}\mathcal{K}(t)\mathcal{G}(t - t') = \delta(t - t')$。我们注意到 $\langle x(t_b)x(t_a)\rangle = \langle x(t_a)x(t_b)\rangle$，所以它的傅里叶变换是实的，并且等于 $x$ 涨落功率谱的一半（见式 (2.4.19)）。于是，为了重现 $x$ 的涨落，我们要求
+\begin{equation*}
+\mathcal{K}^{\top}\mathcal{V}\mathcal{K} = \frac{\tanh(\omega\hbar/2T)\left[(-m\omega^2 + K)^2 + \omega^2\gamma^2\right]}{\gamma\omega\hbar}
+\end{equation*}
+或者（在频率空间中）
+\begin{equation*}
+\mathcal{V} = \frac{\tanh(\omega\hbar/2T)}{\gamma\omega\hbar}
+\end{equation*}
+我们看到，即便是量子噪声也可以用随机的经典方程来模拟。特别地，我们注意到随机力项只依赖于温度 $T$ 与摩擦系数 $\gamma$。更高的温度或更大的摩擦会导致更强的随机力。经典噪声（在 $\hbar \to 0$ 极限下）可以用随机力的一个简单概率分布模拟如下：
+\begin{equation*}
+P[f(t)] \propto \mathrm{e}^{-\frac{1}{2}\int \mathrm{d}t\;f\mathcal{V}f}, \qquad \mathcal{V} = \frac{1}{2\gamma T}
+\end{equation*}
+它在时间上是无关联的（即 $f(t)$ 与 $f(t')$ 独立地涨落）。
+
+我们想指出，随机微分方程理论是一个非常庞大的领域，有着广泛而重要的应用。随机微分方程被用于描述材料生长、化学与生物过程，甚至经济系统。随机微分方程的路径积分表示使我们能够把为路径积分发展出的图像与概念——如对称性破缺、相变、重整化群等——应用到随机微分方程上。
+
+% ==================================================================
+% 新增术语（ch2_e 新增，供术语表追加）：
+%   heat bath 热库；friction coefficient 摩擦系数；effective mass 有效质量；
+%   double-time action / double-time path integral 双时作用量 / 双时路径积分；
+%   closed-time path integral 闭合时间路径积分；Schwinger–Keldysh formalism Schwinger–Keldysh 形式；
+%   time reversal 时间反演；equilibrium properties 平衡性质；non-equilibrium 非平衡；
+%   capacitor / capacitance 电容器 / 电容；inductance 电感；resistor 电阻器；
+%   RCL / CL circuit RCL / CL 电路；charge quantization 电荷量子化；
+%   charge operator 电荷算符；current operator 流算符；dual form 对偶形式；
+%   decaying process 衰减过程；decay (of a state) 衰变；
+%   noise power spectrum 噪声功率谱；power spectrum 功率谱；noise 噪声；
+%   Brownian motion 布朗运动；viscosity 黏度；poise 泊；dyne 达因；
+%   random differential equation 随机微分方程；random force 随机力；
+%   probability distribution 概率分布；discontinuity 不连续性
+% ==================================================================

@@ -1,0 +1,366 @@
+% ch5_a Schwarzschild 解 (书页 193-204 / p208-p219)
+% 第5章 The Schwarzschild Solution
+\chapter{Schwarzschild 解}
+
+\section{Schwarzschild 度规}
+
+% ---- 书页 193 / p208 ----
+一个引力理论最显而易见的应用对象就是球对称的引力场。这正是描述诸如地球或太阳（作为很好的近似）所产生的场的贴切情形——苹果下落、行星运动都发生在这样的场中。此外，我们首先关心的是\emph{外部}解（包围着引力体的空无一物的空间），因为理解物体外部检验粒子（test particle）的运动，比起考察相对难以触及的内部来，既更容易，也更加直接有用。除了这种实用价值之外，在广义相对论中这一问题的答案还将把我们引向一些非同寻常的解，它们描述了令物理学家和天文学家极感兴趣的新现象：黑洞（black hole）。在本章中，我们考察具有完美球对称性的真空解这一简单情形；下一章再在更一般的背景中考查黑洞的各种特征。
+
+在广义相对论中，唯一的球对称真空解就是 \textbf{Schwarzschild 度规}（Schwarzschild metric）；在重要时空的名单上，它的地位仅次于 Minkowski 空间。在球坐标 $\{t, r, \theta, \phi\}$ 下，该度规为
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{2GM}{r}\right)^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2,
+\tag{5.1}
+\end{equation*}
+其中 $\mathrm{d}\Omega^2$ 是单位二维球面上的度规，
+\begin{equation*}
+\mathrm{d}\Omega^2 = \mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2.
+\tag{5.2}
+\end{equation*}
+常数 $M$ 被解释为产生引力的物体的质量（尽管作此认定时还需要几分小心）。本节我们将用试错法（trial and error）导出 Schwarzschild 度规；下一节我们无论在解的推导上还是在其推论上都会更加系统。
+
+既然我们感兴趣的是球状天体\emph{外部}的解，我们关心的就是真空中的 Einstein 方程，
+\begin{equation*}
+R_{\mu\nu} = 0.
+\tag{5.3}
+\end{equation*}
+
+% ---- 书页 194 / p209 ----
+我们假设的源是静态的（不随时间演化）而且球对称，因此我们将寻找同样具有这些性质的解。“静态”和“球对称”两者的严格定义都需要小心对待，其中牵涉坐标无关性的种种微妙之处。眼下我们把静态理解为两个条件：所有度规分量都与时间坐标无关，而且度规中没有时间-空间交叉项 $(\mathrm{d}t\,\mathrm{d}x^i + \mathrm{d}x^i\,\mathrm{d}t)$。后一个条件的道理在于：设想作一个时间反演 $t \to -t$；$\mathrm{d}t^2$ 项保持不变，任何 $\mathrm{d}x^i\mathrm{d}x^j$ 项也保持不变，而交叉项则不然。既然我们希望找到一个与时间无关的解，它就应当在时间反演下不变，因此我们略去交叉项。为了施加球对称性，我们先写出 Minkowski 空间（一个我们对它已有所了解的球对称时空）在球坐标 $x^\mu = (t, r, \theta, \phi)$ 下的度规：
+\begin{equation*}
+\mathrm{d}s^2_{\mathrm{Minkowski}} = -\mathrm{d}t^2 + \mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.4}
+\end{equation*}
+保持球对称性的一个要求，是我们必须维持 $\mathrm{d}\Omega^2$ 的形式；也就是说，如果我们希望球面是完美的圆球，$\mathrm{d}\phi^2$ 项的系数就应当是 $\mathrm{d}\theta^2$ 项系数的 $\sin^2\theta$ 倍。但除此之外，我们可以随意给各项乘上不同的系数，只要它们仅仅是径向坐标 $r$ 的函数：
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + e^{2\beta(r)}\mathrm{d}r^2 + e^{2\gamma(r)}r^2\,\mathrm{d}\Omega^2.
+\tag{5.5}
+\end{equation*}
+我们把这些函数写成指数形式，为的是让度规的号差保持不变。若作完整的处理，我们会允许完全的自由，看看会发生什么。
+
+甚至在施加 Einstein 方程之前，我们就可以利用改变坐标的能力，对静态球对称度规 (5.5) 作一点小小的简化。与其他物理理论不同，在广义相对论中，我们是在同时定义坐标系、并把度规定义为这些坐标的函数。换句话说，我们无法预先知道，比方说，径向坐标 $r$ 究竟是什么；只有当解已经在我们手中之后，我们才能解释它。因此，让我们设想按下式定义一个新坐标 $\bar{r}$：
+\begin{equation*}
+\bar{r} = e^{\gamma(r)}r,
+\tag{5.6}
+\end{equation*}
+与之相应的是一个基 1-形式（basis one-form）
+\begin{equation*}
+\mathrm{d}\bar{r} = e^{\gamma}\mathrm{d}r + e^{\gamma}r\,\mathrm{d}\gamma = \left(1 + r\frac{d\gamma}{dr}\right)e^{\gamma}\mathrm{d}r.
+\tag{5.7}
+\end{equation*}
+用这个新变量表示，度规 (5.5) 变为
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + \left(1 + r\frac{d\gamma}{dr}\right)^{-2}e^{2\beta(r)-2\gamma(r)}\mathrm{d}\bar{r}^2 + \bar{r}^2\,\mathrm{d}\Omega^2,
+\tag{5.8}
+\end{equation*}
+其中每个 $r$ 的函数都以显而易见的方式成为 $\bar{r}$ 的函数。但现在让我们作如下重新标记：
+
+% ---- 书页 195 / p210 ----
+\begin{equation*}
+\bar{r} \to r
+\tag{5.9}
+\end{equation*}
+\begin{equation*}
+\left(1 + r\frac{d\gamma}{dr}\right)^{-2}e^{2\beta(r)-2\gamma(r)} \to e^{2\beta}.
+\tag{5.10}
+\end{equation*}
+没有什么能阻止我们这样做，因为它们不过是一些标签，并没有独立的外在定义。如果你愿意，尽可以继续使用 $\bar{r}$，并把 (5.10) 取为等于 $e^{2\bar{\beta}}$，但我们不想费这个事。我们的度规 (5.8) 就变为
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + e^{2\beta(r)}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.11}
+\end{equation*}
+它看上去与 (5.5) 一模一样，只是 $e^{2\gamma}$ 因子消失了。我们并没有把 $e^{2\gamma}$ 设成 1——那就成了关于几何本身的论断；我们只不过是选取了径向坐标，使得这个因子不复存在。因此，(5.11) 与 (5.5) 的普遍程度丝毫不差。
+
+现在让我们取这个度规，用 Einstein 方程求解函数 $\alpha(r)$ 和 $\beta(r)$。我们先计算 Christoffel 符号。如果按照通常的做法，用标记 $(t, r, \theta, \phi)$ 来代表 $(0, 1, 2, 3)$，则 Christoffel 符号为
+\begin{equation*}
+\begin{array}{lll}
+\Gamma^t_{tr} = \partial_r\alpha & \Gamma^r_{tt} = e^{2(\alpha-\beta)}\partial_r\alpha & \Gamma^r_{rr} = \partial_r\beta\\[8pt]
+\Gamma^\theta_{r\theta} = \dfrac{1}{r} & \Gamma^r_{\theta\theta} = -re^{-2\beta} & \Gamma^\phi_{r\phi} = \dfrac{1}{r}\\[8pt]
+\Gamma^r_{\phi\phi} = -re^{-2\beta}\sin^2\theta & \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta & \Gamma^\phi_{\theta\phi} = \dfrac{\cos\theta}{\sin\theta}.
+\end{array}
+\tag{5.12}
+\end{equation*}
+凡未明确写出的，意思都是零，或者通过对称性与写出的那些相联系。由这些我们得到 Riemann 张量的如下非零分量：
+\begin{align*}
+R^t{}_{rtr} &= \partial_r\alpha\,\partial_r\beta - \partial_r^2\alpha - (\partial_r\alpha)^2\\
+R^t{}_{\theta t\theta} &= -re^{-2\beta}\partial_r\alpha\\
+R^t{}_{\phi t\phi} &= -re^{-2\beta}\sin^2\theta\,\partial_r\alpha\\
+R^r{}_{\theta r\theta} &= re^{-2\beta}\partial_r\beta\\
+R^r{}_{\phi r\phi} &= re^{-2\beta}\sin^2\theta\,\partial_r\beta\\
+R^\theta{}_{\phi\theta\phi} &= (1 - e^{-2\beta})\sin^2\theta.
+\tag{5.13}
+\end{align*}
+按通常方式缩并，就得到 Ricci 张量：
+\begin{align*}
+R_{tt} &= e^{2(\alpha-\beta)}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{2}{r}\partial_r\alpha\right]\\
+R_{rr} &= -\partial_r^2\alpha - (\partial_r\alpha)^2 + \partial_r\alpha\,\partial_r\beta + \frac{2}{r}\partial_r\beta\\
+R_{\theta\theta} &= e^{-2\beta}\left[r(\partial_r\beta - \partial_r\alpha) - 1\right] + 1\\
+R_{\phi\phi} &= \sin^2\theta\,R_{\theta\theta},
+\tag{5.14}
+\end{align*}
+
+% ---- 书页 196 / p211 ----
+而且为了今后使用，我们还算出了标量曲率，
+\begin{equation*}
+R = -2e^{-2\beta}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{2}{r}(\partial_r\alpha - \partial_r\beta) + \frac{1}{r^2}\left(1 - e^{2\beta}\right)\right].
+\tag{5.15}
+\end{equation*}
+既然 Ricci 张量已经算出，我们想让它等于零。由于 $R_{tt}$ 和 $R_{rr}$ 各自独立地为零，我们可以写出
+\begin{equation*}
+0 = e^{2(\beta-\alpha)}R_{tt} + R_{rr} = \frac{2}{r}(\partial_r\alpha + \partial_r\beta),
+\tag{5.16}
+\end{equation*}
+这意味着 $\alpha = -\beta + c$，其中 $c$ 是某个常数。通过把时间坐标重新标度 $t \to e^{-c}t$，我们可以令这个常数等于零，此后便有
+\begin{equation*}
+\alpha = -\beta.
+\tag{5.17}
+\end{equation*}
+接下来让我们转向 $R_{\theta\theta} = 0$，它现在化为
+\begin{equation*}
+e^{2\alpha}(2r\partial_r\alpha + 1) = 1.
+\tag{5.18}
+\end{equation*}
+这等价于
+\begin{equation*}
+\partial_r\left(re^{2\alpha}\right) = 1.
+\tag{5.19}
+\end{equation*}
+我们可以解出
+\begin{equation*}
+e^{2\alpha} = 1 - \frac{R_S}{r},
+\tag{5.20}
+\end{equation*}
+其中 $R_S$ 是某个待定常数。利用 (5.17) 和 (5.20)，我们的度规变为
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{R_S}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{R_S}{r}\right)^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.21}
+\end{equation*}
+现在除了单个常数 $R_S$ 之外，我们已经没有任何剩余的自由度了，所以这个形式最好能满足余下的方程 $R_{tt} = 0$ 与 $R_{rr} = 0$；容易检验它确实满足，而且对 $R_S$ 的任何取值都成立。
+
+剩下唯一要做的事，是用某个物理参数来解释常数 $R_S$——它被称为 \textbf{Schwarzschild 半径}（Schwarzschild radius）。再没有比这更简单的事了。在第 4 章中我们曾发现，在弱场极限下，点质量周围度规的 $tt$ 分量满足
+\begin{equation*}
+g_{tt} = -\left(1 - \frac{2GM}{r}\right).
+\tag{5.22}
+\end{equation*}
+当 $r \gg 2GM$ 时，Schwarzschild 度规应当过渡到弱场情形；而就 $tt$ 分量而言，两者的形式已经完全相同，我们只需认定
+\begin{equation*}
+R_S = 2GM.
+\tag{5.23}
+\end{equation*}
+这可以看作参数 $M$ 的定义。
+
+% ---- 书页 197 / p212 ----
+我们的最终结果就是 Schwarzschild 度规，即式 (5.1)。我们已经证明，它是 Einstein 方程的一个静态、球对称真空解；$M$ 作为参数出现，而我们恰好知道这个参数可以解释为通常的 Newton 质量——只要在远离引力源处研究轨道运动，我们测到的正是这个质量。它并不简单地就是使时空弯曲的那个物体的各组元质量之和，因为我们或许会称之为引力结合能（gravitational binding energy）的东西也会有所贡献；不过在弱场极限下，这两个量将趋于一致。注意，当 $M \to 0$ 时我们回到 Minkowski 空间，这是意料之中的。还要注意，当 $r \to \infty$ 时度规越来越接近 Minkowski 度规；这一性质称为\textbf{渐近平直}（asymptotic flatness）。更技术性的定义涉及在共形图（conformal diagram）中匹配无限远处的各个区域，我们将在下一章讨论。
+
+\section{Birkhoff 定理}
+
+\textbf{Birkhoff 定理}（Birkhoff's theorem）断言：Schwarzschild 度规是\emph{唯一的}具有球对称性的真空解（特别地，不存在这种形式的含时解）；证明它是一项颇有教益的练习，由三个主要步骤组成。第一步，我们论证球对称时空可以被二维球面叶状分层（foliate）——换句话说，（几乎）每一个点都落在唯一的一个球面上，这个球面在球对称性生成元的作用下保持不变。第二步，我们仅凭几何论证，这种空间上的度规总可以（至少在局部区域内）化成如下形式
+\begin{equation*}
+\mathrm{d}s^2 = \mathrm{d}\tau^2(a, b) + r^2(a, b)\,\mathrm{d}\Omega^2(\theta, \phi),
+\tag{5.24}
+\end{equation*}
+其中 $(a, b)$ 是横向于球面的坐标，而 $r$ 是这些坐标的函数。第三步，我们把这个度规代入真空中的 Einstein 方程，证明 Schwarzschild 解是唯一的解。对前两点，我们将以大多数物理学家大概都会信服的严格程度来论证——尽管数学家会感到不安；第三点则是直截了当的计算。更细致的处理可参见 Hawking and Ellis (1973)。我们会用到附录 C 中的几个概念，此刻先去读一读附录 C 或许有好处。当然，如果你对探究 Schwarzschild 解的性质比对证明它的唯一性更感兴趣，尽可以直接跳到下一节。
+
+我们从四维球对称时空 $M$ 的概念开始。球对称的意思是具有与球面相同的对称性。（在本章中，“球面”一词专指 $S^2$，而不是其他维数的球。）球面的对称性恰恰就是三维欧几里得空间中普通转动的对称性；用群论的语言说，它们构成特殊正交群 SO(3)。（回忆第 1 章中关于洛伦兹群和转动群的讨论。）对流形上的度规而言，对称性由 Killing 矢量的存在来刻画。在 3.8 节中我们求出了 $S^2$ 的三个 Killing 矢量，记作 $(R, S, T)$；在 $(\theta, \phi)$ 坐标下它们取如下形式
+
+% ---- 书页 198 / p213 ----
+\begin{align*}
+R &= \partial_\phi\\
+S &= \cos\phi\,\partial_\theta - \cot\theta\sin\phi\,\partial_\phi\\
+T &= -\sin\phi\,\partial_\theta - \cot\theta\cos\phi\,\partial_\phi.
+\tag{5.25}
+\end{align*}
+球对称流形就是拥有三个与 $S^2$ 上的 Killing 矢量场相同的 Killing 矢量场的流形。但是，怎样以一种坐标无关的方式知道，一个流形上的一组 Killing 矢量与另一个流形上的那组是相同的呢？一组对称变换的结构由这些变换的对易关系给出，对易关系表达的是：按一种次序相继施行两个无穷小变换，与按相反次序施行，两者之间的差别。在群论中，它们由对称性生成元的李代数（Lie algebra）表达；而在微分几何中，它们由 Killing 矢量场的对易子表达。这里有一条深刻的联系，我们没有时间深究；见 Schutz (1980)。在第 3 章的习题中你验证过，转动 Killing 矢量 $(R, S, T)$ 的对易子满足
+\begin{align*}
+[R, S] &= T\\
+[S, T] &= R\\
+[T, R] &= S.
+\tag{5.26}
+\end{align*}
+这一 Killing 矢量代数完整地刻画了我们所讨论的那种对称性。一个流形，当且仅当存在三个满足 (5.26) 的 Killing 矢量场时，才称其具有\textbf{球对称性}（spherical symmetry）。
+
+在附录 C 中我们讨论过 Frobenius 定理，它说的是：如果你有一组矢量场，其对易子是封闭的——即这组场中任何两个场的对易子都是这组场中其他场的线性组合——那么这些矢量场的积分曲线就会拼合起来，描述它们都有定义的那个流形的子流形。子流形的维数可以小于矢量的数目，也可以相等，但显然不会更大。服从 (5.26) 的矢量场当然会张成一个个二维球面。由于矢量场延伸到整个空间，每个点都将恰好落在其中一个球面上。（实际上，是几乎每个点——下面我们将展示它如何在“绝不例外地每个点”这一点上失效。）于是我们说，球对称流形可以被叶状分层的成一个个球面。
+
+%FIG{5.1}: {对 $\mathbf{R}^3$（除去原点）用二维球面作叶状分层。}
+
+让我们考虑几个例子，把讨论拉回地面。最简单的例子是平直的三维欧几里得空间。如果我们选定一个原点，那么 $\mathbf{R}^3$ 显然在绕这个原点的转动下是球对称的。在这样的转动下（也就是说，在 Killing 矢量场的流作用下），点与点相互换位，但每个点都停留在与原点距离固定的一张 $S^2$ 上。
+
+% ---- 书页 199 / p214 ----
+这些球面把 $\mathbf{R}^3$ 叶状分层，如图 5.1 所示。当然，它们并没有真正分层整个空间，因为原点自身在转动下原地不动——它不会在某个二维球面上四处移动。但应当清楚，几乎整个空间都被恰当地分层了，而这对我们来说将已经足够。
+
+%FIG{5.2}: {用二维球面对虫洞作叶状分层。}
+
+我们也可以拥有无需一个原点来绕之转动的球对称性。一个例子是虫洞（wormhole），其拓扑为 $\mathbf{R} \times S^2$。如果我们压掉一个维度，把二维球面画成圆圈，这样的空间看起来可能就像图 5.2 那样。在这个情形下，整个流形都可以被二维球面叶状分层。
+
+既然具有 SO(3) 对称性的流形可以被球面分层，我们的第二步就是要证明 $M$ 上的度规可以化成 (5.24) 的形式。所有球面组成的集合构成一个二维空间（因为四维时空正在被二维球面所分层）。你可能希望我们干脆在每张球面上放坐标 $(\theta, \phi)$，再在所有球面组成的集合上放坐标 $(a, b)$，从而得到 $M$ 上的完整坐标组 $(a, b, \theta, \phi)$。这样一来，每张球面就由 $a = $ 常数、$b = $ 常数确定。我们知道圆球面上的度规是 $\mathrm{d}\Omega^2$，所以这一策略足以保证：把度规限制在任何固定值 $a = a_0$ 和 $b = b_0$（从而 $\mathrm{d}a = \mathrm{d}b = 0$）上时，它取如下形式
+\begin{equation*}
+\mathrm{d}s^2(a_0, b_0, \theta, \phi) = f(a_0, b_0)\,\mathrm{d}\Omega^2.
+\tag{5.27}
+\end{equation*}
+特别地，函数 $f$ 必须与 $\theta$ 和 $\phi$ 无关，否则球面就会坑坑洼洼而不是圆的。此外，同样清楚的是，把度规限制在任何固定值 $\theta = \theta_0$ 和 $\phi = \phi_0$（从而 $\mathrm{d}\theta = \mathrm{d}\phi = 0$）上时，它取如下形式
+\begin{equation*}
+\mathrm{d}s^2(a, b, \theta_0, \phi_0) = \mathrm{d}\tau^2(a, b).
+\tag{5.28}
+\end{equation*}
+同样，任何对 $\theta$ 或 $\phi$ 的依赖都会破坏对称性；那将意味着球面之间的横向几何依赖于你处在球面的哪个位置。
+
+然而，我们这样随手铺下这些坐标未免太过草率，因为我们无法排除 $\mathrm{d}a\,\mathrm{d}\theta + \mathrm{d}\theta\,\mathrm{d}a$ 之类的交叉项。换句话说，我们必须小心地把各张球面恰当地对齐，使得沿一条垂直于某张球面的曲线行进时，我们始终保持在常数 $\theta$ 和 $\phi$ 上。为了保证这一点，我们需要更细心地搭建坐标系。先考虑落在某张球面 $S_q$ 上的单个点 $q$（注意 $q$ 不得是所有 Killing 矢量都为零的退化点）。只在这张特定的球面上放坐标 $(\theta, \phi)$，暂不贯穿整个流形。在 $S_q$ 上的每一点 $p$ 处，都会有一个二维正交子空间 $O_p$，它由从 $p$ 出发的那些测地线上的点组成，这些测地线在 $p$ 处的切矢量与 $S_q$ 正交。注意，会存在一个使 $p$ 保持不动的一维转动子群 $R_p$；的确，这些转动把 $p$ 处任何垂直于 $S_q$ 的方向都保持固定，因而整张二维曲面 $O_p$ 在 $R_p$ 下不变。
+
+考虑一个不在 $S_q$ 上、而在分层中某张其他球面 $S_r$ 上的点 $r$，它落在 $p$ 处与 $S_q$ 正交的二维曲面 $O_p$ 内。由于 $p$ 是任意的，这包括了 $S_q$ 邻域内任何可能的点 $r$。注意，$O_p$ 不仅与 $S_q$ 正交，也将与 $S_r$ 正交。为了看清这一点，考虑
+
+% ---- 书页 200 / p215 ----
+切空间 $T_rM$ 中与二维曲面 $O_p$ 正交的矢量所构成的二维平面 $V_r$。由于 $O_p$ 在转动 $R_p$ 下不变，而这些转动是等距变换、因而保持正交性，它们必定把 $V_r$ 映到其自身。但 $R_p$ 也把切于 $S_q$ 的矢量集合映到其自身，因为这些转动使各球面保持不变。在四维空间中，同一个点处与给定平面都正交的两个平面必定是同一个平面；因此，切于 $S_r$ 的矢量必定与 $O_p$ 正交。
+
+会有一条唯一的测地线，它与 $S_q$ 正交，并把 $p$ 连到 $r$。沿着这类测地线行进提供了一个映射 $f : S_q \to S_r$，它既是单射又是满射（至少在原先球面的一个邻域内）。我们用这个映射来定义 $S_r$ 上的坐标（类似地也定义任何其他球面上的坐标）：把 $r \in S_r$ 的 $(\theta, \phi)$ 取值指派为点 $p \in S_q$ 处的坐标值。这样我们就在整个流形上定义了 $(\theta, \phi)$。现在为了定义坐标 $(a, b)$，在 $T_qM$ 中生成正交空间 $O_q$ 的那个子空间里选取两个基矢 $S$、$T$。任何其他球面都会由一条唯一的正交测地线与 $q$ 相连，其切矢量为 $aS + bT \in T_qM$。把这些分量 $(a, b)$ 作为该球面上各处的坐标。这就定义了整个流形上的完整坐标组 $(a, b, \theta, \phi)$。
+
+这组坐标下的度规满足 (5.27) 和 (5.28)；尚待证明的是，沿球面的方向与横向方向之间不存在交叉项。这意味着，比方说，矢量场 $\partial_a$ 应当与 $\partial_\theta$ 正交，等等；直接验证可知确实如此。首先，考虑某点 $r \in S_r$ 处的 $\partial_\theta$；这个矢量是沿形如 $x^\mu(\theta) = (a_r, b_r, \theta, \phi_r)$ 的曲线的方向导数。由于 $a$ 和 $b$ 沿曲线为常数，整条曲线都停留在球面 $S_r$ 内，所以 $\partial_\theta$ 切于球面。与此同时，$\partial_a$ 是沿 $x^\mu(a) = (a, b_r, \theta_r, \phi_r)$ 的导数。由于这条曲线停留在正交子空间 $O_r$ 内，$\partial_a$ 将与 $S_r$ 正交，从而与 $\partial_\theta$ 正交。类似的论证保证 $(a, b)$ 与 $(\theta, \phi)$ 之间不存在交叉项。
+
+于是我们已成功地把球对称时空的度规写成如下形式
+\begin{equation*}
+\mathrm{d}s^2 = g_{aa}(a, b)\,\mathrm{d}a^2 + g_{ab}(a, b)(\mathrm{d}a\,\mathrm{d}b + \mathrm{d}b\,\mathrm{d}a) + g_{bb}(a, b)\,\mathrm{d}b^2 + r^2(a, b)\,\mathrm{d}\Omega^2.
+\tag{5.29}
+\end{equation*}
+这里的 $r(a, b)$ 是某个尚未确定的函数，我们只是给了它一个容易引起联想的标签。不过，没有什么能阻止我们把坐标从 $(a, b)$ 换成 $(a, r)$——只需反解 $r(a, b)$ 即可——除非 $r$ 只是 $a$ 单个变量的函数；在那种情况下，我们照样可以轻而易举地换成 $(b, r)$，所以我们不把这个情形单独考虑。于是度规为
+\begin{equation*}
+\mathrm{d}s^2 = g_{aa}(a, r)\,\mathrm{d}a^2 + g_{ar}(a, r)(\mathrm{d}a\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}a) + g_{rr}(a, r)\,\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.30}
+\end{equation*}
+我们的下一步是寻找一个函数 $t(a, r)$，使得在 $(t, r)$ 坐标系中度规里不存在交叉项 $\mathrm{d}t\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}t$。注意到
+\begin{equation*}
+\mathrm{d}t = \frac{\partial t}{\partial a}\,\mathrm{d}a + \frac{\partial t}{\partial r}\,\mathrm{d}r,
+\tag{5.31}
+\end{equation*}
+
+% ---- 书页 201 / p216 ----
+因此
+\begin{equation*}
+\mathrm{d}t^2 = \left(\frac{\partial t}{\partial a}\right)^{2}\mathrm{d}a^2 + \left(\frac{\partial t}{\partial a}\right)\left(\frac{\partial t}{\partial r}\right)(\mathrm{d}a\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}a) + \left(\frac{\partial t}{\partial r}\right)^{2}\mathrm{d}r^2.
+\tag{5.32}
+\end{equation*}
+我们想把度规 (5.30) 中的前三项换成
+\begin{equation*}
+m\,\mathrm{d}t^2 + n\,\mathrm{d}r^2,
+\tag{5.33}
+\end{equation*}
+其中 $m$、$n$ 是某两个函数。这等价于如下要求：
+\begin{equation*}
+m\left(\frac{\partial t}{\partial a}\right)^{2} = g_{aa},
+\tag{5.34}
+\end{equation*}
+\begin{equation*}
+n + m\left(\frac{\partial t}{\partial r}\right)^{2} = g_{rr},
+\tag{5.35}
+\end{equation*}
+以及
+\begin{equation*}
+m\left(\frac{\partial t}{\partial a}\right)\left(\frac{\partial t}{\partial r}\right) = g_{ar}.
+\tag{5.36}
+\end{equation*}
+于是我们有三个方程、三个未知量 $t(a, r)$、$m(a, r)$ 和 $n(a, r)$，恰好足以（除 $t$ 的初始条件不计外）把它们完全确定。（当然，这里的“确定”是通过未知函数 $g_{aa}$、$g_{ar}$ 和 $g_{rr}$ 表述的，所以在这个意义上它们其实仍未确定。）这样我们就能把度规写成
+\begin{equation*}
+\mathrm{d}s^2 = m(t, r)\,\mathrm{d}t^2 + n(t, r)\,\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.37}
+\end{equation*}
+
+到此为止，坐标 $t$ 和 $r$ 之间唯一的差别在于，我们选了 $r$ 作为乘在二维球面度规上的那一个。这样选择的动机来自我们对平直 Minkowski 空间度规的了解，它可以写成 $\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2$。我们知道所考虑的时空是洛伦兹型的，所以 $m$ 或 $n$ 中必有一个取负值。让我们选 $\mathrm{d}t^2$ 的系数 $m$ 为负。这并不是一个我们可以随随便便就作出的选择，事实上后面会看到它可能出问题；但我们暂时先这样假定。这个假定并非毫无道理，因为我们知道 Minkowski 空间本身就是球对称的，因而将由 (5.37) 来描述。作了这个选择之后，我们就可以用新的函数 $\alpha$ 和 $\beta$ 来替换函数 $m$ 和 $n$，使得
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(t, r)}\mathrm{d}t^2 + e^{2\beta(t, r)}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.38}
+\end{equation*}
+
+单靠几何我们最多只能做到这里；关于函数 $\alpha(t, r)$ 和 $\beta(t, r)$，球对称性肯定还不足以说出任何实质性的内容。因此我们的下一步是真正去解 Einstein 方程；步骤与
+% ---- 书页 202 / p217 ----
+5.1 节中的如出一辙——在那一节里，我们考虑过一个与 (5.38) 类似、但额外假定了时间无关性的度规。这里我们将看到，那个假定其实并不必要，因为解必然是静态的。
+
+(5.38) 的非零 Christoffel 符号为
+\begin{equation*}
+\begin{array}{lll}
+\Gamma^t_{tt} = \partial_t\alpha & \Gamma^t_{tr} = \partial_r\alpha & \Gamma^t_{rr} = e^{2(\beta-\alpha)}\partial_t\beta\\[8pt]
+\Gamma^r_{tt} = e^{2(\alpha-\beta)}\partial_r\alpha & \Gamma^r_{tr} = \partial_t\beta & \Gamma^r_{rr} = \partial_r\beta\\[8pt]
+\Gamma^\theta_{r\theta} = \dfrac{1}{r} & \Gamma^r_{\theta\theta} = -re^{-2\beta} & \Gamma^\phi_{r\phi} = \dfrac{1}{r}\\[8pt]
+\Gamma^r_{\phi\phi} = -re^{-2\beta}\sin^2\theta & \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta & \Gamma^\phi_{\theta\phi} = \dfrac{\cos\theta}{\sin\theta},
+\end{array}
+\tag{5.39}
+\end{equation*}
+Riemann 张量的非零分量为
+\begin{align*}
+R^t{}_{rtr} &= e^{2(\beta-\alpha)}\left[\partial_t^2\beta + (\partial_t\beta)^2 - \partial_t\alpha\,\partial_t\beta\right] + \left[\partial_r\alpha\,\partial_r\beta - \partial_r^2\alpha - (\partial_r\alpha)^2\right]\\
+R^t{}_{\theta t\theta} &= -re^{-2\beta}\partial_r\alpha\\
+R^t{}_{\phi t\phi} &= -re^{-2\beta}\sin^2\theta\,\partial_r\alpha\\
+R^t{}_{\theta r\theta} &= -re^{-2\alpha}\partial_t\beta\\
+R^t{}_{\phi r\phi} &= -re^{-2\alpha}\sin^2\theta\,\partial_t\beta\\
+R^r{}_{\theta r\theta} &= re^{-2\beta}\partial_r\beta\\
+R^r{}_{\phi r\phi} &= re^{-2\beta}\sin^2\theta\,\partial_r\beta\\
+R^\theta{}_{\phi\theta\phi} &= (1 - e^{-2\beta})\sin^2\theta,
+\tag{5.40}
+\end{align*}
+而 Ricci 张量为
+\begin{align*}
+R_{tt} &= \left[\partial_t^2\beta + (\partial_t\beta)^2 - \partial_t\alpha\,\partial_t\beta\right] + e^{2(\alpha-\beta)}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{2}{r}\partial_r\alpha\right]\\
+R_{rr} &= -\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta - \frac{2}{r}\partial_r\beta\right]\\
+&\quad + e^{2(\beta-\alpha)}\left[\partial_t^2\beta + (\partial_t\beta)^2 - \partial_t\alpha\,\partial_t\beta\right]\\
+R_{tr} &= \frac{2}{r}\partial_t\beta\\
+R_{\theta\theta} &= e^{-2\beta}\left[r(\partial_r\beta - \partial_r\alpha) - 1\right] + 1\\
+R_{\phi\phi} &= R_{\theta\theta}\sin^2\theta.
+\tag{5.41}
+\end{align*}
+我们的任务是求解真空中的 Einstein 方程 $R_{\mu\nu} = 0$。由 $R_{tr} = 0$ 得到
+\begin{equation*}
+\partial_t\beta = 0.
+\tag{5.42}
+\end{equation*}
+
+% ---- 书页 203 / p218 ----
+如果我们考虑对 $R_{\theta\theta} = 0$ 取时间导数，并利用 $\partial_t\beta = 0$，就得到
+\begin{equation*}
+\partial_t\partial_r\alpha = 0.
+\tag{5.43}
+\end{equation*}
+因此可以写出
+\begin{align*}
+\beta &= \beta(r)\\
+\alpha &= f(r) + g(t).
+\tag{5.44}
+\end{align*}
+于是度规 (5.38) 的第一项就是 $-e^{2f(r)}e^{2g(t)}\mathrm{d}t^2$。但我们总可以通过替换 $\mathrm{d}t \to e^{-g(t)}\mathrm{d}t$ 来简单地重新定义时间坐标；换句话说，我们可以自由地选取 $t$ 使 $g(t) = 0$，从而 $\alpha(t, r) = f(r)$。于是我们有
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + e^{2\beta(r)}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.45}
+\end{equation*}
+度规的所有分量都与坐标 $t$ 无关。因此我们证明了一个至关重要的结果：\emph{任何球对称真空度规都拥有一个类时 Killing 矢量}。
+
+这条性质有趣到配得上一个专属名称：拥有一个在无限远处附近类时的 Killing 矢量的度规称为\textbf{稳态}（stationary）度规。（通常——包括 Schwarzschild 情形在内——在无限远处类时的 Killing 矢量会在内部的某处变成类空的。）在稳态度规中，我们可以选取坐标 $(t, x^1, x^2, x^3)$，使得 Killing 矢量为 $\partial_t$，而且度规分量与 $t$ 无关；稳态度规在这组坐标下的一般形式便为
+\begin{equation*}
+\mathrm{d}s^2 = g_{00}(\vec{x})\,\mathrm{d}t^2 + g_{0i}(\vec{x})(\mathrm{d}t\,\mathrm{d}x^i + \mathrm{d}x^i\,\mathrm{d}t) + g_{ij}(\vec{x})\,\mathrm{d}x^i\mathrm{d}x^j.
+\tag{5.46}
+\end{equation*}
+还有一个限制更强的性质：如果一个度规拥有一个与某族超曲面正交的类时 Killing 矢量，就称它为\textbf{静态}（static）度规。（关于超曲面的更多细节，见附录 D。）在第 4 章的习题中你证明过，超曲面正交的矢量场 $v^\mu$ 满足
+\begin{equation*}
+v_{[\mu}\nabla_\nu v_{\rho]} = 0.
+\tag{5.47}
+\end{equation*}
+但有一个更简单的判据：如果我们已经适配好坐标，使分量 $g_{\mu\nu}$ 都与 $t$ 无关，那么 Killing 矢量将与之正交的那些曲面就由条件 $t = $ 常数来定义。在操作层面上，这意味着 (5.46) 中的时间-空间交叉项将不复出现；一般的静态度规可以写成
+\begin{equation*}
+\mathrm{d}s^2 = g_{00}(\vec{x})\,\mathrm{d}t^2 + g_{ij}(\vec{x})\,\mathrm{d}x^i\mathrm{d}x^j.
+\tag{5.48}
+\end{equation*}
+我们注意到，这种形式中只出现时间坐标 $t$ 的偶数次幂；因此，“静态”的另一种定义是“稳态，且在时间反演 $(t \to -t)$ 下不变”。度规 (5.45) 显然是静态的。你可以把稳态理解为“在每个时刻都精确地做着同一件事情”，而静态则是“根本什么也不做”。
+
+% ---- 书页 204 / p219 ----
+例如，静态球对称度规 (5.45) 将描述不旋转的恒星或黑洞，而始终以同样方式旋转的转动系统则将由稳态但非静态的度规来描述。
+
+注意到 (5.45) 恰恰就是 (5.11)——我们在 5.1 节中最初用来导出 Schwarzschild 解的那个度规。因此我们已经证明了 Birkhoff 定理：唯一的球对称真空解就是 Schwarzschild 度规，
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{2GM}{r}\right)^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2,
+\tag{5.49}
+\end{equation*}
+一如所允诺的。
+
+对于 Schwarzschild 度规的源，除了要求它球对称之外，我们没有说过任何别的话。具体地说，我们并没有要求源本身是静态的；它完全可以是一颗正在坍缩的恒星，只要坍缩是对称的。因此，像超新星爆发这样的过程，如果它接近球对称，就只会产生非常少的引力辐射（与其他渠道释放的能量相比）——而一颗真实的超新星是否接近球对称，取决于它的起源。这与我们在电磁学中会得到的结果相同：围绕球状电荷分布的电磁场并不依赖于电荷的径向分布。
+
+\section{奇点}
+
+在探究 Schwarzschild 几何中检验粒子的行为之前，我们应该先谈谈奇点（singularity）。从 (5.1) 的形式看，度规系数在 $r = 0$ 和 $r = 2GM$ 处变为无穷——表面上这表明有什么东西出了问题。当然，度规系数是依赖于坐标的量，因此我们不应过分看重它们的数值；完全可能存在坐标奇点（coordinate singularity），它源于某个具体坐标系的失效，而不是底层流形的问题。一个例子出现在平面上极坐标的原点：在那里，度规 $\mathrm{d}s^2 = \mathrm{d}r^2 + r^2\mathrm{d}\theta^2$ 退化，逆度规的分量 $g^{\theta\theta} = r^{-2}$ 发散，尽管流形上的这个点与其他任何点并无不同。
+
+当几何的某处行将失控时，我们应当寻找什么样的坐标无关信号来发出警告呢？事实证明这是一个难以回答的问题，关于广义相对论中奇点的本性，已经有整本整本的著作专门论述。我们不打算深入这个问题，而是转向一个简单的判据来判断何处出了问题——那就是曲率变为无穷大。曲率由 Riemann 张量来量度，但很难说一个张量何时变为无穷，因为它的分量是依赖于坐标的。不过，我们可以由曲率构造出各种标量，而标量是坐标无关的，所以说它们变为无穷是有意义的。最简单的这类标量是 Ricci 标量曲率 $R = g^{\mu\nu}R_{\mu\nu}$，
+% 本块末句在原书书页204底部中断（"...the simplest such scalar is the Ricci scalar R = g R," 续接书页205顶部 "but we can also..."）；排版时已将 $R=g^{\mu\nu}R_{\mu\nu}$，随本句放在本块末，避免下一块以数学式开头。下一块请用 %JOIN% 续接本句。

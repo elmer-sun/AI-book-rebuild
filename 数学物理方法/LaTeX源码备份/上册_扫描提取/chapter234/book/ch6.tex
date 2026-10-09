@@ -1,0 +1,1334 @@
+\chapter{复变函数论方法}
+
+本章所叙述的理论，由若干简单的但却是基本的，而且在数学和理论物理的不同领域中有着广泛应用的理论所组成。我们将介绍这一理论的方法在物理问题中的若干应用实例。至于象复数和它在复平面上的解释，以及复变函数等基本概念，都假定读者已经熟悉。
+
+\section{解析函数。柯西定理}
+
+复变量 $z$ 的函数 $f(z)$ 称为在某个区域 $R$ 内解析, 如果它
+
+1）在此域内单值；
+
+2）有限；
+
+3）在域 $R$ 内任一点处存在极限
+
+\begin{equation*}
+\lim _ {\Delta z \rightarrow 0} \frac {f (z + \Delta z) - f (z)}{\Delta z},
+\end{equation*}
+
+且其值与 $\Delta z$ 趋向于零的方式无关。
+
+根据所给的定义容易证明，例如函数 $f(z) = z$ 或函数 $f(z) = \frac{1}{z}$ （在 $z \neq 0$ 时）是解析的，而象函数 $f(z) = z^{*}$ ，则不是解析的。
+
+现寻求函数 $f(z)$ 解析的条件。假定
+
+\begin{equation*}
+f (z) = \varphi (x, y) + i \psi (x, y).
+\end{equation*}
+
+这里 $\varphi(x, y)$ 和 $\psi(x, y)$ 是实函数，而函数 $f(z)$ 是解析的。则当 $\Delta z = \Delta x$ （即当 $y$ 不变）时
+
+\begin{equation*}
+d f = \frac {\partial \varphi}{\partial x} d x + i \frac {\partial \psi}{\partial x} d x,
+\end{equation*}
+
+\begin{equation*}
+\frac {d f}{d z} = \frac {\partial \varphi}{\partial x} + i \frac {\partial \psi}{\partial x},
+\end{equation*}
+
+而当 $\Delta z = i\Delta y$ 时有
+
+\begin{equation*}
+\frac {d f}{d z} = \frac {\partial \psi}{\partial y} - i \frac {\partial \varphi}{\partial y}.
+\end{equation*}
+
+由函数 $f(z)$ 解析的第三个条件推出
+
+\begin{equation*}
+\frac {\partial \varphi}{\partial x} = \frac {\partial \psi}{\partial y}, \quad \frac {\partial \varphi}{\partial y} = - \frac {\partial \psi}{\partial x},\tag{6.1}
+\end{equation*}
+
+它们称为柯西-黎曼(Cauchy—Riemann)方程。
+
+附注：我们证明了柯西-黎曼条件的必要性。如果对函数 $f(z)$ 加上一些补充条件，则此条件也是充分的\footnote{若在整个区域中，$\varphi$ 和 $\psi$ 的四个一阶偏导数都存在，并且它们在区域的全体点上都连续，则柯西-黎曼方程的成立是 $f(z)$ 在整个区域中解析的充要条件。见 E.C.Titchmarsh，函数论。科学出版社，1962。——译注}。（这些条件在所有物理应用中一般都满足）
+
+由柯西-黎曼条件可推出对解析函数的实部和虚部的重要限制。分别对 $x$ 和 $y$ 微分(6.1)式，得
+
+\begin{equation*}
+\frac {\partial^ {2} \varphi}{\partial x ^ {2}} = \frac {\partial^ {2} \psi}{\partial x \partial y}, \quad \frac {\partial^ {2} \varphi}{\partial y ^ {2}} = - \frac {\partial^ {2} \psi}{\partial x \partial y}.
+\end{equation*}
+
+所以
+\begin{equation*}
+\frac {\partial^ {2} \varphi}{\partial x ^ {2}} + \frac {\partial^ {2} \varphi}{\partial y ^ {2}} = 0,
+\end{equation*}
+
+换言之
+\begin{equation*}
+\Delta \varphi = 0.
+\end{equation*}
+
+类似地 $\Delta\psi=0$ 。这样一来，解析函数的实部和虚部满足拉普拉斯方程，即是调和函数。
+
+\textbf{例 1}\quad 二维静电场。设 $\varphi$ 为静电势，考虑某个导体系。根据定义，在导体表面上 $\varphi = const$ 。大家知道，电场 $E$ 的矢量可用下面的方式由位势 $\varphi$ 表示出来：
+
+\begin{equation*}
+\boldsymbol {E} = - \nabla \varphi .
+\end{equation*}
+
+因此时 $\nabla \cdot \pmb{E} = 0$ ，故
+
+\begin{equation*}
+\frac {\partial E _ {x}}{\partial x} = - \frac {\partial E _ {y}}{\partial y}.
+\end{equation*}
+
+引进位势矢量 $A(x,y)$ ，它的方向沿着所选取的 $(x,y)$ 平面的法向，且
+
+\begin{equation*}
+\begin{array}{r l} \boldsymbol {E} & = \nabla \times \boldsymbol {A}, E _ {y} = - \frac {\partial A}{\partial x}, E _ {x} = \frac {\partial A}{\partial y}, \\ & \boldsymbol {A} = \{0, 0, A \}. \end{array}
+\end{equation*}
+
+或
+\begin{equation*}
+\frac {\partial \varphi}{\partial x} = - \frac {\partial A}{\partial y}, \frac {\partial \varphi}{\partial y} = \frac {\partial A}{\partial x}.
+\end{equation*}
+
+后者表明，函数 $f(z) \equiv \varphi - iA$ 是解析的，因而
+
+\begin{equation*}
+\frac {d f}{d z} = - E _ {x} + i E _ {y}.
+\end{equation*}
+
+利用这些结果，可容易解决求接地导体，例如具有当 $x = 0$或 $y = 0$ 时 $\varphi = 0$ 的边界条件的直角形接地导体附近场的问题(图28)。函数 $f(z) = i|k|z^2$ 的实部等于 $\varphi = -2|k|xy$ ，且不难看出，满足导体上的边界条件。方程 $2|k|xy = C$ 是等位线
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.50\textwidth]{fig28.pdf}
+\par\vspace{2pt}
+{\small 图 28.}
+\end{figure}
+
+(双曲线)方程。大家知道，力线正交于等位线族。
+
+注意这样一个明显事实，即任取一个解析函数（它的实部），我们就得到等位曲线族方程。问题在于求得构成给定场的电荷体积分布。
+
+现在转到叙述和证明解析函数论中的一个基本定理。
+
+\textbf{定理 6.1}\quad （柯西定理）如果函数 $f(z)$ 在区域 $R$ 内解析，则此函数沿着复平面中区域 $R$ 内的任一闭围道 $C$ 的积分都等于零。
+
+\textbf{证明}\quad 假定
+
+\begin{equation*}
+f (z) = \varphi + i \psi \text {和} d z = d x + i d y,
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{r l} f (z) d z & = \varphi d x - \psi d y + i (\psi d x + \varphi d y) = \\ & = \mathbf {F} d \mathbf {l} + i \mathbf {G} d \mathbf {l}, \end{array}\tag{6.2}
+\end{equation*}
+
+这里
+\begin{equation*}
+\begin{array}{c} d \boldsymbol {l} = d x \boldsymbol {i} + d y \boldsymbol {j}, \\ \boldsymbol {F} = \varphi \boldsymbol {i} - \psi \boldsymbol {j}, \quad \boldsymbol {G} = \psi \boldsymbol {i} + \varphi \boldsymbol {j}. \end{array}
+\end{equation*}
+
+由柯西——黎曼条件，
+
+\begin{equation*}
+[ \nabla \times \boldsymbol {F} ] _ {z} = 0, [ \nabla \times \boldsymbol {G} ] _ {z} = 0.
+\end{equation*}
+
+应用斯托克斯定理于(6.2)式，最后就得结果
+
+\begin{equation*}
+\begin{array}{r l} \oint_ {C} f (z) d z & = \oint_ {C} \boldsymbol {F} d \boldsymbol {l} + i \boldsymbol {G} d \boldsymbol {l} = \\ & = \int_ {s} [ \nabla \times F ] _ {z} \boldsymbol {n} d \boldsymbol {s} + [ \nabla \times \boldsymbol {G} ] _ {z} \boldsymbol {n} d \boldsymbol {s} = 0. \end{array}
+\end{equation*}
+
+定理证毕。
+
+柯西定理使解析函数更重要的性质能得以建立。首先由它可推出下面的定理：
+
+\textbf{定理 6.2}\quad （柯西积分公式）如果函数 $f(z)$ 在区域 $R$ 内解析，在闭围道 $C$ 上有界，则它在区域 $R$ 内任一点 $z_{0}$ 上的值等于
+
+\begin{equation*}
+f (z _ {0}) = \frac {1}{2 \pi i} \oint_ {C} \frac {f (z)}{z - z _ {0}} d z.\tag{6.3}
+\end{equation*}
+
+\textbf{证明}\quad 假定围道 $C'$ 是半径为 $\rho$ ，圆心在点 $z_0$ ，且整个
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.42\textwidth]{fig29.pdf}
+\par\vspace{2pt}
+{\small 图 29.}
+\end{figure}
+
+地都位于围道 $C$ 内的圆(图29)。显然函数 $f(z)/(z - z_0)$ 在两围道之间的环内解析。将此环沿着连结 $C$ 和 $C'$ 的曲线 $C''$ 剪开，根据柯西定理
+
+\begin{equation*}
+\oint = \oint_ {C} + \oint_ {C ^ {\prime \prime}} - \oint_ {C ^ {\prime}} - \oint_ {C ^ {\prime \prime}} = 0\tag{6.4}
+\end{equation*}
+
+[(6.4)中的积分如果沿着图29箭头所示的方向，则取正号]。因此
+
+\begin{equation*}
+\oint_ {C} \frac {f (z)}{z - z _ {0}} d z = \oint_ {C ^ {\prime}} \frac {f (z)}{z - z _ {0}} d z.\tag{6.5}
+\end{equation*}
+
+引进变量代换
+
+\begin{equation*}
+z = z _ {0} + \rho e ^ {i \theta}, d z = i \rho e ^ {i \theta} d \theta,
+\end{equation*}
+
+则等式(6.5)的右边部分就变成下面的形式：
+
+\begin{equation*}
+\begin{array}{r l} \oint \frac {f (z)}{z - z _ {0}} d z & = \int_ {0} ^ {2 \pi} \frac {i \rho e ^ {i \theta} f (z _ {0} + \rho e ^ {i \theta})}{\rho e ^ {i \theta}} d \theta = \\ & = i \int_ {0} ^ {2 \pi} f (z _ {0} + \rho e ^ {i \theta}) d \theta . \end{array}
+\end{equation*}
+
+但函数 $f(z_0 + \rho e^{i\theta})$ 可表示成
+
+\begin{equation*}
+f (z _ {0} + \rho e ^ {i \theta}) = f (z _ {0}) + \triangle f (z _ {0} + \rho e ^ {i \theta}).
+\end{equation*}
+
+根据函数 $f(z)$ 的解析性，增量 $\triangle f(z)$ 当 $\triangle z \to 0$ 时趋向于零。因此得
+
+\begin{equation*}
+i \int_ {0} ^ {2 \pi} f (z _ {0} + \rho e ^ {i \theta}) d \theta = 2 \pi i f (z _ {0}) + i \int_ {0} ^ {2 \pi} \triangle f d \theta .\tag{6.6}
+\end{equation*}
+
+因为此式对趋向于零的任意 $\rho$ 都成立，故由(6.6)即得(6.3)式，定理证毕。
+
+(6.3)式称为柯西积分公式，它使在区域内部点上的函数值与在包围此区域的围道上的函数值联系了起来（此围道必须在函数解析区域内）。
+
+利用已求得的解析函数的积分表示式，就可计算它在点 $z_{0}$ 处的导数。为此，设
+
+\begin{equation*}
+f (z _ {0} + \xi) = \frac {1}{2 \pi i} \oint \frac {f (z) d z}{z - z _ {0} - \xi},
+\end{equation*}
+
+\begin{equation*}
+f (z _ {0}) = \frac {1}{2 \pi i} \oint \frac {f (z) d z}{z - z _ {0}}.
+\end{equation*}
+
+(点 $z_{0}+\xi$ 和 $z_{0}$ 都位于围道 $C$ 内部)。作差
+
+\begin{equation*}
+f \left(z _ {0} + \xi\right) - f \left(z _ {0}\right) = \frac {1}{2 \pi i} \oint \frac {\xi f (z) d z}{\left(z - z _ {0} - \xi\right) \left(z - z _ {0}\right)}.
+\end{equation*}
+
+根据函数 $f(z)$ 的解析性条件，而 $z - z_0 \neq 0$ ，所以
+
+\begin{equation*}
+\begin{array}{r l}\lim _ {\xi \rightarrow 0} \frac {f (z _ {0} + \xi) - f (z _ {0})}{\xi}&= \frac {d f}{d z} \Bigg | _ {z = z _ {0}} =\\&= \frac {1}{2 \pi i} \oint \frac {f (z) d z}{(z - z _ {0}) ^ {2}}.\end{array}
+\end{equation*}
+
+在解析函数的定义中，我们只假定它存在一阶导数，但显然，如果第 $n$ 阶导数确定了，就能构造出第 $n + 1$ 阶导数。于是解析函数任意阶导数都存在，而且可以借助柯西积分公式表示出来。
+
+例如， $f(z)$ 的二阶导数等于
+
+\begin{equation*}
+\begin{array}{r l}f ^ {\prime \prime} (z _ {0})&= \lim _ {\xi \rightarrow 0} \frac {f ^ {\prime} (z _ {0} + \xi) - f ^ {\prime} (z _ {0})}{\xi} =\\&= \frac {2}{2 \pi i} \oint \frac {f (z) d z}{(z - z _ {0}) ^ {3}},\end{array}
+\end{equation*}
+
+而对第 $n$ 阶导数得
+
+\begin{equation*}
+f ^ {(n)} \left(z _ {0}\right) = \frac {n !}{2 \pi i} \oint \frac {f (z)}{\left(z - z _ {0}\right) ^ {n + 1}} d z.
+\end{equation*}
+
+这样，我们就建立了解析函数一个绝妙的性质：在给定点上解析的函数可微分无限多次。
+
+\section{泰勒和罗朗级数．解析开拓}
+
+今研究解析函数展开成泰勒级数的可能性和此级数的收敛半径问题。先给出奇点的定义。
+
+如果函数 $f(z)$ 在点 $z = z_0$ 处不解析，则此点就称为函数 $f(z)$ 的奇点；也可称函数 $f(z)$ 在点 $z_0$ 处有奇异性。
+
+\textbf{定理 6.3}\quad 设函数 $f(z)$ 在点 $z = z_{0}$ 处解析，离此点最近的奇点为 $z_{0} + a$ ，则在以 $z_{0}$ 为圆心， $|a|$ 为半径的圆内， $f(z)$ 可表示成收敛幂级数的和。
+
+\textbf{证明}\quad 在 $|\xi| < r < |a|$ 时有：
+
+\begin{equation*}
+\begin{array}{l} {f (z _ {0} + \xi) - f (z _ {0}) =} \\ {= \frac {1}{2 \pi i} \oint_ {c} f (z) \left[ \frac {1}{z - z _ {0} - \xi} - \frac {1}{z - z _ {0}} \right] d z,} \end{array}
+\end{equation*}
+
+这里 $C$ 为以 $z_{0}$ 为圆心，$r$ 为半径的圆。将被积表达式作变化：
+
+\begin{equation*}
+\begin{array}{r l} \frac {1}{z - z _ {0} - \xi} & = \frac {1}{z - z _ {0}} + \frac {\xi}{(z - z _ {0}) (z - z _ {0} - \xi)} = \\ & = \frac {1}{z - z _ {0}} + \frac {\xi}{z - z _ {0}} \left[ \frac {1}{z - z _ {0}} + \frac {\xi}{(z - z _ {0} - \xi) (z - z _ {0})} \right] = \\ & = \frac {1}{z - z _ {0}} + \frac {\xi}{(z - z _ {0}) ^ {2}} + \dots + \frac {\xi^ {N}}{(z - z _ {0}) ^ {N + 1}} + \\ & + \frac {\xi^ {N + 1}}{(z - z _ {0}) ^ {N + 1} (z - z _ {0} - \xi)}. \end{array}
+\end{equation*}
+
+最后有
+\begin{equation*}
+\begin{array}{l} f (z _ {0} + \xi) - f (z _ {0}) = \\ = \frac {1}{2 \pi i} \oint_ {C} \sum_ {n = 1} ^ {N} \frac {\xi^ {n} f (z) d z}{(z - z _ {0}) ^ {n + 1}} + R _ {N}, \end{array}\tag{6.7}
+\end{equation*}
+
+这里
+\begin{equation*}
+R _ {N} = \frac {1}{2 \pi i} \oint_ {C} \frac {f (z) \xi^ {N + 1}}{\left(z - z _ {0}\right) ^ {N + 1} \left(z - z _ {0} - \xi\right)} d z.
+\end{equation*}
+
+现证明，当 $N\to \infty$ 时， $R_{N}$ 趋向于零，在围道 $C$ 上 $z - z_0 = re^{i\theta}$ ，而 $f(z)$ 由于解析，故有界。显然， $z - z_0 - \xi \neq 0$ 。所以余项 $R_N$ 可作如下的估计：
+
+\begin{equation*}
+\left| R _ {N} \right| <   \text { const } \left| \frac {\xi}{r} \right| ^ {N + 1},
+\end{equation*}
+
+这里的常数不依赖于 $N$ 。但 $|\xi| < r$ ，因此
+
+\begin{equation*}
+\lim _ {N \rightarrow \infty} R _ {N} = 0.
+\end{equation*}
+
+而此即表示成立等式
+
+\begin{equation*}
+f (z _ {0} + \xi) = f (z _ {0}) + \sum_ {n = 1} ^ {\infty} \frac {f ^ {(n)} (z _ {0})}{n !} \xi^ {n},\tag{6.8}
+\end{equation*}
+
+这里位于右边的级数对所有 $|\xi| < |a|$ 都收敛。定理证毕。
+
+(6.8)式是在复变数情形的广义泰勒级数。显然，函数 $f(z)$ 对所有 $|\xi|<|a|$ 都可展开成这种级数。换言之，级数的收敛半径等于 $|a|$ 。
+
+引入解析开拓这一重要概念。假定函数 $f(z)$ 在某个区域 $R$ 内解析。则存在将泰勒级数展开式成立的区域扩大（包括在 $R$ 外的点）的可能性。在区域 $R$ 内取点 $z_0$ ，并将函数 $f(z)$ 展开成泰勒级数。在点 $z_0$ 处，此级数的收敛半径将等于此点到最近奇点的距离，而在奇点处展开式不再成立。所得圆的一部分超出区域 $R$ ，同时函数在此圆内解析。接下去再取另一已在区域 $R'$ \footnote{指所得的圆超出区域 R 的那一部分。}内的点，并重复上面的过程。用这种方法可将函数开拓到整个复变量 $z$ 的平面上去，并找出它的奇点。
+
+\textbf{定理 6.4}\quad 如果 $f(z)$ 是在环内解析的函数（图30），则它在此环内的点上可表示成
+
+\begin{equation*}
+f (z _ {0} + \xi) = \frac {1}{2 \pi i} \int_ {c - c ^ {\prime}} \frac {f (z)}{z - z _ {0} - \xi} d z = \sum_ {n = - \infty} ^ {\infty} c _ {n} \xi^ {n}.\tag{6.9}
+\end{equation*}
+
+\textbf{证明}\quad 如果点 $z$ 位于围道$C$上，则
+
+\begin{equation*}
+| \xi | <   | z - z _ {0} | = r _ {c};
+\end{equation*}
+
+如果 $z$ 位于围道 $C'$ 上，则
+
+\begin{equation*}
+\mid \xi \mid > \mid z - z _ {0} \mid = r _ {C ^ {\prime}}.
+\end{equation*}
+
+在前面定理中研究过的那种展开式，在围道 $C$ 上同样成立：
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.42\textwidth]{fig30.pdf}
+\par\vspace{2pt}
+{\small 图 30.}
+\end{figure}
+
+\begin{equation*}
+\frac {1}{z - z _ {0} - \xi} = \sum_ {n = 0} ^ {N} \frac {\xi^ {n}}{\left(z - z _ {0}\right) ^ {n + 1}} + R _ {N} ^ {C}.
+\end{equation*}
+
+在围道 $C'$ 上用类似的方法则可得
+
+\begin{equation*}
+\begin{array}{l} - \frac {1}{z - z _ {0} - \xi} = \frac {1}{\xi} - \frac {z - z _ {0}}{\xi (z - z _ {0} - \xi)} = \\ = \sum_ {n = 0} ^ {N} \frac {(z - z _ {0}) ^ {n}}{\xi^ {n + 1}} - \frac {(z - z _ {0}) ^ {N + 1}}{\xi^ {N + 1} (z - z _ {0} - \xi)} = \\ = \sum_ {n = 0} ^ {N} \frac {(z - z _ {0}) ^ {n}}{\xi^ {n + 1}} + R _ {N} ^ {C'}. \end{array}
+\end{equation*}
+
+因在围道 $C'$ 上
+
+——译注
+\begin{equation*}
+\left| \frac {z - z _ {0}}{\xi} \right| <   1,
+\end{equation*}
+
+所以后面那个级数显然是收敛的。从而
+
+\begin{equation*}
+f (z _ {0} + \xi) = \sum_ {n = 0} ^ {N} a _ {n} \xi^ {n} + \sum_ {n = 0} ^ {N} b _ {n + 1} \frac {1}{\xi^ {n + 1}} + R _ {N},
+\end{equation*}
+
+这里
+\begin{equation*}
+a _ {n} = \frac {1}{2 \pi i} \oint_ {C} \frac {f (z) d z}{(z - z _ {0}) ^ {n + 1}},
+\end{equation*}
+
+\begin{equation*}
+b _ {n} = \frac {1}{2 \pi i} \oint_ {C ^ {\prime}} \frac {f (z) d z}{(z - z _ {0}) ^ {n - 1}},
+\end{equation*}
+
+\begin{equation*}
+R _ {N} = R _ {N} ^ {C} + R _ {N} ^ {C ^ {\prime}}.
+\end{equation*}
+
+但当 $N \to \infty$ 时， $R_N^C$ 和 $R_N^{C'}$ 趋于零；故当 $N \to \infty$ 时， $R_N \to 0$ 。所以命 $N \to \infty$ ，就得
+
+\begin{equation*}
+f (z _ {0} + \xi) = \sum_ {n = 0} ^ {\infty} a _ {n} \xi^ {n} + \sum_ {n = 0} ^ {\infty} b _ {n + 1} \frac {1}{\xi^ {n + 1}}.
+\end{equation*}
+
+这个展开式称为罗朗(Laurent)级数。
+
+\section{奇点分类}
+
+到目前为止，我们还没有将奇点加以分类的准则。它们是可以区分的。例如，可根据在此点附近函数性质的特点来区分。此时罗朗级数展开式为基本工具。
+
+考虑函数 $f(z)$ ，它在点 $z_0$ 的某个邻域内解析，但点 $z_0$ 本身除外（孤立奇点的情形）。作中心在 $z_0$ 的圆，则对函数 $f(z)$ 解析区域内的任一点 $z_0 + \xi$ ，
+
+\begin{equation*}
+f (z _ {0} + \xi) = \sum_ {n = 0} ^ {\infty} a _ {n} \xi^ {n} + \sum_ {n = 1} ^ {\infty} \frac {b _ {n}}{\xi^ {n}}.\tag{6.10}
+\end{equation*}
+
+可能对某个 $n = N$
+
+\begin{equation*}
+b _ {N + 1} = b _ {N + 2} = \dots = 0,
+\end{equation*}
+
+于是(6.10)式就成为
+
+\begin{equation*}
+f (z _ {0} + \xi) = \sum_ {n = 0} ^ {\infty} a _ {n} \xi^ {n} + \frac {b _ {1}}{\xi} + \frac {b _ {2}}{\xi^ {2}} + \dots + \frac {b _ {N}}{\xi^ {N}}.
+\end{equation*}
+
+在这种情形，就说在点 $z = z_0$ 处有 $N$ 阶极点。而表示式
+
+\begin{equation*}
+\sum_ {n = 1} ^ {N} \frac {b _ {n}}{\xi^ {n}}
+\end{equation*}
+
+称为函数 $f(z)$ 在点 $z = z_0$ 处展开式的主部。也可给出下面极点的定义。
+
+如果 $\varphi(z) = 1 / f(z)$ 在点 $z_0$ 处为 $N$ 阶零点，且在点 $z_0$ 处零点聚集的情形除外，则点 $z_0$ 称为函数 $f(z)$ 的 $N$ 阶极点。
+
+如果函数 $f(z)$ 在点 $z_0$ 处展开式的主部用无穷级数来表示，则点 $z_0$ 称为函数 $f(z)$ 的本性奇点。
+
+可以这样来研究无穷远点 $(z = \infty)$ ：先作变换 $\rho = 1 / z$ 然后研究函数 $g(\rho) = f(1 / \rho)$ 在点 $\rho = 0$ 处的情形，如果此时 $g(\rho)$ 在零点处为 $n$ 阶极点，则我们说函数 $f(z)$ 在无穷远处有同样阶数的极点。
+
+\textbf{定理 6.5}\quad 如果函数 $f(z)$ 在整个复平面上除开若干个(孤立)点外为解析，而在这些点上有极性，则 $f(z)$ 为有理函数。
+
+\textbf{证明}\quad 设点 $z_{1}, z_{2}, \cdots, z_{m}$ 为函数 $f(z)$ 的极点，其阶分别为 $N_{1}, N_{2}, \cdots, N_{m}$ ; 而 $p_{1}, p_{2}, \cdots, p_{m}$ 为相应的主部：
+
+\begin{equation*}
+p _ {i} = \frac {b _ {i _ {1}}}{z - z _ {i}} + \frac {b _ {i _ {2}}}{(z - z _ {i}) ^ {2}} + \dots + \frac {b _ {i _ {N}}}{(z - z _ {i}) ^ {N}} (i = 1, 2, \dots , m).
+\end{equation*}
+
+如果 $z = \infty$ 还是函数 $f(z)$ 的 $m_{\infty}$ 阶极点，则设
+
+\begin{equation*}
+p _ {\infty} = b _ {\infty 1} z + b _ {\infty 2} z ^ {2} + \dots + b _ {\infty m _ {\infty}} z ^ {m _ {\infty}}.
+\end{equation*}
+
+记
+\begin{equation*}
+g (z) \equiv f (z) - \sum_ {i = 1} ^ {m} p _ {i} (z) - p _ {\infty} (z).
+\end{equation*}
+
+这里函数 $g(z)$ 已在全平面上解析（包括无穷远点）。对于它可写
+
+\begin{equation*}
+g (z) = \frac {1}{2 \pi i} \oint_ {C} \frac {g (z _ {1})}{z _ {1} - z} d z _ {1}.
+\end{equation*}
+
+特别在 $z = 0$ 时
+
+\begin{equation*}
+g (0) = \frac {1}{2 \pi i} \oint_ {C} \frac {g \left(z _ {1}\right)}{z _ {1}} d z _ {1}.
+\end{equation*}
+
+因此
+\begin{equation*}
+g (z) - g (0) = \frac {1}{2 \pi i} \oint_ {c} \frac {z g (z _ {1})}{z _ {1} (z _ {1} - z)} d z _ {1}.\tag{6.11}
+\end{equation*}
+
+等式(6.11)对任意围道 $C$ 都成立。特别对半径为 $R$ ，圆心在坐标原点的圆
+
+\begin{equation*}
+z _ {1} = R e ^ {i \theta}
+\end{equation*}
+
+也成立。借助于变量代换，(6.11)变为
+
+\begin{equation*}
+g (z) - g (0) = \frac {z}{2 \pi} \int_ {0} ^ {2 \pi} \frac {g (R e ^ {i \theta})}{R e ^ {i \theta} - z} d \theta .
+\end{equation*}
+
+今估计此差。注意 $|g(z)| < M$ ，就有
+
+\begin{equation*}
+\mid g (z) - g (0) \mid \leqslant \frac {\mid z \mid M}{2 \pi} \int_ {0} ^ {2 \pi} \frac {d \theta}{R e ^ {i \theta} - z}.\tag{6.12}
+\end{equation*}
+
+不等式(6.12)对任意的 $R$ 都正确，因而
+
+\begin{equation*}
+\begin{array}{l}\lim _ {R \rightarrow \infty} | g (z) - g (0) | = 0,\\g (z) = g (0) = \text { const },\end{array}
+\end{equation*}
+
+或最后得
+\begin{equation*}
+f (z) = \text { const } + \sum_ {i = 1} ^ {m} p _ {i} (z) + p _ {\infty} (z)
+\end{equation*}
+
+这就证明了我们的定理
+
+\section{多值函数．流体力学中的例子}
+
+在前面几节里我们从事于单值函数的研究。下面我们将讨论这样的函数 $f(z)$ ，它在同一点 $z$ 上有几个不同的值。这种函数称为多值函数。
+
+作为例子, 考虑函数 $f(z) = \ln z$ 。如果 $z = \rho e^{i\theta}$ , 则 $\ln z = \ln \rho + i\theta$ 。幅角增加 $2\pi$ , 则得复平面上同一个点 $z$ ; 但显然此时函数 $\ln z$ 的值为 $\ln \rho + i(\theta + 2\pi)$ 。在一般情形
+
+\begin{equation*}
+\ln z = \ln \rho + i (2 n \pi + \theta) \quad (n = 0, \pm 1, \pm 2, \dots).
+\end{equation*}
+
+我们称“某个复数的对数”，这是指在这个对数所有可能的值中选择一个。
+
+引进黎曼曲面的概念，对多值函数的研究是有益的。在复平面上作出从原点到无穷远点的直线，如图31所示，并假定将此直线从复平面内除去(割缝)。对于位于割缝“两岸”的点 $A$ ，有
+
+\begin{equation*}
+\begin{array}{l}f (A _ {+}) = \ln \rho + i (\theta_ {1} + \varepsilon), \quad (\varepsilon \rightarrow 0 _ {+});\\f (A _ {-}) = \ln \rho + i (\theta_ {1} + 2 \pi - \varepsilon), (\varepsilon \rightarrow 0 _ {-}).\end{array}
+\end{equation*}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.50\textwidth]{fig31.pdf}
+\par\vspace{2pt}
+{\small 图 31.}
+\end{figure}
+
+表示式 $\ln \rho + i\theta (0 \leqslant \theta < 2\pi)$ 称为复数 $z = \rho e^{i\theta}$ 对数的主值。
+
+不穿过割缝，$z$ 的辐角就不可能作 $2\pi$ 的改变。这样一来，在剪开的平面上，便转化成单值函数。但此时 $f(z)$ 已不再连续，因为
+
+\begin{equation*}
+\lim _ {e \rightarrow 0} | f (A _ {+}) - f (A _ {-}) | = 2 \pi i,
+\end{equation*}
+
+不等于零。
+
+注意，割缝可以预先绕原点转任意次数后再与 $x$ 轴成 $\theta_{1}$ 角而作出。利用这种方法，由(多值)函数值的无穷集合可构造出单值函数的无穷集合。
+
+现在考虑一个迭着一个的复平面系(类似于螺旋阶梯形的那种东西)，它们中间的每一个都对应于 $n$ 的某个数值。它们都沿着割缝线联结起来，因为越过割缝相当于从一个平面过渡到另一个平面(向上或向下要看旋转的方向)。
+
+每一个这种平面称为黎曼曲面的叶。函数 $f(z)$ 在每一叶上都是单值的。绕过它时产生多值性的那种点（一般是对所有的叶），称为支点，而函数在每一个不同叶上的值称为函数的分支。
+
+\textbf{例2}\quad 作出函数 $f(z) = (z - 1)^{1 / 2}$ 的黎曼面。
+
+设 $z = 1 + \rho e^{i\theta}$ （原点移到 $z = 1$ 处），得
+
+\begin{equation*}
+f (z) = \sqrt {\rho} e ^ {i \theta / 2}.
+\end{equation*}
+
+平方根 $\sqrt{\rho}$ 总取正值。将 $\theta$ 增加 $2\pi$ ，我们又回到了原来的点 $z$ ，但 $f(z)$ 的值为
+
+\begin{equation*}
+f (z) = \sqrt {\rho} e ^ {i (\theta + 2 \pi) / 2} = - \sqrt {\rho} e ^ {i \theta / 2} = - f (z).
+\end{equation*}
+
+所研究的函数在平面上任一点处都是双值的。这样一来， $z = 1$ 是支点，而函数 $f(z) = (z - 1)^{1 / 2}$ 有二支。黎曼曲面的叶由不等式 $\theta_{1} < \theta < \theta_{1} + 2\pi$ 所确定。此外
+
+\begin{equation*}
+\lim _ {\varepsilon \rightarrow 0 _ {+}} f (A _ {+}) = \sqrt {\rho} e ^ {i \theta / 2}, \quad \lim _ {\varepsilon \rightarrow 0 _ {-}} f (A _ {-}) = - \sqrt {\rho} e ^ {i \theta / 2}.
+\end{equation*}
+
+\textbf{例3}\quad 函数 $f(z) = (z^2 - 1)^{1/2}$ 可作为多值函数的较复杂的例子。由
+
+\begin{equation*}
+f (z) = (z + 1) ^ {1 / 2} (z - 1) ^ {1 / 2}
+\end{equation*}
+
+不难看出，它有两个支点(±1)。
+
+分出所给函数单值分支的方法有好几个。今考虑其中之一。
+
+在点 + 1 和 - 1 之间作割缝(图 32$a$)。在平面的不同区域内选取 $f(z)$ 的值，使得它由一叶转到另一叶时单值且连续。这样，足以确定在 $x$ 轴附近的函数值。沿着和绕着割缝运动，假定
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{fig32.pdf}
+\par\vspace{2pt}
+{\small 图 32.}
+\end{figure}
+
+当 $y = 0_{+}$ ， $x > 1$ 时， $f(z) = \sqrt{x^2 - 1} >0;$当 $y = 0_{-}$ ， $x <   - 1$ 时， $f(z) = -\sqrt{x^2 - 1}$；当 $y = 0_{-}$ ， $\mid x\mid <  1$ 时， $f(z) = -i\sqrt{x^2 - 1}$；当 $y = 0_{+}, |x| < 1$ 时， $f(z) = i\sqrt{x^2 - 1}$ .
+
+这样一来，在复平面内每一点处函数将有确定的值，因此是单值的。最后，平方根可取“负”号，即假定对 $y = 0_{+}, x > 1, f = -\sqrt{x^{2} - 1}$ ；在相应的黎曼曲面的叶上，函数 $f(z)$ 将有相反的符号。在两个叶中取哪一个，这要考虑到方便而定。
+
+\textbf{例 4}\quad 液体对平板的绕流。这个问题是在利用复变函数论方法后非常容易解决的那些问题中的一个。假定有一个被液体绕流的薄板，它的位置与液体流动的方向成攻角 $\alpha$ （图33）。问题是要找出流体速度向量场$V$的流线方程或等位线方程。假定速度场是管量的和有势的，大家知道，在这种情形可引进函数 $f(z)=\varphi-iA$ ，它称为复位势，使
+
+\begin{equation*}
+\boldsymbol {V} = - \left[ f ^ {\prime} (z) \right] ^ {*}
+\end{equation*}
+
+此时 $\varphi = const$ 和 $A$ = const 分别为等位线方程和流线方程。薄板的边界是流线，所以 $A$ 取常数值，即 $A$ = 0 。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig33.pdf}
+\par\vspace{2pt}
+{\small 图 33.}
+\end{figure}
+
+很自然地希望，离薄片的距离很远处，流速趋向于常数极限。由此得出，当 $|z| \to \infty$ 时，函数 $f(z)$ 的渐近形式为
+
+\begin{equation*}
+\left| v _ {0} \right| z e ^ {i \alpha}.
+\end{equation*}
+
+现在着手解这个问题。设给定了平面 $z = x + iy$ 到平面 $z' = \xi + i\eta$ 的某个映射。则
+
+\begin{equation*}
+f (z) = \varphi - i A = F \left(z ^ {\prime}\right).
+\end{equation*}
+
+在此映射下，$z$ 平面内的流线 $(A=\text{const})$ 变为 $z'$ 平面内的相应的流线。很自然地要设法将给定在 $z$ 平面内的区域变换成 $z'$ 平面内更为简单的区域。选取下面的式子作为映射：
+
+\begin{equation*}
+z = z ^ {\prime} + \frac {1}{z ^ {\prime}}.\tag{6.13}
+\end{equation*}
+
+方程 $z' = \rho e^{i\theta}$ 是 $z'$ 平面内圆的方程。此时
+
+\begin{equation*}
+\begin{array}{r l} z & = \left(\rho + \frac {1}{\rho}\right) \cos \theta + i \left(\rho - \frac {1}{\rho}\right) \sin \theta = \\ & = x + i y, \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+\frac {x ^ {2}}{\left(\rho + \frac {1}{\rho}\right) ^ {2}} + \frac {y ^ {2}}{\left(\rho - \frac {1}{\rho}\right) ^ {2}} = 1,
+\end{equation*}
+
+即在 $z^{\prime}$ 平面内圆变换成了半轴为
+
+\begin{equation*}
+a = \rho + \frac {1}{\rho}, \quad b = \rho - \frac {1}{\rho}
+\end{equation*}
+
+的椭圆。当 $\rho \to 1$ 时，椭圆蜕化为直线段 $-2 \leqslant x \leqslant 2, y = 0$ 。
+
+如果从 $z$ 平面内除去线段 $-2 \leqslant x \leqslant 2$ ，即在 $z$ 平面内从点 $x = -2, y = 0$ 到点 $x = +2, y = 0$ 作割缝，则映射(6.13)在 $z$ 平面和 $z'$ 平面之间给出了一一对应关系。
+
+附注：函数(6.13)将圆的内部映射成线段 $[-2,2]$ 的外部。位于此线段上的点，即线段本身是双重的，因而它由两个岸组成(上半圆映射为下岸，而下半圆映射为上岸)。
+
+在(6.13)中解出 $z'$ ，得
+
+\begin{equation*}
+z ^ {\prime} = \frac {z \pm \sqrt {z ^ {2} - 4}}{2}\tag{6.14}
+\end{equation*}
+
+(根式 $\sqrt{z^{2}-4}$ 有分支点 $z=\pm2$ )。
+
+现在可着手解决我们的流体动力学问题。先考虑 $\alpha = 0$ 的特殊情形。在这种情形，解显然是
+
+\begin{equation*}
+f (z) = v _ {0} z,
+\end{equation*}
+
+并且，当 $y = \mathrm{const}$ 时， $A = -v_0y = \mathrm{const}$ .
+
+在流体绕圆形障碍物的情形，其解也不难求得：
+
+\begin{equation*}
+f (z) = v _ {0} \left(z + \frac {1}{z}\right).
+\end{equation*}
+
+在 $(\alpha \neq 0$ 的)一般情形，适当地作变量代换 $z' = ze^{i\alpha}$ ，此时速度矢量场当 $|z|\to \infty$ 时具有下面的形式：
+
+\begin{equation*}
+\frac {d f}{d z} = v _ {0} e ^ {i \alpha} = - v ^ {*}, v _ {x} = - v _ {0} \cos \alpha , v _ {y} = v _ {0} \sin \alpha .
+\end{equation*}
+
+由此显然，在绕流的攻角是 $\alpha$ 的情形，对于 $z'$ 平面内的圆柱绕流问题的解为
+
+\begin{equation*}
+F \left(z ^ {\prime}\right) = v _ {0} \left(z ^ {\prime} e ^ {i \alpha} + \frac {1}{z ^ {\prime}} e ^ {- i \alpha}\right),
+\end{equation*}
+
+相应地在 $z$ 平面内有
+
+\begin{equation*}
+\begin{array}{r l} f (z) & = v _ {0} \left[ \frac {z + \sqrt {z ^ {2} - 4}}{2} e ^ {i \alpha} + \frac {z - \sqrt {z ^ {2} - 4}}{2} e ^ {- i \alpha} \right] = \\ & = v _ {0} [ z \cos \alpha + i (z ^ {2} - 4) ^ {1 / 2} \sin \alpha ]. \end{array} \tag{6.15}
+\end{equation*}
+
+(6.15)式借助于关系式
+
+\begin{equation*}
+\frac {1}{z ^ {\prime}} = \frac {z - \sqrt {z ^ {2} - 4}}{2}
+\end{equation*}
+
+而得，而此关系式由(6.13)和(6.14)推出。对 $z$ 微分(6.15)式，可验证在无穷远处是否满足条件。借助导数
+
+\begin{equation*}
+\frac {d f}{d z} = - v _ {x} + i v _ {y} = v _ {0} \left[ \cos \alpha + i \frac {z \sin \alpha}{(z ^ {2} - 4) ^ {1 / 2}} \right],
+\end{equation*}
+
+当 $z \to \infty$ 时可得
+
+\begin{equation*}
+v _ {x} = - v _ {0} \cos \alpha , \quad v _ {y} = v _ {0} \sin \alpha .
+\end{equation*}
+
+附注：我们看到，函数 $\sqrt{z^2 - 4}$ 在 $x$ 轴上有-2到2的割缝。但这条割缝并不引起麻烦，因为薄板位于这个地方（在薄板上 $A = 0$ ）。在薄板下面 $(y = 0_{-})$ ，速度等于
+
+\begin{equation*}
+v _ {y} = 0, v _ {x} = - v _ {0} \left[ \cos \alpha - \frac {x \sin \alpha}{\sqrt {4 - x ^ {2}}} \right],
+\end{equation*}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.55\textwidth]{fig34.pdf}
+\par\vspace{2pt}
+{\small 图 34.}
+\end{figure}
+
+而且如果 $x = 2 \cos \alpha$ ，则 $v_{x} = 0$ ；如果 $x > 2 \cos \alpha$ ，则 $v_{x} > 0$ ；而如果 $x < 2 \cos \alpha$ ，则 $v_{x} < 0$ 。这样一来，图 34 所示虚线左边的流体，绕薄板左边流动；而位于右边的液体，绕薄板右边流动。
+
+类似地，当 $y = 0_{+}$ 时，
+
+\begin{equation*}
+v _ {y} = 0, v _ {x} = - v _ {0} \left[ \cos \alpha + \frac {x \sin \alpha}{\sqrt {4 - x ^ {2}}} \right].
+\end{equation*}
+
+薄板上面的流动图形是薄板下面流动图形的二重镜象。这是因为： $v_{x}(y=0_{-}, x)=v_{x}(y=0_{+}, -x)$ 。还要注意，点±2是我们的解的奇点。因为在这些点处 $|v_{x}|=\infty$ ，没有物理意义。
+
+\section{留数定理及其应用}
+
+我们着手叙述一个在分析中，特别是在积分计算中被广泛应用的理论。先证明一简单的，但十分重要的定理。
+
+\textbf{定理 6.6}\quad 如果函数 $f(z)$ 在封闭围道 $C$ 内部除去点 $z_{1}$ ， $z_{2}, \cdots, z_{n}$ 外解析，在这些点处有极性，主部为
+
+\begin{equation*}
+\frac {R _ {i}}{z - z _ {i}} + \frac {b _ {2}}{(z - z _ {i}) ^ {2}} + \dots + \frac {b _ {m i}}{(z - z _ {i}) ^ {m i}} \equiv
+\end{equation*}
+
+\begin{equation*}
+\equiv f (z) - \varphi_ {i} (z) \quad (i = 1, 2, \dots , n),
+\end{equation*}
+
+这里 $\varphi_{i}(z)$ 是在点 $z_{i}$ 处解析的函数，则
+
+\begin{equation*}
+\frac {1}{2 \pi i} \oint_ {c} f (z) d z = \sum_ {i = 1} ^ {n} R _ {i}.
+\end{equation*}
+
+\textbf{证明}\quad 由柯西定理，
+
+\begin{equation*}
+\oint_ {C} f (z) d z = \sum_ {i = 1} ^ {n} \oint_ {C _ {i}} f (z) d z,
+\end{equation*}
+
+这里 $C_i$ 是绕奇点 $z_i$ 的圆(图35)。考虑位于右边和式之中的第一个积分
+
+\begin{equation*}
+\begin{array}{r l} \oint_ {C _ {1}} f (z) d z & = \oint_ {C _ {1}} \varphi_ {1} (z) d z + \\ & + \sum_ {\alpha = 1} ^ {m _ {1}} \oint_ {C _ {1}} \frac {b _ {\alpha} d z}{(z - z _ {1}) ^ {\alpha}} \\ & (b _ {1} \equiv R _ {1}). \end{array}
+\end{equation*}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig35.pdf}
+\par\vspace{2pt}
+{\small 图 35.}
+\end{figure}
+
+因函数 $\varphi_{1}(z)$ 在围道 $C_1$ 内解析，故它的积分等于零。在 $C_1$ 上有 $z = z_1 + \rho e^{i\theta}$ ，所以
+
+\begin{equation*}
+\oint_ {C _ {1}} f (z) d z = \sum_ {a = 1} ^ {m _ {1}} i b _ {a} \int_ {0} ^ {2 \pi} \frac {d \theta}{\rho^ {a - 1} e ^ {i (a - 1) \theta}} = 2 \pi i b _ {1}.
+\end{equation*}
+
+可类似地计算其余的积分。将积分值代入和式之中，就得
+
+\begin{equation*}
+\oint f (z) d z = 2 \pi i \sum_ {i = 1} ^ {n} R _ {i},
+\end{equation*}
+
+这就是所要证明的。
+
+量 $R_{i}$ 称为函数 $f(z)$ 在极点 $z_{i}$ 处的留数（有时记作 $\operatorname{Res} f(z) | z_{i}$ ）。利用留数定理，可十分有效地计算积分。今用上章所讨论过的格林函数的计算为例，来说明这点。
+
+\textbf{例5}\quad 大家知道，方程
+
+\begin{equation*}
+(- \nabla^ {2} + \mu^ {2}) u = 0
+\end{equation*}
+
+的格林函数可用积分
+
+\begin{equation*}
+\langle x \mid H ^ {- 1} \mid x ^ {\prime} \rangle = \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} \frac {e ^ {i k (x - x ^ {\prime})}}{k ^ {2} + \mu^ {2}} d k\tag{6.16}
+\end{equation*}
+
+表示。利用留数定理计算积分(6.16)。先注意被积函数当 $k=\infty$ 时有本性奇点，而在点 $k=\pm i\mu$ 处有一阶极点。所计算的积分沿实轴求积。但我们设 $k=\xi+i\eta$ ，并在复平面内如图36上所示的封闭围道上考虑。于是
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.50\textwidth]{fig36.pdf}
+\par\vspace{2pt}
+{\small 图 36.}
+\end{figure}
+
+\begin{equation*}
+e ^ {i k (x - x ^ {\prime})} = e ^ {- \eta (x - x ^ {\prime})} e ^ {i \xi (x - x ^ {\prime})},
+\end{equation*}
+
+且当 $\eta \geqslant 0$ 和 $x \geqslant x'$ 时有估计式
+
+\begin{equation*}
+\left| e ^ {i k \left(x - x ^ {\prime}\right)} \right| \leqslant 1.
+\end{equation*}
+
+其次
+\begin{equation*}
+\int_ {- R} ^ {R} f (k) d k = \oint_ {C} f (k) d k - \int_ {\Gamma_ {R}} f (k) d k,
+\end{equation*}
+
+由定理6.6，沿围道 $C$ 的积分等于
+
+\begin{equation*}
+\begin{array}{r l} \frac {1}{2 \pi i} \oint_ {C} f (k) d k & = \sum_ {i} R _ {i} = \operatorname{Res} f (k) \Bigg | _ {k = i \mu} = \\ & = \frac {e ^ {- \mu (x - x^ {\prime})}}{2 i \mu}. \end{array}
+\end{equation*}
+
+为了计算积分 $\int_{\Gamma_R} f(k) dk$ ，注意
+
+\begin{equation*}
+\left| \int_ {r _ {R}} \frac {e ^ {i k (x - x ^ {\prime})}}{k ^ {2} + \mu^ {2}} d k \right| \leqslant \int_ {0} ^ {\pi} \frac {R e ^ {i \theta} i d \theta}{R ^ {2} e ^ {2 i \theta} + \mu^ {2}},
+\end{equation*}
+
+故
+\begin{equation*}
+\lim _ {R \rightarrow \infty} \int_ {\Gamma_ {R}} \frac {e ^ {i k (x - x^ {\prime})}}{k ^ {2} + \mu^ {2}} d k = 0.
+\end{equation*}
+
+附注：积分值是实函数。对积分
+
+\begin{equation*}
+\frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} \frac {\cos k (x - x ^ {\prime})}{k ^ {2} + \mu^ {2}} d k
+\end{equation*}
+
+也可得同样的结果。
+
+最后
+
+\textcircled{1} 俄译本上是如此，应改成 $\leqslant \int_{0}^{2\pi}\left|\frac{Re^{i\theta}i}{R^2e^{2i\theta} + \mu^2}\right|d\theta \leqslant \frac{2\pi R}{R^2 - \mu^2}$ 为妥。
+
+\begin{equation*}
+\frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} \frac {e ^ {i k \left(x - x ^ {\prime}\right)}}{k ^ {2} + \mu^ {2}} d k = \frac {e ^ {- \mu \left(x - x ^ {\prime}\right)}}{2 \mu}.\tag{6.17}
+\end{equation*}
+
+因格林函数是对称的，所以公式(6.17)应写成
+
+\begin{equation*}
+\langle x \mid H ^ {- 1} \mid x ^ {\prime} \rangle = \frac {e ^ {- \mu \mid x - x ^ {\prime} \mid}}{2 \mu}\tag{6.18}
+\end{equation*}
+
+更为准确。
+
+此例表明，如果被积函数在所选取的围道 $\Gamma_{R}$ 上，当 $R \to \infty$ 时趋向于零，则留数理论给出了计算该积分的一个有效方法。在转到另一例子之前，先证明一个有用的引理。
+
+\textbf{引理 6.1}\quad [约当(Jordan)] 如果在围道 $\Gamma_{R}$ (图 36) 上当 $R \to \infty$ 时函数 $Q(z)$ 关于所有方向 $\theta(0 \leqslant \theta \leqslant \pi)$ 一致地趋向于零，则对正的 $\alpha$
+
+\begin{equation*}
+\lim _ {R \rightarrow \infty} \int_ {\Gamma_ {R}} e ^ {i \alpha z} Q (z) d z = 0.
+\end{equation*}
+
+\textbf{证明}\quad 设 $\rho \leqslant R$ 和 $z = \rho e^{i\theta}$ 。注意到引理的条件，有
+
+\begin{equation*}
+\mid Q (z) \mid \leqslant \varepsilon (R),
+\end{equation*}
+
+这里当 $R \to \infty$ 时， $\varepsilon(R) \to 0$ 。记
+
+\begin{equation*}
+I \equiv \int_ {\Gamma_ {R}} e ^ {i \alpha z} Q (z) d z.
+\end{equation*}
+
+量 $I$ 可用下面的方式估计：
+
+\begin{equation*}
+\mid I \mid \leqslant \varepsilon (R) \int_ {0} ^ {\pi} e ^ {- \alpha R \sin \theta} R d \theta ,\tag{6.19}
+\end{equation*}
+
+这里
+\begin{equation*}
+e ^ {i \alpha z} = e ^ {i \alpha R \cos \theta - \alpha R \sin \theta} \quad \text {和} \quad d z = i R e ^ {i \theta} d \theta .
+\end{equation*}
+
+被积函数关于 $\theta = \frac{\pi}{2}$ 对称，所以估计式(6.19)可用另外的方式写出：
+
+\begin{equation*}
+\mid I \mid <   2 \varepsilon (R) \int_ {0} ^ {\frac {\pi}{2}} e ^ {- \alpha R \sin \theta} R d \theta .
+\end{equation*}
+
+又因为
+\begin{equation*}
+\sin \theta \geqslant \frac {2 \theta}{\pi}, \quad 0 \leqslant \theta \leqslant \frac {\pi}{2}.
+\end{equation*}
+
+故估计式最后可写成
+
+\begin{equation*}
+| I | \leqslant \frac {2 \varepsilon (R)}{2 \alpha R} \pi R [ - e ^ {- \alpha \frac {2 \theta}{\pi} R} ] \Bigg | _ {0} ^ {\frac {\pi}{2}},\tag{6.20}
+\end{equation*}
+
+因此， $\lim_{R\to \infty}|I| = 0$ 。这就是所要证明的。
+
+\textbf{例6}\quad 作为约当引理应用的例子，计算三维空间中算子 $H = -\triangle + \mu^2$ 的格林函数。换言之，计算积分
+
+\begin{equation*}
+\begin{array}{l} \langle r | H ^ {- 1} | r ^ {\prime} \rangle = \frac {1}{8 \pi^ {3}} \int \frac {e ^ {i k (r - r ^ {\prime})}}{k ^ {2} + \mu^ {2}} d ^ {3} k = \\ = \frac {2 \pi}{8 \pi^ {3}} \int_ {- 1} ^ {1} \int_ {- \infty} ^ {\infty} \frac {e ^ {i k | r - r ^ {\prime} | \cos \theta}}{k ^ {2} + \mu^ {2}} k ^ {2} d k d \cos \theta = \\ = \frac {1}{4 \pi^ {2} i} \int_ {- \infty} ^ {\infty} \frac {e ^ {i k | r - r ^ {\prime} |}}{| r - r ^ {\prime} |} \frac {k d k}{k ^ {2} + \mu^ {2}}. \end{array} \tag{6.21}
+\end{equation*}
+
+将(6.21)式与函数 $e^{iaz}Q(z)$ 相比较，不难看出
+
+\begin{equation*}
+Q (z) = \frac {k}{k ^ {2} + \mu^ {2}} \rightarrow 0 \quad (\mid k \mid \rightarrow \infty).
+\end{equation*}
+
+注意到这个事实，现在来求积分。由约当引理，
+
+\begin{equation*}
+\lim _ {R \rightarrow \infty} \int_ {\Gamma_ {R}} \frac {e ^ {i k | r - r ^ {\prime} |}}{k ^ {2} + \mu^ {2}} k d k = 0,
+\end{equation*}
+
+这里积分围道与上面(图36)一样。在点 $k = i\mu$ 处的留数等于
+
+\begin{equation*}
+\frac {e ^ {- \mu | r - r ^ {\prime} |}}{2 i \mu} \cdot \mu i.
+\end{equation*}
+
+因此
+\begin{equation*}
+\begin{array}{r l} \langle r | H ^ {- 1} | r ^ {\prime} \rangle & = \frac {1}{4 \pi^ {2} i | r - r ^ {\prime} |} \int_ {- \infty} ^ {\infty} \frac {e ^ {i k | r - r ^ {\prime} |}}{k ^ {2} + \mu^ {2}} k d k = \\ & = \frac {e ^ {- \mu | r - r ^ {\prime} |}}{4 \pi | r - r ^ {\prime} |} \end{array}\tag{6.22}
+\end{equation*}
+
+(6.22)式常称为汤川位势。
+
+\section{随机游动问题与鞍点法}
+
+随机游动问题是概率论的一个经典问题。作为例子，可考虑粒子沿着直线作一维迁移。根据条件，粒子只能位于直线上具有整数坐标的点上，而它的运动是跳跃式地从给定点移到左边或右边的相邻点。问题的目的是，计算经过某个迁移系列（同时每个迁移都由若干个向左或向右的跳跃组成）后，粒子位于直线确定点上的概率。
+
+诸如事件 $\alpha$ 的概率 $p(\alpha)$ ，概率的加法和乘法以及概率论的其他一些基本概念，都假定读者已经熟悉。现在叙述概率论的两个重要定律。
+
+1. 如果两个事件 $\alpha$ 和 $\beta$ 相互独立，则 $\alpha$ 和 $\beta$ 同时出现的概率等于
+
+\begin{equation*}
+p (\alpha \beta) = p (\alpha) p (\beta).
+\end{equation*}
+
+2. 如果事件 $\alpha$ 和 $\beta$ 不相容，则在事件 $\alpha$ 和 $\beta$ 中只要有一个发生的概率等于
+
+\begin{equation*}
+p (\alpha + \beta) = p (\alpha) + p (\beta).
+\end{equation*}
+
+知道这些法则后，我们就可着手提出并解决我们的问题。首先假定，向左或向右跳跃是等概率事件；而每一个运动(一系列跳跃)结果是独立的试验。由于一次试验结果，经 $n$ 步后落在离原点距离为 $m$ 的点 $m$ 上的概率记为 $p_m$ ，这里
+
+\begin{equation*}
+m = - n, - n + 1, - n + 2, \dots , 0, 1, 2, \dots , n.
+\end{equation*}
+
+$L$ 次试验后落在 $M$ 处的概率记为 $P_{L}(M)$ ，这里
+
+\begin{equation*}
+M = - N, - N + 1, \dots , 0, 1, 2, \dots , N \quad (N = n L).
+\end{equation*}
+
+我们必需求出量 $P_{L}(M)$ 。引进函数
+
+\begin{equation*}
+f (z) = \sum_ {m = - n} ^ {n} p _ {m} z ^ {m},
+\end{equation*}
+
+则 $P_{L}(M)$ 是展开式
+
+\begin{equation*}
+\begin{array}{r l} [ f (z) ] ^ {L} & = [ p _ {- n} z ^ {- n} + \dots + p _ {n} z ^ {n} ] ^ {L} \\ & = \sum_ {M = - n L} ^ {n L} P _ {L} (M) z ^ {M} \end{array}\tag{6.23}
+\end{equation*}
+
+中 $z^{M}$ 的系数。
+
+在和式(6.23)中， $P_{L}(M)$ 是经过$L$次独立试验后能够达到点$M$的所有可能的方法。另一方面，可写
+
+\begin{equation*}
+P _ {L} (M) = \frac {1}{2 \pi i} \oint_ {c} \frac {[ f (z) ] ^ {L}}{z ^ {M + 1}} d z,\tag{6.24}
+\end{equation*}
+
+这里 $C$ 是复平面 $z$ 上中心在坐标原点的圆 $(z = r e^{i\theta})$ 。
+
+为了得到对今后十分有用的关系式，我们暂时稍微偏离一下我们的主题。等式
+
+\begin{equation*}
+\sum_ {M = - n L} ^ {n L} P _ {L} (M) = [ f (z) ] ^ {L} \Bigg | _ {z = 1} = \sum_ {m = - n} ^ {n} p _ {m} = 1
+\end{equation*}
+
+表示这样一个事实：粒子必须经过某个地方（必然事件的概率等于1）。因而
+
+\begin{equation*}
+\sum_ {M = - n L} ^ {n L} P _ {L} (M) = 1.
+\end{equation*}
+
+用下式定义量 $\overline{M}$
+
+\begin{equation*}
+\overline {{{M}}} = \sum M P _ {L} (M) = \left[ z \frac {d}{d z} \sum P _ {L} (M) z ^ {M} \right] \Bigg | _ {z = 1},\tag{6.25}
+\end{equation*}
+
+它称为量 $M$ 的数学期望。在方括号内的式子称为对数导数，而函数 $[f(z)]^L$ 称为量 $P_L(M)$ 的生成函数。有
+
+\begin{equation*}
+\begin{array}{r l} \overline {{{M}}} & = \left[ \frac {d}{d \ln z} \sum P _ {L} (M) z ^ {M} \right] \Big | _ {z = 1} = \\ & = \frac {d}{d \ln z} [ f (z) ] ^ {L} \Big | _ {z = 1} = \left[ L f ^ {L - 1} \frac {d f}{d \ln z} \right] \Big | _ {z = 1} = \\ & = L \sum m p _ {m} = L \langle m \rangle . \end{array} \tag{6.26}
+\end{equation*}
+
+我们得到了一个重要结果： $\overline{M}$ 等于进行$L$次试验后粒子距离的平均值。
+
+使用平均记号：
+
+\begin{equation*}
+\begin{array}{r l r} {\overline {{{A}}} \equiv \sum P _ {_ {L}} (M) A,} & & {\text {对于试验组};} \\ {\langle a \rangle \equiv \sum a p _ {_ {m}},} & & {\text {对一个试验\text{。}}} \end{array}
+\end{equation*}
+
+类似于量 $\overline{M}$ ，可引进量 $\overline{M}^{2}$ ：
+
+\begin{equation*}
+\begin{array}{r l} \overline {{{M}}} ^ {2} & \equiv \sum M ^ {2} P _ {L} (M) = \left[ \left(z \frac {d}{d z}\right) ^ {2} \sum P _ {L} (M) z ^ {M} \right] \Bigg | _ {z = 1} = \\ & = \left[ L (L - 1) f ^ {L - 2} \left(\frac {d f}{d \ln z}\right) ^ {2} + L f ^ {L - 1} \frac {d ^ {2} f}{d (\ln z) ^ {2}} \right] \Bigg | _ {z = 1} = \\ & = (L ^ {2} - L) \langle m \rangle^ {2} + L \langle m ^ {2} \rangle = \\ & = (\overline {{{M}}}) ^ {2} + L [ \langle m ^ {2} \rangle - \langle m \rangle^ {2} ]. \end{array} \tag{6.27}
+\end{equation*}
+
+同样地可确定量
+
+\begin{equation*}
+(\triangle M) ^ {2} = \overline {{M}} ^ {2} - (\overline {{M}}) ^ {2} = L [ \langle m ^ {2} \rangle - \langle m \rangle^ {2} ],\tag{6.28}
+\end{equation*}
+
+它称为方差。同时 $(\triangle M)^2 > 0$ ，因为
+
+\begin{equation*}
+0 <   \overline {(M - \overline {{M}}) ^ {2}} = \overline {M^ {2}} - 2 \overline {{M}} ^ {2} + (\overline {{M}}) ^ {2}.
+\end{equation*}
+
+附注：平均值 $\overline{M}$ 和方差 $(\triangle M)^2$ 线性地依赖于 $L$ 。在这种意义上，随机游动问题与大多数统计问题不同。在这些问题中，方差是 $L$ 的二次函数。在我们的情形
+
+\begin{equation*}
+\frac {\triangle M}{M} \approx \frac {1}{\sqrt {L}} \rightarrow 0 (\text {当} L \rightarrow \infty).
+\end{equation*}
+
+到现在为止，所谈的是试验次数为有限的情形。将所得结论推广到 $L$ 趋向于无穷的情形，并找出关于量 $M$ 的渐近性质是有用的。可以设想，当 $L \to \infty$ 时，比值 $M / L$ 保持不变；换言之，
+
+\begin{equation*}
+\frac {M}{L} \equiv \mu = \text { const } \quad (- n \leqslant \mu \leqslant n).
+\end{equation*}
+
+在此条件下， $P_{L}(M)$ 可用沿着围道 $C$（图 37）的积分表示：
+
+\begin{equation*}
+P _ {L} (M) = \frac {1}{2 \pi i} \oint_ {C} e ^ {L F (z)} \frac {d z}{z},\tag{6.29}
+\end{equation*}
+
+这里
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.40\textwidth]{fig37.pdf}
+\par\vspace{2pt}
+{\small 图 37.}
+\end{figure}
+
+\begin{equation*}
+\begin{array}{l} F (z) = \ln f - \mu \ln z, \\ f (z) = \sum_ {m = - n} ^ {n} p _ {m} z ^ {m}. \end{array}
+\end{equation*}
+
+在积分时，可利用所谓鞍点法。研究在实轴上当 $z \to \infty$ 和 $|z| \equiv r \to 0$ 时，函数 $F(z)$ 的性态。显然，当 $r \to 0$ 时，函数 $F(z)$ 可表示成
+
+\begin{equation*}
+F (z) \sim - n \ln z - \mu \ln z + \ln p _ {- n},\tag{6.30}
+\end{equation*}
+
+因为当 $r$ 很小时
+
+\begin{equation*}
+f (z) \approx \frac {p _ {- n}}{r ^ {n}},
+\end{equation*}
+
+因此
+\begin{equation*}
+\lim _ {z \rightarrow 0} F (z) = \infty .
+\end{equation*}
+
+因 $n > \mu$ ，此外，当 $z \to \infty$ 时
+
+\begin{equation*}
+F (z) \sim n \ln z - \mu \ln z - \ln p _ {n},
+\end{equation*}
+
+故 $\lim_{z\to \infty}F(z) = \infty$。现在证明， $F(z)$ 在 $\pmb{x}$ 轴上（即当 $z$ 为实数时）有唯一的极小点。极小条件可写为
+
+\begin{equation*}
+\frac {d F}{d z} = \frac {1}{f} \frac {d f}{d z} - \frac {\mu}{z} = 0,\tag{6.31}
+\end{equation*}
+
+或即
+\begin{equation*}
+\begin{array}{r l} & r ^ {n} \sum_ {m = - n} ^ {n} m p _ {m} r ^ {m} = \\ & = \mu r ^ {n} \sum_ {m = - n} ^ {n} p _ {m} r ^ {m} \end{array}\tag{6.31a}
+\end{equation*}
+
+[我们在等式(6.31$a$)两边乘上 $r^{n}$ 是为了避免出现$r$的负次幂]。显然，等式(6.31$a$)左、右部分所对应的曲线图象，至少相交于一点(图38)。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.52\textwidth]{fig38.pdf}
+\par\vspace{2pt}
+{\small 图 38.}
+\end{figure}
+
+不难证实，这种点也是唯一的。为此，只需计算(6.31$a$)中左右两边函数的一阶导数，并证明它们单调增加，同时一个比另一个增加得快；而且当 $r$ 很大时，它也很大。所以在实轴上只存在一个 $r_{\min}$ ，在此点处 $F(z)$ 有极小值，满足方程
+
+\begin{equation*}
+\mu = \langle m \rangle_ {r} \equiv \frac {\sum m p _ {m} r ^ {m}}{\sum p _ {m} r ^ {m}}.\tag{6.32}
+\end{equation*}
+
+将 $F(z)$ 写成
+
+\begin{equation*}
+F (z) = \varphi (x, y) + i \psi (x, y).
+\end{equation*}
+
+在实轴上当 $z = r_{\mathrm{min}}$ 时
+
+\begin{equation*}
+\nabla \varphi = \nabla \psi = 0, \nabla^ {2} \varphi = \nabla^ {2} \psi = 0.\tag{6.33}
+\end{equation*}
+
+假定 $z = x + iy$ 。因为当 $x = r_{\mathrm{min}}$ 时
+
+\begin{equation*}
+\frac {\partial^ {2} \varphi}{\partial x ^ {2}} > 0,
+\end{equation*}
+
+故由(6.33)
+
+\begin{equation*}
+\frac {\partial^ {2} \varphi}{\partial y ^ {2}} <   0.
+\end{equation*}
+
+换言之，函数 $\varphi$ （当 $x = r_{\min}$ 时）有鞍点。假定在(6.29)中积分围道为半径为 $r = r_{\min}$ 的圆，则
+
+\begin{equation*}
+\begin{array}{r l} \frac {d ^ {2} F}{d (\ln z) ^ {2}} \Big | _ {\theta = 0} & = \left[ \frac {1}{f} \frac {d ^ {2} f}{d (\ln z) ^ {2}} - \frac {1}{f ^ {2}} \left(\frac {d f}{d \ln z}\right) ^ {2} \right] _ {\theta = 0} = \\ & = \langle m ^ {2} \rangle_ {r} - \langle m \rangle_ {r} ^ {2} = \\ & = \left[ z ^ {2} \frac {d ^ {2} F}{d z ^ {2}} + z \frac {d F}{d z} \right] _ {\theta = 0}, \end{array} \tag{6.34}
+\end{equation*}
+
+而当 $r = r_{\mathrm{min}}$ 时
+
+\begin{equation*}
+r ^ {2} \frac {\partial^ {2} \varphi}{\partial x ^ {2}} \Big | _ {r _ {\min}} = \langle m ^ {2} \rangle_ {r} - \langle m \rangle_ {r} ^ {2}.\tag{6.35}
+\end{equation*}
+
+注意到表达式 $F(z) = \varphi + i\psi$ ，将(6.29)式改写成
+
+\begin{equation*}
+P _ {L} (M) = \frac {1}{2 \pi} \int_ {- \pi} ^ {\pi} e ^ {L (\bar {\varphi} + i \psi)} d \theta .
+\end{equation*}
+
+我们知道， $P_{L}(M)$ 是实的，因此仅需在实轴上计算积分，即
+
+\begin{equation*}
+P _ {L} (M) = \frac {1}{2 \pi} \int_ {- \pi} ^ {\pi} e ^ {L \varphi} \cos L \psi d \theta .\tag{6.35a}
+\end{equation*}
+
+为了计算这个积分，考虑函数 $\varphi$ 在点 $(\theta = 0, r = r_{\min})$ 邻域内的性质。在此邻域内将函数依 $\triangle y$ 展开成幂级数
+
+\begin{equation*}
+\begin{array}{r l} \varphi (x, \triangle y) & = \varphi (x, 0) + \frac {\partial \varphi}{\partial y} \Big | _ {y = 0} \triangle y + \\ & + \frac {1}{2} \left. \frac {\partial^ {2} \varphi}{\partial y ^ {2}} \right| _ {y = 0} \triangle y ^ {2} + O (\triangle y ^ {3}). \end{array}
+\end{equation*}
+
+因为
+\begin{equation*}
+\frac {\partial \varphi}{\partial y} \Bigg | _ {r = r _ {\mathrm{min}}} = 0 \text {和} \triangle y = r _ {\mathrm{min}} \theta (\text {当} \theta \text {很小时}),
+\end{equation*}
+
+我们有
+\begin{equation*}
+\varphi = \varphi_ {0} + \frac {1}{2} \theta^ {2} r _ {\min} ^ {2} \left. \frac {\partial^ {2} \varphi}{\partial y ^ {2}} \right| _ {\theta = 0} + O (\theta^ {3}),
+\end{equation*}
+
+这里
+\begin{equation*}
+\varphi_ {0} = \varphi (r = r _ {\min}, \theta = 0).
+\end{equation*}
+
+注意到当 $r = r_{\min}$ ， $\theta = 0$ 时 $\nabla^2\varphi = 0$ ，函数 $\varphi$ 后面的那个展开式可改写成
+
+\begin{equation*}
+\varphi = \varphi_ {0} - \frac {1}{2} \theta^ {2} r _ {\min} ^ {2} \frac {\partial^ {2} \varphi}{\partial x ^ {2}} \Bigg | _ {\theta = 0} + O (\theta^ {3}).
+\end{equation*}
+
+利用关系式(6.35)，最后得
+
+\begin{equation*}
+\varphi = \varphi_ {0} - \frac {1}{2} \triangle_ {r} ^ {2} \theta^ {2} + O (\theta^ {3}),\tag{6.36}
+\end{equation*}
+
+这里
+\begin{equation*}
+\triangle_ {r} ^ {2} = \left\langle m ^ {2} \right\rangle_ {r} - \left\langle m \right\rangle_ {r} ^ {2}.\tag{6.36a}
+\end{equation*}
+
+一般地
+\begin{equation*}
+\varphi = \ln | f | - \mu \ln r.
+\end{equation*}
+
+对函数 $|f|$ 可用如下方法进行估计：
+
+\begin{equation*}
+\begin{array}{r l} | f | & \leqslant \left| \sum p _ {m} r ^ {m} e ^ {i m \theta} \right| \leqslant \sum p _ {m} r ^ {m} = \\ & = f (r) <   f (r = r _ {\min}; \theta = 0). \end{array}
+\end{equation*}
+
+这样一来， $\varphi(r) < \varphi(r = r_{\min})$ ，换言之， $\varphi(r_{\min})$ 是函数 $\varphi(r)$ 在围道 $C$ 上的绝对最大值。当角 $\theta$ 增加时，函数 $\varphi(r)$ 趋向于零，而且从图39上所看到的，是足够快的。
+
+当参数 $L$ 增大时，函数 $e^{L\bar{\varphi}}\cos L\psi$ 的减小速度随着 $\theta$ 的增加而增加。因此，当 $L$ 很大时，可将(6.35$a$)式中的积分区间从 $\pi$ 扩大到 $\infty$ ，这样做不会产生显著的误差，而积分却可直接算出。注意到
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.62\textwidth]{fig39.pdf}
+\par\vspace{2pt}
+{\small 图 39.}
+\end{figure}
+
+\begin{equation*}
+e ^ {L \bar {\varphi}} \cos L \psi \approx e ^ {L \bar {\varphi} _ {0} - \frac {\Delta_ {r} ^ {2}}{2} L \theta^ {2}},\tag{6.37}
+\end{equation*}
+
+有
+\begin{equation*}
+\begin{array}{r l} P _ {L} (M) & \approx \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} e ^ {L \bar {\varphi} _ {0} - \frac {\Delta_ {r} ^ {2}}{2} L \theta^ {2}} d \theta = \\ & = \frac {e ^ {L \bar {\varphi} _ {0}}}{2 \pi} \sqrt {\frac {2 \pi}{L \triangle_ {r} ^ {2}}} \end{array}\tag{6.38}
+\end{equation*}
+
+换句话说，(6.38)式是 $P_{L}(M)$ 当 $L \to \infty$ 时的渐近式。
+
+但我们还是带进了误差：首先是忽略了 $\mathsf{O}(\theta^3)$ 项，其次是改变了积分限。今估计误差的阶。为此，将 $\varphi(x, y)$ 表示成
+
+\begin{equation*}
+\varphi = \varphi_ {0} - \frac {\triangle^ {2} \theta^ {2}}{2} + \alpha \theta^ {3} + \beta \theta^ {4}.\tag{6.39}
+\end{equation*}
+
+当 $\theta$ 小的情形下，利用展开式
+
+\begin{equation*}
+e ^ {x} = 1 + x + \frac {x ^ {2}}{2 !} + \dots ,
+\end{equation*}
+
+得
+\begin{equation*}
+e ^ {L \bar {\varphi}} = e ^ {L \bar {\varphi} _ {0} - (L / 2) \triangle_ {r} ^ {2} \theta^ {2}} (1 + L \alpha \theta^ {3} + L \beta \theta^ {4}).\tag{6.40}
+\end{equation*}
+
+$\theta^3$ 项作为奇函数，积分等于零。而 $\theta^4$ 项具有阶 $O(1 / L^2)$ 。由此推出，略去 $\theta^4$ 项后有误差 $O(1 / L)$ ，改变积分限误差的阶等于 $O(e^{-L})$ 。这样一来，我们所讲的和的误差的阶为 $O(1 / L)$ ，即
+
+\begin{equation*}
+P _ {L} (M) \approx \frac {e ^ {L \varphi_ {0}}}{\sqrt {2 \pi L \triangle_ {r} ^ {2}}} \left[ 1 + O \left(\frac {1}{L}\right) \right].\tag{6.41}
+\end{equation*}
+
+研究这个式子。在 $\theta$ 小的情形下
+
+\begin{equation*}
+\varphi_ {0} = \ln f (r) - \mu \ln r.\tag{6.41a}
+\end{equation*}
+
+将 $P_{L}(M)$ 看作 $\mu$ 的函数而求它的最大值，我们有
+
+\begin{equation*}
+\frac {d P _ {L} (M)}{d \mu} = \frac {L e ^ {L \varphi_ {0}}}{\sqrt {2 \pi \triangle_ {r} ^ {2}}} \left[ \frac {\partial \varphi_ {0}}{\partial r} \frac {\partial r}{\partial \mu} + \frac {\partial \varphi_ {0}}{\partial \mu} \right].\tag{6.42}
+\end{equation*}
+
+因
+\begin{equation*}
+\frac {\partial \varphi_ {0}}{\partial r} = 0,
+\end{equation*}
+
+又由(6.41$a$)我们有
+
+\begin{equation*}
+\frac {\partial \varphi_ {0}}{\partial \mu} = - \frac {d \varphi_ {0}}{d \mu} = - \ln r.
+\end{equation*}
+
+所以当 $r = 1$ 时
+
+\begin{equation*}
+\frac {\partial P _ {L} (\mu)}{\partial \mu} = 0.
+\end{equation*}
+
+再注意到(6.32)，就可以说 $P_{L}(M)$ 在点 $\mu = \langle m\rangle$ 处有极大值。计算 $\varphi_0$ 的二阶导数，有
+
+\begin{equation*}
+\left. \frac {\partial^ {2} \varphi_ {0}}{\partial \mu^ {2}} \right| _ {r = 1} = - \frac {d}{d \mu} \ln r \Big | _ {r = 1} = - \frac {1}{r} \left. \frac {d r}{d \mu} \right| _ {r = 1}.\tag{6.43}
+\end{equation*}
+
+其次，因为 $d\varphi_0 / dr = 0$ ，我们得
+
+\begin{equation*}
+\frac {1}{f} \frac {d f}{d \ln r} - \mu = 0,
+\end{equation*}
+
+或
+\begin{equation*}
+d \mu = \left[ - \frac {1}{f ^ {2}} \left(\frac {d f}{d \ln r}\right) ^ {2} + \frac {1}{f} \cdot \frac {d ^ {2} f}{d (\ln r) ^ {2}} \right] d \ln r.
+\end{equation*}
+
+当 $r = 1$ 时，
+
+\begin{equation*}
+d \mu = [ \langle m ^ {2} \rangle - \langle m \rangle^ {2} ] d r \equiv \triangle_ {r} ^ {2} d r.\tag{6.44}
+\end{equation*}
+
+比较(6.43)和(6.44)式，最后就得结果
+
+\begin{equation*}
+\left. \frac {d ^ {2} \varphi_ {0}}{d \mu^ {2}} \right| _ {r = 1} = - \frac {1}{\triangle_ {r} ^ {2}}.\tag{6.45}
+\end{equation*}
+
+现在在点 $r = 1(\mu = \langle m\rangle)$ 的邻域内把函数 $\varphi_0$ 按 $\mu$ 的幂次展开：
+
+\begin{equation*}
+\begin{array}{r l} \varphi_ {0} (\mu) & = \varphi_ {0} \Big | _ {r = 1} + \frac {\partial \varphi}{\partial \mu} \Big | _ {r = 1} (\mu - \langle m \rangle) + \\ & + \frac {1}{2} \left(\frac {\partial^ {2} \varphi_ {0}}{\partial \mu^ {2}}\right) \Big | _ {r = 1} (\mu - \langle m \rangle) ^ {2} + \dots . \end{array}
+\end{equation*}
+
+因为
+\begin{equation*}
+\varphi_ {0} \mid_ {r = 1} = \ln \sum p _ {m} = 0
+\end{equation*}
+
+及
+\begin{equation*}
+\left. \frac {\partial \varphi_ {0}}{\partial \mu} \right| _ {r = 1} = - \ln r \Big | _ {r = 1} = 0,
+\end{equation*}
+
+得
+\begin{equation*}
+\varphi_ {0} (\mu) = \frac {1}{2} \left(\frac {\partial^ {2} \varphi}{\partial \mu^ {2}}\right) \Bigg | _ {r = 1} (\mu - \langle m \rangle) ^ {2} + O ([ \mu - \langle m \rangle ] ^ {3}),
+\end{equation*}
+
+注意到(6.45)，最后的式子可改写成
+
+\begin{equation*}
+\varphi_ {0} \simeq - \frac {1}{2 \triangle_ {r} ^ {2}} [ \mu - \langle m \rangle ] ^ {2},
+\end{equation*}
+
+因此
+\begin{equation*}
+L \varphi_ {0} \simeq - \frac {L}{2 \triangle_ {r} ^ {2}} [ \mu - \langle m \rangle ] ^ {2}.
+\end{equation*}
+
+现在借助于公式(6.25)、(6.36$a$)和(6.28)，函数 $L\varphi_{0}$ 可用 $(\triangle M)^{2}$ 表示：
+
+\begin{equation*}
+L \varphi_ {0} = - \frac {(M - \overline {{M}}) ^ {2}}{(\triangle M) ^ {2}}.\tag{6.46}
+\end{equation*}
+
+将(6.46)代入(6.38)后，最后得
+
+\begin{equation*}
+P _ {L} (M) = \frac {e ^ {- (M - \overline {{{M}}}) ^ {2} / [2 (\triangle M) ^ {2}]}}{\sqrt {2 \pi (\triangle M) ^ {2}}}.\tag{6.47}
+\end{equation*}
+
+表示在随机游动问题中概率分布规律的公式(6.47)，在任何一个问题中都可找到应用，只要这种问题是独立试验的结果，而试验次数趋向于无限。
+
+鞍点法在物理学中有着广泛的应用；例如在色散理论(大角度情形)中，以及在扩散问题中。它的其他的应用，还可举出很多。

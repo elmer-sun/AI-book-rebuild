@@ -1,0 +1,1318 @@
+\chapter{格林函数方法}
+
+\section{方程例子。格林函数的定义}
+
+在现代物理中，特别是在量子力学中，偏微分方程是基本的数学工具。在这种方程的解法中间，格林函数法占了中心的位置。
+
+先回忆若干物理现象，研究他们时必须解偏微分方程。
+
+1. 热传导。由关系式
+
+\begin{equation*}
+\pmb {Q} = - k \nabla T \quad \text {和} \quad \nabla Q = - C \frac {\partial T}{\partial t}
+\end{equation*}
+
+得出热传导方程
+
+\begin{equation*}
+\triangle T = \frac {c}{k} \frac {\partial T}{\partial t},\tag{5.1}
+\end{equation*}
+
+其中$Q$为交换热(热流)，$T$为温度，$k$为热传导系数，$c$为比热。
+
+2. 量子力学。$N$个粒子系统的演化用薛定谔(Schrodinger)方程描述：
+
+\begin{equation*}
+H \psi = - \frac {\hbar}{i} \frac {\partial \psi}{\partial t},\tag{5.2}
+\end{equation*}
+
+这里对于 $N$ 个质量为 $m$ 的粒子
+
+\begin{equation*}
+H = - \frac {\hbar^ {2}}{2 m} \sum_ {i = 1} ^ {3 N} \frac {\partial^ {2}}{\partial x _ {i} ^ {2}} + U (x _ {1}, x _ {2}, \dots , x _ {3 N}).
+\end{equation*}
+
+3. 扩散。熟知扩散方程具有
+
+\begin{equation*}
+\nabla^ {2} \psi = \frac {1}{\lambda} \frac {\partial \psi}{\partial t}\tag{5.3}
+\end{equation*}
+
+的形式，量 $\lambda$ 称为扩散系数。
+
+方程(5.1)——(5.3)可以表示成\footnote{今后空间坐标的集合用一个字母 $x=\{x_1,x_2,\cdots,x_n\}$ 来表示，体积元素为 $d\tau=dx_1dx_2\cdots dx_n$。——原注}
+
+\begin{equation*}
+H \psi (x, \beta) = - \frac {\partial \psi (x , \beta)}{\partial \beta},\tag{5.4}
+\end{equation*}
+
+这里 $H$ 为某个埃尔米特算子，且对于方程(5.1)， $\beta = \frac{k}{c} t$ ， $\psi$ 为温度；
+
+对于方程(5.2)， $\beta=\frac{\hbar i}{2m}t,\quad\psi$ 为波函数；
+
+对于方程(5.3)， $\beta=t\lambda,\quad\psi$ 为物质浓度。
+
+最后，在每一种情形，函数 $\psi$ 都必须满足某种边界条件。现着手解方程(5.4)。注意，算子 $H$ 的特征函数构成完备正交系，且应满足方程
+
+\begin{equation*}
+H \varphi_ {m} = \lambda_ {m} \varphi_ {m}.\tag{5.5}
+\end{equation*}
+
+假定方程(5.4)的解可以表示成
+
+\begin{equation*}
+\psi (x, \beta) = \sum_ {m = 0} ^ {\infty} A _ {m} (\beta) \varphi_ {m} (x).\tag{5.6}
+\end{equation*}
+
+将解的假定形式代入方程(5.4)，得
+
+\begin{equation*}
+H \psi = \sum_ {m = 0} ^ {\infty} A _ {m} (\beta) H \varphi_ {m} (x) = - \sum_ {m = 0} ^ {\infty} \varphi_ {m} (x) \frac {\partial}{\partial \beta} A _ {m} (\beta),
+\end{equation*}
+
+即
+\begin{equation*}
+\sum_ {m = 0} ^ {\infty} \left[ \lambda_ {m} A _ {m} (\beta) + \frac {\partial}{\partial \beta} A _ {m} (\beta) \right] \varphi_ {m} (x) = 0.\tag{5.7}
+\end{equation*}
+
+等式(5.7)仅当所有 $\varphi_{m}(x)$ 的系数等于零时才成立。这样一来，
+
+\begin{equation*}
+- \lambda_ {m} A _ {m} (\beta) = \frac {\partial A _ {m} (\beta)}{\partial \beta},
+\end{equation*}
+
+从而
+\begin{equation*}
+A _ {m} (\beta) = A _ {m} (0) e ^ {- \lambda_ {m} \beta},
+\end{equation*}
+
+因此
+\begin{equation*}
+\psi (x, \beta) = \sum_ {m = 0} ^ {\infty} A _ {m} (0) e ^ {- \lambda_ {m} \beta} \varphi_ {m} (x).
+\end{equation*}
+
+将级数(5.6)看成是一致收敛的，则可得
+
+\begin{equation*}
+A _ {m} (\beta) = \int \varphi_ {m} ^ {*} (x) \psi (x, \beta) d \tau ;
+\end{equation*}
+
+因此
+\begin{equation*}
+A _ {m} (0) = \int \varphi_ {m} ^ {*} (x) \psi (x, 0) d \tau .
+\end{equation*}
+
+换言之，如果给定了初始状态，则
+
+\begin{equation*}
+\psi (x, \beta) = \sum_ {m = 0} ^ {\infty} \int \psi (x ^ {\prime}, 0) \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x) e ^ {- \lambda_ {m} \beta} d \tau^ {\prime}\tag{5.8}
+\end{equation*}
+
+[这里已转到对 $x'$ 积分，故 $\varphi_{m}(x)$ 可写在积分号内]。结果(5.8)可表示成另一种形式：
+
+\begin{equation*}
+\psi (x, \beta) = \int \langle x | G (\beta) | x ^ {\prime} \rangle \psi (x ^ {\prime}, 0) d \tau^ {\prime},
+\end{equation*}
+
+这里
+\begin{equation*}
+\langle x \mid G (\beta) \mid x ^ {\prime} \rangle \equiv \sum_ {m = 0} ^ {\infty} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x) e ^ {- \lambda_ {m} \beta}.\tag{5.9}
+\end{equation*}
+
+(5.9)式就称为方程(5.4)的格林函数。
+
+狄拉克建议使用我们的记号，它的优越性在下面的叙述中可看出。
+
+附注：(5.9)式仅对方程(5.4)来说，是格林函数。一般地，对于不同的方程可得不同的格林函数。
+
+格林函数具有下列有趣的性质。
+
+1. 如果
+\begin{equation*}
+\psi (x, \beta = 0) = \delta^ {n} (x - x ^ {\prime \prime}) \equiv \prod_ {i = 1} ^ {n} \delta (x _ {i} - x _ {i} ^ {\prime \prime}),\tag{5.10}
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{r l} \psi (x, \beta) & = \int \langle x | G (\beta) | x ^ {\prime} \rangle \delta^ {n} (x ^ {\prime} - x ^ {\prime \prime}) d \tau^ {\prime} = \\ & = \langle x | G (\beta) | x ^ {\prime \prime} \rangle . \end{array}\tag{5.11}
+\end{equation*}
+
+这样一来，在(5.10)形初始条件下 $\langle x|G(\beta)|x''\rangle$ 是方程(5.4)的解。
+
+2. 如果 $\beta_{1}, \beta_{2}$ 是参数 $\beta$ 的两个数值，则
+
+\begin{equation*}
+\begin{array}{l} \int \langle x | G (\beta_ {1}) | x ^ {\prime} \rangle \langle x ^ {\prime} | G (\beta_ {2}) | x ^ {\prime \prime} \rangle d \tau^ {\prime} = \\ = \langle x | G (\beta_ {1} + \beta_ {2}) | x ^ {\prime \prime} \rangle \end{array}\tag{5.12}
+\end{equation*}
+
+证明，此式可直接由格林函数的定义推出：注意到关系式
+
+\begin{equation*}
+\int \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime}) \varphi_ {m} (x ^ {\prime}) d \tau^ {\prime} = \delta_ {m m ^ {\prime}},
+\end{equation*}
+
+则(5.12)式的左边部分有
+
+\begin{equation*}
+\begin{array}{r l} & {\int \left(\sum_ {m ^ {\prime} = 0} ^ {\infty} \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x) e ^ {- \lambda_ {m ^ {\prime}} \beta_ {1}}\right) \times} \\ & {\qquad \times \left(\sum_ {m = 0} ^ {\infty} \varphi_ {m} ^ {*} (x ^ {\prime \prime}) \varphi_ {m} (x ^ {\prime}) e ^ {- \lambda_ {m} \beta_ {2}}\right) d \tau^ {\prime} =} \\ & {= \sum_ {m = 0} ^ {\infty} \varphi_ {m} ^ {*} (x ^ {\prime \prime}) \varphi_ {m} (x) e ^ {- \lambda_ {m} (\beta_ {1} + \beta_ {2})} =} \\ & {= \langle x | G (\beta_ {1} + \beta_ {2}) | x ^ {\prime \prime} \rangle .} \end{array}
+\end{equation*}
+
+此性质有简单的物理解释。考虑在某种介质中气体的扩散。知道了开始时的浓度 $\psi(x,0)$ ，利用函数 $\langle x|G(t_{1})|x'\rangle$ 可求得任意时刻 $t=t_{1}$ 的气体浓度。然后把 $\psi(x,t_{1})$ 作为初始状态，则可求得 $\psi(x,t_{2})$ 。另一方面，由初始状态 $\psi(x,0)$ 可直接求得最终的 $\psi(x,t_{2})$ 。
+
+\textbf{3. 函数}
+
+\begin{equation*}
+\langle x \mid G ^ {+} (\beta) \mid x ^ {\prime} \rangle \equiv \langle x ^ {\prime} \mid G (\beta) \mid x \rangle^ {*}
+\end{equation*}
+
+称为与格林函数 $\langle x|G(\beta)|x'\rangle$ 埃尔米特共轭的函数。因 $\lambda_{m}$ 是实的，故由等式
+
+\begin{equation*}
+\langle x ^ {\prime} \mid G (\beta) \mid x \rangle = \sum_ {m = 0} ^ {\infty} \varphi_ {m} (x ^ {\prime}) \varphi_ {m} ^ {*} (x) e ^ {- \lambda_ {m} \beta}.
+\end{equation*}
+
+推出
+\begin{equation*}
+\langle x ^ {\prime} \mid G (\beta) \mid x \rangle^ {*} = \sum_ {m = 0} ^ {\infty} \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}) e ^ {- \lambda_ {m} \beta^ {*}}.
+\end{equation*}
+
+如果参数 $\beta$ 是虚的(例如，在薛定谔方程中)，则
+
+\begin{equation*}
+\begin{array}{l} \langle x ^ {\prime} | G (\beta) | x \rangle^ {*} = \langle x | G (- \beta) | x ^ {\prime} \rangle , \\ \langle x | G ^ {+} (\beta) | x ^ {\prime} \rangle = \langle x | G (- \beta) | x ^ {\prime} \rangle . \end{array}\tag{5.13}
+\end{equation*}
+
+4. 格林函数是正交的：
+
+\begin{equation*}
+\int \langle x | G ^ {+} (\beta) | x ^ {\prime \prime} \rangle \langle x ^ {\prime \prime} | G (\beta) | x ^ {\prime} \rangle d \tau^ {\prime \prime} = \delta^ {n} (x - x ^ {\prime}).\tag{5.14}
+\end{equation*}
+
+这里要注意到 $\beta$ 是虚的。为证明等式(5.14)，可利用性质2和3。此时(5.14)式左边部分为
+
+\begin{equation*}
+\langle x \mid G (\beta - \beta) \mid x ^ {\prime} \rangle = \langle x \mid G (0) \mid x ^ {\prime} \rangle .
+\end{equation*}
+
+由此等式及性质1，公式(5.14)的正确性是显然的。性质4类似于酉矩阵的性质 $G^{+}G = I$ 。因此，当等式(5.14)满足时，我们将称函数 $G(\beta)$ 是酉的。
+
+\section{线性算子. 线性算子性质的矩阵表示}
+
+考虑定义在容许函数系 $\varphi_{m}$ 上的线性算子, 这里 $\varphi_{m}(x)$ 是算子 $H$($H$ 是埃尔米特算子) 的特征函数:
+
+\begin{equation*}
+H \varphi_ {m} (x) = \lambda_ {m} \varphi_ {m} (x).
+\end{equation*}
+
+特征值 $\lambda_{m}$ 可以是一系列离散的值，也可以是连续的值。例如，氢原子中电子能量在正能量区域内可以有连续谱，而在负能量区域内仅有离散谱。
+
+当 $\lambda$ 通过可列集时，函数系 $\{\varphi_{m}(x)\}$ 可以看作无限维空间基矢量系：
+
+\begin{equation*}
+\varphi_ {m} (x) = \left[ \begin{array}{c} {{0}} \\ {{\vdots}} \\ {{0}} \\ {{1}} \\ {{0}} \\ {{\vdots}} \\ {{0}} \\ {{\vdots}} \end{array} \right] \text {第} m \text {个元素\text{。}}\tag{5.15}
+\end{equation*}
+
+如果基元素数目为有限，则 $A\varphi_{m}(x)$ 可表示成有限个基矢量的线性组合的形式：
+
+\begin{equation*}
+A \varphi_ {m} (x) = \sum_ {m ^ {\prime} = 0} ^ {n} A _ {m ^ {\prime}, m} \varphi_ {m ^ {\prime}} (x),
+\end{equation*}
+
+这里
+\begin{equation*}
+A _ {m ^ {\prime} m} = \int \varphi_ {m ^ {\prime}} ^ {*} (x) A \varphi_ {m} (x) d \tau .
+\end{equation*}
+
+转到无限维情形，引进下面的定义。
+
+量 $A_{m', m}$ 称为算子 $A$ 的矩阵元素。于是线性算子 $A$ 可表示为矩阵形式：
+
+\begin{equation*}
+A \varphi_ {m} (x) = \sum_ {m ^ {\prime} = 0} ^ {\infty} A _ {m ^ {\prime}, m} \varphi_ {m ^ {\prime}} (x).
+\end{equation*}
+
+显然，如果知道了算子 $A$ 在基矢量上的值，则此算子便完全确定了。
+
+在研究算子的性质时，矩阵解释便显示出它的优越性了。
+
+1. 两个算子 $A$ 和 $B$ 乘积的矩阵元素是
+
+\begin{equation*}
+(A B) _ {m ^ {\prime} m} = \sum_ {m ^ {\prime \prime} = 0} ^ {\infty} A _ {m ^ {\prime} m ^ {\prime \prime}} B _ {m ^ {\prime \prime} m}
+\end{equation*}
+
+事实上由定义
+
+\begin{equation*}
+(A B) _ {m ^ {\prime} m} = \int \varphi_ {m ^ {\prime}} ^ {*} (x) A B \varphi_ {m} (x) d \tau ,
+\end{equation*}
+
+但
+\begin{equation*}
+B \varphi_ {m} (x) = \sum_ {m ^ {\prime \prime} = 0} ^ {\infty} B _ {m ^ {\prime \prime}, m} \varphi_ {m ^ {\prime \prime}} (x),
+\end{equation*}
+
+所以
+\begin{equation*}
+\begin{array}{r l} (A B) _ {m ^ {\prime}, m} & = \sum_ {m ^ {\prime \prime} = 0} ^ {\infty} \int [ \varphi_ {m ^ {\prime}} ^ {*} (x) A \varphi_ {m ^ {\prime \prime}} (x) d \tau ] B _ {m ^ {\prime \prime} m} = \\ & = \sum_ {m ^ {\prime \prime} = 0} ^ {\infty} A _ {m ^ {\prime}, m ^ {\prime \prime}} B _ {m ^ {\prime \prime} m}. \end{array}
+\end{equation*}
+
+2. 算子 $A$ 的共轭算子 $A^{+}$ 的矩阵元素
+
+\begin{equation*}
+\left(A ^ {+}\right) _ {m m ^ {\prime}} = A _ {m ^ {\prime} m} ^ {*}
+\end{equation*}
+
+如果 $A$ 是埃尔米特算子，则
+
+\begin{equation*}
+\left(A ^ {+}\right) _ {m m ^ {\prime}} = A _ {m m ^ {\prime}}.
+\end{equation*}
+
+事实上，
+\begin{equation*}
+\begin{array}{r l} (A ^ {+}) _ {m m ^ {\prime}} & = \left[ \int \varphi_ {m ^ {\prime}} ^ {*} (x) A \varphi_ {m} (x) d \tau \right] ^ {*} = \\ & = \int \varphi_ {m} ^ {*} (x) A \varphi_ {m ^ {\prime}} (x) d \tau = A _ {m m ^ {\prime}}. \end{array}
+\end{equation*}
+
+3. 如果算子 $A$ 的矩阵元素满足等式
+
+\begin{equation*}
+\sum_ {m ^ {\prime \prime} = 0} ^ {\infty} A _ {m m ^ {\prime \prime}} (A ^ {+}) _ {m ^ {\prime \prime} m ^ {\prime}} = \delta_ {m m ^ {\prime}},
+\end{equation*}
+
+则它就称为酉的。
+
+现将线性算子的性质推广到 $\lambda$ 是连续值的情形。现在 $\varphi_{m}(x)$ 不能看成是(5.15)型矢量，因 $\lambda$ 的值构成不可列集。因此，不应单从字面上去理解。我们将采用狄拉克建议的符号。
+
+1. 引进记号
+
+\begin{equation*}
+\langle x \mid A \mid x ^ {\prime} \rangle \equiv \sum_ {m ^ {\prime}, m} A _ {m ^ {\prime}, m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x).\tag{5.16}
+\end{equation*}
+
+对于埃尔米特算子，(5.16)可简写为
+
+\begin{equation*}
+\langle x \mid H \mid x ^ {\prime} \rangle = \sum_ {m ^ {\prime}, m} [ \lambda_ {m} \delta_ {m m ^ {\prime}} ] \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x),
+\end{equation*}
+
+或
+\begin{equation*}
+\langle x \mid H \mid x ^ {\prime} \rangle = \sum_ {m} \lambda_ {m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x).
+\end{equation*}
+
+2. 关系式
+
+\begin{equation*}
+\int f ^ {*} (x) A g (x) d \tau = \int f ^ {*} (x) \langle x | A | x ^ {\prime} \rangle g (x ^ {\prime}) d \tau d \tau^ {\prime}\tag{5.17}
+\end{equation*}
+
+成立。
+
+证明，由展开式
+
+\begin{equation*}
+f (x) = \sum_ {m ^ {\prime}} f _ {m ^ {\prime}} \varphi_ {m ^ {\prime}} (x), g (x) = \sum_ {m} g _ {m} \varphi_ {m} (x),
+\end{equation*}
+
+关系式(5.17)左边部分可写成
+
+\begin{equation*}
+\begin{array}{r l} \int f ^ {*} (x) A g (x) d \tau & = \sum_ {m, m ^ {\prime}} f _ {m ^ {\prime}} ^ {*} g _ {m} \int \varphi_ {m ^ {\prime}} ^ {*} (x) A \varphi_ {m} (x) d \tau = \\ & = \sum_ {m ^ {\prime}, m} f _ {m ^ {\prime}} ^ {*} g _ {m} A _ {m ^ {\prime}, m}, \end{array}
+\end{equation*}
+
+而右边部分可按下面的方式变换：
+
+\begin{equation*}
+\begin{array}{l} \int f ^ {*} (x) \langle x | A | x ^ {\prime} \rangle g (x ^ {\prime}) d \tau d \tau^ {\prime} = \\ = \int f ^ {*} (x) \sum_ {m m ^ {\prime}} A _ {m ^ {\prime} m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x) g (x ^ {\prime}) d \tau d \tau^ {\prime}. \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+\int f ^ {*} (x) \langle x | A | x ^ {\prime} \rangle g (x ^ {\prime}) d \tau d \tau^ {\prime} = \sum_ {m, m ^ {\prime}} A _ {m ^ {\prime} m} f _ {m ^ {\prime}} ^ {*} g _ {m}.
+\end{equation*}
+
+这就是所要证明的。
+
+3. 和离散情形相仿，我们有关系式
+
+\begin{equation*}
+\langle x \mid A B \mid x ^ {\prime} \rangle = \int \langle x \mid A \mid x ^ {\prime \prime} \rangle \langle x ^ {\prime \prime} \mid B \mid x ^ {\prime} \rangle d \tau^ {\prime \prime}.\tag{5.18}
+\end{equation*}
+
+证明，由定义，右边部分等于
+
+\begin{equation*}
+\begin{array}{l} \langle x | A B | x ^ {\prime} \rangle = \sum_ {m, m ^ {\prime}} (A B) _ {m m ^ {\prime}} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x) = \\ = \sum_ {m, m ^ {\prime}, m ^ {\prime \prime}} A _ {m ^ {\prime}, m ^ {\prime \prime}} B _ {m ^ {\prime \prime} m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x). \end{array}
+\end{equation*}
+
+利用函数 $\varphi_{m}(x)$ 的性质对右边部分作变换：
+
+\begin{equation*}
+\begin{array}{l} \int \langle x | A | x ^ {\prime \prime} \rangle \langle x ^ {\prime \prime} | B | x ^ {\prime} \rangle d \tau^ {\prime \prime} = \\ = \int_ {m ^ {\prime}, m ^ {\prime \prime}} \sum_ {m ^ {\prime}, m ^ {\prime \prime}} A _ {m ^ {\prime}, m ^ {\prime \prime}} \varphi_ {m ^ {\prime \prime}} ^ {*} (x ^ {\prime \prime}) \varphi_ {m ^ {\prime}} (x) \sum_ {l, m} B _ {l, m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {l} (x ^ {\prime \prime}) d \tau^ {\prime \prime} = \\ = \sum_ {m, m ^ {\prime}, m ^ {\prime \prime}} A _ {m ^ {\prime}, m ^ {\prime \prime}} B _ {m ^ {\prime \prime} m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x). \end{array}
+\end{equation*}
+
+于是(5.18)式显然成立。
+
+考虑一些重要的算子。
+
+\textbf{例1}\quad 单位算子 $I$ ，对于它
+
+\begin{equation*}
+(I) _ {m ^ {\prime} m} = \delta_ {m ^ {\prime} m}.
+\end{equation*}
+
+因为
+\begin{equation*}
+\begin{array}{r l} (I) _ {m ^ {\prime} m} & = \int \varphi_ {m ^ {\prime}} ^ {*} (x) I \varphi_ {m} (x) d \tau = \\ & = \int \varphi_ {m ^ {\prime}} ^ {*} (x) \varphi_ {m} (x) d \tau , \end{array}
+\end{equation*}
+
+所以
+\begin{equation*}
+\langle x \mid I \mid x ^ {\prime} \rangle = \sum_ {m, m ^ {\prime}} \delta_ {m ^ {\prime}, m} \varphi_ {m ^ {\prime}} (x) \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime}).
+\end{equation*}
+
+回忆起
+\begin{equation*}
+\langle x \mid G (\beta) \mid x ^ {\prime} \rangle = \sum_ {m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x) e ^ {- \lambda_ {m} \beta},
+\end{equation*}
+
+就得
+\begin{equation*}
+\langle x \mid I \mid x ^ {\prime} \rangle = \langle x \mid G (0) \mid x ^ {\prime} \rangle = \delta^ {n} (x - x ^ {\prime}),
+\end{equation*}
+
+这里 $\delta^{n}(x-x')$ 为 $n$ 维狄拉克 $\delta-$ 函数。
+
+\textbf{例2}\quad 算子 $V(x)$ (是 $x$ 的函数)。在这种情形
+
+\begin{equation*}
+\langle x \mid V (x) \mid x ^ {\prime} \rangle = \sum_ {m ^ {\prime}, m} [ V (x) ] _ {m ^ {\prime}, m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x).
+\end{equation*}
+
+但算子 $V(x)$ 的矩阵元素等于
+
+\begin{equation*}
+[ V (x) ] _ {m ^ {\prime} m} = \int \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime \prime}) V (x ^ {\prime \prime}) \varphi_ {m} (x ^ {\prime \prime}) d \tau^ {\prime \prime},
+\end{equation*}
+
+因此
+\begin{equation*}
+\begin{array}{l} \langle x | V (x) | x ^ {\prime} \rangle = \\ = \sum_ {m, m ^ {\prime}} \int \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime \prime}) V (x ^ {\prime \prime}) \varphi_ {m} (x ^ {\prime \prime}) \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x) d \tau^ {\prime \prime}. \end{array}
+\end{equation*}
+
+考虑到关系式
+
+\begin{equation*}
+\sum_ {m ^ {\prime}} \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime \prime}) \varphi_ {m ^ {\prime}} (x) = \delta^ {n} (x - x ^ {\prime \prime}),
+\end{equation*}
+
+\begin{equation*}
+\sum_ {m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x ^ {\prime \prime}) = \delta^ {n} (x ^ {\prime} - x ^ {\prime \prime}),
+\end{equation*}
+
+这个等式就可以改写成下面的样子：
+
+\begin{equation*}
+\langle x \mid V (x) \mid x ^ {\prime} \rangle = \int V (x ^ {\prime \prime}) \delta^ {n} (x ^ {\prime \prime} - x) \delta^ {n} (x ^ {\prime} - x ^ {\prime \prime}) d \tau^ {\prime \prime}
+\end{equation*}
+
+或
+\begin{equation*}
+\langle x \mid V (x) \mid x ^ {\prime} \rangle = V (x) \delta^ {n} (x - x ^ {\prime}).
+\end{equation*}
+
+\textbf{例3}\quad 现转到研究函数
+
+\begin{equation*}
+G (\beta) = e ^ {- \beta H}
+\end{equation*}
+
+的性质。首先注意，容易证明关系式
+
+\begin{equation*}
+(H) ^ {\alpha} \varphi_ {m} (x) = (\lambda_ {m}) ^ {\alpha} \varphi_ {m} (x),
+\end{equation*}
+
+其中 $\varphi_{m}(x)$ 是算子 $H$ 的特征函数。等式
+
+\begin{equation*}
+e ^ {- \beta H} \varphi_ {m} (x) = e ^ {- \lambda_ {m} \beta} \varphi_ {m} (x)
+\end{equation*}
+
+对我们也是有用的。它的证明，可将算子 $e^{-\beta H}$ 按 $\beta H$ 的幂展开而得到。实际上，量 $e^{-\beta H}$ 仅在展开为幂级数时才有算子意义。用这种方法就得
+
+\begin{equation*}
+\begin{array}{r l} \langle x | e ^ {- \beta H} | x ^ {\prime} \rangle & = \sum_ {m, m ^ {\prime}} (e ^ {- \beta H}) _ {m ^ {\prime}, m} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x) = \\ & = \sum_ {m ^ {\prime}, m} e ^ {- \lambda_ {m} \beta} \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m ^ {\prime}} (x), \end{array}
+\end{equation*}
+
+最后将有
+\begin{equation*}
+\langle x \mid G (\beta) \mid x ^ {\prime} \rangle = \langle x \mid e ^ {- \beta H} \mid x ^ {\prime} \rangle ,\tag{5.18a}
+\end{equation*}
+
+这里 $H$ 是埃尔米特算子， $G(\beta) = e^{-\beta H}$ 是抽象算子形式的格林函数，利用量子力学的术语，可称 $e^{-\beta H}$ 是算子 $G(\beta)$ 在特征表象中所具有的那种形式。这样一来，特征表象是具有那种基的矢量空间，在此基中 $G(\beta)$ 具有 $e^{-\beta H}$ 的形式。
+
+为了求得在所谓“$x$—表象”中算子 $G(\beta)$ 的形式，就必须计算 $\langle x|G(\beta)|x'\rangle$ ；如果再要求得它在《$P$-表象》中的形式，就需计算 $\langle P|G(\beta)|P'\rangle$ 。算子 $G(\beta)$ （和其他线性算子一样）的写法，随着所选择的表象不同而不同。
+
+表象的概念有助于深入研究线性算子本身的性质。注意，在新的记号中，共轭算子可用等式
+
+\begin{equation*}
+\langle x ^ {\prime} \mid A ^ {+} \mid x \rangle \equiv \langle x \mid A \mid x ^ {\prime} \rangle^ {*}
+\end{equation*}
+
+引进。于是对于埃尔米特算子$H$
+
+\begin{equation*}
+\langle x \mid A ^ {+} \mid x ^ {\prime} \rangle = \langle x \mid A \mid x ^ {\prime} \rangle .
+\end{equation*}
+
+如果
+\begin{equation*}
+\int \langle x | A ^ {+} | x ^ {\prime \prime} \rangle \langle x ^ {\prime \prime} | A | x ^ {\prime} \rangle d \tau^ {\prime \prime} = \delta^ {n} (x - x ^ {\prime}),
+\end{equation*}
+
+则称算子 $A$ 为酉的。显然，对于虚数 $\beta$ ，算子 $G(\beta) = e^{-\beta H}$ 为酉算子：
+
+\begin{equation*}
+G (\beta) \cdot G ^ {+} (\beta) = I.
+\end{equation*}
+
+恢复到狄拉克记号。为了简化论述，回到 $n$ 维空间。选取基矢量系 $e_{1}, e_{2}, \cdots, e_{n}$ ，且将任一函数（“矢量”） $\varphi$ 按此系展开：
+
+\begin{equation*}
+\varphi = \sum_ {i = 1} ^ {n} \varphi_ {i} e _ {i} = \left[ \begin{array}{c} \varphi_ {1} \\ \varphi_ {2} \\ \vdots \\ \varphi_ {n} \end{array} \right].
+\end{equation*}
+
+在希尔伯特空间中，选取算子 $H$ 的特征函数 $\varphi_{1}(x)$ ， $\varphi_{2}(x),\cdots,\varphi_{m}(x),\cdots$ 作为基矢量系。熟知，它构成完备系。
+
+将函数 $\psi(x)$ 按基函数 $\varphi_{n}(x)$ 展开：
+
+\begin{equation*}
+\psi (x) = \sum_ {m = 0} ^ {\infty} \psi_ {m} \varphi_ {m} (x).
+\end{equation*}
+
+这样一来就可以认为，定理4.3（完备性定理）建立了希尔伯特空间和无限维序列空间之间的一一对应关系。同时每一个 $\varphi_{m}(x)$ 对应了唯一的矢量 $|\lambda_{m}\rangle$ ，它称为ket-矢量\footnote{ket- 和下面的 brac- 出自英文单词 bracket(括号)。——译注}。对于另外的埃尔米特算子，因此也是对另一函数系 $\{\psi_m(x)\}$ ，就得另外的ket-矢量系 $|\mu_m\rangle$ 。 $\psi_{m}(x)$ 按原来的函数系展开：
+
+\begin{equation*}
+\psi_ {m} (x) = \sum_ {m ^ {\prime}} \psi_ {m ^ {\prime}, m} \varphi_ {m ^ {\prime}} (x) = \sum_ {m ^ {\prime}} \left\langle \lambda_ {m ^ {\prime}} \mid \mu_ {m} \right\rangle \varphi_ {m ^ {\prime}} (x).
+\end{equation*}
+
+记号 $\langle\lambda_{m}|\mu_{m}\rangle$ 表示数量积。注意，它由 ket- 矢量和所谓
+
+brac-矢量作出。上面的定义启示我们引进
+
+\begin{equation*}
+\langle \lambda_ {m ^ {\prime}} | \mu_ {m} \rangle \equiv \int \varphi_ {m ^ {\prime}} ^ {*} (x) \psi_ {m} (x) d \tau .
+\end{equation*}
+
+很自然地设 $\langle \lambda_{m'}| \equiv |\lambda_{m'}\rangle^{+}$ 。这样一来
+
+\begin{equation*}
+\left| \mu_ {m} \right\rangle = \sum_ {m ^ {\prime}} \left\langle \lambda_ {m ^ {\prime}} \mid \mu_ {m} \right\rangle \left| \lambda_ {m ^ {\prime}} \right\rangle ,
+\end{equation*}
+
+\begin{equation*}
+\left| \lambda_ {m} \right\rangle = \sum_ {m ^ {\prime}} \left\langle \mu_ {m ^ {\prime}} \mid \lambda_ {m} \right\rangle \left| \mu_ {m ^ {\prime}} \right\rangle .
+\end{equation*}
+
+记号 $\langle \mu_{m ^ {\prime}} |\lambda_{m}\rangle$ 是表示式 $\langle \mu_{m ^ {\prime}} |I|\lambda_{m}\rangle$ 的简化。因此
+
+\begin{equation*}
+\langle \lambda_ {m ^ {\prime}} | \lambda_ {m} \rangle = \delta_ {m m ^ {\prime}}.
+\end{equation*}
+
+不难建立下面关于 brac-和 ket-矢量的性质：
+
+1)
+\begin{equation*}
+\left| \mu_ {m} \right\rangle = \sum_ {m ^ {\prime}} \left\langle \lambda_ {m ^ {\prime}} \mid \lambda_ {m} \right\rangle \left| \mu_ {m} \right\rangle = \sum_ {m ^ {\prime}} \left\langle \lambda_ {m ^ {\prime}} \mid \mu_ {m} \right\rangle \left| \lambda_ {m ^ {\prime}} \right\rangle ,
+\end{equation*}
+
+2)
+\begin{equation*}
+\begin{array}{r l} \langle \lambda_ {m ^ {\prime}} | \mu_ {m} \rangle & = \sum_ {m ^ {\prime}} \langle \lambda_ {m ^ {\prime}} | \lambda_ {m} \rangle \langle \lambda_ {m ^ {\prime}} | \mu_ {m} \rangle = \\ & = \sum_ {m ^ {\prime}} \langle \lambda_ {m ^ {\prime}} | \mu_ {m} \rangle \langle \lambda_ {m ^ {\prime}} | \lambda_ {m ^ {\prime}} \rangle , \end{array}
+\end{equation*}
+
+3) $\langle \lambda_{m'}|\mu_m\rangle = \langle \mu_m|\lambda_{m'}\rangle^*$ ;
+
+4) $\sum_{m'}\langle \lambda_m|\mu_m' \rangle \langle \mu_{m'}|\lambda_{m''}\rangle = \delta_{mm''}$ (酉性质);
+
+\begin{equation*}
+\begin{array}{r l} \langle \mu_ {m} | & = \sum_ {m ^ {\prime}} \langle \mu_ {m} | \lambda_ {m ^ {\prime}} \rangle \langle \lambda_ {m ^ {\prime}} | = \\ & = \sum_ {m ^ {\prime}} \langle \lambda_ {m ^ {\prime}} | \mu_ {m} \rangle^ {*} \langle \lambda_ {m ^ {\prime}} |. \end{array}
+\end{equation*}
+
+考虑作用在 ket-矢量和 brac-矢量上的算子 $A$。显然，这个运算给出了新的 ket-矢量 $A \mid \lambda_{m}$ 和新的 brac-矢量 $\langle \mu_{1} \mid A$ 。这样一来，
+
+\begin{equation*}
+A \left| \lambda_ {m} \right\rangle = \sum_ {m ^ {\prime}} \left\langle \lambda_ {m ^ {\prime}} \mid A \mid \lambda_ {m} \right\rangle \left| \lambda_ {m ^ {\prime}} \right\rangle ,
+\end{equation*}
+
+这里和前面一样，
+
+\begin{equation*}
+\langle \lambda_ {m ^ {\prime}} | A | \lambda_ {m} \rangle = A _ {m ^ {\prime}, m} = \int \varphi_ {m ^ {\prime}} ^ {*} (x) A \varphi_ {m} (x) d \tau .\tag{5.19}
+\end{equation*}
+
+类似地
+\begin{equation*}
+\langle \mu_ {l ^ {\prime}} | A = \sum_ {m ^ {\prime}} \langle \mu_ {l ^ {\prime}} | \lambda_ {m ^ {\prime}} \rangle \langle \lambda_ {m ^ {\prime}} | A.
+\end{equation*}
+
+由性质1-5可直接推出
+
+\begin{equation*}
+\langle \mu_ {l ^ {\prime}} | A | \mu_ {l} \rangle = \sum_ {m, m ^ {\prime}} \langle \mu_ {l ^ {\prime}} | \lambda_ {m ^ {\prime}} \rangle \langle \lambda_ {m ^ {\prime}} | A | \lambda_ {m} \rangle \langle \lambda_ {m} | \mu_ {l} \rangle .\tag{5.20}
+\end{equation*}
+
+表达式(5.19)和(5.20)分别是在 $\varphi$ 和 $\psi$ 表象中算子 $A$ 的矩阵元素。
+
+这节的最后正好讨论到表象概念。 $|x\rangle$ 将看作是希尔伯特空间中的基矢量。此时 $\langle x|\lambda_{m}\rangle=\varphi_{m}(x)$ 和 $\langle\lambda_{m}|x\rangle=\varphi_{m}^{*}(x)$ 。几何上 $\varphi_{m}(x)$ 是矢量 $\lambda_{m}$ 在 $x$ 上的投影。因此很自然地说，数量积 $\langle x|\lambda_{m}\rangle$ 规定了算子表象由矢量系 $|\lambda_{m}\rangle$ 构成的基到以矢量 $x$ 为基矢量 ($x$ 空间) 的基的变换。
+
+通过直接代换就得：
+
+\begin{equation*}
+\begin{array}{r l} \langle x ^ {\prime} | A | x \rangle & = \sum_ {m, m ^ {\prime}} A _ {m ^ {\prime}, m} \varphi_ {m ^ {\prime}} ^ {*} (x ^ {\prime}) \varphi_ {m} (x) = \\ & = \sum_ {m, m ^ {\prime}} \langle \lambda_ {m ^ {\prime}} | A | \lambda_ {m} \rangle \langle x | \lambda_ {m} \rangle \langle \lambda_ {m ^ {\prime}} | x ^ {\prime} \rangle = \\ & = \sum_ {l, l ^ {\prime}} \langle \mu_ {l ^ {\prime}} | A | \mu_ {l} \rangle \langle \mu_ {l ^ {\prime}} | x ^ {\prime} \rangle \langle x | \mu_ {l} \rangle . \end{array}
+\end{equation*}
+
+因而 $\langle x' | A | x \rangle$ 的定义不依赖于标准正交矢量系的选择。
+
+\section{扩散方程的格林函数}
+
+在 §1 中，我们引进了偏微分方程在物理学中应用的例子，并给出了格林函数的定义。注意，格林函数的具体形式将随着方程类型的不同而变化。现在的问题是要对一些基本方程构造格林函数。特别地，在这一节中我们将把注意力集中于扩散方程。
+
+考虑一维扩散方程
+
+\begin{equation*}
+- \frac {\partial^ {2} \psi}{\partial x ^ {2}} = - \frac {\partial \psi}{\partial \beta} \quad (- \infty <   x <   \infty),
+\end{equation*}
+
+这里 $\beta$ 取正实值 $0 < \beta < \infty$ 。假定函数 $\psi$ 满足周期性边界条件。（我们先在实轴上的有限区间上求出解，并设 $\psi(0) = \psi(L)$ ，然后命 $L \to \infty$ 。）
+
+在有限区间上,方程可用分离变量法解之。和通常一样,将 $\psi(x,\beta)$ 表示成乘积
+
+\begin{equation*}
+\psi (x, \beta) = \varphi (x) \mu (\beta).
+\end{equation*}
+
+将这种形式的 $\psi (x,\beta)$ 代入到原来的方程中去，就得
+
+\begin{equation*}
+\varphi^ {\prime \prime} (x) = - k ^ {2} \varphi (x);
+\end{equation*}
+
+此方程的解为
+
+\begin{equation*}
+\varphi (x) = \frac {1}{\sqrt {L}} e ^ {i k x}, k = \frac {2 \pi}{L} m (m = 0, \pm 1, \pm 2, \dots)
+\end{equation*}
+
+(常数 $m$ 的出现，是由于周期性边界条件的结果。) 函数 $\mu(\beta)$ 满足方程
+
+\begin{equation*}
+- \frac {\partial \mu}{\partial \beta} = k ^ {2} \mu ,
+\end{equation*}
+
+它的解为
+\begin{equation*}
+\mu (\beta) = e ^ {- \lambda^ {2} \beta}.
+\end{equation*}
+
+最后函数 $\psi (x,\beta)$ 可写成
+
+\begin{equation*}
+\psi (x, \beta) = \frac {1}{\sqrt {L}} e ^ {i k x - k ^ {2} \beta}.
+\end{equation*}
+
+显然，所给问题的格林函数将是下面的式子：
+
+\begin{equation*}
+\begin{array}{r l} \langle x | G (\beta) | x _ {0} \rangle & = \sum_ {m} \varphi_ {m} ^ {*} (x _ {0}) \varphi_ {m} (x) e ^ {- k ^ {2} \beta} = \\ & = \sum_ {m} \frac {1}{L} e ^ {i k (x - x _ {0}) - k ^ {2} \beta}. \end{array}\tag{5.21}
+\end{equation*}
+
+我们希望获得当 $L \to \infty$ 时格林函数的渐近式。现在利用类似于构造富里埃积分的一种方法：我们构造和
+
+\begin{equation*}
+\sum_ {m} \frac {\Delta m}{L} e ^ {i k (x - x _ {0}) - k ^ {2} \beta} = \sum_ {m} \frac {\Delta m}{L} F (k) \quad (\Delta m = 1),
+\end{equation*}
+
+由前面推出， $\Delta m=(L/2\pi)\Delta k$ ，因此当 $L\to\infty$ 时， $\Delta k\to0$ ，但总有 $L\Delta k=2\pi$ 。于是
+
+\begin{equation*}
+\begin{array}{r l}\lim _ {L \rightarrow \infty} \sum_ {m} \frac {1}{L} F (k)&= \lim _ {\Delta k \rightarrow 0} \sum_ {k} \frac {\Delta k}{2 \pi} F (k) =\\&= \int_ {- \infty} ^ {+ \infty} \frac {1}{2 \pi} F (k) d k.\end{array}
+\end{equation*}
+
+现在由(5.21)推出，函数
+
+\begin{equation*}
+\langle x \mid G (\beta) \mid x _ {0} \rangle = \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} e ^ {i k (x - x _ {0}) - k ^ {2} \beta} d k\tag{5.22}
+\end{equation*}
+
+将是扩散方程的格林函数。将(5.22)中的幂指数改写成
+
+\begin{equation*}
+i k (x - x _ {0}) - k ^ {2} \beta = - \beta \left[ k - \frac {i (x - x _ {0})}{2 \beta} \right] ^ {2} - \frac {(x - x _ {0}) ^ {2}}{4 \beta},
+\end{equation*}
+
+记
+\begin{equation*}
+z \equiv k - \frac {i (x - x _ {0})}{2 \beta}, \quad \delta \equiv \frac {x - x _ {0}}{2 \beta},
+\end{equation*}
+
+则(5.22)的格林函数为
+
+\begin{equation*}
+\langle x \mid G (\beta) \mid x _ {0} \rangle = \frac {1}{2 \pi} e ^ {- \beta \delta^ {2}} \int_ {- \infty - i \delta} ^ {\infty - i \delta} e ^ {- \beta z ^ {2}} d z.\tag{5.23}
+\end{equation*}
+
+(5.23)中的积分取在复平面上，它的计算需用复变函数论的方法(第六章)。积分围道如图24所示。因在此围道所包围的区域内，没有被积函数的极点，故
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.62\textwidth]{fig24.pdf}
+\par\vspace{2pt}
+{\small 图 24.}
+\end{figure}
+
+\begin{equation*}
+\int e ^ {- \beta z ^ {2}} d z = 0.
+\end{equation*}
+
+此外，在围道上
+
+\begin{equation*}
+\left| e ^ {- \beta x ^ {2}} \right| = \left| e ^ {- \beta (x ^ {2} - y ^ {2})} \right| \left| e ^ {2 i \beta x y} \right| = e ^ {- \beta x ^ {2}} e ^ {\beta y ^ {2}}.
+\end{equation*}
+
+这样一来，当 $y < \infty$ ， $x \to \infty$ 时，被积式趋向于零，因而复平面内的围道积分就归结为沿着实轴的积分。故
+
+\begin{equation*}
+\int_ {- \infty - i \delta} ^ {+ \infty - i \delta} e ^ {- \beta z ^ {2}} d z = \int_ {- \infty} ^ {\infty} e ^ {- \beta x ^ {2}} d x = \sqrt {\frac {\pi}{\beta}}.
+\end{equation*}
+
+换言之，扩散气体的密度分布函数为
+
+\begin{equation*}
+\langle x \mid G (\beta) \mid x _ {0} \rangle = \frac {1}{2 \sqrt {\pi \beta}} e ^ {- \frac {(x - x _ {0}) ^ {2}}{4 \beta}}.
+\end{equation*}
+
+在图 25 上给出了此函数的图象。扩散过程是这样的：曲线的伸出部分渐渐减少，曲线逐渐平坦。这点与在介质中扩散的微粒的分布密度的变化有关。曲线下面的面积不变且与时间(参数 $\beta$ )无关：
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.60\textwidth]{fig25.pdf}
+\par\vspace{2pt}
+{\small 图 25.}
+\end{figure}
+\begin{equation*}
+\int_{-\infty}^{\infty} \langle x|G(\beta)|x_0\rangle \, d(x-x_0) = \frac{1}{2\sqrt{\pi\beta}} \int_{-\infty}^{\infty} e^{-\frac{(x-x_0)^2}{4\beta}} \, dx = 1.
+\end{equation*}
+
+当 $t = 0$ 时有
+
+\begin{equation*}
+\int \langle x | G (0) | x _ {0} \rangle d (x - x _ {0}) = 1,
+\end{equation*}
+
+因此有
+\begin{equation*}
+\langle x \mid G (0) \mid x _ {0} \rangle = \delta (x - x _ {0}).
+\end{equation*}
+
+在三维情形，问题的解法是类似的，如果注意到关系式
+
+\begin{equation*}
+\frac {1}{\Omega} \sum_ {m _ {1}; m _ {2}; m _ {3}} \Delta^ {3} k F (k) \rightarrow \frac {1}{(2 \pi) ^ {3}} \int_ {s} F (k) d ^ {3} k
+\end{equation*}
+
+的话。
+
+\section{波动方程的格林函数}
+
+波动方程可写为
+
+\begin{equation*}
+\nabla^ {2} \psi = \frac {1}{c ^ {2}} \ddot {\psi} \quad \text {或} \quad H \psi = - \ddot {\psi} (H \equiv - \nabla^ {2}).\tag{5.24}
+\end{equation*}
+
+此方程描述了波传播的一般情形，但象冲击波那样有强间断现象者除外。为了求得方程(5.24)的格林函数，可将它的解 $\psi(x, t)$ 按算子 $H = -\nabla^2$ 的特征函数展开成级数（此展开式的系数依赖于 $t$ ）：
+
+\begin{equation*}
+\psi (x, t) = \sum_ {m} A _ {m} (t) \varphi_ {m} (x), \quad H \varphi_ {m} = \lambda_ {m} \varphi_ {m}.\tag{5.25}
+\end{equation*}
+
+将展开式(5.25)代入方程(5.24)得
+
+\begin{equation*}
+H \psi + \ddot {\psi} = \sum_ {m} (A _ {m} \lambda_ {m} + \ddot {A} _ {m}) \varphi_ {m} (x) = 0.\tag{5.26}
+\end{equation*}
+
+所以有
+\begin{equation*}
+\lambda_ {m} A _ {m} (t) + \ddot {A} _ {m} (t) = 0.\tag{5.27}
+\end{equation*}
+
+(5.27)的通解为
+
+\begin{equation*}
+A _ {m} (t) = a _ {m} e ^ {i \sqrt {\lambda_ {m}} t} + b _ {m} e ^ {- i \sqrt {\lambda_ {m}} t}.\tag{5.28}
+\end{equation*}
+
+显然最后的式子在 $\lambda_{m} > 0$ 时描述振动过程，而在 $\lambda_{m} < 0$ 时描述指数衰退。换言之，(5.24)的求解精确到系数 $a_{m}$ 和 $b_{m}$ 为止，系数 $a_{m}$ 和 $b_{m}$ 可用 $t = 0$ 时的初始条件，即函数 $\psi(x,0)$ 和 $\dot {\psi} (x,0)$ 来表示。在 $t = 0$ 时，由(5.25)和(5.28)得
+
+\begin{equation*}
+\psi (x, 0) = \sum_ {m} \left(a _ {m} + b _ {m}\right) \varphi_ {m} (x),
+\end{equation*}
+
+\begin{equation*}
+\dot {\psi} (x, 0) = \sum_ {m} i \sqrt {\lambda_ {m}} (a _ {m} - b _ {m}) \varphi_ {m} (x),
+\end{equation*}
+
+由此确定系数 $a_{m}$ 和 $b_{m}$ :
+
+\begin{equation*}
+a _ {m} + b _ {m} = \int \varphi_ {m} ^ {*} (x) \psi (x, 0) d \tau ,
+\end{equation*}
+
+\begin{equation*}
+a _ {m} - b _ {m} = \int \frac {1}{i \sqrt {\lambda_ {m}}} \varphi_ {m} ^ {*} (x) \dot {\psi} (x, 0) d \tau ,
+\end{equation*}
+
+或
+\begin{equation*}
+a _ {m} = \frac {1}{2} \left[ \int \varphi_ {m} ^ {*} (x) \psi (x, 0) d \tau + \frac {1}{i \sqrt {\lambda_ {m}}} \int \varphi_ {m} ^ {*} (x) \dot {\psi} (x, 0) d \tau \right],
+\end{equation*}
+
+\begin{equation*}
+b _ {m} = \frac {1}{2} \left[ \int \varphi_ {m} ^ {*} (x) \psi (x, 0) d \tau - \frac {1}{i \sqrt {\lambda_ {m}}} \int \varphi_ {m} ^ {*} (x) \dot {\psi} (x, 0) d \tau \right].
+\end{equation*}
+
+因方程的解用两个始值函数 $\psi(x,0)$ 和 $\dot {\psi} (x,0)$ 确定，故可对它们中的每一个构造格林函数。换言之，函数 $\psi(x,t)$ 可用下式表示：
+
+\begin{equation*}
+\psi (x, t) = \int \left\{\langle x | G _ {1} (t) | x ^ {\prime} \rangle \psi (x ^ {\prime}, 0) + \right.   \left. + \langle x | G _ {2} (t) | x ^ {\prime} \rangle \dot {\psi} (x ^ {\prime}, 0) \right\} d \tau^ {\prime}.
+\end{equation*}
+
+将 $a_{m}$ 和 $b_{m}$ 的表示式代入(5.28)，然后得到在(5.25)中关于 $A_{m}$ 的表达式，最后有
+
+\begin{equation*}
+\begin{array}{r l} \psi (x, t) & = \int \sum_ {m} \cos \sqrt {\lambda_ {m}} t \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}) \psi (x ^ {\prime}, 0) d \tau^ {\prime} + \\ & + \int \sum_ {m} \frac {\sin \sqrt {\lambda_ {m}} t}{\sqrt {\lambda_ {m}}} \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}) \dot {\psi} (x ^ {\prime}, 0) d \tau^ {\prime} \end{array}\tag{5.29}
+\end{equation*}
+
+或
+\begin{equation*}
+\langle x \mid G _ {1} (t) \mid x ^ {\prime} \rangle = \sum_ {m} \cos \sqrt {\lambda_ {m}} t \varphi_ {m} ^ {*} (x ^ {\prime}) \varphi_ {m} (x),\tag{5.30a}
+\end{equation*}
+
+\begin{equation*}
+\langle x \mid G _ {2} (t) \mid x ^ {\prime} \rangle = \sum_ {m} \frac {\sin \sqrt {\lambda_ {m}} t}{\sqrt {\lambda_ {m}}} \varphi_ {m} ^ {*} \left(x ^ {\prime}\right) \varphi_ {m} (x).\tag{5.30b}
+\end{equation*}
+
+(5.30$a$)和(5.30$b$)可直接写成算子的表达式：
+
+\begin{equation*}
+G _ {1} (t) = \cos \sqrt {H} t,
+\end{equation*}
+
+\begin{equation*}
+G _ {2} (t) = \frac {\sin \sqrt {H} t}{\sqrt {H}}.
+\end{equation*}
+
+由此直接推出
+
+\begin{equation*}
+\left(H + \frac {\partial^ {2}}{\partial t ^ {2}}\right) G _ {\alpha} = 0, \quad (\alpha = 1, 2).\tag{5.31}
+\end{equation*}
+
+这样一来， $G_{\alpha}(\alpha = 1,2)$ 满足波动方程和关系式
+
+\begin{equation*}
+G _ {1} (t) = \dot {G} _ {2} (t)
+\end{equation*}
+
+(同时当 $t$=0 时， $G_{2}=0$ 和 $G_{1}=1$ )。因此
+
+\begin{equation*}
+\langle x \mid G _ {1} (0) \mid x ^ {\prime} \rangle = \delta^ {n} (x - x ^ {\prime}).
+\end{equation*}
+
+现在来说明解 $\psi(x, t)$ 是怎样依赖初始条件的。为此，必须利用泛函变分和泛函导数的概念。当 $x, t$ 固定时，函数 $\psi(x, t)$ 是 $\psi(x, 0)$ 和 $\dot{\psi}(x, 0)$ 的泛函数，所以
+
+\begin{equation*}
+\delta \psi (x, t) | _ {\dot {\psi} (x, 0)} = \int \langle x | G _ {1} (t) | x ^ {\prime \prime} \rangle \delta \psi (x ^ {\prime \prime}, 0) d \tau^ {\prime \prime}.
+\end{equation*}
+
+这里下标 $\dot{\psi}(x,0)$ 表示 $\dot{\psi}(x,0)$ 在变形时保持不变。设
+
+\begin{equation*}
+\delta \psi (x ^ {\prime \prime}, 0) = \varepsilon \delta_ {D} (x ^ {\prime \prime} - x ^ {\prime}).
+\end{equation*}
+
+此式的初等积分给出
+
+\begin{equation*}
+\left. \frac {\delta \psi (x , t)}{\delta \psi (x ^ {\prime} , 0)} \right| _ {\dot {\psi}} = \langle x | G _ {1} (t) | x ^ {\prime} \rangle ,\tag{5.32}
+\end{equation*}
+
+类似地
+\begin{equation*}
+\left. \frac {\delta \psi (x , t)}{\delta \dot {\psi} \left(x ^ {\prime} , 0\right)} \right| _ {\psi} = \langle x | G _ {2} (t) | x ^ {\prime} \rangle .\tag{5.33}
+\end{equation*}
+
+(5.32)和(5.33)表明,初始条件对方程的解有着怎样的影响。
+
+现在转而研究在充满均匀介质的无限区域内波的传播。此过程的方程可用下面的方式描述：
+
+\begin{equation*}
+\nabla^ {2} \psi - \frac {1}{c ^ {2}} \ddot {\psi} = 0, \quad \psi \equiv \psi (\boldsymbol {r}, t).
+\end{equation*}
+
+和前面一样，先解空间的有限区域(边长为 $L$ 的立方体)内的问题。由周期性条件推出
+
+\begin{equation*}
+\begin{array}{r l} \lambda_ {m} & = c ^ {2} k ^ {2}, k _ {x} = \frac {2 \pi}{L} m _ {x}, k _ {y} = \frac {2 \pi}{L} m _ {y}, \\ & k _ {z} = \frac {2 \pi}{L} m _ {z}, \\ | k | & = \frac {2 \pi}{L} \sqrt {m _ {x} ^ {2} + m _ {y} ^ {2} + m _ {z} ^ {2}}. \end{array}
+\end{equation*}
+
+而算子 $\nabla^2$ 的特征函数是
+
+\begin{equation*}
+\varphi_ {m} (x) = \frac {1}{\sqrt {\Omega}} e ^ {i \boldsymbol {k} \cdot \boldsymbol {r}},
+\end{equation*}
+
+这里常数 $\Omega$ 为标准化而引进。
+
+相当于(5.30$b$)得
+
+\begin{equation*}
+\langle \boldsymbol {r} \mid G _ {2} (t) \mid \boldsymbol {r} ^ {\prime} \rangle = \sum_ {m _ {x} m _ {y} m _ {z}} \frac {1}{\Omega} \frac {\sin c k t}{c k} e ^ {i \boldsymbol {k} \cdot (\boldsymbol {r} - \boldsymbol {r} ^ {\prime})},\tag{5.34}
+\end{equation*}
+
+在 $L \to \infty$ 的极限过程中，级数(5.34)转变为积分
+
+\begin{equation*}
+\langle \boldsymbol {r} \mid G _ {2} (t) \mid \boldsymbol {r} ^ {\prime} \rangle = \frac {1}{(2 \pi) ^ {3}} \int_ {- \infty} ^ {\infty} \frac {\sin c k t}{c k} e ^ {i k \cdot (\boldsymbol {r} - \boldsymbol {r} ^ {\prime})} d ^ {3} k,\tag{5.35}
+\end{equation*}
+
+这就是三维波动方程的格林函数。计算积分(5.35)时，可沿着矢量 $\rho = r - r'$ ，并过渡到球坐标。体积元素等于 $d^{3}k = k^{2}\sin\theta dkd\theta d\varphi$ 。作相应的变化后，(5.35)可写成
+
+\begin{equation*}
+\begin{array}{r l} \langle \boldsymbol {r} | G _ {2} (t) | \boldsymbol {r} ^ {\prime} \rangle & = \frac {1}{(2 \pi) ^ {3}} \int_ {0} ^ {2 \pi} d \varphi \int_ {0} ^ {\pi} d \theta \int_ {0} ^ {\infty} d k \times \\ & \quad \times e ^ {i k \rho \cos \theta} \frac {e ^ {i k c t} - e ^ {- i k c t}}{2 i k c} k ^ {2} \sin \theta , \end{array}
+\end{equation*}
+
+这里 $\theta$ 是矢量 $k$ 和 $\rho$ 的夹角。对角坐标积分，可直接算出
+
+\begin{equation*}
+\left(\frac {1}{2 \pi}\right) ^ {3} \int_ {0} ^ {2 \pi} d \varphi \int_ {0} ^ {\pi} d \theta \sin \theta e ^ {i k \rho \cos \theta} = \frac {1}{4 \pi^ {2}} \frac {e ^ {i k \rho} - e ^ {- i k \rho}}{i k \rho}.
+\end{equation*}
+
+因而
+\begin{equation*}
+\langle \boldsymbol {r} \mid G _ {2} (t) \mid \boldsymbol {r} ^ {\prime} \rangle = - \frac {1}{8 \pi^ {2} c \rho} \int_ {- \infty} ^ {\infty} [ e ^ {i k (\rho + c t)} - e ^ {i k (\rho - c t)} ] d k.
+\end{equation*}
+
+注意到等式
+\begin{equation*}
+\frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} e ^ {i k x} d k = \delta (x),
+\end{equation*}
+
+最后就得
+\begin{equation*}
+\begin{array}{r l} & \langle \boldsymbol {r} | G _ {2} (t) | \boldsymbol {r} ^ {\prime} \rangle = \frac {1}{4 \pi c \rho} \left\{\delta (\rho - c t) - \delta (\rho + c t) \right\} \\ & = \frac {1}{4 \pi c | \boldsymbol {r} - \boldsymbol {r} ^ {\prime} |} \left\{\delta (| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} | - c t) - \delta (| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} | + c t) \right\} \end{array}
+\end{equation*}
+
+或
+\begin{equation*}
+\langle \boldsymbol {r} | G _ {2} (t) | \boldsymbol {r} ^ {\prime} \rangle = \frac {1}{c} D (\left| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} \right|, t),\tag{5.36}
+\end{equation*}
+
+这里
+\begin{equation*}
+D (| \textbf {r} - \textbf {r} ^ {\prime} |, t) = \left\{ \begin{array}{l l} \frac {1}{4 \pi} & \frac {\delta (| \textbf {r} - \textbf {r} ^ {\prime} | - c t)}{| \textbf {r} - \textbf {r} ^ {\prime} |} \\ \frac {1}{4 \pi} & \frac {\delta (| \textbf {r} - \textbf {r} ^ {\prime} | + c t)}{| \textbf {r} - \textbf {r} ^ {\prime} |} \end{array} \right. \quad \text {当} t > 0 \text {时},
+\end{equation*}
+
+这是因为
+\begin{equation*}
+\begin{array}{r l r} {\delta (\mid \textbf {r} - \textbf {r} ^ {\prime} \mid + c t) = 0} & {} & {\text {当} t > 0 \text {时},} \\ {\delta (\mid \textbf {r} - \textbf {r} ^ {\prime} \mid - c t) = 0} & {} & {\text {当} t <   0 \text {时}.} \end{array}
+\end{equation*}
+
+\section{泊松方程}
+
+在本节中我们研究泊松方程
+
+\begin{equation*}
+- \triangle \psi = J,\tag{5.37}
+\end{equation*}
+
+其中 $J$ 为给定的坐标函数。
+
+对于给定边界条件的拉普拉斯算子$\triangle$的特征函数和特征值 $\lambda_{m}$ ，假定为已知。我们需区别两种可能性：
+
+1）零是拉普拉斯算子的特征值。即存在那样的非零函数 $\varphi_0$ ，使得 $\triangle \varphi_0 = 0$ ；
+
+2）零不是拉普拉斯算子的特征值。
+
+1. 假定满足方程 $-\triangle\varphi=0$ 的非零函数不存在。利用逆算子 $H^{-1}(H\equiv-\triangle)$ ，写出方程(5.37)解的符号记法
+
+\begin{equation*}
+\psi = H ^ {- 1} J.
+\end{equation*}
+
+表达式 $H^{-1}$ 是抽象形式的格林函数。这样，我们可给出表示式
+
+\begin{equation*}
+\langle x \mid G \mid x ^ {\prime} \rangle = \sum_ {m} \frac {1}{\lambda_ {m}} \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}),
+\end{equation*}
+
+因 $\lambda_{m} \neq 0$ ，故它是有意义的。在这种情形，可对任一函数 $J$ ，立刻求出方程的解：
+
+\begin{equation*}
+\psi (x) = \int \langle x | G | x ^ {\prime} \rangle J (x ^ {\prime}) d \tau^ {\prime}.
+\end{equation*}
+
+因
+\begin{equation*}
+\triangle (\langle x | G | x ^ {\prime} \rangle) = - \sum_ {m} \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}) = - \delta^ {n} (x - x ^ {\prime}),
+\end{equation*}
+
+所以 $\psi(x)$ 满足方程(5.37)。在算子记号下，此等价于等式 $- \triangle G = J$ 。此外，我们有关系式
+
+\begin{equation*}
+\frac {\delta \psi (x)}{\delta J \left(x ^ {\prime}\right)} = \langle x | G | x ^ {\prime} \rangle ,
+\end{equation*}
+
+它指明了方程的右边部分和它的解之间的关系。
+
+2. 假定存在一个函数 $\varphi_0(x)$ ，使得
+
+\begin{equation*}
+- \triangle \varphi_ {0} = 0.
+\end{equation*}
+
+此时算子 $H^{-1}$ 并不是到处有定义。将函数 $J(x)$ 和 $\psi (x)$ 按特征函数展开：
+
+\begin{equation*}
+J (x) = \sum_ {m} A _ {m} \varphi_ {m} (x), \psi (x) = \sum_ {m} B _ {m} \varphi_ {m} (x).\tag{5.38}
+\end{equation*}
+
+根据方程 $J = H \psi$ ，从展开式(5.38)可推出
+
+\begin{equation*}
+A _ {n} = \lambda_ {n} B _ {n}.
+\end{equation*}
+
+如果(对应于 $\lambda=0$ 的)系数 $A_{0}$ 不为零，则 $B_{0}$ 变为无穷；因而解 $\psi(x)$ 无限制地增加。但类似的情况没有物理意义。这样一来，系数 $A_0$ 必须假定等于零。换言之，假定 $J(x)$ 正交于函数 $\varphi_0(x)$ 。置
+
+\begin{equation*}
+\langle x \mid G \mid x ^ {\prime} \rangle \equiv \sum_ {\lambda_ {m} \neq 0} \frac {1}{\lambda_ {m}} \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}),
+\end{equation*}
+
+则解 $\psi (x)$ 为
+
+\begin{equation*}
+\psi (x) = \int \langle x | G | x ^ {\prime} \rangle J (x ^ {\prime}) d \tau^ {\prime} + \alpha \varphi_ {0} (x),\tag{5.39}
+\end{equation*}
+
+这里 $\alpha$ 为任意常数。将(5.39)式代入泊松方程(5.37)，则可知它确是满足的。注意，在存在若干个对应于零特征值的函数时，可得类似的结果：
+
+\begin{equation*}
+\psi (x) = \int \langle x | G | x ^ {\prime} \rangle J (x ^ {\prime}) d \tau^ {\prime} + \sum_ {i} \alpha_ {i} \varphi_ {i 0} (x).
+\end{equation*}
+
+\textbf{例 4}\quad 空间问题的泊松方程。在这种情形 $H = -\triangle$ 。和前面一样，先对有有限容积(边长为 $L$ 的立方体)的问题构造格林函数。且如果 $\lambda_{m} \neq 0$ ，则在 $L \to \infty$ 时实现极限过渡。设 $\lambda_{m} = k_{m}^{2}$ ，这里 $k_{m} = (2\pi / L) \cdot m$ ，此时我们可得
+
+\begin{equation*}
+\begin{array}{r l}\langle \boldsymbol {r} | G | \boldsymbol {r} ^ {\prime} \rangle&= \lim _ {\Omega \rightarrow \infty} \sum_ {m} \frac {1}{\Omega} \frac {e ^ {i k \cdot r} e ^ {- i k \cdot r ^ {\prime}}}{\lambda_ {m}} =\\&= \frac {1}{8 \pi^ {3}} \int \frac {e ^ {i k | r - r ^ {\prime} |}}{k ^ {2}} d ^ {3} k =\\&= \frac {1}{2 \pi^ {2} | r - r ^ {\prime} |} \int_ {0} ^ {\infty} \frac {\sin k | r - r ^ {\prime} |}{k} d k =\\&= \frac {1}{4 \pi} \frac {1}{| r - r ^ {\prime} |}.\end{array}
+\end{equation*}
+
+这里积分已转到球坐标。
+
+大家知道，泊松方程在静电学中经常会碰到，它的解可由下面公式给出：
+
+\begin{equation*}
+\begin{array}{r l} \psi (\boldsymbol {r}) & = \int \langle \boldsymbol {r} | G | \boldsymbol {r} ^ {\prime} \rangle J (\boldsymbol {r} ^ {\prime}) d \tau^ {\prime} \\ & = \frac {1}{4 \pi} \int \frac {J (\boldsymbol {r} ^ {\prime}) d \tau^ {\prime}}{| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} |} + \alpha \psi_ {0} (\boldsymbol {r}), \end{array}\tag{5.40}
+\end{equation*}
+
+这里 $\triangle\psi_{0}=0$ 。(5.40) 式确定了电荷分布密度为 $J(\boldsymbol{r})$ 的静电场位势 $\psi(\boldsymbol{r}^{\prime})$ 。
+
+\section{非齐次波动方程}
+
+现在回到波动方程的解，不过是存在源的情形，即方程为
+
+\begin{equation*}
+H \psi (x, t) + \ddot {\psi} (x, t) = J (x, t)\tag{5.41}
+\end{equation*}
+
+的情形。当然，物理上源不是在所有时间内都存在的，而是在时间的某个瞬间 $t = t_1$ 发生。因此，应该仔细地区别对于 $t < t_1$ 和 $t > t_1$ 时间的解。因为显然这些解的物理内容是完全不同的。利用齐次波动方程格林函数可构造出某个新函数 $G_{\text{ret}}$ ，此函数可用下面的等式定义：
+
+\begin{equation*}
+G _ {\mathrm{ret}} = \left\{ \begin{array}{l l} G _ {2}, & \text {当} t > 0 \text {时,} \\ 0, & \text {当} t <   0 \text {时\text{。}} \end{array} \right.\tag{5.42}
+\end{equation*}
+
+附注：在(5.42)式中计算时间的起点与接通源的那一瞬间相合。
+
+在 $x-$ 表象中，函数 $G_{\mathrm{ret}}$ 有形式
+
+\begin{equation*}
+\langle x \mid G _ {r e t} \mid x ^ {\prime} \rangle = \left\{ \begin{array}{l l} \sum_ {m} \frac {\sin \sqrt {\lambda_ {m}} t}{\sqrt {\lambda_ {m}}} \varphi_ {m} (x) \varphi_ {m} ^ {*} (x ^ {\prime}) & \text {当} t > 0 \text {时,} \\ 0 & \text {当} t <   0 \text {时\text{。}} \end{array} \right.\tag{5.43}
+\end{equation*}
+
+由此看出，它在除 $t$ = 0 外的所有时间瞬间都满足齐次波动方程：
+
+\begin{equation*}
+\left(H + \frac {\partial^ {2}}{\partial t ^ {2}}\right) G _ {\mathrm{ret}} = \left\{ \begin{array}{l l} 0, & \text {当} t > 0 \text {时,} \\ 0, & \text {当} t <   0 \text {时\text{。}} \end{array} \right.
+\end{equation*}
+
+此函数在 $t$ = 0 时的状态暂时还不知。先将等式(5.43)对时间积分，然后过渡到当 $\varepsilon \rightarrow 0$ 时的极限。因为当 $t$ < 0 时 $\dot{G}_{\mathrm{ret}} = 0$ ，故得
+
+\begin{equation*}
+\begin{array}{r l}\lim _ {\epsilon \rightarrow 0} \int_ {- \epsilon} ^ {\epsilon} \ddot {G} _ {\text {ret}} (t) d t&= \lim _ {\epsilon \rightarrow 0} \dot {G} _ {\text {ret}} (t) \Big | _ {- \epsilon} ^ {\epsilon} =\\&= \lim _ {\epsilon \rightarrow 0} \cos \sqrt {H} t = 1.\end{array}
+\end{equation*}
+
+类似地可证
+\begin{equation*}
+\lim _ {t \rightarrow 0} \int_ {- t} ^ {t} H G _ {\text {ret}} (t) d t = 0.
+\end{equation*}
+
+最后的结果为
+
+\begin{equation*}
+\left(H + \frac {\partial^ {2}}{\partial t ^ {2}}\right) G _ {\mathrm{ret}} (t) = \left\{ \begin{array}{l l} 0, & \text {当} t > 0 \text {时}, \\ I \cdot \delta (t), & \text {当} t = 0 \text {时}, \\ 0, & \text {当} t <   0 \text {时\text{。}} \end{array} \right.
+\end{equation*}
+
+附注：将结果写成了抽象算子的形式[ $I$ 是在 $x-$ 表象中对应于算子 $\delta (x - x^{\prime})$ 的算子]。时间是外参量，因而 $\delta (t)$ 仅是从一种表象过渡到另一种表象时保持不变的因子。这样，在 $x$ -表象中
+
+\begin{equation*}
+\left(H + \frac {\partial^ {2}}{\partial t ^ {2}}\right) \langle x | G _ {r e t} (t) | x ^ {\prime} \rangle = \delta (x - x ^ {\prime}) \delta (t).
+\end{equation*}
+
+这点确实是正确的，因为
+
+\begin{equation*}
+\langle x \mid H G _ {r e t} \mid x ^ {\prime} \rangle = H _ {x} \langle x \mid G _ {r e t} (t) \mid x ^ {\prime} \rangle ,
+\end{equation*}
+
+而最后一式的正确性是容易建立的，按 $\varphi_{m}(x)$ 展开为级数，每个因子显然等于
+
+\begin{equation*}
+\langle x \mid H G _ {\mathrm{ret}} \mid x ^ {\prime} \rangle = \int \langle x \mid H \mid x ^ {\prime \prime} \rangle \langle x ^ {\prime \prime} \mid G _ {\mathrm{ret}} \mid x ^ {\prime} \rangle d \tau^ {\prime \prime}.
+\end{equation*}
+
+现在可以写出非齐次波动方程的解：
+
+\begin{equation*}
+\psi_ {r e t} (x, t) = \int \langle x | G _ {r e t} (t - t ^ {\prime}) | x ^ {\prime} \rangle J (x ^ {\prime}, t ^ {\prime}) d t ^ {\prime} d \tau^ {\prime}.
+\end{equation*}
+
+注意，方程(5.41)的通解是齐次方程的解[参见(5.29)]和非齐次方程解的和，即
+
+\begin{equation*}
+\psi (x, t) = \psi_ {\text {ret}} (x, t) + b \psi^ {\prime}.
+\end{equation*}
+
+开始研究方程(5.41)时，我们定义了函数 $G_{ret}$ ，并借助于它得到了解 $\psi_{\mathrm{ret}}(x,t)$ 。通过另一种途经，可定义另外的函数 $G_{adv}$ ：
+
+\begin{equation*}
+G _ {\mathrm{adv}} = \left\{ \begin{array}{l l} 0, & \text {当} t > 0 \text {时}, \\ - G _ {2}, & \text {当} t <   0 \text {时\text{。}} \end{array} \right.
+\end{equation*}
+
+本质上，只要重复同样的计算就可得方程(5.41)的新解 $\psi_{\mathrm{adv}}(x,t)$ 。产生了一个问题：什么时候利用这个解或另外那个解？换言之，对于时间瞬间 $t > t_1$ 和 $t < t_1$ ，函数 $J(x^{\prime},t^{\prime})$ 的无穷小变化 $\delta J(x',t')$ ，会引起函数 $\psi (x,t)$ 的怎样的摄动？或等式
+
+\begin{equation*}
+\frac {\delta \psi (x , t)}{\delta J (x ^ {\prime} , t ^ {\prime})} = G _ {r e t} \text {和} \frac {\delta \psi (x , t)}{\delta J (x ^ {\prime} , t ^ {\prime})} = G _ {a d v}
+\end{equation*}
+
+中那一个是正确的？
+
+我们证明一定理以回答这个问题。由此定理可推出，如果仅仅知道函数 $J(x,t)$ ，波动函数是不确定（未完全确定）的。
+
+\textbf{定理 5.1}\quad 如果在瞬间 $t = t_{1}$ 的初始条件
+
+\begin{equation*}
+\psi (x, t) \mid_ {t = t _ {1}} = \psi_ {1} (x) \text {和} \dot {\psi} (x, t) \mid_ {t = t _ {1}} = \dot {\psi} _ {1} (x)
+\end{equation*}
+
+以及函数 $J$ 对所有 $x, t$ 的值为已知，则方程 (5.41) 的解 $\psi(x, t)$ 可完全确定。
+
+\textbf{证明}\quad 依定义假定
+
+\begin{equation*}
+\psi_ {r e t} (x, t) \equiv \int d \tau^ {\prime} \int_ {t _ {1}} ^ {\infty} d t ^ {\prime} \langle x | G _ {r e t} (t - t ^ {\prime}) | x ^ {\prime} \rangle J (x ^ {\prime}, t ^ {\prime}),
+\end{equation*}
+
+\begin{equation*}
+\psi_ {\mathrm{adv}} (x, t) \equiv \int d \tau^ {\prime} \int_ {- \infty} ^ {t _ {1}} d t ^ {\prime} \langle x | G _ {\mathrm{adv}} (t - t ^ {\prime}) | x ^ {\prime} \rangle J (x ^ {\prime}, t ^ {\prime}).
+\end{equation*}
+
+于是
+\begin{equation*}
+\left(H + \frac {\partial^ {2}}{\partial t ^ {2}}\right) \psi_ {\mathrm{ret}} (x, t) = \left\{ \begin{array}{l l} J (x, t), & \text {当} t > t _ {1} \text {时}, \\ 0, & \text {当} t <   t _ {1} \text {时\text{。}} \end{array} \right.
+\end{equation*}
+
+因
+\begin{equation*}
+\langle x \mid G _ {r e t} (t - t _ {1}) \mid x ^ {\prime} \rangle = \left\{ \begin{array}{l l} \sum_ {m} \frac {1}{\sqrt {\lambda_ {m}}} \sin \sqrt {\lambda_ {m}} (t - t _ {1}) & \text {当} t > t _ {1} \text {时,} \\ 0 & \text {当} t <   t _ {1} \text {时\text{。}} \end{array} \right.
+\end{equation*}
+
+所以
+\begin{equation*}
+\lim _ {t \rightarrow t _ {1} + 0} \langle x | G _ {\text {ret}} (t - t _ {1}) | x ^ {\prime} \rangle = 0.
+\end{equation*}
+
+故显然，当 $t \to t_1 + 0$ 时 $\psi_{\mathrm{ret}}$ 趋向于零。考虑时间瞬间 $t_1 < t' < t$ ，导数 $\dot{\psi}(x, t)$ 等于
+
+\begin{equation*}
+\dot {\psi} _ {r e t} (x, t) = \int d \tau^ {\prime} \int_ {t _ {1}} ^ {\infty} d t ^ {\prime} \langle x | \dot {G} _ {r e t} (t - t ^ {\prime}) | x ^ {\prime} \rangle J (x ^ {\prime}, t ^ {\prime}).
+\end{equation*}
+
+积分可以从 $t_1$ 到 $t(t > t_1)$ 。考虑到等式 $\dot{G}_{\mathrm{ret}}(t - t') = \cos \sqrt{H}(t - t')$ ，就得
+
+\begin{equation*}
+\dot {\psi} _ {r e t} (x, t) = \int d \tau^ {\prime} \int_ {t _ {1}} ^ {t} d t ^ {\prime} \langle x | G _ {1} (t - t ^ {\prime}) | x ^ {\prime} \rangle J (x ^ {\prime}, t ^ {\prime}).
+\end{equation*}
+
+在 $t$ 从 $t_1$ 右边趋向于 $t_1$ 时（记作 $t \to t_1 + 0$ ），函数 $\psi_{\mathrm{ret}}(x, t)$ 趋向于零，因为 $J(x', t')$ 在点 $t = t_1$ 处连续。这样一来，在 $t > t_1$ 时
+
+1) $\psi_{\mathrm{ret}}(x,t)$ 是方程(5.41)的解；
+
+\begin{equation*}
+2) \lim _ {t \rightarrow t _ {1} + 0} \psi_ {\text {ret}} (x, t) = \lim _ {t \rightarrow t _ {1} + 0} \dot {\psi} _ {\text {ret}} (x, t) = 0;
+\end{equation*}
+
+3）初始条件在点 $t = t_{1}$ 处已给定。
+
+在 $t > t_{1}$ 时，方程(5.41)的通解可用下式表示：
+
+\begin{equation*}
+\begin{array}{r l} \psi (x, t) & = \psi_ {\text {ret}} (x, t) + \int \langle x | G _ {1} (t - t _ {1}) | x ^ {\prime} \rangle \psi_ {1} (x ^ {\prime}) d \tau^ {\prime} + \\ & + \int \langle x | G _ {2} (t - t _ {1}) | x ^ {\prime} \rangle \dot {\psi} _ {1} (x ^ {\prime}) d \tau^ {\prime}, \end{array} \tag{5.44}
+\end{equation*}
+
+并且如果 $t \to t_1 + 0$ ，则 $\psi(x, t) \to \psi_1(x)$ 和 $\dot {\psi} (x, t) \to \dot {\psi} _ {1} (x)$ ，
+
+\begin{equation*}
+\left(H + \frac {\partial^ {2}}{\partial t ^ {2}}\right) \psi (x, t) = J (x, t).
+\end{equation*}
+
+现在求时间瞬间 $t < t'$ 时方程的解，此时需考虑函数 $G_{adv}$ ，因不难证明
+
+\begin{equation*}
+\begin{array}{r l} & {\Big (H + \frac {\partial^ {2}}{\partial t ^ {2}} \Big) \psi_ {\mathrm{adv}} (x, t) = J (x, t), \text {当} t <   t _ {1} \text {时};} \\ & {\underset {t \to t _ {1} - 0} {\lim} \psi_ {\mathrm{adv}} (x, t) = 0 \text {和} \underset {t \to t _ {1} - 0} {\lim} \dot {\psi} _ {\mathrm{adv}} (x, t) = 0.} \end{array}
+\end{equation*}
+
+这样一来，方程(5.41)的通解为
+
+\begin{equation*}
+\begin{array}{r l} \psi (x, t) & = \psi_ {\mathrm{adv}} (x, t) + \int \langle x | G _ {1} (t - t _ {1}) | x ^ {\prime} \rangle \psi_ {1} (x ^ {\prime}) d \tau^ {\prime} + \\ & + \int \langle x | G _ {2} (t - t _ {1}) | x ^ {\prime} \rangle \dot {\psi} _ {1} (x ^ {\prime}) d \tau^ {\prime}. \end{array} \tag{5.45}
+\end{equation*}
+
+现解释此解的物理意义。将函数 $\psi(x, t)$ 看成函数 $J(x, t)$ 、 $\psi_1(x)$ 、 $\dot{\psi}_1(x)$ 的泛函数，并在固定 $x, t$ 时研究泛函导数
+
+\begin{equation*}
+\frac {\delta \psi (x , t)}{\delta J \left(x ^ {\prime} , t ^ {\prime}\right)} \Bigg | _ {\psi_ {1}; \dot {\psi} _ {1}},
+\end{equation*}
+
+写出的式子依赖于 $x, t$ 和 $x', t'$ 。由数学式子还不能完全得出在 $x', t'$ 瞬间的“原因” $\delta J$ 导致较后 $x, t$ 瞬间的“结果” $\delta \psi$ 。假定在直线 $t = t_1$ 上 $\dot{\psi}_1(x)$ 和 $\psi_1(x)$ 为常数（图26）。
+
+在上半平面 $(t > t_{1})$ 内
+
+$\left.\frac{\delta\psi(x,t)}{\delta J(x',t')}\right|_{\psi_{1},\tilde{\psi}_{1}}=\left\{\begin{aligned}&\langle x\mid G_{\mathrm{ret}}(t-t')\mid x'\rangle,\\ &0,\end{aligned}\right.$ 当 $t>t_{1}$ 和 $t'>t_{1}$ 时，当 $t>t_{1}$ 和 $t'<t_{1}$ 时；
+
+在下半平面 $(t < t_{1})$ 内
+
+$\left.\frac{\delta\psi(x,t)}{\delta J(x',t')}\right|_{\phi_{1},\tilde{\phi}_{1}}=\left\{\begin{aligned}&0,\\ &\langle x|G_{\mathrm{adv}}(t-t')|x'\rangle,\end{aligned}\right.$ 当 $t<t_{1}$ 和 $t'>t_{1}$ 时，当 $t<t_{1}$ 和 $t'<t_{1}$ 时。这样一来，如果 $\psi$ 在产生变化 $\delta J$ 的那个半平面内考察，则“原因” $\delta J$ 对 $\psi$ 有影响。
+
+在有些问题中，取 $t_{1} = -\infty$ 是方便的。同时总有
+
+\begin{equation*}
+\left. \frac {\delta \psi (x , t)}{\delta J \left(x ^ {\prime} , t ^ {\prime}\right)} \right| _ {\psi_ {1}, \dot {\psi} _ {1}} = \langle x | G _ {r e t} (t - t ^ {\prime}) | x ^ {\prime} \rangle .
+\end{equation*}
+
+如果 $t_1 = \infty$ ，则
+
+\begin{equation*}
+\left. \frac {\delta \psi (x , t)}{\delta J (x ^ {\prime} , t ^ {\prime})} \right| _ {\psi_ {1}; \hat {\psi} _ {1}} = \langle x | G _ {\mathrm{adv}} (t - t ^ {\prime}) | x ^ {\prime} \rangle .
+\end{equation*}
+
+应用所得结果于具体的算子 $-c^2\nabla^2$ (这里 $c$ 为光速)得
+
+\begin{equation*}
+\langle \boldsymbol {r} | G _ {2} (t) | \boldsymbol {r} ^ {\prime} \rangle = \frac {\delta (| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} | - c t) - \delta (| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} | + c t)}{4 \pi c | \boldsymbol {r} - \boldsymbol {r} ^ {\prime} |},
+\end{equation*}
+
+\begin{equation*}
+\langle \boldsymbol {r} | G _ {r e t} (t) | \boldsymbol {r} ^ {\prime} \rangle = \frac {\delta (\mid \boldsymbol {r} - \boldsymbol {r} ^ {\prime} \mid - c t)}{4 \pi c \mid \boldsymbol {r} - \boldsymbol {r} ^ {\prime} \mid},
+\end{equation*}
+
+\begin{equation*}
+\langle \boldsymbol {r} | G _ {\mathrm{adv}} (t) | \boldsymbol {r} ^ {\prime} \rangle = \frac {\delta (| \boldsymbol {r} - \boldsymbol {r} ^ {\prime} | + c t)}{4 \pi c | \boldsymbol {r} - \boldsymbol {r} ^ {\prime} |}.\tag{5.46}
+\end{equation*}
+
+同样可指出 $G_{\rm ret}$ 和 $G_{adv}$ 不等于零的区域(图27)。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.42\textwidth]{fig26.pdf}
+\par\vspace{2pt}
+{\small 图 26.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.50\textwidth]{fig27.pdf}
+\par\vspace{2pt}
+{\small 图 27.}
+\end{figure}
+
+\textbf{例 5}\quad 假定要计算匀速运动的点电荷场。那么
+
+\begin{equation*}
+\begin{array}{r l} & {\left(- \triangle + \frac {1}{c ^ {2}} \frac {\partial^ {2}}{\partial t ^ {2}}\right) \varphi (\boldsymbol {r}, t) = J (\boldsymbol {r}, t) =} \\ & {\qquad = 4 \pi e \delta^ {3} [ \boldsymbol {r} - \boldsymbol {s} (t) ],} \end{array}\tag{5.47}
+\end{equation*}
+
+这里 $s(t)$ 为在 $t$ 瞬间运动电荷离开读数时的距离。给出下面的初始条件：
+
+\begin{equation*}
+\varphi (\boldsymbol {r}, t) \mid_ {t \rightarrow - \infty} = 0, \quad \dot {\varphi} (\boldsymbol {r}, t) \mid_ {t \rightarrow - \infty} = 0.
+\end{equation*}
+
+根据(5.44)式，为了解题必须取 $G_{\mathrm{ret}}$ ，而解 $\varphi (\pmb {r},t)$ 可表示成
+
+\begin{equation*}
+\begin{array}{r l} \varphi (\boldsymbol {r}, t) & = \int_ {- \infty} ^ {\infty} d t ^ {\prime} \int d ^ {3} \boldsymbol {r} ^ {\prime} \frac {\delta [ | \boldsymbol {r} - \boldsymbol {r} ^ {\prime} | - c (t - t ^ {\prime}) ]}{4 \pi c | \boldsymbol {r} - \boldsymbol {r} ^ {\prime} |} \times \\ & \quad \times 4 \pi c ^ {2} e \delta^ {3} [ \boldsymbol {r} ^ {\prime} - \boldsymbol {s} (t ^ {\prime}) ] = \\ & = e c \int_ {- \infty} ^ {\infty} \frac {\delta [ | \boldsymbol {r} - \boldsymbol {s} (t ^ {\prime}) | - c (t - t ^ {\prime}) ]}{| \boldsymbol {r} - \boldsymbol {s} (t ^ {\prime}) |} d t ^ {\prime}. \end{array} \tag{5.48}
+\end{equation*}
+
+为了求(5.48)式的积分，我们假定
+
+\begin{equation*}
+f (t ^ {\prime}) = | r - s (t ^ {\prime}) | - c (t - t ^ {\prime}).
+\end{equation*}
+
+现在来说明三个不同瞬间 $t_1 < t_{\mathrm{ret}} < t$ 粒子的位置，这里 $t$ 是观察场的一瞬间，而且当 $t' = t$ 时， $f(t') = 0$ ； $t_1$ 是（关于 $t$ ）已发生的时间，对于它 $f(t') < 0$ 。此时必存在至少一个瞬间，使得 $f(t') = 0$ ，且 $t_1 < t' < t$ 。我们用 $t_{\mathrm{ret}}$ 记此瞬间。由量 $t_{\mathrm{ret}}$ 的定义可看出， $t_{\mathrm{ret}}$ 是已发生的那样一个瞬间，在此瞬间运动粒子放射波，同时它经过了与粒子转移到点 $r', t'$ 相同的时间间隔达到所考察的点 $r, t$ 。换句话说，成立等式
+
+\begin{equation*}
+\left| \boldsymbol {r} - \boldsymbol {s} \left(t _ {\text {ret}}\right) \right| = c \left(t - t _ {\text {ret}}\right).\tag{5.49}
+\end{equation*}
+
+因 $|\boldsymbol {v}| < c$ ，故波到达点 $s(t_{\text{ret}})$ （即仅是在 $t_{\text{ret}}$ 瞬间能碰到粒子的点）先于在那里发现粒子。因此，对 $t < t_{\text{ret}}$ ， $f(t') < 0$ 。类似的讨论可证明：当 $t > t_{\text{ret}}$ 时， $f(t') > 0$ 。
+
+因此，对一个且仅对一个瞬间 $t = t_{\mathrm{ret}}$ ， $f(t^{\prime}) = 0$ ，即值 $t_{\mathrm{ret}}$ 是唯一的。现在可积出位势 $\varphi (\pmb {r},t)$ 的式子了。先计算导数 $df / dt^{\prime}$ ：
+
+\begin{equation*}
+\begin{array}{r l} \frac {d f}{d t ^ {\prime}} & = \frac {d}{d t ^ {\prime}} [ | \boldsymbol {r} - \boldsymbol {s} (t ^ {\prime}) | - c (t - t ^ {\prime}) ] = \\ & = - \frac {\boldsymbol {r} - \boldsymbol {s} (t ^ {\prime})}{| \boldsymbol {r} - \boldsymbol {s} (t ^ {\prime}) |} \boldsymbol {v} (t ^ {\prime}) + c, \end{array}
+\end{equation*}
+
+这里定义
+\begin{equation*}
+\boldsymbol {v} \equiv \frac {d}{d t ^ {\prime}} \mathbf {s} (t ^ {\prime}).
+\end{equation*}
+
+对于位势 $\varphi(\boldsymbol{r},t)$ ，就得下面的表达式
+
+\begin{equation*}
+\begin{array}{r l} \varphi (\boldsymbol {r}, t) & = e c \int \frac {1}{| \boldsymbol {r} - \boldsymbol {s} (t ^ {\prime}) |} \cdot \frac {\delta f}{[ d f / d t ^ {\prime} ]} d t ^ {\prime} = \\ & = e c \int \frac {1}{| \boldsymbol {r} - \boldsymbol {s} (t ^ {\prime}) |} \frac {\delta [ f (t ^ {\prime}) - f (t _ {\rm ret}) ]}{[ d f / d t ^ {\prime} ]} d t ^ {\prime}, \end{array}
+\end{equation*}
+
+或即
+\begin{equation*}
+\varphi (\boldsymbol {r}, t) = \frac {e}{| \boldsymbol {r} - \mathbf {s} (t _ {\text {ret}}) |} \frac {1}{1 - \frac {[ \boldsymbol {r} - \mathbf {s} (t _ {\text {ret}}) ] \boldsymbol {v} (t _ {\text {ret}})}{c | \boldsymbol {r} - \mathbf {s} (t _ {\text {ret}}) |}}.\tag{5.50}
+\end{equation*}
+
+形如（5.50）的位势就称为李纳尔-维谢尔(Lienard-Wiechert)位势。

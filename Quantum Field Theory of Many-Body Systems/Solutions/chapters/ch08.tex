@@ -1,0 +1,45 @@
+% ch08 第8章习题解答（1 题）
+\chapter{拓扑序与量子序——超越朗道理论}
+
+\section*{问题 8.3.1}
+\begin{problem}
+考虑一个二维自旋-$1/2$ 自由电子系统。当我们改变化学势 $\mu$ 时，系统在 $\mu=\mu_c$ 处经历一次量子相变：一片费米面收缩为零而消失（图 8.6(d)）。试求转变点 $\mu_c$ 附近自旋磁化率的奇异行为。
+\end{problem}
+\solution
+按图 8.6(d) 的费米面湮没型相变（Lifshitz 相变），设消失的能带在 $\mu_c$ 附近具有二次型色散。取 $\mu_c=0$ 并把带底处的色散写为（$M$ 为正定对称矩阵）
+\begin{equation*}
+\epsilon(\pmb{k})=\pmb{k}\cdot M\cdot\pmb{k}.
+\end{equation*}
+巨系综中该能带对基态能量密度的奇异贡献为（正好是正文所给 $\rho_E\propto\mu^{(2+d)/2}\Theta(\mu)$ 在 $d=2$ 的形式）
+\begin{equation*}
+\varOmega_s(\mu)=\int\frac{\mathrm{d}^2k}{(2\pi)^2}\,\big(\epsilon_{\pmb{k}}-\mu\big)\,\Theta\big(\mu-\epsilon_{\pmb{k}}\big).
+\end{equation*}
+对角化 $M$（本征值 $m_1,m_2>0$）并作标度变换 $q_a=\sqrt{m_a}\,k_a$（$\mathrm{d}^2k=\mathrm{d}^2q/\sqrt{\det M}$，$\epsilon=q^2$）：
+\begin{equation*}
+\varOmega_s(\mu)=\frac{1}{(2\pi)^2\sqrt{\det M}}\int_0^{\sqrt{\mu}}2\pi q\,\mathrm{d}q\,\big(q^2-\mu\big)
+=\frac{1}{2\pi\sqrt{\det M}}\Big(\frac{\mu^2}{4}-\frac{\mu^2}{2}\Big)
+=-\frac{\mu^2}{8\pi\sqrt{\det M}}\,\Theta(\mu).
+\end{equation*}
+即 $\varOmega_s\propto-\,\Theta(\mu)\,\mu^{2}$，与正文 $\rho_E=c\,\mu^{(2+d)/2}\Theta(\mu)$（$d=2$）一致。
+
+自旋磁化率描写对塞曼场 $H$ 的线性响应。塞曼项 $-h\,(n_\uparrow-n_\downarrow)$（$h=g\mu_B H/2$）等价于把两个自旋组分的化学势分别移到 $\mu\pm h$，故能量密度为
+\begin{equation*}
+\rho_E(\mu,h)=\varOmega_s(\mu+h)+\varOmega_s(\mu-h)+\text{正则项}.
+\end{equation*}
+磁化强度与磁化率为（$\partial h/\partial H=g\mu_B/2$）
+\begin{equation*}
+\mathcal{M}=-\frac{\partial\rho_E}{\partial H},\qquad
+\chi_s=\frac{\partial\mathcal{M}}{\partial H}\Big|_{H=0}
+=-\Big(\frac{g\mu_B}{2}\Big)^{2}\Big[\varOmega_s''(\mu+h)+\varOmega_s''(\mu-h)\Big]_{h\to0}
+=-\Big(\frac{g\mu_B}{2}\Big)^{2}\,2\,\varOmega_s''(\mu).
+\end{equation*}
+由 $\varOmega_s''(\mu)=-\dfrac{\Theta(\mu)}{4\pi\sqrt{\det M}}$（$\mu^2\delta(\mu)=0$，无附加项）得
+\begin{equation*}
+\chi_s(\mu)=\frac{(g\mu_B)^2}{8\pi\sqrt{\det M}}\,\Theta(\mu)+\chi_{\mathrm{reg}},
+\end{equation*}
+其中 $\chi_{\mathrm{reg}}$ 来自其余能带（及该带 $\mu<0$ 侧）的非奇异贡献。恢复 $\mu_c$，并注意自旋简并度已含在两支求和中，最终结果为
+\begin{equation*}
+\boxed{\;\chi_s(\mu)=\chi_{\mathrm{reg}}+A\,\Theta(\mu-\mu_c),\qquad
+A=\frac{(g\mu_B)^2}{8\pi\sqrt{\det M}}>0\;}
+\end{equation*}
+即自旋磁化率在 $\mu_c$ 处发生有限大小的跳变（高度 $A$），而 $\mathrm{d}\chi_s/\mathrm{d}\mu\propto A\,\delta(\mu-\mu_c)$ 呈 $\delta$ 函数奇异性。物理解释：二维二次色散的单带态密度为常数 $\rho_1(E)=\Theta(E)/(4\pi\sqrt{\det M})$，泡利磁化率 $\chi_s=(g\mu_B)^2\rho_1(E_F)/2$ 正比于费米面处的态密度；当 $\mu$ 扫过带边时费米面由点突然长成有限面积，态密度由 $0$ 跳到常数，故 $\chi_s$ 跳变而不发散。这与基态能量密度的奇异形式 $\rho_E^s\propto(\mu-\mu_c)^2\Theta(\mu-\mu_c)$ 自洽：$\chi_s$ 与压缩比同为 $\varOmega_s$ 对（自旋劈裂的）化学势的二阶导，故呈跳变。作为对比，把同一计算推广到 $d$ 维二次带边可得 $\chi_s\propto\Theta(\mu-\mu_c)\,|\mu-\mu_c|^{(d-2)/2}$：一维发散、二维跳变、三维以无穷斜率趋于零——跳变正是二维 Lifshitz 相变的标志。

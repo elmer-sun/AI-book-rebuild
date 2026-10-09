@@ -1,0 +1,2295 @@
+% 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第3章 元激发
+
+\chapter{元激发}
+
+\section{元激发的概念：多体理论概述}
+
+我在这门课程第一学期中所讲的一切，都建立在一个近似之上——而事实上，我们很容易使自己相信，这个近似在多数情况下是非常粗糙的。那个近似就是：固体中的电子彼此独立地运动，也独立于重离子实（ion cores）的运动——后者我们甚至未曾讨论过。充其量，我们只不过以平均的方式计入了电子之间的相互作用——也就是说，只计到 Hartree-Fock 理论的程度——除了简略地提到 Wigner-Pines 对关联能（correlation energy）的计算之外。
+
+事实上，固体中的电子和离子确实相互作用得非常强烈，而且可以预期是一种急速涨落式的相互作用。有两个简单的例子值得注意。我们已经看到，关联能修正与碱金属的结合能（binding energy）相当，因此很难把它看作一个小效应。我们还注意到，在相当大的距离上，两个电荷之间的相互作用能必须用介电常数（dielectric constant）$\kappa$ 来折减：$\kappa:\ e^{2}/r \to e^{2}/\kappa r$。即便对绝缘体，典型固体的 $\kappa$ 值也在 3 到 20 的量级，因此相互作用由此发生的改变相当可观。
+
+这两者都是真正的多体效应，完全处在 Hartree-Fock 理论的领域之外。在这份讲义的其余部分，我要做的正是讨论这些多体效应。遗憾的是，在这一领域中，除了最高深的专著之外似乎没有一本好的书，尽管其中许多概念并不困难；最好的或许要数 Pines 的一套讲义和重印文集 (58)。其他参考文献有 Landau-Lifshitz（文献 6 的第六章），以及更高深但在高深著作中最易读的 Thouless《Quantum Mechanics of Many-Body Systems》(59)；还有 Les Houches 讲义 (80)。
+
+那么，使用简单的单电子概念，为什么竟能如此经常地给我们带来定性上、有时甚至是半定量上正确的结论呢？这个问题实际上有不少答案，而在接下来的几讲中，我们将主要关心的只是其中之一。不过，在这里把其中几个列举出来或许是有益的：（1）变分定理（variational theorem），（2）不相容原理（exclusion principle），（3）屏蔽（screening），（4）元激发（elementary excitations）的概念。
+
+\subsection{变分定理}
+
+第一个是变分定理，它几乎不言自明——但它只适用于基态能量。这就是说，虽然 Hartree-Fock 波函数对一个包含许多电子和离子的系统来说，并不是其真实波函数的一个十分准确的近似（对大系统而言，两者之间几乎没有任何交叠），但它的能量作为一个近似却远没有那么糟糕。
+
+\subsection{不相容原理}
+
+在电子系统的 Hartree-Fock 理论中，不相容原理在削减多体效应方面起着非常重要的作用。这一效应虽然许多年前就已在自由电子气体中得到认识，但把它明确地指出并加以形式化的，主要是 Weisskopf (61)，其后是处理核子情形的 Brueckner；而有限电子系统中的类似效应，则由 MacWeeny (62) 作了特别的强调。
+
+在 2-A1 节中，我们曾把一个多电子系统的 Hartree-Fock 波函数写成如下形式：
+\begin{equation*}
+\Psi_{\mathrm{HF}}=\prod_{\substack{\text{occ. states}\\ n,\ \sigma}}^{N}c^{\dagger}_{n\sigma}\ \Psi_{\mathrm{vac}}
+\end{equation*}
+其中 $c^{\dagger}_{n\sigma}$ 在一组正交轨道 $\phi_{n\sigma}$ 上产生电子；这组轨道是该问题最好的单电子轨道，其含义是：我们消除了所有那种只使单个电子独自从一个占据态 $\phi_{n\sigma}$ 激发到一个未占据态 $\phi_{M\sigma}$（$M>N$）去的矩阵元。正如我们解释过的，这就是方程
+$[\mathcal{H},\ c^{\dagger}_{n\sigma}]=E_{n}\,c^{\dagger}_{n\sigma}+\text{truly off-diagonal terms}$
+的含义。
+
+于是，能够发生的任何微扰都必须同时把两个电子从占据态 $n$、$n'$ 送到未占据态 $m$、$m'$ 中去；相应的矩阵元是
+\begin{align*}
+&\left(\,mm'\,\middle|\,e^{2}/r_{12}\,\middle|\,nn'\,\right)\\
+&\qquad=\int dr_{1}\int dr_{2}\ \frac{2}{|r_{1}-r_{2}|}\ \phi^{*}_{m}(r_{1})\ \phi^{*}_{m'}(r_{2})\ \phi_{n}(r_{1})\ \phi_{n'}(r_{2})
+\end{align*}
+
+例如，微扰论对能量的最低阶修正是
+\begin{equation*}
+-\sum_{\substack{n,\ n'<N\\ m,\ m>N}}\left|\,\left(mm'\,\middle|\,e^{2}/r_{12}\,\middle|\,nn'\right)\,\right|^{2}\Big/\left(E_{m}+E_{m'}-E_{n}-E_{n'}\right)
+\end{equation*}
+（译注：求和限第二行原书印作“m, m>N”，第二个 m 漏印撇号，应为 $m, m'>N$。）
+
+由于不相容原理，这些矩阵元很可能相当小。原因在于，态 $m$ 和 $m'$ 必须从与态 $n$ 和 $n'$ \emph{正交}的一个态子空间中选取，因而很可能与它们大不相同——要么在真实空间中占据不同的位置，要么相对它们急速变化，也就是说，处在动量空间的不同部分。于是这个积分通常出人意料地小。有一种很好的表述方式，就是指出：这个积分乃是电荷分布
+\begin{equation*}
+\rho_{mn}=\phi^{\dagger}_{m}(r_{1})\ \phi_{n}(r_{1})\qquad\text{with}\qquad\rho_{m'n'}=\phi^{\dagger}_{m'}(r)\ \phi_{n'}(r)
+\end{equation*}
+的 Coulomb 相互作用能。但由正交性，
+\begin{equation*}
+\int dr\ \rho_{mn}(r)=\int dr\ \rho_{m'n'}(r)=0
+\end{equation*}
+也就是说，这些电荷分布的符号正负交替，而且通常变化得相当快，所以它们之间的相互作用不很大。这就是 MacWeeny 的论证。
+
+核物理学家则把它表述成：由于不相容原理，电子 $n$ 和 $n'$ 彼此散射所能进入的相空间大受限制。例如，在自由电子气体中，它们必须把彼此完全散射到费米球（Fermi sphere）之外，这就削弱了散射（图 29）。我们在研究费米液体（Fermi liquids）和磁性状态时，都还要回到这个话题。
+
+注意，每一对可能的 $n$、$n'$ 所发生的散射都会是有限的，因此真实的 $\Psi_{\mathrm{g}}$ 相对于 $\Psi_{\mathrm{HF}}$ 来说，对每一个 $n$ 都有一个有限的修改。于是，当 $N\to\infty$ 时，由于 $\Psi_{\mathrm{HF}}$ 是 $N$ 个因子的乘积，而其中每个因子都被修改了一个有限的量，它与真实的 $\Psi_{\mathrm{g}}$ 的交叠 $\to 0$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_29.pdf}
+\caption*{图 29}
+\end{figure}
+
+\subsection{屏蔽}
+
+当我们在电子气体中引入一个电荷——例如，我们可能正在研究其运动的那一个电子的电荷——时，其他电子当然会受它吸引而向它移动（若它为正），或者被它排斥而远离（若它为负）。例如在后一种情形中，这种运动会在原有 Hartree-Fock 密度的基础上留下一处电子电荷的亏缺，它等价于一定量的正电荷。于是，这个外来电子在任何距离上与其他电子相互作用时，就好像它带着一个较小的电荷——它已经被其他电子\emph{屏蔽}了。这一效应非常强地起着削减关联效应的作用。
+
+\subsection{元激发的概念}
+
+最后一个观念，也是我将要用若干页的篇幅来谈的观念，就是元激发的观念。这个概念同样是一个逐渐成长起来的观念，而且成长得如此缓慢，以至于人们几乎说不出它的创始人是谁；不过，对于“存在着这样一种普遍的处理方法”这一自觉的认识，或许 Landau［见 1941 年的文献 (63) 及其著作 (6)］的功劳比任何人都大。“元激发”这个名称就是他引入的。Fröhlich (64) 和 Pines (65) 使人们认识到开发利用量子场论方法的价值，这一做法把多体理论这整个课题开拓成了一门数学学科；而 Kohn (66) 和 Luttinger (67)——连同其他一些人，但他们的贡献超过任何他人——则确立了这样一个观念：元激发理论中的某些思想是可以给出严格证明的。但是，人们不应漏掉 Debye 的名字，他是元激发理论（Debye 声子理论）的第一个使用者；也不应漏掉 Wigner 的名字，他是第一个就关联电子运动这一主题进行推理的人。
+
+元激发概念背后有两个思想。第一个思想是：基态的总结合能并不是一个十分重要的物理量，它与一个物理系统的行为没有多大关系。物理上\emph{重要的}，是较低激发态相对于基态的行为：也就是说，那些在相对较低的温度下或弱的外场中就容易受到激发的态。我们立刻会想到金属或半导体——其中的一切行为都由那些我们说成具有少数几个运动载流子的低激发态所决定；或者想到固体的弹性或热学性质——它们由少数几个我们称之为声子（phonons）的晶格波的存在所决定。因此，我们的兴趣往往集中于一个系统的整组低激发态上，把它视为该系统在物理上最基本的性质。
+
+第二个思想是：低激发态往往——事实上几乎总是——具有特别简单的性质，与其他的态相比，能够以大得多的数学严格性和物理通透性来处理。让我解释一下其中的原因。
+
+正如我一直强调的，尽管有我们一直在谈论的这些削减效应，真实基态 $\Psi_{\mathrm{g}}$ 的波函数和能量所受到的多体修正仍然非常大：特别是 $\Psi_{\mathrm{g}}$ 与单粒子近似 $\Psi_{\mathrm{HF}}$ 之间几乎没有什么关系，甚至毫无关系，因为 $\Psi_{\mathrm{g}}$ 在全部 $N$ 个粒子的坐标上都与后者不同。
+
+不过，关于基态的群性质，我们通常倒是知道一些的。例如在绝缘体中，电子波函数具有平移群的完全对称性：$T\Psi_{\mathrm{g}}=\Psi_{\mathrm{g}}$。
+
+为简单起见，让我们考虑系统恰好只多加了一个粒子的那些激发态。在 Hartree-Fock 近似下，给定晶体动量 $k$ 的最低这样的态，应当是那个多余电子处在最低空带中动量为 $k$ 的状态：
+\begin{equation*}
+\Psi_{k}=\left(c^{\,n'}_{k}\right)^{\dagger}\ \Psi_{\mathrm{HF}}
+\end{equation*}
+这当然完全不像一个本征态。然而，我们可以把动量为 $k$、多一个电子的最低本征态 $\Psi_{k}$，与\emph{真实的}基态本征态 $\Psi_{\mathrm{g}}$ 加以比较。会存在某个算符 $q^{\dagger}_{k}$，它代表这两个态之间的关系：
+\begin{equation*}
+\Psi_{k}=q^{\dagger}_{k}\ \Psi_{\mathrm{g}}
+\end{equation*}
+关于算符 $q^{\dagger}_{k}$，最重要的一点是：它必然只代表整个系统的一个非常小的位移。在我们正在讨论的简单情形中，我们将看到，事实上在 $N\sim 10^{23}$ 个电子中，只有动量为 $k$ 的那些电子才受到有限大小的扰动。在更复杂的情形中，也许每个电子都在某种意义上被移动了——比如在等离体振荡（plasma oscillation）中那样——但移动的量只是无穷小。
+
+因此，就几乎所有电子而论，$\Psi_{k}$ 与 $\Psi_{\mathrm{g}}$ 几乎是相同的。例如，如果我们考虑一个由靠近中心值 $k_{\mathrm{o}}$ 的那些 $k$ 组成的波包（wave packet），
+\begin{equation*}
+\Psi_{\text{packet}}(k_{\mathrm{o}},\,r_{\mathrm{o}})=\int\exp\left[-ik\cdot r_{\mathrm{o}}-\frac{1}{2}\left(\frac{k-k_{\mathrm{o}}}{\Delta k}\right)^{2}\right]\Psi_{k}\ dk
+\end{equation*}
+我们就可以预期，波函数中由此产生的扰动将局限于 $r_{\mathrm{o}}$ 附近尺度为 $1/\Delta k$ 的区域内。如果波函数果真是 Hartree-Fock 的，这当然必然如此：$\Psi_{\text{packet}}$ 将会是
+\begin{align*}
+\left(\Psi_{\text{packet}}\right)_{\mathrm{HF}}&=\int e^{-ik\cdot r_{\mathrm{o}}}\ \exp\left[-\frac{1}{2}\left(\frac{k-k_{\mathrm{o}}}{\Delta k}\right)^{2}\right]c^{\dagger}_{k}\ \Psi_{\text{H-F}}\ dk\\
+&=\int dr\left(\int e^{-ik\cdot(r_{\mathrm{o}}-r)}\ \exp\left[-\frac{1}{2}\left(\frac{k-k_{\mathrm{o}}}{\Delta k}\right)^{2}\right]dk\right)\Psi^{\dagger}(r)\ \Psi_{\mathrm{HF}}\\
+&=\left(\int dr\ f_{\text{packet}}(r)\ \Psi^{\dagger}(r)\right)\Psi_{\mathrm{HF}}
+\end{align*}
+其中
+\begin{equation*}
+f_{\text{packet}}(r)\propto e^{\,ik_{\mathrm{o}}\cdot(r-r_{\mathrm{o}})}\exp\left[-\left(\frac{\Delta k}{2}\right)^{2}(r-r_{\mathrm{o}})^{2}\right]
+\end{equation*}
+
+在更一般的情形中，我们感到，波包的形成将造成对真实基态 $\Psi_{\mathrm{g}}$ 的一个局域性的扰动。于是，算符
+\begin{equation*}
+q^{\dagger}_{\text{packet}}(r_{\mathrm{o}},\,k_{\mathrm{o}})=\int dk\ \exp\left[-ik\cdot r_{\mathrm{o}}-\frac{1}{2}\left(\frac{k-k_{\mathrm{o}}}{\Delta k}\right)^{2}\right]q^{\dagger}_{k}
+\end{equation*}
+就是一个只产生局域扰动的算符。
+
+于是，如果我们构造一个带有两个这种波包的波函数
+\begin{align*}
+&\Psi(k_{\mathrm{o}},\,r_{\mathrm{o}};\ k_{\mathrm{o}}',\,r_{\mathrm{o}}')\\
+&\qquad=q^{\dagger}(k_{\mathrm{o}},r_{\mathrm{o}})\,q^{\dagger}(k_{\mathrm{o}}',r_{\mathrm{o}}')\ \Psi_{\mathrm{g}}\qquad\quad k_{\mathrm{o}}\neq k_{\mathrm{o}}',\ \ r_{\mathrm{o}}\neq r_{\mathrm{o}}'
+\end{align*}
+我们就可以预期，对 $r_{\mathrm{o}}$ 和 $r_{\mathrm{o}}'$ 的大多数可能取值，这两个波包彼此之间不会有多大干涉。于是，如果激发态 $\Psi_{k}$ 的激发能为 $E_{k}=(\Psi_{k}\,|\,\mathcal{H}\,|\,\Psi_{k})-E_{\mathrm{g}}$，我们就可以预期：含有两个这种激发的激发态，其能量是两个能量之和，准确到 $1/N$ 的量级（这正是两个波函数实际交叠的量级）。
+\begin{equation*}
+E(k_{\mathrm{o}},k_{\mathrm{o}}')=E_{k_{\mathrm{o}}}+E_{k_{\mathrm{o}}'}+\mathrm{O}\left(\frac{1}{N}\right)
+\end{equation*}
+
+这就是元激发概念背后的基本思想：在一个非常大的系统中，两个这样的激发将不会相互干涉，无论它们是像我在这里讨论的这种简单准粒子（quasi-particles），还是声子、激子（excitons），抑或是某种更加复杂的东西。因此，当存在的激发数目足够小时，系统的各种性质——特别是能量——将是无相互作用的元激发诸性质的线性叠加。这种情形下的另一个推论是：两个彼此不相互作用的 $q_{k}$ 将具有真实的费米子反对易规则。这一点证明起来并不容易，但它是真的：一般而言，我们总可以把这些 $q$ 取成具有费米子的对易规则。
+
+这样，我们可以对元激发下一个初步的定义：\emph{动量为 $k$ 的元激发，就是那个从基态产生特定类型的、动量为 $k$ 的最低激发态的算符。}根据上面的推理，我们预期这些激发只在弱的程度上相互作用——事实上是 $1/N$ 的量级——因此系统中可以容纳相对大量的这种激发，从而按激发的绝对数目 $n$ 计，系统可以处在激发程度非常高的态，而我们仍然能够把这些激发当作一种近似无相互作用的独立粒子气体来处理。必须认识到，上述波包形成的想法并不限于我所讨论的那种特殊类型的激发态，它也可以应用于那些被适当选取、用以代表单个声子、自旋波（spin waves）等等的最低本征态。换一种说法：元激发的概念，是使系统的方程围绕真实基态——而不是围绕某个独立粒子近似——\emph{线性化}的一种方法。
+
+在进一步讨论上述定义的种种限定与推广之前，最好先给出一些具体的例子。此外，我还想为我早先说过的那个论断提供支持：我们对固体和某些液体的物理分类，在很大程度上取决于它们所表现的元激发的类型。因此，我将用列表的形式写出元激发以及它们在其中显得重要的材料类型：元激发列在左边，它所表征的材料类型列在右边。
+
+\emph{1. 自由电子载流子（free electronic charge carriers）}
+
+\noindent\begin{tabular}{@{}p{0.58\textwidth}@{\hspace{2em}}p{0.36\textwidth}@{}}
+a.~有能隙，能量极小值位于动量空间中一些孤立的点附近 & 绝缘体和半导体\\
+b.~有能隙，能量极小值位于动量空间中的一个面上；电荷态反常 & 超导体\\
+c.~无能隙；$E_{k}$ 在 $k$ 空间中的一个面上变为零 & 金属（正常的）\\
+\end{tabular}
+
+\emph{注意：}极化子（polarons）只不过是上列各项的进一步引申，唯有自陷极化子（self-trapped polaron）例外——在某些既非金属又非绝缘体的物质中，它可能成为占主导地位的激发。
+
+\emph{2. 密度波（density waves）}
+
+\noindent\begin{tabular}{@{}p{0.58\textwidth}@{\hspace{2em}}p{0.36\textwidth}@{}}
+a.~纵声子（longitudinal phonons） & 固体；量子玻色液体；某些量子费米超流体\\
+b.~横声子（transverse phonons） & 固体\\
+c.~零声（zero sound） & 某些量子费米正常流体\\
+d.~自旋密度波（spin density waves） & 某些量子费米正常流体\\
+e.~等离激元（plasmons） & 金属和许多绝缘体——大多数带电的量子流体\\
+\end{tabular}
+
+（译注：2a 右栏原书印作“quantum Base liquid”,“Base”应为“Bose”。）
+
+\emph{注意：}经典流体中的普通声和第二声（second sound）都\emph{不是}上述意义上的元激发，而是纯粹的统计现象；它们的存在，依赖于通过不可逆过程建立起局域平衡。
+
+\emph{3. 自旋涨落（spin fluctuations）}
+
+\noindent\begin{tabular}{@{}p{0.58\textwidth}@{\hspace{2em}}p{0.36\textwidth}@{}}
+a.~铁磁自旋波：无能隙，$\Delta m=1$ & 铁磁体\\
+b.~反铁磁自旋波：有能隙，当 $k\to 0$ 时 $\Delta m\to 0$ & 反铁磁体\\
+c.~一般的自旋转动；$k$ 无定义，但仍是元激发理论的一个重要例子 & “磁状态”——铁磁体、反铁磁体和顺磁体\\
+\end{tabular}
+
+\emph{4. 其他（miscellaneous）}
+
+\noindent\begin{tabular}{@{}p{0.58\textwidth}@{\hspace{2em}}p{0.36\textwidth}@{}}
+a.~激子，包括 Slater 的自旋激发波 & 绝缘体的一种二粒子激发，或许还有超导体\\
+b.~旋子（rotons）（有能隙，$k$ 空间中的一个面） & 液态 $\mathrm{He}_{4}$\\
+c.~“d-mons” & （在含有两种或多种质量相差悬殊的载流子的物质中，一种其存在性尚成问题的密度波）\\
+d.~与周期结构中的各种缺陷相联系的激发——表面态、局域模、杂质态、束缚激子等等。这些是研究细节的人的事情——它们对真实固体的行为可能至关重要，但在多体问题（m.b.p.）中却没有多少基本的重要性。 & \\
+\end{tabular}
+
+% ---- A 节收尾（原书 p.104 / PDF p119 顶部，协调者补译） ----
+正如你们所见，固态物理学的多数有趣现象都可以在这张清单的某处找到自己的位置。然而并非全部；实际上，甚至并非所有那些与它们共享如下特征的存在物都列于其中：它们是正常固体的规则结构的小尺度、基元性的扰动，而我们在许多方面把它们当作独立粒子来处理。空位、间隙原子与杂质这类存在物，似乎应当另立一个“基元性”（elementaryness）的范畴，它与元激发的观念并不十分相似，主要在于它们的行为在真实的意义上是经典的而非量子力学的。位错，以及它们的“量子”对应物——量子化涡旋与磁通线——则又是另一个范畴；这些是尺度大得多（尺寸 $\sim N^{1/3}$）也更为复杂的现象。
+
+对于每一种元激发类型，上面提到的近似独立性使我们能够用一个共同的进路去计算和理解热学与输运性质。作为零级近似，我们把元激发当作一种无相互作用的 Bose 或 Fermi 粒子气体（视情形而定），于是统计力学与输运理论就变得和完美无相互作用气体的情形一样容易。在更精细的应用中，我们可以把元激发之间的相互作用按任意想要的阶次包括进来；最低阶将允许它们在彼此接近到短距离时相互散射。散射元激发的相互作用，与元激发本身一样，必须被视为实际计算的结果——这种计算必然带入系统的 $N$ 体特征——但在许多情形下我们可以唯象地或近似地处理它，并得到合理的结果。最后，在许多重要情形下，我们甚至可以从元激发的性质出发反推关于基态本身性质的结论，声子零点运动的 Debye-Waller 理论就是一例。
+
+\section{$N+1$ 体问题}
+
+\subsection{准粒子}
+
+让我们来谈谈我们开始这一番讨论时所举的那个特别简单的元激发例子，也就是半导体或绝缘体中的自由载流子。这个问题常常被称作"$N+1$ 体问题"，因为我们真正感兴趣的只是由添加这个额外粒子所带来的那些变化。元激发有两大普遍类型；上面这个例子属于其中被称为"准粒子"（quasi-particles）的那一类——之所以这样称呼，是因为它们非常接近于独立的 Hartree-Fock 单电子波函数中的粒子，而且与它们由之产生的介质中的个别粒子具有相同的对易规则和电荷——在通常情形下，它们是费米子。与之相对照的那一类元激发是集体激发（collective excitation），其中包括声子、等离激元、激子、自旋波等等。$\mathrm{He}_4$ 中的旋子则是一个反常的例子，兼具两种类型各自的性质。
+
+准粒子激发 $q^{\dagger}_{k}$ 的特征在于：它与相应的单粒子近似 $c^{\dagger}_{k}$ 有一个有限的交叠：
+\begin{equation*}
+\left(q^{\dagger}_{k}\Psi_{\mathrm{g}},\ c^{\dagger}_{k}\Psi_{\mathrm{g}}\right) = Z^{1/2} \tag{1}
+\end{equation*}
+$Z$ 为有限值（不是 $1/N$ 的量级）。这必须被当作一个定义；我们无法证明这类激发总是存在，而且本来也不应当指望能证明，因为确实存在一些系统，在其中这些激发实际上并不存在。式 (1) 绝非平庸，因为我们当然知道，真实基态 $\Psi_{\mathrm{g}}$ 与 Hartree-Fock 近似 $\Psi_{\mathrm{HF}}$ 之间的交叠是 $e^{-N}$ 的量级。因此，在讨论准粒子时，我们所使用的概念只离开独立粒子模型有限的距离，这是一个巨大的概念上的有利之处。
+
+对式 (1) 的一种思考方式——它同多体理论家实际处理准粒子的方式 (68) 相当贴近——是考虑这样的问题：假设在时刻 $t=0$，我用算符 $c^{\dagger}_{k}$ 作用于真实基态，这个算符（比如说）在一个平面波态 $e^{ik\cdot r}$ 中产生一个粒子。现在我等待一段很长的时间 $T$，在此期间哈密顿量作用于系统，于是 $T$ 时刻的新波函数是 $e^{-iHT}c^{\dagger}_{k}\Psi_{\mathrm{g}}$。现在我要问：粒子是否仍然处在态 $k$ 中？这意味着我施加湮灭算符 $c_{k}$，再与原来的基态作标量积。于是我做如下计算：
+\begin{align*}
+G_{k}(T) &= \left(e^{-iHT}\Psi_{\mathrm{g}},\ c_{k}\,e^{-iHT}c^{\dagger}_{k}\Psi_{\mathrm{g}}\right)\\
+&= \left(\Psi_{\mathrm{g}},\ e^{iHT}c_{k}e^{-iHT}c^{\dagger}_{k}\Psi_{\mathrm{g}}\right)\\
+&= \langle g|\ c_{k}(T)c^{\dagger}_{k}(0)\ |g\rangle \tag{2}
+\end{align*}
+现在，为了求出这个量，一个有益的做法是往这个矩阵元中插入一组严格的激发态，其中之一就是准粒子态 $q^{\dagger}_{k}\Psi_{\mathrm{g}}$；但正如我们说过的，这类态的数目可能非常之大。举例来说，$c^{\dagger}_{k}$ 很可能起到产生这样一个态的作用：它带有两个准粒子和一个准空穴（quasi-hole），三者的动量之和为 $k$：$q^{\dagger}_{k_{1}}q^{\dagger}_{k_{2}}q_{k_{1}+k_{2}-k}\Psi_{\mathrm{g}}$。
+
+让我们把这类可能的激发态中随便哪一个记作 $\Psi_{n}$，并且注意：几乎所有可能类型的 $\Psi_{n}$ 都不是以有限的、而是以无穷小的振幅进入其中，因为具有同一动量的这类态有无穷多个。（唯一可能的例外是周期势中的其他能带态，这个例外处理起来很平凡。）于是
+\begin{align*}
+G_{k}(T) &= \sum_{m}\ \langle g|c_{k}|m\rangle\ e^{-i(E_{m}-E_{\mathrm{g}})T}\ \langle m|c^{\dagger}_{k}|g\rangle\\
+&= Z e^{-iE'_{k}T} + \sum_{n}\ |\langle g|c_{k}|n\rangle|^{2}\ e^{-iE'_{n}T}
+\end{align*}
+这里已经把激发能 $E'$ 定义为 $E-E_{\mathrm{g}}$。在 $N\to\infty$ 的极限下，对 $n$ 的求和将变成如下形式的一个积分：
+\begin{equation*}
+\int e^{iE_{n}T}\ dE_{n}\ f(E_{n})
+\end{equation*}
+其中所有的 $E_{n}$ 都大于 $E_{k}$。这类积分总是导致急速衰减的函数；因此在长时间后的 $G(T)$ 就由那一个准粒子激发所支配。我们可以这样说：在态 $k$ 中产生这个电子之后，经过很长时间，它的 $Z$ 份额仍然留存下来，其余部分则已衰变而进入一个态的连续区；这一份量为 $Z$ 的剩余部分，其行为就好像它具有准粒子的能量一样。
+
+注意，这为我们提供了一种"操作性的"（operational）定义准粒子算符 $q_{k}$ 的办法。也就是说，我们可以使用方程
+\begin{align*}
+\left(c^{\dagger}_{k}\Psi_{\mathrm{g}}\right)(T) &= e^{-iHT}c^{\dagger}_{k}\Psi_{\mathrm{g}}\\
+&= Z^{1/2}e^{-i(E'_{k}+E_{\mathrm{g}})T}\ q^{\dagger}_{k}\Psi_{\mathrm{g}} + \int dE_{n}\ e^{-i(E'_{n}+E_{\mathrm{g}})T}\ f(E_{n})\Psi_{n}
+\end{align*}
+将此式乘以 $e^{i(E'_{k}+E_{\mathrm{g}})T}$ 并积分，得到
+\begin{equation*}
+q^{\dagger}_{k}\Psi_{\mathrm{g}}\ \propto \int_{0}^{\infty} dT\ e^{i(E'_{k}+E_{\mathrm{g}})T}\left(c^{\dagger}_{k}\Psi_{\mathrm{g}}\right)(T)
+\end{equation*}
+或者
+\begin{equation*}
+q^{\dagger}_{k} = \text{const.}\ \int_{0}^{\infty} dT\ e^{i(E'_{k}+E_{\mathrm{g}})T}\ c^{\dagger}_{k}
+\end{equation*}
+这就是说，我们只需对所有时间作适当的平均，就能从含时波函数中挑出属于真正准粒子的那一部分；这样做所给出的严格准粒子函数，比起任何背景成分来要多出无穷多倍。用能谱的语言来说，我们可以画出图 30。于是，如果乘上一个形如 $\int_{0}^{\infty}dT\ e^{-iET}$ 的能量 $\delta$ 函数滤波器，我们就能容易地把准粒子态及其能量挑出来。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_30.pdf}
+\caption*{图 30}
+\end{figure}
+
+这种通过研究 $T\to\infty$ 极限下的行为来获得严格结果的技巧，是多体理论（M. B. T.）的一种特征性的形式工具。Kohn、Ambegaokar (69) 以及晚近的 Blount (45) 基于这些思想，已经就 $N+1$ 电子问题确立了大量严格结果。其中一个结果是严格地证明：在与单能带近似等价的理论中，可以把准粒子能量曲线 $E(k)$ 用作单能带哈密顿量中有效的动能部分，正如在 Bloch 电子理论中可以把哈密顿量处理成 $E(k)+V(R)$ 那样。另一个结果是证明：在长程极限下，势要被宏观的静态介电常数 $\kappa$ 所修正；当电子离电荷足够远时，它会以势 $eq/\kappa r$ 被一个静止电荷 $q$ 吸引。
+
+这最后一个结果在文献中受到了极大的关注。虽然从物理观点来看它是平凡的，但数学上的论证却并非如此，而且它还揭示出一些有意思的东西。我在本课程中无法给出完整的推导，但我认为，粗略地展示一下其中牵涉到哪些东西，对于领会 $N+1$ 体问题的处理技巧是有教益的。
+
+假设在材料中建立起了一个静电势 $V(r)$——比如说，通过引入外电荷 $e$——它当然会在哈密顿量中给出一个微扰项
+\begin{equation*}
+\int dr\ \Psi^{\dagger}(r)V(r)\Psi(r) = \frac{1}{N}\sum_{q,k}\ c^{\dagger}_{k+q}c_{k}\ V(q) \tag{3}
+\end{equation*}
+其中
+\begin{equation*}
+V(q) = \frac{1}{\Omega}\int dr\ e^{iq\cdot r}V(r) = \frac{4\pi e}{\Omega q^{2}}
+\end{equation*}
+这是对一个外电荷 $e$ 而言的。
+
+我们在这里假定，引入电荷时离子实并不移动，因此势不会按相应于离子实运动的介电常数而折减；这在非极性半导体中是合理的，而在其他情形下这个效应无论如何也总可以被考虑进去。
+
+式 (3) 取在两个准态（quasi-states）$K$ 与 $K+Q$ 之间的一个典型矩阵元是
+\begin{equation*}
+\left(\Psi_{K'},\ \sum_{k}c^{\dagger}_{k+Q}c_{k}\ \Psi_{K+Q}\right)V(Q) = M_{K}(Q)V(Q)
+\end{equation*}
+其中显然，一切 $q\neq Q$ 的矩阵元都必定因动量守恒而消失。Kohn 和 Ambegaokar 的定理是：该方程中的标量积等于 $1/\kappa$，这里 $\kappa$ 是电子气的介电常数——至少在 $Q\to 0$ 的极限下是如此，这一极限对应于非常长程的力［$V$ 的长程部分当然就是 $V(Q\to 0)$］。
+
+这个定理乍看起来相当令人惊讶，因为恰恰在 $Q=0$ 的极限下，矩阵元 $\left(\Psi_{K},\ \sum_{k}n_{k}\ \Psi_{K}\right)$ 就等于粒子总数，即 $N+1$。
+
+然而，出现这个分歧的原因是清楚的：单个准粒子所引起的扰动含有一些本质上是长程的成分，因为那个电子的电荷会把整个晶体一直极化到 $r\to\infty$，而这种长程效应在 $Q\to 0$ 的极限下导致奇特的行为。这确实是原因所在，而这一点可以用一种非常直接的办法来证明。让我们考察一个完整绝缘体的样品，往其中加入一个单独的电子——不是让它处在某个特定的准粒子态 $K$ 中，而是处在我早先提到过的那种波包（wave packet）中：它由围绕某一给定的 $K_{\mathrm{o}}$ 的那些态的线性组合构成，并且局域在一点 $R_{\mathrm{o}}$ 附近，我们将选取这一点作为原点：
+\begin{equation*}
+\Psi_{R_{\mathrm{o}}=0,\ K_{\mathrm{o}}} = \frac{\text{const.}}{\left[N(\Delta K)^{3}\right]^{1/2}}\ \sum_{K}\ e^{-\frac{1}{2}(K-K_{\mathrm{o}})^{2}/(\Delta K)^{2}}\ \Psi_{K} \tag{4}
+\end{equation*}
+
+让我们先从物理上看一看这个问题。我们已经在绝缘体的中心加入了一个额外的电子，它处在一个大小为 $\Delta R\approx 1/\Delta K$ 的区域内（图 31）。因此我们认为，在这个区域内有一份额外的电子电荷。现在，如果我们考虑由此造成的、从 $\Delta R$ 一直到样品外半径 $R$ 的那一层电介质球的极化，那么这个球将被电子电荷的电场 $E$ 所极化，极化强度为 $P=[(\kappa-1)/4\pi]E$。这就导致该球内、外表面上的总面电荷为
+\begin{align*}
+&+\ (\kappa-1)(\Delta R)^{2}E(\Delta R)\qquad\text{inner}\\
+&-\ (\kappa-1)R^{2}E(R)\qquad\qquad\ \ \text{outer}
+\end{align*}
+而 $E$ 是由净电荷造成的场：
+\begin{equation*}
+E(\Delta R) = \frac{e-(\kappa-1)(\Delta R)^{2}E(\Delta R)}{(\Delta R)^{2}}
+\end{equation*}
+或者说 $Er^{2}=e/\kappa$，而面电荷为 $\pm[(\kappa-1)/\kappa]\ e$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_31.pdf}
+\caption*{图 31}
+\end{figure}
+
+实际上，球并不会在 $\Delta R$ 处的边界上被物理地切开，因此这个面电荷将近似地被内层介质球表面上的面电荷所补偿。极化电荷的实际位置只能粗略地指明为处在准粒子所在的地方。我们所能确切断定的只是：电子电荷中有 $(\kappa-1)/\kappa$ 的份额出现在球的外表面上，只有 $1/\kappa$ 的份额留存下来，从而能够与任何局域地插入的外来电荷 $q$ 相互作用。
+
+这是所有涉及可极化介质中载流子的问题所共有的一种奇特现象的一个特别简单的例子：运动电荷中总有一个相当可观的份额实际上是处在样品表面上的。事实上，在金属中——那里 $\kappa(q\to 0)=\infty$——原则上全部电荷都在表面上；在电介质中则只有 $(\kappa-1)/\kappa$。换一种说法：那个无限长程的、$Q=0$ 的项总是表现出反常的、不连续的行为。我们也可以把它解释为一种屏蔽效应——至少部分地是如此；在长距离上，电子与其他电荷的相互作用势被削减了一个因子 $\kappa$。
+
+还有待于指出这些事实与 Kohn-Ambegaokar 恒等式之间的关系，该恒等式涉及矩阵元
+\begin{equation*}
+\lim_{Q\to 0}M_{K}(Q) = \lim_{Q\to 0}\sum_{k}\left(\Psi_{K'},\ c^{\dagger}_{k+Q}c_{k}\ \Psi_{K+Q}\right) \tag{5}
+\end{equation*}
+注意，这个量如同常数 $Z^{1/2}$ 一样，是准粒子量与裸粒子（bare-particle）量之间的一个"交叉"标量积。事实上，它恰恰类似于量子场论中的"顶点重整化常数"（vertex renormalization constant），正如 $Z$ 之于该理论中的"波函数重整化"常数 $Z$。（译注：末句中前一个 $Z$ 原书即印作 $Z$，按上文的类比关系，疑应为 $Z^{1/2}$。）
+
+我们通过计算一个包含 $\Delta R$ 球的球体内的电荷来求式 (5)，准粒子就处在 $\Delta R$ 球之内。引进一个光滑函数 $f(r)$，它在 $r=\Delta R$ 处等于 1，而在某个半径 $R_{1}$ 处下降到零，其中 $R\gg R_{1}\gg\Delta R$。于是，半径为 $R_{1}$ 的球体内的电荷由下式给出：
+\begin{equation*}
+e\left(\Psi_{R_{\mathrm{o}}=0,\ K_{\mathrm{o}}}\ \int dr\ f(r)\Psi^{\dagger}(r)\Psi(r)\ \Psi\right) \tag{6}
+\end{equation*}
+（译注：左端 bra 态的下标原书印作 $k_{\mathrm{o}}=0$；按式 (4) 及下文"$\Psi(R=0)$"的表述，应为 $R_{\mathrm{o}}=0$。）
+
+让我们对这个表达式作 Fourier 分析，利用
+\begin{equation*}
+\Psi^{\dagger}(r)\Psi(r) = \sum_{Qk}\ e^{iQ\cdot r}\ c^{\dagger}_{k+Q}c_{k}
+\end{equation*}
+以及波包 $\Psi(R=0)$ 的 Fourier 展开式 (4)。式 (6) 成为
+\begin{align*}
+\frac{e\times\text{constants}}{(\Delta K)^{3}N}\ &\sum_{K,K',k,Q}\ \left(\int dr\ f(r)\,e^{iQ\cdot r}\right)\left(\Psi_{K'},\ c^{\dagger}_{k+Q}c_{k}\ \Psi_{K}\right)\\
+&\times\exp\left[-\frac{1}{2}\left(\frac{K-K_{\mathrm{o}}}{\Delta K}\right)^{2}-\frac{1}{2}\left(\frac{K'-K_{\mathrm{o}}}{\Delta K}\right)^{2}\right]
+\end{align*}
+（译注：矩阵元中 ket 的下标原书印作 $K'$；按下文"动量守恒要求 $K'=K+Q$"的叙述，应为 $K$。）
+
+现在，
+\begin{equation*}
+\int dr\ f(r)e^{iQ\cdot r} = f(Q)
+\end{equation*}
+$f(Q)$ 有三个重要的性质：(a) $f(Q=0)=(4\pi/3)R_{1}^{3}$，即 $f(r)$ 的"体积"；(b) $f(Q>1/R_{1})\simeq 0$，因而 $f(Q)$ 在 $Q$ 空间中比 $\Delta K$ 陡峭得多地成峰，并且 $f(\Delta K)\simeq 0$；(c) $\sum_{Q}f(Q)=1$。动量守恒要求 $K'=K+Q$，于是性质 (b) 使得指数因子恰好就是
+\begin{equation*}
+\exp\left[-\left(\frac{K-K_{\mathrm{o}}}{\Delta K}\right)^{2}\right]
+\end{equation*}
+我们预料，由于 $K$ 与 $K_{\mathrm{o}}$ 非常接近，而矩阵元
+\begin{equation*}
+M_{K}(Q)
+\end{equation*}
+没有理由随 $K$ 急速变化，所以我们可以在假定 $M_{K}$ 为常数的情形下完成对 $K$ 的求和：
+\begin{equation*}
+(6) = e\sum_{Q}\ f(Q)\,M(Q)\ \sum_{k}\ \frac{\text{const.}}{N(\Delta K)^{3}}\ \exp\left[-\left(\frac{K-K_{\mathrm{o}}}{\Delta K}\right)^{2}\right]
+\end{equation*}
+而这个求和恰恰就是波包的归一化和。于是，电荷表达式 (6) 就变成正好是 $e\sum_{Q}f(Q)M(Q)$。正如我们已经指出的，在 $Q$ 恰好为零时
+\begin{equation*}
+M(0) = N + 1
+\end{equation*}
+因此电荷中有一项贡献恰好是
+\begin{equation*}
+\frac{4\pi R_{1}^{3}}{3}\ e\ (N+1)
+\end{equation*}
+这一项贡献所代表的，只不过是整个电子气的平均电荷中包含在 $R_{1}$ 球内的那一部分，它当然必须恰好被离子背景电荷所补偿。电荷的这一部分很容易辨认，因为它与波包毫无关系——它会随 $R_{1}$ 无限增大。事实上，可以证明：即使把波包从 $R_{1}$ 球内移走，这一部分也不受影响。因此它纯粹是一个平凡的背景效应。
+
+如果我们令 $M(Q\neq 0)=$ 常数 $M$——这是十分合理的——那么剩下的电荷就是
+\begin{equation*}
+eM\sum_{Q}\ f(Q) = eM
+\end{equation*}
+% ---- B.1 收尾（原书 p.112 / PDF p127 顶部，协调者补译；承接上式 eM Σ f(Q) = eM） ----
+（由性质 (c)）；于是它与半径 $R_1$ 无关，正是直接与波包自身相联系的那份电荷。正如我们的物理推理早已告诉我们的，它恰好就是 $e/\kappa$。这样，我们就得到了 Kohn 恒等式的一个物理上的——尽管显然不是严格数学意义上的——证明。实际的证明看来只能借助图微扰论（diagrammatic perturbation theory）来进行。应当认识到：整个 $N{+}1$ 体理论的这套机制确实只在微扰论的界限之内被严格证明——尽管恰恰在这个情形下，我们完全有理由相信微扰论实际上收敛，并且准确地代表了物理实在。
+
+Blount 为此补充了一个颇有意思的结果。实质上，我们迄今为止所做的，正相当于 Bloch 电子的零阶单带理论——亦即有效哈密顿量理论
+\begin{equation*}
+\mathcal{H} = E(\mathbf{k}) + V(\mathbf{R})
+\end{equation*}
+Blount 指出，只要把 $N{+}1$ 体波函数 $\Psi_{\mathbf{k}}$ 本质上取作
+\begin{equation*}
+\Psi_{\mathbf{k}}(\mathbf{r}_1,\ \mathbf{r}_2,\ \ldots\,,\mathbf{r}_{N+1})\ =\ \left\{\mathrm{e}^{i\mathbf{k}\cdot\mathbf{r}_1}\ U_{\mathrm{o}}^{\mathbf{k}}\left(\mathbf{r}_1\ldots\mathbf{r}_{N+1}\right)\right\}\ \text{的反对称化}
+\end{equation*}
+其中 $U_{\mathrm{o}}^{\mathbf{k}}$ 是其 $N{+}1$ 个粒子变量的完全周期函数，就可以得到 $N{+}1$ 体问题的完整理论。于是 $U_{\mathrm{o}}^{\mathbf{k}}$ 的处理方式与通常波函数的 Bloch 部分十分相像，并且由它出发——利用 Kohn 与 Ambegaokar 的恒等式——例如可以导出关系式
+\begin{equation*}
+V(\mathbf{r}) = \frac{1}{\kappa}\,V(\mathbf{R})\ +\ \text{量级为}\ \frac{\partial V}{\partial \mathbf{R}}\cdot a\ \text{的修正项}
+\end{equation*}
+然而，这些修正项与真实单电子情形的修正项颇为不同——这是意料之中的，因为现在 $V$ 既能极化原子芯，也能极化所加入电子的波函数。
+
+\subsection{$N+1$ 体问题中声子的效应}
+
+在以上全部讨论中，我们一直仿佛假定多体系统里只有价带中的电子可以自由运动。这一假设基于
+Born-Oppenheimer 绝热近似；按照该近似，由于原子核与电子的质量相差极大，原子核的一切运动
+相对电子而言都无限缓慢。对于为之发明的有限分子体系，这个近似非常好，因为其中电子激发能
+从而其频率确实远高于离子的相应量，所以离子可以认为是静止的；但它当然恰恰会在我们觉得最
+有意思的那个区域完全失效，即固体最低能量激发的区域，因为在这里我们无法\emph{先验地}断定
+电子能量相对离子能量究竟是大还是小。
+
+固体中在这里有任何重要性的离子运动，可以用离子实绕其平衡位置振动的量子化波动来描述
+（图 32）。正如各位所知，这些量子化的波称为声子（phonon）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_32.pdf}
+\caption*{图 32}
+\end{figure}
+
+它们本身就是固体的元激发；事实上，它们是最早被发现的一组元激发——由 Einstein 和
+Debye 在 1910 年前后发现。尽管如此，让你可能感到意外的是，把声子当作固体的多体集体激发
+来处理时，仍有许多重要问题悬而未决。不过眼下我们只关心声子对我们一直在讨论的准粒子激发
+性质的修正。
+
+正如各位所知，对于每个 Bravais 原胞只含一个原子的固体，声子谱有三支，在长波长和简单
+晶体取向下退化为一支纵波和两支横波声波；长波情形下频率由 $\omega_{k}=c_{l}k$ 或
+$c_{t}k$ 给出，$c$ 为纵向或横向声速；能量为 $\hbar\omega_{k}$。
+
+更复杂的固体的声子谱还有三支或更多的"光学"支，在长波长下退化为 Bravais 原胞内不同
+原子彼此相对的运动；而在两个原子并不相同的情形下，
+
+\begin{equation*}
+(\text{Na})^{+}\!\to\;\; \leftarrow\!\!(\text{Cl})^{-}
+\qquad\quad
+(\text{Na})^{+}\!\to\;\; \leftarrow\!\!(\text{Cl})^{-}
+\end{equation*}
+
+单位体积便带有相应的偶极矩 $\mathbf{P}$。稍后我们会讨论到，在光学支中，纵波与横波的频率
+在无限长波处相差一个有限量 $\omega_{lo}-\omega_{to}$。于是我们在图 33 中草绘了单原子
+晶格和离子性双原子晶格的声子谱。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_33.pdf}
+\caption*{图 33}
+\end{figure}
+
+声子的存在显然会带来若干后果。首先也是最简单的一点：我们看到，准粒子态不再必然是具有
+给定动量或 $k$ 矢量的最低能量激发态；事实上，相对声子态而言，它通常将是一个能量非常高的
+态。这正是我们在定义元激发时加以限定、要求激发态属于\emph{某一特定类型}的原因。就准粒子
+与声子相对照的情形而言，区分其实相当容易，因为准粒子算符是费米型的，它使电子数目改变
+1，即从 $N$ 变到 $N+1$，而产生声子的算符 $b_{\mathbf{K}}^{\dagger}$ 则近似是玻色型的，
+既不改变离子数也不改变电子数；但一般说来区分并非如此简单。例如，态 $q_{k}^{\dagger}\Psi_{N}$
+的能量未必低于带有一个声子加一个准粒子激发的态
+$q_{k-\mathbf{K}}^{\dagger}b_{\mathbf{K}}^{\dagger}\Psi_{N}$；两个算符都是费米型的，
+两个态都是 $N+1$ 粒子态。
+
+当我们引入电子-声子相互作用的概念时，一个严重得多的问题出现了。这一相互作用有两种效应：
+\emph{散射}与\emph{极化}。不过在讨论这些效应之前，我想先就电子-声子相互作用本身说几句话。
+
+为了对这个相互作用可能取的形式获得一些概念，让我们在一个简单近似下把它计算出来。有一种
+办法非常简单，但必须谨慎对待，这就是所谓的"刚性离子"（rigid-ion）模型。在此我们假定，
+电子与之相互作用的晶格势是每个离子各自贡献之和：$V(r)=\sum_{j}V(r-\mathbf{R}_{j})$，或者
+写成电子的二次量子化形式
+$V=\int\mathrm{d}r\,\sum_{j}V(r-\mathbf{R}_{j})\,\Psi^{\dagger}(r)\Psi(r)$。我们为电子选用的
+未微扰波函数，是在把 $\mathbf{R}_{j}$ 固定在格点上时算出的；于是微扰必定来自 $\mathbf{R}_{j}$
+的位移 $\delta\mathbf{R}_{j}$，它由声子的存在引起：
+
+\begin{equation*}
+\mathcal{H}' \;=\; \sum_{j'} \int \mathrm{d}r\;\; \delta\mathbf{R}_{j} \cdot \nabla V(r-\mathbf{R}_{j})\, \Psi^{\dagger}(r)\, \Psi(r)
+\end{equation*}
+
+（译注：原书求和指标印作 $j'$，而式内各下标均为 $j$，两者应统一。）
+
+$\delta\mathbf{R}_{j}$ 可以用声子振幅 $Q_{\mathbf{K}}$ 展开：
+
+\begin{equation*}
+\delta\mathbf{R}_{j} \;=\; \text{const} \cdot \sum_{\mathbf{K}} \mathrm{e}^{-i\mathbf{K}\cdot\mathbf{R}_{j}}\, Q_{\mathbf{K}}
+\end{equation*}
+
+而各个 $\Psi$ 则用 Bloch 函数展开：
+
+\begin{align*}
+\mathcal{H}' = {} & \int \mathrm{d}r \sum_{\substack{nn'k \\ k'\mathbf{K}j}}
+\mathrm{e}^{-i\mathbf{K}\cdot\mathbf{R}_{j}}\,
+\mathrm{e}^{ik\cdot r}\, u^{n*}_{k}(r)\,
+\mathrm{e}^{-ik'\cdot r}\, u^{n'}_{k'}(r) \\
+& \times\; Q_{\mathbf{K}}\, c^{n\dagger}_{k}\, c^{n'}_{k'} \cdot \nabla V(r-\mathbf{R}_{j}) \\
+= {} & \sum_{k\mathbf{K}nn'} M^{nn'}_{k,\mathbf{K}}\, Q_{\mathbf{K}}\, c^{n'\dagger}_{k+\mathbf{K}}\, c^{n}_{k}
+\end{align*}
+
+其中
+
+\begin{equation*}
+M^{nn'}_{k\mathbf{K}} \;=\; \text{const.} \int \nabla V(r-\mathbf{R}_{j})\, \phi^{n}_{k+\mathbf{K}}(r)\, \phi^{n'}_{k}(r)\;\, \mathrm{d}\Omega_{\mathrm{cell}}
+\tag{7}
+\end{equation*}
+
+$Q_{\mathbf{K}}$ 又可以用声子的产生与湮灭算符 $b_{\mathbf{K}}$ 和 $b_{-\mathbf{K}}^{\dagger}$
+表出。这样一来，相互作用就具有电子被散射同时产生或湮灭一个声子的形式（图 34）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_34.pdf}
+\caption*{图 34}
+\end{figure}
+
+比这个相当朴素的模型更为认真的分析其实是可以做出的；关于这些分析的精彩论述，我向各位
+推荐 Ziman 的书（文献 (3)）中相应的章（第五章）。这里我只想集中讨论一个极限情形，即
+$k$ 很小的情形。
+
+查阅 Ziman 的书可以发现，在这个极限下矩阵元 $M$ 结果正比于 $\mathbf{K}$，于是相互作用
+并不像乍看之下那样正比于离子的位移 $\delta\mathbf{R}_{j}\propto Q_{\mathbf{K}}$，而是正比于
+其应变（或称"形变"）$\nabla\mathbf{R}_{j}\propto\mathbf{K}Q_{\mathbf{K}}$（译注：原文如此，
+按本意应为 $\nabla\,\delta\mathbf{R}_{j}$）。在单电子理论范围内证明这一点并不十分困难，但
+有趣的是要证明它在一般情形下也成立，即使把多体效应考虑进去。
+
+这非常值得去做，因为脱离价带电子来谈论离子和离子实自身的位移是没有意义的——至少在某种
+意义上，这些电子是随它们一起被携带的。撇开别的不论，我们至少意识到：由于离子实带有净电荷，
+当它们形成长波长的纵波时，会在波峰处积累起非常大的空间电荷，这种电荷必然要移动价电子的
+电荷分布。一般地说，"价电子气整体不随离子运动"这一假设显然站不住脚，这一点是明显的。
+因此，电子-声子相互作用中有相当大的部分必须被认为已经包含在声子激发本身的定义之中，正如
+被散射的电子其实并不是单个的独立电子，而是准粒子一样。
+
+这个问题与场论中的重整化问题极为相似；我们看到的"物理"准粒子和声子，与我们能够简单
+设想的"裸"粒子全然不同，其实验性质——能量、相互作用等等——包含了围绕裸粒子的扰动云的
+贡献。在固体理论中，我们并没有场论中那种不可挽回地阻止我们找出"裸"性质与"物理"性质之间
+真实关系的发散；尽管如此，固体是如此复杂的对象，以致为了求出的不仅有声子频率和准粒子
+能量、还有它们之间的相互作用，求诸实验往往比求诸理论更有用。这就是\emph{形变势}
+（deformation potential）理论（文献 (70)）背后的思想。在这一理论中，我们借助均匀应变的
+可观察（至少原则上可观察）效应来估计长波长声子的效应。
+
+于是设想，为简单起见，我们有一块绝缘体，并以某种相当平滑的方式使它发生弹性形变，于是，
+若各处的局域位移为 $\delta\mathbf{R}_{j}$，则任一局域区域内都有明确定义的局域压缩
+$\Delta=\nabla\cdot\delta\mathbf{R}_{j}$，并且在愿意的话还有切应变
+$S=\operatorname{symm}\bigl\{\nabla\,\delta\mathbf{R}_{j}-\tfrac{1}{3}\,\nabla\cdot(\delta\mathbf{R}_{j})\,\mathbf{1}\bigr\}$。
+我们让 $N$ 体电子气完全绝热地随之形变。于是，在新的、已形变的晶格中，我们可以构建一个
+波包 $\Psi_{\text{packet}}(k_{0},r_{0})$，其中心动量为 $k_{0}$，位于围绕 $r_{0}$、尺度为
+$1/\Delta k$ 的区域内。假定该区域内的形变 $\Delta$、$S$ 相当均匀；否则，晶格当然就不再
+足够周期，我们也就无法在不确定度 $\Delta k$ 之内定义波矢 $k_{0}$。这个由精确准粒子构成的
+新波包具有新的能量 $E^{\prime}_{n}(k_{0})$，它与原来的能量不同，因为晶格在局域上发生了
+形变；若无形变，显然无论原子的\emph{位移}有多大，能量都根本不会改变。由于声子中原子的
+运动相当小，可以合理地预期带能量对形变是线性的，其线性比例常数称为"形变势"常数 $E$：
+
+\begin{equation*}
+E^{\prime}_{n}(k_{0}) \;-\; E_{n}(k_{0}) \;=\; E_{\Delta}(k_{0})\,\Delta \;+\; E_{S}(k_{0})\, S \;+\; \cdots
+\tag{8}
+\end{equation*}
+
+这一\emph{以经验方式定义的}势，就是准粒子 $q_{k}^{\dagger}$ 的真实散射势，它既包括形变给
+$\Psi_{g}$ 带来的近乎无穷的改变，也包括准粒子波函数本身的修正。这可以按如下方式证明。
+围绕动量 $k_{0}$ 和位置 $r$ 产生一个波包的算符是
+
+\begin{equation*}
+q_{k_{0}}^{\dagger}(r) \;=\; \int \mathrm{d}k\;\, f(k-k_{0})\; q_{k}^{\dagger}\; \mathrm{e}^{ik\cdot r}
+\end{equation*}
+
+而检验这样的波包是否已被产生的数算符是
+
+\begin{equation*}
+n_{k_{0}}(r) \;=\; q_{k_{0}}^{\dagger}(r)\, q_{k_{0}}(r)
+\end{equation*}
+
+于是，对一个实际波包波函数能产生与式 (8) 的能量相同效果的算符，可以取为（我们稍后将验证
+它确实具有正确的效果）：
+
+\begin{equation*}
+\sum_{k_{0}} \int \mathrm{d}r\;\; E_{\Delta}(k_{0})\;\, \Delta(r)\, n_{k_{0}}(r) \;+\; \text{（对 } S \text{ 同样处理）}
+\end{equation*}
+
+把它算出来，得到
+
+\begin{align*}
+& \sum_{k_{0}\mathbf{K}kk'} \int \mathrm{d}r\;\, f(k-k_{0})\, f(k'-k_{0})\;
+\mathrm{e}^{i(k-k')\cdot r}\; q_{k}^{\dagger} q_{k'},\;\, E_{\Delta}(k_{0})\;\, \mathrm{e}^{i\mathbf{K}\cdot r}\;\; \Delta_{\mathbf{K}} \\
+& \qquad = \sum_{k_{0}k\mathbf{K}} f(k-k_{0})\, f(k+\mathbf{K}-k_{0})\;\, q_{k}^{\dagger} q_{k+\mathbf{K}}\;\; \Delta_{\mathbf{K}}\, E_{\Delta}(k_{0})
+\end{align*}
+
+我们必须假定 $\mathbf{K}$ 小于波包的展宽，否则各个 $f$ 因子将不能正确地交叠；这就是前面
+已经表述过的要求，即波包必须限制在足够小的体积内，使 $\Delta$ 在其内部均匀。如果
+$\mathbf{K}$ 足够小，在 $f(k+\mathbf{K}-k_{0})$ 中便可将它忽略，于是可以利用波包函数的
+完备性关系
+
+\begin{equation*}
+\sum_{k_{0}} f^{2}(k-k_{0}) \;=\; 1
+\end{equation*}
+
+若波包展宽又比 $E_{\Delta}(k_{0})$ 随 $k_{0}$ 变化的范围小，我们最终得到
+
+\begin{equation*}
+(8) \;=\; \sum_{k\mathbf{K}} E_{\Delta}(k)\, q_{k}^{\dagger} q_{k+\mathbf{K}}\;\; \Delta_{\mathbf{K}}
+\tag{9}
+\end{equation*}
+
+把这一表达式作用于相应的波包，即可予以验证：
+
+\begin{align*}
+& \sum_{k\mathbf{K}} E_{\Delta}(k)\, q_{k}^{\dagger} q_{k+\mathbf{K}}\;\; \Delta_{\mathbf{K}} \sum_{k'} f(k'-k_{0})\, q_{k'}^{\dagger}\, \mathrm{e}^{ik'\cdot r}\, \Psi_{g} \\
+& \qquad = \sum_{k\mathbf{K}} E_{\Delta}(k)\, \Delta_{\mathbf{K}}\;\, \mathrm{e}^{i\mathbf{K}\cdot r}\, f(k+\mathbf{K}-k_{0})\, q_{k}^{\dagger}\, \mathrm{e}^{ik\cdot r}\, \Psi_{g}
+\end{align*}
+
+再者，如果 $\mathbf{K}\ll\Delta k$，即 $f$ 的宽度，那么上式就正好化为
+
+\begin{equation*}
+E_{\Delta}(k_{0})\;\, \Delta(r)\;\, q_{k_{0}}^{\dagger}(r)\;\, \Psi_{g}
+\end{equation*}
+
+与式 (8) 相符。
+
+于是，在式 (9) 中，$E(k)$ 扮演的正是式 (7) 中散射矩阵元 $M_{k,\mathbf{K}}$ 在波长极长的
+声子极限（$\mathbf{K}\to 0$）下所扮演的角色，只不过 $M_{k,\mathbf{K}}$ 乘的是位移 $Q$
+而不是形变 $\Delta$。虽然用 Hartree-Fock 理论作直接计算来证明 $M_{k,\mathbf{K}}$ 正比于
+$\mathbf{K}$ 并不困难，但我们给出的这一论证在存在大的多体效应时依然有效，并且把散射矩阵元
+直接同实验上可观察的现象联系起来。
+
+鲜为人知的是，上述论证在那些对称性允许压电效应（piezoelectric effect）的晶体中会完全
+失效。在这类晶体中，形变——特别是切变形变 $Y$——不仅能改变电子的有效势，还能建立起一个
+正比于应变的电场 $E$。这就给我们一个势项
+
+\begin{equation*}
+E'(r) \;-\; E(r) \;\propto\; V(r) \;=\; e\mathbf{E}\cdot\mathbf{r} \;\propto\; rS(r)
+\end{equation*}
+
+它正比于总位移而不是应变。因此在这种情形下，所谓"形变势定理"并不成立。Hopfield 曾分析过
+由此可能引出的若干相当奇怪的后果；它会导致慢电子极为反常的散射与极化效应。
+
+然而，在较常见的金属和半导体中，这一定理确实成立。这一点在两条或更多条能带发生简并或
+近简并的情形下尤为重要：定理此时仍然有效，但最方便的做法是让形变势 $E$ 推广为能带指标下的
+一个一般矩阵 $E^{nn'}$。在这种情形下，要从刚性离子模型直接算出正确答案就不那么容易了。
+
+在这种电子-声子相互作用存在时，准粒子 $q_{k}^{\dagger}$ 可以在布里渊区（Brillouin zone）
+内从一点被散射到另一点。在绝对零度、不存在声子时，能带中绝对最低的准粒子态
+$q_{k}^{\dagger}\Psi_{g}$ 仍然不会被散射，因为它无法发射声子——它是具有给定动量、能量和
+粒子数的唯一状态；但动量较高的准粒子态一旦满足
+$\mathrm{d}E/\mathrm{d}k > \hbar(\mathrm{d}\omega/\mathrm{d}k)_{\text{phonon}} = \hbar c$，
+就能够伴随一个声子的发射而被散射，其中 $c$ 是材料中最低的声速（图 35）。若准粒子的有效质量
+为 1，而 $c$ 取典型值 $10^{5}$ cm/sec，这就是
+
+\begin{align*}
+\frac{\hbar^{2}}{m}\,(k - k_{0}) &> \hbar c \\
+k - k_{0} &> \frac{mc}{\hbar} \;\sim\; 10^{5}\ \text{cm}^{-1} \\
+\frac{\hbar^{2}}{2m}\,(k - k_{0})^{2} &\geq \frac{mc^{2}}{2} \;=\; \frac{1}{2}\,10^{-17}\ \text{erg} \;\approx\; 0.04\,^{\circ}\mathrm{K}
+\end{align*}
+
+这是一个低得惊人的能量，因此从实用角度看，我们从来不会遇到不能通过发射声子而被散射的
+准粒子。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_35.pdf}
+\caption*{图 35}
+\end{figure}
+
+我们立刻意识到，这迫使我们修改准粒子元激发的原始定义，因为在这种情形下，准粒子态不再是
+整个系统的严格本征态。这是一种普遍现象：在几乎所有的情形中，由于总存在这种或那种散射的
+可能性，元激发态都不是完全严格的本征态。
+
+就我所知，还从未有人在有散射存在时给出过准粒子的绝对严格的数学定义；但定义准粒子的方式
+有若干种，在任何一个给定的情形中它们都可以是令人满意的。这些方式可以归入两条思想路线，
+我们分别称之为"赝哈密顿量"（pseudo-hamiltonian）方法和"完全重整化"（full
+renormalization）方法。
+
+这两条处理问题的一般思想路线中的第一条，本质上就是我们在讨论形变势时已经实行过的那套
+做法。也就是说，我们尽最大努力把准粒子与晶格运动彼此完全独立地定义出来，并把它们的相互
+作用显式地留在问题之中。在形变势的讨论中，我们实际上是走进固体内部，给所有离子实装上刚性
+夹钳，把它们绝对固定在与某种长波长晶格形变相应的位置上。由此我们得到准粒子能量对形变的
+某种依赖关系，而当我们松开夹钳时，它就充当了电子-声子相互作用能。用形式化的语言说，我们
+为准粒子建立了一个有效哈密顿量
+
+\begin{equation*}
+\mathcal{H}_{\text{eff}} \;=\; \int \mathrm{d}r \int \mathrm{d}r'\;\, q^{\dagger}(r)\, H_{\text{eff}}(r,r')\, q(r')
+\end{equation*}
+
+其中 $H_{\text{eff}}(r,r')$ 是局域形变 $\Delta(r)$ 和 $S(r)$ 的线性函数。于是我们可以把
+$\Delta(r)$ 和 $S(r)$ 本身作为多体问题的量子化坐标引入，它们将带来一个必须添入的、二次型
+的自能 $\sum_{k}\hbar\omega_{\mathbf{K}}^{0}\,(P_{\mathbf{K}}^{2} + Q_{\mathbf{K}}^{2})$。
+我们希望，相互作用项随后可以由微扰论计入，并导致准粒子的散射，如下：散射哈密顿量就是
+形变势，即式 (9)：
+
+\begin{equation*}
+\mathcal{H}' \;=\; E_{\Delta} \sum_{k\mathbf{K}} \Delta(\mathbf{K})\;\, q_{k+\mathbf{K}}^{\dagger} q_{k}
+\end{equation*}
+
+$\Delta(\mathbf{K})$ 与声子产生算符 $b_{\mathbf{K}}^{*}$ 之间关系的归一化，可以由能量
+表达式得到：
+
+\begin{equation*}
+\frac{S}{2}\,\bigl|\Delta\bigr|^{2} \;=\; \text{势能} \;=\; \frac{1}{2}\,(\text{总能量}) \;=\; \frac{1}{2}\,\hbar\omega_{\mathbf{K}}\Bigl(n_{\mathbf{K}} + \frac{1}{2}\Bigr)
+\end{equation*}
+
+其中 $S$ 是压缩刚度 $\rho c^{2}$，而 $\omega_{\mathbf{K}} = c\mathbf{K}$ 是声子的频率。
+于是我们可以取
+
+\begin{equation*}
+\Delta(\mathbf{K}) \;=\; \frac{1}{2}\sqrt{\frac{\hbar\mathbf{K}}{\rho c}}\;\bigl(b_{\mathbf{K}}^{*} + b_{-\mathbf{K}}\bigr)
+\end{equation*}
+
+由含时微扰论给出的、从单一态进入一个态连续统的逆平均自由时间（即跃迁速率）的表达式——
+也就是从 $k$ 进入已自发发射了一个声子 $\mathbf{K}$ 的那些态的速率——是
+
+\begin{equation*}
+\frac{\hbar}{\tau} \;=\; 2\pi\,\bigl|\text{M.E.}\bigr|^{2}\,\frac{\mathrm{d}n}{\mathrm{d}E}
+\end{equation*}
+
+当然，M.E. 指的是散射矩阵元。物理上唯一有趣的情形，是电子动量相当大的情形，此时
+
+\begin{equation*}
+\frac{\hbar^{2}k^{2}}{2m} \;\gg\; \hbar k c\,,\qquad k \;\gg\; K_{0} = \frac{mc}{\hbar}
+\end{equation*}
+
+在这种情形下，声子造成的动量变化远大于能量变化，于是 $|k+\mathbf{K}| \cong |k|$
+（图 36）。这时 $\mathrm{d}n/\mathrm{d}E$ 就恰好是电子谱中的态密度（density of states）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_36.pdf}
+\caption*{图 36}
+\end{figure}
+
+散射前的寿命如何计算，我留作练习：结果是
+
+\begin{equation*}
+\frac{\hbar}{\tau} \;=\; \frac{4\pi^{2}}{3}\, E^{2} \left(\frac{m^{2}}{\hbar^{3}\rho c}\right) \left(\frac{\hbar^{2}k^{2}}{2m}\right)
+\tag{10}
+\end{equation*}
+
+若晶格常数为 $a$，则 $\rho \cong M/a^{3}$，而 $\hbar^{2}/ma^{2}$ 与电子能量 $\sim 1$ Ry
+同量级；$\hbar c/a$ 与 $\sqrt{m/M} \times 1$ Ry 同量级。形变势常数 $E$ 同样可以预期为
+1 Ry 的量级，因为百分之百的形变必然会使电子的能量完全改变；于是我们可以说
+
+\begin{equation*}
+\left.\frac{\hbar}{\tau}\;\right|_{\;\left(E_{k} \,=\, \frac{\hbar^{2}k^{2}}{2m}\right)} \;\sim\; \sqrt{\frac{m}{M}}
+\end{equation*}
+
+我们看到 $\hbar/\tau$ 确实非常小，而且对能量最低的准粒子令人满意地趋于零。
+
+与散射相伴随的，是在等能面附近有一些态被混杂进来：对给定的能量差 $\Delta E$，微扰论给出
+这部分混杂为
+
+\begin{equation*}
+\frac{\bigl|\text{M.E.}\bigr|^{2}}{(\Delta E)^{2}}\;\,\mathrm{d}n
+\end{equation*}
+
+于是，在能量上离开准粒子态超过 $\Delta E$ 的那些态的总混杂为
+
+\begin{equation*}
+\bigl|\text{M.E.}\bigr|^{2} \int_{\Delta E}^{\infty} \frac{\mathrm{d}n}{\mathrm{d}E}\,\frac{\mathrm{d}E}{E^{2}} \;\cong\; \frac{\hbar}{\tau}\,\frac{1}{\Delta E}
+\end{equation*}
+
+显然，如果允许任意低能量的态混入，此式就会发散。这意味着，任何想在有散射存在时把准粒子
+态定义为严格本征态的尝试都注定失败。正如我所强调过的，我们可以沿两条途径处理这个问题：
+第一条就是我们刚才描述的有效哈密顿量理论，其中准粒子是一个"被夹住的"（clamped）系统的
+严格本征态，而电子-声子相互作用保留在总哈密顿量之中，我们试图用这个总哈密顿量去求解任何
+输运问题等等。
+
+与之相对的第二种方法，是试图把系统当作一个整体来处理，并定义由于散射而随时间衰变的准粒子
+态。这是现代多体理论家更青睐的方法；见 Nozières (68)。正如我们稍后将要讨论的，这样的
+准粒子态不仅带有重整化常数 $Z$，还带有复能量 $E_{k} + i(\hbar/\tau)$；我们说它们是
+"格林函数（Green's function）的复极点"。它们与完全重整化理论的传播子（propagator）
+相联系；有效的电子-声子相互作用可以作为理论的重整化顶角（vertex）部分引入，等等。要在
+这种完全重整化的形式下开展整个输运理论等等，目前还差不多只是一个纲领，但毫无疑问它完全是
+可行的。在半导体和绝缘体中，第一种方法迄今为止肯定是足够的，而且它免去了随身携带诸如 $Z$
+这类各种非物理重整化参数的必要。
+
+尽管如此，也有人可以争辩说第一种方法有点含糊而且不合乎物理，因为真实的准粒子随身携带着
+一大片声子极化云，尤其是短波长声子和光学声子的极化云。但我们可以设想，只对那些真正能使
+准粒子受到散射的长波长声子加上夹钳；这几乎不会影响准粒子的极化云，却使我们能够相当严格地
+定义它们。特别是，准粒子既然与 $N+1$ 体系统的严格本征态相关联，就具有固定的动量并携带
+电荷 $e$，只是处理 $Q\to 0$ 极限时须加小心——这一点我们已经讨论过了。在存在场时，它们将
+服从通常类型的输运方程，带有通常的 Lorentz 力。
+
+这种处理绝缘体中准粒子问题的方法看起来是完全严格而准确的，至少对非压电晶体和足够低的
+温度是如此。然而，在电子-声子耦合极强的某些情形中，伴随电子行进的极化云的效应可能相当大。
+这在某些 d 带氧化物晶体中是典型的：给定离子上 d 壳层能级中的一个电子可以使周围的离子发生
+相当严重的极化，其幅度相对于这些离子的零点涨落而言相当可观。电子跳跃到另一个 d 壳层离子
+上去的矩阵元的幅度可以写成
+
+\begin{align*}
+b_{d_{1}d_{2}} &= \bigl(\Psi_{d_{1}}\,|\,\mathcal{H}\,|\,\Psi_{d_{2}}\bigr) \\
+&\cong \bigl(a_{d_{1}}\,|\,\mathcal{H}_{\text{el}}\,|\,a_{d_{2}}\bigr) \bigl(\Psi_{\text{lattice}}(\text{电子在 } d_{1}\text{ 上})\,\big|\,\Psi_{\text{lattice}}(\text{电子在 } d_{2}\text{ 上})\bigr)
+\end{align*}
+
+$a$ 是 d 带的普通 Wannier 函数，而 $\Psi_{d}$ 是完整的多体波函数。第二个因子——晶格
+波函数的交叠——将会很小，这就大大增加了准粒子的有效质量。这就是与"自陷极化子"相对应的
+物理图像——它能够运动，但只能带着大为减小的矩阵元和大为增大的 $m^{*}$ 运动。甚至在相当
+低的温度下，电子通过热激活而不是通过这种隧穿过程来运动的概率也可能变得很大，这意味着这类
+材料中的输运根本不像普通半导体中的输运（文献 (71)）。
+
+在更高温度下，即使在正常情形中，热激发声子造成的额外散射也会变得远大于发射所致的自发
+散射。声子寿命中的（矩阵元）$^{2}$ 因子必须再乘上一个占据因子：发射时为 $n+1$，吸收时为
+$n$，其中 $n = 1/[\exp(\hbar\omega/k_{\mathrm{B}}T) - 1]$。对半导体中那些有关的声子——
+即满足
+
+\begin{equation*}
+\mathbf{K}_{\text{phonon}} \;\sim\; k_{\text{electron}}
+\end{equation*}
+
+的声子——这个因子可以变得相当大，其中
+
+\begin{equation*}
+k_{\text{electron}} \;=\; \frac{\sqrt{2m^{*}k_{\mathrm{B}}T}}{\hbar}
+\end{equation*}
+
+\begin{equation*}
+n(\mathbf{K}) \;\sim\; \frac{k_{\mathrm{B}}T}{\hbar c\mathbf{K}} \;=\; \frac{V_{\text{el}}}{c} \;\sim\; 10 \qquad \text{（在 } 50{-}100\,^{\circ}\mathrm{K}\text{ 时）}
+\end{equation*}
+
+最慢的那些电子所受的热散射可以变得极端严重，即使在低温下也是如此，尽管这在物理上似乎并不
+十分重要。在更高温度下，我们的散射率 $\hbar/\tau$ 公式 (10) 要乘以 $k_{\mathrm{B}}T/\hbar c\mathbf{K}$
+（译注：原书此处印作 $k_{0}T$，按上下文应为 $k_{\mathrm{B}}T$），并且由于 $\mathbf{K}$
+与 $k$ 同量级、$k_{\mathrm{B}}T$ 按 $k^{2}$ 变化，我们得到
+
+\begin{equation*}
+\frac{\hbar}{\tau} \;\sim\; \frac{E^{2}}{\rho c^{2}}\, k^{3} \;\sim\; T^{3/2}
+\end{equation*}
+
+迁移率 $\mu = e\tau/m$ 的 $T^{-3/2}$ 依赖关系是半导体中众所周知的结果。注意，随着 $T$
+增大，$\hbar/\tau$ 将相当快地变得比 $k_{\mathrm{B}}T$ 还大。
+
+我不知道有任何关于这种情形的讨论；在其中，若没有进一步的论证，准粒子概念是不应使用的。
+它出现在室温下迁移率为 10 左右的区域——在劣质半导体中这是并不罕见的一类数值。
+
+金属中电子-声子散射变强时的效应，比起绝缘体和半导体中的情形来，被人们理解得少得多。
+金属中在低温下，费米面（Fermi surface）附近的电子不能发生自发发射，因为末态电子态已被
+占满。导致电子散射寿命的热吸收与热发射过程有两种不同的温度依赖关系。低温下只有长波长声子
+被激发。各位当会记得，散射矩阵元正比于 $\mathbf{K}^{1/2}$，而可能的末态近似地位于
+$\mathbf{K}$ 空间中的一个球面上，其面元 $\propto \mathbf{K}\,\mathrm{d}\mathbf{K}$。于是
+
+\begin{equation*}
+\frac{\hbar}{\tau} \;\propto\; \int_{0}^{\mathbf{K}_{F}} \frac{\mathbf{K}^{2}\,\mathrm{d}\mathbf{K}}{\exp(\hbar c\mathbf{K}/k_{\mathrm{B}}T) - 1} \;\propto\; \left(\frac{k_{\mathrm{B}}T}{\hbar c}\right)^{3}
+\end{equation*}
+
+在高于 Debye 温度的温度下，所有声子态的占据数都正比于 $T$，而
+$\hbar/\tau \propto T/\theta_{D}$（图 37）。
+
+我们可以在高温极限下区分两种情形：$\hbar/\tau$ 大于或小于 $kT$。当 $\hbar/\tau < kT$
+时，无论哪一类微扰论大概都会相当令人满意，
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_37.pdf}
+\caption*{图 37}
+\end{figure}
+
+\section{金属中的准粒子：费米液体}
+
+Landau 的“费米液体”（Fermi liquid）理论（73）或许可以被看作“钳位”（clamping）或有效哈密顿量观念的一种问题多得多的应用。Landau 理论试图把准粒子观念应用于相互作用很强的简并费米气体（degenerate Fermi gas），例如金属中的电子，或低温下的液体 He$_3$。
+
+在这里，散射是电子自身之间相互作用的效应，因此若要完全以钳位理论来论证准粒子的使用，就意味着不仅要对离子实的运动加钳位，还要对电子气体本身加钳位。但这件事无法以任何十分严格的方式做到。
+
+Landau 的做法是这样来施加他的“钳位”的：规定准粒子的分布 $n(k,r)$ 应当如何作为金属中位置的函数。然后，正如我们对声子存在下的准粒子所做的那样，他假定一个给定的波包 $q_k^{\dagger}(r)$，其能量随同一区域内其他准粒子的密度而变化：
+
+\begin{equation*}
+E_k(r) \;=\; E_k^{0} \;+\; \sum_{k'} f_{kk'}\, n(k', r)
+\end{equation*}
+
+有必要保留指标 $k$，用以指明准粒子波包以哪个 $k$ 值为中心，因为低能的准粒子在动量空间中可以铺展到整个费米面。因此我们必须谨慎地处理分布函数 $n$，因为 $k$ 和 $r$ 不是对易的变量，只能粗略地加以指定。
+
+我们至今还没有说明准粒子波包究竟是什么的波包。在这里，即便是系统最低的精确激发态也极其复杂。这一点可以直接从最低阶微扰论看出来。考虑一个粒子 $k$，它已被激发到费米面之上到达 $k_F+a$，这构成无相互作用 Fermi 系统最简单的激发态之一。这一电子可能被散射 $k = k_F + a \to k - q$，此过程同时把第二个电子 $k'$ 激发到 $k'+q$；只要末态中所有的能量都高于费米能，该过程就不为 Pauli 原理所禁止
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_38.pdf}
+\caption*{图 38}
+\end{figure}
+（图 38）。毫无疑问各位早已熟知，由此得到的平均自由时间按能量增量的平方变化，
+
+\begin{equation*}
+\Delta E \;=\; \frac{\hbar^{2}}{2m}\left[(k_F+a)^{2} - k_F^{2}\right] \;\simeq\; \frac{\hbar^{2}}{m}\, k_F a
+\end{equation*}
+
+\begin{equation*}
+\frac{\hbar}{\tau} \;=\; \text{consts.} \times \frac{|V|^{2}\,(\Delta E)^{2}}{E_F^{3}}
+\end{equation*}
+
+这一点很容易看出，只要注意到：对任何一个空穴留在 $k'$ 态的末态，能量守恒要求
+
+\begin{equation*}
+k^{2} - (k-q)^{2} \;=\; (k'+q)^{2} - k'^{2}
+\end{equation*}
+
+或
+
+\begin{equation*}
+(k - k') \cdot q \;=\; q^{2}
+\end{equation*}
+
+这是以 $(k-k')$ 为直径的球面的方程：于是我们知道，$k'+q$ 必定落在以从 $k$ 到 $k'$ 的矢量为直径的球面上。当 $a$ 很小时，这个球面可以用通过 $k$ 和 $k'$ 的平面来近似，因为 $k'$、$k$、$k-q$ 和 $k'+q$ 都必须非常靠近费米面（除了 $k' \simeq -k$ 的情形，而这只占可用态中极小的一部分）。现在很清楚，若 $k'$ 位于费米面以内 $(a\cos\theta)$ 的深度处，则可能存在两类散射过程：若我们选取一个垂直于 $(k-k')$ 且较小的 $q$（$q > |k_F - k'|\cos\theta$，$q < a\cos\theta$），便可以有 $k \to k-q$、$k' \to k'+q$，或者 $k \to k'+q$、$k' \to k-q$（图 39）。无论哪种情形，对给定的 $\theta$，$k'$ 与 $q$ 的可能范围都与 $a$ 成正比，而 $a \propto \Delta E$；于是在这个 $\theta$ 处的总散射概率 $\propto (\Delta E)^{2}$。对 $\theta$ 作积分、从而得到具有给定 $\Delta E$ 的电子的 $\hbar/\tau$ 的完整表达式，这个问题我留作练习。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{fig_39.pdf}
+\caption*{图 39}
+\end{figure}
+
+使人有理由相信，即便存在散射准粒子概念仍有某种意义的，是这样一个事实：至少在最低阶上，电子的寿命在其能量趋近费米面时非常迅速地变长。如果我们考察更高阶的散射，就会发现不相容原理把它们削减得比我刚才讨论的最低阶效应还要彻底得多。Goldstone、Luttinger、Ward 以及其他若干作者（74）从普遍的场论式、完全重整化（full-renormalization）的进路处理过这个问题。也就是说，他们证明了：通过对微扰论所有阶求和，人们可以如何从无相互作用气体的谱、态密度、以及——把二者一并概括起来的——Green 函数，绝热地延拓到有相互作用气体的相应量。
+
+在绝缘体的情形，各位当还记得，我们把系统的 Green 函数写成
+
+\begin{equation*}
+G(k, t) \;=\; \langle g|\, c_k^{\dagger}(t)\, c_k(0)\, |g\rangle
+\;=\; Z\, e^{iE_k t} \;+\; \int \mathrm{d}E_n\, f(E_n)\, e^{iE_n t}
+\end{equation*}
+
+系统的能谱也可以用以频率表出的 Green 函数来定义：
+
+\begin{align*}
+G(k, \omega) \;&=\; i \int G(k, t)\, e^{-i\omega t}\, \mathrm{d}t \\
+&=\; \frac{Z}{\omega - E_k} \;+\; \int \frac{f(E)}{\omega - E}\, \mathrm{d}E
+\end{align*}
+
+通过 $c_k^{\dagger}$ 产生的那些态的实际能谱，与 $\mathrm{Im}\, G(k)$ 相联系；准粒子态的存在，由 $G$ 在 $E_k$ 处出现一个极点来标志。多体理论所做的，就是证明：至少到微扰论的所有阶，\emph{在金属中}假定 $G$ 在一个复能量
+
+\begin{equation*}
+E_k \;+\; i\,\frac{\hbar}{\tau}
+\end{equation*}
+
+处有极点是自洽的，于是 $i\hbar/\tau$ 就是能量的虚部，也就是相应谱的宽度。事实证明，这一宽度按 $(\Delta E_k)^{2}$ 趋于零，恰好足以允许一个锐利费米面的存在，因为当准粒子态趋近费米面时，它们的定义便随之变得精确。在金属中，作为时间函数的 Green 函数起初迅速下降，一如它在绝缘体中的表现，然后以频率 $E_k/\hbar$ 振荡；但振荡不再无限延续，而是以 $1/\tau$ 的速率被阻尼（图 40）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_40.pdf}
+\caption*{图 40}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_41.pdf}
+\caption*{图 41}
+\end{figure}
+
+相应的谱密度如图 41 所示。同样，正如在绝缘体中那样，我们可以对态 $c_k^{\dagger}\Psi_{g}$ 施加一个能量滤波器，从而由它重构出准粒子态：
+
+\begin{equation*}
+q_k^{\dagger}\,\Psi_{g} \;\propto\; \int_{E_k-\frac{\epsilon}{2}}^{E_k+\frac{\epsilon}{2}} c_k^{\dagger}\,\Psi_{g}(E)\,\mathrm{d}E
+\qquad \epsilon \;\geq\; \frac{\hbar}{\tau}
+\end{equation*}
+
+当然，形式上这很容易写成一个时间积分：
+
+\begin{equation*}
+q_k^{\dagger}\,\Psi_{g} \;=\; \int_{0}^{\infty} \mathrm{d}t\;\, e^{\left(i\frac{E_k}{\hbar} \,-\, \frac{\epsilon}{2\hbar}\right)t}\; c_k^{\dagger}(t)\,\Psi_{g}
+\end{equation*}
+
+当 $E_k \to 0$ 时，量 $\epsilon$ 可以取得比 $E_k$ 更快地趋于零；这正是我们能够定义一个锐利的费米面、并给某一给定的准粒子态指派一个确定占据概率的原因。
+
+准粒子图像的限度显然是 $\hbar/\tau < E_k \sim k_B T$，而且 \emph{a fortiori}（更不必说）$\hbar/\tau < E_F$；$\hbar/E_F$ 是 $G(t)$ 初始下降的时间常数。
+
+从这一类理论出发，并借助用图形方法证明的各种恒等式，Luttinger 和 Nozières 最近直接从微扰论得到了 Landau 费米液体理论的许多结果（75）。显然，目前还不可能把这种“完全重整化”型的理论重新表述成“有效哈密顿量”或钳位理论。由于“有效哈密顿量”做法更为方便，尤其是对输运问题，这是相对 Landau 直观进路的一个不利之处。此外，微扰论的做法必须假定收敛性，而“微扰论（P.T.）从不收敛”几乎是一句格言；并且可以证明，这一个理论恰恰不收敛。
+
+一个值得提出的好问题是：某种更直截了当的“钳位”式进路是否就不能用于这个问题。我们可以问：正如声子理论中的情形那样，我们能否在不严重改变准粒子性质的前提下，把 $N$ 粒子系统那些必要的自由度钳制住。做到这一点的一种办法，也许是对 $N$ 粒子系统强加一个要求：不允许激发长波长的自由度——也就是说，要求密度涨落
+
+\begin{equation*}
+\rho^{Q} \;=\; \sum_{k} c_{k+q}^{\dagger}\, c_{k}
+\end{equation*}
+
+或者甚至个别的这类密度涨落
+
+\begin{equation*}
+\sum_{\substack{\text{some small}\\ \text{region of } k}} c_{k+q}^{\dagger}\, c_{k}
+\end{equation*}
+
+对某个足够小的 $q$ 恒等于零。由于在 $N+1$ 粒子问题中我们可以假定，就长程效应而言准粒子密度与真实粒子密度是相同的（当然仍需附带关于 $q=0$ 极限的那些非常特殊的评注），这将等价于把 Landau 的 $n(k,r)$ 固定下来。
+
+遗憾的是，显然即便如此，也仍不能使准粒子成为系统的精确激发，原因是存在我们曾提到过的“交换”散射过程 $k \to k'+q$、$k' \to k-q$——每一个长波过程都各配有一个这样的过程——此外，还有 $k' \simeq -k$ 那个有趣的区域，在那里所有的 $q$ 都是允许的。也许能找到绕开交换散射问题的某种办法；但耐人寻味的是，微扰论已知的种种失效恰恰与 $k' \simeq -k$ 区域相联系（76）。
+
+令人失望的是，准粒子观念以及费米气体的有效相互作用的完整论证至今尚未出现。由于这些概念在 Landau 准经典分布函数并不是令人满意的进路的那些场合被大量使用——尤其是超导电性和强杂质散射的情形——拥有一个更充分的论证将是极为可取的。
+
+在结束时，我想说：准粒子观念对固体物理是一个无比重要的观念，当然对高能物理也是如此。关于准粒子，各种严格的或或多或少严格的思考方式，给了我们十分宝贵的信心：对物理思维的种种基础。尽管如此，人们也可能过分强调处理固体时所能达到的、乃至宜于讲求的那种严格性。正如 Landau 在旧版《Statistical Physics》的序言中所说：“我们在这里谈的是理论物理，因此数学上的严格性当然是既不相干、也办不到的。”这话并不完全正确，但也相去不远。
+
+我们最好记住：第一，我们用来工作的数学模型，几乎总是对实际物理系统已经作了高度简化的理想化；第二，准粒子物理就其本性而言全部建立在微扰级数之上，因为它无非是试图用一个形如仅有弱相互作用粒子系统的理论去逼近一个完整的理论。但我们必须时时猜测微扰论应当从什么状态出发——也就是说，猜测系统的物理本性究竟是什么：金属型的、磁性的、绝缘的、液态的还是固态的。这种猜测可能正确，但也可能错得离谱；在后一种情形，往往唯一的迹象只是我们的微扰论出现轻微的、几乎觉察不到的发散。超导电性里发生的正是这种事。第三点警告是：由于存在集体激发，几乎所有微扰级数都确实会在至少某个方面失效，而这些集体激发又往往只能作为各项发散子级数之和从微扰论中求得。总的说来，我认为下述态度至少是站得住脚的：固体物理的奠基者们和 Landau 学派对准粒子的本能式使用，其严格性比起精巧的多体理论几乎毫不逊色，而且也许更万无一失，因为它的\emph{外表}不那么严格。
+
+\section{集体激发}
+
+\subsection{激子}
+
+绝缘体中的激子（exciton）与铁磁体中的自旋波（spin wave）是最简单的两类集体激发（collective excitation）。它们在许多方面惊人地相似，在与它们相联系的形式数学方面尤其如此；两者还有更深一层的相似之处：它们的零点运动（zero-point motion）都相对很少，由零点运动所带来的复杂问题也很少。在每一种情形下，原因都在于：正如在 $N+1$ 体问题中那样，人们可以从一个几乎能够严格定义的基态出发来表述问题。在铁磁体中之所以如此，是因为铁磁基态的特征（如果它存在的话）是自旋的总 $Z$ 分量为 $M_Z = N/2$。所有自旋波态虽然能量可能非常低，其特征却是 $M_Z = (N/2) - 1$，因而把它们与基态联系起来的哈密顿量矩阵元充其量也非常小。
+
+激子的情形则更为复杂。如读者所知，激子是光激发，我们既可以按照 Frenkel (77) 的模型、也可以按照 Wannier (78) 的模型来讨论它们。Frenkel 模型适用于紧束缚的情形，例如分子型或离子型晶体，它由一个在晶体中移动的受激原子态构成。例如，它可以是这样一种 NaCl 中的态：Na$^+$ 离子实的 p 电子之一被激发到一个 s 能级，而由此形成的激发可以在晶体中移动。Wannier 模型更常被观察到，或许也更有趣；在这一模型中，人们假定一个电子从一个能带被激发到下一个能带，但由此形成的准粒子与准空穴按弱势 $e^2/\kappa R$ 相互吸引，并一起在晶体中穿行。无论哪种情形，通常都相当清楚该如何定义一个不包含任何激子的固定基态；例如，对光学活性的（optically active）激子——诸如 $sp$ 跃迁——$k=0$ 的激子态与基态宇称相反，因而不能与基态混合。然而我们将会看到，这一简化并非对所有激子都完全成立。
+
+我这里的材料将主要取自 J.~J.~Hopfield (79) 的一篇出色的论文，以及 E.~Dresselhaus (80) 的另一篇。我不认为存在任何好的综述；较早的理论在 Seitz 的书中有论述。
+
+就定性物理图象的目的以及与自旋波作比较而言，Frenkel 模型更为有用。让我们从它出发，然后再从它出发作微扰。
+
+Frenkel 模型（至少在一开始）所设想的是一种像固态 Ne 或 Ar 那样的晶体，其中的原子相距相当远，几乎互不交叠。当然，这种晶体是一种绝缘体。我们暂且撇开对基本多体问题的任何讨论，而用 Hartree-Fock 方法处理势场；相关的相互作用我们稍后将用多体理论来处理，但从 Hartree 出发最为简单，同时按惯例附加上一个条件：由于我们处理的是元激发，多体效应并不太严重。最后一个被填满的能带，我们假定是一个 s 带。把这个带的 Wannier 函数记作 $a_s(r-R_j)$。由于这个带极窄，非对角矩阵元
+\begin{equation*}
+b_{jk}^{s} \;=\; \int a_s^{*}(R_j - r)\; \mathcal{H}_{1\mathrm{el}}(r)\; a_s(r - R_k)\; dr
+\end{equation*}
+非常小——至于相对于什么而言小，我们很快就会看到。
+
+还有一个“导”带——一个由激发态构成的能带，为简单起见我们同样假定它具有 p 型 Wannier 函数
+\begin{equation*}
+a_p^{\,x,y,z}(r - R_j)
+\end{equation*}
+以及非常窄的带宽（即转移积分，transfer integrals）
+\begin{equation*}
+b_{jk}^{xx'},\ \text{等等}
+\end{equation*}
+自由原子会有一定的激发能
+\begin{equation*}
+E_0 \;=\; (E_p - E_s)
+\end{equation*}
+——从 s 态激发到 p 态——在这样一种固体中，它不会由于变换到 Wannier 函数而受到太严重的修正。必须认识到，这个激发能在数量上并不接近 s 带与 p 带之间的 Hartree-Fock 平均能量差。
+
+其原因在于：能带能量差对应的态，是电子被完全激发而离开自己原来那个原子、从而发现自己处在一个既有 s 又有 p 电子的原子上的态，因此除了单电子激发能 $E_0$（图 42）之外，还有如下的额外库仑排斥能
+\begin{equation*}
+U \;=\; \int |a_p(r-R_j)|^2\; \frac{e^2}{|r-r'|}\; |a_s(r'-R_j)|^2\; dr\; dr'
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_42.pdf}
+\caption*{图 42（能级示意图：上方为 $E_k(p)$ 能带曲线，下方为 $E_p$(atomic) 原子能级线组与 $E_S$ 基态能级线；竖直箭头分别标出 $E_0$、$E_k(p)-E_k(s)$ 两个激发能以及 $U$ 的间隔）}
+\end{figure}
+
+换一种说法：电子与它身后留下的空穴通过完全的库仑相互作用（仅被介质的介电常数稍微修正）彼此强烈吸引，因此电子被激发到同一原子上的 p 态，远比把它激发到邻近的原子上去容易得多。
+
+现在很清楚，如果各个 $b$ 与 $U$ 相比很小，那么 Frenkel 理论将相当好地成立，因为无论空穴还是电子都不会倾向于跳离自己的同伴。这时激子
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_exciton-jkj.pdf}
+\caption*{无编号正文插图（原书不编号）——Frenkel 激子组态示意：上排为 p 能级，格点 j 处有一个电子（$\ominus$），一道弧形箭头从该电子指向右侧格点 k 处的空 p 能级，箭头旁标 “+ U”；下排为 s 能级，格点 j 处为空穴，k 与 j' 处各有一个电子（$\ominus$）}
+\end{figure}
+将是紧束缚的，而且在 s 空穴-p 电子带态的连续谱与激子之间将有一个很大的能隙。在另一种情形 $U < b$ 中，电子与空穴将比较容易分开，Wannier 图象会好得多。我们将在后面讨论那种情形。
+
+另一方面，即使电子与空穴耦合得很紧，这一对粒子仍然能够一起在晶体中移动。在我们现在的情形中，实现这一点最重要的机制，是电子与相邻原子上的电子之间的相互作用。这个相互作用可以写成
+\begin{equation*}
+\int \psi^{\dagger}(r)\,\psi^{\dagger}(r')\,\frac{e^2}{|r-r'|}\,\psi(r')\,\psi(r)\,dr\,dr' \tag{11}
+\end{equation*}
+其中 $\psi$ 可以用 Wannier 函数的产生与湮灭算符展开，即 $c_j^s$ 与 $c_j^{p_x}$、$c_j^{p_y}$、$c_j^{p_z}$：
+\begin{equation*}
+\psi^{\dagger}(r) \;=\; \sum_j \sum_{n=s,\,p_x,\,p_y,\,p_z} c_j^{n\dagger}\, a_n^{*}(r-R_j)
+\end{equation*}
+有各种各样的项可能产生把一个原子激发、同时使其邻居退激发的效果；其中最重要的是“直接的”（direct）即偶极（dipolar）项，其典型的一员是
+\begin{equation*}
+\left(c_j^{p_x}\right)^{\dagger} c_k^{s\dagger} c_k^{p_x} c_j^{s} \int a_{p_x}^{*}(r-R_j)\, a_s(r-R_j)\, \frac{e^2}{|r-r'|}\, a_s^{*}(r'-R_k)\, a_{p_x}(r'-R_k)\, dr\, dr'
+\end{equation*}
+这类积分用多极展开（multipolar expansion）来求值最为容易：
+\begin{align*}
+\frac{e^2}{|r-r'|} = \; & e^2 \Bigg[ \frac{1}{R_j - R_k} + \left\{ (r-R_j) + (r'-R_k) \right\} \cdot \nabla\!\left(\frac{1}{r}\right)\Big|_{R_j-R_k} \\
+& + (r-R_j)(r-R_k) \cdot \nabla\nabla\!\left(\frac{1}{r}\right)\Big|_{R_j-R_k} + \cdots \Bigg] \tag{12}
+\end{align*}
+
+（译注：式 (12) 照录原书。按标准多极展开，第二项花括号内应为 $\{(r-R_j)-(r'-R_k)\}$，即 $(r'-R_k)$ 之前应为负号；原书印作正号。）
+
+第一个不为零的项是偶极项，即上式最后一项，它给出的典型矩阵元为
+\begin{equation*}
+|X_{sp}|^2 \cdot T(r_j - R_k)_{xx}
+\end{equation*}
+其中 $X_{sp}$ 是原子态的偶极矩矩阵元：
+\begin{equation*}
+X_{sp} \;=\; e \int a_{p_x}^{*}(r)\; x\; a_s(r)\; dr
+\end{equation*}
+而 $T$ 是偶极相互作用算符
+\begin{equation*}
+T_{jk} \;=\; \frac{1}{R_{jk}^{3}} \left\{ 1 - 3\,\frac{\mathbf{R}_{jk}\,\mathbf{R}_{jk}}{R_{jk}^{2}} \right\}
+\end{equation*}
+
+在这个偶极相互作用算符——它表示与每个原子相联系的运动电偶极子之间的直接静电相互作用——之中，我上面给出的那种形式的矩阵元所联系的各个态，正如我先前概略说明的那样，每一个都比基态高出大约 $E_0$ 的能量。还有一些形如 $c_j^{p\dagger} c_j^{s} c_k^{p\dagger} c_k^{s}$ 的项，它们同时产生或湮灭两个激发；这些项有相当的重要性，我们很快就会回头来讨论它们，但就目前而言，它们显然不如其他项有效，因为它们的能量分母 $\Delta E$ 为 $2E_0$。于是我们的哈密顿量中现在有
+\begin{align*}
+\mathcal{H}_{\mathrm{unpert}} = \sum_{j,\,p_i} \frac{E_0}{2} & \left[ \left(c_j^{p_i}\right)^{\dagger} c_j^{p_i} - c_j^{s*} c_j^{s} \right] \\
+& + \frac{1}{2} \sum_{j \neq k}\; \sum_{p_i\, p_{i'}} \Bigl( \left(c_j^{p_i}\right)^{\dagger} c_k^{s\dagger} c_k^{p_{i'}}\, c_j^{s}\; |X_{sp}|^2\; T_{jk} \Bigr)_{ii'} \tag{13}
+\end{align*}
+
+现在有用的一步，是几乎在集体激发理论的每一个问题中都要采取的一步：从费米子（fermion）算符对到玻色子（boson）的变换。这类变换中人们最熟悉的，是电子自旋算符这一特殊情形。假定代替三个 p 函数的只是唯一的一个 $\phi_p$。那么出现在哈密顿量——式 (13)——之中、与原子 $j$ 相联系的算符，将是如下三种组合
+\begin{align*}
+c_{j1}^{\dagger}\, c_{j1} - c_{j0}^{\dagger}\, c_{j0} \qquad & \qquad 0 = s \\
+c_{j1}^{\dagger}\, c_{j0} \;\; \text{与} \;\; c_{j0}^{\dagger}\, c_{j1} \qquad & \qquad 1 = p
+\end{align*}
+此外，我们只对原子 $j$ 要么被激发、要么未被激发的那些态感兴趣——也就是说，对 $n_p + n_s = 1$ 的态感兴趣。
+
+这些算符对恰好等价于一组 Pauli 自旋算符
+\begin{equation*}
+\sigma_{jz} \;=\; \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\;\begin{matrix} \mathrm{p}_{occ} \\ \mathrm{s}_{occ} \end{matrix} \qquad\quad \sigma_j^{+} \;=\; \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \qquad\quad \sigma_j^{-} \;=\; \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}
+\end{equation*}
+——它们作用在描写第 $j$ 个原子状态的赝自旋（pseudo-spin）波函数上。
+
+首先，属于不同原子的费米子算符对彼此对易，正如自旋算符那样；其次，在涉及单个原子的波函数的子空间内，这些自旋算符恰好具有与
+\begin{equation*}
+c_1^{\dagger} c_1 - c_0^{\dagger} c_0 \;(\sigma_z) \qquad\qquad c_1^{\dagger} c_0 \;(\sigma^{+}); \quad c_0^{\dagger} c_1 \;(\sigma^{-})
+\end{equation*}
+完全相同的代数性质。因此在那种情形下，把哈密顿量写成
+\begin{equation*}
+\mathcal{H} \;=\; \frac{E_0}{2} \sum_j \sigma_{jz} \;+\; \frac{1}{4} \sum_{jk} X_j\, T_{jk}\, X_k \left( \sigma_j^{+} \sigma_k^{-} + \sigma_j^{-} \sigma_k^{+} \right)
+\end{equation*}
+的形式将是精确无误的。在磁学情形中恰好就要用到这种对应。
+
+从自旋算符到玻色子的变换，Dyson (81) 已经作过详尽的讨论；借助一个小技巧可以把它简化，这个技巧的出处我已经记不得了。只要两个自旋算符——或者两个费米子算符对——涉及的是不同的原子，它们就彼此对易，正如玻色子那样。但当两个自旋算符涉及同一个原子时，它们的对易关系要更接近费米型得多，而这正是建立相应的一组玻色子时的主要困难。
+
+在激子的情形以及自旋的许多情形中，这并不是一个很严重的限制，因为出现的激发总数相当少，从而它们相遇重合的可能性可以忽略。在这样的情形下，我们或许可以猜想：按照下述显而易见的对应规则直接把旋量（spinor）认同为玻色子，就会令人满意：
+\begin{equation*}
+\sigma_j^{\dagger} \rightarrow b_j^{\dagger} \qquad \sigma_j \rightarrow b_j \qquad \frac{\sigma_{jz} + 1}{2} \rightarrow n_j \;=\; b_j^{\dagger} b_j \tag{14}
+\end{equation*}
+就最重要的那一对能级 $n_j = 0$ 与 $1$ 而言，算符组 (14) 具有完全相同的代数性质。但玻色子 $b$ 却具有与一整串额外能级 $n_j = 2,\, 3,\, \ldots$ 相联系的矩阵元。
+
+使对应 (14) 成为精确的诀窍很简单：切断能级阶梯最底下两级与其余各级之间的联络。插入一道“势垒”（barrier），它恰好把连接 $n_j = 1$ 与 $n_j = 2$ 的矩阵元投影掉（project out），而在其他方面并不改变 $n_j = 0$ 和 $1$ 的矩阵元（图 43）。这道“势垒”就是：在所有使用 $b_j^{\dagger}$ 的地方都在其之前、在使用 $b_j$ 的地方都在其 \emph{之后} 乘以 $(1-n_j)$。也就是说，
+\begin{equation*}
+\sigma_j^{\dagger} = b_j^{\dagger}(1-n_j) \qquad \sigma_j = (1-n_j)\, b_j \qquad \sigma_{jz} = 2n_j - 1
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_43.pdf}
+\caption*{图 43（示意图：左边的 $\sigma_j$ 只有两个能级（0 与 1）；右边的 $b_j$ 具有包括 $n_j$ = 0、1 与 2、3、4、……在内的整个能级阶梯，在 $n_j = 1$ 与 2 之间画有锯齿状 “Barrier”（势垒））}
+\end{figure}
+
+立刻可以验证：当 $n_j = 1$ 时，$\sigma_j^{\dagger}$ 无法把它升到 $n_j = 2$，反之亦然。
+
+别的技巧也可能同样好，例如 Holstein-Primakoff 展开或 Wentzel 的有效哈密顿量方法 (82)；某些格林函数（Green's function）方案则更为一般 (93)；但就费米子对到玻色子的变换而言，这是迄今最简单的一个论证。利用这一变换，在单激发能级的情形下，哈密顿量现在——仍然是严格地——为
+\begin{equation*}
+\mathcal{H} \;=\; E_0 \sum_j n_j \;+\; \sum_{jk} b_j^{\dagger}(1-n_j)\, T_{jk}\, (1-n_k)\, b_k\; \frac{|X|^2}{2}
+\end{equation*}
+把它推广到激发态简并的情形是平凡的。在我们正在讨论的情形中，可以把这对能级——其中之一是三重简并的——换成三维谐振子最低的两个能级
+\begin{equation*}
+b_j^{\dagger} \;=\; b_j^{x\dagger},\; b_j^{y\dagger},\; b_j^{z\dagger}
+\end{equation*}
+于是，为了施加我们的势垒，只需把 $b^x$ 乘以 $(1-n_j)$，其中 $n_j = n_{jx} + n_{jy} + n_{jz}$；这样便有 $c_j^{p_x}{}^{\dagger} c_j^{s} = b_j^{x}{}^{\dagger}(1-n_j)$，等等。所得的用玻色子表示的哈密顿量为
+
+% （本文件到此为止；下接原书 p154，由下一文件续译）
+
+\begin{equation*}
+\mathcal{H} \;=\; E_0 \sum_j n_j \;+\; \frac{|X|^{2}}{2} \sum_{j\neq k} b_j^{\dagger}(1-n_j)\cdot T_{jk}\cdot(1-n_k)\, b_k \tag{15}
+\end{equation*}
+
+再者，(15) 是完全精确的；“动能限制”在这里已被一个非线性相互作用所取代。
+
+从这里出发继续下去有两条途径。第二种，即直接对角化，我们稍后再来演示；第一种是直接计算玻色子算符的运动方程：
+
+\begin{align*}
+i\hbar\,\frac{db_j^{\dagger}}{dt} \;=\; \bigl[\mathcal{H},\, b_j^{\dagger}\bigr] \;=\;& E_0\, b_j^{\dagger} \;+\; |X|^{2} \sum_{k\neq j} b_k^{\dagger}\cdot T_{jk}\,(1-n_j)(1-n_k) \\
+&-\; \frac{|X|^{2}}{2} \sum_{k\neq j} \Bigl[(b_j^{\dagger})^{2}\cdot T_{jk}\cdot(1-n_k)\, b_k \;+\; b_k^{\dagger}(1-n_k)\cdot T_{kj}\, n_j\Bigr]
+\end{align*}
+
+其中用到了 $[b,\, b^{\dagger}]=1$。
+
+若让这个方程作用于没有激子被激发的基态，最后两项便恒等于零，而第二项中的那些修正项也同样为零。于是它是 $b_j$ 的一个线性方程，可以用线性变换
+
+\begin{equation*}
+b_j \;=\; \frac{1}{\sqrt{N}} \sum_k e^{i\mathbf{k}\cdot\mathbf{R}_j}\, \beta_k
+\end{equation*}
+
+把它从原子激子变换到行波来对角化。所得的方程是
+
+\begin{equation*}
+i\hbar\,\frac{d\beta_k}{dt} \;=\; E_0\, \beta_k \;+\; X^{2}\, T\cdot \beta_k
+\end{equation*}
+
+其中 $T$ 是偶极相互作用的 Fourier 变换
+
+\begin{align*}
+T_k \;&=\; \sum_{j\neq 0}\, e^{i\mathbf{k}\cdot\mathbf{R}_j}\, T_{0j} \\
+&=\; \sum_{j\neq 0}\, \frac{e^{i\mathbf{k}\cdot\mathbf{R}_j}}{R_j^{3}}\, \Bigl\{\, 1 \;-\; 3\,\hat{\mathbf{R}}_{0j}\hat{\mathbf{R}}_{0j} \,\Bigr\}
+\end{align*}
+
+注意 $\sum_k T_k = 0$，因为其中不含 $j=0$ 的项。对于波长非常长的激子——也只有这类激子才真正值得注意——并且在立方晶体中或沿对称轴的方向上，$T$ 通常可以通过把纵波与横波分开而对角化；也就是说，它的一个主轴沿 $\mathbf{k}$ 方向，另外两个与之垂直。
+
+在 $\mathbf{k}\to 0$ 的极限下，$T$ 变成著名的偶极和（dipolar sum），它在局域场理论中具有基本的重要性。当 $\mathbf{k}\to 0$ 时，
+
+\begin{equation*}
+(T_l)_k \;-\; (T_t)_k \;\to\; 4\pi N
+\end{equation*}
+
+而对立方对称的格位 $j$，
+
+\begin{equation*}
+(T_l)_k \;\to\; \frac{8\pi N}{3} \qquad\qquad (T_t)_k \;\to\; -\,\frac{4\pi N}{3}
+\end{equation*}
+
+$4\pi/3$ 正是适当的 Lorentz 局域场因子。$\mathbf{k}\to 0$ 时纵波与横波之间的差别反映了偶极力的长程性质：纵向偶极波会在波的波节与波腹处引起电荷的积累（译注：原文此处作 “modes”，据图 44 及上下文应为 “nodes”，即波节），而横波则不会（图 44）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_44.pdf}
+\caption*{图 44　纵向偶极波中偶极子（箭头）与电荷（+、−）的排列：+ 电荷一行处于波节（node），− 电荷一行处于波腹（antinode）（原书图注仅作 “Figure 44”）}
+\end{figure}
+
+于是在这个近似下，激子的能量为
+
+\begin{gather*}
+E_l \;=\; E_0 \;+\; \frac{8\pi}{3}\, N X^{2} \;+\; \text{const.}\; X^{2}\, \frac{k^{2}}{a} \;+\; \cdots \\
+E_t \;=\; E_0 \;-\; \frac{4\pi}{3}\, N X^{2} \;+\; \text{const.}\; X^{2}\, \frac{k^{2}}{a} \;+\; \cdots
+\end{gather*}
+
+关于偶极和，最好的处理大概要数 Cohen 与 Keffer 的一篇文章 (84)。
+
+$T_l$ 与 $T_t$ 的实际数值依赖于结构的具体细节。但二者的差——其实也就是纵向与横向激子频率之差——即使在 Frenkel 模型并不适用的情形下也不依赖这些细节，而是一种纯粹长程的、宏观的效应。各位可以看到，$T_t$ 是由平行的偶极子产生的场之和，其中在极远距离处的表面电荷或体电荷实际上已相互抵消：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_dipole-t.pdf}
+\caption*{无编号插图（原书不编号）　$T_t$ 的等效图像：左为椭球内交替反向的平行偶极子阵列，椭球表面上 +、− 电荷交替排列；右侧旁注 “which is equivalent to”（它等价于）一个充电的平行板电容器，下方旁注 “or”（或），即一根两端各带 −、+ 电荷、内部箭头同向的细棒}
+\end{figure}
+
+而 $T_l$ 则是相反的情形，等价于
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_dipole-l.pdf}
+\caption*{无编号插图（原书不编号）　$T_l$ 的等效图像：圆柱内彼此平行的偶极子（箭头一律朝上），上表面排满 + 电荷，下表面排满 − 电荷}
+\end{figure}
+
+如图所示。这一差别完全由宏观的表面电荷或体电荷造成，后者可以用宏观介电理论算出。它与 Lyddane、Sachs 与 Teller (85) 等人关于光学声子纵–横频率差的理论完全类似。
+
+为了表明这一切与经典介电理论的直接关系，让我们写下经典电介质的运动方程：
+
+\begin{equation*}
+\frac{d^{2}\mathbf{P}}{dt^{2}} \;+\; \omega_0^{2}\,\mathbf{P} \;=\; \beta\, \mathbf{E}_{\mathrm{eff}}
+\end{equation*}
+
+这里 $\beta$ 是一个耦合常数，考虑零频率极限便可以用偶极矩阵元把它求出来；在这个极限下，我们从直截了当的微扰论知道，原子系统的极化率为
+
+\begin{equation*}
+\alpha \;=\; \frac{2 N X^{2}}{E_0} \;=\; \frac{2 N X^{2}}{\hbar\omega_0} \;=\; \frac{\beta}{\omega_0^{2}}
+\end{equation*}
+
+在局域场近似下，原子所感受到的有效场为 $\mathbf{E}_{\mathrm{eff}} = \mathbf{E} + L\mathbf{P}$，其中 $L$ 是“局域场常数”（local-field constant），对立方晶格与横波它取 $4\pi/3$。于是共振频率由
+
+\begin{equation*}
+\left(-\omega_r^{2} + \omega_0^{2}\right)\mathbf{P} \;=\; \beta\, L\mathbf{P}
+\end{equation*}
+
+决定，并且取 $\omega_r \approx \omega_0$，就得到
+
+\begin{align*}
+2\,(\omega_r - \omega_0)\,\omega_0 \;&=\; -\,\beta L \\
+\hbar\omega_r \;\simeq\; \hbar\omega_0 \;-\; \frac{\hbar\beta}{2\omega_0}\, L \;&=\; \hbar\omega_0 \;-\; N X^{2} L
+\end{align*}
+
+这跟我们用直接的量子力学手段得到的表达式相同。后面我们会看到如何恢复与更完整的经典公式
+
+\begin{equation*}
+\frac{\omega^{2} - \omega_0^{2}}{\omega_0^{2}} \;=\; -\,\alpha(\omega{=}0)\cdot L \tag{15'}
+\end{equation*}
+
+的相符。
+
+Hopfield 的论文里有一个对整个激子问题的有趣处理，即把一个经典介质作量子化；我不打算在此重述，因为后面讨论自旋波时我们会给出一个类似的处理。
+
+不过，Hopfield 关于激子与辐射相互作用的结果我还是应当讨论一下，因为它们说明了若干有趣的物理要点。到目前为止，我们在计算中只纳入了电磁场中导致 Coulomb 相互作用的纵向部分。横向辐射场与纯纵向的激子并不相互作用，但它当然会通过如下形式的项直接与横向激子耦合：
+
+\begin{equation*}
+\sum_{k,\lambda} \left(\mathbf{M}\cdot\mathbf{E}\right)_{k} \left(-\, b_{k\lambda}^{\dagger}\, a_{k\lambda} \;+\; b_{k\lambda}\, a_{k\lambda}^{\dagger}\right)
+\end{equation*}
+
+其中 $a_{k\lambda}$ 是光子的产生与湮灭算符，而矩阵元可以证明为
+
+\begin{equation*}
+i\left(\frac{2\pi\hbar c}{|k|}\right)^{1/2} \frac{\omega_0}{c}\, X
+\end{equation*}
+
+$\lambda$ 是偏振指标。Hopfield 指出，在理想晶体中，我们不应当把这个耦合看作导致光子被激子所吸收，而应当把它看作两个独立的玻色型激发之间的耦合，二者的谱如图 45 所示。激子的速度远远小于
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_45.pdf}
+\caption*{图 45　光子（直线，斜率 = c）与激子（自 $\omega_r$ 出发的缓升曲线）的色散谱，$\omega$ 轴上标出 $\omega_r$；虚线示引入耦合后谱在交叉点附近发生的劈裂（原书图注仅作 “Figure 45”）}
+\end{figure}
+
+光子的速度，因此两支频率在非常小的 $k$ 处相交。自然，当我们引入耦合后，结果便是在交叉点附近两支谱发生劈裂，如图中虚线所示。于是，在没有声子与缺陷的情形下，光子并不被吸收，而是在激子频率处受到强烈色散。对能量处于 $\omega_r$ 附近的辐射，存在一个完全不透明的区域，即截止带（stop band）；在该带的两侧，光子速度被大大减慢。这正是辐射的共振俘获（resonance trapping）现象在固体中的对应物；可以把它想成光子经由反复的吸收与再发射而被减慢乃至停止。当然，在实际晶体中，结果表明通过多声子发射这类过程，激子被吸收的程度远比光子强烈，因而在激子频率附近会发生一个类似吸收的过程。然而必须把这一点理解为从激子-光子混合模式向声子或杂质自由度的直接吸收，而不是光子被激子本身所吸收。
+
+Hopfield 与 Thomas 已经在 CdS 晶体中用实验演示了激子的若干这类性质。通过观察主轴以外方向上的吸收，他们得以造成纵向与横向激子的轻微混合，从而在实验上证实了这两类模式之间的频率差。在另一些安排中，他们借助磁场证明：与光子发生强相互作用的激子确实是以有限的、非零的动量在传播，而不是静止的受激原子；并已在实验上粗略测得激子的速度 (86)。
+
+Frenkel 激子的另一个方面，是高能量偶极项所起的作用；这些项在我们迄今为止的处理中一直被忽略。静电相互作用 (11) 也包含如下形式的偶极矩阵元：
+
+\begin{equation*}
+\left(c_j^{p_x}\right)^{\dagger} \left(c_k^{p_x}\right)^{\dagger} c_k^{s}\, c_j^{s} \left(\int a_{p_x}^{*}\, ex\, a_s\right)^{2} \left(T_{jk}\right)_{xx}
+\end{equation*}
+
+它们的作用是把原子 $j$ 与原子 $k$ 同时激发。由此在哈密顿量中产生的项，用玻色子 $b$ 写出即为
+
+\begin{gather*}
+\frac{X^{2}}{2} \sum_{j\neq k} b_j^{\dagger}(1-n_j)\cdot T_{jk}\cdot b_k^{\dagger}(1-n_k) \\
++\; \frac{X^{*2}}{2} \sum_{j\neq k} (1-n_j)\, b_j\cdot T_{jk}\cdot(1-n_k)\, b_k \tag{16}
+\end{gather*}
+
+在大多数情形下我们可以取 $X$ 为实数。（译注：上式第二行的求和限原书印作 $i\neq k$，显系 $j\neq k$ 之误排，此处径改。）
+
+眼下最显而易见的做法，是用微扰论来处理这些项，同时十分有理由地假定相应激发态的平均能量恰好就是 $2E_0$。我们得到固体总能量降低了
+
+\begin{equation*}
+\Delta E_2 \;=\; -\, \frac{N|X|^{4}}{2E_0} \sum_j T_{0j}:T_{0j}
+\end{equation*}
+
+它正比于 $R_{0j}^{-6}$，显然恰恰应当把它等同于原子间 Van der Waals 吸引中来自这一特定电子跃迁的分量——也就是按独立原子计算出来的那一份。
+
+用另一种方式来做这件事是有趣的。我们看到，在用较简单的哈密顿量 (15) 考虑\emph{第一个}激子时，激子算符运动方程中的非线性项恰好为零。因此在那一级近似下，第一个激子是系统的一个\emph{精确}激发态。现在我们做出典型的“元激发”假设：即使存在物理上数量可观的元激发，元激发之间的相互作用也可以在某级近似下予以忽略；也就是说，无论在 (15) 中还是在我们现在所考虑的 (16) 的各项中，都把 $(1-n_j)$ 换成 1，只保留玻色子振幅的二次项。
+
+必须认识到，一旦把 (16) 计入哈密顿量，就连基态也会含有原子激发态的小振幅，因为存在一些被激发而又退激发的激子对。这个百分比实际上并不微不足道，
+
+% ——上句在原书 p144 末中断于 “The percentage is not in fact”，p145（PDF p160）起由后续代理续译衔接。
+
+% 衔接说明：本文件首段承上文件 ch3_D1b.tex 末句——原书 p144 末句 "The percentage
+% is not in fact" 与本文件首词 “微不足道” 合成完整一句（“这个百分比实际上并不微不足道”）。
+% 本文件止于原书 p156 末的 $\delta(q,q')$ 等式；原书 p157 顶部（D.2 小节标题之前）
+% 尚有一段 D.1 收尾文字，已暂存于 ch3_D2.tex 顶部（%--D1-TAIL-- 标记之下），
+% 装配时应接于本文件之后。
+
+%JOIN%
+因为在较好的稀有气体和离子晶体中，$X^{2}T_{jk}$ 约为 1/2 至 1 eV，所以该振幅是 0.1 的量级。因此，令 $n_j = 0$ 确实是一个有实质内容的假定，不过在这个情形下也是一个相当准确的假定。
+
+那么，就让我们在这个线性化近似下，把新的、完整的哈密顿量用玻色子算符 $\beta_{k\lambda}$ 表示出来（$\lambda$ 标记激子的偏振）：
+
+\begin{gather*}
+\mathcal{H} \;=\; \sum_{k\lambda} \left(E_0 + X^{2}\,T_{\lambda}(k)\right) \beta_{k\lambda}^{\dagger}\,\beta_{k\lambda} \\
++\;\sum_{k\lambda} X^{2}\,T_{\lambda}(k)\left(\beta_{k\lambda}^{\dagger}\,\beta_{-k\lambda}^{\dagger} + \beta_{k\lambda}\,\beta_{-k\lambda}\right) \tag{17}
+\end{gather*}
+
+让我们试着把它对角化。显然，唯一的途径是把算符 $\beta_k^{\dagger}$ 与 $\beta_{-k}$ 混合起来，反之亦然——这种做法读者如今已从超导理论中熟悉了。［其实，相应的变换很可能最早就是 Bogolyubov 在 $\mathrm{He}^{4}$ 理论中作出的 (87)。］于是我们令
+
+\begin{gather*}
+\beta_k^{\dagger} \;=\; u_k B_k^{\dagger} - v_k B_{-k} \qquad\qquad \beta_k \;=\; u_k B_k - v_k B_{-k}^{\dagger} \\
+\beta_{-k}^{\dagger} \;=\; u_k B_{-k}^{\dagger} - v_k B_k \qquad\qquad \beta_{-k} \;=\; u_k B_{-k} - v_k B_k^{\dagger}
+\end{gather*}
+
+为保证这些新算符遵守玻色子的对易规则，我们只需检验
+
+\begin{equation*}
+\left[\,\beta_k,\;\beta_k^{\dagger}\right] = 1 \qquad\text{若}\qquad \left[\,B,\;B^{\dagger}\right] = 1
+\end{equation*}
+
+也就是说，
+
+\begin{equation*}
+u_k^{2}\left[\,B_k,\,B_k^{\dagger}\right] + v_k^{2}\left[\,B_{-k}^{\dagger},\,B_{-k}\right] = 1
+\end{equation*}
+
+或者，
+
+\begin{equation*}
+u_k^{2} - v_k^{2} = 1
+\end{equation*}
+
+只要令
+
+\begin{equation*}
+u_k \;=\; \cosh\frac{\theta_k}{2} \qquad\qquad v_k \;=\; \sinh\frac{\theta_k}{2}
+\end{equation*}
+
+它便自动得到满足。
+
+现在让我们代入哈密顿量 (17) 之中。其中特定的一组项可以写成
+
+\begin{equation*}
+E_k^{0}\left(\beta_k^{\dagger}\beta_k + \beta_{-k}^{\dagger}\beta_{-k}\right) + E_k'\left(\beta_k^{\dagger}\beta_{-k}^{\dagger} + \beta_{-k}\beta_k\right)
+\end{equation*}
+
+这些项现在变为
+
+\begin{align*}
+E_k^{0}\,\Bigl\{\; & u_k^{2}\left(B_k^{\dagger}B_k + B_{-k}^{\dagger}B_{-k}\right) + v_k^{2}\left(B_{-k}B_{-k}^{\dagger} + B_k B_k^{\dagger}\right) \\
+& -\; 2u_k v_k\,\left[B_k^{\dagger}B_{-k}^{\dagger} + B_{-k}B_k\right]\Bigr\} \\
++\; E_k'\,\Bigl\{\; & \left(u_k^{2} + v_k^{2}\right)\left(B_k^{\dagger}B_{-k}^{\dagger} + B_{-k}B_k\right) \\
+& -\; u_k v_k\left(B_k^{\dagger}B_k + B_{-k}B_{-k}^{\dagger} + B_{-k}^{\dagger}B_{-k} + B_k B_k^{\dagger}\right)\Bigr\}
+\end{align*}
+
+这样，只要令
+
+\begin{equation*}
+\frac{2u_k v_k}{u_k^{2} + v_k^{2}} \;=\; \tanh\theta_k \;=\; \frac{E_k'}{E_k^{0}} \tag{18}
+\end{equation*}
+
+哈密顿量便被对角化了。
+
+其余各项，在利用
+
+\begin{equation*}
+B_k B_k^{\dagger} \;=\; B_k^{\dagger} B_k + 1
+\end{equation*}
+
+之后，便可以写成
+
+\begin{equation*}
+\left[E_k^{0}\left(u_k^{2} + v_k^{2}\right) - 2u_k v_k E_k'\right]\left(n_k + n_{-k}\right) + 2\left(v_k^{2}E_k^{0} - u_k v_k E_k'\right)
+\end{equation*}
+
+于是，激子的新能量为
+
+\begin{equation*}
+E_k \;=\; E_k^{0}\cosh\theta_k - E_k'\sinh\theta_k
+\end{equation*}
+
+但根据 (18)，我们可以令
+
+\begin{gather*}
+E_k^{0} \;=\; E_k\cosh\theta_k \\
+E_k' \;=\; E_k\sinh\theta_k
+\end{gather*}
+
+并可核实
+
+\begin{equation*}
+E_k \;=\; E_k\left(\cosh^{2}\theta_k - \sinh^{2}\theta_k\right)
+\end{equation*}
+
+进而得到
+
+\begin{equation*}
+E_k \;=\; \frac{E_k^{0}}{\cosh\theta_k} \;=\; E_k^{0}\left(1 - \tanh^{2}\theta_k\right)^{1/2} \;=\; \Bigl\{\left(E_k^{0}\right)^{2} - \left(E_k'\right)^{2}\Bigr\}^{1/2}
+\end{equation*}
+
+这一整套操作，与人们对角化 B.C.S. 哈密顿量 (88) 时所经历的步骤极为相似，只不过对玻色子来说，起作用的是双曲函数而不是三角函数，而且根号下的符号也相应地不同。Suhl（私人通信）曾作为一个有趣的练习，用玻色对算符（boson-pair operators）
+
+\begin{equation*}
+\beta_k^{\dagger}\beta_{-k}^{\dagger}\,, \qquad \beta_k^{\dagger}\beta_k + \beta_{-k}^{\dagger}\beta_{-k}\,, \qquad \beta_{-k}\beta_k
+\end{equation*}
+
+把这类哈密顿量对角化。这些玻色对算符具有双曲空间中而非实空间中的自旋所具有的性质——也就是说，它们像 $S$ 取虚值的自旋，对应于虚数阶的 Legendre 函数。
+
+我们还看到，随着激子频率的降低，总能量也有所下降；这一下降可以被非常直接地解释为激子零点能相应的降低。利用恒等式
+
+\begin{equation*}
+v^{2} \;=\; \frac{u^{2} + v^{2} - 1}{2} \qquad\qquad \text{（由}\;\; u^{2} - v^{2} = 1\;\;\text{而来）}
+\end{equation*}
+
+我们得到
+
+\begin{equation*}
+\Delta E \;=\; \sum_{k}\left(E_k - E_k^{0}\right) \tag{19}
+\end{equation*}
+
+于是，经过完全对角化的总哈密顿量为
+
+\begin{align*}
+\mathcal{H} \;=\; \sum_{k>0,\,\lambda} \Bigl\{ & \left(E_0 + X^{2}T_{k\lambda}\right)^{2} - \left(X^{2}T_{k\lambda}\right)^{2}\Bigr\}^{1/2} \left(n_{k\lambda} + \frac{1}{2} + n_{k\lambda} + \frac{1}{2}\right) \\
+& -\;\sum_{k\lambda}\left(E_0 + X^{2}T_{k\lambda}\right)
+\end{align*}
+
+（译注：第一个括号中第二个 $n_{k\lambda}$ 照录原书；按上下文应为 $n_{-k\lambda}$，如此对 $k>0$ 求和方能给出与 $k$ 与 $-k$ 两支模相应的零点项。）
+
+其中 $n_{k\lambda} = B_{k\lambda}^{\dagger}B_{k\lambda}$。注意 $E_k = \left(E_0^{2} + 2E_0 X^{2}T_k\right)^{1/2}$。这显然与 (15$'$) 相同。
+
+在这种表述中，我们使一个由 Hopfield 指出的相当有趣的事实变得一目了然：分子晶体的结合能可以重新解释为激子因偶极相互作用而导致的零点能之下降，因为它主要是 Van der Waals 吸引。
+
+关于这个零点能问题，有一个相当重要的论点值得作些讨论。在我们原来的哈密顿量中，除了纯原子项 $(E_0/2)\left(c_p^{\dagger}c_p - c_s^{\dagger}c_s\right)$ 之外，其余各项都只涉及不同原子上的激子算符，而这些项当然是自动对易的。我们总是选择把它们写成 $b_j^{\dagger}b_k$ 的次序，结果得到的哈密顿量中含有 $E_k^{0}\,\beta_k^{\dagger}\beta_k$。这就是上面出现的那个减除项［即 (19) 中的 $-E_k^{0}$ 项］。当然，这一做法虽然是对我们实际物理情形的正确描述，却并不是经典介电连续介质在正确量子化下应有的哈密顿量；后者本应以对称化的形式出现：
+
+\begin{equation*}
+\frac{E_k^{0}}{2}\left(\beta_k^{\dagger}\beta_k + \beta_k\beta_k^{\dagger}\right)
+\end{equation*}
+
+由于我们所假设的系统与经典介电连续介质并没有明显的物理相似之处，这一点本来不必使我们过于担心；而事实上结果表明它无论如何也是对的。如果我们想采用对称化的形式，就必须补加 $\sum_k E_k^{0}$；鉴于 $\sum_k T_k = 0$，这个补项只依赖于纯原子的量 $E_0$，与相互作用毫无关系。当然，这个恒等式之所以成立，恰恰是因为我们本来就没有 $j=k$ 的相互作用项；这也正是我们一开始便能任意选择算符次序的原因。在自旋波问题和声子问题中，经典出发点与量子出发点之间的这种关系将更为切题。
+
+现在让我们开始离开严格局域化的 Frenkel 激子这一主题，进而考虑这样的可能性：尽管受到对方 Coulomb 场的作用，受激电子或空穴偶尔仍会离开它的同伴而游走。这意味着我们必须在哈密顿量中计入如下各项：
+
+\begin{equation*}
+\mathcal{H}' \;=\; \sum_{jk}\left[b_{jk}^{s}\,c_j^{s\dagger}\,c_k^{s} + b_{jk}^{p}\,c_j^{p\dagger}\,c_k^{p}\right] \tag{20}
+\end{equation*}
+
+但同时我们还必须计入能量差 $U$；当受激电子与空穴处于同一原子上时，正是这个能量差使受激电子的能量降低：
+
+\begin{equation*}
+\mathcal{H}_{\mathrm{int}} \;=\; U\sum_j n_j^{p}\,n_j^{s} \tag{21}
+\end{equation*}
+
+对于 (20) 中的各项，我们所能采取的最好办法是用微扰论来处理：从 $U\to\infty$ 的极限出发，求出 $b^{2}/U$ 量级的第一级修正。在 U 非常大的极限下，合适的做法是考察 Coulomb 相互作用 (21) 的本征态。这些本征态按照同一原子上共有 0 对、1 对、2 对……s 电子与 p 电子而自行形成一个分层结构，其能量分别为 0、U、2U……迄今为止，我们处理的只是这类态中 $U = 0$ 的简并子空间，即电子与空穴占据同一原子的那些态；这些态已被偶极相互作用劈开，而这一劈裂与 U 相比显然很小。下一步要计算的，是这个简并子空间因虚跃迁而产生的进一步劈裂；在虚跃迁中，电子或空穴会跳到一个已经有另一粒子所在的原子上，这在 U 非常大的极限下具有能量 U。显然，为了得到最低阶的效应，我们不能容许电子继续游荡，而必须强迫它在下一次跳跃时就回到自己的空穴处。于是，我们把微扰级数
+
+\begin{equation*}
+\mathcal{H}_{\mathrm{eff}} \;=\; \mathcal{H}' - \mathcal{H}'\,\frac{1}{U}\,\mathcal{H}' + \mathcal{H}'\,\frac{1}{U}\,\mathcal{H}'\,\frac{1}{U}\,\mathcal{H}' \cdots
+\end{equation*}
+
+投影到由“允许”态（即电子与空穴在一起的态）构成的子空间 $|0\rangle$ 上：
+
+\begin{equation*}
+\mathcal{H}^{(2)} \;=\; -\left\langle 0\right|\,\mathcal{H}'\,\frac{1}{U}\,\mathcal{H}'\,\left|0\right\rangle
+\end{equation*}
+
+并略去一切更高阶的微扰。只要只保留电子或空穴返回其原来所在原子的那些项，这一点便很容易做到；(20) 与 (21) 的二级效应于是为
+
+\begin{align*}
+\mathcal{H}^{(2)} \;=\; -\frac{1}{U}\sum_{jk}\Bigl[\; & b_{jk}^{s}\left(c_j^{s}\right)^{\dagger}c_k^{s} + b_{jk}^{p}\left(c_j^{p}\right)^{\dagger}c_k^{p}\,\Bigr] \\
+\times\,\Bigl[\; & b_{kj}^{s}\left(c_k^{s}\right)^{\dagger}c_j^{s} + b_{kj}^{p}\left(c_k^{p}\right)^{\dagger}c_j^{p}\,\Bigr] \\
+=\; -\frac{1}{U}\sum_{jk}\Bigl\{\; & |b_{jk}^{s}|^{2}\,n_j^{s}\left(1 - n_k^{s}\right) + |b_{jk}^{p}|^{2}\,n_j^{p}\left(1 - n_k^{p}\right) \\
+& +\; b_{jk}^{s}\,b_{kj}^{p}\left(c_j^{s}\right)^{\dagger}c_k^{s}\left(c_k^{p}\right)^{\dagger}c_j^{p} \;+\; \mathrm{c.c.}\Bigr\}
+\end{align*}
+
+（译注：第二个方括号内 $\left(c_k^{p}\right)$ 上的产生算符符号 $^{\dagger}$ 原书漏印，此处按对称性补出。）
+
+前两项有些不对称，所以我们在 jk 与 kj 这两对指标之间把它们对称化。同时我们还考虑到如下事实：在我们所考虑的 $|0\rangle$ 态流形之内，$n_j^{p} = 1 - n_j^{s}$，反之亦然——每个原子上要么有一个受激电子，要么有一个基态电子。于是，对这两项我们得到
+
+\begin{equation*}
+-\frac{1}{U}\sum_{jk}\frac{|b_{jk}^{s}|^{2} + |b_{jk}^{p}|^{2}}{2}\left(n_j^{s}n_k^{p} + n_j^{p}n_k^{s}\right)
+\end{equation*}
+
+用激子算符来表示，
+
+\begin{align*}
+n_j^{s}n_k^{p} + n_j^{p}n_k^{s} \;&=\; \frac{1}{2}\left(n_j^{s} + n_j^{p}\right)\left(n_k^{s} + n_k^{p}\right) - \left(n_j^{p} - n_j^{s}\right)\left(n_k^{p} - n_k^{s}\right) \\
+&=\; \frac{1}{2}\left(1 - \sigma_z^{j}\sigma_z^{k}\right)
+\end{align*}
+
+或者
+
+\begin{equation*}
+=\;2\left(-\,n_j n_k + n_j + n_k\right)
+\end{equation*}
+
+后一种形式表明，这一项除了给出相邻激子之间的一个非线性相互作用之外，还使激子的能量降低
+
+\begin{equation*}
+\frac{1}{U}\sum_{K}\left\{|b_{jk}^{s}|^{2} + |b_{jk}^{p}|^{2}\right\}
+\end{equation*}
+
+（译注：求和限 $K$ 原书如此（大写），按上下文应为 $jk$。）
+
+$\sigma$ 形式在自旋波问题中将会很重要。
+
+激子能量中的这个对角项并不十分重要；它所反映的事实是：$b$ 项把自由粒子的各个能级展宽成为一个能带，从而把激子的平均能量压低。另一项则更有意思；它恰好具有导致激子运动的那些偶极项的形式，因此我们可以把这些项写成与偶极项相类似的形式：
+
+\begin{gather*}
+\mathcal{H}^{(2)} \;\simeq\; -\sum_{jk} T_{jk}'\,b_j^{\dagger}\,b_k \\
+T_{jk}' \;=\; \frac{b_{jk}^{s}\,b_{jk}^{p}}{U} \tag{22}
+\end{gather*}
+
+这里涉及的机制显然是：电子先虚跳到相邻的原子上，随后空穴再朝同一方向跳过去。这种迁移机制对光学活性的 Frenkel 激子并不十分重要，但对禁戒的激子却相当重要，对自旋波尤其如此。显然，这一效应的效果是使激子谱略微跟上由 $b_{jk}$ 引起的单粒子谱的展宽（图 46）。一旦 b 大到足以与 U 相比，这个模型就完全失效了。当 b 增大时我们看到，激子态的能量减小约 $Zb^{2}/U$；另一方面，最低的一些能带态——也就是最能利用与近邻之间正确相位关系的那一些态——其能量则减小约 $Zb$。于是，在这个模型中激子的结合能按如下方式减小：
+
+\begin{equation*}
+\mathrm{BE} \;\cong\; U - Zb + \frac{Zb^{2}}{U}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_46.pdf}
+\caption*{图 46　能级示意：p 能级与激子（Exciton）能级各给出 no b（不计 $b$，水平直线）与 with b（计入 $b$，曲线）两种情形；$U$ 标出 p 组态与激子组态之间的能量间隔，$E_0$ 为自 s 能级到激子能级的间距，左侧箭头 $E$ 指示能量向下减小，横轴为 $k$（原书图注仅作 “Figure 46”）}
+\end{figure}
+
+因此，一旦 $bZ \sim U$，纯局域激子的能量就未必低于带边（图 47）；那时我们将不得不只用能量极小点附近的电子态来构成激子态，才有希望得到低于能带连续谱的激子。此外，在一个 b 相当可观的材料中，Wannier 函数更为扩展，而介电屏蔽会使 U 的作用减弱。于是我们预期，随着 $b/U$ 的变化，会发生一次相当陡峭的转变，转到激子理论的相反情形，即 Wannier 极限：在这种极限下，电子与空穴很少同时处于同一原子上，而是具有一个可以由能带极小附近的态构成的长程波函数。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_47.pdf}
+\caption*{图 47　向下弯曲的 “Band”（能带）曲线与 “Localized exciton”（局域激子）水平能级线相交示意（原书图注仅作 “Figure 47”）}
+\end{figure}
+
+这种情形可以用能带理论的“有效单带哈密顿量”（effective one-band hamiltonian）方法来处理——事实上，Wannier 在 1937 年正是从这个问题出发开创了这一理论的近代发展 (78)。我们采用近似哈密顿量
+
+\begin{equation*}
+\mathcal{H}_{\mathrm{eff}} \;=\; E_{\mathrm{el}}(k_e) + E_{\mathrm{hole}}(k_h) + \frac{e^{2}}{\kappa\,|R_e - R_h|}
+\end{equation*}
+
+一般说来，这会导致相当复杂的方程，尽管原则上并非不可处理。在简并能带的情形下尤其如此，那时甚至连质心运动也不容易分离出来。幸运的是，最有趣的那些情形恰好也是激子相当容易被观察到的情形，而这些情形看来都是简单的有效质量椭球（effective mass ellipsoid）情形；在这种情形下我们可以写出
+
+\begin{equation*}
+\mathcal{H} \;=\; -\frac{\hbar^{2}}{2}\sum_{\alpha=x,y,z}\frac{1}{m_{\alpha e}}\frac{\partial^{2}}{\partial x_{\alpha e}^{2}} + \frac{1}{m_{\alpha h}}\frac{\partial^{2}}{\partial x_{\alpha h}^{2}} - \frac{e^{2}}{\kappa\,|R_e - R_h|}
+\end{equation*}
+
+并且质心运动与相对运动可以分离开来，给出描写整体运动的激子质量张量 $\left(m_e + m_h\right)_{\alpha}$，以及描写相对运动的约化质量张量
+
+\begin{equation*}
+\left(\frac{m_e m_h}{m_e + m_h}\right)_{\alpha}
+\end{equation*}
+
+即使这一点做不到——例如出现简并，或者椭球的主轴互不相同——往往也会有一个粒子比另一个重得多，从而可以找到良好的近似。
+
+于是，激子在坐标表象中的波函数为
+
+\begin{equation*}
+\Psi \;=\; \Phi(R_e - R_h)\;e^{iq\left(R_e + R_h\right)}
+\end{equation*}
+
+其中 q 是质心运动的波数。相对于原子间距而言，$\Phi$ 是一个相当长程的函数。把这一处理中所作的近似与我们前面 Frenkel 处理中的近似作一对比，并用图示来说明激子在这两种情形下如何运动，是有趣的。让我们把两个能带——电子（导）带与空穴（价）带——中 Wannier 函数的产生算符分别记为 $w_e^{\dagger}(R_j)$ 与 $w_h^{\dagger}(R_j)$；例如，$w_e$ 定义为
+
+\begin{equation*}
+w_e^{\dagger}(\mathbf{R}_j) \;=\; \int a_e(r - \mathbf{R}_j)\,\psi^{\dagger}(r)\;dr
+\end{equation*}
+
+这里 e 表示空带。波函数 $\Psi$ 可以写成
+
+\begin{equation*}
+\Psi \;=\; \sum_{jk}\phi_q(R_j - R_k)\;e^{iq\cdot\left(R_j + R_k\right)}\;w_e^{\dagger}(\mathbf{R}_j)\,w_h(\mathbf{R}_k)\,\Psi_g
+\end{equation*}
+
+而这个近似哈密顿量相当于在相互作用能中只保留
+
+\begin{equation*}
+\frac{e^{2}}{\kappa\,|R_j - R_k|}\;n_e(R_j)\,n_h(R_k)
+\end{equation*}
+
+并忽略一切非对角元。于是在这种情形下，相互作用根本不引起任何运动：$w_e^{\dagger}(j)\,w_h(k)\,\Psi_g$ 就是这一相互作用的一个本征函数，其能量为
+
+\begin{equation*}
+-\frac{e^{2}}{\kappa\,|R_j - R_k|}
+\end{equation*}
+
+运动反而完全来自哈密顿量中的 $b_{jk}$ 各项。我们可以用一幅以时间 t 对位置 x 作图的图来描述它：相互作用发生在电子与空穴位置固定之处，而两次相互作用之间这两个粒子在 x 空间中运动（图 48）。这些相互作用只在长距离处发生，其唯一的效果就是把电子与空穴维系在一起。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_48.pdf}
+\caption*{图 48　时间 $t$–位置 $x$ 图：电子（$k_e$）与空穴（$k_h$）的径迹在固定位置 $R_j$、$R_k$ 之间由一条波线相连，波线标 “Interaction”（相互作用）$-e^{2}/\kappa|R_j - R_k|$，作用后两径迹以 $k_e'$、$k_h'$ 继续（原书图注仅作 “Figure 48”）}
+\end{figure}
+
+在另一种情形中，我们假定 $b_{jk}$ 为零，电子与空穴完全不能移动；唯一的例外是 $w_h$ 与 $w_e^{*}$ 可以彼此湮灭，其矩阵元为 X［见图 49(a)］。图 49(b) 中画出的，是由式 (22) 所描述的经由电子或空穴一次虚跳的运动；它与图 48 的过程密切相关。图 49(a) 所示的那种图也会在 Wannier 激子中出现，但只在电子与空穴的路径偶然相交这一罕见事件中才会发生（图 50）。该图表明这样一个事实：与外场相互作用的有效偶极矩——其图解如图 51 所示——要被缩小为激子态体积的倒数，因为只有当电子与空穴彼此靠近时湮灭才会发生。由此造成的纵–横频率差相当小。它无法单靠有效哈密顿量理论来处理。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_49.pdf}
+\caption*{图 49　$t$–$x$ 图两种情形：(a) 电子与空穴的径迹在 $R_j$ 与 $R_k$ 处各标一次 “X”，其间由标 “T” 的波线相连，两端各有向上的箭头；(b) 虚跳图：标 $b_{jk}$ 与 $b_{kj}$ 的竖直跳变跨过标 $U$ 的水平线（原书图注仅作 “Figure 49”）}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_50.pdf}
+\caption*{图 50　Wannier 激子中电子与空穴路径偶然交叉时的相互作用图（$t$–$x$ 图，交叉点处接波线）（原书图注仅作 “Figure 50”）}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_51.pdf}
+\caption*{图 51　与外场相互作用的顶点图：一条波线（外场量子）在同一个时空点上与电子、空穴的径迹相接（原书图注仅作 “Figure 51”）}
+\end{figure}
+
+看待我们对基态能量以及 Frenkel 激子频率所作的那些零点修正的一种方式，是注意到它们相当于在激子的传播方程中计入了所谓的“反向图”（backwards diagrams）（见图 52）。这类“反向图”在核多体理论和核能级结构中的效应要大得多 (89)。这些图例示了在多体理论中对图的子集求和的过程。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_52.pdf}
+\caption*{图 52　“反向图”示意：电子与空穴的径迹在 $R_i$、$R_j$、$R_k$、$R_l$ 各处经波线相互作用，中间形成两个环状结构，各段标以 $b_i$、$b_j$、$b_j^{\dagger}$、$b_k$、$b_k^{\dagger}$、$b_l^{\dagger}$（原书图注仅作 “Figure 52”）}
+\end{figure}
+
+像图 48 那样的图称为“梯图”（ladder diagrams）；对两个粒子求解 Schrödinger 方程，就等价于“把梯图求和到无穷阶”——也就是说，允许这种隔距相互作用按需要的次数、实质上连续不断地起作用。像图 49 那样的图则常称为“泡图”（bubble）或“环图”（ring），它们与材料的介电常数有关。在激子这个简单情形中，除了某种程度的数学复杂性之外，其实没有什么东西妨碍我们把两组图一起求和；我们已经给出了两类求和分别更为重要的那些极限情形。在更复杂的集体激发情形中，也许只能单独地“求和”梯图或泡图。在“泡图”的情形下，通常还必须把“反向”图也一并求和；这一步由无规相位近似（random-phase approximation）完成 (90)。
+
+对 Wannier 型的激子来说，没有什么特别明显或简单的方式可以直接过渡到玻色子算符。相反，我们必须遵循较为就事论事的（ad hoc）做法：写下激子算符，然后直接验证，在\emph{只有很少数激发被占据的态}中，它们的对易规则近似地就是玻色子的对易规则。产生一个 Wannier 激子的算符可以写成
+
+\begin{equation*}
+O^{\dagger}(q) \;=\; \sum_{jk}\phi_q(j-k)\;e^{iq\cdot\left(\mathbf{R}_j + \mathbf{R}_k\right)}\;w_e^{\dagger}(\mathbf{R}_j)\,w_h(\mathbf{R}_k)
+\end{equation*}
+
+于是我们得到
+
+\begin{align*}
+\left[O(q),\,O^{\dagger}(q')\right] =\; & \sum_{jklm}\phi_q(j-k)\,\phi_{q'}(l-m)\;e^{iq\cdot\left(\mathbf{R}_j - \mathbf{R}_k\right)\,-\,iq'\cdot\left(\mathbf{R}_l + \mathbf{R}_m\right)} \\
+\times\; & \left[\,w_h^{\dagger}(\mathbf{R}_l)\,w_e(\mathbf{R}_m),\;w_e^{\dagger}(\mathbf{R}_j)\,w_h(\mathbf{R}_k)\,\right]
+\end{align*}
+
+把这个对易子作用到基态 $\Psi_g$ 上时，除非 $R_j = R_m$、$R_k = R_l$，否则它将为零，因为基态中\emph{从一开始}就不存在任何激子。这意味着 $n_h = 1$、$n_e = 0$；也就是说，除非 l 上有一个空穴、\emph{且} m 上有一个受激电子，否则 $w_h^{\dagger}\,w_e = 0$。在该情形下，对易子的值为 1。在激子情形中，甚至从物理上讲，人们也很少会达到使这一假设失效的态，或许在某些光学微波激射器（optical maser）中除外。于是
+
+\begin{align*}
+\left[O(q),\,O^{\dagger}(q')\right]\;&=\;\sum_{j,k}\phi_q(R_j - R_k)\,\phi_{q'}(R_j - R_k)\;e^{i(q-q')\cdot\left(R_j + R_k\right)} \\
+&=\;\delta(q,\,q')
+\end{align*}
+
+因此，把 Wannier 激子当作玻色子来处理是完全合理的。关于由费米子对组成的激发是否可以、以及何时可以当作玻色子来处理这一普遍问题，最详尽的论述见于 Blatt 与 Matsubara 最近的工作；它读起来相当艰涩，但看来确实厘定了这样的事实：这类激发几乎总是可以这样处理。
+
+\subsection{自旋波：Heisenberg 哈密顿量与“磁状态”}
+
+绝缘体中的自旋波不过是 Frenkel 激子的一种修改与推广。它们是这样一种激子：其中未被占据的或“上面的”带并不是 Hartree-Fock 势中一个独立的轨道带，而正是电子由之被激发出来的那同一个带，只不过自旋相反。要理解这一点何以可能，我们必须简要地讨论一下绝缘体中“磁状态”的结构 (91)。
+
+让我们从最简单的情形，即铁磁绝缘体开始；也就是说，我们假定一个 Hartree-Fock 解——不必是最低的那个解，但须自洽——把第 $n$ 个带中所有自旋向上的态全部填满，而所有自旋向下的态全部空着。
+
+\begin{equation*}
+\Psi_{\mathrm{HF}} \;=\; \prod_k \bigl(c^{\,n}_{k\uparrow}\bigr)^{\dagger}\, \Psi_{\mathrm{vac}} \;=\; \prod_j \bigl(w^{\,n}_{j\uparrow}\bigr)^{\dagger}\, \Psi_{\mathrm{vac}}
+\end{equation*}
+
+其中这两个表达式是等价的（$c$ 是 Bloch 函数的产生算符，$w$ 是 Wannier 函数的产生算符），因为该带是满带。
+
+读者当还记得，在 Frenkel 激子的情形中，我们作为零级近似出发时取了一个原子激发能 $E_0$，它比带激发能 $E_e - E_h$ 小一个量 $U$，这个 $U$ 代表上、下两个带的 Wannier 函数中处于同一原子上的两个电子之间的排斥能。
+
+撇开原子间的相互作用不谈，在磁性情形中 $E_0$ 必须为零，因为被激发的电子进入的正是基态电子原先所在的同一轨道。也就是说，在这一阶段，把一个自旋就地翻转（\emph{in situ}）并不耗费能量，只有把自旋翻转、同时又把电子移到邻近的原子上去才需要能量。若 Wannier 函数为 $a(r-R_j)$，则能量 $U$ 为
+
+\begin{equation*}
+U \;=\; \int \frac{e^{2}}{|r_1 - r_2|}\, dr_1\, dr_2\;\, |a(r_1)|^{2}\, |a(r_2)|^{2}
+\end{equation*}
+
+显然，磁状态要有任何意义，第一个先决条件就是 $U$ 必须大，特别是相对于“跳跃”即动能积分
+
+\begin{equation*}
+b_{jk} \;=\; \int a^{*}(r-R_j)\, \mathcal{H}\, a(r-R_k)\, dr
+\end{equation*}
+
+而言要大。
+
+$U$ 必须很大，这一点可以再次通过考虑铁磁情形看出，此时在能量中只计入以下两项：
+
+\begin{equation*}
+\mathcal{H}_0 \;=\; \sum_{jk\sigma} b_{jk}\, w^{\dagger}_{j\sigma}\, w_{k\sigma} \;+\; U \sum_j n_{j\uparrow}\, n_{j\downarrow}
+\end{equation*}
+
+我们可以在 Hartree-Fock 近似下处理 $H_0$，假定把所有自旋向上的态都填满，使得 $\langle n_{j\uparrow}\rangle = 1$、$\langle n_{j\downarrow}\rangle = 0$。在这个势中，空穴态的能量当然就是
+
+\begin{equation*}
+E(k) \;=\; \sum_j\, e^{ik\cdot R_j}\, b_{0j}
+\end{equation*}
+
+而电子态的能量则是 $U + E(k)$（图 53）。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{fig_53.pdf}
+\caption*{图 53　（原书图注仅作 “Figure 53”）电子带与空穴带示意：上方曲线为电子带 $U+E(k)$，下方曲线为空穴带 $E(k)$，两曲线极小值之间的竖直箭头标出间隔 $U$}
+\end{figure}
+这种局面显然只有在所有电子态都位于所有空穴态之上时才是稳定的，即
+
+\begin{equation*}
+\bigl[E(k)\bigr]_{\max} \;<\; U \;+\; \bigl[E(k)\bigr]_{\min}
+\end{equation*}
+
+这是电子不至于自发地从自旋向上的态转入自旋向下的态、从而把铁磁绝缘体变成非磁性金属的必要条件，但远非充分条件。
+
+现在我们可以从第二个角度来研究铁磁绝缘体的稳定性。这就是说，我们可以计算“激子”或“自旋激发波”的能量——把一个电子从自旋向上态激发到自旋向下态、并让由此形成的束缚复合体在晶格中传播。我们将发现，$k=0$ 的激子——让我们使用“自旋波”这个术语——总是具有零能量；但有限波数的自旋波却可能具有正的或负的能量。如果这些能量是负的，这也代表铁磁系统的一种失稳，大概是朝自旋重新取向、改排成反铁磁阵列的方向。
+
+处理这一问题的这条途径是 Slater (92) 以及 Schubin 与 Vonsovsky (93) 的途径。它虽然在历史上是第一个真正的多体处理，却并未阐明从这一系统所能获得的全部信息。更为完全、而在严格性上本质上等价的，是“矢量模型”（vector model）的处理方式，我们稍后即来讨论。
+
+Coulomb 相互作用不含有任何直接的偶极矩阵元，因为自旋翻转跃迁受到自旋与宇称的双重禁戒。这样一来，激发只能借助所谓的“交换”矩阵元从一个原子传递到另一个原子：
+
+\begin{equation*}
+J_{jk} \;=\; \int a^{*}(r-R_j)\, a(r-R_k)\, \frac{e^{2}}{|r-r'|}\, a^{*}(r'-R_k)\, a(r'-R_j)\, dr\, dr'
+\end{equation*}
+
+它就是“交叠电荷密度”（overlap charge density）
+
+\begin{equation*}
+\rho_{jk} \;=\; a^{*}(r-R_j)\, a(r-R_k)
+\end{equation*}
+
+的 Coulomb 自能。注意，因为 $J$ 是一个 Coulomb 自能，它必定为正。
+
+$J$ 与费米子算符的两种不同编组相乘：
+
+\begin{align*}
+\mathcal{H}_{\text{direct exchange}} \;=\; \frac{1}{2} \sum_{jk} J_{jk}\, \Bigl\{ &\Bigl[\, w^{\dagger}_{j\uparrow} w^{\dagger}_{k\uparrow} w_{j\uparrow} w_{k\uparrow} \\
+&+\, w^{\dagger}_{j\downarrow} w^{\dagger}_{k\downarrow} w_{j\downarrow} w_{k\downarrow} \Bigr] \;+\; \Bigl[\, w^{\dagger}_{j\uparrow} w^{\dagger}_{k\downarrow} w_{j\uparrow} w_{k\downarrow} \\
+&+\, w^{\dagger}_{j\downarrow} w^{\dagger}_{k\uparrow} w_{j\downarrow} w_{k\uparrow} \Bigr] \Bigr\}
+\end{align*}
+
+前一对项可以改写为
+
+\begin{align*}
+&-\bigl(n_{j\uparrow}\, n_{k\uparrow} \;+\; n_{j\downarrow}\, n_{k\downarrow}\bigr) \\
+&=\; -\frac{1}{2}\,\Bigl\{ \bigl(n_{j\uparrow} + n_{j\downarrow}\bigr)\bigl(n_{k\uparrow} + n_{k\downarrow}\bigr) \;+\; \bigl(n_{j\uparrow} - n_{j\downarrow}\bigr)\bigl(n_{k\uparrow} - n_{k\downarrow}\bigr) \Bigr\} \\
+&=\; -\frac{1}{2}\,\bigl(1 + \sigma_{zj}\, \sigma_{zk}\bigr)
+\end{align*}
+
+这里假定了每个原子上总有一个电子：
+
+\begin{equation*}
+n_{j\uparrow} + n_{j\downarrow} \;=\; 1
+\end{equation*}
+
+我们已经把这一对费米子认同于一个旋量（spinor）；在这一情形中，这正是我们通常所说的与给定原子相联系的自旋算符。
+
+后一对项则是更为常见的激子转移项；我们看到
+
+\begin{equation*}
+w^{\dagger}_{j\uparrow}\, w_{j\downarrow} \;=\; \sigma_{j+} \;=\; \frac{1}{2}\left(\sigma_{jx} + \sigma_{jy}\right)
+\end{equation*}
+
+等等，于是总的交换能量可以用自旋算符写成
+
+\begin{align*}
+\mathcal{H}_{\text{direct exchange}} \;&=\; -\frac{1}{4} \sum_{jk} J_{jk}\left(1 + \sigma_{zj}\sigma_{zk} + \sigma_{xj}\sigma_{xk} + \sigma_{yj}\sigma_{yk}\right) \\
+&=\; -\frac{1}{4} \sum_{jk} J_{jk}\left(1 + \boldsymbol{\sigma}_{j}\cdot\boldsymbol{\sigma}_{k}\right) \tag{23}
+\end{align*}
+
+自旋记号的优点在于，它至少在形式上使我们不必把思路局限于研究单个自旋波，而可以考虑样品中任意多个自旋同时反转的情形。然而它依赖于一个基本假定：$U$ 非常大，到所有其他带的激发能也非常大，因而我们可以取 $n_{j\uparrow} + n_{j\downarrow} = 1$。当然，这只有在 $U\to\infty$ 这个非物理的极限下才严格成立；但正如 Frenkel 激子的情形一样，我们可以求助于投影到使其严格成立的态流形之上的微扰论。只要 $b/U$ 足够小，这样的微扰论看来无疑会收敛［尽管 Slater 曾对这一点提出质疑，并没有给出令人信服的理由 (94)］。
+
+另一方面，只要我们把激发彼此之间相互作用的结果严格用自旋 $\boldsymbol{\sigma}$ 表出，就没有任何东西阻止我们处理存在不定数目的自旋反转的情形。这样一来，这就实在是一种相当新型的元激发理论：我们允许不定程度的激发，$n_{\text{exc}}\sim N$，但只允许某种特殊类型的激发。对于新理论的有效哈密顿量 (23)，我们也许能够精确处理，也许不能；但只要我们拒绝允许真实——有别于虚的——激发中的电子永久地离开其相应空穴所在的格点，它就是一个准精确的哈密顿量，其意义几乎与有效质量理论相同。
+
+在这一理论中，自旋波的运动与相互作用的第二种、也是十分重要的机制，就是我们在激子情形中讨论过的同一个微扰论项。一个自旋反转的电子可以虚跳跃到邻近的原子上去，从而赋予自旋波一个有限大小的波函数。我们可以直接照搬在激子情形中得到的结果。二级能量为（这里计及 $b_{j\uparrow k\uparrow} = b_{j\downarrow k\downarrow}$）
+
+\begin{align*}
+\mathcal{H}^{(2)} \;&=\; \frac{1}{U} \sum_{jk} |b_{jk}|^{2}\, \Bigl\{ n_{j\uparrow}\, n_{k\uparrow} \;+\; n_{j\downarrow}\, n_{k\downarrow} \\
+&\qquad\quad +\; w_{j\uparrow} w_{k\downarrow} w_{k\uparrow} w_{j\downarrow} \;+\; w_{j\downarrow} w_{k\uparrow} w_{k\downarrow} w_{j\uparrow} \Bigr\} \\
+&=\; \frac{1}{2} \sum_{jk} \frac{|b_{jk}|^{2}}{U}\left(\sigma_{zj}\sigma_{zk} + \sigma_{xj}\sigma_{xk} + \sigma_{yj}\sigma_{yk} - 1\right) \\
+&=\; \frac{1}{2} \sum_{jk} \frac{|b_{jk}|^{2}}{U}\left(\boldsymbol{\sigma}_{j}\cdot\boldsymbol{\sigma}_{k} - 1\right)
+\end{align*}
+
+无需对自旋波问题作任何认真的研究就可以明显看出：若 $\frac{1}{2}J_{jk} > |b_{jk}|^{2}/U$，铁磁态将是稳定的，因为此时让所有的 $\boldsymbol{\sigma}_j\cdot\boldsymbol{\sigma}_k$ 尽可能为正便可使能量取极小；而在相反的情形下，某种反铁磁态大概会更稳定。请允许我离题片刻，谈谈绝缘体中交换相互作用里这两个最重要项的物理来源。$J_{jk}$ 这个项相当直接地就是两个正交轨道 $a(r-R_j)$ 与 $a(r-R_k)$ 中自旋平行的电子在相互作用能中的 Hartree-Fock 交换项。因为两个电子自旋平行，在它们波函数交叠的区域内存在一个“交换空穴”（exchange hole），使它们平行时能量降低。这一能量收益正是原子中 Hund 定则的来源，该定则说：同一壳层中电子的自旋在可能时将相互平行。
+
+这个交换项必然为正——那么，围绕交换积分的符号而激烈进行的那些争论又是怎么回事呢？原因在于：两个原子相耦合的 Heitler-London 理论给出的交换积分并不只是这一项，而是一个涉及完整哈密顿量、并用不必正交的任意函数代替 $a(r-R_j)$ 的积分。这样的积分可以取任意符号，而且实际上通常为负；最常被计算的正是这个 H-L 积分。虽然 Herring (95) 已经证明，对相距相当远的单电荷原子，Heitler-London 程序几乎严格正确，但在我看来，把主要的反铁磁效应作为一个单独的项 $\sim -b^{2}/U$ 计入，会使物理更为清晰。之所以出现这一项，是因为当两个电子的自旋反平行时，不相容原理不再要求它们具有严格正交的波函数；它们可以因溢入彼此的波函数而获得动能。
+
+可以证明，当两个波函数并非因对称性而自动正交时，$b^{2}/U$ 项几乎总是占主导地位；例如，根据 Wigner (95) 的一个定理，任意普通势场中两个电子的\emph{最低}态总是单态（singlet），表明交换是反铁磁性的。
+
+但是不相容原理的作用常常——比如在原子中——使得两个电子的波函数自动正交，从而 $b_{jk}$ 为零。服从这一原理的绝缘铁磁体的若干孤立例子，如 $\mathrm{CrO_2}$，如今已经知道；但数以百计的其他例子表现出的是反铁磁交换。
+
+交换效应重要的那些常见磁性材料，是铁族金属——偶尔也有其他过渡族金属——的氧化物或其他相当浓的盐类。一个典型的例子是 $\mathrm{NiO}$。在这种材料中，我们感兴趣的带主要由 Ni 离子上的 $d$ 态构成，不过由于 O 的 $2p$ 电子与 Ni 的 $d$ 态之间的共价键合，存在相当大的混杂。由文献 (91) 可知，$b$ 的合理数值约为 1 eV，$U$ 约为 10 eV，$J$ 约为 $b^{2}/U$ 的 1/3。
+
+在这种通常的情形，即 $2(|b_{jk}|^{2}/U) > J_{jk}$ 的情形中，相互作用被称为“反铁磁的”，电子自旋在基态或在 $T=0$ 附近将倾向于使 $\boldsymbol{\sigma}_j\cdot\boldsymbol{\sigma}_k$ 尽可能为负。观测到的态往往相当好地近似于由两个或多个交替自旋子晶格构成的阵列（图 54）。当然，在这样的情形中，我们所处理的确实是这样一种局面：
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_54.pdf}
+\caption*{图 54　（原书图注仅作 “Figure 54”）交替自旋的子晶格阵列示意：三行格点各带向上、向下交替排列的自旋箭头；最下一行在格点 $j$、$k$ 处以弧形箭头画出一对正在交换的自旋}
+\end{figure}
+从铁磁的观点看，它含有非常高度的激发。然而正如我们所指出的，只要我们相信微扰论从 $n_\uparrow + n_\downarrow = 1$ 的准简并态流形出发是有效的、并且不允许向自由电子态作真实（有别于虚的）跃迁，这是完全没有问题的。
+
+这样一种理论的有效性判据必须是：$b$ 应当比 $U$ 小得多。读者当还记得，在 Frenkel 激子情形中，当 $b$ 相对 $U$ 变大时，我们有一个从 Frenkel 型到 Wannier 型激子的快速的、但大概并非不连续的转变；而在这里，我们可以容易地看出，这个转变将是灾难性的。
+
+正如同 Frenkel 激子的情形一样，关键问题围绕激子的结合能。然而在这里，我们并没有那个把电子从同一原子上的 $s$ 态激发到 $p$ 态所需的附加激发能 $E_0$；唯一阻止系统退化为纯粹金属态的能量，是电子与各自空穴之间的结合能。把电子从它的空穴中解放出来，我们可以获得量级为 $\sim Zb$ 的能量，但我们失去能量 $U$，而允许电子虚离开其空穴（以及相反的过程）所获得的只是二级能量 $-Zb^{2}/U$。于是我们可以估计 $Zb \sim U$ 作为从反铁磁体转变到金属的转变点的合理数值。此外，当 $b$ 大时，介电屏蔽再度成为问题，$U$ 自然也就更小。
+
+处理向金属态转变这一问题的另一种、同样相当近似的方式，是问交替阵列究竟是不是多体问题的一个稳定的 Hartree 解。也就是说，我们可以问：$k$ 原子处自旋向下的电子所感受到的 Hartree 场相对于 $j$ 原子处的如何。名义上，这个差值是 $U$，即 $j$ 处自旋向上的电子与自旋向下的电子之间的排斥能。但在 Hartree 理论中，我们应当计及这样一个事实：$j$ 处的自旋向上电子并非时时刻刻都真正位于 $j$ 处，所以 Hartree 场的实际差值可能要小得多。
+
+格点 $j$ 上的自旋向上电子以概率 $|b_{jk}/U|^{2}$ 跳到它的每一个近邻格点 $k$；同样，格点 $k$ 也可能以概率 $|b_{jk}/U|^{2}$ 被一个自旋向上电子占据。于是，$j$ 处的自旋向下态相对于 $k$ 处的自旋向下态的实际能量差为
+
+\begin{align*}
+\Delta E \;&=\; U\left(\langle n_{j\uparrow}\rangle - \langle n_{k\uparrow}\rangle\right) \\
+&=\; U\left(1 - 2Z\,\Bigl|\frac{b_{jk}}{U}\Bigr|^{2}\right)
+\end{align*}
+
+但实际上，决定混杂大小的能量分母不应当是 $U$ 本身，而应当是 $\Delta E$，于是我们得到一个自洽方程
+
+\begin{equation*}
+\Delta E \;=\; U\left(1 - \frac{2}{(\Delta E)^{2}} \sum_{k} |b_{jk}|^{2}\right)
+\end{equation*}
+
+或
+
+\begin{equation*}
+(\Delta E)^{3} \;-\; U\,(\Delta E)^{2} \;=\; -\,2UZ\,|b_{jk}|^{2}
+\end{equation*}
+
+这个方程可以像图 55 所示那样图示出来。于是 $b$ 的最大可能值由下式给出：
+
+\begin{equation*}
+\left(\frac{b}{U}\right)_{\max} \;\cong\; \left(\frac{2}{27Z}\right)^{1/2} \;\sim\; \frac{1}{10}\ \text{左右}
+\end{equation*}
+
+在任一高于这个临界值的 $b$ 下，磁状态再也无法维持。它将对电子的重新分布不稳定：重新分布使两种自旋态的占据相等，态成为金属型的。铁系中较低的氧化物，
+
+% ——上句在原书 p.163 末中断于 “The lower iron-series oxides,”，p.164（PDF p179）起由后续代理续译衔接。
+以及后面几个过渡系列——V、Ru 等——的氧化物则是金属型的，尽管其中电子的迁移率相当低，只有通常金属中的 $10^{-3}$ 左右。有些氧化物表现出一种热致转变，有人提出，它也许在本质上是一种由金属型到磁性的转变 (9)。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_55.pdf}
+\caption*{图 55　（原书图注仅作 “Figure 55”）p.163 自洽方程 $(\Delta E)^{3} - U(\Delta E)^{2} = -2UZ|b_{jk}|^{2}$ 的图解：纵轴为 $\Delta E/U$，横轴为 $2Z|b/U|^{2}$；曲线自原点出发，在虚线标出的 $\Delta E/U = 2/3$ 处达到极大，并于横坐标 $4/27$ 处陡降为零}
+\end{figure}
+
+\subsection{铁磁自旋波}
+
+现在让我们继续讨论元激发（elementary excitations），先讨论铁磁情形 (96)。有效哈密顿量是
+
+\begin{equation*}
+\mathcal{H} = -\frac{1}{4} \sum_{jk} J_{jk}\, \boldsymbol{\sigma}_{j}\cdot\boldsymbol{\sigma}_{k}
+\end{equation*}
+
+（这里假定 $J_{jk} > 0$。）
+
+自旋矢量与谐振子共有的一个最重要的性质是：它们的经典运动方程与量子运动方程完全相同。设 $\boldsymbol{\sigma}$ 与一个场 $\mathbf{H}$ 相乘后进入哈密顿量：$\mathcal{H} = -\frac{1}{2}\gamma\hbar\,\mathbf{H}\cdot\boldsymbol{\sigma}$。于是，当我们在 Heisenberg 表象中计算算符 $\boldsymbol{\sigma}$ 的运动方程时：
+
+\begin{equation*}
+i\hbar\,\frac{d\boldsymbol{\sigma}}{dt} = \left[\boldsymbol{\sigma},\, \mathcal{H}\right]
+\end{equation*}
+
+便得到
+
+\begin{equation*}
+i\hbar\,\frac{d\boldsymbol{\sigma}}{dt} = -\frac{\gamma\hbar}{2}\left[\boldsymbol{\sigma},\boldsymbol{\sigma}\right]\cdot\mathbf{H}
+\end{equation*}
+
+（这一记号的意思是：$[\boldsymbol{\sigma},\boldsymbol{\sigma}]$ 表示由分量 $[\sigma_{i},\sigma_{j}]$ 组成的并矢（dyadic）。）不同分量的对易子概括在关系式
+
+\begin{equation*}
+\boldsymbol{\sigma}\times\boldsymbol{\sigma} = 2i\boldsymbol{\sigma}
+\end{equation*}
+
+或者
+
+\begin{equation*}
+\sigma_{i}\sigma_{j} - \sigma_{j}\sigma_{i} = 2i\,\epsilon_{ijk}\,\sigma_{k}
+\end{equation*}
+
+之中，于是
+
+\begin{equation*}
+\left[\left[\boldsymbol{\sigma},\boldsymbol{\sigma}\right]\mathbf{H}\right]_{k} = 2i\sum_{j} H_{j}\,\epsilon_{kjl}\,\sigma_{l} = 2i\,\mathbf{H}\times\boldsymbol{\sigma}
+\end{equation*}
+
+因此
+
+\begin{equation*}
+\frac{d\boldsymbol{\sigma}}{dt} = \gamma\left(\boldsymbol{\sigma}\times\mathbf{H}\right)
+\end{equation*}
+
+这正是处于磁场 $\mathbf{H}$ 中、回磁比（gyromagnetic ratio）为 $\gamma$ 的自旋 $\mathbf{S} = \boldsymbol{\sigma}/2$ 的经典运动方程
+
+\begin{equation*}
+\frac{d\mathbf{S}}{dt} = \gamma\left(\mathbf{S}\times\mathbf{H}\right)
+\end{equation*}
+
+$\mathbf{H}$ 可以是一个 c 数（c-number），也可以是任何与所考虑的自旋 $\boldsymbol{\sigma}$ 对易的算符。
+
+自旋 $\boldsymbol{\sigma}_{j}$ 所感受到的场 $\mathbf{H}$ 是 $\frac{1}{2\gamma\hbar}\sum_{k} J_{jk}\boldsymbol{\sigma}_{k}$。为方便起见，可以再附加一个小外场来引入一个优先方向 $\hat{\mathbf{z}}$，这在哈密顿量中导致一个 $\hbar\gamma H\sigma_{z}$ 项，于是我们便有运动方程
+
+\begin{equation*}
+\frac{d\boldsymbol{\sigma}_{j}}{dt} = \frac{1}{2\hbar}\sum_{k} J_{jk}\,\boldsymbol{\sigma}_{j}\times\boldsymbol{\sigma}_{k} + \gamma H\left(\boldsymbol{\sigma}_{j}\times\hat{\mathbf{z}}\right) \tag{24}
+\end{equation*}
+
+（译注：式 (24) 左端原书印作 $d\boldsymbol{\sigma}_{z}/dt$；按右端当为 $\boldsymbol{\sigma}_{j}$，此处径改。）
+
+这些方程可以用来得到自旋波的运动方程，它们与用玻色子理论导出的方程完全等价；而且利用自旋和运动方程，许多性质可以直截了当地算出，根本不必经过赝玻色子近似（pseudo-boson approximation）。遗憾的是，热学的和能量的性质用这种方法却不那么容易处理，尽管近代的 Green 函数理论已在这个方向上取得了相当大的进展。尽管如此，记住下面这一点仍然十分重要：在自旋理论中，正如在谐振子理论中一样，大多数经典结果根本不是近似，而且人们的经典直觉可以具有极大的价值。
+
+让我们把运动方程 (24) 明写出来：
+
+\begin{align*}
+\frac{d\sigma_{jx}}{dt} &= \frac{1}{2\hbar}\sum_{k} J_{jk}\left(\sigma_{jy}\sigma_{kz} - \sigma_{ky}\sigma_{jz}\right) + \gamma\sigma_{jy}H \\
+\frac{d\sigma_{jy}}{dt} &= \frac{1}{2\hbar}\sum_{k} J_{jk}\left(\sigma_{jx}\sigma_{kz} - \sigma_{kx}\sigma_{jz}\right) - \gamma\sigma_{jx}H
+\end{align*}
+
+把第二式乘以 $-i$ 加到第一式上，我们得到
+
+\begin{align*}
+\frac{d\sigma^{-}_{j}}{dt} &= \frac{1}{2}\,\frac{d}{dt}\left(\sigma_{jx} - i\sigma_{jy}\right) \\
+&= \frac{i}{2\hbar}\sum_{k} J_{jk}\left(\sigma^{-}_{j}\sigma_{kz} - \sigma^{-}_{k}\sigma_{jz}\right) + i\gamma\sigma^{-}_{j}H
+\end{align*}
+
+只有 $\sigma^{-}$ 出现这一事实表明，自旋波是圆偏振的。既然我们感兴趣的是把各种性质——热的与动力学的——都计算出来，那就让我们作玻色子变换
+
+\begin{equation*}
+\sigma^{-}_{j} = b^{\dagger}_{j}\left(1-n_{j}\right) \qquad\qquad \sigma_{jz} = 1 - 2n_{j}
+\end{equation*}
+
+我们把符号反了过来，原因是基态对应于 $\sigma_{z} = +1$，而一个自旋波所涉及的是把一个自旋转\emph{向下}。$b$ 的线性项是
+
+\begin{equation*}
+\frac{db^{\dagger}_{j}}{dt} = i\gamma H b^{\dagger}_{j} + \frac{i}{2\hbar}\sum_{k} J_{jk}\left(b^{\dagger}_{j} - b^{\dagger}_{k}\right)
+\end{equation*}
+
+当我们变换到自旋波变量 $\beta_{k}$ 时，我们得到
+
+\begin{align*}
+\frac{d\beta^{\dagger}_{k}}{dt} &= i\omega_{k}\beta^{\dagger}_{k} \\
+\omega_{k} &= \gamma H + \frac{1}{2\hbar}\sum_{j} J_{0j}\left(1 - \cos\mathbf{k}\cdot\mathbf{j}\right) \tag{25}
+\end{align*}
+
+在没有磁场时，自旋波频率随 $k^{2}$ 从 $k=0$ 处的零值增大。除外场贡献之外频率在 $k=0$ 处必须为零，这一事实是下述恒等式的后果，该恒等式来自普遍的运动方程：
+
+\begin{equation*}
+\frac{d}{dt}\sum_{j}\sigma^{-}_{j} = \frac{i}{2\hbar}\sum_{jk} J_{jk}\left(\sigma^{-}_{j}\sigma_{kz} - \sigma^{-}_{k}\sigma_{jz}\right) \equiv 0
+\end{equation*}
+
+而且事实上，$S_{\mathrm{o}} = \sum_{j}\boldsymbol{\sigma}_{j}$，即总自旋矢量本身，是一个运动常数。$S^{-}$ 是 $k=0$ 自旋波算符的 $\sqrt{N}$ 倍。
+
+这是我们第一次碰到集体激发的最重要普遍法则中的一条，它与哈密顿量中对称性的存在有关。交换哈密顿量 (23)，以及它所由之导出的原始哈密顿量，在自旋空间中的转动操作下不变。这是因为 Coulomb 相互作用和动能都不以任何方式涉及电子的自旋；自旋只是通过不相容原理、或者通过费米统计更完备的表述——对易关系——而进入问题。但对易关系本身在自旋转动（当然是同时转动所有自旋）之下也是不变的：
+
+\begin{equation*}
+\left[\Psi_{\sigma}(r),\ \Psi^{\dagger}_{\sigma}(r')\right] = \delta_{\sigma\sigma'}\,\delta(r-r')
+\end{equation*}
+
+在对应于自旋空间中一个转动的变换之后依然成立：
+
+\begin{equation*}
+\Psi_{+} \rightarrow \cos\frac{\theta}{2}\, e^{-i(\Phi/2)}\,\Psi^{'}_{+} + \sin\frac{\theta}{2}\, e^{i(\Phi/2)}\,\Psi^{'}_{-}
+\end{equation*}
+
+于是，当我们沿 $\theta,\Phi$ 方向而不是沿 $z$ 方向量子化时，$\Psi^{'}_{+}$ 就是波函数的 $+$ 分量（图 56）。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_56.pdf}
+\caption*{图 56　（原书图注仅作 “Figure 56”）坐标系示意图：$z'$ 轴相对 $z$ 轴的极角为 $\theta$，绕 $z$ 轴的方位角为 $\phi$}
+\end{figure}
+
+哈密顿量的每一个不变性都对应一个运动常数。对应于时间平移不变性，该常数是 $E$；对应于空间平移不变性，是 $\mathbf{P}$；对应于角向转动不变性，则是总角动量 $\mathbf{L}$。它们就是所谓的对称变换的“生成元”（generators）；例如，$L_{z} = i(\partial/\partial\Phi)$，而当 $\partial\mathcal{H}/\partial\Phi = 0$ 时，
+
+\begin{equation*}
+\frac{\partial}{\partial\Phi}\,\mathcal{H} - \mathcal{H}\,\frac{\partial}{\partial\Phi} = 0 \qquad \text{于是} \qquad \left[\mathcal{H},\ L_{z}\right] = 0
+\end{equation*}
+
+于是，自旋空间中的转动不变性意味着 $[\mathcal{H},\mathbf{S}] = 0$，即 $\mathbf{S} = \text{const.}$。实际上这并不是一个严格的对称性，因为电磁力中磁性的部分确实依赖于 $\boldsymbol{\sigma}$；它只在 $v/c \rightarrow 0$ 的极限下成立，因此，比如说，自旋-轨道耦合就破坏它。结果，真实的铁磁体具有所谓的“晶体各向异性能”（crystal anisotropy energy），它依赖于 $\mathbf{S}$ 在空间中的方向，但其大小几乎总是比交换能小得多——交换能来自 Coulomb 能，并且在基本上决定了磁性性质。
+
+这一近似对称性保证了 $k=0$ 自旋波的频率应当接近于零。由 $k=0$ 自旋波的激发所得出的激发态是什么？原来的铁磁态恰好含有 $N$ 个电子，每个都处于自旋朝上的态，因此总自旋为 $S = N/2$（$\sigma_{\mathrm{tot}} = N$），精确地指向 $z$ 方向。由于哈密顿量的转动不变性，$z$ 方向当然是完全任意的；我们当初未尝不可以沿 $x$ 或 $y$ 方向、或沿任何其他方向量子化，只要我们愿意。与此相应，基态存在简并；坚持取 $z$ 为量子化方向，我们本可以选
+
+\begin{equation*}
+S_{z} = -\frac{N}{2},\ -\frac{N}{2} + 1,\ \cdots,\ 0,\ 1,\ \cdots,\ \frac{N}{2} - 1,\ \frac{N}{2}
+\end{equation*}
+
+而这些严格本征态中的每一个都与原来的态具有完全相同的能量。对这些态取适当的线性组合，我们就可以构成一个 $S_{z'} = N/2$ 的态，其 $z'$ 指向任意方向 $\theta,\Phi$。应当取什么样的线性组合，可以由相应的表示系数 $D^{N/2}_{N/2,\,N/2}(\theta,\Phi)$ 算出；或者用这样一个技巧：把（这 $N$ 个电子的）态看作由乘积
+
+\begin{equation*}
+\alpha(1)\,\alpha(2)\cdots\alpha(N)
+\end{equation*}
+
+构成［$\alpha(i)$ 是与 $\sigma_{j}$ 相对应的波函数的自旋朝上分量］，并利用变换
+
+\begin{equation*}
+\alpha \rightarrow \alpha^{'}\cos\frac{\theta}{2}\, e^{i(\Phi/2)} + \beta^{'}\sin\frac{\theta}{2}\, e^{-i(\Phi/2)}
+\end{equation*}
+
+显然，从 $S_{z} = N/2$、$S = N/2$ 的态出发，逐次激发 $k=0$ 自旋波所得到的态，是 $S = N/2$ 但 $S_{z} = (N/2) - 1$、$(N/2) - 2$ 等等的态。这是因为
+
+\begin{equation*}
+\beta^{\dagger}_{k=0} = \frac{1}{\sqrt{N}}\sum_{j}\sigma^{-}_{j} = \frac{1}{\sqrt{N}}\,S^{-}
+\end{equation*}
+
+而 $S^{-}$ 就是“下降算符”（lowering operator），它使 $S_{z}$ 减小一个单位而不改变 $|S|$。这样我们看到，基态的转动不变性与 $k=0$ 模的零频率是等价的。
+
+即使存在磁场，由 $k=0$ 模激发所到达的本征态仍是同样的这些态，因为在微扰 $\hbar\gamma H S_{z}$ 之下 $S_{z}$ 和 $|S|$ 仍然是好量子数。这时 $k=0$ 自旋波的频率不是零而恰好是 $\gamma H$。注意，关于均匀模频率的这些论断，在不存在自旋-轨道力的前提下，对哈密顿量的所有态都成立；这是显而易见的，因为 $S^{-}$ 的作用不过是把任何一个态转动一下。这就是那条著名的定理：“单是交换并不会展宽磁共振频率。”换一种说法：$k=0$ 自旋波与 $k\neq 0$ 的自旋波不以任何方式发生相互作用。
+
+那么，$k\neq 0$ 的自旋波又如何？有一个显而易见的假设（而且事实证明确实如此）：当只考虑交换力时，自旋波的频率将连续地衔接到 $k=0$ 模的频率——也就是说，当 $k \rightarrow 0$ 时 $\omega \rightarrow 0$。
+
+鉴于 $k \rightarrow 0$ 极限在其他问题中的种种复杂性，这一点并非显而易见，它是交换力短程性质的一个结果。例如，当我们把长程磁偶极力计入时，$k=0$ 模的频率就要依赖于样品的形状，因为表面磁极引起的退磁效应依赖于样品形状。而且纵向与横向自旋波的频率各不相同，所以当 $k \rightarrow 0$ 时根本谈不上连续性。与此相反，交换力基本上是短程的，因为除去磁偶极效应和自旋-轨道效应之外，自旋矩的重新分布在长距离上不会以任何可察觉的方式影响电荷分布。
+
+这就是我想强调的重要联系，因为它在集体激发和相变的普遍理论中起着至关重要的作用。我们从一个哈密顿量
+
+\begin{equation*}
+\frac{1}{4} \sum_{jk} J_{jk}\,\boldsymbol{\sigma}_{j}\cdot\boldsymbol{\sigma}_{k}
+\end{equation*}
+
+（译注：此式原书未印负号；对照本节开头 $\mathcal{H} = -\frac{1}{4}\sum_{jk}J_{jk}\boldsymbol{\sigma}_{j}\cdot\boldsymbol{\sigma}_{k}$，疑为漏印，照录原书。）
+
+出发，它在自旋空间中具有完全的转动对称性。尽管有这种转动对称性，我们所假定的那个最低本征态——它在某些特殊条件下、即所有 $J_{jk} < 0$ 时\emph{确}实是最低本征态——却并不具有完全的转动对称性。只有单态（$S_{\mathrm{tot}} = 0$）才具有。因此，最低本征态必定与大量其他态简并：这些态指向不同的方向，或者（如果我们愿意这样看）沿同一方向具有不同的 $S_{z}$。
+
+于是我们得出结论：至少存在一种形式的元激发，即对应于 $k=0$ 的那一种，它给出整个系统在自旋空间中的一个转动，并且其频率必为 $\omega = 0$。在再加一条物理条件——不存在长程力——之下，这就意味着元激发能谱中有整整一支，当 $k \rightarrow 0$ 时 $\omega \rightarrow 0$。
+
+如今，自旋波已经成为一种和声子同样实实在在的实验现象。人们已用中子非弹性散射、用薄膜中磁共振的直接观测、用与声子谱的耦合以及若干其他较为间接的方法对它进行过研究。不过，它最为人熟知的性质，是它对磁化强度和比热的温度依赖关系的影响。频率为 $\hbar\omega = Ak^{2}$ 的一支玻色型激发具有数密度
+
+\begin{equation*}
+N = 4\pi\int_{0}^{k_{\max}} \frac{k^{2}\,dk}{e^{\beta Ak^{2}} - 1} \qquad\qquad \beta = \frac{1}{k_{\mathrm{B}}T}
+\end{equation*}
+
+而当 $Ak_{\max}^{2} \gg k_{\mathrm{B}}T$ 时——即在低温下——这显然变为
+
+\begin{align*}
+N \approx 4\pi\int_{0}^{\infty} \frac{k^{2}\,dk}{e^{\beta Ak^{2}} - 1} &= \frac{4\pi}{(\beta A)^{3/2}}\int_{0}^{\infty} \frac{x^{2}\,dx}{e^{x} - 1} \\
+&= \frac{4\pi\,(k_{\mathrm{B}}T)^{3/2}}{A^{3/2}} \times \text{const.}
+\end{align*}
+
+现在我们注意到，每个自旋波所对应的反转自旋数恰好是 1，因此 $S_{z}$ 的改变就正比于 $T^{3/2}$——这正是 Bloch 理论中著名的温度变化关系。Dyson (81) 已对这一变化关系计算了修正项：来自对 $\hbar\omega = Ak^{2}$ 的偏离的有 $T^{5/2}$ 和 $T^{7/2}$ 项，而第一个自旋波相互作用项则是 $T^{4}$ 量级的项，完全可以忽略。我们起初也许会以为 $A(T) \propto \text{const.} - N$，从而预期有一个 $T^{3}$ 项；但是长波长自旋波之间的相互作用非常小，其原因基本上是与 $k=0$ 波的连续衔接——后者与其他自旋波没有任何相互作用。人们发现
+
+\begin{equation*}
+\omega \propto k^{2}\left[\text{const.} - \int \left[k'^{2}N(k')\right] k'^{2}dk'\right] \propto k^{2}\left[\text{const.} - T^{5/2}\right]
+\end{equation*}
+
+其中 $N(k)$ 是波矢为 $\mathbf{k}$ 的自旋波的平均数目。相应地，修正项就是 $T^{3/2}T^{5/2} = T^{4}$。自旋波比热同样 $\propto T^{3/2}$：能量为
+
+\begin{equation*}
+U = 4\pi A\int \frac{k^{2}}{e^{\beta Ak^{2}} - 1}\, k^{2}dk \propto T^{5/2} \qquad\qquad C = \frac{\partial U}{\partial T} \propto T^{3/2}
+\end{equation*}
+
+这些积分在 $k=0$ 附近的行为说明了一个重要的论点。在任一有限温度下、靠近 $k=0$ 处，自旋波密度 $N(k)$ 就是经典值
+
+\begin{equation*}
+N(k) = \frac{k_{\mathrm{B}}T}{\hbar\omega(k)} = \frac{k_{\mathrm{B}}T}{Ak^{2}}
+\end{equation*}
+
+请注意，假如系统只有两维，从而态密度 $\propto k\,dk$，那么磁化偏离的积分将在 $k \rightarrow 0$ 处对数发散。不过，任何小的外场或自旋-轨道耦合都可以使 $k=0$ 自旋波的频率变为有限，从而使积分收敛，其形式大致为
+
+\begin{equation*}
+T\ln\left(\frac{k_{\mathrm{B}}T}{\text{截断能量}}\right)
+\end{equation*}
+
+这种二维发散也是具有短程力的有序系统的一个非常普遍的性质。例如，人们相信，如果没有某种有序的支撑，二维晶体将不是热力学稳定的。然而，对于二维情形不存在相变这一点，看来实际上并没有证明 (98)。
+
+现在我想把这些结果与两种不同类型的经典理论的结果联系起来。第一种是纯经典自旋矢量所对应的同一个问题。假定代替 Pauli 自旋算符 $\boldsymbol{\sigma}_{j}$，我们有的是经典自旋矢量 $\mathbf{S}_{j}$：
+
+\begin{equation*}
+\mathcal{H} = -\sum_{jk} J_{jk}\,\mathbf{S}_{j}\cdot\mathbf{S}_{k}
+\end{equation*}
+
+我们定义 $\mathbf{S}_{j} = \mathbf{J}_{j}/\hbar$，其中 $\mathbf{J}_{j}$ 是真实的经典角动量。这样，经典交换参量便是 $J_{jk}/\hbar^{2}$。我们指出这一点，是因为我们人为地使用 $\mathbf{S}$ 而不是 $\mathbf{J}$，可能会在实际上是经典的方程中引进 $\hbar$ 因子。
+
+这个哈密顿量的最低态，应当是所有经典自旋矢量都完全沿同一方向排列的态。我们可以把这一能量在平衡位置附近展开，从而用这种阵列的经典进动模导出一个近似哈密顿量：
+
+\begin{equation*}
+\mathbf{S}_{j}\cdot\mathbf{S}_{k} = S_{zj}S_{zk} + S_{xj}S_{xk} + S_{yj}S_{yk}
+\end{equation*}
+
+\begin{equation*}
+S_{zj}^{2} = S^{2} - S_{xj}^{2} - S_{yj}^{2}
+\end{equation*}
+
+于是
+
+\begin{equation*}
+S_{zj} \simeq S - \frac{1}{2S}\left(S_{xj}^{2} + S_{yj}^{2}\right)
+\end{equation*}
+
+因为在平衡位置附近第二项很小。这样便有
+
+\begin{align*}
+-\mathcal{H} &= -NZJS^{2} + \sum_{jk} J\left[\left(S_{xj} - S_{xk}\right)^{2} + \left(S_{yj} - S_{yk}\right)^{2}\right] \\
+&= -NZJS^{2} + \sum_{\substack{jk \\ \text{近邻}}} \frac{J}{2}\left[\left(S^{+}_{j} - S^{+}_{k}\right)\left(S^{-}_{j} - S^{-}_{k}\right) + \left(S^{-}_{j} - S^{-}_{k}\right)\left(S^{+}_{j} - S^{+}_{k}\right)\right]
+\end{align*}
+
+（译注：首行左端原书印作 $-\mathcal{H}$；按上页 $\mathcal{H} = -\sum_{jk}J_{jk}\mathbf{S}_{j}\cdot\mathbf{S}_{k}$ 推算当为 $\mathcal{H}$，与下文式 (26) 对照亦可见负号为误印，照录原书。）
+
+这里我们假定了 $J_{jk}$ 除原子与其 $Z$ 个近邻之间外处处为零，这是一种非本质的简化。$S^{-}$ 与 $S^{+}$ 的定义与量子力学自旋的情形相同。我们还可以再前进一步，注意到无论经典地还是量子力学地，自旋的小振荡 $\hbar^{1/2}(\delta S_{x}/\sqrt{S})$ 与 $\hbar^{1/2}(\delta S_{y}/\sqrt{S})$ 都服从正则共轭变量的 Poisson 括号关系。更简单地说，我们指出，自旋的经典运动方程与量子运动方程是等同的，因此系统的经典模同样是进动波：
+
+\begin{equation*}
+S^{-}_{j}(t) = e^{i\omega_{\lambda} t}\, e^{i\boldsymbol{\lambda}\cdot\mathbf{j}}
+\end{equation*}
+
+也就是说，我们可以导出一组简正模（normal modes）
+
+\begin{align*}
+S^{-}_{\lambda} &= \frac{1}{\sqrt{NS}}\sum_{j} e^{i\boldsymbol{\lambda}\cdot\mathbf{j}}\, S^{-}_{j} \\
+S^{-}_{\lambda} &\propto e^{i\omega_{\lambda} t}
+\end{align*}
+
+$\omega_{\lambda}$ 由下式给出：
+
+\begin{equation*}
+\omega_{\lambda} = \frac{S}{\hbar}\sum_{j} J_{0j}\left(1 - \cos\boldsymbol{\lambda}\cdot\mathbf{j}\right)
+\end{equation*}
+
+若在 (25) 中代入 $S = 1/2$，此式便与 (25) 相一致；而如果我们代入 $J = \hbar S$，并意识到 $J_{0j}$ 是经典交换参量的 $\hbar^{2}$ 倍，它也还是一个纯经典的公式。哈密顿量约化为
+
+\begin{equation*}
+\mathcal{H} = -NZJS^{2} + \sum_{\lambda} \frac{\omega_{\lambda}}{2}\left(S^{+}_{\lambda}S^{-}_{\lambda} + S^{-}_{\lambda}S^{+}_{\lambda}\right) \tag{26}
+\end{equation*}
+
+当然，经典地看次序无关紧要；但当我们把系统量子化时，就必须像通常那样选取这个对称化了的厄米组合。
+
+关于零点运动和零点能量的情形起初是令人困惑的。量化的经典 Hamilton 量与相应的量子结果之间好像有出入，因为量子力学中基态能量恰好是 $-NZJS^{2}$，这里没有为对易子项带来的修正留有余地——这一修正必定来自把 $S^{+}S^{-} + S^{-}S^{+}$ 项重新编序并加以修正：
+
+\begin{align*}
+\frac{1}{2}&\left\{\left(S^{x}_{\lambda} + iS^{j}_{\lambda}\right)\left(S^{x}_{\lambda} - iS^{y}_{\lambda}\right) - \left(S^{x}_{\lambda} - iS^{y}_{\lambda}\right)\left(S^{x}_{\lambda} + iS^{y}_{\lambda}\right)\right\} \\
+&= -i\left(S^{x}_{\lambda}S^{y}_{\lambda} - S^{y}_{\lambda}S^{x}_{\lambda}\right) = i\frac{1}{NS}\sum_{j} iS^{z}_{j} \\
+&= 1
+\end{align*}
+
+（译注：照录原书。首行第一个括号中的 $S^{j}_{\lambda}$ 显系 $S^{y}_{\lambda}$ 之误。又，按对易关系 $[S^{x},S^{y}] = iS^{z}$，第二行左端 $-i(S^{x}_{\lambda}S^{y}_{\lambda} - S^{y}_{\lambda}S^{x}_{\lambda})$ 应等于 $\frac{1}{NS}\sum_{j} S^{z}_{j}$（基态中 $\sum_{j}S^{z}_{j} = NS$），故该行系数中的两个 $i$ 多出一个，否则与末行 “$= 1$” 不相容。）
+
+Klein 与 Smith (99) 最先指出，情况之所以得救，是由于与量子自旋矢量 $\mathbf{S}$ 相对应的经典自旋是 $S^{'} = \sqrt{S(S+1)}$，也就是说，$S(S+1) = S_{xj}^{2} + S_{yj}^{2} + S_{zj}^{2}$。于是，$S_{zj}^{2} = S^{2} - (S_{xj}^{2} + S_{yj}^{2} - S)$；再次应用近似对易关系
+
+\begin{equation*}
+S_{xj}S_{yj} - S_{yj}S_{xj} = iS_{zj} \simeq iS
+\end{equation*}
+
+就得到
+
+\begin{align*}
+S_{zj}^{2} &= S^{2} - \left[\frac{1}{2}\left(S^{+}_{j}S^{-}_{j} + S^{-}_{j}S^{+}_{j}\right) - S\right] \\
+&\simeq S^{2} - S^{-}S^{+}
+\end{align*}
+
+因此，只有把 $S^{2}$ 改成 $S(S+1)$，(26) 才是正确的对应原理哈密顿量；而这样一改，它便与量子结果完全一致：
+
+\begin{equation*}
+\mathcal{H} = -NZJS^{2} + \sum_{\lambda} \omega_{\lambda}\, S^{-}_{\lambda}S^{+}_{\lambda}
+\end{equation*}
+
+其结果是经典理论与量子理论之间的完全对应。同激子情形中我们略去“逆向图”（backward diagrams）时一样，零点运动效应不过是一种相当平凡的数学练习，只与单个原子的内部动力学有关；耦合项的零点平均值净效果为零，因为零点效应要对所有自旋波 $\lambda$ 求和，而 $\sum_{\lambda}\cos\lambda = 0$（在这里，$\cos\lambda$ 就是耦合项的 Fourier 变换）。
+
+还有第二种用途非常普遍的处理磁性问题的半经典方法，它是由 Landau、Lifshitz、Kittel 与 Herring (100) 提出的。这一方法非常接近于声子的 Debye 理论。其想法是立足于相当粗粒的观点，把磁化强度看作一个连续的磁化场 $\mathbf{M}(r)$，它服从连续量子场的对易关系
+
+\begin{equation*}
+\mathbf{M}(r)\times\mathbf{M}(r') = i\mathbf{M}(r)\,\delta(r-r')\ \left(\times\ \text{consts.}\right)
+\end{equation*}
+
+哈密顿量依赖于 $(S_{j} - S_{k})^{2}$ 这一形式提示我们，作为半经验的哈密顿量密度可以取
+
+\begin{equation*}
+\mathcal{H} = A\int dr\left(\nabla\mathbf{M}(r)\right)^{2} \tag{27}
+\end{equation*}
+
+可以证明，对绝缘铁磁体这一特殊情形它是正确的；而且显而易见，它也是任何短程、各向同性的力的宏观必然后果——正如弹性理论必然给出一个形变 $(\nabla u)$ 的二次型哈密顿量一样（$u$ 为位移）。由此导出了普遍的磁化运动方程，人们可以猜想，它们在所有铁磁体中都成立：
+
+\begin{equation*}
+\frac{d\mathbf{M}}{dt} = A\left(\mathbf{M}\times\nabla^{2}\mathbf{M}\right) + \gamma\left(\mathbf{M}\times\mathbf{H}_{\mathrm{ext}}\right) + \left(\text{耗散项}\right)
+\end{equation*}
+
+这就是 Landau-Lifshitz 方程，它在所有自旋波理论和铁磁共振理论中都起着基础性的作用。
+
+像 (27) 这样的哈密顿量——以及弹性理论中相应的哈密顿量
+
+\begin{equation*}
+\mathcal{H} = \int \nabla\mathbf{u}:\mathbf{C}:\nabla\mathbf{u} \qquad \left(\mathbf{C}\ \text{为刚度弹性张量}\right)
+\end{equation*}
+
+——所共有的一个有趣性质，就是下述普遍论证：具有短程力的二维系统不可能有稳定的长程序。我们很容易相信，系统的长波长运动——至少当其频率很低时——在任一有限温度下都按经典方式行为。于是按能量均分，每个自由度 $k$ 分得 $k_{\mathrm{B}}T$ 的能量，而能量是
+
+\begin{equation*}
+\propto k^{2}\left(\nabla\mathbf{M}(k)\right)^{2} \qquad \text{故} \qquad \left\langle\left(\nabla\mathbf{M}(k)\right)^{2}\right\rangle = \frac{k_{\mathrm{B}}T}{k^{2}}
+\end{equation*}
+
+于是涨落积分
+
+\begin{equation*}
+\left\langle\Delta M^{2}\right\rangle = \int k^{D-1}\,dk\,\frac{k_{\mathrm{B}}T}{k^{2}} \qquad \left(D\ \text{为维数}\right)
+\end{equation*}
+
+在磁性与弹性两种情形中都在 $D = 2$ 时发散。换一种说法就是：在二维情形下，人们可以在样品中的任何地方造就一个尺寸为 $\sim 1$ 的反向磁畴，四周由厚度 $\sim 1$ 的“Bloch 墙”所包围，其能量为（墙中原子数）$\times\,(\nabla M)^2 \sim 1^2(1/1^2)M^2 =$ 有限值。于是，在样品的所有区域内、在任意尺度上、并且以实质上无限多种可能的组态，这类磁畴都具有一份有限的热激发概率。这样，长程序便被破坏了。一般说来，只要变化缓慢，Landau-Lifshitz 方程使我们能够处理比自旋波更复杂、更一般的运动与组态。
+
+\subsection{反铁磁自旋波与“对称破缺”}
+
+最后，我要对反铁磁自旋波（antiferromagnetic spin waves）这一课题 (101) 作一简短的介绍。它们之所以重要，是因为在零点运动、对称性与元激发谱之间的种种关系中，它们大概是我们能归并在“对称破缺理论”（theory of broken symmetry）名下的各种情形中最简单、也理解得最好的一例；而这些关系在几乎所有形式的量子凝聚——固体与声子、自旋波、超导电性、液氦以及等离体——的理论中都起着至关重要的作用。
+
+一般说来，凝聚现象的特征是：在我们称为“凝聚”系统的状态中出现了一个原先系统中不存在的新参量。铁磁体在 Curie 点以上、没有外场时没有磁化；在 Curie 点以下则有。在反铁磁体中，新参量便是反铁磁序。例如，我们可以取两个子晶格磁化之差作为参量——它常被称为“序参量”（order parameter）。合金中的有序-无序有一个明显的新参量，铁电性也是如此。同样明显的是固体的长程序，它在液体中并不存在。液氦 II 有一个参量，如今普遍理解为处于零动量态中的原子数。液-气系统则更难以捉摸一些，但利用所谓“格气”（lattice gas）方法，我们可以把它类比于一个经典的有序-无序系统。更加难以捉摸、然而却完全类似的，是超导体的序参量，它可以定义为与能隙相联系的某个非对角的“Green 函数”。
+
+所有这些序参量都有一个共同的特点：当序参量出现时，系统比起未凝聚相来具有较低的对称性。这一点在多数情形下又是十分明显的，尽管对两种超流体而言，这种较低的对称性是相当特殊而且有争议的一种，即通常意义下规范不变性的缺失（也许更为普遍接受的观点是零动量起着特殊作用，即缺乏 Newton 不变性）。在多数其他情形中，对称性的改变属于那种对一般理论物理学家的敏感神经刺激较小的一类，因为他更熟悉那些破坏对称性的微扰的存在。这样，理想的铁磁体与反铁磁体都已抛弃了自旋空间中交换力的转动对称性——这种对称性反正会被磁性微扰所破坏。铁磁态与反铁磁态不具有时间反演对称这一事实（对铁磁体而言这是一件非常实际的事，因为它使铁氧体回转器得以存在）本应几乎同超导体中的规范（不变性）一样使理论家感到不安，因为时间反演通常被认为是一种严格成立的对称性。固体已经抛弃了完全的转动对称性与平移对称性，这同样不会扰乱我们的直觉，但这仅仅是因为我们天天都在同固态的夹具和匣子打交道，而它们恰好具有同样奇特的对称性缺失。尽管如此，在所有这些情形中，我们通常都取一个\emph{具有}适当对称性的哈密顿量表达式，然后我们从它导出——或者假定我们能够导出——系统的一个态，该态由这个哈密顿量决定，但却\emph{不具有}这种对称性。这样看来，据我所见，这正是一切凝聚现象的一个普遍特征。
+
+在所有这些凝聚相之中，铁磁性是独一无二的，或者差不多是独一无二的：在这种情形中，序参量至少近似地是一个\emph{运动常量}（constant of the motion）。这一事实使我们能够作极大的简化。首先，在纯铁磁体的理想化 Heisenberg 模型中，我们能够写下系统的一个精确基态；在更复杂的模型中，例如 Heisenberg 亚铁磁体，我们至少能够用一个好量子数——总自旋，和/或其总的 $z$ 分量——来表征基态。这样一个好量子数的存在，意味着关于基态对称性的一个严格论断。于是我们可以这样表征所有激发态：其中至少有一个被反转的自旋。这种情况就像 $N+1$ 体问题中的情形一样：带有元激发的态确实能够同基态清楚地分辨开来。而且，磁化反转的数量也同粒子数的改变一样，是每个元激发的一个固定常量。我们在前面已经指出，哈密顿量中在铁磁态被“破坏”的那个对称性的存在，当然意味着实际上存在着一整族基态——在此时此地为 $N+1$ 个——它们通过整个自旋系统的转动而相互变换。由于自旋是运动常量，这些不同的态都是哈密顿量的精确本征态，而且正如我们已看到的，这意味着 $\omega(k{=}0)$ 恒等于零。
+
+在几乎所有其他有趣的凝聚情形中，序参量都不是运动常量。让我们以最简单的情形——反铁磁性——为例。一种特别简单的理想反铁磁体的哈密顿量是
+
+\begin{equation*}
+\mathcal{H} \;=\; J\sum_{jl} \mathbf{S}_j\cdot\mathbf{S}_l
+\end{equation*}
+
+其中我们不妨作一些非实质性的简化：设各个 $\mathbf{S}$ 位于一个简单立方晶格上，而 $J$ 只在最近邻之间起作用，于是 $\mathbf{S}_j$ 总可以取在面心立方子晶格 A 上，而 $\mathbf{S}_l$ 在 B 上（图 57）。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_57.pdf}
+\caption*{图 57　（原书图注仅作 “Figure 57”）简单立方晶格的 3×3 格点阵列：中心格点属 A 子晶格，其自旋标为 $\mathbf{S}_j$；上、下、左、右四个近邻格点属 B 子晶格，其一标出自旋 $\mathbf{S}_l$；四角格点亦属 A 子晶格}
+\end{figure}
+
+A 子晶格自旋的运动方程是
+
+\begin{align*}
+\bigl[\mathcal{H},\ \mathbf{S}_A\bigr] \;&=\; J\sum_j \mathbf{S}_j \times \sum_{\text{neighbors to j}} \mathbf{S}_l \\
+&=\; J\sum_{\text{nearest-neighbor pairs}} \mathbf{S}_j \times \mathbf{S}_l \;=\; -\bigl[\mathcal{H},\ \mathbf{S}_B\bigr]
+\end{align*}
+
+其中 $\mathbf{S}_B$ 是另一子晶格的总自旋。于是，尽管总自旋 $\mathbf{S}_A + \mathbf{S}_B$ 按我们的一般定理是运动常量，但自旋之差 $\mathbf{S}_A - \mathbf{S}_B$ 的任何一个分量却都不是：
+
+\begin{equation*}
+\bigl[\mathcal{H},\ \mathbf{S}_A - \mathbf{S}_B\bigr] \;=\; 2J\sum_{\text{pairs}} \mathbf{S}_j \times \mathbf{S}_l
+\end{equation*}
+
+右端这个量，在系统邻近反铁磁态的任何可能态中都断然不为零；在铁磁态中它则可以为零。例如，它的（−）分量为
+
+\begin{equation*}
+\bigl[\mathcal{H},\ \mathbf{S}_A^- - \mathbf{S}_B^-\bigr] \;=\; J\sum_{j,l} \left(S_j^- S_{lz} - S_l^- S_{jz}\right)
+\end{equation*}
+
+在 $S_{jz} = S$、$S_{lz} = -S$ 的态（它决不是一个本征态）中，它就是
+
+\begin{equation*}
+\frac{JS}{\hbar}\sum_{jl}\left(S_j^- + S_l^-\right)
+\end{equation*}
+
+其矩阵元在该态中并不为零，尽管当然不存在\emph{对角}元。一般说来，我不作冗长的论证，只向读者保证：在反铁磁情形，$\mathbf{S}_A - \mathbf{S}_B$ 不可能是运动常量。
+
+另一方面，毫无疑问确实发生的是：这个“序参量”变量的进动速率可以极其缓慢——在系统尺寸趋于无限的极限下，缓慢到可以忽略。
+
+让我们取严格的运动方程
+
+\begin{equation*}
+i\hbar\,\frac{d}{dt}\left(\mathbf{S}_A - \mathbf{S}_B\right) \;=\; 2J\sum_{\text{pairs}}\left[\mathbf{S}_j \times \mathbf{S}_l\right]
+\end{equation*}
+
+两个子晶格的平均自旋 $\mathbf{S}_A$ 与 $\mathbf{S}_B$ 是非常多个原子的自旋之和，因而颇像经典变量，诸如宏观物体的位置与动量；它们的不确定度只需具有相对量级 $N^{-1/2}$。如果我们假定 $\mathbf{S}_A$ 与 $\mathbf{S}_B$ 确实具有某种宏观平均值，那么按对称性，量 $\mathbf{S}_j$ 与 $\mathbf{S}_l$ 的平均值——虽然不是它们的非对角矩阵元，即量子涨落——看来应当由下式给出
+
+\begin{equation*}
+\langle \mathbf{S}_j\rangle \;=\; \frac{\langle \mathbf{S}_A\rangle}{N}\,,\qquad \langle \mathbf{S}_l\rangle \;=\; \frac{\langle \mathbf{S}_B\rangle}{N}
+\end{equation*}
+
+于是，代入各变量的\emph{平均值}（average values），我们可以写出一个 c 数（c-number）运动方程
+
+\begin{equation*}
+i\hbar\,\frac{d}{dt}\langle \mathbf{S}_A - \mathbf{S}_B\rangle \;=\; \frac{2JZ}{N}\,\langle \mathbf{S}_A\rangle \times \langle \mathbf{S}_B\rangle
+\end{equation*}
+
+取 $\langle \mathbf{S}_A\rangle = -\langle \mathbf{S}_B\rangle$——这显然是平均能量最低的态——右端便变为零，而且至少在 $N$ 的量级上，序参量 $\langle \mathbf{S}_A\rangle - \langle \mathbf{S}_B\rangle$ 成为常量。当然，我们在这个方程右端略去了量子涨落，但我们可以假设，相对于任何 $\sim N$ 个元素之和的平均值，涨落具有 $1/\sqrt{N}$ 的量级。这完全不是一个严格的证明，但足以指示事情的走向。
+
+另一方面，由于 $\mathbf{S}_A - \mathbf{S}_B$ 并非真正的运动常量，它的值必定要涨落。事实上，涨落必定具有 $N$ 的量级。Hulthen (103) 曾证明，对任何具有 $\mathcal{H} = J\sum_{\text{n.n.}}\mathbf{S}_j\cdot\mathbf{S}_l$（若 $J>0$）的有限系统，其真实的精确基态必有 $S_{\text{tot}} = \mathbf{S}_A + \mathbf{S}_B = 0$。这在物理上其实是显而易见的。但在 $S_{\text{tot}} = 0$ 的态中，$\langle \mathbf{S}_A\rangle = \langle \mathbf{S}_B\rangle = 0$，因为这样的态是完全各向同性的。（这是一个严格的群论结果。）
+
+这看起来是一个颇为令人困惑的悖论。观测以及一种推理方式告诉我们 $\langle \mathbf{S}_A\rangle = -\langle \mathbf{S}_B\rangle \sim N$，而且这种情形不随时间发生宏观变化；另一种基于对称性的推理则说 $\langle \mathbf{S}_A\rangle = \langle \mathbf{S}_B\rangle = 0$。答案在于：后者在\emph{精确基态}（exact ground state）中是正确的，但这个精确的态无关紧要，因为许多别的态与它相距无穷小（能量上约 $1/N$）。因此，如果我们取 $\langle \mathbf{S}_A\rangle = -\langle \mathbf{S}_B\rangle \sim N$ 的态作为我们的态，它将维持非常长的时间，但由于它实际上是一个由许多精确态组成的波包，最终将会解体。
+
+这与一个宏观固体在自由空间中的行为之间，存在着非常贴切而且精确的类似。这样的物体有一个质心坐标 $Q$、一个相应的动量 $P$，以及一个哈密顿量 $P^2/2MN$，$N$ 为粒子数。$P=0$ 将是精确的基态，此时 $Q$ 将剧烈地涨落：$Q$ 不可能是运动常量。事实上，当 $P\to 0$ 时 $\langle Q^2\rangle\to\infty$。但是各能级彼此靠得极近，因此，如果我们想把整个物体定域在一段非常小的距离之内——比如一个晶格常数的量级，$\Delta Q\sim 1$——相应的 $P$ 的增加为 $\sim 1$，$E$ 的增加为 $\sim 1/N$。于是这些能级是如此接近简并，以至于为了实用的目的——例如为了研究固体的内部结构——我们可以把 $\langle Q\rangle$ 固定下来，然后在 $\langle Q\rangle$ 从其预设值明显涨落之前去研究内部的自由度。或许一个更直接的例子，是宏观刚性旋转体的取向 $\theta$ 与角动量 $I\omega$。
+
+但是我们必须认识到两点：其一，使 $Q$ 或 $\mathbf{S}_A - \mathbf{S}_B$ 的一切取值彼此等价的那个对称性的存在，使这个变量的宏观运动频率为零。这正好就是我们在铁磁性中关于序参量 $\mathbf{S}$ 所得到的结果，尽管在我们的情形中序参量并不是运动常量。其二，这个参量的\emph{涨落}必须为无穷大，这一事实带来了另一个结果。在短程力的情形，宏观能量只能依赖于序参量的\emph{梯度}：
+
+\begin{equation*}
+U \;\propto\; \bigl|\nabla\left(\mathbf{S}_A - \mathbf{S}_B\right)\bigr|^2 \qquad\text{或}\qquad \bigl|\nabla Q\bigr|^2
+\end{equation*}
+
+但这将意味着
+
+\begin{equation*}
+\Bigl\langle\bigl|\nabla(\mathbf{S}_A - \mathbf{S}_B)\bigr|^2\Bigr\rangle \;=\; k^2\langle S_k^2\rangle \;\propto\; \langle V\rangle \;=\; \frac{\hbar\omega_k}{2}
+\end{equation*}
+
+于是
+
+\begin{equation*}
+\langle S_k^2\rangle \;=\; \frac{\omega_k}{k^2} \;\to\; \infty \qquad\text{当 } k\to 0
+\end{equation*}
+
+因此我们预期 $\omega_k\to 0$，但 $\omega_k/k^2\to\infty$。实际上，在最广为人知的那些情形（反铁磁性、固体与液体中的声子）中，$\omega_k\propto k$。核物质的表面振荡 (104) 则有 $\omega_k\propto k^{3/2}$。
+
+当存在低频模式时，与这类凝聚总是相伴随的最后一个效应，是一种长程力。长程力同零质量（即当 $k\to 0$ 时 $\omega\to 0$）粒子之间不可避免的关联，我在这里没有时间详细讨论，只打算提及两个最著名的例子：一是经由铁磁或反铁磁矩的极化而起作用的 Suhl-deGennes 长程核自旋-自旋相互作用 (105)；其二自然是人所共知的、围绕点源的弹性形变的长程性质，它使晶体中空位等的弹性相互作用仅按 $1/r$ 衰减。
+
+现在，我简略地给出反铁磁自旋波的数学处理。附带说一句，这里关于自旋波与磁性的许多材料，都载于我发表在《Seitzschrift》第 14 卷上的文章中。反铁磁自旋波在 Nagamiya、Kubo 与 Yosida (101) 处已有相当好的覆盖。Nagamiya 等人提出了一个非常有用的技巧：即把 B 子晶格上自旋的坐标轴相对于 A 子晶格加以反转：对 $S_l$ 而言，$y\to -y$，$z\to -z$，$x\to x$，于是
+
+\begin{align*}
+S_{lz} \;&\to\; -S_{lz}\\
+S_{lx} \;&\to\; S_{lx}\\
+S_{ly} \;&\to\; -S_{ly}
+\end{align*}
+
+因此，
+
+\begin{equation*}
+\frac{S_{lx}+iS_{ly}}{\sqrt{2}} \;=\; S_l^+ \longrightarrow S_l^-\,,\qquad S_l^- \longrightarrow S_l^+
+\end{equation*}
+
+把 $z$ 与 $y$ 加以反转而不反转 $x$，理由是这样一来这个变换就是一个真转动（proper rotation），从而对新坐标轴对易规则依然成立。用新坐标轴表出，
+
+\begin{equation*}
+\mathcal{H} \;=\; -J\sum_{\text{jl neighbors}} \left(S_{jz}S_{lz} - S_{jx}S_{lx} + S_{jy}S_{ly}\right)
+\end{equation*}
+
+利用近似展开式
+
+\begin{equation*}
+S_{jz} \;=\; S - \frac{S_j^- S_j^+}{2S}
+\end{equation*}
+
+——这一展开式我们在铁磁情形中已经讨论过——便得到
+
+\begin{equation*}
+\mathcal{H} \;\cong\; -NZJS^2 + \frac{J}{2}\sum_{jl}\left(S_j^- S_j^+ + S_l^- S_l^+ + S_j^+ S_l^+ + S_j^- S_l^-\right)
+\end{equation*}
+
+当我们 Fourier 变换到自旋波算符（它们现在是近似玻色子）时，
+
+\begin{equation*}
+\beta_\lambda \;=\; \frac{1}{\sqrt{NS}}\sum_j \mathrm{e}^{i\lambda\cdot j}\, S_j^+
+\end{equation*}
+
+它就变为
+
+\begin{equation*}
+\mathcal{H} \;=\; -NZJS^2 + \frac{JS}{2}\sum_\lambda \Bigl\{ Z\left(\beta_\lambda^\dagger\beta_\lambda + \beta_{-\lambda}^\dagger\beta_{-\lambda}\right) + \sum_l \mathrm{e}^{i\lambda(l-j)}\left(\beta_\lambda^\dagger\beta_{-\lambda}^\dagger + \beta_\lambda\beta_{-\lambda}\right)\Bigr\}
+\end{equation*}
+
+这种形式的哈密顿量我们从激子问题起就已熟悉；如果读者回头查看那个情形中“反向图”（backwards diagrams）的计算，就会发现自旋波频率是两个系数的平方之\emph{差}（difference）的平方根：
+
+\begin{align*}
+\omega_\lambda \;&=\; \frac{1}{2}JS\sqrt{Z^2 - \left(\sum_l \mathrm{e}^{i\lambda(l-j)}\right)^2}\\
+&\cong\; \frac{1}{2}JS\sqrt{\frac{Z}{3}}\ \lambda
+\end{align*}
+
+把指数函数展开后，上式即告成立。这样，在这一情形中我们确实发现预期 $\omega_\lambda\sim\lambda$ 得到了验证。我们还发现，\emph{零点运动}（zero-point motion）当 $\lambda\to 0$ 时发散；普通振幅 $\beta_\lambda$ 可以用本征解 $B_\lambda$ 写成
+
+\begin{equation*}
+\beta_\lambda \;=\; u_\lambda B_\lambda - v_\lambda B_{-\lambda}^\dagger\,,\qquad \text{etc.}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+u_\lambda \;=\; \cosh\frac{\theta_\lambda}{2}\,,\qquad v_\lambda \;=\; \sinh\frac{\theta_\lambda}{2}
+\end{equation*}
+
+而
+
+\begin{equation*}
+\tanh\theta_\lambda \;=\; \frac{1}{Z}\sum_{\text{l neighbor to j}} \mathrm{e}^{i\lambda(l-j)} \;\to\; 1 \qquad\text{当 } \lambda\to 0
+\end{equation*}
+
+于是 $u$ 与 $v$ 都发散。在二维和三维两种情形，$\sum_\lambda\langle\beta_\lambda^2\rangle$ 中的发散都是可积的，因此人们发现，除了在名义能量 $-NZJS^2$ 之上获得一定的能量收益，以及整个系统绕完美反铁磁态振荡的一份额外的零点能量之外，并没有别的后果。我们必须把这类系统中出现的发散当作一个时间尺度问题来思考。实际的 $\lambda = 0$ 模的确具有发散的振幅，这对于系统能够取严格各向同性的基态来说是必不可少的；但随着 $N\to\infty$，这一零点运动的频率实际上可以忽略，也就是说，借用 Bogolyubov (105) 的说法，各个可能的态是“准简并”（quasi-degenerate）的。因此，一个合适的近似做法是：取 $\lambda = 0$ 模的围绕某一预先固定取向的一包运动解，然后在我们所构成的这一波包的运动破坏单向态的相干性之前的那段时间间隔内，研究所有其余自旋进动简正模的频率以及（收敛的）零点运动。
+
+当然，实际上各向异性总是存在的，它导致一个场项，把 $\beta_\lambda^\dagger\beta_\lambda$ 项的大小提升到（Z + 各向异性），于是频率变为
+
+\begin{equation*}
+\omega \;\sim\; \sqrt{\left(JZ + H_{\text{an}}\right)^2 - \left(JZ\right)^2} \;\sim\; \sqrt{H_{\text{an}}H_{\text{ex}}} \;=\; H_{\text{ae}}
+\end{equation*}
+
+这就是著名的反铁磁共振频率的“能隙”（energy gap）表达式。它的实际含义并不是说在这种情形下单向态就真的是基态，而是说系统必须通过隧道贯穿、而不是转动的方式，才能到达时间反演且自旋反转的态——这是一个更为缓慢的过程，当然完全可以忽略。在这个系统中，准简并依然存在，但只存在于有限数目的态之间。
+
+所有这些同样的讨论也直接适用于固体中的声子系统。由于转动与平移自由度必须具有发散的零点振幅，频率正比于 $|k|$，而较低模式的零点振幅发散。类似的现象也常见于 $\mathrm{He}_{\mathrm{II}}$（液氦 II）以及一个假想的中性超导体。
+
+值得注意的是：一般而言，一个\emph{连续的}（continuous）破缺对称——平移、规范、转动——导致 $\omega\to 0$，而且通常当 $k\to 0$ 时零点振幅 $\to\infty$；而一个分立的破缺对称——例如磁性情形中的时间反演，或有序-无序情形中子晶格的互换——则不必对凝聚系统的集体模式有任何特殊的后果，除非碰巧至少还存在一个近似的连续对称——磁性情形正是如此，铁电情形碰巧也是如此。
+
+“对称破缺”这整个课题，作为理论物理学的一个形式分支还相当新颖；尽管如我已提到的，其中许多观念早在几十年前就已在具体情形中得到理解。然而我相信，从固态（solid-state）观点出发对它的一般性讨论，在其他地方尚不存在。当进而考虑运动的集体模式同长波电磁效应——Coulomb 力与长程偶极力——之间的相互作用时，还会接踵出现更进一步的复杂情况。例子有自旋波上的静磁效应 (106)，以及超导电性中的等离体效应 (107)。

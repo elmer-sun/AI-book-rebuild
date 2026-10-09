@@ -1,0 +1,2761 @@
+\chapter{按正交函数系展开}
+
+\section{希尔伯特空间}
+
+到现在为止，我们仅研究了 $n$ 维空间。但在物理学中，特别是在量子力学中，必须考虑无限维函数空间。其中最重要的是所谓希尔伯特(Hilbert)空间。希尔伯特空间的元素是定义于区间 $a \leqslant x \leqslant b$ 上的平方可积的复值函数。这里的函数概念实际上是 $n$ 维空间中矢量概念的推广。为了解释这种想法，我们进行下面的讨论。将区间 $[a, b]$ 分割成长度为 $\varepsilon$ 的 $n$ 个小区间，且在每个小区间上取点 $x_{i}^{\prime}$ ，函数 $f(x)$ 在此点取值 $f(x_{i}^{\prime})$ 。现在，函数 $f(x)$ 可对应于 $n$ 维矢量
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.58\textwidth]{fig19.pdf}
+\par\vspace{2pt}
+{\small 图 19.}
+\end{figure}
+
+\begin{equation*}
+f ^ {(n)} = \sqrt {\varepsilon} \left[ \begin{array}{c} f (x _ {1} ^ {\prime}) \\ \vdots \\ \vdots \\ \vdots \\ f (x _ {n} ^ {\prime}) \end{array} \right] = \sqrt {\varepsilon} \sum_ {i = 1} ^ {n} f (x _ {i} ^ {\prime}) e _ {i},\tag{3.1a}
+\end{equation*}
+
+这里 $e_i$ 是 $n$ 维空间的基矢量。矢量 $f^{(n)}$ 仅是 $f(x)$ 的粗略近似。但在某种意义上， $n$ 越大， $\varepsilon$ 越小， $f^{(n)}$ 与 $f(x)$ 之间也就越接近。
+
+$f^{(n)}$ 型的矢量构成一个 $n$ 维空间，其中的点积自然用下式定义
+
+\begin{equation*}
+\begin{array}{r l} (f ^ {(n)}, g ^ {(n)}) & = \sum_ {i = 1} ^ {n} \sqrt {\varepsilon} f ^ {(n)} (x _ {i} ^ {\prime}) \sqrt {\varepsilon} g ^ {(n)} (x _ {i} ^ {\prime}) = \\ & = \sum_ {i = 1} ^ {n} \varepsilon f ^ {(n)} (x _ {i} ^ {\prime}) g ^ {(n)} (x _ {i} ^ {\prime}). \end{array} \tag{3.1b}
+\end{equation*}
+
+当 $n \to \infty$ 时，此空间的维数增大，而点积(3.1$b$)就趋向于
+
+\begin{equation*}
+\int_ {a} ^ {b} f (x) g (x) d x.
+\end{equation*}
+
+因此很自然地可认为，在 $n \to \infty$ 时的极限状态，此空间就转化成无限维空间；在这种空间中，函数即为其矢量，而点积可用下式定义：
+
+\begin{equation*}
+(f, g) = \int_ {a} ^ {b} f (x) g (x) d x\tag{3.1c}
+\end{equation*}
+
+这样一来，在由 $n$ 维空间过渡到希尔伯特空间时，求和需用积分来代替。
+
+现在，在我们面前提出了两个问题：1)什么样的函数系在无限维空间中起着基的作用？2)对任一函数，怎样利用基矢量来精确地逼近它？
+
+\section{函数系的完备性}
+
+首先我们给出一些定义。
+
+数
+\begin{equation*}
+\begin{array}{r l}\| f \|&= \lim _ {n \rightarrow \infty} [ (f ^ {n}) ^ {+} f ^ {n} ] ^ {\frac {1}{2}} =\\&= \left[ \int_ {a} ^ {b} f ^ {*} (x) f (x) d x \right] ^ {\frac {1}{2}} =\\&= \left[ \int_ {a} ^ {b} | f (x) | ^ {2} d x \right] ^ {\frac {1}{2}}\end{array}\tag{3.2a}
+\end{equation*}
+
+称为函数 $f(x)$ 的范数。
+
+若
+\begin{equation*}
+\int_ {a} ^ {b} f ^ {*} (x) f (x) d x = \int_ {a} ^ {b} | f (x) | ^ {2} d x = 1,\tag{3.2b}
+\end{equation*}
+
+则称函数 $f(x)$ 在区间 $[a, b]$ 上是标准的。
+
+若
+\begin{equation*}
+\int_ {a} ^ {b} f _ {1} ^ {*} (x) f _ {2} (x) d x = 0,\tag{3.2c}
+\end{equation*}
+
+则称 $f_{1}(x), f_{2}(x)$ 在区间 $[a, b]$ 上正交。
+
+函数系 $\{f_{i}(x)\}$ 称为正交系，如果
+
+\begin{equation*}
+\int_ {a} ^ {b} f _ {i} (x) f _ {j} (x) d x = \delta_ {i j}.
+\end{equation*}
+
+在有限维空间中，矢量系 $\{\eta_{1}, \eta_{2}, \cdots, \eta_{m}\}$ 称为完备的，如果对此空间中的任一矢量都可表示成
+
+\begin{equation*}
+\sum_ {i = 1} ^ {m} \alpha_ {i} \eta_ {i} \qquad (\alpha_ {i} — — \text {数}).
+\end{equation*}
+
+和这种想法相类似，设有一函数系 $\{f_{i}(x)\}(i=1,2,\cdots,n,\cdots)$ ，若对函数类 $R$ 中的任一函数 $f(x)$ 都可表示成
+
+\begin{equation*}
+f (x) = \lim _ {n \rightarrow \infty} \sum_ {i = 1} ^ {n} f _ {i} (x) a _ {i},\tag{3.3}
+\end{equation*}
+
+则就称函数系 $\{f_i(x)\}$ 在 $R$ 中是完备的。
+
+但此时就发生了一个问题，如果在（3.3）中要求级数一致收敛①，条件就过于苛刻了。因这大大限制了可按函数系 $f_{i}$ 展开的函数类。不过对于我们的目的来说，只要求它平均收敛，即
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} \int_ {a} ^ {b} \left| f (x) - \sum_ {i = 1} ^ {n} a _ {i} f _ {i} (x) \right| ^ {2} d x = 0\tag{3.4}
+\end{equation*}
+
+就完全够用了。两种不同收敛性之间的差别，可由图20上看出。
+
+若在点 $x_{1}$ 处，峰的宽度当 $n \to \infty$ 时趋于零，而它的高度不减，则我们仍有均值意义下的收敛性。因改变可积函数在一些孤立点上的值，积分值不变。但一致收敛性在这里却没有了。注意，由一致收敛性可推出平均收敛性，但反之不真。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.52\textwidth]{fig20.pdf}
+\par\vspace{2pt}
+{\small 图 20.}
+\end{figure}
+
+这样，一函数系若对 $R$ 中任一函数都满足条件（3.4），就称此函数系在 $R$ 中完备①。条件(3.4)以后常写成
+
+\begin{equation*}
+f (x) \doteq \lim _ {n \rightarrow \infty} \sum_ {i = 1} ^ {n} a _ {i} f _ {i} (x),\tag{3.4a}
+\end{equation*}
+
+这里符号 $\doteq$ 就表示平均收敛。
+
+假定给了一个完备正交函数系。现提出一个问题：试求满足条件（3.4）的系数 $a_{i}$ ，即求函数 $f(x)$ 按 $f_{i}$ 展开的展开式。根据完备性的定义，存在系数 $a_{i}^{0}$ 的集合，使
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} \int_ {a} ^ {b} | G _ {n} | ^ {2} d x = 0\tag{3.4b}
+\end{equation*}
+
+成立。这里
+\begin{equation*}
+G _ {n} = f (x) - \sum_ {i = 1} ^ {n} a _ {i} ^ {0} f _ {i} (x).
+\end{equation*}
+
+命
+\begin{equation*}
+g _ {n} = f (x) - \sum_ {i = 1} ^ {n} a _ {i} f _ {i} (x).
+\end{equation*}
+
+今选取 $a_{i}$ ，使对任一有限的 $n$ 在平均意义上为极小。显然，对于极小式 $g_{n}$ ，将成立不等式
+
+\begin{equation*}
+\int_ {a} ^ {b} \left| g _ {n} \right| ^ {2} d x \leqslant \int_ {a} ^ {b} \left| G _ {n} \right| ^ {2} d x.
+\end{equation*}
+
+由(3.4$b$)推出
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} \int_ {a} ^ {b} | g _ {n} | ^ {2} d x = 0.
+\end{equation*}
+
+今求在 $n$ 为有限时使
+
+\begin{equation*}
+M = \int_ {a} ^ {b} | f (x) - \sum_ {i = 1} ^ {n} a _ {i} f _ {i} (x) | ^ {2} d x
+\end{equation*}
+
+为极小的 $a_{i}$ 。由于 $f_{i}(x)$ 为标准完备正交系，故得
+
+\begin{equation*}
+\begin{array}{r l} M & = \int_ {a} ^ {b} [ f ^ {*} (x) f (x) - \sum_ {i = 1} ^ {n} a _ {i} f ^ {*} (x) f _ {i} (x) - \\ & \quad - \sum_ {i = 1} ^ {n} a _ {i} ^ {*} f (x) f _ {i} ^ {*} (x) + \sum_ {i, j = 1} ^ {n} a _ {j} ^ {*} a _ {i} f _ {i} (x) f _ {j} ^ {*} (x) ] d x \\ & = \int_ {a} ^ {b} | f (x) | ^ {2} d x - \sum_ {i = 1} ^ {n} a _ {i} c _ {i} ^ {*} - \sum_ {i = 1} ^ {n} a _ {i} ^ {*} c _ {i} + \end{array}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{r l} & + \sum_ {i = 1} ^ {n} | a _ {i} | ^ {2} - \sum_ {i = 1} ^ {n} | c _ {i} | ^ {2} + \sum_ {i = 1} ^ {n} | c _ {i} | ^ {2} = \\ & = \int_ {a} ^ {b} | f (x) | ^ {2} d x + \sum_ {i = 1} ^ {n} | a _ {i} | ^ {2} - \sum_ {i = 1} ^ {n} a _ {i} c _ {i} ^ {*} - \\ & - \sum_ {i = 1} ^ {n} a _ {i} ^ {*} c _ {i} + \sum_ {i = 1} ^ {n} | c _ {i} | ^ {2} - \sum_ {i = 1} ^ {n} | c _ {i} | ^ {2} = \\ & = \int_ {a} ^ {b} | f (x) | ^ {2} d x + \sum_ {i = 1} ^ {n} | a _ {i} - c _ {i} | ^ {2} - \sum_ {i = 1} ^ {n} | c _ {i} | ^ {2}, \end{array}
+\end{equation*}
+
+这里
+\begin{equation*}
+c _ {i} = \int_ {a} ^ {b} f _ {i} ^ {*} (x) f (x) d x.
+\end{equation*}
+
+因 $M$ 在 $a_{i} = c_{i}$ 时达到极小，故我们得
+
+\begin{equation*}
+a _ {i} = \int_ {a} ^ {b} f _ {i} ^ {*} (x) f (x) d x.\tag{3.5a}
+\end{equation*}
+
+数 $a_{i}$ 就称为函数 $f(x)$ 关于正交系 $f_{i}(x)$ 的傅里叶（Fourier）展开式系数。因傅里叶系数比较容易求得，故通常都用完备正交函数系作为基矢量。注意，由(3.5$a$)求系数 $a_{i}$ 时，
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} \left[ \int_ {a} ^ {b} | f (x) | ^ {2} d x - \sum_ {i = 1} ^ {n} | c _ {i} | ^ {2} \right] = 0,
+\end{equation*}
+
+或
+\begin{equation*}
+\int_ {a} ^ {b} | f (x) | ^ {2} d x = \sum_ {i = 1} ^ {\infty} | c _ {i} | ^ {2}.\tag{3.5b}
+\end{equation*}
+
+等式(3.5$b$)通常称为帕塞伐尔（Parseval）等式。由此等式也可推得级数 $\sum_{i=1}^{\infty}|c_i|^2$ 收敛。等式(3.5$b$)仅对完备正交系才成立。对一般正交(但非完备)系，则有所谓贝塞尔(Bessel)不等式
+
+\begin{equation*}
+\sum_ {i = 1} ^ {\infty} \left| c _ {i} \right| ^ {2} \leqslant \int_ {a} ^ {b} | f (x) | ^ {2} d x.
+\end{equation*}
+
+\textbf{定理 3.1}\quad [维尔斯特拉斯(Weierstrass)定理] 在区间 $a \leqslant x \leqslant b$ 上的连续函数可用多项式在此区间上一致逼近。
+
+\textbf{证明}\quad 作变换
+
+\begin{equation*}
+\xi = \frac {x - a + \varepsilon}{b - a + 2 \varepsilon}, \varepsilon > 0;
+\end{equation*}
+
+则 $0 < \xi < 1$ 。因 $\xi$ 线性地依赖于 $x$，故只须证明 $\{1, \xi, \xi^{2}, \cdots\}$ 构成完备系，就知 $\{1, x, x^{2}, \cdots\}$ 也为完备系。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.55\textwidth]{fig21.pdf}
+\par\vspace{2pt}
+{\small 图 21.}
+\end{figure}
+
+因此，可限制在 $0 \leqslant x \leqslant 1$ 的情形而不失证明的一般性。今用 $D_{n}(x - x_{0})$ 记下述函数：
+
+\begin{equation*}
+D _ {n} (x - x _ {0}) \equiv N _ {n} [ 1 - (x - x _ {0}) ^ {2} ] ^ {n}, 0 \leqslant x _ {0} \leqslant 1;\tag{3.6}
+\end{equation*}
+
+这里 $N_{n}$ 为由条件
+
+\begin{equation*}
+\int_ {0} ^ {1} D _ {n} (x - x _ {0}) d x = 1 \quad (0 \leqslant x _ {0} \leqslant 1)\tag{3.7}
+\end{equation*}
+
+所确定的标准化因子。函数 $[1 - (x - x_0)^2]^n$ 的图象如图21所示。当 $n\to \infty$ 时，它除 $x = x_0$ 外，处处趋向于零。记 $y = x - x_0$ 。将(3.7)改写为
+
+\begin{equation*}
+\int_ {- x _ {0}} ^ {1 - x _ {0}} (1 - y ^ {2}) ^ {n} d y = \frac {1}{N _ {n}}.\tag{3.8}
+\end{equation*}
+
+在 $n \gg 1$ 时，(3.8)中的积分限可改成 $x_0 - \delta$ 到 $x_0 + \delta$ ( $\delta$ 的意义见图21)，在这种变化下所引起的误差的阶为
+
+$(1 - y^{2})^{n}|_{y = \delta}$ ，即
+
+\begin{equation*}
+\frac {1}{N _ {n}} = \int_ {- \delta} ^ {\delta} (1 - y ^ {2}) ^ {n} d y + O (1 - \delta^ {2}) ^ {n}.
+\end{equation*}
+
+命 $\delta = 1$ ，则等式(3.8)可改写成
+
+\begin{equation*}
+\frac {1}{N _ {n}} = \int_ {- 1} ^ {1} (1 - y ^ {2}) ^ {n} d y + O (1 - \delta_ {0} ^ {2}) ^ {n},\tag{3.9}
+\end{equation*}
+
+这里 $\delta_0$ 或等于 $x_0$ ，或等于 $1 - x_0$ ，依赖于 $x_0$ 。
+
+当 $n$ 很大时，有
+
+\begin{equation*}
+\int_ {- 1} ^ {+ 1} (1 - y ^ {2}) ^ {n} d y \approx \frac {1}{2 n + 1}.\tag{3.10}
+\end{equation*}
+
+我们来证明(3.10)。引进记号
+
+\begin{equation*}
+I (n) = \int_ {- 1} ^ {1} (1 - y ^ {2}) ^ {n} d y.
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{r l} I (n) & = \int_ {- 1} ^ {1} (1 - y ^ {2}) ^ {n} d y = \\ & = y (1 - y ^ {2}) ^ {n} \Bigg | _ {- 1} ^ {+ 1} - \int_ {- 1} ^ {1} (- 2 y) n (1 - y ^ {2}) ^ {n - 1} y d y = \\ & = - 2 n \int_ {- 1} ^ {1} (1 - y ^ {2} - 1) (1 - y ^ {2}) ^ {n - 1} d y = \\ & = - 2 n [ I (n) - I (n - 1) ] \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+I (n) = \frac {2 n}{2 n + 1} I (n - 1),
+\end{equation*}
+
+\begin{equation*}
+I (o) = \int_ {- 1} ^ {1} d y = 2.
+\end{equation*}
+
+故
+\begin{equation*}
+\begin{array}{r l} I (n) & = \frac {2 n}{2 n + 1} \cdot \frac {2 (n - 1)}{2 (n - 1) + 1} \dots 2 = \\ & = \frac {2 ^ {n} n !}{(2 n + 1) (2 n - 1) \cdots} = \frac {(2 ^ {n} n !) ^ {2}}{(2 n + 1) !}. \end{array}
+\end{equation*}
+
+由斯特林(Stirling)公式
+
+\begin{equation*}
+\ln n! \approx n \ln n - n
+\end{equation*}
+
+得
+\begin{equation*}
+\begin{array}{r l} \ln I (n) & \approx 2 n \ln 2 + 2 n (\ln n - 1) - \\ & - (2 n + 1) [ \ln (2 n + 1) - 1 ] = \\ & = 2 n \ln 2 n - 2 n - (2 n + 1) [ \ln (2 n + 1) - 1 ] \approx \\ & \approx \ln (2 n)! - \ln (2 n + 1)! \text {\text{。}} \end{array}
+\end{equation*}
+
+由此知
+\begin{equation*}
+I (n) \approx \frac {(2 n) !}{(2 n + 1) !} = \frac {1}{2 n + 1}.
+\end{equation*}
+
+这就证明了(3.10)式。
+
+设 $f(x)$ 为任一连续函数。今引进函数 $F_{n}(x)$ ，它的定义为
+
+\begin{equation*}
+F _ {n} (x) \equiv \int_ {0} ^ {1} f (x ^ {\prime}) D _ {n} (x ^ {\prime} - x) d x ^ {\prime},
+\end{equation*}
+
+\begin{equation*}
+0 <   a \leqslant x \leqslant b <   1.\tag{3.11}
+\end{equation*}
+
+因 $D_{n}$ 是关于 $x$ 的多项式，故 $F_{n}$ 也是关于 $x$ 的多项式（积分后 $x'$ 将消失）。今证明
+
+\begin{equation*}
+f (x) = \lim _ {n \rightarrow \infty} F _ {n} (x).\tag{3.12}
+\end{equation*}
+
+在 $x' \neq x$ 时，有
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} D _ {n} (x ^ {\prime} - x) = 0\tag{3.13}
+\end{equation*}
+
+和
+\begin{equation*}
+\int_ {0} ^ {1} D _ {n} \left(x ^ {\prime} - x\right) d x = 1.
+\end{equation*}
+
+因此，可以期望 $D_{n}$ 起 $\delta$ 函数的作用。将(3.11)式改写成
+
+\begin{equation*}
+\frac {F _ {n}}{N _ {n}} = \int_ {0} ^ {1} f (x ^ {\prime}) [ 1 - (x ^ {\prime} - x) ^ {2} ] ^ {n} d x ^ {\prime}\tag{3.14a}
+\end{equation*}
+
+利用记号
+\begin{equation*}
+y = x ^ {\prime} - x
+\end{equation*}
+
+将(3.14$a$)写成
+
+\begin{equation*}
+\frac {F _ {n}}{N _ {n}} = \int_ {- x} ^ {1 - x} f (y + x) [ 1 - y ^ {2} ] ^ {n} d y.\tag{3.14b}
+\end{equation*}
+
+在 $-\delta$ 到 $\delta$ 范围内积分，即将(3.14$b$)改写成
+
+\begin{equation*}
+\frac {F _ {n}}{N _ {n}} = \int_ {- \delta} ^ {\delta} f (y + x) [ 1 - y ^ {2} ] ^ {n} d y + O [ \max f \cdot (1 - \delta^ {2}) ^ {n} ],\tag{3.14c}
+\end{equation*}
+
+这里 $\max f$ 表示 $f(x)$ 在割去的区间上的最大值。由函数连续性的定义，对 $y < \delta$ 有
+
+\begin{equation*}
+\left| f (x + y) - f (x) \right| <   \varepsilon .
+\end{equation*}
+
+因此
+\begin{equation*}
+\begin{array}{r l} \frac {F _ {n}}{N _ {n}} & = f (x) \int_ {- \delta} ^ {\delta} (1 - y ^ {2}) ^ {n} d y + O [ \varepsilon \int_ {- \delta} ^ {\delta} (1 - y ^ {2}) ^ {n} d y ] + \\ & + O [ \max f \cdot (1 - \delta^ {2}) ^ {n} ] \end{array} \tag{3.14d}
+\end{equation*}
+
+由(3.11)和(3.14$d$)得
+
+\begin{equation*}
+\begin{array}{l} \int_ {0} ^ {1} f (x ^ {\prime}) D _ {n} (x ^ {\prime} - x) d x ^ {\prime} = \\ = N _ {n} f (x) \int_ {- \delta} ^ {\delta} (1 - y ^ {2}) ^ {n} d y + O [ e N _ {n} \int_ {- \delta} ^ {\delta} (1 - y ^ {2}) ^ {n} d y ] + \\ + O [ N _ {n} \max f \cdot (1 - \delta^ {2}) ^ {n} ] = \\ = f (x) + O (\varepsilon) + O [ N _ {n} (1 - \delta^ {2}) ^ {n} \max f ], \end{array} \tag{3.15}
+\end{equation*}
+
+这里已用到了
+
+\begin{equation*}
+N _ {n} \int_ {- \delta} ^ {\delta} (1 - y ^ {2}) ^ {n} d y = 1.
+\end{equation*}
+
+现在由(3.15)和(3.11)可推出等式
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} F _ {n} (x) = \lim _ {n \rightarrow \infty} \int_ {0} ^ {1} f \left(x ^ {\prime}\right) D _ {n} \left(x ^ {\prime} - x\right) d x ^ {\prime} = f (x),\tag{3.16}
+\end{equation*}
+
+即
+\begin{equation*}
+f (x) = \lim _ {n \rightarrow \infty} F _ {n} (x).
+\end{equation*}
+
+这就是要证明的。
+
+由维尔斯特拉斯定理可直接推出，函数系 $\{1,x,x^{2},\cdots\}$ 是完备的。这个推论今后经常会用到。维尔斯特拉斯定理可推广到多变量函数的情形。特别，由它可推出在二元函数空间中，函数系
+
+\begin{equation*}
+\{x ^ {m} y ^ {n} \} \quad (m, n = 1, 2, \dots)\tag{3.17}
+\end{equation*}
+
+是完备的。
+
+\section{完备正交系的例子. 傅里叶级数}
+
+考虑定义在圆上的函数。在这类函数中，完备系为
+
+\begin{equation*}
+\{\sin m x, \cos m x \} \quad (m = 0, 1, 2, \dots)\tag{3.18}
+\end{equation*}
+
+函数系(3,18)不但是完备的，而且在区间 $\left[0,2\pi\right]$ 上正交。这点是它与函数系 $\{1,x,x^{2},\cdots\}$ 主要的不同之处。利用公式
+
+\begin{equation*}
+\cos n x = \frac {e ^ {i n x} + e ^ {- i n x}}{2},
+\end{equation*}
+
+\begin{equation*}
+\sin n x = \frac {e ^ {i n x} - e ^ {- i n x}}{2 i},\tag{3.19}
+\end{equation*}
+
+由函数系(3.18)可得函数系
+
+\begin{equation*}
+\{1, e ^ {\pm i x}, e ^ {\pm 2 i x}, \dots \}.\tag{3.20}
+\end{equation*}
+
+此函数系在区间 $[0, 2\pi]$ [或 $(- \pi, \pi)]$ 上完备且正交。其正交性可由下式推得：
+
+\begin{equation*}
+\int_ {0} ^ {2 \pi} e ^ {i m x} e ^ {i n x} d x = 0 \quad (m \neq n),\tag{3.21}
+\end{equation*}
+
+其次，假定函数 $f(x)$ 定义于区间 $[- \pi, \pi]$ 上，且以 $2\pi$ 为周期，周期性地延拓到整个实轴上。即 $f(x) = f(x + 2\pi)$ 。此时便发生了将此函数展开为三角级数〔或依函数系（3.18）展开〕的问题：
+
+\begin{equation*}
+f (x) = \frac {a _ {0}}{2} + \sum_ {n = 1} ^ {\infty} \left(a _ {n} \cos n x + b _ {n} \sin n x\right).\tag{3.22}
+\end{equation*}
+
+这里系数 $a_{n}$ 和 $b_{n}$ 由函数 $f(x)$ 唯一地确定。系数 $a_{n}$ 和 $b_{n}$ 必须使级数(3.22)收敛，且收敛于 $f(x)$ 本身。下面我们将证明此级数的收敛性（定理3.2）。在假定此展开式为可能的情形下，现在来确定系数 $a_{n}$ 和 $b_{n}$ 。
+
+先写出下列等式：
+\begin{equation*}
+\int_{-\pi}^{\pi} \cos nx \cos mx \,dx = \pi \delta_{mn}, \tag{3.23}
+\end{equation*}
+
+\begin{equation*}
+\int_{-\pi}^{\pi} \sin nx \cos mx \,dx = 0, \tag{3.24a}
+\end{equation*}
+
+\begin{equation*}
+\int_{-\pi}^{\pi} \sin nx \sin mx \,dx = \pi \delta_{mn}. \tag{3.24b}
+\end{equation*}
+
+这些等式不难直接验证。例如，我们来证明(3.24$b$):
+
+\begin{equation*}
+\sin n x \sin m x = \frac {1}{2} [ \cos (n - m) x - \cos (m + n) x ],
+\end{equation*}
+\begin{equation*}
+\int_{-\pi}^{\pi} \cos Ax \,dx = \frac{1}{A} \sin Ax \Bigg|_{-\pi}^{\pi} = 0, \quad \text{若 } A \neq 0, \tag{3.25}
+\end{equation*}
+
+\begin{equation*}
+\int_{-\pi}^{\pi} dx = 2\pi. \tag{3.26}
+\end{equation*}
+
+由(3.25)和(3.26)即可推出(3.24$b$)。类似地可证明等式(3.23)和(3.24$a$)。为了简单地算出系数 $a_{n}$ 和 $b_{n}$ ，假定级数(3.22)能逐项求积。积分后得
+
+\begin{equation*}
+\int_ {- \pi} ^ {\pi} f (x) d x = \frac {a _ {0}}{2} \cdot 2 \pi ,
+\end{equation*}
+
+因此
+\begin{equation*}
+a _ {0} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) d x.\tag{3.27a}
+\end{equation*}
+
+类似地
+\begin{equation*}
+\int_ {- \pi} ^ {\pi} f (x) \cos n x d x = \pi a _ {n},
+\end{equation*}
+
+\begin{equation*}
+a _ {n} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) \cos n x d x,\tag{3.27b}
+\end{equation*}
+
+和
+\begin{equation*}
+\int_ {- \pi} ^ {\pi} f (x) \sin n x d x = \pi b _ {n},
+\end{equation*}
+
+\begin{equation*}
+b _ {n} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) \sin n x d x.\tag{3.27c}
+\end{equation*}
+
+系数 $a_{n}$ 和 $b_{n}$ 由(3.27)式确定的级数(3.22)就称为函数 $f(x)$ 的傅里叶级数（Fourier series），系数本身则称为此函数的傅里叶系数。
+
+所得的结果容易推广到周期为 $2L$ 的函数 $f(x)$ 的情形。若设
+
+\begin{equation*}
+y = \frac {\pi}{L} x,
+\end{equation*}
+
+这里 $-\pi \leqslant y \leqslant \pi$ 对应了 $-L \leqslant x \leqslant L$ ，则对这种函数就可写出它的傅里叶展开式。事实上对经过这种变换后所得的函数 $F(y) = f\left[\left(\frac{L}{\pi}\right)y\right]$ ，公式(3.22)和(3.27)成立。代回到原来的变量，即可求得定义在区间 $[-L, L]$ 上的函数 $f(x)$ 的傅里叶展开式：
+
+\begin{equation*}
+f (x) = \frac {a _ {0}}{2} + \sum_ {n = 1} ^ {\infty} \left(a _ {n} \cos \frac {n \pi x}{L} + b _ {n} \sin \frac {n \pi x}{L}\right),\tag{3.28a}
+\end{equation*}
+
+这里
+\begin{equation*}
+\begin{array}{l} a _ {0} = \frac {1}{L} \int_ {- L} ^ {L} f (x) d x, \\ a _ {n} = \frac {1}{L} \int_ {- L} ^ {L} f (x) \cos \frac {n \pi x}{L} d x, \\ b _ {n} = \frac {1}{L} \int_ {- L} ^ {L} f (x) \sin \frac {n \pi x}{L} d x. \end{array}\tag{3.28b}
+\end{equation*}
+
+利用欧拉(Euler)公式可将傅里叶级数（Fourier series）写成复数形式。在这种写法下，定义在 $a \leqslant x \leqslant b$ 上的函数 $f(x)$ 的傅里叶级数（Fourier series）为
+
+\begin{equation*}
+f (x) = \sum_ {m = - \infty} ^ {\infty} A _ {m} e ^ {i \frac {2 m}{b - a} x},\tag{3.29a}
+\end{equation*}
+
+这里
+\begin{equation*}
+A _ {m} = \frac {1}{b - a} \int_ {a} ^ {b} f (x) e ^ {- i \frac {2 m \pi x}{b - a}} d x.\tag{3.29b}
+\end{equation*}
+
+但公式(3.28)和(3.29)是假定级数(3.22)可逐项积分才得到的。因此剩下的尚需证明函数确实可以展开为傅里叶级数（Fourier series）。为了证明这种展开的可能性，必须证明级数(3.28)或(3.29)事实上收敛于函数 $f(x)$ 。此将在定理3.2中作出。在此之前，先引进下面的定义。
+
+在区间 $[a, b]$ 上给定的一个函数，如果它在此区间内，仅除去有限个孤立点外，在其他所有内点处均可微；在这些孤立点处，函数本身及其导数容许有间断，但有有限的左右极限，则称此函数为分段可微的。当然，在区间的端点必须分别具有有限的右极限和左极限。
+
+\textbf{定理 3.2}\quad 定义在区间 $[- \pi, \pi]$ 上且满足条件 $f(\pi) = f(-\pi)$ 的分段可微函数 $f(x)$ 可展开成傅里叶级数（Fourier series）。且
+
+1）在函数的所有连续点上，收敛于函数本身在该点的值；
+
+2）在间断点上收敛于
+
+\begin{equation*}
+\frac {1}{2} \left[ f (x _ {0 +}) + f (x _ {0 -}) \right],
+\end{equation*}
+
+这里 $f(x_{0-})$ 和 $f(x_{0+})$ 分别为函数在间断点处的左极限和右极限。
+
+\textbf{证明}\quad 先证第一个结论，然后证第二个。
+
+1. 假定函数 $f(x)$ 定义于区间 $[- \pi, \pi]$ 上且满足条件
+
+\begin{equation*}
+f (\pi) = f (- \pi)\tag{3.30}
+\end{equation*}
+
+又假定此函数的导数只有有限个间断点，同时在所有间断点上，跳跃为有限。我们需证明
+
+\begin{equation*}
+f (x) = \frac {a _ {0}}{2} + \sum_ {n = 1} ^ {\infty} \left(a _ {n} \cos n x + b _ {n} \sin n x\right),\tag{3.31}
+\end{equation*}
+
+这里
+\begin{equation*}
+a _ {n} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) \cos n x d x, \quad b _ {n} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) \sin n x d x.\tag{3.32}
+\end{equation*}
+
+先证明在（3.31）右边的级数收敛于某个极限值。考虑函数 $f'(x)$ 的傅里叶级数
+
+\begin{equation*}
+\frac {a _ {0} ^ {\prime}}{2} + \sum_ {n = 1} ^ {\infty} \left(a _ {n} ^ {\prime} \cos n x + b _ {n} ^ {\prime} \sin n x\right),\tag{3.33}
+\end{equation*}
+
+这里
+\begin{equation*}
+a _ {n} ^ {\prime} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f ^ {\prime} (x) \cos n x d x, b _ {n} ^ {\prime} = \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f ^ {\prime} (x) \sin n x d x.\tag{3.34}
+\end{equation*}
+
+因函数系 $\{\cos nx, \sin nx\}$ 为正交系，故在这里可应用贝塞尔不等式
+
+\begin{equation*}
+\sum_ {n = 1} ^ {\infty} \left(a _ {n} ^ {\prime 2} + b _ {n} ^ {\prime 2}\right) <   \infty .\tag{3.35}
+\end{equation*}
+
+由不等式
+\begin{equation*}
+\sum_ {n = 1} ^ {\infty} \frac {1}{n ^ {2}} <   \infty , \quad \left(a _ {n} ^ {\prime} - \frac {1}{n}\right) ^ {2} \geqslant 0, \left(b _ {n} ^ {\prime} - \frac {1}{n}\right) ^ {2} \geqslant 0
+\end{equation*}
+
+可推出不等式
+
+\begin{equation*}
+2 \frac {a _ {n} ^ {\prime}}{n} \leqslant a _ {n} ^ {\prime 2} + \frac {1}{n ^ {2}}, \quad 2 \frac {b _ {n} ^ {\prime}}{n} \leqslant b _ {n} ^ {\prime 2} + \frac {1}{n ^ {2}}.\tag{3.36}
+\end{equation*}
+
+由(3.35)和(3.36)得
+
+\begin{equation*}
+\sum_ {n = 1} ^ {\infty} \left| \frac {a _ {n} ^ {\prime}}{n} \right| + \sum_ {n = 1} ^ {\infty} \left| \frac {b _ {n} ^ {\prime}}{n} \right| <   \infty .\tag{3.37}
+\end{equation*}
+
+因由定理的条件知函数 $f(x)$ 可微，故成立如下两个等式：
+
+\begin{equation*}
+\begin{array}{l} \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) \sin n x d x = \\ = - f (x) \frac {\cos n x}{n \pi} \Bigg | _ {- \pi} ^ {\pi} + \frac {1}{n \pi} \int_ {- \pi} ^ {\pi} f ^ {\prime} (x) \cos n x d x, \\ \frac {1}{\pi} \int_ {- \pi} ^ {\pi} f (x) \cos n x d x = \\ = f (x) \frac {\sin n x}{n \pi} \Bigg | _ {- \pi} ^ {\pi} - \frac {1}{n \pi} \int_ {- \pi} ^ {\pi} f ^ {\prime} (x) \sin n x d x. \end{array}
+\end{equation*}
+
+注意到(3.32)和(3.34)，它可改写成
+
+\begin{equation*}
+\left| b _ {n} \right| = \left| \frac {a _ {n} ^ {\prime}}{n} \right|, \quad \left| a _ {n} \right| = \left| \frac {b _ {n} ^ {\prime}}{n} \right|.\tag{3.38}
+\end{equation*}
+
+由(3.37)和(3.38)推出，函数 $f(x)$ 的傅里叶级数
+
+\begin{equation*}
+S (x) = \frac {a _ {0}}{2} + \sum_ {n = 1} ^ {\infty} \left(a _ {n} \cos n x + b _ {n} \sin n x\right)\tag{3.39}
+\end{equation*}
+
+收敛。
+
+剩下的尚需证明，函数 $f(x)$ 的傅里叶级数正好收敛于此函数的值。即
+
+\begin{equation*}
+S (x) = \frac {a _ {0}}{2} + \sum_ {n = 1} ^ {\infty} \left(a _ {n} \cos n x + b _ {n} \sin n x\right) = f (x).
+\end{equation*}
+
+对此我们指出，函数 $S(x)$ 和 $f(x)$ 一样，都是连续函数。同时它的傅里叶级数有着同一个形式。考虑函数
+
+\begin{equation*}
+\varphi (x) = f (x) - S (x),\tag{3.40}
+\end{equation*}
+
+因此函数展开时,所有傅里叶级数都等于零,故 $\varphi(x)$ 与函数系 $\{\cos nx, \sin nx\}$ 中的所有函数都正交。但函数系 $\{\cos nx, \sin nx\}$ 为完备系,因此 $\varphi(x)$ 在区间 $[- \pi, \pi]$ 上恒等于零。故
+
+\begin{equation*}
+f (x) = s (x).
+\end{equation*}
+
+此即为定理第一部分所要证明的。
+
+2. 假定函数 $f(x)$ 有一个具有有限跳跃的不连续点，它的傅里叶级数的部分和记为
+
+\begin{equation*}
+S _ {n} (x) = \frac {a _ {0}}{2} + \sum_ {p = 1} ^ {n} \left(a _ {p} \cos \frac {p \pi x}{L} + b _ {p} \sin \frac {p \pi x}{L}\right)\tag{3.41}
+\end{equation*}
+
+这里 $a_0, a_p$ 和 $b_p$ 用(3.28$b$)式确定。定义函数 $D(x)$ 如下：
+
+\begin{equation*}
+D (x + 2 L) = D (x)\tag{3.42}
+\end{equation*}
+
+\begin{equation*}
+D (x) = \left\{ \begin{array}{l l} \frac {1}{2 L} (L - x) & \text {当} 0 <   x \leqslant L \text {时,} \\ \frac {- 1}{2 L} (L - | x |) & \text {当} - L \leqslant x <   0 \text {时.} \end{array} \right.\tag{3.43}
+\end{equation*}
+
+由(3.43)推出， $D(0_{+}) = \frac{1}{2} = -D(0_{-})$。我们来确定函数 $D(x)$ 的傅里叶系数和傅里叶级数的部分和 $S_{n}(x)$ 。因函数 $D(x)$ 为奇函数，而 $\cos x$ 为偶函数，故有 $a_{b}=0$ 。其次，
+
+\begin{equation*}
+a _ {0} = \frac {1}{L} \int_ {- L} ^ {L} D (x) d x = 0,\tag{3.44}
+\end{equation*}
+
+\begin{equation*}
+b _ {t} = \frac {1}{L} \int_ {- L} ^ {L} D (x) \sin \frac {\pi p x}{L} d x \neq 0,\tag{3.45}
+\end{equation*}
+
+\begin{equation*}
+\left. S _ {n} ^ {D} (x) \right| _ {x = 0} = \sum_ {p = 1} ^ {n} b _ {p} \sin \frac {p \pi x}{L} \Bigg | _ {x = 0} = 0.\tag{3.46a}
+\end{equation*}
+
+因此
+\begin{equation*}
+\lim _ {n \rightarrow \infty} S _ {n} ^ {D} (0) = 0 = \frac {1}{2} [ D (0 _ {+}) + D (0 _ {-}) ].\tag{3.46b}
+\end{equation*}
+
+现考虑更为一般的函数 $f(x)$ ，它在点 $x_0$ 处间断 $[f(x_{0+}) \neq f(x_{0-})]$ 。引进辅助函数
+
+\begin{equation*}
+F (x) = f (x) - \left[ f \left(x _ {0 +}\right) - f \left(x _ {0 -}\right) \right] D \left(x - x _ {0}\right);
+\end{equation*}
+
+于是
+\begin{equation*}
+\begin{array}{r l} F (x _ {0 +}) & = f (x _ {0 +}) - \frac {1}{2} [ f (x _ {0 +}) - f (x _ {0 -}) ] = \\ & = \frac {1}{2} [ f (x _ {0 +}) + f (x _ {0 -}) ] = \\ & = f (x _ {0 -}) - [ f (x _ {0 -}) - f (x _ {0 +}) ] \frac {1}{2} = \\ & = F (x _ {0 -}). \end{array}
+\end{equation*}
+
+这样就证明了我们所引进的函数 $F(x)$ 在点 $x_0$ 处也是连续的。现在分别记 $F(x), f(x)$ 和 $D(x - x_0)$ 的傅里叶级数的部分和为 $\sum_{n}(x), S_n(x)$ 和 $S_n^D(x)$ 。于是有
+
+\begin{equation*}
+\sum_ {n} (x) = S _ {n} (x) - \left[ f \left(x _ {0 +}\right) - f \left(x _ {0 -}\right) \right] S _ {n} ^ {D} \left(x - x _ {0}\right),
+\end{equation*}
+
+再由(3.46$a$)推知 $S_{n}^{D}(0) = 0$ ，故
+
+\begin{equation*}
+\sum_ {n} (x _ {0}) = S _ {n} (x _ {0}).\tag{3.47}
+\end{equation*}
+
+在等式(3.47)中，取当 $n \to \infty$ 时的极限，有
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} S _ {n} (x _ {0}) = \lim _ {n \rightarrow \infty} \sum_ {n} (x _ {0}).\tag{3.48}
+\end{equation*}
+
+但由 $F(x)$ 的连续性
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} \sum_ {n} (x _ {0}) = \frac {1}{2} [ f (x _ {0 +}) + f (x _ {0 -}) ],
+\end{equation*}
+
+因此
+\begin{equation*}
+\lim _ {n \rightarrow \infty} S _ {n} (x _ {0}) = \frac {1}{2} [ f (x _ {0 +}) + f (x _ {0 -}) ],
+\end{equation*}
+
+这就是所要证明的。
+
+注意，如果在点 $x_0$ 处函数 $f(x)$ 连续，则得我们所要的结果
+
+\begin{equation*}
+\lim _ {n \rightarrow \infty} S _ {n} (x _ {0}) = f (x _ {0}).
+\end{equation*}
+
+定理3.2在有有限个间断点的情形，我们也能证明。对此，只需引进函数
+
+\begin{equation*}
+F (x) \equiv f (x) - \sum_ {i} [ f (x _ {i +}) + f (x _ {i -}) ] D (x - x _ {i}),
+\end{equation*}
+
+再重复类似于上面对具有一个间断点的函数的讨论即可。
+
+附注：如果 $f(x + 2L) = f(x)$ ，则以 $2L$ 为周期的傅里叶级数，在整个实轴 $-\infty < x < +\infty$ 上收敛于函数 $f(x)$ 。如果 $f(x + 2L) \neq f(x)$ ，则傅里叶级数仅在 $-L \leqslant x \leqslant L$ 内收敛于 $f(x)$ 。
+
+\textbf{定理 3.3}\quad 若函数 $f(x)$ 在区间 $0 \leqslant x \leqslant L$ 上可展开为傅里叶级数，则它能表示成
+
+\begin{equation*}
+f (x) = \frac {A _ {0}}{2} + \sum_ {n = 1} ^ {\infty} A _ {n} \cos \frac {n \pi x}{L},
+\end{equation*}
+
+也可表示成
+\begin{equation*}
+f (x) = \sum_ {n = 1} ^ {\infty} B _ {n} \sin \frac {n \pi x}{L},
+\end{equation*}
+
+即在区间 $[0, L]$ 上 $f(x)$ 能或者只依 $\sin (n\pi x / L)$ 展开，或者只依 $\cos(n\pi x/L)$ 展开。
+
+\textbf{证明}\quad 命
+
+\begin{equation*}
+F (x) = \left\{ \begin{array}{l l} f (x) & \text {当} x > 0 \text {时,} \\ f (| x |) & \text {当} x <   0 \text {时.} \end{array} \right.
+\end{equation*}
+
+因 $F(x)$ 为偶函数，而 $\sin (n\pi x / L)$ 为奇函数，故 $F(x)$ 的系数 $b_{n} = 0$ 。这样一来，在区间 $0 \leqslant x \leqslant L$ 上表示 $f(x)$ 的函数 $F(x)$ 的傅里叶级数，就只含有余弦项。即对此种级数有：
+
+\begin{equation*}
+A _ {n} = \frac {2}{L} \int_ {0} ^ {L} f (x) \cos \frac {n \pi x}{L} d x, B _ {n} = 0.
+\end{equation*}
+
+类似地，命
+\begin{equation*}
+G (x) = \left\{ \begin{array}{l l} f (x) & \text {当} x > 0 \text {时,} \\ - f (| x |) & \text {当} x <   0 \text {时\text{。}} \end{array} \right.
+\end{equation*}
+
+则分解 $G$ 为傅里叶级数时，由于 $G$ 的奇性，知它的级数仅含有正弦项。即对于此种级数有：
+
+\begin{equation*}
+B _ {n} = \frac {2}{L} \int_ {0} ^ {L} f (x) \sin \frac {n \pi x}{L} d x, A _ {n} = 0.
+\end{equation*}
+
+定理证毕。
+
+\section{傅里叶积分}
+
+在有限区间 $-L \leqslant x \leqslant L$ 上， $f(x)$ 可展开成指数形式的傅里叶级数[见公式(3.29a)]：
+
+\begin{equation*}
+\begin{array}{r l} f (x) & = \sum_ {i = - \infty} ^ {\infty} A _ {m} e ^ {i (m \pi / L) x} = \\ & = \sum_ {- \infty} ^ {\infty} \frac {1}{2 L} \left[ \int_ {- L} ^ {L} f (x ^ {\prime}) e ^ {- i (m \pi / L) x ^ {\prime}} d x ^ {\prime} \right] e ^ {i (m \pi / L) x}. \end{array}\tag{3.49a}
+\end{equation*}
+
+引进下面的记号：
+
+\begin{equation*}
+k _ {m} = \frac {m \pi}{L}, \quad \Delta k _ {m} = k _ {m + 1} - k _ {m} = \frac {\pi}{L},
+\end{equation*}
+
+\begin{equation*}
+g (k _ {m}) = \int_ {- L} ^ {L} f (x) e ^ {- i k _ {m} x} d x,
+\end{equation*}
+
+则(3.49$a$)可改写成
+
+\begin{equation*}
+f (x) = \frac {1}{2 L} \sum_ {k _ {m} = - \infty} ^ {\infty} g (k _ {m}) e ^ {i k _ {m} x}.\tag{3.49b}
+\end{equation*}
+
+在区间 $[-L, L]$ 上的函数或周期为2$L$的周期函数都可用(3.49$b$)式表示。
+
+现假定 $f(x)$ 定义于整个实轴上。取任一充分大的 $L$ ，则在区间 $[-L, L]$ 上可将 $f(x)$ 表示成级数(3.49$b$)的形式。今提出这样一个问题：求在公式(3.49$b$)中当 $L \to \infty$ 时，函数 $f(x)$ 的展开式。因 $1/2L = \Delta k_m / 2\pi$ ，故利用上面所引进的记号，可将(3.49$b$)写为
+
+\begin{equation*}
+f (x) = \sum_ {k _ {m} = - \infty} ^ {\infty} g (k _ {m}) e ^ {i k _ {m} x} \Delta k _ {m} / 2 \pi .\tag{3.49c}
+\end{equation*}
+
+在(3.49$c$)中命 $L \to \infty$ (因此 $\Delta k_{m} \to 0$ ), 并将和的极限用积分代替, 就得到所谓傅里叶积分（Fourier integral）展开式:
+
+\begin{equation*}
+f (x) = \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} g (k) e ^ {i k x} d k,
+\end{equation*}
+
+类似地
+\begin{equation*}
+g (k) = \int_ {- \infty} ^ {\infty} f (x) e ^ {- i k x} d x.
+\end{equation*}
+
+命
+\begin{equation*}
+h (k) = \frac {1}{\sqrt {2 \pi}} g (k),
+\end{equation*}
+
+将傅里叶积分（Fourier integral）展开式写成更为对称的形式：
+
+\begin{equation*}
+f (x) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} h (k) e ^ {i k x} d k,\tag{3.50a}
+\end{equation*}
+
+\begin{equation*}
+h (k) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} f (x) e ^ {- i k x} d x.\tag{3.50b}
+\end{equation*}
+
+在（3.50$a$）中的函数 $f(x)$ 称为 $h(k)$ 的傅里叶变换，而 $h(k)$ 称为 $f(x)$ 的傅里叶象①。——译注
+
+当然，上面所作的讨论，决不是 $f(x)$ 可以表示成(3.50)形式的证明。但可以证明，在一定条件下这种表示是可能的。
+
+函数展开为傅里叶积分（Fourier integral），可推广到多元函数的情形。现在我们简单地考虑一下两个变量的情形。假定：
+
+1）函数 $f(x,y)$ 定义于全平面 $(-\infty \leqslant x\leqslant +\infty , - \infty$ $\leqslant y\leqslant +\infty)$ 上；
+
+2）存在导数 $\frac{\partial f(x,y)}{\partial x}$ 和 $\frac{\partial f(x,y)}{\partial y}$
+
+3）当 $x$ 固定时，存在
+
+\begin{equation*}
+\int_ {- \infty} ^ {+ \infty} f (x, y) d y,
+\end{equation*}
+
+而当 $y$ 固定时，存在
+
+\begin{equation*}
+\int_ {- \infty} ^ {+ \infty} f (x, y) d x.
+\end{equation*}
+
+在固定 $y$ 时应用傅里叶公式(3.50)得
+
+\begin{equation*}
+f (x, y) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} h (y, k _ {1}) e ^ {i k _ {1} x} d k _ {1},\tag{3.51a}
+\end{equation*}
+
+\begin{equation*}
+h (y, k _ {1}) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} f (x, y) e ^ {- i k _ {1} x} d x.\tag{3.51b}
+\end{equation*}
+
+今在(3.51$b$)中固定值 $k_{1}$ ，然后对函数 $h(y, k_{1})$ 应用傅里叶公式，得
+
+\begin{equation*}
+h (y, k _ {1}) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {\infty} g (k _ {1}, k _ {2}) e ^ {i k _ {2} y} d k _ {2},\tag{3.52a}
+\end{equation*}
+
+\begin{equation*}
+g (k _ {1}, k _ {2}) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} h (y, k _ {1}) e ^ {- i k _ {2} y} d y.\tag{3.52b}
+\end{equation*}
+
+现将(3.52$a$)代入(3.51$a$)，将(3.51$b$)代入(3.52$b$)，就得所要求的二元函数的傅里叶变换和逆变换公式
+
+\begin{equation*}
+f (x, y) = \frac {1}{2 \pi} \int_ {- \infty} ^ {+ \infty} d k _ {1} \int_ {- \infty} ^ {+ \infty} d k _ {2} g (k _ {1}, k _ {2}) e ^ {i (k _ {1} x + k _ {2} y)},\tag{3.53a}
+\end{equation*}
+
+\begin{equation*}
+g (k _ {1}, k _ {2}) = \frac {1}{2 \pi} \int_ {- \infty} ^ {+ \infty} d x \int_ {- \infty} ^ {+ \infty} d y f (x, y) e ^ {- i (k _ {1} x + k _ {2} y)}.\tag{3.53b}
+\end{equation*}
+
+用类似的方法进行讨论，不难得关于三元函数的傅里叶变换：
+
+\begin{equation*}
+f (x, y, z) = f (\pmb {r}) = \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int_ {\text {取整个空间}} g (\pmb {k}) e ^ {i \pmb {k} \cdot \pmb {r}} d ^ {3} \pmb {k},\tag{3.54a}
+\end{equation*}
+
+\begin{equation*}
+g (k _ {1}, k _ {2}, k _ {3}) = g (\pmb {k}) = \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int_ {\text {取整个空间}} f (\pmb {r}) e ^ {- i \pmb {k} \cdot \pmb {r}} d ^ {3} \pmb {r},\tag{3.54b}
+\end{equation*}
+
+这里 $d^3\pmb {k} = dk_1dk_2dk_3$ ， $d^3\pmb {r} = dr_1dr_2dr_3 = dxdydz.$ 例 1 狄拉克 $\delta$ 函数的傅里叶变换。应用 (3.50) 式于 $\delta$ 函数，得
+
+\begin{equation*}
+\delta (x - x _ {0}) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} h (k) e ^ {i k x} d k, \tag{3.55a}
+\end{equation*}
+
+\begin{equation*}
+h (k) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} \delta (x - x _ {0}) e ^ {- i k x} d x.
+\end{equation*}
+
+利用 $\delta$ 函数的定义，最后一个等式可以表示成
+
+\begin{equation*}
+h (k) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} \delta (x - x _ {0}) e ^ {- i k x} d x = \frac {1}{\sqrt {2 \pi}} e ^ {- i k x _ {0}}.\tag{3.55b}
+\end{equation*}
+
+将(3.55$b$)代入(3.55$a$)，就得下面 $\delta$ 函数的分解式
+
+\begin{equation*}
+\delta (x - x _ {0}) = \frac {1}{\sqrt {2 \pi}} \int_ {- \infty} ^ {+ \infty} e ^ {i k (x - x _ {0})} d k,\tag{3.55}
+\end{equation*}
+
+即 $\delta$ 函数的傅里叶象(即反变换)为常数。(3.55)式在量子力学中经常会用到。对于在三维空间中 $\delta$ 函数的表示式，有下面的形式
+
+\begin{equation*}
+\delta^ {3} \left(\boldsymbol {r} - \boldsymbol {r} _ {0}\right) = \frac {1}{\sqrt {8 \pi^ {3}}} \int_ {- \infty} ^ {+ \infty} e ^ {i k (\boldsymbol {r} - \tau_ {0})} d ^ {3} \boldsymbol {k}.\tag{3.56}
+\end{equation*}
+
+\textbf{例 2}\quad (3.56)式对波动方程的解的应用。写出波动方程
+
+\begin{equation*}
+\square^ {2} \varphi = \nabla^ {2} \varphi - \frac {1}{c ^ {2}} \frac {\partial^ {2} \varphi}{\partial t ^ {2}} = 0.\tag{3.57}
+\end{equation*}
+
+可以证明，在任一给定的瞬间，方程(3.57)的解将为
+
+\begin{equation*}
+\varphi (\boldsymbol {r}, t) = \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int g (\boldsymbol {k}, t) e ^ {i \boldsymbol {k} _ {1} \boldsymbol {r}} d ^ {3} \boldsymbol {k}, (d ^ {3} \boldsymbol {k} = d k _ {1} d k _ {2} d k _ {3}).\tag{3.58}
+\end{equation*}
+
+利用(3.58)容易写出下面两个等式:
+
+\begin{equation*}
+\nabla^ {2} \varphi = \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int g (\boldsymbol {k}, t) (- k ^ {2}) e ^ {i \boldsymbol {k} \cdot \boldsymbol {r}} d ^ {3} \boldsymbol {k},\tag{3.58a}
+\end{equation*}
+
+\begin{equation*}
+\frac {\partial^ {2} \varphi}{\partial t ^ {2}} = - \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int \ddot {g} (\boldsymbol {k}, t) e ^ {i \boldsymbol {k} \cdot \boldsymbol {r}} d ^ {3} \boldsymbol {k}.\tag{3.58b}
+\end{equation*}
+
+将(3.58$a$)和(3.58$b$)代入方程(3.57)，得
+
+\begin{equation*}
+\square^ {2} \varphi = 0 = \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int \left[ - k ^ {2} g (\boldsymbol {k}, t) - \frac {1}{c ^ {2}} \ddot {g} (\boldsymbol {k}, t) \right] e ^ {i \boldsymbol {k} \cdot \boldsymbol {r}}\, d ^ {3} \boldsymbol {k}.\tag{3.59a}
+\end{equation*}
+
+(3.59$a$)的被积式乘上 $e^{-ik_{0}r}$ ，然后(在全空间上)对$r$积分，得
+
+\begin{equation*}
+\int d ^ {3} \boldsymbol {r} e ^ {- i k _ {0} \cdot r} \int d ^ {3} \boldsymbol {k} \left[ - k ^ {2} g (\boldsymbol {k}, t) - \frac {1}{c ^ {2}} \ddot {g} (\boldsymbol {k}, t) \right] e ^ {i k _ {1} r} = 0.\tag{3.59b}
+\end{equation*}
+
+注意到(3.56)，则关系式(3.59$b$)可改写成
+
+\begin{equation*}
+\int \delta^ {3} (\boldsymbol {k} - \boldsymbol {k} _ {0}) \left[ - k ^ {2} g (\boldsymbol {k}, t) - \frac {1}{c ^ {2}} \ddot {g} (\boldsymbol {k}, t) \right] d ^ {3} \boldsymbol {k} = 0.\tag{3.59c}
+\end{equation*}
+
+根据 $\delta$ 函数的定义，在 $k_{0}$ 为任意时，由等式(3.59$c$)推出方程
+
+\begin{equation*}
+- k ^ {2} g (\boldsymbol {k}, t) - \frac {1}{c ^ {2}} \ddot {g} (\boldsymbol {k}, t) = 0;\tag{3.60}
+\end{equation*}
+
+解之得
+\begin{equation*}
+g (\boldsymbol {k}, t) = A _ {\boldsymbol {k}} e ^ {i \omega t} + B _ {\boldsymbol {k}} e ^ {- i \omega t} (\omega = k c).\tag{3.61}
+\end{equation*}
+
+这样一来，最后得方程(3.57)解的一般形式：
+
+\begin{equation*}
+\varphi (\boldsymbol {r}, t) = \frac {1}{(2 \pi) ^ {\frac {3}{2}}} \int [ A _ {\boldsymbol {k}} e ^ {i [ k _ {\boldsymbol {i}} r + \omega t ]} + B _ {\boldsymbol {k}} e ^ {i [ k _ {\boldsymbol {i}} r - \omega t ]} ] d ^ {3} \boldsymbol {k}.\tag{3.62}
+\end{equation*}
+
+由(3.62)推出，波动方程的一般解是(用特解所描写的)平面波的迭加。
+
+\section{厄米算子}
+
+在第二章中我们已证明，有限维空间中厄米矩阵(这种矩阵在有限维空间中对应了厄米算子)的特征矢量构成完全正交系。现在我们将此结果推广到希尔伯特空间中去。先回忆一下厄米算子的性质。
+
+1. 厄米算子是线性的：
+
+\begin{equation*}
+H (a \varphi + b \psi) = a H \varphi + b H \psi ,\tag{3.63}
+\end{equation*}
+
+这里 $a$ 和 $b$ 为常数，而 $\varphi$ 和 $\psi$ 为矢量。
+
+2. 在 $n$ 维空间中厄米矩阵用条件 $H = H^{+}$ （即 $H_{ij} = H_{ji}^{*}$ ）来确定。
+
+假定$H$为厄米矩阵， $\psi_{1}$ 和 $\psi_{2}$ 为任意二个矢量。则
+
+\begin{equation*}
+\psi_ {1} ^ {+} H \psi_ {2} = \sum_ {i, j} (\psi_ {1} ^ {*}) _ {i} H _ {i j} (\psi_ {2}) _ {j},
+\end{equation*}
+
+\begin{equation*}
+\psi_ {2} ^ {+} H \psi_ {1} = \sum_ {i, j} (\psi_ {2} ^ {*}) _ {i} H _ {i j} (\psi_ {1}) _ {j},
+\end{equation*}
+
+因此
+\begin{equation*}
+\left(\psi_ {2} ^ {+} H \psi_ {1}\right) ^ {*} = \sum_ {i, j} \psi_ {2 j} H _ {j i} ^ {*} \psi_ {1 i} ^ {*} = \sum_ {i, j} \psi_ {1 i} ^ {*} H _ {i j} \psi_ {2 j} = \psi_ {1} ^ {+} H \psi_ {2};
+\end{equation*}
+
+反之，由等式
+
+\begin{equation*}
+\left(\psi_ {1} ^ {+} H \psi_ {2}\right) = \left(\psi_ {2} ^ {+} H \psi_ {1}\right) ^ {*}
+\end{equation*}
+
+推出算子 $H$ 是厄米的：
+
+\begin{equation*}
+(\psi_ {2} ^ {+} H \psi_ {1}) ^ {*} = \psi_ {1} ^ {+} H \psi_ {2}.\tag{3.64}
+\end{equation*}
+
+对于作用于希尔伯特空间中的算子，等式(3.64)也可作为“厄米”性的定义。
+
+换言之，在希尔伯特空间中的线性算子$H$，如果对某个容许函数类中的函数满足条件
+
+\begin{equation*}
+\left(\int \psi^ {*} H \varphi d \tau\right) ^ {*} = \int \varphi^ {*} H \psi d \tau ,\tag{3.65}
+\end{equation*}
+
+则就称为厄米算子。
+
+我们将只研究容许函数类。此类中的元素是定义于区域 $\Omega$ 中实的或复的变量 $x_{1}, x_{2}, \cdots, x_{n}$ 的 $n$ 元函数，且视满足条件(3.65)的需要，能多次可微。一般说来，属于容许函数类的函数必须可积分有限次，且只有有限数目的间断点，而区域 $\Omega$ 必须是实空间中的区域。此外，一般还要求函数在区域的边界上或者等于零，或者满足周期性条件。
+
+\textbf{例3}\quad 考虑微分算子 $d / dx$ 。假定
+
+\begin{equation*}
+f _ {1, 2} (a) = f _ {1: 2} (b) = 0,
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{r l} \int_ {a} ^ {b} f _ {1} ^ {*} \frac {d}{d x} f _ {2} d x & = f _ {1} ^ {*} f _ {2} \Bigg | _ {a} ^ {b} - \int_ {a} ^ {b} f _ {2} \frac {d}{d x} f _ {1} ^ {*} d x \\ & = - \left(\int_ {a} ^ {b} f _ {2} ^ {*} \frac {d}{d x} f _ {1} d x\right) ^ {*}. \end{array}
+\end{equation*}
+
+可见，算子 $d / dx$ 是非厄米的。但容易验证，算子 $(1 / i)$ $(d / dx)$ 是厄米的。附注： $P_{\alpha} = (\hbar /i)(d / dx_{\alpha})$ 是量子力学中的动量算子。
+
+\textbf{例4}\quad 现考虑二阶微分算子 $d^2 / dx^2$ 。假定空间由连续周期函数 $f(x)$ 所组成：
+
+\begin{equation*}
+f (x + 2 L) = f (x),
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{l} \int_ {- L} ^ {L} f _ {1} ^ {*} \frac {d ^ {2}}{d x ^ {2}} f _ {2} d x = f _ {1} ^ {*} \frac {d}{d x} f _ {2} \Big | _ {- L} ^ {L} - \int_ {- L} ^ {L} \frac {d f _ {1} ^ {*}}{d x} \cdot \frac {d f _ {2}}{d x} d x \\ = - \frac {d f _ {1} ^ {*}}{d x} f _ {2} \Big | _ {- L} ^ {L} + \int_ {- L} ^ {L} f _ {2} \frac {d ^ {2}}{d x ^ {2}} f _ {1} ^ {*} d x = \int_ {- L} ^ {L} f _ {2} \frac {d ^ {2}}{d x ^ {2}} f _ {1} ^ {*} d x, \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+\int_ {- L} ^ {L} f _ {1} ^ {*} \frac {d ^ {2}}{d x ^ {2}} f _ {2} d x = \int_ {- L} ^ {L} f _ {2} \frac {d ^ {2}}{d x ^ {2}} f _ {1} ^ {*} d x = \left(\int_ {- L} ^ {L} f _ {2} ^ {*} \frac {d ^ {2}}{d x ^ {2}} f _ {1} d x\right) ^ {*},
+\end{equation*}
+
+从而 $d^{2}/dx^{2}$ 是厄米算子。
+
+附注：量子力学中的动能算子为
+
+\begin{equation*}
+E = - \left(\hbar^ {2} / 2 m\right) \left(d ^ {2} / d x ^ {2}\right),
+\end{equation*}
+
+因此它也是厄米的。
+
+在 $n$ 维空间中，厄米算子 $H$ 的特征值 $\lambda_{m}$ 用方程
+
+\begin{equation*}
+H \varphi_ {m} = \lambda_ {m} \varphi_ {m}
+\end{equation*}
+
+确定，而实质上是用
+
+\begin{equation*}
+\lambda_ {m} = \varphi_ {m} ^ {+} H \varphi_ {m}
+\end{equation*}
+
+和
+\begin{equation*}
+\varphi_ {m} ^ {+} \varphi_ {n} = \delta_ {m n}
+\end{equation*}
+
+确定(引理2.1)。
+
+最后,如果算子$A$和$B$是厄米的,则算子 $AB + BA$ 和 $(1/i)(AB - BA)$ 也是厄米的。在希尔伯特空间中,我们引进下面的定义:满足方程
+
+\begin{equation*}
+H \psi = \lambda \psi\tag{3.66}
+\end{equation*}
+
+的函数 $\psi$ ，称为厄米算子 $H$ 的特征函数。
+
+\textbf{定理 3.4}\quad 如果 $H$ 是厄米算子，而 $\psi_{m}$ 和 $\psi_{n}$ 为此算子对应于特征值 $\lambda_{m}$ 和 $\lambda_{n}$ 的特征函数，即满足方程
+
+\begin{equation*}
+H \psi_ {m} = \lambda_ {m} \psi_ {m}\tag{3.67a}
+\end{equation*}
+
+和
+\begin{equation*}
+H \psi_ {n} = \lambda_ {n} \psi_ {n},\tag{3.67b}
+\end{equation*}
+
+则 $\lambda_{m}$ 和 $\lambda_{n}$ 为实数，且当 $\lambda_{m} \neq \lambda_{n}$ 时
+
+\begin{equation*}
+\int \psi_ {m} ^ {*} \psi_ {n} d x = 0.\tag{3.68}
+\end{equation*}
+
+\textbf{证明}\quad 将 $\psi_{m}$ 和 $\psi_{n}$ 标准化，即使
+
+\begin{equation*}
+\int \psi_ {m} ^ {*} \psi_ {m} d x = 1 \text {和} \int \psi_ {n} ^ {*} \psi_ {n} d x = 1.
+\end{equation*}
+
+在方程(3.67$a$)两边乘以 $\psi_{m}^{*}$ 且积分之，得
+
+\begin{equation*}
+\lambda_ {m} = \int \psi_ {m} ^ {*} H \psi_ {m} d x.\tag{3.69a}
+\end{equation*}
+
+由(3.69$a$)，
+
+\begin{equation*}
+\lambda_ {m} ^ {*} = \left(\int \psi_ {m} ^ {*} H \psi_ {m} d x\right) ^ {*}\tag{3.69b}
+\end{equation*}
+
+但根据(3.65)得
+
+\begin{equation*}
+\left(\int \psi_ {m} ^ {*} H \psi_ {m} d x\right) ^ {*} = \int \psi_ {m} ^ {*} H \psi_ {m} d x.\tag{3.69c}
+\end{equation*}
+
+这样一来，由等式(3.69)可得 $\lambda_{m}^{*} = \lambda_{m}$ ，因此 $\lambda_{m}$ 为实数。为了证明关系式(3.68)，用 $\psi_{m}^{*}$ 乘等式(3.67$b$)， $\psi_{n}^{*}$ 乘等式(3.67$a$)，然后再求积分，得
+
+\begin{equation*}
+\lambda_ {n} \int \psi_ {m} ^ {*} \psi_ {n} d x = \int \psi_ {m} ^ {*} H \psi_ {n} d x,\tag{3.70a}
+\end{equation*}
+
+\begin{equation*}
+\lambda_ {m} \int \psi_ {n} ^ {*} \psi_ {m} d x = \int \psi_ {n} ^ {*} H \psi_ {m} d x;\tag{3.70b}
+\end{equation*}
+
+但
+\begin{equation*}
+\int \psi_ {n} ^ {*} H \psi_ {m} d x = \left(\int \psi_ {m} ^ {*} H \psi_ {n} d x\right) ^ {*} = \int \psi_ {m} ^ {*} H \psi_ {n} d x,\tag{3.70c}
+\end{equation*}
+
+因此由(3.70)有
+
+\begin{equation*}
+\lambda_ {m} \int \psi_ {m} ^ {*} \psi_ {n} d x = \lambda_ {n} \int \psi_ {m} ^ {*} \psi_ {n} d x,
+\end{equation*}
+
+或
+\begin{equation*}
+(\lambda_ {m} - \lambda_ {n}) \int \psi_ {m} ^ {*} \psi_ {n} d x = 0.\tag{3.71}
+\end{equation*}
+
+故当 $\lambda_{m} \neq \lambda_{n}$ 时
+
+\begin{equation*}
+\int \psi_ {m} ^ {*} \psi_ {n} d x = 0.
+\end{equation*}
+
+定理证毕。
+
+现在很明显，厄米算子的特征函数构成正交系：
+
+\begin{equation*}
+\int \psi_ {m} ^ {*} \psi_ {n} d x = \delta_ {m n}.\tag{3.72}
+\end{equation*}
+
+\textbf{例5}\quad 三角函数系 $\{\cos nx, \sin nx\}$ 是算子 $d^2 / dx^2$ 的特征函数系。事实上此一事实可由方程
+
+\begin{equation*}
+\frac {d ^ {2}}{d x ^ {2}} f = - k ^ {2} f\tag{3.73a}
+\end{equation*}
+
+的解具有如下的形式
+
+\begin{equation*}
+f = \left\{ \begin{array}{l} \cos n x \\ \sin n x \end{array} \right\}\tag{3.73b}
+\end{equation*}
+
+推出。当 $k = 2\pi / L$ 时，解(3.73$b$)将是周期性的和实的。同时算子 $d^2 / dx^2$ 的特征函数构成完备正交系。
+
+现考虑厄米算子的积。假定 $A$ 和 $B$ 是厄米算子，则
+
+\begin{equation*}
+\begin{array}{r l} \int f ^ {*} A (B g) d x & = \left[ \int (B g) ^ {*} A f d x \right] ^ {*} = \\ & = \int B g (A f) ^ {*} d x = \left[ \int g ^ {*} B (A f) d x \right] ^ {*}. \end{array}\tag{3.74}
+\end{equation*}
+
+因此，如果 AB = BA，则算子 AB 也是厄米的。特别，算子 $A^n$ 是厄米的。注意，如果 $A$ 和 $B$ 是厄米算子的话，算子 $AB + BA$ 和 $(1 / i)(AB - BA)$ 总是厄米的。
+
+但在(3.74)的一连串等式中，只要求 $f$ 和 $g$ 属于容许函数类是不够的，还必须要求 Af 和 Bg 也属于容许函数类。类似地，仅当 $\psi, A\psi, \cdots, A^{n-1}\psi$ 也属于容许类时，才能断言 $A^{n}$ 也是厄米的。
+
+举例来说，算子 $P_{\alpha}$ (例3)在自己的定义域的边界上具有零值的函数集上是厄米的，但 $P_{\alpha}^{4}$ 已不是厄米算子。如果考虑周期函数集，则因 $P_{\alpha}\psi$ 将是周期函数，因此形如 $P_{\alpha}^{n}\psi$ 的函数也是这样，所以 $P_{\alpha}^{n}$ 是厄米的。
+
+\section{勒让德多项式}
+
+在维尔斯特拉斯定理中已证明，函数系 $\{1,x,x^{2},\cdots\}$ 在区间 $-1\leqslant x\leqslant1$ 上是完备的。但容易看出，此系不是正交的。利用正交化方法，可由函数系 $\{1,x,x^{2},\cdots\}$ 构造出正交函数系来。同时需满足两个要求：首先，新的函数系中第$n$个函数必须是$n$次多项式；其次，它与所有号码较小的函数正交。如我们能证明的那样，由这两个要求所确定的新的函数系的函数可精确到一常数集。这样一来，如果其他任一在区间 $[-1,1]$ 上正交，且第$n$个函数是$n$次多项式的函数系被找到了，则这些函数必与用正交化方法所得的函数精确到一个标准化因子。如果在两个函数系中的标准化因子是一样的，则这两个函数系就完全重合。
+
+现用正交化方法来构造所考虑的函数系的前几个函数。以 $p_n(x)$ 记 $n$ 次多项式，它与所有低次多项式均正交。命
+
+\begin{equation*}
+p _ {0} (x) = 1.
+\end{equation*}
+
+因 $x$ 与1正交，故
+
+\begin{equation*}
+p _ {1} (x) = x.
+\end{equation*}
+
+其次，虽然函数 $x^{2}$ 与 $x$ 正交，但它与1不正交。利用正交化方法来求与1和 $x$ 都正交的二次多项式
+
+\begin{equation*}
+p _ {2} (x) = x ^ {2} + \alpha_ {1} x + \alpha_ {2} 1.
+\end{equation*}
+
+写出 $p_2(x)$ 与 $p_0(x)$ 和 $p_1(x)$ 的正交性条件
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {+ 1} (x ^ {2} + a _ {1} x + a _ {2} 1) \cdot 1 d x = 0, \\ \int_ {- 1} ^ {+ 1} (x ^ {2} + a _ {1} x + a _ {2} 1) x d x = 0. \end{array}
+\end{equation*}
+
+由这些方程求出 $\alpha_{2}$ 和 $\alpha_{1}$ :
+
+\begin{equation*}
+\begin{array}{l} \alpha_ {2} = \frac {- \int_ {- 1} ^ {1} x ^ {2} d x}{\int_ {- 1} ^ {1} d x} = - \frac {1}{3}, \\ \alpha_ {1} = \frac {- \int_ {- 1} ^ {1} x ^ {3} d x}{\int_ {- 1} ^ {1} x ^ {2} d x} = 0. \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+p _ {2} (x) = x ^ {2} - \frac {1}{3}.
+\end{equation*}
+
+不过我们所求得的零次、一次和二次多项式，虽然是正交的，但不是标准的。由标准化条件
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} (N _ {0} p _ {0}) ^ {2} d x = 1, \\ \int_ {- 1} ^ {1} (N _ {1} p _ {1}) ^ {2} d x = 1, \\ \int_ {- 1} ^ {1} (N _ {2} p _ {2}) ^ {2} d x = 1. \end{array}
+\end{equation*}
+
+求得下面的正交多项式
+
+\begin{equation*}
+\sqrt {\frac {1}{2}} P _ {0} = \sqrt {\frac {1}{2}} \cdot 1 \quad P _ {0} = p _ {0},
+\end{equation*}
+
+\begin{equation*}
+\sqrt {\frac {3}{2}} P _ {1} = \sqrt {\frac {3}{2}} x \quad P _ {1} = p _ {1},
+\end{equation*}
+
+\begin{equation*}
+\sqrt {\frac {5}{2}} P _ {2} = \sqrt {\frac {5}{2} \frac {3}{2} \left(x ^ {2} - \frac {1}{3}\right)} \quad P _ {2} = \frac {3}{2} p _ {2}.
+\end{equation*}
+
+将这个过程继续下去，就可证明 $n$ 次正交多项式具有形式
+
+\begin{equation*}
+\sqrt {\frac {2 n + 1}{2}} P _ {n} (x) \quad (n = 1, 2, \dots),
+\end{equation*}
+
+这里 $P_{n}(x)$ 由所谓罗德利克(Rodrigue)公式计算：
+
+\begin{equation*}
+P _ {n} (x) = \frac {1}{2 ^ {n} n !} \frac {d ^ {n}}{d x ^ {n}} (x ^ {2} - 1) ^ {n} \quad (n = 1, 2, \dots).\tag{3.75}
+\end{equation*}
+
+我们不去引进整个正交化过程，而直接证明下面的定理。
+
+\textbf{定理 3.5}\quad 形如
+
+\begin{equation*}
+\sqrt {\frac {2 n + 1}{2}} P _ {n} (x) \quad (n = 1, 2, \dots)\tag{3.76}
+\end{equation*}
+
+的函数在区间 $-1 \leqslant x \leqslant 1$ 上构成完备正交系。这里 $P_{n}(x)$ 由 (3.75) 式定义。
+
+\textbf{证明}\quad 因 $P_{n}(x)$ 是区间 $-1 \leqslant x \leqslant 1$ 上的多项式，由此即可推出函数系的完备性(维尔斯特拉斯定理)。剩下的只需证明此函数系是正交的，即成立着关系式
+
+\begin{equation*}
+\int_ {- 1} ^ {+ 1} P _ {n} (x) P _ {m} (x) d x = \delta_ {n m} \frac {2}{2 n + 1}.\tag{3.77}
+\end{equation*}
+
+为确定起见，假定 $n > m$ 。利用(3.75)，将(3.77)左边改写成
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} P _ {n} (x) P _ {m} (x) d x = \\ = \frac {1}{2 ^ {n} n !} \frac {1}{2 ^ {m} m !} \int_ {- 1} ^ {1} \frac {d ^ {n}}{d x ^ {n}} (x ^ {2} - 1) ^ {n} \frac {d ^ {m}}{d x ^ {m}} (x ^ {2} - 1) ^ {m} d x. \end{array}\tag{3.78}
+\end{equation*}
+
+上式右边分部积分：
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} \frac {d ^ {n}}{d x ^ {n}} (x ^ {2} - 1) ^ {n} \frac {d ^ {m}}{d x ^ {m}} (x ^ {2} - 1) ^ {m} d x = \\ = \frac {d ^ {n - 1}}{d x ^ {n - 1}} (x ^ {2} - 1) ^ {n} \frac {d ^ {m}}{d x ^ {m}} (x ^ {2} - 1) ^ {m} \Bigg | _ {- 1} ^ {1} - \\ - \int_ {- 1} ^ {\pi_ {1}} \frac {d ^ {n - 1}}{d x ^ {n - 1}} (x ^ {2} - 1) ^ {n} \frac {d ^ {m + 1}}{d x ^ {m + 1}} (x ^ {2} - 1) ^ {m} d x = \\ = - \int_ {- 1} ^ {1} \frac {d ^ {n - 1}}{d x ^ {n - 1}} (x ^ {2} - 1) ^ {n} \frac {d ^ {m + 1}}{d x ^ {m + 1}} (x ^ {2} - 1) ^ {m} d x \end{array}
+\end{equation*}
+
+这里
+\begin{equation*}
+\frac {d ^ {n - 1}}{d x ^ {n - 1}} (x ^ {2} - 1) ^ {n} \frac {d ^ {m}}{d x ^ {m}} (x ^ {2} - 1) ^ {m} \Bigg | _ {- 1} ^ {1} = 0,
+\end{equation*}
+
+此因 $(x^{2} - 1)^{n}$ 是关于表达式 $x^{2} - 1$ 的多项式，而 $x^{2} - 1$ 在 $x = \pm 1$ 时等于零。重复分部积分 $n$ 次，就得
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} P _ {n} (x) P _ {m} (x) d x = \\ = \frac {1}{2 ^ {n + m} m ! n !} \int_ {- 1} ^ {1} (- 1) ^ {n} (x ^ {2} - 1) ^ {n} \frac {d ^ {m + n} (x ^ {2} - 1) ^ {m}}{d x ^ {m + n}} d x. \end{array}
+\end{equation*}
+
+因 $n > m$ ，故 $n + m > 2m$ ，所以
+
+\begin{equation*}
+\frac {d ^ {n + m}}{d x ^ {n + m}} (x ^ {2} - 1) ^ {m} = 0.
+\end{equation*}
+
+由此即知当 $m \neq n$ 时
+
+\begin{equation*}
+\int_ {- 1} ^ {1} P _ {m} (x) P _ {n} (x) d x = 0.
+\end{equation*}
+
+考虑 $m = n$ 的情形。此时
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} P _ {n} (x) P _ {n} (x) d x = \\ = \frac {1}{(2 ^ {n} n !) ^ {2}} (- 1) ^ {n} \int_ {- 1} ^ {1} (x ^ {2} - 1) ^ {n} \frac {d ^ {2 n}}{d x ^ {2 n}} (x ^ {2} - 1) ^ {n} d x; \end{array}
+\end{equation*}
+
+但
+\begin{equation*}
+\frac {d ^ {2 n}}{d x ^ {2 n}} (x ^ {2} - 1) ^ {n} = (2 n)! ,
+\end{equation*}
+
+这是因为多项式 $(x^{2} - 1)^{n}$ 必包含有形如 $x^{2n}$ 的项，而其余的项都为低次项，故它的 $2n$ 阶导数等于 $(2n)!$ 。这样一来，
+
+\begin{equation*}
+\int_ {- 1} ^ {1} P _ {n} (x) P _ {n} (x) d x = (- 1) ^ {n} \frac {1}{(2 ^ {n} n !) ^ {2}} (2 n)! \int_ {- 1} ^ {1} (x ^ {2} - 1) ^ {n} d x.
+\end{equation*}
+
+作代换 $x = \sin \theta$ ，得
+
+\begin{equation*}
+\begin{array}{r l} \int_ {- 1} ^ {1} P _ {n} (x) P _ {n} (x) d x & = \frac {(- 1) ^ {n} (2 n) !}{(2 ^ {n} n !) ^ {2}} \int_ {- \frac {\pi}{2}} ^ {\frac {\pi}{2}} (\sin^ {2} \theta - 1) ^ {n} \cos \theta d \theta = \\ & = \frac {(2 n) !}{(2 ^ {n} n !) ^ {2}} \int_ {- \frac {\pi}{2}} ^ {\frac {\pi}{2}} \cos^ {2 n + 1} \theta d \theta . \end{array}
+\end{equation*}
+
+最后的积分值利用递推公式容易算得：
+
+\begin{equation*}
+\begin{array}{l} \int_ {- \frac {\pi}{2}} ^ {\frac {\pi}{2}} \cos^ {2 n + 1} \theta d \theta = 2 \int_ {0} ^ {\frac {\pi}{2}} \cos^ {2 n + 1} \theta d \theta = \\ = 2 \cdot \frac {2 n (2 n - 2) (2 n - 4) \cdots}{(2 n + 1) (2 n - 1) (2 n - 3) \cdots} = \frac {2 \cdot 2 ^ {2 n} (n !) ^ {2}}{(2 n + 1) !}. \end{array}
+\end{equation*}
+
+现在显然有
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} [ P _ {n} (x) ] ^ {2} d x = \frac {(2 n) !}{(2 ^ {n} n !) ^ {2}} \int_ {- \frac {\pi}{2}} ^ {\frac {\pi}{2}} \cos^ {2 n + 1} \theta d \theta = \\ = \frac {(2 n) ! 2 \cdot 2 ^ {2 n} (n !) ^ {2}}{(2 ^ {n} n !) ^ {2} (2 n + 1) !} = \frac {2}{2 n + 1}, \end{array}
+\end{equation*}
+
+这样，我们就证明了
+
+\begin{equation*}
+\int_ {- 1} ^ {1} P _ {n} (x) P _ {m} (x) d x = \delta_ {m n} \frac {2}{2 n + 1}.
+\end{equation*}
+
+又函数系(3.76)是完备的，这就完成了定理的证明。
+
+\textbf{定理 3.6}\quad 多项式 $P_{n}(x)$ 在点 $x = 1$ 处等于1，即：
+
+\begin{equation*}
+P _ {n} (1) = 1.\tag{3.79}
+\end{equation*}
+
+\textbf{证明}\quad 置 $x = 1 + \varepsilon$ ，并研究 $P(x)$ 在 $\varepsilon \to 0^{+}$ 时的情形。注意
+
+\begin{equation*}
+(x ^ {2} - 1) ^ {n} = (x + 1) ^ {n} (x - 1) ^ {n} = \varepsilon^ {n} (\varepsilon + 2) ^ {n}.
+\end{equation*}
+
+因
+\begin{equation*}
+\frac {d}{d x} = \frac {d}{d (1 + \varepsilon)} = \frac {d}{d \varepsilon},
+\end{equation*}
+
+故
+\begin{equation*}
+\begin{array}{l}\frac {d ^ {n}}{d x ^ {n}} (x ^ {2} - 1) ^ {n} \Big | _ {x \rightarrow 1} = \frac {d ^ {n}}{d \varepsilon^ {n}} [ \varepsilon^ {n} (2 + \varepsilon) ^ {n} ] \Big | _ {\varepsilon \rightarrow 0} =\\= \left[ \frac {d ^ {n}}{d \varepsilon^ {n}} \varepsilon^ {n} \right] (2 + \varepsilon) ^ {n} \Big | _ {\varepsilon \rightarrow 0} + \left[ \frac {d ^ {n - 1}}{d \varepsilon^ {n - 1}} \varepsilon^ {n} \right] \frac {d}{d \varepsilon} (2 + \varepsilon) ^ {n} \Big | _ {\varepsilon \rightarrow 0} + \dots =\\= n! 2 ^ {n} + \frac {n !}{2} 2 \cdot \varepsilon \Big | _ {\varepsilon \rightarrow 0} + \dots = n! 2 ^ {n},\end{array}
+\end{equation*}
+
+这是因为除第一项外，其余各项均含有 $e$ 的幂，从而都趋向于零。所以
+
+\begin{equation*}
+\lim _ {\varepsilon \rightarrow 0} P _ {n} (x) = \frac {1}{2 ^ {n} n !} \frac {d ^ {n}}{d x ^ {n}} \left(x ^ {2} - 1\right) ^ {n} \Bigg | _ {x \rightarrow 1} = 1.
+\end{equation*}
+
+此即等式(3.79)，这就证明了定理。
+
+附注：第 $n$ 个函数的标准化条件，函数系(3.76)的正交性，第 $n$ 个函数是 $n$ 次多项式，这三个条件就唯一地决定了勒让德(Legendre)多项式。
+
+\section{多极展开式}
+
+在这一节里，我们将研究勒让德多项式在解关于分布有若干个电荷的场的多极展开这一物理问题中的应用，同时我们也得到了关于勒让德多项式的一系列有用的结果。一般说来，勒让德多项式的性质可按另一种次序来讨论，即在上一节之前，先讨论我们现在将要建立的若干事实。
+
+利用解静电学问题的方法，可得有关勒让德多项式的一些优美的表达式。假定电荷分布在有限的容积内，电荷密度由函数 $\rho(\boldsymbol{r})$ 给出。考虑由这些电荷在比此容积的线尺度大得多的区域所建立的场。引进一个坐标系，其原点在分布有电荷的容积内部。用 $r$ 记位于容积内的点的矢径，而用 $R$ 代表要计算场位势的点到原点的距离 $(R \gg r)$ 。
+
+由静电学知：
+
+\begin{equation*}
+V (\boldsymbol {R}) = \int_ {V} \frac {\rho (\boldsymbol {r})}{| \boldsymbol {R} - \boldsymbol {r} |} d \tau ,
+\end{equation*}
+
+这里 $V(R)$ 为在点 $R$ 处的位势。此式可展开为幂级数：
+
+\begin{equation*}
+V (\boldsymbol {R}) = \int_ {V} \frac {\rho (\boldsymbol {r})}{(\boldsymbol {R} - \boldsymbol {r})} d \tau = \sum_ {n = 0} ^ {\infty} \frac {\sigma_ {n}}{R ^ {n + 1}}.
+\end{equation*}
+
+今求出函数 $\sigma_{n}$ 的表达式。命 $l = r / R$ 和 $x = \cos \theta$ ，则
+
+\begin{equation*}
+\begin{array}{r l} \left| \boldsymbol {R} - \boldsymbol {r} \right| ^ {- 1} & = \left| R ^ {2} + r ^ {2} - 2 R r \cos \theta \right| ^ {- \frac {1}{2}} = \\ & = R ^ {- 1} (1 + l ^ {2} - 2 l x) ^ {- \frac {1}{2}} = R ^ {- 1} H (l, x). \end{array}
+\end{equation*}
+
+$H(l,x)$ 称为生成函数。将它展开为幂级数：
+
+\begin{equation*}
+\begin{array}{r l} H (l, x) & = (1 + l ^ {2} - 2 l x) ^ {- \frac {1}{2}} = \\ & = \sum_ {n = 0} ^ {\infty} \frac {l ^ {n}}{n !} \left. \frac {\partial^ {n}}{\partial l ^ {n}} (1 + l ^ {2} - 2 l x) ^ {- \frac {1}{2}} \right| _ {l = 0}. \end{array}\tag{3.80}
+\end{equation*}
+
+今求出前三项的形式：
+
+\begin{equation*}
+\begin{array}{l l} n & \frac {1}{n !} \frac {\partial}{\partial l ^ {n}} (1 + l ^ {2} - 2 l x) ^ {- \frac {1}{2}} \Big | _ {l = 0}, \\ 0 & 1, \\ 1 & - \frac {1}{2} (1 + l ^ {2} - 2 l x) ^ {- \frac {3}{2}} (2 l - 2 x) \Big | _ {l = 0} = x, \\ 2 & \frac {1}{2 !} \left[ \frac {3}{4} (1 + l ^ {2} - 2 l x) ^ {- \frac {5}{2}} (2 l - 2 x) ^ {2} - \right. \\ & \left. - \frac {1}{2} (1 + l ^ {2} - 2 l x) ^ {- \frac {3}{2}} \cdot 2 \right] \Big | _ {l = 0} = \frac {3 x ^ {2} - 1}{2}. \end{array}
+\end{equation*}
+
+这样，
+\begin{equation*}
+\begin{array}{r l r} {\sigma_ {0} =  \int_ {V} \rho d \tau} & & {\text {为总的电荷}} \\ {\sigma_ {1} =  \int_ {V} r \rho   \cos   \theta d \tau} & & {\text {为偶极矩},} \\ {\sigma_ {2} =  \int_ {V} r ^ {2} \rho   \frac {(3 \cos^ {2} \theta - 1)}{2} d \tau} & & {\text {为四极矩\text{。}}} \end{array}
+\end{equation*}
+
+引人注目的是，展开式(3.80)的前三项与前三个勒让德多项式 $P_{0}(x)$ ， $P_{1}(x)$ 和 $P_{2}(x)$ 相一致。这就使我们产生一种猜想，即一般地是否有：
+
+\begin{equation*}
+H (l, x) = \frac {1}{\sqrt {1 + l ^ {2} - 2 x l}} = \sum_ {n = 0} ^ {\infty} P _ {n} (x) l ^ {n} (l <   1).\tag{3.81}
+\end{equation*}
+
+这个猜测是正确的。公式(3.81)可以加以证明。事实上，设
+
+\begin{equation*}
+\frac {1}{| \boldsymbol {R} - \boldsymbol {r} |} \equiv \frac {1}{R} \sum_ {n = 0} ^ {\infty} P _ {n} (x) \left(\frac {r}{R}\right) ^ {n},\tag{3.82}
+\end{equation*}
+
+则我们能证明(3.82)中的 $P_{n}(x)$ 实际上是勒让德多项式。为了证明这一点，可利用 $\frac{1}{|\mathbf{R} - \mathbf{r}|}$ 是拉普拉斯方程的解这一事实：
+
+\begin{equation*}
+\nabla_ {r} ^ {2} \left(\frac {1}{| R - r |}\right) = 0.\tag{3.83}
+\end{equation*}
+
+将(3.82)中 $\frac{1}{|\mathbf{R} - \mathbf{r}|}$ 的表达式代入(3.83)，则可写出方程
+
+\begin{equation*}
+\sum_ {n = 0} ^ {\infty} \frac {1}{R ^ {n + 1}} \nabla_ {r} ^ {2} [ P _ {n} (\cos \theta) r ^ {n} ] = 0.\tag{3.84}
+\end{equation*}
+
+将(3.84)式乘以 $R$ ，得
+
+\begin{equation*}
+\nabla_ {r} ^ {2} \left(P _ {0} r ^ {0}\right) + \sum_ {n = 1} ^ {\infty} \frac {1}{R ^ {n}} \nabla_ {r} ^ {2} \left[ P _ {n} (\cos \theta) r ^ {n} \right] = 0.\tag{3.85}
+\end{equation*}
+
+但当 $R \to \infty$ 时(3.85)左边部分的和趋向于零，因此
+
+\begin{equation*}
+\nabla_ {r} ^ {2} \left(P _ {0} r ^ {0}\right) = 0.\tag{3.86a}
+\end{equation*}
+
+将(3.84)乘以 $R^{2}$ ，并命$R$趋向于 $\infty$ ，并利用(3.86$a$)，得
+
+\begin{equation*}
+\nabla_ {r} ^ {2} \left(P _ {1} r ^ {1}\right) = 0.\tag{3.86b}
+\end{equation*}
+
+这样一直下去，(3.84) 乘以 $R^{n+1}$ ，然后命 $R$ 趋向于 $\infty$ ，并利用 $n$ 以前的关系式(3.86$a$)和(3.86$b$)，得
+
+\begin{equation*}
+\nabla_ {r} ^ {2} \left(P _ {n} r ^ {n}\right) = 0.\tag{3.86c}
+\end{equation*}
+
+但
+\begin{equation*}
+\begin{array}{r l} \nabla_ {r} ^ {2} & = \frac {1}{r ^ {2}} \frac {\partial}{\partial r} \left(r ^ {2} \frac {\partial}{\partial r}\right) + \frac {1}{r ^ {2} \sin \theta} \frac {\partial}{\partial \theta} \left(\sin \theta \frac {\partial}{\partial \theta}\right) + \\ & + \frac {1}{r ^ {2} \sin^ {2} \theta} \frac {\partial^ {2}}{\partial \varphi^ {2}}, \end{array}\tag{3.87}
+\end{equation*}
+
+\begin{equation*}
+\frac {1}{r ^ {2}} \frac {\partial}{\partial r} \left(r ^ {2} \frac {\partial}{\partial r}\right) r ^ {n} = n \frac {1}{r ^ {2}} \frac {\partial}{\partial r} (r ^ {n + 1}) = n (n + 1) r ^ {n - 2}.
+\end{equation*}
+
+利用这些关系式，可将方程(3.86$c$)写成
+
+\begin{equation*}
+\begin{array}{l} \nabla_ {r} ^ {2} [ P _ {n} (\cos \theta) r ^ {n} ] = 0 = \\ = r ^ {n - 2} \left\{n (n + 1) P _ {n} + \frac {1}{\sin \theta} \frac {d}{d \theta} \left[ \sin \theta \frac {d P _ {n} (\cos \theta)}{d \theta} \right] \right\}. \end{array}\tag{3.88}
+\end{equation*}
+
+恢复到原来的记号 $\cos \theta = x$ （并注意到 $dx = -\sin \theta d\theta$ 和 $1 - x^{2} = \sin^{2}\theta)$ ，可改写(3.88)成
+
+\begin{equation*}
+\frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d P _ {n} (x)}{d x} \right] = - n (n + 1) P _ {n} (x).\tag{3.89}
+\end{equation*}
+
+方程(3.89)称为勒让德方程。我们把位于此方程中的多项式 $P_{n}(x)$ 与勒让德多项式作比较。
+
+用 $H$ 记算子，
+
+\begin{equation*}
+\frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d}{d x} \right],
+\end{equation*}
+
+则
+\begin{equation*}
+H P _ {n} (x) = - n (n + 1) P _ {n} (x),\tag{3.90}
+\end{equation*}
+
+且 $P_{n}(x)$ 将为算子 $H$ 的特征函数。如果现在能证明算子 $H$ 在区间 $-1 \leqslant x \leqslant 1$ 上为厄米的，则根据定理3.4，多项式 $P_{n}(x)$ 将成为正交系。现证明 $H$ 确是厄米算子：
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} \varphi^ {*} H \psi d x = \int_ {- 1} ^ {1} \varphi^ {*} \frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d \psi}{d x} \right] d x = \\ = \varphi^ {*} (1 - x ^ {2}) \frac {d \psi}{d x} \Bigg | _ {- 1} ^ {1} - \int_ {- 1} ^ {1} (1 - x ^ {2}) \frac {d \psi}{d x} \frac {d \varphi^ {*}}{d x} d x = \\ = - \int_ {- 1} ^ {1} (1 - x ^ {2}) \frac {d \psi}{d x} \frac {d \varphi^ {*}}{d x} d x; \end{array}
+\end{equation*}
+
+类似地，
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} \psi^ {*} H \varphi d x = - \int_ {- 1} ^ {1} (1 - x ^ {2}) \frac {d \psi^ {*}}{d x} \frac {d \varphi}{d x} d x = \\ = \left[ - \int_ {- 1} ^ {1} (1 - x ^ {2}) \frac {d \psi}{d x} \frac {d \varphi^ {*}}{d x} d x \right] ^ {*}. \end{array}
+\end{equation*}
+
+从而我们证明了
+
+\begin{equation*}
+\int_ {- 1} ^ {1} \varphi^ {*} H \psi d x = \left[ \int_ {- 1} ^ {1} \psi^ {*} H \varphi d x \right] ^ {*},
+\end{equation*}
+
+即算子 $H$ 是厄米的，因此多项式 $P_{n}(x)$ 成为正交系。又因
+
+\begin{equation*}
+P _ {n} (x) = \frac {1}{n !} \left. \frac {\partial^ {n}}{\partial l ^ {n}} (1 + l ^ {2} - 2 l x) ^ {- \frac {1}{2}} \right| _ {l = 0},
+\end{equation*}
+
+故每个 $P_{n}(x)$ 都是 $x$ 的 $n$ 次多项式。如果现在能证明 $P_{n}(1) = 1$ ，则我们已指出的唯一决定勒让德多项式的三条件均满足[参看(3.75)式]。当 $x = 1$ 时有
+
+\begin{equation*}
+\frac {1}{\sqrt {1 + l ^ {2} - 2 l}} = \frac {1}{1 - l} = \sum_ {n = 0} ^ {\infty} l ^ {n}\tag{3.91a}
+\end{equation*}
+
+这是因为几何级数 $1 + l + l^2 + \cdots$ 的和等于 $\frac{1}{1 - l}$ 。但由(3.81)，
+
+\begin{equation*}
+\frac {1}{1 - l} = \sum_ {n = 0} ^ {\infty} P _ {n} (1) l ^ {n}.\tag{3.91b}
+\end{equation*}
+
+比较级数(3.91$b$)和(3.91$a$)的同次幂项系数，就得所要的结果
+
+\begin{equation*}
+P _ {n} (1) = 1.
+\end{equation*}
+
+这样，我们就证明了(3.81)和(3.82)式中的 $P_{n}(x)$ 实际上就是勒让德多项式。
+
+利用罗德利克公式来计算勒让德多项式是不太方便的。我们将推导出一个递推公式，它使我们能从已知第 $n$ 次和第 $(n - 1)$ 次两个勒让德多项式而很方便地算出第 $(n + 1)$ 次勒让德多项式。为此，从（3.81）出发，在等式（3.81）两边取对数，
+
+\begin{equation*}
+- \frac {1}{2} \ln (1 + l ^ {2} - 2 x l) = \ln (\sum_ {n} P _ {n} l ^ {n}).\tag{3.92}
+\end{equation*}
+
+(3.92)两边对 $l$ 微分，得
+
+\begin{equation*}
+\frac {- l + x}{1 + l ^ {2} - 2 l x} = \frac {\sum_ {n} n P _ {n} l ^ {n - 1}}{\sum_ {n} P _ {n} l ^ {n}}.\tag{3.93}
+\end{equation*}
+
+此等式两边乘以 $(1 + l^2 - 2lx)\sum_{n}P_nl^n$ ，化简后得
+
+\begin{equation*}
+\begin{array}{r l} & \sum_ {n} l ^ {n} (- P _ {n - 1} + x P _ {n}) = \\ & = \sum_ {n} l ^ {n} [ (n + 1) P _ {n + 1} + (n - 1) P _ {n - 1} - 2 n x P _ {n} ]. \end{array}
+\end{equation*}
+
+比较 $l$ 的同次幂系数，就得重要的递推公式：
+
+\begin{equation*}
+(n + 1) P _ {n + 1} (x) - (2 n + 1) x P _ {n} (x) + n P _ {n - 1} (x) = 0.\tag{3.94}
+\end{equation*}
+
+将三个邻接的勒让德多项式联系起来的公式(3.94)，使我们能够由开始的三个（它们已为我们所熟知）多项式 $P_{0}(x)$ 、 $P_{1}(x)$ 、 $P_{2}(x)$ 出发，计算到任意次幂的勒让德多项式。
+
+也可以找到另外一些公式，在这些公式中含有勒让德多项式的导数。例如，对 $x$ 微分等式(3.92)，得
+
+\begin{equation*}
+\frac {l}{1 + l ^ {2} - 2 l x} = \frac {\sum P _ {n} ^ {\prime} l ^ {n}}{\sum P _ {n} l ^ {n}},
+\end{equation*}
+
+将此等式改写成
+
+\begin{equation*}
+\sum l ^ {n + 1} P _ {n} = \sum l ^ {n + 1} \left[ P _ {n + 1} ^ {\prime} + P _ {n - 1} ^ {\prime} - 2 x P _ {n} ^ {\prime} \right],
+\end{equation*}
+
+比较 $l$ 同次幂系数，得
+
+\begin{equation*}
+P _ {n + 1} ^ {\prime} - 2 x P _ {n} ^ {\prime} + P _ {n - 1} ^ {\prime} = P _ {n}.\tag{3.95}
+\end{equation*}
+
+还存在其他将相邻阶次的勒让德多项式联系起来的递推公式。①
+
+\section{球谐函数}
+
+考虑算子
+\begin{equation*}
+- L ^ {2} = \frac {1}{\sin \theta} \frac {\partial}{\partial \theta} \left(\sin \theta \frac {\partial}{\partial \theta}\right) + \frac {1}{\sin^ {2} \theta} \frac {\partial}{\partial \varphi^ {2}},\tag{3.96}
+\end{equation*}
+
+它是拉普拉斯算子在球面坐标系中的角的部分。在量子力学中它通常称为矩算子。现在证明下面的结论：
+
+算子 $-L^{2}$ 在由球面上的函数构成的函数空间中是厄米的。
+
+事实上，这个算子的第一部分是厄米的，它在研究勒让德多项式时已证明过了。于是此时可用 $H$ 来记它。利用代换 $x = \cos \theta$ ，可将它改写成
+
+\begin{equation*}
+\frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d}{d x} \right].
+\end{equation*}
+
+对算子(3.96)的第二项分部积分二次，并利用对单值函数 $f(2\pi)=f(0)$ 这个事实，我们得
+
+\begin{equation*}
+\int_ {0} ^ {2 \pi} \psi^ {*} \frac {\partial^ {2} x}{\partial \varphi^ {2}} d \varphi = \int_ {0} ^ {2 \pi} x \frac {\partial^ {2} \psi^ {*}}{\partial \varphi^ {2}} d \varphi ,
+\end{equation*}
+
+由此表明第二项也是厄米的。现在很明显，算子 $-L^{2}$ 本身是厄米的，因两个厄米算子之和还是厄米的。
+
+现在直接转到球谐函数上来。正如我们所看到的，三角函数系 $\{\cos nx\}$ 和 $\{\sin nx\}$ 在定义于单位圆上的一元单值函数空间中，它构成完备正交系。
+
+球谐函数则是构成了单位球面上单值函数空间的完备正交系。和傅里叶级数相似，球谐函数也是某个厄米算子的特征函数。在数学物理问题中常常会碰到球谐函数，这是因为它是拉普拉斯算子在球面坐标中角部分的解。
+
+我们回忆到，在一元函数空间中，函数系 $\{1, x, x^{2}, \cdots\}$ 在区间 $(a, b)$ 上是完备的（这里 $-\infty < a \leqslant x \leqslant b < +\infty$ ），而在三元函数空间中函数系：
+
+\begin{equation*}
+\left\{x ^ {t} y ^ {u} z ^ {v} \right\} \quad (t, u, v = 1, 2, \dots , n, \dots)\tag{3.97}
+\end{equation*}
+
+也是完备的。今引进球面坐标，它与笛卡尔坐标系由下面的关系式联系：
+
+\begin{equation*}
+\begin{array}{c} z = r \cos \theta , \\ x + i y = r \sin \theta e ^ {i \varphi}, \\ x - i y = r \sin \theta e ^ {- i \varphi} \end{array}\tag{3.98}
+\end{equation*}
+
+利用(3.98)，函数系(3.97)中的任一函数都可变换成
+
+\begin{equation*}
+x ^ {t} y ^ {u} z ^ {v} = r ^ {t + u + v} \cos^ {v} \theta \sin^ {t + u} \theta e ^ {i (t - u) \varphi},\tag{3.99}
+\end{equation*}
+
+此时函数系(3.97)可写成
+
+\begin{equation*}
+\left\{r ^ {t + u + v} \cos^ {v} \theta \sin^ {t + u} \theta e ^ {i (t - u) \varphi} \right\}.\tag{3.100}
+\end{equation*}
+
+在单位球面上，此系具有更简单的形式：
+
+\begin{equation*}
+\left\{\cos^ {v} \theta \sin^ {t + u} \theta e ^ {i (t - u) \varphi} \right\}.\tag{3.101}
+\end{equation*}
+
+现引进新的变量 $m = |t - u|$ ，此时
+
+\begin{equation*}
+t + u = m + \min \left\{ \begin{array}{l} 2 u \\ 2 t \end{array} \right\} = m + 2 k;
+\end{equation*}
+
+因此
+\begin{equation*}
+\sin^ {t + u} \theta = \sin^ {m} \theta \sin^ {2 k} \theta = \sin^ {m} \theta (1 - \cos^ {2} \theta) ^ {k}.
+\end{equation*}
+
+现在系(3.101)中的每一个元素可写成
+
+\begin{equation*}
+\cos^ {v} \theta (1 - \cos^ {2} \theta) ^ {k} \sin^ {m} \theta e ^ {\pm i m \varphi}
+\end{equation*}
+
+的形式。将各项重新分类(对此，需将 $(1-\cos^{2}\theta)^{k}$ 的括号展开，并将同次幂项合并在一起)，最后得到函数系
+
+\begin{equation*}
+\left\{\cos^ {n} \theta \sin^ {m} \theta e ^ {\pm i m \varphi} \right\},\tag{3.102}
+\end{equation*}
+
+这里 $m$ 和 $n$ 为正整数。不难证明，用线性变换的方法可将函数系(3.102)变到完备系(3.97)。这个事实实际上包含了函数系(3.102)完备性的证明。但遗憾的是，此函数系还不是标准正交系。命 $m = 0$ 就不难证实这一点。因为此时所得的函数 $F_{n}(x) = \cos^{n}\theta$ ，如大家所知道的，还不是正交系。但通过正交化，是可以成为完备标准正交系的。
+
+组成这个完备正交系的函数，称为球谐函数。
+\par\nopagebreak\vspace{-1.6em}
+\vspace{0.15em}
+
+我们试图利用这些事实来直接构造几个第一类球谐函数：当 $m = 0$ 时，应得勒让德多项式，而 $m$ 不同的两个函数都需彼此正交。
+
+设 $l = m + n$ （这里 $m$ 和 $n$ 为整数和正整数），写出几个第一类球谐函数
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$l$ & $m$ & 函数个数 & 非标准化函数\\
+\hline
+\multirow{2}{*}{$0$} & $0$ & $1$ & $1$\\
+ & $0$ & $1$ & $\cos\theta$\\
+\hline
+$1$ & $\pm 1$ & $2$ & $\sin\theta\, e^{i\varphi};\quad \sin\theta\, e^{-i\varphi}$\\
+\hline
+ & $0$ & $1$ & $\cos^{2}\theta - \dfrac{1}{3}$\\
+ & $\pm 1$ & $2$ & $\cos\theta\sin\theta\, e^{i\varphi};\quad \cos\theta\sin\theta\, e^{-i\varphi}$\\
+$2$ & $\pm 2$ & $2$ & $\sin^{2}\theta\, e^{i2\varphi};\quad \sin^{2}\theta\, e^{-i2\varphi}$\\
+\hline
+\end{tabular}
+\end{center}
+
+类似地，对任意值 $l$，存在 $2l + 1$ 个函数（即 $m = 0, \pm 1, \cdots, \pm l$ ）。
+
+我们可以预料，标准化球谐函数的一般形式为
+
+\begin{equation*}
+Y _ {l \pm m} (\theta , \varphi) = (\mp 1) ^ {m} \sqrt {\frac {(2 l + 1) (l - m) !}{4 \pi (l + m) !}} P _ {l} ^ {m} (\cos \theta) e ^ {i m \varphi},\tag{3.103}
+\end{equation*}
+
+\begin{equation*}
+P _ {l} ^ {m} (x) = \left(1 - x ^ {2}\right) ^ {\frac {m}{2}} \frac {d ^ {m}}{d x ^ {m}} P _ {l} (x) \quad (x = \cos \theta).\tag{3.104}
+\end{equation*}
+
+函数系 $Y_{lm}$ 在函数空间中是完备的，因完备系(3.101)中的任一函数都可表示成函数 $Y_{lm}$ 的线性组合的形式。这样一来，只须证明 $Y_{lm}$ 构成正交系。
+
+在转到这个基本定理的证明之前，先证明有关函数 $P_{i}^{m}(x)$ 的性质的两个引理，这里 $P_{i}^{m}(x)$ 常称为勒让德伴随多项式。引进下面的记号：
+
+\begin{equation*}
+y _ {l} ^ {m} = \frac {d ^ {m}}{d x ^ {m}} P _ {l} (x), y _ {l} ^ {0} = P _ {l} (x);
+\end{equation*}
+
+显然，对于函数 $y_{l}^{m}$ ，下面等式成立：
+
+\begin{equation*}
+y _ {l} ^ {m + 1} = \frac {d}{d x} y _ {l} ^ {m}.\tag{3.105}
+\end{equation*}
+
+\textbf{引理 3.1}\quad 函数 $y_{l}^{m}$ 满足微分方程
+
+\begin{equation*}
+(1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m} - 2 x (m + 1) \frac {d}{d x} y _ {l} ^ {m} = - (l - m) (l + m + 1) y _ {l} ^ {m}.\tag{3.106}
+\end{equation*}
+
+\textbf{证明}\quad 在方程(3.106)中固定 $l$ 。在 $m = 0$ 时，它与勒让德方程(3.89)相一致。又因 $y_{l}^{0}$ 是勒让德多项式，故在这种情形，如我们早已证明过了的，引理成立。现证明引理对任意 $m$ 均成立。利用归纳法。假设引理对某个 $m$ 成立，需证的是它对 $(m + 1)$ 也成立。
+
+微分(3.106)，并注意到(3.105)，得
+
+\begin{equation*}
+\begin{array}{l} - 2 x \frac {d}{d x} y _ {l} ^ {m + 1} + (1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m + 1} - 2 (m + 1) y _ {l} ^ {m + 1} - \\ - 2 x (m + 1) \frac {d}{d x} y _ {l} ^ {m + 1} = - (l - m) (l + m + 1) y _ {l} ^ {m + 1}, \end{array}
+\end{equation*}
+
+或
+\begin{equation*}
+\begin{array}{r l}
+(1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m + 1} - 2 x [ (m + 1) + 1 ] \frac {d}{d x} y _ {l} ^ {m + 1} = \\
+ & = - [ (l - m) (l + m + 1) - 2 (m + 1) ] y _ {l} ^ {m + 1}.
+\end{array}
+\end{equation*}
+
+但
+\begin{equation*}
+\begin{array}{r l}
+- [ (l - m) (l + m + 1) - 2 (m + 1) ] = \\
+ & = - (l - m - 1) (l + m + 1) - l - m - 1 + 2 m + 2 = \\
+ & = - (l - m - 1) (l + m + 1) - (l - m - 1) = \\
+ & = - (l - m - 1) (l + m + 2);
+\end{array}
+\end{equation*}
+
+这样一来最后就得
+
+\begin{equation*}
+\begin{array}{r l} & (1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m + 1} - 2 x [ (m + 1) + 1 ] \frac {d}{d x} y _ {l} ^ {m + 1} = \\ & = - [ l - (m + 1) ] [ l + (m + 1) + 1 ] y _ {l} ^ {m + 1}. \end{array} \tag{3.107}
+\end{equation*}
+
+这样，假定引理对 $m$ 正确，即方程(3.106)对某个 $m$ 成立，我们已证明了此方程对 $(m + 1)$ 也成立。[事实上，方程(3.107)就是方程(3.106)，这里仅将 $m$ 改作 $(m + 1)$ ] 又因引理在 $m = 0$ 时是正确的，故它对其他任一 $m$ 也是正确的。这就是所要证明的。
+
+现考虑第二个引理，将简记 $P_{i}^{0}$ 为 $P_{i}$ 。
+
+\textbf{引理 3.2}\quad 函数 $P_{i}^{m}$ 满足微分方程
+
+\begin{equation*}
+\frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d}{d x} \right] P _ {l} ^ {m} (x) + \left[ l (l + 1) - \frac {m ^ {2}}{1 - x ^ {2}} \right] P _ {l} ^ {m} (x) = 0.\tag{3.108}
+\end{equation*}
+
+换言之，量 $\left[l(l + 1) - \frac{m^2}{1 - x^2}\right]$ 是算子 $\frac{d}{dx}\left[(1 - x^2)\frac{d}{dx}\right]$ 的特征值。而函数 $P_{l}^{m}(x)$ 为它的特征函数。
+
+\textbf{证明}\quad 微分等式
+
+\begin{equation*}
+P _ {i} ^ {m} (x) = \left(1 - x ^ {2}\right) ^ {\frac {m}{2}} y _ {l} ^ {m} (x),
+\end{equation*}
+
+得
+\begin{equation*}
+\begin{array}{r l} \frac {d}{d x} P _ {l} ^ {m} (x) & = - m x (1 - x ^ {2}) ^ {\left(\frac {m}{2} - 1\right)} y _ {l} ^ {m} (x) + \\ & + (1 - x ^ {2}) ^ {\frac {m}{2}} \frac {d}{d x} y _ {l} ^ {m}, \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+\begin{array}{l} \left[ (1 - x ^ {2}) \frac {d}{d x} P _ {i} ^ {m} (x) \right] = \\ = - m x (1 - x ^ {2}) ^ {\frac {m}{2}} y _ {l} ^ {m} + (1 - x ^ {2}) ^ {\left(\frac {m}{2} + 1\right)} \frac {d}{d x} y _ {l} ^ {m}. \end{array}\tag{3.109}
+\end{equation*}
+
+微分(3.109)得
+
+\begin{equation*}
+\begin{array}{r l} & \frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d}{d x} P _ {l} ^ {m} (x) \right] = - m (1 - x ^ {2}) ^ {\frac {m}{2}} y _ {l} ^ {m} + \\ & + m ^ {2} x ^ {2} (1 - x ^ {2}) ^ {\left(\frac {m}{2} - 1\right)} y _ {l} ^ {m} - m x (1 - x ^ {2}) ^ {\frac {m}{2}} \frac {d}{d x} y _ {l} ^ {m} - \\ & - (m + 2) x (1 - x ^ {2}) ^ {\frac {m}{2}} \frac {d}{d x} y _ {l} ^ {m} + (1 - x ^ {2}) ^ {\left(\frac {m}{2} + 1\right)} \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m} = \\ & = (1 - x ^ {2}) ^ {\frac {m}{2}} \left\{(1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m} - 2 (m + 1) x \frac {d}{d x} y _ {l} ^ {m} - \right. \\ & \left. - m y _ {l} ^ {m} + \frac {m ^ {2} x ^ {2}}{1 - x ^ {2}} y _ {l} ^ {m} \right\}. \end{array} \tag{3.110}
+\end{equation*}
+
+现在利用引理 3.1，将等式(3.110)改写成下面的形式：
+
+\begin{equation*}
+\frac {d \left[ (1 - x ^ {2}) \frac {d}{d x} P _ {i} ^ {m} (x) \right]}{d x} =
+\end{equation*}
+
+\begin{equation*}
+= (1 - x ^ {2}) ^ {\frac {m}{2}} \left\{- (l - m) (l + m + 1) - m + \frac {m ^ {2} x ^ {2}}{1 - x ^ {2}} \right\} y _ {l} ^ {m}.\tag{3.111}
+\end{equation*}
+
+但
+\begin{equation*}
+\begin{array}{r l} (l - m) (l + m + 1) & = l (l + 1) - m (m + 1) = \\ & = l (l + 1) - m ^ {2} - m, \end{array}
+\end{equation*}
+
+因此(3.111)又可改写成
+
+\begin{equation*}
+\begin{array}{r l} & \frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d}{d x} P _ {l} ^ {m} (x) \right] = \\ & = \left\{- l (l + 1) + m ^ {2} + \frac {m ^ {2} x ^ {2}}{1 - x ^ {2}} \right\} (1 - x ^ {2}) ^ {\frac {m}{2}} y _ {l} ^ {m} = \\ & = \left\{- l (l + 1) + \frac {m ^ {2}}{1 - x ^ {2}} \right\} P _ {l} ^ {m}. \end{array}
+\end{equation*}
+
+这就证明了引理。
+
+\textbf{定理 3.7}\quad 由(3.103)和(3.104)式确定的球谐函数系构成完备正交系。
+
+\textbf{证明}\quad 球谐函数系的完备性早已建立（见$p$158），因此只需再证明此函数系的标准正交性，即成立着等式
+
+\begin{equation*}
+\int_ {0} ^ {2 \pi} d \varphi \int_ {0} ^ {\pi} \sin \theta d \theta Y _ {l m} ^ {*} Y _ {l ^ {\prime} m ^ {\prime}} = \delta_ {l l ^ {\prime}} \delta_ {m m ^ {\prime}}\tag{3.112}
+\end{equation*}
+
+因显然
+\begin{equation*}
+\int_ {0} ^ {2 \pi} d \varphi e ^ {i (m _ {l} - m _ {l ^ {\prime}}) \varphi} = 2 \pi \delta_ {m _ {l} m _ {l ^ {\prime}}},
+\end{equation*}
+
+故只需证明
+\begin{equation*}
+\int_ {- 1} ^ {1} P _ {l} ^ {m} (x) P _ {l ^ {\prime}} ^ {m} (x) d x = \frac {2}{2 l + 1} \frac {(l + m) !}{(l - m) !} \delta_ {l l ^ {\prime}}.
+\end{equation*}
+
+命 $x = \cos \theta$ ，则
+
+\begin{equation*}
+\frac {d}{d x} \left[ (1 - x ^ {2}) \frac {d}{d x} \right] = \frac {1}{\sin \theta} \frac {\partial}{\partial \theta} \left(\sin \theta \frac {\partial}{\partial \theta}\right).
+\end{equation*}
+
+根据引理3.2，
+
+\begin{equation*}
+\frac {1}{\sin \theta} \frac {\partial}{\partial \theta} \left(\sin \theta \frac {\partial}{\partial \theta}\right) Y _ {l m _ {l}} = - \left[ l (l + 1) - \frac {m ^ {2}}{\sin^ {2} \theta} \right] Y _ {l m _ {l}}.
+\end{equation*}
+
+但
+\begin{equation*}
+\frac {\partial^ {2}}{\partial \varphi^ {2}} Y _ {l m _ {l}} = - m _ {l} ^ {2} Y _ {l m _ {l}} = - m ^ {2} Y _ {l m _ {l}},
+\end{equation*}
+
+所以
+\begin{equation*}
+\left\{\frac {1}{\sin \theta} \left(\sin \theta \frac {\partial}{\partial \theta}\right) + \frac {1}{\sin^ {2} \theta} \frac {\partial^ {2}}{\partial \varphi^ {2}} \right\} Y _ {l m _ {l}} = - l (l + 1) Y _ {l m _ {l}}\tag{3.113}
+\end{equation*}
+
+或
+\begin{equation*}
+- L ^ {2} Y _ {l m _ {1}} = - l (l + 1) Y _ {l m _ {1}}.
+\end{equation*}
+
+因特征值不依赖于 $m_{l}$ ，故会产生 $(2l + 1)$ 重表达式，即算子 $-L^{2}$ 的 $2l + 1$ 个特征函数对应了一个特征值。由算子的厄米性（上面已证明）推出，对不同的 $l$ ， $Y_{lm_l}$ 正交，即
+
+\begin{equation*}
+\int_ {- 1} ^ {1} P _ {l} ^ {m} (x) P _ {l ^ {\prime}} ^ {m} (x) d x = 0.
+\end{equation*}
+
+剩下的只是要计算
+
+\begin{equation*}
+\int_ {- 1} ^ {1} \left[ P _ {l} ^ {m} (x) \right] ^ {2} d x
+\end{equation*}
+
+的值，即确定标准化因子的值。计算这个积分：
+
+\begin{equation*}
+\begin{array}{l} \int_ {- 1} ^ {1} [ P _ {i} ^ {m} (x) ] ^ {2} d x = \int_ {- 1} ^ {1} (1 - x ^ {2}) ^ {m} \left(\frac {d}{d x} y _ {l} ^ {m - 1}\right) ^ {2} d x = \\ = \int_ {- 1} ^ {1} (1 - x ^ {2}) ^ {m} \frac {d}{d x} y _ {l} ^ {m - 1} d y _ {l} ^ {m - 1} = \\ = (1 - x ^ {2}) ^ {m} y _ {l} ^ {m - 1} \frac {d}{d x} y _ {l} ^ {m - 1} \Bigg | _ {- 1} ^ {1} - \int_ {- 1} ^ {1} y _ {l} ^ {m - 1} (1 - x ^ {2}) ^ {m - 1} \times \\ \times \left\{- 2 m x \frac {d}{d x} y _ {l} ^ {m - 1} + (1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m - 1} \right\}; \end{array}\tag{3.114}
+\end{equation*}
+
+但因
+\begin{equation*}
+\left(1 - x ^ {2}\right) ^ {m} y _ {l} ^ {m - 1} \frac {d}{d x} y _ {l} ^ {m - 1} \Bigg | _ {- 1} ^ {1} = 0,
+\end{equation*}
+
+且由(3.106)
+
+\begin{equation*}
+\begin{array}{l} - \int_ {- 1} ^ {1} (1 - x ^ {2}) ^ {m - 1} y _ {l} ^ {m - 1} \left\{- 2 m x \frac {d}{d x} y _ {l} ^ {m - 1} + \right. \\ \left. + (1 - x ^ {2}) \frac {d ^ {2}}{d x ^ {2}} y _ {l} ^ {m - 1} \right\} \\ = (l + m) (l - m + 1) \int_ {- 1} ^ {1} (1 - x ^ {2}) ^ {m - 1} (y _ {l} ^ {m - 1}) ^ {2} d x, \end{array}
+\end{equation*}
+
+故(3.114)可改写成
+
+\begin{equation*}
+\int_ {- 1} ^ {1} \left[ P _ {l} ^ {m} (x) \right] ^ {2} d x = (l + m) (l - m + 1) \int_ {- 1} ^ {1} \left[ P _ {l} ^ {m - 1} (x) \right] ^ {2} d x.\tag{3.115}
+\end{equation*}
+
+连续应用(3.115)式，我们就导出了
+
+\begin{equation*}
+\int_ {- 1} ^ {1} \left[ P _ {l} ^ {m} (x) \right] ^ {2} d x = (l + m) (l + m - 1) \dots
+\end{equation*}
+
+\begin{equation*}
+\dots (l + 1) (l - m + 1) (l - m + 2) \dots l \cdot \int_ {- 1} ^ {1} [ P _ {l} ^ {0} (x) ] ^ {2} d x.
+\end{equation*}
+
+因
+\begin{equation*}
+\int_ {- 1} ^ {1} \left[ P _ {l} ^ {0} (x) \right] ^ {2} d x = \int_ {- 1} ^ {1} \left[ P _ {l} (x) \right] ^ {2} d x = \frac {2}{2 l + 1},
+\end{equation*}
+
+此外
+\begin{equation*}
+(l + m) (l + m - 1) \dots (l - m + 1) = \frac {(l + m) !}{l !},
+\end{equation*}
+
+\begin{equation*}
+(l - m + 1) (l - m + 2) \dots l = \frac {l !}{(l - m) !},
+\end{equation*}
+
+故
+\begin{equation*}
+\int_ {- 1} ^ {1} \left[ P _ {l} ^ {m} (x) \right] ^ {2} d x = \frac {2}{2 l + 1} \frac {(l + m) !}{(l - m) !}.\tag{3.116}
+\end{equation*}
+
+定理证毕。
+
+因刚才我们已证明了函数系 $Y_{lm}(\theta, \varphi)$ 的完备性和正交性，故现在可以写出 $F(\theta, \varphi)$ 关于函数系 $Y_{lm}(\theta, \varphi)$ 的展开式，以及此展开式的系数：
+
+\begin{equation*}
+F (\theta , \varphi) = \sum_ {l = 0} ^ {\infty} \sum_ {m = - l} ^ {l} A _ {l m} Y _ {l m} (\theta , \varphi),\tag{3.117}
+\end{equation*}
+
+\begin{equation*}
+A _ {l m} = \iint Y _ {l m l} ^ {*} F (\theta , \varphi) \sin \theta d \theta d \varphi .\tag{3.118}
+\end{equation*}
+
+剩下的还要证明确定函数 $Y_{lm}(\theta, \varphi)$ 唯一性的定理。
+
+\textbf{定理 3.8}\quad （唯一性定理）满足条件
+
+\begin{equation*}
+\int_ {0} ^ {2 \pi} d \varphi \int_ {0} ^ {\pi} \sin \theta d \theta Y _ {l m} ^ {*} (\theta , \varphi) Y _ {l ^ {\prime} m ^ {\prime}} (\theta , \varphi) = \delta_ {l l ^ {\prime}} \delta_ {m m ^ {\prime}},\tag{3.112}
+\end{equation*}
+
+的函数 $Y_{lm}$ 可以精确到一个相位因子 $e^{i\delta}$ 而被唯一地确定，这里 $\delta$ 是实数。
+
+\textbf{证明}\quad 我们将不考虑 $m \neq m'$ 的情形。它不会给出有关唯一性的任何情况。因此时（3.112）中的积分总等于零，它不依赖于 $Y_{lm}$ 表达式中具有常数因子的值。
+
+用归纳法来进行证明。即要证明：由假定满足条件(3.112)的函数 $Y_{lm}$ 在 $l' < l$ 时唯一确定，来推出函数 $Y_{lm}$ 对所有 $l$ 都唯一确定。
+
+先考虑 $m = l$ 的情形。因 $l = m + n$ ，故由(3.102)推出
+
+\begin{equation*}
+Y _ {l, \pm l} = e ^ {\pm i l \varphi} \sin^ {l} \theta \cdot \text { const }.
+\end{equation*}
+
+同时由标准化条件，常数可唯一地确定。因此剩下的需考虑 $-l < m < l$ 的情形。回忆我们是将函数 $Y_{lm}$ 定义为形如 $\cos^n\theta \sin^m\theta e^{\pm i m\varphi}$ 的函数的两两正交的线性组合。它可写成
+
+\begin{equation*}
+Y _ {l m} = A _ {0} e ^ {i m \varphi} \sin^ {m} \theta \cos^ {l - m} \theta + e ^ {i m \varphi} \sin^ {m} \theta g (\cos \theta),
+\end{equation*}
+
+这里
+\begin{equation*}
+g (\cos \theta) = A _ {1} \cos^ {l - m - 1} \theta + A _ {2} \cos^ {l - m - 2} \theta + \dots + A _ {l - m}.
+\end{equation*}
+
+记
+\begin{equation*}
+z = e ^ {i m \varphi} \sin^ {m} \theta g (\cos \theta).
+\end{equation*}
+
+回到(3.99)和(3.100)式，我们看到形如 $r^{l-1}z$ 的函数是关系 $(x\ y\ z)$ 的多项式，同时最高次数等于$l$-1。因此在$r$=1时，它可展开成有限项级数
+
+\begin{equation*}
+z (\theta , \varphi) = \sum_ {l ^ {\prime} \leq l - 1} \sum_ {m ^ {\prime} = - l ^ {\prime}} ^ {l ^ {\prime}} B _ {l ^ {\prime} m ^ {\prime}} Y _ {l ^ {\prime} m ^ {\prime}} (\theta , \varphi).\tag{3.119}
+\end{equation*}
+
+所以
+\begin{equation*}
+\begin{array}{l} Y _ {l m} = A _ {0} e ^ {i m \varphi} \sin^ {m} \theta \cos^ {l - m} (\theta) + \\ \quad + \sum_ {l ^ {\prime} \leq l - 1} \sum_ {m ^ {\prime} = - l ^ {\prime}} ^ {l ^ {\prime}} B _ {l ^ {\prime} m ^ {\prime}} Y _ {l ^ {\prime} m ^ {\prime}} (\theta , \varphi), \end{array}\tag{3.120}
+\end{equation*}
+
+这里根据我们的假定，所有 $Y_{l^{\prime}m^{\prime}}$ 都是唯一的。
+
+现计算系数 $A_{0}$ 。根据(3.103)，在 $l$=0 和 $m$=0 时
+
+\begin{equation*}
+A _ {0} = Y _ {0 0} = \frac {1}{\sqrt {4 \pi}},
+\end{equation*}
+
+因此，它也由标准化条件唯一地确定。显然利用下面的等式可唯一地确定 $B_{l^{\prime}m^{\prime}}$ ：
+
+\begin{equation*}
+B _ {l ^ {\prime} m ^ {\prime}} = - A _ {0} \int Y _ {l ^ {\prime} m ^ {\prime}} ^ {*} e ^ {i m \varphi} \sin^ {m} \theta \cos^ {l - m} \theta d \Omega
+\end{equation*}
+
+(因 $Y_{1:m}, A_0$ 和 $B_0$ 唯一)。现在由(3.120)推出 $Y_{1m}$ 唯一地确定，但都精确到一个相位因子 $e^{i\delta}$ ，因它不影响对 $Y_{1m}Y_{1:m}^{\prime}$ 的积分值。
+
+为了完成证明，还应注意到(如早先所作的那样)头几个 $Y_{lm}$ 可以直接求得，从而证实了它们是唯一的。
+
+\section{坐标轴旋转时球谐函数的变换}
+
+设 $x_{j}$ （这里 $j = 1,2,3$ ）为某个直角坐标系的坐标，而
+
+$x_{1}^{*}(i = 1,2,3)$ 为另一直角坐标系的坐标，此坐标系为通过第一个坐标系统原点旋转而得，同时旋转由下述公式给出：
+
+\begin{equation*}
+x _ {i} ^ {\prime} = R _ {i j} x _ {j} \quad (i, j = 1, 2, 3).\tag{3.121}
+\end{equation*}
+
+显然，在这种旋转下，新的球面坐标 $(\theta', \varphi')$ 是原来坐标 $(\theta, \varphi)$ 的函数。我们要证明下面的在坐标系旋转时关于球谐函数的性质定理：
+
+\textbf{定理 3.9}\quad 在由变换 (3.121) 所给定的坐标系旋转下，球谐函数按公式
+
+\begin{equation*}
+Y _ {l m ^ {\prime}} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = \sum_ {m = - l} ^ {l} D _ {m ^ {\prime}, m} ^ {l} Y _ {l m} (\theta , \varphi)\tag{3.122}
+\end{equation*}
+
+变换。这里 $D_{m', m}^{l}$ 只依赖于 $R_{ij}$ ，即参数 $l$ 在旋转时不变。
+
+\textbf{证明}\quad 给定在新坐标系中的任一球谐函数 $Y(\theta', \varphi')$ 都可按原来坐标系的球谐函数展开：
+
+\begin{equation*}
+Y _ {l m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = \sum_ {l ^ {\prime}} \sum_ {m} C _ {l ^ {\prime} l m m ^ {\prime}} Y _ {l ^ {\prime} m} (\theta , \varphi),\tag{3.123}
+\end{equation*}
+
+这是因为在原来坐标系中的球谐函数系构成基。
+
+拉普拉斯算子关于用(3.121)式确定的旋转不变：
+
+\begin{equation*}
+\sum_ {i = 1} ^ {3} \frac {\partial^ {2}}{\partial x _ {i} ^ {\prime 2}} = \sum_ {i = 1} ^ {3} \frac {\partial^ {2}}{\partial x _ {i} ^ {2}}.\tag{3.124}
+\end{equation*}
+
+类似地
+\begin{equation*}
+r ^ {\prime 2} = r ^ {2},
+\end{equation*}
+
+因此算子- $L^2$ 关于旋转不变：
+
+\begin{equation*}
+(- L ^ {2}) ^ {\prime} = - L ^ {2}.
+\end{equation*}
+
+利用这些事实，并注意到(3.113)，得
+
+\begin{equation*}
+(L ^ {2}) ^ {\prime} Y _ {l m ^ {\prime}} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = l (l + 1) Y _ {l m ^ {\prime}} \left(\theta^ {\prime}, \varphi^ {\prime}\right),\tag{3.125}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{r l} (L ^ {2}) Y _ {l ^ {\prime} m} (\theta , \varphi) & = l ^ {\prime} (l ^ {\prime} + 1) Y _ {l ^ {\prime} m} (\theta , \varphi) = \\ & = (L ^ {2}) ^ {\prime} Y _ {l ^ {\prime} m} (\theta , \varphi). \end{array}\tag{3.126}
+\end{equation*}
+
+因此，不但 $Y_{lm'}(\theta', \varphi')$ ，而且 $Y_{l',m}(\theta, \varphi)$ 都是同一个厄米算子的特征函数。所以他们正交，即当 $l \neq l'$ 时
+
+\begin{equation*}
+\int_ {l} Y _ {l m ^ {\prime}} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l ^ {\prime} m} ^ {*} (\theta , \varphi) d \Omega = 0.
+\end{equation*}
+
+这样，当 $l \neq l'$ 时系数 $C_{l', m!m'} = 0$ 。现在由（3.123）式就可推出公式
+
+\begin{equation*}
+Y _ {l m ^ {\prime}} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = \sum_ {m = - l} ^ {l} D _ {m ^ {\prime}, m} ^ {l} Y _ {l m} (\theta , \varphi)
+\end{equation*}
+
+的正确性，而这就是要证明的。
+
+\section{球谐函数与张量之间的类比}
+
+讨论存在于球谐函数与张量之间的联系是有意义的。对于一阶、二阶和零阶张量，这种联系表现得特别明显。为了清楚地看出这种联系，我们写出 $Y_{lm}$ 在笛卡尔坐标系中的表达式。回忆到，对于单位球面
+
+\begin{equation*}
+x _ {1} \pm i x _ {2} = \sin \theta e ^ {\pm i \varphi}, \quad x _ {3} = \cos \theta .
+\end{equation*}
+
+这样一来，在笛卡尔坐标系中，球谐函数有下面的形式：
+
+\begin{equation*}
+Y _ {0 0} = \frac {1}{\sqrt {2 \pi}},\tag{3.127a}
+\end{equation*}
+
+\begin{equation*}
+Y _ {1; \pm 1} = \mathrm{const} \cdot (x _ {1} \pm i x _ {2}),\tag{3.127b}
+\end{equation*}
+
+\begin{equation*}
+Y _ {1: 0} = \mathrm{const} \cdot (x _ {3}),\tag{3.127c}
+\end{equation*}
+
+\begin{equation*}
+Y _ {2, \pm 2} = \mathrm{const} \cdot (x _ {1} \pm i x _ {2}) ^ {2},\tag{3.127d}
+\end{equation*}
+
+\begin{equation*}
+Y _ {2, \pm 1} = \mathrm{const} \cdot (x _ {1} \pm i x _ {2}) x _ {3},\tag{3.127e}
+\end{equation*}
+
+\begin{equation*}
+Y _ {2; 0} = \text { const } \cdot (2 x _ {3} ^ {2} - x _ {1} ^ {2} - x _ {2} ^ {2})\tag{3.127f}
+\end{equation*}
+
+等等。
+
+再回忆，根据定理3.9，在按照(3.121)的旋转下，球谐函数按(3.122)式作变换。改变记号，(3.122)式可写成
+
+\begin{equation*}
+Y _ {l m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = \sum_ {m ^ {\prime} = - l} ^ {l} D _ {m m ^ {\prime}} ^ {l} Y _ {l m ^ {\prime}} (\theta , \varphi).\tag{3.128}
+\end{equation*}
+
+此公式和在坐标变换时张量的变换规律十分相似。当然，这种相似还是不完全的，因 $\lambda$ 阶张量有 $3^{\lambda}$ 个分量，而 $\lambda$ “阶”球谐函数只有 $(2\lambda+1)$ 个 “分量”。但我们可将张量分量加以分类，使其与球谐函数相对应。
+
+引进这种分类。在 $l = 0$ 时，
+
+\begin{equation*}
+Y _ {0 0} = T _ {0},
+\end{equation*}
+
+同时在坐标变换时， $Y_{00}$ 和 $T_{0}$ 的状态都和标量一样。在 $l$=1 时，张量 $T_{i}$ 按照公式
+
+\begin{equation*}
+T _ {i} = \sum_ {j} R _ {i j} T _ {j}
+\end{equation*}
+
+作变换，即它和矢量相象。今用 $T_{1}, T_{2}, T_{3}$ 记矢量 $\pmb{T}_{i}$ 的分量，并将这些分量搜集成 $(1 / \sqrt{2})(T_{1} \pm iT_{2})$ 和 $T_{3}$ 两类，和在笛卡尔坐标系中 $Y_{1; \pm 1}$ 和 $Y_{1;0}$ 的写法[见(3.127b)和(3.127c)]相类比：
+
+\begin{equation*}
+\begin{array}{r l} \frac {1}{\sqrt {2}} (T _ {1} \pm i T _ {2}) & \sim Y _ {1: \pm 1} = \alpha (x _ {1} \pm i x _ {2}), \\ T _ {3} & \sim Y _ {1, 0} = \alpha x _ {3}. \end{array}
+\end{equation*}
+
+(记号“～”表明，用这些记号联结的式子，在形如(3.121)的旋转下，有类似的形式。)我们看到， $Y_{1;\pm1}$ 象 $Y_{1,0}$ 那样，和矢量相似。
+
+在 $l$=2 的情形，张量 $T_{ij}$ 象二阶张量那样变化。为了显示出张量和球谐函数之间确有相似之处，我们就利用将 $T_{ij}$ 分成几部分，即两阶张量可分解为对称和反对称部分这样的事实：
+
+\begin{equation*}
+T _ {i j} = S _ {i j} + A _ {i j},
+\end{equation*}
+
+这里
+\begin{equation*}
+S _ {i j} = S _ {j i}, \quad A _ {i j} = - A _ {j i}.
+\end{equation*}
+
+反对称部分与矢量相似，因为它与矢量用下面的式子相联系：
+
+\begin{equation*}
+A _ {i j} = \frac {1}{2} \sum_ {k} \varepsilon_ {i j k} V _ {k}.
+\end{equation*}
+
+因而可以说， $A_{ij}$ 和 $Y_{lm}$ 在坐标变换下是一样的。类似地，张量 $T_{ij}$ 的对角元素，即 $T_{ii}=S_{ii}$ ，与标量一样，由此还要出现对一个分量的类比
+
+\begin{equation*}
+S _ {i i} \sim Y _ {0 0}.
+\end{equation*}
+
+最后，对称部分可用下面的方式分类：
+
+\begin{equation*}
+\begin{array}{r l} & (S _ {1 1} \pm 2 i S _ {1 2} - S _ {2 2}) \sim Y _ {2; \pm 2} = \alpha (x _ {1} \pm i x _ {2}) ^ {2}, \\ & (S _ {1 3} \pm i S _ {2 3}) \sim Y _ {2; \pm 1} = \alpha (x _ {1} \pm i x _ {2}) x _ {3}, \\ & (2 S _ {3 3} - S _ {1 1} - S _ {2 2}) \sim Y _ {2; 0} = \alpha (2 x _ {3} ^ {2} - x _ {1} ^ {2} - x _ {2} ^ {2}). \end{array}
+\end{equation*}
+
+这样，我们在二阶张量的9个分量和球谐函数之间建立了对应关系。球谐函数与三阶张量之间的类比也可实现，但要作出它是比较困难的。而设法求出这些类比却是有趣的。
+
+\section{球谐函数的性质。续}
+
+为了今后研究球谐函数在坐标系转动时的性质，我们引进旋转算子①
+
+\begin{equation*}
+L _ {\gamma} = \frac {1}{i} \varepsilon_ {\alpha \beta \gamma} x _ {\alpha} \frac {\partial}{\partial x _ {p}} (\gamma = 1, 2, 3)\tag{3.129}
+\end{equation*}
+
+例如， $L_{1} = (1 / i)[x_{2}(\partial /\partial x_{3}) - x_{3}(\partial /\partial x_{2})]$ 。在研究坐标轴的无限小转动时，就很自然地出现这个算子。考虑绕轴 $x_{3}$ 的无限小旋转(图22)，此时
+
+\begin{equation*}
+(\theta , \varphi) \longrightarrow (\theta , \varphi + \delta \varphi).
+\end{equation*}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.46\textwidth]{fig22.pdf}
+\par\vspace{2pt}
+{\small 图 22.}
+\end{figure}
+
+在这种旋转下
+
+\begin{equation*}
+F (\theta , \varphi) \longrightarrow F (\theta , \varphi + \delta \varphi).
+\end{equation*}
+
+在点 $(\theta, \varphi)$ 的邻域内将 $F(\theta, \varphi)$ 展开成泰勒级数（Taylor series），并略去二阶微量项，得
+
+\begin{equation*}
+F (\theta , \varphi + \delta \varphi) = F (\theta , \varphi) + \delta \varphi \frac {\partial F}{\partial \varphi},
+\end{equation*}
+
+或
+\begin{equation*}
+L _ {\gamma} = \frac {1}{i} \sum_ {m, n = 1} ^ {3} \varepsilon_ {m n \gamma} x _ {m} \frac {\partial}{\partial x _ {n}} = \frac {1}{i} \varepsilon_ {\alpha \beta \gamma} x _ {\alpha} \frac {\partial}{\partial x _ {\beta}}
+\end{equation*}
+
+\begin{equation*}
+F (\theta , \varphi + \delta \varphi) = R (\delta \varphi) F (\theta , \varphi),\tag{3.130a}
+\end{equation*}
+
+这里
+\begin{equation*}
+R (\delta \varphi) = \left(1 + \delta \varphi \frac {\partial}{\partial \varphi}\right).\tag{3.130b}
+\end{equation*}
+
+等式(3.129)可表示成
+
+\begin{equation*}
+L _ {\gamma} = \frac {1}{i} [ r \times \nabla ] _ {\gamma}.\tag{3.131}
+\end{equation*}
+
+在柱面坐标中写出它对应于 $\gamma = 3$ 的分量
+
+\begin{equation*}
+L _ {3} = \frac {1}{i} [ (\rho + z) \times \nabla ] _ {3} = \frac {1}{i} [ \rho \times \nabla ] _ {3},
+\end{equation*}
+
+这是因为
+\begin{equation*}
+[ \boldsymbol {z} \times \nabla ] _ {3} = 0.
+\end{equation*}
+
+因此
+\begin{equation*}
+L _ {3} = \frac {1}{i} \rho \left(\frac {1}{\rho} \frac {\partial}{\partial \varphi}\right) = \frac {1}{i} \frac {\partial}{\partial \varphi}.\tag{3.132}
+\end{equation*}
+
+将 $L_{3}$ 的值代入方程 (3.130$b$)，则对绕 $z$ 轴的无限小转动就得表示式
+
+\begin{equation*}
+R (\delta \varphi) = 1 + i \delta \varphi L _ {3}.\tag{3.133a}
+\end{equation*}
+
+类似地，对绕 $x_{\alpha}$ 轴的转动可得
+
+\begin{equation*}
+R (\delta \varphi) = 1 + i \delta \varphi L _ {\alpha}.\tag{3.133b}
+\end{equation*}
+
+在有限旋转的情形，在函数 $F(\theta, \varphi + \delta \varphi)$ 的展开式中已不可以略去二阶微量项。此时绕 $\alpha$ 轴转动的情形，对 $R(\delta \varphi)$ 更精确的表示式将为
+
+\begin{equation*}
+R (\delta \varphi) = e ^ {i \varphi L _ {\alpha}}.\tag{3.134}
+\end{equation*}
+
+此外，显然 $L_{\alpha}$ 是厄米算子，而算子 $e^{i\varphi L_{\alpha}}$ 是酉算子。
+
+\section{动量矩算子分量的排列关系}
+
+动量矩算子分量的排列关系在量子力学中起着特别重要的作用。利用在量子力学中应用的记号，我们写
+
+\begin{equation*}
+p _ {\alpha} = \frac {1}{i} \frac {\partial}{\partial x _ {\alpha}}, \quad (\alpha = 1, 2, 3).
+\end{equation*}
+
+这里 $p_{\alpha}$ 为沿 $\alpha$ 轴的动量算子。动量算子一般写成
+
+\begin{equation*}
+p _ {a} = \frac {\hbar}{i} \frac {\partial}{\partial x _ {a}},
+\end{equation*}
+
+为了书写简洁起见，我们略去了普朗克(Planck)常数 $\hbar$ 。其次，注意到(3.129)式，则得关于动量矩算子分量的表示式
+
+\begin{equation*}
+L _ {\alpha} = \frac {1}{i} \varepsilon_ {\alpha \beta \gamma} x _ {\beta} \frac {\partial}{\partial x _ {\gamma}} = \varepsilon_ {\alpha \beta \gamma} x _ {\beta} p _ {\gamma},\tag{3.135}
+\end{equation*}
+
+这里 $\varepsilon_{\alpha\beta\gamma}$ 为三维列维-齐维他符号。
+
+现在建立两个重要的排列关系如下：
+
+\begin{equation*}
+x _ {\alpha} p _ {\beta} - p _ {\beta} x _ {\alpha} = - \frac {1}{i} \delta_ {\alpha \beta},\tag{3.136}
+\end{equation*}
+
+\begin{equation*}
+L _ {\alpha} L _ {\beta} - L _ {\beta} L _ {\alpha} = i \varepsilon_ {\alpha \beta \gamma} L _ {\gamma}.\tag{3.137}
+\end{equation*}
+
+先证第一个关系式。我们有
+
+\begin{equation*}
+\begin{array}{r l} (x _ {\alpha} p _ {\beta} - p _ {\beta} x _ {\alpha}) F (\boldsymbol {r}) & = \\ & = \frac {1}{i} \left\{x _ {\alpha} \frac {\partial F (\boldsymbol {r})}{\partial x _ {\beta}} - \frac {\partial (x _ {\alpha} F (\boldsymbol {r}))}{\partial x _ {\beta}} \right\} \\ & = - \frac {1}{i} \delta_ {\alpha \beta} F (\boldsymbol {r}), \end{array}
+\end{equation*}
+
+由此即知排列关系(3.136)成立。
+
+现对 $\alpha=1,\quad\beta=2$ 的情形来证明等式(3.137).
+
+\begin{equation*}
+\begin{array}{r l} & L _ {1} L _ {2} - L _ {2} L _ {1} = (x _ {2} p _ {3} - x _ {3} p _ {2}) (x _ {3} p _ {1} - x _ {1} p _ {3}) - \\ & \quad - (x _ {3} p _ {1} - x _ {1} p _ {3}) (x _ {2} p _ {3} - x _ {3} p _ {2}) = \\ & = x _ {2} p _ {3} (x _ {3} p _ {1}) - x _ {3} p _ {2} (x _ {3} p _ {1}) + x _ {3} p _ {2} (x _ {1} p _ {3}) - \\ & \quad - x _ {2} p _ {3} (x _ {1} p _ {3}) - x _ {3} p _ {1} (x _ {2} p _ {3}) + x _ {3} p _ {1} (x _ {3} p _ {2}) + \\ & \quad + x _ {1} p _ {3} (x _ {2} p _ {3}) - x _ {1} p _ {3} (x _ {3} p _ {2}) = \\ & = x _ {2} p _ {1} (p _ {3} x _ {3} - x _ {3} p _ {3}) + x _ {1} p _ {2} (x _ {3} p _ {3} - p _ {3} x _ {3}); \end{array}
+\end{equation*}
+
+注意到(3.136)，最后的等式可改写为
+
+\begin{equation*}
+\begin{array}{r l} & x _ {2} p _ {1} (p _ {3} x _ {3} - x _ {3} p _ {3}) + x _ {1} p _ {2} (x _ {3} p _ {3} - p _ {3} x _ {3}) = \\ & = i (x _ {1} p _ {2} - x _ {2} p _ {1}) = i L _ {3}. \end{array}
+\end{equation*}
+
+即
+\begin{equation*}
+L _ {1} L _ {2} - L _ {2} L _ {1} = i L _ {3}.
+\end{equation*}
+
+于是关系式（3.137）对于 $\alpha = 1$ 和 $\beta = 2$ 的情形已证明。对于所有其他的 $\alpha$ 值和 $\beta$ 值，证明是类似的。
+
+这些排列关系在量子力学中非常重要，由他们可推出动量矩算子分量彼此是不可交换的。
+
+现在把算子 $p_{\alpha}$ 与无限小位移看成是一样的。考虑无限小位移
+
+\begin{equation*}
+x _ {\alpha} \longrightarrow x _ {\alpha} + \delta x _ {\alpha};
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{r l} f (x _ {a} + \delta x _ {a}) & = f (x _ {a}) + \delta x _ {a} \frac {\partial f}{\partial x _ {a}} + \dots = \\ & = (1 + i \delta x _ {a} p _ {a}) f (x _ {a}) \equiv T (\delta x _ {a}) f (x _ {a}). \end{array}
+\end{equation*}
+
+对于有限位移，则与有限转动一样，我们得下面精确的表达式：
+
+\begin{equation*}
+f (x _ {\alpha} + \delta x _ {\alpha}) = e ^ {i \delta x _ {\alpha} p _ {\alpha}} f (x _ {\alpha}).
+\end{equation*}
+
+球谐函数在转动时的性质在量子力学中经常会用到，这是因为球谐函数是早先研究过的算子中某些算子的特征函数。
+
+\textbf{定理 3.10}\quad 下面的关系式成立
+
+\begin{equation*}
+L _ {3} Y _ {i m} = m Y _ {l m},\tag{3.138}
+\end{equation*}
+
+\begin{equation*}
+\left(L _ {1} \pm i L _ {2}\right) Y _ {l m} = N _ {\pm} Y _ {l: m \pm 1},\tag{3.139}
+\end{equation*}
+
+这里 $N_{\pm}$ 是下面我们将要确定的常数。
+
+\textbf{证明}\quad 先证明关系式(3.138)成立:
+
+\begin{equation*}
+\begin{array}{r l} L _ {3} Y _ {l m} & = \frac {1}{i} \frac {\partial}{\partial \varphi} [ \text { const } \times e ^ {i m \varphi} f (\theta) ] \\ & = m [ \text { const } \times e ^ {i m \varphi} f (\theta) ] = m Y _ {l m}. \end{array}
+\end{equation*}
+
+这就是所要证明的。
+
+现在再证明关系式(3.139)，因 $L_{1}$ 和 $L_{2}$ 是转动算子，故由定理3.9[(3.122)式]，下面的关系式成立：
+
+\begin{equation*}
+\left(L _ {1} + i L _ {2}\right) Y _ {l m} = \sum_ {m ^ {\prime} = - l} ^ {l} A _ {m m ^ {\prime}} ^ {l} Y _ {l m ^ {\prime}} (\theta , \varphi).\tag{3.140}
+\end{equation*}
+
+其次，利用对 $L_{2}$ 的排列关系(3.137)，得
+
+\begin{equation*}
+\begin{array}{r l} L _ {3} (L _ {1} + i L _ {2}) & = L _ {3} L _ {1} + i L _ {3} L _ {2} = \\ & = L _ {1} L _ {3} + i L _ {2} + i L _ {2} L _ {3} + L _ {1}, \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+L _ {3} \left(L _ {1} + i L _ {2}\right) = \left(L _ {1} + i L _ {2}\right) \left(L _ {3} + I\right).\tag{3.141}
+\end{equation*}
+
+利用这个事实和(3.138)式，可写
+
+\begin{equation*}
+\begin{array}{r l} & L _ {3} \left\{\left(L _ {1} + i L _ {2}\right) Y _ {l m} \right\} = \left(L _ {1} + i L _ {2}\right) \left\{\left(L _ {3} + I\right) Y _ {l m} \right\} \\ & = \left(L _ {1} + i L _ {2}\right) (m + 1) Y _ {l m} = (m + 1) \left\{\left(L _ {1} + i L _ {2}\right) Y _ {l m} \right\} \end{array}\tag{3.142}
+\end{equation*}
+
+由此容易看出 $(L_{1} + iL_{2})Y_{lm}$ 是算子 $L_{3}$ 的特征函数，相应的特征值等于 $m + 1$ 。但由(3.138)， $Y_{lm'}$ 是算子 $L_{3}$ 的特征函数，相应的特征值为 $m'$ 。因此，在 $m' \neq m + 1$ 时， $Y_{lm'}$ 与 $(L_{1} + iL_{2})Y_{lm}$ 正交（正交性由算子 $L_{3}$ 的厄米性决定，见定理3.4）。
+
+现确定 $A_{mm'}$ 。在关系式(3.140)两边左乘以 $Y_{lm'}^*$ ，并积分之。由于 $(L_1 + iL_2)Y_{lm}$ 与 $Y_{lm'}$ 的正交性，对于 $m' \neq m + 1$ ，我们得
+
+\begin{equation*}
+A _ {m m ^ {\prime}} = \int Y _ {l m ^ {\prime}} ^ {*} (L _ {1} + i L _ {2}) Y _ {l m} d \Omega = 0.\tag{3.143}
+\end{equation*}
+
+因此等式(3.140)可改写成
+
+\begin{equation*}
+\left(L _ {1} \pm i L _ {2}\right) Y _ {l m} = A _ {m; m \pm 1} Y _ {l: m \pm 1}.\tag{3.144}
+\end{equation*}
+
+注意，在表达式 $(L_{1} + iL_{2})$ 中加号改为减号，则可以作出类似的结论。因此在等式(3.144)中可以写（±）。如果命 $N_{\pm} = A_{m;m\pm 1}$ ，则等式(3.144)与(3.139)在本质上相一致。剩下的只是求 $N_{\pm}$ 的表达式。
+
+为此，我们作下列计算：
+
+\begin{equation*}
+\begin{array}{r l} | N _ {\pm} | ^ {2} & = \int N _ {\pm} ^ {*} N _ {\pm} Y _ {l; m \pm 1} ^ {*} Y _ {l; m \pm 1} d \Omega = \\ & = \int (L _ {1} \pm i L _ {2}) ^ {*} Y _ {l m} ^ {*} (L _ {1} \pm i L _ {2}) Y _ {l m} d \Omega = \\ & = \int (L _ {1} ^ {*} \mp i L _ {2} ^ {*}) Y _ {l m} ^ {*} (L _ {1} \pm i L _ {2}) Y _ {l m} d \Omega . \end{array}\tag{3.145}
+\end{equation*}
+
+引进记号
+\begin{equation*}
+(L _ {1} + i L _ {2}) Y _ {l m} = g, \quad Y _ {l m} = f.
+\end{equation*}
+
+考虑第一种情形——“加”号。由于算子 $L_{1}$ 和 $L_{2}$ 是厄米的，故得
+
+\begin{equation*}
+\begin{array}{r l} \left| N _ {+} \right| ^ {2} & = \int g ^ {*} L _ {1} f d \Omega + i \int g ^ {*} L _ {2} f d \Omega = \\ & = \left[ \int f ^ {*} L _ {1} g d \Omega \right] ^ {*} + i \left[ \int f ^ {*} L _ {2} g d \Omega \right] ^ {*} = \\ & = \left[ \int f ^ {*} (L _ {1} - i L _ {2}) g d \Omega \right] ^ {*} = \\ & = \left[ \int Y _ {i m} ^ {*} (L _ {1} - i L _ {2}) (L _ {1} + i L _ {2}) Y _ {i m} d \Omega \right] ^ {*}. \end{array}\tag{3.146}
+\end{equation*}
+
+但模的平方 $|N_{+}|^{2}$ 是实数，因而
+
+\begin{equation*}
+\begin{array}{r l} \left| N _ {+} \right| ^ {2} & = \int Y _ {l m} ^ {*} \left[ L _ {1} ^ {2} - i L _ {2} L _ {1} + i L _ {1} L _ {2} + L _ {2} ^ {2} \right] Y _ {l m} d \Omega = \\ & = \int Y _ {l m} ^ {*} \left[ L ^ {2} - L _ {3} ^ {2} - L _ {3} \right] Y _ {l m} d \Omega . \end{array} \tag{3.147}
+\end{equation*}
+
+现注意到关系式(3.113)和(3.138)，由(3.147)有
+
+\begin{equation*}
+\left| N _ {+} \right| ^ {2} = (l + 1) l - m ^ {2} - m = (l - m) (l + m + 1),
+\end{equation*}
+
+即
+\begin{equation*}
+\left| N _ {+} \right| = \sqrt {(l - m) (l + m + 1)}.
+\end{equation*}
+
+对于 $|N_{-}|^{2}$ ，用类似的方法得
+
+\begin{equation*}
+\left| N _ {-} \right| = \sqrt {(l + m) (l - m + 1)}.
+\end{equation*}
+
+最后，
+\begin{equation*}
+\left(L _ {1} \pm i L _ {2}\right) Y _ {l m} = \sqrt {(l \mp m) (l \pm m + 1)} Y _ {l, m \pm 1},\tag{3.148}
+\end{equation*}
+
+\begin{equation*}
+L _ {1} Y _ {l m} = \frac {1}{2} N _ {+} Y _ {l; m + 1} + \frac {1}{2} N _ {-} Y _ {l; m - 1},\tag{3.149}
+\end{equation*}
+
+\begin{equation*}
+L _ {2} Y _ {l m} = \frac {1}{2 i} N _ {+} Y _ {l; m + 1} - \frac {1}{2 i} N _ {-} Y _ {l; m - 1}.\tag{3.150}
+\end{equation*}
+
+到此，我们将结束动量矩算子的特征值和特征函数的讨论，而转到球谐函数与另一熟知的球坐标函数之间的联系问题。
+
+\section{球谐函数与勒让德多项式之间的联系}
+
+我们早已求得了勒让德多项式与球谐函数之间的联系公式。这里我们用另一种方法，即根据球谐函数系的唯一性定理（3.8）来建立同样的公式。
+
+当 $m = 0$ 时，球谐函数只依赖于 $\cos \theta$ ，即
+
+\begin{equation*}
+Y _ {i 0} = f (\cos \theta).
+\end{equation*}
+
+另一方面，当 $m = 0$ 时，方程（3.113）变为勒让德方程（3.89），它的解是勒让德多项式 $P_{i}(\cos \theta)$ 。因此可写
+
+\begin{equation*}
+Y _ {l 0} = \text { const } \cdot P _ {l} (\cos \theta);\tag{3.151}
+\end{equation*}
+
+由此推出，由在区间 $0 \leqslant \theta \leqslant 2\pi$ 上与 $P_{l}(\cos \theta)$ 仅差一常数因子的关于 $\cos \theta$ 的 $l$ 次多项式 $Y_{l0}$ 所构成的函数系是完备正交系。换言之，下面关系式成立：
+
+\begin{equation*}
+\int Y _ {l 0} ^ {*} Y _ {l ^ {\prime} 0} d \Omega = \delta_ {l l ^ {\prime}}.\tag{3.152}
+\end{equation*}
+
+由它还可决定标准化系数
+
+\begin{equation*}
+\begin{array}{r l} \int Y _ {l} ^ {*} Y _ {l ^ {\prime}} d \Omega & = \int f _ {l} ^ {*} (\cos \theta) f _ {l ^ {\prime}} (\cos \theta) d \varphi \sin \theta d \theta = \\ & = 2 \pi \int_ {- 1} ^ {1} Y _ {l, 0} ^ {*} (x) Y _ {l ^ {\prime}, 0} (x) d x = \\ & = 2 \pi | \text {const} | ^ {2} \int_ {- 1} ^ {1} P _ {l} ^ {*} (x) P _ {l ^ {\prime}} (x) d x = \\ & = \delta_ {l l ^ {\prime}} \end{array} \tag{3.153}
+\end{equation*}
+
+(这里我们使用了代换 $x = \cos \theta$ )。因前面已证得[见(3.77)式]
+
+\begin{equation*}
+\int_ {- 1} ^ {1} P _ {i} ^ {*} (x) P _ {i} (x) d x = \frac {2}{2 l + 1},\tag{3.154}
+\end{equation*}
+
+将此等式与(3.153)作比较，我们就求得(3.151)中的常数等于
+
+\begin{equation*}
+\sqrt {\frac {2 l + 1}{4 \pi}}.\tag{3.155}
+\end{equation*}
+
+现在等式(3.151)可改写成
+
+\begin{equation*}
+Y _ {i 0} = \sqrt {\frac {2 l + 1}{4 \pi}} P _ {i} (\cos \theta).\tag{3.156}
+\end{equation*}
+
+现在我们指出寻求高阶球谐函数与勒让德多项式之间联系的算法。
+
+将算子 $(L_{1} + iL_{2})$ 作用于函数 $Y_{i0}$ ，就给出函数 $Y_{i1}$ ：
+
+\begin{equation*}
+\left(L _ {1} + i L _ {2}\right) Y _ {l 0} = \sqrt {l (l + 1)} Y _ {l 1}\tag{3.157}
+\end{equation*}
+
+再将算子 $(L_{1} + iL_{2})$ 作用于 $Y_{l1}$ 就得函数 $Y_{l2}$ :
+
+\begin{equation*}
+\begin{array}{r l} (L _ {1} + i L _ {2}) Y _ {l 1} & = \frac {1}{\sqrt {l (l + 1)}} (L _ {1} + i L _ {2}) ^ {2} Y _ {l 0} = \\ & = \sqrt {(l - 1) (l + 2)} Y _ {l 2}. \end{array} \tag{3.158}
+\end{equation*}
+
+将这个过程继续下去，就得下面的公式
+
+\begin{equation*}
+Y _ {l, \pm m} = \sqrt {\frac {(l - m) !}{(l + m) !}} \left(L _ {1} \pm i L _ {2}\right) ^ {m} Y _ {l 0},\tag{3.159}
+\end{equation*}
+
+这里 $Y_{l_1 \pm m}$ 是算子 $(L_1 \pm iL_2)$ 的 $m$ 重运算作用于函数 $Y_{l_0}$ 所得的结果。
+
+将(3.159)式改写成
+
+\begin{equation*}
+Y _ {l, \pm m} = (\pm 1) ^ {m} \sqrt {\frac {(2 l + 1) (l - m) !}{4 \pi (l + m) !}} e ^ {i m \varphi} P _ {l} ^ {m} (\cos \theta),\tag{3.160}
+\end{equation*}
+
+这里 $P_{i}^{m}(x)$ 称为勒让德伴随函数，它由罗德利克公式确定：
+
+\begin{equation*}
+P _ {l} ^ {m} (x) = (1 - x) ^ {\frac {m}{2}} \frac {d ^ {m}}{d x ^ {m}} P _ {l} (x).\tag{3.161}
+\end{equation*}
+
+我们发现，公式(3.160)和(3.161)正好就是(用不同的途径得到的)公式(3.103)和(3.104)。
+
+\section{加法定理}
+
+考虑定义在单位球面上的二元函数。球面上点的位置用坐标 $\theta$ 和 $\varphi$ 确定。其次，假定点 $M(\theta, \varphi)$ 的矢径 $r$ 和点 $M'(\theta', r')$ 的矢径 $r'$ 之间的夹角等于 $\alpha$ 。
+
+我们知道函数 $Y_{10}(\theta, \varphi)$ 不依赖于 $\varphi$ ，即
+
+\begin{equation*}
+Y _ {l 0} (\theta , \varphi) = Y _ {l 0} (\theta).
+\end{equation*}
+
+现在在新坐标系中写出函数 $Y_{i0}(\theta)$ ，这个坐标系是这样得到的，如果从它的轴开始量出角 $\theta'$ 和 $\varphi'$ ，则此轴就和点 $M'(\theta',\varphi')$ 的矢径 $r'$ 相重合：
+
+\begin{equation*}
+Y _ {l 0} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = Y _ {l 0} (\alpha).
+\end{equation*}
+
+根据定理3.9，函数 $Y_{10}(\alpha)$ 可用原来坐标系中函数 $Y_{1m}(\theta, \varphi)$ 表示出：
+
+\begin{equation*}
+Y _ {l 0} (\alpha) = \sum_ {m = - l} ^ {l} D _ {0 m} ^ {l} Y _ {l m} (\theta , \varphi).\tag{3.162}
+\end{equation*}
+
+现叙述并证明在 $\theta, \varphi, \theta', \varphi'$ 和 $\alpha$ 之间建立关系的所谓加法定理。
+
+\textbf{定理 3.11}\quad 假定 $\theta$ 和 $\varphi$ 是点 $M$ 的坐标，而 $\theta'$ 和 $\varphi'$ 是点 $M'$ 的坐标，同时这些点的矢径的夹角等于 $\alpha$ ，则下面的等式成立：
+
+\begin{equation*}
+P _ {l} (\cos \alpha) = \frac {4 \pi}{2 l + 1} \sum_ {m = - l} ^ {l} Y _ {l m} ^ {*} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l m} (\theta , \varphi).\tag{3.163}
+\end{equation*}
+
+\textbf{证明}\quad 考虑仅作用于不带撇号的坐标系(原坐标系)中的旋转算子 $L_{\beta}$ ①:
+
+\begin{equation*}
+L _ {\beta} = \frac {1}{i} \varepsilon_ {\alpha \beta \gamma} x _ {\gamma} \frac {\partial}{\partial x _ {\alpha}};
+\end{equation*}
+
+类似的算子
+\begin{equation*}
+L _ {\beta ^ {\prime}} = \frac {1}{i} \varepsilon_ {\alpha^ {\prime} \beta^ {\prime} \gamma^ {\prime}} x _ {\gamma^ {\prime}} \frac {\partial}{\partial x _ {\alpha ^ {\prime}}}
+\end{equation*}
+
+仅作用于带撇号的坐标系（即由原来坐标系经旋转而得的坐标系)。因在 $\beta$ 轴附近转动无限小角度 $\delta \varphi$ ，所有函数 $f(\theta, \varphi)$ 的改变量等于 $(i\delta \varphi L_{\beta}) \cdot f(\theta, \varphi)$ 。故由于连续绕 $\beta$ 和 $\beta'$ 轴转动 $\delta \varphi$ 角的结果，我们得 $Y_{t0}(\alpha)$ 的改变量为
+
+\begin{equation*}
+i \delta \varphi (L _ {3} + L _ {\beta ^ {\prime}}) Y _ {l 0} (\alpha).\tag{3.164}
+\end{equation*}
+
+但此改变量必需等于零，因 $Y_{10}(\alpha)$ 仅是角 $\alpha$ 的函数，即是矢量 $r'$ 和 $r$ 位置的函数，它在坐标系转动时不变。因此
+
+\begin{equation*}
+(L _ {\beta} + L _ {\beta^ {\prime}}) Y _ {l 0} (\alpha) = 0\tag{3.165}
+\end{equation*}
+
+类似地，由 $L^2$ 关于转动的不变性和关系式(3.113)推出
+
+\begin{equation*}
+L ^ {2} Y _ {l 0} (\alpha) = (L ^ {2}) ^ {\prime} Y _ {l 0} (\alpha) = l (l + 1) Y _ {l 0} (\alpha).\tag{3.166}
+\end{equation*}
+
+继续证明。在等式(3.162)两边同时作用算子 $(L^2)'$ ，
+
+\begin{equation*}
+(L ^ {2}) ^ {\prime} Y _ {l 0} (\alpha) = (L ^ {2}) ^ {\prime} \sum_ {m = - l} ^ {l} D _ {0 m} ^ {l} Y _ {l m} (\theta , \varphi).\tag{3.167}
+\end{equation*}
+
+根据定理3.9， $D_{\theta m}^{l} = f(R_{ij})$ ，这里 $R_{ij}$ 是(3.121)中从 $x_{i}$ 变换到 $x_{j}^{\prime}$ 的矩阵。因此 $D_{\theta m}^{l} = F(\theta^{\prime},\varphi^{\prime})$ 。注意到算子 $(L^2)^{\prime}$ 仅对 $\theta^{\prime}$ 和 $\varphi^{\prime}$ 的函数起作用，故可改写(3.167)成
+
+\begin{equation*}
+(L ^ {2}) ^ {\prime} Y _ {l 0} (\alpha) = \sum_ {m = - l} ^ {l} [ (L ^ {2}) ^ {\prime} D _ {0 m} ^ {l} (\theta^ {\prime}, \varphi^ {\prime}) ] Y _ {l m} (\theta , \varphi)\tag{3.168}
+\end{equation*}
+
+[因为 $Y_{1n}(\theta, \varphi)$ 不依赖于 $\theta'$ 和 $\varphi'$ ]。其次，利用等式(3.166)和(3.162)，可写出下面一连串等式：
+
+\begin{equation*}
+\begin{array}{r l} (L ^ {2}) ^ {\prime} Y _ {l 0} (\alpha) & = L ^ {2} Y _ {l 0} (\alpha) = l (l + 1) Y _ {l 0} (\alpha) = \\ & = \sum_ {m = - l} ^ {l} l (l + 1) D _ {0 m} ^ {l} (\theta^ {\prime} \varphi^ {\prime}) Y _ {l m} (\theta , \varphi). \end{array}\tag{3.169}
+\end{equation*}
+
+这里最后一步是在等式(3.162)两边乘以 $l(l+1)$ 而得到的。由(3.168)和(3.169)得出
+
+\begin{equation*}
+\begin{array}{r l} \sum_ {m = - l} ^ {l} [ (L ^ {2}) ^ {\prime} D _ {0 m} ^ {l} (\theta^ {\prime}, \varphi^ {\prime}) ] Y _ {1 m} (\theta , \varphi) & = \\ & = \sum_ {m = - l} ^ {l} [ l (l + 1) D _ {0 m} ^ {l} (\theta^ {\prime}, \varphi^ {\prime}) ] Y _ {1 m} (\theta , \varphi) \end{array}\tag{3.170}
+\end{equation*}
+
+或(注意到函数系 $Y_{1m}(\theta,\varphi)$ 的唯一性与正交性)
+
+\begin{equation*}
+(L ^ {2}) ^ {\prime} D _ {0 m} ^ {l} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = l (l + 1) D _ {0 m} ^ {l} \left(\theta^ {\prime}, \varphi^ {\prime}\right) \text{。}\tag{3.171}
+\end{equation*}
+
+展开等式(3.165):
+
+\begin{equation*}
+\begin{array}{r l} 0 & = (L _ {3} ^ {\prime} + L _ {3}) Y _ {l 0} (\alpha) = \\ & = \sum_ {m = - l} ^ {l} [ L _ {3} ^ {\prime} D _ {0 m} ^ {l} (\theta^ {\prime}, \varphi^ {\prime}) ] Y _ {l m} (\theta , \varphi) + \\ & \quad + \sum_ {m = - l} ^ {l} D _ {0 m} ^ {l} (\theta^ {\prime}, \varphi^ {\prime}) m Y _ {l m} (\theta , \varphi). \end{array}\tag{3.172}
+\end{equation*}
+
+[这里我们考虑到了算子 $L_{3}$ 仅对不带撇号的坐标的函数起作用；此外，还利用了等式(3.162)和(3.138)]。由(3.172)推出
+
+\begin{equation*}
+L _ {3} ^ {l} D _ {0 m} ^ {l} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = - m D _ {0 m} ^ {l} \left(\theta^ {\prime}, \varphi^ {\prime}\right).\tag{3.173}
+\end{equation*}
+
+从而由(3.138)即知 $D_{0m}^{l}(\theta',\varphi')$ （和 $Y_{lm}$ 一样）是算子 $L_{3}$ 的特征函数，且他们对应于同样的特征值（仅是符号不同）。根据 $Y_{lm}(\theta,\varphi)$ 的唯一性，我们可写
+
+\begin{equation*}
+D _ {0 m} ^ {l} \left(\theta^ {\prime}, \varphi^ {\prime}\right) = A _ {m} Y _ {l, - m} \left(\theta^ {\prime}, \varphi^ {\prime}\right),\tag{3.174}
+\end{equation*}
+
+这里
+\begin{equation*}
+A _ {m} = \text { const. }
+\end{equation*}
+
+将(3.156)式中的 $Y_{l0}$ 值和(3.174)中对于 $D_{0m}^{l}$ 的表达式代入(3.162)式，等式两边除以 $\sqrt{(2l + 1) / 4\pi}$ ，就得到：
+
+\begin{equation*}
+P _ {l} (\cos \alpha) = \sum_ {m = - l} ^ {l} B _ {m} Y _ {l, - m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l m} (\theta , \varphi),\tag{3.175}
+\end{equation*}
+
+这里 $B_{m} = \mathrm{const}$。为了确定 $B_{m}$ ，在等式(3.175)两边作用算子 $L_{1} = L_{x}$ [参见公式(3.149)]，得
+
+\begin{equation*}
+\begin{array}{r l} & L _ {\chi} [ P _ {i} (\cos \alpha) ] = \sum_ {m = - l} ^ {l} \left[ \frac {1}{2} \sqrt {l (l + 1) - m (m + 1)} \times \right. \\ & \times Y _ {i, - m} (\theta^ {\prime}, \varphi^ {\prime}) Y _ {l, m + 1} (\theta , \varphi) + \frac {1}{2} \sqrt {l (l + 1) - (m - 1) m} \\ & \times Y _ {l, - m} (\theta^ {\prime}, \varphi^ {\prime}) Y _ {l, m - 1} (\theta , \varphi) \Big ] B _ {m}. \end{array} \tag{3.176}
+\end{equation*}
+
+在(3.175)中，将 $m$ 改作 $m + 1$ ，则可写
+
+\begin{equation*}
+P _ {l} (\cos \alpha) = \sum_ {- l - 1} ^ {l - 1} B _ {m + 1} Y _ {l, i - m - 1} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l, m + 1} (\theta , \varphi).\tag{3.177}
+\end{equation*}
+
+在等式(3.177)两边作用算子 $L_{x}^{\prime}$ ，得
+
+\begin{equation*}
+\begin{array}{r l} L _ {x} ^ {l} [ P _ {l} (\cos \alpha) ] & = \sum_ {- l - 1} ^ {l - 1} \left[ \frac {1}{2} \sqrt {l (l + 1) - m (m + 1)} \times \right. \\ & \quad \times B _ {m + 1} Y _ {l, - m} (\theta^ {\prime}, \varphi^ {\prime}) Y _ {l, m + 1} (\theta , \varphi) + \\ & \quad + \frac {1}{2} \sqrt {l (l + 1) - (m + 1) (m + 2)} \times \\ & \quad \times B _ {m + 1} Y _ {l, - m - 2} (\theta^ {\prime}, \varphi^ {\prime}) Y _ {l, m + 1} (\theta , \varphi) \Big ]. \end{array} \tag{3.178}
+\end{equation*}
+
+为了建立 $B_{m}$ 和 $B_{m - 1}$ 之间的联系，将等式(3.176)和(3.178)逐项相加。因为
+
+\begin{equation*}
+\begin{array}{l} \left(L _ {x} ^ {\prime} + L _ {x}\right) P _ {l} (\cos \theta) = 0, \\ \sum_ {m = - l} ^ {l - 1} \left\{\frac {1}{2} \left(B _ {m} + B _ {m + 1}\right) \left[ Y _ {l: m + 1} (\theta , \varphi) Y _ {l: - m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) \times \right. \right. \\ \times \sqrt {l (l + 1) - m (m + 1)} ] + \sqrt {l (l + 1) - m (m - 1)} \times \\ \times Y _ {l: - m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l: m - 1} (\theta , \varphi) B _ {m} + \\ + \sqrt {l (l + 1) - (m + 1) (m + 2)} B _ {m + 1} Y _ {l: - m - 2} \left(\theta^ {\prime}, \varphi^ {\prime}\right) \times \\ \times Y _ {l: m + 1} (\theta , \varphi) \Bigg \} = 0. \end{array} \tag{3.179}
+\end{equation*}
+
+此等式乘以 $Y_{i:m+1}^{*}(\theta, \varphi) Y_{i:-m}^{*}(\theta', \varphi')$ ，然后逐项求积，并注意到所考虑函数的正交性，就得
+
+\begin{equation*}
+\begin{array}{r l} \frac {1}{2} [ B _ {m + 1} + B _ {m} ] \sqrt {l (l + 1) - m (m + 1)} & \times \\ & \times \int | Y _ {l: m + 1} (\theta , \varphi) | ^ {2} | Y _ {l: - m} (\theta^ {\prime}, \varphi^ {\prime}) | ^ {2} d \Omega d \Omega^ {\prime} \\ & = 0. \end{array} \tag{3.180}
+\end{equation*}
+
+由这个恒等式就应有：
+
+\begin{equation*}
+B _ {m + 1} + B _ {m} = 0,\tag{3.181}
+\end{equation*}
+
+由此推出
+\begin{equation*}
+B _ {m} = (- 1) ^ {m} k.\tag{3.182}
+\end{equation*}
+
+这样一来，展开式(3.175)具有下面的形式
+
+\begin{equation*}
+P _ {l} (\cos \alpha) = k \sum_ {m = - l} ^ {l} (- 1) ^ {m} Y _ {l: - m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l: m} (\theta , \varphi).\tag{3.183}
+\end{equation*}
+
+因(3.183)应对所有角 $\theta'$ ， $\varphi'$ ， $\theta$ ， $\varphi$ 都满足，故可置 $\theta' = 0$ （即 $\theta = \alpha$ ），则当 $m \neq 0$ 时
+
+\begin{equation*}
+Y _ {1: - \pi} (\theta^ {\prime}, \varphi^ {\prime}) = \text { const } \cdot \sin^ {| \pi |} \theta^ {\prime} f (\theta^ {\prime}) = 0.
+\end{equation*}
+
+考虑到(3.156)和我们假定 $\theta = \alpha$ ，则(3.183)可写成
+
+\begin{equation*}
+\begin{array}{r l} P _ {i} (\cos \alpha) & = k Y _ {i 0} (\theta^ {\prime}, \varphi^ {\prime}) Y _ {i 0} (\theta , \varphi) = \\ & = k \sqrt {\frac {2 l + 1}{4 \pi}} P _ {i} (0) \cdot \sqrt {\frac {2 l + 1}{4 \pi}} P _ {i} (\cos \alpha) = \\ & = k \frac {2 l + 1}{4 \pi} P _ {i} (\cos \alpha) \end{array}
+\end{equation*}
+
+的形式，因此
+
+\begin{equation*}
+k = \frac {4 \pi}{2 l + 1};
+\end{equation*}
+
+于是，(3.183)就变为
+
+\begin{equation*}
+P _ {l} (\cos \alpha) = \frac {4 \pi}{2 l + 1} \sum_ {m = - l} ^ {l} (- 1) ^ {m} Y _ {l; - m} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l m} (\theta , \varphi).\tag{3.184}
+\end{equation*}
+
+但根据 $Y_{1m}$ 的定义[(3.160)式]，可写
+
+\begin{equation*}
+Y _ {l m} ^ {*} (\theta , \varphi) = (- 1) ^ {m} Y _ {l; - m} (\theta , \varphi).\tag{3.185}
+\end{equation*}
+
+由等式(3.184)和(3.185)推出所要证明的定理：
+
+\begin{equation*}
+P _ {1} (\cos \alpha) = \frac {4 \pi}{2 l + 1} \sum_ {m = - l} ^ {l} Y _ {l m} ^ {*} \left(\theta^ {\prime}, \varphi^ {\prime}\right) Y _ {l m} (\theta , \varphi).
+\end{equation*}
+
+\section{球谐函数的应用}
+
+如前所述，球谐函数在物理学中可找到一系列的应用。其中之一就是在本章§7中所讨论的多极展开。在那里我们得到了(3.82)式，现在可用另一种方式来写出它：
+
+\begin{equation*}
+\frac {1}{| \boldsymbol {R} - \boldsymbol {r} |} = \frac {1}{R} \sum_ {i = 0} ^ {\infty} \left(\frac {r}{R}\right) ^ {l} P _ {i} (\cos \alpha).\tag{3.186}
+\end{equation*}
+
+利用加法定理，(3.186)可改写成下面的形式，
+
+\begin{equation*}
+\begin{array}{r l} \frac {1}{| R - r |} & = \frac {1}{R} \sum_ {l = 0} ^ {\infty} \sum_ {m = - l} ^ {l} \left(\frac {r}{R}\right) ^ {l} \frac {4 \pi}{2 l + 1} \times \\ & \times Y _ {l m} ^ {*} (\theta^ {\prime}, \varphi^ {\prime}) Y _ {l m} (\theta , \varphi). \end{array}\tag{3.187}
+\end{equation*}
+
+回忆在点 $R$ 处的位势等于
+
+\begin{equation*}
+V (R) = \int_ {T} \frac {\rho (\boldsymbol {r})}{| \boldsymbol {R} - \boldsymbol {r} |} d \tau ,\tag{3.188}
+\end{equation*}
+
+这里积分区域取在分布电荷的整个容积 $T$ 上。现在注意到(3.187)，可将(3.188)改写成
+
+\begin{equation*}
+\begin{array}{r l} V (R) & = \sum_ {l = 0} ^ {\infty} \sum_ {m = - l} ^ {l} \frac {Y _ {l m} (\theta , \varphi)}{R ^ {l + 1}} \times \\ & \quad \times \int \frac {4 \pi}{2 l + 1} r ^ {l} Y _ {l m} ^ {*} (\theta^ {\prime}, \varphi^ {\prime}) \rho (\boldsymbol {r}) d ^ {3} \boldsymbol {r} = \\ & = \sum_ {l = 0} ^ {\infty} \sum_ {m = - l} ^ {l} Y _ {l m} (\theta , \varphi) Q _ {l m} \frac {1}{R ^ {l + 1}}, \end{array} \tag{3.189}
+\end{equation*}
+
+这里
+\begin{equation*}
+Q _ {l m} = \frac {4 \pi}{2 l + 1} \int Y _ {l m} ^ {*} (\theta^ {\prime}, \varphi^ {\prime}) r ^ {l} \rho (\boldsymbol {r}) d ^ {3} \boldsymbol {r}.\tag{3.190}
+\end{equation*}
+
+注意，量 $Q_{lm}$ 依赖于原来坐标的选取。
+
+至此，我们将结束对球谐函数的研究。当然，许多对我们极有价值的问题，还远远没有处理完毕。例如，可以证明对傅里叶级数已证明的全部定理对球谐函数也成立；还可以对球谐函数建立递推公式，研究其生成函数，等等。

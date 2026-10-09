@@ -1,0 +1,55 @@
+% 冒烟编译：只编当前章，验证 0 错。用法：xelatex -jobname=smoke smoke.tex ×2
+% 《多体量子场论》中文重排本
+% Xiao-Gang Wen, Quantum Field Theory of Many-Body Systems:
+%   From the Origin of Sound to an Origin of Light and Electrons
+%   (Oxford University Press, 2004)
+% 编译：xelatex ×3
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+\usepackage{amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\ctexset{
+  chapter/name = {第,章},
+  section/format = \Large\bfseries,
+}
+\setcounter{secnumdepth}{3}% 原书有 N.M.K.L 四级标题（如 3.3.8.1），需给 \subsubsection 编号
+\setcounter{tocdepth}{1}% 目录只到节一级（与原书目录一致）
+\allowdisplaybreaks
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \predisplaypenalty=10000
+\graphicspath{{figures/}}
+\xeCJKDeclareCharClass{CJK}{"201C, "201D, "2018, "2019}
+
+% 插入的空白衬页真正空白（无页眉页脚）
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% 原书小字号段落（评注/进阶话题，正文排版但字号略小）
+\newenvironment{smallnote}{\par\begingroup\small}{\endgroup\par}
+
+% 章首题词（原书各章卷首引语）
+\newcommand{\epigraphbook}[2]{%
+  \begin{center}\itshape #1\\[0.3em]\scshape #2\end{center}}
+
+% 节首要点列表（原书每节开头的破折号要点）
+\newenvironment{keypoints}{\begin{itemize}[leftmargin=1.6em,itemsep=0.1em]
+  \setlength\parskip{0pt}}{\end{itemize}}
+
+\begin{document}
+\frontmatter
+% \tableofcontents
+
+\mainmatter
+% 在下行填要冒烟的章：
+\input{chapters/ch10}
+
+\end{document}

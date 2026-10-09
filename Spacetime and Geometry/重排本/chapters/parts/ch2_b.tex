@@ -1,0 +1,244 @@
+% ch2_b (书页 61-72 / p076-p087)
+%--A-TAIL--
+%JOIN% 尚未覆盖整个圆。因此我们至少需要两个卡片，如图 2.15 所示。
+%FIG{2.15}: {共同覆盖 $S^1$ 的两个坐标卡片。}
+% ---- 书页 61 / p076 ----
+一个稍微复杂些的例子由 $S^2$ 提供：同样，没有任何单个卡片能覆盖整个流形。绘制世界地图时传统上使用的墨卡托投影（Mercator projection）就同时漏掉了北极和南极（还有国际日期变更线（International Date Line），它涉及的角度 $\theta$ 的问题与我们在 $S^1$ 中发现的相同）。我们把 $S^2$ 取为 $\mathbf{R}^3$ 中由 $(x^1)^2+(x^2)^2+(x^3)^2=1$ 所定义的点集。我们可以从一个开集 $U_1$ 出发构造一个卡片，$U_1$ 定义为球面去掉北极之后的集合；构造方法是球极投影（stereographic projection），如图 2.16 所示。具体做法是：从北极向由 $x^3=-1$ 定义的平面画一条直线，给 $S^2$ 上被这条直线截住的点指定平面上相应点的笛卡尔坐标 $(y^1,y^2)$。明确写出来，这个映射就是
+\begin{equation*}
+\phi_1(x^1,x^2,x^3)\equiv(y^1,y^2)=\left(\frac{2x^1}{1-x^3}\,,\ \frac{2x^2}{1-x^3}\right). \tag{2.9}
+\end{equation*}
+请你自行验证这一点。另一个卡片 $(U_2,\phi_2)$ 则由从南极向 $x^3=+1$ 所定义的平面投影得到。所得坐标覆盖去掉南极的球面，具体为
+\begin{equation*}
+\phi_2(x^1,x^2,x^3)\equiv(z^1,z^2)=\left(\frac{2x^1}{1+x^3}\,,\ \frac{2x^2}{1+x^3}\right). \tag{2.10}
+\end{equation*}
+这两个卡片合起来覆盖了整个流形，而且它们在区域 $-1<x^3<+1$ 中相互交叠。你可以验证的另一件事是，复合映射 $\phi_2\circ\phi_1^{-1}$ 由下式给出
+\begin{equation*}
+z^i=\frac{4y^i}{\left[(y^1)^2+(y^2)^2\right]}, \tag{2.11}
+\end{equation*}
+%FIG{2.16}: {通过从北极向切于南极的平面投影，在 $S^2$ 上定义球极坐标卡片。这样的卡片覆盖了除北极本身之外的整个球面。}
+% ---- 书页 62 / p077 ----
+%FIG{2.17}: {链式法则把 $g\circ f$ 的偏导数与 $g$ 和 $f$ 各自的偏导数联系起来。}
+并且在交叠区域中是 $C^\infty$ 的。只要我们把注意力限制在这个区域，式 (2.11) 就正是我们通常所理解的坐标变换。
+
+于是我们看到了卡片和图册的必要性：许多流形无法用单一的坐标系覆盖。尽管如此，用单个卡片来工作常常是方便的，只需随时记住没有被包含进去的那组点即可。
+
+后面我们会用到的常规微积分中的一件武器是\textbf{链式法则}（chain rule）。设想我们有两个映射 $f:\mathbf{R}^m\to\mathbf{R}^n$ 和 $g:\mathbf{R}^n\to\mathbf{R}^l$，从而有复合映射 $(g\circ f):\mathbf{R}^m\to\mathbf{R}^l$，如图 2.17 所示。我们可以用分量来标记每个空间中的点：$\mathbf{R}^m$ 上用 $x^a$，$\mathbf{R}^n$ 上用 $y^b$，$\mathbf{R}^l$ 上用 $z^c$，指标各自取适当的取值范围。链式法则把复合映射的偏导数与各个映射的偏导数联系起来：
+\begin{equation*}
+\frac{\partial}{\partial x^a}(g\circ f)^c=\sum_b \frac{\partial f^b}{\partial x^a}\frac{\partial g^c}{\partial y^b}. \tag{2.12}
+\end{equation*}
+通常把它缩写为
+\begin{equation*}
+\frac{\partial}{\partial x^a}=\sum_b \frac{\partial y^b}{\partial x^a}\frac{\partial}{\partial y^b}. \tag{2.13}
+\end{equation*}
+使用这种简写形式的链式法则既不违法也不违背道德，但你应当能够在头脑中构想出这一构造背后的那些映射。回忆一下，当 $m=n$ 时，矩阵 $\partial y^b/\partial x^a$ 的行列式称为该映射的\textbf{雅可比行列式}（Jacobian），而且只要雅可比行列式非零，映射就可逆。
+
+% ---- 书页 63 / p078 ----
+\section{再谈矢量}
+
+打好了这些基础，我们现在可以着手在流形上引入各种类型的结构了。我们从矢量与切空间（tangent space）开始。在讨论狭义相对论时，我们对矢量的定义以及矢量与时空的关系刻意含糊其辞。我们强调过的一点是切空间的概念——即时空中单个一点上所有矢量的集合。之所以如此强调，是为了从大家头脑中去除“矢量从流形上一个点拉伸到另一个点”的观念；矢量其实只是与单个点相联系的对象。采取这种观点暂时失去的，是理解诸如“矢量指向 $x$ 方向”这类说法的一条途径——如果切空间只是与每个点相联系的一个抽象矢量空间，就很难知道这类说法应当意味着什么。现在是解决这个问题的时候了。
+
+设想我们想构造流形 $M$ 中一点 $p$ 处的切空间，而且只利用 $M$ 本身固有的东西（不嵌入更高维的空间）。第一反应也许是利用我们的直觉知识：存在一种叫做“曲线的切矢量”的对象，它们属于切空间。于是我们可能会考虑所有过 $p$ 点的参数化曲线的集合——也就是所有（非退化的）映射 $\gamma:\mathbf{R}\to M$ 构成的空间，要求 $p$ 属于 $\gamma$ 的像。一种诱人的做法是干脆把切空间定义为这些曲线在 $p$ 点的所有切矢量构成的空间。但这显然是作弊；切空间 $T_p$ 本应是 $p$ 点处矢量的空间，而在此之前，我们并没有“曲线的切矢量”应当是什么含义的独立概念。在某个坐标系 $x^\mu$ 中，任何过 $p$ 的曲线都通过 $n$ 个实数 $dx^\mu/d\lambda$（其中 $\lambda$ 是沿曲线的参量）确定了 $\mathbf{R}^n$ 中的一个元素，但这个映射明显依赖于坐标，而这并不是我们想要的。
+
+不过我们的思路是对的，只是必须让一切不依赖于坐标。为此我们定义 $\mathcal{F}$ 为 $M$ 上全体光滑函数的空间（即 $C^\infty$ 映射 $f:M\to\mathbf{R}$）。然后我们注意到，每条过 $p$ 点的曲线都在这个空间上定义了一个算符——方向导数（directional derivative），它把 $f$ 映为 $df/d\lambda$（在 $p$ 点取值）。我们将给出如下论断：\emph{切空间 $T_p$ 可以等同于沿过 $p$ 点曲线的方向导数算符构成的空间}。为了确立这一想法，我们必须证明两件事：其一，方向导数构成的空间是一个矢量空间；其二，它正是我们想要的那种矢量空间（它与 $M$ 维数相同，能自然给出“指向某一方向的矢量”的概念，等等）。
+
+第一个论断——方向导数构成矢量空间——看起来足够直接。设想两个算符 $d/d\lambda$ 与 $d/d\eta$，分别表示沿过 $p$ 点的两条曲线 $x^\mu(\lambda)$ 与 $x^\mu(\eta)$ 的导数。把它们相加并用实数缩放没有任何问题，于是得到新的算符 $a(d/d\lambda)+b(d/d\eta)$。然而，这个空间是否封闭并不一目了然；换句话说，所得的算符本身是否还是一个导数算符。一个好的导数算符应当线性地作用于函数，并且在函数的乘积上服从常规的 Leibniz（乘积）法则。我们的新算符显然是线性的，所以我们还需要
+% ---- 书页 64 / p079 ----
+验证它服从 Leibniz 法则。我们有
+\begin{align*}
+\left(a\frac{d}{d\lambda}+b\frac{d}{d\eta}\right)(fg)&=af\frac{dg}{d\lambda}+ag\frac{df}{d\lambda}+bf\frac{dg}{d\eta}+bg\frac{df}{d\eta}\\
+&=\left(a\frac{df}{d\lambda}+b\frac{df}{d\eta}\right)g+\left(a\frac{dg}{d\lambda}+b\frac{dg}{d\eta}\right)f. \tag{2.14}
+\end{align*}
+%FIG{2.18}: {偏导数定义为沿“保持所有其他坐标不变”的曲线的方向导数。}
+正如我们所希望的，乘积法则得到了满足，因此方向导数的集合是一个矢量空间。
+
+它就是我们想要等同于切空间的那种矢量空间吗？让自己信服的最容易的办法，是为这个空间找一组基。再次考虑带有坐标 $x^\mu$ 的一个坐标卡片。于是在 $p$ 点有一组显而易见的 $n$ 个方向导数，即 $p$ 点的偏导数 $\partial_\mu$，如图 2.18 所示。注意，这其实就是对 $x^\mu$ 的偏导数的\emph{定义}：沿由“$x^\nu=$ 常数（对一切 $\nu\neq\mu$）”所定义、以 $x^\mu$ 本身为参量的曲线的方向导数。我们现在要宣称：$p$ 点的偏导数算符 $\{\partial_\mu\}$ 构成切空间 $T_p$ 的一组基。（由此立即可知 $T_p$ 是 $n$ 维的，因为基矢就这么多。）为了看到这一点，我们将证明任何方向导数都可以分解为实数与偏导数乘积之和。这正是大家熟悉的切矢量分量的表达式，不过能从这套“大机器”方法中看到它，也是件令人愉快的事。考虑一个 $n$ 维流形 $M$、一个坐标卡片 $\phi:M\to\mathbf{R}^n$、一条曲线 $\gamma:\mathbf{R}\to M$，以及一个函数 $f:M\to\mathbf{R}$。这就导致了图 2.19 所示的那一团相互纠缠的映射。如果 $\lambda$ 是沿 $\gamma$ 的参量，我们想把矢量/算符 $d/d\lambda$ 用偏导数 $\partial_\mu$ 表示出来。利用链式法则 (2.12)，我们有
+% ---- 书页 65 / p080 ----
+\begin{align*}
+\frac{d}{d\lambda}f&=\frac{d}{d\lambda}(f\circ\gamma)\\
+&=\frac{d}{d\lambda}\left[(f\circ\phi^{-1})\circ(\phi\circ\gamma)\right]\\
+&=\frac{d(\phi\circ\gamma)^\mu}{d\lambda}\frac{\partial(f\circ\phi^{-1})}{\partial x^\mu}\\
+&=\frac{dx^\mu}{d\lambda}\partial_\mu f. \tag{2.15}
+\end{align*}
+%FIG{2.19}: {把曲线 $\gamma:\mathbf{R}\to M$ 的切矢量按 $M$ 上坐标的偏导数分解。}
+第一行只是把左边的非正式表达式改写成函数 $(f\circ\gamma):\mathbf{R}\to\mathbf{R}$ 的实实在在的导数。第二行不过来自逆映射 $\phi^{-1}$ 的定义（以及复合运算的结合律）。第三行是正式的链式法则 (2.12)，最后一行则回到了开头的非正式记号。由于函数 $f$ 是任意的，我们有
+\begin{equation*}
+\frac{d}{d\lambda}=\frac{dx^\mu}{d\lambda}\partial_\mu. \tag{2.16}
+\end{equation*}
+这样，偏导数 $\{\partial_\mu\}$ 的确构成了方向导数矢量空间的一组好的基，因此我们可以放心地把它等同于切空间。
+
+当然，$d/d\lambda$ 所代表的矢量是我们早已认识的；它就是以 $\lambda$ 为参量的曲线的切矢量。因此式 (2.16) 可以看作式 (1.38) 的重述，在那里我们曾宣称切矢量的分量就是 $dx^\mu/d\lambda$。唯一的区别在于，我们现在是在任意流形上工作，并且我们把基矢指定为 $\hat{e}_{(\mu)}=\partial_\mu$。
+
+这种特殊的基（$\hat{e}_{(\mu)}=\partial_\mu$）称为 $T_p$ 的\textbf{坐标基}（coordinate basis）；它是“让基矢沿坐标轴指向”这一观念的形式化。考虑切矢量时，我们并没有理由只限于坐标基。例如，坐标基矢一般并不归一化到单位长度，彼此也不一定正交，我们很快就会看到
+% ---- 书页 66 / p081 ----
+这一点。这种局面可不是靠定义就能打发掉的；在弯曲流形上，只要某点处曲率不为零，坐标基在该点的任何邻域内都\emph{绝不会}是正交归一（orthonormal）的。当然，我们可以定义非坐标的正交归一基，例如在坐标基中给出它们的分量，有时这种技巧是有用的。然而，坐标基非常简单而自然，全书我们几乎只使用坐标基；想见识正交归一基，可参见附录 J。（在三维欧几里得空间的矢量分析研究中，标准做法是选取正交归一基而不是坐标基；因此，把 GR 教材中的公式应用到平直空间中非笛卡尔坐标的研究时，你应当多加小心。）
+
+我们对矢量采取的这一颇为抽象的观点，其优点之一是：坐标变换下的变换规律立即可得。既然基矢是 $\hat{e}_{(\mu)}=\partial_\mu$，某个新坐标系 $x^{\mu'}$ 中的基矢就由链式法则 (2.13) 给出为
+\begin{equation*}
+\partial_{\mu'}=\frac{\partial x^\mu}{\partial x^{\mu'}}\partial_\mu. \tag{2.17}
+\end{equation*}
+我们可以用平直空间中使用过的同一技巧得到矢量分量的变换规律：要求矢量 $V=V^\mu\partial_\mu$ 在基的改变下不变。我们有
+\begin{align*}
+V^\mu\partial_\mu&=V^{\mu'}\partial_{\mu'}\\
+&=V^{\mu'}\frac{\partial x^\mu}{\partial x^{\mu'}}\partial_\mu, \tag{2.18}
+\end{align*}
+于是，由于矩阵 $\partial x^{\mu'}/\partial x^\mu$ 是矩阵 $\partial x^\mu/\partial x^{\mu'}$ 的逆，
+\begin{equation*}
+V^{\mu'}=\frac{\partial x^{\mu'}}{\partial x^\mu}V^\mu. \tag{2.19}
+\end{equation*}
+由于基矢通常并不显式写出，分量变换规则 (2.19) 就是我们所说的“矢量变换定律”。我们注意到，它与狭义相对论中矢量分量在洛伦兹变换 $V^{\mu'}=\Lambda^{\mu'}{}_\nu V^\nu$ 下的变换是相容的，因为洛伦兹变换是一种特殊的坐标变换，即 $x^{\mu'}=\Lambda^{\mu'}{}_\nu x^\nu$。但 (2.19) 要普遍得多，它涵盖了矢量在任意坐标（从而基）改变下的行为，而不只是线性变换。一如既往，我们想强调的是一种有些微妙的存在论上的区分——原则上，张量分量在我们改变坐标时并不需要改变；它们是在我们改变切空间中的基时才改变的，只不过我们决定用坐标来定义基。因此，坐标的改变会诱发基的改变，如图 2.20 所示。
+
+既然一点的矢量可以看成沿过该点的路径的方向导数算符，那么显然，矢量\emph{场}（vector field）定义了一个从光滑函数到光滑函数、遍布整个流形的映射，办法是在每一点取导数。给定两个矢量场 $X$ 和 $Y$，我们因此可以定义它们的\textbf{对易子}（commutator）$[X,Y]$，办法是由它作用在函数 $f(x^\mu)$ 上的效果来刻画：
+% ---- 书页 67 / p082 ----
+%FIG{2.20}: {坐标变换 $x^\mu\to x^{\mu'}$ 诱发切空间中基的改变。}
+\begin{equation*}
+[X,Y](f)\equiv X(Y(f))-Y(X(f)). \tag{2.20}
+\end{equation*}
+抽象观点的好处在于，这个算符显然不依赖于坐标。事实上，两个矢量场的对易子本身还是一个矢量场：如果 $f$ 和 $g$ 是函数，$a$ 和 $b$ 是实数，则对易子是线性的，
+\begin{equation*}
+[X,Y](af+bg)=a[X,Y](f)+b[X,Y](g), \tag{2.21}
+\end{equation*}
+并且服从 Leibniz 法则，
+\begin{equation*}
+[X,Y](fg)=f[X,Y](g)+g[X,Y](f). \tag{2.22}
+\end{equation*}
+这两个性质都很容易验证，是颇有用处的练习。同样有趣的练习是推导矢量场 $[X,Y]^\mu$ 分量的显式表达式，结果是
+\begin{equation*}
+\boxed{[X,Y]^\mu=X^\lambda\partial_\lambda Y^\mu-Y^\lambda\partial_\lambda X^\mu}. \tag{2.23}
+\end{equation*}
+按构造这是一个良定义的张量；但你对其中偏导数的出现应当有一丝担忧，因为矢量的偏导数并不是良定义的张量（下一节我们会讨论这一点）。还有一项迷人的练习是对式 (2.23) 显式地做一次坐标变换，验证所有可能非张量化的部分都相互抵消，结果像一个矢量场那样变换。对易子是李导数（Lie derivative）的特例，李导数将在附录 B 中讨论；它有时也被称为\textbf{李括号}（Lie bracket）。注意，由于偏导数相互对易，由坐标函数的偏导数给出的矢量场 $\{\partial_\mu\}$ 的对易子永远为零。
+
+% ---- 书页 68 / p083 ----
+\section{再谈张量}
+
+探索完矢量的世界，我们继续沿着在平直空间中走过的脚步前行，现在来考虑对偶矢量（one-form，1-形式）。余切空间 $T_p^*$ 同样可以看成线性映射 $\omega:T_p\to\mathbf{R}$ 的集合。1-形式最典型的例子是函数 $f$ 的梯度，记作 $\mathrm{d}f$，如式 (1.52) 那样。它作用在矢量 $d/d\lambda$ 上的结果，恰恰就是这个函数的方向导数：
+\begin{equation*}
+\mathrm{d}f\left(\frac{d}{d\lambda}\right)=\frac{df}{d\lambda}. \tag{2.24}
+\end{equation*}
+一个诱人的问题是：“为什么不能干脆把函数 $f$ 本身当作这个 1-形式，而把 $df/d\lambda$ 当作它的作用？”关键在于，1-形式和矢量一样，只存在于它被定义的那一点，不依赖于 $M$ 上其他点的信息。如果你知道一个函数在某点某个邻域内的取值，你可以求它的导数，但仅知道它在该点的值是不够的；而梯度恰恰编码了沿过 $p$ 点的任何曲线取方向导数所需的全部信息，从而尽到了它作为对偶矢量的职责。
+
+你可能已经注意到，我们利用流形固有的结构（沿曲线的方向导数）定义了矢量，再用这个定义、借助对偶矢量空间来定义 1-形式。这或许会给人一个印象：矢量在某种意义上更基本。然而事实上，我们同样可以从 1-形式的内禀定义出发，再用它把矢量定义为对偶空间。粗略地说，$p$ 点的 1-形式空间等价于所有在 $p$ 点为零、且具有相同二阶偏导数的函数构成的空间。而且真要说起来，那样做反而更基本，因为我们可以给出所有 $q$-形式（具有 $q$ 个下指标的完全反对称张量）的内禀定义，我们将在 2.9 节讨论它们（尽管不会深入内禀定义的细节）。
+
+正如沿坐标轴的偏导数为切空间提供了一组自然的基，坐标函数 $x^\mu$ 的梯度也为余切空间提供了一组自然的基。回忆一下，在平直空间中我们通过要求 $\hat{\theta}^{(\mu)}(\hat{e}_{(\nu)})=\delta^\mu_\nu$ 来构造 $T_p^*$ 的基。在任意流形上贯彻同样的思想，我们发现 (2.24) 导致
+\begin{equation*}
+\mathrm{d}x^\mu(\partial_\nu)=\frac{\partial x^\mu}{\partial x^\nu}=\delta^\mu_\nu. \tag{2.25}
+\end{equation*}
+因此，梯度 $\{\mathrm{d}x^\mu\}$ 是一组适当的基 1-形式；任意 1-形式按分量展开为 $\omega=\omega_\mu\mathrm{d}x^\mu$。
+
+基对偶矢量与分量的变换性质，可以按如今已是家常便饭的步骤得到。对基 1-形式，我们得到
+\begin{equation*}
+\mathrm{d}x^{\mu'}=\frac{\partial x^{\mu'}}{\partial x^\mu}\mathrm{d}x^\mu \tag{2.26}
+\end{equation*}
+% ---- 书页 69 / p084 ----
+而对分量则有
+\begin{equation*}
+\omega_{\mu'}=\frac{\partial x^\mu}{\partial x^{\mu'}}\omega_\mu. \tag{2.27}
+\end{equation*}
+以后谈到 1-形式 $\omega$ 时，我们通常直接写它的分量 $\omega_\mu$。
+
+和平直空间中一样，$(k,l)$ 型张量是从 $k$ 个对偶矢量与 $l$ 个矢量组成的集合到 $\mathbf{R}$ 的多重线性映射。它在坐标基下的分量，可以让这个张量作用于基 1-形式和基矢而得到：
+\begin{equation*}
+T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}=T(\mathrm{d}x^{\mu_1},\ldots,\mathrm{d}x^{\mu_k},\partial_{\nu_1},\ldots,\partial_{\nu_l}). \tag{2.28}
+\end{equation*}
+这等价于展开式
+\begin{equation*}
+T=T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}\,\partial_{\mu_1}\otimes\cdots\otimes\partial_{\mu_k}\otimes\mathrm{d}x^{\nu_1}\otimes\cdots\otimes\mathrm{d}x^{\nu_l}. \tag{2.29}
+\end{equation*}
+一般张量的变换定律遵循同样的模式：把平直空间中使用的洛伦兹变换矩阵，换成代表更一般坐标变换的矩阵：
+\begin{equation*}
+\boxed{T^{\mu_1'\cdots\mu_k'}{}_{\nu_1'\cdots\nu_l'}=\frac{\partial x^{\mu_1'}}{\partial x^{\mu_1}}\cdots\frac{\partial x^{\mu_k'}}{\partial x^{\mu_k}}\frac{\partial x^{\nu_1}}{\partial x^{\nu_1'}}\cdots\frac{\partial x^{\nu_l}}{\partial x^{\nu_l'}}\,T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}.} \tag{2.30}
+\end{equation*}
+这个张量变换定律好记得很：只要看看指标的摆放位置，它实在不可能是别的样子。
+
+不过实际上，变换张量时往往更省事的做法是：按字面接受“基矢就是偏导数、基 1-形式就是梯度”这一等式，然后直接把坐标变换代进去。举个例子，考虑二维流形上一个对称的 $(0,2)$ 型张量 $S$，它在坐标系 $(x^1=x,\ x^2=y)$ 下的分量为
+\begin{equation*}
+S_{\mu\nu}=\begin{pmatrix} 1 & 0 \\ 0 & x^2 \end{pmatrix}. \tag{2.31}
+\end{equation*}
+这可以等价地写成
+\begin{align*}
+S&=S_{\mu\nu}(\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu)\\
+&=(\mathrm{d}x)^2+x^2(\mathrm{d}y)^2, \tag{2.32}
+\end{align*}
+其中最后一行为了简洁省略了张量积符号（今后我们都将如此）。现在考虑新坐标
+\begin{align*}
+x'&=\frac{2x}{y}\\
+y'&=\frac{y}{2} \tag{2.33}
+\end{align*}
+% ---- 书页 70 / p085 ----
+（例如在 $x>0$、$y>0$ 时有效）。它们可以立即反解出来，得到
+\begin{align*}
+x&=x'y'\\
+y&=2y'. \tag{2.34}
+\end{align*}
+我们不必动用张量变换定律，而只需利用我们知道如何求导这一事实，把 $\mathrm{d}x^\mu$ 用 $\mathrm{d}x^{\mu'}$ 表示出来。我们有
+\begin{align*}
+\mathrm{d}x&=y'\mathrm{d}x'+x'\mathrm{d}y'\\
+\mathrm{d}y&=2\,\mathrm{d}y'. \tag{2.35}
+\end{align*}
+只需把这些表达式直接代入 (2.32)，就得到（记住张量积不对易，故 $\mathrm{d}x'\mathrm{d}y'\neq\mathrm{d}y'\mathrm{d}x'$）：
+\begin{equation*}
+S=(y')^2(\mathrm{d}x')^2+x'y'\left(\mathrm{d}x'\mathrm{d}y'+\mathrm{d}y'\mathrm{d}x'\right)+\left[(x')^2+4(x'y')^2\right](\mathrm{d}y')^2, \tag{2.36}
+\end{equation*}
+或者
+\begin{equation*}
+S_{\mu'\nu'}=\begin{pmatrix} (y')^2 & x'y' \\ x'y' & (x')^2+4(x'y')^2 \end{pmatrix}. \tag{2.37}
+\end{equation*}
+注意它仍然是对称的。我们没有直接使用变换定律 (2.30)，但如果直接用，也会得到相同的结果，你可以自行核验。
+
+大体而言，我们在平直空间中定义的各种张量运算在更一般的场合依然如故：缩并、对称化，等等。但有三个重要的例外：偏导数、度规，以及 Levi-Civita 张量。我们先来看偏导数。
+
+遗憾的是，张量的偏导数一般不是新的张量。标量的偏导数——梯度——如我们所见是名副其实的 $(0,1)$ 型张量。但更高阶张量的偏导数就不是张量性的了；只要考察 1-形式的偏导数 $\partial_\mu W_\nu$ 并变换到一个新坐标系，就能看到这一点：
+\begin{align*}
+\frac{\partial}{\partial x^{\mu'}}W_\nu&=\frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial}{\partial x^\mu}\left(\frac{\partial x^\nu}{\partial x^{\nu'}}W_\nu\right)\\
+&=\frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial x^\nu}{\partial x^{\nu'}}\left(\frac{\partial}{\partial x^\mu}W_\nu\right)+W_\nu\frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial}{\partial x^\nu}\frac{\partial x^\nu}{\partial x^{\nu'}}. \tag{2.38}
+\end{align*}
+假如 $\partial_\mu W_\nu$ 像 $(0,2)$ 型张量那样变换，最后一行中的第二项就不应该存在。可以看到，它之所以出现，是因为变换矩阵的导数不再为零——而在平直空间的洛伦兹变换下它原是为零的。
+
+微分显然是物理学中的重要工具，所以我们将不得不发明新的张量化运算来接替偏导数。实际上我们会发明好几种：外微分（exterior derivative）、协变导数（covariant derivative）和李导数（Lie derivative）。
+
+% ---- 书页 71 / p086 ----
+\section{度规}
+
+度规张量在弯曲空间中的地位如此重要，以至于它被赋予了一个新符号 $g_{\mu\nu}$（而 $\eta_{\mu\nu}$ 则专门保留给 Minkowski 度规）。对 $g_{\mu\nu}$ 分量的限制很少，只要求它是对称的 $(0,2)$ 型张量。通常——尽管并非总是——还要求它是非退化的（nondegenerate），意思是行列式 $g=|g_{\mu\nu}|$ 不为零。这使我们能够经由
+\begin{equation*}
+g^{\mu\nu}g_{\nu\sigma}=g_{\sigma\lambda}g^{\lambda\mu}=\delta^\mu_\sigma. \tag{2.39}
+\end{equation*}
+来定义逆度规 $g^{\mu\nu}$。
+
+$g_{\mu\nu}$ 的对称性意味着 $g^{\mu\nu}$ 也是对称的。正如狭义相对论中那样，度规及其逆可用来升降张量的指标。你可能熟悉拓扑学研究中“度规”（metric）的概念，在那里还要求度规是正定的（没有负本征值）。广义相对论中使用的度规不能用来定义拓扑，但它会有其他用途。
+
+要充分领略度规的全部荣耀尚需一些时间，但出于激励的目的[仿照 Sachs and Wu (1977)]，我们可以列出 $g_{\mu\nu}$ 将要承担的种种任务：（1）度规提供“过去”与“未来”的概念；（2）度规使计算路径长度和固有时成为可能；（3）度规确定两点之间的“最短距离”，从而确定检验粒子的运动；（4）度规取代 Newton 引力场 $\phi$；（5）度规提供局部惯性系的观念，从而给出“无转动”的意义；（6）度规通过定义光速——任何信号都无法超越的速度——来确定因果性；（7）度规取代 Newton 力学中传统的欧几里得三维点积。显然，这些想法并非都完全相互独立，但我们已经能对这个张量的重要性略窥一二。
+
+在狭义相对论中讨论路径长度时，我们（有些含糊其辞地）引入了线元 $ds^2=\eta_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu$，用它来求路径的长度。当然，既然我们如今知道 $\mathrm{d}x^\mu$ 其实是一个基对偶矢，把“度规”和“线元”这两个词互换使用就变得自然而然了，于是写作
+\begin{equation*}
+ds^2=g_{\mu\nu}\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu. \tag{2.40}
+\end{equation*}
+要做到完全一致，我们应当把它写作“$g$”，有时也确实如此；但更多时候 $g$ 被用来表示行列式 $|g_{\mu\nu}|$。例如我们知道，具有笛卡尔坐标的三维空间中，欧几里得线元为
+\begin{equation*}
+ds^2=(\mathrm{d}x)^2+(\mathrm{d}y)^2+(\mathrm{d}z)^2. \tag{2.41}
+\end{equation*}
+现在我们可以换到任何我们想用的坐标系。例如，取球坐标就有
+% ---- 书页 72 / p087 ----
+\begin{align*}
+x&=r\sin\theta\cos\phi\\
+y&=r\sin\theta\sin\phi\\
+z&=r\cos\theta, \tag{2.42}
+\end{align*}
+这直接给出
+\begin{equation*}
+ds^2=\mathrm{d}r^2+r^2\,\mathrm{d}\theta^2+r^2\sin^2\theta\,\mathrm{d}\phi^2. \tag{2.43}
+\end{equation*}
+显然，度规的分量看上去与笛卡尔坐标下的不同，但空间的全部性质依然未变。
+
+大多数文献不至于挑剔到要区分“$dx$”（无穷小位移的非正式概念）与“$\mathrm{d}x$”（严格的基 1-形式概念，由坐标函数的梯度给出）的地步。（它们还往往忽视张量积不对易这一事实，把诸如 $\mathrm{d}x\,\mathrm{d}y+\mathrm{d}y\,\mathrm{d}x$ 的表达式写成 $2\,\mathrm{d}x\,\mathrm{d}y$；含义如何应当能从上下文看清楚。）实际上，我们的记号“$ds^2$”既不指任何东西的微分，也不指任何东西的平方；它只是度规张量的习惯性简写，而度规张量是从两个矢量到实数的多重线性映射。于是，对两个矢量 $V^\mu$ 和 $W^\nu$ 的内积，我们有一组等价的表达式：
+\begin{equation*}
+g_{\mu\nu}V^\mu W^\nu=g(V,W)=ds^2(V,W). \tag{2.44}
+\end{equation*}
+而“$(\mathrm{d}x)^2$”则专门指实实在在的 $(0,2)$ 型张量 $\mathrm{d}x\otimes\mathrm{d}x$。
+
+非欧流形的一个好例子是二维球面（two-sphere），它可以看成 $\mathbf{R}^3$ 中与原点距离为 1 的点的轨迹。$(\theta,\phi)$ 坐标系下的度规，可以在 (2.43) 中令 $r=1$ 和 $\mathrm{d}r=0$ 得到：
+\begin{equation*}
+ds^2=\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2. \tag{2.45}
+\end{equation*}
+这与把 $ds$ 解释为无穷小长度完全一致，如图 2.21 所示。任何用心读到这里的人都应当在此发问：“令 $\mathrm{d}r=0$ 到底是什么意思？我们知道 $\mathrm{d}r$ 是一个良定义的、非零的 1-形式场啊。”正如偶尔会发生的那样，我们这里用了不太严谨的语言，来引导一步实际上完全正当的操作；关于子流形如何从其所嵌入的空间继承度规，参见附录 A 中的讨论。
+
+我们将会看到，度规张量包含了描述流形曲率所需的全部信息（至少在所谓的黎曼几何（Riemannian geometry）中是如此；下一章我们会讨论其中的若干微妙之处）。在 Minkowski 空间中，我们可以选取使度规分量为常数的坐标；但应当清楚，曲率是否存在这件事比“度规是否依赖于坐标”更为微妙，因为在上面的例子中我们已经看到，平直欧几里得空间在球坐标下的度规就是 $r$ 和 $\theta$ 的函数。后面我们将看到，度规分量为常数足以保证空间是平直的，而且事实上在任何

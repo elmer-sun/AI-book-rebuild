@@ -1,0 +1,381 @@
+% 第4章 Hubbard 模型的基态
+\chapter{Hubbard 模型的基态}
+
+理解一个量子哈密顿量的第一步是寻找它的基态。在没有精确解的情况下，恰当地选取一族变分态 $\Psi^{\gamma}$（$\gamma$ 为变分参数）可能颇有收获。变分定理说
+
+\begin{equation*}
+\frac {\langle \Psi^ {\gamma} | \mathcal {H} | \Psi^ {\gamma} \rangle}{\langle \Psi^ {\gamma} | \Psi^ {\gamma} \rangle} = E ^ {\gamma} \geq E _ {0},
+\tag{4.1}
+\end{equation*}
+
+其中 $E_{0}$ 是精确基态能量。对越来越大的变分态族极小化 (4.1) 左端，可以系统地改进基态能量与波函数。变分途径概念上直截了当，并且避开了困扰微扰论与渐近展开的那些数学上微妙的收敛问题。
+
+另一方面，必须记住：对基态\emph{有序}而言，变分途径可能严重误导。能量主要对短程关联敏感，因此在受限的试探态族内，能量最低的态可能具有错误的长程关联。
+
+本章重点讨论 Hubbard 模型的磁关联。4.1 节用自旋密度波 Fock 态演示变分途径，这给出零温 Hartree--Fock 理论的一个变分推导。
+
+第二节给出（不加证明）关于有限格子上基态总自旋的若干定理。随后各章讨论半满下的磁行为，即 Heisenberg 模型。对偏离半满的 Hubbard 模型感兴趣的读者会发现第 19 章很有用：那里用 t--J 模型的大自旋推广，对二维掺杂反铁磁体（与铜氧化物超导体相关）作了半经典处理。
+
+\section{变分磁态}
+
+考虑如下形式的 Hubbard 模型：
+
+\begin{equation*}
+\mathcal {H} = \sum_ {\mathbf {k},\, s = \uparrow \downarrow} \epsilon_ {\mathbf {k}} \, c _ {\mathbf {k} s} ^ {\dagger} c _ {\mathbf {k} s} + U \sum_ {i} n _ {i \uparrow} n _ {i \downarrow}.
+\tag{4.2}
+\end{equation*}
+
+最简单的变分态是 Fock 态（见 A.1 节）：
+
+\begin{equation*}
+| \{n _ {\alpha} ^ {\gamma} \} \rangle ,
+\tag{4.3}
+\end{equation*}
+
+其中 $\alpha$ 标记单粒子态 $\{\phi_{\alpha}^{\gamma}\}$，$\gamma$ 是一组变分参数。(4.3) 中四个 Fermi 算符的期望值因子化\footnote{这里不包括反常期望值（如 $\langle c^{\dagger}c^{\dagger}\rangle$）的可能性，它们存在于 BCS 态中。}为
+
+\begin{equation*}
+\langle c _ {1} ^ {\dagger} c _ {3} ^ {\dagger} c _ {4} c _ {2} \rangle = \langle c _ {1} ^ {\dagger} c _ {2} \rangle \langle c _ {3} ^ {\dagger} c _ {4} \rangle - \langle c _ {1} ^ {\dagger} c _ {4} \rangle \langle c _ {3} ^ {\dagger} c _ {2} \rangle .
+\tag{4.4}
+\end{equation*}
+
+描述磁有序的 Fock 态称为\textbf{自旋密度波态}。把原电子算符 $c_{\mathbf{k}s}$ 通过正则变换变成磁准粒子 $\alpha_{\mathbf{k}\pm}$ 即可构造这类态：
+
+\begin{align*}
+\alpha_ {\mathbf {k} +} ^ {\dagger} & = \cos \theta_ {\mathbf {k}} \, c _ {\mathbf {k} \uparrow} ^ {\dagger} + \sin \theta_ {\mathbf {k}} \, c _ {\mathbf {k} + \mathbf {q}, \downarrow} ^ {\dagger},\\
+\alpha_ {\mathbf {k} -} ^ {\dagger} & = - \sin \theta_ {\mathbf {k}} \, c _ {\mathbf {k} \uparrow} ^ {\dagger} + \cos \theta_ {\mathbf {k}} \, c _ {\mathbf {k} + \mathbf {q}, \downarrow} ^ {\dagger}.
+\tag{4.5}
+\end{align*}
+
+变分自旋密度波态由如下族给出：
+
+\begin{equation*}
+| \Psi^ {\mathbf {q}, \theta_ {\mathbf {k}}, \Sigma_ {F}} \rangle = \prod_ {\sigma = \pm ,\; \mathbf {k} \in \Sigma_ {F} ^ {\pm}} \alpha_ {\mathbf {k} \sigma} ^ {\dagger} | 0 \rangle .
+\tag{4.6}
+\end{equation*}
+
+$\Psi$ 的变分参数是序波矢 $\mathbf{q}$、角度 $\theta_{\mathbf{k}}$，以及占据数 $n_{\mathbf{k}}^{\pm}=1,0$。后者定义了围住 $n\mathcal{N}$ 个被占态的两个费米面 $\Sigma_{F}^{\pm}$：
+
+\begin{align*}
+n & = \frac {1}{\mathcal {N}} \sum_ {\sigma , \mathbf {k}} n _ {\mathbf {k}} ^ {\sigma},\\
+n _ {\mathbf {k}} ^ {\sigma} & = \left\{ \begin{array}{ll} 1 & \mathbf {k} \in \Sigma_ {F} ^ {\sigma} \\ 0 & \mathbf {k} \notin \Sigma_ {F} ^ {\sigma} \end{array} \right. .
+\tag{4.7}
+\end{align*}
+
+变分参数由极小化 $\Psi$ 的能量确定。$\Psi$ 可以支撑波矢 $\mathbf{q}$ 处 $x$--$y$ 方向的非零磁化，也可支撑 $z$ 方向的均匀磁化。计算如下自旋算符的期望值即可看出：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{fig4_1.jpg}
+\caption{波矢 $\mathbf{q}$ 的螺旋自旋序。}
+\label{fig:4.1}
+\end{figure}
+
+\begin{align*}
+\langle S _ {i} ^ {+} \rangle & = \frac {1}{\mathcal {N}} \sum_ {\mathbf {q} '} e ^ {- i \mathbf {q} ' \mathbf {x} _ {i}} \sum_ {\mathbf {k}} \langle c _ {\mathbf {k} \uparrow} ^ {\dagger} c _ {\mathbf {k} + \mathbf {q}', \downarrow} \rangle\\
+& = \frac {1}{\mathcal {N}} \sum_ {\mathbf {q} '} e ^ {- i \mathbf {q} ' \mathbf {x} _ {i}} \sum_ {\mathbf {k}} \Big( \sin \theta_ {\mathbf {k} + \mathbf {q} - \mathbf {q} '} \cos \theta_ {\mathbf {k}} \, \langle \alpha_ {\mathbf {k} +} ^ {\dagger} \alpha_ {\mathbf {k} + \mathbf {q} - \mathbf {q}', +} \rangle\\
+& \qquad\qquad - \sin \theta_ {\mathbf {k}} \cos \theta_ {\mathbf {k} + \mathbf {q} - \mathbf {q} '} \, \langle \alpha_ {\mathbf {k} -} ^ {\dagger} \alpha_ {\mathbf {k} + \mathbf {q} - \mathbf {q}', -} \rangle \Big)\\
+& = m _ {\mathbf {q}} \, e ^ {- i \mathbf {q} \mathbf {x} _ {i}} ,\\
+m _ {\mathbf {q}} & = \frac {1}{2 \mathcal {N}} \sum_ {\mathbf {k}} \sin ( 2 \theta_ {\mathbf {k}} ) \left( n _ {\mathbf {k}} ^ {+} - n _ {\mathbf {k}} ^ {-} \right).
+\tag{4.8}
+\end{align*}
+
+动量空间中的自旋算符满足
+
+\begin{equation*}
+\langle S ^ {+} ( \mathbf {q} ) \rangle = \langle S ^ {-} ( - \mathbf {q} ) \rangle ^ {*}.
+\tag{4.9}
+\end{equation*}
+
+$m_{\mathbf{q}} \neq 0$ 描述 $x$--$y$ 平面内的螺旋自旋，自旋角度为 $\mathbf{q} \cdot \mathbf{x}_i$，如图~\ref{fig:4.1} 所示。
+
+$z$ 方向的磁化由序参量
+
+\begin{align*}
+\langle S _ {i} ^ {z} \rangle & = \frac {1}{2} \sum_ {\mathbf {q} '} e ^ {- i \mathbf {q} ' \cdot \mathbf {x} _ {i}} \sum_ {\mathbf {k}} \langle c _ {\mathbf {k} \uparrow} ^ {\dagger} c _ {\mathbf {k} + \mathbf {q}', \uparrow} - c _ {\mathbf {k} \downarrow} ^ {\dagger} c _ {\mathbf {k} + \mathbf {q}', \downarrow} \rangle\\
+& = \mathcal {N} m _ {z} ,\\
+m _ {z} & = \frac {1}{2 \mathcal {N}} \sum_ {\mathbf {k}} \cos ( 2 \theta_ {\mathbf {k}} ) \left( n _ {\mathbf {k}} ^ {+} - n _ {\mathbf {k}} ^ {-} \right)
+\tag{4.10}
+\end{align*}
+
+描述。利用 (4.4)，Hubbard 相互作用的期望值为
+
+\begin{align*}
+\Big\langle U \sum_ {i} n _ {i \uparrow} n _ {i \downarrow} \Big\rangle & = U \sum_ {i} \langle n _ {i \uparrow} \rangle \langle n _ {i \downarrow} \rangle - U \sum_ {i} \langle S _ {i} ^ {+} \rangle \langle S _ {i} ^ {-} \rangle\\
+& = \mathcal {N} U \frac {n ^ {2}}{4} - \mathcal {N} U m _ {z} ^ {2} - \mathcal {N} U m _ {\mathbf {q}} ^ {2}.
+\tag{4.11}
+\end{align*}
+
+动能项的期望值为
+
+\begin{align*}
+T & \equiv \Big\langle \sum_ {\mathbf {k}, s} \epsilon_ {\mathbf {k}} \, c _ {\mathbf {k} s} ^ {\dagger} c _ {\mathbf {k} s} \Big\rangle\\
+& = \sum_ {\pm \mathbf {k}} \left[ \frac {\epsilon_ {\mathbf {k}} + \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} \pm \left( \frac {\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} \right) \cos ( 2 \theta_ {\mathbf {k}} ) \right] n _ {\mathbf {k}} ^ {\pm}.
+\tag{4.12}
+\end{align*}
+
+从 $T$ 中减去 $-2(\mathcal{N}Um_{z}^{2}-\mathcal{N}Um_{\mathbf{q}}^{2})$ 并把它加到能量上，得到基态能量的变分表达式：
+
+\begin{equation*}
+E [ \mathbf {q}, \theta_ {\mathbf {k}}, \Sigma^ {\pm} ] = E ^ {0} + \mathcal {N} U m _ {z} ^ {2} + \mathcal {N} U m _ {\mathbf {q}} ^ {2} + \mathcal {N} U n ^ {2} / 4,
+\tag{4.13}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+E ^ {0} = \sum_ {\pm \mathbf {k}} E _ {\mathbf {k}} ^ {\pm} \, n _ {\mathbf {k}} ^ {\pm}.
+\tag{4.14}
+\end{equation*}
+
+$E_{\mathbf{k}}^{\pm}$ 是“磁带能量”，定义为\footnote{这里 $E_{\mathbf{k}}$ 是基态的变分参数，并非模型的真正激发。}
+
+\begin{equation*}
+E _ {\mathbf {k}} ^ {\pm} = \frac {\epsilon_ {\mathbf {k}} + \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} \pm \left[ \left( \frac {\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} - m _ {z} \right) \cos ( 2 \theta_ {\mathbf {k}} ) - U m _ {\mathbf {q}} \sin ( 2 \theta_ {\mathbf {k}} ) \right].
+\tag{4.15}
+\end{equation*}
+
+容易验证，对 $m_{q}$ 与 $m_{z}$ 极小化 (4.14) 分别重新给出 (4.8) 与 (4.10)。因此可以把 $m_{z}$ 和 $m_{q}$ 当作自由变分参数，它们与 $\cos(2\theta_{k})$ 无关。现在必须极小化泛函 $E[m_{q}, m_{z}, q, \theta_{k}, \Sigma_{f}^{\pm}]$。由 (4.14) 显然可见，最优的 $\Sigma_{F}^{\pm}$ 是围住最低磁带能量的那些。
+
+变分函数 $\cos(2\theta_{\mathbf{k}})$ 由
+
+\begin{equation*}
+\frac {\partial E}{\partial \cos ( 2 \theta_ {\mathbf {k}} )} = \left[ \frac {\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} - U m _ {z} + U m _ {q} \cot ( 2 \theta_ {\mathbf {k}} ) \right] \left( n _ {\mathbf {k}} ^ {+} - n _ {\mathbf {k}} ^ {-} \right) = 0
+\tag{4.16}
+\end{equation*}
+
+确定，从而给出 $\cos(2\theta_{\mathbf{k}})$ 对 $m_{z}$、$m_{q}$ 的显式依赖：
+
+\begin{equation*}
+\cos ( 2 \theta_ {\mathbf {k}} ) = \frac { \dfrac {\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} - U m _ {z} }{ \sqrt { \left( \dfrac {\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} - U m _ {z} \right) ^ {2} + ( U m _ {q} ) ^ {2} } }.
+\tag{4.17}
+\end{equation*}
+
+把 (4.17) 代入 (4.15)，得到磁带
+
+\begin{equation*}
+E _ {\mathbf {k}} ^ {\pm} \left( m _ {z}, m _ {\mathbf {q}} \right) = \frac {\epsilon_ {\mathbf {k}} + \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} \pm \sqrt { \left( \frac {\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}{2} + U m _ {z} \right) ^ {2} + U ^ {2} m _ {\mathbf {q}} ^ {2} }.
+\tag{4.18}
+\end{equation*}
+
+两个序参量 $m_{z}$、$m_{q}$ 决定磁带、费米面以及 $E(m_{z}, m_{\mathbf{q}})$。对它们极小化给出耦合方程
+
+\begin{align*}
+\frac {d E}{d m _ {\mathbf {q}}} & = \frac {d E ^ {0}}{d m _ {\mathbf {q}}} - 2 \mathcal {N} U m _ {q} = 0,\\
+\frac {d E}{d m _ {z}} & = \frac {d E ^ {0}}{d m _ {z}} - 2 \mathcal {N} U m _ {z} = 0.
+\tag{4.19}
+\end{align*}
+
+方程 (4.19) 就是熟知的零温 Hartree--Fock 平均场方程。对任何无相互作用能带结构 $\epsilon_{k}$、填充 $n$ 与相互作用 $U$，它们可以（多数情况下数值地）求解。
+
+由 (4.19) 可以得到顺磁态对形成磁态的不稳定性判据。设 $m_{q}=0$，把 (4.19) 按 $m_{z}$ 展开到线性阶，得到 $z$ 方向均匀磁化（$m_{z}\neq0$）出现的条件：
+
+\begin{align*}
+\frac {d E ^ {0}}{d m _ {z}} & = 4 U ^ {2} m _ {z} \, \chi \big| _ {m _ {z} = 0} + \mathcal {O} ( m _ {z} ^ {2} )\\
+& = 2 m _ {z} U,
+\tag{4.20}
+\end{align*}
+
+其中 $\chi$ 是无相互作用电子的均匀磁化率
+
+\begin{equation*}
+\chi ( 0 ) = \frac {1}{2} \sum_ {\mathbf {k}} \frac {d n ( \epsilon_ {\mathbf {k}} )}{d \epsilon_ {\mathbf {k}}} = \frac {1}{2} \rho_ {\uparrow} ( 0 ),
+\tag{4.21}
+\end{equation*}
+
+$n(\epsilon) = (e^{\epsilon/T} + 1)^{-1}$ 是 Fermi 函数，$\rho_{\uparrow}(0)$ 是费米能处无相互作用的单自旋态密度。(4.21) 给出著名的铁磁失稳 Stoner 判据：
+
+\begin{equation*}
+2 U \chi ( 0 ) = 1.
+\tag{4.22}
+\end{equation*}
+
+还必须检验向 $m_{q} \neq 0$ 自旋密度波态的不稳定性。设 $m_{z} = 0$，把 (4.19) 按 $m_{q}$ 展开到线性阶，得到存在 $m_{q} \neq 0$ 解的条件：
+
+\begin{align*}
+\frac {d E ^ {0}}{d m _ {\mathbf {q}}} & = 4 U ^ {2} m _ {\mathbf {q}} \, \chi ( \mathbf {q} ) \big| _ {m _ {\mathbf {q}} = 0} + \mathcal {O} ( m _ {\mathbf {q}} )\\
+& = 2 m _ {\mathbf {q}} U,
+\tag{4.23}
+\end{align*}
+
+其中 $\chi(\mathbf{q})$ 是波矢 $\mathbf{q}$ 处的磁化率：
+
+\begin{equation*}
+\chi ( \mathbf {q} ) = \frac {1}{2} \sum_ {\mathbf {k}} \frac {n \left( \epsilon_ {\mathbf {k} + \mathbf {q}} \right) - n \left( \epsilon_ {\mathbf {k}} \right)}{\epsilon_ {\mathbf {k}} - \epsilon_ {\mathbf {k} + \mathbf {q}}}.
+\tag{4.24}
+\end{equation*}
+
+(4.23) 同样给出波矢 $\mathbf{q}$ 处自旋密度波失稳的 Stoner 判据：
+
+\begin{equation*}
+2 U \chi ( \mathbf {q} ) = 1.
+\tag{4.25}
+\end{equation*}
+
+因此，当我们增大 $U$ 的数值时，使 $\chi(\mathbf{q})$ 最大的波矢就是磁失稳最先发生的序波矢。
+
+由 (4.24) 可见，$\chi(0)$ 依赖于费米面态密度，而有限 $|q|$ 的 $\chi(\mathbf{q})$ 对费米面几何、特别是其嵌套（nesting）性质敏感。“嵌套”指费米面上存在相距波矢 $q_{nest}$ 的平行片段。这种效应在一维以及近半满的二维正方格子上最为显著。嵌套在 (4.24) 的和式中提供了大量的小能量分母 $|\epsilon_{k}-\epsilon_{k+q_{nest}}| \ll W$，从而增大 $\chi(\mathbf{q}_{nest})$。这一发散甚至可能对非常小的 $U/t$ 就产生磁性基态！
+
+上面给出的磁态通常用于建模金属铁磁体（如铁）和自旋密度波体系（如铬）。在激发的 Hartree--Fock 平均场理论中，磁带结构中无能隙意味着存在低能载流激发，这类体系称为巡游磁体。
+
+上述变分分析真正告诉我们的只是：最低的自旋密度波态能量低于其他试探 Fock 态（包括非磁的能带态）。然而，众所周知 Stoner 判据高估磁有序、低估自旋涨落引起的量子失序。有限温的 Hartree--Fock 方程甚至在一维、二维也给出长程磁序，这违反了第 6 章给出的 Mermin--Wagner 定理。因此我们只能得出结论：当 Stoner 判据被满足时，Hubbard 模型中至少存在短程磁有序。
+
+这里我们只集中于磁性变分 Fock 态。此外还有描述电荷密度有序、超导电性或几种有序混合的其他变分 Fock 态\footnote{例如 3.3 节所示的超导电性与电荷密度波。}。类比 (4.5)，对电子实行别的正则变换即可得到它们。例如：混合不同动量的同自旋粒子可得电荷密度波；混合粒子与空穴则给出破缺规范对称的超导态。每一种可能都增添变分参数与平均场方程。求解角度与序参量只是把上面概述的计算作繁琐却直截了当的推广。
+
+在离开变分态这个主题之前，还应当提到一族重要的非 Fock 态——Gutzwiller 态
+
+\begin{equation*}
+\Psi^ {g} = \prod_ {i} \left[ 1 - g \, n _ {i \uparrow} n _ {i \downarrow} \right] \Psi^ {\mathrm{Fock}},
+\tag{4.26}
+\end{equation*}
+
+其中 $\Psi^{\mathrm{Fock}}$ 是任何变分 Fock 态，例如 (4.6)。$g$ 是一个附加参数，压低双占据格点态的相对权重；$g \rightarrow 1$ 完全消除双占据态。这一族中被研究得特别透彻的成员是一维 Gutzwiller 投影费米气体：
+
+\begin{equation*}
+\Psi^ {\mathrm{GPFG}} = \prod_ {i} \left( 1 - n _ {i \uparrow} n _ {i \downarrow} \right) \prod_ {| \mathbf {k} | \leq \pi / a} c _ {\mathbf {k} \uparrow} ^ {\dagger} c _ {\mathbf {k} \downarrow} ^ {\dagger} | 0 \rangle
+\tag{4.27}
+\end{equation*}
+
+$\Psi^{\mathrm{GPFG}}$ 是纯自旋变分态。事实上，它是 $S = \frac{1}{2}$ 的 Haldane--Shastry Heisenberg 模型的精确基态，该模型的反铁磁耦合按 $1/r^{2}$ 随距离衰减。
+
+Gutzwiller 态中能量与关联的计算远非平凡，因为它们不像 (4.4) 那样因子化。（对 $g$ 的）微扰展开涉及 $gn_{i\uparrow}n_{i\downarrow}$ 的大乘积。Vollhardt 与 Metzner 在一维解析地完成了这类计算。
+
+\section{若干基态定理}
+
+Hubbard 模型基态的总自旋与磁化满足若干一般性定理。这里我们不加详细证明地陈述其中一些。证明步骤本身富有启发性，鼓励读者直接从原始文献学习。以下所有定理都限于大小为 $\mathcal{N}$、电子数固定的有限格子。
+
+\medskip
+\noindent\textbf{Nagaoka 定理 4.1}\quad 无穷大 $U$ 模型在二分格子（见定义 3.1）上，
+
+\begin{equation*}
+\lim _ {U \to \infty} \mathcal {H} ^ {\mathrm{eff}} = - \sum_ {ijs} | t _ {ij} | \, P _ {s} c _ {is} ^ {\dagger} c _ {js} P _ {s},
+\tag{4.28}
+\end{equation*}
+
+当 $N_{e} = \mathcal{N} - 1$ 时，其基态是完全极化的铁磁体，总自旋为
+
+\begin{equation*}
+S = \frac {1}{2} ( \mathcal {N} - 1 ).
+\tag{4.29}
+\end{equation*}
+\medskip
+
+一个（未归一化的）具有最大磁化的基态是
+
+\begin{equation*}
+\Psi^ {\uparrow} = \sum_ {i} ( - 1 ) ^ {i} \prod_ {i ' \neq i} c _ {i ' \uparrow} ^ {\dagger} | 0 \rangle .
+\tag{4.30}
+\end{equation*}
+
+基态能量为 $-zt$，$z$ 是最近邻数目；总自旋由 (4.29) 给出。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{fig4_2.jpg}
+\caption{空穴在自旋背景中的两次跳跃。}
+\label{fig:4.2}
+\end{figure}
+
+该定理的证明由 Yosuke Nagaoka 给出\footnote{见 Y. Nagaoka, Phys. Rev. \textbf{147}, 392 (1966)。}，此处不再重复。只需指出：证明通过遍及空穴的所有闭合跳跃路径求和，构造了几类格子的动力学单粒子 Green 函数。作为直接推论，通过粒子--空穴变换
+
+\begin{equation*}
+c _ {is} \rightarrow \eta_ {i} c _ {is} ^ {\dagger} \, , \quad \eta_ {i} = \left\{\begin{array}{ll}1 & i \in A\\- 1 & i \in B\end{array}\right.,
+\tag{4.31}
+\end{equation*}
+
+它保持哈密顿量 (4.28) 不变并把 $N_e \to \mathcal{N} + 1$，定理 4.1 可以推广到高出半满一个电子的二分格子。
+
+Nagaoka 铁磁性纯系动能起源：它来自空穴动能在完全排列一致的自旋组态中的极小化。论证如下：对任意自旋组态，跳跃的空穴会留下一串被平移的自旋，许多闭合路径并不能把自旋复原，因而被排除出动能；如图~\ref{fig:4.2} 所示。相反，铁磁自旋组态对任何闭合路径都回到原态，故其动能最小。更多内容见 Nagaoka 的原始论文与文献注释。
+
+然而，这一结果既不能直接推广到有限 $U$，也不能推广到其他空穴密度。Nagaoka 哈密顿量 (4.28) 的激发谱有些病态。$N_{e} = \mathcal{N}$ 时，基态具有 $\mathcal{N}$ 个独立自旋 1/2 自由度带来的 $2^{\mathcal{N}}$ 重简并。这重简并极易被定理严格条件的任何偏离所破坏——有限温度、有限 $U$ 或不同填充都不例外。因此，在何种微扰下 Nagaoka 铁磁性得以存留，远非显然。这一定理的主要教益是：可动空穴倾向于在某个范围内或某个时间尺度上把背景自旋排齐。它暗示 t--J 模型中空穴周围可以形成局域的铁磁极化子（见第 19 章）。
+
+我们还不加证明地提及 Elliot Lieb 的两个定理\footnote{E. Lieb, Phys. Rev. Lett. \textbf{62}, 1201 (1989)；勘误见同刊 \textbf{62}, 1927 (1989)。}。
+
+\medskip
+\noindent\textbf{Lieb 定理 4.2}\quad 考虑具有二分跳跃参数 $t_{ij}$（见定义 3.1）的正 $U$ Hubbard 模型
+
+\begin{equation*}
+\mathcal {H} = - \sum_ {sij} t _ {ij} \, c _ {is} ^ {\dagger} c _ {js} + \sum_ {i} | U _ {i} | \, n _ {i \uparrow} n _ {i \downarrow}.
+\tag{4.32}
+\end{equation*}
+
+$N_{A}$、$N_{B}$ 分别是子晶格 A、B 上的格点数。设电子数 $N_{e} = N_{A} + N_{B}$（半满），则基态 $|\Psi_{0}\rangle$ 的总自旋满足
+
+\begin{align*}
+\mathbf {S} ^ {2} | \Psi_ {0} \rangle & = S ( S + 1 ) | \Psi_ {0} \rangle\\
+S & = \frac {1}{2} \left| \mathcal {N} _ {A} - \mathcal {N} _ {B} \right| ,
+\tag{4.33}
+\end{align*}
+
+且 $|\Psi_0\rangle$ 在平凡的 $(2S + 1)$ 重转动简并之外是唯一的。
+\medskip
+
+\medskip
+\noindent\textbf{推论 4.3}\quad 因此，$N_{A} = N_{B}$ 的二分格子其基态是总单态（$S = 0$）且非简并。于是有限 $U$ 下（基态）不可能发生任何能级交叉。
+\medskip
+
+换言之，半满时的小 $U$ 与大 $U$ 基态是“绝热相连”的：随着 $U$ 增大，基态从自由电子气连续演化到 Heisenberg 反铁磁体的基态，正如 3.2 节所预期。第 5 章将描述 Heisenberg 模型的 Marshall 定理，它与 Lieb 定理 4.2 十分相似。两个定理都利用了哈密顿量的一个特性：在某个基底下其非对角矩阵元非正。这一性质使基态在该基底上正定，由此可证其唯一性与总自旋值。
+
+3.3 节我们看到，任意填充的负 $U$ Hubbard 模型都与半满的正 $U$ 模型相关。因此定理 4.2 与下述定理密切相关。
+
+\medskip
+\noindent\textbf{Lieb 定理 4.4}\quad 考虑有限格子（$\mathcal{N} < \infty$）上的负 $U$ Hubbard 模型
+
+\begin{equation*}
+\mathcal {H} = - \sum_ {sij} t _ {ij} \, c _ {is} ^ {\dagger} c _ {js} - \sum_ {i} | U _ {i} | \, n _ {i \uparrow} n _ {i \downarrow},
+\tag{4.34}
+\end{equation*}
+
+电子数为偶数，跳跃参数任意，$t_{ij} = t_{ji}$。则 (4.34) 的基态 $|\Psi_0\rangle$ 是总自旋 $\mathbf{S} = \sum_i\mathbf{S}_i$ 的单态：
+
+\begin{equation*}
+\mathbf {S} _ {\mathrm{tot}} ^ {2} | \Psi_ {0} \rangle = 0,
+\tag{4.35}
+\end{equation*}
+
+而且它是唯一的。
+\medskip
+
+对 $|U/t| \gg 1$，此定理并不奇怪：基态预期是局域配对电子的体系。较小 $|U/t|$ 下基态的唯一性及其自旋则是定理 4.4 的非平凡结果。如 3.3 节所述，负 $U$ 哈密顿量描述电荷密度有序与超导电性的竞争。遗憾的是，基态的自旋无助于我们在热力学极限下分辨可能的对称性破缺；那必须靠其他手段确立（见第 6 章）。
+
+\begin{exercises}
+
+\item 求 (4.2) 的 $\mathcal{H}$ 在 Fermi 气体顺磁态
+
+\begin{equation*}
+\Psi^ {0} = \prod_ {s,\; \mathbf {k} \in \Sigma_ {F}} c _ {\mathbf {k} s} ^ {\dagger} | 0 \rangle ,
+\tag{4.36}
+\end{equation*}
+
+中的期望值，其中 $\Sigma_{F}$ 是围住 $\frac{1}{2}\mathcal{N}n$ 个 $\mathbf{k}$ 值的费米面。
+
+\item 把 (4.36) 的能量与完全极化铁磁态
+
+\begin{equation*}
+\Psi^ {\uparrow} = \prod_ {\mathbf {k} \in \Sigma_ {F} ^ {\uparrow}} c _ {\mathbf {k} \uparrow} ^ {\dagger} | 0 \rangle ,
+\tag{4.37}
+\end{equation*}
+
+的能量比较，其中 $\Sigma_F^\uparrow$ 是围住 $N_e$ 个 $\mathbf{k}$ 态的单自旋费米面。$U/t$ 多大时铁磁态更优？把这个变分判据与 Stoner 判据 (4.22) 比较，孰强孰弱？
+
+\item Stoner 条件 (4.22) 与铁磁耦合的 Hund 定则（见 2.1 节）之间有何联系与区别？
+
+\end{exercises}
+
+\begin{chapbib}
+\item Hartree--Fock 近似与 Stoner 判据的 Green 函数推导见：
+  S. Doniach and E. H. Sondheimer, \textit{Green's Functions for Solid State Physicists} (Benjamin/Cummings, 1974)。
+\item 关于自旋密度波理论及实验的综合专著：
+  T. Moriya, \textit{Spin Fluctuations in Itinerant Electron Magnetism} (Springer-Verlag, 1985)。
+\item Hubbard 模型严格定理与未决问题的新近综述：
+  E. Lieb, \textit{Proceedings of the conference Advances in Dynamical Systems and Quantum Physics}, Capri (World Scientific, 1993)。
+\item Gutzwiller 变分态 (4.26) 提出于其经典论文：
+  M. C. Gutzwiller, Phys. Rev. Lett. \textbf{10}, 159 (1963)。
+\item Gutzwiller 态中关联的解析计算：
+  W. Metzner and D. Vollhardt, Phys. Rev. B \textbf{37}, 7382 (1988)；
+  F. Gebhard and D. Vollhardt, Phys. Rev. B \textbf{38}, 6911 (1988)。
+\item Haldane--Shastry 模型引入于
+  F. D. M. Haldane, Phys. Rev. Lett. \textbf{60}, 635 (1988)；
+  B. S. Shastry, Phys. Rev. Lett. \textbf{60}, 639 (1988)，
+  其中证明了基态正是 (4.27) 的 Gutzwiller 态 $\Psi^{\mathrm{GPFG}}$。
+\end{chapbib}

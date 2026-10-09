@@ -1,0 +1,1328 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第4章 自由费米子系统
+
+% 第4章 FREE FERMION SYSTEMS
+\chapter{自由费米子系统}
+
+费米子系统是凝聚态物理中最重要的系统之一。金属、半导体、磁体、超导体等等都是费米子系统，它们的性质主要受电子的费米统计控制。在本章中，我们将研究自由多费米子系统的一些性质。
+
+\section{多费米子系统}
+
+\subsection{什么是费米子？}
+
+\begin{keypoints}
+\item 费米子由泡利不相容原理以及一种在两个全同费米子交换时产生$\pi$相移的跃迁哈密顿量来表征。
+\item 费米子之所以怪异，是因为它们是非局域的客体。
+\item 费米子可以用反对易算符来描述。
+\end{keypoints}
+
+长期以来，我们一直觉得自己知道费米子是什么。在读完接下来几节之后，如果你开始觉得自己并不真正理解费米子究竟是什么，那么我就达到了目的。我们将在第10章的后面对"费米子是什么"给出一个回答。这里我们只用传统的方式引进费米子，并在传统图像之内展示费米子是多么奇怪、多么不自然。
+
+我们先尝试描述格点上的无自旋费米子系统。由于泡利不相容原理，格点费米子系统的希尔伯特空间可以用基矢$\{|n_{\pmb{i}_1},n_{\pmb{i}_2},\ldots\rangle\}$展开，其中$n_{\pmb{i}}=0,1$是格点$\pmb{i}$上的费米子数目。为了对自由费米子系统给出二次量子化的描述，我们为每个格点$\pmb{i}$引入湮灭算符$\sigma_{\pmb{i}}^{-}$和产生算符$\sigma_{\pmb{i}}^{+}$。它们具有如下矩阵形式：
+\begin{equation*}
+\sigma_{\pmb{i}}^{-}=\begin{pmatrix}0 & 0\\ 1 & 0\end{pmatrix}=\frac{1}{2}(\sigma^{x}-\mathrm{i}\sigma^{y})
+\qquad
+\sigma_{\pmb{i}}^{+}=\begin{pmatrix}0 & 1\\ 0 & 0\end{pmatrix}=\frac{1}{2}(\sigma^{x}+\mathrm{i}\sigma^{y})
+\end{equation*}
+其中$\sigma^{x,y,z}$是泡利矩阵。湮灭算符$\sigma^{-}$把有一个费米子的态$|1\rangle=\binom{1}{0}$变成没有费米子的态$|0\rangle=\binom{0}{1}$。由于$\sigma_{\pmb{i}}^{\pm}$产生/湮灭一个费米子，我们暂且把它们称作"费米子"算符。
+
+利用"费米子"算符$\sigma_{\pmb{i}}^{\pm}$，我们可以为费米系统写下如下哈密顿量：
+\begin{equation*}
+H_b=\sum_{\langle\pmb{i}\pmb{j}\rangle}(t_{\pmb{i}\pmb{j}}\sigma_{\pmb{i}}^{+}\sigma_{\pmb{j}}^{-}+\text{h.c.})
+\end{equation*}
+虽然从数学上看，$H_b$是作用于费米子希尔伯特空间$\{|n_{\pmb{i}_1},n_{\pmb{i}_2},\ldots\rangle\}$之内的厄米算符，但由$H_b$所描述的系统并不是费米子系统，它其实是一个硬核玻色子（hard-core boson）系统或自旋-1/2系统。
+
+这是因为我们的费米子希尔伯特空间同样可以看作一个硬核玻色子的希尔伯特空间，其中$|0\rangle$是零玻色子态，$|1\rangle$是单玻色子态。\footnote{费米子希尔伯特空间也可以看作一个自旋-1/2的希尔伯特空间，其中$|0\rangle$是自旋向下态，$|1\rangle$是自旋向上态。}所以，单凭希尔伯特空间本身，我们无法判断该系统是费米子系统还是玻色子系统；我们必须考察哈密顿量，才能判断系统是费米型的还是玻色型的。哈密顿量$H_b$是用$\sigma_{\pmb{i}}^{\pm}$写出的，而$\sigma_{\pmb{i}}^{\pm}$在不同格点上彼此对易，因此由$H_b$描述的系统是玻色子系统。我们其实应该把$\sigma_{\pmb{i}}^{-}$称作玻色子算符。
+
+令人十分惊讶的是，费米子希尔伯特空间中一个自然的局域哈密顿量所描述的竟然不是费米子系统！这就引出一个有趣的问题：是什么使一个多粒子系统成为费米子系统？显然，仅有泡利不相容原理是不够的。一个费米系统不仅拥有满足泡利不相容原理的费米型希尔伯特空间，它的哈密顿量还具有一种非常特殊的性质。事实上，费米子系统是由高度非局域的哈密顿量
+\begin{equation*}
+H_f=\sum_{\langle\pmb{i}\pmb{j}\rangle}(\hat{t}_{\pmb{i}\pmb{j}}(\{\sigma_{\pmb{i}'}^{z}\})\sigma_{\pmb{i}}^{+}\sigma_{\pmb{j}}^{-}+\text{h.c.})
+\end{equation*}
+描述的，其中$\hat{t}_{\pmb{i}\pmb{j}}$是$\sigma_{\pmb{i}}^{z}$算符的函数，它包含许多个$\sigma_{\pmb{i}}^{z}$算符的乘积。对于一个有$N_s$个格点的$d$维格子，$\sigma_{\pmb{i}}^{z}$算符的数目是$N_s^{d-1}$的量级。如果不是大自然为我们提供了这样的非局域系统，任何头脑正常的物理学家都不会想去研究它们。既然这类非局域系统确实存在于自然界，我们就不得不研究它们。可是怎么研究呢？
+
+这里我们极为幸运。自然界中的非局域费米子系统具有一些特殊的性质，使我们能够把它们简化。为了写下简化后的哈密顿量，我们先按某种方式给所有格点排序：$(\pmb{i}_1,\pmb{i}_2,\ldots,\pmb{i}_a,\ldots)$。然后我们引入另一类费米子算符：
+\begin{equation*}
+c_{\pmb{i}_a}=\sigma_{\pmb{i}_a}^{-}\prod_{b<a}\sigma_{\pmb{i}_b}^{z}\tag{4.1.1}
+\end{equation*}
+如果我们把格点排序得当，那么用$c_{\pmb{i}}$写出时，$H_f$将取如下较简单的形式：
+\begin{equation*}
+H_f=\sum_{\langle\pmb{i}\pmb{j}\rangle}(t_{\pmb{i}\pmb{j}}c_{\pmb{i}}^{\dagger}c_{\pmb{j}}+\text{h.c.})\tag{4.1.2}
+\end{equation*}
+其中$t_{\pmb{i}\pmb{j}}$不依赖于$\sigma_{\pmb{i}}^{z}=2c_{\pmb{i}}^{\dagger}c_{\pmb{i}}-1$。可以验证
+\begin{align*}
+&\{c_{\pmb{i}},c_{\pmb{j}}\}=\{c_{\pmb{i}}^{\dagger},c_{\pmb{j}}^{\dagger}\}=0\\
+&\{c_{\pmb{i}},c_{\pmb{j}}^{\dagger}\}=\delta_{\pmb{i}\pmb{j}}\tag{4.1.3}
+\end{align*}
+其中$\{A,B\}\equiv AB+BA$称为反对易子（anti-commutator）。玻色子算符$\sigma^{x,y,z}$与费米子算符$c_{\pmb{i}}$之间的这一映射就是Jordan--Wigner变换（Jordan and Wigner, 1928）。我们注意到$c_{\pmb{i}}^{\dagger}c_{\pmb{i}}=\sigma_{\pmb{i}}^{+}\sigma_{\pmb{i}}^{-}$。这里$|0\rangle$和$|1\rangle$是$c_{\pmb{i}}^{\dagger}c_{\pmb{i}}$的两个本征态，本征值分别为0和1。因此，$c_{\pmb{i}}^{\dagger}c_{\pmb{i}}$是格点$\pmb{i}$上的费米子数算符。
+
+通常，我们不去谈论费米子从何而来，而是直接把式(4.1.3)和式(4.1.2)当作自由费米子系统的定义。但如果我们真的追问费米子从何而来，并且认为玻色子比费米子更为基本，\footnote{玻色子系统的定义见10.1节。}那么上面的讨论表明，\emph{费米子是非局域激发}。事实上，自然界中的费米子的确表现得像非局域激发，因为费米子不能被单独产生。大自然似乎想要随时掌握我们宇宙中费米子的总数，以保证这个数是偶整数。局域激发不可能具有这样一种非局域的约束。在第10章中我们将看到，费米子可以解释为凝聚弦的端点，确实是非局域的。
+
+\subsection{自由费米子系统的精确解}
+
+\begin{keypoints}
+\item 自由费米子系统的全部本征态和能量本征值都可以由费米子算符的反对易代数得到。
+\end{keypoints}
+
+在一个有$N_{\mathrm{site}}$个格点的格子上，费米子系统的希尔伯特空间有$2^{N_{\mathrm{site}}}$个态。哈密顿量(4.1.2)是一个$2^{N_{\mathrm{site}}}\times 2^{N_{\mathrm{site}}}$矩阵。求解该哈密顿量就相当于求出这么大一个矩阵的本征值和本征矢。
+
+利用反对易代数(4.1.3)，可以把哈密顿量(4.1.2)严格解出。为简单起见，让我们假设系统具有平移对称性。此时$t_{\pmb{i}\pmb{j}}$只依赖于差$\pmb{i}-\pmb{j}$，即$t_{\pmb{i},\pmb{i}+\Delta\pmb{i}}=t_{\Delta\pmb{i}}$。引入$c_{\pmb{k}}=\sum_{\pmb{i}}N_s^{-1/2}\mathrm{e}^{-\mathrm{i}\pmb{k}\cdot\pmb{i}}c_{\pmb{i}}$，其中$N_s$是格点总数，我们发现
+\begin{align*}
+&H_f=\sum_{\pmb{k}}\epsilon_{\pmb{k}}c_{\pmb{k}}^{\dagger}c_{\pmb{k}},\qquad \epsilon_{\pmb{k}}=\sum_{\Delta\pmb{i}}t_{\Delta\pmb{i}}\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\Delta\pmb{i}},\\
+&\{c_{\pmb{k}},c_{\pmb{k}'}\}=\{c_{\pmb{k}}^{\dagger},c_{\pmb{k}'}^{\dagger}\}=0,\qquad \{c_{\pmb{k}},c_{\pmb{k}'}^{\dagger}\}=\delta_{\pmb{k}\pmb{k}'}.\tag{4.1.4}
+\end{align*}
+可以验证，满足$c_{\pmb{k}}|0\rangle=0$的态$|0\rangle$是$H_f$的零本征值本征态。利用反对易关系，我们发现态$|\{n_{\pmb{k}}\}\rangle\equiv\prod_{\pmb{k}}(c_{\pmb{k}}^{\dagger})^{n_{\pmb{k}}}|0\rangle$（$n_{\pmb{k}}=0,1$）是$c_{\pmb{k}}^{\dagger}c_{\pmb{k}}$的共同本征态，即$c_{\pmb{k}}^{\dagger}c_{\pmb{k}}|\{n_{\pmb{k}}\}\rangle=n_{\pmb{k}}|\{n_{\pmb{k}}\}\rangle$，而且它还是能量$E=\sum_{\pmb{k}}n_{\pmb{k}}\epsilon_{\pmb{k}}$的本征态。上面这种形式的本征态给出了$H_f$的全部本征态。这里的$n_{\pmb{k}}$是动量$\pmb{k}$上的费米子占据数。往$\pmb{k}_0$能级上加一个费米子，总能量就增加$\epsilon_{\pmb{k}_0}$，因此$\epsilon_{\pmb{k}_0}$可以解释为单粒子能量。
+
+值得注意的是，我们通过代数途径就得到了$H_f$的全部本征态，而无需显式写出本征矢。对易的玻色代数和反对易的费米代数，是我们能够严格求解的仅有的几个代数系统中的两个。实际上，在相当长的时间里，它们曾是我们能在一维以外严格求解的仅有的两个代数系统。找到一维以外精确可解的代数系统，对我们理解相互作用系统极为重要。第10章将讨论最近发现的另外一些能够在一维以外求解的代数系统（Kitaev, 2003; Levin and Wen, 2003; Wen, 2003c）。这些代数系统引出了一维以外精确可解的相互作用模型。
+
+如果计入化学势$\mu$，自由费米子系统的哈密顿量将变为
+\begin{equation*}
+H=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu)c_{\pmb{k}}^{\dagger}c_{\pmb{k}}=\sum_{\pmb{k}}\xi_{\pmb{k}}c_{\pmb{k}}^{\dagger}c_{\pmb{k}},\qquad \xi_{\pmb{k}}\equiv\epsilon_{\pmb{k}}-\mu\tag{4.1.5}
+\end{equation*}
+$H$的基态由一个态$|\Psi_0\rangle$给出：所有$\xi_{\pmb{k}}<0$的$\pmb{k}$态都被填满，所有$\xi_{\pmb{k}}>0$的$\pmb{k}$态都空着。$|\Psi_0\rangle$由如下代数关系定义：
+\begin{equation*}
+\begin{aligned}
+c_{\pmb{k}}|\Psi_0\rangle&=0,\qquad \text{当 }\xi_{\pmb{k}}>0\\
+c_{\pmb{k}}^{\dagger}|\Psi_0\rangle&=0,\qquad \text{当 }\xi_{\pmb{k}}<0
+\end{aligned}
+\end{equation*}
+占据数$n_{\pmb{k}}=c_{\pmb{k}}^{\dagger}c_{\pmb{k}}$在费米面处有一个跃变（见图4.1）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.1.pdf}
+\caption*{图 4.1\quad 自由费米子系统的基态是一个费米海（Fermi sea）。这里的$E_F$称为费米能，$k_F$称为费米动量。占据数$n_k=n_F(\xi_k)$在费米动量$k_F$处不连续。}
+\end{figure}
+
+\subsection*{问题 4.1.1}
+
+\textbf{Jordan--Wigner变换}\quad 由式(4.1.1)证明式(4.1.3)。
+
+\subsection*{问题 4.1.2}
+
+\textbf{一维超导体的能谱}\quad 一维超导体由如下自由费米子哈密顿量描述：
+\begin{equation*}
+H=\sum_{i}(t\,c_{i}^{\dagger}c_{i+1}+\eta\,c_{i}^{\dagger}c_{i+1}^{\dagger}+\text{h.c.})\tag{4.1.6}
+\end{equation*}
+证明：在动量空间中，算符
+\begin{equation*}
+\lambda_{k}=u_{k}c_{k}+v_{k}c_{-k}^{\dagger}
+\end{equation*}
+满足费米子反对易关系$\{\lambda_{k},\lambda_{k'}\}=\{\lambda_{k}^{\dagger},\lambda_{k'}^{\dagger}\}=0$，并且当$|u_{k}|^{2}+|v_{k}|^{2}=1$时$\{\lambda_{k},\lambda_{k'}^{\dagger}\}=\delta_{kk'}$。证明：通过适当选取$u_{k}$和$v_{k}$，我们可以把$H$改写为
+\begin{equation*}
+H=E_{g}+\sum_{k}E_{k}\lambda_{k}^{\dagger}\lambda_{k}.
+\end{equation*}
+求出准粒子激发谱$E_{k}$和基态能量$E_{g}$。
+
+\subsection*{问题 4.1.3}
+
+\textbf{用Jordan--Wigner变换求解一维自旋-1/2系统（或硬核玻色子系统）}\quad 考虑一个具有如下哈密顿量的一维自旋-1/2系统（或硬核玻色子系统）：
+\begin{equation*}
+H=\sum_{i}\left(J_{x}\sigma_{i}^{x}\sigma_{i+1}^{x}+J_{y}\sigma_{i}^{y}\sigma_{i+1}^{y}+B\sigma_{i}^{z}\right)
+\end{equation*}
+\begin{enumerate}
+\item 用Jordan--Wigner变换（对一维格子取自然排序），把上述相互作用的自旋-1/2（或硬核玻色子）系统映射为一个自由费米子系统。
+\item 设$J_x=J_y=J$且$B\neq 0$。当$J$从$-\infty$变到$+\infty$时，系统经历几次相变。求出这些相变的临界$J$值。对每一个相和每一个临界点，画出总能量--动量空间中系统存在激发的区域。所有低能激发都应当包括在内，不论其动量多大；高能激发则不必包括。（提示：应当先思考并猜测一下，根据我们对一维相互作用玻色子系统的知识，谱应当是什么样子。）
+\item 设$J_x=\alpha J_y=J$（$0<\alpha<1$）且$B\neq 0$。当$J$从$-\infty$变到$+\infty$时，系统经历几次相变。求出这些相变的临界$J$值。对每一个相和每一个临界点，画出总能量--动量空间中系统存在激发的区域。所有低能激发都应当包括在内，不论其动量多大。
+\item 讨论为什么上述两种情形，即$J_x=J_y$与$J_x\neq J_y$，在定性上是不同的。
+\end{enumerate}
+
+\subsection{马约拉纳费米子}
+
+自由费米子系统(4.1.2)是一个精确可解的多体系统，其希尔伯特空间的维数为$2^{N_{\mathrm{site}}}$（即每个格点两个态）。还有一个更小的精确可解系统，其希尔伯特空间中只有$2^{N_{\mathrm{site}}/2}$个态（假定$N_{\mathrm{site}}$为偶数）。这个系统称为马约拉纳费米子（Majorana fermion）系统，由如下哈密顿量描述：
+\begin{equation*}
+H=\sum_{i}(-\mathrm{i}t\,\lambda_{i}\lambda_{i+1}+\text{h.c.})\tag{4.1.7}
+\end{equation*}
+其中满足
+\begin{equation*}
+\{\lambda_{i},\lambda_{j}\}=\delta_{ij},\qquad (\lambda_{i})^{\dagger}=\lambda_{i}\tag{4.1.8}
+\end{equation*}
+的$\lambda_{i}$是马约拉纳费米子算符。马约拉纳费米子系统的希尔伯特空间构成上述反对易代数的一个表示。
+
+为了构造希尔伯特空间，让我们考虑一个有$N_{\mathrm{site}}$个格点的一维周期系统，并假定$N_{\mathrm{site}}$为偶数，而且$\lambda_{i}$满足反周期边界条件$\lambda_{i+N_{\mathrm{site}}}=-\lambda_{i}$。在$k$空间中，哈密顿量(4.1.7)取如下形式：
+\begin{equation*}
+H=-\sum_{k}\mathrm{i}t\,\mathrm{e}^{\mathrm{i}k}\lambda(-k)\lambda(k)=\sum_{k>0}t\sin k\,\lambda^{\dagger}(k)\lambda(k)
+\end{equation*}
+其中$\lambda(k)=N_{\mathrm{site}}^{-1/2}\sum_{n}\mathrm{e}^{-\mathrm{i}kn}\lambda_{n}$，而$k=\pm\pi/N_{\mathrm{site}},\pm3\pi/N_{\mathrm{site}},\ldots,\pm(N_{\mathrm{site}}-1)\pi/N_{\mathrm{site}}$。可以验证
+\begin{equation*}
+\{\lambda^{\dagger}(k),\lambda(k')\}=\delta_{k-k'},\qquad \lambda^{\dagger}(k)=\lambda(-k)
+\end{equation*}
+我们看到，$k>0$的$\lambda(k)$满足复费米子的反对易代数。令$|0\rangle$为满足$\lambda(k)|0\rangle=0$（对$k>0$）的态。我们可以把$|0\rangle$看作没有费米子的态。令$|\{n_k\}\rangle=\prod_{k>0}(\lambda^{\dagger}(k))^{n_k}|0\rangle$，其中$n_k=0,1$。由于$\lambda^{\dagger}(k)\lambda(k)|\{n_k\}\rangle=n_k|\{n_k\}\rangle$，我们可以把$n_k$看作能级$k$上的占据数。注意，能级只有$N_{\mathrm{site}}/2$个，因为能级由正$k$标记（见图4.2）。因此，希尔伯特空间有$2^{N_{\mathrm{site}}/2}$个态。有趣的是，马约拉纳系统每个格点只有$\sqrt{2}$个态！态$|\{n_k\}\rangle$是一个能量本征态，能量为$\sum_{k>0}2t\sin(k)n_k$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.2.pdf}
+\caption*{图 4.2\quad 马约拉纳费米子的单粒子能级仅对$k>0$存在。多体态由这些单粒子能级上的占据数$n_k$描述。}
+\end{figure}
+
+对于一个具有两个马约拉纳费米子的系统
+\begin{equation*}
+H=\sum_{i}(-\mathrm{i}t\,\lambda_{1,i}\lambda_{1,i+1}-\mathrm{i}t\,\lambda_{2,i}\lambda_{2,i+1}+\text{h.c.}),
+\end{equation*}
+其多体希尔伯特空间有$2^{N_{\mathrm{site}}}$个态（即每个格点$\sqrt{2}\times\sqrt{2}=2$个态），与一个复费米子的希尔伯特空间相同。事实上，两个马约拉纳费米子的系统等价于一个复费米子的系统（见问题4.1.4）。
+
+\subsection*{问题 4.1.4}
+
+超导哈密顿量(4.1.6)也可以用马约拉纳费米子算符求解。马约拉纳费米子算符无非就是复费米子算符$c_{i}$的实部和虚部：
+\begin{equation*}
+\lambda_{1,i}=\frac{c_{i}+c_{i}^{\dagger}}{\sqrt{2}},\qquad \lambda_{2,i}=\frac{c_{i}-c_{i}^{\dagger}}{\mathrm{i}\sqrt{2}}
+\end{equation*}
+证明$\lambda_{ai}$满足马约拉纳费米子的反对易代数。用马约拉纳费米子求出所有能量本征态及其能量本征值，并把你的结果与问题4.1.2中得到的结果进行比较。
+
+\subsection{跃迁算符的统计代数}
+
+\begin{keypoints}
+\item 全同粒子的统计性由其跃迁算符的代数决定。
+\end{keypoints}
+
+通常，玻色子系统被定义为由对易算符描述的系统，而费米子系统被定义为由反对易算符描述的系统。然而，这些定义太形式化了。为了从物理上理解玻色子系统与费米子系统的差别，我们考虑下面这个多体跃迁系统。希尔伯特空间由零粒子态$|0\rangle$、单粒子态$|\pmb{i}_1\rangle$、两粒子态$|\pmb{i}_1,\pmb{i}_2\rangle$等等构成，其中$\pmb{i}_n$标记格子中的格点。作为一个全同粒子系统，态$|\pmb{i}_1,\pmb{i}_2,\ldots\rangle$不依赖于指标$\pmb{i}_1,\pmb{i}_2,\ldots$的次序，例如$|\pmb{i}_1,\pmb{i}_2\rangle=|\pmb{i}_2,\pmb{i}_1\rangle$。没有双重占据的格点，并且我们约定当$\pmb{i}_m=\pmb{i}_n$时$|\pmb{i}_1,\pmb{i}_2,\ldots\rangle=0$。
+
+跃迁算符$\hat{t}_{ij}$定义如下：当$\hat{t}_{ij}$作用在态$|\pmb{i}_1,\pmb{i}_2,\ldots\rangle$上时，如果格点$j$上有一个粒子而格点$i$上没有粒子，那么$\hat{t}_{ij}$就把$j$上的粒子搬到$i$，并在所得的态上乘一个复振幅$t(i,j;i_1,i_2,\ldots)$。注意，这个振幅可以依赖于所有粒子的位置，因而不一定是局域的。除此情形之外，跃迁算符$\hat{t}_{ij}$湮灭该态。我们系统的哈密顿量为
+\begin{equation*}
+H=\sum_{\langle ij\rangle}\hat{t}_{ij}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.3.pdf}
+\caption*{图 4.3\quad (a)五次跃迁的第一种排序方式交换$i$、$j$处的两个粒子。(b)同样五次跃迁的第二种排序方式不交换这两个粒子。}
+\end{figure}
+其中求和$\sum_{\langle ij\rangle}$遍及某一组配对$\langle ij\rangle$，例如最近邻配对。为了使上述哈密顿量描述一个局域系统，我们要求：当$i$、$j$、$k$、$l$互不相同时，
+\begin{equation*}
+[\hat{t}_{ij},\hat{t}_{kl}]=0
+\end{equation*}
+现在的问题是：上述跃迁哈密顿量描述的是硬核玻色子系统还是费米子系统？
+
+多体跃迁系统是玻色子系统还是费米子系统（甚至是其他某种统计系统），与希尔伯特空间毫无关系。多体态由对称化的指标标记（例如$|\pmb{i}_1,\pmb{i}_2\rangle=|\pmb{i}_2,\pmb{i}_1\rangle$）这一事实，并不意味着多体系统就是玻色子系统，正如我们在4.1.1节中已经看到的。统计性由哈密顿量$H$决定。
+
+显然，当跃迁振幅$t(i,j;i_1,i_2,\ldots)$只依赖于$i$和$j$，即$t(i,j;i_1,i_2,\ldots)=t(i,j)$时，多体跃迁哈密顿量描述的是硬核玻色子系统。问题是：在什么条件下多体跃迁哈密顿量描述费米子系统？
+
+Levin和Wen（2003）解决了这个问题。他们发现，只要对任意三个跃迁算符$\hat{t}_{lj}$、$\hat{t}_{il}$、$\hat{t}_{lk}$（其中$i$、$j$、$k$、$l$互不相同），跃迁算符满足
+\begin{equation*}
+\hat{t}_{lk}\hat{t}_{il}\hat{t}_{lj}=-\hat{t}_{lj}\hat{t}_{il}\hat{t}_{lk}\tag{4.1.9}
+\end{equation*}
+多体跃迁哈密顿量就描述一个费米子系统。（注意该代数具有$\hat{t}_1\hat{t}_2\hat{t}_3=-\hat{t}_3\hat{t}_2\hat{t}_1$的结构。）
+
+考虑态$|\pmb{i},\pmb{j},\ldots\rangle$，其中$i$、$j$处各有一个粒子，可能还有其他粒子在更远处。我们把一组五个跃迁算符$\{\hat{t}_{jl},\hat{t}_{lk},\hat{t}_{il},\hat{t}_{lj},\hat{t}_{ki}\}$按不同的次序作用到态$|\pmb{i},\pmb{j},\ldots\rangle$上（见图4.3）：
+\begin{align*}
+\hat{t}_{jl}\hat{t}_{lk}\hat{t}_{il}\hat{t}_{lj}\hat{t}_{ki}|\pmb{i},\pmb{j},\ldots\rangle&=C_1|\pmb{i},\pmb{j},\ldots\rangle\\
+\hat{t}_{jl}\hat{t}_{lj}\hat{t}_{il}\hat{t}_{lk}\hat{t}_{ki}|\pmb{i},\pmb{j},\ldots\rangle&=C_2|\pmb{i},\pmb{j},\ldots\rangle
+\end{align*}
+其中我们假定格点$k$和$l$上没有粒子。我们注意到，五次跃迁之后我们回到原来的态$|\pmb{i},\pmb{j},\ldots\rangle$，只多出了相位$C_{1,2}$。然而从图4.3可以看到，五次跃迁的第一种排序方式（图4.3(a)）交换了$i$、$j$处的两个粒子，而第二种方式（图4.3(b)）不交换这两个粒子。既然两种跃迁方案使用的是同一组五次跃迁，$C_1$与$C_2$之间的差别就来自两个粒子的交换。因此，要使多体跃迁哈密顿量描述费米子系统，必须要求$C_1=-C_2$。注意到两种方案中第一次跃迁和最后一次跃迁是相同的，我们发现：只要跃迁算符满足式(4.1.9)，就有$C_1=-C_2$。事实上，如果我们不想使用反对易代数，式(4.1.9)可以作为费米统计的另一种定义。
+
+我们想指出，在二维格子上，费米子跃迁代数可以推广为更一般的跃迁算符统计代数：
+\begin{equation*}
+\hat{t}_{ji}\hat{t}_{ik}\hat{t}_{li}=\mathrm{e}^{\mathrm{i}\theta}\hat{t}_{li}\hat{t}_{ik}\hat{t}_{ji}\tag{4.1.10}
+\end{equation*}
+在这种情形下，多体跃迁哈密顿量描述的是一个统计角为$\theta$的任意子（anyon）系统。
+
+\subsection*{问题 4.1.5}
+
+证明费米子跃迁算符$\hat{t}_{ij}=c_{i}^{\dagger}c_{j}$满足费米子跃迁代数。
+
+\subsection*{问题 4.1.6}
+
+我们已知弦算符（string operator）$\hat{W}_{ij}=\hat{t}_{il}\hat{t}_{lm}\ldots\hat{t}_{nj}$在$i$处产生一个粒子、在$j$处湮灭一个粒子，于是我们可能想把它写成$\hat{W}_{ij}=C_{i}^{+}C_{j}^{-}$。
+
+\begin{enumerate}
+\item[(a)] 证明：如果跃迁算符$\hat{t}_{ij}$满足费米子跃迁代数(4.1.9)，则弦算符满足$\hat{W}_{lk}\hat{W}_{il}\allowbreak\hat{W}_{lj}\allowbreak=-\hat{W}_{lj}\allowbreak\hat{W}_{il}\allowbreak\hat{W}_{lk}$。（可以假定这三条弦只在一点$l$相交。）
+\item[(b)] 证明$C_{i}^{\pm}$与$C_{j}^{\pm}$不能对易，即使$i$与$j$相距很远。但是，如果$C_{i}^{\pm}$与$C_{j}^{\pm}$反对易（当$i\neq j$时），则费米子跃迁代数(4.1.9)可以得到满足。
+\end{enumerate}
+
+\section{自由费米子格林函数}
+
+\begin{keypoints}
+\item 格林函数在很长时间上的代数衰减与跨费米面的无能隙激发有关；长距离上的代数衰减与动量空间中的尖锐特征（不连续性）有关。
+\item 电子格林函数可以在隧穿实验中测量。
+\item 电子格林函数的谱函数。
+\end{keypoints}
+
+在接下来的几节中，我们将讨论自由费米子系统的单体和两体关联函数。单体关联函数对理解隧穿和光电子发射（photoemission）实验十分重要。两体关联函数则更为重要，因为它们与各种各样的输运、散射以及线性响应实验都有关系。在这两节中我会给出一些计算细节。这些讨论的目的主要是引进数学形式。我们列出了$d=1,2,3$维的许多显式结果，希望这些结果既可以用作参考，也可以作为各种关联的具体例子。
+
+\subsection{编时关联函数}
+
+\begin{keypoints}
+\item 在编时平均之下，费米子算符表现得像反对易的数。
+\end{keypoints}
+
+考虑由式(4.1.5)描述的自由费米子系统。在海森堡绘景中，含时的费米子算符为
+\begin{equation*}
+c_{\pmb{k}}(t)=U^{\dagger}(t,-\infty)c_{\pmb{k}}U(t,-\infty),\qquad U(t_1,t_2)=\mathrm{e}^{-\mathrm{i}\int_{t_2}^{t_1}\mathrm{d}t\, H}
+\end{equation*}
+零温和有限温下的费米子传播子（即格林函数）定义为编时平均
+\begin{align*}
+\mathrm{i}G(t_1-t_2,\pmb{k}_1)\delta_{\pmb{k}_1,\pmb{k}_2}&=\langle 0|T(c_{\pmb{k}_1}(t_1)c_{\pmb{k}_2}^{\dagger}(t_2))|0\rangle\tag{4.2.1}\\
+&=\begin{cases}
++\langle 0|c_{\pmb{k}_1}(t_1)c_{\pmb{k}_2}^{\dagger}(t_2)|0\rangle, & \text{当 } t_1>t_2\\
+-\langle 0|c_{\pmb{k}_2}^{\dagger}(t_2)c_{\pmb{k}_1}(t_1)|0\rangle, & \text{当 } t_1<t_2
+\end{cases}\qquad \text{当 } T=0
+\end{align*}
+\begin{align*}
+\mathrm{i}G^{\beta}(t_1-t_2,\pmb{k}_1)\delta_{\pmb{k}_1,\pmb{k}_2}&=\langle T(c_{\pmb{k}_1}(t_1)c_{\pmb{k}_2}^{\dagger}(t_2))\rangle\\
+&\equiv\frac{\mathrm{Tr}[T(c_{\pmb{k}_1}(t_1)c_{\pmb{k}_2}^{\dagger}(t_2))\mathrm{e}^{-\beta H}]}{Z}\tag{4.2.2}\\
+&=\begin{cases}
++\mathrm{Tr}[c_{\pmb{k}_1}(t_1)c_{\pmb{k}_2}^{\dagger}(t_2)\mathrm{e}^{-\beta H}], & \text{当 } t_1>t_2\\
+-\mathrm{Tr}[c_{\pmb{k}_2}^{\dagger}(t_2)c_{\pmb{k}_1}(t_1)\mathrm{e}^{-\beta H}], & \text{当 } t_1<t_2
+\end{cases}\qquad \text{当 } T>0
+\end{align*}
+注意上述定义中的负号；并且按定义
+\begin{equation*}
+\left\langle T\left(c^{\dagger}(t)c(t')\right)\right\rangle=-\left\langle T\left(c(t')c^{\dagger}(t)\right)\right\rangle
+\end{equation*}
+已知$\pmb{k}$态上的费米子占据数
+\begin{equation*}
+n_F(\xi_{\pmb{k}})=\langle c_{\pmb{k}}^{\dagger}c_{\pmb{k}}\rangle=\frac{1}{\mathrm{e}^{\beta\xi_{\pmb{k}}}+1}
+\end{equation*}
+我们就可以算出动量空间中的零温格林函数$G$和有限温格林函数$G^{\beta}$：
+\begin{align*}
+\mathrm{i}G(t,\pmb{k})&=+\Theta(t)\Theta(\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}}-\Theta(-t)\Theta(-\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}(-t)(-\xi_{\pmb{k}})}\big|_{T=0}\\
+\mathrm{i}G^{\beta}(t,\pmb{k})&=+\Theta(t)(1-n_F(\xi_{\pmb{k}}))\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}}-\Theta(-t)n_F(\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}}\big|_{T>0}\tag{4.2.3}
+\end{align*}
+在$\omega$--$\pmb{k}$空间中，$G(\omega,\pmb{k})=\int\mathrm{d}t\, G(t,\pmb{k})\mathrm{e}^{\mathrm{i}\omega t}$与$G^{\beta}(\omega,\pmb{k})=\int\mathrm{d}t\, G^{\beta}(t,\pmb{k})\mathrm{e}^{\mathrm{i}\omega t}$具有如下更简单的形式：
+\begin{equation*}
+G(\omega,\pmb{k})=\frac{1}{\omega-\xi_{\pmb{k}}+\mathrm{i}0^{+}\,\mathrm{sgn}(\omega)}\qquad \text{当 } T=0\tag{4.2.4}
+\end{equation*}
+\begin{equation*}
+G^{\beta}(\omega,\pmb{k})=\frac{1-n_F(\xi_{\pmb{k}})}{\omega-\xi_{\pmb{k}}+\mathrm{i}0^{+}}+\frac{n_F(\xi_{\pmb{k}})}{\omega-\xi_{\pmb{k}}-\mathrm{i}0^{+}}\qquad \text{当 } T>0\tag{4.2.5}
+\end{equation*}
+现在让我们来考虑有限温下的虚时格林函数。此时，海森堡绘景中的含时算符为
+\begin{equation*}
+c_{\pmb{k}}(\tau)=\mathrm{e}^{H\tau}c_{\pmb{k}}\mathrm{e}^{-H\tau}
+\end{equation*}
+由定义（$0<\tau_1,\tau_2<\beta$）
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_1,\tau_2,\pmb{k}_1)\delta_{\pmb{k}_1,\pmb{k}_2}
+=\begin{cases}
++\dfrac{\mathrm{Tr}(\mathrm{e}^{-\beta H}c_{\pmb{k}_1}(\tau_1)c_{\pmb{k}_2}^{\dagger}(\tau_2))}{\mathrm{Tr}(\mathrm{e}^{-\beta H})}, & \text{当 } \tau_1>\tau_2\\[10pt]
+-\dfrac{\mathrm{Tr}(\mathrm{e}^{-\beta H}c_{\pmb{k}_2}(\tau_2)c_{\pmb{k}_1}^{\dagger}(\tau_1))}{\mathrm{Tr}(\mathrm{e}^{-\beta H})}, & \text{当 } \tau_1<\tau_2
+\end{cases}\tag{4.2.6}
+\end{equation*}
+可以证明（见问题4.2.1）
+\begin{align*}
+&\mathcal{G}^{\beta}(\tau_1,\tau_2,\pmb{k})=\mathcal{G}^{\beta}(\tau_1-\tau_2,0,\pmb{k})\equiv\mathcal{G}^{\beta}(\tau_1-\tau_2,\pmb{k})\\
+&\mathcal{G}^{\beta}(\tau,\pmb{k})=-\mathcal{G}^{\beta}(\tau+\beta,\pmb{k})\tag{4.2.7}
+\end{align*}
+因此，费米子格林函数在紧致化的虚时方向上是反周期的。对于自由费米子，我们有
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau,\pmb{k})=+\Theta(\tau)(1-n_F(\xi_{\pmb{k}}))\mathrm{e}^{-\tau\xi_{\pmb{k}}}-\Theta(-\tau)n_F(\xi_{\pmb{k}})\mathrm{e}^{-\tau\xi_{\pmb{k}}}\tag{4.2.8}
+\end{equation*}
+在$\omega$--$\pmb{k}$空间中，有
+\begin{equation*}
+\mathcal{G}^{\beta}(\omega_{\gamma},\pmb{k})\equiv\int_{0}^{\beta}\mathrm{d}\tau\, \mathcal{G}^{\beta}(\tau,\pmb{k})\mathrm{e}^{\mathrm{i}\omega_{\gamma}\tau}=\frac{1}{-\mathrm{i}\omega_{\gamma}+\xi_{\pmb{k}}}\tag{4.2.9}
+\end{equation*}
+其中$\omega_{\gamma}=2\pi\gamma T$，这里$\gamma=\frac{1}{2}+$整数。
+
+$\omega$--$\pmb{k}$空间中的编时格林函数可以写成$\omega$--$\pmb{k}$空间中费米子算符的\emph{编时}平均。对于虚时，我们引入
+\begin{equation*}
+c_{\omega_{\gamma}\pmb{k}}=\int_{0}^{\beta}\mathrm{d}\tau\, c_{\pmb{k}}(\tau)\beta^{-1/2}\mathrm{e}^{\mathrm{i}\omega_{\gamma}\tau}
+\end{equation*}
+经过一点运算后，我们发现
+\begin{align*}
+\langle T(c_{\omega_{\gamma}\pmb{k}}c_{\omega_{\gamma}'\pmb{k}}^{\dagger})\rangle&\equiv\beta^{-1}\int_{0}^{\beta}\mathrm{d}\tau\,\mathrm{d}\tau'\,\mathrm{e}^{\mathrm{i}\omega_{\gamma}\tau-\mathrm{i}\omega_{\gamma}'\tau'}\left\langle T\left(c_{\pmb{k}}(\tau)c_{\pmb{k}}^{\dagger}(\tau')\right)\right\rangle\\
+&=\mathcal{G}^{\beta}(\omega_{\gamma},\pmb{k})\delta_{\omega_{\gamma}-\omega_{\gamma}'}\tag{4.2.10}
+\end{align*}
+
+%-----------------------------------------------------------------------------
+% 新增术语（ch4_a 块新增，供汇总入术语表）：
+%   hard-core boson system                    硬核玻色子系统
+%   Jordan--Wigner transformation             Jordan--Wigner 变换
+%   anti-commutator                           反对易子
+%   Fermi sea                                 费米海
+%   Fermi momentum                            费米动量
+%   Fermi statistics                          费米统计
+%   fermion number operator                   费米子数算符
+%   single-particle energy                    单粒子能量
+%   single-particle level                     单粒子能级
+%   hopping operator / hopping algebra        跃迁算符 / 跃迁代数
+%   string operator                           弦算符
+%   statistical angle                         统计角
+%   imaginary-time Green's function           虚时格林函数
+%   anti-periodic boundary condition          反周期边界条件
+%   compactified imaginary-time direction     紧致化的虚时方向
+%   photoemission experiment                  光电子发射实验
+%   time-ordered average                      编时平均
+%   fermion propagator                        费米子传播子
+%   quasiparticle excitation spectrum         准粒子激发谱
+%   ground-state energy                       基态能量
+%   tunneling Hamiltonian                     隧穿哈密顿量
+%   total energy--momentum space              总能量--动量空间
+
+由于 $\langle T(c_{\pmb{k}}^{\dagger}(\tau)c_{\pmb{k}}(\tau'))\rangle = -\langle T(c_{\pmb{k}}(\tau')c_{\pmb{k}}^{\dagger}(\tau))\rangle$，我们有 $\langle T(c_{\omega_{\gamma}\pmb{k}}^{\dagger}c_{\omega_{\gamma}\pmb{k}})\rangle = -\langle T(c_{\omega_{\gamma}\pmb{k}}c_{\omega_{\gamma}\pmb{k}}^{\dagger})\rangle$。类似地，可以证明，对于实时间，
+\begin{equation*}
+\left\langle T(c_{\omega\pmb{k}}c_{\omega'\pmb{k}}^{\dagger})\right\rangle
+= -\left\langle T(c_{\omega\pmb{k}}^{\dagger}c_{\omega'\pmb{k}})\right\rangle
+= \mathrm{i}G^{\beta}(\omega,\pmb{k})(2\pi)^{-1}\delta(\omega-\omega')
+\end{equation*}
+
+这使我们能够直接在 $\omega$--$\pmb{k}$ 空间中进行编时关联的计算。我们还注意到，在编时平均（time-ordered average）中，$c$ 与 $c^{\dagger}$ 的表现如同反对易数（anti-commuting numbers）。
+
+上面我们讨论了两个算符的编时关联。那么，多个算符的编时关联如何计算？这里我们有费米子的 Wick 定理。设 $O_{i}$ 是 $c$ 与 $c^{\dagger}$ 的线性组合。对于 $W = O_{1}O_{2}\dots O_{n}$，我们有
+\begin{align*}
+W = {}& {:W:} + (-)^{j_{1}-i_{1}-1}\sum_{(i_{1},j_{1})}{:W_{i_{1},j_{1}}:}\,\langle 0|O_{i_{1}}O_{j_{1}}|0\rangle\\
+& \pm \sum_{\substack{(i_{1},j_{1}),(i_{2},j_{2})\\(i_{1},j_{1})\neq(i_{2},j_{2})}}{:W_{i_{1},j_{1},i_{2},j_{2}}:}\,\langle 0|O_{i_{1}}O_{j_{1}}|0\rangle\langle 0|O_{i_{2}}O_{j_{2}}|0\rangle + \dots \tag{4.2.11}
+\end{align*}
+其中 $(i_{1}, j_{1})$ 是满足 $i_{1} < j_{1}$ 的有序对，而 $\pm$ 由所需置换数目的奇偶性决定——这些置换把 $O_{j_{1}}$ 移到 $O_{i_{1}}$ 的右侧、把 $O_{j_{2}}$ 移到 $O_{i_{2}}$ 的右侧。由于按定义 $\langle 0|{:W:}|0\rangle = 0$，我们得到
+\begin{equation*}
+\langle 0|O_{1}O_{2}\dots O_{n}|0\rangle = \sum(-)^{P}\langle 0|O_{i_{1}}O_{i_{2}}|0\rangle\dots\langle 0|O_{i_{n-1}}O_{i_{n}}|0\rangle
+\end{equation*}
+其中 $\sum$ 遍历把 $1, 2, \dots, n$ 分组为有序对 $(i_{1}, i_{2})$、$(i_{3}, i_{4})$、$\dots$ 的所有可能方式（即 $i_{1} < i_{2}$，$i_{3} < i_{4}$，等等）。这里，若 $1, 2, \dots, n$ 与 $i_{1}, i_{2}, \dots, i_{n}$ 相差偶数个置换，则 $(-)^{P} = 1$；若 $1, 2, \dots, n$ 与 $i_{1}, i_{2}, \dots, i_{n}$ 相差奇数个置换，则 $(-)^{P} = -1$。例如，
+\begin{gather*}
+\langle 0|O_{1}O_{2}O_{3}O_{4}|0\rangle\\
+= \langle 0|O_{1}O_{2}|0\rangle\langle 0|O_{3}O_{4}|0\rangle - \langle 0|O_{1}O_{3}|0\rangle\langle 0|O_{2}O_{4}|0\rangle + \langle 0|O_{1}O_{4}|0\rangle\langle 0|O_{2}O_{3}|0\rangle
+\end{gather*}
+应用于编时关联时，我们有
+\begin{equation*}
+\langle 0|T(O_{1}O_{2}\dots O_{n})|0\rangle = \sum(-)^{P}\langle 0|T(O_{i_{1}}O_{i_{2}})|0\rangle\dots\langle 0|T(O_{i_{n-1}}O_{i_{n}})|0\rangle
+\end{equation*}
+Wick 定理使我们能够用两算符关联来表示多算符关联。Wick 定理还蕴含 $\langle 0|T(\dots O_{m}\dots O_{n}\dots)|0\rangle \allowbreak= -\langle 0|T(\dots O_{n}\dots O_{m}\dots)|0\rangle$。因此，在多个 $c$ 与 $c^{\dagger}$ 算符的编时平均中（无论实时还是虚时），$c$ 与 $c^{\dagger}$ 的表现都如同反对易数。这一事实使我们能够为费米子系统构造路径积分表述（见 5.4.1 节）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.4.pdf}
+\caption*{图 4.4\quad “费米点”附近的态密度按 $N(\xi) \propto |\xi|^{d-1}$ 的方式趋于零。}
+\end{figure}
+
+\subsection*{问题 4.2.1}
+
+证明式 (4.2.7) 与式 (4.2.9)。
+
+\subsection*{问题 4.2.2}
+
+由式 (4.2.6) 证明式 (4.2.8)。
+
+\subsection*{问题 4.2.3}
+
+证明式 (4.2.10)。
+
+\subsection*{问题 4.2.4}
+
+就 $W = c_{k_{1}}c_{k_{2}}^{\dagger}c_{k_{3}}c_{k_{4}}^{\dagger}$ 与 $W = c_{k_{1}}c_{k_{2}}c_{k_{3}}^{\dagger}c_{k_{4}}^{\dagger}$ 两种情形，验证 Wick 定理的正确性。
+
+\subsection{等空间格林函数与隧穿}
+
+\begin{keypoints}
+\item 格林函数在长时间上的代数衰减与跨费米面的无能隙激发相关。
+\end{keypoints}
+
+实时空中的格林函数由 $\mathrm{i}G(t, \pmb{x}_{1}, \pmb{x}_{2}) = \langle T(c(t, \pmb{x}_{1})c(0, \pmb{x}_{2})\rangle$ 给出。对于平移不变的系统（例如自由费米子系统），格林函数只依赖于 $\pmb{x}_{1} - \pmb{x}_{2}$，即 $G(t, \pmb{x}_{1}, \pmb{x}_{2}) = G(t, \pmb{x}_{1} - \pmb{x}_{2})$。对于自由费米子系统，我们有 $G(t, \pmb{x}) = \int \frac{\mathrm{d}^{d}\pmb{k}}{(2\pi)^{d}}G(t, \pmb{k})$。当 $\pmb{x} = 0$ 时（或者说，当 $\langle T(c(\pmb{x}_{1}, t_{1})c^{\dagger}(\pmb{x}_{2}, t_{2}))\rangle$ 中的费米算符位于等空间点（equal-space point）$\pmb{x}_{1} = \pmb{x}_{2}$ 上时），我们有
+\begin{equation*}
+\mathrm{i}G(t, 0) = \int \frac{\mathrm{d}^{d}\pmb{k}}{(2\pi)^{d}}\left(+\Theta(t)\Theta(\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}} - \Theta(-t)\Theta(-\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}}\right)
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.5.pdf}
+\caption*{图 4.5\quad 可用于隧穿的态的数目正比于 $V$。}
+\end{figure}
+
+上式可以通过引入态密度（density of states，单位体积单位能量内态的数目）
+\begin{equation*}
+N(\epsilon) = \int \frac{\mathrm{d}^{d}\pmb{k}}{(2\pi)^{d}}\,\delta(\epsilon_{\pmb{k}} - \epsilon)
+\end{equation*}
+来计算，其中
+\begin{align*}
+N(\epsilon) &= \sqrt{\frac{m}{2\pi^{2}\epsilon}} && \text{当 } d = 1\\
+N(\epsilon) &= \frac{m}{2\pi} && \text{当 } d = 2\\
+N(\epsilon) &= \frac{m\sqrt{2m\epsilon}}{2\pi^{2}} && \text{当 } d = 3 \tag{4.2.12}
+\end{align*}
+在 $T = 0$ 且 $t$ 很大时，只有 $\epsilon = E_{F}$ 附近的 $N(\epsilon)$ 才是重要的。于是我们可以假定 $N(\epsilon) = N(E_{F})$ 为常数。代入 $\int \mathrm{d}^{d}\pmb{k}/(2\pi)^{d} = \int \mathrm{d}\xi\, N(\xi + E_{F})$ 后，对于大的 $t$，我们求得
+\begin{equation*}
+G(t, 0) = -\frac{N(E_{F})}{t - \mathrm{i}0^{+}\operatorname{sgn}(t)}
+\end{equation*}
+长时间上的代数关联是被占据态的态密度中不连续性的后果。如果态密度按 $N(\epsilon) \propto |\epsilon - E_{F}|^{g}$ 的方式趋于零（见图 4.4），则长时间关联将衰减得更快（假定 $g > 0$）：
+\begin{equation*}
+G(t, 0) \propto -\mathrm{i}\operatorname{sgn}(t)\,\mathrm{e}^{-\mathrm{i}\frac{\pi}{2}(1+g)}\frac{1}{|t|^{1+g}}
+\end{equation*}
+
+费米子格林函数只有在实验中能够测量才有意义。为了考察如何在实验中测量费米子格林函数，考虑两个态密度为 $N_{R,L}(\xi) \propto |\xi|^{g_{R,L}}$ 的金属之间的隧穿（tunneling）。（注意，对普通金属有 $g_{R,L} = 0$。）假定隧穿哈密顿量为
+\begin{equation*}
+H_{T} = \Gamma(\mathrm{e}^{\mathrm{i}Vt}c_{R}^{\dagger}c_{L} + \text{h.c.})
+\end{equation*}
+则从左到右的隧穿电流为（见式 (3.7.15)）
+\begin{align*}
+\langle j_{T}\rangle(t) &= -\Gamma^{2}\int^{t}\mathrm{d}t'\left(\mathrm{e}^{\mathrm{i}V(t-t')}\left\langle [I(t), I^{\dagger}(t')]\right\rangle + \text{h.c.}\right)\\
+&= (-\mathrm{i}\Gamma^{2}D^{\beta}(V) + \text{h.c.}) = 2\Gamma^{2}\mathrm{Im}D^{\beta}(V)
+\end{align*}
+其中 $I(t) = c_{R}^{\dagger}(t,0)c_{L}(t,0)$ 是隧穿算符。隧穿算符 $I(t) = c_{R}^{\dagger}(t,0)c_{L}(t,0)$ 的关联为（设 $t > 0$ 且 $T = 0$）
+\begin{align*}
+\left\langle I(t)I^{\dagger}(0)\right\rangle &= \left\langle c_{L}(t,0)c_{L}^{\dagger}(0,0)\right\rangle\left\langle c_{R}^{\dagger}(t,0)c_{R}(0,0)\right\rangle\\
+&= -G_{L}(t,0)(-)G_{R}(-t,0)\\
+&\propto \mathrm{e}^{-\mathrm{i}\frac{\pi}{2}(2+g_{R}+g_{L})}\frac{1}{t^{2+g_{R}+g_{L}}}
+\end{align*}
+我们看到，隧穿实验测量的是结两侧等空间格林函数的乘积。上述关联与两个 $(1+1)$ 维相互作用玻色系统之间隧穿算符的关联具有相同的形式。重复 3.7.4 节中的计算，我们求得隧穿电流为
+\begin{equation*}
+I \propto V^{1+g_{R}+g_{L}} = V \times V^{g_{R}} \times V^{g_{L}}
+\end{equation*}
+当 $g_{L} = g_{R} = 0$ 时，很容易看出可用于隧穿的态的数目正比于 $V$（图 4.5），因而 $I \propto V$。当 $g_{L}$ 与 $g_{R}$ 不为零时，可用的态将受到相应的压制，因而隧穿电流被因子 $V^{g_{R}} \times V^{g_{L}}$ 压低。
+
+我们想强调，隧穿直接测量的是费米子格林函数。虽然上面我们只讨论了自由费米子系统，这些结果同样适用于相互作用的费米子。设想相互作用改变了费米子格林函数中的长时间衰减指数 $g$；那么这一改变就可以通过隧穿实验测出。
+
+\subsection{费米子谱函数}
+
+\begin{keypoints}
+\item 费米子格林函数的谱函数（spectral function）。
+\item 费米子格林函数（或更确切地说，费米子谱函数的交叠）可以在隧穿实验中测量。
+\end{keypoints}
+
+对相互作用的电子，$G_{L,R}(t,0)$ 要更复杂。为了理解两个相互作用费米子系统之间的隧穿，引入费米子格林函数的谱表示（spectral representation）是有用的：\footnote{如果取 $\eta = 1$，下面的讨论同样适用于玻色算符。}
+\begin{equation*}
+\mathrm{i}G^{\beta}(t,0) = \left\{\begin{array}{ll}
+\int \mathrm{d}\omega\, A_{+}^{0}(\omega)\mathrm{e}^{-\mathrm{i}\omega t}, & \text{当 } t > 0\\
+\eta \int \mathrm{d}\omega\, A_{-}^{0}(\omega)\mathrm{e}^{-\mathrm{i}\omega t}, & \text{当 } t < 0
+\end{array}\right.
+\end{equation*}
+其中 $A_{+,-}^{0}(\omega)$ 为下列谱函数：
+\begin{equation*}
+A_{+}^{0}(\nu) = \sum_{m,n}\delta[\nu - (\epsilon_{m} - \epsilon_{n})]\langle \psi_{n}|c(\pmb{x})|\psi_{m}\rangle\langle \psi_{m}|c^{\dagger}(\pmb{x})|\psi_{n}\rangle\frac{\mathrm{e}^{-\epsilon_{n}\beta}}{Z}
+\end{equation*}
+\begin{equation*}
+A_{-}^{0}(\nu) = \sum_{m,n}\delta[\nu + (\epsilon_{m} - \epsilon_{n})]\langle \psi_{n}|c^{\dagger}(\pmb{x})|\psi_{m}\rangle\langle \psi_{m}|c(\pmb{x})|\psi_{n}\rangle\frac{\mathrm{e}^{-\epsilon_{n}\beta}}{Z}
+\end{equation*}
+并且，对费米子算符 $\eta = -1$（如果我们想为玻色子格林函数引入谱表示，则取 $\eta = 1$）。我们也可以在动量空间中引入谱函数：
+\begin{equation*}
+\mathrm{i}G^{\beta}(t,\pmb{k}) = \left\{\begin{array}{ll}
+\int \mathrm{d}\omega\, A_{+}(\omega,\pmb{k})\mathrm{e}^{-\mathrm{i}\omega t} & \text{当 } t > 0\\
+\eta \int \mathrm{d}\omega\, A_{-}(\omega,\pmb{k})\mathrm{e}^{-\mathrm{i}\omega t} & \text{当 } t < 0
+\end{array}\right. \tag{4.2.13}
+\end{equation*}
+其中
+\begin{equation*}
+A_{+}(\nu,\pmb{k}) = \sum_{m,n}\delta[\nu - (\epsilon_{m} - \epsilon_{n})]\langle \psi_{n}|c_{\pmb{k}}|\psi_{m}\rangle\langle \psi_{m}|c_{\pmb{k}}^{\dagger}|\psi_{n}\rangle\frac{\mathrm{e}^{-\epsilon_{n}\beta}}{Z}
+\end{equation*}
+\begin{equation*}
+A_{-}(\nu,\pmb{k}) = \sum_{m,n}\delta[\nu + (\epsilon_{m} - \epsilon_{n})]\langle \psi_{n}|c_{\pmb{k}}^{\dagger}|\psi_{m}\rangle\langle \psi_{m}|c_{\pmb{k}}|\psi_{n}\rangle\frac{\mathrm{e}^{-\epsilon_{n}\beta}}{Z}
+\end{equation*}
+我们看到
+\begin{equation*}
+A_{\pm}^{0}(\omega) = \mathcal{V}^{-1}\sum_{\pmb{k}}A_{\pm}(\omega,\pmb{k})
+\end{equation*}
+由定义我们还看到，$A_{+,-}^{0}$ 与 $A_{+,-}$ 是实的且为正。在 $\omega$--$\pmb{k}$ 空间中，我们求得
+\begin{align*}
+G_{+}^{\beta}(\omega,\pmb{k}) &\equiv \int \mathrm{d}t\,\Theta(t)G^{\beta}(t,\pmb{k})\mathrm{e}^{\mathrm{i}\omega t} = \int \mathrm{d}\nu\,\frac{A_{+}(\nu,\pmb{k})}{\omega - \nu + \mathrm{i}0^{+}}\\
+G_{-}^{\beta}(\omega,\pmb{k}) &\equiv \int \mathrm{d}t\,\Theta(-t)G^{\beta}(t,\pmb{k})\mathrm{e}^{\mathrm{i}\omega t} = -\eta \int \mathrm{d}\nu\,\frac{A_{-}(\nu,\pmb{k})}{\omega - \nu - \mathrm{i}0^{+}} \tag{4.2.14}
+\end{align*}
+动量空间中的谱函数 $A_{+,-}(\nu,\pmb{k})$ 完全决定了格林函数。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.6.pdf}
+\caption*{图 4.6\quad 谱函数及其交叠。}
+\end{figure}
+
+响应函数 $\langle [I(t), I^{\dagger}(0)]\rangle$ 可以用 R、L 两种金属中的谱函数表出。对 $t > 0$，我们求得
+\begin{align*}
+&\left\langle [I(t), I^{\dagger}(0)]\right\rangle\\
+={}& \left\langle c_{L}(t,0)c_{L}^{\dagger}(0,0)\right\rangle\left\langle c_{R}^{\dagger}(t,0)c_{R}(0,0)\right\rangle - \left\langle c_{L}^{\dagger}(0,0)c_{L}(t,0)\right\rangle\left\langle c_{R}(0,0)c_{R}^{\dagger}(t,0)\right\rangle\\
+={}& (\mathrm{i}G_{L}(t))(-\mathrm{i}G_{R}(-t)) - (-\mathrm{i}G_{L}(-t))^{*}(\mathrm{i}G_{R}(t))^{*} \tag{4.2.15}\\
+={}& -\int \mathrm{d}\omega_{L}\mathrm{d}\omega_{R}\left(A_{L+}^{0}(\omega_{L})A_{R-}^{0}(\omega_{R}) - A_{L-}^{0}(\omega_{L})A_{R+}^{0}(\omega_{R})\right)\mathrm{e}^{\mathrm{i}(\omega_{R}-\omega_{L})t}
+\end{align*}
+于是，响应函数 $\mathrm{i}D^{\beta}(t) = \Theta(t)[I(t), I^{\dagger}(0)]$ 在 $\omega$ 空间中由下式给出：
+\begin{align*}
+D^{\beta}(\omega) = {}& \int \mathrm{d}t\, D^{\beta}(t)\mathrm{e}^{\mathrm{i}\omega t} \tag{4.2.16}\\
+={}& \int \mathrm{d}\omega_{L}\mathrm{d}\omega_{R}\,\frac{A_{L+}^{0}(\omega_{L})A_{R-}^{0}(\omega_{R}) - A_{L-}^{0}(\omega_{L})A_{R+}^{0}(\omega_{R})}{\omega - \omega_{L} + \omega_{R} + \mathrm{i}0^{+}}
+\end{align*}
+从左到右的隧穿电流由虚部确定：
+\begin{align*}
+\langle j_{T}\rangle(t) ={}& 2\Gamma^{2}\mathrm{Im}D^{\beta}(V)\\
+={}& 2\pi\Gamma^{2}\int \mathrm{d}\nu\left(A_{L-}^{0}(\nu)A_{R+}^{0}(\nu - V) - A_{L+}^{0}(\nu)A_{R-}^{0}(\nu - V)\right) \tag{4.2.17}
+\end{align*}
+在零温下，$A_{+}(\omega)$ 仅当 $\omega > 0$ 时非零，而 $A_{-}(\omega)$ 仅当 $\omega < 0$ 时非零。因此，两式中只有一项有贡献，取决于 $V$ 的符号（见图 4.6）。该贡献是隧穿结（tunneling junction）两侧谱函数的一个交叠积分（overlap integral）。
+
+对自由费米子，由虚时格林函数 (4.2.9) 出发，我们求得（见式 (2.2.37)）
+\begin{equation*}
+A_{-}(\omega,\pmb{k}) = n_{F}(\xi_{\pmb{k}})\delta(\omega - \xi_{\pmb{k}}), \qquad A_{+}(\omega,\pmb{k}) = (1 - n_{F}(\xi_{\pmb{k}}))\delta(\omega - \xi_{\pmb{k}})
+\end{equation*}
+（把上式代入式 (4.2.14)，便可恢复有限温度下由式 (4.2.5) 给出的自由电子格林函数。）对 $\pmb{k}$ 积分后，我们得到
+\begin{equation*}
+A_{-}^{0}(\omega) = n_{F}(\omega)N(\omega + E_{F}), \qquad A_{+}^{0}(\omega) = (1 - n_{F}(\omega))N(\omega + E_{F}) \tag{4.2.18}
+\end{equation*}
+隧穿电流为
+\begin{align*}
+\langle j_{T}\rangle(t) = {}& 2\pi\Gamma^{2}\int \mathrm{d}\nu \left[(1 - n_{F}(\nu))N_{L}(\nu + E_{F})n_{F}(\nu - V)N_{R}(\nu - V + E_{F})\right.\\
+&\left.- n_{F}(\nu)N_{L}(\nu + E_{F})(1 - n_{F}(\nu - V))N_{R}(\nu - V + E_{F})\right]\\
+\approx {}& 2\pi\Gamma^{2}N_{L}(E_{F})N_{R}(E_{F})\int \mathrm{d}\nu\left(n_{F}(\nu - V) - n_{F}(\nu)\right)
+\end{align*}
+这是一个非常简单的结果，可以直接用二阶微扰论得到。
+
+\subsection*{问题 4.2.5}
+
+计算 $d = 1$ 维时实时空中的编时费米子格林函数在 $(t, x) \to \infty$ 极限下的结果（但 $t/x$ 任意）。在 $t/x \to 0$ 与 $t/x \to \infty$ 两个极限下检验你的结果。
+
+\subsection*{问题 4.2.6}
+
+两个相同的 $d = 1$ 维自由费米子系统在位于 $x = 0$ 和 $x = a$ 的两点处连接。隧穿哈密顿量为
+\begin{equation*}
+H_{T} = \Gamma\left[\left[c_{L}(0)c_{R}^{\dagger}(0) + c_{L}(a)c_{R}^{\dagger}(a)\right] + \text{h.c.}\right]
+\end{equation*}
+利用上一题的结果，求作为 $a$ 的函数的隧穿电导。
+
+\subsection*{问题 4.2.7}
+
+证明有限温度下的谱求和规则（spectral sum rule）
+\begin{equation*}
+\int \mathrm{d}\omega \left(A_{+}(\omega,\pmb{k}) + A_{-}(\omega,\pmb{k})\right) = 1
+\end{equation*}
+（提示：利用 $\{c_{k}, c_{k}^{\dagger}\} = 1$。）
+
+\subsection*{问题 4.2.8}
+
+\textbf{平行二维电子系统之间的隧穿}（Eisenstein et al., 1991）：考虑二维的两个相同费米子系统，由一个竖直面积隧穿结（vertical area tunneling junction）连接，该结保持二维动量守恒（见图 4.7(a)）。隧穿哈密顿量具有如下形式：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.7.pdf}
+\caption*{图 4.7\quad (a) 竖直面积隧穿结；(b) 两张发生错移的费米面。}
+\end{figure}
+
+\begin{equation*}
+H_{T} = A \sum_{\pmb{k}}\left[c_{L\pmb{k}}c_{R\pmb{k}}^{\dagger} + \text{h.c.}\right]
+\end{equation*}
+在没有平行于二维层的磁场时，两层中的费米子具有相同的色散关系 $\epsilon_{\pmb{k}}$。当存在平行于二维层的磁场 $B$ 时，两层中费米子的动量彼此相对错移（见图 4.7(b)），两层中的色散变为
+\begin{equation*}
+\epsilon_{R\pmb{k}} = \epsilon_{\pmb{k} - \frac{1}{2}\pmb{Q}}, \qquad \epsilon_{L\pmb{k}} = \epsilon_{\pmb{k} + \frac{1}{2}\pmb{Q}}
+\end{equation*}
+其中 $Q \propto B$ 且 $\pmb{Q} \cdot \pmb{B} = 0$。
+
+\begin{enumerate}
+\item 证明：对自由费米子，当 $B = 0$ 且电压有限（$V \neq 0$）时，有限温度下的隧穿电流为零。
+\item 假定由于相互作用，费米子的谱函数具有如下形式：
+\begin{equation*}
+A_{+}(\omega,\pmb{k}) = (1 - n_{F}(\omega))\frac{\pi^{-1}\Gamma}{(\omega - \xi_{\pmb{k}})^{2} + \Gamma^{2}}, \qquad A_{-}(\omega,\pmb{k}) = n_{F}(\omega)\frac{\pi^{-1}\Gamma}{(\omega - \xi_{\pmb{k}})^{2} + \Gamma^{2}}
+\end{equation*}
+其中 $\Gamma \ll E_{F}$ 是一个衰变率（注意上述 $A_{\pm}$ 满足式 (2.2.28)）。求温度小而非零（$T \ll E_{F}$）时隧穿电流的表达式。
+\item 当 $B = 0$ 时，在 $T \to 0$ 与 $T \gg \Gamma$ 极限下，隧穿电导对温度的依赖关系是什么？估算 $T = 0$ 时单位面积的隧穿电导。
+\item 假定零温下 $B = 0$ 时的隧穿电导为 $\sigma_{0}$，试以 $\sigma_{0}$ 估算有限 $Q$ 下的隧穿电导 $\sigma_{Q}$。当 $Q$ 靠近 0 以及靠近 $2k_{F}$ 时，$\sigma_{Q}$ 的行为如何？
+\end{enumerate}
+
+\subsection{等时格林函数与费米面的形状}
+
+\begin{keypoints}
+\item 长距离上的代数衰减与动量空间中费米子占据数的锐利特征（不连续性）相关。
+\end{keypoints}
+
+我们转向等时（equal-time）格林函数。等时关联完全由基态波函数决定。从定义也容易看出，$G^{\beta}(0^{+},\pmb{x})$ 与 $G^{\beta}(-0^{+},\pmb{x})$ 相差一个反对易子（若算符是玻色型的，则为对易子）的平均：
+\begin{equation*}
+G^{\beta}(0^{+},\pmb{x}) - G^{\beta}(-0^{+},\pmb{x}) = \left\langle \{c(\pmb{x}), c^{\dagger}(0)\}\right\rangle = \delta(\pmb{x})
+\end{equation*}
+这里我们想选定一个方向 $\hat{\pmb{x}}$，考察 $G(\pm 0^{+}, x\hat{\pmb{x}})$ 在大 $x$ 下的行为。
+
+在 $T = 0$ 时，$G(-0^{+},\pmb{x})$ 可以写为
+\begin{equation*}
+\mathrm{i}G(-0^{+},\pmb{x}) = -\int \frac{\mathrm{d}^{d}\pmb{k}}{(2\pi)^{d}}\, n_{F}(\xi_{\pmb{k}})\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}} = -\int_{-\infty}^{+\infty}\mathrm{d}k\, \tilde{N}(k,\hat{\pmb{x}})\mathrm{e}^{\mathrm{i}k|\pmb{x}|}
+\end{equation*}
+其中
+\begin{equation*}
+\tilde{N}(k,\hat{\pmb{x}}) = \int \frac{\mathrm{d}^{d}\pmb{k}}{(2\pi)^{d}}\,\Theta(-\xi_{\pmb{k}})\delta(k - \pmb{k}\cdot\hat{\pmb{x}})
+\end{equation*}
+它可以视为动量空间中被占据态的密度。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.8.pdf}
+\caption*{图 4.8\quad (a) $\pmb{k}_{F}(\hat{\pmb{x}})$ 的定义，其中的直线与 $x$ 垂直。(b) 带有一块平坦区域的费米面。}
+\end{figure}
+
+从图 4.8(a) 我们看到，一般地，$\tilde{N}(k,\hat{\pmb{x}})$ 在 $k = \pmb{k}_{F}(\hat{\pmb{x}})\cdot\hat{\pmb{x}}$ 与 $k = \pmb{k}_{F}(-\hat{\pmb{x}})\cdot\hat{\pmb{x}}$ 处含有两个奇点：
+\begin{align*}
+\tilde{N}(k,\hat{\pmb{x}}) ={}& c_{+}\Theta(\pmb{k}_{F}(\hat{\pmb{x}})\cdot\hat{\pmb{x}} - k)\,|\pmb{k}_{F}(\hat{\pmb{x}})\cdot\hat{\pmb{x}} - k|^{(d-1)/2}\\
+&+ c_{-}\Theta(-\pmb{k}_{F}(-\hat{\pmb{x}})\cdot\hat{\pmb{x}} + k)\,\left|-\pmb{k}_{F}(-\hat{\pmb{x}})\cdot\hat{\pmb{x}} + k\right|^{(d-1)/2}
+\end{align*}
+（例如在一维情形，$\tilde{N}(k,\hat{\pmb{x}})$ 有两个不连续的台阶。）这两个奇点导致如下代数长程的等时关联：
+\begin{equation*}
+\mathrm{i}G(-0^{+},\pmb{x})\big|_{\pmb{x}\to\infty} \sim \left(c_{+}\mathrm{e}^{\mathrm{i}\pmb{k}_{F}(\hat{\pmb{x}})\cdot\pmb{x}}\mathrm{e}^{-\mathrm{i}\frac{\pi(d+1)}{4}} + c_{-}\mathrm{e}^{\mathrm{i}\pmb{k}_{F}(-\hat{\pmb{x}})\cdot\pmb{x}}\mathrm{e}^{+\mathrm{i}\frac{\pi(d+1)}{4}}\right)\frac{1}{|\pmb{x}|^{(d+1)/2}}
+\end{equation*}
+对球形的费米面，我们有
+\begin{equation*}
+\mathrm{i}G(-0^{+},\pmb{x})\big|_{\pmb{x}\to\infty} \sim \cos\left(k_{F}|\pmb{x}| - \frac{\pi(d+1)}{4}\right)\frac{1}{|\pmb{x}|^{(d+1)/2}}
+\end{equation*}
+如果费米面包含一块平坦区域（见图 4.8(b)），那么 $\tilde{N}(k,\hat{\pmb{x}})$ 在相应方向上会有一个不连续台阶。在该方向上，$G(-0^{+},\pmb{x})$ 将具有较慢的代数衰减，其衰减幂次与一维系统的相同：
+\begin{equation*}
+\mathrm{i}G(-0^{+},\pmb{x})\big|_{\pmb{x}\to\infty} \sim -\mathrm{i}\,\mathrm{e}^{\mathrm{i}\pmb{k}_{F}(\hat{\pmb{x}})\cdot x}\frac{1}{|\pmb{x}|}
+\end{equation*}
+
+\section{两体关联函数与线性响应}
+
+\begin{keypoints}
+\item 我们可以由两体关联函数计算线性响应。这使我们能够计算许多可测量的量。
+\item 两体关联函数揭示自由费米子基态的许多潜在不稳定性。
+\end{keypoints}
+
+两体关联函数（two-body correlation functions）是最重要的一类关联。实验中测量的大多数物理量都直接与两体关联相关。这些物理量包括电导与热导、中子与光散射截面、弹性常数、介电常数、磁化率等等（见 3.7.2 节）。下面我们将讨论无自旋自由费米子系统的两体关联。
+
+\subsection{密度--密度关联函数}
+
+我们首先考虑两体关联中的一种——密度关联函数
+\begin{equation*}
+\mathrm{i}P^{00}(t,\pmb{x}) = \langle T(\rho(t,\pmb{x})\rho(0))\rangle
+\end{equation*}
+其中
+\begin{equation*}
+\rho(t,\pmb{x}) = c^{\dagger}(t,\pmb{x})c(t,\pmb{x}).
+\end{equation*}
+密度关联函数与压缩率以及中子/光散射相关。为了计算 $P^{00}(t,\pmb{x})$，我们可以对自由费米子算符应用 Wick 定理，如下：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.9.pdf}
+\caption*{图 4.9\quad 具有嵌套波矢 $Q$ 的嵌套费米面。}
+\end{figure}
+
+\begin{align*}
+\mathrm{i}P^{00}(t,\pmb{x}) ={}& \left\langle T[c^{\dagger}(t + 0^{+},\pmb{x})c(t,\pmb{x})c^{\dagger}(0^{+})c(0)]\right\rangle\\
+={}& \rho_{0}^{2} - \mathrm{i}G(-t,-\pmb{x})\,iG(t,\pmb{x})
+\end{align*}
+利用前面已算出的费米子格林函数，我们发现，在 $t = 0$ 极限下，对于球形费米面，有
+\begin{equation*}
+\mathrm{i}P^{00}(0,\pmb{x}) = \rho_{0}^{2} + C\left(1 - \sin\left(2k_{F}|\pmb{x}| - \frac{\pi(d+1)}{2}\right)\right)\frac{1}{|\pmb{x}|^{(d+1)}}
+\end{equation*}
+对图 4.9 中的嵌套费米面（nested Fermi surface），我们有
+\begin{equation*}
+\mathrm{i}P^{00}(0,\pmb{x}) = \rho_{0}^{2} + C[1 + \sin(Q|\pmb{x}|)]\frac{1}{|\pmb{x}|^{2}}
+\end{equation*}
+其中 $x \| Q$。
+
+我们知道，在晶体中，密度关联会一直振荡而没有任何衰减，即 $\mathrm{i}P^{00}(0,\pmb{x}) = \rho_{0}^{2} + C[1 + \sin(Q|\pmb{x}|)]$。振荡部分代表了有序晶体中的长程序。我们看到，自由的费米子基态没有长程晶体序，但它具有“代数长程”晶体序，对嵌套费米面尤其如此（见图 4.10）。在某种意义上，嵌套的自由费米子系统正处于成为晶体的边缘。我们将在本章后面看到，只要开启一个小的相互作用，“代数长程”晶体序就可以被提升为长程晶体序。
+为了得到自由费米子的线性响应，我们需要计算密度响应函数 $\Pi^{00}$。在 $t$--$\pmb{k}$ 空间中，密度响应函数可以
+用 Wick 定理如下求出：
+\begin{align*}
+\mathrm{i}\Pi^{00}(t,\pmb{k}) &= \Theta(t)\mathcal{V}^{-1}\left\langle \Big[\sum_{\pmb{q}}\big(c^{\dagger}_{\pmb{q}}c_{\pmb{q}+\pmb{k}}\big)(t),\, \sum_{\pmb{q}'}\big(c^{\dagger}_{\pmb{q}'}c_{\pmb{q}'-\pmb{k}}\big)(0)\Big] \right\rangle \tag{4.3.1}\\
+&= \Theta(t)\mathcal{V}^{-1}\sum_{\pmb{q}}\left(1-n_F(\xi_{\pmb{q}+\pmb{k}})\right)n_F(\xi_{\pmb{q}})\,\mathrm{e}^{-\mathrm{i}t(\xi_{\pmb{q}+\pmb{k}}-\xi_{\pmb{q}})}\\
+&\quad -\, \Theta(t)\mathcal{V}^{-1}\sum_{\pmb{q}}\left(1-n_F(\xi_{\pmb{q}})\right)n_F(\xi_{\pmb{q}+\pmb{k}})\,\mathrm{e}^{+\mathrm{i}t(\xi_{\pmb{q}}-\xi_{\pmb{q}+\pmb{k}})}
+\end{align*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.10.pdf}
+\caption*{图 4.10\quad 嵌套费米面的密度关联 $\mathrm{i}P^{00}(0,\boldsymbol{x})$ 中的“代数长程”晶体序。}
+\end{figure}
+
+只有当 $\pmb{q}'=\pmb{q}+\pmb{k}$ 时，上述平均才不为零。在第一项中，我们在 $\pmb{q}+\pmb{k}$ 处产生一个费米子、在 $\pmb{q}$ 处湮灭一个费米子，这给出因子 $\left(1-n_F(\xi_{\pmb{q}+\pmb{k}})\right)n_F(\xi_{\pmb{q}})$。第二项具有类似的结构，其中我们在 $\pmb{q}$ 处产生一个费米子、在 $\pmb{q}+\pmb{k}$ 处湮灭一个费米子。
+
+在 $\omega$–$\pmb{k}$ 空间中，我们有
+\begin{equation*}
+\Pi^{00}(\omega,\pmb{k}) = \mathcal{V}^{-1}\sum_{\pmb{q}}\left( \frac{\left(1-n_F(\xi_{\pmb{q}+\pmb{k}})\right)n_F(\xi_{\pmb{q}})}{\omega-\xi_{\pmb{q}+\pmb{k}}+\xi_{\pmb{q}}+\mathrm{i}0^{+}} - \frac{\left(1-n_F(\xi_{\pmb{q}})\right)n_F(\xi_{\pmb{q}+\pmb{k}})}{\omega+\xi_{\pmb{q}}-\xi_{\pmb{q}+\pmb{k}}+\mathrm{i}0^{+}} \right)
+\end{equation*}
+
+$\Pi^{00}(\omega,\pmb{k})$ 的虚部仅在 $(\omega,\pmb{k})$ 对应于粒子–空穴激发的能量–动量时才不为零（见图 4.11）。这一特征出现在任何二体关联函数之中，包括流关联与自旋关联。
+
+在 $|\pmb{k}|\ll k_F$ 且 $T$ 有限的极限下，我们有
+\begin{equation*}
+\Pi^{00}(\omega,\pmb{k}) = -\int \frac{\mathrm{d}^d\pmb{q}}{(2\pi)^d}\, \frac{\partial n_F}{\partial\xi}\, \frac{\pmb{k}\cdot\pmb{v}}{\omega-\pmb{k}\cdot\pmb{v}+\mathrm{i}0^{+}}
+\end{equation*}
+
+其中 $\pmb{v}=\pmb{q}/m$。在 $T\to 0$ 极限下，我们有 $\partial n_F/\partial\xi=-\delta(\xi_{\pmb{k}})$，此时积分变为对费米面的积分。让我们先考虑 $\Pi^{00}(\omega,\pmb{k})$ 的虚部：
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.11.pdf}
+\caption*{图 4.11\quad (a) 阴影区域表示粒子–空穴激发的能量–动量（对 $d>1$）。$\mathrm{Im}\Pi^{00}(\omega,\boldsymbol{k})$ 仅在阴影区域内不为零。$(\omega,\boldsymbol{k})=(0,0)$ 处的边缘具有斜率 $v_F$，由 (b) 可见。}
+\end{figure}
+\begin{equation*}
+\mathrm{Im}\Pi^{00}(\omega,\pmb{k}) = -\frac{\omega}{v_F k}\, \frac{k_F^{d-1}}{(2\pi)^d v_F} \int \mathrm{d}\Omega\; \pi\delta\left(\frac{\omega}{v_F k}-\cos(\theta)\right)
+\end{equation*}
+
+我们发现（见图 4.12）
+\begin{equation*}
+\mathrm{Im}\,\Pi^{00}(\omega,\pmb{k})
+= \left\{
+\begin{array}{ll}
+-(\omega/v_F k)\left(k_F^2/4\pi v_F\right)\Theta(v_F k-|\omega|), & d=3,\\[1ex]
+-(\omega/v_F k)\left(k_F/2\pi v_F\right)\left(1/\sqrt{1-(\omega/v_F k)^2}\right)\Theta(v_F k-|\omega|), & d=2.
+\end{array}
+\right.
+\end{equation*}
+
+为求实部，我们注意到 $\Pi^{00}(\omega,\pmb{k})$ 是一些形如 $1/(\omega-\epsilon+\mathrm{i}0^{+})$ 的函数之和：
+\begin{equation*}
+\Pi^{00}(\omega,\pmb{k}) = \int \mathrm{d}\epsilon\; \frac{\mathrm{sgn}(\epsilon)A(\epsilon,\pmb{k})}{\omega-\epsilon+\mathrm{i}0^{+}}
+\end{equation*}
+
+其中 $A(\epsilon,\pmb{k})$ 是 $\Pi^{00}(\omega,\pmb{k})$ 的谱函数。谱函数与 $\Pi^{00}(\omega,\pmb{k})$ 的虚部直接相关：
+\begin{equation*}
+\mathrm{Im}\Pi^{00}(\omega,\pmb{k}) = -\mathrm{sgn}(\omega)\pi A(\omega,\pmb{k})
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.12.pdf}
+\caption*{图 4.12\quad 固定小 $k$ 时，(a) $d=3$ 维与 (b) $d=2$ 维的 $\mathrm{Im}\Pi^{00}$。}
+\end{figure}
+
+这样，我们可以由虚部 $\mathrm{Im}\Pi^{00}(\omega,\pmb{k})$ 算出实部。我们发现
+\begin{equation*}
+\Pi^{00}(\omega,\pmb{k})
+= \left\{
+\begin{array}{ll}
+-\dfrac{k_F m}{2\pi^2}\left[1-\dfrac{\omega}{2v_F k}\ln\left|\dfrac{\omega+v_F k}{\omega-v_F k}\right|+\mathrm{i}\dfrac{\pi\omega}{2v_F k}\Theta(v_F k-|\omega|)\right], & \text{对 } d=3,\\[4ex]
+-\dfrac{m}{2\pi}\left[1-\dfrac{\omega\Theta(|\omega|-v_F k)}{\sqrt{\omega^2-v_F^2k^2}}+\mathrm{i}\dfrac{\omega\Theta(v_F k-|\omega|)}{\sqrt{v_F^2k^2-\omega^2}}\right], & \text{对 } d=2,\\[4ex]
+\dfrac{1}{\pi}\dfrac{v_F k^2}{(\omega+\mathrm{i}0^{+})^2-v_F^2k^2}, & \text{对 } d=1.
+\end{array}
+\right. \tag{4.3.2}
+\end{equation*}
+
+我们注意到，当 $\mathrm{Im}\Pi^{00}(\omega,\pmb{k})$ 在某处（比如说 $\omega_0$）出现不连续跳变时，$\mathrm{Re}\Pi^{00}(\omega,\pmb{k})$ 会在同一处出现对数发散。我们还愿指出，编时关联函数 $P^{00}(\omega,\pmb{k})$ 由同一公式给出，只是虚部多出一个因子 $\mathrm{sgn}(\omega)$。
+
+自由费米子的压缩率决定了势的改变能诱发多大的密度改变。它由 $\chi(\pmb{k})=-\Pi^{00}(0,\pmb{k})$ 给出（在有限波矢 $\pmb{k}$ 处），且在小 $\pmb{k}$ 下与 $\pmb{k}$ 无关。由式 (4.2.12)，我们发现压缩率在所有维度都由费米能处的态密度给出：
+\begin{equation*}
+\chi(\pmb{k}) = N(E_F)
+\end{equation*}
+
+正如所料。由
+\begin{equation*}
+\sigma(\omega) = -\lim_{\pmb{k}\to 0}\mathrm{Im}\,\frac{\omega}{k^2}\,\Pi^{00}(\omega,\pmb{k})
+\end{equation*}
+
+我们也看到光学电导率（optical conductivity）为零（$\sigma(\omega)=0$），只在 $\omega=0$ 处例外。这同样在预料之中。在没有任何相互作用时，均匀的振荡电场无法激发任何粒子–空穴激发，因而不会引起耗散。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.13.pdf}
+\caption*{图 4.13\quad $|\boldsymbol{k}|>2k_F$ 时的 $\mathrm{Im}\Pi^{00}$。(a) 中虚线与阴影区域的交截决定了 (b) 中 $\mathrm{Im}\Pi^{00}(\omega,\boldsymbol{k})$ 的值。}
+\end{figure}
+
+当 $\omega\ll v_F k$ 时，$\Pi^{00}$ 对所有 $d>1$ 的维度都具有如下形式：
+\begin{equation*}
+\Pi^{00}(\omega,\pmb{k}) = -N(E_F)\left(1+\mathrm{i}C_d\frac{\omega}{v_F k}\right)
+\end{equation*}
+
+其中 $d=2$ 时 $C_2=1$，$d=3$ 时 $C_3=\pi/2$。我们看到，当 $\pmb{k}\neq 0$ 时，振荡电场会引起耗散。电导率具有形式
+\begin{equation*}
+\sigma(\omega,\pmb{k}) = N(E_F)C_d\,\frac{\omega^2}{v_F k^3}
+\end{equation*}
+（在 $\omega\ll v_F k$ 极限下）。
+
+一般而言，当 $\omega$ 小时，$\Pi^{00}(\omega,\pmb{k})$ 是 $\pmb{k}$ 的光滑函数，但在 $\pmb{k}=0$ 与 $|\pmb{k}|=2k_F$ 附近除外（对球形费米面）。我们已经研究了 $\Pi^{00}(\omega,\pmb{k})$ 在 $\pmb{k}=0$ 附近的奇异行为；接下来我们讨论 $\Pi^{00}(\omega,\pmb{k})$ 在 $|\pmb{k}|=2k_F$ 附近的行为。让我们考虑下式的 $T=0$ 极限：
+\begin{equation*}
+\Pi^{00}(\omega,\pmb{k}) = \int \frac{\mathrm{d}^2\pmb{q}}{(2\pi)^d}\left( \frac{n_F(\xi_{\pmb{q}-\frac{\pmb{k}}{2}})-n_F(\xi_{\pmb{q}+\frac{\pmb{k}}{2}})}{\omega-\left(\xi_{\pmb{q}+\frac{\pmb{k}}{2}}-\xi_{\pmb{q}-\frac{\pmb{k}}{2}}\right)+\mathrm{i}0^{+}} \right)
+\end{equation*}
+
+在图 4.13、图 4.14 与图 4.15 中，浅阴影区域内 $n_F(\xi_{\pmb{q}-\frac{\pmb{k}}{2}})-n_F(\xi_{\pmb{q}+\frac{\pmb{k}}{2}})=1$，深阴影区域内 $n_F(\xi_{\pmb{q}-\frac{\pmb{k}}{2}})-n_F(\xi_{\pmb{q}+\frac{\pmb{k}}{2}})=-1$。此外，在 $y$ 轴右侧 $\xi_{\pmb{q}+\frac{\pmb{k}}{2}}-\xi_{\pmb{q}-\frac{\pmb{k}}{2}}>0$，在 $y$ 轴左侧 $\xi_{\pmb{q}+\frac{\pmb{k}}{2}}-\xi_{\pmb{q}-\frac{\pmb{k}}{2}}<0$。虚线是 $\omega=\xi_{\pmb{q}+\frac{\pmb{k}}{2}}-\xi_{\pmb{q}-\frac{\pmb{k}}{2}}$ 的位置。虚线与阴影区域的交截决定了 $\mathrm{Im}\Pi^{00}(\omega,\pmb{k})$ 的值。从图 4.13 与图 4.14 可以清楚地看出，对小 $\omega$：当 $|\pmb{k}|>2k_F$ 时 $\mathrm{Im}\Pi^{00}(\omega,\pmb{k})=0$；当 $|\pmb{k}|<2k_F$ 时 $\mathrm{Im}\Pi^{00}(\omega,\pmb{k})\propto-\omega$；而当 $|\pmb{k}|=2k_F$ 时 $\mathrm{Im}\Pi^{00}(\omega,\pmb{k})\propto-\mathrm{sgn}(\omega)|\omega|^{(d-1)/2}$。这些结果意味着，对 $d>1$，实部 $\mathrm{Re}\Pi^{00}(0,\pmb{k})$ 在 $\pmb{k}=2k_F$ 附近有限。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.14.pdf}
+\caption*{图 4.14\quad $|\boldsymbol{k}|<2k_F$ 时的 $\mathrm{Im}\Pi^{00}$。}
+\end{figure}
+
+然而，对嵌套费米面，当 $\pmb{k}$ 等于嵌套波矢 $\pmb{Q}$ 时，$\mathrm{Im}\Pi^{00}(\omega,\pmb{Q})$ 在 $\omega=0$ 处有一个不连续跳变（见图 4.15）。这导致压缩率在嵌套波矢 $\pmb{Q}$ 处出现对数发散：
+\begin{equation*}
+\chi(\pmb{Q}) \sim N(E_F)\ln\frac{E_F}{\omega}\Big|_{\omega\to 0}
+\end{equation*}
+
+在有限温度下，$\omega=0$ 处的不连续跳变被 $T$ 抹平，对数发散被 $T$ 截断：
+\begin{equation*}
+\chi(\pmb{Q}) \sim N(E_F)\ln\frac{E_F}{T} \tag{4.3.3}
+\end{equation*}
+
+我们已经从等时密度关联函数看到，嵌套费米面的基态在嵌套波矢 $\pmb{Q}$ 处含有一种“代数长程”晶体序。这里我们又从零频率密度关联函数看到，打开一个具有波矢 $\pmb{Q}$ 的小周期势会感生出大的密度波。这又是一个与晶体类似的性质：在晶体中，无穷小的周期势就能钉扎晶体并感生出有限的密度波。后面我们将看到，正因为嵌套费米面离晶体序如此之近，打开一个无穷小的相互作用实际上就能导致自发对称性破缺，把费米液体态变成晶体（更确切地说，称为电荷密度波（charge-density-wave，CDW）态）。
+
+\subsection*{问题 4.3.1}
+
+\textbf{一维自由费米子与相互作用玻色子}\quad 计算一维自由费米子系统中大 $(x,t)$ 处的 $T=0$ 编时密度关联 $\langle T\rho(x,t)\rho(0)\rangle$。（提示：利用问题 4.2.5 的结果。）你的结果应当是式 (3.6.2) 中一维相互作用玻色子密度关联的一个特例。确定式 (3.6.2) 中 $\chi$、$v$、$K_n$ 与 $C_n$ 的取值，使之重现自由费米子的编时密度关联。
+
+\subsection*{问题 4.3.2}
+
+对二维自由费米子系统，计算小 $(\omega,k)$ 处虚时中的零温编时密度关联 $\mathcal{P}^{00}(\omega,k)$。完成解析延拓，得到实频率的 $\Pi^{00}$。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.15.pdf}
+\caption*{图 4.15\quad 嵌套费米面在 $\boldsymbol{k}=\boldsymbol{Q}$ 处的 $\mathrm{Im}\Pi^{00}$。}
+\end{figure}
+
+\subsection{流算符}
+
+\begin{keypoints}
+\item 具有一般色散的粒子的流算符。
+\end{keypoints}
+
+为了计算流响应函数 $\pi^{ij}$ 与 $\Pi^{ij}$（见 3.7.2 节），我们首先需要知道流算符 $\pmb{j}$ 是什么。我们从密度算符的时间导数 $\mathrm{d}\rho/\mathrm{d}t=\mathrm{d}[c^{\dagger}(\pmb{x},t)c(\pmb{x},t)]/\mathrm{d}t$ 出发，并从守恒定律 $\mathrm{d}\rho/\mathrm{d}t+\pmb{\partial}\cdot\pmb{j}=0$ 得到 $\pmb{j}$。设费米子系统由下式描述：
+\begin{equation*}
+H = \sum_{\langle ij\rangle}\left(t_{ij}c^{\dagger}_i c_j + h.c.\right)
+\end{equation*}
+
+我们发现 $\mathrm{i}\partial_t c=\sum_j(t_{ij}+t^{*}_{ji})c_j$，并且
+\begin{equation*}
+\partial_t\rho = \sum_j j_{ij}, \qquad j_{ij} = -\mathrm{i}c^{\dagger}_i(t_{ij}+t^{*}_{ji})c_j + \mathrm{i}c^{\dagger}_j(t^{*}_{ij}+t_{ji})c_i
+\end{equation*}
+
+这些结果告诉我们，在格点上，流算符由 $j_{ij}$ 给出，它描述每单位时间从格点 $j$ 流向格点 $i$ 的粒子数。这与我们要找的东西非常不同。我们要找的是一个流算符 $\pmb{j}(\pmb{x})$，它是一个矢量，且只依赖一个坐标（而非两个）。这样的流算符对格点模型而言根本不存在。然而，如果 $\pmb{A}$ 是 $\pmb{x}$ 的光滑函数，那么 $\pmb{A}$ 与流之间的耦合只能“看到”流的光滑部分。在这个极限下，即使对格点模型，我们也能找到这样一个类矢量的流算符。
+
+诀窍在于从一个规范化的（gauged）哈密顿量出发。我们先考虑一个连续模型
+\begin{equation*}
+H = \int \mathrm{d}^d\pmb{x}\; c^{\dagger}(\pmb{x})\epsilon(-\mathrm{i}\partial_{\pmb{x}})c(\pmb{x})
+\end{equation*}
+
+其中 $\epsilon(\pmb{k})$ 是费米子的能谱。规范化的哈密顿量为
+\begin{equation*}
+H = \int \mathrm{d}^d\pmb{x}\; c^{\dagger}(\pmb{x})\epsilon(-\mathrm{i}\partial_i + A_i(\pmb{x}))c(\pmb{x}) \tag{4.3.4}
+\end{equation*}
+
+总流算符 $\pmb{J}$ 通过下式得到
+\begin{equation*}
+J^i(\pmb{x}) = \frac{\delta H}{\delta A_i(\pmb{x})} \tag{4.3.5}
+\end{equation*}
+
+这样得到的流算符满足流守恒定律（见问题 4.3.3）。对二次型色散 $\epsilon(\pmb{k})=\pmb{k}^2/2m$，我们有
+\begin{equation*}
+J^i = \frac{1}{2m}\left[c^{\dagger}(\pmb{x})(-\mathrm{i}\partial_i)c(\pmb{x}) - \left(\mathrm{i}\partial_i c^{\dagger}(\pmb{x})\right)c(\pmb{x})\right] + \frac{1}{m}A_i(\pmb{x})c^{\dagger}(\pmb{x})c(\pmb{x}) \tag{4.3.6}
+\end{equation*}
+
+第一项具有 $m^{-1}\pmb{k}\rho$ 的形式。第二项只在 $A_i\neq 0$ 时出现，具有 $m^{-1}A_i\rho$ 的形式。由于 $m^{-1}(k_i+A_i)=v_i$ 是速度，流具有 $v_i\rho$ 的形式，正如所料。
+
+对更一般的色散，流会相当复杂，因为 $\partial_i$ 与 $A_i(\pmb{x})$ 不对易。例如，对具有 $\epsilon(k)=\gamma k^n$ 的一维系统，我们发现如下“讨厌的”形式：
+\begin{equation*}
+J = \gamma\sum_{m=0}^{n-1}\left[\left(\mathrm{i}\partial_x+A_x\right)^m c^{\dagger}\right]\left[\left(-\mathrm{i}\partial_x+A_x\right)^{n-1-m}c\right]
+\end{equation*}
+
+然而，在小动量极限下，我们可以忽略 $\partial_iA_j$ 项，把 $\partial_i$ 与 $A_i(\pmb{x})$ 当作对易的量来处理。在这个极限下，我们得到
+\begin{align*}
+J^i &= \frac{1}{2m}\left[c^{\dagger}(\pmb{x})v^i(-\mathrm{i}\partial_{\pmb{x}})c(\pmb{x}) + \left(v^i(\mathrm{i}\partial_{\pmb{x}})c^{\dagger}(\pmb{x})\right)c(\pmb{x})\right] \tag{4.3.7}\\
+&\quad + \frac{1}{2}A_j(\pmb{x})\left[c^{\dagger}(\pmb{x})K^{ij}(-\mathrm{i}\partial_{\pmb{x}})c(\pmb{x}) + \left[K^{ij}(\mathrm{i}\partial_{\pmb{x}})c^{\dagger}(\pmb{x})\right]c(\pmb{x})\right] + O(\pmb{A}^2)
+\end{align*}
+
+其中
+\begin{equation*}
+v^i(\pmb{k}) = \frac{\partial\epsilon(\pmb{k})}{\partial k_i}, \qquad K^{ij}(\pmb{k}) = \frac{\partial^2\epsilon(\pmb{k})}{\partial k_i\partial k_j}
+\end{equation*}
+
+在动量空间中，式 (4.3.7) 可以改写为
+\begin{align*}
+J^i_{\pmb{q}}(t) &= \sum_{\pmb{k}} c^{\dagger}_{\pmb{k}}c_{\pmb{k}+\pmb{q}}\,\frac{v^i(\pmb{k})+v^i(\pmb{k}+\pmb{q})}{2}\\
+&\quad + \mathcal{V}^{-1}\sum_{\pmb{k}\pmb{k}'} c^{\dagger}_{\pmb{k}}c_{\pmb{k}+\pmb{k}'}A^j_{\pmb{q}-\pmb{k}'}\,\frac{K^{ij}(\pmb{k})+K^{ij}(\pmb{k}+\pmb{k}')}{2} \tag{4.3.8}
+\end{align*}
+
+其中 $c(\pmb{x},t)=\sum_{\pmb{k}}\mathcal{V}^{-1/2}c_{\pmb{k}}(t)\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}$，$A_i(\pmb{x},t)=\mathcal{V}^{-1}\sum_{\pmb{k}}A_{i,\pmb{k}}(t)\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}$，$J^i(\pmb{x},t)=\mathcal{V}^{-1}\sum_{\pmb{k}}J^i_{\pmb{k}}(t)\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}$。当 $\pmb{A}=0$ 时，流算符变为
+\begin{equation*}
+j^i_{\pmb{q}}(t) = \sum_{\pmb{k}} c^{\dagger}_{\pmb{k}}(t)c_{\pmb{k}+\pmb{q}}(t)\,\frac{v^i(\pmb{k})+v^i(\pmb{k}+\pmb{q})}{2} \tag{4.3.9}
+\end{equation*}
+
+我们想强调，上式仅在小 $\pmb{q}$ 极限下成立。因此，我们也可以把流写成 $j^i_{\pmb{q}}(t)=\sum_{\pmb{k}}c^{\dagger}_{\pmb{k}}c_{\pmb{k}+\pmb{q}}v^i(\pmb{k}+(\pmb{q}/2))$，它在 $O(\pmb{q})$ 精度内与式 (4.3.9) 一致。如果我们把 $\sum_{\pmb{k}}$ 看作对布里渊区（Brillouin zone）的求和，那么式 (4.3.8) 或式 (4.3.9) 就可以看作格点模型的（近似）流算符。
+
+\subsection*{问题 4.3.3}
+
+\textbf{规范不变性与流守恒}
+\begin{enumerate}
+\item 证明规范化的哈密顿量 (4.3.4) 在规范变换 $c(\pmb{x})\to\mathrm{e}^{-\mathrm{i}\phi(\pmb{x})}c(\pmb{x})$ 与 $A_i(\pmb{x})\to A_i(\pmb{x})+\partial_i\phi(\pmb{x})$ 下不变。
+\item 在一维使用规范化的哈密顿量 (4.3.4) 计算 $\partial_t(c^{\dagger}c)$，并证明由式 (4.3.5) 定义的流满足 $\partial_t\rho+\partial_x J=0$。
+\end{enumerate}
+
+\subsection*{问题 4.3.4}
+
+求二维自由费米子系统（色散为 $\epsilon_k=\frac{k^2}{2m}+\gamma k^4$）的流算符 $J^i$。
+
+\subsection{流关联函数}
+
+利用式 (4.3.9)，我们现在可以计算流响应函数的第一部分 $\mathrm{i}\pi^{ij}=\langle[j^i,j^j]\rangle$（见式 (3.7.6)）。记住，密度响应函数包含来自 $(\pmb{q},\pmb{q}+\pmb{k})$ 与 $(\pmb{q}+\pmb{k},\pmb{q})$ 处粒子–空穴的两部分贡献。当我们计算流响应函数时，同样有这两部分贡献，只不过两部分都要乘上一个额外的权重因子 $\frac{1}{2}[v^i(\pmb{q})+v^i(\pmb{q}+\pmb{k})]\frac{1}{2}[v^j(\pmb{q})+v^j(\pmb{q}+\pmb{k})]$。因此
+\begin{equation*}
+\pi^{ij}(\omega,\pmb{k}) = \int \frac{\mathrm{d}^2\pmb{q}}{(2\pi)^d}\, \frac{\left[n_F(\xi_{\pmb{q}})-n_F(\xi_{\pmb{q}+\pmb{k}})\right]\left[v^i(\pmb{q})+v^i(\pmb{q}+\pmb{k})\right]\left[v^j(\pmb{q})+v^j(\pmb{q}+\pmb{k})\right]}{4\left[\omega-(\xi_{\pmb{q}+\pmb{k}}-\xi_{\pmb{q}})+\mathrm{i}0^{+}\right]}
+\end{equation*}
+
+在 $\pmb{k}\ll k_F$ 极限下，我们有
+\begin{equation*}
+\pi^{ij}(\omega,\pmb{k}) = -\int \frac{\mathrm{d}^d\pmb{q}}{(2\pi)^d}\, \frac{\partial n_F}{\partial\xi}\, \frac{\pmb{k}\cdot\pmb{v}(\pmb{q})\left[v^i(\pmb{q})+v^i(\pmb{q}+\pmb{k})\right]\left[v^j(\pmb{q})+v^j(\pmb{q}+\pmb{k})\right]}{4\left[\omega-\pmb{k}\cdot\pmb{v}(\pmb{q})+\mathrm{i}0^{+}\right]}
+\end{equation*}
+
+我们先把自己限制在 $\epsilon=\frac{k^2}{2m}$、$T=0$、$d=2$ 的情形。我们已经算出了 $\Pi^{00}$，从而也算出了 $\Pi^{\parallel}$。为计算 $\Pi^{\perp}$，我们取 $\pmb{k}=(k,0)$，于是 $\pi^{\perp}(\omega,k)=\pi^{22}(k\hat{\pmb{x}},\omega)$。我们发现（见 4.3.6.1 节）
+\begin{equation*}
+\pi^{\perp}(\omega,k) = -\frac{\rho}{m} + 2\frac{\rho}{m}
+\left\{
+\begin{array}{ll}
+\dfrac{\omega^2}{v_F^2k^2} - \mathrm{i}\dfrac{\omega}{v_F k}\sqrt{1-\dfrac{\omega^2}{v_F^2k^2}}, & \text{当 } \left|\dfrac{\omega}{v_F k}\right|<1\\[4ex]
+\dfrac{\omega^2}{v_F^2k^2} - \left|\dfrac{\omega}{v_F k}\right|\sqrt{\dfrac{\omega^2}{v_F^2k^2}-1}, & \text{当 } \left|\dfrac{\omega}{v_F k}\right|>1
+\end{array}
+\right.
+\end{equation*}
+
+对二次型色散 $\epsilon=\frac{k^2}{2m}$，当 $\pmb{A}\neq 0$ 时流具有式 (4.3.6) 的形式，这意味着 $\Pi^{\mu\nu}$ 与 $\pi^{\mu\nu}$ 通过式 (3.7.6) 相联系。我们发现
+\begin{equation*}
+\Pi^{\perp}(\omega,k) = \pi^{\perp}(\omega,k) + \frac{\rho}{m} = 2\frac{\rho}{m}
+\left\{
+\begin{array}{ll}
+\dfrac{\omega^2}{v_F^2k^2} - \mathrm{i}\dfrac{\omega}{v_F k}\sqrt{1-\dfrac{\omega^2}{v_F^2k^2}}, & \text{当 } \left|\dfrac{\omega}{v_F k}\right|<1\\[4ex]
+\dfrac{\omega^2}{v_F^2k^2} - \left|\dfrac{\omega}{v_F k}\right|\sqrt{\dfrac{\omega^2}{v_F^2k^2}-1}, & \text{当 } \left|\dfrac{\omega}{v_F k}\right|>1
+\end{array}
+\right. \tag{4.3.10}
+\end{equation*}
+
+其中用到了 $\rho=k_F^2/4\pi$。我们注意到，接触项 $\frac{\rho}{m}$ 恰好抵消了 $\pi^{\perp}$ 中的常数项（真是一大解脱！）。若没有这一抵消，自由费米子系统就会表现得像一个超导体（见式 (3.7.11)）。
+
+在 $d=3$ 维，我们发现（见 4.3.6.2 节）
+\begin{align*}
+&\Pi^{\perp}(\omega,k) \tag{4.3.11}\\
+&= \frac{k_F^3}{8\pi^2 m}\left(2\frac{\omega^2}{v_F^2k^2} - \frac{\omega}{v_F k}\left(1-\frac{\omega^2}{v_F^2k^2}\right)\left(\ln\left|\frac{\omega-v_F k}{\omega+v_F k}\right| + \mathrm{i}\pi\Theta(v_F k-|\omega|)\right)\right)
+\end{align*}
+
+\subsection*{问题 4.3.5}
+
+对一维自由费米子系统精确计算 $\Pi^{\mu\nu}(\omega,k)$。画出 $\mathrm{Im}\Pi^{00}\neq 0$ 的区域，并标出 $\Pi^{00}(\omega,k)$ 变为非解析的所有边界线。指出与这些边界线相对应的粒子–空穴激发。
+
+\subsection{电导率}
+
+\begin{keypoints}
+\item 有限的交流电导率由破坏伽利略不变性的杂质和/或相互作用引起。
+\item 电导率的一种近似计算。
+\end{keypoints}
+
+如前所述，均匀电场只与质心运动耦合。因此，$\pmb{k}=0$ 的交流电导率为 $\sigma(\omega)=-\mathrm{Im}\Pi^{\perp}(\omega,0)/\omega=-\lim_{\pmb{k}\to 0}\mathrm{Im}\frac{\omega}{k^2}\Pi^{00}(\omega,\pmb{k})=0$。要有有限的交流电导率，我们需要破坏伽利略不变性。一种办法是加入杂质。另一种破坏伽利略不变性的办法是加入一个违反伽利略不变性的相互作用项。
+
+式 (4.2.3) 中的格林函数 $\mathrm{i}G(t,\pmb{k})$ 有如下的物理含义：如果我们在 $t=0$ 时刻在 $\pmb{k}$ 态产生一个费米子，那么 $\mathrm{i}G(t,\pmb{k})$ 就是 $t$ 时刻在 $\pmb{k}$ 态找到这个费米子的振幅。对自由费米子系统，占据 $\pmb{k}$ 态的费米子哪儿也不去，因此 $|\mathrm{i}G(t,\pmb{k})|^2=1$。存在杂质时，$\pmb{k}$ 态中的费米子会因被杂质散射而消失到具有不同动量的态中去。类似地，费米子之间的相互作用会使 $\pmb{k}$ 态中的费米子衰变到一个含两个粒子与一个空穴的多粒子态；同样地，$\pmb{k}$ 态中的费米子消失到了其他态中。在某种程度上，这样的杂质/相互作用效应可以通过在费米子传播子中加入一个衰减项来模拟，如下所示：\footnote{对含杂质系统，格林函数 $G(t_1,\pmb{x}_1;t_2,\pmb{x}_2)$ 不是 $\pmb{x}_1-\pmb{x}_2$ 的函数，因为平移对称性被破坏。在这种情况下，我们甚至无法定义 $G(t,\pmb{k})$。然而，杂质平均后的格林函数只依赖 $\pmb{x}_1-\pmb{x}_2$，此时 $G(t,\pmb{k})$ 可以定义。所以，对含杂质系统，$G(t,\pmb{k})$ 应被理解为杂质平均的格林函数。}
+\begin{align*}
+\mathrm{i}G(t,\pmb{k}) &= +\Theta(t)\Theta(\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}-t\Gamma} - \Theta(-t)\Theta(-\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}-(-t)\Gamma}\Big|_{T=0}\\
+\mathrm{i}G^{\beta}(t,\pmb{k}) &= +\Theta(t)\left(1-n_F(\xi_{\pmb{k}})\right)\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}-t\Gamma} - \Theta(-t)n_F(\xi_{\pmb{k}})\mathrm{e}^{-\mathrm{i}t\xi_{\pmb{k}}+t\Gamma}\Big|_{T>0} \tag{4.3.12}
+\end{align*}
+
+由于 $|G(t,\pmb{k})|^2$ 以 $\mathrm{e}^{-2\Gamma t}$ 衰减，衰变率为 $2\Gamma$，而 $\tau=1/2\Gamma$ 为弛豫时间。\footnote{用衰减来模拟相互作用/杂质效应，违反了费米子数守恒。}在 $\omega$–$\pmb{k}$ 空间中，式 (4.3.12) 变为
+\begin{align*}
+G(\omega,\pmb{k}) &= \frac{1}{\omega-\xi_{\pmb{k}}+\mathrm{i}\Gamma\,\mathrm{sgn}(\xi_{\pmb{k}})} \tag{4.3.13}\\
+G^{\beta}(\omega,\pmb{k}) &= G^{\beta}_+(\omega,\pmb{k}) + G^{\beta}_-(\omega,\pmb{k}) = \frac{1-n_F(\xi_{\pmb{k}})}{\omega-\xi_{\pmb{k}}+\mathrm{i}\Gamma} + \frac{n_F(\xi_{\pmb{k}})}{\omega-\xi_{\pmb{k}}-\mathrm{i}\Gamma} \tag{4.3.14}
+\end{align*}
+
+式 (4.3.14) 使我们能够得到费米子谱函数 $\pi A_{\pm}(\omega,\pmb{k})=\pm\mathrm{Im}G^{\beta}_{\pm}(\omega,\pmb{k})$ 如下：
+\begin{equation*}
+\pi A_+(\omega,\pmb{k}) = \Gamma\frac{1-n_F(\xi_{\pmb{k}})}{(\omega-\xi_{\pmb{k}})^2+\Gamma^2}, \qquad \pi A_-(\omega,\pmb{k}) = \Gamma\frac{n_F(\xi_{\pmb{k}})}{(\omega-\xi_{\pmb{k}})^2+\Gamma^2}.
+\end{equation*}
+
+然而，上述 $A_{\pm}$ 不满足式 (2.2.28)。因此，我们用式 (4.3.12) 来模拟杂质/相互作用效应的做法不是自洽的。这个问题很容易修正，只需把 $A_{\pm}$ 修改为
+\begin{equation*}
+\pi A_+(\omega,\pmb{k}) = \Gamma\frac{1-n_F(\omega)}{(\omega-\xi_{\pmb{k}})^2+\Gamma^2}, \qquad \pi A_-(\omega,\pmb{k}) = \Gamma\frac{n_F(\omega)}{(\omega-\xi_{\pmb{k}})^2+\Gamma^2}. \tag{4.3.15}
+\end{equation*}
+
+当 $\Gamma=0^{+}$ 时，修改后的 $A_{\pm}$ 就成为自由费米子的 $A_{\pm}$。修改后的格林函数不再由式 (4.3.12) 给出，而是由式 (4.3.15) 导出的那个给出。
+
+为计算密度响应函数 $\Theta(t)\langle[\rho(t,\pmb{q}),\allowbreak\rho(0,-\pmb{q})]\rangle$，我们需要计算（见式 (4.3.1)）$\langle[c^{\dagger}_{\pmb{k}}(t)c_{\pmb{k}+\pmb{q}},\allowbreak\, c^{\dagger}_{\pmb{k}+\pmb{q}}(0)c_{\pmb{k}}(0)]\rangle$。人们很想用 Wick 定理来计算上述关联。这里我们想指出，Wick 定理只适用于自由费米子（或玻色子）系统中的关联函数；它既不适用于相互作用的费米子，也不适用于杂质系统的平均格林函数。这里我们还是使用了 Wick 定理，但只是把它当作一种近似：
+\begin{align*}
+&\left\langle \left[c^{\dagger}_{\pmb{k}}(t)c_{\pmb{k}+\pmb{q}},\, c^{\dagger}_{\pmb{k}+\pmb{q}}(0)c_{\pmb{k}}(0)\right] \right\rangle\\
+&\approx \left\langle c_{\pmb{k}+\pmb{q}}(t)c^{\dagger}_{\pmb{k}+\pmb{q}}(0) \right\rangle \left\langle c^{\dagger}_{\pmb{k}}(t)c_{\pmb{k}}(0) \right\rangle - \left\langle c^{\dagger}_{\pmb{k}+\pmb{q}}(0)c_{\pmb{k}+\pmb{q}}(t) \right\rangle \left\langle c_{\pmb{k}}(0)c^{\dagger}_{\pmb{k}}(t) \right\rangle\\
+&= \left(\mathrm{i}G(t,\pmb{k}+\pmb{q})\right)\left(-\mathrm{i}G(-t,\pmb{k})\right) - \left(-\mathrm{i}G(-t,\pmb{k}+\pmb{q})\right)^{*}\left(\mathrm{i}G(t,\pmb{k})\right)^{*}
+\end{align*}
+
+按照从式 (4.2.15) 到式 (4.2.17) 的计算，我们发现
+\begin{align*}
+&\mathrm{Im}\Pi^{00}(\omega,\pmb{q}) \tag{4.3.16}\\
+&= \frac{\pi}{\mathcal{V}}\int \mathrm{d}\nu\, \sum_{\pmb{k}}\left(A_-(\nu,\pmb{k}+\pmb{q})A_+(\nu-\omega,\pmb{k}) - A_+(\nu,\pmb{k}+\pmb{q})A_-(\nu-\omega,\pmb{k})\right)
+\end{align*}
+
+为计算流响应函数 $\Theta(t)\langle[j^i(t,\pmb{k}),j^j(0,-\pmb{k})]\rangle$，我们只需代入权重因子 $\frac{1}{2}[v^i(\pmb{q})+v^i(\pmb{q}+\pmb{k})]\frac{1}{2}[v^j(\pmb{q})+v^j(\pmb{q}+\pmb{k})]$。我们发现
+\begin{align*}
+\mathrm{Im}\Pi^{ij}(\omega,\pmb{q}) = \frac{\pi}{4\mathcal{V}}\int \mathrm{d}\nu\, \sum_{\pmb{k}} \left[v^i(\pmb{k})+v^i(\pmb{q}+\pmb{k})\right]\left[v^j(\pmb{k})+v^j(\pmb{q}+\pmb{k})\right]\times\\
+\left(A_-(\nu,\pmb{k}+\pmb{q})A_+(\nu-\omega,\pmb{k}) - A_+(\nu,\pmb{k}+\pmb{q})A_-(\nu-\omega,\pmb{k})\right)
+\end{align*}
+
+令 $\pmb{q}=0$，我们得到交流电导率
+\begin{align*}
+\sigma^{ij}(\omega) &= -\mathrm{Im}\,\frac{\Pi^{ij}(\omega,0)}{\omega}\\
+&= -\int \frac{\mathrm{d}\nu}{\pi}\, \frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\, \frac{\Gamma^2 v^i(\pmb{k})v^j(\pmb{k})\left(n_F(\nu)-n_F(\nu-\omega)\right)}{\omega\left((\nu-\xi_{\pmb{k}})^2+\Gamma^2\right)\left((\nu-\omega-\xi_{\pmb{k}})^2+\Gamma^2\right)}
+\end{align*}
+
+取 $\omega\to 0$，我们得到下面这个非常有用的直流电导率公式：
+\begin{equation*}
+\sigma^{ij}(0) = \int \frac{\mathrm{d}\nu}{\pi}\, \frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\,
+\frac{\Gamma^2 v^i(\pmb{k}) v^j(\pmb{k}) \left(-\dfrac{\partial n_F(\nu)}{\partial \nu}\right)}
+{\left((\nu - \xi_{\pmb{k}})^2 + \Gamma^2\right)^2}
+\approx \int \frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\, \tau\, v^i(\pmb{k}) v^j(\pmb{k})\, \delta(\xi_{\pmb{k}})
+\end{equation*}
+其中我们假定了 $T$ 与 $\Gamma$ 都很小，并利用了 $-\partial n_F(\nu)/\partial\nu \approx \delta(\nu)$
+以及 $\Gamma^2/(\xi_{\pmb{k}}^2 + \Gamma^2)^2 \approx \frac{\pi}{2\Gamma}\,\delta(\xi_{\pmb{k}})$。
+
+\subsection{其他两体关联函数}
+
+当电子具有自旋时，我们还可以计算自旋关联函数和电子对关联函数。自旋密度算符由
+$s^i = c_\alpha^\dagger \sigma^i_{\alpha\beta} c_\beta/2$ 给出，其中 $c_\beta$（$\beta = 1, 2$）
+为自旋向上与自旋向下的电子算符，$\sigma^i$ 为泡利矩阵。自旋--自旋关联等于密度关联：
+\begin{equation*}
+\big\langle s^3(\pmb{x},t) s^3(\pmb{0}) \big\rangle
+= \frac{1}{4} \Big[ \big\langle (c_1^\dagger c_1)(c_1^\dagger c_1) \big\rangle
++ \big\langle (c_2^\dagger c_2)(c_2^\dagger c_2) \big\rangle \Big]
+= \frac{1}{2\mathrm{i}} \big( \Pi^{00}(\pmb{x},t) - \rho_0^2 \big)
+\end{equation*}
+我们看到自旋--自旋关联也具有代数长程序。对于嵌套费米面，
+\begin{equation*}
+\big\langle s^i(\pmb{x},0) s^j(\pmb{0}) \big\rangle \propto \delta_{ij}\, \frac{1 + \sin(Q|\pmb{x}|)}{|\pmb{x}|^2}
+\end{equation*}
+若 $\pmb{x} \| \pmb{Q}$。
+
+电子对算符由 $b(\pmb{x},t) = c_1(\pmb{x},t)c_2(\pmb{x},t)$ 给出，它与超导电性有关。其关联等于无自旋电子的格林函数的平方：
+\begin{equation*}
+\big\langle b(\pmb{x},t) b^\dagger(\pmb{0}) \big\rangle = G^2(\pmb{x},t)
+\propto \Big|_{t=0} \cos^2 \left( k_F |\pmb{x}| - \frac{\pi(d+1)}{4} \right) \frac{1}{|\pmb{x}|^{(d+1)}}
+\end{equation*}
+在电子对关联中我们再一次得到代数长程序。
+
+总结起来，我们发现自由费米子系统中的许多关联都具有幂律衰减。这表明自由费米子基态是一种临界态。有时，任意弱的相互作用就能把代数长程序变成真正的长程序，并诱导自发对称性破缺。例如，无限弱的吸引相互作用就会在电子对关联中产生长程序，并生成超导态。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.16.pdf}
+\caption*{图 4.16\quad $\dfrac{1}{(z-\alpha-\mathrm{i}0^{+})^{2}+1-(\alpha+\mathrm{i}0^{+})^{2}}$ 的两个极点：(a) $|\alpha|>1$ 情形；(b) $|\alpha|<1$ 情形。若不存在 $\mathrm{i}0^{+}$ 项，$|\alpha|<1$ 的两个极点将位于单位圆 $|z|=1$ 上。}
+\end{figure}
+
+\subsection{注记：一些计算细节}
+
+\subsubsection{二维中 $\pi^{\perp}$ 的计算}
+
+我们如下计算 $\pi^{22}$：
+\begin{align*}
+\pi^{22}(k\hat{\pmb{x}},\omega)
+&= \frac{1}{4m^{2}}\, \frac{1}{4\pi^{2}} \int \mathrm{d}\Big(\frac{q^{2}}{2m}\Big) \mathrm{d}\theta\;
+\delta(\epsilon(\pmb{q}) - \mu)\, \frac{\pmb{k}\cdot\pmb{q}}{\omega - \frac{\pmb{k}\cdot\pmb{q}}{m} + \mathrm{i}0^{+}}\; (2q_{2} + k_{2})^{2}\\
+&= \frac{1}{m^{2}}\, \frac{1}{4\pi^{2}} \int \mathrm{d}\theta\;
+\frac{k k_{F} \cos(\theta)\, k_{F}^{2} \sin^{2}(\theta)}{\omega - \frac{k k_{F}\cos(\theta)}{m} + \mathrm{i}0^{+}}
+= \frac{k_{F}^{2}}{4\pi^{2} m} \int \mathrm{d}\theta\;
+\frac{\cos(\theta) \sin^{2}(\theta)}{\frac{\omega}{v_{F} k} - \cos(\theta) + \mathrm{i}0^{+}}
+\end{align*}
+以及（见图 4.16）
+\begin{align*}
+\int \mathrm{d}\theta\; \frac{\cos(\theta) \sin^{2}(\theta)}{\alpha + \mathrm{i}0^{+} - \cos(\theta)}
+&= \frac{1}{4} \oint_{|z|=1} \mathrm{d}z\; \frac{1}{\mathrm{i} z^{3}}\, \frac{(z^{2}-1)^{2}(z^{2}+1)}{(z-\alpha)^{2} + 1 - \alpha^{2}}\\
+&= \left\{
+\begin{array}{ll}
+-\pi + 2\pi\alpha^{2} - 2\pi \mathrm{i} \alpha \sqrt{1-\alpha^{2}} & \text{对于 } |\alpha| < 1\\
+-\pi + 2\pi\alpha^{2} - 2\pi |\alpha| \sqrt{\alpha^{2}-1} & \text{对于 } |\alpha| > 1
+\end{array} \right.
+\end{align*}
+
+\subsubsection{三维中 $\pi^{\perp}$ 的计算}
+
+为计算 $\pi^{\perp}$，我们可取 $\pmb{k} = (0, 0, k)$ 并利用
+\begin{align*}
+\pi^{\perp}(\omega, k) &= \pi^{11}(k\hat{\pmb{z}}, \omega)
+= \frac{1}{4m^{2}}\, \frac{1}{8\pi^{3}} \int q\, \mathrm{d}\Big(\frac{q^{2}}{2m}\Big) \mathrm{d}\phi\, \mathrm{d}\theta\;
+\frac{\cos(\theta)\, \delta(\epsilon(\pmb{q}))\, \pmb{k}\cdot\pmb{q}}{\omega - \frac{\pmb{k}\cdot\pmb{q}}{m} + \mathrm{i}0^{+}}\; (2q_{1} + k_{1})^{2}\\
+&= \frac{1}{m^{2}}\, \frac{1}{8\pi^{3}} \int \mathrm{d}\phi\, \mathrm{d}\theta\;
+\frac{k \cos(\theta)\, k_{F}^{4} \sin^{3}(\theta) \cos^{2}(\phi)}{\omega - \frac{k k_{F}\cos(\theta)}{m} + \mathrm{i}0^{+}}
+= \frac{k_{F}^{3}}{8\pi^{2} m} \int_{-1}^{1} \mathrm{d}t\; \frac{t(1-t^{2})}{\frac{\omega}{v_{F} k} - t + \mathrm{i}0^{+}}\\
+&= \frac{k_{F}^{3}}{8\pi^{2} m} \left( -\frac{4}{3} + 2\frac{\omega^{2}}{v_{F}^{2} k^{2}}
+- \frac{\omega}{v_{F} k} \Big( 1 - \frac{\omega^{2}}{v_{F}^{2} k^{2}} \Big)
+\Big( \ln \frac{|\omega - v_{F} k|}{|\omega + v_{F} k|} + \mathrm{i}\pi \Theta(v_{F} k - |\omega|) \Big) \right)
+\end{align*}
+我们还注意到 $\rho = k_{F}^{3}/6\pi^{2}$。
+
+\section{绝缘体的线性响应与量子化霍尔电导}
+
+\begin{keypoints}
+\item 绝缘体的霍尔电导是一个拓扑量，并且是量子化的。
+\end{keypoints}
+
+在上一节中，我们讨论了具有费米面的自由费米子系统的线性响应。这些响应是由跨费米面的粒子--空穴激发引起的。在本节中，我们想讨论绝缘体的线性响应。这里，``绝缘体''指的是任何具有有限能隙的态。（这样的态也称为刚性态（rigid state）。）由于没有低能激发，响应的虚部在小 $\omega$ 处为零（即不存在低能耗散）。
+
+考虑一个与电磁场耦合的相互作用费米子系统：$\mathcal{L}(c, c^{\dagger}, A_{\mu}) + \mathcal{L}_{\mathrm{gauge}}(A_{\mu})$。我们将要得到的结果非常普遍，甚至不需要知道 $\mathcal{L}(c, c^{\dagger}, A_{\mu})$ 的具体形式。我们只假设费米子的基态具有有限能隙，并且 $\mathcal{L}(c, c^{\dagger}, A_{\mu})$ 在规范变换
+\begin{equation*}
+c(x^{\mu}) \to \mathrm{e}^{\mathrm{i}\phi(x^{\mu})} c(x^{\mu}), \qquad A_{\mu} \to A_{\mu} + \partial_{\mu} \phi(x^{\mu}).
+\end{equation*}
+下不变。把费米子积掉之后，我们得到规范场的一个有效作用量：
+\begin{align*}
+&\mathcal{L}_{\mathrm{eff}}(A_{\mu}) = \mathcal{L}_{\mathrm{gauge}}(A_{\mu}) + \delta\mathcal{L}_{\mathrm{eff}}(A_{\mu})\\
+&\delta\mathcal{L}_{\mathrm{eff}}(A_{\mu}) = -\frac{1}{2} \int \mathrm{d}x\, \mathrm{d}x'\; A_{\mu}(x) P^{\mu\nu}(x - x') A_{\nu}(x')
+\end{align*}
+其中 $\delta\mathcal{L}_{\mathrm{eff}}(A_{\mu})$ 是费米子的贡献，$P^{\mu\nu}(x-x')$ 是流--流关联函数。
+
+对于绝缘体（或刚性态），$\delta\mathcal{L}_{\mathrm{eff}}$ 是局域的，而且 $P^{\mu\nu}_{k_{\mu}}$ 在频率--动量空间中是 $k_{\mu}$ 的多项式。这与上一节为金属算出的 $P^{\mu\nu}_{k_{\mu}}$ 形成鲜明对比。金属在小 $(\pmb{k}, \omega)$ 极限下的奇异性是由跨费米面的无能隙粒子--空穴激发引起的。
+
+这里 $\delta\mathcal{L}_{\mathrm{eff}}(A_{\mu})$ 也应当是规范不变的。因此，$\delta\mathcal{L}_{\mathrm{eff}}(A_{\mu})$ 应当只通过场强 $\pmb{E}$ 和 $\pmb{B}$ 依赖于 $A_{\mu}$。于是 $\delta\mathcal{L}_{\mathrm{eff}}$ 具有如下形式：
+\begin{equation*}
+\delta\mathcal{L}_{\mathrm{eff}} = -\frac{1}{2} \big( B_{i} \chi^{ij} B_{j} + E_{i} p^{ij} E_{j} \big) + \dots
+\end{equation*}
+其中``$\dots$''代表更高阶导数项。张量 $\chi^{ij}$ 是磁化率，$p^{ij}$ 代表介电常数的一个修正。一般而言，以上就是绝缘体线性响应仅有的几种形式。
+
+然而，在 $2+1$ 维中，$\delta\mathcal{L}_{\mathrm{eff}}$ 还可以包含一个新项——Chern--Simons 项——如下：
+\begin{equation*}
+\delta\mathcal{L}_{\mathrm{eff}} = \frac{K}{4\pi} A_{\mu} \partial_{\nu} A_{\lambda} \epsilon^{\mu\nu\lambda} - \frac{1}{2} \big( B_{i} \chi^{ij} B_{j} + E_{i} p^{ij} E_{j} \big) + \dots
+\end{equation*}
+其中 $\mu, \nu, \lambda = 0, 1, 2$，而 $\epsilon^{\mu\nu\lambda}$ 是全反对称张量。尽管 Chern--Simons 项无法用场强写出，它却仍然是规范不变的。在规范变换
+\begin{equation*}
+A_{\mu} \to A_{\mu} + \partial_{\mu} f
+\end{equation*}
+下，作用量发生如下变化：
+\begin{equation*}
+S = \int_{V} \mathrm{d}x\; \mathcal{L}_{\mathrm{eff}} \to S + \oint_{S} \mathrm{d}S_{\mu}\, f\, \frac{K}{4\pi} \partial_{\nu} A_{\lambda} \epsilon^{\mu\nu\lambda}
+\end{equation*}
+其中 $V$ 是时空体积，$S$ 是 $V$ 的表面。我们看到，如果我们的系统生活在无边界的闭合时空上，那么 Chern--Simons 项就是规范不变的。
+
+Chern--Simons 项的线性响应为
+\begin{equation*}
+J^{i} = -\frac{\delta S}{\delta A_{i}} = \frac{K}{2\pi} \partial_{0} A_{i} \epsilon^{ij} = \frac{K}{2\pi} E_{i} \epsilon^{ij}
+\end{equation*}
+我们看到 Chern--Simons 项给出霍尔电导 $\sigma_{xy} = K/2\pi$（如果把 $e$ 和 $\hbar$ 放回去，则 $\sigma_{xy} = Ke^{2}/h$）。
+
+下面我们将证明霍尔电导 $\sigma_{xy}$ 或 $K$ 是量子化的（Thouless et al., 1982; Avron et al., 1983）。首先，让我们考虑一个周期系统和一个特殊的规范场位形：
+\begin{equation*}
+A_{1} = \frac{\theta_{1}(t)}{L_{1}}, \qquad A_{2} = \frac{\theta_{2}(t)}{L_{2}}, \qquad A_{0} = 0 \tag{4.4.1}
+\end{equation*}
+其中 $L_{1,2}$ 是系统在 $x$ 与 $y$ 方向上的尺寸。费米子的多体基态 $|\pmb{\theta}\rangle$ 由 $\pmb{\theta} = (\theta_{1}, \theta_{2})$ 参量化。如果我们把费米子积掉，就会得到一个有效拉格朗日量 $\delta L_{\mathrm{eff}} = \int \mathrm{d}^{2}\pmb{x}\; \delta\mathcal{L}_{\mathrm{eff}}$：
+\begin{equation*}
+\delta L_{\mathrm{eff}} = \frac{K}{4\pi} \theta_{i} \dot{\theta}_{j} \epsilon^{ij} + \dot{\theta}_{i} p^{ij} \dot{\theta}_{j}
+\end{equation*}
+其中第一项来自 Chern--Simons 项，第二项来自 $\pmb{E}^{2}$ 项。如果我们把 $\pmb{\theta}$ 看作一个粒子的坐标，那么 $\delta S$ 描写的就是一个处于均匀``磁场'' $b$ 中的二维带电粒子：
+\begin{align*}
+\delta L_{\mathrm{eff}} &= a_{i}(\pmb{\theta}) \dot{\theta}_{i} + \dot{\theta}_{i} p^{ij} \dot{\theta}_{j}\\
+a_{1} &= -\frac{K}{4\pi} \theta_{2}, \qquad a_{2} = \frac{K}{4\pi} \theta_{1}, \qquad b = \partial_{\theta_{1}} a_{2} - \partial_{\theta_{2}} a_{1} = \frac{K}{2\pi}
+\end{align*}
+
+在 4.4.1 节中，我们将证明费米子态 $|\theta_{1}, \theta_{2}\rangle$、$|\theta_{1} + 2\pi, \theta_{2}\rangle$ 与 $|\theta_{1}, \theta_{2} + 2\pi\rangle$ 由规范变换联系在一起。物理上，这意味着 $|\theta_{1}, \theta_{2}\rangle$、$|\theta_{1} + 2\pi, \theta_{2}\rangle$ 与 $|\theta_{1}, \theta_{2} + 2\pi\rangle$ 其实是同一个物理态（见 6.1 节的讨论）。因此，$\delta L_{\mathrm{eff}}$ 实际上描写的是一个环面上的粒子，环面由 $0 < \theta_{1} < 2\pi$ 与 $0 < \theta_{2} < 2\pi$ 参量化。
+
+让我们让粒子沿回路 $C$：$(0,0) \to (2\pi,0) \to (2\pi,2\pi) \to (0,2\pi) \to (0,0)$ 移动。这样一圈移动所积累的相位由 $C$ 所包围的``磁''通量给出：
+\begin{equation*}
+\oint_{C} \mathrm{d}\pmb{\theta} \cdot \pmb{a} = \int_{D} \mathrm{d}^{2}\pmb{\theta}\; b = 2\pi K
+\end{equation*}
+其中 $D$ 是回路 $C$ 所围的面积。在任何闭合曲面（例如球面或环面）上，任何回路都会围住该回路两侧的两个曲面（见图 6.5）。这里的 $D$ 只是 $C$ 所围两个曲面中的一个。$C$ 所围的另一个曲面 $D'$ 面积为零（因为 $D$ 覆盖了环面的全部面积）。所以相位 $\oint_{C} \mathrm{d}\pmb{\theta} \cdot \pmb{a}$ 也可以写成 $\int_{D'} \mathrm{d}^{2}\pmb{\theta}\; b = 0$。为保持一致，$\int_{D} \mathrm{d}^{2}\pmb{\theta}\; b$ 与 $\int_{D'} \mathrm{d}^{2}\pmb{\theta}\; b$ 应当代表同一个相位。于是
+\begin{equation*}
+\int_{D} \mathrm{d}^{2}\pmb{\theta}\; b = 2\pi \times \text{整数}
+\end{equation*}
+
+从数学上可以证明，穿过任何闭合曲面的总磁通量必须量子化为整数。这正是磁单极子的磁荷量子化的原因。对我们的情形，这意味着 $K$ 量子化为整数（另见 4.4.1 节）。
+
+我们想强调，$K$ 的量子化是非常普遍的。它适用于费米子和/或玻色子的任何相互作用系统。唯一的假设是基态 $|\pmb{\theta}\rangle$ 不简并。于是，\emph{如果环面上的多体基态不简并且具有有限能隙，那么系统的霍尔电导就量子化为整数 $\times\ e^{2}/h$}。我们想指出，如果多体基态具有简并（见 8.2.1 节），那么 $K$ 和霍尔电导就可以是一个\emph{有理}数（Niu et al., 1985）。
+
+霍尔电导的量子化有一些有趣的推论。让我们考虑均匀磁场中的一个无相互作用电子系统。如果 $n$ 个朗道能级被填满，系统就会有有限能隙，且霍尔电导为 $ne^{2}/h$（即 $K = n$）。现在让我们加入相互作用、周期势，甚至无规势。只要能隙在此过程中始终不闭合，霍尔电导就不能改变！由于霍尔电导对任何微扰都是稳健的，我们称它为一个\emph{拓扑}量子数。改变霍尔电导的唯一办法是使能隙闭合，这将诱导一个量子相变。
+
+为了显式计算 $K$，我们注意到 $\int \mathrm{d}t\; \delta L_{\mathrm{eff}}$ 正是绝热演化 $|\pmb{\theta}(t)\rangle$ 的作用量。于是我们有 $\int \mathrm{d}t\; \delta L_{\mathrm{eff}} = \int \mathrm{d}t\; \mathrm{i}\langle \pmb{\theta}(t) | \frac{\mathrm{d}}{\mathrm{d}t} | \pmb{\theta}(t) \rangle$，或者（见式 (2.3.4)）
+\begin{equation*}
+\frac{K}{4\pi} \theta_{i} \dot{\theta}_{j} \epsilon^{ij} = \mathrm{i} \Big\langle \pmb{\theta}(t) \Big| \frac{\mathrm{d}}{\mathrm{d}t} \Big| \pmb{\theta}(t) \Big\rangle \tag{4.4.2}
+\end{equation*}
+
+这里我们想说明，作为费米子的基态，$|\pmb{\theta}(t)\rangle$ 的相位是不固定的。如果我们重新定义 $|\pmb{\theta}\rangle$ 的相位：$|\pmb{\theta}\rangle \to \mathrm{e}^{\mathrm{i}\varphi(\pmb{\theta})} |\pmb{\theta}\rangle$，那么贝里相项将改变一个全导数项：
+\begin{equation*}
+\Big\langle \pmb{\theta}(t) \Big| \frac{\mathrm{d}}{\mathrm{d}t} \Big| \pmb{\theta}(t) \Big\rangle \to \Big\langle \pmb{\theta}(t) \Big| \frac{\mathrm{d}}{\mathrm{d}t} \Big| \pmb{\theta}(t) \Big\rangle + \mathrm{i}\, \frac{\mathrm{d}\varphi}{\mathrm{d}t}
+\end{equation*}
+因此，Chern--Simons 项与贝里相之间的关系式 (4.4.2) 不可能是正确的，因为开放路径的贝里相甚至没有良定义（见 2.3 节）。正确的关系应当是式 (4.4.2) 沿一条闭合回路的积分：
+\begin{equation*}
+\oint \mathrm{d}t\; \frac{K}{4\pi} \theta_{i} \dot{\theta}_{j} \epsilon^{ij} = \mathrm{i} \oint \mathrm{d}t\; \Big\langle \pmb{\theta}(t) \Big| \frac{\mathrm{d}}{\mathrm{d}t} \Big| \pmb{\theta}(t) \Big\rangle
+\end{equation*}
+特别地，沿回路 $C$，贝里相由下式给出：
+\begin{equation*}
+2\pi K = \frac{\sigma_{xy} \hbar}{e^{2}} = \oint_{C} \mathrm{d}\pmb{\theta} \cdot \langle \pmb{\theta} | \mathrm{i} \partial_{\pmb{\theta}} | \pmb{\theta} \rangle \tag{4.4.3}
+\end{equation*}
+
+让我们用贝里相 (4.4.3) 来计算一个能带绝缘体的量子化霍尔电导，对此系统有
+\begin{equation*}
+H = \sum_{ij} c_{i}^{\dagger} t_{ij} c_{j} = \sum_{\pmb{k}} c_{\pmb{k}}^{\dagger} M(\pmb{k}) c_{\pmb{k}} \tag{4.4.4}
+\end{equation*}
+其中 $c_{i}$ 有 $n$ 个分量，$t_{ij}$ 是只依赖 $i - j$ 的 $n \times n$ 矩阵，$M(\pmb{k})$ 是 $t_{ij}$ 的傅里叶变换。与具有式 (4.4.1) 所给形式的均匀规范势 $\pmb{A}$ 耦合后，我们得到
+\begin{equation*}
+H = \sum_{ij} c_{i}^{\dagger} t_{ij}\, \mathrm{e}^{\mathrm{i}\pmb{A}\cdot(\pmb{i}-\pmb{j})} c_{j} = \sum_{\pmb{k}} c_{\pmb{k}}^{\dagger} M^{\theta}(\pmb{k}) c_{\pmb{k}}
+\end{equation*}
+然后设 $\psi^{\theta}_{a,\pmb{k}}$ 为 $M^{\theta}(\pmb{k})$ 的本征矢。这里 $\psi^{\theta}_{a,\pmb{k}}$ 由晶体动量 $\pmb{k}$ 标记，而 $a = 1, \dots, n$，其中 $a$ 标记第 $a$ 个本征矢。注意 $\psi^{\theta}_{a,\pmb{k}}$ 是一个 $n$ 维复矢量。
+
+让我们假设基态 $|\pmb{\theta}\rangle$ 由填充 $a = 1$ 能带得到。我们有
+\begin{equation*}
+| \pmb{\theta} \rangle = \otimes_{\pmb{k}} \big| \psi^{\theta}_{1,\pmb{k}} \big\rangle
+\end{equation*}
+利用贝里相的可加关系，即
+\begin{equation*}
+\oint_{C} \mathrm{d}\pmb{\theta} \cdot \langle \pmb{\theta}, 0 | \mathrm{i} \partial_{\pmb{\theta}} | \pmb{\theta}, 0 \rangle
+= \oint_{C} \mathrm{d}\pmb{\theta} \cdot \langle \pmb{\theta}, 1 | \mathrm{i} \partial_{\pmb{\theta}} | \pmb{\theta}, 1 \rangle
++ \oint_{C} \mathrm{d}\pmb{\theta} \cdot \langle \pmb{\theta}, 2 | \mathrm{i} \partial_{\pmb{\theta}} | \pmb{\theta}, 2 \rangle
+\end{equation*}
+若 $|\pmb{\theta}, 0\rangle = |\pmb{\theta}, 1\rangle \otimes |\pmb{\theta}, 2\rangle$，我们发现
+\begin{equation*}
+\oint_{C} \mathrm{d}\pmb{\theta} \cdot \langle \pmb{\theta} | \mathrm{i} \partial_{\pmb{\theta}} | \pmb{\theta} \rangle
+= \sum_{\pmb{k}} \oint_{C} \mathrm{d}\pmb{\theta} \cdot (\psi^{\theta}_{1,\pmb{k}})^{\dagger} \mathrm{i} \partial_{\pmb{\theta}} \psi^{\theta}_{1,\pmb{k}} \tag{4.4.5}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.17.pdf}
+\caption*{图 4.17\quad 固定的 $\pmb{k}$ 下由 $\pmb{k}' = \pmb{k} + \pmb{\theta} L^{-1}$ 扫出的小回路。所有不同 $\pmb{k}$ 的小回路覆盖整个布里渊区。沿所有小回路的回路积分对应于沿回路 $C_{\pmb{k}}$ 的回路积分，因为来自内部连线的贡献相互抵消。}
+\end{figure}
+
+我们如何计算 $\psi^{\theta}_{1,\pmb{k}}$ 的贝里相？这里我们注意到 $M^{\theta}(\pmb{k}) = M(\pmb{k} + \pmb{\theta} L^{-1})$，其中为简单起见我们已在式 (4.4.1) 中取了 $L_{1} = L_{2} = L$。于是，$\psi^{\theta}_{1,\pmb{k}}$ 是 $M(\pmb{k} + \pmb{\theta} L^{-1})$ 的本征矢。设 $\psi_{a,\pmb{k}'}$ 为 $M(\pmb{k}')$ 的本征矢；那么当 $\pmb{k}' = \pmb{k} + \pmb{\theta} L^{-1}$ 时，$\psi^{\theta}_{1,\pmb{k}} = \psi_{1,\pmb{k}'}$。当 $\pmb{\theta}$ 沿回路 $C$ 移动时，对固定的 $\pmb{k}$，$\pmb{k}'$ 沿一个小回路移动（见图 4.17）。由于分立的 $\pmb{k}$ 具有 $(n_{1} \frac{2\pi}{L}, n_{2} \frac{2\pi}{L})$ 的形式，我们看到不同 $\pmb{k}$ 的所有小回路互不重叠地覆盖了整个布里渊区。因此，式 (4.4.5) 中各 $\psi^{\theta}_{1,\pmb{k}}$ 的贝里相之和等于 $\psi_{1,\pmb{k}'}$ 沿一条包围整个布里渊区的大回路 $C_{\pmb{k}}$ 的贝里相：
+\begin{align*}
+2\pi K &= \oint_{C_{\pmb{k}}} \mathrm{d}\pmb{k} \cdot \psi_{1,\pmb{k}}^{\dagger}\, \mathrm{i} \partial_{\pmb{k}} \psi_{1,\pmb{k}}\\
+&= \int \mathrm{d}^{2}\pmb{k}\; \mathrm{i} \big[ (\partial_{k_{x}} \psi_{1,\pmb{k}}^{\dagger}) (\partial_{k_{y}} \psi_{1,\pmb{k}}) - (\partial_{k_{y}} \psi_{1,\pmb{k}}^{\dagger}) (\partial_{k_{x}} \psi_{1,\pmb{k}}) \big] \tag{4.4.6}
+\end{align*}
+如果填充了几个能带，那么我们需要对每个能带的贡献求和。
+
+作为一个具体例子，考虑正方格子上如下的依赖自旋的跃迁哈密顿量：
+\begin{equation*}
+H = \sum_{i} c_{i}^{\dagger} t_{ij} c_{j}
+\end{equation*}
+其中 $2 \times 2$ 的跃迁矩阵为
+\begin{equation*}
+t_{\pmb{i}, \pmb{i}+\pmb{x}} = t \sigma^{x}, \qquad t_{\pmb{i}, \pmb{i}+\pmb{y}} = t \sigma^{y}, \qquad t_{\pmb{i}, \pmb{i}+\pmb{x}+\pmb{y}} = t' \sigma^{z},
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.18.pdf}
+\caption*{图 4.18\quad 箭头表示 $\pmb{B}$ 的方向。缠绕数仅收到来自四个点 $\pmb{k} = (\pm\pi/2, \pm\pi/2)$ 附近的贡献。在每个点附近，$\pmb{B}$ 覆盖半球，贡献缠绕数 $1/2$。总缠绕数为 2。}
+\end{figure}
+
+在动量空间中，哈密顿量变为
+\begin{equation*}
+H_{\pmb{k}} = 2 t \cos(k_{x}) \sigma^{x} + 2 t \cos(k_{x}) \sigma^{y} + 2 t' \cos(k_{x} + k_{y}) \sigma^{z} = -\pmb{B}(\pmb{k}) \cdot \sigma
+\end{equation*}
+（译注：按物理内容与图 4.18，$\sigma^{y}$ 项的系数应为 $\cos(k_{y})$；原书该项也印作 $\cos(k_{x})$。）
+
+我们看到系统有两个能带。这里的 $H_{\pmb{k}}$ 就像磁场 $\pmb{B}(\pmb{k})$ 中一个自旋 $1/2$ 的自旋的哈密顿量。较低的能带对应于沿 $\pmb{B}$ 方向的自旋。当沿 $\pmb{k}$ 空间中的一条回路移动时，沿 $\pmb{B}(\pmb{k})$ 方向的自旋在自旋空间的单位球上扫出一条闭合回路，并产生一个贝里相。如果填充较低的能带，那么只要选取包围整个布里渊区的回路，霍尔电导就可以由上述自旋 $1/2$ 的贝里相算出。从小 $t'$ 极限下 $\pmb{B}(\pmb{k})$ 的表达式我们看到，除四个点 $\pmb{k} = (\pm\pi/2, \pm\pi/2)$ 附近外，$\pmb{B}$ 都在 $x$--$y$ 平面内。考察 $\pmb{k} = (\pm\pi/2, \pm\pi/2)$ 附近的自旋（见图 4.18），我们发现，当 $\pmb{k}$ 扫过布里渊区时，$\pmb{B}/|\pmb{B}|$ 扫过单位球两次。或者更精确地说，$\pmb{B}(\pmb{k})/|\pmb{B}(\pmb{k})|$ 以缠绕数 2 把布里渊区 $S^{1} \times S^{1}$ 映射到单位球 $S^{2}$ 上。总贝里相因此为 $2 \times 2\pi$。我们求得 $K = 2$，半填充的跃迁系统的霍尔电导为 $\sigma_{xy} = 2e^{2}/h$。
+
+\subsection*{问题 4.4.1}
+
+对于哈密顿量 (4.4.4)，如果 $a = 1$ 能带被部分填充，试证明霍尔电导由对被填充能级的积分给出：
+\begin{equation*}
+\sigma_{xy} = \frac{e^{2}}{h}\, \frac{1}{2\pi} \int_{\text{filled}} \mathrm{d}^{2}\pmb{k}\; \mathrm{i} \big[ (\partial_{k_{x}} \psi_{1,\pmb{k}}^{\dagger}) (\partial_{k_{y}} \psi_{1,\pmb{k}}) - (\partial_{k_{y}} \psi_{1,\pmb{k}}^{\dagger}) (\partial_{k_{x}} \psi_{1,\pmb{k}}) \big]
+\end{equation*}
+在有限温度下，我们有
+\begin{equation*}
+\sigma_{xy} = \frac{e^{2}}{h}\, \frac{1}{2\pi} \int \mathrm{d}^{2}\pmb{k}\; n_{F}(\epsilon_{\pmb{k}})\, \mathrm{i} \big[ (\partial_{k_{x}} \psi_{1,\pmb{k}}^{\dagger}) (\partial_{k_{y}} \psi_{1,\pmb{k}}) - (\partial_{k_{y}} \psi_{1,\pmb{k}}^{\dagger}) (\partial_{k_{x}} \psi_{1,\pmb{k}}) \big]
+\end{equation*}
+（注意，对于部分填充的能带，$K$ 不量子化，因为 $|\pmb{\theta}\rangle$ 不具有 $2\pi$ 周期性，见式 (4.4.9)。）
+
+\subsection{注记：$|\pmb{\theta}\rangle$ 的周期结构与 $K$ 的量子化}
+
+首先，让我们研究费米子基态 $|\pmb{\theta}\rangle$ 在 $\pmb{\theta}$ 空间中的周期结构。这里 $|\pmb{\theta}\rangle$ 是如下哈密顿量的基态
+\begin{equation*}
+H_{\pmb{\theta}} = \int \mathrm{d}^{2}\pmb{x} \left( -\frac{\hbar^{2}}{2m} \sum_{j=1,2} c^{\dagger} \Big( \partial_{j} - \mathrm{i} A_{j} - \frac{\mathrm{i} \theta_{j}}{L_{j}} \Big)^{2} c + V(c^{\dagger} c) \right)
+\end{equation*}
+我们注意到 $U(1)$ 规范变换
+\begin{align*}
+c(\pmb{x}) &\to \mathrm{e}^{2\mathrm{i}\pi x_{1} L_{1}^{-1}} c(\pmb{x})\\
+(A_{1}, A_{2}) &\to \Big( A_{1} + \frac{2\pi}{L_{1}},\, A_{2} \Big)
+\end{align*}
+和
+\begin{align*}
+c(\pmb{x}) &\to \mathrm{e}^{2\mathrm{i}\pi x_{2} L_{2}^{-1}} c(\pmb{x})\\
+(A_{1}, A_{2}) &\to \Big( A_{1},\, A_{2} + \frac{2\pi}{L_{2}} \Big)
+\end{align*}
+并不改变费米子算符 $c(\pmb{x})$ 在 $x$ 与 $y$ 方向上的周期性边界条件。然而，这些规范变换生成如下平移：$(\theta_{1}, \theta_{2}) \to (\theta_{1} + 2\pi, \theta_{2})$ 与 $(\theta_{1}, \theta_{2}) \to (\theta_{1}, \theta_{2} + 2\pi)$。或者更精确地说，我们有
+\begin{align*}
+H_{\theta_{1}+2\pi, \theta_{2}} &= W_{1} H_{\theta_{1}, \theta_{2}} W_{1}^{\dagger}
+& W_{1} &= \mathrm{e}^{\mathrm{i} \int \mathrm{d}^{2}\pmb{x}\; 2\pi x_{1} L_{1}^{-1} c^{\dagger} c}\\
+H_{\theta_{1}, \theta_{2}+2\pi} &= W_{2} H_{\theta_{1}, \theta_{2}} W_{2}^{\dagger}
+& W_{2} &= \mathrm{e}^{\mathrm{i} \int \mathrm{d}^{2}\pmb{x}\; 2\pi x_{2} L_{2}^{-1} c^{\dagger} c}
+\end{align*}
+因此，如果 $|\pmb{\theta}\rangle$ 是 $\pmb{\theta}$ 处的多体基态，那么 $W_{1}|\pmb{\theta}\rangle$ 就是平移后的 $\pmb{\theta}$ 处的基态。于是
+\begin{equation*}
+\big| \theta_{1} + 2\pi, \theta_{2} \big\rangle = \mathrm{e}^{\mathrm{i} f_{1}(\pmb{\theta})} W_{1} \big| \theta_{1}, \theta_{2} \big\rangle \tag{4.4.7}
+\end{equation*}
+其中 $f_{1}(\pmb{\theta})$ 可任选。类似地，我们有
+\begin{equation*}
+\big| \theta_{1}, \theta_{2} + 2\pi \big\rangle = \mathrm{e}^{\mathrm{i} f_{2}(\pmb{\theta})} W_{2} \big| \theta_{1}, \theta_{2} \big\rangle \tag{4.4.8}
+\end{equation*}
+
+这两个幺正算符 $\mathrm{e}^{\mathrm{i} f_{1}(\pmb{\theta})} W_{1}$ 与 $\mathrm{e}^{\mathrm{i} f_{2}(\pmb{\theta})} W_{2}$ 生成把 $|\theta_{1}, \theta_{2}\rangle$、$|\theta_{1} + 2\pi, \theta_{2}\rangle$ 与 $|\theta_{1}, \theta_{2} + 2\pi\rangle$ 联系起来的那些规范变换。
+
+我们总可以重新定义 $|\pmb{\theta}\rangle$ 的相位：$|\pmb{\theta}\rangle \to \mathrm{e}^{\mathrm{i} \phi(\pmb{\theta})} |\pmb{\theta}\rangle$，使得 $f_{1} = 0$，只要我们选择 $\phi$ 满足
+\begin{equation*}
+\phi(\theta_{1} + 2\pi, \theta_{2}) - \phi(\theta_{1}, \theta_{2}) = f_{1}(\theta_{1}, \theta_{2}).
+\end{equation*}
+那么，由
+\begin{equation*}
+\big| \theta_{1} + 2\pi, \theta_{2} + 2\pi \big\rangle = \mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}+2\pi, \theta_{2})} W_{2} \big| \theta_{1} + 2\pi, \theta_{2} \big\rangle
+\end{equation*}
+我们得到
+\begin{equation*}
+W_{1} \big| \theta_{1}, \theta_{2} + 2\pi \big\rangle = \mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}+2\pi, \theta_{2})} W_{2} W_{1} \big| \theta_{1}, \theta_{2} \big\rangle
+\end{equation*}
+由于 $[W_{1}, W_{2}] = 0$，我们有
+\begin{equation*}
+\big| \theta_{1}, \theta_{2} + 2\pi \big\rangle = \mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}+2\pi, \theta_{2})} W_{2} \big| \theta_{1}, \theta_{2} \big\rangle
+\end{equation*}
+把上式与式 (4.4.8) 比较，我们发现
+\begin{equation*}
+\mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}+2\pi, \theta_{2})} = \mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}, \theta_{2})}
+\end{equation*}
+我们看到 $|\pmb{\theta}\rangle$ 在 $\theta_{1}$ 与 $\theta_{2}$ 上以 $2\pi$ 为周期准周期：
+\begin{align*}
+\big| \theta_{1} + 2\pi, \theta_{2} \big\rangle &= W_{1} \big| \theta_{1}, \theta_{2} \big\rangle\\
+\big| \theta_{1}, \theta_{2} + 2\pi \big\rangle &= \mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}, \theta_{2})} W_{2} \big| \theta_{1}, \theta_{2} \big\rangle \tag{4.4.9}
+\end{align*}
+其中 $W_{1,2}$ 是不依赖 $\pmb{\theta}$ 的幺正算符。
+
+利用 $\langle \pmb{\theta} | \partial_{\pmb{\theta}} | \pmb{\theta} \rangle = \langle \pmb{\theta} | W_{1,2}^{\dagger} \partial_{\pmb{\theta}} W_{1,2} | \pmb{\theta} \rangle$ 与式 (4.4.9)，我们可以把贝里相 (4.4.3) 约化为
+\begin{equation*}
+2\pi K = \int \mathrm{d}\theta_{1}\; \partial_{\theta_{1}} f_{2}(\theta_{1}, 0) = f_{2}(2\pi, 0) - f_{2}(0, 0)
+\end{equation*}
+由于 $\mathrm{e}^{\mathrm{i} f_{2}(\theta_{1}, \theta_{2})}$ 在 $\theta_{1}$ 上是周期的，我们发现 $f_{2}(2\pi, 0) - f_{2}(0, 0) = 2\pi \times$ 整数，即 $K$ 量子化为一个整数。

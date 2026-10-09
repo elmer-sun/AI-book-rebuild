@@ -1,0 +1,435 @@
+% app_d 附录E+F Stokes定理+测地线汇 (书页 453-466 / p468-p481)
+%--C-TAIL--
+% 附录E Stokes's Theorem
+\chapter{Stokes 定理}
+
+% ---- 书页 453 / p468 ----
+在 2.10 节中我们引入了这样一种观念：流形上的积分把 $n$-形式场映为实数。这一观点使我们能够把微分几何中最强有力的定理之一——Stokes 定理——表述得十分优雅。这个定理是微积分基本定理 $\int_b^a dx = a - b$ 的推广。设想我们有一个 $n$ 维区域 $M$（它可能是一个完整的流形），带有边界 $\partial M$，并且在 $M$ 上有一个 $(n-1)$-形式 $\omega$。我们马上就会解释流形的边界指的是什么。于是 $d\omega$ 是一个 $n$-形式，可以在 $M$ 上积分，而 $\omega$ 本身可以在 $\partial M$ 上积分。Stokes 定理说的无非就是
+\begin{equation*}
+\boxed{\int_M d\omega = \int_{\partial M} \omega.}
+\tag{E.1}
+\end{equation*}
+这个定理的各种特殊情形不仅包括微积分基本定理，还包括三维矢量微积分中大家熟悉的 Green 定理、Gauss 定理和 Stokes 定理。
+
+式 (E.1) 对 Stokes 定理的这种表述极其优雅，甚至优雅得有些中看不中用。幸运的是，我们可以把它改写成平实的坐标加指标记号。方便的做法是先把 $(n-1)$-形式 $\omega$ 写成一个 1-形式 $V$ 的 Hodge 对偶，
+\begin{equation*}
+\omega = *V,
+\tag{E.2}
+\end{equation*}
+其分量为
+\begin{equation*}
+\begin{aligned}
+\omega_{\mu_1\cdots\mu_{n-1}} &= (*V)_{\mu_1\cdots\mu_{n-1}} \\
+&= \epsilon^\nu{}_{\mu_1\cdots\mu_{n-1}} V_\nu \\
+&= \epsilon_{\nu\mu_1\cdots\mu_{n-1}} V^\nu,
+\end{aligned}
+\tag{E.3}
+\end{equation*}
+其中 $\epsilon$ 是 $M$ 上的 Levi–Civita $n$-形式，并且我们在最后一行把 $V$ 的指标升了上去。如果想从 $\omega$ 构造出 $V$，只需再作用一次 Hodge 算符，便得到
+\begin{equation*}
+V = (-1)^{s+n-1} **V = (-1)^{s+n-1} *\omega,
+\tag{E.4}
+\end{equation*}
+% ---- 书页 454 / p469 ----
+其中当号差为洛伦兹型时 $s$ 取 $-1$，为欧几里得型时取 $+1$。$\omega = *V$ 的外微分是一个 $n$-形式，由下式给出：
+\begin{align*}
+(d\omega)_{\lambda\mu_1\cdots\mu_{n-1}} &= (d*V)_{\lambda\mu_1\cdots\mu_{n-1}} \\
+&= n\nabla_{[\lambda}\left(\epsilon_{|\nu|\mu_1\cdots\mu_{n-1}]}V^\nu\right) \\
+&= n\epsilon_{\nu[\mu_1\cdots\mu_{n-1}}\nabla_{\lambda]}V^\nu,
+\tag{E.5}
+\end{align*}
+其中 $n$ 是区域的维数，不要把它与边界的法矢量 $n^\mu$ 混淆。不过，任何 $n$-形式都可以写成一个函数 $f(x)$ 乘以 $\epsilon$，或者等价地写成 $f(x)$ 的 Hodge 对偶，
+\begin{equation*}
+d\omega = f\epsilon = *f.
+\tag{E.6}
+\end{equation*}
+对两边取对偶，给出
+\begin{equation*}
+f = (-1)^s **f = (-1)^s *d\omega.
+\tag{E.7}
+\end{equation*}
+在我们的情形，
+\begin{align*}
+*d\omega &= *d*V \\
+&= \frac{1}{n!}\epsilon^{\lambda\mu_1\cdots\mu_{n-1}}\left(n\epsilon_{\nu[\mu_1\cdots\mu_{n-1}}\nabla_{\lambda]}V^\nu\right) \\
+&= \frac{1}{(n-1)!}(-1)^s(n-1)!\delta^\lambda_\nu\nabla_\lambda V^\nu \\
+&= (-1)^s\nabla_\nu V^\nu.
+\tag{E.8}
+\end{align*}
+最后我们回忆起，Levi–Civita 张量其实就是体积元，
+\begin{align*}
+\epsilon &= \sqrt{|g|}\,dx^1\wedge\cdots\wedge dx^n \\
+&= \sqrt{|g|}\,d^nx.
+\tag{E.9}
+\end{align*}
+把所有这些合在一起，我们发现
+\begin{equation*}
+d\omega = \nabla_\nu V^\nu\sqrt{|g|}\,d^nx.
+\tag{E.10}
+\end{equation*}
+所以，$n$ 维流形上 $(n-1)$-形式的外微分，不过是用一种利落的方式来表示一个矢量的散度（乘以度规体积元）罢了。
+
+为了弄明白式 (E.1) 的右边是什么意思，我们从上一个附录回忆起，超曲面（比如边界）上的诱导体积元由下式给出：
+\begin{equation*}
+\widehat{\epsilon} = \sqrt{|\gamma|}\,d^{n-1}y,
+\tag{E.11}
+\end{equation*}
+其中 $\gamma_{ij}$ 是边界上采用坐标 $y^i$ 时的诱导度规。$\widehat{\epsilon}$ 在 $M$ 的 $x^\mu$ 坐标下的分量为
+\begin{equation*}
+\widehat{\epsilon}_{\mu_1\cdots\mu_{n-1}} = n^\lambda\epsilon_{\lambda\mu_1\cdots\mu_{n-1}},
+\tag{E.12}
+\end{equation*}
+% ---- 书页 455 / p470 ----
+其中 $n^\mu$ 是边界的单位法矢量。对一般的超曲面而言，$n^\mu$ 的符号是任意的；但当超曲面是某个区域的边界时，我们就有指向内（inward-pointing）与指向外（outward-pointing）之分。至关重要的一点是：为了正确地恢复 Stokes 定理，$n^\mu$ 应当这样选取——若边界是类时的则指向内，若边界是类空的则指向外。既然 $\omega$ 是一个 $(n-1)$-形式，把它限制到 $(n-1)$ 维边界上时必然与 $\widehat{\epsilon}$ 成正比。沿着上一段的思路，我们可以导出
+\begin{equation*}
+\omega = n_\mu V^\mu\sqrt{|\gamma|}\,d^{n-1}y.
+\tag{E.13}
+\end{equation*}
+于是，Stokes 定理把矢量场的散度与它在边界上的取值联系了起来：
+\begin{equation*}
+\boxed{\int_M d^nx\,\sqrt{|g|}\,\nabla_\mu V^\mu = \int_{\partial M} d^{n-1}y\,\sqrt{|\gamma|}\,n_\mu V^\mu.}
+\tag{E.14}
+\end{equation*}
+这是广义相对论中最常见的 Stokes 定理形式。
+
+大家可别留下这样的印象，仿佛要使用 Stokes 定理就必须退回到指标记号。作为一个简单的反例，让我们来证明：与一个守恒流相联系的电荷在一种非常普遍的意义上是“守恒”的——它不仅在某个特定坐标系中不随时间变化，而且（在合理假设下）穿过一个类空超曲面 $\Sigma$ 的电荷完全与超曲面的选取无关。先设想我们有一个守恒的流 $J^\mu$，守恒的意思是
+\begin{equation*}
+\nabla_\mu J^\mu = 0.
+\tag{E.15}
+\end{equation*}
+用 1-形式 $J_\mu = g_{\mu\nu}J^\nu$ 来表示，我们可以把守恒条件翻译成
+\begin{equation*}
+d(*J) = 0.
+\tag{E.16}
+\end{equation*}
+然后我们如下定义穿过超曲面 $\Sigma$ 的电荷：
+\begin{equation*}
+Q_\Sigma = -\int_\Sigma *J.
+\tag{E.17}
+\end{equation*}
+通常我们会把 $\Sigma$ 选成常数时间的超曲面，这样 $Q_\Sigma$ 就是该时刻遍布空间的全部电荷；但这个公式的适用范围更广。那个负号是一种约定，通过（暂时）换回分量可以理解它。与式 (E.2) 和式 (E.13) 相比较，我们可以把式 (E.17) 变成
+\begin{equation*}
+Q_\Sigma = -\int_\Sigma d^{n-1}y\,\sqrt{|\gamma|}\,n_\mu J^\mu.
+\tag{E.18}
+\end{equation*}
+我们看到，这个负号的作用是补偿 $n^\mu$ 的分量在降指标时其时间分量所获得的负号，从而保证正的电荷%
+% ---- 书页 456 / p471 ----
+密度 $\rho = J^0$ 给出正的总积分电荷。接着设想一个四维时空区域 $R$，它定义为两个类空超曲面 $\Sigma_1$ 与 $\Sigma_2$ 之间的区域，如图 E.1 所示；连接这两个超曲面的那部分边界被假定挪到了无穷远处，在那里所有的场都为零，因而可以忽略。守恒律 (E.16) 与 Stokes 定理 (E.1) 于是给出
+
+%FIG{E.1}: {时空中的一个区域 $R$，其空间边界位于无穷远；未来与过去边界包含两个类空超曲面 $\Sigma_1$ 和 $\Sigma_2$。}
+
+\begin{align*}
+0 &= \int_R d(*J) \\
+&= \int_{\partial R} *J \\
+&= \int_{\Sigma_1} *J - \int_{\Sigma_2} *J \\
+&= Q_1 - Q_2.
+\tag{E.19}
+\end{align*}
+第三行中的负号来源于 $\Sigma_2$ 上从 $R$ 继承而来的定向；此时法矢量指向内，与在 $\Sigma_2$ 上积分时惯常的取法恰好相反。我们看到，只要所选的类空超曲面 $\Sigma$ 满足流在无穷远处为零，$Q_\Sigma$ 对任何这样的超曲面都是相同的。这样，Stokes 定理表明了无散（divergenceless）流的存在如何蕴含着一个守恒电荷的存在。
+
+Stokes 定理的另一个用途（对应于三维欧几里得空间中 Gauss 定理的惯常用法）是真正通过在超曲面上积分来算出这个电荷 $Q$。暂时想想真实世界，让我们考虑四维时空中的麦克斯韦方程组。这些方程描述电磁场强张量 $F_{\mu\nu}$ 如何对守恒的电流四矢量作出响应：
+\begin{equation*}
+\nabla_\mu F^{\nu\mu} = J^\nu.
+\tag{E.20}
+\end{equation*}
+于是我们可以把 $\nabla_\mu F^{\nu\mu}$ 代入式 (E.18) 来计算电荷：
+\begin{equation*}
+Q = -\int_\Sigma d^3y\,\sqrt{|\gamma|}\,n_\mu\nabla_\nu F^{\mu\nu}.
+\tag{E.21}
+\end{equation*}
+每当遇到一个反对称张量场 $F^{\mu\nu} = -F^{\nu\mu}$ 的散度在超曲面 $\Sigma$ 上的积分时，我们都可以仿照导出式 (E.14) 的步骤，把散度与 $F^{\mu\nu}$ 在边界上的取值联系起来，不过这次是在空间无穷远处（前提是该超曲面是类时的）：
+\begin{equation*}
+\boxed{\int_\Sigma d^{n-1}y\,\sqrt{|\gamma|}\,n_\mu\nabla_\nu F^{\mu\nu} = \int_{\partial\Sigma} d^{n-2}z\,\sqrt{|\gamma^{(\partial\Sigma)}|}\,n_\mu\sigma_\nu F^{\mu\nu},}
+\tag{E.22}
+\end{equation*}
+其中诸 $z^a$ 是 $\partial\Sigma$ 上的坐标，$\gamma^{(\partial\Sigma)}_{ab}$ 是 $\partial\Sigma$ 上的诱导度规，而 $\sigma^\mu$ 是 $\partial\Sigma$ 的单位法矢量。你可能会担心对 $\partial\Sigma$ 的积分，因为%
+% ---- 书页 457 / p472 ----
+边界的边界为零；但 $\Sigma$ 并不是任何区域的完整边界，而只是其中一块，所以它当然可以有自己的边界。
+
+为了确认我们清楚自己正在做什么，让我们验证一下确实能在 Minkowski 空间中恢复出一个点粒子的电荷。把度规写成极坐标形式：
+\begin{equation*}
+ds^2 = -dt^2 + dr^2 + r^2d\theta^2 + r^2\sin^2\theta\,d\phi^2.
+\tag{E.23}
+\end{equation*}
+在我们的单位制下（Lorentz–Heaviside 约定，麦克斯韦方程组中不出现 $4\pi$），电荷 $q$ 的电场为
+\begin{equation*}
+E^r = \frac{q}{4\pi r^2},
+\tag{E.24}
+\end{equation*}
+其余分量为零；它与场强张量的关系是
+\begin{equation*}
+F^{tr} = -F^{rt} = E^r.
+\tag{E.25}
+\end{equation*}
+单位法矢量为
+\begin{equation*}
+n^\mu = (1,\,0,\,0,\,0),\qquad \sigma^\mu = (0,\,1,\,0,\,0),
+\tag{E.26}
+\end{equation*}
+于是
+\begin{equation*}
+n_\mu\sigma_\nu F^{\mu\nu} = -E^r = -\frac{q}{4\pi r^2}.
+\tag{E.27}
+\end{equation*}
+空间无穷远处二维球面上的度规为
+\begin{equation*}
+\gamma^{(S^2)}_{ab}\,dz^a dz^b = r^2d\theta^2 + r^2\sin^2\theta\,d\phi^2,
+\tag{E.28}
+\end{equation*}
+所以体积元为
+\begin{equation*}
+d^2z\sqrt{\gamma^{(S^2)}} = r^2\sin\theta\,d\theta\,d\phi.
+\tag{E.29}
+\end{equation*}
+把式 (E.27)、式 (E.29) 和式 (E.21) 代入式 (E.22)，给出
+\begin{align*}
+Q &= -\lim_{r\to\infty}\int_{S^2} d\theta\,d\phi\,r^2\sin\theta\left(-\frac{q}{4\pi r^2}\right) \\
+&= q,
+\tag{E.30}
+\end{align*}
+这正是我们要找的答案。
+
+% ---- 书页 458 / p473 ----
+% （本页为空白页）
+
+% 附录F Geodesic Congruences
+\chapter{测地线汇}
+
+% ---- 书页 459 / p474 ----
+在 3.10 节中我们导出了测地偏离方程，它支配着连接一个单参数邻近测地线族的分离矢量（separation vector）的演化。要更全面地了解邻近测地线的行为，就不能只考虑单参数族，而要考虑一整个测地线汇（congruence）。线汇是时空开区域中的一组曲线，使得区域中的每一点恰好落在其中一条曲线上。我们可以把测地线汇想象成描画一组互不相互作用的粒子在时空中沿互不相交的路径运动的轨迹。如果测地线相交，线汇就必然在该点终止。显然，在一个多维线汇中有很多信息需要追踪；我们感兴趣的将是单条测地线邻域内的局域行为，对此问题会变得相当容易处理。
+
+令 $U^\mu = dx^\mu/d\tau$ 为一个四维类时测地线汇的切矢量场；等价地说，它是某种无压流体（pressureless fluid）的四速度场。（倘若流体不是无压的，$U^\mu$ 的积分曲线一般就不会描述测地线。）类光测地线会带来一些特殊问题，我们稍后再回来讨论；现在只考虑类时的情形。作为参考，我们回忆一下，这个切矢量场是归一化的，并且满足测地线方程：
+\begin{equation*}
+U_\mu U^\mu = -1,\qquad U^\lambda\nabla_\lambda U^\mu = 0.
+\tag{F.1}
+\end{equation*}
+在 3.10 节讨论测地偏离方程时，我们考虑了从一个测地线指向邻近测地线的分离矢量 $V^\mu$，并发现它满足
+\begin{equation*}
+\frac{DV^\mu}{d\tau} \equiv U^\nu\nabla_\nu V^\mu = B^\mu{}_\nu V^\nu,
+\tag{F.2}
+\end{equation*}
+其中
+\begin{equation*}
+B^\mu{}_\nu = \nabla_\nu U^\mu.
+\tag{F.3}
+\end{equation*}
+（在第 3 章中我们用 $T$ 代替 $U$，用 $S$ 代替 $V$。）因此，张量 $B_{\mu\nu}$ 可以看成是在量度 $V^\mu$ 沿线汇不被平行移动的程度；换言之，它描述的是邻近测地线偏离完全平行的程度。
+
+为了处理一整个线汇而不只是单参数曲线族，我们可以想象架设一组与我们的%
+% ---- 书页 460 / p475 ----
+类时测地线正交的法矢量，并追踪它们的演化。这一组矢量不被平行移动这一事实，将告诉我们线汇中邻近的测地线如何演化。等价地，我们可以想象在某个点处放置一小球检验粒子，并想要定量描述这些粒子相对于其中心测地线的演化。幸运的是，所有我们需要追踪的只是 $B_{\mu\nu}$ 的行为。
+
+给定矢量场 $U^\mu$，在每一点 $p$ 我们考虑 $T_pM$ 中与 $U^\mu$ 垂直的矢量所对应的子空间。$T_pM$ 中的任何矢量都可以借助投影张量（projection tensor）投影到这个子空间中：
+\begin{equation*}
+P^\mu{}_\nu = \delta^\mu_\nu + U^\mu U_\nu,
+\tag{F.4}
+\end{equation*}
+这在我们讨论附录 D 的子流形时已经见过。这里我们不是投影到一个子流形上，而只是投影到切空间的一个矢量子空间上，但想法是一样的。我们注意到，$B_{\mu\nu}$ 已经处于法向子空间之中，因为
+\begin{align*}
+U^\mu B_{\mu\nu} &= U^\mu\nabla_\nu U_\mu = 0 \\
+U^\nu B_{\mu\nu} &= U^\nu\nabla_\nu U_\mu = 0.
+\tag{F.5}
+\end{align*}
+其中第一式来自 $\nabla_\nu(U^\mu U_\mu) = \nabla_\nu(-1) = 0$，第二式则来自测地线方程。我们不应把 $B_{\mu\nu}$ 与式 (D.53) 中的外曲率 $K_{\mu\nu}$ 混淆起来；区别在于，我们的切矢量场 $U^\mu$ 一般不会与任何超曲面正交。
+
+作为一个 (0, 2) 型张量，$B_{\mu\nu}$ 可以分解为对称部分与反对称部分，而对称部分还可以进一步分解为迹与无迹（trace-free）部分。由于 $B_{\mu\nu}$ 处于法向子空间中，我们可以用 $P_{\mu\nu}$ 来取这个分解中的迹。结果可以写成
+\begin{equation*}
+B_{\mu\nu} = \frac{1}{3}\theta P_{\mu\nu} + \sigma_{\mu\nu} + \omega_{\mu\nu}.
+\tag{F.6}
+\end{equation*}
+这里我们引入了三个描述这一分解的量，首先是线汇的\textbf{膨胀}（expansion）$\theta$，
+\begin{equation*}
+\theta = P^{\mu\nu}B_{\mu\nu} = \nabla_\mu U^\mu,
+\tag{F.7}
+\end{equation*}
+它就是 $B_{\mu\nu}$ 的迹。膨胀描述的是以我们的测地线为中心的检验粒子球的体积变化。它显然是一个标量，这也讲得通，因为体积的整体膨胀/收缩正是由一个单一的数来描述的。\textbf{切变}（shear）$\sigma_{\mu\nu}$ 由下式给出：
+\begin{equation*}
+\sigma_{\mu\nu} = B_{(\mu\nu)} - \frac{1}{3}\theta P_{\mu\nu}.
+\tag{F.8}
+\end{equation*}
+它是对称且无迹的。切变表示的是检验粒子集合形状上的畸变，即从初始的球变成椭球；其对称性代表了这样一个事实：沿（比方说）$x$ 方向的拉长%
+% ---- 书页 461 / p476 ----
+与沿 $-x$ 方向的拉长是同一回事。最后是\textbf{转动}（rotation）$\omega_{\mu\nu}$，由下式给出：
+\begin{equation*}
+\omega_{\mu\nu} = B_{[\mu\nu]}.
+\tag{F.9}
+\end{equation*}
+它是一个反对称张量，这也合乎情理；比如 $xy$ 分量描述的是绕 $z$ 轴的转动，而 $yx$ 分量描述的是绕同一轴反方向的转动。
+
+线汇的演化由这些量沿路径的协变导数 $D/d\tau = U^\sigma\nabla_\sigma$ 来描述。我们可以对整个张量 $B_{\mu\nu}$ 直接进行计算，然后再取相应的分解。我们得到
+\begin{align*}
+\frac{DB_{\mu\nu}}{d\tau} &\equiv U^\sigma\nabla_\sigma B_{\mu\nu} = U^\sigma\nabla_\sigma\nabla_\nu U_\mu \\
+&= U^\sigma\nabla_\nu\nabla_\sigma U_\mu + U^\sigma R^\lambda{}_{\mu\nu\sigma}U_\lambda \\
+&= \nabla_\nu(U^\sigma\nabla_\sigma U_\mu) - (\nabla_\nu U^\sigma)(\nabla_\sigma U_\mu) - R_{\lambda\mu\nu\sigma}U^\sigma U^\lambda \\
+&= -B^\sigma{}_\nu B_{\mu\sigma} - R_{\lambda\mu\nu\sigma}U^\sigma U^\lambda.
+\tag{F.10}
+\end{align*}
+对这个方程取迹，就得到膨胀的一个演化方程，
+\begin{equation*}
+\boxed{\frac{d\theta}{d\tau} = -\frac{1}{3}\theta^2 - \sigma_{\mu\nu}\sigma^{\mu\nu} + \omega_{\mu\nu}\omega^{\mu\nu} - R_{\mu\nu}U^\mu U^\nu.}
+\tag{F.11}
+\end{equation*}
+这就是 Raychaudhuri 方程，它在奇点定理的证明中起着关键作用。【有时也放弃线汇必须服从测地线方程的要求；这不过是在右边额外添加一项 $\nabla_\mu(U^\nu\nabla_\nu U^\mu)$ 而已。】类似地，式 (F.10) 的对称无迹部分为
+\begin{align*}
+\frac{D\sigma_{\mu\nu}}{d\tau} &= -\frac{2}{3}\theta\sigma_{\mu\nu} - \sigma_{\mu\alpha}\sigma^\alpha{}_\nu - \omega_{\mu\rho}\omega^\rho{}_\nu + \frac{1}{3}P_{\mu\nu}\left(\sigma_{\alpha\beta}\sigma^{\alpha\beta} - \omega_{\alpha\beta}\omega^{\alpha\beta}\right) \\
+&\quad + C_{\alpha\nu\mu\beta}U^\alpha U^\beta + \frac{1}{2}\bar{R}_{\mu\nu},
+\tag{F.12}
+\end{align*}
+其中 $\bar{R}_{\mu\nu}$ 是 $R_{\mu\nu}$ 经空间投影后的无迹部分，
+\begin{equation*}
+\bar{R}_{\mu\nu} = P^\alpha{}_\mu P^\beta{}_\nu R_{\alpha\beta} - \frac{1}{3}P_{\mu\nu}P^{\alpha\beta}R_{\alpha\beta},
+\tag{F.13}
+\end{equation*}
+而式 (F.10) 的反对称部分为
+\begin{equation*}
+\frac{D\omega_{\mu\nu}}{d\tau} = -\frac{2}{3}\theta\omega_{\mu\nu} + \sigma_\mu{}^\alpha\omega_{\nu\alpha} - \sigma_\nu{}^\alpha\omega_{\mu\alpha}.
+\tag{F.14}
+\end{equation*}
+这些方程用得不像 Raychaudhuri 方程那样频繁，但有它们在手总是好事。
+
+% ---- 书页 462 / p477 ----
+让我们简要举一个 Raychaudhuri 方程用法的例子。首先注意到，由于切变和转动都是“空间的”张量，我们有
+\begin{equation*}
+\sigma_{\mu\nu}\sigma^{\mu\nu} \geq 0,\qquad \omega_{\mu\nu}\omega^{\mu\nu} \geq 0.
+\tag{F.15}
+\end{equation*}
+其次注意到，式 (F.11) 中的最后一项，恰恰就是把 Einstein 方程与强能量条件（Strong Energy Condition, SEC）结合起来时所出现的那一项；由 Einstein 方程我们知道
+\begin{equation*}
+R_{\mu\nu}U^\mu U^\nu = 8\pi G\left(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\right)U^\mu U^\nu,
+\tag{F.16}
+\end{equation*}
+而强能量条件要求这个表达式的右边对任何类时 $U^\mu$ 都非负。于是我们有
+\begin{equation*}
+R_{\mu\nu}U^\mu U^\nu \geq 0
+\tag{F.17}
+\end{equation*}
+倘若强能量条件成立。最后注意到，$\omega_{\mu\nu} = 0$ 当且仅当矢量场 $U^\mu$ 与一族超曲面正交。这可以直接从如下事实得到：转动是一个空间张量（$U^\mu\omega_{\mu\nu} = 0$），而由 Frobenius 定理，矢量场 $U^\mu$ 超曲面正交（hypersurface-orthogonal）的充要条件是 $U_{[\mu}\nabla_\nu U_{\rho]}$；细节留给大家自行核验。因此，如果我们有一个切矢量场超曲面正交的线汇，而时空又服从 Einstein 方程和强能量条件，则 Raychaudhuri 方程蕴含
+\begin{equation*}
+\frac{d\theta}{d\tau} \leq -\frac{1}{3}\theta^2.
+\tag{F.18}
+\end{equation*}
+这个方程容易积分，得到
+\begin{equation*}
+\theta^{-1}(\tau) \geq \theta_0^{-1} + \frac{1}{3}\tau.
+\tag{F.19}
+\end{equation*}
+考虑一个超曲面正交的线汇，它初始时是会聚的（$\theta_0 < 0$）而不是膨胀的。那么式 (F.19) 告诉我们，会聚将持续下去，并且我们必然在有限固有时 $\tau \leq -3\theta_0^{-1}$ 内碰到一个焦散（caustic，即测地线相交之处）。换言之，服从强能量条件的物质永远不可能开始把测地线推开，它只会增大测地线会聚的速率。当然，这个结果只适用于某个任意选定的线汇，而且焦散的出现肯定不代表时空中存在任何奇点（测地线时时刻刻都在相交，即便在平直时空中也是如此）。但奇点定理的许多证明正是利用 Raychaudhuri 方程的这一性质，来证明时空必定在某种意义上测地不完备。
+
+接下来我们转向类光测地线汇的行为。这要更棘手一些，根本原因在于我们的出发点（研究切矢量场法向的三维子空间中矢量的演化）不再那么有意义，因为类光曲线的切矢量与它自身正交。相反，在类光情形下我们关心的是这样的二维子空间中矢量的演化：它由与类光切矢量场 $k^\mu = dx^\mu/d\lambda$ 正交的“空间”矢量组成。
+
+% ---- 书页 463 / p478 ----
+遗憾的是，定义这个子空间并没有唯一的方法，因为处于不同洛伦兹系中的观者对什么算作空间矢量有不同的看法。面对这一困境，我们有两种说得过去的做法。一种巧妙的做法，是从与 $k^\mu$ 正交的三维矢量空间出发，取等价类——两个矢量若相差 $k^\mu$ 的倍数就算等价——由此定义一个抽象的二维矢量空间。另一种比较笨拙的做法（我们将采用的就是这一种），则是干脆再选一个“辅助”（auxiliary）类光矢量 $l^\mu$，它（在某个参考系中）指向与 $k^\mu$ 相反的空间方向，并归一化为
+\begin{equation*}
+l^\mu l_\mu = 0,\qquad l^\mu k_\mu = -1.
+\tag{F.20}
+\end{equation*}
+我们进一步要求这个辅助矢量是被平行移动的：
+\begin{equation*}
+k^\mu\nabla_\mu l^\nu = 0,
+\tag{F.21}
+\end{equation*}
+这与式 (F.20) 相容，因为平行移动保持内积。辅助类光矢量 $l^\mu$ 绝不是唯一的，因为我们刚刚指出，“指向相反的空间方向”这一概念依赖于参考系。尽管如此，我们可以作出一个选择，并希望重要的量不依赖于这个任意的选取。这样做了之后，我们感兴趣的二维法向矢量空间记作 $T_\perp$，它恰好由与 $k^\mu$ 和 $l^\mu$ 都正交的那些矢量 $V^\mu$ 组成：
+\begin{equation*}
+T_\perp = \{V^\mu \mid V^\mu k_\mu = 0,\, V^\mu l_\mu = 0\}.
+\tag{F.22}
+\end{equation*}
+我们现在的任务，就是追踪生活在这个子空间中的偏离矢量（它们代表一族邻近的类光测地线）的演化。
+
+投影到法向子空间 $T_\perp$ 需要对投影张量的定义稍作修改；结果发现
+\begin{equation*}
+Q_{\mu\nu} = g_{\mu\nu} + k_\mu l_\nu + k_\nu l_\mu
+\tag{F.23}
+\end{equation*}
+就能奏效。也就是说，作用在 $T_\perp$ 中的矢量 $V^\mu$、$W^\mu$ 上时，$Q_{\mu\nu}$ 的表现如同度规，而作用在任何与 $k^\mu$ 或 $l^\mu$ 成比例的东西上都给出零。这个投影张量的一些有用性质包括
+\begin{gather*}
+Q_{\mu\nu}V^\mu W^\nu = g_{\mu\nu}V^\mu W^\nu \\
+Q^\mu{}_\nu V^\nu = V^\mu \\
+Q^\mu{}_\nu k^\nu = 0 \\
+Q^\mu{}_\nu l^\nu = 0 \\
+Q^\mu{}_\nu Q^\nu{}_\sigma = Q^\mu{}_\sigma \\
+k^\sigma\nabla_\sigma Q^\mu{}_\nu = 0.
+\tag{F.24}
+\end{gather*}
+（译注：原书第一行左端印作 $Q_{\mu\nu}V^\nu W^\nu$，指标显然误排，现按右端之意改为 $V^\mu W^\nu$。）
+
+% ---- 书页 464 / p479 ----
+正如类时测地线的情形，法向偏离矢量 $V^\mu$ 不被平行传播，由张量 $B^\mu{}_\nu = \nabla_\nu k^\mu$ 支配，具体说来就是
+\begin{equation*}
+\frac{DV^\mu}{d\lambda} \equiv k^\nu\nabla_\nu V^\mu = B^\mu{}_\nu V^\nu.
+\tag{F.25}
+\end{equation*}
+然而，在类光情形下，张量 $B_{\mu\nu}$ 实际上超出了我们的需要；相关信息完全包含在投影之后的版本中，
+\begin{equation*}
+\widehat{B}^\mu{}_\nu = Q^\mu{}_\alpha Q^\beta{}_\nu B^\alpha{}_\beta.
+\tag{F.26}
+\end{equation*}
+要看清这一点，我们只需摆弄一下式 (F.25)，并用上式 (F.24) 中的各条性质：
+\begin{align*}
+\frac{DV^\mu}{d\lambda} &= k^\nu\nabla_\nu V^\mu \\
+&= k^\nu\nabla_\nu(Q^\mu{}_\rho V^\rho) \\
+&= Q^\mu{}_\rho k^\nu\nabla_\nu V^\rho \\
+&= Q^\mu{}_\rho B^\rho{}_\nu V^\nu \\
+&= Q^\mu{}_\rho B^\rho{}_\nu Q^\nu{}_\sigma V^\sigma \\
+&= \widehat{B}^\mu{}_\sigma V^\sigma.
+\tag{F.27}
+\end{align*}
+所以我们只需追踪这个投影后张量的演化，而不必理会完整的 $B_{\mu\nu}$。
+
+为了理解这一演化，我们再次把它分解成膨胀、切变和转动：
+\begin{equation*}
+\widehat{B}_{\mu\nu} = \frac{1}{2}\theta Q_{\mu\nu} + \widehat{\sigma}_{\mu\nu} + \widehat{\omega}_{\mu\nu},
+\tag{F.28}
+\end{equation*}
+其中
+\begin{gather*}
+\theta = Q^{\mu\nu}\widehat{B}_{\mu\nu} = \widehat{B}^\mu{}_\mu \\
+\widehat{\sigma}_{\mu\nu} = \widehat{B}_{(\mu\nu)} - \frac{1}{2}\theta Q_{\mu\nu} \\
+\widehat{\omega}_{\mu\nu} = \widehat{B}_{[\mu\nu]}.
+\tag{F.29}
+\end{gather*}
+我们这里出现的是因子 $1/2$ 而不是 $1/3$，因为我们的法向空间 $T_\perp$ 是二维的，这也体现在 $Q^{\mu\nu}Q_{\mu\nu} = 2$ 这一事实之中。与类时情形一样，$\widehat{\omega}_{\mu\nu} = 0$ 是线汇超曲面正交的充要条件。$\widehat{B}_{\mu\nu}$ 沿路径的演化由下式给出：
+\begin{align*}
+\frac{D\widehat{B}_{\mu\nu}}{d\lambda} &\equiv k^\sigma\nabla_\sigma\widehat{B}_{\mu\nu} = k^\sigma\nabla_\sigma(Q^\alpha{}_\mu Q^\beta{}_\nu\nabla_\alpha k_\beta) \\
+&= Q^\alpha{}_\mu Q^\beta{}_\nu k^\sigma\nabla_\sigma\nabla_\alpha k_\beta \\
+% ---- 书页 465 / p480 ----
+&= -Q^\alpha{}_\mu Q^\beta{}_\nu\left(B_\alpha{}^\sigma B_{\beta\sigma} + R_{\alpha\lambda\beta\sigma}k^\lambda k^\sigma\right) \\
+&= -\widehat{B}_\mu{}^\sigma\widehat{B}_{\nu\sigma} - Q^\alpha{}_\mu Q^\beta{}_\nu R_{\alpha\lambda\beta\sigma}k^\lambda k^\sigma.
+\tag{F.30}
+\end{align*}
+（译注：原书 (F.30) 末行曲率项印作 $R_{\mu\lambda\nu\sigma}$，但这样与其前面的 $Q^\alpha{}_\mu Q^\beta{}_\nu$ 相配则指标失衡；按上行的 $R_{\alpha\lambda\beta\sigma}$ 改正。）
+
+继续沿着我们以前的逻辑，对这个方程取迹，就可以得到类光测地线膨胀的演化方程，
+\begin{equation*}
+\frac{d\theta}{d\lambda} = -\frac{1}{2}\theta^2 - \widehat{\sigma}_{\mu\nu}\widehat{\sigma}^{\mu\nu} + \widehat{\omega}_{\mu\nu}\widehat{\omega}^{\mu\nu} - R_{\mu\nu}k^\mu k^\nu.
+\tag{F.31}
+\end{equation*}
+令人欣喜的是，这个方程最终与我们任意选定的辅助矢量 $l^\mu$ 完全无关。首先，膨胀本身就与 $l^\mu$ 无关，这很容易验证：
+\begin{align*}
+\theta &= Q^{\mu\nu}\widehat{B}_{\mu\nu} \\
+&= Q^{\mu\nu}B_{\mu\nu} \\
+&= g^{\mu\nu}B_{\mu\nu},
+\tag{F.32}
+\end{align*}
+其中第二步用了 $Q^{\mu\nu}Q^\alpha{}_\nu = Q^{\mu\alpha}$，第三步用了 $k^\mu B_{\mu\nu} = k^\nu B_{\mu\nu} = 0$。（这就是为什么我们从头到尾都不必给 $\theta$ 戴帽子。）其次，$\widehat{\sigma}_{\mu\nu}\widehat{\sigma}^{\mu\nu}$ 与 $\widehat{\omega}_{\mu\nu}\widehat{\omega}^{\mu\nu}$ 同样与 $l^\mu$ 无关（欢迎大家自行验证），尽管 $\widehat{\sigma}_{\mu\nu}$ 和 $\widehat{\omega}_{\mu\nu}$ 本身并非如此。最后，在取迹时，投影张量从曲率张量那一项中消失了。因此，我们得到了关于膨胀演化的一个良定义的概念，它与我们作出的任何任意选择无关。注意到，由于 $k^\mu$ 是类光的，Einstein 方程蕴含
+\begin{align*}
+R_{\mu\nu}k^\mu k^\nu &= 8\pi G\left(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\right)k^\mu k^\nu \\
+&= 8\pi G T_{\mu\nu}k^\mu k^\nu.
+\tag{F.33}
+\end{align*}
+要使它非负，我们只需援引类光能量条件（Null Energy Condition）——在第 3 章讨论过的所有能量条件中，这是限制最弱的一个。于是，与类时测地线相比，类光测地线在更一般的条件下就会会聚成焦散。
+
+我们还可以继续下去，得到切变的演化方程，
+\begin{equation*}
+\frac{D\widehat{\sigma}_{\mu\nu}}{d\lambda} = -\theta\widehat{\sigma}_{\mu\nu} - Q^\alpha{}_\mu Q^\beta{}_\nu C_{\alpha\lambda\beta\sigma}k^\lambda k^\sigma,
+\tag{F.34}
+\end{equation*}
+（译注：原书此式曲率项印作 $C_{\mu\lambda\nu\sigma}$，与 $Q^\alpha{}_\mu Q^\beta{}_\nu$ 相配则指标失衡，现按 (F.30) 同样的思路改为 $C_{\alpha\lambda\beta\sigma}$。）
+以及转动的演化方程，
+\begin{equation*}
+\frac{D\widehat{\omega}_{\mu\nu}}{d\lambda} = -\theta\widehat{\omega}_{\mu\nu}.
+\tag{F.35}
+\end{equation*}
+这些方程不如膨胀的那个方程来得自然，因为切变和转动确实依赖于我们对 $l^\mu$ 的选取；尽管如此，在具体情形中它们仍然可能有用。
+
+% ---- 书页 466 / p481 ----
+% （本页为空白页）

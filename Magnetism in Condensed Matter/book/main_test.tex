@@ -1,0 +1,141 @@
+% !TeX program = xelatex
+% ============================================================
+%  S. J. Blundell, Magnetism in Condensed Matter (OUP 2001)
+%  中译重排版：正文译为中文，公式/编号/交叉引用照原书，插图用原书扫描
+% ============================================================
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+
+\usepackage[textwidth=13.2cm,textheight=23.5cm,marginparwidth=3.1cm,marginparsep=0.4cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\graphicspath{{figs/}}
+\setmainfont{Times New Roman}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\setlength{\tabcolsep}{4.5pt}
+
+\newcommand{\ve}[1]{\bm{#1}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \arabic{chapter},
+    format = {\centering\zihao{2}\heiti},
+    beforeskip = 1.5em,
+    afterskip  = 1.8em,
+  },
+  section = {
+    format = {\zihao{4}\heiti},
+    beforeskip = 1.6em,
+    afterskip  = 0.8em,
+  },
+  subsection = {
+    format = {\zihao{-4}\heiti},
+    beforeskip = 1.2em,
+    afterskip  = 0.6em,
+  },
+}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\kaishu 凝聚态中的磁学}
+\fancyhead[RO]{\small\kaishu\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\chaptermark}[1]{\markboth{第\arabic{chapter}章\quad #1}{}}
+
+\setstretch{1.18}
+
+% 防止段首/段末孤行、显示公式前断页
+\clubpenalty=10000
+\widowpenalty=10000
+\predisplaypenalty=10000
+
+% 重排 \cleardoublepage：空白页不带页眉页脚
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% 例题（编号照原书手写，不用计数器）
+\newenvironment{example}[1]{\par\medskip\noindent\rule{\textwidth}{0.8pt}\par\nopagebreak\noindent{\heiti 例 #1}\quad}{\par\nopagebreak\rule{\textwidth}{0.8pt}\par\medskip}
+
+% 原书编号边注 → 同号脚注（编号不依赖出现顺序，防漏注错位）
+\newcommand{\fn}[2]{\begingroup\setcounter{footnote}{\numexpr#1-1\relax}\footnote{#2}\endgroup}
+
+% 无编号边注与人物小传 → 边栏（模拟原书页边注）
+\newcommand{\mnote}[1]{\marginpar{\raggedright\footnotesize\kaishu #1}}
+\newcommand{\bio}[1]{\marginpar{\raggedright\scriptsize\itshape #1\par}}
+
+% 习题条目（编号照原书）
+\newcommand{\exer}[1]{\par\medskip\noindent{\heiti (#1)}\enspace}
+
+\begin{document}
+% ---------------- 扉页 ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{3.2cm}
+{\zihao{0}\heiti 凝聚态中的磁学}\\[1.2em]
+{\zihao{3}\kaishu Magnetism in Condensed Matter}\\[3.5em]
+{\zihao{4}S. J. 布伦德尔（S. J. Blundell）\quad 著}\\[1.0em]
+{\zihao{-4}\kaishu 牛津大学出版社 2001 年版}\\[2.5em]
+{\zihao{-4}\kaishu 中译重排版}\\[1em]
+{\zihao{5}\kaishu 公式与编号照原书\quad 插图取自原书扫描}
+\vfill
+\end{titlepage}
+
+% 扉页背面留空：保证正文第 1 页起于奇数页（正面）
+\thispagestyle{empty}\mbox{}\clearpage
+
+\frontmatter
+\chapter*{译者说明}
+\addcontentsline{toc}{chapter}{译者说明}
+本书为 Stephen J. Blundell 所著 \emph{Magnetism in Condensed Matter}
+（Oxford University Press, 2001）的中文译本，由扫描版整理重排而成，
+供学习研究之用。整理与翻译遵循以下约定：
+\begin{enumerate}[itemsep=0.2em]
+  \item 正文全部译为中文，力求信达；专业名词在首次出现或易生歧义处
+        以圆括号附注英文原文。
+  \item 全部公式、公式编号（如 (2.15)）、图表编号与正文交叉引用
+        均照录原书，未作改动；书中引用的文献题录不予翻译。
+  \item 插图取自原书扫描件，图注译为中文并保留英文原图注要点；
+        人名不译（首次出现附原文）。
+  \item 例题（Example）与各章末习题（Exercises）照原书翻译编号；
+        书末附部分习题答案与提示。
+  \item 原书按 SI 单位制行文，附录 A 给出与 cgs 制的换算关系。
+\end{enumerate}
+
+\input{preface}
+
+\tableofcontents
+
+\mainmatter
+
+\input{ch1}
+\input{ch2}
+\input{ch3}
+\input{ch4}
+\input{ch5}
+\input{ch6}
+\input{ch7}
+\input{ch8}
+
+% ---------------- 附录 ----------------
+\appendix
+\ctexset{chapter/name={附录,}, chapter/number=\Alph{chapter}}
+\renewcommand{\chaptermark}[1]{\markboth{附录\Alph{chapter}\quad #1}{}}
+%\input{appA}
+%\input{appB}
+%\input{appC}
+%\input{appD}
+%\input{appE}
+%\input{answers}
+%\input{symbols}
+
+\end{document}

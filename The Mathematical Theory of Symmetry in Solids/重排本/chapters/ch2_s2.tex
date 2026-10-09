@@ -1,0 +1,94 @@
+% 2.2 生成对称适配函数；2.3 应用于点群
+\section{对称适配函数的生成}
+
+本节给出求属于任何有限群不可约表示的对称适配函数的一般规则。
+
+设 $\mathbf{G}$ 是阶为 $|\mathbf{G}|$ 的群，元素为 $R, S, \ldots$ 等；再设其表示为 $\Gamma^{i}\{R \rightarrow \mathbf{D}^{i}(R)\}$，且为已知。这里 $\mathbf{D}^{i}(R)$ 是 $R$ 的矩阵表示元，维数设为 $d_{i}$。问题是求一组基 $\langle \phi_{1}^{i}, \phi_{2}^{i}, \ldots, \phi_{d_{i}}^{i}|$，使得
+
+\begin{equation*}
+R\phi_{s}^{i} = \sum_{t=1}^{d_{i}} \phi_{t}^{i}\mathbf{D}^{i}(R)_{ts}
+\tag{2.2.1}
+\end{equation*}
+
+对一切 $R \in \mathbf{G}$ 成立。$\phi_{s}^{i}$ 便称为属于表示 $\Gamma^{i}$ 第 $s$ 行的对称适配函数。实际上要找的不只是一组基，而是一整套基，使得全部函数 $\phi_{s}^{i}$（对所有 $s$ 与所有 $i$）在群算符实现于其中的线性空间 $V$ 中构成完备集。确定这类函数的理论是群论的一个直接应用。
+
+可以如下定义群环的元素 $W_{ts}^{i}$：
+
+\begin{equation*}
+W_{ts}^{i} = \frac{d_{i}}{|\mathbf{G}|} \sum_{R \in \mathbf{G}} \mathbf{D}^{i}(R)_{ts}^{*} R
+\tag{2.2.2}
+\end{equation*}
+
+其中求和遍历所有 $R \in \mathbf{G}$。
+
+\textbf{定理 2.2.1.} \textit{若 $\phi$ 是 $V$ 中满足 $W_{ss}^{i}\phi \neq 0$ 的任意函数（$s$ 固定，取 1 到 $d_{i}$ 之间的值），则函数 $W_{ts}^{i}\phi = \phi_{t}^{i}$（$t = 1$ 到 $d_{i}$）构成表示 $\Gamma^{i}$ 的一组基。}
+
+于是可以把 $\phi$ 看作对称适配函数 $\phi_{t}^{i}$ 的\textit{生成函数}（generating function），而 $W_{ss}^{i}$ 是一个投影算符。该定理的证明就是验证式 (2.2.1) 成立，证明中利用了矩阵 $\mathbf{D}^{i}(R)$ 的幺正性。证明如下。
+
+设 $S \in \mathbf{G}$。按定义，
+
+\begin{equation*}
+S\phi_{p}^{i} = SW_{ps}^{i}\phi = S\frac{d_{i}}{|\mathbf{G}|} \sum_{R \in \mathbf{G}} \mathbf{D}^{i}(R)_{ps}^{*} R\phi.
+\tag{2.2.3}
+\end{equation*}
+
+把 $S$ 移入求和号内并令 $SR = T$；当 $R$ 遍历群元素时 $T$ 也遍历群元素，且 $R = S^{-1}T$。于是式 (2.2.3) 变为
+
+\begin{equation*}
+S\phi_{p}^{i} = \frac{d_{i}}{|\mathbf{G}|} \sum_{T \in \mathbf{G}} \mathbf{D}^{i}(S^{-1}T)_{ps}^{*} T\phi = \frac{d_{i}}{|\mathbf{G}|} \sum_{T}\sum_{t} \mathbf{D}^{i}(S)_{tp}\mathbf{D}^{i}(T)_{ts}^{*} T\phi
+\tag{2.2.4}
+\end{equation*}
+
+这里用到了 $\Gamma^{i}$ 既是幺正的又是表示。从而
+
+\begin{equation*}
+S\phi_{p}^{i} = \sum_{t} \mathbf{D}^{i}(S)_{tp}W_{ts}^{i}\phi = \sum_{t} \phi_{t}^{i}\mathbf{D}^{i}(S)_{tp}
+\tag{2.2.5}
+\end{equation*}
+
+由于 $S$ 是 $\mathbf{G}$ 的任意元素，式 (2.2.1) 得证，定理证毕。
+
+这一定理对我们用途的威力是立竿见影的：只需在 $V$ 中变动 $\phi$，并把算符 $W_{ts}^{i}$ 系统地作用于每个 $\phi$，直到求得全部所需的基函数 $\phi_{t}^{i}$；再对每个表示 $\Gamma^{i}$ 重复这一过程，问题在原则上即告解决。实际操作可能相当冗长费力：除非对一切 $\phi \in V$ 都能解析地算出 $R\phi$，否则这一过程将没有尽头。
+
+在我们的情形，$\mathbf{G}$ 是点群，线性空间 $V$ 是球谐函数 $Y_{l}^{m}(\theta, \phi)$ 张成的希尔伯特空间。对循环群与二面体群，转动 $R(\alpha, \beta, \gamma)$ 满足 $\beta = 0$ 或 $\pi$；对这类转动，$R(\alpha, \beta, \gamma)Y_{l}^{m}(\theta, \phi)$ 可以解析地算出（见式 (2.1.10) 与 (2.1.11)）。因此对循环群与二面体群可以得到完备的基函数组。而对立方群的某些元素，$\beta$ 等于 $\tfrac{1}{2}\pi$（见表 2.1），故只能对 $d^{l}(\tfrac{1}{2}\pi)$ 已知的那些 $l$ 值计算 $R(\alpha, \beta, \gamma)Y_{l}^{m}(\theta, \phi)$。事实上，属于立方群表示的面谐函数迄今只对 $l \leqslant 12$ 的值算出；但就当前的实际应用而言，$l$ 到 12 的基函数已经足够。
+
+为完整起见，再引用两条关于算符 $W_{ts}^{i}$ 的定理。
+
+\textbf{定理 2.2.2}
+
+\begin{equation*}
+W_{ts}^{i}W_{pq}^{j} = \delta^{ij}\delta_{sp}W_{tq}^{i}.
+\tag{2.2.6}
+\end{equation*}
+
+\textbf{定理 2.2.3}
+
+\begin{equation*}
+W_{ts}^{i\dagger} = W_{st}^{i}
+\tag{2.2.7}
+\end{equation*}
+
+其中剑号表示空间 $V$ 中的伴随算符。这两个定理的证明可参见例如 Altmann (1962)。
+
+\section{应用于点群}
+
+设给定一个点群 $\mathbf{G}$，其元素为 $R, S, \ldots$，以及一个矩阵表示 $\mathbf{D}^{i}(R), \mathbf{D}^{i}(S), \ldots$。生成函数取球谐函数 $Y_{l}^{m}(\theta, \phi)$。需要计算 $W_{ts}^{i}Y_{l}^{m}(\theta, \phi)$。利用式 (2.2.2) 得
+
+\begin{equation*}
+W_{ts}^{i}Y_{l}^{m}(\theta, \phi) = \frac{d_{i}}{|\mathbf{G}|} \sum_{R \in \mathbf{G}} \mathbf{D}^{i}(R)_{ts}^{*} RY_{l}^{m}(\theta, \phi).
+\tag{2.3.1}
+\end{equation*}
+
+为继续下去，需要 $RY_{l}^{m}(\theta, \phi)$ 的表达式。$R$ 要么是真转动，要么是反演 $I$ 与真转动的乘积（即非真转动）。若 $R$ 是真转动，则找出它的欧拉角 $(\alpha, \beta, \gamma)$（见表 2.1），用式 (2.1.3) 直接计算 $RY_{l}^{m}(\theta, \phi)$；若 $R$ 是非真转动，则把它写成 $R = IQ$，对真转动 $Q$ 用其欧拉角 $(\alpha, \beta, \gamma)$ 按式 (2.1.3) 计算 $QY_{l}^{m}(\theta, \phi)$，再对 $IY_{l}^{m}(\theta, \phi)$ 用式 (2.1.12) 完成 $RY_{l}^{m}(\theta, \phi)$ 的计算——这只在 $R$ 为非真转动时多出一个因子 $(-1)^{l}$。
+
+概括起来，式 (2.3.1) 成为
+
+\begin{equation*}
+\begin{aligned}
+W_{ts}^{i}Y_{l}^{m}(\theta, \phi) &= \frac{d_{i}}{|\mathbf{G}|} \sum_{R \in \mathbf{G}} P_{R}\mathbf{D}^{i}(R)_{ts}^{*}\exp(-\mathrm{i}m\alpha)\sum_{n} C_{nm}\exp(-\mathrm{i}n\gamma) \\
+&\quad \times d^{l}(\beta)_{nm}Y_{l}^{n}(\theta, \phi),
+\end{aligned}
+\tag{2.3.2}
+\end{equation*}
+
+其中求和遍历群的所有操作 $R$；当 $R$ 为非真转动时，右端取与相应真转动 $Q$ 对应的量。$P_{R}$ 在 $R$ 为真转动时等于 1，在 $R$ 为非真转动时等于 $(-1)^{l}$。

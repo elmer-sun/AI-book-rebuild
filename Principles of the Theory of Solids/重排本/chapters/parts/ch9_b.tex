@@ -1,0 +1,218 @@
+% ch9_b §9.3–9.5 (书页 301–312 / p315–p326)
+\section{强场磁致电阻}
+
+§7.12 中讲述的电流磁效应（galvanomagnetic phenomena）理论，只在载流子位于球形等能面上的情形下才成立。当 $\omega_H\tau>1$ 时，用 $\mathbf{k}$ 的直角坐标分量来表示电子态在数学上变得笨拙，而且由此得到的公式在物理上也难以解释。更简单的做法是直接从以变量 $(\mathcal{E},k_H,\phi)$ 表出的 Boltzmann 方程出发来推导输运性质。我们现在要在恒定电场中寻找稳态解。于是，式 (9.12) 简化为
+\begin{equation*}
+e\mathbf{E}\cdot\mathbf{v}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)=\frac{g}{\tau}+\omega_H\frac{\partial g}{\partial\phi}. \tag{9.24}
+\end{equation*}
+与式 (8.101) 类比，它具有积分
+\begin{equation*}
+g(\mathcal{E},k_H,\phi)=\frac{e}{\omega_H}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\int_{-\infty}^{\phi}\mathbf{v}(\mathcal{E},k_H,\phi)\exp\left\{(\phi''-\phi)/\omega_H\tau\right\}\,d\phi''\cdot\mathbf{E}. \tag{9.25}
+\end{equation*}
+正如式 (7.27) 那样，可以说费米面在相位角为 $\phi$ 的点处的位移，等于电场在轨道上其他各点所产生的位移的总和；这些位移随后被磁场驱动绕轨道运行，并以特征弛豫时间 $\tau$ 衰减。在低场情形下，衰减如此之快，以致我们只能看到位移方向相对电场方向的一个轻微转动，这正是 Hall 效应的来源（参见式 (7.141)）。
+
+电导率张量现在可以由电流算出：
+\begin{align*}
+\mathbf{J}&=2\int e\mathbf{v}_{\mathbf{k}}\,g_{\mathbf{k}}\,d\mathbf{k}\\
+&=\frac{e}{4\pi^{3}}\iiint \mathbf{v}(\mathcal{E},k_H,\phi)\,g(\mathcal{E},k_H,\phi)\,\frac{m_H^{*}}{\hbar^{2}}\,d\mathcal{E}\,dk_H\,d\phi, \tag{9.26}
+\end{align*}
+其中我们利用式 (9.7) 和式 (9.8) 来定义 $k_H=$ 常数平面上的一块面积元。代入式 (9.25)，并利用 Fermi 函数导数的性质把积分保持在费米面上，便得到以直角坐标分量表示的电导率张量
+\begin{equation*}
+\sigma_{\alpha\beta}=\frac{1}{4\pi^{3}}\frac{e^{2}}{\hbar^{2}}\int\frac{m_H^{*}}{\omega_H}\left\{\int_{0}^{2\pi}\int_{0}^{\infty}v_{\alpha}(\phi,k_H)\,v_{\beta}(\phi-\phi',k_H)\,e^{-\phi'/\omega_H\tau}\,d\phi\,d\phi'\right\}dk_H. \tag{9.27}
+\end{equation*}
+这就是 Shockley 管积分公式（Shockley tube-integral formula）——磁场中电导率张量的一个普适公式。这里对“Kubo 型”表达式（参见式 (7.15)）的这一显式推导相当简单——然而它却是一个威力颇大的公式。
+
+在低场下，我们可以取 $\omega_H\tau\ll 1$，并写出
+\begin{equation*}
+v_{\beta}(\phi-\phi')=v_{\beta}(\phi)-\phi'\frac{\partial v_{\beta}}{\partial\phi}+\dots, \tag{9.28}
+\end{equation*}
+因为指数因子使 $\phi'$ 不致变大。显然，$\sigma_{\alpha\beta}$ 中依赖于 $H$ 的各项来自电子速度沿轨道切向的导数，正如式 (7.137) 那样。用这个方法推出我们更熟悉的那些自由电子公式，是一道很好的练习。
+
+在高场下，即 $\omega_H\tau\gg 1$ 时，我们可以利用速度是 $\phi$ 和 $\phi'$ 的周期函数这一事实。$\phi'$ 从 0 到 $\infty$ 的积分范围可以切成若干段，每段长为 $2\pi$。于是
+\begin{align*}
+\int_{0}^{\infty}e^{-\phi'/\omega_H\tau}f(\phi')\,d\phi'&=\sum_{n}e^{-2\pi n/\omega_H\tau}\int_{0}^{2\pi}e^{-\phi'/\omega_H\tau}f(\phi')\,d\phi'\\
+&=\frac{1}{1-e^{-2\pi/\omega_H\tau}}\int_{0}^{2\pi}e^{-\phi'/\omega_H\tau}f(\phi')\,d\phi'\\
+&\approx\frac{\omega_H\tau}{2\pi}\int_{0}^{2\pi}e^{-\phi'/\omega_H\tau}f(\phi')\,d\phi'. \tag{9.29}
+\end{align*}
+在式 (9.27) 中可以消去一个 $\omega_H$ 因子：
+\begin{equation*}
+\sigma_{\alpha\beta}=\frac{1}{4\pi^{3}}\frac{e^{2}}{\hbar^{2}}\int\frac{m_H^{*}\tau}{2\pi}\left\{\int_{0}^{2\pi}\int_{0}^{2\pi}v_{\alpha}(\phi)\,v_{\beta}(\phi-\phi')\,e^{-\phi'/\omega_H\tau}\,d\phi\,d\phi'\right\}dk_H \tag{9.30}
+\end{equation*}
+（当然，速度、回旋质量和回旋频率都依赖于 $k_H$，但我们在这里不必显式地写出这一点。）
+
+现在 $\phi'$ 的范围已受限，我们可以对指数函数作展开：
+\begin{equation*}
+e^{-\phi'/\omega_H\tau}=1-\frac{\phi'}{\omega_H\tau}+\frac{1}{2}\left(\frac{\phi'}{\omega_H\tau}\right)^{2}-\dots. \tag{9.31}
+\end{equation*}
+式 (9.30) 中的其他函数都与 $\omega_H$ 无关，也就是说与磁场无关。于是，把式 (9.31) 代入式 (9.30)，便给出电导率张量按 $1/H$ 幂次的级数展开。
+
+磁致电阻和 Hall 效应的行为，可以在对 $\sigma$ 的每个分量找出这个展开中第一个不为零的项之后算出。我们将遵循通常的约定，取磁场沿 $z$ 轴。对于首项，由式 (9.8) 有
+\begin{align*}
+\int v_{x}(\phi')\,d\phi'&=\int v_{\perp}\cos\theta\,\frac{\hbar}{m_H^{*}}\,\frac{dk}{v_{\perp}}\\
+&=-\frac{\hbar}{m_H^{*}}\int dk_{y}, \tag{9.32}
+\end{align*}
+当我们绕闭合轨道一周时，它将为零。
+
+在这种情形下，若 $\alpha$ 或 $\beta$ 中有任何一个指的是垂直于 $\mathbf{H}$ 的平面内的方向，则 $\sigma_{\alpha\beta}$ 中将没有与 $H$ 无关的项。
+
+对于展开中的下一项，我们可以利用式 (9.32) 并作分部积分：
+\begin{equation*}
+\int_{0}^{2\pi}\phi'\,v_{x}(\phi-\phi')\,d\phi'=\frac{2\pi\hbar}{m_H^{*}}\,k_{y}(\phi)-\frac{\hbar}{m_H^{*}}\int_{0}^{2\pi}k_{y}(\phi-\phi')\,d\phi' \tag{9.33}
+\end{equation*}
+其中第二项由轨道的中心对称性而为零。但第一项对 $\sigma$ 中支配 Hall 效应的那个分量有贡献：再次利用式 (9.32)，
+\begin{align*}
+\sigma_{yx}&=\frac{1}{4\pi^{3}}\frac{e^{2}}{\hbar^{2}}\int\frac{m_H^{*}\tau}{2\pi}\,\frac{1}{\omega_H\tau}\int_{0}^{2\pi}v_{y}(\phi)\,\frac{2\pi\hbar}{m_H^{*}}\,k_{y}(\phi)\,d\phi\,dk_{z}\\
+&=\frac{1}{4\pi^{3}}e^{2}\int\frac{1}{m_H^{*}\omega_H}\oint k_{y}\,dk_{x}\,dk_{z}\\
+&=\frac{ec}{H}\,\frac{1}{4\pi^{3}}\int\mathcal{A}(k_{z})\,dk_{z}, \tag{9.34}
+\end{align*}
+其中 $\mathcal{A}(k_{z})$ 是 $k_{z}$ 切片上轨道的面积。
+
+%FIG{159}: {在磁场中，代表点绕费米面运动，并使被填充的区域（比如说）保持在左侧。这意味着，对于“电子轨道”（a），旋转的方向在取向上与“空穴轨道”（b）的相反。}
+
+这个积分恰好就是被切成轨道的那部分费米面的体积。换言之，
+\begin{equation*}
+\sigma_{yx}=\frac{ec}{H}\,n, \tag{9.35}
+\end{equation*}
+其中 $n$ 是被包围在这个费米面之内的电子数。与式 (7.147) 相比较即可看出：在非常强的场中，对任意费米面我们都验证了这个关系。
+
+但如果我们遇到的是一个“空穴”面，情形又会怎样呢？我们必须回头仔细检查整个分析，并注意到沿轨道的绕行方向决定着式 (9.32) 的符号。因此，一个闭合的空穴体积将以相反的符号对式 (9.34) 作出贡献。我们其实应当写成
+\begin{equation*}
+\sigma_{yx}=\frac{ec}{H}\,(n_{e}-n_{h}). \tag{9.36}
+\end{equation*}
+这才是对 §7.13 中论证的恰当推广；在高场下，两类载流子的相对迁移率并不进入这一论证。但它只在电子面和空穴面都是闭合面时才适用。
+
+回到式 (9.30) 和式 (9.31)，显而易见，$(1/\omega_H\tau)$ 量级的项在 $\sigma_{xx}$ 和 $\sigma_{yy}$ 中将为零；利用式 (9.32) 和式 (9.33) 极易验证这一点。我们必须用到式 (9.31) 的下一项，即 $(1/\omega_H\tau)^{2}$ 量级的项，才能找到一个不为零的分量。
+
+对 $\sigma$ 的 $z$ 分量，同样的论证也成立。于是 $\sigma_{xz}$ 和 $\sigma_{yz}$ 在一阶下为零，但保留一个 $1/H$ 量级的项；$\sigma_{zz}$ 则含有一个与 $H$ 无关的项。
+
+把这些结果合在一起，我们看到高场下电导率张量的形式如下：——
+\begin{equation*}
+\boldsymbol{\sigma}=\begin{pmatrix}
+\dfrac{A_{xx}}{H^{2}} & \dfrac{-A_{yx}}{H} & \dfrac{-A_{zx}}{H}\\[10pt]
+\dfrac{A_{yx}}{H} & \dfrac{A_{yy}}{H^{2}} & \dfrac{-A_{zy}}{H}\\[10pt]
+\dfrac{A_{zx}}{H} & \dfrac{A_{zy}}{H} & A_{zz}
+\end{pmatrix}, \tag{9.37}
+\end{equation*}
+其中系数 $A_{xx}$ 等均不为零，且与 $H$ 无关。注意，这个矩阵的非对角元是反对称的：在磁场中，Onsager 关系（§7.9）取如下形式
+\begin{equation*}
+\sigma_{xy}(\mathbf{H})=\sigma_{yx}(-\mathbf{H}) \tag{9.38}
+\end{equation*}
+因为坐标轴的反转起到使磁场反转符号的作用。
+
+对这一矩阵的初步考察使人以为，垂直于磁场测得的磁致电阻应当按 $H^{2}$ 无限增大；$\sigma_{xx}$ 难道不是按 $1/H^{2}$ 减小吗？实际情形并非如此，一个初等的论证即可指明。我们的实验是在一根载流导线沿线测量电动势（E.M.F.）。如式 (7.161) 那样，我们必须考察\emph{电阻率张量}的相应分量，它是式 (9.37) 的逆：
+
+例如，让我们考察 $\rho_{xx}$——横向的\emph{电阻率}。由初等矩阵代数，我们有
+\begin{align*}
+\rho_{xx}&=\frac{1}{\Delta}\left(\frac{A_{yy}A_{zz}+A_{zy}^{2}}{H^{2}}\right)\\
+&=\frac{\left(\dfrac{A_{yy}A_{zz}+A_{zy}^{2}}{H^{2}}\right)}{\left(\dfrac{A_{zz}A_{yx}^{2}}{H^{2}}+\dfrac{A_{xx}A_{yy}A_{zz}+A_{xx}A_{zy}^{2}+A_{yy}A_{zx}^{2}}{H^{4}}\right)}\\
+&\to\frac{A_{yy}A_{zz}+A_{zy}^{2}}{A_{zz}A_{yx}^{2}} \tag{9.39}
+\end{align*}
+这里取的是 $1/H$ 的最低次幂。于是，\emph{横向磁致电阻在高场下趋于一个常数}。我们说这个分量\emph{饱和}了。这是 $\boldsymbol{\rho}$ 的所有对角分量的共同特征。在 §7.13 的简单双带模型中我们已经注意到这一现象。
+
+实际发生的是：虽然电导率 $\sigma_{xx}$ 趋于零，这并不意味着不能有电流通过。$x$ 方向的电动势伴随着一个 $y$ 方向的 Hall 电流；为消除这个电流所需的 $y$ 方向电动势又反过来产生一个 $x$ 方向的 Hall 电流，而这正是我们观测到的电流。
+
+对 Hall 系数本身，在同样的极限下我们得到
+\begin{equation*}
+\rho_{xy}\to\frac{H}{A_{yx}}, \tag{9.40}
+\end{equation*}
+它与式 (9.36) 联立便给出
+\begin{equation*}
+R=\frac{1}{(n_{e}-n_{h})ec}. \tag{9.41}
+\end{equation*}
+在\emph{补偿}金属（compensated metal）的特殊情形——即电子态与空穴态数目相等——这个表达式将变为无穷大。再回过头看式 (9.36)，我们看到 $\sigma_{yx}$ 中的 $1/H$ 线性项消失了：此时电阻率张量的所有分量，包括 Hall 系数本身，都应按磁场的二次幂增大，而不饱和。
+
+\section{开轨道}
+
+在上面的整个论证中，从式 (9.33) 往后，我们都不言自明地假定了所处理的是闭合的等能面——电子的、空穴的，或两者兼有。但这并不是唯一可能的情形。例如，考虑一个
+
+%FIG{160}: {轨道：(a) 简约区图式中的；(b) 重复区图式中的。}
+
+触及区边界的费米面，如图 160(a) 所示。考虑一个从这个平面截面上的 $D'$ 出发的电子，当它到达 $A$ 时会发生什么？如 §3.3 所示，$\mathbf{k}$ 空间中的这个点与平移一个倒格矢后得到的点 $A'$ 等价。代表点从 $A'$ 继续走到 $B$，然后被平移到等价点 $B'$，如此继续下去，依次经过 $C$、$C'$、$D$ 和 $D'$。
+
+这种“轨道”的构造方式显得有些人为，仿佛区边界处存在不连续性似的。但 $A$ 和 $A'$ 确实代表完全相同的波函数。为了把这一点看得更清楚，我们像 §3.3 和 §6.8 中那样画出\emph{重复}区图式。这次我们不再让代表点每次穿过区边界时都平移一个倒格矢，而是在边界的另一侧再提供一个倒格子的晶胞。轨道跨越区边界是连续的，各段如图所示拼接起来。我们应当把它称为\emph{空穴轨道}（hole orbit），因为它围住的是 $\mathbf{k}$ 空间中的一个空区域。它将具有自己特有的回旋频率，正如 §9.1 中那样。
+
+实际上，我们的倒格子是三维的，如图 161 所示。显然，在这种多连通费米面的截面平面上，既可以有电子轨道，也可以有空穴轨道；导致式 (9.36) 的论证必须加以修改。
+
+%FIG{161}: {在多连通的费米面上，既可以有“电子”轨道，也可以有“空穴”轨道。在诸如 $P$ 这样的点上，一个载流子可以属于两类中的任一类，视磁场方向而定。}
+
+图 162 表明还有另一种可能。存在这样一个平面，它与费米面的截线不是闭合曲线。此平面内的“轨道”是\emph{开的}（open）。磁场并不能使代表点回到它出发的地方。在重复区图式中，该态的 $\mathbf{k}$ 矢量一直延伸到无穷远。
+
+%FIG{162}: {一条开轨道。}
+
+开轨道的存在深刻地改变了上一节的论证。例如，假定存在一条沿 $y$ 方向的开轨道。于是，“积分 (9.32)
+\begin{equation*}
+\int v_{x}(\phi')\,d\phi'=-\frac{\hbar}{m_H^{*}}\int dk_{y}, \tag{9.42}
+\end{equation*}
+必定为零”这一证明不再成立。事实上，一眼便可看出，沿这条路径的这个积分的被积函数可能是正定的，因而积分必为有限值。\footnote{严格说来，对于开轨道我们应当重新定义“相位变量”$\phi$。这并没有什么困难；无非是定义一个沿电子在 $\mathbf{k}$ 空间中的路径而变化的变量而已。}这样，$\sigma$ 中凡涉及 $x$ 方向的各个分量都将从这类积分得到贡献；特别地，$\sigma_{xx}$ 将不按 $(1/\omega_H\tau)^{2}$ 变化，而会得出与 $H$ 无关的结果。
+
+再者，这一效应对磁致电阻的影响也必须恰当地加以计算。在式 (9.37) 的位置上我们有
+\begin{equation*}
+\boldsymbol{\sigma}=\begin{pmatrix}
+B_{xx} & \dfrac{-A_{yx}}{H} & -B_{zx}\\[10pt]
+\dfrac{A_{yx}}{H} & \dfrac{A_{yy}}{H^{2}} & \dfrac{-A_{zy}}{H}\\[10pt]
+B_{zx} & \dfrac{A_{zy}}{H} & A_{zz}
+\end{pmatrix} \tag{9.43}
+\end{equation*}
+作为 $1/H$ 最低阶的各项。于是我们发现 $\rho_{xx}$ 的行为与式 (9.39) 中一样（译注：原文印作“(9.38)”，应为 (9.39)。），趋于饱和；但对电阻率的 $y$ 分量，我们得到
+\begin{align*}
+\rho_{yy}&=\frac{1}{\Delta}\left(B_{xx}A_{zz}+B_{zx}^{2}\right)\\
+&=\frac{B_{xx}A_{zz}+B_{zx}^{2}}{\left\{A_{zz}(A_{yx}^{2}+B_{xx}A_{yy})+B_{xx}A_{yx}^{2}+A_{yy}B_{zx}^{2}\right\}/H^{2}}\\
+&\propto H^{2}. \tag{9.44}
+\end{align*}
+于是，\emph{沿开轨道方向的横向磁致电阻按 $H^{2}$ 增大，而不饱和}。
+
+这一显著现象对费米面的研究十分重要。考察单晶磁致电阻随取向（相对于磁场和电场的方向）的变化，可以提供关于费米面拓扑的证据。例如，如果观察到了不饱和的方向，那么费米面在重复区图式中必定从一个区连通到下一个区；除非电子和空穴的闭合区域体积恰好完全相等，否则它不可能由这些闭合区域构成（参见式 (9.41)）。
+
+图 162 显示了一条典型的开轨道。乍一看，人们会以为所有开轨道都是这种性质，沿着多连通费米面的“轴”走向。于是人们会预期磁致电阻的不饱和方向是晶体的严格对称方向。
+
+实际并非如此，这可以由下面的论证来验证。设一个平面以这样的角度切割一个多连通费米面，使得它既包含闭合的电子轨道，又包含闭合的空穴轨道（图 163）。那么，在包含电子轨道的区域与包含空穴轨道的区域之间，将存在一条开轨道，或者至少一条\emph{扩展轨道}（extended orbit），把这两个区域分隔开。
+
+%FIG{163}: {分隔“电子”轨道区和“空穴”轨道区的开轨道。}
+
+这个证明是直观性的。人们无法画出内部带阴影的闭合环路（代表电子轨道）和外部带阴影的闭合环路（代表空穴轨道），而不在阴影区与无阴影区之间补上一条额外的边界。当然，这条边界本身也可能构成一个大的闭合环路——一条\emph{扩展轨道}——但不难构造出这样的情形：它沿着同一大致方向穿过倒格子，无限地延续下去。这一点通过考察简单的模型最易理解。人们发现，这类\emph{非周期}（aperiodic）开轨道常常沿一些方向行进，这些方向围绕对称轴张成相当可观的立体角。在贵金属 Cu、Ag、Au 中情形就是如此，它们的费米面如图 164 中所示。
+
+\section{磁声振荡}
+
+正如我们在 §8.8 中看到的，超声波的衰减并不能直接给出费米面形状的量度。但是，如果在施加超声波的同时加上磁场，就会观察到一些确实直接依赖于表面几何结构的现象。
+
+这些现象无论在理论上还是在实践上都极其复杂；磁场方向、超声波的传播矢量
+%FIG{164}: {铜的费米面。}
+以及波的偏振矢量，可以排布的方式实在太多。为了作完整的分析，人们必须构造一个广义电导率 $\boldsymbol{\sigma}(\mathbf{q},\omega)$，它类似于式 (8.115)，但像式 (9.14) 或式 (9.21) 中那样以回旋坐标表出。这是可以做到的——但不可避免地会被问题的几何格局弄得相当繁复。
+
+不过，下面的简单例子可以说明这个效应。设磁场沿 $z$ 方向，另有一个横超声波，其偏振矢量沿 $y$ 方向，沿 $x$ 方向传播。考虑一个电子在真实空间中的实际路径。对自由电子而言，这将是一条螺旋线，也就是投射在 $(x,y)$ 平面上的一个圆。对于 $\mathbf{k}$ 空间中的“轨道”，这个投影很容易确定。一般地，
+\begin{equation*}
+\mathbf{k}=\frac{e}{c\hbar}\,\mathbf{H}\wedge\dot{\mathbf{r}}, \tag{9.45}
+\end{equation*}
+正如式 (6.40) 那样。由此，经一次初等的时间积分即得
+\begin{equation*}
+\mathbf{k}=\frac{e}{c\hbar}\,\mathbf{H}\wedge\mathbf{r}. \tag{9.46}
+\end{equation*}
+$\mathbf{k}$ 在 $\mathbf{k}$ 空间中的轨道，与 $\mathbf{r}$ 在真实空间中的路径的 $x$-$y$ 投影相同，只是要乘以 $eH/c\hbar$，并绕 $\mathbf{H}$ 旋转一个直角。
+
+%FIG{165}: {(a) 电子在真实空间中的轨迹；(b) 费米面上的轨道。}
+
+现在考虑由声波建立的电场。对一切实用目的而言，我们可以把它当作一个垂直于传播方向的静态振荡电场。实际上，为使 $\omega_H\tau\gg 1$，我们需要一个强到 $\omega_H\gg\omega$ 的磁场；电子在被散射之前、或者在电场发生变化之前，要绕轨道转许多圈。于是，重要的因素是电子沿路径绕行时所见到的电场变化。从图 165 显然可以看出，可以把这个电场安排成：在 $\mathbf{E}$ 与 $\mathbf{v}$ 平行的两个点上，它都使电子沿轨道向同一转向加速。这是一种\emph{几何共振}（geometrical resonance）；显然，条件是回路的直径应当是场的半波长的奇数倍：
+\begin{equation*}
+2r_{x}=\frac{\hbar c}{eH}\,2k_{y}=\left(n+\frac{1}{2}\right)\lambda. \tag{9.47}
+\end{equation*}
+对于固定的波长，当 $H$ 变化时，吸收将以 $1/H$ 的一个确定周期而振荡。这个周期应当给出费米面的直径——在电子速度平行于声波所产生的电矢量的那些点之间量得的直径。
+
+然而，这个共振条件 (9.47) 并不十分精确。只要考察圆形轨道的情形就可以看出这一点。例如，设
+\begin{equation*}
+v_{y}(t)=v_{0}\sin\omega_H t, \tag{9.48}
+\end{equation*}
+且有
+\begin{equation*}
+x(t)=r_{x}\sin\omega_H t, \tag{9.49}
+\end{equation*}
+那么，在 $E_{y}\exp(iqx)$ 的场中，每周期吸收的能量将为
+\begin{align*}
+\int\mathbf{E}\cdot\mathbf{v}\,dt&=E_{y}v_{0}\int_{0}^{2\pi/\omega_H}\exp(iqr_{x}\sin\omega_H t)\sin\omega_H t\,dt\\
+&=\frac{E_{y}v_{0}}{\omega_H}\int_{0}^{2\pi}\exp(iqr_{x}\sin\xi)\sin\xi\,d\xi\\
+&=\frac{E_{y}v_{0}}{\omega_H}\,2\pi J_{1}(qr_{x}). \tag{9.50}
+\end{align*}
+于是，“共振”将出现在 Bessel 函数 $J_{1}(qr_{x})$ 的极大值处。在式 (9.47) 中的 $(n+\frac{1}{2})$ 的位置上，我们得到的是 1.22、2.23、3.24…$(n+\frac{1}{4})$ 这样的数。因此，在解释这一效应时必须谨慎。此外，弹性波的应变场与电子所受力之间的关系也会进入计算，并影响共振的位置。
+
+%FIG{166}: {射频尺寸效应：(a) 极值轨迹；(b) 被散射的轨迹；(c) 由内部趋肤层诱导的轨迹链。}
+
+一组电子轨道的卡钳直径还可以用更直接的方法测定，这就是 Gantmakher 效应，或称\emph{射频尺寸效应}（r.f. size effect）。在任意射频 $\omega\ll\omega_H$ 下，测量一块非常纯的金属薄片，且磁场平行于其表面时的表面阻抗。在趋肤深度中被加速的一个电子沿一条闭合轨迹

@@ -1,0 +1,333 @@
+% ch5_b (书页 205-216 / p220-p231)
+%--A-TAIL--
+%JOIN%但我们还可以构造更高阶的标量，例如 $R^{\mu\nu}R_{\mu\nu}$、$R^{\mu\nu\rho\sigma}R_{\mu\nu\rho\sigma}$、$R_{\mu\nu\rho\sigma}R^{\rho\sigma\lambda\tau}R_{\lambda\tau}{}^{\mu\nu}$，等等。当我们逼近某个点时，如果这些标量中有任何一个（不必是全部）趋于无穷，我们就把这个点看作曲率的一个奇点。我们还应当检查这个点并不是位于无穷远处；也就是说，沿一条曲线走过有限的距离就能到达它。
+% ---- 书页 205 / p220 ----（本页第一段已在上面 tail 中接续，正文自第二段起）
+于是，我们有了把一个点当作奇点来对待的充分条件。然而这并不是必要条件，而且一般说来，要证明一个给定的点是非奇异的反而更难；就我们的目的而言，我们只是简单地检验测地线在所讨论的点处是否表现良好，如果表现良好，我们就认为这个点是非奇异的。对于 Schwarzschild 度规 (5.1)，直接计算给出
+\begin{equation*}
+R^{\mu\nu\rho\sigma}R_{\mu\nu\rho\sigma} = \frac{48G^2M^2}{r^6}.
+\tag{5.50}
+\end{equation*}
+这足以让我们相信，$r = 0$ 代表一个名副其实的奇点。
+
+另一个麻烦之处是 $r = 2GM$，即 Schwarzschild 半径。你可以验证，在那里没有任何曲率不变量发散。于是我们开始倾向于认为它实际上并不奇异，只不过我们选择了一个糟糕的坐标系。最好的办法是，只要可能，就变换到更合适的坐标。我们很快就会看到，在这个例子中这确实是可能的，而且 $r = 2GM$ 这个面在 Schwarzschild 度规中行为良好（尽管很有意思）——它标示出一个黑洞的事件视界（event horizon）。
+
+在为奇点操了一点心之后，我们应当指出，Schwarzschild 半径以内 Schwarzschild 度规的行为对日常生活几乎没有什么影响。我们导出的解只在真空中有效，而且我们预期它在一个球状天体（比如恒星）之外成立。然而，就太阳而言，我们所处理的天体延伸到的半径为
+\begin{equation*}
+R_\odot = 10^6 GM_\odot.
+\tag{5.51}
+\end{equation*}
+因此，$r = 2GM_\odot$ 深深处于太阳内部，在那里我们并不期望 Schwarzschild 度规适用。实际上，现实的恒星内部解就是把外部的 Schwarzschild 度规与一个在原点处完全光滑的内部度规匹配起来的构造。尽管如此，还是有一些天体需要完整的 Schwarzschild 度规——黑洞——因此在本书的这一章中，我们将让我们的想象力漫游到太阳系之外很远处。
+
+\section{Schwarzschild 测地线}
+
+为了更充分地理解 Schwarzschild 度规，我们将迈出的第一步是考察测地线的行为。我们需要 Schwarzschild 度规的非零 Christoffel 符号：
+\begin{equation*}
+\begin{array}{lll}
+\Gamma^r_{tt} = \dfrac{GM}{r^3}(r-2GM) & \Gamma^r_{rr} = \dfrac{-GM}{r(r-2GM)} & \Gamma^t_{tr} = \dfrac{GM}{r(r-2GM)}\\[10pt]
+\Gamma^\theta_{r\theta} = \dfrac{1}{r} & \Gamma^r_{\theta\theta} = -(r-2GM) & \Gamma^\phi_{r\phi} = \dfrac{1}{r}\\[10pt]
+\Gamma^r_{\phi\phi} = -(r-2GM)\sin^2\theta & \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta & \Gamma^\phi_{\theta\phi} = \dfrac{\cos\theta}{\sin\theta}.
+\end{array}
+\tag{5.52}
+\end{equation*}
+于是，测地线方程就变成了以下四个方程，其中 $\lambda$ 是仿射参量：
+\begin{gather*}
+\frac{\mathrm{d}^2 t}{\mathrm{d}\lambda^2} + \frac{2GM}{r(r-2GM)}\frac{\mathrm{d}r}{\mathrm{d}\lambda}\frac{\mathrm{d}t}{\mathrm{d}\lambda} = 0,\\[8pt]
+\frac{\mathrm{d}^2 r}{\mathrm{d}\lambda^2} + \frac{GM}{r^3}(r-2GM)\left(\frac{\mathrm{d}t}{\mathrm{d}\lambda}\right)^2 - \frac{GM}{r(r-2GM)}\left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2\\[2pt]
+-\,(r-2GM)\left[\left(\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\right)^2 + \sin^2\theta\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2\right] = 0,\\[8pt]
+\frac{\mathrm{d}^2\theta}{\mathrm{d}\lambda^2} + \frac{2}{r}\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\frac{\mathrm{d}r}{\mathrm{d}\lambda} - \sin\theta\cos\theta\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2 = 0,\\[8pt]
+\frac{\mathrm{d}^2\phi}{\mathrm{d}\lambda^2} + \frac{2}{r}\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\frac{\mathrm{d}r}{\mathrm{d}\lambda} + 2\frac{\cos\theta}{\sin\theta}\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\frac{\mathrm{d}\phi}{\mathrm{d}\lambda} = 0.
+\tag{5.53}
+\end{gather*}
+指望一眼看出这组耦合方程的解来，希望似乎不大。幸运的是，Schwarzschild 度规的高度对称性使我们的任务大为简化。我们知道有四个 Killing 矢量：三个对应球对称性，一个对应时间平移。其中每一个都会给出自由粒子的一个运动常数（constant of the motion）。如果 $K^\mu$ 是一个 Killing 矢量，我们知道
+\begin{equation*}
+K_\mu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda} = \mathrm{constant}.
+\tag{5.54}
+\end{equation*}
+此外，对测地线我们总是还有另一个运动常数：测地线方程（连同度规相容性）意味着如下这个量
+\begin{equation*}
+\epsilon = -g_{\mu\nu}\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}
+\tag{5.55}
+\end{equation*}
+沿路径是常数。（对任何一条轨迹，我们都可以选取参量 $\lambda$ 使得 $\epsilon$ 为常数；我们只是指出，这与沿测地线的仿射参数化是相容的。）当然，对有质量粒子我们通常取 $\lambda = \tau$，这个关系就简单地变成 $\epsilon = -g_{\mu\nu}U^\mu U^\nu = +1$。而对沿类光轨迹运动的无质量粒子，我们总有 $\epsilon = 0$，
+
+% ---- 书页 207 / p222 ----
+而这个方程并不固定参量 $\lambda$。正如 3.4 节所讨论的，方便的做法是在类光测地线上把 $\lambda$ 归一化，使得四维动量与四速度相等，$p^\mu = \mathrm{d}x^\mu/\mathrm{d}\lambda$。我们也可能关心类空测地线（尽管它们并不对应粒子的路径），对它们我们将取 $\epsilon = -1$。
+
+我们并不急于立刻写出与 Killing 矢量相联系的四个守恒量的显式表达式，而是先想一想它们在告诉我们什么。注意，它们所代表的对称性在平直时空中也同样存在，而在那里它们导致的守恒量是我们非常熟悉的。时间平移下的不变性导致能量守恒，而空间转动下的不变性导致角动量三个分量的守恒。本质上相同的事情也适用于 Schwarzschild 度规。我们可以把角动量想成一个三矢量，它具有一个大小（一个分量）和一个方向（两个分量）。角动量方向的守恒意味着粒子将在一个平面内运动。我们可以选取这个平面为坐标系的赤道面；如果粒子不在这个平面内，我们可以转动坐标，直到它在平面内为止。于是，导致角动量方向守恒的那两个 Killing 矢量就意味着，对一个单独的粒子，我们可以选取
+\begin{equation*}
+\theta = \frac{\pi}{2}.
+\tag{5.56}
+\end{equation*}
+剩下的两个 Killing 矢量分别对应能量和角动量的大小。能量来自类时 Killing 矢量
+\begin{equation*}
+K^\mu = (\partial_t)^\mu = (1, 0, 0, 0).
+\tag{5.57}
+\end{equation*}
+以角动量的大小为守恒量的那个 Killing 矢量则是
+\begin{equation*}
+R^\mu = (\partial_\phi)^\mu = (0, 0, 0, 1).
+\tag{5.58}
+\end{equation*}
+在这两种情形下，方便的做法都是降指标，得到
+\begin{equation*}
+K_\mu = \left(-\left(1-\frac{2GM}{r}\right), 0, 0, 0\right)
+\tag{5.59}
+\end{equation*}
+以及
+\begin{equation*}
+R_\mu = \left(0, 0, 0, r^2\sin^2\theta\right).
+\tag{5.60}
+\end{equation*}
+由于 (5.56) 意味着在我们感兴趣的测地线上 $\sin\theta = 1$，这两个守恒量便是
+\begin{equation*}
+E = -K_\mu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda} = \left(1-\frac{2GM}{r}\right)\frac{\mathrm{d}t}{\mathrm{d}\lambda}
+\tag{5.61}
+\end{equation*}
+
+% ---- 书页 208 / p223 ----
+以及
+\begin{equation*}
+L = R_\mu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda} = r^2\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}.
+\tag{5.62}
+\end{equation*}
+对无质量粒子，这些量可以认为是守恒的能量和角动量；而对有质量粒子，它们是粒子单位质量的守恒能量和角动量。在下一章讨论转动黑洞时，我们将用 $E$ 和 $L$ 指真实的能量和角动量，而不是“每单位质量”的量；其含义从上下文应该看得很清楚。注意，(5.62) 的守恒性正是 Kepler 第二定律在广义相对论中的对应物——相等的时间里扫出相等的面积。
+
+回忆一下，在 3.4 节中我们曾断言，一个四维动量为 $p^\mu$ 的粒子的能量，由具有四速度 $U^\mu$ 的观者测量，应为 $-p_\mu U^\mu$。这个量并\emph{不}等于 (5.61)，甚至不与它成正比，即使把观者取为稳态的（$U^i = 0$）也是如此。从数学上看，这是因为四速度归一化为 $U_\mu U^\mu = -1$，而 Killing 矢量 $K^\mu$ 却不是这样：如果我们试图那样把它归一化，它就不再求解 Killing 方程了。在稍微深一个层次上，$-p_\mu U^\mu$ 可以认为是粒子的惯性能/动能，而 $-p_\mu K^\mu$ 则是总的守恒能量，其中包含引力场带来的势能。引力势能的概念并不总是良定义的，但只要存在类时 Killing 矢量，总能量就是良定义的。我们马上就会用 $E$ 来帮助刻画 Schwarzschild 的测地线；稍后我们还会把 $-p_\mu U^\mu$ 用于无质量粒子，在那里它可以认为是光子的观测频率，用来描述引力红移。
+
+守恒量 $E$ 和 $L$ 合在一起，为理解 Schwarzschild 几何中粒子的轨道提供了方便的途径。让我们把 (5.55) 的 $\epsilon$ 表达式展开，得到
+\begin{equation*}
+-\left(1-\frac{2GM}{r}\right)\left(\frac{\mathrm{d}t}{\mathrm{d}\lambda}\right)^2 + \left(1-\frac{2GM}{r}\right)^{-1}\left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2 + r^2\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2 = -\epsilon.
+\tag{5.63}
+\end{equation*}
+如果我们把它乘以 $(1-2GM/r)$，并用 $E$ 和 $L$ 的表达式，就得到
+\begin{equation*}
+-E^2 + \left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2 + \left(1-\frac{2GM}{r}\right)\left(\frac{L^2}{r^2}+\epsilon\right) = 0.
+\tag{5.64}
+\end{equation*}
+这肯定是进展：我们已经把一个凌乱的耦合方程组变成了关于 $r(\lambda)$ 的单独一个方程。如果我们把它改写成
+\begin{equation*}
+\frac{1}{2}\left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2 + V(r) = \mathcal{E},
+\tag{5.65}
+\end{equation*}
+
+% ---- 书页 209 / p224 ----
+%FIG{5.3}: {围绕恒星的轨道，由把半径 $r$ 表示为参量 $\lambda$ 的函数来刻画。}
+其中
+\begin{equation*}
+V(r) = \frac{1}{2}\epsilon - \epsilon\frac{GM}{r} + \frac{L^2}{2r^2} - \frac{GML^2}{r^3}
+\tag{5.66}
+\end{equation*}
+而
+\begin{equation*}
+\mathcal{E} = \frac{1}{2}E^2.
+\tag{5.67}
+\end{equation*}
+在 (5.65) 中，我们得到的恰恰是一个单位质量的经典粒子在由 $V(r)$ 给出的一维势中、带着“能量”$\mathcal{E}$ 运动时的方程。这有点令人混淆，但还不算太糟：单位质量的守恒能量是 $E$，而坐标 $r$ 的有效势（effective potential）对应的却是 $\mathcal{E} = E^2/2$。
+
+当然，我们的物理处境与在一维中运动的经典粒子相当不同；我们所考虑的轨迹是绕恒星或其他天体的轨道，如图 5.3 所示。我们感兴趣的量不仅有 $r(\lambda)$，还有 $t(\lambda)$ 和 $\phi(\lambda)$。尽管如此，通过理解轨道的径向行为，我们就能朝着理解所有轨道的目标走得非常远，而把这些行为约化成一个我们知道怎样求解的问题，帮助极大。
+
+对 Newton 引力中的轨道做类似的分析也会给出类似的结果；一般方程 (5.65) 将会相同，但有效势 (5.66) 将不会含有最后一项。（注意，这个方程不是 $1/r$ 的幂级数，它是精确的。）在势 (5.66) 中，第一项只是一个常数，第二项恰好对应 Newton 引力势，第三项是来自角动量的贡献，它在 Newton 引力和广义相对论中取相同的形式。最后一项——广义相对论的贡献——将被证明会带来巨大的差别，尤其是在 $r$ 很小的地方。
+
+%FIG{5.4}: {Newton 引力中的有效势。图中画出五条曲线，对应所标出的（单位质量的）角动量 $L$ 值，我们取 $GM = 1$。注意，只要能量足够大，每条轨道都会到达一个转折点并返回无穷远。}
+让我们来考察各种可能类型的轨道所对应的有效势，如图 5.4 和图 5.5 所示。不同的 $L$ 值有不同的曲线 $V(r)$；对其中任何一条曲线，轨道的行为都可以通过把 $\mathcal{E}$ 与 $V(r)$ 相比较来判断。粒子的一般行为将是在势中运动，直到它到达 $V(r) = \mathcal{E}$ 的一个“转折点”（turning point），这时它将开始
+% ---- 书页 210 / p225 ----
+朝另一个方向运动。有时可能没有转折点可碰，这时粒子就一直走下去。另一些情形下，粒子可以干脆在半径 $r_c$ 为常数的圆轨道上运动；这可能发生在势是平坦的地方，即 $\mathrm{d}V/\mathrm{d}r = 0$ 处。对 (5.66) 求微商，我们发现圆轨道出现在
+\begin{equation*}
+\epsilon GM r_c^2 - L^2 r_c + 3GML^2\gamma = 0,
+\tag{5.68}
+\end{equation*}
+其中在 Newton 引力中 $\gamma = 0$，在广义相对论中 $\gamma = 1$。如果圆轨道对应势的极小值，它将是稳定的；如果对应极大值，则是不稳定的。非圆的束缚轨道将围绕稳定圆轨道的半径振荡。
+
+转向 Newton 引力，我们发现圆轨道出现在
+\begin{equation*}
+r_c = \frac{L^2}{\epsilon GM}.
+\tag{5.69}
+\end{equation*}
+%FIG{5.5}: {广义相对论中的有效势。同样画出五条曲线，对应所标出的（单位质量的）角动量 $L$ 值，我们取 $GM = 1$。在广义相对论中存在一个大于或等于 $3GM$ 的最内层圆轨道，任何落到这个半径以内的轨道都会一直落到 $r = 0$（对沿测地线运动的粒子而言）。}
+对无质量粒子，$\epsilon = 0$，不存在圆轨道；这与图 5.4 中的第一幅图相一致，该图表明没有任何形式的束缚轨道。尽管在极坐标下这一点有些被掩盖，无质量粒子实际上沿直线运动，因为作用在无质量粒子上的 Newton 引力为零。当然，无质量粒子在 Newton 理论中的地位本来就有些成问题，所以随着你所做假设的不同，你可能得到不同的答案。用有效势的语言来说，一个具有给定能量 $E$ 的光子将从 $r = \infty$ 进入并逐渐减慢（实际上减慢的是 $\mathrm{d}r/\mathrm{d}\lambda$，光速并没有改变），直到它到达
+% ---- 书页 211 / p226 ----
+转折点，这时它将开始折返，回到 $r = \infty$。较低的 $L$ 值——光子在这些情形下会更靠近一些才开始折返——不过是那些初始瞄准得更贴近引力天体的轨迹。对有质量粒子，在半径 (5.69) 处将有稳定圆轨道，还有围绕这个半径振荡的束缚轨道。如果能量大于渐近值 $E = 1$，轨道将是非束缚的，描述一个先接近恒星然后再退离的粒子。我们知道，Newton 理论中的轨道是圆锥曲线（conic sections）——束缚轨道不是圆就是椭圆，而非束缚轨道不是抛物线就是双曲线——尽管我们不打算在这里证明这一点。
+
+在广义相对论中，情况有所不同，但只在 $r$ 足够小时才如此。既然差别就在于 $-GML^2/r^3$ 这一项，当 $r \to \infty$ 时两种理论中的行为完全相同。但当 $r \to 0$ 时，势趋于 $-\infty$，而不像 Newton 情形那样趋于 $+\infty$。在 $r = 2GM$ 处，势总是零；这个半径以内就是黑洞，我们稍后会更彻底地讨论它。对无质量粒子，总存在一个势垒（除了 $L = 0$ 的情形，此时势恒等于零），但一个能量足够高的光子仍然会越过势垒，被无可挽回地拖向中心。注意，“能量足够高”指的是“与它的角动量相比”——事实上光子的频率无关紧要，要紧的只是它所指向的方向。势垒的顶部是不稳定的圆轨道。对 $\epsilon = 0$、$\gamma = 1$，我们可以很容易地求解 (5.68)，得到
+\begin{equation*}
+r_c = 3GM.
+\tag{5.70}
+\end{equation*}
+
+% ---- 书页 212 / p227 ----
+图 5.5 的第一幅图证实了这一点：对每个 $L$，$V(r)$ 都在 $r = 3GM$ 处有一个极大值。这意味着光子可以在这个半径的圆上永远运转下去，但任何微扰都会使它飞走，不是飞向 $r = 0$，就是飞向 $r = \infty$。
+
+对有质量粒子，随着角动量的不同，再一次出现不同的区域。圆轨道位于
+\begin{equation*}
+r_c = \frac{L^2 \pm \sqrt{L^4 - 12G^2M^2L^2}}{2GM}.
+\tag{5.71}
+\end{equation*}
+对大的 $L$，将有两个圆轨道，一个稳定，一个不稳定。在 $L \to \infty$ 的极限下，它们的半径为
+\begin{equation*}
+r_c = \frac{L^2 \pm L^2(1-6G^2M^2/L^2)}{2GM} = \left(\frac{L^2}{GM},\, 3GM\right).
+\tag{5.72}
+\end{equation*}
+在这个极限下，稳定圆轨道移向更远处，而不稳定圆轨道则趋近 $3GM$，这种行为与无质量情形相类似。当我们减小 $L$ 时，两个圆轨道彼此靠近；当 (5.71) 中的判别式消失时，它们重合，此时
+\begin{equation*}
+L = \sqrt{12}\,GM,
+\tag{5.73}
+\end{equation*}
+相应地
+\begin{equation*}
+r_c = 6GM,
+\tag{5.74}
+\end{equation*}
+而对更小的 $L$，它们就完全消失了。因此，$6GM$ 是 Schwarzschild 度规中稳定圆轨道可能具有的最小半径。还有非束缚轨道，它们从无穷远进来然后折返；还有束缚但非圆的轨道，它们围绕稳定圆轨道的半径振荡。注意，这类轨道在 Newton 引力中会描绘出严格的圆锥曲线，在广义相对论中则不会如此，尽管要证明这一点我们还必须求解 $\mathrm{d}\phi/\mathrm{d}\lambda$ 的方程。最后，还有一些轨道从无穷远进来，一直落到 $r = 0$；这既可能发生在能量高于势垒的时候，也可能发生在 $L < \sqrt{12}\,GM$、势垒完全消失的时候。
+
+于是我们发现，Schwarzschild 解在 $r > 6GM$ 拥有稳定圆轨道，在 $3GM < r < 6GM$ 拥有不稳定圆轨道。需要记住的重要一点是，这些仅仅是测地线；没有什么能阻止一个加速的粒子下潜到 $r = 3GM$ 以下再冒出来，只要它保持在 $r = 2GM$ 之外就好。
+
+\section{实验检验}
+
+广义相对论的大多数实验检验都涉及检验粒子在太阳系中的运动，因而是 Schwarzschild 度规的测地线问题。Einstein 曾提出三项检验：
+% ---- 书页 213 / p228 ----（书页 213 实际自“Einstein 曾提出”起，注释随整句顺延） ----光线偏折、近日点进动（precession of perihelia）和引力红移。
+%FIG{5.6}: {广义相对论中的轨道描绘出进动的椭圆。}
+光线偏折在弱场极限（weak-field limit）下就可以观测，因此放在第 7 章讨论。本节我们将讨论近日点进动和引力红移。（椭圆轨道的近日点（perihelion）是它最接近太阳的那一点；绕地球或恒星的轨道则分别有近地点（perigee）和近星点（periastron）。）
+
+近日点进动反映了这样一个事实：广义相对论中的非圆轨道并不是完美的闭合椭圆；在相当好的近似下，它们是进动着的椭圆，画出如图 5.6 所示的花瓣图案。尽管概念上简单，近日点进动的速率算起来却有些繁琐；这里我们遵循 d'Inverno（1992）的做法。策略是把径向坐标 $r$ 的演化描述为角坐标 $\phi$ 的函数；对一个完美的椭圆，$r(\phi)$ 将以 $2\pi$ 为周期，这反映了近日点在每一圈轨道都出现在相同角位置的事实。利用微扰论，我们可以展示广义相对论如何给周期带来微小的改变，从而产生进动。
+
+我们从 Schwarzschild 度规中有质量粒子的径向运动方程 (5.65) 出发。为了得到 $\mathrm{d}r/\mathrm{d}\phi$ 的方程，我们乘以
+\begin{equation*}
+\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^{-2} = \frac{r^4}{L^2},
+\tag{5.75}
+\end{equation*}
+这给出
+\begin{equation*}
+\left(\frac{\mathrm{d}r}{\mathrm{d}\phi}\right)^2 + \frac{1}{L^2}r^4 - \frac{2GM}{L^2}r^3 + r^2 - 2GMr = \frac{2\mathcal{E}}{L^2}r^4.
+\tag{5.76}
+\end{equation*}
+在求解这个方程时，有两个技巧很有用。第一个技巧是定义一个新变量
+
+% ---- 书页 214 / p229 ----
+\begin{equation*}
+x = \frac{L^2}{GMr}.
+\tag{5.77}
+\end{equation*}
+由 (5.69) 我们看到，在 Newton 圆轨道处 $x = 1$。我们的运动方程 (5.76) 变为
+\begin{equation*}
+\left(\frac{\mathrm{d}x}{\mathrm{d}\phi}\right)^2 + \frac{L^2}{G^2M^2} - 2x + x^2 - \frac{2G^2M^2}{L^2}x^3 = \frac{2\mathcal{E}L^2}{G^2M^2}.
+\tag{5.78}
+\end{equation*}
+第二个技巧是把它对 $\phi$ 求微商，得到 $x(\phi)$ 的一个二阶方程：
+\begin{equation*}
+\frac{\mathrm{d}^2 x}{\mathrm{d}\phi^2} - 1 + x = \frac{3G^2M^2}{L^2}x^2.
+\tag{5.79}
+\end{equation*}
+在 Newton 计算中最后一项将不存在，我们可以精确解出 $x$；在这里，我们可以把它当作微扰来处理。
+
+我们把 $x$ 展开成 Newton 解加上一个小的偏离，
+\begin{equation*}
+x = x_0 + x_1.
+\tag{5.80}
+\end{equation*}
+(5.79) 的零阶部分便是
+\begin{equation*}
+\frac{\mathrm{d}^2 x_0}{\mathrm{d}\phi^2} - 1 + x_0 = 0
+\tag{5.81}
+\end{equation*}
+而一阶部分是
+\begin{equation*}
+\frac{\mathrm{d}^2 x_1}{\mathrm{d}\phi^2} + x_1 = \frac{3G^2M^2}{L^2}x_0^2.
+\tag{5.82}
+\end{equation*}
+零阶方程的解可以写成
+\begin{equation*}
+x_0 = 1 + e\cos\phi.
+\tag{5.83}
+\end{equation*}
+这是 Newton 或 Kepler 的标准结果；它描述一个完美的椭圆，$e$ 是偏心率（eccentricity）。一个椭圆由半长轴（semi-major axis）$a$——从中心到椭圆上最远点的距离——和半短轴（semi-minor axis）$b$——从中心到最近点的距离——确定。偏心率满足 $e^2 = 1 - b^2/a^2$。
+
+把 Newton 解代入一阶方程 (5.82)，我们得到
+\begin{align*}
+\frac{\mathrm{d}^2 x_1}{\mathrm{d}\phi^2} + x_1 &= \frac{3G^2M^2}{L^2}(1+e\cos\phi)^2\\
+&= \frac{3G^2M^2}{L^2}\left[\left(1+\frac{1}{2}e^2\right) + 2e\cos\phi + \frac{1}{2}e^2\cos 2\phi\right].
+\tag{5.84}
+\end{align*}
+
+% ---- 书页 215 / p230 ----
+为了求解这个方程，注意到
+\begin{equation*}
+\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}(\phi\sin\phi) + \phi\sin\phi = 2\cos\phi
+\tag{5.85}
+\end{equation*}
+以及
+\begin{equation*}
+\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}(\cos 2\phi) + \cos 2\phi = -3\cos 2\phi.
+\tag{5.86}
+\end{equation*}
+把它们与 (5.84) 相比较，我们看到一个解由下式给出
+\begin{equation*}
+x_1 = \frac{3G^2M^2}{L^2}\left[\left(1+\frac{1}{2}e^2\right) + e\phi\sin\phi - \frac{1}{6}e^2\cos 2\phi\right],
+\tag{5.87}
+\end{equation*}
+欢迎大家自行验证。这里的三项性质各不相同：第一项只是一个常数的移动，而第三项则在零附近振荡。重要的效应于是包含在第二项中，它在一圈接一圈的轨道上不断累积。因此我们把这一项与零阶解合并，写成
+\begin{equation*}
+x = 1 + e\cos\phi + \frac{3G^2M^2e}{L^2}\phi\sin\phi.
+\tag{5.88}
+\end{equation*}
+即使对微扰后的方程来说，这也不是一个完整的解，但它概括了我们关心的部分。特别地，$x$ 的这个表达式可以方便地改写成一个角周期并不完全恰好是 $2\pi$ 的椭圆方程：
+\begin{equation*}
+x = 1 + e\cos[(1-\alpha)\phi],
+\tag{5.89}
+\end{equation*}
+其中我们引入了
+\begin{equation*}
+\alpha = \frac{3G^2M^2}{L^2}.
+\tag{5.90}
+\end{equation*}
+(5.88) 与 (5.89) 的等价性，可以通过把 $\cos[(1-\alpha)\phi]$ 按小参量 $\alpha$ 展开成幂级数看出来：
+\begin{align*}
+\cos[(1-\alpha)\phi] &= \cos\phi + \alpha\frac{\mathrm{d}}{\mathrm{d}\alpha}\cos[(1-\alpha)\phi]_{\alpha=0}\\
+&= \cos\phi + \alpha\phi\sin\phi.
+\tag{5.91}
+\end{align*}
+
+于是我们发现，行星每运转一圈，近日点就前进一个角度
+\begin{equation*}
+\Delta\phi = 2\pi\alpha = \frac{6\pi G^2M^2}{L^2}.
+\tag{5.92}
+\end{equation*}
+为了把角动量 $L$ 换算成更常用的量，我们可以使用对 Newton 轨道有效的表达式，因为我们所考察的这个量已经是
+% ---- 书页 216 / p231 ----
+一个小的微扰了。一个普通的椭圆满足
+\begin{equation*}
+r = \frac{(1-e^2)a}{1+e\cos\phi},
+\tag{5.93}
+\end{equation*}
+其中 $a$ 是半长轴。与我们的零阶解 (5.83) 以及 $x$ 的定义 (5.77) 相比较，我们看到
+\begin{equation*}
+L^2 \approx GM(1-e^2)a.
+\tag{5.94}
+\end{equation*}
+这是一个近似，在轨道是完美闭合椭圆的前提下成立。把它代入 (5.92)，并恢复光速的显式因子，我们得到
+\begin{equation*}
+\Delta\phi = \frac{6\pi GM}{c^2(1-e^2)a}.
+\tag{5.95}
+\end{equation*}
+历史上，水星的近日点进动是广义相对论的第一个检验。事实上，早在 Einstein 发明广义相对论之前，人们就已经知道水星轨道存在一个表观上的偏差，并且已经提出了若干种解决方案（包括太阳系内部的“暗物质”）。Einstein 了解这个偏差，他在建立广义相对论之后最初的任务之一，就是证明它正确地解释了水星的近日点进动。对水星绕太阳的运动，相关的轨道参量为
+\begin{equation*}
+\begin{array}{c}
+\dfrac{GM_\odot}{c^2} = 1.48\times 10^5\,\mathrm{cm},\\[8pt]
+a = 5.79\times 10^{12}\,\mathrm{cm}\\[6pt]
+e = 0.2056,
+\end{array}
+\tag{5.96}
+\end{equation*}
+当然还有 $c = 3.00\times 10^{10}\,\mathrm{cm/sec}$。这就给出
+\begin{equation*}
+\Delta\phi_{\mathrm{Mercury}} = 5.01\times 10^{-7}\,\mathrm{radians/orbit} = 0.103^{\prime\prime}/\mathrm{orbit},
+\tag{5.97}
+\end{equation*}
+其中 $''$ 代表角秒。更常见的做法是用每世纪的进动来表示；水星每 88 天运转一周，由此得到
+\begin{equation*}
+\Delta\phi_{\mathrm{Mercury}} = 43.0^{\prime\prime}/\mathrm{century}.
+\tag{5.98}
+\end{equation*}
+于是，水星轨道的长轴以每 100 年 43.0 角秒的速率进动。观测值是 5601 角秒/100 年。然而，其中大部分来自我们的地心坐标系中分点的岁差（precession of equinoxes）；精确地说，是 5025 角秒/100 年。其他行星的引力摄动又贡献了额外的 532 角秒/100 年，剩下 43 角秒/100 年有待广义相对论来解释，而它解释得相当好。可以想见，Einstein 第一次算出这个结果时一定非常高兴。
+
+在第 2 章中，我们把光子的引力红移当作等效原理的一个推论讨论过。Schwarzschild 度规是一个精确
+% 本块末句在原书书页 216 底部中断（"...The Schwarzschild metric is an exact" 续接书页 217 顶部），下一块需用 %JOIN% 续接本句。

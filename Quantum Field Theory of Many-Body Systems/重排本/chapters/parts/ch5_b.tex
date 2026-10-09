@@ -1,0 +1,345 @@
+% ch5_b 第5章 §5.2中–§5.3.4 (书页 200–212 / p215–p227)
+% 块边界说明：
+%   起点——书页 200（p215）顶部 "The third term in the above equation is the Fock term…"
+%   是完整新句/新段（书页 199 末句 "...does not break spin-rotation symmetry." 已在 ch5_a 收束），
+%   故本块正文直接从该句译起，不用 %JOIN%，也没有 ch5_a 收尾可写入 %--A-TAIL-- 区。
+%   终点——书页 212（p227）末段止于 "…ranges from 0 to v* q0, which"，半句延续到
+%   书页 213（p228）顶部 "agrees with the energy range of a particle–hole excitation of
+%   the same momentum (see Fig. 4.11)."。该半句属于本块收尾，但按 assemble.py 约定
+%   （ch5_c 的标记为 %--B-TAIL--，其内容会被装配到本块之后），故本文件不写该半句的
+%   译文，请 ch5_c 在其 %--B-TAIL-- 区写入（或以其正文首行 %JOIN% "这与……" 续接），
+%   ch5_c 勿重复翻译本块已有的任何内容。
+% 蓝本问题备注：脚注 32 的公式在蓝本中被错插进问题 5.2.1 第 2 问中间，本块已按 PNG
+%   归位为式 (5.2.8) 前的 \footnote；蓝本 5.2.2 节 H_{off} 应为 H_{eff}；
+%   蓝本式 (5.3.8) 左端 \tilde{c} 应为 \tilde{\epsilon}；积分限符号 k dk 等均已按 PNG 校正。
+
+上式中第三项是 Fock 项，它可以改写为
+\begin{align*}
+&\frac{1}{2N_{\mathrm{site}}}\sum_{\pmb{k},\pmb{k}',\pmb{q}} V_{\pmb{q}} \left\langle c^{\dagger}_{\alpha\pmb{k}} c_{\beta,\pmb{k}'+\pmb{q}} \right\rangle \left\langle c_{\alpha,\pmb{k}-\pmb{q}} c^{\dagger}_{\beta\pmb{k}'} \right\rangle \\
+&\qquad = -\frac{1}{2N_{\mathrm{site}}}\sum_{\pmb{k},\pmb{q},\alpha} V_{\pmb{q}}\, n_{\pmb{k}\alpha} n_{\pmb{k}-\pmb{q},\alpha} + \frac{1}{2} V(0) N
+\end{align*}
+其中 $N$ 是电子的总数。我们看到，如果忽略常数项 $\frac{1}{2}V(0)N$，Fock 项就代表平行自旋之间的一种有效吸引相互作用，而相反自旋之间没有相互作用。随着 $|N_{\uparrow}-N_{\downarrow}|$ 增大，Fock 项的贡献变得越来越负。
+
+为了理解平行自旋之间的这种有效吸引，我们注意到，平均势能可以用密度关联函数写成如下形式：
+\begin{equation*}
+\frac{1}{2}\sum_{\pmb{i},\pmb{j}} V(\pmb{i}-\pmb{j}) \left( \langle \rho_{\uparrow}(\pmb{i})\rho_{\uparrow}(\pmb{j}) \rangle + 2\langle \rho_{\uparrow}(\pmb{i})\rho_{\downarrow}(\pmb{j}) \rangle + \langle \rho_{\downarrow}(\pmb{i})\rho_{\downarrow}(\pmb{j}) \rangle \right)
+\end{equation*}
+其中 $\rho_{\uparrow}(\pmb{i})$ 与 $\rho_{\downarrow}(\pmb{i})$ 分别是自旋向上与自旋向下电子的密度。把它与 Hartree 项
+\begin{equation*}
+\frac{1}{2}\sum_{\pmb{i},\pmb{j}} V(\pmb{i}-\pmb{j}) \left( \langle \rho_{\uparrow}(\pmb{i}) \rangle \langle \rho_{\uparrow}(\pmb{j}) \rangle + 2\langle \rho_{\uparrow}(\pmb{i}) \rangle \langle \rho_{\downarrow}(\pmb{j}) \rangle + \langle \rho_{\downarrow}(\pmb{i}) \rangle \langle \rho_{\downarrow}(\pmb{j}) \rangle \right)
+\end{equation*}
+相比较，我们发现 Hartree 项正确地给出了交叉项，因为 $\rho_{\uparrow}(\pmb{i})$ 与 $\rho_{\downarrow}(\pmb{j})$ 相互独立，且 $\langle\rho_{\uparrow}(\pmb{i})\rho_{\downarrow}(\pmb{j})\rangle = \langle\rho_{\uparrow}(\pmb{i})\rangle \langle\rho_{\downarrow}(\pmb{j})\rangle$。然而，Hartree 项高估了平行自旋之间的相互作用。这是因为当格点 $\pmb{i}$ 上有一个电子时，在邻近格点 $\pmb{j}$ 上再找到一个同自旋电子的可能性就变小了。实际上，由于泡利原理（Pauli principle），当 $\pmb{j}=\pmb{i}$ 时这个概率为零。我们发现 $\langle\rho_{\uparrow}(\pmb{i})\rangle \langle\rho_{\uparrow}(\pmb{j})\rangle > \langle\rho_{\uparrow}(\pmb{i})\rho_{\uparrow}(\pmb{j})\rangle$。Fock 项恰好修正了这个误差，因此代表平行自旋之间的一种有效吸引（假定 $V(\pmb{i})>0$）。由于平行自旋之间的这种吸引，如果 Fock 项大于动能项，Fock 项就可能使铁磁态（ferromagnetic state，$N_{\uparrow}\neq N_{\downarrow}$）的能量低于顺磁态（paramagnetic state，$N_{\uparrow}=N_{\downarrow}$）。这是相互作用能够导致对称性破缺的一个例子。
+
+由于尝试波函数描述的是一个密度均匀的态，Hartree 项为
+\begin{equation*}
+\frac{1}{2N_{\mathrm{site}}} V_0 \Big( \sum_{\pmb{k},\alpha} n_{\pmb{k}\alpha} \Big)^{2} = \frac{1}{2N_{\mathrm{site}}} V_0 N^{2}.
+\end{equation*}
+
+于是，尝试态的总能量为
+\begin{align*}
+&\langle \Psi_{n_{\pmb{k}\alpha}} | H | \Psi_{n_{\pmb{k}\alpha}} \rangle \tag{5.2.2}\\
+&\quad = \sum_{\pmb{k},\alpha} n_{\pmb{k}\alpha} \Big( \epsilon_{\pmb{k}} - \mu + \frac{V_0}{2} \Big) + \frac{V_0}{2N_{\mathrm{site}}} \Big( \sum_{\pmb{k},\alpha} n_{\pmb{k}\alpha} \Big)^{2} - \frac{1}{N_{\mathrm{site}}} \sum_{\pmb{k},\pmb{q},\alpha} \frac{V_{\pmb{q}}}{2}\, n_{\pmb{k}\alpha} n_{\pmb{k}-\pmb{q},\alpha}
+\end{align*}
+如果把 $n_{\pmb{k}\alpha}$ 变为 $n_{\pmb{k}\alpha}+\delta n_{\pmb{k}\alpha}$，那么能量的改变为
+\begin{equation*}
+\delta E = \sum_{\pmb{k},\alpha} \delta n_{\pmb{k}\alpha} \Big[ \epsilon_{\pmb{k}} - \mu + \rho_0 V_0 + \frac{1}{2} V(0) + \Sigma_{\pmb{k}\alpha} \Big] \tag{5.2.3}
+\end{equation*}
+其中
+\begin{equation*}
+\Sigma_{\pmb{k}\alpha} = -\frac{1}{N_{\mathrm{site}}} \sum_{\pmb{k},\alpha} V_{\pmb{q}}\, n_{\pmb{k}-\pmb{q},\alpha}, \tag{5.2.4}
+\end{equation*}
+（译注：按上下文，此式求和应对 $\pmb{q}$ 进行；原书求和限排印为 $\pmb{k},\alpha$。）
+$\rho_0 = N/N_{\mathrm{site}}$ 是每格点电子数，而且我们只保留了与 $\delta n_{\pmb{k}\alpha}$ 成线性的那些项。
+
+使能量取极小的占据数 $n_{\pmb{k}\alpha}$ 具有如下性质：对任何 $\delta n_{\pmb{k}\alpha}$，$\delta E$ 均为正。这样一组占据数满足
+\begin{align*}
+&n_{\pmb{k}\alpha} = 1, \quad \text{若 } \epsilon_{\pmb{k}} - \mu' + \Sigma_{\pmb{k}\alpha} < 0\\
+&n_{\pmb{k}\alpha} = 0, \quad \text{若 } \epsilon_{\pmb{k}} - \mu' + \Sigma_{\pmb{k}\alpha} > 0 \tag{5.2.5}
+\end{align*}
+其中 $\mu' = \mu - \rho_0 V_0 - \frac{1}{2}V(0)$。我们看到，在费米面上 $\epsilon_{\pmb{k}} - \mu' + \Sigma_{\pmb{k}\alpha} = 0$，$n_{\pmb{k}\alpha}$ 在那里从 0 变到 1。基态占据数 $n_{\pmb{k}\alpha}$ 通过联立求解式 (5.2.5) 与 (5.2.4) 得到。
+
+\subsection{Hartree--Fock 近似中的激发谱}
+
+得到基态占据数 $n_{\pmb{k}\alpha}$ 之后，我们就可以考虑基态之上的激发。设激发的尝试波函数由另一组占据数 $n_{\pmb{k}\alpha}+\delta n_{\pmb{k}\alpha}$ 描述。这样一个激发的（平均）能量已在上面算出：
+\begin{equation*}
+\delta E = \sum_{\pmb{k},\alpha} \delta n_{\pmb{k}\alpha} \big[ \epsilon_{\pmb{k}} - \mu' + \Sigma_{\pmb{k}\alpha} \big] \tag{5.2.6}
+\end{equation*}
+
+我们看到，在 Hartree--Fock 近似下，相互作用系统的低能激发由一个自由费米子系统描述。具体地说，有下列几条论断。
+
+\begin{enumerate}
+\item 多体本征态（基态和低能激发）由占据数 $n_{\pmb{k}\alpha}=0,1$ 标记。低能激发的数目与自由费米子理论中的相同。
+\item 多体本征态的能量由被占据态的能量之和给出。更确切地说，我们可以给每个动量态 $(\pmb{k},\alpha)$ 指定一个能量 $\xi^{*}_{\pmb{k}\alpha}$，使得本征态的总能量可以表示为 $\sum_{\pmb{k},\alpha} n_{\pmb{k}\alpha}\xi^{*}_{\pmb{k}} + \text{常数}$。
+\item 每个动量态的能量被相互作用所修正：$\xi^{*}_{\pmb{k}\alpha} = \epsilon_{\pmb{k}} - \mu' + \Sigma_{\pmb{k}\alpha}$。修正量 $\Sigma_{\pmb{k}\alpha}$ 称为电子的自能（self-energy）。
+\end{enumerate}
+
+上述各条可以用一个低能有效哈密顿量概括：
+\begin{equation*}
+H_{\mathrm{eff}} = \sum_{\pmb{k},\alpha} \big( \epsilon_{\pmb{k}} - \mu + \Sigma_{\pmb{k}\alpha} \big) c^{\dagger}_{\alpha\pmb{k}} c_{\alpha\pmb{k}} \tag{5.2.7}
+\end{equation*}
+
+上面的有效哈密顿量也可以用平均场理论直接导出（见问题 5.2.2）。
+
+对于三维的库仑相互作用 $V(\pmb{x}) = e^{2}/|\pmb{x}|$，我们求得\footnote{由于 $V_{\pmb{q}} = 4\pi e^{2}/\pmb{q}^{2}$，我们有
+\begin{align*}
+\Sigma_{\pmb{k}\alpha} &= -\int \frac{\mathrm{d}^{3}\pmb{q}}{(2\pi)^{3}}\, \frac{4\pi e^{2}}{|\pmb{k}-\pmb{q}|^{2}}\, n_{\pmb{q}\alpha} = -\frac{e^{2}}{\pi} \int_{0}^{k_{F\alpha}} q^{2}\,\mathrm{d}q \int_{-1}^{+1} \frac{\mathrm{d}t}{k^{2}+q^{2}-2kqt}\\
+&= -\frac{e^{2}}{\pi k} \int_{0}^{k_{F\alpha}} q\,\mathrm{d}q\, \ln\left| \frac{k+q}{k-q} \right| = -\frac{e^{2}k_{F\alpha}}{\pi} \left( 1 + \frac{1-y^{2}}{2y} \ln\left| \frac{1+y}{1-y} \right| \right)
+\end{align*}}
+\begin{equation*}
+\Sigma_{\pmb{k}\alpha} = -\frac{e^{2}k_{F\alpha}}{\pi} \left( 1 + \frac{1-y^{2}}{2y} \ln\left| \frac{1+y}{1-y} \right| \right), \qquad y = \frac{k}{k_{F\alpha}} \tag{5.2.8}
+\end{equation*}
+
+我们注意到，重整化的费米速度
+\begin{equation*}
+v^{*}_{F\alpha}(k) = v_{F\alpha}(k) + \frac{\partial \Sigma_{\pmb{k}\alpha}}{\partial k}
+\end{equation*}
+在 $k \to k_{F\alpha}$（即 $y \to 1$）时按 $-\ln|k - k_{F\alpha}|$ 的方式发散。然而，实验上从未观察到这种发散，Hartree--Fock 近似的这个具体结果实际上是不正确的。
+
+\subsection*{问题 5.2.1}
+
+考虑一个一维格点电子系统，电子之间有在位势相互作用（on-site potential interaction），系统由下式描述：
+\begin{equation*}
+H = -t \sum_{i} \big( c^{\dagger}_{\alpha,i} c_{\alpha,i+1} + h.c. \big) + V \sum_{i} \Big( \sum_{\alpha} c^{\dagger}_{\alpha,i} c_{\alpha,i} \Big)^{2}
+\end{equation*}
+
+\begin{enumerate}
+\item 对 $V=0$ 的无相互作用系统，求动量为 $k$ 的单粒子态的能量 $\epsilon_k$。
+\item 用 Hartree--Fock 近似求基态能量 $E(N_{\uparrow}, N_{\downarrow})$，其中自旋向上与自旋向下电子的数目分别为 $N_{\uparrow}$ 与 $N_{\downarrow}$。你可以假定电子总数 $N$ 小于格点数 $N_{\mathrm{site}}$。
+\item 在 $N_{\uparrow}-N_{\downarrow}=0$ 的邻域内（固定 $N$）考察能量 $E(N_{\uparrow}, N_{\downarrow})$。证明：若 $V<V_0$，则 $E(N_{\uparrow}, N_{\downarrow})$ 在 $N_{\uparrow}-N_{\downarrow}=0$ 处取局部极小；若 $V>V_0$，则在 $N_{\uparrow}-N_{\downarrow}=0$ 处取局部极大。求出临界值 $V_0$。
+\item 对 $V<V_0$ 的自旋非极化态，计算自旋磁化率 $\chi$。当 $V\to V_0$ 时 $\chi$ 的行为如何？
+\item 在固定 $N$ 下对上面得到的基态能量求极小。确定 $V$ 的临界值 $V_c$，超过它系统就变为铁磁体。在极小化的基态中求总自旋 $S_{z0}$ 的值，假定铁磁体的自旋指向 $z$ 方向。
+\item 对 $V<V_c$ 与 $V>V_c$ 两种情形分别计算 $\Sigma_{\pmb{k}\alpha}$，并求出极小化基态之上激发的能谱。
+\item 对 $V<V_c$ 与 $V>V_c$ 两种情形，求翻转一个自旋产生一个激发（即令总自旋 $S_z$ 改变 1）所需的最小能量。对你的结果加以评论（你相信它吗？）。
+\end{enumerate}
+
+\subsection*{问题 5.2.2}
+
+把一个对 $c^{\dagger}_{\alpha\pmb{k}} c_{\beta\pmb{k}'}$ 换成其平均 $\left\langle c^{\dagger}_{\alpha\pmb{k}} c_{\beta\pmb{k}'} \right\rangle$，导出式 (5.2.7)。（这是一种平均场近似。）不同的换法给出若干项贡献。注意 $\langle H_{\mathrm{eff}} \rangle$ 不同于 Hartree--Fock 近似中算得的基态能量 $\langle H \rangle$。补上一个常数项（它可以用 $\left\langle c^{\dagger}_{\alpha\pmb{k}} c_{\beta\pmb{k}'} \right\rangle$ 写出），使得 $\langle H_{\mathrm{eff}} \rangle = \langle H \rangle$。
+
+\section{Landau 费米液体理论}
+
+\begin{keypoints}
+\item 相互作用费米子系统的低能激发由自由的准粒子描述。换言之，相互作用费米子 $\approx$ 自由费米子。
+\item 即使相互作用远远大于能级间隔，微扰论也仍然有效。
+\end{keypoints}
+
+Landau 费米液体理论（Landau, 1956, 1959）是传统多体理论的两大基石之一。它实质上断言：由相互作用电子构成的金属，其行为几乎就像一个自由费米子系统。Landau 费米液体理论非常有用，因为它描述了（几乎）所有已知的金属。它也为我们理解许多非金属态奠定了基础，例如超导体、反铁磁态等；这些非金属态被实现为费米液体的某些失稳。另一方面，Landau 费米液体理论又十分神秘，因为普通金属中电子之间的库仑相互作用与费米能一样大，比费米能附近的能级间隔大得多。对于这样强的相互作用，（通常意义下的）微扰论会失效。我们很难理解，一个具有如此强相互作用的无能隙系统，为什么会类似于一个无相互作用的系统。
+
+要体会 Landau 费米液体理论的精妙，让我们看一看相互作用电子的多体哈密顿量：
+\begin{equation*}
+H = \sum_{i} \left( \frac{\hbar^{2}}{2m}\, \partial^{2}_{\pmb{x}_i} + U(\pmb{x}_i) \right) + \sum_{i<j} \frac{e^{2}}{|\pmb{x}_i - \pmb{x}_j|}
+\end{equation*}
+
+对理论工作者来说，要求解这样一个“讨厌的”系统是毫无希望的，更不用说去猜想到这样一个系统的行为竟然几乎像自由电子系统了。这样大胆的猜想当然不是凝聚态物理学家提出来的。是大自然本身在一次次地提示我们：尽管库仑相互作用很强，金属的行为却恰恰就像自由电子系统。直到今天，仍然令我惊叹的是，这么多金属都能用 Landau 费米液体理论来描述；而令我困惑的是，想找到一个不能用 Landau 费米液体理论描述的金属竟如此困难。
+
+在技术层面上，Landau 费米液体理论意味着：尽管相互作用比能级间隔大得多，按相互作用作的微扰展开却行之有效。有鉴于此，要理解金属的物理性质，我们可以从自由电子系统出发，用微扰论计算各种物理量。这一做法非常成功，以致 Landau 费米液体理论成了相互作用费米子系统的“标准模型”。直到不久之前，Landau 费米液体理论的统治地位才受到挑战——先是 1982 年的分数量子霍尔态，随后是 1987 年的高 $T_c$ 超导体。
+
+\subsection{基本假设及其推论}
+
+\begin{keypoints}
+\item 准粒子的概念。
+\end{keypoints}
+
+Landau 费米液体理论真正基本的假设只有一条。
+
+\begin{quote}
+低能本征态（包括基态和低能激发）由一组量子数 $n_{\pmb{k}\alpha}=0,1$ 标记，这组量子数称为“占据数”。
+\end{quote}
+
+由于这些激发与自由费米子系统中的激发一一对应，我们可以借用自由费米子系统的语言来描述 Landau 费米液体中的激发，并称这些激发为准粒子激发。本征态的能量是 $n_{\pmb{k}\alpha}$ 的函数。围绕基态占据数 $n_{0,\pmb{k}\alpha}$ 展开，我们可以写出
+\begin{equation*}
+E_{\{n_{\pmb{k}\alpha}\}} = E_g + \sum_{\pmb{k},\alpha} \delta n_{\pmb{k}\alpha}\, \xi^{*}_{\pmb{k}\alpha} + \frac{1}{2\mathcal{V}} \sum_{\pmb{k}\alpha,\pmb{k}'\beta} f(\pmb{k},\alpha;\pmb{k}',\beta)\, \delta n_{\pmb{k}\alpha} \delta n_{\pmb{k}'\beta} \tag{5.3.1}
+\end{equation*}
+其中 $\xi^{*}_{\pmb{k}\alpha}$ 是准粒子的能量，$f(\pmb{k},\alpha;\pmb{k}',\beta)$ 代表准粒子之间的相互作用。$f(\pmb{k},\alpha;\pmb{k}',\beta)$ 称为费米液体函数（Fermi liquid function），它对确定系统的低能性质也十分重要。我们注意到，Hartree--Fock 近似得到的能量正具有 (5.3.1) 的形式（见式 (5.2.2)）。上一节中我们忽略的 $\delta n_{\pmb{k}\alpha}$ 的二次项具有如下形式：
+\begin{equation*}
+\frac{1}{2\mathcal{V}} V_0 \Big( \sum_{\pmb{k},\alpha} \delta n_{\pmb{k}\alpha} \Big)^{2} - \frac{1}{2\mathcal{V}} \sum_{\pmb{k},\pmb{q},\alpha} V_{\pmb{q}}\, \delta n_{\pmb{k}\alpha} \delta n_{\pmb{k}-\pmb{q},\alpha}
+\end{equation*}
+于是，在 Hartree--Fock 近似下我们有
+\begin{align*}
+&\xi^{*}_{\pmb{k}\alpha} = \epsilon_{\pmb{k}} - \mu + \Sigma_{\pmb{k}\alpha}\\
+&f(\pmb{k},\alpha;\pmb{k}',\beta) = V_0 - V_{\pmb{k}-\pmb{k}'}\, \delta_{\alpha\beta} \tag{5.3.2}
+\end{align*}
+
+式 (5.3.1) 确定了所有低能激发的能量，相互作用费米子系统的许多低能性质都可以用准粒子能量 $\xi^{*}$ 与费米液体函数 $f$ 表达。通过把占据数 $n_{\pmb{k}\alpha}$ 从 0 变到 1（或从 1 变到 0）而在基态之上产生一个激发，需要花费能量 $\xi^{*}_{\pmb{k}\alpha}$。然而，当存在其他激发时（比如说由于温度有限），由于准粒子之间的相互作用，所花费的能量就与 $\xi^{*}_{\pmb{k}\alpha}$ 不同。由式 (5.3.1)，我们求得新的能量代价为
+\begin{equation*}
+\epsilon^{T}_{\pmb{k}\alpha} = \xi^{*}_{\pmb{k}\alpha} + \frac{1}{\mathcal{V}} \sum_{\pmb{k}'\beta} f(\pmb{k},\alpha;\pmb{k}',\beta)\, \delta n_{\pmb{k}'\beta}
+\end{equation*}
+
+产生这样一个准粒子所引起的动量改变与自由费米子系统中的相同，即 $\Delta\pmb{K} = \pmb{k}$，而由 $n_{\pmb{k}\alpha}$ 描述的态的总动量为
+\begin{equation*}
+\pmb{K} = \sum_{\pmb{k}\alpha} \pmb{k}\, n_{\pmb{k}\alpha}
+\end{equation*}
+这一结果可以从 Landau 费米液体理论的第二条假设得到，该假设表述如下。
+
+\begin{quote}
+当我们把相互作用关掉时，低能本征态绝热地变为自由费米子系统的相应本征态，并由同样的占据数 $n_{\pmb{k}\alpha}$ 标记。
+\end{quote}
+
+由于动量是量子化的，在绝热地加上相互作用的过程中它们不会改变。
+
+由动量与能量，我们求得准粒子的速度为
+\begin{equation*}
+\pmb{v}^{T}(\pmb{k}) = \partial_{\pmb{k}}\, \epsilon^{T}_{\pmb{k}\alpha}
+\end{equation*}
+在零温下，它变为
+\begin{equation*}
+\pmb{v}^{*}(\pmb{k}) = \partial_{\pmb{k}}\, \xi^{*}_{\pmb{k}\alpha}
+\end{equation*}
+我们注意到，在费米面附近，准粒子的行为就像一个具有如下质量的粒子：
+\begin{equation*}
+m^{*}_{\alpha} = \frac{k_{F\alpha}}{|\pmb{v}^{*}(\pmb{k}_{F\alpha})|}
+\end{equation*}
+这里 $m^{*}$ 称为准粒子的有效质量（effective mass），它未必等于原来电子的质量。
+
+我们看到，准粒子的能量 $\epsilon^{T}$ 依赖于其他准粒子的存在，因而不是常数。然而，由于求和 $\frac{1}{\mathcal{V}}\sum_{\pmb{k}\alpha,\pmb{k}'\beta} f(\pmb{k},\alpha;\pmb{k}',\beta)\delta n_{\pmb{k}'\beta}$ 实际上是对许多准粒子作平均（假定 $f(\pmb{k},\alpha;\pmb{k}',\beta)$ 不过分奇异），它的热涨落很小，$\epsilon^{T}$ 可以当作常数处理：
+\begin{equation*}
+\epsilon^{T}_{\pmb{k}\alpha} = \xi^{*}_{\pmb{k}\alpha} + \frac{1}{\mathcal{V}} \sum_{\pmb{k}\alpha,\pmb{k}'\beta} f(\pmb{k},\alpha;\pmb{k}',\beta) \left\langle\!\left\langle \delta n_{\pmb{k}'\beta} \right\rangle\!\right\rangle
+\end{equation*}
+其中 $\langle\!\langle\ldots\rangle\!\rangle$ 代表热平均。由此我们得到平均占据数
+\begin{equation*}
+\left\langle\!\left\langle n_{\pmb{k}\alpha} \right\rangle\!\right\rangle = n_F\big( \epsilon^{T}_{\pmb{k}\alpha} \big) = \frac{1}{\mathrm{e}^{\epsilon^{T}_{\pmb{k}\alpha}/T} + 1}
+\end{equation*}
+当然，$\epsilon^{T}_{\pmb{k}\alpha}$ 依赖于 $\langle\!\langle n_{\pmb{k}\alpha} \rangle\!\rangle$，我们必须求解上述方程才能得到 $\langle\!\langle n_{\pmb{k}\alpha} \rangle\!\rangle$。给定 $\langle\!\langle n_{\pmb{k}\alpha} \rangle\!\rangle$，费米液体的所有热力学性质便都可以确定。
+
+为计算低温下的比热，我们注意到平均占据数可以近似为
+\begin{equation*}
+\left\langle\!\left\langle n_{\pmb{k}\alpha} \right\rangle\!\right\rangle = n_F\big( \epsilon^{T}_{\pmb{k}\alpha} \big) = \frac{1}{\mathrm{e}^{\epsilon^{T}_{\pmb{k}\alpha}/T} + 1} \approx \frac{1}{\mathrm{e}^{\xi^{*}_{\pmb{k}\alpha}/T} + 1}
+\end{equation*}
+这是因为当 $T\to 0$ 时 $(\epsilon^{T}_{\pmb{k}\alpha} - \xi^{*}_{\pmb{k}\alpha}) \sim \langle\!\langle \delta n_{\pmb{k}\alpha} \rangle\!\rangle$ 按 $T^{2}$ 趋于零（注意 $\delta n_{\pmb{k}\alpha}$ 在跨越费米面时变号）。因此，$\langle\!\langle n_{\pmb{k}\alpha} \rangle\!\rangle$ 与一个质量为 $m^{*}$ 的自由电子系统的平均占据数相同。比热 $C_V$ 也由同一个公式给出。用态密度表示（见式 (4.2.12)，但把 $m$ 换成 $m^{*}$），我们有 $C_V = 2\,\frac{2\pi^{2}}{3} N(E_F) T$。相互作用贡献一个 $T^{3}/E_F^{3}$ 量级的项。我们看到，比热只依赖于有效质量 $m^{*}$。这为我们提供了一条实验测量 Landau 费米液体有效质量 $m^{*}$ 的途径。在问题 5.3.1 中我们将看到，其他低能性质（如压缩率 $\chi$）则同时依赖于有效质量 $m^{*}$ 与费米液体函数 $f$。
+
+我们前面提到，在费米液体理论中，把 $n_{\pmb{k}\alpha}$ 从 0 变到 1 就在基态之上产生一个准粒子。那么，把 $c^{\dagger}_{\pmb{k}\alpha}$ 作用到基态波函数 $|\Psi_0\rangle$ 上，能产生这样一个准粒子态 $|\Psi_{\pmb{k}}\rangle$ 吗？答案是不能。虽然 $c^{\dagger}_{\pmb{k}\alpha}|\Psi_0\rangle$ 与准粒子态携带相同的动量，但它未必是能量本征态。$c^{\dagger}_{\pmb{k}\alpha}|\Psi_0\rangle$ 可以是一个单准粒子态与两个准粒子加一个准空穴（quasihole）的态等等的叠加。这些态都可以携带相同的动量 $\pmb{k}$，但能量各不相同。因此，$c^{\dagger}_{\pmb{k}\alpha}|\Psi_0\rangle$ 与 $|\Psi_{\pmb{k}}\rangle$ 之间的交叠
+\begin{equation*}
+Z = \big| \langle \Psi_{\pmb{k}} | c^{\dagger}_{\pmb{k}\alpha} | \Psi_0 \rangle \big|^{2}
+\end{equation*}
+可能不等于 1。Landau 费米液体理论的第三条假设表述如下。
+
+\begin{quote}
+在热力学极限（即 $\mathcal{V}\to\infty$ 极限）下，对于费米面附近的 $\pmb{k}$，交叠 $Z = \big|\langle \Psi_{\pmb{k}} | c^{\dagger}_{\pmb{k}\alpha} | \Psi_0 \rangle\big|^{2}$ 不为零。
+\end{quote}
+
+这意味着 $T=0$ 时的电子谱函数 $\pi^{-1}\mathrm{Im}G(\pmb{k},\omega)$ 含有一个 $\delta$ 函数：$Z\delta(\omega - \xi^{*}_{\pmb{k}\alpha})$。两个准粒子加一个准空穴的那些态，其能量可以弥散在一个有限范围内。这些态对谱函数贡献一个有限的背景。
+
+\subsection*{问题 5.3.1}
+
+计算 Landau 费米液体的压缩率 $\chi$ 与自旋磁化率 $\chi_s$。计算 $\chi$、$\chi_s$ 与 $C_V$ 之间的比值，并与自由电子系统的相应比值比较。
+
+\subsection{$T=0$ 费米液体的玻尔兹曼方程}
+
+在 5.1.3 节中，我们曾尝试用密度涨落来描述费米液体。流体动力学方法在一维有效，但在一维以上却严重失效。原因在于：在一维以上，跨越费米面的粒子--空穴激发远远多于单一密度模式所能描述的程度。另一方面，Landau 费米液体理论暗示，一个均匀费米液体可以完全用占据数 $n_{\pmb{k}}$ 描述，而密度 $\sum_{\pmb{k}} n_{\pmb{k}}$ 只是 $n_{\pmb{k}}$ 的一种组合。这提示我们：如果能推广 Landau 理论，使之适用于非均匀且随时间变化的 $n_{\pmb{k}}$，我们就能得到一个对一维以上的费米液体给出完整描述的流体动力学理论。本节就要发展这样一个理论。这一流体动力学理论也可以看作一维以上的玻色化（Luther, 1979; Haldane, 1992; Houghton and Marston, 1993; Neto and Fradkin, 1994）。
+
+让我们考虑一个自旋 $1/2$ 的相互作用电子系统。基态由占据数 $n_{0,\pmb{k}\alpha}$ 描述，一个集体激发态由 $n_{\pmb{k}\alpha}(\pmb{x},t)$ 描述。令 $\delta n_{\pmb{k}\alpha}(\pmb{x},t) = n_{\pmb{k}\alpha}(\pmb{x},t) - n_{0,\pmb{k}\alpha}$。这里我们假定 $\delta n_{\pmb{k}\alpha}(\pmb{x},t)$ 是 $\pmb{x}$ 和 $t$ 的光滑函数，并把它当作局域常数处理。在集体激发态背景上的准粒子能量为
+\begin{equation*}
+\tilde{\epsilon}_{\pmb{k}\alpha}(\pmb{x},t) = \xi^{*}_{\pmb{k}\alpha} + \frac{1}{\mathcal{V}} \sum_{\pmb{k}'\beta} f(\pmb{k},\alpha;\pmb{k}',\beta)\, \delta n_{\pmb{k}'\beta}(\pmb{x},t) \tag{5.3.3}
+\end{equation*}
+于是，准粒子位置与动量的变化由下式给出：
+\begin{equation*}
+\dot{\pmb{x}} = \partial_{\pmb{k}}\, \tilde{\epsilon}_{\pmb{k}\alpha}(\pmb{x},t), \qquad \dot{\pmb{k}} = -\partial_{\pmb{x}}\, \tilde{\epsilon}_{\pmb{k}\alpha}(\pmb{x},t). \tag{5.3.4}
+\end{equation*}
+准粒子的运动引起 $n(\pmb{x},t)$ 的如下变化：$\partial n_{\pmb{k}\alpha}/\partial t = -(\partial n_{\pmb{k}\alpha}/\partial \pmb{x})\dot{\pmb{x}} - (\partial n_{\pmb{k}\alpha}/\partial \pmb{k})\dot{\pmb{k}} = -(\partial n_{\pmb{k}\alpha}/\partial \pmb{x})\cdot(\partial\tilde{\epsilon}/\partial \pmb{k}) + (\partial n_{\pmb{k}\alpha}/\partial \pmb{k})\cdot(\partial\tilde{\epsilon}/\partial \pmb{x})$。这样一个流体动力学方程也常写成如下形式：$\mathrm{d}n/\mathrm{d}t = (\partial n_{\pmb{k}\alpha}/\partial t) + (\partial n_{\pmb{k}\alpha}/\partial \pmb{x})\cdot(\partial\tilde{\epsilon}/\partial \pmb{k}) - (\partial n_{\pmb{k}\alpha}/\partial \pmb{k})\cdot(\partial\tilde{\epsilon}/\partial \pmb{x}) = 0$。令 $\mathrm{d}n/\mathrm{d}t$ 等于由电子--电子相互作用引起的附加散射所导致的 $n$ 的重新分布，就得到玻尔兹曼方程：
+\begin{equation*}
+\frac{\partial n_{\pmb{k}\alpha}}{\partial t} + \frac{\partial n_{\pmb{k}\alpha}}{\partial \pmb{x}} \cdot \frac{\partial \tilde{\epsilon}}{\partial \pmb{k}} - \frac{\partial n_{\pmb{k}\alpha}}{\partial \pmb{k}} \cdot \frac{\partial \tilde{\epsilon}}{\partial \pmb{x}} = I[n_{\pmb{k}\alpha}]
+\end{equation*}
+玻尔兹曼方程描述集体激发的动力学。
+
+作为玻尔兹曼方程的一个应用，让我们来计算一个准粒子携带的电流。我们知道准粒子的速度为 $\pmb{v}^{*} = \partial\xi^{*}/\partial\pmb{k}$。于是，不加深究的话，人们会预期电流应为 $\mathcal{V}^{-1}\sum_{\pmb{k}} \delta n_{\pmb{k}\alpha} \pmb{v}^{*}(\pmb{k})$。结果发现，准粒子相互作用对电流有一个非平庸的修正。电子数守恒意味着 $\sum_{\pmb{k}} I[n] = 0$，从而 $\sum_{\pmb{k}}\,\mathrm{d}n_{\pmb{k}\alpha}/\mathrm{d}t = 0$。这使我们得以证明
+\begin{equation*}
+\partial_t\, \mathcal{V}^{-1} \sum_{\pmb{k}} n_{\pmb{k}\alpha}(\pmb{x},t) + \partial_{\pmb{x}}\, \pmb{J}(\pmb{x},t) = 0
+\end{equation*}
+其中
+\begin{equation*}
+\pmb{J}(\pmb{x},t) = \mathcal{V}^{-1} \sum_{\pmb{k}} n_{\pmb{k}\alpha}(\pmb{x},t)\, \frac{\partial \tilde{\epsilon}}{\partial \pmb{k}} \tag{5.3.5}
+\end{equation*}
+由于
+\begin{equation*}
+\rho(\pmb{x},t) = \mathcal{V}^{-1} \sum_{\pmb{k}} n_{\pmb{k}\alpha}(\pmb{x},t)
+\end{equation*}
+是电子数密度，$\pmb{J}$ 可以解释为数流密度（number current density）。如果只保留线性的 $\delta n$ 项，则 $\pmb{J}$ 变为
+\begin{align*}
+&\pmb{J}(\pmb{x},t) = \mathcal{V}^{-1} \sum_{\pmb{k}} \delta n_{\pmb{k}\alpha}(\pmb{x},t)\, \tilde{\pmb{v}}\\
+&\tilde{\pmb{v}}(\pmb{k}) = \pmb{v}^{*}(\pmb{k}) + \int \frac{\mathrm{d}^{d}\pmb{k}'}{(2\pi)^{d}} \sum_{\beta} f(\pmb{k},\alpha;\pmb{k}',\beta)\, \pmb{v}^{*}(\pmb{k}')\, \delta\big( \xi^{*}_{\pmb{k}'} \big) \tag{5.3.6}
+\end{align*}
+
+$\tilde{\pmb{v}}$ 的表达式中的第二项是对自由费米子结果的一个修正，称为拖曳项（drag term）或回流项（back-flow term）。为了理解这一修正，我们注意到：作为准粒子之间相互作用的结果，处于 $\pmb{k}$ 的一个准粒子也会使填满的费米海中准粒子的速度发生微小的改变。这样，费米海中的电子也对数流密度有贡献。这就是拖曳/回流项的来源。
+
+在弛豫时间近似（relaxation-time approximation）下，我们设 $I[n] = -\tau^{-1}\delta n$。为了把作用在准粒子上的外力 $\pmb{F}$ 包括进来，需要把式 (5.3.4) 中的 $-\partial_{\pmb{x}}\tilde{\epsilon}$ 换成 $\pmb{F} - \partial_{\pmb{x}}\tilde{\epsilon}$。由此得到的玻尔兹曼方程变为
+\begin{equation*}
+\frac{\partial n_{\pmb{k}\alpha}}{\partial t} + \frac{\partial n_{\pmb{k}\alpha}}{\partial \pmb{x}} \cdot \frac{\partial \tilde{\epsilon}}{\partial \pmb{k}} + \frac{\partial n_{\pmb{k}\alpha}}{\partial \pmb{k}} \cdot \left( \pmb{F} - \frac{\partial \tilde{\epsilon}}{\partial \pmb{x}} \right) = -\tau^{-1} \delta n_{\pmb{k}\alpha} \tag{5.3.7}
+\end{equation*}
+我们可以用上式计算多种不同的输运性质。
+
+在 Landau 费米液体理论中，假定准粒子具有无限长的寿命，不会衰变到任何其他态。对于均匀的 $\delta n_{\pmb{k}\alpha}$ 以及 $\pmb{F}=0$ 的情形，式 (5.3.7) 约化为 $\partial n_{\pmb{k}\alpha}/\partial t = -\tau^{-1}\delta n_{\pmb{k}\alpha}$。我们看到 $\tau$ 就是准粒子的寿命。因此，在 Landau 费米液体理论中碰撞项（collision term）$I[n]$ 被假定为零。对于真实的相互作用电子系统，$I[n]$ 的行为像 $|\pmb{k}_F - \pmb{k}|^{2}\delta n$（见 5.4.4 节），在低能下可以忽略。
+
+\subsection*{问题 5.3.2}
+
+证明式 (5.3.5) 与 (5.3.6)。（提示：$\frac{\partial n}{\partial \pmb{x}}\frac{\partial \tilde{\epsilon}}{\partial \pmb{k}} - \frac{\partial n}{\partial \pmb{k}}\frac{\partial \tilde{\epsilon}}{\partial \pmb{x}} = \frac{\partial}{\partial \pmb{x}}\Big( n\frac{\partial \tilde{\epsilon}}{\partial \pmb{k}} \Big) - \frac{\partial}{\partial \pmb{k}}\Big( n\frac{\partial \tilde{\epsilon}}{\partial \pmb{x}} \Big)$。另外，$\partial_{\pmb{k}} n_{0,\pmb{k}} = -\pmb{v}^{*}(\pmb{k})\delta(\xi^{*})$。）
+
+\subsection{费米液体的流体动力学理论}
+
+本节我们将得到一个约化玻尔兹曼方程（reduced Boltzmann equation），它可作为费米液体流体动力学描述的经典运动方程（Kim et al., 1995）。这样一个约化玻尔兹曼方程推广了 5.1.3 节讨论过的密度模式的运动方程。
+
+得到约化玻尔兹曼方程的关键，是用费米面位移（Fermi surface displacement）$h$ 来描述集体涨落（见图 5.4(a)）。有人可能会问：为什么我们不用占据数 $n_{\pmb{k}\alpha}$ 来描述集体涨落？发展费米液体流体动力学理论的重要一步，是找出可以用来构建经典流体动力学理论的那个经典场。均匀的占据数 $n_{\pmb{k}\alpha}$ 本已能描述所有激发态；一旦包括对空间的依赖，$n_{\pmb{k}\alpha}(\pmb{x},t)$ 就成为一组超完备（over complete）的变量。结果表明，具有空间依赖性的 $h$ 是一个恰当的选择。
+%FIG{5.4}: {(a) 费米液体中的集体涨落可以用费米面的位移来描述。(b) $l=1$ 模式对应偶极涨落，(c) $l=2$ 模式对应四极涨落。}
+
+为简单起见，我们把讨论限制在二维系统，并且略去自旋指标。位移 $h$ 与占据数 $n_{\pmb{k}}$ 之间的关系如下：
+\begin{equation*}
+\tilde{\rho}(\theta) = \int \frac{k\,\mathrm{d}k}{(2\pi)^{2}}\, \delta n_{\pmb{k}=k\hat{\pmb{k}}}, \qquad h(\theta) = (2\pi)^{2} \tilde{\rho}(\theta)/k_F
+\end{equation*}
+其中 $\hat{\pmb{k}} = \cos(\theta)\pmb{x} + \sin(\theta)\pmb{y}$ 是 $\theta$ 方向的单位矢量（见图 5.4(a)）。结果表明 $\tilde{\rho}(\theta)$ 更为方便，所以下面我们用 $\tilde{\rho}$ 代替 $h$。由定义我们看到，$\int \mathrm{d}\theta\, \tilde{\rho}(\theta)$ 是电子总密度的涨落，对应于式 (5.1.2) 中的 $\rho$。
+
+对于小涨落，$h$ 接近于零，准粒子能量 (5.3.3) 可以简化为
+\begin{equation*}
+\tilde{\epsilon}_{\pmb{k}}(\pmb{x},t) = \xi^{*}_{\pmb{k}} + \int \mathrm{d}\theta'\, f(\theta,\theta')\, \tilde{\rho}(\theta',\pmb{x},t) \tag{5.3.8}
+\end{equation*}
+其中 $\theta$ 是 $\pmb{k}$ 的方位角，$f(\theta,\theta') = f(k_F\hat{\pmb{k}}, k_F\hat{\pmb{k}}')$ 是费米面上两点之间的费米函数。对式 (5.3.7) 的两边施行积分 $\int \frac{k\,\mathrm{d}k}{(2\pi)^{2}}$，就得到约化玻尔兹曼方程。假定转动对称性，我们求得\footnote{注意 $\frac{\partial n}{\partial \pmb{k}} = -\hat{\pmb{k}}\,\delta(|\pmb{k}| - k_F) + \frac{\partial \delta n}{\partial \pmb{k}}$。我们发现
+\begin{align*}
+&\int \frac{k\,\mathrm{d}k}{(2\pi)^{2}}\, \hat{\pmb{k}}\, \delta(|\pmb{k}| - k_F) = \frac{k_F \hat{\pmb{k}}}{(2\pi)^{2}}\\
+&\int \frac{k\,\mathrm{d}k}{(2\pi)^{2}} \left( \hat{\pmb{k}}_{\perp} k_F^{-1} \frac{\partial \delta n}{\partial \theta} + \hat{\pmb{k}} \frac{\partial \delta n}{\partial \pmb{k}} \right) = \hat{\pmb{k}}_{\perp} k_F^{-1} \frac{\partial \tilde{\rho}}{\partial \theta} - \int \frac{k\,\mathrm{d}k}{(2\pi)^{2}}\, k^{-1} \hat{\pmb{k}}\, \delta n = k_F^{-1} \left( \hat{\pmb{k}}_{\perp} \frac{\partial \tilde{\rho}}{\partial \theta} - \hat{\pmb{k}}\tilde{\rho} \right)
+\end{align*}}
+\begin{equation*}
+\frac{\partial \tilde{\rho}}{\partial t} + \frac{\partial \tilde{\rho}}{\partial \pmb{x}} \cdot \frac{\partial \tilde{\epsilon}}{\partial \pmb{k}} + k_F^{-1} \left( \hat{\pmb{k}}_{\perp} \frac{\partial \tilde{\rho}}{\partial \theta} - \hat{\pmb{k}}\tilde{\rho} - \frac{\hat{\pmb{k}} k_F^{2}}{(2\pi)^{2}} \right) \cdot \left( \pmb{F} - \frac{\partial \tilde{\epsilon}}{\partial \pmb{x}} \right) = -\tau^{-1} \tilde{\rho} \tag{5.3.9}
+\end{equation*}
+其中 $\hat{\pmb{k}}_{\perp}$ 是与 $\hat{\pmb{k}}$ 垂直的单位矢量，$\tilde{\rho}$ 是函数 $\tilde{\rho}(\theta,\pmb{x},t)$。上式可以看作以 $(\theta,\pmb{x})$ 为参量的 $(1+2)$ 维空间中某个场的经典运动方程。线性化后的方程具有如下形式：
+\begin{equation*}
+\frac{\partial \tilde{\rho}}{\partial t} + v^{*}_F\, \hat{\pmb{k}} \cdot \frac{\partial \tilde{\rho}}{\partial \pmb{x}} - \frac{\hat{\pmb{k}} k_F}{(2\pi)^{2}} \cdot \left( \pmb{F} - \int \mathrm{d}\theta'\, f(\theta,\theta')\, \frac{\partial \tilde{\rho}(\theta',\pmb{x},t)}{\partial \pmb{x}} \right) = -\tau^{-1} \tilde{\rho} \tag{5.3.10}
+\end{equation*}
+
+当 $\pmb{F} = \tau^{-1} = 0$ 时，式 (5.3.10) 可以看作费米液体的一种运动方程，其形式为
+\begin{equation*}
+\frac{\partial \tilde{\rho}}{\partial t} + v^{*}_F\, \hat{\pmb{k}} \cdot \frac{\partial \tilde{\rho}}{\partial \pmb{x}} + \frac{k_F}{(2\pi)^{2}} \int \mathrm{d}\theta'\, f(\theta,\theta')\, \hat{\pmb{k}} \cdot \frac{\partial \tilde{\rho}(\theta',\pmb{x},t)}{\partial \pmb{x}} = 0 \tag{5.3.11}
+\end{equation*}
+相应的费米液体能量（或哈密顿量）(5.3.1) 也可以用 $\tilde{\rho}$ 写出：
+\begin{align*}
+H &= E_g + \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}\theta\; \tilde{\rho}\, \frac{h v^{*}_F}{2} + \frac{1}{2} \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}\pmb{k}\,\mathrm{d}\pmb{k}'\; f(\pmb{k},\pmb{k}')\, \delta n_{\pmb{k}} \delta n_{\pmb{k}'}\\
+&= E_g + \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}\theta\; \frac{2\pi^{2} v^{*}_F}{k_F}\, \tilde{\rho}^{2} + \frac{1}{2} \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}\theta\,\mathrm{d}\theta'\; f(\theta,\theta')\, \tilde{\rho}(\theta) \tilde{\rho}(\theta') \tag{5.3.12}
+\end{align*}
+给出该运动方程与该哈密顿量的拉格朗日量为
+\begin{align*}
+L &= \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}\theta \left( \frac{1}{2k_F}\, \hat{\pmb{k}} \cdot \partial_{\pmb{x}} \tilde{\varphi}\, \partial_t \tilde{\varphi} - \frac{v^{*}_F}{2k_F}\, \big( \hat{\pmb{k}} \cdot \partial_{\pmb{x}} \tilde{\varphi} \big)^{2} \right)\\
+&\quad - \frac{1}{8\pi^{2}} \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}\theta\,\mathrm{d}\theta'\; f(\theta,\theta')\, \hat{\pmb{k}} \cdot \partial_{\pmb{x}} \tilde{\varphi}(\theta,\pmb{x},t)\; \hat{\pmb{k}}' \cdot \partial_{\pmb{x}} \tilde{\varphi}(\theta',\pmb{x},t) \tag{5.3.13}
+\end{align*}
+其中 $\tilde{\varphi}$ 与 $\tilde{\rho}$ 通过 $\tilde{\rho}(\theta,\pmb{x},t) = (2\pi)^{-1} \hat{\pmb{k}} \cdot \frac{\partial \tilde{\varphi}(\theta,\pmb{x},t)}{\partial \pmb{x}}$ 相联系。式 (5.3.13) 是二维费米液体的一种流体动力学描述，换言之，是二维费米液体的一种玻色化。把它与 5.1.3 节讨论的流体动力学描述相比较，我们看到式 (5.3.13) 所包含的远不止密度模式。
+%FIG{5.5}: {动量为 $\pmb{q}$、位于角度 $\theta$ 处的粒子--空穴激发。}
+
+\subsection*{问题 5.3.3}
+
+本节中我们为一个二维转动不变系统导出了约化玻尔兹曼方程及与之相联系的哈密顿量。把这些结果（式 (5.3.11) 与 (5.3.12)）推广到没有转动对称性的二维系统。
+
+\subsection*{问题 5.3.4}
+
+\begin{enumerate}
+\item[(a)] 导出一维费米液体的玻色化拉格朗日量（即与式 (5.3.13) 类似的那个）。
+\item[(b)] 在一维情形考虑式 (5.1.3)。通过 $\rho = (2\pi)^{-1}\partial_x \varphi$ 引入 $\varphi$。用 $\varphi$ 把式 (5.1.3) 写出来。求出 $\varphi$ 的正则动量（记作 $\tilde{\varphi}$），并用 $\varphi$ 与 $\tilde{\varphi}$ 表示哈密顿量 $H$。将作用量 $S = \int \mathrm{d}t\, (\tilde{\varphi}\dot{\varphi} - H)$ 与 (a) 中的结果比较。
+\end{enumerate}
+
+\subsection{费米液体流体动力学描述的应用}
+
+作为费米液体玻色化描述的第一个应用，让我们计算集体模式的谱。在 $\pmb{q}$ 空间中，费米液体运动方程 (5.3.11) 变为
+\begin{equation*}
+\mathrm{i}\,\partial_t \tilde{\rho} = q \cos(\theta_{\pmb{q}} - \theta) \int \mathrm{d}\theta' \left( v^{*}_F \delta(\theta - \theta') + \frac{k_F}{(2\pi)^{2}} f(\theta,\theta') \right) \tilde{\rho}(\theta',\pmb{q},t) \tag{5.3.14}
+\end{equation*}
+其中 $\theta_{\pmb{q}}$ 是 $\pmb{q}$ 的方位角（见图 5.5）。
+
+若 $f(\theta,\theta') = 0$，式 (5.3.14) 很容易求解。本征模具有形式 $\tilde{\rho}(\theta,\pmb{q},t) = \delta(\theta - \theta_0)\delta(\pmb{q} - \pmb{q}_0)\,\mathrm{e}^{-\mathrm{i}\omega(\pmb{q}_0,\theta_0)t}$，频率为 $\omega(\pmb{q}_0,\theta_0) = v^{*}_F q_0 \cos(\theta_{\pmb{q}_0} - \theta_0)$。这样的本征模描述一个动量为 $\pmb{q}_0$ 的激发。依赖于 $\theta$，这种激发的能量在 0 到 $v^{*}_F q_0$ 之间取值，
+% 本块止于书页 212 末（句子未完）。p228 顶部 "agrees with the energy range of a
+% particle–hole excitation of the same momentum (see Fig. 4.11)." 是本句下半句，
+% 由 ch5_c 续译（"这与具有相同动量的粒子--空穴激发的能量范围一致（见图 4.11）。"）。

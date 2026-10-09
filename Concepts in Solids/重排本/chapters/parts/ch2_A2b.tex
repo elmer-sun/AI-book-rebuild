@@ -1,0 +1,164 @@
+% ch2 A.2 后半 (原书页 22–27 / PDF p037–p042)
+% 衔接说明：本文件首句承上文件（p036，式 (4) 之后）关于“密度”的讨论；
+% 原书 p042 末尾（本文件最后一式之后）即转入大节 B（ENERGY BANDS IN SOLIDS），不属本文件。
+
+而相应地，我们也可以写出一个动能密度，于是
+\begin{equation*}
+\mathcal{H} = \sum_{\sigma} \int \mathrm{d}R\;\Psi_{\sigma}^{\dagger}(R)\left(-\frac{\hbar^2\nabla^2}{2m} + V(R)\right)\Psi_{\sigma}(R) + V_{\mathrm{int}}
+\tag{5}
+\end{equation*}
+
+这种以场算符写出的形式之所以有用，主要在于它可以按我们愿意使用的任意一组单电子函数来展开。
+
+现在，我们终于可以在这一表述框架（formalism）中着手推导 Hartree-Fock 方程和 Koopmans 定理（Koopmans' theorem）了。如果我们利用这样一个自由——在可以借以表示式 (5) 的各组可能的 $\phi_n$ 之间自由变换——把一切都用我们希望最终得到的那组解来表示，那么这两个问题的证明都最为容易。也就是说，我们选取一组 $\phi_n$，使其中的前 $N$ 个是最低能量的行列式波函数中被占据的态。于是，这个最低能量函数便写作
+\begin{equation*}
+\Psi_N = \prod_{n=1}^{N} C_n^{\dagger}\,\Psi_{\mathrm{vac}}
+\end{equation*}
+
+若要 $\Psi_N$ 具有最低能量，我们就必须要求
+\begin{equation*}
+E_N = \frac{\left(\Psi_N,\, \mathcal{H}\Psi_N\right)}{\left(\Psi_N,\, \Psi_N\right)}
+\end{equation*}
+取极小，因而也就是要求
+\begin{equation*}
+\left(\delta\Psi_N,\, \mathcal{H}\Psi_N\right) = 0
+\end{equation*}
+这里我们略去了第二个 $\Psi$ 的变分，因为它给出的恰恰是复共轭，而归一化我们稍后再作保证。
+
+依次变动组成 $\Psi_N$ 的每一个 $\phi_n$——也就是变动每一个 $C_n^{\dagger}$——便可以顾及 $\Psi_N$ 的一切可能的无穷小变分。这样我们就必须保证
+\begin{equation*}
+\left(\delta C_n^{\dagger}\left(\prod_{m\neq n}^{N} C_m^{\dagger}\right)\Psi_{\mathrm{vac}}\,,\; \mathcal{H}\, C_n^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right) = 0
+\end{equation*}
+
+若把 $\delta C_n^{\dagger}$ 取作诸 $C_m^{\dagger}$ 的任意线性组合：$\delta C_n^{\dagger} = \sum_m \delta_m C_m^{\dagger}$，那么，为保证归一化，我们可以假定 $\delta_{m=n}$ 为零；而其余那些 $m < N$ 的项都自动给出零，因为 $(C_m^{\dagger})^2 = 0$。于是我们的检验函数是 $\delta C_n^{\dagger} = \sum_{m>N} \delta_m C_m^{\dagger}$；实际上我们可以要求：对一切 $M > N$，$n \leq N$：
+\begin{equation*}
+\left(C_M^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\,,\; \mathcal{H} \prod_{m}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right) = 0
+\tag{6}
+\end{equation*}
+
+直接计算这个式子确实会给出 Hartree-Fock 方程；但我愿意走一条更物理的路线，并同时演示 Koopmans 定理。
+
+把式 (5) 中的 $\mathcal{H}$ 按我们假定的一组解展开，便得到
+\begin{equation*}
+\mathcal{H} = \sum_{m,n} \mathcal{H}^1_{mn}\, C_m^{\dagger} C_n + \frac{1}{2}\sum_{lmnp} V_{lmnp}\, C_l^{\dagger} C_m^{\dagger} C_n C_p
+\end{equation*}
+其中 $\mathcal{H}^1$ 是 (5) 中的单电子部分：
+\begin{equation*}
+\mathcal{H}^1_{mn} = \int \phi_m^{*}(r)\left(\frac{p^2}{2m} + V\right)\phi_n(r)\,\mathrm{d}r
+\end{equation*}
+$V_{lmnp}$ 已在前面由式 (4) 定义。
+
+现在让我们来计算 $\mathcal{H}$ 与被占据态之一的产生算符 $C_n^{\dagger}$ 的\emph{对易子}（commutator）。直截了当地运用我们的反对易关系，即可看到
+\begin{align*}
+\left[C_l^{\dagger} C_p,\, C_n^{\dagger}\right] &= C_l^{\dagger} C_p C_n^{\dagger} - C_n^{\dagger} C_l^{\dagger} C_p = -\,C_l^{\dagger} C_n^{\dagger} C_p - C_n^{\dagger} C_l^{\dagger} C_p = 0\\
+\left[C_n^{\dagger} C_p,\, C_n^{\dagger}\right] &= 0\\
+\left[C_l^{\dagger} C_n,\, C_n^{\dagger}\right] &= C_l^{\dagger} C_n C_n^{\dagger} + C_l^{\dagger} C_n^{\dagger} C_n = C_l^{\dagger}\\
+\left[C_n^{\dagger} C_n,\, C_n^{\dagger}\right] &= C_n^{\dagger}
+\end{align*}
+
+规则便是：若两个算符的乘积中不含 $C_n$，它就与 $C_n^{\dagger}$ 对易；否则我们就把 $C_n$ 湮灭掉，而留下一个落单的 $C_n^{\dagger}$ 算符。因此，与一个产生算符的对易子所产生的效果，与该算符本身的作用大体相同。注意
+\begin{equation*}
+\left[C_a^{\dagger} C_b,\, C_c^{\dagger}\right]^{\dagger} = -\left[C_b^{\dagger} C_a,\, C_c\right]
+\end{equation*}
+因此，穿过一个湮灭算符作对易，得到的将是带一个负号的共轭结果。
+
+$C_n^{\dagger}$ 穿过四算符乘积的对易子，其符号取决于 $C_n$ 出现在两个可能位置中的第一个还是第二个：
+\begin{align*}
+\left[C_a^{\dagger} C_b^{\dagger} C_l C_m,\, C_n^{\dagger}\right] &= 0\qquad l,\, m \neq n\\
+\left[C_a^{\dagger} C_b^{\dagger} C_l C_n,\, C_n^{\dagger}\right] &= C_a^{\dagger} C_b^{\dagger} C_l\\
+\left[C_a^{\dagger} C_b^{\dagger} C_n C_l,\, C_n^{\dagger}\right] &= -\,C_a^{\dagger} C_b^{\dagger} C_l
+\end{align*}
+最后一式是因为：$C_n$ 必须先穿过 $C_l$ 作反对易，然后才能去湮灭 $C_n^{\dagger}$。
+
+利用这些简单的规则，我们得到
+\begin{equation*}
+\left[\mathcal{H},\, C_n^{\dagger}\right] = \sum_m \mathcal{H}^1_{mn}\, C_m^{\dagger} + \frac{1}{2}\sum_{mlp}\left(V_{mlpn} - V_{mlnp}\right) C_m^{\dagger} C_l^{\dagger} C_p
+\tag{7}
+\end{equation*}
+
+最后，让我们把这个结果用于计算能量变分，即式 (6)。我们让任一个 $C_n^{\dagger}$ 穿过哈密顿量 $\mathcal{H}$ 作对易；这就给出
+\begin{align*}
+0 = {}& \left(C_M^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\,,\; C_n^{\dagger}\,\mathcal{H} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right)\\
+&+ \left(C_M^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\,,\; \left[\mathcal{H},\, C_n^{\dagger}\right] \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right)
+\tag{8}
+\end{align*}
+
+第一项立即为零，因为态 $n$ 在右边的态中肯定被占据，而在左边的态中肯定未被占据。于是剩下的就是含对易子的那个标量积项：即上文式 (8) 中的第二项。
+
+如果 $\left[\mathcal{H},\, C_n^{\dagger}\right]$ 中没有那些三费米子项，这件事本来很容易解决，只须要求
+\begin{equation*}
+\mathcal{H}^1_{Mn} = 0\qquad M > N,\; n \leq N
+\end{equation*}
+也就是说，要求
+\begin{equation*}
+\left[\mathcal{H},\, C_n^{\dagger}\right] = \sum_{\substack{m\ \text{occupied}\\ \text{only}}} \lambda_{mn}\, C_m^{\dagger}
+\end{equation*}
+事实上，不同被占据态之间的混合无关紧要；我们总可以通过把诸 $C_n^{\dagger}$ 作线性组合，使矩阵 $\lambda_{mn}$ 对角化，从而找到一组态，使得
+\begin{equation*}
+\left[\mathcal{H},\, C_n^{\dagger}\right] = E_n\, C_n^{\dagger}
+\end{equation*}
+
+在确定三费米子项的效果时，原则上遵循的正是同样的做法。形如 $C_m^{\dagger} C_l^{\dagger} C_p$ 的项在许多情形下会自动给出零；例如，$p$ 必须是某个被占据的态，否则 $C_p\,\Psi_{\mathrm{vac}} = 0$。但如果 $C_p$ 湮灭的是 $j$ 态上的粒子，即 $C_p = C_j$，那么必须有 $C_m^{\dagger}$ 或 $C_l^{\dagger}$ 把它补上，否则标量积将为零；因为左边的态中 $j$ 是被占据的。最后，$M$ 之所以能被占据，唯一的途径是 $C_m^{\dagger}$ 或 $C_l^{\dagger}$ 中的另一个去填它。于是我们有如下两类项：
+\begin{equation*}
+\left(V_{Mjjn} - V_{Mjnj}\right) C_M^{\dagger}\, n_j \qquad\text{与}\qquad -\left(V_{jMjn} - V_{jMnj}\right) C_M^{\dagger}\, n_j
+\end{equation*}
+
+考察 $V$ 的定义即可以看出，它对于内指标与外指标的交换是对称的，因此这两类项完全相同，从而消去了式 (7) 中的 1/2。此外我们还看到 $V_{Mnnn} = V_{Mnnn}$（译注：原文两处下标完全相同，显系排印之误；按正文所述对称性，疑第二处应为 $V_{nMnn}$），因此我们愿意的话，可以对称地插入 $C_n^{\dagger} n_n$ 这一项。因子 $n_j$（占据数算符）作用在乘积函数上时恰好就是 1，于是最终的方程是
+
+\begin{equation*}
+0 = \left(C_M^{\dagger} C_n\,\Psi_{\text{H-F}}\,,\; \left[\mathcal{H},\, C_n^{\dagger}\right] C_n\,\Psi_{\text{H-F}}\right) = \mathcal{H}^1_{Mn} + \sum_{m\ \text{occ.}}\left(V_{Mmmn} - V_{Mmnm}\right)
+\end{equation*}
+或者，
+\begin{equation*}
+\sum_{\text{all }m}\left(\mathcal{H}^1_{mn}\, C_m^{\dagger} + \sum_{j=1}^{N}\left(V_{mjjn} - V_{mjnj}\right)C_m^{\dagger}\right) = E_n\, C_n^{\dagger}
+\tag{9}
+\end{equation*}
+（同样，我们可以在诸被占据波函数之间重新对角化。）
+
+这个方程确实就是 Hartree-Fock 方程，这一点可以通过变换到空间（电子场）表象来验证。此时式 (9) 即为
+\begin{align*}
+&\sum_m \int \phi_m^{\dagger}(r)\,\mathcal{H}^1(r)\,\phi_n(r)\,\mathrm{d}r \int \mathrm{d}R\;\phi_m(R)\Psi^{\dagger}(R) \\
+&\quad+\sum_j\sum_m \int \mathrm{d}r \int \mathrm{d}r'\;\frac{e^2}{|r-r'|}\left[\phi_m^{*}(r)\phi_j^{*}(r')\phi_j(r')\phi_n(r)\right.\\
+&\qquad\left.-\;\phi_m^{*}(r)\phi_j(r')\phi_n(r')\phi_j(r)\right]\int \mathrm{d}R\;\phi_m(R)\Psi^{\dagger}(R)\\
+&\quad=E_n \int \mathrm{d}R\;\phi_n(R)\Psi^{\dagger}(R)
+\end{align*}
+对 $m$ 的求和给出一系列 $\delta$ 函数，使上式化为
+\begin{align*}
+\int \mathrm{d}R\;\Psi^{\dagger}(R)\;\mathcal{H}^1(R)\,\phi_n(R) &+ \int \mathrm{d}r_2\;\frac{e^2}{|r_2-R|}\;|\phi_j(r_2)|^2\,\phi_n(R) \\
+&- \int \mathrm{d}r_2\;\frac{e^2}{|r_2-R|}\;\phi_j^{*}(r_2)\,\phi_n(r_2)\,\phi_j(R) \\
+&= \int \mathrm{d}R\;\Psi^{\dagger}(R)\,E_n\,\phi_n(R)
+\end{align*}
+既然所有 $\Psi^{\dagger}(R)$ 都线性无关，作为 $R$ 的函数，这一系数必须为零；而这个系数正是 Hartree-Fock 方程。证讫（Q.E.D.）。
+
+Koopmans 定理的证明要容易得多。定理说的是：系数 $E_n$ 恰好就是在 Hartree-Fock 近似下把处于 $\phi_n$ 态的电子移走所需的激发能。
+
+作为整体的 Hartree-Fock 态的能量 $E_{\text{H-F}}$ 可以简单地定义为
+\begin{equation*}
+\mathcal{H}\,\Psi_{\text{H-F}} = E_{\text{H-F}}\,\Psi_{\text{H-F}}\quad(\text{当然，还有非对角项})
+\end{equation*}
+
+移走电子 $n$ 之后那个态的总能量则简单地由下式给出：
+\begin{equation*}
+\mathcal{H} \prod_{m\neq n} C_m^{\dagger}\,\Psi_{\mathrm{vac}} = \epsilon_n \prod_{m\neq n} C_m^{\dagger}\,\Psi_{\mathrm{vac}}
+\end{equation*}
+
+利用对易子，我们可以得到一个比较：
+\begin{align*}
+&C_n^{\dagger}\,\mathcal{H}\left(C_n\,\Psi_{\text{H-F}}\right) - \mathcal{H}\,C_n^{\dagger}\left(C_n\,\Psi_{\text{H-F}}\right)\\
+&\quad= \left(\epsilon_n - E_{\text{H-F}}\right)\Psi_{\text{H-F}} = -\left[\mathcal{H},\, C_n^{\dagger}\right] C_n\,\Psi_{\text{H-F}}
+\end{align*}
+
+但这最后一个乘积恰恰就是我们在计算 $\delta E$ 时所算过的东西；我们算出的是对角项，并把它\emph{定义}为 $E_n C_n^{\dagger}$；于是
+\begin{equation*}
+\epsilon_n - E_{\text{H-F}} = E_n
+\end{equation*}
+
+把态 $n$ 中的一个电子移走需要花费能量 $E_n$。这就是 Koopmans 定理。
+
+诚然，在这个形式下它并不十分严格，因为 $E_{\text{H-F}}$ 与 $\epsilon_n$ 并不严格可比——它们是电子数不同的两个系统的能量。但可以证明，在讨论由于掏空两个不同的态 $\phi_n$ 而引起的能量差时，$E_n$ 仍然是有意义的量。
+
+这样，参数 $E_n$ 的物理意义就清楚了。它们与总能量 $E_{\text{H-F}}$ 没有直接的关系，因为，当然，$E_n$ 中包含了粒子 $n$ 与所有其他粒子 $m$ 的相互作用能，而当我们移走这个粒子时，这份相互作用能便整个丢失了。如果我们接着移走粒子 $m$，其移出能将不再包含它与 $n$ 的相互作用，尽管 $E_m$ 中确实含有这份能量。因此，在所有 $E_n$ 之和中，必须扣去总相互作用能，以免把相互作用重复计算。于是
+\begin{align*}
+E_{\text{H-F}} &= \sum_n E_n - \frac{1}{2}\sum_{n,m}\left(V_{nmmn} - V_{nmnm}\right)\qquad\text{或}\\
+&= \sum_n \mathcal{H}^1_{nn} + \frac{1}{2}\sum_{n,m}\left(V_{nmmn} - V_{nmnm}\right)
+\end{align*}

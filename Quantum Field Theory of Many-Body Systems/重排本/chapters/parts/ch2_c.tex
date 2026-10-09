@@ -1,0 +1,375 @@
+% ch2_c 第2章 §2.2.4尾–§2.3.3 (书页 36–46 / p051–p061)
+
+在上面的路径积分计算中，我们犯了一个错误：把路径积分平均 $\frac{\int \mathcal{D}x\, x(t)\mathrm{e}^{\mathrm{i}S}}{\int \mathcal{D}x\, \mathrm{e}^{\mathrm{i}S}}$ 与量子力学平均 $\langle\psi(t)|x|\psi(t)\rangle$ 混为一谈。要使路径积分计算有效，我们需要假定在电场存在时这两种平均是相同的。也就是说，
+\begin{equation*}
+\langle 0|U^{\dagger}(t,-\infty)\, x\, U(t,-\infty)|0\rangle = \frac{\langle 0|U(\infty,t)\, x\, U(t,-\infty)|0\rangle}{\langle 0|U(\infty,-\infty)|0\rangle} \tag{2.2.21}
+\end{equation*}
+其中右端是路径积分平均，左端是量子力学平均。只有当我们缓慢地开启再关闭电场，使得基态 $|0\rangle$ 从 $t=-\infty$ 到 $t=\infty$ 演化回同一个基态时，这一假定才是正确的：
+\begin{equation*}
+|0\rangle = \mathrm{e}^{\mathrm{i}\theta} U(\infty,-\infty)|0\rangle \tag{2.2.22}
+\end{equation*}
+在这种情况下，
+\begin{equation*}
+\langle 0|U^{\dagger}(t,-\infty) = \langle 0|U(-\infty,\infty)U(\infty,t) = \mathrm{e}^{\mathrm{i}\theta}\langle 0|U(\infty,t)
+\end{equation*}
+于是我们看到，式 (2.2.21) 在条件 (2.2.22) 之下确实成立。然而，若 $\mathcal{E}(t)$ 变化迅速，把振子激发到越来越高的激发态，那么式 (2.2.22) 将不再正确，而且更糟的是，当存在耗散时 $\langle 0|U(\infty,-\infty)|0\rangle$ 可能会变为零。
+
+这里我们学到了两点。其一，在存在耗散时路径积分的结果可能不正确；其二，这个毛病可以用响应函数替换编时关联函数来纠正。
+
+\subsection*{问题 2.2.4}
+
+考虑一个谐振子。计算（编时）流关联函数 $\mathrm{i}G_j(t) = \langle j(t)j(0)\rangle$ 在频率空间中的形式，即 $G_j(\omega) = \int \mathrm{d}t\, G_j(t)\mathrm{e}^{\mathrm{i}\omega t}$，其中流算符为 $j = e\dot{x}$。利用（比如说）经典物理计算有限频率电导 $\sigma(\omega)$（定义为 $j(\omega) = \sigma(\omega)E_{\omega}$）。（你可以加入少量摩擦以得到耗散项。）证明：对 $\omega > 0$，$\sigma(\omega)$ 具有形式 $\sigma(\omega) = C\frac{G_j(\omega)}{\omega}$，并求出系数 $C$。证明：$\sigma(\omega)$ 仅在 $\omega = \omega_0$ 处才有非零实部。（提示：保留 $G_j$ 中的 $\mathrm{i}0^{+}$ 项。）在这个频率上，振子可以通过跃迁到较高的激发态来吸收能量。我们看到，要有有限的实直流电导，就需要有无能隙激发。
+
+\subsection{有限温度下的关联函数}
+
+在有限温度下，线性响应是所有激发态的响应以玻尔兹曼因子（Boltzmann factor）加权后的平均。由于态 $|\psi_n\rangle$ 的响应函数由式 (2.2.4) 给出，有限温度响应函数即为
+\begin{equation*}
+D^{\beta}(t-t') = \sum_n -\mathrm{i}\,\Theta(t-t')\,\langle\psi_n|[O_2(t), O_1(t')]\,|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n/T}}{Z}
+\end{equation*}
+我们再次看到，线性响应可以由相应的关联函数来描述。在频率空间中，
+\begin{equation*}
+\langle O_2\rangle_{\omega} = D^{\beta}_{\omega} f_{\omega}
+\end{equation*}
+对有限温度成立。于是，
+\begin{equation*}
+D^{\beta}_{\omega} = \int \mathrm{d}t\, D^{\beta}(t)\,\mathrm{e}^{\mathrm{i}t\omega}
+\end{equation*}
+可以视为有限温度下的有限频率响应率。
+
+类似地，我们定义编时的有限温度关联函数
+\begin{equation*}
+\mathrm{i}G^{\beta}(t) = \sum_n \langle\psi_n|T(O_2(t)O_1(0))|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{equation*}
+有了这个定义，式 (2.2.18) 可以推广到有限温度：
+\begin{equation*}
+D^{\beta}(t) = 2\Theta(t)\operatorname{Re} G^{\beta}(t) \tag{2.2.23}
+\end{equation*}
+
+\subsection{关联函数之间的关系}
+
+\begin{keypoints}
+\item 有限温度下的响应函数、编时关联函数和谱函数（spectral function），都可以通过适当的解析延拓由有限温度虚时关联函数计算出来。
+\end{keypoints}
+
+我们已经引入了好几种关联函数。响应函数与线性响应实验中所测量的各种响应率直接相关；编时关联函数则容易用路径积分计算。本节我们将讨论这些关联函数之间的关系。这些关系使我们能够由编时关联函数得到响应函数。本节中的计算相当形式化，但结果是有用的。如果你不喜欢形式计算，可以跳过本节；你只需知道方框公式中的那些关系即可。
+
+首先，我们来研究两个算符 $O_1$ 与 $O_2$ 的有限温度关联在实时与虚时之间的关系：$\mathrm{i}G^{\beta}(t) = \langle T[O_2(t)O_1(0)]\rangle$ 与 $\mathcal{G}^{\beta}(\tau) = \langle T_{\tau}[O_2(\tau)O_1(0)]\rangle$。为了得到稍后用于费米子系统的更普遍的结果，我们把 $G^{\beta}(t)$ 与 $\mathcal{G}^{\beta}(\tau)$ 的定义推广如下：
+\begin{align*}
+\mathrm{i}G^{\beta}(t)\bigr|_{t>0} &= \langle O_2(t)O_1(0)\rangle
+& \mathrm{i}G^{\beta}(t)\bigr|_{t<0} &= \eta\,\langle O_1(0)O_2(t)\rangle
+\\
+\mathcal{G}^{\beta}(\tau)\bigr|_{\tau>0} &= \langle O_2(\tau)O_1(0)\rangle
+& \mathcal{G}^{\beta}(\tau)\bigr|_{\tau<0} &= \eta\,\langle O_1(0)O_2(\tau)\rangle
+\end{align*}
+其中 $\eta = \pm$。当 $\eta = +$ 时，这些关联称为玻色型的；当 $\eta = -$ 时，称为费米型的。注意这里我们并不假定 $O_{1,2} = O^{\dagger}_{1,2}$。利用
+\begin{align*}
+\langle\psi_n|O_2(t)O_1(0)|\psi_n\rangle &= \frac{\langle\psi_n|O_2\, U(t,0)\, O_1|\psi_n\rangle}{\langle\psi_n|U(t,0)|\psi_n\rangle}
+\\
+&= \sum_m \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \mathrm{e}^{-\mathrm{i}(\epsilon_m - \epsilon_n)t}
+\end{align*}
+我们求得 $G^{\beta}(t)$ 的谱表示为
+\begin{align*}
+\mathrm{i}G^{\beta}(t)\bigr|_{t>0} &= \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta - \mathrm{i}(\epsilon_m - \epsilon_n)t}}{Z}
+\\
+\mathrm{i}G^{\beta}(t)\bigr|_{t<0} &= \eta \sum_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta + \mathrm{i}(\epsilon_m - \epsilon_n)t}}{Z} \tag{2.2.24}
+\end{align*}
+如果我们如下引入有限温度谱函数：
+\begin{align*}
+A^{\beta}_{+}(\nu) &= \sum_{m,n} \delta[\nu - (\epsilon_m - \epsilon_n)]\, \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\\
+A^{\beta}_{-}(\nu) &= \sum_{m,n} \delta[\nu + (\epsilon_m - \epsilon_n)]\, \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{align*}
+便可把 $G^{\beta}$ 改写为
+\begin{equation*}
+\mathrm{i}G^{\beta}(t)\bigr|_{t>0} = \int \mathrm{d}\nu\, A^{\beta}_{+}(\nu)\,\mathrm{e}^{-\mathrm{i}\nu t}, \qquad \mathrm{i}G^{\beta}(t)\bigr|_{t<0} = \eta \int \mathrm{d}\nu\, A^{\beta}_{-}(\nu)\,\mathrm{e}^{-\mathrm{i}\nu t} \tag{2.2.25}
+\end{equation*}
+
+为理解谱函数的含义，我们来考虑零温谱函数 $A_{+}(\nu) \allowbreak= \sum_m \delta[\nu - (\epsilon_m - \epsilon_0)]\allowbreak\langle 0|O_2|\psi_m\rangle\allowbreak\langle\psi_m|O_1|0\rangle$。我们看到，当 $O_1$ 与 $O_2$ 作用在基态 $|0\rangle$ 上时，它们产生激发态 $O_1|0\rangle = \sum_m C_{1,m}|\psi_m\rangle$ 与 $O_2|0\rangle = \sum_m C_{2,m}|\psi_m\rangle$，振幅分别为 $C_{1,m}$ 与 $C_{2,m}$。函数 $A_{+}(\nu)$ 恰是 $C_{1,m}$ 与 $C_{2,m}$ 的乘积：$A_{+}(\nu) = \sum_m \delta[\nu - (\epsilon_m - \epsilon_0)]\, C^{\dagger}_{2,m}C_{1,m}$。若 $A_{+}(\nu) \neq 0$，则一个能量为 $\epsilon_0 + \nu$ 的激发态同时被 $O_1$ 和 $O_2$ 产生。当 $O_1 = O_2$ 时，$A_{+}(\nu)$ 就是 $O_1$ 所产生的能量为 $\nu$ 的诸态的权重。
+
+我们注意，有限温度谱函数可以改写为
+\begin{align*}
+A^{\beta}_{+}(\omega) &= \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}\, \delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr)
+\\
+&= \mathrm{e}^{\beta\omega/2} \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr) \tag{2.2.26}
+\end{align*}
+\begin{align*}
+A^{\beta}_{-}(\omega) &= \sum_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}\, \delta\bigl(\omega + (\epsilon_m - \epsilon_n)\bigr) \tag{2.2.27}
+\\
+&= \mathrm{e}^{-\beta\omega/2} \sum_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \delta\bigl(\omega + (\epsilon_m - \epsilon_n)\bigr)
+\\
+&= \mathrm{e}^{-\beta\omega/2} \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr)
+\end{align*}
+在式 (2.2.27) 的最后一行中我们交换了 $m$ 与 $n$。在这种形式下，可以看出有限温度下 $A^{\beta}_{+}$ 与 $A^{\beta}_{-}$ 之间一个非常简单的关系：
+\begin{equation*}
+\boxed{\; A^{\beta}_{+}(\omega) = \mathrm{e}^{\beta\omega} A^{\beta}_{-}(\omega) \;} \tag{2.2.28}
+\end{equation*}
+我们还注意，当 $\omega \lesssim -T$ 时 $A^{\beta}_{+}$ 几乎为零，而当 $\omega \gtrsim -T$ 时 $A^{\beta}_{-}$ 几乎为零。在零温下，我们有
+\begin{equation*}
+A_{+}(\omega < 0) = 0, \qquad A_{-}(\omega > 0) = 0
+\end{equation*}
+为了在频率空间中把 $G^{\beta}$ 的谱函数 $A^{\beta}_{\pm}$ 联系起来，我们需要引入
+\begin{equation*}
+G^{\beta}_{+}(t) = \Theta(t)G^{\beta}(t), \qquad G^{\beta}_{-}(t) = \Theta(-t)G^{\beta}(t)
+\end{equation*}
+在频率空间中，我们有
+\begin{align*}
+G^{\beta}_{+}(\omega) &= \sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\omega - (\epsilon_m - \epsilon_n) + \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\\
+G^{\beta}_{-}(\omega) &= \eta \sum_{m,n} \frac{\langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle}{-\omega - (\epsilon_m - \epsilon_n) + \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{align*}
+我们发现
+\begin{equation*}
+\boxed{\; G^{\beta}_{+}(\omega) = \int \mathrm{d}\nu\, \frac{A^{\beta}_{+}(\nu)}{\omega - \nu + \mathrm{i}0^{+}} \qquad G^{\beta}_{-}(\omega) = -\eta \int \mathrm{d}\nu\, \frac{A^{\beta}_{-}(\nu)}{\omega - \nu - \mathrm{i}0^{+}} \;} \tag{2.2.29}
+\end{equation*}
+以及 $G^{\beta}(\omega) = G^{\beta}_{+}(\omega) + G^{\beta}_{-}(\omega)$。
+
+接下来，我们考虑响应函数 $D^{\beta}(t)$，把它推广为
+\begin{equation*}
+D^{\beta}(t-t') = \sum_n -\mathrm{i}\,\Theta(t-t')\,\langle\psi_n|O_2(t)O_1(t') - \eta\, O_1(t')O_2(t)\,|\psi_n\rangle\, \frac{\mathrm{e}^{-\epsilon_n/T}}{Z} \tag{2.2.30}
+\end{equation*}
+它有如下谱展开：
+\begin{align*}
+D^{\beta}(\omega) &= \sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\omega - (\epsilon_m - \epsilon_n) + \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\\
+&\quad + \eta \sum_{m,n} \frac{\langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle}{-\omega - (\epsilon_m - \epsilon_n) - \mathrm{i}0^{+}}\, \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z} \tag{2.2.31}
+\end{align*}
+我们发现
+\begin{equation*}
+\boxed{\; D^{\beta}(\omega) = \int \mathrm{d}\nu\, \frac{A^{\beta}_{+}(\nu)}{\omega - \nu + \mathrm{i}0^{+}} - \eta \int \mathrm{d}\nu\, \frac{A^{\beta}_{-}(\nu)}{\omega - \nu + \mathrm{i}0^{+}} \;} \tag{2.2.32}
+\end{equation*}
+我们看到，由谱函数 $A^{\beta}_{\pm}$ 可以同时确定编时关联函数 $G^{\beta}$ 与响应函数 $D^{\beta}$。
+
+从路径积分出发计算谱函数的一个办法，是使用编时的虚时关联函数
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_2, \tau_1) = Z^{-1}\operatorname{Tr}\left( T_{\tau}(O_2(\tau_2)O_1(\tau_1))\, \mathrm{e}^{-\beta H} \right)
+\end{equation*}
+其中 $0 < \tau_{1,2} < \beta$。函数 $\mathcal{G}^{\beta}(\tau_2, \tau_1)$ 也可以写为
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_2, \tau_1) =
+\begin{cases}
+\dfrac{\operatorname{Tr}\bigl(\mathrm{e}^{-(\beta - \tau_2)H}\, O_2\, \mathrm{e}^{-(\tau_2 - \tau_1)H}\, O_1\, \mathrm{e}^{-\tau_1 H}\bigr)}{\operatorname{Tr}(\mathrm{e}^{-\beta H})}, & \tau_2 > \tau_1 \\[3ex]
+\eta\, \dfrac{\operatorname{Tr}\bigl(\mathrm{e}^{-(\beta - \tau_1)H}\, O_1\, \mathrm{e}^{-(\tau_1 - \tau_2)H}\, O_2\, \mathrm{e}^{-\tau_2 H}\bigr)}{\operatorname{Tr}(\mathrm{e}^{-\beta H})}, & \tau_1 > \tau_2
+\end{cases}
+\end{equation*}
+由此可以证明
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau_2, \tau_1) = \mathcal{G}^{\beta}(\tau_2 - \tau_1, 0) \equiv \mathcal{G}^{\beta}(\tau_2 - \tau_1), \qquad \mathcal{G}^{\beta}(\tau) = \eta\, \mathcal{G}^{\beta}(\tau + \beta)
+\end{equation*}
+函数 $\mathcal{G}^{\beta}(\tau)$ 也有谱表示。对 $0 < \tau < \beta$，我们有
+\begin{equation*}
+\mathcal{G}^{\beta}(\tau) =
+\begin{cases}
+\sum\limits_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \dfrac{\mathrm{e}^{-\epsilon_n\beta - (\epsilon_m - \epsilon_n)\tau}}{Z}, & \tau > 0 \\[3ex]
+\eta \sum\limits_{m,n} \langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle\, \dfrac{\mathrm{e}^{-\epsilon_n\beta + (\epsilon_m - \epsilon_n)\tau}}{Z}, & \tau < 0
+\end{cases} \tag{2.2.33}
+\end{equation*}
+比较式 (2.2.24) 与式 (2.2.33)，我们看到 $G^{\beta}$ 与 $\mathcal{G}^{\beta}$ 之间有如下关系：
+\begin{equation*}
+\boxed{\; \mathrm{i}G^{\beta}(t) = \mathcal{G}^{\beta}\bigl(\mathrm{i}t + \mathrm{sgn}(t)0^{+}\bigr) \;} \tag{2.2.34}
+\end{equation*}
+即使在有限温度下，实时格林函数也可以由虚时格林函数算出。
+
+由于 $\mathcal{G}^{\beta}(\tau)$ 是（反）周期的，其频率是离散的：$\eta = +$ 时 $\omega_l = 2\pi T \times$ 整数，$\eta = -$ 时 $\omega_l = 2\pi T \times (\text{整数} + \frac{1}{2})$。在频率空间中，我们天真地得到
+\begin{align*}
+\mathcal{G}^{\beta}(\omega_l) &= \int_0^{\beta} \mathrm{d}\tau\, \mathcal{G}^{\beta}(\tau)\, \mathrm{e}^{\mathrm{i}\omega_l \tau}
+\\
+&= -\sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\mathrm{i}\omega_l - \epsilon_m + \epsilon_n}\, \frac{\mathrm{e}^{-\epsilon_n\beta} - \eta\,\mathrm{e}^{-\epsilon_m\beta}}{Z}
+\end{align*}
+然而，当 $\eta = 1$ 且 $\omega_l = 0$ 时，$m = n$ 的那些项没有定义。这些项应当是 $\langle\psi_n|O_2|\psi_n\rangle\allowbreak\langle\psi_n|O_1|\psi_n\rangle \beta\allowbreak\, \mathrm{e}^{-\epsilon_n\beta}/Z$。所以，严格地说，我们有
+\begin{align*}
+\mathcal{G}^{\beta}(\omega_l) &= -\sum_{m,n} \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\mathrm{i}\omega_l - \epsilon_m + \epsilon_n + T\delta}\, \frac{\mathrm{e}^{-\epsilon_n\beta} - (\eta + \delta)\,\mathrm{e}^{-\epsilon_m\beta}}{Z} \tag{2.2.35}
+\\
+&= -\sum_{m,n} \left( \frac{\langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle}{\mathrm{i}\omega_l - (\epsilon_m - \epsilon_n) + T\delta} + (\eta + \delta)\, \frac{\langle\psi_n|O_1|\psi_m\rangle\langle\psi_m|O_2|\psi_n\rangle}{-\mathrm{i}\omega_l - (\epsilon_m - \epsilon_n) - T\delta} \right) \frac{\mathrm{e}^{-\epsilon_n\beta}}{Z}
+\end{align*}
+其中 $\delta$ 是一个小的复数。这使我们能够得到，对 $\omega \neq 0$，
+\begin{align*}
+&\frac{1}{2\mathrm{i}}\left[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \right] \tag{2.2.36}
+\\
+&\quad = \bigl(\mathrm{e}^{\beta\omega/2} - \eta\,\mathrm{e}^{-\beta\omega/2}\bigr) \sum_{m,n} \langle\psi_n|O_2|\psi_m\rangle\langle\psi_m|O_1|\psi_n\rangle\, \frac{\mathrm{e}^{-(\epsilon_m + \epsilon_n)\beta/2}}{Z}\, \pi\delta\bigl(\omega - (\epsilon_m - \epsilon_n)\bigr).
+\end{align*}
+注意，当 $\omega \neq 0$ 时 $\delta$ 不起作用，可以略去。最后，把式 (2.2.36) 与式 (2.2.26)、式 (2.2.27) 相比较，便能借助 $\mathcal{G}^{\beta}(\omega_l)$ 表示 $A^{\beta}_{\pm}$。对 $\omega \neq 0$，我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+A^{\beta}_{+}(\omega) &= [1 + \eta\, n_{\eta}(\omega)]\,(\pi)^{-1} \frac{1}{2\mathrm{i}}\left[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \right]
+\\
+A^{\beta}_{-}(\omega) &= n_{\eta}(\omega)\,(\pi)^{-1} \frac{1}{2\mathrm{i}}\left[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \right]
+\end{aligned}
+} \tag{2.2.37}
+\end{equation*}
+其中 $n_{+}(\omega) = n_B(\omega) = \frac{1}{\mathrm{e}^{\beta\omega} - 1}$ 与 $n_{-}(\omega) = n_F(\omega) = \frac{1}{\mathrm{e}^{\beta\omega} + 1}$ 分别是玻色子与费米子的占据数。这样我们便能由 $\mathcal{G}^{\beta}$ 确定 $G^{\beta}$ 与 $D^{\beta}$。特别地，比较式 (2.2.31) 与式 (2.2.35)，我们看到 $D^{\beta}(\omega)$ 与 $\mathcal{G}^{\beta}(\omega_l)$ 之间有一个非常简单的关系：
+\begin{equation*}
+\boxed{\; D(\omega) = -\mathcal{G}^{\beta}(\omega_l)\bigr|_{\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}}, \qquad \text{对 } \omega \neq 0. \;} \tag{2.2.38}
+\end{equation*}
+同样，由于 $\omega \neq 0$，$\delta$ 已被略去。
+
+有趣的是，$\mathcal{G}^{\beta}(\tau)$ 的傅里叶变换与解析延拓两者不可交换：若先做解析延拓，便得到编时关联函数 $G^{\beta}(t)$；若先做傅里叶变换，便得到响应函数 $D^{\beta}(\omega)$。有人或许想换用另一种解析延拓 $\mathrm{i}\omega_n \to \omega(1 + \mathrm{i}0^{+})$，它其实更为自然。从我们的谱表示可以看出，新的解析延拓仍然无法把 $\mathcal{G}^{\beta}(\omega_n)$ 变成 $G^{\beta}(\omega)$。不过在零温下，我们确实有
+\begin{equation*}
+\boxed{\; G(\omega) = -\mathcal{G}(\omega)\bigr|_{\mathrm{i}\omega \to \omega(1 + \mathrm{i}0^{+})} \;} \tag{2.2.39}
+\end{equation*}
+
+以上所有结果都是在非常一般的情形下得到的，其中 $O_{1,2}$ 甚至未必是厄米的。当 $O_1 = O^{\dagger}_1$ 且 $O_2 = O^{\dagger}_2$ 时，结果可以取更简单的形式。在 $T = 0$ 且 $\omega \neq 0$ 时，我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+D(t) &= 2\Theta(t)\operatorname{Re} G(t), & \mathrm{i}G(t) &= \mathcal{G}\bigl(\mathrm{i}t + \mathrm{sgn}(t)0^{+}\bigr)
+\\
+D(\omega) &= \operatorname{Re} G(\omega) + \mathrm{i}\,\mathrm{sgn}(\omega)\operatorname{Im} G(\omega), & D(\omega) &= -\mathcal{G}(\omega)\bigr|_{\mathrm{i}\omega \to \omega + \mathrm{i}0^{+}}
+\end{aligned}
+} \tag{2.2.40}
+\end{equation*}
+对 $T \neq 0$ 且 $\omega \neq 0$，我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+D^{\beta}(t) &= 2\Theta(t)\operatorname{Re} G^{\beta}(t), & \mathrm{i}G^{\beta}(t) &= \mathcal{G}^{\beta}\bigl(\mathrm{i}t + \mathrm{sgn}(t)0^{+}\bigr)
+\\
+D^{\beta}(\omega) &= G^{\beta}_{+}(\omega) + \left( G^{\beta}_{+}(-\omega) \right)^{*}, & D^{\beta}(\omega) &= -\mathcal{G}^{\beta}(\omega_l)\bigr|_{\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}}
+\end{aligned}
+} \tag{2.2.41}
+\end{equation*}
+$D^{\beta}(\omega)$ 与 $G^{\beta}(\omega)$ 之间没有简单的关系。
+
+当 $O_1 = O^{\dagger}_2$ 时，函数 $A^{\beta}_{\pm}$ 是实且正的，并且 $\frac{1}{2\mathrm{i}}\bigl[ \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+}) - \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega - \mathrm{i}0^{+}) \bigr] = \operatorname{Im} \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+})$。我们有
+\begin{equation*}
+\boxed{
+\begin{aligned}
+A^{\beta}_{+}(\omega) &= [1 + \eta\, n_{\eta}(\omega)]\,(\pi)^{-1} \operatorname{Im} \mathcal{G}^{\beta}(\mathrm{i}\omega_l \to \omega + \mathrm{i}0^{+})
+\\
+&= -[1 + \eta\, n_{\eta}(\omega)]\,(\pi)^{-1} \operatorname{Im} D^{\beta}(\omega)
+\\
+&= -\frac{1}{1 + \eta\,\mathrm{e}^{-\beta\omega}}\,(\pi)^{-1} \operatorname{Im} G^{\beta}(\omega)
+\end{aligned}
+} \tag{2.2.42}
+\end{equation*}
+我们看到，谱函数 $A^{\beta}_{\pm}$ 可以由 $G^{\beta}$、$D^{\beta}$ 或 $\mathcal{G}^{\beta}$ 之一确定，进而确定其余的关联函数。
+
+作为例子，我们来计算振子问题在有限温度下的响应率。在频率空间中，虚时路径积分取如下形式
+\begin{equation*}
+Z = \int \mathcal{D}[x(\tau)]\; \mathrm{e}^{-\int_0^{\beta} \mathrm{d}\tau\, [\frac{m}{2}\dot{x}^2 + \frac{m\omega_0^2}{2} x^2]} = \int \mathcal{D}x_{\omega}\; \mathrm{e}^{-\frac{1}{2} \sum_{\omega_n = -\infty}^{\infty} x_{-\omega_n}\left[ m\omega_n^2 + m\omega_0^2 \right] x_{\omega_n}}
+\end{equation*}
+其中 $x_{\omega_n} = \int_0^{\beta} \mathrm{d}\tau\, x(\tau)\beta^{-1/2}\mathrm{e}^{\mathrm{i}\tau\omega_n}$。我们求得
+\begin{equation*}
+\mathcal{G}^{\beta}_{x}(\omega_n) = \langle x_{\omega_n} x_{-\omega_n} \rangle = \frac{m^{-1}}{\omega_n^2 + \omega_0^2} \tag{2.2.43}
+\end{equation*}
+于是有限温度响应率为
+\begin{equation*}
+\chi(\omega) = -D(\omega) = \mathcal{G}^{\beta}_{x}\bigl(-\mathrm{i}(\omega + \mathrm{i}0^{+})\bigr) = \frac{m^{-1}}{\omega_0^2 - \omega^2 - \mathrm{i}\,\mathrm{sgn}(\omega)0^{+}}
+\end{equation*}
+如预期的那样，它与温度无关。
+
+\subsection*{问题 2.2.5}
+
+用谱表示证明式 (2.2.39)。
+
+\subsection*{问题 2.2.6}
+
+从 $\mathcal{G}^{\beta}(\tau)$ 的定义出发证明式 (2.2.35)。
+
+\subsection*{问题 2.2.7}
+
+证明式 (2.2.43)。计算有限温度下的 $\langle x^2\rangle = \mathcal{G}^{\beta}_{x}(\tau)\bigr|_{\tau = 0}$。检查 $T \to 0$ 与 $T \to \infty$ 极限。（提示：下面的技巧在有限温度计算中经常用到，可能有用：
+%FIG{2.3}: {围道 $C_1$ 与 $C_2$。}
+\begin{equation*}
+\sum_{n = -\infty}^{\infty} \frac{T}{\omega_n^2 + \omega_0^2} = \oint_{C_1} \frac{\mathrm{d}z}{2\pi\mathrm{i}}\; \frac{1}{(-\mathrm{i}z)^2 + \omega_0^2}\; \frac{1}{\mathrm{e}^{\beta z} - 1}, \qquad \oint_{C_2} \frac{\mathrm{d}z}{2\pi\mathrm{i}}\; \frac{1}{(-\mathrm{i}z)^2 + \omega_0^2}\; \frac{1}{\mathrm{e}^{\beta z} - 1} = 0
+\end{equation*}
+其中 $C_1$ 是围绕虚 $z$ 轴的围道（contour），$C_2$ 是围绕 $z = 0$ 的无穷大圆围道，见图 2.3。）
+
+\section{量子自旋、贝里相与路径积分}
+
+\subsection{量子自旋的路径积分表示}
+
+\begin{keypoints}
+\item 贝里相来自一族量子态的相干态表示。贝里相是一个几何相（geometric phase），由相干态之间的交叠（内积）决定。
+\item 相干态路径积分的作用量含有一个贝里相项。
+\end{keypoints}
+
+考虑一个由哈密顿量 $H = 0$ 描述的自旋 $S = \frac{1}{2}$ 系统。这样一个自旋系统会有路径积分表述吗？首先，只有两个零能态 $|s_z\rangle$（$s_z = \pm\frac{1}{2}$）的自旋系统似乎太简单，不至于有路径积分表述。其次，作为含时自旋 $s_z(t)$ 的路径不是连续函数。所以，为了得到路径积分表述，我们先把这个简单的自旋系统变复杂一些：不用 $|s_z\rangle$，而用相干态 $|\pmb{n}\rangle$ 来描述不同的自旋态。
+
+相干态 $|\pmb{n}\rangle$ 用单位矢量 $\pmb{n}$ 标记。它是 $\pmb{n}$ 方向上自旋算符的本征态，即 $\pmb{n}\cdot\pmb{S}|\pmb{n}\rangle = S|\pmb{n}\rangle$，并且由下式给出：
+\begin{equation*}
+|\pmb{n}\rangle = |z\rangle = \begin{pmatrix} z_1 \\ z_2 \end{pmatrix}
+\end{equation*}
+\begin{equation*}
+\pmb{n} = z^{\dagger}\sigma z, \qquad |z_1|^2 + |z_2|^2 = 1
+\end{equation*}
+其中 $\sigma$ 是泡利矩阵。关系 $\pmb{n} = z^{\dagger}\sigma z$ 也称为矢量的旋量表示（spinor representation）。注意，对一个给定的矢量 $\pmb{n}$，旋量 $z$ 的总相位是不确定的，也就是说 $z$ 与 $\mathrm{e}^{\mathrm{i}\theta}z$ 给出同一个 $\pmb{n}$。不过我们可以选定一个相位，取
+\begin{equation*}
+z = \begin{pmatrix} \mathrm{e}^{-\mathrm{i}\phi}\cos\frac{\theta}{2} \\[0.5ex] \sin\frac{\theta}{2} \end{pmatrix} \tag{2.3.1}
+\end{equation*}
+其中 $(\theta, \phi)$ 是 $\pmb{n}$ 的球面角。
+
+由于态 $|\pmb{n}\rangle$ 的势能与动能都为零，人们或许以为相干态路径积分中的拉格朗日量 $L(\dot{\pmb{n}}, \pmb{n})$ 就简单地是零。结果表明，这个拉格朗日量相当不平凡。
+
+为计算拉格朗日量，我们注意相干态 $|\pmb{n}\rangle$ 是完备的：
+\begin{equation*}
+\int \frac{\mathrm{d}^2\pmb{n}}{2\pi}\, |\pmb{n}\rangle\langle\pmb{n}| = I_{2\times 2} \tag{2.3.2}
+\end{equation*}
+（因子 $\frac{1}{2\pi}$ 可以在上式两边取迹、并注意 $\operatorname{Tr}(|\pmb{n}\rangle\langle\pmb{n}|) = 1$ 而得到。）
+
+在时间区间 $[0, t]$ 中插入许多个 $\int \frac{\mathrm{d}^2\pmb{n}}{2\pi}|\pmb{n}\rangle\langle\pmb{n}|$，我们得到传播子 $\langle\pmb{n}_2|U(t,0)|\pmb{n}_1\rangle$ 的路径积分表示：\footnote{注意 $\langle\pmb{n}(\delta t)|\pmb{n}(0)\rangle = z^{\dagger}(\delta t)z(0) = 1 - z^{\dagger}(\delta t)[z(\delta t) - z(0)] \approx \mathrm{e}^{-z^{\dagger}\dot{z}\delta t}$。}
+\begin{align*}
+\mathrm{i}G(\pmb{n}_2, \pmb{n}_1, t) &= \langle\pmb{n}_2|U(t,0)|\pmb{n}_1\rangle
+\\
+&= \int \prod_{i=1}^{N} \frac{\mathrm{d}^2\pmb{n}(t_i)}{2\pi}\, \bigr]\lim_{N \to \infty} \langle\pmb{n}(t)|\pmb{n}(t_N)\rangle...\langle\pmb{n}(t_2)|\pmb{n}(t_1)\rangle\langle\pmb{n}(t_1)|\pmb{n}(0)\rangle
+\\
+&= \int \mathcal{D}^2\Bigl[\frac{\pmb{n}(t)}{2\pi}\Bigr]\, \mathrm{e}^{\mathrm{i}S[\pmb{n}(t)]}
+\\
+S[\pmb{n}(t)] &= \int_0^t \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z} \tag{2.3.3}
+\end{align*}
+相位项 $\mathrm{e}^{\mathrm{i}\int_0^t \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z}}$ 纯粹是一种量子效应，称为贝里相（Berry, 1984）。注意，相干态路径积分中出现的 $a^{*}\dot{a}$ 项也是一个贝里相。可见贝里相相当普遍地出现在相干态路径积分中。我们可以作如下三点观察。
+
+(a) $U(t,0)$ 是恒等算符。于是，式 (2.3.3) 算的竟是恒等算符的矩阵元！
+
+(b) 尽管 $H = 0$，作用量却不为零。不过，由于作用量只含一阶时间导数项，这个非零作用量与 $H = 0$ 是相容的。若自旋具有有限能量 $E$，则作用量中将含一个正比于时间的项：$S = -tE$。贝里相是 $t^0$ 量级的，与能量项不同。
+
+(c) 作用量 $S(z) = S(\theta, \phi) = \int \mathrm{d}t\; [-\frac{1}{2}\cos(\theta)\dot{\phi} - \frac{1}{2}\dot{\phi}]$ 的路径积分是一个相空间路径积分（见式 (2.1.11)）。于是，$(\theta, \phi)$ 正如 $(q, p)$ 一样，参数化了一个二维相空间。然而，与参数化平坦相空间的 $(q, p)$ 不同，$(\theta, \phi)$ 参数化的是一个弯曲的相空间（一个二维球面）。
+
+\subsection{作为绝热演化中额外相的贝里相}
+
+让我们从另一个角度来看贝里相。考虑处于恒定磁场 $\pmb{B} = -B\pmb{n}$ 中的一个自旋。基态的演化由下式给出：
+\begin{equation*}
+\langle\pmb{n}|\,\mathrm{e}^{-\mathrm{i}\int_0^T \mathrm{d}t\; \pmb{B}\cdot\pmb{S}}|\pmb{n}\rangle = \mathrm{e}^{-\mathrm{i}E_0 T}
+\end{equation*}
+其中 $E_0$ 是基态能量。我们把 $-E_0 T$ 称为这一演化的作用量。现在让 $\pmb{B}$ 的取向随时间缓慢变化，即 $\pmb{B} = -B\pmb{n}(t)$。在这种绝热运动下，基态演化为 $|\pmb{n}(t)\rangle$。这种演化的作用量 $S$ 由下式给出：
+\begin{equation*}
+\langle\pmb{n}|\,\mathrm{e}^{-\mathrm{i}\int_0^T \mathrm{d}t\; \pmb{B}(t)\cdot\pmb{S}}|\pmb{n}\rangle = \mathrm{e}^{\mathrm{i}S}
+\end{equation*}
+人们可能猜想 $S = -E_0 T$，因为基态能量（在任何给定时刻）仍是 $E_0$。在 $[0, T]$ 中插入许多个恒等式 (2.3.2)，我们看到实际上
+\begin{equation*}
+\langle\pmb{n}|\,\mathrm{e}^{-\mathrm{i}\int_0^T \mathrm{d}t\; \pmb{B}(t)\cdot\pmb{S}}|\pmb{n}\rangle = \mathrm{e}^{-\mathrm{i}E_0 T}\, \mathrm{e}^{\mathrm{i}\int_0^T \mathrm{d}t\; \mathrm{i}\langle\pmb{n}(t)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle}
+\end{equation*}
+作用量为
+\begin{equation*}
+S = -E_0 T + \int_0^T \mathrm{d}t\; \mathrm{i}\langle\pmb{n}(t)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle = -E_0 T + \int_0^T \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z} \tag{2.3.4}
+\end{equation*}
+多出了一个额外的贝里相。
+
+\subsection{贝里相与平行移动}
+
+\begin{keypoints}
+\item 只有对闭合路径，贝里相才是良定义的。
+\item 贝里相代表着给所有相干态指定共同相位时的阻挫（frustration）。
+\end{keypoints}
+
+贝里相有一些特殊的性质。与连接 $\pmb{n}(0)$ 和 $\pmb{n}(T)$ 的路径 $\pmb{n}(t)$ 相联系的贝里相由 $\mathrm{e}^{\mathrm{i}\theta_B} = \mathrm{e}^{-\int_0^T \mathrm{d}t\, \langle\pmb{n}(t)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle} = \mathrm{e}^{\mathrm{i}\int_0^T \mathrm{d}t\; \mathrm{i}z^{\dagger}\dot{z}}$ 给出。这个式子告诉我们，开放路径的贝里相不是良定义的。这是因为描述 $\pmb{n}$ 方向自旋的态 $|\pmb{n}\rangle$ 可以有任意相位，而这样的相位是非物理的。如果我们改变各态的相位，即 $|\pmb{n}(t)\rangle \to \mathrm{e}^{\mathrm{i}\phi(t)}|\pmb{n}(t)\rangle$，则
+%FIG{2.4}: {自旋 1 相干态 $|\pmb{n}(t)\rangle$ 的相位的平行移动的几何表示。$|\pmb{n}(t)\rangle$ 的相位可以用单位球面上 $\pmb{n}(t)$ 点处切平面内的一个二维单位矢量来表示。在这种表示下，平行移动可以分解为两个几何操作：把二维矢量在三维空间中平移，再投影回倾斜的切平面。让一个二维切矢量绕闭合回路平行移动一周会使矢量转动，转角就是自旋 1 态的贝里相。（小回路的转角除以回路所围的面积即为球面的曲率。按照爱因斯坦的广义相对论，空间的曲率 $=$ 引力。）}
+贝里相也随之改变，即 $\theta_B \to \theta_B + \phi(0) - \phi(T)$。换言之，同一条路径 $\pmb{n}(t)$ 可以有不同的旋量表示 $z(t)$。不同的旋量表示给出不同的贝里相。
+
+上面的讨论似乎表明，正如自旋态 $|\pmb{n}\rangle$ 的相位一样，贝里相也是非物理的。贝里相的起源似乎在于我们对不同自旋态相位的任意选取。于是，如果能为所有自旋态选出一个“共同”相位，就不会有贝里相。
+
+让我们尝试沿路径 $\pmb{n}(t)$ 为自旋态 $|\pmb{n}(t)\rangle$ 选取一个共同相位，以便消去贝里相。我们先为路径起点的自旋态 $|\pmb{n}(0)\rangle$ 选定一个相位。然后在下一点为自旋态 $|\pmb{n}(\Delta t)\rangle$ 选取“相同相位”。这里的问题是：当 $\pmb{n}(0)$ 与 $\pmb{n}(\Delta t)$ 不同时，“相同相位”是什么意思？由于 $\pmb{n}(0)$ 与 $\pmb{n}(\Delta t)$ 近乎平行，$|\pmb{n}(0)\rangle$ 与 $|\pmb{n}(\Delta t)\rangle$ 几乎是同一个态。这意味着 $\bigl|\langle\pmb{n}(0)|\pmb{n}(\Delta t)\rangle\bigr| \approx 1$。于是我们可以定义：若 $\langle\pmb{n}(0)|\pmb{n}(\Delta t)\rangle$ 为实且正，则 $|\pmb{n}(0)\rangle$ 与 $|\pmb{n}(\Delta t)\rangle$ 具有相同相位。如果沿路径 $\pmb{n}(t)$ 对所有的态都这样选取相位，我们就定义了沿路径的一种“平行移动”（parallel transportation）（见图 2.4）。对这样的路径，我们有 $\langle\pmb{n}(0)|\frac{\mathrm{d}}{\mathrm{d}t}|\pmb{n}(t)\rangle = 0$。如果我们为路径上所有的自旋态选取了共同相位，贝里相就消失。
+
+% ==================================================================
+% 新增术语（ch2_c 新增，供术语表追加）：
+%   spectral representation / spectral expansion 谱表示 / 谱展开；
+%   analytic continuation 解析延拓；susceptibility（电介质与一般线性响应情形） 响应率；
+%   conductance 电导；d.c. conductance 直流电导；Boltzmann factor 玻尔兹曼因子；
+%   bosonic / fermionic (correlation) 玻色型 / 费米型（关联）；
+%   (anti-)periodic （反）周期的；
+%   contour 围道；spherical angles 球面角；solid angle 立体角；
+%   spinor representation 旋量表示；parallel transportation 平行移动；
+%   frustration 阻挫；geometric phase 几何相；tangent plane 切平面；
+%   curvature 曲率；identity operator 恒等算符；direct product 直积；
+%   equation of motion 运动方程；phase-space path integral 相空间路径积分
+% ==================================================================

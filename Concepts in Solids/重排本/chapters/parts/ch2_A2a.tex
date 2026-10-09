@@ -1,0 +1,238 @@
+% ch2 A.2 前半 Derivation of Self-Consistent Equations: Second Quantization (原书页 15–21 / PDF p030–p036)
+
+\subsection{自洽方程的推导：二次量子化}
+
+% ---- 原书 p.15 (PDF p030) ----
+所有这些，相对于把 Hartree-Fock 理论应用于固体中的电子这一正题来说，已经是相当一段题外话了。为了进一步强调 Hartree-Fock 背后的物理，并顺便毫不费力地多导出几个结果——例如 Koopmans 定理——我将在这里给出从变分原理（variational principle）导出 Hartree-Fock 的基本推导的一个相当不寻常的版本。这同时也可以用来引入产生（creation）与湮灭（destruction）算符的概念，它们在本课程后面的部分将会用到。标准的推导可以在许多教科书中找到（例如可参见文献 2 和 11）。
+
+正如我先前所说，表示一个多粒子波函数
+
+\begin{equation*}
+\Psi(r_1\ldots r_N)
+\end{equation*}
+
+的实际上唯一可行的办法，是借助乘积函数
+
+\begin{equation*}
+\phi_1(r_1)\,\phi_2(r_2)\ldots\ \phi_N(r_N)
+\end{equation*}
+
+当然，这是一种非常特殊的多电子函数；但可以证明，任何实际合理的多粒子波函数都可以用足够数目的这类乘积线性展开——例如，多变量 Fourier 积分便正是这样一种展开。
+
+% ---- 原书 p.16 (PDF p031) ----
+像这样一个简单的乘积，对于一组全同的量子力学粒子来说并不是合适的波函数，因为这些粒子在原则上不可分辨。正如大家都知道的，自然界中出现的粒子只有两类：或者是 Bose 粒子，对它们要求对称波函数；或者是 Fermi 粒子，它们只具有反对称波函数。在两种情形下都存在该乘积的一个合适的推广：对 Bose 粒子，是对称化乘积（symmetrized product）
+
+\begin{equation*}
+(N!)^{-1/2}\sum_P \phi_1(Pr_1)\,\phi_2(Pr_2)\ldots
+\end{equation*}
+
+而对 Fermi 粒子，则是反对称化乘积（antisymmetrized product），即行列式（determinant）
+
+\begin{equation*}
+(N!)^{-1/2}\sum_P (-1)^P\,\phi_1(Pr_1)\ldots
+\end{equation*}
+
+在这些波函数中，唯一有意义的信息只是这样一个事实：一个粒子处在 $\phi_1$ 中，另一个处在 $\phi_2$ 中，等等。事实上，如果我们当初是从一个正交归一集合中选取这些 $\phi$ 的，那么标记这个函数的一个合理方式便是
+
+\begin{equation*}
+\Psi(r_1\ldots r_N)\ \longleftrightarrow\ \Psi(n_1 \text{ 在 } \phi_1 \text{ 中，} n_2 \text{ 在 } \phi_2 \text{ 中，} \ldots)\ =\ \Psi(n_1,n_2,n_3\ldots)
+\end{equation*}
+
+这称为"n"表示，或"占据数表示"（occupation number representation）。当然，对费米子而言，直接计算表明 $n$ 只能取 0 或 1；而对玻色子，$n$ 可以取任何值。例子：
+
+\begin{equation*}
+\Psi(n_1=1,\ n_2=0,\ n_3=0\ldots)\ \text{对应于}\ \phi_1(r_1)
+\end{equation*}
+
+\begin{equation*}
+\Psi(n_1=1,\ n_2=1,\ n_3=0\ldots)\ \longleftrightarrow\ \frac{1}{\sqrt{2}}\left(\phi_1(1)\phi_2(2)\pm\phi_1(2)\phi_2(1)\right)
+\end{equation*}
+
+等等。
+
+这可以简单地看成是从一组变量到另一组变量的一个线性幺正变换（unitary transformation）。看出这必定如此的一个办法，是利用选取 $\phi$ 的自由，采用一组特别简单的函数，即 $\delta$ 函数 $\delta(r-R)$ 那一组，这时 $\phi_n$ 的函数指标 $n$ 便成了连续变量 $R$。函数 $\Psi(n_R=1,\ n_{R'\neq R}=0)$ 是有一个粒子肯定位于 $R$ 处的函数；而任何一个单粒子函数都可以通过幺正变换
+
+\begin{equation*}
+\phi(R)\ \longleftrightarrow\ \int dR\ \phi(R)\,\Psi(n_R=1,\ n_{R'\neq R}=0)
+\end{equation*}
+
+得到，而这个式子随即给出幺正变换
+
+\begin{equation*}
+\Psi(n_\phi=1,\ n_{\phi'\neq\phi}=0)\ =\ \int dR\ \phi(R)\,\Psi(n_R=1,\ n_{R'}=0)
+\end{equation*}
+
+其中波函数 $\phi(R)$ 所扮演的角色，正如在普通的单粒子理论中那样，是 $r$ 空间表象与 $\phi$ 表象之间的幺正变换 $(R\,|\,\phi)$。类似的技术也可以用来把任何具有恰当反对称性的 $n$ 粒子函数，用由"一个粒子在 $R_1$ 处、第二个粒子在 $R_2$ 处"等等所标记的函数表示出来。（此后我们把自己限于费米子。）
+
+% ---- 原书 p.17 (PDF p032) ----
+因此，占据数表示只不过是把展开式用行列式波函数（determinantal wave functions）写出的一种方便方式。当人们再引入另外几种量子力学算符，即所谓"产生"与"湮灭"算符——它们作用于这些函数的方式，是在某一个特定波函数中添加或移除——即产生或消灭——一个粒子——便开始得到形式上更简单、也更为有用的结果。
+
+如果我们有一组已经正交归一化的函数 $\phi_n$，我们就引入一个算符 $C_{\phi_n}^{\dagger}$，或更简单地记作 $C_n^{\dagger}$，当它作用在任何 $n$ 表示函数 $\Psi(n_1,n_2,\ldots,n_N)$ 上时，便在态 $\phi_n$ 中添加一个新粒子。也就是说，
+
+\begin{equation*}
+C_n^{\dagger}\ \Psi(n_1,n_2,\ldots,n_n\ldots)\ =\ \Psi(n_1,n_2,\ldots,n_n+1\ldots)
+\end{equation*}
+
+我们还引入它的厄米共轭（hermitian conjugate）$C_n$，它恰好起相反的作用：使 $n_n$ 减一，也就是说，消灭一个处在态 $n$ 中的粒子。有两点值得注意：第一，事实上，对费米子来说，含有两个或更多个处于态 $n$ 的粒子的行列式为零，所以当它作用在 $n_n=1$ 或更大的态 $\Psi$ 上时 $C_n^{\dagger}=0$。这一点用 $(C_n^{\dagger})^2=(C_n)^2=0$ 来表述最为简捷。第二，波函数的相位——因而甚至连它的正负号——迄今为止都还没有被这个定义所确定。于是，如果我们有波函数
+
+\begin{equation*}
+\Psi(0\ldots n_1=1,\,0\ldots)\ \longleftrightarrow\ \phi_1(r)
+\end{equation*}
+
+那么我们还不知道该给行列式
+
+\begin{equation*}
+C_{n_2}^{\dagger}\ \Psi(0\ldots n_1=1,0\ldots)\ =\ \Psi(0\ldots n_1=1,\ n_2=1,0\ldots)
+\end{equation*}
+
+以什么相位：是说它是
+
+\begin{equation*}
+\frac{1}{\sqrt{2}}\left(\phi_1(r_1)\phi_2(r_2)-\phi_1(r_2)\phi_2(r_1)\right)
+\end{equation*}
+
+还是反过来，抑或给相应的行列式一个任意的相位因子。
+
+% ---- 原书 p.18 (PDF p033) ----
+事实上，当然，在这种情形下相位是任意的，因为物理结果不可能依赖于它。然而，在比较用不同方式产生粒子而构建起来的两个行列式时，相位就是有关系的了——例如，我们可能想把上面的波函数——它可以写成 $C_2^{\dagger}(C_1^{\dagger}\,|\,\Psi_{\mathrm{vac}})$——与先把粒子产生到态 $\phi_2$ 中、然后再产生到态 $\phi_1$ 中的那个波函数 $C_1^{\dagger}(C_2^{\dagger}\Psi_{\mathrm{vac}})$ 相比较。显然，如果把第一个写成
+
+\begin{equation*}
+\frac{1}{\sqrt{2}}\ e^{if}\ \left(\phi_1(r_1)\phi_2(r_2)-\phi_2(r_1)\phi_1(r_2)\right)
+\end{equation*}
+
+那么第二个就必须是
+
+\begin{equation*}
+\frac{1}{\sqrt{2}}\ e^{if}\ \left(\phi_2(r_1)\phi_1(r_2)-\phi_1\phi_2\right)
+\end{equation*}
+
+（译注：原书末项排印为 $\phi_1\phi_2$，漏去了宗量；按上下文应为 $\phi_1(r_1)\phi_2(r_2)$。）它恰恰是第一个的负值。于是，这可以通过规定
+
+\begin{equation*}
+C_1^{\dagger} C_2^{\dagger}(\Psi_{\mathrm{vac}})\ =\ -C_2^{\dagger} C_1^{\dagger}\left|\Psi_{\mathrm{vac}}\right)
+\end{equation*}
+
+或者
+
+\begin{equation*}
+\left(C_1^{\dagger} C_2^{\dagger}+C_2^{\dagger} C_1^{\dagger}\right)\left|\Psi_{\mathrm{vac}}\right)\ =\ 0
+\end{equation*}
+
+来描述。事实上，你可以立刻看出：为了确保波函数在 $r_1$ 与 $r_2$ 互换时保持反对称，而我们指明哪一个是 $r_1$、哪一个是 $r_2$ 的唯一途径就是产生算符乘积中因子的次序，因此只需让不同 $n$ 的产生算符彼此\emph{反对易}（anticommute）便已足够：$C_1^{\dagger}C_2^{\dagger}+C_2^{\dagger}C_1^{\dagger}=0$，只要作用在任何波函数上都如此。
+
+这条反对易规则使得把诸 $C^{\dagger}$ 用矩阵显式表示出来变得极其复杂，因此，尽管这样的表示可以找到，我们在这里不打算给出。
+
+通过取厄米共轭你可以看出 $C_n C_{n'}+C_{n'}C_n=0$，而且 $C_n^2=C_n^{\dagger 2}=0$ 其实恰好就是这条规则的 $n=n'$ 那个元素。这一点自己可以做出——我把它留作练习——即 $C_n C_{n'}^{\dagger}+C_{n'}^{\dagger}C_n=0$，当 $n'\neq n$ 时也成立。
+
+% ---- 原书 p.19 (PDF p034) ----
+这就只剩下 $C_n^{\dagger}C_n$ 和 $C_nC_n^{\dagger}$ 了。这两个乘积其实非常简单。考虑它们对 $\Psi_0=\Psi(\ldots n_n=0,\ldots)$ 和对 $\Psi_1=\Psi(\ldots n_n=1,\ldots)$ 的作用；省略号代表所有其余指标的一组相同的取值。
+
+\begin{equation*}
+C_n^{\dagger} C_n\,\Psi_0\ =\ 0\quad\text{因为}\quad C_n\,\Psi_0=0
+\end{equation*}
+
+\begin{equation*}
+C_n C_n^{\dagger}\,\Psi_1\ =\ 0\quad\text{因为}\quad C_n^{\dagger}\,\Psi_1=0
+\end{equation*}
+
+\begin{equation*}
+C_n^{\dagger}\,\Psi_0\ =\ \pm\Psi_1\qquad\quad C_n\,\Psi_1\ =\ \pm\Psi_0
+\end{equation*}
+
+相位未定，但它们必须相同，于是
+
+\begin{equation*}
+C_n C_n^{\dagger}\,\Psi_0\ =\ \Psi_0\qquad\quad C_n^{\dagger} C_n\,\Psi_1\ =\ \Psi_1
+\end{equation*}
+
+既然所有波函数都可以写成这两种类型的线性组合，这些方程就意味着：对所有 $\Psi$，
+
+\begin{equation*}
+C_n^{\dagger} C_n+C_n C_n^{\dagger}\ =\ 1;\ \text{因而}\ C_n^{\dagger} C_{n'}+C_{n'}C_n^{\dagger}\ =\ \delta_{nn'}
+\end{equation*}
+
+我们还看到，算符 $C_n^{\dagger}C_n$ 就是\emph{测量}处于态 $n$ 中电子数目的那个算符。
+
+\begin{equation*}
+C_n^{\dagger} C_n\ =\ n_n\qquad\quad C_n C_n^{\dagger}\ =\ 1-n_n
+\end{equation*}
+
+到这里，我们已经证明了：利用占据数表示以及产生与湮灭算符，能够建立起行列式波函数的一套完整的代数——事实上，我们可以把前者弃置不用，而总是从真空出发，写成
+
+\begin{equation*}
+\Psi(n_1,n_2,\ldots,n_N,\ldots)\ =\ (C_1^{\dagger})^{n_1}(C_2^{\dagger})^{n_2}\ldots(C_N^{\dagger})^{n_N}\ldots\ \Psi_{\mathrm{vac}}
+\end{equation*}
+
+% ---- 原书 p.20 (PDF p035) ----
+为了利用这一点，我们还必须把物理可观测量也用产生与湮灭算符展开。这实际上不难。如何做到这一点，考虑一个简单的单电子空间势 $V(r)$ 的情形就能最简单地予以说明。先看 $V(r)$ 作用在一个单电子函数上的效果。如果我们有一组正交函数 $\phi_n(r)$，
+
+\begin{equation*}
+V(r)\phi_n(r)\ =\ \sum_m V_{mn}\phi_m(r)
+\end{equation*}
+
+（译注：原书右端排印为 $\phi_n(r)$，按上下文应为 $\phi_m(r)$。）$V_{mn}$ 是通常的矩阵元（matrix element）$\int\phi_m^*\,V\phi_n\,dr$。于是，就单电子函数而言，$V(r)$ 的效果与
+
+\begin{equation*}
+V\ \longleftrightarrow\ \sum_{m,n} C_m^{\dagger} V_{mn} C_n
+\tag{1}
+\end{equation*}
+
+相同，这只要把它作用在 $C_n^{\dagger}\Psi_{\mathrm{vac}}\leftrightarrow\phi_n(r)$ 上便可以看到。
+
+类似地，在一个双电子问题中，由不可分辨性我们知道 $V(r)$ 必须作用在两个坐标上，因此我们把 $V(r_1)+V(r_2)$ 插入所研究的哈密顿量或其他可观测量之中。计算它作用在乘积 $\phi_m(r_1)\phi_{m'}(r_2)$ 上的效果，我们得到
+
+\begin{equation*}
+\sum_n\left[\phi_n(r_1)\,\phi_{m'}(r_2)\,V_{nm}\ +\ V_{nm'}\,\phi_m(r_1)\,\phi_n(r_2)\right]
+\end{equation*}
+
+这又恰好是这样的效果：消灭 $m$ 或 $m'$ 中的任何一个，乘上相应的 $V$，再换上 $n$；也就是说，还是同一个算符。（我留给读者一个练习：证明诸 $C$ 的反对易性再加上反对称化，会导致行列式的正确符号。）
+
+现在只差最后一步，就会使在这套理论中构造可观测量——例如哈密顿量——的一般规则变得一目了然。让我们作正则变换（canonical transformation），变换到 $\delta$ 函数 $\delta(r-R)$，以及相应的产生与湮灭算符 $\Psi^{\dagger}(R)$、$\Psi(R)$。这里采用记号 $\Psi^{\dagger}$ 与 $\Psi$，是因为这些算符常常被称为\emph{电子场}（electron field）算符，它们与普通 Schrödinger 方程中的波函数 $\Psi$ 扮演着十分相似的角色；它们正是这一 c 数量（c-number）的算符版本——故名"二次量子化"。这个变换当然是
+
+% 原书在 $\phi_m$ 上方以箭头标注 $(m|R)$，指明 $\phi_m(R)$ 即幺正变换矩阵元 $(m|R)$
+\begin{equation*}
+C_m^{\dagger}\ =\ \int dR\ \overset{(m|R)}{\phi_m}(R)\ \Psi^{\dagger}(R)
+\tag{2}
+\end{equation*}
+
+% ---- 原书 p.21 (PDF p036) ----
+然后用 $(R'|m)=\phi_m^{\dagger}$ 遍乘两边并求和，我们便得到逆变换
+
+\begin{equation*}
+\sum_m \phi_m^{*}(R')\,C_m^{\dagger}\ =\ \int dR\ \sum_m (R'|m)(m|R)\,\Psi^{\dagger}(R)
+\end{equation*}
+
+而且我们认出和式中的 $\delta$ 函数：$\sum_m (R'|m)(m|R)=\delta(R'-R)$，
+
+\begin{equation*}
+\Psi^{\dagger}(R')\ =\ \sum_m C_m^{\dagger}\phi_m^{*}(R')
+\tag{3}
+\end{equation*}
+
+把式 (2) 代入式 (1)，我们得到
+
+\begin{align*}
+V\ \longleftrightarrow\ \sum_{m,n}\int dR&\int dR'\ \phi_m(R)\Psi^{\dagger}(R)\int dR''\ \phi_m(R'')\\
+&\times\ V(R'')\phi_n(R'')\phi_n^{*}(R')\ \Psi(R')
+\end{align*}
+
+再一次，这些和式引入一系列 $\delta$ 函数，于是我们得到
+
+\begin{equation*}
+V\ \longleftrightarrow\ \int dR\ \Psi^{\dagger}(R)V(R)\Psi(R)
+\end{equation*}
+
+这个公式看上去是不言自明的。积分号下的量常常被称为一个"密度"——在这个情形下是一个"势密度"（potential density）。
+
+我再一次留给读者去证明：这条显然的规则也可以应用于相互作用势
+
+\begin{align*}
+\frac{1}{2}\sum_{i,j}\frac{e^2}{R_{ij}}\ \longleftrightarrow\ V_{\mathrm{int}}\
+&=\ \frac{1}{2}\sum_{m,n,l,p} C_m^{\dagger} C_n^{\dagger} C_l C_p\, V_{mnlp}\\
+&=\ \frac{1}{2}\sum_{\sigma,\sigma'}\int dR\,dR'\ \Psi_{\sigma}^{\dagger}(R)\Psi_{\sigma'}^{\dagger}(R')\ \frac{e^2}{|R-R'|}\ \Psi_{\sigma'}(R')\Psi_{\sigma}(R)
+\end{align*}
+
+\begin{equation*}
+V_{mnlp}\ =\ e^2\int dR\int dR'\ \frac{\phi_m^{*}(R)\phi_n^{*}(R')\phi_l(R')\phi_p(R)}{|R-R'|}\ \delta_{\sigma_m\sigma_p}\,\delta_{\sigma_n\sigma_l}
+\tag{4}
+\end{equation*}

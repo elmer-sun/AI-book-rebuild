@@ -1,0 +1,205 @@
+% ch6_d §6.11–6.14 (书页 200–210 / p214–p224)
+%--C-TAIL--
+%JOIN%如在式 (5.40) 中那样，并辅以 Friedel 求和规则。再者，我们并不能保证电子波函数真的是简单的平面波——而且势太强，无法恰当地使用等效哈密顿量。最后，散射也不应全部归因于溶质原子与溶剂原子之间的电荷差异；还可能有来自芯势差异的散射——比方说，杂质离子与被它所替代的离子在有效势上有所不同。因此，把 Ag 掺入 Au 中时同样会有散射，尽管二者价数相同，原子体积也几乎完全一样。
+
+由过渡金属杂质引起的散射以 $d$ 共振（§5.5）为主导。由 (3.81) 与 (5.40) 显然可见，散射截面必在 $d$ 相移通过 $\pi/2$ 的共振能量处经过极大值。然而要注意，这一共振可能依赖于杂质的磁极化方向相对于被散射电子自旋取向的关系，如图 95 所示。
+
+在某些情形下，在被散射传导电子的自旋 $\mathbf{s}$ 与杂质处 $d$ 电子的总自旋 $\mathbf{S}$ 之间，还存在一个附加的微弱的\emph{s--d 交换}（s--d-exchange）相互作用。正如 §10.6 将要证明的，这个相互作用的哈密顿量应取如下形式
+\begin{equation*}
+\mathcal{H}_{s\text{-}d} = -(J/N)\,\mathbf{S}\cdot\mathbf{s}, \tag{6.71}
+\end{equation*}
+其中“交换”参量 $J$ 通常为负。这具有重要的物理后果，因为入射电子的自旋在被散射时可能被“翻转”。
+
+在半导体中，还可能有来自中性杂质的散射——例如，一个电子已落入施主杂质能级，或者一个空穴驻留在受主能级上（§§6.4、6.7）。这时的散射计算是一个相当可观的问题，等同于计算慢电子被中性氢原子散射的问题。
+
+\section{绝热原理}
+
+现在我们要考虑传导电子与格波之间的相互作用。这乍看是一个极其复杂的动力学问题——直到我们发现它可以拿初等微扰论来处理。这样做的依据是 Born--Oppenheimer 定理，下面我们就来推导它。
+
+让我们写下离子与电子整个系统的哈密顿算符。如同第 2 章那样，令 $\mathbf{u}_l$ 代表第 $l$ 个离子相对于第 $l$ 个格点的位置（为简单起见，我们假定每个晶胞只含一个原子）；令 $\mathbf{r}_i$ 代表第 $i$ 个电子的位置。总哈密顿量为
+\begin{equation*}
+\mathcal{H} = -\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}} - \sum_{i}\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial\mathbf{r}_{i}^{2}} + \sum_{i<j}\frac{e^{2}}{|\mathbf{r}_{i}-\mathbf{r}_{j}|} + \mathcal{V}(\mathbf{u},\mathbf{r}) + G(\mathbf{u}). \tag{6.72}
+\end{equation*}
+头两项是离子和电子的动能算符。下一项是电子间相互作用。再下一项是电子在离子（处于其位移后的位置）场中的势能。最后，$G(\mathbf{u})$ 代表离子之间任何直接作用的势能。
+
+让我们试着取如下的函数作为这个哈密顿量的一个本征函数：
+\begin{equation*}
+\Psi = \psi(\mathbf{u},\mathbf{r})\,\Phi(\mathbf{u}), \tag{6.73}
+\end{equation*}
+其中我们让 $\psi$ 满足电子在静态晶格——被冻结、第 $l$ 个离子位于 $\mathbf{u}_l$ 处——中的 Schr\"odinger 方程
+\begin{equation*}
+\biggl\{\sum_{i}-\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial\mathbf{r}_{i}^{2}} + \sum_{ij}\frac{e^{2}}{|\mathbf{r}_{i}-\mathbf{r}_{j}|} + \mathcal{V}(\mathbf{u},\mathbf{r})\biggr\}\,\psi(\mathbf{u},\mathbf{r}) = \mathcal{E}_{e}(\mathbf{u})\,\psi(\mathbf{u},\mathbf{r}). \tag{6.74}
+\end{equation*}
+这可以——事实上也必须——是一个多电子波函数；我们仍然假定能够求出它的本征值 $\mathcal{E}_{e}(\mathbf{u})$，例如把它们当作一组准粒子能级。但这些本征值将是 $\mathbf{u}_l$ 的函数；电子气的能量将依赖于离子的位置。
+
+现在把算符 $\mathcal{H}$ 作用到这个波函数上：
+\begin{align*}
+\mathcal{H}\Psi &= -\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}}\,\Psi + \mathcal{E}_{e}(\mathbf{u})\Psi + G(\mathbf{u})\Psi \\
+&= \psi(\mathbf{u},\mathbf{r})\biggl\{-\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}} + \mathcal{E}_{e}(\mathbf{u}) + G(\mathbf{u})\biggr\}\Phi(\mathbf{u}) \\
+&\quad -\sum_{l}\frac{\hbar^{2}}{2M}\biggl\{2\frac{\partial\Phi}{\partial\mathbf{u}_{l}}\cdot\frac{\partial\psi}{\partial\mathbf{u}_{l}} + \Phi\frac{\partial^{2}\psi}{\partial\mathbf{u}_{l}^{2}}\biggr\}. \tag{6.75}
+\end{align*}
+倘若此表达式中的第二行可以忽略，我们便能令 $\Phi(\mathbf{u})$ 满足一个 Schr\"odinger 型方程，从而求解完整的本征值问题 $\mathcal{H}\Psi = \mathcal{E}\Psi$：
+\begin{equation*}
+\biggl\{-\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}} + \mathcal{E}_{e}(\mathbf{u}) + G(\mathbf{u})\biggr\}\,\Phi(\mathbf{u}) = \mathcal{E}\,\Phi(\mathbf{u}). \tag{6.76}
+\end{equation*}
+这就是说，我们必须在离子之间的直接相互作用之外，再加上 $\mathcal{E}_{e}(\mathbf{u})$ 一项，它是电子系统的总能量作为离子位置的函数。这就是电子对晶格能量的\emph{绝热}（adiabatic）贡献。它是电子为了跟随晶格运动而不得不付出的能量改变。原则上，这一项将依赖于电子组态的细节，例如依赖于在金属温度下被激发的准粒子的数目——但实际上它对这类差别非常不敏感，通常可以假定电子处于基态来进行计算。
+
+还有必要证明 (6.75) 中的非绝热项可以忽略。容易证明，它们对系统处于态 $\Psi$ 时的能量期望值几乎没有贡献。第一个这样的项为零：它将给出如下形式的积分
+\begin{align*}
+\int\psi^{*}\frac{\partial\psi}{\partial\mathbf{u}_{l}}\,\mathbf{dr} &= \frac{1}{2}\frac{\partial}{\partial\mathbf{u}_{l}}\int\psi^{*}\psi\,\mathbf{dr} \\
+&= \frac{1}{2}\frac{\partial n_{e}}{\partial\mathbf{u}_{l}}, \tag{6.77}
+\end{align*}
+其中 $n_{e}$ 是电子的总数。第二项之所以小，是因为往最坏里说，电子也不过是被紧紧束缚在各自的离子上
+\begin{equation*}
+\psi(\mathbf{u}_{l},\mathbf{r}_{i}) = \psi(\mathbf{r}_{i}-\mathbf{u}_{l}), \tag{6.78}
+\end{equation*}
+这会给出如下形式的贡献
+\begin{align*}
+-\int\psi^{*}\frac{\hbar^{2}}{2M}\frac{\partial^{2}\psi}{\partial\mathbf{u}_{l}^{2}}\,\mathbf{dr} &= -\int\psi^{*}\frac{\hbar^{2}}{2M}\frac{\partial^{2}\psi}{\partial\mathbf{r}_{i}^{2}}\,\mathbf{dr} \\
+&= -\frac{m}{M}\int\psi^{*}\frac{\hbar^{2}}{2m}\frac{\partial^{2}\psi}{\partial\mathbf{r}_{i}^{2}}\,\mathbf{dr}. \tag{6.79}
+\end{align*}
+这不过是电子动能的 $m/M$ 倍——与寻常的热能相比可以忽略不计，因为 $m/M$ 的量级为 $10^{-4}$ 或 $10^{-5}$。
+
+我们刚才只是非常抽象地勾画了这一论证，它没有考虑非对角的非绝热项。特别是其中的第一项，含有 $\partial\psi/\partial\mathbf{u}_{l}$，当离子运动时能够在电子态之间引起跃迁。这恰恰就是\emph{电子--声子相互作用}（electron--phonon interaction），我们将在 §6.13 中讨论它。我们在 (6.77) 中所证明的只不过是它的对角元为零。若计入涉及此项非对角元的二阶微扰，我们将得到对晶格能量的贡献。
+
+绝热原理之所以重要，是因为它使我们得以把离子的运动与电子的运动分开，而在电子与声子之间只留下一个残余的相互作用。它为我们证实了一个直观的观念：电子气的能量是固体总弹性能的一个重要组成部分——正如在讨论金属内聚性（§4.3）时所假定的那样。计入这个能量项之后，我们就可以把电子和格波当作近乎独立的实体来处理。
+
+\section{声速的重整化}
+
+绝热原理诱使我们作如下简单的论证。假设我们计算一个裸离子晶格的振动谱。那么加入电子会有什么影响？
+
+碰巧，我们可以不费任何气力就得出一个结果。由点电荷组成的晶格的长波纵振动会引起体积变化和极化场，它们可以宏观地计算出来，一如 (5.60)--(5.62)。设正离子的密度为每单位体积 $N$ 个、质量为 $M$、电荷为 $Ze$，其位移的运动方程为
+\begin{equation*}
+M\ddot{\mathbf{x}} = -4\pi NZ^{2}e^{2}\mathbf{x}. \tag{6.80}
+\end{equation*}
+这就是说，对于波矢为 $\mathbf{q}$ 的纵波，其频率就是离子的等离体频率
+\begin{equation*}
+\Omega_{p} = \biggl(\frac{4\pi NZ^{2}e^{2}}{M}\biggr)^{\frac{1}{2}}, \tag{6.81}
+\end{equation*}
+而且几乎不依赖于 $q$。
+
+现在假设我们把电子气倾注进去。如第 5 章所示，这会修正来自其他源的一切有效静电场。例如，波矢为 $\mathbf{q}$、频率为 $\omega$ 的外加场要除以在 (5.16) 中定义的介电函数 $\epsilon(\mathbf{q},\omega)$。这应当同样适用于源于离子等离体极化的力；(6.80) 的右端应当除以 $\epsilon(\mathbf{q},\omega)$，其中 $\mathbf{q}$ 是所考虑的振动的波矢，$\omega$ 是它的实际频率。这意味着观测到的频率将是
+\begin{equation*}
+\nu_{\mathbf{q}}^{2} = \frac{\Omega_{p}^{2}}{\epsilon(\mathbf{q},\nu_{\mathbf{q}})}. \tag{6.82}
+\end{equation*}
+实际上 $\nu_{\mathbf{q}}$ 很小，在 $\epsilon$ 中可以忽略（也就是说，离子等离体振动的频率与一切电子过程相比都很低）。对 $\epsilon(\mathbf{q},0)$ 采用近似 (5.21)，我们得到
+\begin{equation*}
+\nu_{\mathbf{q}}^{2} \approx \frac{4\pi NZ^{2}e^{2}}{M}\,\frac{q^{2}}{q^{2}+4\pi e^{2}\mathcal{N}(\mathcal{E}_{F})}, \tag{6.83}
+\end{equation*}
+亦即
+\begin{equation*}
+\nu_{\mathbf{q}} \rightarrow q\biggl(\frac{NZ^{2}}{M\mathcal{N}(\mathcal{E}_{F})}\biggr)^{\frac{1}{2}}. \tag{6.84}
+\end{equation*}
+换句话说，纵声学模的速度趋于一个常数；对于密度为 $NZ$ 的自由电子气，它就是简单地
+\begin{equation*}
+s = \biggl(\frac{mZ}{3M}\biggr)^{\frac{1}{2}}v_{F}, \tag{6.85}
+\end{equation*}
+其中 $v_{F}$ 照例是电子的费米速度。对大多数金属的声速而言，这个估计并不坏，对碱金属尤其好用。公式 (6.82) 表明 Kohn 效应（§5.4）是如何产生的。群速是 $\nu_{\mathbf{q}}$ 对 $q$ 的导数——而 $\epsilon(\mathbf{q},0)$ 的导数在 $q = 2k_{F}$ 处含有对数奇异性。
+
+要对金属的晶格动力学作更系统的处理——对一切偏振方向、一切波长都成立——我们应当按如下步骤进行：(i) 计算完整晶体的电子能带结构；(ii) 计算同一晶体在离子按波矢为 $\mathbf{q}$ 的声子图样（如 (2.49) 那样）发生位移时的能带结构；(iii) 把这两个结构的总能量之差当作这种位移图样中“势能”的改变（如 (2.2) 那样），从而算出该模的频率 $\omega_{\mathbf{q}}$。
+
+这个程序看上去令人生畏，因为绝热原理只有在每个结构都自洽地算出时才成立。但假设我们处理的是横声子模，其中局地原子体积保持不变。晶体内聚能的大部分（参看 §4.3）不发生变化，于是我们可以只集中于来自费米面畸变的小贡献——这样的畸变可以描述成电子被位移了的离子散射所产生的微扰（参看 §§2.7、6.13）。对于简单的 N.F.E. 金属，§5.3 的屏蔽赝势方案恰好精确地、完全自洽地描述了这类位移的效应。于是我们发现频率 $\omega_{\mathbf{q}}$ 与屏蔽离子赝势的各个 Fourier 分量 $w_{s}(\mathbf{q}+\mathbf{g})$ 之间有一个关系式。
+
+这个关系已被颇为成功地用于解释用中子衍射（§2.8）在金属横向晶格谱中观测到的复杂色散曲线。我们甚至可以回到实空间表示，证明金属的动力学行为就好像“中性赝原子”（neutral pseudo-atoms）之间存在两两成对的弹性力——这种力也可以解释成裸金属离子的“赝电荷”云之间的屏蔽静电相互作用。但这个图像用于长波纵模时却会引人误入歧途，因为在那里体积效应占主导地位；对于过渡金属和共价键合的半导体（§4.2），它也完全不适用。
+
+\section{电子–声子相互作用}
+
+处理这个问题的最简单方式，是假定金属中的传导电子被晶格振动非弹性地衍射，其方式与我们为 X 射线、中子或快电子的非弹性衍射所假定的完全相同。这个处理乍一看实在太过天真，但可以求助于 §6.11 的绝热原理来为它辩护。我们径直接过 §§2.7、2.8 的全部理论。在 (2.86) 与 (2.97) 中我们得到过如下公式：从态 $\mathbf{k}$ 到态 $\mathbf{k}'$ 的跃迁矩阵元可以写成
+\begin{equation*}
+\mathcal{M}_{\mathbf{k}\mathbf{k}'} = i\mathcal{V}_{a}(\mathbf{K})\cdot(\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}), \tag{6.86}
+\end{equation*}
+其中 $\mathbf{K} = \mathbf{k}' - \mathbf{k}$；$\mathbf{q} = \mathbf{K}$ 或 $\mathbf{q} = \mathbf{K} - \mathbf{g}$，视我们遇到的是 N 过程还是 U 过程而定；$\mathbf{U}_{\mathbf{q}}$ 是波矢为 $\mathbf{q}$ 的晶格振动的矢量振幅；而 $\mathcal{V}_{a}(\mathbf{K})$ 是单个原子或离子的势对这个跃迁的矩阵元。
+
+我们可以把它非常简单地表述如下。取 $\mathcal{M}_{\mathbf{k}\mathbf{k}'}$ 的模平方，再用常规微扰论算出一个散射概率。于是晶格中每个原子的行为就如同它具有一个平均的有效微分散射截面
+\begin{equation*}
+\overline{\sigma}(\mathbf{K}) = \sigma_{a}(\mathbf{K})\,N\,|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}, \tag{6.87}
+\end{equation*}
+其中 $\sigma_{a}(\mathbf{K})$ 是\emph{孤立的}（isolated）原子散射过矢量 $\mathbf{K}$ 的微分截面。
+
+这个公式十分透明。它仿佛是说每个原子都能独立地散射电子——但散射量的多少依赖于它在晶格中与相邻原子相对位移的大小。因子 $|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}$ 对所有 $\mathbf{q}$ 的平均出现在 §2.9 讨论的 Debye--Waller 因子的理论之中；如 (2.107) 与 (2.118) 所示，它正是离子偏离其格点的均方位移，表示为晶格间距的分数。但当我们细致考察每一个过程——也就是说，当我们选定一个特定的 $\mathbf{K}$ 值时——就必须考虑来自具有确定波矢的一组晶格位移的散射；此时相邻离子位移之间的关联就变得重要起来，长波模引起的散射遂被削弱。
+
+参看 (2.86) 与 (2.103)，我们可以把这一点看得更加清楚。因子 $N|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}$ 是结构因子平方的一个近似，而结构因子正比于 $S(\mathbf{K})$，即原子位置的对关联函数（pair correlation function）的 Fourier 变换；亦即
+\begin{equation*}
+\overline{\sigma}(\mathbf{K}) = \sigma_{a}(\mathbf{K})\,S(\mathbf{K}). \tag{6.88}
+\end{equation*}
+这个结果对液体和对固体同样成立；传导电子的散射依赖于液体中原子的径向分布函数。
+
+等我们讨论电阻率等问题时，还要进一步考虑这个结构因子，并分析来自各个晶格频率的贡献。我们还需要计入电子被散射时的能量变化，一如 (2.101)。眼下我们只指出：绝热原理使我们得以证明 (6.87)，因为它允许我们假定晶格冻结在任一构型上，然后再计算电子在这个稍稍非周期的排布中的散射。离子运动的唯一动力学效应，就是我们方才提到的那个能量变化。
+
+电子--声子相互作用的问题就这样主要归结为计算 $\sigma_{a}(\mathbf{K})$。假如原子只是一个被整体携带着走的浅势 $\mathcal{V}(\mathbf{r})$，那么由初等波力学，在 Born 近似下我们应当有
+\begin{equation*}
+\frac{\partial\sigma_{a}}{\partial\Omega} = \biggl(\frac{m}{2\pi\hbar^{2}N}\biggr)^{2}\,|\mathcal{V}_{a}(\mathbf{K})|^{2} \tag{6.89}
+\end{equation*}
+作为每单位立体角 $\Omega$ 的微分散射。在这个公式中
+\begin{equation*}
+\mathcal{V}_{a}(\mathbf{K}) = N\int\mathcal{V}_{a}(\mathbf{r})\,e^{-i\mathbf{K}\cdot\mathbf{r}}\,\mathbf{dr}; \tag{6.90}
+\end{equation*}
+它是离子势的 Fourier 变换，按晶体的一个晶胞归一化。
+
+但是正如 §3.9 中所见，原子或离子的真实势对散射截面的 Born 近似来说太深了。分波公式 (3.78)，或某种类似的散射振幅精确公式，要合适得多。特别是，我们可以采用 §§3.6、3.9 的赝势形式体系，在与能带结构计算相同的框架内计算电子--声子相互作用。
+
+这就提示我们，(6.89) 中 $\mathcal{V}_{a}$ 的 Fourier 分量应当换成原子赝势的相应分量。
+但移动一个离子所引起的势的改变，必须把电子气电荷分布的移动所产生的任何效应都包括进来。如 §5.3 所见，这可以近似地加以照顾：把裸离子势的 Fourier 分量除以介电函数。
+
+长话短说，正确的做法是使我们关于电子--声子相互作用的整个讨论从叠加的\emph{赝原子}（pseudo-atom）势 (5.35) 出发，而不是从叠加的“原子”势 (2.83) 出发。代替 (6.89)，我们得到
+\begin{equation*}
+\frac{\partial\sigma_{a}}{\partial\Omega} = \biggl(\frac{m}{2\pi\hbar^{2}N}\biggr)^{2}\,|w_{s}(K)|^{2}, \tag{6.91}
+\end{equation*}
+其中 $w_{s}(K)$ 是某个中性赝原子“势”的 Fourier 变换。这个公式在散射微扰级数的所有阶次上并不精确，而且在 $K$ 大时相当不确定，因为线性屏蔽在原子芯区内并不适用；但对于简单的 N.F.E. 金属，它是一个良好的自洽近似。
+
+$w_{s}(K)$ 的行为对所有简单金属而言大体相同。如 §5.3 所见，\emph{裸}（bare）离子的赝势 $w_{b}(r)$ 包含价电荷 $Ze$ 的长程 Coulomb 场。因此，作 Fourier 变换后（参看 (5.31)），它必定表现如下
+\begin{equation*}
+w_{b}(K) \approx -\frac{4\pi ZNe^{2}}{K^{2}} + \mathcal{V}'(K) \tag{6.92}
+\end{equation*}
+其中当 $\mathbf{K} \rightarrow 0$ 时 $\mathcal{V}'(\mathbf{K})$ 保持有限，无论离子芯内部 $\mathcal{V}(\mathbf{r})$ 的形式如何。
+
+(6.92) 中的奇异性当然在 $\mathbf{K} = \mathbf{0}$ 处被 $\epsilon(\mathbf{K})$ 的奇异性所抵消，一如 (5.32)。把这些不同的结果合在一起，我们可以写出
+\begin{align*}
+w_{s}(K) = \frac{w_{b}(K)}{\epsilon(K)} &\approx \frac{-4\pi ZNe^{2}/K^{2} + \mathcal{V}'(\mathbf{K})}{1 + 4\pi e^{2}\mathcal{N}(\mathcal{E}_{F})/K^{2}} \\
+&\approx \frac{-\frac{2}{3}\mathcal{E}_{F} + (K^{2}/\lambda^{2})\,\mathcal{V}'(\mathbf{K})}{1 + (K^{2}/\lambda^{2})}, \tag{6.93}
+\end{align*}
+其中屏蔽参量 $\lambda$ 来自 (5.22)，或者更确切地说，来自 (5.21) 与 (5.36)。本质上，这就是 Bardeen 在 1937 年为碱金属中电子--声子相互作用的矩阵元导出的公式。我们现在看到，这个赝原子形状因子（图 119）在简单的
+N.F.E. 金属的理论中占据核心地位。知道了 $w_{s}(K)$，我们原则上就可以计算能带结构（§3.9）、晶格谱（§6.12）、晶相与液相的电输运性质（§7.5），甚至超导转变温度（§11.1）。遗憾的是，(6.93) 中的芯贡献 $\mathcal{V}'(\mathbf{K})$ 既不是“局域的”（§3.6），也没有唯一的定义，因此这些性质之间的关联并不如我们所期望的那样完美。生活很少那么简单！
+
+%FIG{119}: 赝原子形状因子。能带结构只依赖于它在倒格矢 $\mathbf{g}_1$、$\mathbf{g}_2$ 等处的取值。
+
+%FIG{120}: 在重复区图式中，U 过程可以化为 N 过程。
+
+在这番讨论中有一点需要当心。假设我们要求两个电子态 $\mathbf{k}$ 与 $\mathbf{k}'$ 之间的电子--声子相互作用，而这两个态相距几乎恰好一个倒格矢。这时若用诸如 (6.89) 那样的自由电子公式来计算微分散射截面，就肯定错了。这两个态看似相差一个很大的波矢，其实在重复区图式上看彼此相当接近。由于二者都贴近某个区边界，正如 §§3.2、3.3 中指出的，每一个都是平面波的复杂混合。
+就可以发现（出于自洽性的要求也必然如此）：当把 $\mathcal{V}_{a}(\mathbf{K})$ 作为在经过正确混合的波函数之间取的矩阵元来计算时，它的值在 $\mathbf{K} \rightarrow \mathbf{g}$ 时趋于零。
+
+我们可以换一种说法。一个在单一简约区内标记时看似倒逆过程的跃迁，在重复区图式中可以显得像正常过程——而且此时矩阵元正比于 $\mathbf{q}\cdot\mathbf{U}_{\mathbf{q}}$，当声子波矢 $\mathbf{q}$ 趋于零时它也趋于零。
+
+\section{形变势}
+
+在半导体中，波函数十分复杂，方便的办法是采用一种唯象理论，把晶体当作连续的弹性介质来处理。这时晶格振动可以描述成弹性应变的波，例如
+\begin{equation*}
+\mathsf{W}_{ij}(\mathbf{r}) = \mathsf{W}_{ij}^{0}\,e^{i\mathbf{q}\cdot\mathbf{r}} \tag{6.94}
+\end{equation*}
+给出 $\mathbf{r}$ 处应变张量的笛卡尔分量。于是我们论证：局域应变使载流子的能量改变如下的数量
+\begin{equation*}
+\delta\mathcal{E}(\mathbf{r}) = \sum_{ij}\mathcal{E}_{ij}\,\mathsf{W}_{ij}(\mathbf{r}), \tag{6.95}
+\end{equation*}
+其中 $\mathcal{E}_{ij}$ 是\emph{形变势}（deformation potential）张量。
+
+我们可以容易地算出一个电子散射的矩阵元。譬如说，如 (2.84) 中那样，
+\begin{align*}
+\mathcal{M}_{\mathbf{k}\mathbf{k}'} &= \int e^{-i\mathbf{k}'\cdot\mathbf{r}}\,\delta\mathcal{E}(\mathbf{r})\,e^{i\mathbf{k}\cdot\mathbf{r}}\,\mathbf{dr} \\
+&= \bigl(\sum_{ij}\mathsf{W}_{ij}^{0}\,\mathcal{E}_{ij}\bigr)\delta_{\mathbf{k}-\mathbf{k}'+\mathbf{q}}, \tag{6.96}
+\end{align*}
+这是在单位体积的晶体中。
+
+这种散射守恒晶体动量；这很自然，因为我们已经把晶格抹平了。散射概率正比于 $|\mathsf{W}^{0}|^{2}$，它与更精确的理论中 (6.88) 的结构因子属于同一类量。为了求出系数 $\mathcal{E}_{ij}$，我们可以设想让整个固体经受均匀应变 $\mathsf{W}^{0}$，并测量能隙宽度的改变。
+
+对于金属，$\mathcal{E}_{ij}$ 的膨胀分量很容易确定。论证本质上就是 §5.2 中所用的那一套。一个变化的体膨胀 $\Delta(\mathbf{r})$ 使 $\mathbf{r}$ 附近的电子密度从 $n_{0}$ 变为 $n_{0}(1-\Delta)$。这会使费米能级改变
+\begin{equation*}
+\delta\zeta(\mathbf{r}) = \frac{n_{0}\Delta(\mathbf{r})}{\mathcal{N}(\mathcal{E}_{F})} = \frac{2}{3}\mathcal{E}_{F}\Delta(\mathbf{r}) \tag{6.97}
+\end{equation*}
+——在自由电子气中。对于密度的长波振荡，我们可以让少数电子从较稠密的区域回流出来，从而使费米能级恢复均匀。这个对局域电中性的小偏离产生一个电场，其势恰好使费米能级在整个晶体中恢复处处相同。这个场必定是 $-\delta\zeta(\mathbf{r})$，我们把它等同于 $\delta\mathcal{E}(\mathbf{r})$；也就是说，形变势张量的迹必为
+\begin{equation*}
+\sum_{i}\mathcal{E}_{ii} = -\frac{2}{3}\mathcal{E}_{F}. \tag{6.98}
+\end{equation*}
+
+%FIG{121}: (a) 晶格中的密度波使电子密度发生变化。(b) 费米能级被升高或降低。(c) 电子回流以保持费米能级恒定，从而产生形变势。
+
+这是对 (6.93) 中 $w_{s}(K)$ 在 $K \rightarrow 0$ 时的极限值的一个严格推导；它表明赝原子形状因子的这个特征是完全自洽的，而且对微扰论的所有阶次都精确。任何想在发生了形变的晶体中使用 muffin-tin 势（§3.7）的做法，也都必须把这个效应作为 muffin-tin 零点的改变考虑进去。

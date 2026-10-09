@@ -1,0 +1,1103 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第4章 引力
+
+% 第4章 Gravitation
+\chapter{引力}
+
+\section{弯曲时空中的物理}
+
+数学上的会费已经缴清，我们现在可以着手考察广义相对论所描述的引力物理了。这个课题自然地分成两部分：引力场如何影响物质的行为，以及物质如何决定引力场。在 Newton 引力中，这两部分内容分别是：物体在引力势 $\Phi$ 中加速度的表达式
+\begin{equation*}
+\mathbf{a} = -\nabla\Phi,
+\tag{4.1}
+\end{equation*}
+以及用物质密度 $\rho$ 和 Newton 引力常数 $G$ 表出引力势的 Poisson 微分方程：
+\begin{equation*}
+\nabla^2\Phi = 4\pi G\rho.
+\tag{4.2}
+\end{equation*}
+
+在广义相对论中，与之相应的表述将描述时空曲率如何作用于物质、使自身表现为引力，以及能量和动量如何影响时空、使之产生曲率。无论从哪一半入手，直奔主题都是说得通的：径直给出支配弯曲时空中物理的定律，再推导其后果。不过，我们想讲得更有动机引导一些：从基本物理原理出发，试图论证这些原理自然地导致一个几乎是唯一的物理理论。
+
+在第 2 章中，我们通过引入 Einstein 等效原理（Einstein Equivalence Principle，简称 EEP）来引出对流形的讨论：“在足够小的时空区域内，物理定律退化为狭义相对论的定律；不可能借助局部实验探测到引力场的存在。”EEP 源于这样一个观念：引力是\emph{普适的}（universal）；它以同样的方式影响所有粒子（实际上包括一切形式的能量-动量）。正是这种普适性促使 Einstein 提出：我们所体验到的引力，是时空曲率的一种显现。这个想法很简单：像引力这般普适的东西，最容易描述为物质场传播所处背景的一种基本属性，而不是一种常规的力。与此同时，“时空是弯曲流形”这一认定还得到一个相似性的支持：一方面引力在局部区域中不可探测，另一方面我们却能在流形上找到局部惯性坐标系（在一点 $p$ 处 $g_{\hat\mu\hat\nu}=\eta_{\hat\mu\hat\nu}$、$\partial_{\hat\rho}g_{\hat\mu\hat\nu}=0$）。
+
+最妙的是，这些抽象的哲学思辨可以直接转化为一条把物理定律推广到弯曲时空情形的简单处方，这就是\textbf{最小耦合原理}（minimal-coupling principle）。用最直白的方式来表述，这条处方可以陈述如下：
+
+\begin{enumerate}
+\item 取一条在平直时空惯性系坐标中成立的物理定律。
+\item 把它写成坐标不变（张量）的形式。
+\item 断言所得定律在弯曲时空中依然成立。
+\end{enumerate}
+
+把如此简单的想法铺陈成一个三步骤流程，也许显得有点小题大做。我们只希望说明白：这里头并没有什么太复杂的东西。在实际操作上，这条处方通常等价于：取一条公认的平直空间中的定律，把 Minkowski 度规 $\eta_{\mu\nu}$ 换成更一般的度规 $g_{\mu\nu}$，并把偏导数 $\partial_\mu$ 换成协变导数 $\nabla_\mu$。因此，在那些用逗号和分号分别记偏导数与协变导数的人中间，这条处方有时被称为“逗号变分号法则”（Comma-Goes-to-Semicolon Rule）。
+
+举一个直截了当的例子：考虑自由下落（无加速度）粒子的运动。在平直空间中，这类粒子沿直线运动；用方程来表达，就是参数化路径 $x^\mu(\lambda)$ 的二阶导数为零：
+\begin{equation*}
+\frac{d^2x^\mu}{d\lambda^2} = 0.
+\tag{4.3}
+\end{equation*}
+在一般坐标下，这并不是一个张量方程；虽然 $dx^\mu/d\lambda$ 是一个良定义矢量的分量，二阶导数分量 $d^2x^\mu/d\lambda^2$ 却不是。你可能真的会以为这是一条看上去像张量的方程；然而你可以很容易地验证，它在极坐标下甚至都不成立——除非你指望自由粒子做圆周运动。我们可以用链式法则写出
+\begin{equation*}
+\frac{d^2x^\mu}{d\lambda^2} = \frac{dx^\nu}{d\lambda}\,\partial_\nu\frac{dx^\mu}{d\lambda}.
+\tag{4.4}
+\end{equation*}
+现在很清楚该如何把它推广到弯曲空间——只要把偏导数换成协变导数，
+\begin{equation*}
+\frac{dx^\nu}{d\lambda}\,\partial_\nu\frac{dx^\mu}{d\lambda}
+\;\to\;
+\frac{dx^\nu}{d\lambda}\,\nabla_\nu\frac{dx^\mu}{d\lambda}
+= \frac{d^2x^\mu}{d\lambda^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda}.
+\tag{4.5}
+\end{equation*}
+于是我们认识到，Newton 关系式 (4.3) 恰当的广义相对论版本就是测地线方程（geodesic equation），
+\begin{equation*}
+\frac{d^2x^\mu}{d\lambda^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda} = 0.
+\tag{4.6}
+\end{equation*}
+因此在广义相对论中，自由粒子沿测地线运动；这一点我们此前已经提过，但现在你对它为什么成立应该有了稍好一点的理解。
+
+作为一个还要更加直截了当的例子——而且我们已经提到过它——有平直时空中的能量-动量守恒定律：
+\begin{equation*}
+\partial_\mu T^{\mu\nu} = 0.
+\tag{4.7}
+\end{equation*}
+代入我们的处方，就得到向弯曲时空的恰当推广：
+\begin{equation*}
+\nabla_\mu T^{\mu\nu} = 0.
+\tag{4.8}
+\end{equation*}
+事情就是这么简单——以至于我们在第 3 章里使用这个方程时感到相当心安理得，并未给出任何细致的论证。当然，这种简单性丝毫不会减损向弯曲时空推广所带来的深刻后果，膨胀宇宙的例子便是明证。
+
+把一个方程从平直时空推广到弯曲时空是一回事；而论证所得的结果描述的就是引力，则完全是另一回事。为此，我们可以证明 Newton 引力的通常结果如何纳入这幅图像。我们用三个要求来定义 Newton 极限（Newtonian limit）：粒子运动缓慢（相对于光速）、引力场很弱（从而可以视为对平直空间的微扰），而且场还是静态的（不随时间改变）。让我们取固有时 $\tau$ 作为仿射参量，看看这些假设会把测地线方程变成什么。“缓慢运动”意味着
+\begin{equation*}
+\frac{dx^i}{d\tau} \ll \frac{dt}{d\tau},
+\tag{4.9}
+\end{equation*}
+于是测地线方程变为
+\begin{equation*}
+\frac{d^2x^\mu}{d\tau^2} + \Gamma^\mu_{00}\left(\frac{dt}{d\tau}\right)^2 = 0.
+\tag{4.10}
+\end{equation*}
+由于场是静态的（$\partial_0 g_{\mu\nu}=0$），相关的 Christoffel 符号 $\Gamma^\mu_{00}$ 得以简化：
+\begin{align*}
+\Gamma^\mu_{00} &= \frac{1}{2}g^{\mu\lambda}\left(\partial_0 g_{\lambda 0} + \partial_0 g_{0\lambda} - \partial_\lambda g_{00}\right) \\
+&= -\frac{1}{2}g^{\mu\lambda}\partial_\lambda g_{00}.
+\tag{4.11}
+\end{align*}
+最后，引力场的微弱使我们能把度规分解成 Minkowski 形式加上一个小微扰：
+\begin{equation*}
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \qquad |h_{\mu\nu}| \ll 1.
+\tag{4.12}
+\end{equation*}
+
+我们采用的是惯性系坐标，因此 $\eta_{\mu\nu}$ 是度规的规范形式（canonical form）。对度规微扰 $h_{\mu\nu}$ 的“小量条件”在任意坐标系下其实并无意义。由逆度规的定义 $g^{\mu\nu}g_{\nu\sigma}=\delta^\mu_\sigma$，我们发现准确到 $h$ 的一阶，
+\begin{equation*}
+g^{\mu\nu} = \eta^{\mu\nu} - h^{\mu\nu},
+\tag{4.13}
+\end{equation*}
+其中 $h^{\mu\nu} = \eta^{\mu\rho}\eta^{\nu\sigma}h_{\rho\sigma}$。事实上，对 $h$ 的任一确定阶数的对象，我们都可以用 Minkowski 度规来升降指标，因为修正项只会在更高阶才有贡献。如果你愿意，可以把 $h_{\mu\nu}$ 想成一个在 Minkowski 空间中传播、并与其他场相互作用的对称 $(0,2)$ 张量场。
+
+把所有这些合在一起，准确到 $h_{\mu\nu}$ 的一阶，我们得到
+\begin{equation*}
+\Gamma^\mu_{00} = -\frac{1}{2}\eta^{\mu\lambda}\partial_\lambda h_{00}.
+\tag{4.14}
+\end{equation*}
+因此测地线方程 (4.10) 成为
+\begin{equation*}
+\frac{d^2x^\mu}{d\tau^2} = \frac{1}{2}\eta^{\mu\lambda}\partial_\lambda h_{00}\left(\frac{dt}{d\tau}\right)^2.
+\tag{4.15}
+\end{equation*}
+利用 $\partial_0 h_{00}=0$，它的 $\mu=0$ 分量就是
+\begin{equation*}
+\frac{d^2t}{d\tau^2} = 0.
+\tag{4.16}
+\end{equation*}
+也就是说，$dt/d\tau$ 是常数。为了考察 (4.15) 的类空分量，回忆 $\eta^{\mu\nu}$ 的类空分量正是 $3\times 3$ 单位矩阵的那些分量。于是我们有
+\begin{equation*}
+\frac{d^2x^i}{d\tau^2} = \frac{1}{2}\left(\frac{dt}{d\tau}\right)^2\partial_i h_{00}.
+\tag{4.17}
+\end{equation*}
+两边除以 $(dt/d\tau)^2$，效果是把左端的导数从 $\tau$ 换成 $t$，于是得到
+\begin{equation*}
+\frac{d^2x^i}{dt^2} = \frac{1}{2}\partial_i h_{00}.
+\tag{4.18}
+\end{equation*}
+这看上去已经与 Newton 引力理论非常相像了。事实上，只要把此方程与 (4.1) 比较，就会发现二者相同，只需认定
+\begin{equation*}
+h_{00} = -2\Phi,
+\tag{4.19}
+\end{equation*}
+换言之也就是
+\begin{equation*}
+g_{00} = -(1+2\Phi).
+\tag{4.20}
+\end{equation*}
+因此我们已经证明：只要度规取 (4.20) 的形式，时空曲率确实足以在 Newton 极限下描述引力。当然，尚待完成的是找出度规的场方程——由它可推出度规确实取这种形式，而且对单个引力源天体能重新得到 Newton 公式
+\begin{equation*}
+\Phi = -\frac{GM}{r},
+\tag{4.21}
+\end{equation*}
+不过这一点很快就会讲到。
+
+我们上面概述的把物理定律推广到弯曲时空的直接流程确实有一些微妙之处，我们将在 4.7 节讨论。但就当前目的而言它已经绰绰有余，所以我们不要拖延，马上去完成任务的后一半：得到广义相对论中度规的场方程。
+
+\section{Einstein 方程}
+
+正如麦克斯韦方程组支配电场和磁场如何对电荷与电流作出响应，Einstein 场方程支配度规如何对能量和动量作出响应。归根结底，场方程必须靠假定提出、并接受实验检验，而不能从任何基石性原理导出；不过，我们可以基于合理性论证来为它提供动机。我们实际将采用两种方式：先通过一些非正式的类比推理——接近 Einstein 本人当年的思路——然后再从作用量出发，导出相应的运动方程。
+
+非正式的论证从这样一个认识开始：我们想找一个方程来取代 Newton 势的 Poisson 方程：
+\begin{equation*}
+\nabla^2\Phi = 4\pi G\rho,
+\tag{4.22}
+\end{equation*}
+其中 $\nabla^2=\delta^{ij}\partial_i\partial_j$ 是空间中的拉普拉斯算子（Laplacian），$\rho$ 是质量密度。［(4.21) 给出的 $\Phi$ 的显式形式是 (4.22) 在点状质量分布情形下的一个解。］我们苦苦寻觅的方程应当具备哪些特征？在 (4.22) 的左端，是一个作用在引力势上的二阶微分算子；右端则是对质量分布的一种量度。相对论性推广理应取张量之间方程的形式。我们知道质量密度的张量推广是什么：就是能动张量（energy-momentum tensor）$T_{\mu\nu}$。而引力势则应当被度规张量取代，因为在 (4.20) 中，我们正是靠把度规的微扰与 Newton 势联系起来才成功重现了引力。因此我们或许会猜测，新方程将把 $T_{\mu\nu}$ 设为正比于某个对度规导数而言为二阶的张量；大致像
+\begin{equation*}
+[\nabla^2 g]_{\mu\nu} \propto T_{\mu\nu},
+\tag{4.23}
+\end{equation*}
+这个样子，当然我们要的是完全张量化的形式。
+
+(4.23) 的左端并不是一个有意义的张量；它只是一个示意性记号，表明我们想要一个对称的 $(0,2)$ 张量，且对度规的导数是二阶的。第一个候选或许是让 d'Alembert 算符（d'Alembertian）$\Box=\nabla^\mu\nabla_\mu$ 作用在度规 $g_{\mu\nu}$ 上，但由度规相容性（metric compatibility）它自动为零。幸运的是，有一个显而易见的量，它不为零，而且由度规的二阶导数（以及一阶导数）构成：Riemann 张量 $R^\rho{}_{\sigma\mu\nu}$。回忆一下，Riemann 张量由 Christoffel 符号及其一阶导数构成，而 Christoffel 符号又由度规及其一阶导数构成，所以 $R^\rho{}_{\sigma\mu\nu}$ 含有 $g_{\mu\nu}$ 的二阶导数。它的指标数目不对，但我们可以把它缩并成指标数目恰当的 Ricci 张量 $R_{\mu\nu}$（而且还附赠对称性）。于是我们很自然会猜，引力场方程是
+\begin{equation*}
+R_{\mu\nu} = \kappa T_{\mu\nu},
+\tag{4.24}
+\end{equation*}
+其中 $\kappa$ 为某个常数。事实上，Einstein 确实一度提出过这个方程。不幸的是，它存在一个与能量守恒有关的问题。如果我们想保持
+\begin{equation*}
+\nabla^\mu T_{\mu\nu} = 0,
+\tag{4.25}
+\end{equation*}
+那么由 (4.24) 就会得到
+\begin{equation*}
+\nabla^\mu R_{\mu\nu} = 0.
+\tag{4.26}
+\end{equation*}
+这在任意几何中显然不会成立；由 Bianchi 恒等式（3.150）我们已经看到
+\begin{equation*}
+\nabla^\mu R_{\mu\nu} = \frac{1}{2}\nabla_\nu R.
+\tag{4.27}
+\end{equation*}
+但我们提议的场方程蕴涵 $R=\kappa g^{\mu\nu}T_{\mu\nu}=\kappa T$，把两者放在一起就得到
+\begin{equation*}
+\nabla_\mu T = 0.
+\tag{4.28}
+\end{equation*}
+标量的协变导数就是偏导数，所以 (4.28) 是在告诉我们：$T$ 在整个时空中为常数。这极不可信，因为真空中 $T=0$，而物质中 $T\neq 0$。我们得再加把劲。
+
+当然我们不必太费劲，因为我们已经知道一个由 Ricci 张量构造出来的、自动守恒的对称 $(0,2)$ 张量：Einstein 张量
+\begin{equation*}
+G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu},
+\tag{4.29}
+\end{equation*}
+它总是满足 $\nabla^\mu G_{\mu\nu}=0$。于是我们被引向提议
+\begin{equation*}
+G_{\mu\nu} = \kappa T_{\mu\nu}
+\tag{4.30}
+\end{equation*}
+作为度规的场方程。（实际上，把 $R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}$ 完整写出，可能比使用缩写 $G_{\mu\nu}$ 更常见。）这个方程满足所有显而易见的要求：右端把能量与动量密度写成一个对称、守恒的 $(0,2)$ 张量的协变表达式，而左端则是由度规及其一阶、二阶导数构造的对称、守恒的 $(0,2)$ 张量。剩下的只是确定比例常数 $\kappa$，并看看结果是否真的重现我们所知道的引力。换句话说，这个方程在 Newton 极限下能否预言引力势的 Poisson 方程？
+
+为回答这个问题，注意把 (4.30) 两边缩并（在四维时空中）给出
+\begin{equation*}
+R = -\kappa T,
+\tag{4.31}
+\end{equation*}
+利用它可以把 (4.30) 改写为
+\begin{equation*}
+R_{\mu\nu} = \kappa\left(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\right).
+\tag{4.32}
+\end{equation*}
+这是同一个方程，只是写法略有不同。我们想看看，它在弱场、时间无关、粒子缓慢运动的极限下是否预言 Newton 引力。我们考虑一个理想流体（perfect fluid）形式的能量-动量源，它满足
+\begin{equation*}
+T_{\mu\nu} = (\rho+p)U_\mu U_\nu + pg_{\mu\nu},
+\tag{4.33}
+\end{equation*}
+其中 $U^\mu$ 是流体的四速度，$\rho$ 与 $p$ 是静止系的能量密度和动量密度。实际上，在 Newton 极限下我们可以忽略压强；粗略地说，当组成物体的粒子以接近光速的速度运动时，压强才变得重要，而按假设 Newton 极限不包含这种情形。所以我们实际考虑的是尘埃（dust）的能动张量：
+\begin{equation*}
+T_{\mu\nu} = \rho U_\mu U_\nu.
+\tag{4.34}
+\end{equation*}
+我们考虑的“流体”是某个有质量的天体，比如地球或太阳。我们将在流体静止系（rest frame）中工作，在该系中
+\begin{equation*}
+U^\mu = (U^0, 0, 0, 0).
+\tag{4.35}
+\end{equation*}
+类时分量可以借助归一化条件 $g_{\mu\nu}U^\mu U^\nu=-1$ 来确定。在弱场极限下，按照 (4.12) 与 (4.13)，我们写出
+\begin{align*}
+g_{00} &= -1 + h_{00}, \\
+g^{00} &= -1 - h_{00}.
+\tag{4.36}
+\end{align*}
+于是准确到 $h_{\mu\nu}$ 的一阶，我们得到
+\begin{equation*}
+U^0 = 1 + \frac{1}{2}h_{00}.
+\tag{4.37}
+\end{equation*}
+不过，这实际上是多余的谨慎，因为我们反正要把四速度代进 (4.34)，而能量密度 $\rho$ 本来就已被当成小量（当 $\rho$ 趋于零时时空将是平直的）。所以在我们的近似水平上，可以直接取 $U^0=1$，相应地 $U_0=-1$。于是
+\begin{equation*}
+T_{00} = \rho,
+\tag{4.38}
+\end{equation*}
+其他所有分量都为零。在这个极限下，静止能量 $\rho=T_{00}$ 将远大于 $T_{\mu\nu}$ 中的其他项，所以我们要聚焦于 (4.32) 的 $\mu=0$、$\nu=0$ 分量。迹在最低非平凡阶为
+\begin{equation*}
+T = g^{00}T_{00} = -T_{00} = -\rho.
+\tag{4.39}
+\end{equation*}
+
+把它代人所提议的引力场方程 (4.32) 的 00 分量，得到
+\begin{equation*}
+R_{00} = \frac{1}{2}\kappa\rho.
+\tag{4.40}
+\end{equation*}
+这是一个把度规的导数与能量密度联系起来的方程。要得到用度规表出的显式表达式，我们需要计算 $R_{00}=R^\lambda{}_{0\lambda 0}$。实际上只需要 $R^i{}_{0i0}$，因为 $R^0{}_{000}=0$。我们有
+\begin{equation*}
+R^i{}_{0j0} = \partial_j\Gamma^i_{00} - \partial_0\Gamma^i_{j0} + \Gamma^i_{j\lambda}\Gamma^\lambda_{00} - \Gamma^i_{0\lambda}\Gamma^\lambda_{j0}.
+\tag{4.41}
+\end{equation*}
+这里第二项是时间导数，对静态场为零。第三、四项形如 $(\Gamma)^2$，由于 $\Gamma$ 是度规微扰的一阶小量，它们只在二阶才有贡献，可以忽略。于是剩下 $R^i{}_{0j0}=\partial_j\Gamma^i_{00}$。由此得到
+\begin{align*}
+R_{00} &= R^i{}_{0i0} \\
+&= \partial_i\left[\frac{1}{2}g^{i\lambda}\left(\partial_0 g_{\lambda 0} + \partial_0 g_{0\lambda} - \partial_\lambda g_{00}\right)\right] \\
+&= -\frac{1}{2}\delta^{ij}\partial_i\partial_j h_{00} \\
+&= -\frac{1}{2}\nabla^2 h_{00}.
+\tag{4.42}
+\end{align*}
+与 (4.40) 比较，我们看到 (4.30) 的 00 分量在 Newton 极限下预言
+\begin{equation*}
+\nabla^2 h_{00} = -\kappa\rho.
+\tag{4.43}
+\end{equation*}
+由于 (4.19) 设定了 $h_{00}=-2\Phi$，只要取 $\kappa=8\pi G$，这正是 Poisson 方程 (4.22)。
+
+看来我们的猜测 (4.30) 成功了。选定了能正确恢复 Newton 极限的归一化之后，我们就可以给出广义相对论的\textbf{Einstein 方程}：
+\begin{equation*}
+\boxed{\,R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = 8\pi G T_{\mu\nu}.\,}
+\tag{4.44}
+\end{equation*}
+它告诉我们，时空曲率如何对能量-动量的存在作出反应。$G$ 当然是 Newton 引力常数，它与 $G_{\mu\nu}$ 的迹毫无关系。你可能听说过，Einstein 觉得方程左端漂亮而几何化，右端则多少不那么令人信服。
+
+把 Einstein 方程改写成略有不同的形式有时很有用。按照 (4.31) 与 (4.32) 的做法，取 (4.44) 的迹可得 $R=-8\pi GT$。代入并把迹项移到右端，我们得到
+\begin{equation*}
+\boxed{\,R_{\mu\nu} = 8\pi G\left(T_{\mu\nu} - \frac{1}{2}Tg_{\mu\nu}\right).\,}
+\tag{4.45}
+\end{equation*}
+它与 (4.44) 的差别纯属表面文章；实质上二者完全相同。我们常常对真空中的 Einstein 方程感兴趣，此时 $T_{\mu\nu}=0$（例如在恒星或行星之外）。当然，这时 (4.45) 的右端为零。因此真空 Einstein 方程就是
+\begin{equation*}
+\boxed{\,R_{\mu\nu} = 0.\,}
+\tag{4.46}
+\end{equation*}
+它看上去稍不那么吓人，而且在物理上也相当有用。
+
+\section{拉格朗日表述}
+
+通往 Einstein 方程的另一条途径是最小作用量原理（principle of least action），正如我们在第 1 章末尾对平直时空中的经典场论所讨论的那样。让我们花点时间把那些结果推广到弯曲时空，然后看看什么样的拉格朗日量适合广义相对论。我们将在 $n$ 维中工作，因为我们的结果不依赖于维度；不过我们要假定度规具有洛伦兹号差。
+
+考虑一个场论，其动力学变量是一组场 $\Phi^i(x)$。这样一个理论的经典解将是某个作用量 $S$ 的临界点，作用量一般表示为拉格朗日密度（Lagrange density）$\mathcal{L}$ 对空间的积分：
+\begin{equation*}
+S = \int \mathcal{L}(\Phi^i, \nabla_\mu\Phi^i)\, d^nx.
+\tag{4.47}
+\end{equation*}
+注意，我们现在设想拉格朗日量是场及其协变导数（而非偏导数）的函数，这在弯曲空间中才是恰当的。还要注意，由于 $d^nx$ 是一个密度而不是张量，$\mathcal{L}$ 也是一个密度（因为二者的乘积必须是良定义的张量）；我们通常写成
+\begin{equation*}
+\mathcal{L} = \sqrt{-g}\,\widehat{\mathcal{L}},
+\tag{4.48}
+\end{equation*}
+其中 $\widehat{\mathcal{L}}$ 确实是一个标量。你可能觉得明智的做法是忘掉我们称之为 $\mathcal{L}$ 的东西，只关注 $\widehat{\mathcal{L}}$；但事实上这两个量在不同场合各有用处。凡是对度规本身作变分时，起作用的都是 $\mathcal{L}$。与之相联系的 Euler--Lagrange 方程用到标量 $\widehat{\mathcal{L}}$，除把偏导数换成协变导数之外，与平直空间中的方程别无二致：
+\begin{equation*}
+\frac{\partial\widehat{\mathcal{L}}}{\partial\Phi} - \nabla_\mu\left(\frac{\partial\widehat{\mathcal{L}}}{\partial(\nabla_\mu\Phi)}\right) = 0.
+\tag{4.49}
+\end{equation*}
+在推导这些方程时，我们用到 Stokes 定理（3.35）：
+\begin{equation*}
+\int_\Sigma \nabla_\mu V^\mu\sqrt{|g|}\, d^nx = \int_{\partial\Sigma} n_\mu V^\mu\sqrt{|\gamma|}\, d^{n-1}x,
+\tag{4.50}
+\end{equation*}
+并把变分在无限远（边界处）取为零。于是分部积分的形式为
+\begin{equation*}
+\int A^\mu(\nabla_\mu B)\sqrt{-g}\, d^nx = -\int (\nabla_\mu A^\mu)B\sqrt{-g}\, d^nx + \text{边界项}.
+\tag{4.51}
+\end{equation*}
+例如，第 1 章中考虑过的单标量场 $\phi$ 的作用量，其弯曲时空推广为
+\begin{equation*}
+S_\phi = \int\left[-\frac{1}{2}g^{\mu\nu}(\nabla_\mu\phi)(\nabla_\nu\phi) - V(\phi)\right]\sqrt{-g}\, d^nx,
+\tag{4.52}
+\end{equation*}
+由此导出的运动方程为
+\begin{equation*}
+\Box\phi - \frac{dV}{d\phi} = 0,
+\tag{4.53}
+\end{equation*}
+其中协变 d'Alembert 算符是
+\begin{equation*}
+\Box = \nabla^\mu\nabla_\mu = g^{\mu\nu}\nabla_\mu\nabla_\nu.
+\tag{4.54}
+\end{equation*}
+正如在平直时空中一样，组合 $g^{\mu\nu}(\nabla_\mu\phi)(\nabla_\nu\phi)$ 常被缩写为 $(\nabla\phi)^2$。当然，协变导数作用在标量上时等价于偏导数，但明智的做法仍然是采用 $\nabla_\mu$ 记号；你说不定什么时候就要做分部积分，突然作用到一个矢量上。
+
+热身之后，我们来为广义相对论构造作用量。现在的动力学变量是度规 $g_{\mu\nu}$；我们能用度规造出哪些标量来充当拉格朗日量呢？由于我们知道在任意一点可以把度规化为规范形式、并把度规的一阶导数化为零，任何非平凡的标量必然至少涉及度规的二阶导数。Riemann 张量当然是由度规的二阶导数构成的，而且我们此前论证过，由 Riemann 张量能构造出的唯一独立标量就是 Ricci 标量 $R$。我们虽然未曾证明、但事实如此的是：任何由度规与其一阶、二阶导数的乘积构成的非平凡张量，都可以用度规和 Riemann 张量表示出来。因此，由度规构造的、导数阶数不超过二阶的独立标量\emph{只有} Ricci 标量这一个。Hilbert 想必认为这就是拉格朗日量最简单的可能选择，于是提出
+\begin{equation*}
+S_H = \int\sqrt{-g}\, R\, d^nx,
+\tag{4.55}
+\end{equation*}
+即\textbf{Hilbert 作用量}（Hilbert action，有时也称 Einstein--Hilbert 作用量）。正如我们将看到的，他是对的。
+
+运动方程应当来自对作用量关于度规的变分。遗憾的是，这个作用量并不完全具有 (4.47) 的形式，因为它无法用 $g_{\mu\nu}$ 的协变导数写出来（协变导数会干脆为零）。因此，我们不再直接代入 Euler--Lagrange 方程，而是直接考察 $S_H$ 在度规小变分下的行为。实际上，关于逆度规（inverse metric）$g^{\mu\nu}$ 作变分更方便。由于 $g^{\mu\lambda}g_{\lambda\nu}=\delta^\mu_\nu$，而 Kronecker $\delta$ 在任何变分下都不变，度规变分与逆度规变分很容易互相表出：
+\begin{equation*}
+\delta g_{\mu\nu} = -g_{\mu\rho}g_{\nu\sigma}\,\delta g^{\rho\sigma},
+\tag{4.56}
+\end{equation*}
+于是关于 $g^{\mu\nu}$ 变分的驻点等价于关于 $g_{\mu\nu}$ 变分的驻点。利用 $R=g^{\mu\nu}R_{\mu\nu}$，我们有
+\begin{equation*}
+\delta S_H = (\delta S)_1 + (\delta S)_2 + (\delta S)_3,
+\tag{4.57}
+\end{equation*}
+其中
+\begin{align*}
+(\delta S)_1 &= \int d^nx\,\sqrt{-g}\, g^{\mu\nu}\delta R_{\mu\nu} \\
+(\delta S)_2 &= \int d^nx\,\sqrt{-g}\, R_{\mu\nu}\delta g^{\mu\nu} \\
+(\delta S)_3 &= \int d^nx\, R\,\delta\sqrt{-g}.
+\tag{4.58}
+\end{align*}
+第二项 $(\delta S)_2$ 已经是某个表达式乘以 $\delta g^{\mu\nu}$ 的形式；让我们更仔细地考察其余两项。
+
+回忆 Ricci 张量是 Riemann 张量的缩并，Riemann 张量由
+\begin{equation*}
+R^\rho{}_{\mu\lambda\nu} = \partial_\lambda\Gamma^\rho_{\nu\mu} + \Gamma^\rho_{\lambda\sigma}\Gamma^\sigma_{\nu\mu} - (\lambda\leftrightarrow\nu)
+\tag{4.59}
+\end{equation*}
+给出。Riemann 张量关于度规的变分可以这样求：先求联络关于度规的变分，再代入这个表达式。不过，让我们考虑联络的任意变分，即作替换
+\begin{equation*}
+\Gamma^\rho_{\nu\mu} \rightarrow \Gamma^\rho_{\nu\mu} + \delta\Gamma^\rho_{\nu\mu}.
+\tag{4.60}
+\end{equation*}
+变分 $\delta\Gamma^\rho_{\nu\mu}$ 是两个联络之差，因而本身是一个张量。于是我们可以取它的协变导数，
+\begin{equation*}
+\nabla_\lambda(\delta\Gamma^\rho_{\nu\mu}) = \partial_\lambda(\delta\Gamma^\rho_{\nu\mu}) + \Gamma^\rho_{\lambda\sigma}\delta\Gamma^\sigma_{\nu\mu} - \Gamma^\sigma_{\lambda\nu}\delta\Gamma^\rho_{\sigma\mu} - \Gamma^\sigma_{\lambda\mu}\delta\Gamma^\rho_{\nu\sigma}.
+\tag{4.61}
+\end{equation*}
+此处以及后文，协变导数都是关于 $g_{\mu\nu}$ 取的，而不是关于 $g_{\mu\nu}+\delta g_{\mu\nu}$。有了这个表达式，再加上一点小小的劳动，容易证明：准确到变分的一阶，
+\begin{equation*}
+\delta R^\rho{}_{\mu\lambda\nu} = \nabla_\lambda(\delta\Gamma^\rho_{\nu\mu}) - \nabla_\nu(\delta\Gamma^\rho_{\lambda\mu}).
+\tag{4.62}
+\end{equation*}
+欢迎你自己核对一下。于是，(4.58) 中第一项对 $\delta S$ 的贡献可以写成
+\begin{align*}
+(\delta S)_1 &= \int d^nx\sqrt{-g}\; g^{\mu\nu}\left[\nabla_\lambda(\delta\Gamma^\lambda_{\nu\mu}) - \nabla_\nu(\delta\Gamma^\lambda_{\lambda\mu})\right] \\
+&= \int d^nx\sqrt{-g}\; \nabla_\sigma\left[g^{\mu\nu}(\delta\Gamma^\sigma_{\mu\nu}) - g^{\mu\sigma}(\delta\Gamma^\lambda_{\lambda\mu})\right],
+\tag{4.63}
+\end{align*}
+其中我们用到了度规相容性，并重新命名了若干哑指标。现在可以代入 $\delta\Gamma^\sigma_{\mu\nu}$ 用 $\delta g^{\mu\nu}$ 表出的表达式，算出来是
+\begin{equation*}
+\delta\Gamma^\sigma_{\mu\nu} = -\frac{1}{2}\left[g_{\lambda\mu}\nabla_\nu(\delta g^{\lambda\sigma}) + g_{\lambda\nu}\nabla_\mu(\delta g^{\lambda\sigma}) - g_{\mu\alpha}g_{\nu\beta}\nabla^\sigma(\delta g^{\alpha\beta})\right],
+\tag{4.64}
+\end{equation*}
+由此得到
+\begin{equation*}
+(\delta S)_1 = \int d^nx\sqrt{-g}\; \nabla_\sigma\left[g_{\mu\nu}\nabla^\sigma(\delta g^{\mu\nu}) - \nabla_\lambda(\delta g^{\sigma\lambda})\right],
+\tag{4.65}
+\end{equation*}
+这也欢迎你自己核对。但 (4.63)［或 (4.65)］是一个矢量的协变散度对自然体积元的积分；由 Stokes 定理，它等于无限远处的边界贡献，只要让变分在无限远处为零，就可以把它取为零。因此这一项对总变分没有任何贡献。不过老实说，我们这里作了弊。边界项不仅包含度规的变分，还包含它的一阶导数，而后者按惯例并不取为零。就当前目的而言这无关紧要，但原则上我们可能在意边界上发生的事，那就必须在作用量中额外加进一项来处理这个微妙之处。
+
+为了处理 $(\delta S)_3$ 项，我们需要用到下面这个事实，它对任何行列式非零的方阵 $M$ 都成立：
+\begin{equation*}
+\ln(\det M) = \mathrm{Tr}(\ln M).
+\tag{4.66}
+\end{equation*}
+这里 $\ln M$ 由 $\exp(\ln M)=M$ 定义。对普通的数来说这显而易见，对矩阵则稍不那么直截了当。对这个恒等式取变分给出
+\begin{equation*}
+\frac{1}{\det M}\,\delta(\det M) = \mathrm{Tr}(M^{-1}\delta M).
+\tag{4.67}
+\end{equation*}
+
+% ---- 书页 163 / p178 ----（承接 4.3 节“拉格朗日表述”，前块止于书页 162 顶部式 (4.67)）
+我们已经利用迹的循环性质，得以忽略 $M^{-1}$ 与 $\delta M$ 可能不对易这一事实。取矩阵 $M$ 为度规 $g_{\mu\nu}$，使得 $\det M=\det g_{\mu\nu}=g$，便得到
+\begin{align*}
+\delta g &= g\left(g^{\mu\nu}\delta g_{\mu\nu}\right)\\
+&= -g\left(g_{\mu\nu}\delta g^{\mu\nu}\right). \tag{4.68}
+\end{align*}
+最后一步中，我们利用式 (4.56) 把 $\delta g_{\mu\nu}$ 化成了 $\delta g^{\mu\nu}$。现在直接代入便得到
+\begin{align*}
+\delta\sqrt{-g} &= -\frac{1}{2\sqrt{-g}}\,\delta g\\
+&= \frac{1}{2}\,\frac{g}{\sqrt{-g}}\,g_{\mu\nu}\delta g^{\mu\nu}\\
+&= -\frac{1}{2}\sqrt{-g}\,g_{\mu\nu}\delta g^{\mu\nu}. \tag{4.69}
+\end{align*}
+回想一下式 (4.58)，并且记得 $(\delta S)_1$ 没有贡献，我们发现
+\begin{equation*}
+\delta S_H = \int d^nx\sqrt{-g}\left[R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}\right]\delta g^{\mu\nu}.
+\tag{4.70}
+\end{equation*}
+回忆一下，作用量的泛函导数满足
+\begin{equation*}
+\delta S = \int\sum_i\left(\frac{\delta S}{\delta\Phi^i}\,\delta\Phi^i\right)d^nx,
+\tag{4.71}
+\end{equation*}
+其中 $\{\Phi^i\}$ 是被变分的诸场的一个完全集合（在我们的情形下，它就只是 $g^{\mu\nu}$）。驻点（stationary points）就是让每一个 $\delta S/\delta\Phi^i=0$ 的那些点，于是我们恢复了真空中的 Einstein 方程：
+\begin{equation*}
+\frac{1}{\sqrt{-g}}\,\frac{\delta S_H}{\delta g^{\mu\nu}} = R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu} = 0.
+\tag{4.72}
+\end{equation*}
+
+拉格朗日方法的优势体现在这样一个事实之中：我们的第一个猜测（它实际上是唯一的）就给出了正确的答案，与此前的试错法形成对照。这反映了该技术的两个优雅特征：其一，拉格朗日量是标量而非张量，因此受到的限制更强；其二，理论的对称性被直截了当地施加进来（在本例中，我们自动导出了一个散度为零的张量，这与微分同胚不变性有关，见附录 B 中的讨论）。
+
+我们导出的 Einstein 方程是“真空中的”，因为我们在作用量里只包含了引力部分，而没有包含物质场的附加项。然而我们真正想要的，是同时得到非真空的场方程。
+% ---- 书页 164 / p179 ----
+这意味着我们考虑如下形式的作用量
+\begin{equation*}
+S = \frac{1}{16\pi G}S_H + S_M,
+\tag{4.73}
+\end{equation*}
+其中 $S_M$ 是物质的作用量，我们极有先见之明地归一化了引力的作用量，从而恰好得到正确的答案。按照与上面相同的步骤进行下去，就得到
+\begin{equation*}
+\frac{1}{\sqrt{-g}}\,\frac{\delta S}{\delta g^{\mu\nu}} = \frac{1}{16\pi G}\left(R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}\right)+\frac{1}{\sqrt{-g}}\,\frac{\delta S_M}{\delta g^{\mu\nu}} = 0.
+\tag{4.74}
+\end{equation*}
+现在我们大胆地把能动张量（energy-momentum tensor）定义为
+\begin{equation*}
+T_{\mu\nu} = -2\,\frac{1}{\sqrt{-g}}\,\frac{\delta S_M}{\delta g^{\mu\nu}}.
+\tag{4.75}
+\end{equation*}
+这让我们得以恢复完整的 Einstein 方程
+\begin{equation*}
+R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu} = 8\pi G T_{\mu\nu},
+\tag{4.76}
+\end{equation*}
+或者等价地，$G_{\mu\nu}=8\pi G T_{\mu\nu}$。
+
+我们凭什么认为式 (4.75) 真的就是能动张量呢？从某种意义上说，理由仅仅是：它是一个对称、守恒、量纲为能量密度的 (0,2) 型张量；如果你更喜欢用别的名字称呼它，请自便。但它也与我们的先验预期相吻合。再次考虑标量场的作用量，即式 (4.52)。现在对这个作用量做变分——不是对 $\phi$，而是对逆度规：
+\begin{align*}
+\delta S_\phi &= \int d^nx\left[\sqrt{-g}\left(-\frac{1}{2}\delta g^{\mu\nu}\nabla_\mu\phi\nabla_\nu\phi\right)+\delta\sqrt{-g}\left(-\frac{1}{2}g^{\mu\nu}\nabla_\mu\phi\nabla_\nu\phi - V(\phi)\right)\right] \tag{4.77}\\
+&= \int d^nx\sqrt{-g}\,\delta g^{\mu\nu}\left[-\frac{1}{2}\nabla_\mu\phi\nabla_\nu\phi+\left(-\frac{1}{2}g_{\mu\nu}\right)\left(-\frac{1}{2}g^{\rho\sigma}\nabla_\rho\phi\nabla_\sigma\phi - V(\phi)\right)\right]. \tag{4.78}
+\end{align*}
+于是我们有
+\begin{align*}
+T^{(\phi)}_{\mu\nu} &= -2\,\frac{1}{\sqrt{-g}}\,\frac{\delta S_\phi}{\delta g^{\mu\nu}}\\
+&= \nabla_\mu\phi\nabla_\nu\phi - \frac{1}{2}g_{\mu\nu}g^{\rho\sigma}\nabla_\rho\phi\nabla_\sigma\phi - g_{\mu\nu}V(\phi). \tag{4.79}
+\end{align*}
+在平直时空中，它恰好约化为我们曾在第 1 章中认定的、标量场的正确能动张量。
+
+另一方面，在 Minkowski 空间中还存在能动张量的另一种定义，电磁学或场论的教科书里有时会给出它。在这种背景下，能量-动量守恒是拉格朗日量在时空平移下具有对称性的后果。\textbf{诺特定理}（Noether's theorem）断言，拉格朗日量的每一个对称性都蕴含一个守恒定律的存在；四个时空平移下的不变性导致一个张量 $S^{\mu\nu}$，它满足 $\partial_\mu S^{\mu\nu}=0$（四个关系式，$\nu$ 的每个取值对应一个）。细节可参见 Wald (1984) 或 Peskin and Schroeder (1995)。把 Noether 的步骤应用于一个依赖某些场 $\Phi^i$ 及其一阶导数 $\partial_\mu\Phi^i$ 的拉格朗日量（在平直时空中），我们得到
+% ---- 书页 165 / p180 ----
+\begin{equation*}
+S^{\mu\nu} = \frac{\delta\mathcal{L}}{\delta(\partial_\mu\Phi^i)}\,\partial^\nu\Phi^i - \eta^{\mu\nu}\mathcal{L},
+\tag{4.80}
+\end{equation*}
+其中对 $i$ 求和是默认的。你可以检验，凭借物质场的运动方程，这个张量是守恒的。$S^{\mu\nu}$ 常被称为“正则能动张量”（canonical energy-momentum tensor）；然而，出于若干理由，对我们来说使用式 (4.75) 更为方便。首先，当 Einstein 方程从作用量导出时，出现在方程右边的实际上正是式 (4.75)，而式 (4.80) 未必总能推广到弯曲时空。但即便在平直空间中，式 (4.75) 也有其优势：它显然是对称的，而且保证是规范不变的——这两点对式 (4.80) 都不成立。因此我们将坚持用式 (4.75) 作为能动张量的定义。
+
+至此，Einstein 方程已经导出，本章剩下的部分将致力于探讨它的一些性质。这些讨论引人入胜，但并非严格必需；如果你愿意，可以直接跳到后续章节所讨论的应用。
+
+\section{Einstein 方程的性质}
+
+可以把 Einstein 方程看成度规张量场 $g_{\mu\nu}$ 的一组二阶微分方程。实际上有十个独立的方程（因为两边都是对称的两指标张量），对于度规分量的十个未知函数来说，这个数目似乎恰好合适。然而，Bianchi 恒等式 $\nabla^\mu G_{\mu\nu}=0$ 对函数 $R_{\mu\nu}(x)$ 构成四个约束，所以式 (4.44) 中只有六个真正独立的方程。事实上这正是恰当的，因为如果一个度规在某一坐标系 $x^\mu$ 中是 Einstein 方程的解，它在任何其他坐标系 $x^{\mu'}$ 中也应是其解。这意味着 $g_{\mu\nu}$ 中有四个非物理的自由度，由四个函数 $x^{\mu'}(x^\mu)$ 所代表，因此我们应当预期 Einstein 方程只约束那六个与坐标无关的自由度。
+
+作为微分方程，它们极其复杂：Ricci 标量与 Ricci 张量是 Riemann 张量的缩并，而 Riemann 张量涉及 Christoffel 符号的导数与乘积，Christoffel 符号又涉及逆度规以及度规的导数。此外，能动张量 $T_{\mu\nu}$ 一般也会包含度规。这些方程还是非线性的，因此无法把两个已知解叠加出第三个解。所以，要想在任意一般性下求解 Einstein 方程是极其困难的，通常必须做一些简化假设。即使在令能动张量为零的真空情形，所得的方程 (4.46) 也可能很难求解。最流行的简化假设是度规具有相当程度的对称性；我们稍后会看到等距（isometries）如何让问题变得容易。
+
+广义相对论的非线性值得一提。在 Newton 引力中，两个点质量所产生的势就是各自势的简单相加，但显然在弱场极限之外，这一点无法照搬到广义相对论中来。这有一个物理上的原因：在 GR 中，引力场与自身耦合。这可以看成等效原理的一个后果——如果引力不与自身耦合，那么一个“引力原子”（两个粒子靠彼此的引力吸引束缚在一起）的惯性质量将不同于它的引力质量（由于结合能为负）。Einstein 方程的非线性正是引力对自身之反作用（back-reaction）的一种体现。
+
+Feynman 图为思考这一点提供了很好的方式。在量子场论中，Feynman 图被用来计算散射过程的振幅；把不同相互作用各自的贡献（每一种都由自己的图表示）加起来，就能得到这些振幅。即便我们不去量子化引力、计算散射截面（见本节末尾），也仍然可以画 Feynman 图，作为记录哪些相互作用存在、哪些不存在的一种简单方法。一个简单的例子是两个电子之间的电磁相互作用；它可以看成源于一个虚光子的交换，如图 4.1 所示。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.1.pdf}
+\caption*{图 4.1\quad 电磁相互作用的 Feynman 图。在量子场论中，这类图被用来计算散射过程的振幅；在这里，只需把它当作表示某种相互作用的示意图即可。这张图的要点在于，光子与电子的耦合正是电子之间电磁相互作用的起因。与此相反，光子与其他光子之间没有耦合，也不存在光子之间相互作用的类似图形。}
+\end{figure}
+
+与此相反，不存在两个光子彼此之间交换另一个光子的图，因为电磁理论是线性的（没有反作用）。而引力相互作用则可以看成源于一个虚引力子（graviton，度规的量子化微扰）的交换。非线性表现为：电子与引力子都能交换虚引力子，从而产生引力，如图 4.2 所示。引力的这一特征并不独特；大多数规范理论都有它，例如作为强相互作用理论的量子色动力学（quantum chromodynamics）。电磁理论实际上是例外；其线性可以追溯到相关规范群 U(1) 是阿贝尔群这一事实。但非线性确实代表了对 Newton 理论的偏离。这一差异在实验上是可以检测的；（正如我们将看到的）水星轨道在 GR 中与在 Newton 引力中之所以不同，正是因为引力场会影响自身，而且越靠近太阳，这种影响就越明显。
+% ---- 书页 167 / p182 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.2.pdf}
+\caption*{图 4.2\quad 引力的 Feynman 图。量子化之后，Einstein 方程预言自旋为 2 的粒子，称为引力子。我们尚不知道如何一致地完成这种量子化，但引力子的存在性足够稳固，被预期为任何良好定义的方案都会具有的特征。由于引力与能量-动量耦合，引力子与所有种类的粒子（包括其他引力子）都有相互作用。这为思考 Einstein 理论的非线性提供了一种方式。}
+\end{figure}
+
+除了复杂与非线性之外，还有一点值得思考：Einstein 方程究竟告诉了我们什么？显然，它把能量-动量分布与曲率张量的分量联系起来；但从物理的观点看，给定某种源，究竟会产生哪一种引力场？回答这个问题的一种方式，是考虑一族相邻类时测地线的\emph{膨胀}（expansion）$\theta$ 的演化。设想一小团自由检验粒子沿测地线运动，具有四速度 $U^\mu$，我们追踪它们的演化；膨胀 $\theta=\nabla_\mu U^\mu$ 告诉我们，这团粒子的体积在任一时刻是在增长（或在 $\theta<0$ 时收缩）。显然，膨胀的数值将依赖于检验粒子的初始条件。而引力的效应则编码在膨胀的\emph{演化}之中，后者由 Raychaudhuri 方程支配。这条在附录 F 中讨论的方程告诉我们，膨胀沿测地线对固有时 $\tau$ 的导数由下面的表达式给出：
+\begin{equation*}
+\frac{d\theta}{d\tau} = 2\omega^2 - 2\sigma^2 - \frac{1}{3}\theta^2 - R_{\mu\nu}U^\mu U^\nu.
+\tag{4.81}
+\end{equation*}
+右边的各项在附录 F 中有仔细的解释；$\omega$ 编码测地线的转动，$\sigma$ 编码切变，而 $R_{\mu\nu}$ 当然就是 Ricci 张量。Raychaudhuri 方程是纯几何的关系，完全不涉及 Einstein 方程。然而，把两个方程结合起来，就可以描述能量-动量如何影响检验粒子的运动，因为 Einstein 方程把 $T_{\mu\nu}$ 与 $R_{\mu\nu}$ 联系起来，而 Raychaudhuri 方程把 $R_{\mu\nu}$ 与 $d\theta/d\tau$ 联系起来。
+% ---- 书页 168 / p183 ----
+让我们考虑最简单的情形：一开始，所有相邻粒子在时空的一个小区域内彼此相对静止。于是在这一初始时刻，膨胀、转动和切变全都为零。我们进一步构造局部惯性坐标系 $x^{\hat\mu}$，其中 $U^{\hat\mu}$ 处于其静止系，使得 $U^{\hat\mu}=(1,0,0,0)$，且 $R_{\hat\mu\hat\nu}U^{\hat\mu}U^{\hat\nu}=R_{\hat 0\hat 0}$。于是我们（在这组坐标下、在该点）有
+\begin{equation*}
+\frac{d\theta}{d\tau} = -R_{\hat 0\hat 0}.
+\tag{4.82}
+\end{equation*}
+现在我们可以求助于如下形式的 Einstein 方程：
+\begin{equation*}
+R_{\mu\nu} = 8\pi G\left(T_{\mu\nu}-\frac{1}{2}Tg_{\mu\nu}\right).
+\tag{4.83}
+\end{equation*}
+由于我们处在局部惯性坐标系中，所以有
+\begin{align*}
+g_{\hat\mu\hat\nu} &= \eta_{\hat\mu\hat\nu} \tag{4.84}\\
+T &= g^{\hat\mu\hat\nu}T_{\hat\mu\hat\nu} = -\rho + p_x + p_y + p_z, \tag{4.85}
+\end{align*}
+其中 $\rho=T_{\hat 0\hat 0}$ 是静止系能量密度，而 $p_k=T_{\hat k\hat k}$ 是 $x^{\hat k}$ 方向上的压强。于是，式 (4.82) 变成
+\begin{equation*}
+\frac{d\theta}{d\tau} = -4\pi G(\rho + p_x + p_y + p_z).
+\tag{4.86}
+\end{equation*}
+这个方程告诉我们：能量与压强产生一种引力场，它使初始静止的检验粒子团的体积趋于缩小（如果 $\rho$ 和各个 $p_i$ 都是正的）。换言之，引力是吸引的。
+
+当然，从式 (4.86) 我们看到，引力并不\emph{必然}是吸引的；我们可以想象 $\rho+p_x+p_y+p_z$ 为负数的源。显然，压强所扮演的角色值得注意。一方面，它代表了对 Newton 理论毫不含糊的偏离——在 Newton 理论中压强不影响引力（它不出现在 Poisson 方程 $\nabla^2\Phi=4\pi G\rho$ 中）。这一差异在我们的太阳系里很难察觉，因为太阳和行星内部的压强远小于能量密度，而后者由组成粒子的静质量主导。另一方面，请注意压强的\emph{引力}效应与我们更熟悉的\emph{直接}效应正好相反——直接效应是正压强会把东西推开。在多数情形下，压强的直接效应要明显得多。然而，压强只有在存在压强梯度时才能直接起作用（例如活塞内外之间的压强差），而引力效应只依赖压强在当地的数值。如果压强完全平滑，它就只能通过其引力效应被探测到；真空能就是这样的一个例子，我们将在 4.5 节讨论它。
+% ---- 书页 169 / p184 ----
+关于式 (4.86) 最后再评论一点：它与 Einstein 方程完全等价——两者传达完全相同的信息。这个非常具体的关系对任何一组初始静止的检验粒子都成立；而它能成立的唯一途径，就是 Einstein 方程的所有分量都为真。因此，如果我们愿意，就可以用文字\footnote{J.C. Baez, “The Meaning of Einstein's Equation”〔“Einstein 方程的含义”〕， http://arXiv.org/abs/gr-qc/0103044.}把 Einstein 方程表述如下：“任何一组初始静止的粒子，其体积的膨胀正比于（负的）能量密度与三个压强分量之和。”
+
+于是，Einstein 方程告诉我们，能量密度和压强以某种方式影响 Ricci 张量，使得当 $\rho$ 和 $p$ 为正时粒子相互吸引。那么，Riemann 张量中不包含在 Ricci 张量之内的那些分量呢？在第 3 章中我们发现，这些分量由 Weyl 张量描述（这里写出四维情形的表达式）：
+\begin{equation*}
+C_{\rho\sigma\mu\nu} = R_{\rho\sigma\mu\nu} + \frac{1}{3}g_{\rho[\mu}g_{\nu]\sigma}R - g_{\rho[\mu}R_{\nu]\sigma} + g_{\sigma[\mu}R_{\nu]\rho}.
+\tag{4.87}
+\end{equation*}
+Ricci 张量是 Riemann 张量的迹，而 Weyl 张量描述其无迹部分；二者合起来完整地刻画了曲率。显然，给定某个确定的能量-动量分布，Weyl 曲率的选择仍有某种自由，因为没有类似 Einstein 方程的关系能把 $C^\rho{}_{\sigma\mu\nu}$ 与 $T_{\mu\nu}$ 代数地联系起来。而这正是理应如此。例如，设想一个处处真空的时空，$R_{\mu\nu}=0$。平直的 Minkowski 空间是这种情形下的一个可能解，但穿越空旷时空传播的引力波同样是可能的解（我们将在第 7 章讨论）。
+
+既然进入 Einstein 方程的只有 $R_{\mu\nu}$，看起来 $C_{\rho\sigma\mu\nu}$ 的分量似乎完全不受约束。但请回忆，我们并不被允许在流形上任意指定曲率张量的分量；它们由 Bianchi 恒等式联系着，
+\begin{equation*}
+\nabla_{[\lambda}R_{\rho\sigma]\mu\nu} = 0.
+\tag{4.88}
+\end{equation*}
+正如你在第 3 章习题 10 中证明过的，这个恒等式蕴含 Weyl 张量满足如下形式的微分关系：
+\begin{equation*}
+\nabla^\rho C_{\rho\sigma\mu\nu} = \nabla_{[\mu}R_{\nu]\sigma} + \frac{1}{6}g_{\sigma[\mu}\nabla_{\nu]}R.
+\tag{4.89}
+\end{equation*}
+在右边，Riemann 张量只是通过它的缩并——Ricci 标量与 Ricci 张量——出现，而后者可以经由 Einstein 方程与 $T_{\mu\nu}$ 联系起来；于是我们有
+\begin{equation*}
+\nabla^\rho C_{\rho\sigma\mu\nu} = 8\pi G\left(\nabla_{[\mu}T_{\nu]\sigma} + \frac{1}{3}g_{\sigma[\mu}\nabla_{\nu]}T\right).
+\tag{4.90}
+\end{equation*}
+因此，虽然 $R_{\mu\nu}$ 与 $T_{\mu\nu}$ 通过 Einstein 方程代数地相联系，$C_{\rho\sigma\mu\nu}$ 与 $T_{\mu\nu}$ 却是由这个一阶微分方程联系的。对一个给定的能量-动量分布，会存在若干可能的解，每个解由特定的边界条件确定。这个方程可以看成引力波的传播方程，与麦克斯韦方程组 $\nabla_\mu F^{\nu\mu}=J^\nu$ 极为类似。
+% ---- 书页 170 / p185 ----
+列举了 Einstein 方程这么多可爱的性质之后，似乎也应当公平地提一提它令人沮丧的一面：广为人知的、广义相对论与量子力学难以调和的困难。GR 是一个经典场论：动力学变量是定义在时空上的一个场（度规），由这个场构造出的坐标不变量（如标量曲率）原则上可以被任意精确地指定和测量。对于其他场论（如电磁学），从经典理论出发将其量子化、进而得到作用在 Hilbert 空间中的波函数之上的算符的动力学，有着理解透彻的成熟程序。而对 GR 来说，通常的程序会同时遭遇技术困难和概念困难，对此的描述超出了本书的范围。技术困难的一个方面是，GR 不像粒子物理的标准模型那样是“可重整化的”（renormalizable）；当考虑高阶量子效应时，会出现无法被任何有限多个参数吸收的无穷大。不可重整化并不意味着理论在根本上就是错的，但它强烈暗示，只应在某个能标以下才认真地对待这个理论。
+
+幸运的是，量子引力的可观测效应预计要远离我们的日常经验（或者顺便说一句，也远离实验室中能实现的任何条件）才会变得重要。早在 1899 年，Planck 就注意到，他自己的常数 $h$——如今我们更常用 $\hbar = h/2\pi = 1.05\times10^{-27}\,\mathrm{cm}^2\,\mathrm{g/sec}$ 来代替它——可以与 Newton 引力常数 $G = 6.67\times10^{-8}\,\mathrm{cm}^3\,\mathrm{g}^{-1}\,\mathrm{sec}^{-2}$ 以及光速 $c = 3.00\times10^{10}\,\mathrm{cm}\,\mathrm{sec}^{-1}$ 组合起来，构成一组基本的带量纲的量：Planck 质量
+\begin{equation*}
+m_{\mathrm{P}} = \left(\frac{\hbar c}{G}\right)^{1/2} = 2.18\times 10^{-5}\,\mathrm{g},
+\tag{4.91}
+\end{equation*}
+Planck 长度
+\begin{equation*}
+l_{\mathrm{P}} = \left(\frac{\hbar G}{c^3}\right)^{1/2} = 1.62\times 10^{-33}\,\mathrm{cm},
+\tag{4.92}
+\end{equation*}
+Planck 时间
+\begin{equation*}
+t_{\mathrm{P}} = \left(\frac{\hbar G}{c^5}\right)^{1/2} = 5.39\times 10^{-44}\,\mathrm{sec},
+\tag{4.93}
+\end{equation*}
+以及 Planck 能量
+\begin{align*}
+E_{\mathrm{P}} &= \left(\frac{\hbar c^5}{G}\right)^{1/2} = 1.95\times 10^{16}\,\mathrm{erg} \tag{4.94}\\
+&= 1.22\times 10^{19}\,\mathrm{GeV}. \tag{4.95}
+\end{align*}
+% ---- 书页 171 / p186 ----
+一个 GeV 是 $10^9$ 电子伏特，它是粒子物理中的常用单位，因为它大约是一个质子的质量。我们通常取 $\hbar = c = 1$，于是这些量就变得无从区分，即 $m_{\mathrm{P}} = l_{\mathrm{P}}^{-1} = t_{\mathrm{P}}^{-1} = E_{\mathrm{P}}$。你会听到人们说诸如“Planck 质量是 $10^{19}$ GeV”之类的话，或者干脆说“Planck 标度”（Planck scale）。另一个常用量是约化 Planck 标度（reduced Planck scale）$\bar{m}_{\mathrm{P}} = m_{\mathrm{P}}/\sqrt{8\pi} = 2.43\times10^{18}\,\mathrm{GeV}$，它在方程中往往更加方便——注意式 (4.73) 中标量曲率的系数正是 $\bar{m}_{\mathrm{P}}^2/2$。很可能，只有当我们考虑的粒子质量大于 $m_{\mathrm{P}}$、时间短于 $t_{\mathrm{P}}$、长度小于 $l_{\mathrm{P}}$、或能量高于 $E_{\mathrm{P}}$ 时，量子引力才变得重要；在更低的标度下，经典 GR 就应当足够了。由于这些都远离可观测的现象，构造一个自洽的量子引力理论更多是一个原则问题，而非实际问题。另一方面，弯曲时空中的量子效应在现实世界中可能很重要；正如我们将在第 8 章讨论的，它们可能导致早期宇宙中的密度涨落，而这些涨落会成长为今天我们观测到的星系和大尺度结构。
+
+在完全量子的理论中，有一个在适当极限下能涵盖 GR 的领先候选者：弦论（string theory）。在弦论中，我们设想基本的对象不是像电子或光子那样的点粒子，而是被称为弦的细小的一维对象，它们既可以是闭合的圈，也可以是开放的线段。弦论最初是作为强核力的模型被提出的，但人们很快意识到，该理论不可避免地预言了一个无质量的自旋 2 粒子：这恰恰是一个量子引力理论所需要的东西。弦论看起来是一个自洽的量子理论，而且它预言了引力，但关于它仍有许多我们不理解的地方。特别是，经典时空如何从基本的弦之中产生，这一点颇为神秘；而它与直接实验的联系，充其量也十分微弱。尽管如此，弦论异常丰富而强健，有望在可预见的未来成为理论物理的重要部分。
+
+\section{宇宙学常数}
+
+广义相对论的一个特征是，引力场的源是整个能动张量。在非引力的物理中，只有能量从一个态到另一个态的\emph{改变}才是可测的；能量的归一化是任意的。例如，势能为 $V(x)$ 的粒子的运动，与势能为 $V(x)+V_0$ 的粒子的运动完全相同，其中 $V_0$ 是任意常数。然而在引力中，能量的实际数值是重要的，而不仅仅是态之间的差。
+
+这种行为开启了\textbf{真空能}（vacuum energy）的可能性：一种为空的空间所特有的能量密度。我们或许希望真空具备的一个特征是：它不挑出任何一个特殊的方向；只要相应的能动张量在局部惯性坐标系中是洛伦兹不变的，非零的能量密度就仍然是可能的。洛伦兹不变性意味着相应的能动张量应当正比于度规：
+% ---- 书页 172 / p187 ----
+\begin{equation*}
+T^{(\mathrm{vac})}_{\hat\mu\hat\nu} = -\rho_{\mathrm{vac}}\,\eta_{\hat\mu\hat\nu},
+\tag{4.96}
+\end{equation*}
+因为 $\eta_{\hat\mu\hat\nu}$ 是唯一的洛伦兹不变 (0,2) 型张量。这可以直截了当地从惯性坐标推广到任意坐标：
+\begin{equation*}
+T^{(\mathrm{vac})}_{\mu\nu} = -\rho_{\mathrm{vac}}\,g_{\mu\nu}.
+\tag{4.97}
+\end{equation*}
+与理想流体的能动张量 $T_{\mu\nu}=(\rho+p)U_\mu U_\nu + pg_{\mu\nu}$ 相比较，我们发现真空看起来像一种理想流体，其各向同性的压强与能量密度符号相反：
+\begin{equation*}
+p_{\mathrm{vac}} = -\rho_{\mathrm{vac}}.
+\tag{4.98}
+\end{equation*}
+能量密度应当在整个时空中为常数，因为若有梯度就不再是洛伦兹不变的了。
+
+如果我们把能动张量分解为物质部分 $T^{(\mathrm{M})}_{\mu\nu}$ 与真空部分 $T^{(\mathrm{vac})}_{\mu\nu}=-\rho_{\mathrm{vac}}g_{\mu\nu}$，Einstein 方程就是
+\begin{equation*}
+R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu} = 8\pi G\left(T^{(\mathrm{M})}_{\mu\nu}-\rho_{\mathrm{vac}}g_{\mu\nu}\right).
+\tag{4.99}
+\end{equation*}
+在发明 GR 之后不久，Einstein 试图寻找一个静态的宇宙学模型，因为当时的天文观测似乎正暗示这一点。其结果就是 Einstein 静态宇宙，我们将在第 8 章讨论它。为了让这个静态宇宙学在普通物质源之下求解场方程，有必要添加一个称为\textbf{宇宙学常数}（cosmological constant）的新项 $\Lambda$，它以如下方式进入：
+\begin{equation*}
+R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G T_{\mu\nu}.
+\tag{4.100}
+\end{equation*}
+与式 (4.99) 比较可见，宇宙学常数恰恰等价于引入一个真空能密度
+\begin{equation*}
+\rho_{\mathrm{vac}} = \frac{\Lambda}{8\pi G}.
+\tag{4.101}
+\end{equation*}
+“宇宙学常数”与“真空能”这两个术语实质上可以互换。
+
+非零的真空能是我们应当预期的东西吗？我们当初是通过寻找能从度规构造出的最简单的标量，而得到 Hilbert 拉格朗日量 $\widehat{\mathcal{L}}_H = R$ 的。当然，还有一个更简单的候选，即常数。利用式 (4.69)，不难检验
+\begin{equation*}
+S = \int d^4x\sqrt{-g}\left[\frac{1}{16\pi G}(R-2\Lambda) + \widehat{\mathcal{L}}_{\mathrm{M}}\right]
+\tag{4.102}
+\end{equation*}
+% ---- 书页 173 / p188 ----
+会导致修改后的方程 (4.100)；或者换个说法，真空的拉格朗日量就是
+\begin{equation*}
+\widehat{\mathcal{L}}_{\mathrm{vac}} = -\rho_{\mathrm{vac}}.
+\tag{4.103}
+\end{equation*}
+所以，引入真空能当然容易；然而，对它的预期取值我们毫无洞察，因为它以一个任意常数的形式进入。
+
+真空能归根结底本身就是自然界的一个常数。（在某些理论中会出现例外：某个时空对称性——例如超对称性或共形不变性——支配着真空能的取值；这里我们考虑的是更一般的场论。）尽管如此，真空能有各种各样不同的贡献来源，如果总取值远小于各个单独的贡献，那就奇怪了。其中一种贡献来自零点涨落（zero-point fluctuations）——量子场处于真空态时的能量。
+
+考虑一个简谐振子，即在一维势 $V(x)=\frac{1}{2}\omega^2 x^2$ 中运动的一个粒子。经典地看，这个系统的真空是粒子静止于势的极小值处（$x=0$）的态，此时能量为零。然而从量子力学上看，不确定性原理不允许我们同时确定粒子的位置和动量，我们会发现最低能量态具有能量 $E_0=\frac{1}{2}\hbar\omega$（这里为了清晰起见，我们临时重新引入了显式的 $\hbar$ 因子）。当然，在没有引力时，无论哪个系统，其真空能实际上都是完全任意的；我们可以给势加上任何常数而不改变理论。但量子涨落已经使零点能不同于我们的经典预期。
+
+在场论中有一个完全类似的情形。如果我们对一个自由量子场（为简单起见忽略相互作用的场）做傅里叶变换，就会发现它变成动量空间中无穷多个谐振子，正如我们将在第 9 章讨论的。每个振子的频率为 $\omega=\sqrt{m^2+k^2}$，其中 $m$ 是场的质量，$k$ 是该模式波矢的大小。如果我们把经典真空能取为零，这些模式中的每一个都贡献一份量子零点能 $\hbar\omega/2$。形式上，把所有这些贡献加起来会得到一个无穷大的结果。然而，如果我们以“只在某个紫外动量截断 $k_{\mathrm{max}}$ 以下才信任我们的理论”为由，丢弃动量非常高的那些模式，就会发现所得的能量密度具有如下形式：
+\begin{equation*}
+\rho_{\mathrm{vac}} \sim \hbar k_{\mathrm{max}}^4.
+\tag{4.104}
+\end{equation*}
+这个答案本来可以靠量纲分析猜出来；被略去的数值常数将依赖于所考虑的具体理论。如果我们有信心把普通量子场论一直用到约化 Planck 标度 $\bar{m}_{\mathrm{P}} = (8\pi G)^{-1/2} \sim 10^{18}\,\mathrm{GeV}$，我们预计会有一个量级为
+\begin{equation*}
+\rho_{\mathrm{vac}} \sim (10^{18}\,\mathrm{GeV})^4 \sim 10^{112}\,\mathrm{erg/cm^3}.
+\tag{4.105}
+\end{equation*}
+% ---- 书页 174 / p189 ----
+的贡献。场论也可能更早就失效，不过，要相信它会在任何具体的标度上失效，量子引力是我们所拥有的最好的理由。
+
+正如我们将在第 8 章讨论的，宇宙学观测意味着
+\begin{equation*}
+\left|\rho^{(\mathrm{obs})}_{\Lambda}\right| \leq (10^{-12}\,\mathrm{GeV})^4 \sim 10^{-8}\,\mathrm{erg/cm^3},
+\tag{4.106}
+\end{equation*}
+这比刚才导出的朴素预期小得多。式 (4.105) 与式 (4.106) 之比，正是宇宙学常数的理论值与观测值之间那著名的 120 个数量级差异的由来。我们可以随意设想裸真空能经过调整，使得净宇宙学常数与极限 (4.106) 相符；但有一个问题：我们不知道有任何特殊的对称性，既能强制真空能为零，又与已知的物理定律相容；这个难题就是“宇宙学常数问题”（cosmological constant problem）。我们将在第 8 章更多地讨论真空能的宇宙学效应。\footnote{关于真空能的物理与宇宙学的更多内容，见 S.M. Carroll, \emph{Liv. Rev. Rel.} \textbf{4}, 1 (2001), http://arxiv.org/astro-ph/0004075.}
+
+\section{能量条件}
+
+有时，不指明 $T_{\mu\nu}$ 由哪一种物质理论导出，而去思考 Einstein 方程，是有用的。这会给我们留下极大的任意性；例如考虑这样一个问题：哪些度规服从 Einstein 方程？在没有对 $T_{\mu\nu}$ 的某些约束时，答案是任何度规都行；只需取你喜欢的度规，为它算出 Einstein 张量 $G_{\mu\nu}$，然后要求 $T_{\mu\nu}$ 等于 $G_{\mu\nu}$ 即可。而由 Bianchi 恒等式，它自动守恒。我们真正关心的，是在“现实的”（realistic）能量与动量源——姑且不论这个词是什么意思——存在时 Einstein 方程解的存在性。一种策略是考虑具体的源，比如标量场、尘埃或电磁场。然而，我们有时希望理解的是那些对各种不同源都成立的 Einstein 方程的性质。在这种情况下，方便的做法是施加\emph{能量条件}（energy conditions）来限制 $T_{\mu\nu}$ 的任意性。
+
+能量条件是对能动张量的坐标不变的限制。因此我们必须从 $T_{\mu\nu}$ 构造标量，这通常通过把它与任意的类时矢量 $t^\mu$ 或类光矢量 $\ell^\mu$ 缩并来实现。例如，弱能量条件（weak energy condition, WEC）陈述：对所有类时矢量 $t^\mu$，都有 $T_{\mu\nu}t^\mu t^\nu\geq 0$。为了建立物理直觉，考虑源为理想流体的特殊情形是有用的，此时能动张量取如下形式：
+\begin{equation*}
+T_{\mu\nu} = (\rho + p)U_\mu U_\nu + pg_{\mu\nu},
+\tag{4.107}
+\end{equation*}
+其中 $U^\mu$ 是流体的四速度。让我们用这个形式把 WEC 翻译成物理的语言。由于压强是各向同性的，只要对某个类光矢量 $\ell^\mu$，$T_{\mu\nu}U^\mu U^\nu \geq 0$ 与 $T_{\mu\nu}\ell^\mu\ell^\nu \geq 0$ 同时成立，
+% 本块末句在原书书页174底部中断（“will be nonnegative”续接书页175顶部 “for all timelike vectors t^mu if both T_{mu nu}U^mu U^nu >= 0 and ...”），下一块请用 %JOIN% 续接本句。
+$T_{\mu\nu}t^\mu t^\nu$ 就对所有类时矢量 $t^\mu$ 非负（请自己验证这一点；这不过是矢量相加而已）。因此我们来计算
+\begin{equation*}
+T_{\mu\nu}U^\mu U^\nu = \rho, \qquad T_{\mu\nu}\ell^\mu\ell^\nu = (\rho + p)(U_\mu \ell^\mu)^2.
+\tag{4.108}
+\end{equation*}
+因此 WEC 意味着 $\rho \geq 0$ 和 $\rho + p \geq 0$。这些听起来都十分合理：能量密度非负，并且压强相对于能量密度不能太大。当然，我们不必把自己限制在理想流体上，我们只是利用它们来洞察能量条件所施加的要求。
+
+能量条件有许多种，各自适用于不同的情形。下面是一些最常见的：
+
+\begin{itemize}
+\item \textbf{弱能量条件}（Weak Energy Condition），或称 WEC，正如刚才讨论的，它要求对所有类时矢量 $t^\mu$ 有 $T_{\mu\nu}t^\mu t^\nu \geq 0$，或者等价地，$\rho \geq 0$ 且 $\rho + p \geq 0$。
+
+\item \textbf{类光能量条件}（Null Energy Condition），或称 NEC，要求对所有类光矢量 $\ell^\mu$ 有 $T_{\mu\nu}\ell^\mu\ell^\nu \geq 0$，或者等价地，$\rho + p \geq 0$。它是 WEC 的特例，只是把类时矢量换成了类光矢量。此时能量密度可以取负值，只要存在补偿性的正压强。
+
+\item \textbf{主能量条件}（Dominant Energy Condition），或称 DEC，包含 WEC（对所有类时矢量 $t^\mu$ 有 $T_{\mu\nu}t^\mu t^\nu \geq 0$），外加一条附加要求：$T^\mu{}_\nu t^\nu$ 是非类空（nonspacelike）矢量（也就是说，$T_{\mu\nu}T^\nu{}_\lambda t^\mu t^\lambda \leq 0$）。对于理想流体，这些条件合在一起等价于一个简单的要求：$\rho \geq |p|$；能量密度必须非负，并且不小于压强的大小。
+
+\item \textbf{类光主能量条件}（Null Dominant Energy Condition），或称 NDEC，是仅对类光矢量成立的 DEC 条件：对任意类光矢量 $\ell^\mu$，$T_{\mu\nu}\ell^\mu\ell^\nu \geq 0$，并且 $T^\mu{}_\nu \ell^\nu$ 是非类空矢量。允许的密度和压强与 DEC 相同，只是允许负密度，只要 $p = -\rho$。换句话说，凡是会被 DEC 排除的源，NDEC 同样排除——负真空能除外。
+
+\item \textbf{强能量条件}（Strong Energy Condition），或称 SEC，要求对所有类时矢量 $t^\mu$ 有 $T_{\mu\nu}t^\mu t^\nu \geq \frac{1}{2}T^\lambda{}_\lambda t^\sigma t_\sigma$，或者等价地，$\rho + p \geq 0$ 且 $\rho + 3p \geq 0$。注意 SEC 并\emph{不}蕴含 WEC。它蕴含 NEC，同时还排除了过大的负压强。从式 (4.86) 我们看到，正是 SEC 意味着引力是吸引的。
+\end{itemize}
+
+这些条件在图 4.3 中给出了解示。此外我们还画出了约束 $w \geq -1$，其中 $w = p/\rho$ 被称为\textbf{物态方程参数}（equation-of-state parameter）。这是宇宙学中一个有用的概念，因为宇宙学中的源常常具有 $p = w\rho$ 形式的物态方程，其中 $w$ 为常数（当然，无论 $w$ 是不是常数，它都是有定义的）。如果我们把自己限制在 $\rho \geq 0$ 的源，那么上述任何一个能量条件都将蕴含 $w \geq -1$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.3.pdf}
+\caption*{图 4.3\quad 能量条件应用于理想流体的情形，表示为能量密度 $\rho$ 与压强 $p$ 平面上的允许区域。图中画出了弱能量条件（WEC）、类光能量条件（NEC）、主能量条件（DEC）、类光主能量条件（NDEC）以及强能量条件（SEC）。作为比较，我们还画出了条件 $w \geq -1$，其中 $w = p/\rho$ 为物态方程参数。}
+\end{figure}
+
+大多数普通的经典物质形式，包括标量场和电磁场，都遵守 DEC（见习题），因而也遵守限制较弱的条件（WEC、NEC、NDEC）。SEC 在某些奇点定理的证明中很有用，但可以被某些形式的物质破坏，例如有质量的标量场。事实证明，量子场通常能够破坏我们列出的任何一种能量条件；不过，也可能存在一些涉及时空区域上积分的不等式，即使是量子场也满足它们。这是目前仍在活跃研究的一个领域。
+
+严格说来，能量条件与能量守恒并没有关系；无论我们对 $T^{\mu\nu}$ 施加什么附加约束，Bianchi 恒等式都保证 $\nabla_\mu T^{\mu\nu} = 0$。它们的作用在于防止其他被我们视为“非物理”的性质，例如能量以超过光速的速度传播，或者空的空间自发衰变为正负能量互相补偿的区域。特别是，Hawking 和 Ellis (1973) 证明了一个\emph{守恒定理}（conservation theorem）：大致说来，如果能动张量遵守 DEC，并且在某个类空区域中为零，那么它必定在该区域的未来依赖域中处处为零（未来依赖域的定义见 2.7 节）。这样一来，能量不可能无中生有地冒出来，也不可能溜到光锥之外。该定理并不包括其逆命题（即违反 DEC 的源必然是非因果的），所以谨慎一点总是有好处的。
+
+\section{再论等效原理}
+
+本节我们将更仔细地考察等效原理的依据和后果，我们在 4.1 节中曾用它来启发把物理学推广到弯曲时空的最小耦合步骤。我们将看到，等效原理并不是一条神圣的物理定律，甚至算不上一个数学上严格的陈述；在更基本的层次上，它的产生是广义相对论作为一种在宏观距离上有效的有效场论这一本质的结果，而我们的任务则是确定在这样的理论中，我们应当预期物质与度规之间存在哪些类型的耦合。
+
+在实践中，人们常常援引等效原理来为下面四种观念中的任何一种辩护：
+\begin{enumerate}
+\item 物理学定律应当（或至少可以）以广义协变的形式表述。
+\item 时空中存在一个度规，其曲率被我们解释为引力。
+\item 不存在任何其他与引力相像的场。
+\item 物质场与曲率的相互作用是最小的：它们不包含与 Riemann 张量或其缩并的直接耦合。
+\end{enumerate}
+
+这些截然不同的陈述，各自有着非常不同的地位：第一种是空洞的，第二种既深刻又几乎肯定为真，第三种有趣且可检验，而第四种只不过是一个有用的近似。让我们逐一考察。
+
+第一种陈述有时被称为\textbf{协变性原理}（Principle of Covariance）。它多少是没什么内容的。“广义协变”只是说，方程中所有的项在坐标变换下以相同的方式变换，从而方程的形式是坐标不变的。由于张量变换规律的普适性，实现这一目标最直接的办法，就是把方程写成明显的张量形式。当然，一条定律若以并非广义协变的形式表述，也没有任何问题，只要我们知道能够把它改写成与坐标无关的形式。另一方面，只要定律从一开始就是良定义的，把它写成与坐标无关的形式总是\emph{可能的}。一个以某种方式行为的物理系统，并不知道你正在用哪个坐标系来描述它；因此，任何配得上“物理学定律”这一名称的东西（相对于该定律的某个特定表述而言）都必定与坐标无关。坚持显式的坐标不变性，对于定律如何向弯曲时空推广并没有说什么；正如我们已看到的，明显的张量方程不论几何如何都取相同的形式。
+
+考虑平直时空中的麦克斯韦方程组，如同我们在第 1 章中写下的那样：
+\begin{equation*}
+\partial_\mu F^{\nu\mu} = J^\nu.
+\tag{4.109}
+\end{equation*}
+右边是一个良定义的张量，而左边由于出现了偏导数则不是。这没有问题，因为我们知道这个方程只在 Minkowski 空间的惯性坐标中有效。用坐标不变的方式表达同一定律，则是
+\begin{equation*}
+\nabla_\mu F^{\nu\mu} = J^\nu.
+\tag{4.110}
+\end{equation*}
+要断言这就是 Minkowski 空间中正确的表述，无需援引任何物理原理；它是\emph{唯一的}张量方程，在惯性坐标中与式 (4.109) 等价。但它并不是向弯曲时空的唯一推广，因为我们可以想象一些新的项，涉及 $F_{\mu\nu}$ 与 $R^\rho{}_{\sigma\mu\nu}$ 的乘积；这类附加项的地位由最小耦合假设直接处理，即上面清单中的第四点。不过，“把东西弄成张量的”或“广义协变的”这件事本身，只是逻辑必然性的简单体现，并不是一个可以设想用实验来否证的物理原理。（同一思想的另一种说法是“微分同胚不变性”（diffeomorphism invariance），在附录 B 中讨论。）
+
+上面清单中，等效原理的第二条所谓后果要深刻得多，而且绝非显然。虽然 Einstein 是受 EP 的启发，但这一几何洞见正是他的伟大突破。在第 2 章开头我们讨论过为什么这样的洞见是有根据的：EP 意味着引力是普适的，这又进而意味着引力场在小的时空区域内变得无法测量，而这一特征最直接的实现方式，就是把引力与时空几何的效应等同起来。这些步骤是有充分动机的建议，而不是严格推导出的结论；一旦我们有了“存在一个度规、其曲率产生引力”的想法，就可以通过与实验比较来检验它的用处。正如我们提到的，它以优异的成绩通过了检验。不断积累的证据（例如第 2 章讨论过的引力红移）与“理想化的直尺和时钟，其表现正如时空几何弯曲时应有的表现”这一想法相一致。尽管如此，不应指望去证明真的存在一个具有所期望性质的度规；我们提出假设，用越来越精确的实验去检验它，并推断它的适用范围。的确，最终调和广义相对论与量子力学的要求，让许多人相信度规终将被揭示为一个由更基本的一组自由度衍生出来的概念。就我们当前的目的而言，这个终极答案并不重要；弯曲度规这一想法的有用性已经被证明得无可置疑，我们要做的，是扩展对其性质的理解，直到碰上不可逾越的障碍（无论是理论上的还是经验上的）。
+
+既然我们确信引力的效应最好归因于时空度规的曲率，那么如果实验探测到对等效原理的明显违反，我们会得出什么结论？例如，我们可能设想这样一个实验，它揭示检验物体朝向地球或太阳的加速度确实极其轻微地依赖于检验物体的成分。（目前对这类反常加速度最好的限制表明，它们小于引力所致加速度的 $10^{-12}$ 倍。）\footnote{Y.~Su et al., \emph{Phys. Rev.} \textbf{D~50}, 3614 (1994).} 在这种情况下，没有人会真的倾向于宣称广义相对论已被彻底推翻、有必要从头再来。更可能的做法是回到“检验物体”（test body）的定义上去，这个定义包含该物体不带电荷这一条件。举例来说，电子就不是一个好的检验物体，因为它除了受引力作用之外，还会被周围环境中的电磁场推来搡去。类似地，对于号称中性的检验物体上任何假想的反常加速度，迄今为止最直接的解释莫过于设想我们发现了一种新的长程场的存在，而我们的检验物体在这种场下其实是带荷的。这样的场要一直未被发现至今，它必须要么耦合极弱，要么必须近乎普适地耦合，以便模仿引力的效应。我们可以设想，比如，与能动张量的迹耦合的标量场，或者与重子数（baryon number）耦合的矢量场。普通检验物体的质量近似正比于其重子数，重子数计数的正是物体中质子和中子的数目。因此，有时把“等效原理的检验”方便地当作对我们上述第三条陈述的检验——即不存在任何其他与引力相像的场（如果一个场是长程的，并且近乎普适地与质量耦合，它就与引力相像）。同样，探测到对这一假设的违反，最直接的解释将是发现了一种新的“第五种力”（fifth force），而不是对 Einstein 思想的否定。至于如果我们改进现有实验，是否应当预期会发现这样一种新场，这很难说；一方面，随手就能构造出带有新长程力的模型，但另一方面，它们通常应当强到早已被探测到了。在这个阶段，保持开放的头脑仍然是值得的。
+
+除了度规的存在本身之外，等效原理的核心在于我们表述中的第四条：物质场与曲率的相互作用是最小的，不包含与 Riemann 张量或其缩并的直接耦合。例如，我们可以考虑如下这个取代常规测地线方程的可能替代：
+\begin{equation*}
+\frac{d^2x^\mu}{d\lambda^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda} = \alpha\left(\nabla_\sigma R\right)\frac{dx^\mu}{d\lambda}\frac{dx^\sigma}{d\lambda},
+\tag{4.111}
+\end{equation*}
+其中 $R$ 是 Ricci 标量曲率，$\alpha$ 是一个耦合常数。这个方程在平直时空中同样约化为直线运动，但通过测量与 $\nabla_\sigma R$ 的耦合，它将允许在小区域内直接探测时空曲率。那么，为什么大自然选择了简单的测地线方程呢？作为回答的第一步，考虑耦合 $\alpha$ 的量纲。由于 $c = 1$ 且空间和时间有相同的单位，我们可以用长度作为基本量纲。于是度规、逆度规以及 $dx^\mu/d\lambda$ 都是无量纲的。偏导数算符的单位是逆长度，协变导数也一样。Christoffel 符号包含度规的一阶导数，因此具有逆长度的量纲；类似地，Riemann 张量、Ricci 张量和 Ricci 标量曲率具有逆长度平方的量纲：
+\begin{equation*}
+\Big[\frac{dx^\mu}{d\lambda}\Big] = [g_{\mu\nu}] = [g^{\mu\nu}] = L^0, \qquad [\nabla_\mu] = [\Gamma^\mu_{\rho\sigma}] = L^{-1}, \qquad [R] = L^{-2}.
+\tag{4.112}
+\end{equation*}
+为保持一致，耦合 $\alpha$ 必须具有长度平方的量纲：
+\begin{equation*}
+[\alpha] = L^2.
+\tag{4.113}
+\end{equation*}
+因此 $\alpha$ 的平方根定义了一个长度尺度；这个长度尺度应当是多大？我们无法确定，但有充分的理由相信它应当极其小。有两点论证。其一，由于 $\alpha$ 所代表的耦合起源于引力，对相关长度尺度唯一合理的预期是
+\begin{equation*}
+\alpha \sim l_{\rm P}^2,
+\tag{4.114}
+\end{equation*}
+其中 $l_{\rm P}$ 是 Planck 长度。另一个理由不过是“不然还能是什么呢”这种理由的更精致版本。虽然广义相对论是一个经典理论，但在更深的层次上，我们预期它只不过是描述某个底层量子力学结构的有效场论。即使不知道这个结构可能是什么，一个一般的预期（源自我们对已经理解的量子场论的经验）是：有效的经典极限应当包含所有可能的相互作用，只是带有量纲的长度参数，它们代表着新自由度开始变得重要的尺度（回忆第 1 章末尾我们对有效场论的讨论）。这样，弱相互作用的 Fermi 理论包含一个长度尺度，我们现在知道它对应于电弱对称性破缺的尺度，W 和 Z 玻色子在那里开始变得相关。既然我们不预期新的引力物理在 Planck 标度之前出现，与引力相伴的高阶相互作用就应当被 Planck 长度的适当幂次压低。
+
+这代表着多大的压低？一种量度是将 $l_{\rm P}$（从而参数 $\alpha$ 可能的取值）与地球附近典型的引力长度尺度相比较。地球上引力的强度由重力加速度表征，$a_g = 980\ \mathrm{cm/sec^2}$。为构造一个具有长度量纲的量，我们定义
+\begin{equation*}
+l_\oplus = c^2/a_g \sim 10^{18}\ \mathrm{cm},
+\tag{4.115}
+\end{equation*}
+其中符号 $\oplus$ 在这里代表地球（而不是直和）。于是，高阶引力效应的相对强度由下式量度：
+\begin{equation*}
+\frac{l_{\rm P}}{l_\oplus} \sim 10^{-51}.
+\tag{4.116}
+\end{equation*}
+实际上，由于我们预期 $\alpha \sim l_{\rm P}^2$，压低将是 $10^{-102}$ 的量级。因此，似乎没什么必要担心这类耦合可能起的作用。但剧烈的偏离应当记在心里；近来关于大额外维的想法已经开启了在粒子加速器上观测直接引力相互作用的可能性。归根结底，没有办法仅仅靠纯粹的思考来解决这些问题；只有实验才能在各种替代方案中作出裁决。
+
+\section{替代理论}
+
+广义相对论已经通过了各种各样的实验检验。尽管如此，我们做的下一个实验仍有可能揭示对 Einstein 原始表述的偏离。因此，让我们简要考虑广义相对论可能被修改的几种方式。这样的方式多得不可胜数，但我们将考虑四种不同的可能性：
+\begin{itemize}
+\item 引力标量场
+\item 额外空间维度
+\item 作用量中的高阶项
+\item 非 Christoffel 联络
+\end{itemize}
+
+一类流行的替代模型被称为引力\textbf{标量-张量理论}（scalar-tensor theories），因为它们同时涉及度规张量 $g_{\mu\nu}$ 和一个标量场 $\lambda$。特别地，标量场直接与标量曲率耦合，而不只是与度规耦合（正如等效原理似乎所蕴含的那样）。作用量可以写成引力部分、纯标量部分和物质部分之和：
+\begin{equation*}
+S = S_{fR} + S_\lambda + S_{\rm M},
+\tag{4.117}
+\end{equation*}
+其中
+\begin{equation*}
+S_{fR} = \int d^4x\,\sqrt{-g}\, f(\lambda)R,
+\tag{4.118}
+\end{equation*}
+\begin{equation*}
+S_\lambda = \int d^4x\,\sqrt{-g}\left[-\frac{1}{2}h(\lambda)g^{\mu\nu}(\partial_\mu\lambda)(\partial_\nu\lambda) - U(\lambda)\right],
+\tag{4.119}
+\end{equation*}
+以及
+\begin{equation*}
+S_{\rm M} = \int d^4x\,\sqrt{-g}\,\widehat{\mathcal{L}}_{\rm M}(g_{\mu\nu}, \psi_i).
+\tag{4.120}
+\end{equation*}
+这里，$f(\lambda)$、$h(\lambda)$ 和 $U(\lambda)$ 是定义该理论的函数，而物质拉格朗日量 $\widehat{\mathcal{L}}_{\rm M}$ 依赖于度规和一组物质场 $\psi_i$，但不依赖于 $\lambda$。通过变量的改变，我们总可以令 $h(\lambda) = 1$，但我们把它保留在此，以便与文献中的模型进行比较。
+
+这个理论的运动方程包括引力方程（由对度规变分得到）、标量方程（由对 $\lambda$ 变分得到），以及相应的物质方程。让我们从引力方程开始，我们可以按照与普通 Hilbert 作用量 (4.55) 相同的步骤来推导它。考虑度规的微扰
+\begin{equation*}
+g^{\mu\nu} \to g^{\mu\nu} + \delta g^{\mu\nu}.
+\tag{4.121}
+\end{equation*}
+按照 4.3 节的步骤，作用量引力部分的变分为
+\begin{align*}
+\delta S_{fR} = {}& \int d^4x\,\sqrt{-g}\, f(\lambda)\Big[\Big(R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}\Big)\delta g^{\mu\nu} + \nabla_\sigma\nabla^\sigma(g_{\mu\nu}\delta g^{\mu\nu}) \\
+&- \nabla_\mu\nabla_\nu(\delta g^{\mu\nu})\Big].
+\tag{4.122}
+\end{align*}
+对于 Hilbert 作用量，$f$ 是常数，所以最后两项是全导数，可以通过分部积分化为表面项从而忽略。现在，分部积分（两次）会得到 $f$ 的导数，我们便得出
+\begin{equation*}
+\delta S_{fR} = \int d^4x\,\sqrt{-g}\,\big[f(\lambda)G_{\mu\nu} + g_{\mu\nu}\Box f - \nabla_\mu\nabla_\nu f\big]\delta g^{\mu\nu},
+\tag{4.123}
+\end{equation*}
+其中 $G_{\mu\nu}$ 是 Einstein 张量。我们像往常一样丢弃了表面项，尽管在这种情形下关于边界贡献有一些微妙之处；讨论见 Wald (1984)。于是，包含来自 $S_\lambda$ 和 $S_{\rm M}$ 的贡献的引力运动方程为
+\begin{equation*}
+G_{\mu\nu} = f^{-1}(\lambda)\left(\frac{1}{2}T^{({\rm M})}_{\mu\nu} + \frac{1}{2}T^{(\lambda)}_{\mu\nu} + \nabla_\mu\nabla_\nu f - g_{\mu\nu}\Box f\right),
+\tag{4.124}
+\end{equation*}
+其中能动张量为 $T^{(i)}_{\mu\nu} = -2(-g)^{-1/2}\delta S_i/\delta g^{\mu\nu}$；特别地，
+\begin{equation*}
+T^{(\lambda)}_{\mu\nu} = h(\lambda)\nabla_\mu\lambda\nabla_\nu\lambda - g_{\mu\nu}\left[\frac{1}{2}h(\lambda)g^{\rho\sigma}\nabla_\rho\lambda\nabla_\sigma\lambda + U(\lambda)\right].
+\tag{4.125}
+\end{equation*}
+观察式 (4.124) 中 $T^{({\rm M})}_{\mu\nu}$ 的系数可以看到，当标量场\emph{恒定}（或实际上如此）时，我们可以把 $f(\lambda)$ 认作 $1/(16\pi G)$，这从原始作用量 (4.118) 看是合理的。另一方面，如果 $\lambda$ 在时空中逐点略有变化，它将被解释为一个随时空变化的 Newton 引力常数。控制这种变化的动力学由 $\lambda$ 的运动方程确定，不难推导出为
+\begin{equation*}
+h\,\Box\lambda + \frac{1}{2}h'g^{\mu\nu}\nabla_\mu\lambda\nabla_\nu\lambda - U' + f'R = 0,
+\tag{4.126}
+\end{equation*}
+其中撇号表示对 $\lambda$ 求导。注意，如果我们令 $h(\lambda) = 1$ 以得到标量的常规动能项，$\lambda$ 就服从常规的标量场运动方程，只是与标量曲率有一个附加耦合。在现实世界中，我们不希望 $f(\lambda)$ 变化太大，否则它将在太阳系中 GR 的经典实验检验、以及诸如原初核合成这样的宇宙学检验中产生可观测的后果。这可以通过两种方式得到保证：要么选择 $U(\lambda)$ 使势有一个极小值，$\lambda$ 若没有大的能量输入就不能偏离太远——换句话说，$\lambda$ 有很大的质量——要么选择 $f(\lambda)$ 和 $h(\lambda)$，使得 $\lambda$ 的大变化只引起 Newton 引力常数有效值的相对较小的变化。
+
+最早的标量-张量模型之一被称为 Brans–Dicke 理论，在我们的记号下它对应于选取
+\begin{equation*}
+f(\lambda) = \frac{\lambda}{16\pi}, \qquad h(\lambda) = \frac{\omega}{8\pi\lambda}, \qquad U(\lambda) = 0.
+\tag{4.127}
+\end{equation*}
+其中 $\omega$ 是一个耦合常数。标量-张量作用量取如下形式：
+\begin{equation*}
+S_{\rm BD} = \int d^4x\,\sqrt{-g}\left[\frac{\lambda}{16\pi}R - \frac{\omega}{16\pi}g^{\mu\nu}\frac{(\partial_\mu\lambda)(\partial_\nu\lambda)}{\lambda}\right].
+\tag{4.128}
+\end{equation*}
+在 Brans–Dicke 理论中，标量场是无质量的，但在 $\omega \to \infty$ 的极限下，场变为非动力学的，通常的 GR 得到恢复。目前太阳系检验给出的界限意味着 $\omega > 500$，因此如果存在这样的标量场，它必定只能与 Ricci 标量弱耦合。
+
+处理标量-张量理论的一种流行做法，是施行一个共形变换，把理论化成看起来像常规 GR 的形式。我们定义共形度规
+\begin{equation*}
+\widetilde{g}_{\mu\nu} = 16\pi\widetilde{G}f(\lambda)g_{\mu\nu},
+\tag{4.129}
+\end{equation*}
+其中 $\widetilde{G}$ 将成为共形框架（conformal frame）中的 Newton 引力常数。利用附录 G 中的共形变换公式，来自 (4.118) 的作用量 $S_{fR}$ 变为
+\begin{align*}
+S_{fR} &= \int d^4x\,\sqrt{-g}\, f(\lambda)R \\
+&= \int d^4x\,\sqrt{-\widetilde{g}}\,(16\pi\widetilde{G})^{-1}\left[\widetilde{R} - \frac{3}{2}\widetilde{g}^{\rho\sigma}f^{-2}\left(\frac{df}{d\lambda}\right)^2(\widetilde{\nabla}_\rho\lambda)(\widetilde{\nabla}_\sigma\lambda)\right],
+\tag{4.130}
+\end{align*}
+其中像往常一样，我们已经分部积分并丢弃了表面项。于是，在共形框架中，标量曲率独自出现，不再乘以任何 $\lambda$ 的函数。这个框架有时被称为\textbf{Einstein 框架}（Einstein frame），因为 Einstein 方程对共形度规 $\widetilde{g}_{\mu\nu}$ 取其常规形式。带有度规 $g_{\mu\nu}$ 的原来框架被称为\textbf{Jordan 框架}（Jordan frame），有时也叫\textbf{弦框架}（string frame）。（弦论典型地预言的是标量-张量理论而非通常的 GR，而且弦的世界面对度规 $g_{\mu\nu}$ 有响应。）
+
+在继续分析共形变换后的理论之前，考虑一下如果我们选取
+\begin{equation*}
+f(\lambda) = e^{\lambda/\sqrt{3}}, \qquad h(\lambda) = 0, \qquad U(\lambda) = 0,
+\tag{4.131}
+\end{equation*}
+即 $f(\lambda)$ 的一个特定选择，但同时关掉 $S_\lambda$ 中的纯标量项，会发生什么。于是我们注意到，Einstein 框架的作用量 (4.130) 实际上包含了标量的常规动能项，尽管它并不出现在 Jordan 框架的作用量 (4.118) 中。即使没有 $\lambda$ 的显式动能项，这个理论的自由度也包含一个传播的标量以及度规。在我们于第 7 章考察引力场的自由度之后，这一点应该会变得更清楚。在那里我们将发现，度规 $g_{\mu\nu}$ 实际上包含标量（自旋 0）和矢量（自旋 1）自由度，以及预期的张量（自旋 2）自由度；然而，在标准 Hilbert 作用量下，这些自由度是受约束的，而不是自由传播的。我们刚刚发现的就是：在作用量中用一个标量去乘 $R$，其作用是让标量自由度活起来，这一点在 Einstein 框架中明白无误地显露出来。
+
+如果我们确实选择把纯标量作用量 $S_\lambda$ 包括进来，就得到
+\begin{equation*}
+S_{fR} + S_\lambda = \int d^4x\,\sqrt{-\widetilde{g}}\left[\frac{\widetilde{R}}{16\pi\widetilde{G}} - \frac{1}{2}K(\lambda)\widetilde{g}^{\rho\sigma}(\widetilde{\nabla}_\rho\lambda)(\widetilde{\nabla}_\sigma\lambda) - \frac{U(\lambda)}{(16\pi\widetilde{G})^2 f^2(\lambda)}\right],
+\tag{4.132}
+\end{equation*}
+其中
+\begin{equation*}
+K(\lambda) = \frac{1}{16\pi\widetilde{G}f^2}\big[fh + 3(f')^2\big].
+\tag{4.133}
+\end{equation*}
+
+我们可以通过定义一个新的标量场 $\phi$，让我们的作用量看起来完全符合常规：
+\begin{equation*}
+\phi = \int K^{1/2}\,d\lambda,
+\tag{4.134}
+\end{equation*}
+用它表出，作用量变为
+\begin{equation*}
+S_{fR} + S_\lambda = \int d^4x\,\sqrt{-\widetilde{g}}\left[\frac{\widetilde{R}}{16\pi\widetilde{G}} - \frac{1}{2}\widetilde{g}^{\rho\sigma}(\widetilde{\nabla}_\rho\phi)(\widetilde{\nabla}_\sigma\phi) - V(\phi)\right],
+\tag{4.135}
+\end{equation*}
+其中
+\begin{equation*}
+V(\phi) = \frac{U(\lambda(\phi))}{(16\pi\widetilde{G})^2 f^2(\lambda(\phi))}.
+\tag{4.136}
+\end{equation*}
+令人惊叹的是，在 Einstein 框架中我们得到的是一个完全平常的弯曲时空标量场理论。只要 $f(\lambda)$ 表现良好，变量 $(\widetilde{g}_{\mu\nu}, \phi)$ 就可以取代 $(g_{\mu\nu}, \lambda)$，其含义是：对新变量做变分，等价于从原来的运动方程 (4.124) 和 (4.126) 出发，然后施行变换 (4.129) 和 (4.134)。
+
+最后，我们把物质作用量 (4.120) 加进来。对 $\widetilde{g}_{\mu\nu}$ 做变分将给出 Einstein 框架中的能动张量。在原变量 $(g_{\mu\nu}, \lambda)$ 下，我们知道 $S_{\rm M}$ 不依赖于 $\lambda$，但现在它将同时依赖于两个新变量 $(\widetilde{g}_{\mu\nu}, \phi)$；我们可以用链式法则来刻画这种依赖。让我们再假设 $S_{\rm M}$ 只是代数地依赖于 $g_{\mu\nu}$，而不通过其导数。对普通的标量场或规范场物质来说这是成立的；对费米子情形会变得更复杂，我们在此不予讨论。我们得到
+\begin{align*}
+\widetilde{T}_{\mu\nu} &\equiv -2\frac{1}{\sqrt{-\widetilde{g}}}\frac{\delta S_{\rm M}}{\delta\widetilde{g}^{\mu\nu}} \\
+&= -2\frac{1}{\sqrt{-\widetilde{g}}}\frac{\partial g^{\alpha\beta}}{\partial\widetilde{g}^{\mu\nu}}\frac{\delta S_{\rm M}}{\delta g^{\alpha\beta}} \\
+&= -2(16\pi\widetilde{G}f)^{-1}\frac{1}{\sqrt{-g}}\delta^\alpha_\mu\delta^\beta_\nu\frac{\delta S_{\rm M}}{\delta g^{\alpha\beta}} \\
+&= (16\pi\widetilde{G}f)^{-1}T_{\mu\nu}.
+\tag{4.137}
+\end{align*}
+同样的技巧也适用于物质与 $\phi$ 的耦合，它来自对 $\phi$ 变分 $S_{\rm M}$，利用 $g^{\alpha\beta} = 16\pi\widetilde{G}f\,\widetilde{g}^{\alpha\beta}$：
+\begin{align*}
+\frac{\delta S_{\rm M}}{\delta\phi} &= \frac{\partial g^{\alpha\beta}}{\partial\phi}\frac{\delta S_{\rm M}}{\delta g^{\alpha\beta}} \\
+&= \left(16\pi\widetilde{G}\frac{df}{d\phi}\widetilde{g}^{\alpha\beta}\right)\left(-\frac{1}{2}\sqrt{-g}\,T^{\rm M}_{\alpha\beta}\right) \\
+&= -\frac{1}{2f}\frac{df}{d\phi}\sqrt{-\widetilde{g}}\,\widetilde{T}^{\rm M},
+\tag{4.138}
+\end{align*}
+其中
+\begin{equation*}
+\widetilde{T}^{({\rm M})} = \widetilde{g}^{\alpha\beta}\widetilde{T}^{({\rm M})}_{\alpha\beta} = \frac{1}{(16\pi\widetilde{G}f)^2}g^{\alpha\beta}T^{({\rm M})}_{\alpha\beta}
+\tag{4.139}
+\end{equation*}
+是共形框架中能动张量的迹。
+
+对 $\widetilde{g}_{\mu\nu}$ 和 $\phi$ 变分 (4.135)，得到与 Einstein 方程等价的运动方程以及一个 $\phi$ 的方程。引力方程是
+\begin{equation*}
+\widetilde{G}_{\mu\nu} = 8\pi\widetilde{G}\left(\widetilde{T}^{({\rm M})}_{\mu\nu} + \widetilde{T}^{(\phi)}_{\mu\nu}\right),
+\tag{4.140}
+\end{equation*}
+其中
+\begin{equation*}
+\widetilde{T}^{(\phi)}_{\mu\nu} = \widetilde{\nabla}_\mu\phi\,\widetilde{\nabla}_\nu\phi - \widetilde{g}_{\mu\nu}\left[\frac{1}{2}\widetilde{g}^{\rho\sigma}\widetilde{\nabla}_\rho\phi\,\widetilde{\nabla}_\sigma\phi + V(\phi)\right],
+\tag{4.141}
+\end{equation*}
+而标量场方程是
+\begin{equation*}
+\widetilde{\Box}\phi - \frac{dV}{d\phi} = \frac{1}{2f}\frac{df}{d\phi}\widetilde{T}^{({\rm M})}.
+\tag{4.142}
+\end{equation*}
+
+既然 (4.140) 看起来就像同时带有物质源和标量场源的 Einstein 方程，为什么我们还要费心把这个标量-张量理论称作 GR 的一种替代理论呢？它难道不就是同一个理论，只是用了不同的变量吗？事实上它并不是同一个理论，原因在于 Einstein 框架中 $S_{\rm M}$ 对 $\phi$ 的依赖。特别是，物理的检验粒子将沿着 $g_{\mu\nu}$ 的测地线运动，而这些测地线一般不会与 $\widetilde{g}_{\mu\nu}$ 的测地线重合。检验粒子“看到”的是原来的度规。所以，要么我们在原变量 $(g_{\mu\nu}, \lambda)$ 中工作，此时引力场方程被修改；要么我们使用新变量 $(\widetilde{g}_{\mu\nu}, \phi)$，此时物质的运动方程被修改；无论哪种方式，都会存在（原则上）毫不含糊、可测量的对通常 GR 的偏离。
+
+修改广义相对论的另一种途径，是允许额外空间维度的存在；事实上，额外维的物理后果与标量-张量理论的物理后果是紧密相关的。所谓额外维，我们并不是简单地在高维空间中考虑 GR，而是考虑这样一类模型：时空在大尺度上表现为四维，尽管实际上总共有 $4 + d$ 维。实现这一点最简单的方式，是让额外的 $d$ 维在某一流形上“紧化”（compactified）；我们在这里考虑的正是这种可能性。\footnote{我们沿用 S.M.~Carroll, J.~Geddes, M.~Hoffman, and R.M.~Wald 的分析，\emph{Phys. Rev.} \textbf{D~66}, 024036 (2002)；http://arxiv.org/hep-th/0110149。关于额外维的原始论文出自 Kaluza 和 Klein：T.~Kaluza, \emph{Sitzungsber. Preuss. Akad. Wiss. Berlin (Math. Phys.)} K1, 966 (1921)；O.~Klein, \emph{Z. Phys.} \textbf{37}, 895 (1926) [\emph{Surveys High Energ. Phys.} \textbf{5}, 241 (1926)]；O.~Klein, \emph{Nature} \textbf{118}, 516 (1926)。}这类模型被称为 Kaluza–Klein 理论。
+
+令 $G_{ab}$ 为一个 $(4 + d)$ 维时空的度规，坐标为 $X^a$，指标 $a, b$ 从 0 取到 $d + 3$。
+
+% ---- 书页 187 / p202 ----（承接 4.8 节“替代理论”：前块止于书页 186 段末 “…where indices $a,b$ run from 0 to $d+3$.”，前句完整收束，本 tail 直接由式 (4.143) 起，无需 %JOIN%）
+\begin{equation*}
+ds^{2} = G_{ab}\,dX^{a}dX^{b} = g_{\mu\nu}(x)\,dx^{\mu}dx^{\nu} + b^{2}(x)\gamma_{ij}(y)\,dy^{i}dy^{j},
+\tag{4.143}
+\end{equation*}
+其中 $x^{\mu}$ 是四维时空中的坐标，而 $y^{i}$ 是额外维流形上的坐标；这个流形取为一个具有度规 $\gamma_{ij}$ 的最大对称空间。当然，额外维的几何实际上是某种动力学的东西，本应通过求解完整的运动方程来确定，但我们打算把 (4.143) 当作一个简化拟设（ansatz）。（在更完整的处理中，我们会把紧化几何的动力学模式按傅里叶级数展开，并证明我们眼下忽略的那些模式比我们所选择考察的整体尺寸模式质量更大。）作用量就是 $(4+d)$ 维的 Hilbert 作用量再加上一个物质项：
+\begin{equation*}
+S = \int d^{4+d}X\sqrt{-G}\left(\frac{1}{16\pi G_{4+d}}R[G_{ab}] + \widehat{\mathcal{L}}_M\right),
+\tag{4.144}
+\end{equation*}
+其中 $\sqrt{-G}$ 是 $G_{ab}$ 的行列式取负号后的平方根，$R[G_{ab}]$ 是 $G_{ab}$ 的 Ricci 标量曲率，而 $\widehat{\mathcal{L}}_M$ 是提出度规行列式因子之后的物质拉格朗日密度。
+
+第一步是对作用量 (4.144) 作维数约化。我们的意思是切实地对额外维完成积分，这之所以可能，是因为我们已经假定额外维的尺度因子 $b$ 与 $y^{i}$ 无关。于是我们可以把一切都用 $g_{\mu\nu}$、$\gamma_{ij}$ 和 $b(x)$ 表出，对额外维积分，从而得到一个有效的四维理论。由度规 (4.143) 可得
+\begin{equation*}
+\sqrt{-G} = b^{d}\sqrt{-g}\sqrt{\gamma},
+\tag{4.145}
+\end{equation*}
+并且我们可以对这个度规计算标量曲率，得到
+\begin{align*}
+R[G_{ab}] = R[g_{\mu\nu}] &+ b^{-2}R[\gamma_{ij}] - 2db^{-1}g^{\mu\sigma}\nabla_{\mu}\nabla_{\sigma}b\\
+&- d(d-1)b^{-2}g^{\mu\sigma}(\nabla_{\mu}b)(\nabla_{\sigma}b),
+\tag{4.146}
+\end{align*}
+其中 $\nabla_{\mu}$ 是与四维度规 $g_{\mu\nu}$ 相联系的协变导数。我们用 $\mathcal{V}$ 表示 $b=1$ 时额外维的体积；它由下式给出：
+\begin{equation*}
+\mathcal{V} = \int d^{d}y\sqrt{\gamma}.
+\tag{4.147}
+\end{equation*}
+四维的 Newton 引力常数 $G_{4}$ 由作用量中标量曲率的系数确定；我们发现 $G_{4}$ 与其高维对应物的关系为
+\begin{equation*}
+\frac{1}{16\pi G_{4}} = \frac{\mathcal{V}}{16\pi G_{4+d}}.
+\tag{4.148}
+\end{equation*}
+于是我们得到
+% ---- 书页 188 / p203 ----
+\begin{align*}
+S = \int d^{4}x\sqrt{-g}\,\bigg\{ \frac{1}{16\pi G_{4}}\Big[ b^{d}R[g_{\mu\nu}] &+ d(d-1)b^{d-2}g^{\mu\nu}(\nabla_{\mu}b)(\nabla_{\nu}b)\\
+&+ d(d-1)\kappa b^{d-2}\Big] + \mathcal{V}b^{d}\widehat{\mathcal{L}}_M\,\bigg\},
+\tag{4.149}
+\end{align*}
+其中为了方便我们作了分部积分，并且引入了 $\gamma_{ij}$ 的曲率参数 $\kappa$，由下式给出：
+\begin{equation*}
+\kappa = \frac{R[\gamma_{ij}]}{d(d-1)}.
+\tag{4.150}
+\end{equation*}
+
+与式 (4.117)–(4.120) 比较可见，这个维数约化后的作用量恰恰就是一个标量-张量理论的作用量；额外维的尺寸扮演着标量场的角色。因此，我们可以通过一次变量代换加一个共形变换，让它看起来更合乎常规：
+\begin{gather*}
+\beta(x) = \ln b,\\
+\tilde{g}_{\mu\nu} = e^{d\beta}g_{\mu\nu},
+\tag{4.151}
+\end{gather*}
+这便把约化后的作用量变成了 Einstein 框架中一个与引力相耦合的标量场的作用量。按照我们讨论标量-张量理论时所概述的同一流程，就得到
+\begin{align*}
+S = \int d^{4}x\sqrt{-\tilde{g}}\,\bigg\{ \frac{1}{16\pi G_{4}}\Big[ R[\tilde{g}_{\mu\nu}] &- \frac{1}{2}d(d+2)\tilde{g}^{\mu\nu}(\widetilde{\nabla}_{\mu}\beta)(\widetilde{\nabla}_{\nu}\beta)\\
+&+ d(d-1)\kappa e^{(d+2)\beta}\Big] + \mathcal{V}e^{-d\beta}\widehat{\mathcal{L}}_M\,\bigg\},
+\tag{4.152}
+\end{align*}
+其中我们略去了全导数项。
+
+为了把 $\beta$ 变成正则归一化的标量场，我们作最后一次变量代换：
+\begin{equation*}
+\phi = \sqrt{\frac{d(d+2)}{2}}\,\bar{m}_P\beta,
+\tag{4.153}
+\end{equation*}
+其中约化 Planck 质量为 $\bar{m}_P=(8\pi G_{4})^{-1/2}$。于是我们得到
+\begin{align*}
+S = \int d^{4}x\sqrt{-\tilde{g}}\,\bigg\{ \frac{1}{16\pi G_{4}}R[\tilde{g}_{\mu\nu}] &- \frac{1}{2}\tilde{g}^{\mu\nu}(\widetilde{\nabla}_{\mu}\phi)(\widetilde{\nabla}_{\nu}\phi)\\
+&+ \frac{1}{2}\kappa d(d-1)\bar{m}_P^{2}e^{-\sqrt{2(d+2)}/d\,\phi/\bar{m}_P} + \mathcal{V}e^{-\sqrt{2d/(d+2)}\,\phi/\bar{m}_P}\widehat{\mathcal{L}}_M\,\bigg\}.
+\tag{4.154}
+\end{align*}
+
+% ---- 书页 189 / p204 ----
+标量 $\phi$ 被称为\textbf{伸缩子}（dilaton）或\textbf{径子}（radion），它刻画了额外维流形的尺寸。
+
+式 (4.154) 中的后两项代表（负的）势 $V(\phi)$。如果忽略物质项 $\widehat{\mathcal{L}}_M$，伸缩子的行为将只取决于 $\kappa$ 的符号。如果额外维流形是平直的（$\kappa=0$），势消失，我们就只有一个无质量标量场；这种可能性与我们前面提到的标量-张量理论所受的实验限制相冲突。如果有曲率（$\kappa\neq 0$），势就没有极小值：$\kappa>0$ 时场会滚向 $-\infty$，而 $\kappa<0$ 时场会滚向 $+\infty$。但 $\phi\propto\ln b$，所以这意味着额外维的尺度因子 $b(x)$ 要么收缩到零，要么变得任意大，无论哪种情形都让稳定额外维的希望化为泡影。不过，通过选取一个恰当的物质拉格朗日量，以及额外维中一个恰当的场位形，稳定性是可以实现的。
+
+现在让我们转向另一类替代理论：那些拉格朗日量含有度规导数的高于二阶的项的理论。我们可以想象一个如下形式的作用量
+\begin{equation*}
+S = \int d^{n}x\sqrt{-g}\left(R + \alpha_{1}R^{2} + \alpha_{2}R_{\mu\nu}R^{\mu\nu} + \alpha_{3}g^{\mu\nu}\nabla_{\mu}R\nabla_{\nu}R + \cdots\right),
+\tag{4.155}
+\end{equation*}
+其中各个 $\alpha$ 是耦合常数，省略号代表我们用曲率张量、它的缩并以及它的导数所能造出的所有其他标量。传统上，这类项一直被忽略，理由相当充分：它们只是把一个已经在美学上令人愉悦、在经验上成功的理论弄得更复杂。除此之外，从经典的角度看还有一个更实质性的反对意见。在常规形式下，Einstein 方程为度规导致一个适定的初值问题：在初始时刻给定的坐标和动量，可以用来预言未来的演化。而若带有高阶导数项，我们不仅需要那些数据，还需要动量的若干阶导数；理论的性质就被急剧改变了。
+
+不过，也有很好的理由去考虑这类附加项。正如我们在对量子引力的简短讨论中提到过的，广义相对论自洽量子化的技术障碍之一是这个理论不可重整化：把高阶量子效应包括进来，就会得到无穷大的答案。而取高阶拉格朗日项的恰当组合，你实际上可以让理论变得可重整化，这为构造一个自洽的量子理论带来了一些希望。\footnote{例如可参见 K.S. Stelle, \emph{Phys. Rev.} \textbf{D16}, 953 (1977).}不幸的是，事实证明可重整化要付出的代价太高：这些模型一般都含有负能量的场激发（幽灵，ghosts）。这样一来，所谓的真空态（空无一物的空间）对于衰变成正、负能量模式而言将是不稳定的，这既与经验事实不一致，也与我们理论上的成见相矛盾。
+
+尽管如此，目前流行的观点是：GR 是一个在 Planck 标度以下的能量处有效的有效理论，我们实际上应当把所有可能的高阶项都包括进来；
+% ---- 书页 190 / p205 ----（承接上句：“...include all of the pos-” 续接 “sible higher-order terms...”）
+只不过它们会被 Planck 标度的适当幂次压低，正如我们在 4.7 节讨论等效原理时所论证的那样。因此，只有当曲率的特征长度逼近 Planck 标度时，这些项才会变得重要，而这远离任何说得通的实验。所以，高阶项在原则上有趣，在实践中却不然。另一方面，类似的推理会让我们预期一个巨大的真空能项，因为它比 Hilbert 作用量的阶更低，而我们知道这并不是事实；所以我们应该保持开放的心态。
+
+作为广义相对论的最后一个替代方案，我们应当提一提这样一种可能性：联络其实并非从度规导出，而是作为一个基本场独立存在。习题中有一道题要你证明：可以考察广义相对论的常规作用量，但把它视为度规 $g_{\mu\nu}$ 和一个无挠联络 $\Gamma^{\lambda}_{\rho\sigma}$ 二者的函数，而对这样一个作用量关于联络作变分所得的运动方程，意味着 $\Gamma^{\lambda}_{\rho\sigma}$ 实际上就是与 $g_{\mu\nu}$ 相联系的 Christoffel 联络。我们也可以放弃联络必须无挠的要求，这时挠率张量可能带来额外的传播自由度。这类理论之所以没有受到多少关注，基本原因很简单：挠率本身是一个张量，没有任何东西把它与其他非引力的张量场区分开来。因此，考虑无挠联络的理论（它们给出 GR）再加上任意多个我们爱怎么命名就怎么命名的张量场，其实并没有损失任何一般性。当我们考虑放弃度规相容性要求时，类似的考虑同样适用——任何联络都可以写成一个度规相容的联络加上一个张量修正，于是任何这类理论都等价于 GR 加上额外的张量场，而后者实在不配称作“广义相对论的替代理论”。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 弯曲空间中电磁学的拉格朗日密度为
+\begin{equation*}
+\mathcal{L} = \sqrt{-g}\left(-\frac{1}{4}F^{\mu\nu}F_{\mu\nu} + A_{\mu}J^{\mu}\right),
+\tag{4.156}
+\end{equation*}
+其中 $J^{\mu}$ 是守恒流。
+
+\textbf{(a)}\quad 通过对度规作泛函微分，导出能动张量。你可以假定 $A_{\mu}J^{\mu}$ 项对能动张量没有贡献。
+
+\textbf{(b)}\quad 考虑在拉格朗日量中加进一个新项，
+\begin{equation*}
+\mathcal{L}' = \beta R^{\mu\nu}g^{\rho\sigma}F_{\mu\rho}F_{\nu\sigma}.
+\end{equation*}
+在这一项存在时，麦克斯韦方程组如何改变？Einstein 方程呢？流还守恒吗？
+
+\textbf{2.}\quad 我们已经展示过如何通过对 Hilbert 作用量关于度规作变分来导出 Einstein 方程。它们也可以这样导出：把度规和联络当作独立的自由度，分别对它们作变分；这就是所谓的
+% ---- 书页 191 / p206 ----（承接上句：“...this is known” 续接 “as the Palatini formalism.”）
+\textbf{Palatini 形式}（Palatini formalism）。也就是说，我们考虑作用量
+\begin{equation*}
+S = \int d^{4}x\sqrt{-g}\,g^{\mu\nu}R_{\mu\nu}(\Gamma),
+\end{equation*}
+其中 Ricci 张量被视为纯粹由联络构造而成，不使用度规。对度规的变分给出通常的 Einstein 方程，只不过其中的 Ricci 张量是由一个与度规没有任何先验关系的联络构造出来的。一开始就设想联络是对称的（无挠的），试证明：对这个作用量关于联络系数作变分，将导致联络必须度规相容的要求，也就是说，联络是 Christoffel 联络。记住，把矢量的协变散度的积分与矢量在边界上的积分联系起来的 Stokes 定理，对一般的协变导数并不成立。最好的策略是把联络系数写成 Christoffel 符号 $\widetilde{\Gamma}^{\lambda}_{\mu\nu}$ 与一个张量 $C^{\lambda}_{\mu\nu}$ 之和，
+\begin{equation*}
+\Gamma^{\lambda}_{\mu\nu} = \widetilde{\Gamma}^{\lambda}_{\mu\nu} + C^{\lambda}_{\mu\nu},
+\end{equation*}
+然后证明 $C^{\lambda}_{\mu\nu}$ 必定为零。
+
+\textbf{3.}\quad 流形 $M$ 上的四维 $\delta$ 函数定义为
+\begin{equation*}
+\int_{M}F(x^{\mu})\left[\frac{\delta^{(4)}(x^{\sigma}-y^{\sigma})}{\sqrt{-g}}\right]\sqrt{-g}\,d^{4}x = F(y^{\sigma}),
+\tag{4.157}
+\end{equation*}
+其中 $F(x^{\mu})$ 为任意函数。另一方面，无压强理想流体（尘埃）的能动张量为
+\begin{equation*}
+T^{\mu\nu} = \rho U^{\mu}U^{\nu},
+\tag{4.158}
+\end{equation*}
+其中 $\rho$ 是能量密度，$U^{\mu}$ 是四速度。考虑这样一个流体：它由单独一个沿世界线 $x^{\mu}(\tau)$ 运动的粒子构成，$\tau$ 为固有时。这个流体的能动张量便由下式给出：
+\begin{equation*}
+T^{\mu\nu}(y^{\sigma}) = m\int_{M}\left[\frac{\delta^{(4)}(y^{\sigma}-x^{\sigma}(\tau))}{\sqrt{-g}}\right]\frac{dx^{\mu}}{d\tau}\frac{dx^{\nu}}{d\tau}\,d\tau,
+\tag{4.159}
+\end{equation*}
+其中 $m$ 是粒子的静质量。试证明：能动张量的协变守恒，$\nabla_{\mu}T^{\mu\nu}=0$，蕴含 $x^{\mu}(\tau)$ 满足测地线方程。
+
+\textbf{4.}\quad 试证明电磁学与标量场论的能动张量满足主能量条件，从而也满足弱、类光以及类光主条件。试证明它们还满足 $w\geq -1$。
+
+\textbf{5.}\quad 如果存在一个与类空超曲面正交的类时 Killing 矢量，我们就说一个时空是静态的。（更多的讨论，包括 Raychaudhuri 方程的定义，见附录 D 与附录 F。）
+
+\textbf{(a)}\quad 一般地说，如果矢量场 $v^{\mu}$ 与由 $f=$ 常数定义的一族超曲面正交，那么我们可以把这个矢量写成 $v_{\mu}=h\nabla_{\mu}f$（这里 $f$ 和 $h$ 都是函数）。试证明这蕴含
+\begin{equation*}
+v_{[\sigma}\nabla_{\mu}v_{\nu]} = 0.
+\end{equation*}
+
+% ---- 书页 192 / p207 ----
+\textbf{(b)}\quad 想象我们有一个零压强的理想流体（尘埃），它生成 Einstein 方程的一个解。试证明：只有当流体四速度平行于类时（且超曲面正交）的 Killing 矢量时，度规才可能是静态的。
+
+\textbf{(c)}\quad 利用 Raychaudhuri 方程证明：如果压强为零而能量密度大于零，则 Einstein 方程不存在静态解。
+
+\textbf{6.}\quad 设 $K$ 是一个 Killing 矢量场。试证明：如果度规是 Einstein 方程的真空解，那么势为 $A_{\mu}=K_{\mu}$ 的电磁场求解麦克斯韦方程组。这有点作弊，因为如果电磁场强非零，你就不再处于真空之中；但我们假定场强足够小，不至于显著地影响几何。
+
+% 第4章正文至此结束（原书书页 192 末；书页 193 起为第 5 章）。

@@ -1,0 +1,1570 @@
+\chapter{$n$ 维空间中的线性代数}
+
+\section{线性空间}
+
+在数学和物理学中，经常会碰到一些相互之间可以相加以及与数相乘的那种对象。例如：齐次方程组的解，力学中的速度矢量，复数，以及在分析中已定义了加法和与数相乘运算的某个区间上的函数，等等。虽然这种对象与三维空间中的普通矢量在性质上可以毫无共同之处，但今后我们把这种对象仍然称为矢量。我们可将这种矢量的具体性质放在一边，而去寻求它的整体的固有规律性。而这里的“加法”和“乘法”运算已不必是通常意义下的那种加法和乘法，它们只须满足下面的条件即可：
+
+\textbf{1. 加法} 对任意的矢量
+\begin{flushleft}
+$a$) $x + y = y + x,$
+
+$b$) $(x + y) + z = x + (y + z)$ \hfill (2.1)
+
+c) 存在矢量 $0$，使得 $x + 0 = x,$
+
+d) 对任意矢量 $x$，存在矢量 $y$，使得 $x + y = 0$。
+\end{flushleft}
+
+\textbf{2. 乘法} 如果 $x, y$ 是矢量，而 $\alpha, \beta$ 是数，则
+
+$a$) $1 \cdot x = x$
+
+\begin{equation*}
+\text{b)}\ \ \alpha \cdot (\beta x) = (\alpha \beta) \cdot x,\tag{2.2}
+\end{equation*}
+
+\begin{equation*}
+\begin{array}{r l} \mathbf {c}) & (\alpha + \beta) (x + y) = \alpha (x + y) + \beta (x + y) = \\ & = \alpha x + \alpha y + \beta x + \beta y. \end{array}
+\end{equation*}
+
+集 $X$ ，如果对它的元素(称为矢量)可引进如下的加法和乘法运算，则此集 $X$ 称为线性空间：
+
+1）满足条件(2.1)的，且由此集的两个元素 $x_{1}$ ， $x_{2}$ 能构造此集中的第三个元素 $x_{3}$ 作为它们的“和”的加法运算；
+
+2）满足条件(2.2)的，且由此集的任一元素 $x$ 和任一数 $\alpha$ ，可构造此集的新元素 $\alpha x$ 的乘法运算。
+
+开始时可能以为这种抽象的定义仅对数学有用，而在研究物理问题时未必有效。但事实上线性空间的概念是许多数学分支的基础，它在物理学中的应用也有重大的价值。为了阐明线性空间的概念，我们举一些例子。
+
+\textbf{例 1}\quad 通常的三维空间：服从矢量加法法则的普通矢量，是此空间的元素。不难验证，矢量间的加法运算和矢量与数的乘法运算，满足条件(2.1)和(2.2)。因此，三维空间是线性空间。
+
+\textbf{例 2}\quad 以 $n$ 个实数构成的有序集 $x = (\xi_{1}, \xi_{2}, \cdots, \xi_{n})$ 为元素的空间。其中数 $\xi_{i}$ 称为矢量 $x$ 的第 $i$ 个坐标。对这种矢量的加法运算和乘法运算定义如下：
+
+\begin{equation*}
+\begin{array}{r l} & (\xi_ {1}, \xi_ {2}, \dots , \xi_ {n}) + (\eta_ {1}, \eta_ {2}, \dots , \eta_ {n}) = \\ & = (\xi_ {1} + \eta_ {1}, \xi_ {2} + \eta_ {2}, \dots , \xi_ {n} + \eta_ {n}), \\ & \alpha (\xi_ {1}, \xi_ {2}, \dots , \xi_ {n}) = (\alpha \xi_ {1}, \alpha \xi_ {2}, \dots , \alpha \xi_ {n}). \end{array}
+\end{equation*}
+
+不难验证，用这种方式定义的加法和乘法运算，满足公理(2.1)和(2.2)，所以此空间是线性空间。
+
+\textbf{例 3}\quad 定义在区间 $a \leqslant t \leqslant b$ 上的连续函数 $f(t)$ 也可取作线性空间的元素，其加法和乘法与分析中所讲的一样。
+
+现在引进矢量的线性相关这一重要概念。假定 $x_{1}, x_{2}, \cdots, x_{n}$ 为线性空间$R$内的$n$个矢量，而 $a_{1}, a_{2}, \cdots, a_{n}$ 是数。
+
+如果等式
+\begin{equation*}
+\sum_ {i = 1} ^ {n} a _ {i} x _ {i} = 0\tag{2.3}
+\end{equation*}
+
+当且仅当所有 $a_{i}$ 等于零时才成立，则矢量 $x_{1}, x_{2}, \cdots, x_{n}$ 称为线性无关。在相反的情形，就称矢量 $x_{1}, x_{2}, \cdots, x_{n}$ 线性相关。
+
+如果 $x = \sum_{i=1}^{n} a_{i} x_{i}$ ，则称矢量 $x$ 为矢量 $x_{1}, x_{2}, \cdots, x_{n}$ 的线性组合。如果矢量 $x_{1}, x_{2}, \cdots, x_{n}$ 线性相关，则其中至少有一个是其余的线性组合。
+
+\textbf{例 4}\quad 三维空间中三个互不共面的矢量线性无关。
+
+\textbf{例 5}\quad 今证 $k+1$ 个函数 $1, t, t^{2}, \cdots, t^{k}$ 线性无关。因若不然，则有
+
+\begin{equation*}
+a _ {0} \cdot 1 + a _ {1} t + \dots + a _ {k} t ^ {k} = 0,\tag{2.4}
+\end{equation*}
+
+这里 $a_{0}, a_{1}, \cdots, a_{k}$ 不全为零。将等式(2.4)逐次微分 $k$ 次，就得 $k + 1$ 个方程组。因为此方程组的系数行列式不为零，故解之得
+
+\begin{equation*}
+a _ {0} = a _ {1} = \dots = a _ {k} = 0.
+\end{equation*}
+
+这就证明了矢量 $1, t, t^{2}, \cdots, t^{k}$ 在函数空间中线性无关。
+
+设 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 为空间 $R$ 中的线性无关组。如果 $R$ 中的任一矢量都可表示为这些矢量的线性组合，即：
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \eta_ {i} e _ {i},\tag{2.5}
+\end{equation*}
+
+则 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 就称为线性空间的基。
+
+展开式(2.5)中的系数是唯一确定的。因对同一个矢量如有二种展开式，即
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \xi_ {i} e _ {i} = \sum_ {i = 1} ^ {n} \eta_ {i} e _ {i},
+\end{equation*}
+
+则从一个展开式减去另一个，就得等式
+
+\begin{equation*}
+\sum_ {i = 1} ^ {n} \left(\xi_ {i} - \eta_ {i}\right) e _ {i} = 0,
+\end{equation*}
+
+这里 $(\xi_{i}-\eta_{i})$ 不全为零。但这是不可能的，因 $e_{i}$ 线性无关。 $(\eta_{1},\eta_{2},\cdots,\eta_{n})$ 就叫做矢量$x$在基 $\{e_{1},e_{2},\cdots,e_{n}\}$ 中的坐标。
+
+\textbf{例 6}\quad 三个互相垂直的矢量就给了三维空间中的一个基。在这种情形，矢量的坐标就是它在基矢量上的投影。
+
+\textbf{例 7}\quad 在每个元素是由 $n$ 个数构成的有序集的空间中，矢量 $e_{1}=(1,0,\cdots,0)$ ， $e_{2}=(0,1,\cdots,0)$ ， $\cdots$ ， $e_{n}=(0,0,\cdots,0,1)$ 为它的基矢量。这是因为任一矢量 $x$ 都可表示成
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \eta_ {i} e _ {i}.
+\end{equation*}
+
+现引进空间维数的概念。如果在线性空间中存在 $n$ 个线性无关的矢量，但不可能找出 $n+1$ 个线性无关的矢量，则此空间就称为 $n$ 维空间。而 $n$ 就称为此空间的维数。在 $n$ 维空间中必定存在由 $n$ 个线性无关的矢量构成的基，并且任意一组 $n$ 个线性无关的矢量都能作为 $n$ 维空间的基。
+
+\textbf{例 8}\quad 元素为 $n$ 个数构成的有序集的空间，是 $n$ 维的。
+
+前例中所举的 $n$ 个矢量构成了它的基。
+
+\textbf{例 9}\quad 函数空间是无限维的，即线性无关的矢量的个数可任意多。此时上面所定义的那种意义的基，在函数空间中就不存在了。
+
+\section{矩阵及其运算}
+
+由一些数组成的矩形表，称为矩阵。矩阵通常用下面的记号表示：
+
+\begin{equation*}
+\| a _ {i j} \| = A = \left[ \begin{array}{c c c c} a _ {1 1} & a _ {1 2} & \dots & a _ {1 n} \\ a _ {2 1} & a _ {2 2} & \dots & a _ {2 n} \\ \dots & \dots & \dots & \dots \\ a _ {m 1} & a _ {m 2} & \dots & a _ {m n} \end{array} \right] \cdot
+\end{equation*}
+
+矩阵中分布在同一水平线上的那些元素全体，叫做它的行；在同一垂直线上的，叫做它的列。矩阵元素 $a_{ij}$ 的第一和第二个下标分别指出了这个元素所在位置的行和列的号码。可以引进矩阵相加和矩阵与数相乘的运算法则。
+
+一矩阵，它的下标为 $i$ 和 $j$ 的元素等于矩阵 $A$ 和 $B$ 具有相同下标的元素之和，则此矩阵就称为矩阵 $A$ 和 $B$ 的和。
+
+一矩阵，它的下标为 $i$ 和 $j$ 的元素等于矩阵 $A$ 中具有相同下标的元素与数 $\lambda$ 的积，则此矩阵就称为矩阵 $A$ 与数相乘的积。
+
+不难验证，用这种方法定义的运算，分别满足条件(2.1)和(2.2)。因此，$m$ 行和 $n$ 列矩阵的集合成为一线性空间。
+
+这种空间的基由下述矩阵构成：在这种矩阵中仅有一个元素等于1，而其余元素等于零。同时，等于1的元素的下标跑遍所有可能的值，即基矩阵为
+
+\begin{equation*}
+\left[ \begin{array}{c c c c c} 1 & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 0 \end{array} \right], \quad \left[ \begin{array}{c c c c c} 0 & 1 & 0 & \dots & 0 \\ 0 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 0 \end{array} \right] \dots \left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 1 \\ 0 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 0 \end{array} \right],
+\end{equation*}
+
+\begin{equation*}
+\left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 0 \\ 1 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 0 \end{array} \right], \quad \left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 0 \\ 0 & 1 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 0 \end{array} \right] \dots \left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & \dots & 1 \\ \dots & \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 0 \end{array} \right],
+\end{equation*}
+
+\begin{equation*}
+\left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots \\ 1 & 0 & 0 & \dots & 0 \end{array} \right], \quad \left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots \\ 0 & 1 & 0 & \dots & 0 \end{array} \right] \dots \left[ \begin{array}{c c c c c} 0 & 0 & 0 & \dots & 0 \\ 0 & 0 & 0 & \dots & 0 \\ \dots & \dots & \dots & \dots \\ 0 & 0 & 0 & \dots & 1 \end{array} \right].
+\end{equation*}
+
+不难看出，基矩阵的个数等于 $m \times n$ ；因此，矩阵空间的维数也等于 $m \times n$ 。
+
+除了加法和与数相乘的运算外，对矩阵还可引进其他一些运算。
+
+设有一个 $m$ 行 $n$ 列矩阵 $A$ 和另一个 $n$ 行 $l$ 列矩阵 $B$。我们将 $A$ 的第 $i$ 行元素与 $B$ 的第 $j$ 列元素依次对应相乘，然后再相加，得
+
+\begin{equation*}
+(A B) _ {i j} = \sum_ {k = 1} ^ {n} A _ {i k} B _ {k j} \quad \left\{ \begin{array}{l} i = 1, 2, \dots , m, \\ j = 1, 2, \dots , l. \end{array} \right.\tag{2.6}
+\end{equation*}
+
+以 $(AB)_{ij}$ 作为一新矩阵位于第 $i$ 行、第 $j$ 列交叉处的元素，则这个 $m$ 行 $l$ 列矩阵就称为矩阵 $A$ 和 $B$ 的积。
+
+这样一来，矩阵之积仅当矩阵 $A$ 的列数与 $B$ 的行数相等时，才有定义。
+
+将矩阵 $A$ 的行变为列(号码不变)，得一矩阵，此矩阵就称为关于 $A$ 的转置，并用记号 $\widetilde{A}$ 表示。换言之，矩阵 $\widetilde{A}$ 位于第 $i$ 行和第 $j$ 列相交处的元素 $\widetilde{A}_{ij}$ 由下面的方法确定：
+
+\begin{equation*}
+(\widetilde {A}) _ {i j} = A _ {j i}.
+\end{equation*}
+
+如果矩阵 $A$ 有 $m$ 行和 $n$ 列，则 $\widetilde{A}$ 就有 $n$ 行和 $m$ 列。
+
+矩阵 $A$ 的复共轭矩阵 $A^{*}$ 可这样作出： $A^{*}$ 的下标为 $i$, $j$ 的元素，其值为原矩阵 $A$ 的下标为 $i$, $j$ 的元素的复共轭：
+
+\begin{equation*}
+(A ^ {*}) _ {i j} = A _ {i j} ^ {*}.
+\end{equation*}
+
+矩阵 $A$ 通过转置再加复共轭后所得的矩阵 $A^{+}$ 称为 $A$ 的厄米 (Hermite) 共轭矩阵：
+
+\begin{equation*}
+(A ^ {+}) _ {i j} = (A _ {j i}) ^ {*}.
+\end{equation*}
+
+如果 $A$ 是 $m$ 行 $n$ 列矩阵，则 $A^{+}$ 是 $n$ 行 $m$ 列矩阵。
+
+现将上述运算的最重要的性质列举如下：
+
+1. 矩阵乘法的结合律。即
+
+\begin{equation*}
+(A B) C = A (B C)\tag{2.7}
+\end{equation*}
+
+事实上
+\begin{equation*}
+\begin{array}{r l} {[ (A B) C ] _ {i j} = \sum_ {k} (A B) _ {i k} C _ {k j} = \sum_ {e, k} A _ {i e} B _ {e k} C _ {k j} =} & \\ {= \sum_ {e} A _ {i e} (B C) _ {e j} = [ A (B C) ] _ {i j}.} \end{array}
+\end{equation*}
+
+2. 对于转置矩阵的积，则成立下面的关系：
+
+\begin{equation*}
+\widetilde {A B} = \widetilde {B} \widetilde {A},\tag{2.8}
+\end{equation*}
+
+事实上
+\begin{equation*}
+\begin{array}{r l} (\widetilde {A B}) _ {i j} & = (A B) _ {j i} = \sum_ {k} A _ {j k} B _ {k i} \\ & = \sum_ {k} \widetilde {A} _ {k j} \widetilde {B} _ {i k} = (\widetilde {B} \widetilde {A}) _ {i j}. \end{array}
+\end{equation*}
+
+3. 矩阵的乘法不可交换。即
+
+\begin{equation*}
+A B \neq B A.
+\end{equation*}
+
+注意，因矩阵之积仅在下述情形才有定义，即相乘矩阵中的第一个矩阵的列数等于第二个矩阵的行数，而不必要求第二个矩阵的列数等于第一个的行数。所以一般说来，$B$与$A$的积是不一定有意义的。
+
+如果
+\begin{equation*}
+A B = B A,
+\end{equation*}
+
+便称两矩阵对乘法是可交换的；在相反的情形，两矩阵就称为对乘法是不可交换的。
+
+4. 对于复共轭矩阵，则有下面的关系：
+
+\begin{equation*}
+(A B) ^ {*} = A ^ {*} B ^ {*}\tag{2.9}
+\end{equation*}
+
+5. 对于厄米共轭矩阵，满足等式
+
+\begin{equation*}
+(A B) ^ {+} = B ^ {+} A ^ {+}\tag{2.10}
+\end{equation*}
+
+等式(2.9)和(2.10)的正确性，可用初等的方法加以验证。
+
+以后我们用大写的拉丁字母表示方阵（即行数与列数相等的矩阵），例如
+
+\begin{equation*}
+A = \left[ \begin{array}{c c c c} a _ {1 1} & a _ {1 2} & \dots & a _ {1 n} \\ a _ {2 1} & a _ {2 2} & \dots & a _ {2 n} \\ \dots & \dots & \dots & \dots \\ a _ {n 1} & a _ {n 2} & \dots & a _ {n n} \end{array} \right];
+\end{equation*}
+
+而用小写字母 $x$、$y$、$z$、 $\varphi$ 、 $\psi$ 等表示仅有一列的矩阵，例如
+
+\begin{equation*}
+x = \left[ \begin{array}{c} x _ {1} \\ x _ {2} \\ \vdots \\ x _ {n} \end{array} \right].
+\end{equation*}
+
+显然，只含一行的矩阵只需用同样的字母，再加上表示转置记号～即可，例如
+
+\begin{equation*}
+\widetilde {x} = \left(x _ {1}, x _ {2}, \dots , x _ {n}\right).
+\end{equation*}
+
+我们将把列 $x$ 简称为 $n$ 维空间的矢量(参看本章的例 2)。
+
+还需注意一个特殊情形。主对角线上的元素都为 1，而其余元素为 0 的矩阵称为单位矩阵。对于它，我们用特别的记号表示：
+
+\begin{equation*}
+I = \left[ \begin{array}{c c c c} 1 & 0 & \dots & 0 \\ 0 & 1 & \dots & 0 \\ \dots & \dots & \dots & \dots \\ 0 & 0 & \dots & 1 \end{array} \right] \quad (I) _ {i j} = \delta_ {i j}.
+\end{equation*}
+
+由关于矩阵运算和单位矩阵的定义，可直接推出下列等式的正确性：
+
+\begin{equation*}
+\begin{array}{c} I A = A I, \\ I = I ^ {*} = \widetilde {I} = I ^ {+}. \end{array}
+\end{equation*}
+
+有关矩阵的行列式的概念，假定读者是熟知的。此外，我们还不加证明地引进几个结果，这些都可在代数学中找到。\textcircled{1}
+
+\textbf{1. 等式}
+
+\begin{equation*}
+\sum_ {j = 1} ^ {n} A _ {i j} x _ {j} = 0 (i = 1, 2, \dots , n)\tag{2.11}
+\end{equation*}
+
+仅在 $\operatorname{det}|A| = 0$ 或所有 $x_{j} = 0$ 的条件下才成立。
+
+\textbf{2. 由等式}
+
+\begin{equation*}
+A B = 0\tag{2.12}
+\end{equation*}
+
+及
+\begin{equation*}
+\det | A | \neq 0\tag{2.13}
+\end{equation*}
+
+推出
+\begin{equation*}
+B = 0.\tag{2.14}
+\end{equation*}
+
+3. 对于任一非零矢量 $y$ 和行列式不为零的矩阵 $A$ ，总可找到这样的非零矢量 $x$ ，使得等式
+
+\begin{equation*}
+A x = y\tag{2.15}
+\end{equation*}
+
+成立。
+
+4. 两个矩阵积的行列式等于这些矩阵行列式的积，即
+
+\begin{equation*}
+\det | A B | = \det | A | \cdot \det | B |.\tag{2.16}
+\end{equation*}
+
+矩阵 $B$ 称为 $A$ 的逆矩阵，如果
+
+\begin{equation*}
+A B = I,\tag{2.17}
+\end{equation*}
+
+这里 $I$ 是单位矩阵。矩阵 $A$ 的逆矩阵用 $A^{-1}$ 表示。
+
+\textbf{定理 2.1}\quad 任一行列式不等于零的矩阵都存在逆矩阵。
+
+\textbf{证明}\quad 考虑行列式不等于零的矩阵 $A$ 。由(2.15)，总可找到这样的矢量 $x^j$ ，使得
+
+\begin{equation*}
+A x ^ {j} = A \left[ \begin{array}{c} x _ {1} ^ {j} \\ x _ {2} ^ {j} \\ \vdots \\ x _ {n} ^ {j} \end{array} \right] = \left[ \begin{array}{c} 0 \\ 0 \\ \vdots \\ 1 \\ \vdots \\ 0 \end{array} \right] = e _ {j},
+\end{equation*}
+
+这里 $e_{j}$ 为第 $j$ 个分量为1，而其余为零的矢量。
+
+现考虑第 $j$ 列是矢量 $x^{j}$ 的矩阵，即矩阵
+
+\begin{equation*}
+\left[ \begin{array}{c c c c} x _ {1} ^ {1} & x _ {1} ^ {2} & \dots & x _ {1} ^ {n} \\ x _ {2} ^ {1} & x _ {2} ^ {2} & \dots & x _ {2} ^ {n} \\ \dots & \dots & \dots & \dots \\ x _ {n} ^ {1} & x _ {n} ^ {2} & \dots & x _ {n} ^ {n} \end{array} \right],
+\end{equation*}
+
+并记此矩阵为 $A^{-1}$ 。显然
+
+\begin{equation*}
+A A ^ {- 1} = \left[ \begin{array}{c c c c} 1 & 0 & \dots & 0 \\ 0 & 1 & \dots & 0 \\ \dots & \dots & \dots & \dots \\ 0 & 0 & \dots & 1 \end{array} \right] = I.
+\end{equation*}
+
+现在，为得定理的结果，只需再作下面很明显的变换：
+
+\begin{equation*}
+\begin{array}{l} A A ^ {- 1} A = I A = A I, \\ A (A ^ {- 1} A - I) = 0. \end{array}
+\end{equation*}
+
+但因 $\operatorname{det}|A| \neq 0$ ，故由(2.14)
+
+\begin{equation*}
+A ^ {- 1} A - I = 0,
+\end{equation*}
+
+或
+\begin{equation*}
+A ^ {- 1} A = I.
+\end{equation*}
+
+这就是所要证明的。
+
+满足条件
+\begin{equation*}
+U ^ {+} U = I,
+\end{equation*}
+
+即
+\begin{equation*}
+\sum_ {k} U _ {i k} ^ {+} U _ {k j} = \sum_ {k} U _ {k i} ^ {*} U _ {k j} = \delta_ {i j}\tag{2.18}
+\end{equation*}
+
+的矩阵称为酉矩阵。
+
+\textbf{定理 2.2}\quad 如果
+
+\begin{equation*}
+\det | U ^ {*} U | = 1,\tag{2.19}
+\end{equation*}
+
+则
+\begin{equation*}
+\det | U | = e ^ {i \bar {\varphi}}\tag{2.20}
+\end{equation*}
+
+这里 $\varphi$ 是实数。
+
+\textbf{证明}\quad 等式
+
+\begin{equation*}
+\det | A | = \det | \widetilde {A} |\tag{2.21}
+\end{equation*}
+
+可由行列式的性质直接推出。利用(2.21)，易知下面的等式成立：
+
+\begin{equation*}
+\det | A ^ {+} | = \det | A ^ {*} | = (\det | A |) ^ {*}.\tag{2.22}
+\end{equation*}
+
+其次，利用(2.16)将(2.19)写成
+
+\begin{equation*}
+\det | U ^ {*} U | = \det | U ^ {*} | \det | U | = 1.\tag{2.23}
+\end{equation*}
+
+现在显然
+\begin{equation*}
+\det | U ^ {*} | \det | U | = | \det | U | | ^ {2} = 1,\tag{2.24}
+\end{equation*}
+
+由此直接推出(2.20)。
+
+注意，在定理2.2中，将 $U^{*}$ 改作 $U^{+}$ ，结论仍然成立，因为
+
+\begin{equation*}
+\det | U ^ {+} | = \det | U ^ {*} |\tag{2.25}
+\end{equation*}
+
+附注：对酉矩阵，等式(2.19)成立。但等式(2.19)的成立还不足以表明 $U$ 是酉矩阵。例如
+
+\begin{equation*}
+U = \left( \begin{array}{c c} 1 & 1 \\ 1 & 2 \end{array} \right).
+\end{equation*}
+
+\textbf{定理 2.3}\quad 如果 $U$ 是酉矩阵，则由等式
+
+\begin{equation*}
+x ^ {\prime} = U x\tag{2.26}
+\end{equation*}
+
+可推出
+\begin{equation*}
+\left(x ^ {\prime}\right) ^ {+} = x ^ {+} U ^ {+}, \quad \left(x ^ {\prime}\right) ^ {+} x ^ {\prime} = x ^ {+} x.\tag{2.27}
+\end{equation*}
+
+\textbf{证明}\quad 对(2.26)施行共轭运算，则得
+
+\begin{equation*}
+(x ^ {\prime}) ^ {+} = x ^ {+} U ^ {+},\tag{2.28}
+\end{equation*}
+
+将(2.26)和(2.28)相乘，即得
+
+\begin{equation*}
+\left(x ^ {\prime}\right) ^ {+} x ^ {\prime} = x ^ {+} U ^ {+} U x = x ^ {+} I x = x ^ {+} x,
+\end{equation*}
+
+这就是所要证明的。
+
+\textbf{定理 2.4}\quad 如果
+
+\begin{equation*}
+x ^ {\prime} = V x,\tag{2.29}
+\end{equation*}
+
+则等式
+\begin{equation*}
+\tilde {x} ^ {\prime} x ^ {\prime} = \tilde {x} x\tag{2.30}
+\end{equation*}
+
+当且仅当条件
+
+\begin{equation*}
+\widetilde {V} V = V \widetilde {V} = I\tag{2.31}
+\end{equation*}
+
+满足时才成立。
+
+\textbf{证明}\quad 充分性。对(2.29)施行转置运算，
+
+\begin{equation*}
+\tilde {x} ^ {\prime} = \tilde {x} \tilde {V}.\tag{2.32}
+\end{equation*}
+
+将(2.32)和(2.29)相乘，得
+
+\begin{equation*}
+\widetilde {x} ^ {\prime} x ^ {\prime} = \widetilde {x} \widetilde {V} V x = \widetilde {x} I x = \widetilde {x} x;
+\end{equation*}
+
+条件(2.31)的充分性证毕。
+
+必要性。设 $x$ 是单位矢量 $e_{i}$ ，即
+
+\begin{equation*}
+x = \left[ \begin{array}{c} 0 \\ 0 \\ \vdots \\ 1 \\ \vdots \\ 0 \end{array} \right].\tag{2.33}
+\end{equation*}
+
+如果 $\widetilde{x}^{\prime}x^{\prime} = \widetilde{x} x$ ，则
+
+\begin{equation*}
+\begin{array}{r l} \widetilde {x} ^ {\prime} x ^ {\prime} - \widetilde {x} x & = 0 = \widetilde {x} \widetilde {V} V x - \widetilde {x} x = \\ & = \widetilde {x} (\widetilde {V} V - I) x. \end{array}\tag{2.34}
+\end{equation*}
+
+由(2.34)和(2.33)推出
+
+\begin{equation*}
+(\widetilde {V} V - I) _ {i i} = 0.\tag{2.35}
+\end{equation*}
+
+现设 $\widetilde{x}$ 是第 $i$ 和第 $j$ 两个坐标等于1，其余坐标等于0的矢量：
+
+\begin{equation*}
+\widetilde {x} = (0 0 \dots 1 0 \dots 0 1 \dots 0).\tag{2.36}
+\end{equation*}
+
+将(2.36)代入(2.34)，有
+
+\begin{equation*}
+\begin{array}{r l} & (\widetilde {V} V - I) _ {i j} + (\widetilde {V} V - I) _ {i i} + (\widetilde {V} V - I) _ {j i} + \\ & \quad + (\widetilde {V} V - I) _ {j j} = 0. \end{array}
+\end{equation*}
+
+由此并注意到等式(2.35)，就得
+
+\begin{equation*}
+(\widetilde {V} V - I) _ {i j} + (\widetilde {V} V - I) _ {j i} = 0,
+\end{equation*}
+
+或
+\begin{equation*}
+(\widetilde {V} V - I) _ {i j} = - (\widetilde {V} V - I) _ {j i} = - (\widetilde {V} V - I) _ {i j};
+\end{equation*}
+
+所以
+\begin{equation*}
+\widetilde {V} V - I = 0.
+\end{equation*}
+
+因为 $\widetilde{V} V = I$ ，注意到(2.21)，就得
+
+\begin{equation*}
+\det | \widetilde {V} V | = (\det | V |) ^ {2} = \det | I | = 1;
+\end{equation*}
+
+所以
+\begin{equation*}
+\det \left| V \right| = \pm 1.
+\end{equation*}
+
+因此，如果
+\begin{equation*}
+\widetilde {V} V = I,
+\end{equation*}
+
+则也有
+\begin{equation*}
+V \widetilde {V} = I,
+\end{equation*}
+
+这就是所要证明的。
+
+满足条件(2.31)的矩阵称为正交矩阵。
+
+\textbf{例 10}\quad 在二维实空间中，正交矩阵有下面的形式：
+
+1) 当 $\operatorname{det}|V| = 1$ 时，
+
+\begin{equation*}
+V = \left( \begin{array}{c c} \cos \varphi & \sin \varphi \\ - \sin \varphi & \cos \varphi \end{array} \right),\tag{2.37}
+\end{equation*}
+
+2) 当 $\operatorname{det}|V| = -1$ 时，
+
+\begin{equation*}
+V = \left( \begin{array}{c c} \cos \varphi & \sin \varphi \\ \sin \varphi & - \cos \varphi \end{array} \right);\tag{2.38}
+\end{equation*}
+
+在这两种情形，都是
+
+\begin{equation*}
+\varphi = v + i w,
+\end{equation*}
+
+这里 $v$ 和 $w$ 是实数。矩阵(2.37)和(2.38)的正交性，不难直接加以验证。
+
+现证明，所有满足条件
+
+\begin{equation*}
+\widetilde {V} V = I\tag{2.39}
+\end{equation*}
+
+的二阶矩阵都有(2.37)或(2.38)的形式。事实上，矩阵方程(2.39)等价于下面的方程组：
+
+\begin{equation*}
+\begin{array}{l} V _ {1 1} ^ {2} + V _ {1 2} ^ {2} = 1, \\ V _ {1 1} V _ {2 1} + V _ {1 2} V _ {2 2} = 0, \\ V _ {2 1} ^ {2} + V _ {2 2} ^ {2} = 1. \end{array}\tag{2.40}
+\end{equation*}
+
+设 $\varphi = \operatorname{arc}\cos V_{11}$ ，则由(2.40)得
+
+\begin{equation*}
+\begin{array}{l l} V _ {1 2} = \sin \varphi , & \frac {V _ {2 1}}{V _ {2 2}} = - \frac {\sin \varphi}{\cos \varphi}, \\ V _ {2 1} = \pm \sin \varphi , & V _ {2 2} = \mp \cos \varphi . \end{array}
+\end{equation*}
+
+这就是所要证明的。
+
+\textbf{定理 2.5}\quad 如果 $V_{1}$ 和 $V_{2}$ 是正交矩阵，则 $V_{1}V_{2}$ 也是正交矩阵。类似地，如果 $U_{1}$ 和 $U_{2}$ 是酉矩阵，则 $U_{1}U_{2}$ 也是酉矩阵。
+
+\begin{equation*}
+\begin{array}{r l} \text {证明} & (\widetilde {V _ {1} V _ {2}}) (V _ {1} V _ {2}) = \widetilde {V} _ {2} \widetilde {V} _ {1} V _ {1} V _ {2} = \\ & = \widetilde {V} _ {2} V _ {2} = I. \end{array}
+\end{equation*}
+
+完全同样地
+\begin{equation*}
+\left(U _ {1} U _ {2}\right) ^ {+} \left(U _ {1} U _ {2}\right) = U _ {2} ^ {+} U _ {1} ^ {+} U _ {1} U _ {2} = U _ {2} ^ {+} U _ {2} = I.
+\end{equation*}
+
+\section{线性算子}
+
+如果在 $n$ 维空间中给了一个法则 $A$ ，根据这个法则，对此空间中的任一矢量 $x$ ，都能有此空间中的矢量 $y$ 与之对应，则我们就称在此空间中给定了算子 $A$ ，并将 $y$ 记为
+
+\begin{equation*}
+y = A x.
+\end{equation*}
+
+如果算子 $A$ 还满足下面两个条件：
+
+\begin{equation*}
+1) A (x _ {1} + x _ {2}) = A x _ {1} + A x _ {2},
+\end{equation*}
+
+\begin{equation*}
+2) A (\lambda x) = \lambda A x.
+\end{equation*}
+
+则称算子 $A$ 为线性算子。
+
+\textbf{例11}\quad 考虑算子 $I$ ，它使矢量 $\pmb{x}$ 与它本身相对应：
+
+\begin{equation*}
+I x = x.
+\end{equation*}
+
+这个算子称为单位算子或恒等算子。易见，单位算子是线性的。
+
+\textbf{例 12}\quad 将线性空间中任一矢量都变为零矢量的算子, 称为零算子:
+
+\begin{equation*}
+O x = 0.
+\end{equation*}
+
+\textbf{例13}\quad 考虑每个元素是形如
+
+\begin{equation*}
+x = (\xi_ {1}, \xi_ {2}, \dots , \xi_ {n})
+\end{equation*}
+
+的线性空间，其次假定 $A$ 是有 $\pmb{n}$ 行的方阵，
+
+\begin{equation*}
+A = \left\| a _ {i k} \right\| \quad (i, k = 1, 2, \dots , n).
+\end{equation*}
+
+现用下式定义算子 $A$
+
+\begin{equation*}
+A x = \parallel a _ {i k} \parallel x,\tag{2.41}
+\end{equation*}
+
+这里右边的表示式理解为矩阵乘以矢量，这说明，算子 $A$ 作用于矢量 $x$ 后所得的矢量，等于矢量 $x$ 左乘以矩阵 $\|a_{ik}\|$ 所得的结果。于是矢量 $Ax$ 的分量可由下式确定：
+
+\begin{equation*}
+\eta_ {i} = \sum_ {k = 1} ^ {n} a _ {i k} \xi_ {k} \quad (i = 1, 2, \dots , n).
+\end{equation*}
+
+显然这种算子是线性的。
+
+对于线性算子，当然也可以定义加法和与数的乘法运算。
+
+算子 $C$ 称为线性算子 $A$ 和 $B$ 的和，如果它使 $\pmb{n}$ 维空间中的任一矢量 $x$ ，对应矢量 $Ax + Bx$ ，即用等式
+
+\begin{equation*}
+C x = A x + B x\tag{2.42a}
+\end{equation*}
+
+来定义线性算子的加法运算
+
+\begin{equation*}
+C = A + B.
+\end{equation*}
+
+由给出算子 $A$ 和 $B$ 的线性空间中加法的可结合性和可交换性，可推知算子 $A$ 和 $B$ 的加法也具有可结合性和可交换性。容易验证，算子的加法对(2.1)中其余的条件也满足。
+
+一算子称为算子 $A$ 与数 $\lambda$ 的积，如果它将矢量 $x$ 变为矢量 $\lambda(Ax)$ 。这样，由定义
+
+\begin{equation*}
+\lambda A x = \lambda (A x).\tag{2.42b}
+\end{equation*}
+
+算子与数相乘的运算满足条件(2.2)。
+
+这样一来，在线性空间上的线性算子的全体也构成一个线性空间。由此也知对任一线性算子 $A$ ，存在这样的算子 $(-A)$ ，使得
+
+\begin{equation*}
+A + (- A) = 0.
+\end{equation*}
+
+现在显然，由(2.41)，每个矩阵都定义了某个线性算子，故矩阵集合本身也构成了线性空间。下面的定理建立了矩阵和线性算子之间的联系。
+
+\textbf{定理 2.6}\quad 在基给定时，每一个线性算子都有一个确定的矩阵与之对应。反之亦真，即在固定基下，每个矩阵都对应于某个线性算子。
+
+\textbf{证明}\quad 分两步进行。先证明，存在唯一的线性算子，把 $n$ 维空间中的 $n$ 个基矢量 $e_1, e_2, \cdots, e_n$ 变为同一空间中预先给定的 $n$ 个矢量 $f_1, f_2, \cdots, f_n$ 。此后，在矩阵和算子之间建立一一对应关系就不难了。
+
+即要证明，总存在唯一的线性算子 $A$ ，对于它，下面等式成立：
+
+\begin{equation*}
+A e _ {1} = f _ {1}, \quad A e _ {2} = f _ {2}, \quad \dots , \quad A e _ {n} = f _ {n}.\tag{2.43}
+\end{equation*}
+
+先证实,这样的算子可用 $n$ 个矢量 $f_{1}$ , $f_{2}$ , $\cdots$ , $f_{n}$ 唯一地确定。设
+
+\begin{equation*}
+x = \eta_ {1} e _ {1} + \eta_ {2} e _ {2} + \dots + \eta_ {n} e _ {n};
+\end{equation*}
+
+则
+\begin{equation*}
+\begin{array}{r l} A x & = A \left(\eta_ {1} e _ {1} + \eta_ {2} e _ {2} + \dots + \eta_ {n} e _ {n}\right) = \\ & = \eta_ {1} A e _ {1} + \eta_ {2} A e _ {2} + \dots + \eta_ {n} A e _ {n} = \\ & = \eta_ {1} f _ {1} + \eta_ {2} f _ {2} + \dots + \eta_ {n} f _ {n}. \end{array}
+\end{equation*}
+
+因此，Ax 可用 $n$ 个矢量 $f_{1}$ ， $f_{2}$ ，…， $f_{n}$ 唯一地确定。
+
+现证明，对任意的 $n$ 个矢量 $f_{1}, f_{2}, \cdots, f_{n}$ 存在用 (2.43) 式确定的算子 $A$。为此，将矢量 $e_{i}$ 对应于矢量 $f_{i} (i = 1, 2, \cdots, n)$ ，于是矢量
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \eta_ {i} e _ {i}
+\end{equation*}
+
+可对应于矢量
+
+\begin{equation*}
+A x = \sum_ {i = 1} ^ {n} \eta_ {i} A e _ {i}.
+\end{equation*}
+
+因矢量 $x$ 可用自己的坐标完全确定，故它(即 $x$ )所对应的矢量 $Ax$ 也将完全确定。
+
+算子 $A$ 的线性性质是不难验证的。这样，我们就完成了证明的第一步。
+
+将矢量 $f_{i}$ 表示成 $n$ 个基矢量 $e_{1}, e_{2}, \cdots, e_{n}$ 的线性组合：
+
+\begin{equation*}
+f _ {i} = A e _ {i} = \sum_ {j = 1} ^ {n} a _ {j i} e _ {j},
+\end{equation*}
+
+那么线性算子 $A$ 就唯一地确定了矩阵
+
+\begin{equation*}
+A = \left\| a _ {i j} \right\|.
+\end{equation*}
+
+反之亦真，即每一个矩阵也都可唯一地确定一线性算子(变换)，这种矩阵通常称为线性变换矩阵。定理完全得证。
+
+此定理作用重大，因它在线性算子与矩阵之间建立了一种关系。这使我们在研究有限维空间中的线性算子时，获得了一个解析工具。在 §2 中已被证明的所有关于矩阵的定理都可转化成关于算子的定理。实质上，矩阵之所以使我们感兴趣，正是因为它是研究算子的一个手段。矩阵在物理中的应用，主要是同各种线性算子的研究联系在一起的。
+
+对矩阵已定义了乘法运算。今引进关于算子的乘法运算。
+
+算子 $A$ 和 $B$ 的积相当于这样一个算子，即对矢量 $x$ 先作用算子 $B$ ，再作用算子 $A$ 。这样
+
+\begin{equation*}
+C x = A (B x)
+\end{equation*}
+
+就定义了算子的积：
+
+\begin{equation*}
+C = A B.
+\end{equation*}
+
+算子积的不可交换性，即
+
+\begin{equation*}
+A B \neq B A
+\end{equation*}
+
+是很重要的。这个结论的正确性，在矩阵乘法的不可交换性的事实中即已推出。但我们将举一不涉及矩阵的不可交换性算子的例子。
+
+设 $p$ 为任意次多项式空间。用 $D$ 表示对多项式的微分运算：
+
+\begin{equation*}
+D p = \frac {d}{d x} p,
+\end{equation*}
+
+而用 $\Pi$ 表示用 $x$ 乘多项式 $p$ 的运算：
+
+\begin{equation*}
+\Pi p = x \cdot p.
+\end{equation*}
+
+于是
+\begin{equation*}
+D (\Pi p) = D (x \cdot p) = p + \frac {d p}{d x} \cdot x
+\end{equation*}
+
+而另一方面
+\begin{equation*}
+\Pi (D p) = x \frac {d p}{d x}.
+\end{equation*}
+
+显然 $D\Pi \neq \Pi D$ ，注意，关于算子可交换性的问题，在量子力学中起着重要的作用。
+
+定义在线性空间 $R$ 中的算子 $B$ ，如果
+
+\begin{equation*}
+A B = I\tag{2.44}
+\end{equation*}
+
+则 $B$ 就称为 $A$ 的逆算子，这里 $I$ 是单位算子。
+
+并非每一个算子都存在逆算子。例如，零算子就不存在逆算子。
+
+今试图找出逆算子存在的充要条件。为此，将作用于 $n$ 维空间的算子转为与它相对应的矩阵。不难知，单位算子对应于单位矩阵。因此，算子等式(2.44)就等价于矩阵等式
+
+\begin{equation*}
+A B = E.\tag{2.45}
+\end{equation*}
+
+于是，对于算子 $A$ 有逆算子存在的充要条件是：与它对应的线性变换矩阵也有逆矩阵存在。但我们知道，矩阵当且仅当它的行列式异于零时，才有逆矩阵存在。因此，给定在有限维空间中的线性算子，当且仅当它所对应的矩阵的行列式异于零时，才有逆算子存在。
+
+\section{坐标变换}
+
+在许多问题的求解中，适当地选取坐标系是非常重要的。为此，就必须学会从一个坐标系变到另一个坐标系的变换方法。即要懂得，在这种变动下，例如矢量坐标和线性变换矩阵等，是怎样变化的。事实上，在今后 $n$ 维空间的线性代数的叙述中，总是要阐明在坐标变换下，矢量坐标和线性变换矩阵是怎样改变的问题。于是，我们来考虑在 $n$ 维空间中的基的变换。
+
+设 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 是 $n$ 维空间中确定的基，而 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 为同一空间中的另一组确定的基。矢量 $f_{1}, f_{2}, \cdots, f_{n}$ 用基矢量 $e_{1}, e_{2}, \cdots, e_{n}$ 来表示：
+
+\begin{equation*}
+f _ {j} = \sum_ {i = 1} ^ {n} C _ {i j} e _ {i} \quad (j = 1, 2, \dots , n)\tag{2.46}
+\end{equation*}
+
+由(2.46)中的系数 $C_{ij}$ 可构成矩阵
+
+\begin{equation*}
+C = \parallel C _ {i j} \parallel = \left[ \begin{array}{c c c c} C _ {1 1} & C _ {1 2} & \dots & C _ {1 n} \\ C _ {2 1} & C _ {2 2} & \dots & C _ {2 n} \\ \dots & \dots & \dots & \dots \\ C _ {n 1} & C _ {n 2} & \dots & C _ {n n} \end{array} \right],\tag{2.47}
+\end{equation*}
+
+它称为从基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 到基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 的转移矩阵。
+
+先看下面熟知的事实：如从给定在 $n$ 维空间中 $n$ 个矢量的坐标出发，构造一方阵，使它的下标为 $i$ $j$ 的元素等于第 $j$ 个矢量的第 $i$ 个坐标，则此方阵的行列式不等于零的充要条件是此 $n$ 个矢量线性无关。由此事实即可推知，矩阵(2.47)的行列式总不等于零。因由定义，基矢量是线性无关的，因此方程(2.46)是可解的。即若已知了矢量 $f_{1}, f_{2}, \cdots, f_{n}$ ，则由它可求出矢量 $e_{1}, e_{2}, \cdots, e_{n}$ 。由此而得的方程组
+
+\begin{equation*}
+e _ {i} = \sum_ {j = 1} ^ {n} b _ {i j} f _ {j} \quad (i = 1, 2, \dots , n)\tag{2.48}
+\end{equation*}
+
+描述了由基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 到基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 的反变换。同时容易看出，此变换的矩阵 $B = \|b_{ij}\|$ 是矩阵 $C$ 之逆：
+
+\begin{equation*}
+B = \parallel b _ {i j} \parallel = \left[ \begin{array}{c c c c} b _ {1 1} & b _ {1 2} & \dots & b _ {1 n} \\ b _ {2 1} & b _ {2 2} & \dots & b _ {2 n} \\ \dots & \dots & \dots & \dots \\ b _ {n 1} & b _ {n 2} & \dots & b _ {n n} \end{array} \right] = C ^ {- 1}.\tag{2.49}
+\end{equation*}
+
+注意，矩阵(2.47)对应了一由关系式 $f_{i}=Ce_{i}(i=1,2,\cdots,n)$ 所确定的线性算子$C$。这种算子，我们称为由基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 到基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 的转移算子。它总有逆算子存在。
+
+现阐明当由一基转到另一基时，矢量的坐标是怎样变化的。下面假定 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 为原来的基，而 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 为新的基。并设 $C = \|C_{ij}\|$ 为原来的基到新的基的转移矩阵。任一矢量$x$均可按基矢量来展开：
+
+\begin{equation*}
+\begin{array}{r l} x & = \xi_ {1} e _ {1} + \xi_ {2} e _ {2} + \dots + \xi_ {n} e _ {n} = \\ & = \eta_ {1} f _ {1} + \eta_ {2} f _ {2} + \dots + \eta_ {n} f _ {n}. \end{array}\tag{2.50}
+\end{equation*}
+
+将(2.48)中的矢量 $e_{i}(i=1,2,\cdots,n)$ 代入(2.50)得
+
+\begin{equation*}
+\begin{array}{r l} x & = \sum_ {j = 1} ^ {n} \xi_ {j} e _ {j} = \sum_ {k = 1} ^ {n} \eta_ {k} f _ {k} = \sum_ {j = 1} ^ {n} \xi_ {j} \left(\sum_ {k = 1} ^ {n} b _ {j k} f _ {k}\right) = \\ & = \sum_ {k = 1} ^ {n} \left(\sum_ {j = 1} ^ {n} b _ {j k} \xi_ {j}\right) f _ {k}. \end{array}\tag{2.51}
+\end{equation*}
+
+于是由矢量 $x$ 按基矢量 $f_{1}, f_{2}, \cdots, f_{n}$ 分解的唯一性，有
+
+\begin{equation*}
+\eta_ {k} = \sum_ {j = 1} ^ {n} b _ {j k} \xi_ {j} \quad (k = 1, 2, \dots , n).\tag{2.52}
+\end{equation*}
+
+于是当基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 借助于矩阵 $C$ 转变为基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 时，任意矢量的坐标就借助于矩阵 $(\widetilde{C}^{-1})$ 的行作变换。
+
+在由基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 变到基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 时，借助于矩阵 $C^{-1}$ 作变换的量叫做逆步量；借助于矩阵 $C$（即基矢量本身）变换的量，称为同步量。
+
+现在研究一个问题，在原来的基变为新的基时，线性变换的矩阵将会作怎样的变化。
+
+今用 $C$ 表示由基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 到基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 的转移矩阵。其次用 $A = \|a_{ij}\|$ 表示线性变换 $A$ 在基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 中的矩阵，而用 $A' = \|a'_{ij}\|$ 表示变换在基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 中的矩阵。于是下面的定理成立：
+
+\textbf{定理 2.7}\quad 变换 $A$ 在基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 中的矩阵 $A'$ 可用此变换在基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 中的矩阵 $A$ 表示如下：
+
+\begin{equation*}
+A ^ {\prime} = C ^ {- 1} A C.\tag{2.53}
+\end{equation*}
+
+这里$C$为由基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 到基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 的转移矩阵。
+
+\textbf{证明}\quad 引进变换$C$：
+
+\begin{equation*}
+C e _ {i} = f _ {i} \quad (i = 1, 2, \dots , n),\tag{2.54}
+\end{equation*}
+
+它在基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 中的矩阵为转移矩阵 $C$。其次
+
+\begin{equation*}
+A e _ {k} = \sum_ {i = 1} ^ {n} a _ {i k} e _ {i},\tag{2.55}
+\end{equation*}
+
+\begin{equation*}
+A f _ {k} = \sum_ {i = 1} ^ {n} a _ {i k} ^ {\prime} f _ {i}.\tag{2.56}
+\end{equation*}
+
+在(2.56)式中的 $f_{i}$ 用 $e_{i}$ 表示。为此，利用(2.54)式：
+
+\begin{equation*}
+A C e _ {k} = \sum_ {i = 1} ^ {n} a _ {i k} ^ {\prime} C e _ {i}.\tag{2.57}
+\end{equation*}
+
+(2.57)两边同时作用于变换 $C^{-1}$ ，则得
+
+\begin{equation*}
+C ^ {- 1} A C e _ {k} = \sum_ {i = 1} ^ {n} a _ {i k} ^ {\prime} e _ {i},\tag{2.58}
+\end{equation*}
+
+由此显然
+\begin{equation*}
+A ^ {\prime} = C ^ {- 1} A C,
+\end{equation*}
+
+此即为定理所要的结论。
+
+最后我们作一点注记。定理2.7可以说是回答了这样的问题，即同一个算子在不同基内的矩阵是怎样联系的。但还可能产生另一个问题(在某种意义上它是上述问题的反问题)：在不同基中有同一矩阵 $\| b_{ik}\|$ 的算子间有什么关系？设 $A$ 为由下式给定的算子：
+
+\begin{equation*}
+A e _ {i} = f _ {i} \quad (i = 1, 2, \dots , n),\tag{2.59}
+\end{equation*}
+
+而 $B$ 和 $C$ 分别为在基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 和 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 中有着同一矩阵 $\|b_{i,k}\|$ 的算子。注意，利用 (2.59) 可写
+
+\begin{equation*}
+C f _ {i} = C (A e _ {i}) = C A e _ {i}
+\end{equation*}
+
+和
+\begin{equation*}
+\begin{array}{r l} C f _ {i} & = \sum_ {j = 1} ^ {n} b _ {i j} f _ {j} = \sum_ {j = 1} ^ {n} b _ {i j} A e _ {j} = \\ & = A \sum_ {j = 1} ^ {n} b _ {i j} e _ {j} = A B e _ {i}. \end{array}
+\end{equation*}
+
+因此
+\begin{equation*}
+C A e _ {i} = A B e _ {i},
+\end{equation*}
+
+最后得
+\begin{equation*}
+C = A B A ^ {- 1}.\tag{2.60}
+\end{equation*}
+
+等式(2.53)和(2.60)之间有着原则上的不同。(2.53)是矩阵等式，它的左边是在新坐标系中的矩阵，而右边三个是在原来坐标系中的矩阵。因此，在(2.53)中矩阵的形式与所选的基有关。而(2.60)则是算子等式，且在这里并未涉及坐标系。
+
+在等式(2.53)中的矩阵 $A$ 和 $A'$ 称为相似矩阵，而由等式(2.60)所确定的算子 $C$ 和 $B$ 称为相似变换。
+
+\section{点积和正交性}
+
+虽然上述理论也可以用我们所习惯的三维空间的某些性质作抽象类比，但在我们所描述的线性空间和通常的三维空间之间，毕竟还没有完全对应。在上面所研究的线性空间中，还缺少诸如长度、角、点积等三维空间中所熟悉的概念。在本节中，我们将在 $n$ 维线性空间中引进长度、角和点积的一般概念。
+
+在(实的或复的)线性空间中，满足下列条件的矢量 $x$ 、 $y$ 的(实或复)数值函数[用 $(x, y)$ 记之]，称为点积：
+
+\begin{equation*}
+1) (x, y) = (y, x) \quad (\text {在实空间}),\tag{2.61}
+\end{equation*}
+
+\begin{equation*}
+(x, y) = (y, x) ^ {*} (\text {在复空间});
+\end{equation*}
+
+\begin{equation*}
+(\alpha_ {1} x _ {1} + \alpha_ {2} x _ {2}, y) = \alpha_ {1} (x _ {1}, y) + \alpha_ {2} (x _ {2}, y); \tag{2.62}
+\end{equation*}
+
+\begin{equation*}
+3) (x, x) \geqslant 0, \text {   仅当   } x = 0 \text {   时\text{，}才有   } (x, x) = 0.\tag{2.63}
+\end{equation*}
+
+引进了点积的线性空间称为欧氏(Euclid)空间(引进了复点积的复线性空间，常称为酉空间或复欧氏空间)。
+
+\textbf{例 14}\quad 在普通三维空间中,两个矢量的点积满足公理(2.61)——(2.63),因此它也是我们这里的定义意义上的点积。因在三维空间中,两矢量的点积等于它们的长度与夹角余弦的积,所以一矢量与其自身的点积就等于该矢量长度的平方。
+
+在一般欧氏空间中，矢量的长度就可定义作为该矢量与其自身的点积的平方根：
+
+\begin{equation*}
+\mid x \mid = \sqrt {(x , x)}.\tag{2.64}
+\end{equation*}
+
+而两矢量之间的夹角，可取作余弦等于
+
+\begin{equation*}
+\frac {(x , y)}{| x | | y |}\tag{2.65}
+\end{equation*}
+
+的角。
+
+不难验证,这种定义对“普通”矢量(即三维空间中的矢量)来说,和解析几何中所使用的角的概念是完全相同的。
+
+我们指出，(2.65)式的绝对值任何时候都不会超过1。
+
+引进一些以后常用的概念。矢量 $x$ 、 $y$ 如果满足
+
+\begin{equation*}
+(x, y) = 0,\tag{2.66}
+\end{equation*}
+
+则称为正交。注意，由(2.62)，零矢量与空间 $R$ 的任一矢量都正交。如果 $x \neq 0, y \neq 0$ ，则矢量的正交性表明了它们之间[在(2.65)定义的意义上理解]的夹角为 $90^{\circ}$ 。在三维空间中，我们的正交性定义可归结为普通矢量的几何正交性。
+
+\textbf{例 15}\quad $n$ 维空间的每个矢量是 $n$ 个实数构成的有序集 $x = (\eta_{1}, \eta_{2}, \cdots, \eta_{n})$ 。此时矢量的长度为
+
+\begin{equation*}
+| x | = \sqrt {\eta_ {1} ^ {2} + \eta_ {2} ^ {2} + \cdots + \eta_ {n} ^ {2}}\tag{2.67}
+\end{equation*}
+
+\textbf{例 16}\quad 设给定了一无限维空间，任一定义在 $[a, b]$ 上的连续函数都是它的元素，并假定函数之间的运算和普通分析中一样。在此空间中按下式引进点积：
+
+\begin{equation*}
+(f, g) = \int_ {a} ^ {b} f (x) g (x) d x.\tag{2.68}
+\end{equation*}
+
+此时矢量的长度就等于
+
+\begin{equation*}
+| f | = \sqrt {(f , f)} = \sqrt {\int_ {a} ^ {b} f ^ {2} (x) d x}.
+\end{equation*}
+
+\textbf{例17}\quad 对例15中的矢量 $x$ 和 $y$ ，其正交性条件可写为
+
+\begin{equation*}
+\eta_ {1} \xi_ {1} + \eta_ {2} \xi_ {2} + \dots + \eta_ {n} \xi_ {n} = 0.
+\end{equation*}
+
+\textbf{例18}\quad 在例16中所考虑的函数空间，其正交性条件可写为
+
+\begin{equation*}
+\int_ {a} ^ {b} f (x) g (x) d x = 0.
+\end{equation*}
+
+容易验证，函数系
+
+\begin{equation*}
+\{1, \cos t, \sin t, \cos 2 t, \sin 2 t, \dots , \cos n t, \sin n t, \dots \}
+\end{equation*}
+
+中任意两个函数都在区间 $[0,2\pi]$ 上相互正交。
+
+现研究正交矢量系(即一矢量系，其中任意两矢量都彼此正交)的若干性质。
+
+\textbf{定理 2.8}\quad $n$ 维线性空间中的非零正交矢量组 $\{\psi_{1}, \psi_{2}, \cdots, \psi_{m}\} (m \leqslant n)$ 线性无关。
+
+\textbf{证明}\quad 假定
+
+\begin{equation*}
+a _ {1} \psi_ {1} + a _ {2} \psi_ {2} + \dots + a _ {m} \psi_ {m} = 0.
+\end{equation*}
+
+这里 $\psi_{i}$ 为非零矢量。将此式两边对 $\psi_{1}$ 作点积，得
+
+\begin{equation*}
+a _ {1} \left(\psi_ {1}, \psi_ {1}\right) + a _ {2} \left(\psi_ {1}, \psi_ {2}\right) + \dots + a _ {m} \left(\psi_ {1}, \psi_ {m}\right) = 0.
+\end{equation*}
+
+因此 $a_{1}=0$ （因 $\psi_{1}$ 为非零矢量）。类似地，分别用 $\psi_{2}, \psi_{3}, \cdots, \psi_{m}$ 对前式作点积，就得
+
+\begin{equation*}
+a _ {2} = a _ {3} = a _ {4} = \dots = a _ {m} = 0.
+\end{equation*}
+
+因此，矢量 $\psi_{1}, \psi_{2}, \cdots, \psi_{m}$ 是线性无关的。这就是我们所要证明的。
+
+显然 $m \leqslant n$ （因在 $n$ 维空间中任意 $n + 1$ 个矢量均线性相关）。所以在 $n$ 维线性空间中不可能找出由多于 $n$ 个非零矢量组成的非零正交矢量组。
+
+此定理之逆是不成立的，即线性无关的矢量不一定是正交的。但由 $m$ 个线性无关的矢量组，总可以构造出 $m$ 个相互正交的矢量。这种构造过程通常称为正交化。现介绍正交矢量组的一个性质，今后我们在构造正交系时会用到它。
+
+\textbf{定理 2.9}\quad 若矢量 $y_{1}, y_{2}, \cdots, y_{k}$ 中的任意一个矢量都与矢量 $x$ 正交，则其线性组合
+
+\begin{equation*}
+\alpha_ {1} y _ {1} + \alpha_ {2} y _ {2} + \dots + \alpha_ {k} y _ {k}
+\end{equation*}
+
+也与 $x$ 正交。
+
+\textbf{证明}\quad 由条件(2.62)，
+
+\begin{equation*}
+\begin{array}{r l} & (a _ {1} y _ {1} + a _ {2} y _ {2} + \dots + a _ {k} y _ {k}, x) \\ & = a _ {1} (y _ {1}, x) + a _ {2} (y _ {2}, x) + \dots + a _ {k} (y _ {k}, x) = \\ & = 0, \end{array}
+\end{equation*}
+
+证毕。
+
+长度等于1的矢量定义为标准矢量。显然，对任一矢量 $x \neq 0$ ，矢量
+
+\begin{equation*}
+h = \frac {x}{| x |}
+\end{equation*}
+
+都是标准矢量。
+
+如果矢量 $e_{1}, e_{2}, \cdots, e_{n}$ 相互正交，且它们中的任意一个的长度都等于 1，即如果
+
+\begin{equation*}
+(e _ {i}, e _ {k}) = \delta_ {i k}\tag{2.69}
+\end{equation*}
+
+则就称它们构成标准正交基。
+
+现证明在欧几里德空间中这种基的存在性定理。
+
+\textbf{定理 2.10}\quad 在任一 $n$ 维欧氏空间中，必存在标准正交基。
+
+\textbf{证明}\quad 在任一 $n$ 维空间中都存在着由 $n$ 个矢量构成的基。显然，若能从任意的基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 出发，构造出一个标准正交基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ ，定理就证明了。命 $e_{1} = f_{1}$ ，今求形如
+
+\begin{equation*}
+e _ {2} = f _ {2} + a e _ {1}
+\end{equation*}
+
+的矢量 $e_2$ 。选取 $\alpha$ ，使得
+
+\begin{equation*}
+(e _ {2}, e _ {1}) = 0,
+\end{equation*}
+
+即
+\begin{equation*}
+\left(f _ {2} + a e _ {1}, e _ {1}\right) = 0;
+\end{equation*}
+
+从而
+\begin{equation*}
+a = - \frac {\left(f _ {2} , e _ {1}\right)}{\left(e _ {1} , e _ {1}\right)}.
+\end{equation*}
+
+假定矢量 $e_{1}, e_{2}, \cdots, e_{k-1}$ 已求得，现求形如
+
+\begin{equation*}
+e _ {k} = f _ {k} + a _ {1} e _ {1} + a _ {2} e _ {2} + \dots + a _ {k - 1} e _ {k - 1}\tag{2.70}
+\end{equation*}
+
+的矢量 $e_{k}$ 。显然，系数 $a_{1}, a_{2}, \cdots, a_{k-1}$ 可由矢量 $e_{k}$ 与矢量 $e_{1}, e_{2}, \cdots, e_{k-1}$ 的正交性条件求出。例如求 $a_{i}$ :
+
+\begin{equation*}
+\left(f _ {k} + a _ {1} e _ {1} + a _ {2} e _ {2} + \dots + a _ {k - 1} e _ {k - 1}, e _ {i}\right) = 0,
+\end{equation*}
+
+因此
+\begin{equation*}
+\left(f _ {k}, e _ {i}\right) + a _ {i} \left(e _ {i}, e _ {i}\right) = 0,
+\end{equation*}
+
+所以
+\begin{equation*}
+a _ {i} = - \frac {\left(f _ {k} , e _ {i}\right)}{\left(e _ {i} , e _ {i}\right)} \text{。}
+\end{equation*}
+
+剩下的只须指出，矢量 $e_k$ 为非零。根据(2.70)， $e_k$ 是矢量 $f_k, e_{k-1}, e_{k-2}, \cdots, e_1$ 的线性组合。同时 $f_k$ 的系数等于 1。其次， $e_{k-1}$ 是 $f_{k-1}, e_{k-2}, e_{k-3}, \cdots, e_1$ 的线性组合，等等。将这些讨论继续下去，就知 $e_k$ 是矢量 $f_k, f_{k-1}, \cdots, f_1$ 的线性组合，且其中至少有一个系数不等于零。因 $f_k$ 等构成基，故它们是线性无关的。因此 $e_k \neq 0$ 。这样，我们由 $n$ 个线性无关的矢量 $f_1, f_2, \cdots, f_n$ 构造出了 $n$ 个相互正交的矢量 $e_1, e_2, \cdots, e_n$ 。由定理 2.8 直接推知他们是线性无关的。现将矢量 $e_1, e_2, \cdots, e_n$ 标准化，即置
+
+\begin{equation*}
+e _ {i} ^ {\prime} = \frac {e _ {i}}{\sqrt {(e _ {i} , e _ {i})}} \quad (i = 1, 2, \dots , n),
+\end{equation*}
+
+定理就完全证毕。上面所描述的由给定基 $\{f_{1},f_{2},\cdots,f_{n}\}$ 构造正交基的方法，称为正交化方法。
+
+\section{酉变换与正交变换}
+
+现回到线性变换的研究。在 §3 中, 我们建立了定理2.6。根据这个定理, 在固定基中可建立矩阵与算子之间的一一对应关系。在 §2 中, 我们分别用条件(2.18)和(2.31)定义了酉矩阵和正交矩阵。很自然地会引起这样的设想, 即用酉矩阵和正交矩阵去对应所谓酉变换和正交变换。但在这里产生了一个困难: 算子的性质必须不依赖于基的选择, 但如定理2.6中指出的那样, 算子与矩阵的对应却需在固定基中导出。在线性空间中我们不能保证在变换到新的基时, 酉矩阵仍然是酉（或正交）的。因为酉矩阵与它相应的算子之间的对应，依赖于坐标系的选择，于是这种对应就成为偶然的了。但在欧氏空间中可选取正交基，情况就完全不同了。
+
+我们将称变换 $U$ 是酉变换，如果它在复欧氏空间的任一标准正交基中的矩阵
+
+\begin{equation*}
+U = \left[ \begin{array}{c c c c} a _ {1 1} & a _ {1 2} & \dots & a _ {1 n} \\ a _ {2 1} & a _ {2 2} & \dots & a _ {2 n} \\ \dots & \dots & \dots & \dots \\ a _ {n 1} & a _ {n 2} & \dots & a _ {n n} \end{array} \right]
+\end{equation*}
+
+是酉矩阵，即[参看条件(2.18)]
+
+\begin{equation*}
+U U ^ {+} = U ^ {+} U = I.
+\end{equation*}
+
+矩阵等式 $U^{+}U = I$ 等价于等式
+
+\begin{equation*}
+\sum_ {j = 1} ^ {n} a _ {j i} a _ {j k} ^ {*} = \delta_ {i k}.\tag{2.71}
+\end{equation*}
+
+条件(2.71)有简单的几何意义，即两个矢量
+
+\begin{equation*}
+\begin{array}{l} U e _ {i} = a _ {1 i} e _ {1} + a _ {2 i} e _ {2} + \dots + a _ {n i} e _ {n}, \\ U e _ {k} = a _ {1 k} e _ {1} + a _ {2 k} e _ {2} + \dots + a _ {n k} e _ {n} \end{array}
+\end{equation*}
+
+的点积等于 $\sum_{j=1}^{n}a_{ji}a_{jk}^{*}$ (因 $e_{1}, e_{2}, \cdots, e_{n}$ 是正交基)，因此
+
+\begin{equation*}
+(U e _ {i}, U e _ {k}) = \delta_ {i k}.\tag{2.72}
+\end{equation*}
+
+所以基 $\{Ue_{1}, Ue_{2}, \cdots, Ue_{n}\}$ 也是正交的。这样一来，我们就证明了下面的定理：
+
+\textbf{定理 2.11}\quad 使线性变换 $U$ 是酉变换的充要条件是，它将复欧氏空间中的标准正交基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 仍变换为标准正交基 $\{Ue_{1}, Ue_{2}, \cdots, Ue_{n}\}$ 。
+
+\textbf{定理 2.12}\quad 若变换 $U$ 在复欧氏空间某个标准正交基中的矩阵是酉阵，则此变换在此空间的任一其他标准正交基中的矩阵都是酉阵。
+
+\textbf{证明}\quad 设酉矩阵 $U_{e}$ 是线性变换 $U$ 在基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 中的矩阵。又设 $P$ 为另一酉矩阵，借助于它我们将变换到另一基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 。于是按照 (2.53) 式，线性变换 $U$ 在基 $\{f_{1}, f_{2}, \cdots, f_{n}\}$ 中的矩阵将是
+
+\begin{equation*}
+U _ {f} = P ^ {- 1} U _ {e} P.\tag{2.73}
+\end{equation*}
+
+因 $P$ 是酉矩阵，故由定义
+
+\begin{equation*}
+P ^ {- 1} = P ^ {+}.
+\end{equation*}
+
+其次， $P^{+}$ 为酉矩阵，这是因为
+
+\begin{equation*}
+P ^ {+} (P ^ {+}) ^ {+} = P ^ {+} P = I,
+\end{equation*}
+
+所以 $P^{-1}$ 也是酉矩阵。今将定理2.5应用到等式(2.73)(“两个酉矩阵之积仍是酉矩阵”)，我们就知 $U_{f}$ 亦为酉矩阵。定理证毕。
+
+现在容易建立下面的定理。
+
+\textbf{定理 2.13}\quad $n$维复欧氏空间中的酉变换保持点积不变：
+
+\begin{equation*}
+(U x, U y) = (x, y).\tag{2.74}
+\end{equation*}
+
+\textbf{证明}\quad 设
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \xi_ {i} e _ {i}, \quad y = \sum_ {j = 1} ^ {n} \eta_ {j} e _ {j}.
+\end{equation*}
+
+将 $x$ 、 $y$ 这些值代入(2.74)的左边，并注意到(2.62)和(2.72)，就得
+
+\begin{equation*}
+\begin{array}{r l} \left(\sum_ {i = 1} ^ {n} \xi_ {i} U e _ {i}, \sum_ {j = 1} ^ {n} \eta_ {j} U e _ {j}\right) & = \sum_ {i = 1} ^ {n} \sum_ {j = 1} ^ {n} \xi_ {i} \eta_ {j} (U e _ {i}, U e _ {j}) = \\ & = \sum_ {k = 1} ^ {n} \xi_ {k} \eta_ {k} = (x, y), \end{array}
+\end{equation*}
+
+这就是所要证明的。
+
+推论 酉变换不改变矢量的长度。
+
+定理2.3所讲的由 $x' = Ux$ ，推出 $(x')^{+}x' = x^{+}x$ ，这里 $U$ 是酉矩阵，实际上也是此定理的推论。事实上，量 $x^{+}x$ 现在可理解为在复欧氏空间中的点积(矢量长度)，而不作为在 §2 中所讲的两个矩阵的积。
+
+在实欧氏空间中，我们可引进正交变换的概念。
+
+对于一个变换 $V$ ，如果它在实欧氏空间的某个正交基中的矩阵
+
+\begin{equation*}
+V = \left[ \begin{array}{c c c c} v _ {1 1} & v _ {1 2} & \dots & v _ {1 n} \\ v _ {2 1} & v _ {2 2} & \dots & v _ {2 n} \\ \dots & \dots & \dots & \dots \\ v _ {n 1} & v _ {n 2} & \dots & v _ {n n} \end{array} \right]
+\end{equation*}
+
+是正交的，即如果[参看(2.31)]
+
+\begin{equation*}
+V \widetilde {V} = I,
+\end{equation*}
+
+则称此变换 $V$ 是正交变换。
+
+可以证明：在正交变换下，实欧氏空间中矢量的点积不变；将一正交基变到另一正交基的变换是正交变换。
+
+从这些事实来看，定理2.5可用算子和点积的语言来叙述。对此仅需注意 $x \widetilde{x}$ 是点积，而这是不难验证的。
+
+\section{狭义相对论}
+
+我们所叙述的在 $n$ 维空间中的线性变换理论，在近代物理中被广泛地应用着。作为例子，我们考虑狭义相对论。这里要用的结果，主要是 §2 和 §6 中有关正交变换和酉变换的内容。
+
+狭义相对性原理断言，所有自然定律在所有惯性计算系统\textcircled{1}中都是一致的。这个原理构成爱因斯坦狭义相对论的第一个假设。
+
+第二个假设则由迈克耳孙 (Michelson) 和莫雷 (Morley) 的实验导出。它是说在所有惯性计算系统中，光速都是一样的。这两条假定构成了严谨而优美的理论的完全充分的基础，而这一理论从根本上改变了传统的时空概念\textcircled{2}。
+
+考虑两个彼此间作相对等速直线运动的坐标系。我们用符号 $\Sigma$ 记这两个坐标系中的一个，而用符号 $\Sigma'$ 记其中的另一个。我们还假定，带撇的系 $\Sigma'$ 相对于不带撇的系 $\Sigma$ 以速度 $v$ 作运动。不失一般性，可认为速度 $v$ 沿着 $x_{1}$ 轴的方向。
+
+迈克耳孙和莫雷的实验指出，光速在坐标系 $\Sigma$ 和 $\Sigma'$ 中有着同一个值 $c$ 。这点和牛顿力学正好相反，后者是以伽利略(Gallei)变换为基础的。
+
+事实上，写出从坐标系 $\Sigma$ 变换到坐标系 $\Sigma'$ 的伽利略变换：
+
+\begin{equation*}
+x _ {1} ^ {\prime} = x _ {1} - v t, \quad x _ {2} ^ {\prime} = x _ {2}, \quad x _ {3} ^ {\prime} = x _ {3}, \quad t ^ {\prime} = t.\tag{2.75}
+\end{equation*}
+
+由(2.75)推出，如果点 $A$ 在坐标系 $\Sigma$ 中沿 $x_{1}$ 轴方向以速度 $v_{1}$ 运动，则相对于坐标系 $\Sigma'$ ，它的速度将等于 $v_{1} - v$ ；因此不出所料，在坐标系 $\Sigma'$ 中光速将等于 $c - v$ ，而不是象迈克耳孙和莫雷用实验证实的那样，是 $c$ 。
+
+为了消除这个矛盾，就必须去寻找一个与实验结果相符的变换。
+
+我们从光速不变性原理的数学表达式开始。假定：取某一瞬间作为初始时刻，在两坐标系中 $(t=t'=0)$ 带撇和不带撇的坐标系的原点与在此瞬间射出光讯号的点光源重合在一起。在坐标系 $\Sigma$ 中的波前将可用球面来表示，且可用方程
+
+\begin{equation*}
+x _ {1} ^ {2} + x _ {2} ^ {2} + x _ {3} ^ {2} - (c t) ^ {2} = 0
+\end{equation*}
+
+来描述。因在系 $\Sigma'$ 中，光速仍等于 $c$ ，故在 $\Sigma'$ 中波前可用方程
+
+\begin{equation*}
+\left(x _ {1} ^ {\prime}\right) ^ {2} + \left(x _ {2} ^ {\prime}\right) ^ {2} + \left(x _ {3} ^ {\prime}\right) ^ {2} - \left(c t ^ {\prime}\right) ^ {2} = 0
+\end{equation*}
+
+来描述。于是很自然地我们要求满足下面的等式：
+
+\begin{equation*}
+x _ {1} ^ {2} + x _ {2} ^ {2} + x _ {3} ^ {2} - (c t) ^ {2} = \left(x _ {1} ^ {\prime}\right) ^ {2} + \left(x _ {2} ^ {\prime}\right) ^ {2} + \left(x _ {3} ^ {\prime}\right) ^ {2} - \left(c t ^ {\prime}\right) ^ {2}.
+\end{equation*}
+
+置
+\begin{equation*}
+x _ {4} = i c t,
+\end{equation*}
+
+则前面的等式可表示成
+
+\begin{equation*}
+\sum_ {\mu = 1} ^ {4} x _ {\mu} ^ {2} = \sum_ {\mu = 1} ^ {4} \left(x _ {\mu} ^ {\prime}\right) ^ {2}.\tag{2.76}
+\end{equation*}
+
+与质点一起发生的事件，既确定了它所发生的位置又确定了它所发生的时刻，也即描述事件需用四个数：三个空间坐标和时间。如果代替时间而用坐标 $x_{4} = ict$ ，则这种事件就可定义作为四维空间中的点。其次，我们可在此空间中引进点积，以便用下式定义矢量 $x$ 长度的平方：
+
+\begin{equation*}
+\mid x \mid^ {2} = \sum_ {\mu = 1} ^ {4} x _ {\mu} ^ {2}
+\end{equation*}
+
+这样一来，等式(2.76)，即相对于不同惯性系光速不变的要求，用四维空间的术语，就相当于在事件四维空间的不同正交基中点积不变性的要求。显然，从事件四维空间的一个坐标系变到另一个坐标系，可用某个变换来实现。等式(2.76)要求在此变换下，点积(或矢量长度)保持不变。此外，此变换必须是线性的，因为此时迭加原理才成立；且在小速度时 $(v\to 0)$ ，所求变换需转化为伽利略变换。这些要求(线性性，点积的不变性)将唯一地确定所求变换。此变换显然是正交的。事实上，我们设想在变换 $V$ 下，
+
+\begin{equation*}
+x ^ {\prime} = V x,
+\end{equation*}
+
+点积
+\begin{equation*}
+x \stackrel {\sim} {x} = x ^ {\prime} \stackrel {\sim} {x ^ {\prime}}\tag{2.77}
+\end{equation*}
+
+不变。但根据定理2.5，使等式(2.77)成立的变换 $V$ ，将是有正交矩阵的变换，即它是正交变换。
+
+因速度 $v$ 沿着 $x_{1}$ 轴的方向，故由对称性的考虑
+
+\begin{equation*}
+x _ {2} ^ {\prime} = x _ {2}, \quad x _ {3} ^ {\prime} = x _ {3};
+\end{equation*}
+
+因此，变换矩阵 $V$ 将是
+
+\begin{equation*}
+V = \left[ \begin{array}{c c c c} v _ {1 1} & 0 & 0 & v _ {1 4} \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ v _ {4 1} & 0 & 0 & v _ {4 4} \end{array} \right].\tag{2.78a}
+\end{equation*}
+
+若先将第2和第4列，然后将第2行和第4行的位置对调（这相当于变量置换：将 $x_{2}$ 看作 $x_{4}$ ，而将 $x_{4}$ 看作 $x_{2}$ ），则(2.78$a$)式可改写成
+
+\begin{equation*}
+V = \left[ \begin{array}{c c c c} v _ {1 1} & v _ {1 4} & 0 & 0 \\ v _ {4 1} & v _ {4 4} & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{array} \right].\tag{2.78b}
+\end{equation*}
+
+但显然，变换 $V$ 仅作用于矢量 $x_{1}$ 和 $x_{4}$ ，故基矢量 $x_{2}, x_{3}$ 不会改变。这样一来，用 (2.78$a$) 来确定四维空间的正交变换 $V$ ，可归结为求作用于二维空间上的正交变换
+
+\begin{equation*}
+V _ {2} = \left[ \begin{array}{l l} v _ {1 1} & v _ {1 4} \\ v _ {4 1} & v _ {4 4} \end{array} \right].
+\end{equation*}
+
+如在 §2 中已阐明了的，作用于二维空间上的所有正交矩阵都可表示成
+
+\begin{equation*}
+\left[ \begin{array}{c c} \cos \varphi & \sin \varphi \\ - \sin \varphi & \cos \varphi \end{array} \right].
+\end{equation*}
+
+特别注意， $\operatorname{det}|V| = 1$ 。即右旋坐标系经变换后，仍是右旋的。不难知道， $v_{11}$ 和 $v_{44}$ 是实数，而 $v_{14}$ 和 $v_{41}$ 是虚数。因此 $\varphi = i\theta$ ，这里 $\theta$ 为实数。所以
+
+\begin{equation*}
+\left[ \begin{array}{l l} v _ {1 1} & v _ {1 4} \\ v _ {4 1} & v _ {4 4} \end{array} \right] = \left[ \begin{array}{c c} \operatorname{ch} \theta & i \operatorname{sh} \theta \\ - i \operatorname{sh} \theta & \operatorname{ch} \theta \end{array} \right],\tag{2.79}
+\end{equation*}
+
+这里 sh 和 ch 分别是双曲正弦和双曲余弦。置
+
+\begin{equation*}
+\beta = \mathrm{th} \theta ,
+\end{equation*}
+
+则
+\begin{equation*}
+\mathrm{sh} \theta = \frac {\beta}{\sqrt {1 - \beta^ {2}}}, \mathrm{ch} \theta = \frac {1}{\sqrt {1 - \beta^ {2}}}.
+\end{equation*}
+
+现在(2.78$a$)可写成
+
+\begin{equation*}
+V = \left[ \begin{array}{c c c c} \operatorname{ch} \theta & 0 & 0 & i \operatorname{sh} \theta \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ - i \operatorname{sh} \theta & 0 & 0 & \operatorname{ch} \theta \end{array} \right],\tag{2.80}
+\end{equation*}
+
+且所求变换可用下式表示：
+
+\begin{equation*}
+\left. \begin{array}{l} x _ {1} ^ {\prime} = \frac {x _ {1} - \beta c t}{\sqrt {1 - \beta^ {2}}}, \\ x _ {2} ^ {\prime} = x _ {2}, \\ x _ {3} ^ {\prime} = x _ {3}, \\ t ^ {\prime} = \frac {t - \beta \frac {x _ {1}}{c}}{\sqrt {1 - \beta^ {2}}}. \end{array} \right\}\tag{2.81}
+\end{equation*}
+
+现定出(2.81)式中的系数 $\beta$ 。假定在坐标系 $\Sigma$ 中静止的观察者 $A$ ，跟踪着在坐标系 $\Sigma^{\prime}$ 中坐标为 $(x_{1}^{\prime}, x_{2}^{\prime}, x_{3}^{\prime}, t^{\prime})$ 的点 $P$ 。显然，对于观察者 $A$ 来说， $P$ 点的速度将等于 $v$ 即 $\Sigma^{\prime}$ 相对于 $\Sigma$ 的运动速度。现在来求利用变换(2.81)后 $P$ 点在坐标系 $\Sigma$ 中的速度。 $P$ 点在坐标系 $\Sigma$ 中的坐标记为 $(x_{1}, x_{2}, x_{3}, t)$ 则它在 $\Sigma$ 中的速度将等于 $dx_{1}/dt$ 。其次，
+
+\begin{equation*}
+\begin{array}{r l} d x _ {1} & = \frac {\beta c d t ^ {\prime}}{\sqrt {1 - \beta^ {2}}}, \\ d t & = \frac {d t ^ {\prime}}{\sqrt {1 - \beta^ {2}}}, \\ \frac {d x _ {1}}{d t} & = \frac {\beta c d t ^ {\prime} / \sqrt {1 - \beta^ {2}}}{d t ^ {\prime} / \sqrt {1 - \beta^ {2}}} = \beta c. \end{array}
+\end{equation*}
+
+但我们已指出 $dx_{1} / dt = v$ ，故
+
+\begin{equation*}
+\beta c = v, \quad \beta = \frac {v}{c}.\tag{2.82}
+\end{equation*}
+
+将(2.82)代入(2.81)，就得到所求变换的最后形式：
+
+\begin{equation*}
+\left. \begin{array}{l} x _ {1} ^ {\prime} = \frac {x _ {1} - v t}{\sqrt {1 - \left(\frac {v}{c}\right) ^ {2}}}, \\ x _ {2} ^ {\prime} = x _ {2}, \\ x _ {3} ^ {\prime} = x _ {3}, \\ t ^ {\prime} = \frac {t - \frac {v x _ {1}}{c ^ {2}}}{\sqrt {1 - \left(\frac {v}{c}\right) ^ {2}}}. \end{array} \right\}\tag{2.83}
+\end{equation*}
+
+由(2.83)所确定的变换，称为洛伦兹变换。当 $v \to 0$ （或 $c \to \infty$ ）时，这个式子就转化为伽利略变换。可以证明，麦克斯韦方程关于洛伦兹变换是不变的。
+
+我们指出，洛伦兹变换构成了事件四维空间中保持二次型 $\left(\sum_{\mu=1}^{4}x_{\mu}^{2}\right)$ 不变的运动群。
+
+在洛伦兹变换的结论中，我们可得两个重要的物理定律：时间变换定律和长度变换定律。
+
+考虑两个事件 $A$ 和 $B$，它们位于 $\Sigma'$ 中同一个点，不同的时间瞬间（譬如，居住在同一城市的人的诞生和死亡）：
+
+\begin{equation*}
+\begin{array}{l} A \left(x _ {1} ^ {\prime}, x _ {2} ^ {\prime}, x _ {3} ^ {\prime}, t _ {A} ^ {\prime}\right), \\ B \left(x _ {1} ^ {\prime}, x _ {2} ^ {\prime}, x _ {3} ^ {\prime}, t _ {B} ^ {\prime}\right). \end{array}
+\end{equation*}
+
+在坐标系 $\Sigma$ 中，人的居住时间就成为
+
+\begin{equation*}
+t _ {B} - t _ {A} = \frac {t _ {B} ^ {\prime} - t _ {A} ^ {\prime}}{\sqrt {1 - \beta^ {2}}} \geqslant t _ {B} ^ {\prime} - t _ {A} ^ {\prime}.
+\end{equation*}
+
+和我们例子中定居的人不同，介子运动是很快的。在与介子连在一起的坐标系中，它的寿命在 $10^{-6}-10^{-8}$ 秒之间。但在实验计算系统中，介子生活的时间是很大的。在宇宙飞船航行中，也有着类似的情况。
+
+现想象在坐标系 $\Sigma$ 中有一静止的杆子，它的长度 $x_{A} - x_{B} = L$ 在任一瞬间都不发生变化。假定在坐标系 $\Sigma'$ 中静止的观察者，在某一瞬间 $t' (t_A' = t_B')$ 度量杆子的长度，这意味着，观察者在这一瞬间固定了杆子的始点与终点。显然，此时杆子的长度在坐标系 $\Sigma'$ 中将变化，等于
+
+\begin{equation*}
+\begin{array}{r l} L ^ {\prime} & = x _ {A} ^ {\prime} - x _ {B} ^ {\prime} = (x _ {A} - x _ {B}) \left(\frac {1 - \beta^ {2}}{\sqrt {1 - \beta^ {2}}}\right) = \\ & = \sqrt {1 - \beta^ {2}} (x _ {A} - x _ {B}) \leqslant x _ {A} - x _ {B}. \end{array}
+\end{equation*}
+
+\section{厄米算子}
+
+若算子$H$在欧氏空间的某个正交基中的矩阵满足条件
+
+\begin{equation*}
+H = H ^ {+},\tag{2.84}
+\end{equation*}
+
+就称为厄米算子。在正交基中任一具有实对称矩阵的算子，都可作为厄米算子的例子。
+
+\textbf{定理 2.14}\quad 若 $U$ 是酉算子，$H$ 为厄米算子，则算子 $UHU^{-1}$ 也是厄米算子。
+
+\textbf{证明}\quad 对酉变换， $U^{-1}=U^{+}$ 。因此
+
+\begin{equation*}
+\begin{array}{r l} (U H U ^ {- 1}) ^ {+} & = (U H U ^ {+}) ^ {+} = (U ^ {+}) ^ {+} H ^ {+} U ^ {+} = \\ & = U H U ^ {- 1}, \end{array}
+\end{equation*}
+
+这就是所要证明的。
+
+满足方程
+\begin{equation*}
+A x = \lambda x\tag{2.85}
+\end{equation*}
+
+的非零矢量 $x$，称为线性算子 $A$ 的特征矢量，而数 $\lambda$ 称为这个算子的特征值。
+
+线性子空间 $L$ 称为关于线性算子 $A$ 不变，如果 $L$ 中的所有矢量 $x$，在 $A$ 作用下变为仍属于 $L$ 的矢量 Ax。
+
+\textbf{引理 2.1}\quad 厄米算子的特征值是实的，且它的不同特征值所对应的特征矢量相互正交。
+
+\textbf{证明}\quad 考虑特征矢量 $\psi_{1}, \psi_{2}, \cdots, \psi_{n}$ 。对任意二个特征矢量下面的方程成立：
+
+\begin{equation*}
+A \psi_ {i} = \lambda_ {i} \psi_ {i},\tag{2.86a}
+\end{equation*}
+
+\begin{equation*}
+A \psi_ {j} = \lambda_ {j} \psi_ {j}.\tag{2.86b}
+\end{equation*}
+
+这两个方程实际上是矩阵方程。将(2.86$a$)乘以 $\psi_{i}^{+}$ ，(2.86$b$)乘以 $\psi_{i}^{+}$ 则得
+
+\begin{equation*}
+\psi_ {i} ^ {+} A \psi_ {i} = \lambda_ {i} \psi_ {i} ^ {+} \psi_ {i},\tag{2.87a}
+\end{equation*}
+
+\begin{equation*}
+\psi_ {i} ^ {+} A \psi_ {j} = \lambda_ {j} \psi_ {i} ^ {+} \psi_ {j}.\tag{2.87b}
+\end{equation*}
+
+应用共轭运算于(2.87$a$)得
+
+\begin{equation*}
+\psi_ {i} ^ {+} A \psi_ {i} = \lambda_ {i} ^ {*} \psi_ {i} ^ {+} \psi_ {i}\tag{2.88}
+\end{equation*}
+
+从(2.87$a$)减去(2.88)得
+
+\begin{equation*}
+(\lambda_ {i} - \lambda_ {j} ^ {*}) \psi_ {j} ^ {+} \psi_ {i} = 0.\tag{2.89}
+\end{equation*}
+
+置 $j = i$ ，由(2.89)知 $\lambda_{i} = \lambda_{i}^{*}$ ，即 $\lambda_{i}$ 是实数。其次，如果 $\psi_{j}$ 和 $\psi_{i}$ 属于不同的特征值，即 $\lambda_{j}\neq \lambda_{i}$ ，则由(2.89)又推出
+
+\begin{equation*}
+\psi_ {j} ^ {+} \psi_ {i} = 0.
+\end{equation*}
+
+但不难验证， $\psi_{j}^{+}\psi_{i}$ 正好是矢量 $\psi_{j}$ 和 $\psi_{i}$ 的点积。这样一来，显然 $\psi_{j}$ 和 $\psi_{i}$ 是正交的。引理证毕。
+
+由引理2.1推出，如果 $e$ 为厄米算子 $H$ 的特征矢量，则正交于 $e$ 的矢量全体构成一个关于变换 $H$ 不变的 $n - 1$ 维子空间。
+
+\textbf{引理 2.2}\quad 在复空间中，每个线性算子都至少有一个特征矢量。
+
+\textbf{证明}\quad 在空间中选取基 $\{e_{1}, e_{2}, \cdots, e_{n}\}$ 。在这个基中，线性算子 $A$ 对应矩阵 $\|a_{ik}\|$ 。若
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \xi_ {i} e _ {i},
+\end{equation*}
+
+则矢量 $Ax$ 的坐标可由公式
+
+\begin{equation*}
+\eta_ {i} = \sum_ {k = 1} ^ {n} a _ {i k} \xi_ {k}, (i = 1, 2, \dots , n)\tag{2.90}
+\end{equation*}
+
+计算。对每个特征矢量
+
+\begin{equation*}
+A x = \lambda x.
+\end{equation*}
+
+由等式(2.90)得关于 $\xi_{i}$ 的方程组
+
+\begin{equation*}
+\lambda \xi_ {i} = \sum_ {k = 1} ^ {n} a _ {i k} \xi_ {k},
+\end{equation*}
+
+或
+
+\begin{equation*}
+\left\{ \begin{array}{l} (a _ {1 1} - \lambda) \xi_ {1} + a _ {1 2} \xi_ {2} + \dots + a _ {1 n} \xi_ {n} = 0, \\ a _ {2 1} \xi_ {1} + (a _ {2 2} - \lambda) \xi_ {2} + \dots + a _ {2 n} \xi_ {n} = 0, \\ \dots\dots\\ a _ {n 1} \xi_ {1} + a _ {n 2} \xi_ {2} + \dots + (a _ {n n} - \lambda) \xi_ {n} = 0. \end{array} \right.\tag{2.91}
+\end{equation*}
+
+为证明引理，必须指出存在满足方程组(2.91)的数 $\lambda$ 和 $\xi_{1}$ ， $\xi_{2},\cdots,\xi_{n}$ （同时 $\xi_{i}$ 不全为零）。
+
+熟知，要使齐次方程组(2.91)存在非零解，它的行列式必须等于零：
+
+\begin{equation*}
+\det \left| \begin{array}{c c c c} a _ {1 1} - \lambda & a _ {1 2} & \dots & a _ {1 n} \\ a _ {2 1} & a _ {2 2} - \lambda & \dots & a _ {2 n} \\ \dots & \dots & \dots & \dots \\ a _ {n 1} & a _ {n 2} & \dots & a _ {n n} - \lambda \end{array} \right| = 0.\tag{2.92}
+\end{equation*}
+
+显然，条件(2.92)相当于关于 $\lambda$ 的 $n$ 次方程。这种方程至少有一个根(一般是复的) $\lambda_{0}$ 。将 $\lambda_{0}$ 代入方程组(2.91)，求得数 $\xi_{1}^{0}, \xi_{2}^{0}, \cdots, \xi_{n}^{0}$ 。显然，矢量
+
+\begin{equation*}
+x = \sum_ {i = 1} ^ {n} \xi_ {i} ^ {0} e _ {i}
+\end{equation*}
+
+将是特征矢量，而 $\lambda_{0}$ 为特征值。引理证毕。
+
+\textbf{定理 2.15}\quad 设 $H$ 是 $n$ 维欧氏空间中的厄米算子。则对于算子 $H$ ，存在 $n$ 个相互正交的特征矢量，这些特征矢量所对应的特征值是实的。总存在正交基，使算子 $H$ 在此基下的矩阵是对角型的。
+
+\textbf{证明}\quad 由引理2.2，算子 $H$ 至少存在一个特征矢量 $e_1$ ，而由引理2.1知与 $e_1$ 正交的所有矢量构成一个 $(n - 1)$ 维子空间 $R_{1}$ ，它关于 $H$ 不变。
+
+现仅在 $(n - 1)$ 维子空间 $R_{1}$ 中考虑算子 $H$ 。注意，引理2.2对于不是作用于全空间，而是作用于任一不变子空间的算子仍成立。因此，在子空间 $R_{1}$ 中存在特征矢量 $e_2$ ， $R_{1}$ 中与 $e_2$ 正交的矢量全体又构成一个 $(n - 2)$ 维子空间 $R_{2}$ ，在子空间 $R_{2}$ 内又可找到算子 $H$ 的特征矢量。如此继续下去，我们就得算子 $H$ 的 $n$ 个互相正交的特征矢量，它的特征值是实的（根据引理2.1）。这实际上已证明了定理的第一个结论。
+
+现取所得的算子 $H$ 的特征矢量作为基，则
+
+\begin{equation*}
+\begin{array}{l} H e _ {1} = \lambda_ {1} e _ {1}, \\ H e _ {2} = \lambda_ {2} e _ {2}, \\ \dots \dots \\ H e _ {n} = \lambda_ {n} e _ {n}, \end{array}
+\end{equation*}
+
+即算子 $H$ 在此基中的矩阵为
+
+\begin{equation*}
+\left[ \begin{array}{c c c c} \lambda_ {1} & 0 & \dots & 0 \\ 0 & \lambda_ {2} & \dots & 0 \\ \vdots & \vdots & & \vdots \\ 0 & 0 & \dots & \lambda_ {n} \end{array} \right],
+\end{equation*}
+
+这里所有 $\lambda_{i}$ 都是实的。定理完全证毕。
+
+\textbf{定理 2.15}\quad 常称为化厄米阵为对角阵定理。可以证明更为一般的定理：对于 $n$ 维复空间中的所有酉算子 $U$，都可找到一组正交基，使算子 $U$ 在此基内的矩阵是对角线形的。
+
+不但在数学中，而且在物理学中，经常需要将厄米矩阵和酉矩阵化成对角型矩阵。

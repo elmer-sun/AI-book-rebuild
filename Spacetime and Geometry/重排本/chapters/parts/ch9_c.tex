@@ -1,0 +1,418 @@
+% ch9_c (书页 401-412 / p416-p427)
+%--B-TAIL--
+%JOIN%
+\begin{equation*}
+G(x_1, x_2) = \langle\psi|\phi(x_1)\phi(x_2)|\psi\rangle,
+\tag{9.120}
+\end{equation*}
+
+其中 $x_1$ 与 $x_2$ 是两个时空点。当 $x_1$ 与 $x_2$ 彼此靠近时，Minkowski 真空中的两点函数会变得奇异。我们希望刻画这种奇异性，并坚持要求它对弯曲时空中的任何正则（regular）态都成立。所谓“彼此靠近”，指的是连接两点的最短测地线距离的平方 $\sigma(x_1,x_2)$ 趋于零。在 $x_1$ 与 $x_2$ 非常接近的极限下，测地线距离的平方就是
+
+\begin{equation*}
+\sigma(x_1, x_2) = g_{\mu\nu}(x_1^{\mu} - x_2^{\mu})(x_1^{\nu} - x_2^{\nu}), \qquad x_1 \to x_2.
+\tag{9.121}
+\end{equation*}
+
+当然，在洛伦兹流形上，测地线距离不仅在两点重合时为零，在两点类光分离时也为零。因此我们引入一个小虚部，并取它趋于零的极限，办法是定义
+
+\begin{equation*}
+\sigma_{\epsilon}(x_1, x_2) = \sigma(x_1, x_2) + 2i\epsilon(t_1 - t_2) + \epsilon^{2}.
+\tag{9.122}
+\end{equation*}
+
+这里 $t$ 是类时坐标，并且默认取 $\epsilon \to 0^{+}$ 的极限。（这个公式显而易见的坐标依赖性在此极限下无关紧要。）结果表明，Minkowski 时空中的自然真空具有一种唯一的奇异性结构：两点函数（在四维情形）包含一个形如 $1/(4\pi^{2}\sigma_{\epsilon})$ 的领头奇异性，以及一个正比于 $\ln\sigma_{\epsilon}$ 的次领头奇异性，其余各项都是正则的。因此我们要求弯曲时空中任何物理上合理的量子态都满足
+
+\begin{equation*}
+G(x_1, x_2) = \frac{U(x_1, x_2)}{4\pi^{2}\sigma_{\epsilon}} + V(x_1, x_2)\ln\sigma_{\epsilon} + W(x_1, x_2),
+\tag{9.123}
+\end{equation*}
+
+其中函数 $U(x_1,x_2)$、$V(x_1,x_2)$ 和 $W(x_1,x_2)$ 在 $x_1=x_2$ 处都是正则的，并且 $U(x,x)=1$。具有这种性质的态称为\textbf{Hadamard 态}（Hadamard state）。可以证明，重整化的能动张量在所有 Hadamard 态中都有良好定义且非奇异；进一步还可以证明，它在任何非 Hadamard 态中都会奇异。如果 Hadamard 条件在某个部分 Cauchy 面上成立，那么它在依赖域内也将处处成立；换言之，能动张量可能在某个视界上变得奇异，但不会在某种适定初值数据的 Cauchy 发展（Cauchy development）内部变得奇异。因此，这种形式的态看来适合作为弯曲时空量子场论考虑的对象。详见 Wald (1994)。
+
+我们看到，弯曲时空中的量子场论具备平直时空量子场论的大部分基本特征；关键的区别在于我们做不到的事情：选定一组让所有惯性观者都认同为粒子的、自然的基模式。在 9.2 节的末尾，我们简要讨论过受到瞬态外力作用的振子，以及如何定义一个 S 矩阵，把早期时刻的粒子数本征态与晚期时刻的粒子数本征态联系起来。同一套想法可以直接搬到量子场论中。如果我们考虑这样一种情形：时空在渐近过去和渐近未来都是静态的，而中间存在某种扰动，那么我们就可以定义 in 态与 out 态——它们分别是早期和晚期的能量本征态——以及一组 Bogoliubov 系数，描述 in 真空（比如说）用 out 态表出时会呈现为怎样的多粒子位形。这种现象被称为引力场导致的粒子产生（particle production by gravitational fields）\footnote{有意思的是，关于弯曲时空中粒子产生的最早讨论正是 Schrödinger 本人给出的；见 E. Schrödinger (1939), \emph{Physica} (Utrecht) 6, 899.}；相关的物理例子包括早期宇宙和黑洞。
+
+\section{安鲁效应}
+
+必须承认，尽管我们在理解弯曲时空量子场论的基础上下了一番功夫，实际上却不会在任何弯曲背景中做任何详细的计算。作为替代，我们将研究一种现象，它依赖我们已引入的那些观念，却甚至在平直时空中就会显现：这就是安鲁效应（Unruh effect），它断言处于传统 Minkowski 真空态中的加速观者会观测到粒子的热谱。历史上，安鲁效应正是在试图理解霍金效应（黑洞事件视界存在时的热辐射）背后的物理时被发现的。我们的策略将是仔细推导安鲁效应，然后在下一节中在合理假设下论证它蕴含霍金效应；霍金效应难以直接推导，仅仅因为求解弯曲时空中的波动方程比在平直时空中更难。
+
+安鲁效应的基本想法很简单：它是下述观念的一个体现——对正频与负频模式持有不同理解的观者，对同一个态的粒子内容也会有不同的看法。对于 Minkowski 空间中匀加速运动的观者，其轨迹将沿一条类时 Killing 矢量的轨道行进，但沿的不是通常时间平移对称性的轨道。因此我们可以用适合加速观者的模式来展开场，并在通常的 Minkowski 真空中计算粒子数算符，届时会发现一个粒子热谱。对这个结果可以配以不同套的解释性说法；应当汲取的基本教训是：我们心目中毫无动静的真空，实际上带有热态的特征。
+
+为了剔除一切可能的复杂因素、直抵底层现象，我们考虑一个在不至于完全平庸的前提下尽可能简单的量子场论：两维时空（$n=2$）中的无质量（$m=0$）标量场。在两维中，共形耦合与最小耦合相重合，所以我们不包含与标量曲率的任何直接相互作用。（反正我们身处平直时空，这种耦合本来也不会有任何效果。）相应的波动方程为
+
+\begin{equation*}
+\Box\phi = 0.
+\tag{9.124}
+\end{equation*}
+
+在深入这个场论的量子化之前，我们先来想一想一位匀加速观者眼中的两维 Minkowski 空间。我们知道，度规在惯性坐标下可以写成
+
+\begin{equation*}
+ds^2 = -dt^2 + dx^2.
+\tag{9.125}
+\end{equation*}
+
+考虑一位沿 $x$ 方向以大小为 $\alpha$ 的均匀加速度运动的观者。我们宣称，由此得到的轨迹 $x^{\mu}(\tau)$ 将由下式给出：
+
+\begin{align*}
+t(\tau) &= \frac{1}{\alpha}\sinh(\alpha\tau) \\
+x(\tau) &= \frac{1}{\alpha}\cosh(\alpha\tau).
+\tag{9.126}
+\end{align*}
+
+我们来验证这条路径确实对应于恒定的加速度。加速度这个二矢量在整体惯性坐标系中由下式给出：
+
+\begin{equation*}
+a^{\mu} = \frac{D^2 x^{\mu}}{d\tau^2} = \frac{d^2 x^{\mu}}{d\tau^2},
+\tag{9.127}
+\end{equation*}
+
+其中沿路径的协变导数等于普通导数，因为 Christoffel 符号在这些坐标下为零。于是 $a^{\mu}$ 的分量为
+
+\begin{align*}
+a^t &= \alpha\sinh(\alpha\tau) \\
+a^x &= \alpha\cosh(\alpha\tau),
+\tag{9.128}
+\end{align*}
+
+而大小为
+
+\begin{equation*}
+\sqrt{a_{\mu}a^{\mu}} = \sqrt{-\alpha^{2}\sinh^{2}(\alpha\tau) + \alpha^{2}\cosh^{2}(\alpha\tau)} = \alpha.
+\tag{9.129}
+\end{equation*}
+
+因此这条路径确实对应于大小为 $\alpha$ 的恒定加速度，正如所愿。我们这位加速观者的轨迹满足关系
+
+\begin{equation*}
+x^2(\tau) = t^2(\tau) + 1/\alpha^2,
+\tag{9.130}
+\end{equation*}
+
+从而描述一个双曲面，它在过去渐近于类光路径 $x=-t$，在未来渐近于 $x=t$。加速观者从过去类光无限远行进到未来类光无限远，而不是像测地观者那样到达类时无限远。
+
+我们可以在两维 Minkowski 空间上选取适配匀加速运动的新坐标 $(\eta,\xi)$。令
+
+\begin{equation*}
+t = \frac{1}{a}e^{a\xi}\sinh(a\eta), \qquad x = \frac{1}{a}e^{a\xi}\cosh(a\eta) \qquad (x > |t|).
+\tag{9.131}
+\end{equation*}
+
+%FIG{9.1}: {Rindler 坐标下的 Minkowski 时空。区域 I 是沿 $+x$ 方向做恒定加速的观者所能到达的区域。坐标 $(\eta,\xi)$ 可用于区域 I，也可单独用于区域 IV，但此时它们指向相反的方向。矢量场 $\partial_{\eta}$ 对应于洛伦兹推动（boost）对称性的生成元。视界 $H^{\pm}$ 是该矢量场的 Killing 视界，同时也是 Rindler 观者所见过去与未来的边界。}
+
+新坐标的取值范围为
+
+\begin{equation*}
+-\infty < \eta,\, \xi < +\infty,
+\tag{9.132}
+\end{equation*}
+
+并且覆盖楔形区域 $x>|t|$，即图 9.1 中标记为区域 I 的部分。在这些坐标中，恒定加速路径 (9.126) 表为
+
+\begin{align*}
+\eta(\tau) &= \frac{\alpha}{a}\tau \\
+\xi(\tau) &= \frac{1}{a}\ln\left(\frac{a}{\alpha}\right),
+\tag{9.133}
+\end{align*}
+
+于是固有时正比于 $\eta$，而空间坐标 $\xi$ 为常数。特别地，$\alpha=a$ 的观者沿如下路径运动：
+
+\begin{equation*}
+\eta = \tau, \qquad \xi = 0.
+\tag{9.134}
+\end{equation*}
+
+在这些坐标中度规取如下形式：
+
+\begin{equation*}
+ds^2 = e^{2a\xi}(-d\eta^2 + d\xi^2).
+\tag{9.135}
+\end{equation*}
+
+带着这个度规，区域 I 被称为\textbf{Rindler 空间}（Rindler space），尽管它显然只是 Minkowski 空间的一部分。\textbf{Rindler 观者}（Rindler observer）就是沿恒定加速路径运动的观者，如 (9.133) 那样。Rindler 空间的因果结构酷似图 5.12 中 Schwarzschild 解最大延拓的 $r>2GM$ 区域。特别地，图 9.1 中标记为 $H^{+}$ 的类光直线 $x=t$，对于区域 I 中任何 $\eta=$ 常数的类空超曲面而言都是未来 Cauchy 视界；类似地，$H^{-}$ 是过去 Cauchy 视界。这些视界让人想起 Kruskal 图中的事件视界：Schwarzschild 中的静态观者（$r=$ 常数）正对应于 Rindler 空间中的恒定加速路径。
+
+(9.135) 中的度规分量与 $\eta$ 无关，所以我们立刻知道 $\partial_{\eta}$ 是一个 Killing 矢量。但当然，这本来就是 Minkowski 时空，所以我们自以为了解所有 Killing 矢量是什么。确实，如果把 $\partial_{\eta}$ 用 $(t,x)$ 坐标表出，我们发现
+
+\begin{align*}
+\partial_{\eta} &= \frac{\partial t}{\partial\eta}\partial_t + \frac{\partial x}{\partial\eta}\partial_x \\
+&= e^{a\xi}\left[\cosh(a\eta)\partial_t + \sinh(a\eta)\partial_x\right] \\
+&= a(x\partial_t + t\partial_x).
+\tag{9.136}
+\end{align*}
+
+这不多不少，正是与沿 $x$ 方向的推动（boost）相联系的那个 Killing 场。从这个表达式可以清楚地看到，这个 Killing 场自然地延拓到整个时空；在区域 II 和 III 中它是类空的，而在区域 IV 中它是类时的但指向过去。我们上面辨认出的那些视界，实际上就是 $\partial_{\eta}$ 的 Killing 视界。红移因子（在式 (6.12) 中定义为 Killing 矢量范数的大小）为
+
+\begin{equation*}
+V = e^{a\xi}.
+\tag{9.137}
+\end{equation*}
+
+这个 Killing 视界的表面引力 $\kappa=\sqrt{\nabla_{\mu}V\nabla^{\mu}V}$ 于是为
+
+\begin{equation*}
+\kappa = a.
+\tag{9.138}
+\end{equation*}
+
+这里并没有什么真实的引力，因为我们身处平直空间；但这个表面引力刻画了 Rindler 观者的加速度。
+
+我们还可以把 (9.131) 中的符号翻转，在区域 IV 中定义坐标 $(\eta,\xi)$：
+
+\begin{equation*}
+t = -\frac{1}{a}e^{a\xi}\sinh(a\eta), \qquad x = -\frac{1}{a}e^{a\xi}\cosh(a\eta) \qquad (x < |t|).
+\tag{9.139}
+\end{equation*}
+
+这个符号保证了在区域 IV 中 $\partial_{\eta}$ 与 $\partial_t$ 指向相反的方向。严格说来，我们不能在区域 I 和区域 IV 中同时使用 $(\eta,\xi)$，因为这两个坐标在各自区域中的取值范围相同；不过只要我们明确指明所谈论的是哪个区域，就不会出问题。之所以宁愿把同一套坐标标签用两次，而不是干脆引入新坐标，是因为度规 (9.135) 对区域 I 和区域 IV 都适用。
+
+在曲面 $t=0$ 上，$\partial_{\eta}$ 是一个超曲面正交的类时 Killing 矢量，唯一的例外是它为零的那一点 $x=0$。因此这个矢量可用来定义一组正频与负频模式，并在此基础上为标量场的希尔伯特空间搭建 Fock 基。Rindler 坐标下无质量 Klein--Gordon 方程的形式为
+
+\begin{equation*}
+\Box\phi = e^{-2a\xi}\left(-\partial_{\eta}^{2} + \partial_{\xi}^{2}\right)\phi = 0.
+\tag{9.140}
+\end{equation*}
+
+归一化的平面波 $g_k = (4\pi\omega)^{-1/2}e^{-i\omega\eta+ik\xi}$（其中 $\omega=|k|$）求解这个方程，而且显然具有正频，即 $\partial_{\eta}g_k=-i\omega g_k$。但我们需要的模式要相对于一个指向未来的 Killing 矢量具有正频，而在区域 IV 中扮演这一角色的是 $\partial_{(-\eta)}=-\partial_{\eta}$ 而非 $\partial_{\eta}$。为了对付这个麻烦，我们引入两组模式，一组支撑在区域 I 中，另一组支撑在区域 IV 中：
+
+\begin{equation*}
+\begin{aligned}
+g_{k}^{(1)} &= \begin{cases} \dfrac{1}{\sqrt{4\pi\omega}}\, e^{-i\omega\eta+ik\xi} & \mathrm{I} \\[10pt] 0 & \mathrm{IV} \end{cases} \\[14pt]
+g_{k}^{(2)} &= \begin{cases} 0 & \mathrm{I} \\[10pt] \dfrac{1}{\sqrt{4\pi\omega}}\, e^{+i\omega\eta+ik\xi} & \mathrm{IV} \end{cases}
+\end{aligned}
+\tag{9.141}
+\end{equation*}
+
+两种情形下都取 $\omega=|k|$；在两维中，空间波矢就是单独一个数 $k$。每一组模式都相对于相应的指向未来的类时 Killing 矢量具有正频：
+
+\begin{gather*}
+\partial_{\eta}\, g_{k}^{(1)} = -i\omega g_{k}^{(1)} \\
+\partial_{(-\eta)}\, g_{k}^{(2)} = -i\omega g_{k}^{(2)}, \qquad \omega > 0.
+\tag{9.142}
+\end{gather*}
+
+这两组模式连同它们的共轭，构成了对整个时空中波动方程任何解都完备的一组基模式。（单独一点 $x=t=0$ 是测度为零的集合，用不着为此担心。）在 Rindler 图的区域 II 和 III 中，这两组模式都不为零；把它们写成坐标 $\eta$ 和 $\xi$ 的形式时这一点被掩盖了，但这些函数可以解析延拓到未来和过去的区域。把相应的湮灭算符记作 $\hat{b}_{k}^{(1,2)}$，我们可以写出
+
+\begin{equation*}
+\phi = \int dk\left(\hat{b}_{k}^{(1)}g_{k}^{(1)} + \hat{b}_{k}^{(1)\dagger}g_{k}^{(1)*} + \hat{b}_{k}^{(2)}g_{k}^{(2)} + \hat{b}_{k}^{(2)\dagger}g_{k}^{(2)*}\right).
+\tag{9.143}
+\end{equation*}
+
+这一展开是 (9.66) 式——用原始 Minkowski 模式所作的展开——的另一种选择；在两维中该式取如下形式：
+
+\begin{equation*}
+\phi = \int dk\left(\hat{a}_{k}f_{k} + \hat{a}_{k}^{\dagger}f_{k}^{*}\right).
+\tag{9.144}
+\end{equation*}
+
+容易直接检验，模式 (9.141) 相对于内积 (9.94) 是恰当归一化的。在度规 (9.135) 中，曲面 $\eta=0$ 的指向未来的单位法矢量归一化为
+
+\begin{equation*}
+-1 = g_{\mu\nu}n^{\mu}n^{\nu} = -e^{2a\xi}(n^{0})^{2},
+\tag{9.145}
+\end{equation*}
+
+即
+
+\begin{equation*}
+n^{0} = e^{-a\xi}.
+\tag{9.146}
+\end{equation*}
+
+与此同时，空间度规的行列式满足
+
+\begin{equation*}
+\sqrt{\gamma} = e^{a\xi}.
+\tag{9.147}
+\end{equation*}
+
+于是我们有 $n^{0}\sqrt{\gamma}=1$，而 Rindler 模式内积的计算与普通 Minkowski 模式的计算如出一辙。最终得到
+
+\begin{align*}
+(g_{k_1}^{(1)}, g_{k_2}^{(1)}) &= \delta(k_1 - k_2) \\
+(g_{k_1}^{(2)}, g_{k_2}^{(2)}) &= \delta(k_1 - k_2) \\
+(g_{k_1}^{(1)}, g_{k_2}^{(2)}) &= 0,
+\tag{9.148}
+\end{align*}
+
+共轭模式也有类似结果。
+
+这样就有两组模式——Minkowski 模式与 Rindler 模式——都可以用来展开平直两维时空中 Klein--Gordon 方程的解。虽然理论的希尔伯特空间在两种表示下是同一个，但它作为 Fock 空间的诠释却会不同；特别地，真空态会不相同。Minkowski 真空 $|0_{\mathrm{M}}\rangle$ 满足
+
+\begin{equation*}
+\hat{a}_{k}|0_{\mathrm{M}}\rangle = 0,
+\tag{9.149}
+\end{equation*}
+
+在 Rindler 表示中它将被描述为一个多粒子态；同样，Rindler 真空 $|0_{\mathrm{R}}\rangle$ 满足
+
+\begin{equation*}
+\hat{b}_{k}^{(1)}|0_{\mathrm{R}}\rangle = \hat{b}_{k}^{(2)}|0_{\mathrm{R}}\rangle = 0,
+\tag{9.150}
+\end{equation*}
+
+在 Minkowski 表示中它将被描述为一个多粒子态。在实际层面上，这种差异源于：单个 Rindler 模式永远无法写成正频 Minkowski 模式之和；在 $t=0$ 处 Rindler 模式只有支撑在半直线上的部分，而这样的函数不可能展开成纯粹正频的平面波。因此，用来定义 $|0_{\mathrm{R}}\rangle$ 的那些 Rindler 湮灭算符必然是 Minkowski 产生算符与湮灭算符的叠加，所以两个真空不可能重合。
+
+Rindler 观者相对于推动 Killing 矢量 $\partial_{\eta}$ 的轨道是静止的。因此区域 I 中的这种观者将用 Rindler 模式 $g_{k}^{(1)}$ 来描述粒子：特别地，他会观测到 Rindler 真空中的态不含粒子，态 $\hat{b}_{k}^{(1)\dagger}|0_{\mathrm{R}}\rangle$ 含有一个频率为 $\omega=|k|$ 的粒子，如此等等。反过来，一位穿过 Minkowski 真空态的 Rindler 观者将探测到一个粒子背景，尽管惯性观者会把这个态描述成完全空无一物。Rindler 观者会探测到什么样的粒子呢？我们知道怎样回答这个问题：计算联系 Minkowski 模式与 Rindler 模式的 Bogoliubov 系数，再用它们确定 Rindler 粒子数算符在 Minkowski 真空中的期望值。这直截了当却十分繁琐，所以我们将走一条由 Unruh 提出的捷径。我们将找到一组模式，它与 Minkowski 模式共享同一个真空态（尽管对激发态的描述可能不同），但它与 Rindler 模式的交叠更为直接。做法是：从 Rindler 模式出发，把它们解析延拓到整个时空，再把这一延拓用原始的 Rindler 模式表出。
+
+为了看清这是如何运作的，注意由 (9.131) 和 (9.139) 可知，在区域 I 和 IV 中，Minkowski 坐标 $(t,x)$ 与 Rindler 坐标 $(\eta,\xi)$ 之间有如下关系：
+
+\begin{equation*}
+\begin{aligned}
+e^{-a(\eta-\xi)} &= \begin{cases} a(-t+x) & \mathrm{I} \\ a(t-x) & \mathrm{IV} \end{cases} \\[10pt]
+e^{a(\eta+\xi)} &= \begin{cases} a(t+x) & \mathrm{I} \\ a(-t-x) & \mathrm{IV} \end{cases}
+\end{aligned}
+\tag{9.151}
+\end{equation*}
+
+因此，对于 $k>0$（从而 $\omega=k$）的模式 $g_{k}^{(1)}$，其在区域 I 中用 Minkowski 坐标表出的时空依赖为
+
+\begin{align*}
+\sqrt{4\pi\omega}\, g_{k}^{(1)} &= e^{-i\omega\eta+ik\xi} \\
+&= e^{-i\omega(\eta-\xi)} \\
+&= a^{i\omega/a}(-t+x)^{i\omega/a}.
+\tag{9.152}
+\end{align*}
+
+这个函数在整个时空中的解析延拓很直截了当：对任何 $(t,x)$ 值都用这最后一个表达式即可。但我们希望处处都用原始的 Rindler 模式来表示结果；由于 $g_{k}^{(1)}$ 模式在区域 IV 中为零，我们需要让 $g_{k}^{(2)}$ 模式登场。在区域 IV 中用 Minkowski 坐标表出这些模式，对 $k>0$ 得到
+
+\begin{align*}
+\sqrt{4\pi\omega}\, g_{k}^{(2)} &= e^{+i\omega\eta+ik\xi} \\
+&= e^{+i\omega(\eta+\xi)} \\
+&= a^{-i\omega/a}(-t-x)^{-i\omega/a}.
+\tag{9.153}
+\end{align*}
+
+这与我们想要的 (9.152) 的行为并不匹配。但若取复共轭并反转波数，就得到
+
+\begin{align*}
+\sqrt{4\pi\omega}\, g_{-k}^{(2)*} &= e^{-i\omega\eta+ik\xi} \\
+&= e^{-i\omega(\eta-\xi)} \\
+&= a^{i\omega/a}(t-x)^{i\omega/a} \\
+&= a^{i\omega/a}[e^{-i\pi}(-t+x)]^{i\omega/a} \\
+&= a^{i\omega/a}e^{\pi\omega/a}(-t+x)^{i\omega/a}.
+\tag{9.154}
+\end{align*}
+
+组合
+
+\begin{equation*}
+\sqrt{4\pi\omega}\left(g_{k}^{(1)} + e^{-\pi\omega/a}g_{-k}^{(2)*}\right) = a^{i\omega/a}(-t+x)^{i\omega/a}
+\tag{9.155}
+\end{equation*}
+
+因此沿整个曲面 $t=0$ 都有良好定义。我们明确考察了 $k>0$ 的情形，但对 $k<0$ 会得到完全相同的结果。
+
+这个模式的恰当归一化版本由下式给出：
+
+\begin{equation*}
+h_{k}^{(1)} = \frac{1}{\sqrt{2\sinh\left(\frac{\pi\omega}{a}\right)}}\left(e^{\pi\omega/2a}g_{k}^{(1)} + e^{-\pi\omega/2a}g_{-k}^{(2)*}\right).
+\tag{9.156}
+\end{equation*}
+
+这是 $g_{k}^{(1)}$ 模式的一个恰当的解析延拓；为了得到完备集，还需纳入 $g_{k}^{(2)}$ 模式的延拓，由类似的论证可知它为
+
+\begin{equation*}
+h_{k}^{(2)} = \frac{1}{\sqrt{2\sinh\left(\frac{\pi\omega}{a}\right)}}\left(e^{\pi\omega/2a}g_{k}^{(2)} + e^{-\pi\omega/2a}g_{-k}^{(1)*}\right).
+\tag{9.157}
+\end{equation*}
+
+为了验证归一化——比如对 $h_{k}^{(1)}$——我们利用 (9.148)：
+
+\begin{align*}
+\left(h_{k_1}^{(1)}, h_{k_2}^{(1)}\right) &= \frac{1}{2\sqrt{\sinh\left(\frac{\pi\omega_1}{a}\right)\sinh\left(\frac{\pi\omega_2}{a}\right)}}\Bigg[e^{\pi(\omega_1+\omega_2)/2a}\left(g_{k_1}^{(1)}, g_{k_2}^{(1)}\right) \\
+&\quad + e^{-\pi(\omega_1+\omega_2)/2a}\left(g_{-k_1}^{(2)*}, g_{-k_2}^{(2)*}\right)\Bigg] \\
+&= \frac{1}{2\sqrt{\sinh\left(\frac{\pi\omega_1}{a}\right)\sinh\left(\frac{\pi\omega_2}{a}\right)}}\Bigg[e^{\pi(\omega_1+\omega_2)/2a}\,\delta(k_1 - k_2) \\
+&\quad + e^{-\pi(\omega_1+\omega_2)/2a}\,\delta(-k_1 + k_2)\Bigg] \\
+&= \frac{e^{\pi\omega_1/a} - e^{-\pi\omega_1/a}}{2\sinh\left(\frac{\pi\omega_1}{a}\right)}\,\delta(k_1 - k_2) \\
+&= \delta(k_1 - k_2),
+\tag{9.158}
+\end{align*}
+
+正如我们所愿。
+
+现在可以把场用这些模式展开：
+
+\begin{equation*}
+\phi = \int dk\left(\hat{c}_{k}^{(1)}h_{k}^{(1)} + \hat{c}_{k}^{(1)\dagger}h_{k}^{(1)*} + \hat{c}_{k}^{(2)}h_{k}^{(2)} + \hat{c}_{k}^{(2)\dagger}h_{k}^{(2)*}\right).
+\tag{9.159}
+\end{equation*}
+
+根据 9.4 节中关于 Bogoliubov 变换的讨论我们知道，用 $g_{k}^{(1,2)}$ 模式表出 $h_{k}^{(1,2)}$ 模式的表达式 (9.156) 与 (9.157)，蕴含着用算符 $\hat{c}_{k}^{(1,2)}$ 表出 Rindler 算符 $\hat{b}_{k}^{(1,2)}$ 的相应表达式：
+
+\begin{align*}
+\hat{b}_{k}^{(1)} &= \frac{1}{\sqrt{2\sinh\left(\frac{\pi\omega}{a}\right)}}\left(e^{\pi\omega/2a}\hat{c}_{k}^{(1)} + e^{-\pi\omega/2a}\hat{c}_{-k}^{(2)\dagger}\right) \\
+\hat{b}_{k}^{(2)} &= \frac{1}{\sqrt{2\sinh\left(\frac{\pi\omega}{a}\right)}}\left(e^{\pi\omega/2a}\hat{c}_{k}^{(2)} + e^{-\pi\omega/2a}\hat{c}_{-k}^{(1)\dagger}\right).
+\tag{9.160}
+\end{align*}
+
+于是我们可以把区域 I 中的 Rindler 粒子数算符
+
+\begin{equation*}
+\hat{n}_{\mathrm{R}}^{(1)}(k) = \hat{b}_{k}^{(1)\dagger}\hat{b}_{k}^{(1)},
+\tag{9.161}
+\end{equation*}
+
+用新的算符 $\hat{c}_{k}^{(1,2)}$ 表示。
+
+原先 $k>0$ 的正频 Minkowski 平面波模式 $f_k\propto e^{-i\omega(t-x)}$，只要 $\mathrm{Im}(t-x)\leq 0$，对复的 $(t,x)$ 都是解析且有界的。（这类模式称为“右行”（right-moving），因为它们描述向右传播的波。）只要我们把虚幂函数的支割线取在上半复 $(t-x)$ 平面内，我们的新模式 $h_{k}^{(1)}$ 也具有同样的性质——考察 (9.152) 和 (9.154) 即可看出；这与我们在 (9.154) 中取 $-1=e^{-i\pi}$ 的做法是一致的。类似的考虑也适用于 $h_{k}^{(2)}$ 模式，它们在下半复 $(t+x)$ 平面内解析且有界，正如 $k<0$ 的正频 Minkowski 平面波模式（左行）一样。因此，与原先的 Rindler 模式 $g_{k}^{(1,2)}$ 不同，我们知道 $h_{k}^{(1,2)}$ 模式能够纯粹用正频 Minkowski 模式 $f_k$ 表出。所以它们与 Minkowski 模式共享同一个真空态 $|0_{\mathrm{M}}\rangle$，于是
+
+\begin{equation*}
+\hat{c}_{k}^{(1)}|0_{\mathrm{M}}\rangle = \hat{c}_{k}^{(2)}|0_{\mathrm{M}}\rangle = 0.
+\tag{9.162}
+\end{equation*}
+
+激发态将不会重合，但这不会困扰我们，因为我们关心的正是当态恰好处于 Minkowski 真空时 Rindler 观者会看到什么。例如，区域 I 中的观者将观测由算符 $\hat{b}_{k}^{(1)}$ 定义的粒子；频率为 $\omega$ 的这类粒子的期望数目由下式给出：
+
+\begin{align*}
+\langle 0_{\mathrm{M}}|\hat{n}_{\mathrm{R}}^{(1)}(k)|0_{\mathrm{M}}\rangle &= \langle 0_{\mathrm{M}}|\hat{b}_{k}^{(1)\dagger}\hat{b}_{k}^{(1)}|0_{\mathrm{M}}\rangle \\
+&= \frac{1}{2\sinh\left(\frac{\pi\omega}{a}\right)}\langle 0_{\mathrm{M}}|e^{-\pi\omega/a}\hat{c}_{-k}^{(1)}\hat{c}_{-k}^{(1)\dagger}|0_{\mathrm{M}}\rangle \\
+&= \frac{e^{-\pi\omega/a}}{2\sinh\left(\frac{\pi\omega}{a}\right)}\,\delta(0) \\
+&= \frac{1}{e^{2\pi\omega/a} - 1}\,\delta(0),
+\tag{9.163}
+\end{align*}
+
+其中我们用到了 $\hat{c}_{k}^{(1)\dagger}|0_{\mathrm{M}}\rangle$ 是归一化的单粒子态这一事实：
+
+\begin{equation*}
+\langle 0_{\mathrm{M}}|\hat{c}_{k}^{(1)}\hat{c}_{k}^{(1)\dagger}|0_{\mathrm{M}}\rangle = \delta(0).
+\tag{9.164}
+\end{equation*}
+
+(9.163) 中的 $\delta$ 函数只是我们使用（不可平方可积的）平面波基模式带来的假象；如果我们构造的是归一化的波包，就会得到一个有限的结果，而谱完全相同。
+
+结果 (9.163) 是一个温度为
+
+\begin{equation*}
+T = \frac{a}{2\pi}.
+\tag{9.165}
+\end{equation*}
+
+的 Planck 谱。这样，\emph{以均匀加速度穿过 Minkowski 真空运动的观者会观测到粒子的热谱}。这就是\textbf{安鲁效应}。当然，热辐射不只是谱 (9.163) 而已；要真正称得上热，我们还应当检查在观测到的粒子之间没有隐匿的关联。这一点已经得到验证：Rindler 观者探测到的辐射是真正热的。在最基本的层面上，安鲁效应表明两批不同的观者（惯性的与 Rindler 的）会用极为不同的语言描述同一个态；在稍稍深入的层面上，它揭示了量子场论中真空本质上的热性质。
+
+温度 $T=a/2\pi$ 是沿路径 $\xi=0$ 运动的观者会测得的温度，这条路径感受到的加速度为 $\alpha=a$。利用 (9.133) 可知，任何 $\xi=$ 常数的其他路径感受到的加速度为
+
+\begin{equation*}
+\alpha = ae^{-a\xi}
+\tag{9.166}
+\end{equation*}
+
+因而应当测得温度为 $\alpha/2\pi$ 的热辐射。这与我们在第 6 章中关于沿某个 Killing 矢量 $K^{\mu}$ 的轨道运动的静态观者所见证的红移的讨论相一致；我们当时发现，在点 $x_1$ 处以频率 $\omega_1$ 发出的辐射，将在点 $x_2$ 处被观测到具有频率
+
+\begin{equation*}
+\omega_2 = \frac{V_1}{V_2}\omega_1,
+\tag{9.167}
+\end{equation*}
+
+其中红移因子 $V$ 是 Killing 矢量的范数。在 (9.137) 中我们发现与 $\partial_{\eta}$ 相联系的红移因子为 $V=e^{a\xi}$，于是
+
+\begin{equation*}
+\omega_2 = e^{a(\xi_1 - \xi_2)}\omega_1.
+\tag{9.168}
+\end{equation*}
+
+因此，如果 $\xi_1=0$ 处的观者探测到温度 $T=a/2\pi$，那么 $\xi_2=\xi$ 处的观者将看到它红移为温度 $T=ae^{-a\xi}/2\pi$，正如式 (9.166) 那样。特别地，当 $\xi\to+\infty$ 时温度一路红移到零。这是有道理的：无穷远处的 Rindler 观者近乎惯性观者，会对真空和粒子给出与普通 Minkowski 观者相同的定义。
+
+安鲁效应告诉我们，加速观者会在 Minkowski 真空态中探测到粒子。当然，惯性观者会把同一个态描述成完全空无一物；实际上，能动张量的期望值会是 $\langle T_{\mu\nu}\rangle=0$。可是如果没有能量-动量，Rindler 观者们怎么能探测到粒子呢？这是一个微妙的问题，但绝不是矛盾。Rindler 观者要探测背景粒子，就必须携带一台探测器——某种与被探测粒子相耦合的装置。但如果探测器被维持在恒定加速度下，能量就不守恒；我们需要持续对探测器做功才能让它一直加速。从 Minkowski 观者的角度看，Rindler 探测器\emph{发射}粒子，也同样吸收粒子；一旦引入耦合，发射的可能性就不可避免。当探测器记录到一个粒子时，惯性观者会说它发射了一个粒子，并因此感受到一个辐射反作用力。归根结底，激发 Rindler 探测器所需的能量并非来自背景能动张量，而是来自我们为维持探测器加速而注入的能量。
+
+\section{霍金效应与黑洞蒸发}
+
+尽管发生在平直时空，安鲁效应却给了我们弯曲时空量子场论最重要的一课：“真空”和“粒子”是依赖于观者的概念，而非基本概念。实际上，鉴于我们对安鲁效应的理解，几乎可以立刻看出霍金效应是如何产生的。这不应太令人惊讶，因为我们已经指出过 Rindler 空间的因果结构与描述永恒黑洞的最大延拓 Schwarzschild 时空的因果结构之间的相似性。因此，我们将能够论证霍金辐射的存在，而无需在弯曲时空中做任何显式计算；当然，还有许多你可能想更深入考察的特征，那就需要充分动用弯曲度规的力量。除 Birrell 和 Davies (1982) 与 Wald (1994) 之外，还有一些很好的综述文章，你可以在其中找到对这里讨论的问题更全面的讨论。\footnote{T.A. Jacobson, “Introductory Lectures on Black Hole Thermodynamics,” Lectures at University of Utrecht (1996), http://www.fys.ruu.nl/\textasciitilde{}wwwthe/lectures/itfuu-0196.ps; R.M. Wald, “The thermodynamics of black holes,” \emph{Living Rev.\ Rel.} \textbf{4}, 6 (2001), http://arxiv.org/gr-qc/9912119; J. Traschen, “An introduction to black hole evaporation” (2000), http://arxiv.org/gr-qc/0010055.} 我们对霍金辐射的推导沿循 Jacobson 的做法。

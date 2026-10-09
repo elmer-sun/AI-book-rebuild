@@ -1,0 +1,1587 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第7章 微扰理论与引力辐射
+
+% 第7章 Perturbation Theory and Gravitational Radiation
+\chapter{微扰理论与引力辐射}
+
+\section{线性化引力与规范变换}
+
+% ---- 书页 274 / p289 ----
+我们最初推导 Einstein 方程的时候，是通过考虑 Newton 极限来确认自己走在正确的道路上。当时我们对这句话的理解是：不仅引力场是弱的，而且它是静态的（不含时间导数），检验粒子也在缓慢地运动。本章要描述的弱场极限限制要少一些：只假定场仍然是弱的，但它可以随时间变化，并且对检验粒子的运动不加任何限制。这将使我们能够讨论一些在 Newton 理论中缺席或含混的现象，例如引力辐射（场随时间变化）以及光线偏折（涉及快速运动的粒子）。
+
+引力场的微弱，再一次表现为我们有能力把度规分解成平直的 Minkowski 度规加上一个小微扰，
+\begin{equation*}
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \qquad |h_{\mu\nu}| \ll 1.
+\tag{7.1}
+\end{equation*}
+我们将把自己限制在 $\eta_{\mu\nu}$ 取规范形式的坐标系中，即 $\eta_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$。$h_{\mu\nu}$ 是小量这一假设，使我们能够忽略任何高于该量一阶的东西，由此立即得到
+\begin{equation*}
+g^{\mu\nu} = \eta^{\mu\nu} - h^{\mu\nu},
+\tag{7.2}
+\end{equation*}
+其中 $h^{\mu\nu} = \eta^{\mu\rho}\eta^{\nu\sigma}h_{\rho\sigma}$。与之前一样，我们可以用 $\eta^{\mu\nu}$ 和 $\eta_{\mu\nu}$ 升降指标，因为相应的修正将是微扰的高阶小量。事实上，我们可以把广义相对论的线性化版本（其中 $h_{\mu\nu}$ 的高于一阶的效应都被略去）看作是在平直背景时空上传播的一个对称张量场 $h_{\mu\nu}$ 的理论。这个理论在狭义相对论的意义下是洛伦兹不变的；在洛伦兹变换 $x^{\mu'} = \Lambda^{\mu'}{}_{\mu}x^{\mu}$ 之下，平直度规 $\eta_{\mu\nu}$ 不变，而微扰按下式变换
+\begin{equation*}
+h_{\mu'\nu'} = \Lambda^{\mu'}{}_{\mu}\Lambda^{\nu'}{}_{\nu}h_{\mu\nu}.
+\tag{7.3}
+\end{equation*}
+
+% ---- 书页 275 / p290 ----
+注意，我们本来也可以考虑 Minkowski 空间之外的某个其他背景时空上的小微扰。在那种情形下，度规将被写成 $g_{\mu\nu} = g_{\mu\nu}^{(0)} + h_{\mu\nu}$，而我们导出的将是关于一个在度规为 $g_{\mu\nu}^{(0)}$ 的弯曲空间上传播的对称张量的理论。例如在宇宙学中，这样的处理方式就是必需的。
+
+我们想找出微扰 $h_{\mu\nu}$ 所服从的运动方程，它来自把 Einstein 方程考察到一阶。我们从 Christoffel 符号入手，它由下式给出
+\begin{align*}
+\Gamma^{\rho}_{\mu\nu} &= \frac{1}{2}g^{\rho\lambda}(\partial_{\mu}g_{\nu\lambda} + \partial_{\nu}g_{\lambda\mu} - \partial_{\lambda}g_{\mu\nu}) \\
+&= \frac{1}{2}\eta^{\rho\lambda}(\partial_{\mu}h_{\nu\lambda} + \partial_{\nu}h_{\lambda\mu} - \partial_{\lambda}h_{\mu\nu}).
+\tag{7.4}
+\end{align*}
+由于联络系数是一阶量，它们对 Riemann 张量的贡献将只来自 $\Gamma$ 的导数，而不含 $\Gamma^{2}$ 项。为方便起见降低一个指标，我们得到
+\begin{align*}
+R_{\mu\nu\rho\sigma} &= \eta_{\mu\lambda}\partial_{\rho}\Gamma^{\lambda}_{\nu\sigma} - \eta_{\mu\lambda}\partial_{\sigma}\Gamma^{\lambda}_{\nu\rho} \\
+&= \frac{1}{2}(\partial_{\rho}\partial_{\nu}h_{\mu\sigma} + \partial_{\sigma}\partial_{\mu}h_{\nu\rho} - \partial_{\sigma}\partial_{\nu}h_{\mu\rho} - \partial_{\rho}\partial_{\mu}h_{\nu\sigma}).
+\tag{7.5}
+\end{align*}
+对 $\mu$ 和 $\rho$ 缩并便得到 Ricci 张量，
+\begin{equation*}
+R_{\mu\nu} = \frac{1}{2}(\partial_{\sigma}\partial_{\nu}h^{\sigma}{}_{\mu} + \partial_{\sigma}\partial_{\mu}h^{\sigma}{}_{\nu} - \partial_{\mu}\partial_{\nu}h - \Box h_{\mu\nu}),
+\tag{7.6}
+\end{equation*}
+它显然关于 $\mu$ 和 $\nu$ 对称。在这个表达式中，我们把微扰的迹定义为 $h = \eta^{\mu\nu}h_{\mu\nu} = h^{\mu}{}_{\mu}$，而 d'Alembert 算符就是平直空间中的那一个：$\Box = -\partial_{t}^{2} + \partial_{x}^{2} + \partial_{y}^{2} + \partial_{z}^{2}$。再一次缩并以得到 Ricci 标量，就有
+\begin{equation*}
+R = \partial_{\mu}\partial_{\nu}h^{\mu\nu} - \Box h.
+\tag{7.7}
+\end{equation*}
+把这些都放在一起，我们就得到了 Einstein 张量：
+\begin{align*}
+G_{\mu\nu} &= R_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}R \\
+&= \frac{1}{2}(\partial_{\sigma}\partial_{\nu}h^{\sigma}{}_{\mu} + \partial_{\sigma}\partial_{\mu}h^{\sigma}{}_{\nu} - \partial_{\mu}\partial_{\nu}h - \Box h_{\mu\nu} - \eta_{\mu\nu}\partial_{\rho}\partial_{\lambda}h^{\rho\lambda} + \eta_{\mu\nu}\Box h).
+\tag{7.8}
+\end{align*}
+与我们把线性化理论理解为描述平直背景上的对称张量的理论相一致，线性化 Einstein 张量 (7.8) 可以通过对下面这个拉格朗日量关于 $h_{\mu\nu}$ 作变分而导出：
+\begin{align*}
+\mathcal{L} = \frac{1}{2}\Big[(\partial_{\mu}h^{\mu\nu})(\partial_{\nu}h) &- (\partial_{\mu}h^{\rho\sigma})(\partial_{\rho}h^{\mu}{}_{\sigma}) + \frac{1}{2}\eta^{\mu\nu}(\partial_{\mu}h^{\rho\sigma})(\partial_{\nu}h_{\rho\sigma}) \\
+&- \frac{1}{2}\eta^{\mu\nu}(\partial_{\mu}h)(\partial_{\nu}h)\Big].
+\tag{7.9}
+\end{align*}
+这个拉格朗日量是否恰当，请你在习题中加以验证。
+
+% ---- 书页 276 / p291 ----
+线性化场方程当然就是 $G_{\mu\nu} = 8\pi GT_{\mu\nu}$，其中 $G_{\mu\nu}$ 由式 (7.8) 给出，而 $T_{\mu\nu}$ 是能量-动量张量，按 $h_{\mu\nu}$ 的零阶计算。我们不把更高阶的修正包括进能量-动量张量，因为要使弱场极限适用，能量和动量的总量本身就必须很小。换句话说，$T_{\mu\nu}$ 中最低的非零阶自动与微扰具有相同的数量级。注意，最低阶下的守恒定律就是简单的 $\partial_{\mu}T^{\mu\nu} = 0$。我们常常关心的是真空方程，它一如既往就只是 $R_{\mu\nu} = 0$，其中 $R_{\mu\nu}$ 由式 (7.6) 给出。
+
+有了线性化场方程，我们差不多就准备好着手求解它了。然而，我们首先应该处理规范不变性这个棘手的问题。这个问题之所以出现，是因为要求 $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ 并没有完全确定时空上的坐标系；可能存在别的坐标系，度规在其中仍然可以写成 Minkowski 度规加上一个小微扰，只不过微扰有所不同。因此，把度规分解成平直背景加微扰的做法并不是唯一的。为了考察这个问题，我们将利用附录 A 和附录 B 中讨论的关于微分同胚的思想；尚未读过那两节的读者可以跳到式 (7.14) 及其后的两段，那里包含了最关键的思想。
+
+让我们从一种“高观点”（highbrow）的角度来思考规范不变性。线性化理论可以看作是一个支配平直背景上张量场行为的理论——这个观念可以借助一个\textbf{背景时空}（background spacetime）$M_{b}$、一个\textbf{物理时空}（physical spacetime）$M_{p}$ 以及一个微分同胚 $\phi : M_{b} \to M_{p}$ 来形式化。作为流形，$M_{b}$ 和 $M_{p}$ 是同一个（因为它们微分同胚），但我们设想它们拥有一些不同的张量场：在 $M_{b}$ 上我们定义了平直的 Minkowski 度规 $\eta_{\mu\nu}$，而在 $M_{p}$ 上有某个遵守 Einstein 方程的度规 $g_{\alpha\beta}$。（我们设想 $M_{b}$ 配有坐标 $x^{\mu}$，$M_{p}$ 配有坐标 $y^{\alpha}$，尽管这些坐标并不会扮演什么显要角色。）微分同胚 $\phi$ 使我们能够在背景时空与物理时空之间来回搬移张量，如图 7.1 所示。既然我们想把线性化理论构造成一个发生在平直背景时空上的理论，我们感兴趣的便是物理度规的拉回 $(\phi^{*}g)_{\mu\nu}$。我们可以把微扰定义为拉回后的物理度规与平直度规之差：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.1.pdf}
+\caption*{图 7.1\quad 一个微分同胚把背景时空 $M_{b}$（具有平直度规 $\eta_{\mu\nu}$）与物理时空 $M_{p}$ 联系起来。}
+\end{figure}
+
+% ---- 书页 277 / p292 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.2.pdf}
+\caption*{图 7.2\quad 由背景时空 $M_{b}$ 上的矢量场 $\xi^{\mu}$ 生成的单参数微分同胚族 $\psi_{\epsilon}$。}
+\end{figure}
+\begin{equation*}
+h_{\mu\nu} = (\phi^{*}g)_{\mu\nu} - \eta_{\mu\nu}.
+\tag{7.10}
+\end{equation*}
+根据这个定义，$h_{\mu\nu}$ 的分量没有理由必须是小的；不过，如果 $M_{p}$ 上的引力场是弱的，那么对某些微分同胚 $\phi$ 我们就会有 $|h_{\mu\nu}| \ll 1$。于是我们只把注意力限制在那些使这一点成立的微分同胚上。这样一来，$g_{\alpha\beta}$ 在物理时空上遵守 Einstein 方程这一事实，就意味着 $h_{\mu\nu}$ 在背景时空上将遵守线性化方程（因为 $\phi$ 作为微分同胚，同样可以用来拉回 Einstein 方程本身）。
+
+在这种语言里，规范不变性问题不过是说，在 $M_{b}$ 与 $M_{p}$ 之间存在着大量“许可的”微分同胚（“许可”的意思是微扰是小的）。考虑背景时空上的一个矢量场 $\xi^{\mu}(x)$。这个矢量场生成一个单参数微分同胚族 $\psi_{\epsilon} : M_{b} \to M_{b}$，如图 7.2 所示。当 $\epsilon$ 足够小时，如果 $\phi$ 是一个使由式 (7.10) 定义的微扰很小的微分同胚，那么 $(\phi \circ \psi_{\epsilon})$ 也是，只不过微扰将取不同的值。具体地，我们可以定义一个以 $\epsilon$ 为参数的微扰族：
+\begin{align*}
+h^{(\epsilon)}_{\mu\nu} &= [(\phi \circ \psi_{\epsilon})^{*}g]_{\mu\nu} - \eta_{\mu\nu} \\
+&= [\psi_{\epsilon}^{*}(\phi^{*}g)]_{\mu\nu} - \eta_{\mu\nu}.
+\tag{7.11}
+\end{align*}
+第二个等号基于这样的事实：复合映射的拉回等于各拉回按相反次序的复合，而这又源于拉回本身就是沿与原映射相反的方向搬动事物。代入关系式 (7.10)，我们发现
+\begin{align*}
+h^{(\epsilon)}_{\mu\nu} &= \psi_{\epsilon}^{*}(h + \eta)_{\mu\nu} - \eta_{\mu\nu} \\
+&= \psi_{\epsilon}^{*}(h_{\mu\nu}) + \psi_{\epsilon}^{*}(\eta_{\mu\nu}) - \eta_{\mu\nu},
+\tag{7.12}
+\end{align*}
+这是因为两个张量之和的拉回等于各自拉回之和。现在我们动用 $\epsilon$ 是小量这一假设；此时 $\psi_{\epsilon}^{*}(h_{\mu\nu})$ 在最低阶下等于 $h_{\mu\nu}$，而另外两项则给我们一个李导数：
+
+% ---- 书页 278 / p293 ----
+\begin{align*}
+h^{(\epsilon)}_{\mu\nu} &= \psi_{\epsilon}^{*}(h_{\mu\nu}) + \epsilon\left[\frac{\psi_{\epsilon}^{*}(\eta_{\mu\nu}) - \eta_{\mu\nu}}{\epsilon}\right] \\
+&= h_{\mu\nu} + \epsilon\mathcal{L}_{\xi}\eta_{\mu\nu}.
+\tag{7.13}
+\end{align*}
+在附录 B 中我们证明过，度规沿矢量场 $\xi_{\mu}$ 的李导数为 $\mathcal{L}_{\xi}g_{\mu\nu} = 2\nabla_{(\mu}\xi_{\nu)}$。在当前的情形下，背景度规是平直的，协变导数变成偏导数；因此我们有
+\begin{equation*}
+\boxed{\,h^{(\epsilon)}_{\mu\nu} = h_{\mu\nu} + 2\epsilon\partial_{(\mu}\xi_{\nu)}.\,}
+\tag{7.14}
+\end{equation*}
+这个公式表示度规微扰在沿矢量场 $\epsilon\xi^{\mu}$ 的无穷小微分同胚下的改变；我们将把它称为线性化理论中的\textbf{规范变换}（gauge transformation）。
+
+微分同胚 $\psi_{\epsilon}$ 给出了同一物理情形的不同表示，同时保持我们对微扰很小的要求。因此，结果 (7.12) 告诉我们，什么样的度规微扰描写的时空在物理上等价——即对某个矢量 $\xi^{\mu}$ 而言彼此相差 $2\epsilon\partial_{(\mu}\xi_{\nu)}$ 的那些时空。我们的理论在这种变换下的不变性，类似于电磁学中在 $A_{\mu} \to A_{\mu} + \partial_{\mu}\lambda$ 之下的传统规范不变性。（这个类比不同于我们在附录 J 中与电磁学画的另一个类比；那个类比把正交标架形式中的局部洛伦兹变换联系到内部矢量丛中基的改变。）在电磁学中，不变性之所以成立，是因为场强 $F_{\mu\nu} = \partial_{\mu}A_{\nu} - \partial_{\nu}A_{\mu}$ 在规范变换下保持不变；类似地，我们发现变换 (7.14) 使线性化 Riemann 张量改变
+\begin{align*}
+\delta R_{\mu\nu\rho\sigma} = \frac{1}{2}(&\partial_{\rho}\partial_{\nu}\partial_{\mu}\xi_{\sigma} + \partial_{\rho}\partial_{\nu}\partial_{\sigma}\xi_{\mu} + \partial_{\sigma}\partial_{\mu}\partial_{\nu}\xi_{\rho} + \partial_{\sigma}\partial_{\mu}\partial_{\rho}\xi_{\nu} \\
+&- \partial_{\sigma}\partial_{\nu}\partial_{\mu}\xi_{\rho} - \partial_{\sigma}\partial_{\nu}\partial_{\rho}\xi_{\mu} - \partial_{\rho}\partial_{\mu}\partial_{\nu}\xi_{\sigma} - \partial_{\rho}\partial_{\mu}\partial_{\sigma}\xi_{\nu}) \\
+&= 0.
+\tag{7.15}
+\end{align*}
+我们对度规微扰的适当规范变换所作的抽象推导，由此得到印证：它使曲率（从而也使物理时空）保持不变。
+
+规范不变性也可以从一条观点稍微“低”一些（lowbrow）、却直接得多的途径来理解，即无穷小坐标变换。我们的微分同胚 $\psi_{\epsilon}$ 可以看作是把坐标从 $x^{\mu}$ 变到 $x^{\mu} - \epsilon\xi^{\mu}$。（这个不合常规的负号来自如下事实：“新”度规是从沿积分曲线向前一小段距离处拉回的，而这等价于把坐标换成沿曲线向后一小段距离处的坐标。）按照坐标变换下张量变换的通常规则一步步推下去，你可以恰好导出 (7.14)——尽管你得稍微作点弊，把两个不同坐标系中张量的分量等同起来。
+
+% ---- 书页 279 / p294 ----
+\section{自由度}
+
+有了线性化 Einstein 张量的表达式 (7.8) 和规范变换效应的表达式 (7.14)，我们本可以立刻着手选取规范并求解 Einstein 方程。不过，我们可以先在 Minkowski 背景时空中选定一个固定的惯性坐标系，把度规微扰的分量按照它们在空间转动下的变换性质加以分解，由此积累起一些额外的物理洞见。你也许会担心，这样的分解有悖于广义相对论的坐标无关精神，但它其实与把电磁场强张量分解成电场和磁场并没有什么不同。尽管 $\mathbf{E}$ 和 $\mathbf{B}$ 都是一个 (0, 2) 张量的分量，但有时不妨假想某位固定观者的角色，把它们当作三维矢量来看待。\footnote{这里的讨论沿循 E. Bertschinger, “Cosmological Dynamics,” a talk given at Summer School on Cosmology and Large Scale Structure (Session 60), Les Houches, France, 1--28 Aug 1993; http://arXiv.org/abs/astro-ph/9503125。Bertschinger 关注的是宇宙学微扰论，其中类空超曲面随时间膨胀，但把它特化到不膨胀宇宙的情形也很简单。}
+
+度规微扰是一个 (0, 2) 张量，但它不是反对称的，而是对称的。在空间转动下，00 分量是标量，0i 分量（等于 i0 分量）构成一个三维矢量，ij 分量则构成一个两指标的对称空间张量。这个空间张量还可以进一步分解成迹与无迹两部分。（用群论的语言说，我们在寻找转动群的“不可约表示”。换句话说，我们把张量分解成一个个单独的部分，它们在空间转动下只变换成它们自身。）于是我们把 $h_{\mu\nu}$ 写成
+\begin{align*}
+h_{00} &= -2\Phi \\
+h_{0i} &= w_{i} \\
+h_{ij} &= 2s_{ij} - 2\Psi\delta_{ij},
+\tag{7.16}
+\end{align*}
+其中 $\Psi$ 编码了 $h_{ij}$ 的迹，而 $s_{ij}$ 是无迹的：
+\begin{align*}
+\Psi &= -\frac{1}{6}\delta^{ij}h_{ij} \\
+s_{ij} &= \frac{1}{2}\left(h_{ij} - \frac{1}{3}\delta^{kl}h_{kl}\delta_{ij}\right).
+\tag{7.17}
+\end{align*}
+整个度规于是可以写成
+\begin{equation*}
+\boxed{\,\mathrm{d}s^{2} = -(1+2\Phi)\mathrm{d}t^{2} + w_{i}(\mathrm{d}t\,\mathrm{d}x^{i} + \mathrm{d}x^{i}\,\mathrm{d}t) + [(1-2\Psi)\delta_{ij} + 2s_{ij}]\mathrm{d}x^{i}\mathrm{d}x^{j}.\,}
+\tag{7.18}
+\end{equation*}
+
+% ---- 书页 280 / p295 ----
+我们还没有选取规范，也没有求解任何方程，只是定义了一些方便的记号。无迹张量 $s_{ij}$ 被称为应变（strain），我们将会看到，引力辐射就包含在它之中。有时把空间分量分解成迹与无迹两部分并无帮助，这时我们可以径直坚持用 $h_{ij}$；在具体情形中哪种记号合适就用哪种。注意，正如在第 1 章中那样，空间度规现在就是简单的 $\delta_{ij}$，我们可以随意升降空间指标而不改变分量。
+
+为了体会度规微扰中各个不同场的物理诠释，我们来考虑由测地线方程描述的检验粒子的运动。式 (7.18) 相应的 Christoffel 符号是
+\begin{align*}
+\Gamma^{0}_{00} &= \partial_{0}\Phi \\
+\Gamma^{i}_{00} &= \partial_{i}\Phi + \partial_{0}w_{i} \\
+\Gamma^{0}_{j0} &= \partial_{j}\Phi \\
+\Gamma^{i}_{j0} &= \partial_{[j}w_{i]} + \frac{1}{2}\partial_{0}h_{ij} \\
+\Gamma^{0}_{jk} &= -\partial_{(j}w_{k)} + \frac{1}{2}\partial_{0}h_{jk} \\
+\Gamma^{i}_{jk} &= \partial_{(j}h_{k)i} - \frac{1}{2}\partial_{i}h_{jk}.
+\tag{7.19}
+\end{align*}
+在这些表达式里，我们坚持用 $h_{ij}$ 而不用 $s_{ij}$ 和 $\Psi$，因为它们只是以组合 $h_{ij} = 2s_{ij} - 2\Psi\delta_{ij}$ 的形式进入。一旦我们开始取迹以得到 Ricci 张量和 Einstein 方程，这种区分就会变得重要。既然我们已经固定了一个惯性系，方便的做法是把四维动量 $p^{\mu} = \mathrm{d}x^{\mu}/\mathrm{d}\lambda$（若粒子有质量，则 $\lambda = \tau/m$）用能量 $E$ 和三速度 $v^{i} = \mathrm{d}x^{i}/\mathrm{d}t$ 表出：
+\begin{equation*}
+p^{0} = \frac{\mathrm{d}t}{\mathrm{d}\lambda} = E, \qquad p^{i} = Ev^{i}.
+\tag{7.20}
+\end{equation*}
+然后我们取测地线方程
+\begin{equation*}
+\frac{\mathrm{d}p^{\mu}}{\mathrm{d}\lambda} + \Gamma^{\mu}_{\rho\sigma}p^{\rho}p^{\sigma} = 0,
+\tag{7.21}
+\end{equation*}
+把第二项移到右边，使它呈现出力项的模样，再用 $E$ 除两边，就得到
+\begin{equation*}
+\frac{\mathrm{d}p^{\mu}}{\mathrm{d}t} = -\Gamma^{\mu}_{\rho\sigma}\frac{p^{\rho}p^{\sigma}}{E}.
+\tag{7.22}
+\end{equation*}
+$\mu = 0$ 分量描述能量的演化，
+\begin{equation*}
+\frac{\mathrm{d}E}{\mathrm{d}t} = -E\left[\partial_{0}\Phi + 2(\partial_{k}\Phi)v^{k} - \left(\partial_{(j}w_{k)} - \frac{1}{2}\partial_{0}h_{jk}\right)v^{j}v^{k}\right].
+\tag{7.23}
+\end{equation*}
+
+% ---- 书页 281 / p296 ----
+你也许会认为能量应该守恒，但 $E = p^{0} = m\gamma$ 只包含粒子的“惯性”能量——在缓慢运动的极限下，即静能与动能——而不包含与引力场相互作用的那部分能量。
+
+测地线方程的空间分量 $\mu = i$ 则变成
+\begin{equation*}
+\frac{\mathrm{d}p^{i}}{\mathrm{d}t} = -E\left[\partial_{i}\Phi + \partial_{0}w_{i} + 2(\partial_{[i}w_{j]} + \partial_{0}h_{ij})v^{j} + \left(\partial_{(j}h_{k)i} - \frac{1}{2}\partial_{i}h_{jk}\right)v^{j}v^{k}\right].
+\tag{7.24}
+\end{equation*}
+为了作出物理解释，方便的做法是定义“引力电”（gravito-electric）与“引力磁”（gravito-magnetic）三维矢量场
+\begin{align*}
+G^{i} &\equiv -\partial_{i}\Phi - \partial_{0}w_{i} \\
+H^{i} &\equiv (\nabla \times \vec{w})^{i} = \epsilon^{ijk}\partial_{j}w_{k},
+\tag{7.25}
+\end{align*}
+它们与借助标势和矢势定义的普通电场和磁场有着显而易见的相似之处。于是 (7.24) 变成
+\begin{equation*}
+\frac{\mathrm{d}p^{i}}{\mathrm{d}t} = E\left[G^{i} + (\vec{v} \times H)^{i} - 2(\partial_{0}h_{ij})v^{j} - \left(\partial_{(j}h_{k)i} - \frac{1}{2}\partial_{i}h_{jk}\right)v^{j}v^{k}\right].
+\tag{7.26}
+\end{equation*}
+右边的头两项描述的是，沿测地线运动的检验粒子如何响应标量微扰 $\Phi$ 和矢量微扰 $w_{i}$，其方式让人想起电磁学中的洛伦兹力定律。我们还发现与空间微扰 $h_{ij}$ 的耦合，它们对三速度分别是线性阶和二次阶的。各种微扰的相对重要性当然取决于所考虑的物理情形，我们很快就会展示这一点。
+
+除了检验粒子的运动之外，我们还应当考察度规微扰的场方程，它们当然就是线性化 Einstein 方程。用我们的变量表出的 Riemann 张量是
+\begin{align*}
+R_{0j0l} &= \partial_{j}\partial_{l}\Phi + \partial_{0}\partial_{(j}w_{l)} - \frac{1}{2}\partial_{0}\partial_{0}h_{jl} \\
+R_{0jkl} &= \partial_{j}\partial_{[k}w_{l]} - \partial_{0}\partial_{[k}h_{l]j} \\
+R_{ijkl} &= \partial_{j}\partial_{[k}h_{l]i} - \partial_{i}\partial_{[k}h_{l]j},
+\tag{7.27}
+\end{align*}
+其他分量由对称性相联系。我们用 $\eta^{\mu\nu}$ 缩并得到 Ricci 张量，
+\begin{align*}
+R_{00} &= \nabla^{2}\Phi + \partial_{0}\partial_{k}w^{k} + 3\partial_{0}^{2}\Psi \\
+R_{0j} &= -\frac{1}{2}\nabla^{2}w_{j} + \frac{1}{2}\partial_{j}\partial_{k}w^{k} + 2\partial_{0}\partial_{j}\Psi + \partial_{0}\partial_{k}s_{j}{}^{k} \\
+R_{ij} &= -\partial_{i}\partial_{j}(\Phi - \Psi) - \partial_{0}\partial_{(i}w_{j)} + \Box\Psi\delta_{ij} - \Box s_{ij} + 2\partial_{k}\partial_{(i}s_{j)}{}^{k},
+\tag{7.28}
+\end{align*}
+
+% ---- 书页 282 / p297 ----
+其中 $\nabla^{2} = \delta^{ij}\partial_{i}\partial_{j}$ 是三维平直空间中的拉普拉斯算符。由于 Ricci 张量涉及缩并，空间微扰的无迹部分与迹部分现在以不同的方式进入。最后，我们可以算出 Einstein 张量，
+\begin{align*}
+G_{00} &= 2\nabla^{2}\Psi + \partial_{k}\partial_{l}s^{kl} \\
+G_{0j} &= -\frac{1}{2}\nabla^{2}w_{j} + \frac{1}{2}\partial_{j}\partial_{k}w^{k} + 2\partial_{0}\partial_{j}\Psi + \partial_{0}\partial_{k}s_{j}{}^{k} \\
+G_{ij} &= (\delta_{ij}\nabla^{2} - \partial_{i}\partial_{j})(\Phi - \Psi) + \delta_{ij}\partial_{0}\partial_{k}w^{k} - \partial_{0}\partial_{(i}w_{j)} \\
+&\qquad + 2\delta_{ij}\partial_{0}^{2}\Psi - \Box s_{ij} + 2\partial_{k}\partial_{(i}s_{j)}{}^{k} - \delta_{ij}\partial_{k}\partial_{l}s^{kl}.
+\tag{7.29}
+\end{align*}
+把这个表达式用到 Einstein 方程 $G_{\mu\nu} = 8\pi GT_{\mu\nu}$ 中就会看出，度规分量中只有一小部分是引力场真正的自由度；其余的都遵守约束，由其他场来确定。为看清这一点，从 $G_{00} = 8\pi GT_{00}$ 出发，用 (7.29) 可以把它写成
+\begin{equation*}
+\nabla^{2}\Psi = 4\pi GT_{00} - \frac{1}{2}\partial_{k}\partial_{l}s^{kl}.
+\tag{7.30}
+\end{equation*}
+这是一个关于 $\Psi$ 的、不含时间导数的方程；只要我们知道 $T_{00}$ 和 $s_{ij}$ 在任一时刻的行为，就能确定 $\Psi$ 必须是什么（相差空间无穷远处的边界条件）。因此，$\Psi$ 本身不是一个传播的自由度；它由能量-动量张量和引力应变 $s_{ij}$ 决定。接下来看 $0j$ 方程，我们把它写成
+\begin{equation*}
+(\delta_{jk}\nabla^{2} - \partial_{j}\partial_{k})w^{k} = -16\pi GT_{0j} + 4\partial_{0}\partial_{j}\Psi + 2\partial_{0}\partial_{k}s_{j}{}^{k}.
+\tag{7.31}
+\end{equation*}
+这是一个关于 $w^{i}$ 的、不含时间导数的方程；同样地，只要我们知道能量-动量张量和应变（由它可以求出 $\Psi$），矢量 $w^{i}$ 就被确定了。最后，$ij$ 方程是
+\begin{align*}
+(\delta_{ij}\nabla^{2} - \partial_{i}\partial_{j})\Phi = 8\pi GT_{ij} + (\delta_{ij}\nabla^{2} - \partial_{i}\partial_{j} - 2\delta_{ij}\partial_{0}^{2})\Psi \\
+-\ \delta_{ij}\partial_{0}\partial_{k}w^{k} + \partial_{0}\partial_{(i}w_{j)} + \Box s_{ij} - 2\partial_{k}\partial_{(i}s_{j)}{}^{k} - \delta_{ij}\partial_{k}\partial_{l}s^{kl}.
+\tag{7.32}
+\end{align*}
+我们再一次看到，没有时间导数作用在 $\Phi$ 上，因此 $\Phi$ 被确定为其他场的函数。
+
+这样一来，Einstein 方程中唯一传播的自由度就是应变张量 $s_{ij}$ 中的那些；我们将会看到，正是用它们来描述引力波。$h_{\mu\nu}$ 的其他分量都由 $s_{ij}$ 和物质场确定——它们不需要单独的初始数据。在其他替代理论中，比如 4.8 节讨论的那些含有额外场或作用量中高阶项的理论，度规的其他分量也可能成为动力学变量。正如我们将在 7.4 节末尾简要讨论的，传播的张量场经量子化后会给出具有不同自旋的粒子，这取决于场在空间转动下的行为。
+
+% ---- 书页 283 / p298 ----
+这样，标量 $\Phi$ 和 $\Psi$ 将是自旋-0 的，矢量 $w_{i}$ 将是自旋-1 的，而张量 $s_{ij}$ 是自旋-2 的。在通常的 GR 中，只有自旋-2 的部分才是真正的粒子激发。
+
+在上一节中我们展示了规范变换 $h_{\mu\nu} \to h_{\mu\nu} + \partial_{\mu}\xi_{\nu} + \partial_{\nu}\xi_{\mu}$ 如何由一个矢量场 $\xi^{\mu}$ 生成。从现在起，我们把式 (7.14) 中的参数 $\epsilon$ 取为 1，而把矢量场 $\xi^{\mu}$ 本身看作小量。在这样的变换下，各个度规微扰场按如下方式改变：
+\begin{align*}
+\Phi &\to \Phi + \partial_{0}\xi^{0} \\
+w_{i} &\to w_{i} + \partial_{0}\xi^{i} - \partial_{i}\xi^{0} \\
+\Psi &\to \Psi - \frac{1}{3}\partial_{i}\xi^{i} \\
+s_{ij} &\to s_{ij} + \partial_{(i}\xi_{j)} - \frac{1}{3}\partial_{k}\xi^{k}\delta_{ij},
+\tag{7.33}
+\end{align*}
+这你可以很容易地验证。正如在电磁学和其他规范理论中那样，不同的规范适用于不同的情形；这里我们列出几种常用的选择。
+
+首先考虑\textbf{横向规范}（transverse gauge，即宇宙学中有时使用的共形牛顿规范或 Poisson 规范的推广）。横向规范与电磁学中的 Coulomb 规范 $\partial_{i}A^{i} = 0$ 关系密切。我们先把应变固定成空间横向的，
+\begin{equation*}
+\partial_{i}s^{ij} = 0,
+\tag{7.34}
+\end{equation*}
+即选取 $\xi^{j}$ 使之满足
+\begin{equation*}
+\nabla^{2}\xi^{j} + \frac{1}{3}\partial_{j}\partial_{i}\xi^{i} = -2\partial_{i}s^{ij}.
+\tag{7.35}
+\end{equation*}
+$\xi^{0}$ 的值尚未确定，于是我们可以利用这个剩余的自由度，使矢量微扰成为横向的，
+\begin{equation*}
+\partial_{i}w^{i} = 0,
+\tag{7.36}
+\end{equation*}
+即选取 $\xi^{0}$ 使之满足
+\begin{equation*}
+\nabla^{2}\xi^{0} = \partial_{i}w^{i} + \partial_{0}\partial_{i}\xi^{i}.
+\tag{7.37}
+\end{equation*}
+作了傅里叶变换之后，“横向”的含义就清楚了：散度为零意味着张量与波矢量正交。(7.35) 和 (7.37) 都没有完全确定 $\xi^{\mu}$ 的值；它们都是含空间导数的二阶微分方程，需要边界条件才能确定解。就我们当前的目的而言，知道解总是存在的就足够了。条件 (7.34) 与 (7.36) 合起来定义了横向规范。在这个规范下，Einstein 方程变成
+\begin{equation*}
+\boxed{\,G_{00} = 2\nabla^{2}\Psi = 8\pi GT_{00},\,}
+\tag{7.38}
+\end{equation*}
+
+% ---- 书页 284 / p299 ----
+\begin{equation*}
+\boxed{\,G_{0j} = -\frac{1}{2}\nabla^{2}w_{j} + 2\partial_{0}\partial_{j}\Psi = 8\pi GT_{0j},\,}
+\tag{7.39}
+\end{equation*}
+以及
+\begin{equation*}
+\boxed{\,G_{ij} = (\delta_{ij}\nabla^{2} - \partial_{i}\partial_{j})(\Phi - \Psi) - \partial_{0}\partial_{(i}w_{j)} + 2\delta_{ij}\partial_{0}^{2}\Psi - \Box s_{ij} = 8\pi GT_{ij}.\,}
+\tag{7.40}
+\end{equation*}
+在本章剩下的部分里，我们将利用这些方程在不同情形下求弱场解。
+
+另一种常用的规范称为\textbf{同步规范}（synchronous gauge）。它等价于附录 D 中讨论的高斯法坐标的选取。可以把它看作电磁学中时间规范（temporal gauge）$A^{0} = 0$ 的引力类比，因为它把微扰的非空间分量统统消去。我们先令标势 $\Phi$ 消失，
+\begin{equation*}
+\Phi = 0,
+\tag{7.41}
+\end{equation*}
+即选取 $\xi^{0}$ 使之满足
+\begin{equation*}
+\partial_{0}\xi^{0} = -\Phi.
+\tag{7.42}
+\end{equation*}
+这之后我们仍然有能力选取 $\xi^{i}$。我们可以令矢量分量为零，
+\begin{equation*}
+w^{i} = 0,
+\tag{7.43}
+\end{equation*}
+即选取 $\xi^{i}$ 使之满足
+\begin{equation*}
+\partial_{0}\xi^{i} = -w^{i} + \partial_{i}\xi^{0}.
+\tag{7.44}
+\end{equation*}
+于是，同步规范下的度规呈现出如下诱人的形式：
+\begin{equation*}
+\mathrm{d}s^{2} = -\mathrm{d}t^{2} + (\delta_{ij} + h_{ij})\mathrm{d}x^{i}\mathrm{d}x^{j}.
+\tag{7.45}
+\end{equation*}
+这只不过是规范选择的问题，而且适用于任何稍稍偏离 Minkowski 时空的时空。写出同步规范下的 Einstein 方程并不难，但我们不打算费这个事，因为本章剩下的部分实际上并不会用到它。
+
+除了横向规范和同步规范之外，在计算引力波的产生时，方便的做法是用第三种选择，即 Lorenz 规范/谐和规范（Lorenz/harmonic gauge）。正如我们下面将要讨论的，它等价于令
+\begin{equation*}
+\partial_{\mu}h^{\mu}{}_{\nu} - \frac{1}{2}\partial_{\nu}h = 0,
+\tag{7.46}
+\end{equation*}
+
+% ---- 书页 285 / p300 ----
+其中 $h = \eta^{\mu\nu}h_{\mu\nu}$。用我们分解出的微扰场来表示，这个规范并没有任何特别简单的形式，但它确实使线性化 Einstein 方程呈现出一种格外简单的样子。
+
+在继续转向弱场极限的应用之前，我们来结束关于自由度的讨论，着重指出 (7.16) 中对度规微扰分量的\emph{代数}分解，与另一种分解之间的区别——如果我们考虑的是张量\emph{场}而不是定义在一点上的张量，后一种分解就成为可能。这另一种分解有助于更直接地显现物理自由度，在宇宙学微扰论中至关重要。它的基础是一个标准的观察结果：一个矢量场可以分解成横向部分 $w_{\perp}^{i}$ 与纵向部分 $w_{\parallel}^{i}$：
+\begin{equation*}
+w^{i} = w_{\perp}^{i} + w_{\parallel}^{i},
+\tag{7.47}
+\end{equation*}
+其中横向矢量是无散的，而纵向矢量是无旋的，
+\begin{equation*}
+\partial_{i}w_{\perp}^{i} = 0, \qquad \epsilon^{ijk}\partial_{j}w_{\parallel k} = 0.
+\tag{7.48}
+\end{equation*}
+注意这些是微分方程，因此显然只有作用在张量场上才有意义。横向矢量可以表示成某个其他矢量 $\xi^{i}$ 的旋度，尽管 $\xi^{i}$ 的选取并不唯一，除非我们施加诸如 $\partial_{i}\xi^{i} = 0$ 这样的附加条件。纵向矢量则是标量 $\lambda$ 的散度，
+\begin{equation*}
+w_{\perp}^{i} = \epsilon^{ijk}\partial_{j}\xi_{k}, \qquad w_{\parallel i} = \partial_{i}\lambda.
+\tag{7.49}
+\end{equation*}
+正如我们起初把度规微扰分解成标量、矢量和张量三部分一样，把矢量场分解成依赖于一个标量和一个横向矢量的两部分，这种分解在空间转动下是不变的。标量 $\lambda$ 显然代表一个自由度；矢量 $\xi^{i}$ 看起来像三个自由度，但由于 $\xi^{i}$ 选取的非唯一性，其中一个是虚的（你会注意到，这等价于作规范变换 $\xi_{i} \to \xi_{i} + \partial_{i}\omega$ 的自由）。因此总共有三个自由度，正好是描述原来的矢量场 $w^{i}$ 所应有的数目。
+
+类似的步骤也适用于无迹对称张量 $s^{ij}$，它可以分解成横向部分 $s_{\perp}^{ij}$、螺线部分 $s_{\mathrm{S}}^{ij}$ 和纵向部分 $s_{\parallel}^{ij}$，
+\begin{equation*}
+s^{ij} = s_{\perp}^{ij} + s_{\mathrm{S}}^{ij} + s_{\parallel}^{ij}.
+\tag{7.50}
+\end{equation*}
+横向部分是无散的，螺线部分的散度是一个横向（无散）矢量，而纵向部分的散度是一个纵向（无旋）矢量：
+\begin{align*}
+\partial_{i}s_{\perp}^{ij} = 0 \\
+\partial_{i}\partial_{j}s_{\mathrm{S}}^{ij} = 0 \\
+\epsilon^{jkl}\partial_{k}\partial_{i}s_{\parallel}{}^{i}{}_{j} = 0.
+\tag{7.51}
+\end{align*}
+
+% ---- 书页 286 / p301 ----
+这意味着纵向部分可以由一个标量场 $\theta$ 导出，而螺线部分可以由一个横向矢量 $\zeta^{i}$ 导出，
+\begin{align*}
+s_{\parallel ij} &= \left(\partial_{i}\partial_{j} - \frac{1}{3}\delta_{ij}\nabla^{2}\right)\theta \\
+s_{\mathrm{S}ij} &= \partial_{(i}\zeta_{j)},
+\tag{7.52}
+\end{align*}
+其中
+\begin{equation*}
+\partial_{i}\zeta^{i} = 0.
+\tag{7.53}
+\end{equation*}
+于是，纵向部分描写一个单独的自由度，而螺线部分描写两个自由度。横向部分无法再进一步分解；它描写对称无迹的 $3 \times 3$ 张量 $s_{ij}$ 其余的两个自由度。在本章后面，我们将引入横无迹（TT）规范来描述真空中传播的引力波；在这个规范下，唯一非零的度规微扰就是横向张量微扰 $s_{\perp}^{ij}$。
+
+借助这种对张量场的分解，我们成功地把原先有十个分量的度规微扰 $h_{\mu\nu}$ 写成了四个标量（$\Phi$、$\Psi$、$\lambda$ 和 $\theta$），各带一个自由度；两个横向矢量（$\xi^{i}$ 和 $\zeta^{i}$），各带两个自由度；以及一个横无迹张量（$s_{\perp}^{ij}$），带两个自由度。当人们谈论“标量”“矢量”和“张量”模式时，指的就是这组场。接下来我们可以用类似的方式分解能量-动量张量，用这些变量写出 Einstein 方程，并分离出物理的（规范不变的）自由度。本书不会使用这种分解，但你在查阅文献时应当知道它的存在。
+
+\section{Newton 场与光子轨迹}
+
+我们此前把“Newton 极限”定义为描述源静态、检验粒子缓慢运动的弱场。本节我们将稍稍扩展这个定义：仍然只限于静态的源，但允许检验粒子以任意速度运动。这里显然有一个重要差别：我们此前只需要考虑度规 $g_{00}$ 分量的效应，但我们将会发现，相对论性粒子对度规的空间分量也有响应。
+
+我们可以用尘埃——即压强为零的理想流体——来为静态的引力源建模。（宇宙中的大多数物质都可以很好地用尘埃来近似，包括恒星、行星、星系，甚至暗物质。）我们在
+% 本块末句在原书书页286末尾截断，于原书书页287顶部继续（“frame of the dust, ...”）；下一块 ch7_b 已以 %JOIN% 续接本句。
+尘埃的静止系，其中能量-动量张量取如下形式
+\begin{equation*}
+T_{\mu\nu} = \rho U_\mu U_\nu =
+\begin{pmatrix}
+\rho & & & \\
+& 0 & & \\
+& & 0 & \\
+& & & 0
+\end{pmatrix}.
+\tag{7.54}
+\end{equation*}
+
+% ---- 书页 287 / p302 ----（页顶承接句与 (7.54) 已在上面 tail 中）
+
+由于我们的背景是平直 Minkowski 时空，要容纳运动的源并不困难，只需通过洛伦兹变换换到其静止系即可；在这个极限下我们无法处理的，是具有较大相对速度的多个源。
+
+现在转向横向规范下的 Einstein 方程，即式 (7.38)--(7.40)。对于静态源，我们去掉所有含时间导数的项，同时代入能量-动量张量 (7.54)，得到
+\begin{align*}
+\nabla^2\Psi &= 4\pi G\rho \\
+\nabla^2 w_j &= 0 \\
+(\delta_{ij}\nabla^2 - \partial_i\partial_j)(\Phi - \Psi) - \nabla^2 s_{ij} &= 0.
+\tag{7.55}
+\end{align*}
+我们将寻找既无奇点、在无穷远处又表现良好的解；因此，只有那些由右端项作为源的场才会非零。例如，(7.55) 中的第二个方程直接给出 $w^i = 0$。接下来对第三个方程取迹（对 $\delta^{ij}$ 求和）：
+\begin{equation*}
+2\nabla^2(\Phi - \Psi) = 0.
+\tag{7.56}
+\end{equation*}
+这就迫使两个标量势相等，
+\begin{equation*}
+\Phi = \Psi.
+\tag{7.57}
+\end{equation*}
+回想在第 4 章最初讨论 Newton 极限时，我们论证过微扰的 00 分量 $\Phi$（正是它决定了非相对论性粒子的运动）满足 Poisson 方程；而从 (7.55) 来看，满足这个方程的似乎其实是空间分量上的标量微扰 $\Psi$。二者之间隐含的联系由 (7.56) 给出：当 $T_{ij}$ 的迹（三个主压强之和）为零时，它令两个势相等。最后，把 $\Phi = \Psi$ 代入 (7.55) 的最后一个方程，得到
+\begin{equation*}
+\nabla^2 s_{ij} = 0,
+\tag{7.58}
+\end{equation*}
+对于表现良好的解，这意味着 $s_{ij} = 0$。
+
+因此，静态 Newton 源的微扰度规为
+\begin{equation*}
+\boxed{\,ds^2 = -(1+2\Phi)\mathrm{d}t^2 + (1-2\Phi)(\mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2),\,}
+\tag{7.59}
+\end{equation*}
+
+% ---- 书页 288 / p303 ----
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.3.pdf}
+\caption*{图 7.3\quad 一条被偏折的测地线 $x^{\mu}(\lambda)$，分解为一条背景测地线 $x^{(0)\mu}$ 和一个微扰 $x^{(1)\mu}$。偏转角 $\widehat{\alpha}$ 代表波矢量（wave vector）沿路径转过的量的（负值）。图中画出的是碰撞参数（impact parameter）为 $b$ 的单个质量 $M$，尽管这一设置更具一般性。}
+\end{figure}
+
+或等价地
+\begin{equation*}
+h_{\mu\nu} =
+\begin{pmatrix}
+-2\Phi & & & \\
+& -2\Phi & & \\
+& & -2\Phi & \\
+& & & -2\Phi
+\end{pmatrix},
+\tag{7.60}
+\end{equation*}
+其中势满足通常的 Poisson 方程，
+\begin{equation*}
+\nabla^2\Phi = 4\pi G\rho.
+\tag{7.61}
+\end{equation*}
+这是对第 4 章结果的一个重要推广，因为我们现在不仅知道 $h_{00}$，还知道空间度规的微扰。
+
+现在让我们考虑光子（或其他无质量粒子）在这个几何中的路径；换句话说，对类光轨迹 $x^\mu(\lambda)$ 求解微扰后的测地线方程。\footnote{我们所用的方法在 T.~Pyne 和 M.~Birkinshaw 的文章 \emph{Astrophys. Journ.} 458, 46 (1996) 中有概述，见 \texttt{http://arxiv.org/abs/astro-ph/9504060}。}我们所考虑的几何描绘于图 7.3。回想一下，我们的处理思路是把度规微扰当作定义在平直背景时空上的场。类似地，我们可以把测地线分解为背景路径加上微扰，
+\begin{equation*}
+x^\mu(\lambda) = x^{(0)\mu}(\lambda) + x^{(1)\mu}(\lambda),
+\tag{7.62}
+\end{equation*}
+其中 $x^{(0)\mu}$ 满足背景中的测地线方程（换句话说，就是一条笔直的类光路径）。然后我们沿背景路径取所有量的值，来求解 $x^{(1)\mu}(\lambda)$。要让这一做法行得通，我们需要假设势 $\Phi$ 沿背景测地线与真实测地线没有明显差别；这个条件相当于要求 $x^{(1)i}\partial_i\Phi \ll \Phi$。不过，即使这个条件不成立，也并非全盘皆输。如果我们只考虑非常短的路径，偏离
+
+% ---- 书页 289 / p304 ----
+
+$x^{(1)\mu}$ 就必然很小，我们的近似也将有效。而接下来我们可以用这样的短段拼接出更长的路径。结果是，我们会推导出真实的方程，只是积分所沿的路径将是\emph{真实}路径 $x^\mu(\lambda)$，而不是背景路径 $x^{(0)\mu}(\lambda)$。只要理解了这一点，我们的结果对微扰时空中的任何轨迹都将成立。
+
+为方便起见，我们把背景路径的波矢量记作 $k^\mu$，把偏离矢量的导数记作 $\ell^\mu$：
+\begin{equation*}
+k^\mu \equiv \frac{dx^{(0)\mu}}{d\lambda}, \qquad \ell^\mu \equiv \frac{dx^{(1)\mu}}{d\lambda}.
+\tag{7.63}
+\end{equation*}
+路径为类光的条件当然是
+\begin{equation*}
+g_{\mu\nu}\frac{dx^\mu}{d\lambda}\frac{dx^\nu}{d\lambda} = 0,
+\tag{7.64}
+\end{equation*}
+我们必须逐阶求解它。零阶时我们直接有 $\eta_{\mu\nu}k^\mu k^\nu = 0$，即
+\begin{equation*}
+(k^0)^2 = (\vec{k}\,)^2 \equiv k^2,
+\tag{7.65}
+\end{equation*}
+其中 $\vec{k}$ 是分量为 $k^i$ 的三维矢量。这个方程充当常数 $k$ 的定义。于一阶我们得到
+\begin{equation*}
+2\eta_{\mu\nu}k^\mu\ell^\nu + h_{\mu\nu}k^\mu k^\nu = 0,
+\tag{7.66}
+\end{equation*}
+即
+\begin{equation*}
+-k\ell^0 + \vec{\ell}\cdot\vec{k} = 2k^2\Phi.
+\tag{7.67}
+\end{equation*}
+
+现在我们转向微扰后的测地线方程，
+\begin{equation*}
+\frac{d^2x^\mu}{d\lambda^2} + \Gamma^\mu_{\rho\sigma}\frac{dx^\rho}{d\lambda}\frac{dx^\sigma}{d\lambda} = 0.
+\tag{7.68}
+\end{equation*}
+把 $w^i = 0$ 和 $h_{ij} = -2\Phi\delta_{ij}$ 代入 (7.19)，便可以求出 Christoffel 符号：
+\begin{align*}
+\Gamma^0_{0i} &= \Gamma^i_{00} = \partial_i\Phi, \\
+\Gamma^i_{jk} &= \delta_{jk}\partial_i\Phi - \delta_{ik}\partial_j\Phi - \delta_{ij}\partial_k\Phi.
+\tag{7.69}
+\end{align*}
+零阶测地线方程只是告诉我们 $x^{(0)\mu}$ 是一条直线轨迹，而在一阶我们有
+\begin{equation*}
+\frac{d\ell^\mu}{d\lambda} = -\Gamma^\mu_{\rho\sigma}k^\rho k^\sigma.
+\tag{7.70}
+\end{equation*}
+
+% ---- 书页 290 / p305 ----
+
+右端没有 $\ell^\mu$ 的因子，因为 Christoffel 符号已经是微扰的一阶量。(7.70) 的 $\mu = 0$ 分量为
+\begin{equation*}
+\frac{d\ell^0}{d\lambda} = -2k(\vec{k}\cdot\vec{\nabla}\Phi),
+\tag{7.71}
+\end{equation*}
+而空间分量为
+\begin{equation*}
+\frac{d\vec{\ell}}{d\lambda} = -2k^2\vec{\nabla}_{\perp}\Phi.
+\tag{7.72}
+\end{equation*}
+这里我们引入了横向于路径的梯度，它定义为总梯度减去沿路径方向的梯度，
+\begin{align*}
+\vec{\nabla}_{\perp}\Phi &\equiv \vec{\nabla}\Phi - \vec{\nabla}_{\parallel}\Phi \\
+&= \vec{\nabla}\Phi - k^{-2}(\vec{k}\cdot\vec{\nabla}\Phi)\vec{k}.
+\tag{7.73}
+\end{align*}
+在以上所有表达式中，路径均指背景路径。
+
+注意，在 $\Phi$ 的一阶精度下，空间波矢量微扰 $\vec{\ell}$ 与原有的空间波矢量 $\vec{k}$ 正交。为看清这一点，我们可以积分 (7.71) 得到 $\ell^0$ 的表达式：
+\begin{align*}
+\ell^0 &= \int \frac{d\ell^0}{d\lambda}\, d\lambda \\
+&= -2k\int (\vec{k}\cdot\vec{\nabla}\Phi)\, d\lambda \\
+&= -2k\int \left(\frac{d\vec{x}}{d\lambda}\cdot\vec{\nabla}\Phi\right) d\lambda \\
+&= -2k\int \vec{\nabla}\Phi\cdot d\vec{x} \\
+&= -2k\Phi.
+\tag{7.74}
+\end{align*}
+积分常数由 $\Phi = 0$ 时 $\ell^0 = 0$ 的要求确定。把它代入 (7.67)，得到
+\begin{equation*}
+\vec{\ell}\cdot\vec{k} = k\ell^0 + 2k^2\Phi = 0,
+\tag{7.75}
+\end{equation*}
+这就验证了 $\vec{\ell}$ 与 $\vec{k}$ 在一阶精度下正交。
+
+\textbf{偏转角}（deflection angle）$\widehat{\alpha}$ 是原有的空间波矢量从源传播到观者处时被偏折的量；它是垂直于 $\vec{k}$ 的平面内的一个二维矢量。（我们采用记号 $\widehat{\alpha}$ 而不是 $\vec{\alpha}$，因为后者已留给第 8 章引入的约化偏转角（reduced deflection angle）。）由图 7.3 所描绘的几何，偏转角可以表示为
+
+% ---- 书页 291 / p306 ----
+
+\begin{equation*}
+\widehat{\alpha} = -\frac{\Delta\vec{\ell}}{k},
+\tag{7.76}
+\end{equation*}
+其中负号只是考虑到这样一个事实：偏转角是由沿光子路径向后看的观者测量的。波矢量的转动可以由 (7.72) 算出：
+\begin{align*}
+\Delta\vec{\ell} &= \int\frac{d\vec{\ell}}{d\lambda}\, d\lambda \\
+&= -2k^2\int \vec{\nabla}_{\perp}\Phi\, d\lambda.
+\tag{7.77}
+\end{align*}
+因此，偏转角可以写成沿所经过的物理空间距离 $s = k\lambda$ 的积分：
+\begin{equation*}
+\boxed{\,\widehat{\alpha} = 2\int \vec{\nabla}_{\perp}\Phi\, ds.\,}
+\tag{7.78}
+\end{equation*}
+
+我们可以在点质量的情形下算出偏转角：设想背景路径沿 $x$ 方向，碰撞参数由一个横向矢量 $\vec{b}$ 定义，它在最接近点处从路径指向质量。取 $b = |\vec{b}|$，势为
+\begin{equation*}
+\Phi = -\frac{GM}{r} = -\frac{GM}{(b^2+x^2)^{1/2}},
+\tag{7.79}
+\end{equation*}
+其横向梯度因此为
+\begin{equation*}
+\vec{\nabla}_{\perp}\Phi = \frac{GM}{(b^2+x^2)^{3/2}}\vec{b}.
+\tag{7.80}
+\end{equation*}
+于是偏转角为
+\begin{align*}
+\widehat{\alpha} &= 2GMb\int \frac{dx}{(b^2+x^2)^{3/2}} \\
+&= \frac{4GM}{b},
+\tag{7.81}
+\end{align*}
+其中积分取自 $-\infty$ 到 $\infty$，这里假定了源和观者都离偏折质量非常远。注意在我们的单位制中 $c = 1$；在其他单位制下，应在 (7.81) 的分母中补上因子 $c^2$。
+
+太阳对光的偏折在历史上是广义相对论的一个关键检验。Einstein 提出了三项这样的检验：水星近日点进动、引力红移和光线偏折。水星近日点进动被 GR 成功解释，但它解释的是一个早已被观测到的偏差；引力红移直到很久之后才被观测到，
+% ---- 书页 292 / p307 ----
+因此光线偏折是 Einstein 的理论第一次正确预言了尚未被探测到的现象。Eddington 率领的一支著名远征队在 1919 年的日全食期间观测了太阳附近恒星的位置；观测结果与 GR 预言相符，世界各地的报纸都在头版报道了这一消息。预言的效应相当小：对太阳而言，$GM_\odot/c^2 = 1.48\times10^5$ cm，太阳半径为 $R_\odot = 6.96\times10^{10}$ cm，由此给出的最大偏转角为 $\widehat{\alpha} = 1.75$ 角秒。后来对 Eddington 结果的重新评估使人们怀疑他是否真的达到了当初宣称的精度；当代的测量则利用从太阳背后经过的类星体（quasar）的高精度干涉观测，对 GR 作出非常精确的检验（GR 迄今为止都经受了这些检验）。与此同时，对星系和恒星等天体物理源造成的光线偏折的观测，已经发展成一个活跃的研究领域，其名目叫作“引力透镜”。当然，在这种情形下我们对透镜质量的了解很少能达到为 GR 提供精密检验的程度；更常见的做法反而是把观测到的偏转角用作测量质量的一种手段。我们将在第 8 章进一步讨论透镜。
+
+除了光线偏折之外，1964 年 Shapiro 还指出了弱场广义相对论在光子轨迹上的另一个可观测结果：引力时间延迟（gravitational time delay）。沿一条类光路径所耗费的坐标时间为
+\begin{equation*}
+t = \int\frac{dx^0}{d\lambda}\, d\lambda.
+\tag{7.82}
+\end{equation*}
+我们把自己放在一个远离一切源、静止于背景惯性系中的观者的位置上，因此坐标时间就是我们的固有时。在存在 Newton 势的情况下，光子相对于背景光锥看起来“慢了下来”，由此导致的附加时间延迟为
+\begin{align*}
+\Delta t &= \int\frac{dx^{(1)0}}{d\lambda}\, d\lambda \\
+&= \int \ell^0\, d\lambda \\
+&= -2k\int \Phi\, d\lambda,
+\tag{7.83}
+\end{align*}
+即
+\begin{equation*}
+\Delta t = -2\int \Phi\, ds.
+\tag{7.84}
+\end{equation*}
+
+按照我们的规则，积分沿背景路径进行。除了这个 Shapiro 延迟之外，还可能有一个额外的“几何”时间延迟，因为真实路径经过的空间距离比背景路径更长。对太阳造成的光线偏折而言，几何延迟效应可以忽略，但在宇宙学的应用中，
+% ---- 书页 293 / p308 ----
+它可以与 Shapiro 效应相比拟。这一时间延迟已被观测到，其中最精确的测量利用的是航天器而非天然天体；详见 Will (1981)。
+
+光子穿过 Newton 势的运动——它同时导致光线偏折和引力时间延迟——也可以等价地这样导出：设想光子是在折射率（refractive index）为
+\begin{equation*}
+n = 1 - 2\Phi,
+\tag{7.85}
+\end{equation*}
+的介质中传播（精确到一阶）。事实上，我们本可以利用 Fermat 最短时间原理（Fermat's principle of least time）求出光子的运动方程；习题中将请你证明这一点。
+
+\section{引力波解}
+
+弱场极限一个更令人兴奋的应用是引力辐射。这里我们研究的是引力场的自由传播自由度，它们的存在不需要任何局域的源（当然它们可以由这类源产生）。于是我们再一次回到横向规范下的弱场方程，即式 (7.38)--(7.40)，但这一次保留时间导数，同时完全关掉能量-动量张量，$T_{\mu\nu} = 0$。这时 00 方程为
+\begin{equation*}
+\nabla^2\Psi = 0,
+\tag{7.86}
+\end{equation*}
+在表现良好的边界条件下，这意味着 $\Psi = 0$。于是 $0j$ 方程为
+\begin{equation*}
+\nabla^2 w_j = 0,
+\tag{7.87}
+\end{equation*}
+这同样意味着 $w_j = 0$。
+
+接下来看 $ij$ 方程的迹，（代入上面的结果后）它给出
+\begin{equation*}
+\nabla^2\Phi = 0,
+\tag{7.88}
+\end{equation*}
+这意味着 $\Phi = 0$。
+
+于是只剩下 $ij$ 方程的无迹部分，它成为无迹应变张量（strain tensor）的波动方程：
+\begin{equation*}
+\Box s_{ij} = 0.
+\tag{7.89}
+\end{equation*}
+虽然到目前为止用 $s_{ij}$ 做事很方便，但文献中远为常见的做法是用整个度规微扰 $h_{\mu\nu}$ 来书写表达式，不过采用的拟设是令所有其他自由度 $(\Phi, \Psi, w_i)$ 都为零（且 $s_{ij}$ 是横向的）。这就是通常所说的\textbf{横无迹（TT）规范}（transverse-traceless gauge），其中有
+
+% ---- 书页 294 / p309 ----
+
+\begin{equation*}
+h^{\mathrm{TT}}_{\mu\nu} =
+\begin{pmatrix}
+0 & 0 & 0 & 0 \\
+0 & & & \\
+0 & & 2s_{ij} & \\
+0 & & &
+\end{pmatrix}.
+\tag{7.90}
+\end{equation*}
+这时的运动方程为
+\begin{equation*}
+\Box h^{\mathrm{TT}}_{\mu\nu} = 0.
+\tag{7.91}
+\end{equation*}
+为了更容易与其他资料对照，在讨论引力波时我们将使用 $h^{\mathrm{TT}}_{\mu\nu}$ 而不是 $s_{ij}$，同时记住 $h^{\mathrm{TT}}_{\mu\nu}$ 是纯空间的、无迹且横向的：
+\begin{gather*}
+h^{\mathrm{TT}}_{0\nu} = 0 \\
+\eta^{\mu\nu}h^{\mathrm{TT}}_{\mu\nu} = 0 \\
+\partial_\mu h^{\mu\nu}_{\mathrm{TT}} = 0.
+\tag{7.92}
+\end{gather*}
+
+我们从波动方程 (7.91) 出发寻找解。熟悉电磁学中类似问题的读者会注意到，这里的步骤几乎一模一样。这族波动方程中特别有用的一组解是平面波，由下式给出
+\begin{equation*}
+h^{\mathrm{TT}}_{\mu\nu} = C_{\mu\nu}e^{ik_\sigma x^\sigma},
+\tag{7.93}
+\end{equation*}
+其中 $C_{\mu\nu}$ 是一个常值、对称的 $(0,2)$ 型张量，显然无迹且纯空间：
+\begin{gather*}
+C_{0\nu} = 0 \\
+\eta^{\mu\nu}C_{\mu\nu} = 0.
+\tag{7.94}
+\end{gather*}
+当然，$e^{ik_\sigma x^\sigma}$ 是复的，而 $h^{\mathrm{TT}}_{\mu\nu}$ 是实的；我们让实部和虚部一起贯穿整个计算，最后再取实部。常矢量 $k^\sigma$ 就是波矢量。为了确认我们得到的确是一个解，把它代入：
+\begin{align*}
+0 &= \Box h^{\mathrm{TT}}_{\mu\nu} \\
+&= \eta^{\rho\sigma}\partial_\rho\partial_\sigma h^{\mathrm{TT}}_{\mu\nu} \\
+&= \eta^{\rho\sigma}\partial_\rho(ik_\sigma h^{\mathrm{TT}}_{\mu\nu}) \\
+&= -\eta^{\rho\sigma}k_\rho k_\sigma h^{\mathrm{TT}}_{\mu\nu} \\
+&= -k_\sigma k^\sigma h^{\mathrm{TT}}_{\mu\nu}.
+\tag{7.95}
+\end{align*}
+
+% ---- 书页 295 / p310 ----
+
+由于对一个有意义的解来说，$h^{\mathrm{TT}}_{\mu\nu}$ 的各分量不会处处都为零，我们必须有
+\begin{equation*}
+k_\sigma k^\sigma = 0.
+\tag{7.96}
+\end{equation*}
+因此，只要波矢量是类光的，平面波 (7.93) 就是线性化方程的解；这可以粗略地转述为：引力波以光速传播。波矢量的类时分量就是波的频率，我们把它写作 $k^\sigma = (\omega, k^1, k^2, k^3)$。（更一般地，以四速度 $U^\mu$ 运动的观者会观测到波的频率为 $\omega = -k_\mu U^\mu$。）于是波矢量为类光的条件就成为
+\begin{equation*}
+\omega^2 = \delta_{ij}k^ik^j.
+\tag{7.97}
+\end{equation*}
+
+当然，我们的波远非最一般的解；任意（可能无限多个）不同的平面波可以相加，而且仍然求解线性方程 (7.91)。事实上，任何解都可以写成这样的叠加。
+
+我们还需要保证微扰是横向的。这意味着
+\begin{align*}
+0 &= \partial_\mu h^{\mu\nu}_{\mathrm{TT}} \\
+&= iC^{\mu\nu}k_\mu e^{ik_\sigma x^\sigma},
+\tag{7.98}
+\end{align*}
+而这只有当
+\begin{equation*}
+k_\mu C^{\mu\nu} = 0.
+\tag{7.99}
+\end{equation*}
+时才成立。我们说波矢量与 $C^{\mu\nu}$ 正交。
+
+选取空间坐标使波沿 $x^3$ 方向传播，可以把我们的解写得更显式；也就是说，
+\begin{equation*}
+k^\mu = (\omega, 0, 0, k^3) = (\omega, 0, 0, \omega),
+\tag{7.100}
+\end{equation*}
+其中我们知道 $k^3 = \omega$，因为波矢量是类光的。在这种情形下，$k^\mu C_{\mu\nu} = 0$ 与 $C_{0\nu} = 0$ 合起来意味着
+\begin{equation*}
+C_{3\nu} = 0.
+\tag{7.101}
+\end{equation*}
+于是 $C_{\mu\nu}$ 仅有的非零分量是 $C_{11}$、$C_{12}$、$C_{21}$ 和 $C_{22}$。但 $C_{\mu\nu}$ 无迹且对称，故一般地可以写成
+\begin{equation*}
+C_{\mu\nu} =
+\begin{pmatrix}
+0 & 0 & 0 & 0 \\
+0 & C_{11} & C_{12} & 0 \\
+0 & C_{12} & -C_{11} & 0 \\
+0 & 0 & 0 & 0
+\end{pmatrix}.
+\tag{7.102}
+\end{equation*}
+这样，对这个规范中沿 $x^3$ 方向传播的平面波，两个分量 $C_{11}$ 和 $C_{12}$（连同频率 $\omega$）就完全刻画了这个波。
+
+% ---- 书页 296 / p311 ----
+
+为了体会引力波经过时的物理效应，考虑检验粒子在波存在时的运动。只求解单个粒子的轨迹肯定是不够的，因为那只会告诉我们世界线上坐标的取值。事实上，对任何一个单独的粒子，我们都能找到一组横无迹坐标（transverse traceless coordinates），使这个粒子在精确到 $h^{\mathrm{TT}}_{\mu\nu}$ 一阶的意义下显得静止。为了得到一个不依赖坐标的量来量度波的效应，我们考虑邻近粒子的相对运动，这由测地偏离方程描述。如果考虑一些邻近的粒子，其四速度由同一个矢量场 $U^\mu(x)$ 描写，间隔矢量为 $S^\mu$，则有
+\begin{equation*}
+\frac{D^2}{d\tau^2}S^\mu = R^\mu{}_{\nu\rho\sigma}U^\nu U^\rho S^\sigma.
+\tag{7.103}
+\end{equation*}
+我们希望把右端计算到 $h^{\mathrm{TT}}_{\mu\nu}$ 的一阶。如果取检验粒子缓慢运动，我们可以把四速度表成时间方向的单位矢量加上 $h^{\mathrm{TT}}_{\mu\nu}$ 阶及更高阶的改正；但我们知道 Riemann 张量已经是一阶量，所以 $U^\nu$ 的改正可以忽略，于是写成
+\begin{equation*}
+U^\nu = (1, 0, 0, 0).
+\tag{7.104}
+\end{equation*}
+因此我们只需计算 $R^\mu{}_{00\sigma}$，或等价地 $R_{\mu 00\sigma}$。由 (7.5) 有
+\begin{equation*}
+R_{\mu 00\sigma} = \tfrac{1}{2}(\partial_0\partial_0 h^{\mathrm{TT}}_{\mu\sigma} + \partial_\sigma\partial_\mu h^{\mathrm{TT}}_{00} - \partial_\sigma\partial_0 h^{\mathrm{TT}}_{\mu 0} - \partial_\mu\partial_0 h^{\mathrm{TT}}_{\sigma 0}).
+\tag{7.105}
+\end{equation*}
+但 $h^{\mathrm{TT}}_{\mu 0} = 0$，所以
+\begin{equation*}
+R_{\mu 00\sigma} = \tfrac{1}{2}\partial_0\partial_0 h^{\mathrm{TT}}_{\mu\sigma}.
+\tag{7.106}
+\end{equation*}
+另一方面，对缓慢运动的粒子，在最低阶我们有 $\tau = x^0 = t$，于是测地偏离方程成为
+\begin{equation*}
+\frac{\partial^2}{\partial t^2}S^\mu = \frac{1}{2}S^\sigma\frac{\partial^2}{\partial t^2}h^{\mathrm{TT}\mu}{}_{\sigma}.
+\tag{7.107}
+\end{equation*}
+
+对我们的沿 $x^3$ 方向传播的波，这意味着只有 $S^1$ 和 $S^2$ 会受到影响——检验粒子只在垂直于波矢量的方向上被扰动。这一点在电磁学中是大家熟悉的：平面波中的电场和磁场都垂直于波矢量。
+
+我们的波由这两个数刻画，为了后面方便，我们把它们重新命名为：
+\begin{gather*}
+h_+ = C_{11} \\
+h_\times = C_{12},
+\tag{7.108}
+\end{gather*}
+
+% ---- 书页 297 / p312 ----
+
+于是
+\begin{equation*}
+C_{\mu\nu} =
+\begin{pmatrix}
+0 & 0 & 0 & 0 \\
+0 & h_+ & h_\times & 0 \\
+0 & h_\times & -h_+ & 0 \\
+0 & 0 & 0 & 0
+\end{pmatrix}.
+\tag{7.109}
+\end{equation*}
+让我们分别考虑二者的效应，先讨论 $h_\times = 0$ 的情形。这时有
+\begin{equation*}
+\frac{\partial^2}{\partial t^2}S^1 = \frac{1}{2}S^1\frac{\partial^2}{\partial t^2}(h_+e^{ik_\sigma x^\sigma})
+\tag{7.110}
+\end{equation*}
+而
+\begin{equation*}
+\frac{\partial^2}{\partial t^2}S^2 = -\frac{1}{2}S^2\frac{\partial^2}{\partial t^2}(h_+e^{ik_\sigma x^\sigma}).
+\tag{7.111}
+\end{equation*}
+这两个方程可以立即解出，在最低阶给出
+\begin{equation*}
+S^1 = \left(1 + \tfrac{1}{2}h_+e^{ik_\sigma x^\sigma}\right)S^{1}{}_{(0)}
+\tag{7.112}
+\end{equation*}
+以及
+\begin{equation*}
+S^2 = \left(1 - \tfrac{1}{2}h_+e^{ik_\sigma x^\sigma}\right)S^{2}{}_{(0)}.
+\tag{7.113}
+\end{equation*}
+
+于是，初始时刻沿 $x^1$ 方向分开的粒子将在 $x^1$ 方向上振荡，初始沿 $x^2$ 方向分开的粒子亦然。也就是说，如果我们从 $x$-$y$ 平面上一圈静止的粒子出发，那么当波经过时，它们会以“+”的形状来回弹动，如图 7.4 所示。另一方面，对 $h_+ = 0$ 而 $h_\times \neq 0$ 的情形作同样的分析，将得到解
+\begin{equation*}
+S^1 = S^{1}{}_{(0)} + \tfrac{1}{2}h_\times e^{ik_\sigma x^\sigma}S^{2}{}_{(0)}
+\tag{7.114}
+\end{equation*}
+以及
+\begin{equation*}
+S^2 = S^{2}{}_{(0)} + \tfrac{1}{2}h_\times e^{ik_\sigma x^\sigma}S^{1}{}_{(0)}.
+\tag{7.115}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.4.pdf}
+\caption*{图 7.4\quad 具有 + 偏振的引力波会把检验粒子圆环扭曲成按 + 图样振荡的椭圆。}
+\end{figure}
+
+% ---- 书页 298 / p313 ----
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.5.pdf}
+\caption*{图 7.5\quad 具有 $\times$ 偏振的引力波会把检验粒子圆环扭曲成按 $\times$ 图样振荡的椭圆。}
+\end{figure}
+
+在这种情形下，粒子圆环会来回弹动，保持“$\times$”的形状，如图 7.5 所示。因此 $h_+$ 和 $h_\times$ 这两个记号的含义应当清楚了。这两个量量度引力波的两种独立的线偏振模式，分别称为“+”偏振与“$\times$”偏振（plus and cross）。如果我们愿意，通过定义
+\begin{gather*}
+h_R = \frac{1}{\sqrt{2}}(h_+ + ih_\times), \\
+h_L = \frac{1}{\sqrt{2}}(h_+ - ih_\times).
+\tag{7.116}
+\end{gather*}
+就可以考虑右旋和左旋的圆偏振模式。
+
+一个纯 $h_R$ 波的效应是使粒子沿右手方向转动，如图 7.6 所示；左旋模式 $h_L$ 与此类似。注意，各个粒子并不绕着环运动；它们只是在小本轮（epicycles）上打转。
+
+我们可以把经典引力波的偏振态与量子化后预期会出现的粒子种类联系起来。量子化场的自旋与该场在空间转动下的变换性质直接相关。电磁场有两个独立的偏振态，由 $x$-$y$ 平面内的矢量描写；等价地说，单一偏振模式在这个平面内转动 $360^{\circ}$ 后保持不变。量子化后，这个理论给出光子——一种无质量的自旋为 1 的粒子。而中微子也是一种无质量粒子，描写它的场在转动 $360^{\circ}$ 下改变符号；它在 $720^{\circ}$ 转动下不变，于是我们说它具有
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.6.pdf}
+\caption*{图 7.6\quad 具有 R 偏振的引力波会把检验粒子圆环扭曲成沿右手方向旋转的椭圆。}
+\end{figure}
+自旋 $1/2$。一般的规律是：自旋 $S$ 与偏振模式在转动下保持不变所对应的角 $\theta$ 之间的关系为 $S = 360^{\circ}/\theta$。引力场——它的波以光速传播——在量子理论中应当导致无质量粒子。注意到我们所描述的偏振模式在 $x$-$y$ 平面内转动 $180^{\circ}$ 下不变，我们预期相应的粒子——引力子（gravitons）——是自旋 2 的。探测这样的粒子还遥遥无期（就算我们永远无法直接探测到它们，也不会令人惊讶），但任何一门像样的引力量子理论都应当预言它们的存在。
+
+% ---- 书页 299 / p314 ----（本页第一段已在上面 tail 中接续，正文自第二段起）
+
+事实上，从自旋为 2 的引力子理论出发，再加上一些简单性质的要求，就为\emph{导出}广义相对论完整的 Einstein 方程提供了一条漂亮的途径。设想从对称张量 $h_{\mu\nu}$ 的拉格朗日量 (7.9) 出发，但现在设想这个场“其实真的是”一个在 Minkowski 时空中传播的物理场，而不是动力学度规上的微扰。（这个拉格朗日量不包含与物质的耦合，不过把它加上并不困难。）现在再追加一条要求：让 $h_{\mu\nu}$ 与它自身的能量-动量张量（下文讨论）耦合，同时也与物质的能量-动量张量耦合。这会在作用量中诱导出高阶非线性项，随之又诱导出阶数更高的“能量-动量”项。反复重复这一过程，就会引入一个无穷多项的级数，但这个级数可以求和成一个简单的表达式——也许是因为你已经知道答案——即 Einstein--Hilbert 作用量（可能还带有一些高阶项）。在这一过程中我们发现，物质与唯一的组合 $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ 耦合。换句话说，仅仅要求一个自旋为 2 的场与能量-动量张量耦合，我们最终就得到了广义相对论完全非线性的全部辉煌。背景度规 $\eta_{\mu\nu}$ 变得完全不可观测。当然，广义相对论的某些整体几何面貌被这套程序掩盖了；它归根结底只是为 Einstein 方程提供论证的另一种方式。
+
+在我们谈论这些趣事之际，不妨指出：引力波的行为为弦论为何会给出引力的量子理论提供了一条线索。考虑一根弦圈的基本振动模式，如图 7.7 所示。一根弦圈有三个能量最低的模式：
+
+% ---- 书页 300 / p315 ----（承接上页段末"……三个能量最低的模式："）
+
+一个整体的大小振荡，外加两种独立的、振荡成椭圆的方式。它们给出三个无质量自由度：一个自旋为 0 的粒子（伸缩子，dilaton）和一个无质量的自旋为 2 的粒子（引力子）。注意弦的振荡与检验粒子在引力波影响下的运动之间有着明显的相似；这绝非偶然，这正是量子化的弦不可避免地给出引力的原因。（弦论最初是作为强相互作用理论被研究的，但各种模型都不可避免地预言一个多余的无质量自旋 2 粒子；人们最终意识到，如果把这个理论当作引力的量子理论来看待，这个缺陷反而可以变成优点。）那个多余而无用的自旋 0（标量）模式反映了这样的事实：弦论实际上预言的是一个标量-张量引力理论（如 4.8 节所讨论），而不是普通的广义相对论。由于自然界中并没有观察到这种无质量标量，必定要有某种机制在低能下赋予这个标量质量。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.7.pdf}
+\caption*{图 7.7\quad 一根弦圈的三个基本振动模式。整体的"呼吸"模式（最左）在转动下不变，给出一个自旋为 0 的粒子。另外两个模式与引力波的两个偏振相匹配，代表一个无质量自旋 2 粒子的两个态。}
+\end{figure}
+
+\section{引力波的产生}
+
+有了线性化真空方程的平面波解，剩下要讨论的就是源对引力辐射的产生。为此有必要考虑与物质耦合的 Einstein 方程 $G_{\mu\nu} = 8\pi G T_{\mu\nu}$。由于 $T_{\mu\nu}$ 不为零，度规微扰除了表示引力波的应变张量之外，还将包含非零的标量和矢量分量；我们不能假定解取横无迹形式 (7.90)。相反，我们将保留完整的微扰 $h_{\mu\nu}$，求出在远离源处产生的引力波，在那里我们随后可以施加横无迹规范。
+
+即便有源存在，我们仍然可以引入一些方便的简化。首先定义无迹反转微扰（trace-reversed perturbation），
+\begin{equation*}
+\bar{h}_{\mu\nu} = h_{\mu\nu} - \frac{1}{2}\eta_{\mu\nu}h.
+\tag{7.117}
+\end{equation*}
+“无迹反转微扰”这个名字是有道理的，因为
+\begin{equation*}
+\bar{h} = \eta^{\mu\nu}\bar{h}_{\mu\nu} = -h.
+\tag{7.118}
+\end{equation*}
+显然，我们可以从无迹反转形式重构出原来的微扰，因此没有丢失任何信息。还要注意，如果我们在远离任何源的真空区域、并且可以取横无迹规范，那么无迹反转微扰将等于原来的微扰，
+\begin{equation*}
+\bar{h}^{\mathrm{TT}}_{\mu\nu} = h^{\mathrm{TT}}_{\mu\nu}.
+\tag{7.119}
+\end{equation*}
+同时，我们仍然可以自由选择某种规范。在规范变换 (7.14) 下，无迹反转微扰按下式变换：
+\begin{equation*}
+\bar{h}_{\mu\nu} \rightarrow \bar{h}_{\mu\nu} + 2\partial_{(\mu}\xi_{\nu)} - \partial_\lambda\xi^{\lambda}\eta_{\mu\nu}.
+\tag{7.120}
+\end{equation*}
+
+% ---- 书页 301 / p316 ----
+
+于是，通过选取满足
+\begin{equation*}
+\Box\xi_\mu = -\partial_\lambda\bar{h}^{\lambda}{}_{\mu},
+\tag{7.121}
+\end{equation*}
+的规范参数 $\xi_\mu$，我们就可以令
+\begin{equation*}
+\partial_\mu\bar{h}^{\mu\nu} = 0.
+\tag{7.122}
+\end{equation*}
+这个条件称为\textbf{Lorenz 规范}，与电磁学中经常使用的类似条件 $\partial_\mu A^\mu = 0$ 相仿。\footnote{注意拼写。这个“规范”（gauge）源自 Ludwig Lorenz（1829--1891），而更有名的“变换”（transformation）则由 Hendrick Antoon Lorentz（1853--1928）发明。参见 J.~D. Jackson 和 L.~B. Okun，\emph{Rev. Mod. Phys.} 73, 663 (2001)。}注意，原来的微扰在这个规范下并不是横向的；确切地说，我们有
+\begin{equation*}
+\partial_\mu h^{\mu\nu} = \frac{1}{2}\partial^\nu h.
+\tag{7.123}
+\end{equation*}
+把无迹反转微扰的定义代入我们的 Einstein 张量表达式 (7.8)，并利用 Lorenz 规范条件，便得到一个非常简洁的表达式
+\begin{equation*}
+G_{\mu\nu} = -\frac{1}{2}\Box\bar{h}_{\mu\nu}.
+\tag{7.124}
+\end{equation*}
+用原来的微扰 $h_{\mu\nu}$ 写出的相应表达式则要稍微杂乱一些；这正是引入 $\bar{h}_{\mu\nu}$ 的原因。于是，这个规范下的线性化 Einstein 方程就是每个分量各自满足的一个波动方程，
+\begin{equation*}
+\Box\bar{h}_{\mu\nu} = -16\pi G T_{\mu\nu}.
+\tag{7.125}
+\end{equation*}
+这类方程的解可以用 Green 函数求得，处理方式与电磁学中的类似问题完全相同。这里我们将循着 Wald (1984) 的路子回顾一下方法的梗概。
+
+d'Alembert 算符 $\Box$ 的 Green 函数 $G(x^\sigma - y^\sigma)$，是波动方程在存在 $\delta$ 函数源时的解：
+\begin{equation*}
+\Box_x G(x^\sigma - y^\sigma) = \delta^{(4)}(x^\sigma - y^\sigma),
+\tag{7.126}
+\end{equation*}
+其中 $\Box_x$ 表示对坐标 $x^\sigma$ 的 d'Alembert 算符。这类函数的用处在于，诸如 (7.125) 这样的方程的一般解可以写成
+\begin{equation*}
+\bar{h}_{\mu\nu}(x^\sigma) = -16\pi G\int G(x^\sigma - y^\sigma)T_{\mu\nu}(y^\sigma)\, d^{4}y,
+\tag{7.127}
+\end{equation*}
+这可以立即得到验证。（注意，不需要任何 $\sqrt{-g}$ 因子，因为我们的背景就是简单的平直时空。）(7.126) 的解当然早就被算出来了，它们可以被视为“推迟的”（retarded）或“超前的”（advanced），取决于它们代表的是在时间中向前还是
+
+% ---- 书页 302 / p317 ----（承接上页段末"……向前还是"）
+
+向后传播的波。我们感兴趣的是推迟 Green 函数，它代表来自所考虑点之过去的信号的累积效应。它由下式给出
+\begin{equation*}
+G(x^\sigma - y^\sigma) = -\frac{1}{4\pi|\mathbf{x}-\mathbf{y}|}\,\delta\!\left[|\mathbf{x}-\mathbf{y}| - (x^{0} - y^{0})\right]\theta(x^{0} - y^{0}).
+\tag{7.128}
+\end{equation*}
+这里我们已经用粗体表示空间矢量 $\mathbf{x} = (x^{1}, x^{2}, x^{3})$ 和 $\mathbf{y} = (y^{1}, y^{2}, y^{3})$，其模为 $|\mathbf{x}-\mathbf{y}| = [\delta_{ij}(x^{i}-y^{i})(x^{j}-y^{j})]^{1/2}$。$\theta$ 函数 $\theta(x^{0}-y^{0})$ 在 $x^{0} > y^{0}$ 时等于 1，否则为零。(7.128) 的推导会使我们离题太远，但在任何一本关于电动力学或物理中的偏微分方程的标准教科书中都可以找到。
+
+把 (7.128) 代入 (7.127)，我们可以利用 $\delta$ 函数完成对 $y^{0}$ 的积分，得到
+\begin{equation*}
+\bar{h}_{\mu\nu}(t, \mathbf{x}) = 4G\int \frac{1}{|\mathbf{x}-\mathbf{y}|}T_{\mu\nu}(t - |\mathbf{x}-\mathbf{y}|, \mathbf{y})\, d^{3}y,
+\tag{7.129}
+\end{equation*}
+其中 $t = x^{0}$。“推迟时间”（retarded time）一词指的正是量
+\begin{equation*}
+t_r = t - |\mathbf{x}-\mathbf{y}|.
+\tag{7.130}
+\end{equation*}
+(7.129) 的含义应当是清楚的：引力场在 $(t, \mathbf{x})$ 处的扰动，是过去光锥上的点 $(t_r, \mathbf{x}-\mathbf{y})$ 处的能量与动量源的影响之总和，如图 7.8 所描绘。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.8.pdf}
+\caption*{图 7.8\quad 引力场在 $(t, x^i)$ 处的扰动用过去光锥上的事件来计算。}
+\end{figure}
+
+让我们取这个一般解，考虑引力辐射由一个相当遥远的、由非相对论性物质组成的孤立源发出的情形；随着讨论的推进，这些近似会得到更精确的表述。首先我们需要建立几条傅里叶变换的约定，在处理振荡现象时它们总能让我们省力不少。给定一个时空函数 $\phi(t, \mathbf{x})$，我们关心的是它仅对时间的傅里叶变换（及其逆变换），
+
+% ---- 书页 303 / p318 ----
+
+\begin{gather*}
+\widetilde{\phi}(\omega, \mathbf{x}) = \frac{1}{\sqrt{2\pi}}\int dt\, e^{i\omega t}\phi(t, \mathbf{x}), \\
+\phi(t, \mathbf{x}) = \frac{1}{\sqrt{2\pi}}\int d\omega\, e^{-i\omega t}\widetilde{\phi}(\omega, \mathbf{x}).
+\tag{7.131}
+\end{gather*}
+对度规微扰作变换，我们得到
+\begin{align*}
+\widetilde{\bar{h}}_{\mu\nu}(\omega, \mathbf{x}) &= \frac{1}{\sqrt{2\pi}}\int dt\, e^{i\omega t}\bar{h}_{\mu\nu}(t, \mathbf{x}) \\
+&= \frac{4G}{\sqrt{2\pi}}\int dt\, d^{3}y\, e^{i\omega t}\frac{T_{\mu\nu}(t - |\mathbf{x}-\mathbf{y}|, \mathbf{y})}{|\mathbf{x}-\mathbf{y}|} \\
+&= \frac{4G}{\sqrt{2\pi}}\int dt_r\, d^{3}y\, e^{i\omega t_r}e^{i\omega|\mathbf{x}-\mathbf{y}|}\frac{T_{\mu\nu}(t_r, \mathbf{y})}{|\mathbf{x}-\mathbf{y}|} \\
+&= 4G\int d^{3}y\, e^{i\omega|\mathbf{x}-\mathbf{y}|}\frac{\widetilde{T}_{\mu\nu}(\omega, \mathbf{y})}{|\mathbf{x}-\mathbf{y}|}.
+\tag{7.132}
+\end{align*}
+在这一串式子中，第一个等式就是傅里叶变换的定义，第二行来自解 (7.129)，第三行是从 $t$ 到 $t_r$ 的变量代换，第四行则又是傅里叶变换的定义。
+
+现在我们作如下近似：源是孤立的、遥远的，并且缓慢运动。这意味着我们可以把源看作中心位于（空间）距离 $r$ 处，源的不同部分位于距离 $r + \delta r$ 处，且 $\delta r \ll r$，如图 7.9 所示。由于源缓慢运动，发射的辐射其频率 $\omega$ 大都足够低，使得 $\delta r \ll \omega^{-1}$。（本质上，光穿越源的速度远远快于源自身各部分的速度。）在这些近似下，$e^{i\omega|\mathbf{x}-\mathbf{y}|}/|\mathbf{x}-\mathbf{y}|$ 这一项可以用 $e^{i\omega r}/r$ 代替，并移到积分号外。这剩下
+\begin{equation*}
+\widetilde{\bar{h}}_{\mu\nu}(\omega, \mathbf{x}) = 4G\frac{e^{i\omega r}}{r}\int d^{3}y\, \widetilde{T}_{\mu\nu}(\omega, \mathbf{y}).
+\tag{7.133}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.9.pdf}
+\caption*{图 7.9\quad 一个尺寸为 $\delta r$ 的源，位于距观者 $r$ 处。}
+\end{figure}
+
+% ---- 书页 304 / p319 ----
+
+事实上，我们无须计算 $\widetilde{\bar{h}}_{\mu\nu}(\omega, \mathbf{x})$ 的所有分量，因为 Lorenz 规范条件 $\partial_\mu\bar{h}^{\mu\nu}(t, \mathbf{x}) = 0$ 在傅里叶空间中意味着
+\begin{equation*}
+\widetilde{\bar{h}}^{0\nu} = \frac{i}{\omega}\partial_i\widetilde{\bar{h}}^{i\nu}.
+\tag{7.134}
+\end{equation*}
+因此我们只需关心 $\widetilde{\bar{h}}_{\mu\nu}(\omega, \mathbf{x})$ 的类空分量，然后再由 (7.134) 恢复出 $\widetilde{\bar{h}}^{0\nu}$。要做的第一件事是令 $\nu = j$，从 $\widetilde{\bar{h}}^{ij}$ 求出 $\widetilde{\bar{h}}^{0j}$，然后再用它从 $\widetilde{\bar{h}}^{i0}$ 求出 $\widetilde{\bar{h}}^{00}$。于是，根据 (7.133)，我们要对 $\widetilde{T}_{\mu\nu}(\omega, \mathbf{y})$ 的类空分量取积分。我们从反向分部积分开始：
+\begin{equation*}
+\int d^{3}y\, \widetilde{T}^{ij}(\omega, \mathbf{y}) = \int \partial_k(y^{i}\widetilde{T}^{kj})\, d^{3}y - \int y^{i}(\partial_k\widetilde{T}^{kj})\, d^{3}y.
+\tag{7.135}
+\end{equation*}
+第一项是一个面积分，由于源是孤立的，它将消失；第二项则可以通过 $\partial_\mu T^{\mu\nu} = 0$ 的傅里叶空间版本与 $\widetilde{T}^{0j}$ 联系起来：
+\begin{equation*}
+-\partial_k\widetilde{T}^{k\mu} = i\omega\widetilde{T}^{0\mu}.
+\tag{7.136}
+\end{equation*}
+于是，
+\begin{align*}
+\int d^{3}y\, \widetilde{T}^{ij}(\omega, \mathbf{y}) &= i\omega\int y^{i}\widetilde{T}^{0j}\, d^{3}y \\
+&= \frac{i\omega}{2}\int (y^{i}\widetilde{T}^{0j} + y^{j}\widetilde{T}^{0i})\, d^{3}y \\
+&= \frac{i\omega}{2}\int \left[\partial_l(y^{i}y^{j}\widetilde{T}^{0l}) - y^{i}y^{j}(\partial_l\widetilde{T}^{0l})\right] d^{3}y \\
+&= -\frac{\omega^{2}}{2}\int y^{i}y^{j}\widetilde{T}^{00}\, d^{3}y.
+\tag{7.137}
+\end{align*}
+第二行的依据是，我们知道左边在 $i$ 和 $j$ 上是对称的；而第三行和第四行不过是把反向分部积分和 $T^{\mu\nu}$ 守恒重复了一遍。习惯上定义源能量密度的\textbf{四极矩张量（quadrupole moment tensor）}，
+\begin{equation*}
+I_{ij}(t) = \int y^{i}y^{j}T^{00}(t, \mathbf{y})\, d^{3}y,
+\tag{7.138}
+\end{equation*}
+它是每个等时面上的一个常张量。四极矩张量的整体归一化是一个约定问题，绝非普遍统一，因此在比较不同文献时要当心。用四极矩的傅里叶变换来表示，我们的解具有紧凑的形式
+\begin{equation*}
+\widetilde{\bar{h}}_{ij}(\omega, \mathbf{x}) = -2G\omega^{2}\frac{e^{i\omega r}}{r}\widetilde{I}_{ij}(\omega).
+\tag{7.139}
+\end{equation*}
+
+% ---- 书页 305 / p320 ----
+
+我们可以把它变换回 $t$，得到\textbf{四极公式（quadrupole formula）}
+\begin{equation*}
+\boxed{\,\bar{h}_{ij}(t, \mathbf{x}) = \frac{2G}{r}\frac{d^{2}I_{ij}}{dt^{2}}(t_r),\,}
+\tag{7.140}
+\end{equation*}
+其中和前面一样，$t_r = t - r$。
+
+因此，由一个孤立非相对论性物体产生的引力波，正比于能量密度四极矩在观者过去光锥与源相交处的二阶导数。相比之下，电磁辐射的主要贡献来自电荷密度变化的\emph{偶极}矩。这个差别可以追溯到引力的普适性。偶极矩的变化对应于密度中心的运动——在电磁学中是电荷密度，在引力中则是能量密度。虽然没有什么能阻止一个物体的电荷中心振荡，但孤立系统质心的振荡违反动量守恒。（你可以让一个物体上下晃动，但你和地球也会朝相反方向稍稍晃动以作补偿。）四极矩量度系统的形状，一般比偶极矩小；由于这个原因，再加上物质与引力耦合微弱，引力辐射通常比电磁辐射弱得多。
+
+一个特别有意思的情形是双星（两颗相互绕转的恒星）发出的引力辐射。为简单起见，考虑两颗质量为 $M$ 的恒星，在 $x^{1}$-$x^{2}$ 平面内的圆轨道上绕转，与它们共同质心的距离为 $R$，如图 7.10 所示。我们将用 Newton 近似处理恒星的运动，在这种近似下我们可以像 Kepler 那样讨论它们的轨道。刻画圆轨道最容易的方式，是把引力与向外的“离心力”相等：
+\begin{equation*}
+\frac{GM^{2}}{(2R)^{2}} = \frac{Mv^{2}}{R},
+\tag{7.141}
+\end{equation*}
+由此得到
+\begin{equation*}
+v = \left(\frac{GM}{4R}\right)^{1/2}.
+\tag{7.142}
+\end{equation*}
+完成一整圈轨道所需的时间很简单，
+\begin{equation*}
+T = \frac{2\pi R}{v},
+\tag{7.143}
+\end{equation*}
+但对我们更有用的是轨道的角频率，
+\begin{equation*}
+\Omega = \frac{2\pi}{T} = \left(\frac{GM}{4R^{3}}\right)^{1/2}.
+\tag{7.144}
+\end{equation*}
+
+% ---- 书页 306 / p321 ----
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.10.pdf}
+\caption*{图 7.10\quad 一个双星系统。两颗质量为 $M$ 的恒星在 $x^1$-$x^2$ 平面内以轨道半径 $R$ 绕转。}
+\end{figure}
+
+用 $\Omega$ 我们可以写出恒星 $a$ 的显式轨迹，
+\begin{equation*}
+x^{1}_{a} = R\cos\Omega t, \qquad x^{2}_{a} = R\sin\Omega t,
+\tag{7.145}
+\end{equation*}
+以及恒星 $b$ 的轨迹，
+\begin{equation*}
+x^{1}_{b} = -R\cos\Omega t, \qquad x^{2}_{b} = -R\sin\Omega t.
+\tag{7.146}
+\end{equation*}
+相应的能量密度为
+\begin{equation*}
+T^{00}(t, \mathbf{x}) = M\delta(x^{3})\left[\delta(x^{1} - R\cos\Omega t)\delta(x^{2} - R\sin\Omega t) + \delta(x^{1} + R\cos\Omega t)\delta(x^{2} + R\sin\Omega t)\right].
+\tag{7.147}
+\end{equation*}
+这些密密麻麻的 $\delta$ 函数使我们能够直接积分，由 (7.138) 得到四极矩：
+\begin{align*}
+I_{11} &= 2MR^{2}\cos^{2}\Omega t = MR^{2}(1 + \cos 2\Omega t) \\
+I_{22} &= 2MR^{2}\sin^{2}\Omega t = MR^{2}(1 - \cos 2\Omega t) \\
+I_{12} &= I_{21} = 2MR^{2}(\cos\Omega t)(\sin\Omega t) = MR^{2}\sin 2\Omega t \\
+I_{i3} &= 0.
+\tag{7.148}
+\end{align*}
+由此再利用 (7.140)，容易得到度规微扰的分量：
+
+% ---- 书页 307 / p322 ----
+
+\begin{equation*}
+\bar{h}_{ij}(t, \mathbf{x}) = \frac{8GM}{r}\Omega^{2}R^{2}
+\begin{pmatrix}
+-\cos 2\Omega t_r & -\sin 2\Omega t_r & 0 \\
+-\sin 2\Omega t_r & \cos 2\Omega t_r & 0 \\
+0 & 0 & 0
+\end{pmatrix}.
+\tag{7.149}
+\end{equation*}
+$\bar{h}_{\mu\nu}$ 的其余分量可以通过要求 Lorenz 规范条件得到满足而导出。
+
+\section{引力辐射导致的能量损失}
+
+到了这里，很自然想谈谈通过引力辐射发射的能量。然而这样的讨论立刻就会遇到种种问题，既有技术上的，也有哲学上的。正如我们前面提到过的，引力场中的能量没有真正的局域量度。当然，在弱场极限下——即我们把引力当作是在固定背景度规上传播的对称张量来描述——我们或许有望像对电磁学或其他任何场论那样，导出涨落 $h_{\mu\nu}$ 的能量-动量张量。在某种程度上这是可能的，但仍然困难。由于这些困难，文献中有许多不同的建议，关于在弱场极限下应当用什么作为引力的能量-动量张量；它们彼此不同，但对于诸如双星系统能量发射速率这类物理上适定的问题，它们给出的答案大体相同。
+
+在技术层面上，当我们考虑能量-动量张量应当取什么形式时，困难开始出现。我们前面提到过电磁学和标量场论的能量-动量张量，两者共有一个重要特征——它们都是相关场的二次式。按照假设，我们处理弱场极限的办法是只保留度规微扰的线性项。因此，为了追踪引力波携带的能量，我们将不得不把计算扩展到至少 $h_{\mu\nu}$ 的二阶。事实上，我们一直都在稍稍作弊。在讨论引力波对检验粒子的效应以及双星系统产生波时，我们一直在利用检验粒子沿测地线运动这一事实。但我们知道，这是从能量-动量的协变守恒 $\nabla_\mu T^{\mu\nu} = 0$ 推出来的；然而在我们一直工作的阶次上，实际有的是 $\partial_\mu T^{\mu\nu} = 0$，而那将意味着检验粒子在平直背景度规中沿直线运动。这是弱场极限无法描述自引力系统的一个症状。在实践中，最好的办法是把弱场方程解到某个适当的阶，然后再事后论证解的有效性。我们将遵循 Misner, Thorne 和 Wheeler (1973) 第 35、36 章概述的程序，那里可以找到关于这些微妙之处的更多讨论。另见 Wald (1984) 与 Schutz (1985)。
+
+现在让我们考察 Einstein 真空方程 $R_{\mu\nu} = 0$ 到二阶，看看结果如何能用引力场的能量-动量张量来解释。我们把度规和 Ricci 张量都展开，
+
+% ---- 书页 308 / p323 ----
+
+\begin{gather*}
+g_{\mu\nu} = \eta_{\mu\nu} + h^{(1)}_{\mu\nu} + h^{(2)}_{\mu\nu} \\
+R_{\mu\nu} = R^{(0)}_{\mu\nu} + R^{(1)}_{\mu\nu} + R^{(2)}_{\mu\nu},
+\tag{7.150}
+\end{gather*}
+其中 $R^{(1)}_{\mu\nu}$ 取为与 $h^{(1)}_{\mu\nu}$ 同阶，而 $R^{(2)}_{\mu\nu}$ 与 $h^{(2)}_{\mu\nu}$ 则是 $(h^{(1)}_{\mu\nu})^{2}$ 阶的。因为我们在平直背景中工作，零阶方程 $R^{(0)}_{\mu\nu} = 0$ 自动满足。一阶真空方程就是
+\begin{equation*}
+R^{(1)}_{\mu\nu}[h^{(1)}] = 0,
+\tag{7.151}
+\end{equation*}
+它确定一阶微扰 $h^{(1)}_{\mu\nu}$（相差规范变换）。二阶微扰 $h^{(2)}_{\mu\nu}$ 则将由二阶方程
+\begin{equation*}
+R^{(1)}_{\mu\nu}[h^{(2)}] + R^{(2)}_{\mu\nu}[h^{(1)}] = 0.
+\tag{7.152}
+\end{equation*}
+确定。记号 $R^{(1)}_{\mu\nu}[h^{(2)}]$ 表示展开后的 Ricci 张量中与度规微扰呈线性关系的那些部分，也就是把由 (7.6) 给出的表达式应用于二阶微扰 $h^{(2)}_{\mu\nu}$；与此同时，$R^{(2)}_{\mu\nu}[h^{(1)}]$ 代表展开后 Ricci 张量的二次部分，
+\begin{align*}
+R^{(2)}_{\mu\nu} ={}& \frac{1}{2}h^{\rho\sigma}\partial_\mu\partial_\nu h_{\rho\sigma} + \frac{1}{4}(\partial_\mu h_{\rho\sigma})\partial_\nu h^{\rho\sigma} + (\partial^\sigma h^{\rho}{}_{\nu})\partial_{[\sigma}h_{\rho]\mu} - h^{\rho\sigma}\partial_\rho\partial_{(\mu}h_{\nu)\sigma} \\
+&+ \frac{1}{2}\partial_\sigma(h^{\rho\sigma}\partial_\rho h_{\mu\nu}) - \frac{1}{4}(\partial_\rho h_{\mu\nu})\partial^\rho h - \left(\partial_\sigma h^{\rho\sigma} - \frac{1}{2}\partial^\sigma h\right)\partial_{(\mu}h_{\nu)\rho},
+\tag{7.153}
+\end{align*}
+把它应用于一阶微扰 $h^{(1)}_{\mu\nu}$。没有交叉项，因为它们必然是更高阶的。
+
+现在让我们把真空方程写成 $G_{\mu\nu} = 0$；这当然等价于 $R_{\mu\nu} = 0$，但能使我们以富有启发性的形式表达结果。在二阶我们有
+\begin{equation*}
+R^{(1)}_{\mu\nu}[h^{(2)}] - \frac{1}{2}\eta^{\rho\sigma}R^{(2)}_{\rho\sigma}[h^{(2)}]\eta_{\mu\nu} = 8\pi G t_{\mu\nu},
+\tag{7.154}
+\end{equation*}
+其中我们定义了
+\begin{equation*}
+t_{\mu\nu} \equiv -\frac{1}{8\pi G}\left\{R^{(2)}_{\mu\nu}[h^{(1)}] - \frac{1}{2}\eta^{\rho\sigma}R^{(2)}_{\rho\sigma}[h^{(1)}]\eta_{\mu\nu}\right\}.
+\tag{7.155}
+\end{equation*}
+关于这个表达式注意两点。第一，我们没有包含形如 $h^{(1)\rho\sigma}R^{(1)}_{\rho\sigma}[h^{(1)}]$ 的项，因为 $R^{(1)}_{\mu\nu}[h^{(1)}] = 0$。第二，(7.154) 的左边并不是完整的二阶 Einstein 张量，因为我们把涉及 $R^{(2)}_{\mu\nu}[h^{(1)}]$ 的项移到了右边，并大胆地把它们重新标记为一阶微扰的能量-动量张量 $t_{\mu\nu}$。这样一种认定看来非常有理：
+
+% ---- 书页 309 / p324 ----（承接上页末"……这样一种认定看来非常有理："）
+
+$t_{\mu\nu}$ 是一个对称张量，是 $h_{\mu\nu}$ 的二次式，它恰好以物质能量-动量张量会采取的方式表示微扰如何影响时空度规。（$h_{\mu\nu}$ 的线性项不起作用，因为 $G^{(1)}_{\mu\nu}[h^{(1)}]$ 已被一阶方程直接置为零。）注意，$t_{\mu\nu}$ 也是守恒的，在背景平直空间的意义下，
+\begin{equation*}
+\partial_\mu t^{\mu\nu} = 0,
+\tag{7.156}
+\end{equation*}
+这从 Bianchi 恒等式 $\partial_\mu G^{\mu\nu} = 0$ 就可以知道。
+
+遗憾的是，把 $t_{\mu\nu}$ 解释为能量-动量张量存在一些局限。当然，在完整的理论中它根本不是张量，但根据假设我们对这一点不予理会。更重要的是，它在规范变换（无穷小微分同胚）下不是不变的，你可以通过直接计算来验证这一点。绕开这个困难的一种办法，是把能量-动量张量在若干个波长上取平均，我们用尖括号 $\langle\cdots\rangle$ 表示这一操作。这一做法兼有哲学上和实用上的优点。从哲学的观点看，我们知道，正因为可以在任意一点选取 Riemann 法坐标，我们不可能定义一种纯粹局域的（在每一点恰好用该点的度规及其一阶导数来定义的）、可靠的引力能量-动量量度。然而，如果在若干个波长上取平均，我们就有希望捕捉到一个小区域内足够多的物理曲率，从而给出一个规范不变的量度。从实用的角度看，任何导数项（相对于导数的乘积）平均后都为零，
+\begin{equation*}
+\langle\partial_\mu(X)\rangle = 0.
+\tag{7.157}
+\end{equation*}
+因此我们就有理由在平均括号下分部积分，
+\begin{equation*}
+\langle A(\partial_\mu B)\rangle = -\langle(\partial_\mu A)B\rangle,
+\tag{7.158}
+\end{equation*}
+这将大大简化我们的表达式。
+
+考虑到这些，让我们用二阶 Ricci 张量的表达式 (7.153) 来计算 (7.155) 定义的 $t_{\mu\nu}$。（从此以后我们将不再在度规微扰上写上标，因为我们只对一阶微扰感兴趣。）虽然取平均的部分动机是得到规范不变的答案，但实际计算相当繁难，所以为了演示，我们将在横无迹规范下进行，
+\begin{equation*}
+\partial^{\mu}h^{\mathrm{TT}}_{\mu\nu} = 0, \qquad h^{\mathrm{TT}} = 0.
+\tag{7.159}
+\end{equation*}
+不要忘了，只有在真空中我们才被允许选取这个规范。在这个规范下，$R^{(2)\mathrm{TT}}_{\mu\nu}$ 的非零部分可以写成
+\begin{align*}
+R^{(2)\mathrm{TT}}_{\mu\nu} ={}& \frac{1}{2}h^{\rho\sigma}_{\mathrm{TT}}\partial_\mu\partial_\nu h^{\mathrm{TT}}_{\rho\sigma} + \frac{1}{4}(\partial_\mu h^{\mathrm{TT}}_{\rho\sigma})\partial_\nu h^{\rho\sigma}_{\mathrm{TT}} + \frac{1}{2}\eta^{\rho\lambda}(\partial^\sigma h^{\mathrm{TT}}_{\rho\nu})\partial_\sigma h^{\mathrm{TT}}_{\lambda\mu} \\
+&- \frac{1}{2}(\partial^\sigma h^{\mathrm{TT}}_{\rho\nu})\partial^\rho h^{\mathrm{TT}}_{\sigma\mu} - h^{\rho\sigma}_{\mathrm{TT}}\partial_\sigma\partial_{(\mu}h^{\mathrm{TT}}_{\nu)\rho} + \frac{1}{2}h^{\rho\sigma}_{\mathrm{TT}}\partial_\sigma\partial_\rho h^{\mathrm{TT}}_{\mu\nu}.
+\tag{7.160}
+\end{align*}
+
+% ---- 书页 310 / p325 ----
+
+现在让我们施加平均括号，并在方便之处分部积分。(7.160) 的最后三项全部消失，因为分部积分给出的散度最终化为零。于是剩下
+\begin{equation*}
+\left\langle R^{(2)\mathrm{TT}}_{\mu\nu}\right\rangle = -\frac{1}{4}\left\langle(\partial_\mu h^{\mathrm{TT}}_{\rho\sigma})(\partial_\nu h^{\rho\sigma}_{\mathrm{TT}}) + 2\eta^{\rho\lambda}(\Box h^{\mathrm{TT}}_{\rho\nu})h^{\mathrm{TT}}_{\lambda\mu}\right\rangle.
+\tag{7.161}
+\end{equation*}
+但微扰服从一阶运动方程，它令 $\Box h^{\mathrm{TT}}_{\mu\nu} = 0$。所以我们最终剩下
+\begin{equation*}
+\left\langle R^{(2)\mathrm{TT}}_{\mu\nu}\right\rangle = -\frac{1}{4}\left\langle(\partial_\mu h^{\mathrm{TT}}_{\rho\sigma})(\partial_\nu h^{\rho\sigma}_{\mathrm{TT}})\right\rangle.
+\tag{7.162}
+\end{equation*}
+我们可以取迹得到标量曲率；分部积分之后我们再次遇到一个 $\Box h^{\mathrm{TT}}_{\mu\nu}$ 项，我们把它置为零，于是
+\begin{equation*}
+\left\langle\eta^{\mu\nu}R^{(2)\mathrm{TT}}_{\mu\nu}\right\rangle = 0.
+\tag{7.163}
+\end{equation*}
+把这些表达式代入 (7.155)，就得到横无迹规范下引力波能量-动量张量的一个简单表达式：
+\begin{equation*}
+\boxed{\,t_{\mu\nu} = \frac{1}{32\pi G}\left\langle(\partial_\mu h^{\mathrm{TT}}_{\rho\sigma})(\partial_\nu h^{\rho\sigma}_{\mathrm{TT}})\right\rangle.\,}
+\tag{7.164}
+\end{equation*}
+记住，在这个规范下非空间分量为零，$h^{\mathrm{TT}}_{0\nu} = 0$。因此你有时会看到上面的表达式用空间指标 $ij$ 而不是时空指标 $\rho\sigma$ 来写；两种写法显然等价。如果我们足够强大，能够不先选定规范就完成相应的计算，我们将会发现
+\begin{align*}
+t_{\mu\nu} = \frac{1}{32\pi G}\Big\langle(\partial_\mu h_{\rho\sigma})(\partial_\nu h^{\rho\sigma}) &- \frac{1}{2}(\partial_\mu h)(\partial_\nu h) \\
+&- (\partial_\rho h^{\rho\sigma})(\partial_\mu h_{\nu\sigma}) - (\partial_\rho h^{\rho\sigma})(\partial_\nu h_{\mu\sigma})\Big\rangle.
+\tag{7.165}
+\end{align*}
+稍作直接的处理便足以验证这个表达式其实是规范不变的，习题中会请你证明这一点。
+
+让我们对单个平面波计算横无迹表达式 (7.164)，
+\begin{equation*}
+h^{\mathrm{TT}}_{\mu\nu} = C_{\mu\nu}\sin(k_\lambda x^\lambda).
+\tag{7.166}
+\end{equation*}
+我们取了实部，并任意设定相位，使这个波是正弦而非余弦。于是能量-动量张量为
+\begin{equation*}
+t_{\mu\nu} = \frac{1}{32\pi G}k_\mu k_\nu C_{\rho\sigma}C^{\rho\sigma}\left\langle\cos^{2}(k_\lambda x^\lambda)\right\rangle.
+\tag{7.167}
+\end{equation*}
+
+% 本块末段在原书书页 310 末 (7.167) 处截断，其后文字于书页 311 顶部继续；下一块应续接本段。
+
+% ==== tail：7.6 节收尾（承接书页 310，从 (7.168) 起），置于下一个 \section 之前 ====
+
+% ---- 书页 311 / p326 ----
+
+把 $\cos^2$ 项在几个波长上取平均，得到
+\begin{equation*}
+\left\langle \cos^2(k_\lambda x^\lambda) \right\rangle = \frac{1}{2}.
+\tag{7.168}
+\end{equation*}
+为简单起见，我们可以取波沿 $z$ 轴传播，于是
+\begin{equation*}
+k_\lambda = \left(-\omega,\, 0,\, 0,\, \omega\right)
+\tag{7.169}
+\end{equation*}
+负号来自把 $k^\lambda$ 的一个指标降下来；再利用 (7.109)，得到
+\begin{equation*}
+C_{\rho\sigma}C^{\rho\sigma} = 2(h_+^2 + h_\times^2).
+\tag{7.170}
+\end{equation*}
+在引力波文献中，更常见的做法是用普通频率 $f = \omega/2\pi$ 而不是角频率 $\omega$ 来表达可观测量。把上面的结果合在一起，就得到
+\begin{equation*}
+t_{\mu\nu} = \frac{\pi}{8G}f^2(h_+^2 + h_\times^2)
+\begin{pmatrix}
+1 & 0 & 0 & -1 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+-1 & 0 & 0 & 1
+\end{pmatrix}.
+\tag{7.171}
+\end{equation*}
+正如我们在下一节将要讨论的，我们有望在地球上观测到的典型引力波源，频率介于 $10^{-4}$ 与 $10^4\,\mathrm{Hz}$ 之间，振幅 $h \sim 10^{-22}$。因此，把沿 $z$ 方向的能量流 $-T_{0z}$ 用数量级的形式表示出来是有用的：
+\begin{equation*}
+-T_{0z} \sim 10^{-4}\left(\frac{f}{\mathrm{Hz}}\right)^{2}\frac{\left(h_+^2 + h_\times^2\right)}{\left(10^{-21}\right)^{2}}\ \frac{\mathrm{erg}}{\mathrm{cm}^2\cdot\mathrm{s}}.
+\tag{7.172}
+\end{equation*}
+这就是原则上每秒钟可以沉积到探测器每平方厘米中的能量。正如 Thorne\footnote{K.S.~Thorne, 载于 \emph{Three Hundred Years of Gravitation}, Cambridge: Cambridge University Press, 1987。}所指出的，这实际上是相当可观的能量流，尤其是在频率范围的高端。作为比较，处于宇宙学距离上的超新星，其峰值电磁流量约为 $10^{-9}\,\mathrm{erg/cm^2/s}$；然而引力波信号只持续几毫秒，而可见的电磁信号却能延续数月。
+
+现在让我们用引力波能量-动量张量的公式，来计算一个按四极公式 (7.140) 发出引力辐射的系统的能量损失率。在一个常值时间的曲面 $\Sigma$ 上所包含的引力辐射总能量定义为
+\begin{equation*}
+E = \int_{\Sigma} t_{00}\, d^3x,
+\tag{7.173}
+\end{equation*}
+而辐射到无穷远处的总能量则可以表示为
+
+% ---- 书页 312 / p327 ----
+
+\begin{equation*}
+\Delta E = \int P\, dt,
+\tag{7.174}
+\end{equation*}
+其中功率 $P$ 为
+\begin{equation*}
+P = \int_{S^2_\infty} t_{0\mu}n^\mu r^2\, d\Omega.
+\tag{7.175}
+\end{equation*}
+这里，积分取在空间无穷远处的二维球面 $S^2_\infty$ 上，而 $n^\mu$ 是垂直于 $S^2_\infty$ 的单位类空矢量。在极坐标 $\{t, r, \theta, \phi\}$ 中，法矢量的分量为
+\begin{equation*}
+n^\mu = (0,\, 1,\, 0,\, 0).
+\tag{7.176}
+\end{equation*}
+
+我们想用 $t_{\mu\nu}$ 的表达式 (7.164) 来计算功率 $P$。面临的第一个问题是，这个表达式是用横无迹微扰写下的，而四极公式 (7.140) 却是用 Lorenz 规范下无迹反转微扰的空间分量 $h_{ij}$ 写下的。最简单的步骤（虽然它也没那么简单）是先把 $h_{ij}$ 转换到横无迹规范——由于我们关心的是波在远离其发射源的真空中的行为，这样做是允许的——代入 $t_{\mu\nu}$ 的公式，然后再转换回非横无迹的形式。让我们看看这一套流程是如何进行的。
+
+我们首先引入（空间的）投影张量
+\begin{equation*}
+P_{ij} = \delta_{ij} - n_i n_j,
+\tag{7.177}
+\end{equation*}
+它把张量分量投影到与单位矢量 $n^i$ 正交的曲面上。（更详细的讨论见附录 D。）在我们的情形中，我们取 $n^i$ 沿波的传播方向，这样 $P_{ij}$ 便投影到空间无穷远处的二维球面上。我们可以用这个投影张量，按下式构造对称空间张量 $X_{ij}$ 的横无迹版本：
+\begin{equation*}
+X^{\mathrm{TT}}_{ij} = \left(P_i{}^k P_j{}^l - \frac{1}{2}P_{ij}P^{kl}\right)X_{kl}.
+\tag{7.178}
+\end{equation*}
+你可以自行验证 $X^{\mathrm{TT}}_{ij}$ 确实是横向且无迹的。由于它无迹，$\bar{h}^{\mathrm{TT}}_{ij}$ 就等于原来的微扰 $h^{\mathrm{TT}}_{ij}$；代入四极公式 (7.140)，我们得到
+\begin{equation*}
+h^{\mathrm{TT}}_{ij} = \bar{h}^{\mathrm{TT}}_{ij} = \frac{2G}{r}\frac{d^2 I^{\mathrm{TT}}_{ij}}{dt^2}(t - r),
+\tag{7.179}
+\end{equation*}
+其中四极矩的横无迹部分同样按 (7.178) 构造。事实上，由 (7.138) 定义的四极矩并不是用来表达所生成的波的最方便的量，因为它涉及一个
+% ---- 书页 313 / p328 ----
+对能量密度的积分，而这个积分可能难以确定。我们可以改用\textbf{约化四极矩}（reduced quadrupole moment）
+\begin{equation*}
+J_{ij} = I_{ij} - \frac{1}{3}\delta_{ij}\delta^{kl}I_{kl},
+\tag{7.180}
+\end{equation*}
+它正是 $I_{ij}$ 的无迹部分。约化四极矩有一个很好的性质：它是 Newton 势多极展开中 $r^{-3}$ 项的系数，
+\begin{equation*}
+\Phi = -\frac{GM}{r} - \frac{G}{r^3}D_i x^i - \frac{3G}{2r^5}J_{ij}x^i x^j + \cdots,
+\tag{7.181}
+\end{equation*}
+因此对于现实的源更容易近似。（这里 $D_i$ 是偶极矩，$D_i = \int T^{00}x^i\, d^3x$。）当然，四极矩的横无迹部分与约化（也就是无迹）四极矩的横无迹部分是一样的，所以 (7.179) 变为
+\begin{equation*}
+h^{\mathrm{TT}}_{ij} = \frac{2G}{r}\frac{d^2 J^{\mathrm{TT}}_{ij}}{dt^2}(t - r).
+\tag{7.182}
+\end{equation*}
+
+为了计算功率，我们关心的是 $t_{0\mu}n^\mu = t_{0r}$。由于四极矩只依赖于推迟时间（retarded time）$t_r = t - r$，我们有
+\begin{align*}
+\partial_0 h^{\mathrm{TT}}_{ij} &= \frac{2G}{r}\frac{d^3 J^{\mathrm{TT}}_{ij}}{dt^3},\\
+\partial_r h^{\mathrm{TT}}_{ij} &= -\frac{2G}{r}\frac{d^3 J^{\mathrm{TT}}_{ij}}{dt^3} - \frac{2G}{r^2}\frac{d^2 J^{\mathrm{TT}}_{ij}}{dt^2}\\
+&\approx -\frac{2G}{r}\frac{d^3 J^{\mathrm{TT}}_{ij}}{dt^3},
+\tag{7.183}
+\end{align*}
+其中我们已经去掉了 $r^{-2}$ 项，因为我们关心的是 $r \to \infty$ 的极限。于是，能量-动量张量的重要分量为
+\begin{equation*}
+t_{0r} = -\frac{G}{8\pi r^2}\left\langle\left(\frac{d^3 J^{\mathrm{TT}}_{ij}}{dt^3}\right)\left(\frac{d^3 J_{\mathrm{TT}}^{ij}}{dt^3}\right)\right\rangle.
+\tag{7.184}
+\end{equation*}
+下一步是从横无迹部分转换回 $J_{ij}$。应用 (7.178) 以及一些繁琐的代数运算，可以直接证明
+\begin{equation*}
+X^{\mathrm{TT}}_{ij}X_{\mathrm{TT}}^{ij} = X_{ij}X^{ij} - 2X_i{}^j X^{ik}n_j n_k + \frac{1}{2}X^{ij}X^{kl}n_i n_j n_k n_l - \frac{1}{2}X^2 + XX^{ij}n_i n_j,
+\tag{7.185}
+\end{equation*}
+其中 $X = \delta^{ij}X_{ij}$。由于 $J_{ij}$ 是无迹的，我们有
+\begin{equation*}
+J^{\mathrm{TT}}_{ij}J_{\mathrm{TT}}^{ij} = J_{ij}J^{ij} - 2J_i{}^j J^{ik}n_j n_k + \frac{1}{2}J^{ij}J^{kl}n_i n_j n_k n_l,
+\tag{7.186}
+\end{equation*}
+
+% ---- 书页 314 / p329 ----
+
+而功率为
+\begin{align*}
+P = -\frac{G}{8\pi}\int_{S^2_\infty}\bigg\langle \frac{d^3 J_{ij}}{dt^3}\frac{d^3 J^{ij}}{dt^3} &- 2\frac{d^3 J_i{}^j}{dt^3}\frac{d^3 J^{ik}}{dt^3}n_j n_k\\
+&+ \frac{1}{2}\frac{d^3 J^{ij}}{dt^3}\frac{d^3 J^{kl}}{dt^3}n_i n_j n_k n_l\bigg\rangle\, d\Omega.
+\tag{7.187}
+\end{align*}
+要求出这个表达式的值，最好换回到空间的笛卡尔坐标，其中 $n^i = x^i/r$。四极张量与角坐标无关，因为它们是由对全空间的积分定义的。于是我们可以把它们移到积分号外，并利用恒等式
+\begin{align*}
+\int d\Omega &= 4\pi\\
+\int n_i n_j\, d\Omega &= \frac{4\pi}{3}\delta_{ij}\\
+\int n_i n_j n_k n_l\, d\Omega &= \frac{4\pi}{15}\left(\delta_{ij}\delta_{kl} + \delta_{ik}\delta_{jl} + \delta_{il}\delta_{jk}\right).
+\tag{7.188}
+\end{align*}
+当一切尘埃落定，功率的表达式便塌缩为
+\begin{equation*}
+P = -\frac{G}{5}\left\langle \frac{d^3 J_{ij}}{dt^3}\frac{d^3 J^{ij}}{dt^3}\right\rangle,
+\tag{7.189}
+\end{equation*}
+这里我们应当记住，四极矩是在推迟时间 $t_r = t - r$ 处取值的。我们的公式带有一个负号，因为它表示的是能量变化的速率，而辐射源将不断损失能量。
+
+对于由 (7.148) 所表示的双星系统，约化四极矩为
+\begin{equation*}
+J_{ij} = \frac{MR^2}{3}
+\begin{pmatrix}
+(1+3\cos 2\Omega t) & 3\sin 2\Omega t & 0\\
+3\sin 2\Omega t & (1-3\cos 2\Omega t) & 0\\
+0 & 0 & -2
+\end{pmatrix},
+\tag{7.190}
+\end{equation*}
+它对时间的三阶导数于是为
+\begin{equation*}
+\frac{d^3 J_{ij}}{dt^3} = 8MR^2\Omega^3
+\begin{pmatrix}
+\sin 2\Omega t & -\cos 2\Omega t & 0\\
+-\cos 2\Omega t & -\sin 2\Omega t & 0\\
+0 & 0 & 0
+\end{pmatrix}.
+\tag{7.191}
+\end{equation*}
+于是双星辐射的功率为
+\begin{equation*}
+P = -\frac{128}{5}GM^2R^4\Omega^6,
+\tag{7.192}
+\end{equation*}
+或者，利用 (7.144) 的频率表达式，
+\begin{equation*}
+P = -\frac{2}{5}\frac{G^4M^5}{R^5}.
+\tag{7.193}
+\end{equation*}
+
+% ---- 书页 315 / p330 ----
+
+当然，通过发射引力辐射而损失能量的现象已经被观测到了。1974 年，Hulse 和 Taylor 发现了一个双星系统 PSR~1913+16，其中的两颗星都非常小，因此经典效应可以忽略，或者至少是可控的，而且其中一颗是脉冲星。轨道周期为八小时，按天体物理的标准衡量极其短。其中一颗星是脉冲星这个事实提供了一个非常精确的时钟，借助它便可以测量系统损失能量时周期的变化。这个结果与广义相对论关于引力辐射导致能量损失的预言相一致。
+
+\section{引力波的探测}
+
+当代引力物理和天体物理学最优先的目标之一，是直接探测引力辐射。（所谓“直接”，我们的意思是“通过观测引力波对检验物体的影响”，与之相对的是观测能量损失的间接效应，就像脉冲双星中的情形。）完全有理由相信，这样的探测很快就会实现，或者是在已经建成的引力波天文台中，或者是在近期正在规划的引力波天文台中。当然，一旦我们探测到了引力辐射，目标就会立刻变成从观测中提取有用的天体物理信息。我们目前对太阳系之外宇宙的认识，几乎完全来自对电磁辐射的观测，外加一些来自中微子和宇宙线的输入；引力波天体物理学的到来，将打开一扇通往遥远宇宙中高能现象的全新窗口。\footnote{关于引力波天体物理学的概览，见 S.A.~Hughes, S.~Márka, P.L.~Bender 与 C.J.~Hogan, “New physics and astronomy with the new gravitational-wave observatories,” \texttt{http://arxiv.org/astro-ph/0110349}。}
+
+在讨论我们可以如何着手探测天体物理引力波之前，我们应该想一想哪些源最容易被观测到。第一个重要的认识是：产生可观引力辐射所需的条件，与产生电磁辐射所需的条件非常不同。这个差别可以追溯到这样一个事实：引力波由大质量物体的整体运动（bulk motion）产生，而电磁波（通常）由单个粒子的不相干激发产生。因此，电磁辐射可以由一个整体上静态的源产生，比如一颗恒星，这对天文学家来说是一大优势。然而，引力波是由大块运动着的物质相干地产生的（物质中的每个粒子都以相同的方式对波有所贡献），这可以部分弥补静态源无法发射引力波的缺憾。
+
+因此，我们需要具有可观整体运动的大质量源。作为一个简单的例子，考虑 7.5 节中的双星系统，其中两颗星的质量都是 $M$，轨道半径为 $R$。我们将稍微作一点弊，把 Newton 的轨道参数公式用到广义相对论已经开始变得重要的区域，不过对于数量级的估计这已经足够了。相关参数可以归结为 Schwarzschild 半径 $R_S = 2GM/c^2$、
+% ---- 书页 316 / p331 ----
+轨道半径 $R$，以及我们与双星之间的距离 $r$。（现在我们将把因子 $c$ 显式地恢复，以便与实验比较。）用这些量来表示，轨道的频率——也即所产生的引力波的频率——近似为
+\begin{equation*}
+f = \frac{\Omega}{2\pi} \sim \frac{cR_S^{1/2}}{10R^{3/2}}.
+\tag{7.194}
+\end{equation*}
+利用 (7.149) 中关于所产生的微扰的公式，我们可以估计接收到的引力波振幅为
+\begin{equation*}
+h \sim \frac{R_S^2}{rR}.
+\tag{7.195}
+\end{equation*}
+让我们看看，这对我们有望观测到的那一类源意味着什么。一个范例性的例子是黑洞/黑洞双星的并合（coalescence）。对于典型的参数，我们可以取两个黑洞都是 10 倍太阳质量，双星处于约 100 Mpc 的宇宙学距离上，而两颗子星相距为其 Schwarzschild 半径的十倍：
+\begin{gather*}
+R_S \sim 10^6\,\mathrm{cm}\\
+R \sim 10^7\,\mathrm{cm}\\
+r \sim 10^{26}\,\mathrm{cm}.
+\tag{7.196}
+\end{gather*}
+这样的源因而具有如下特征量级：
+\begin{equation*}
+f \sim 10^2\,\mathrm{s}^{-1}, \qquad h \sim 10^{-21}.
+\tag{7.197}
+\end{equation*}
+如果我们还想有希望探测到具有这些参数的双星并合，我们就需要对 100 Hz 附近的频率以及 $10^{-21}$ 或更小量级的应变足够敏感。
+
+所幸的是，这些参数处于我们实验能力（在许多科学家英勇的努力之下）所能及的范围之内。目前正在考虑的引力波探测方案中最有前途的技术是干涉测量法，因此这里我们将只讨论干涉仪，尽管完全可以设想，将来会发明出具有更好灵敏度的新技术。
+
+回想一下，引力波经过时的物理效应是轻微地扰动自由下落的质量之间的相对位置。如果两个检验质量（test masses）相距 $L$，它们之间距离的变化大致为
+\begin{equation*}
+\frac{\delta L}{L} \sim h.
+\tag{7.198}
+\end{equation*}
+设想我们打算建造一座检验物体相距公里量级的天文台。那么，要探测振幅为
+% ---- 书页 317 / p332 ----
+$h\sim 10^{-21}$ 量级的波，就需要对量级为
+\begin{equation*}
+\delta L \sim 10^{-16}\left(\frac{h}{10^{-21}}\right)\left(\frac{L}{\mathrm{km}}\right)\,\mathrm{cm}
+\tag{7.199}
+\end{equation*}
+的变化具有足够的灵敏度。把它与一个典型原子的大小比较一下——后者由玻尔半径（Bohr radius）给出，
+\begin{equation*}
+a_0 \sim 5\times 10^{-9}\,\mathrm{cm},
+\tag{7.200}
+\end{equation*}
+或者，也不妨与一个典型原子核的大小比较——大约一个费米（Fermi），
+\begin{equation*}
+1\,\mathrm{fm} = 10^{-13}\,\mathrm{cm}.
+\tag{7.201}
+\end{equation*}
+我们在这里反复强调的要点是：一座切实可行的地面引力波天文台，必须对距离变化足够敏感——要比任何可以设想的检验质量所必须由之构成的那些原子的大小还要小得多。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.11.pdf}
+\caption*{图 7.11\quad 引力波干涉仪的示意图。}
+\end{figure}
+
+激光干涉仪提供了一条克服测量如此微小扰动之困难的途径。考虑图 7.11 所描绘的示意图装置。一束激光（典型特征波长 $\lambda \sim 10^{-4}\,\mathrm{cm}$）被导向一个分束器（beamsplitter），分束器把光子送进两条抽成真空的、长度为 $L$ 的管道。腔的末端是检验质量，用悬挂在摆上的反射镜来表示。光实际上是在分束器附近的部分反射镜（partially-reflective mirrors）之间来回反射的，所以一个典型的光子在回到分束器并被导入
+% ---- 书页 318 / p333 ----
+光电二极管之前，会在腔内上下往返约 100 次。整个系统的安排是这样的：如果检验质量完全静止，返回的两束光将发生相消干涉，光电二极管接收不到任何信号。正如我们已经看到的，引力波经过的效应是把相互正交的长度朝相反的方向扰动，这会引起激光脉冲的相移，从而破坏相消干涉。在腔臂中往返 100 次的过程中，累积的相移将为
+\begin{equation*}
+\delta\phi \sim 200\left(\frac{2\pi}{\lambda}\right)\delta L \sim 10^{-9},
+\tag{7.202}
+\end{equation*}
+其中用 200 而不是 100，反映的是两臂中的相移会相加这一事实。这样微小的相移是可以测量的，只要光子数 $N$ 足够大，足以克服“散粒噪声”（shot noise）；具体地说，只要 $\sqrt{N} > \delta\phi$。
+
+建造足够“安静”且灵敏的引力波天文台所面临的技术挑战，正在多个不同的地方被攻克，包括美国（LIGO）、意大利（Virgo）、德国（GEO）、日本（TAMA）和澳大利亚（ACIGA）。LIGO（激光干涉引力波天文台，Laser Interferometric Gravitational-Wave Observatory）是目前最先进的探测器；它由两个设施组成（一个在华盛顿州，一个在路易斯安那州），每个都有四公里长的臂。单一的引力波天文台将无法对源在天空中的位置定位；要完成这一任务，多个探测器至关重要（这对于验证一个表观信号是否真实同样关键）。
+
+基本的噪声来源限制了地面天文台探测低频引力波的能力。图 7.12 展示了两种截然不同的设计——LIGO 这样的地面天文台，以及 LISA（激光干涉空间天线，Laser Interferometer Space Antenna）这样的空间任务——的灵敏度区域随频率的变化。LISA 背后的一般原理与其他任何干涉仪相同，但其实施方案则（如果它真的被建造的话，或者说将会）截然不同。目前的设计设想三个航天器绕太阳运行，位于地球后方约三千万公里处，彼此相距五百万公里。由于间隔大得多，LISA 对 $10^{-2}\,\mathrm{Hz}$ 附近的频率敏感。这张图中所描绘的灵敏度只能视为示意性的，因为它们依赖于积分时间和其他因素。
+
+许多潜在的噪声源摆在了引力波天文学家的面前。对于地面天文台，低频处占主导的效应通常是地震噪声（seismic noise），高频处的效应来自光子散粒噪声，中间频率处则来自热噪声。地面探测器的改进版本也许能够补偿低频的地震噪声，但会遇到来自大气现象或附近经过的物体（比如汽车）的引力梯度所带来的不可约噪声。卫星天文台当然对这类效应免疫。相反，其根本限制预期来自测量航天器之间距离变化时的误差（更确切地说，是航天器内部受到屏蔽的检验质量之间的距离变化），以及航天器的非引力加速度。
+
+% ---- 书页 319 / p334 ----
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_7.12.pdf}
+\caption*{图 7.12\quad 代表性的地面（LIGO）与空间（LISA）引力波天文台的灵敏度随频率的变化，以及各种可能的源所预期的信号。图取自 LISA 合作组主页（\texttt{http://lisa.jpl.nasa.gov/}）。}
+\end{figure}
+
+最后，我们可以对引力波天文台各种可能的源作一个十分简要的概述。我们已经提到过各种类型的致密双星。对于地面天文台，这类源要等到非常接近并合时才会变得可见，而且前提是两颗子星的质量足够大（中子星或黑洞）。根据我们对这类系统的认识作外推，在几百 Mpc 的距离之内每年也许会有几次并合。另一个有希望的可能性是大质量恒星的核心坍缩（core collapse），即产生超新星的过程。虽然完全球对称的坍缩不会产生任何引力波，但现实的事件预期会受到破坏这种对称性的不稳定性的影响。一个令人兴奋的前景是用普通望远镜和引力波天文台对超新星进行协同观测。最后，在地面天文台可能的源之中，还有周期性的源，比如（非完全轴对称的）旋转中子星。这类源的振幅预期较小，但未必完全超出先进探测器的可及范围。
+
+对空间探测器而言，有趣的源则有些不同。最重要的是，我们银河系中已知的双星群体必将提供强度可探测的引力波信号。事实上，无法分辨的双星会构成探测器的一种混淆噪声（confusion noise）的来源，因为我们无法从背景中挑出个别的低强度源。尽管如此，众多较高强度的源应当是容易观测到的。此外，超大质量黑洞（大于 $1000\,M_\odot$，比如位于星系中心的那些）演化过程中的各种
+% ---- 书页 320 / p335 ----
+过程也会带来有趣的源：这类天体的形成、它们通过吸积更小天体而实现的后续成长，以及多个超大质量黑洞可能的并合。追踪一个太阳质量的黑洞绕行并最终落入超大质量黑洞时其引力波信号的演化，将使我们能够精确绘制时空度规，从而为广义相对论提供一种新颖的检验。
+
+除了局域源产生的波之外，我们还面临着随机引力波背景（stochastic gravitational-wave backgrounds）的可能性。我们指的是一个各向同性的引力波集合，它们或许产生于早期宇宙，其特征是具有随频率平滑变化的功率谱。一种可能性是由暴胀产生的近乎无标度（scale-free）的引力波谱，这将在第 8 章讨论。这样的波几乎不可能在地面上被直接探测到（也许比先进探测器的探测能力还要低大约五个数量级），甚至连 LISA 也无能为力，但可以设想它们会被下一代空间任务观测到。更可能的情况是，任何这样的波将首先在宇宙微波背景的偏振中显现。然而，另一种可能性是从剧烈的（一级）相变中产生原初引力波。这样的波将具有一个带有明确峰值的频谱，峰频与相变温度 $T$ 的关系为
+\begin{equation*}
+f_{\mathrm{peak}} \sim 10^{-3}\left(\frac{T}{1000\,\mathrm{GeV}}\right)\,\mathrm{Hz}.
+\tag{7.203}
+\end{equation*}
+这样，一级电弱相变（$T \sim 200\,\mathrm{GeV}$）恰好落在 LISA 潜在可观测的频带之内。这一点尤其耐人寻味，因为某些重子产生（baryogenesis）模型要求在这个尺度上存在一个强相变；想一想我们居然能通过一个引力实验学到一些关于电弱物理的重要东西，这是相当诱人的。
+
+\section{习题}
+
+\textbf{1.}\quad 证明：拉格朗日量 (7.9) 给出 Einstein 方程的线性化版本。
+
+\textbf{2.}\quad 考虑一个薄球形物质壳，质量为 $M$、半径为 $R$，以角速度 $\Omega$ 缓慢旋转。
+
+\textbf{(a)}\quad 证明引力电场 $\vec{G}$ 为零，并用 $M$、$R$ 和 $\Omega$ 计算引力磁场 $\vec{H}$。
+
+\textbf{(b)}\quad 壳所产生的非零引力磁场会导致惯性系被拖曳，这就是\textbf{Lense--Thirring 效应}（Lense--Thirring effect）。计算位于壳中心的一个自由下落观者的转动（相对于由背景 Minkowski 度规定义的惯性系）。换言之，计算位于中心处的一个被平行移动的矢量的空间分量的进动。
+
+% ---- 书页 321 / p336 ----
+
+\textbf{3.}\quad Fermat 原理指出，光线沿耗时最少的路径传播。对于折射率为 $n(\mathbf{x})$ 的介质，这等价于对时间
+\begin{equation*}
+t = \int n(\mathbf{x})\left[\delta_{ij}\, dx^i dx^j\right]^{1/2}
+\tag{7.204}
+\end{equation*}
+沿路径求极值。证明：当折射率取 $n = 1 - 2\Phi$ 时，Fermat 原理给出受 Newton 势微扰的时空中光子的正确运动方程。
+
+\textbf{4.}\quad 证明：Lorenz 规范条件 $\partial_\mu\bar{h}^{\mu\nu} = 0$ 等价于\textbf{谐和规范}（harmonic gauge）条件。这个规范由
+\begin{equation*}
+\Box x^\mu = 0,
+\tag{7.205}
+\end{equation*}
+定义，其中每个坐标 $x^\mu$ 都被当作时空上的标量函数。（任何满足 $\Box f = 0$ 的函数都称为“谐和函数”（harmonic function）。）
+
+\textbf{5.}\quad 在第 3 章的习题中，我们引入了度规
+\begin{equation*}
+ds^2 = -(\mathrm{d}u\,\mathrm{d}v + \mathrm{d}v\,\mathrm{d}u) + a^2(u)\mathrm{d}x^2 + b^2(u)\mathrm{d}y^2,
+\tag{7.206}
+\end{equation*}
+其中 $a$ 和 $b$ 是 $u$ 的未具体指定的函数。对于适当的函数 $a$ 和 $b$，它表示一个\emph{精确}的引力平面波。
+
+\textbf{(a)}\quad 计算这个度规的 Christoffel 符号和 Riemann 张量。
+
+\textbf{(b)}\quad 利用真空中的 Einstein 方程，推导 $a(u)$ 和 $b(u)$ 所满足的方程。
+
+\textbf{(c)}\quad 证明可以找到一个精确解，其中 $a$ 和 $b$ 都由一个\emph{任意}函数 $f(u)$ 确定。
+
+\textbf{6.}\quad 两个质量为 $M$ 的物体在事件 $(0,0,0,0)$ 处迎面对撞。在遥远的过去 $t \to -\infty$，两物体从 $x \to \pm\infty$ 处由静止出发。
+
+\textbf{(a)}\quad 利用 Newton 理论，证明 $x(t) = \pm(9Mt^2/8)^{1/3}$。
+
+\textbf{(b)}\quad 对多大的间距，Newton 近似是合理的？
+
+\textbf{(c)}\quad 计算 $(x, y, z) = (0, R, 0)$ 处的 $h^{\mathrm{TT}}_{xx}(t)$。
+
+\textbf{7.}\quad 引力波可以通过监测两个自由飞行的质量之间的距离来探测。如果其中一个质量配有激光和精确的时钟，另一个配有好的反射镜，那么通过对一束激光脉冲往返一趟所需时间的计时，就可以测量两个质量之间的距离。要使你的探测器对形如
+\begin{equation*}
+ds^2 = -\mathrm{d}t^2 + \left[1 + A\cos(\omega(t-z))\right]\mathrm{d}x^2 + \left[1 - A\cos(\omega(t-z))\right]\mathrm{d}y^2 + \mathrm{d}z^2?
+\end{equation*}
+的平面波产生最大的响应，你会希望探测器如何取向？如果两个质量的平均间距为 $L$，波造成的脉冲到达时间的最大变化是多少？哪些频率 $\omega$ 会探测不到？
+
+\textbf{8.}\quad 当两个质量彼此散射时，会产生轫致辐射（\emph{bremsstrahlung}）的引力类比。考虑一个质量为 $m$ 的小质量以碰撞参数 $b$、总能量 $E = 0$ 散射到一个大质量 $M$ 上时会发生什么。取 $M \gg m$ 和 $M/b \ll 1$。小质量的运动可以用 Newton 物理来描述，因为 $M/b \ll 1$。如果轨道位于 $(x, y)$ 平面内，且大质量位于
+
+% ---- 书页 322 / p337 ----
+
+$(x, y, z) = (0, 0, 0)$ 处，试计算 $(x, y, z) = (0, 0, r)$ 处两个偏振的引力波振幅。由于运动不是周期性的，引力波将是爆发式的，并由许多不同的频率组成。根据物理上的理由，你预期主频是多少？估计系统辐射的总能量。它与这个小质量的峰值动能相比如何？
+
+\emph{提示}：轨道的解可以在 Goldstein (2002) 中找到。解为
+\begin{gather*}
+r = \frac{2b}{1+\cos\theta},\\
+t = \sqrt{\frac{2b^3}{M}}\left(\tan\frac{\theta}{2} + \frac{1}{3}\tan^3\frac{\theta}{2}\right).
+\end{gather*}
+时间的范围是 $t = (-\infty, \infty)$。与其使用上述 $\theta(t)$ 的隐式解，你或许更愿意用
+\begin{equation*}
+\dot{\theta} = \sqrt{\frac{M}{8b^3}}\,(1+\cos\theta)^2.
+\end{equation*}
+
+\textbf{9.}\quad 验证：引力波能量-动量张量的表达式 (7.165) 在规范变换 $h_{\mu\nu} \to h_{\mu\nu} + 2\partial_{(\mu}\xi_{\nu)}$ 下不变。
+
+\textbf{10.}\quad 证明：引力微扰总能量的积分表达式 (7.173) 与空间超曲面 $\Sigma$ 无关。

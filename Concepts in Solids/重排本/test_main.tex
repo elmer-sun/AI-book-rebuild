@@ -1,0 +1,68 @@
+% 《固体中的概念》中文重排本
+% P. W. Anderson, Concepts in Solids: Lectures on the Theory of Solids
+% (W. A. Benjamin 1963 / World Scientific 1997)
+% 编译：xelatex ×3
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+\usepackage{amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\ctexset{
+  chapter/name = {第,章},
+  section/format = \Large\bfseries,
+}
+% 原书节编号风格：章内 A/B/C 大节，节内 1/2/3 小节（正文引用如“2-A1 节”）
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\allowdisplaybreaks
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \predisplaypenalty=10000
+\graphicspath{{figures/}}
+
+% 插入的空白衬页真正空白（无页眉页脚）
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% 插图占位（翻译阶段先占位，图重绘后替换为 \includegraphics）
+\newcommand{\figplaceholder}[2]{%
+  \begin{figure}[H]\centering
+  \fbox{\parbox[c][5cm][c]{0.8\textwidth}{\centering 图 #1 重绘占位\\ #2}}
+  \caption{#2}\label{fig:auto:#1}
+  \end{figure}}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\centering
+{\Huge\bfseries 固体中的概念\\[0.6em]}
+{\LARGE\bfseries 固体理论讲义\\[2.5em]}
+{\Large Concepts in Solids:\\ Lectures on the Theory of Solids\\[3em]}
+{\Large P. W. Anderson（P. W. 安德森）\quad 著\\[1em]}
+{\large 诺贝尔物理学奖获得者（1977）\\[5em]}
+{\large 中文重排本\\[0.5em]}
+{\large 依据 1963 年 W.~A.~Benjamin 版（World Scientific 1997 重印）\\[0.3em]
+扫描件识别、翻译并重新排版\\[0.3em]
+仅供个人学习研究使用\\[3em]}
+\end{titlepage}
+\thispagestyle{empty}\mbox{}\clearpage
+\tableofcontents
+
+\input{chapters/ch00_preface}
+
+\mainmatter
+
+\input{chapters/ch01}
+\input{chapters/ch02}
+%\input{chapters/ch03}
+
+%\input{chapters/ch04_bib}
+
+\end{document}

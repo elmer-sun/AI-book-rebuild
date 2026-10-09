@@ -1,0 +1,1945 @@
+% 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第2章 单电子理论
+
+\chapter{单电子理论}
+
+\section{Hartree-Fock 理论}
+
+\subsection{Hartree-Fock 的一般哲学}
+
+单电子理论的出发点与基础自然就是 Hartree-Fock 方程，它在固态物理学中起着绝对根本性的作用。关于 Hartree-Fock 理论，好的参考资料有 Seitz 书中的那一章和附录，以及 Reitz 发表在《Seitzschrift》上的文章 (11)。人们或许会得到这样一种印象：如今听得如此之多的现代多体理论（many-body theory）早已远远超出了 Hartree-Fock，因此我们不必再为这类老式的东西费心。这全然不是事实——事实上，现代多体理论大多只是向我们表明了该如何、在何处以及何时使用 Hartree-Fock 理论，以及它可以是一门多么灵活而有用的技术。例如，Cohen 与 Ehrenreich (12) 等人把等离体（plasma）与关联能（correlation energy）同 Hartree-Fock 联系了起来；Valatin、Thouless (13) 等人用一种“含时的”Hartree-Fock 理论研究了核的集体运动；甚至连超导（superconductivity）理论也可以被写成一种与 Hartree-Fock 几乎完全相同的形式 (14)。在磁学方面，近来最大、最重要的进展则是“非限制”（unrestricted）Hartree-Fock 方法 (15) 的种种成就。
+
+Hartree-Fock 方程的基本思想如下：我们想求一个相互作用电子系统的最低本征态（eigenstate）$\Psi(\mathbf{r}_1\ldots\mathbf{r}_n)$，该系统具有哈密顿量
+\begin{equation*}
+H=\sum_j\left[\frac{P_j^2}{2m}+V(\mathbf{r}_j)\right]+\frac{1}{2}\sum_{jk}\frac{e^2}{|\mathbf{r}_j-\mathbf{r}_k|}
+\end{equation*}
+其中 $V(\mathbf{r}_j)$ 是某种外部势——在原子问题中是原子核的势，在固态问题中则通常是原子芯（atom cores）的势，等等。
+
+然而，要解在一个外部势中含有不止一个电子的问题是很困难的——即便是 He 和 $H_2$ 这两个最简单的多电子问题，也只能靠相当冗长的数值分析来处理，而且这种分析完全看不出有任何推广到更复杂系统的可能。于是，人们首先希望做到的，就是找到某种一次只处理一个电子的途径。显而易见的办法是把电子当作统计独立的来处理：也就是说，采用乘积型波函数
+\begin{equation*}
+\Psi(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N)=\psi_1(\mathbf{r}_1)\psi_2(\mathbf{r}_2)\cdots\psi_N(\mathbf{r}_N)
+\end{equation*}
+因为这样一来，每个电子的概率密度 $|\psi|^2$ 以及它的所有其他单电子量，都与其他电子的相应量无关。随后人们会试图通过求解一个波方程来逐个算出这些函数，在这个波方程中，相互作用 $e^2/r_{ij}$ 被替换成它对所有其他电子的概率分布的平均值：
+\begin{equation*}
+\left(\frac{P_i^2}{2m}+V(\mathbf{r}_i)\right)\psi_i+\sum_{j\neq i}\int d\mathbf{r}_j\ |\psi_j(\mathbf{r}_j)|^2\ \frac{e^2}{|\mathbf{r}_i-\mathbf{r}_j|}\ \psi_i(\mathbf{r}_i)=E_i\psi_i(\mathbf{r}_i)
+\end{equation*}
+这就是 Hartree 近似；后来有人证明，这些方程保证了所得的总能量相对于所有邻近的乘积型函数取极值。如你所见，求解这些方程的唯一办法就是自洽（self-consistent）地求解：先假定一组 $\psi_j$，用由这组假定的 $\psi_j$ 得出的平均相互作用项重新计算诸 $\psi$，再把它们代回 Hartree 方程，最后指望结果达到自洽。
+
+然而，乘积函数既不满足 Pauli 不相容原理，也不满足费米统计（Fermi statistics）更基本的限制，即波函数应当是反对称的；事实上，在“所有可能的单电子量（如概率密度、流等）统计独立”这一假设下，最接近满足该假设的反对称波函数，就是 Slater-Fock 行列式
+\begin{equation*}
+\Psi(\mathbf{r}_1\ldots\mathbf{r}_N)=(N!)^{-1/2}
+\begin{vmatrix}
+\psi_1(\mathbf{r}_1) & \ldots & \psi_1(\mathbf{r}_N)\\
+\psi_2(\mathbf{r}_1) & \ldots & \psi_2(\mathbf{r}_N)\\
+\vdots & & \vdots\\
+\psi_N(\mathbf{r}_1) & \ldots & \psi_N(\mathbf{r}_N)
+\end{vmatrix}
+\end{equation*}
+（注：这里坐标 $\mathbf{r}_j$ 假定同时表示空间变量与自旋变量。）
+
+另一方面，在这种行列式波函数 $\Psi$ 中，成对电子的运动并非完全不相关，因为举例来说，不相容原理要求：若 $\mathbf{r}_1=\mathbf{r}_2$ 且两个电子的自旋坐标也相同，则头两列完全相同，行列式为零。我把它留作读者的一个练习：证明在只有两个电子的情形下，在 $\mathbf{r}_1$ 处找到一个电子、在 $\mathbf{r}_2$ 处找到另一个电子的概率密度为
+\begin{align*}
+\frac{1}{2}\Big\{&|\psi_1(\mathbf{r}_1)|^2\,|\psi_2(\mathbf{r}_2)|^2+|\psi_1(\mathbf{r}_2)\psi_2(\mathbf{r}_1)|^2\\
+&-\big[\psi_1^*(\mathbf{r}_1)\psi_2^*(\mathbf{r}_2)\psi_2(\mathbf{r}_1)\psi_1(\mathbf{r}_2)+\text{c.c.}\big]\Big\}
+\end{align*}
+（如果两自旋平行；若反平行，则第二项不出现。）显然，这改变了应当用来确定波函数 $\psi_1$ 的平均相互作用 $e^2/r_{12}$，而 Fock 从变分原理（variational principle）证明，新的正确波方程就是 Hartree-Fock 方程：
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla_1^2\,\psi_{i\sigma}(\mathbf{r}_1)&+V(\mathbf{r}_1)\psi_{i\sigma}(\mathbf{r}_1)+\sum_{j,\sigma'}\left[e^2\int\frac{|\psi_{j\sigma'}(\mathbf{r}_2)|^2}{|\mathbf{r}_1-\mathbf{r}_2|}\,d\mathbf{r}_2\right]\psi_{i\sigma}(\mathbf{r}_1)\\
+&-\left(\sum_j e^2\int\frac{\psi_{j\sigma}^*(\mathbf{r}_2)\,\psi_{i\sigma}(\mathbf{r}_2)}{|\mathbf{r}_1-\mathbf{r}_2|}\,d\mathbf{r}_2\right)\psi_{j\sigma}(\mathbf{r}_1)=E_i\,\psi_{i\sigma}(\mathbf{r}_1)
+\end{align*}
+注意，我们对 $j$ 的求和可以包含 $j=i$，因为 $j=i$ 的相互作用项彼此相同而相消。这样一来，左边的线性算符对所有波函数都是同一个，单粒子波函数对不同本征值 $E_i$ 便自动正交（当然，在本征值相同时也可以使之正交化）。
+
+关于自旋问题，简短说几句。首先，有一个常被遗忘的事实——尽管三十年代的文献中已有人对它有所认识——那就是：当然，并没有任何限制要求自旋相反的两套波函数必须相同、正交或具有任何特定的关系。对自旋向上与向下的两套函数而言，相同且正交的解常常存在，并且在许多不涉及磁性的问题中可以合理地接受它；但即便在那样的情况下，也没有任何保证说它就是最好的解。在磁性问题中，自旋向上与自旋向下的 Hartree-Fock 方程必然不同；最大的差别——也是一个常被忽视的差别——可以这样看出来：试问，如果我们计算函数 $\psi_{i,-\sigma}$ 的 Hartree-Fock 能量，而该函数是空的，但与之全同、只是自旋向上的函数 $\psi_{i,\sigma}$ 已被填满，那会发生什么。那个在 $\sigma=\sigma'$ 时会相消的相当大的 $i=j$ 项在这种情形下依然存在，并且可以产生很大的影响。“$\sigma\neq\sigma'$ 的两套函数不必相同也不必正交”这一“新奇”想法被称为“非限制 Hartree-Fock”近似，它在磁性理论中有重要的后果。
+
+对一般的 Hartree-Fock 方法必须提出两点告诫。第一，不仅关于解的唯一性根本不存在任何定理，而且在许多情形中显然存在若干种完全不同类型的解，其中只有一个与所考虑系统的真实基态（ground state）有任何关系。换言之，我们可以得到一个完全自洽的 Hartree-Fock 方程解，而它不仅不代表所考虑系统的真实基态（如自由电子气在可能出现超导时的情形），而且无论如何甚至不是最稳定的 Hartree-Fock 解，甚至也不是任何精确态的近似。$H_2$ 问题——两个质子、两个电子 (16)——给出了一个例子。显然，如果单电子势 $V(\mathbf{r})$ 具有某种对称性——正如本例中在两个质子互换之下（图 1）那样——我们就可以尝试采用反映这种对称性的单电子函数。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{fig_1.pdf}
+\caption*{图 1}
+\end{figure}
+在本例中，如果我们选取一个以 $a$ 为中心的函数 $\phi_a(\mathbf{r})$，这样的函数便是 $\phi_a+\phi_b$ 与 $\phi_a-\phi_b$，它们分别是偶函数与奇函数。自洽场可以被强制去严格保持 $V(\mathbf{r})$ 原有的对称性，做法有多种。在本例中这很容易：如果我们把每个电子都放入 $(\phi_a+\phi_b)/\sqrt{2}=\phi_{\mathrm{even}}$，一个自旋向上、一个自旋向下，那么显然就保持了一个偶的 $V(\mathbf{r})$。另一种做法（在更复杂的条件下）是把属于某一给定不可约表示（irreducible representation）的所有态都填满，即填满一个“壳层”（shell）或一个“能带”（band）。在这两种情形下我们都保持原有的对称性——在原子中是球对称，在固体中是周期对称。
+
+当质子相距较近时，上述解确实是正确的解，相当接近 $H_2$ 分子的基态；实际上我们已经构造出了这个分子的分子轨道（molecular orbital）波函数。但当质子相距很远时，把一个自旋向上的电子放入 $\phi_a$、把第二个自旋向下的电子放入 $\phi_b$，就可以得到一个好得多的解。这就是 Heitler-London 途径，或至少与它十分接近。在分子轨道解中，当分子相距很远时，两个电子有一半的时间待在\emph{同一个}原子上，因而在分离原子近似下，波函数一半是 $H+H$，一半是 $p+H^-$；而后者的能量远高于前者。系统在 $p+H^-$ 附近存在真实的激发态，在 $H+H$ 附近也存在真实的态，但 M.O.\ 波函数与任何真实激发态都没有多少相似之处。这是 Hartree-Fock 中的一种危险，它时而被人忽视——一个十分良好的自洽解甚至可能不接近任何真实激发态。
+
+在现代多体理论中已经发展出一些检验办法 (17)——我不打算在此讨论——用以验证一个给定的解相对于邻近的其他解是否局域稳定，也就是说，它相对于其他行列式型函数是极小还是极大。这多半能把此处的困难排除掉，但并非在所有情形中都必然如此。
+
+在原子相距很远的情形下，这个例子还说明了第二点。这就是：Hartree-Fock 方程的一个自洽解——它可能像本例中那样是正确的解——往往仍是一个不能令人满意的问题最终本征函数，因为它没有充分地把诸对称性考虑进去。我们在这里构造的行列式波函数是：自旋向上的电子处于波函数 $\phi_a$，自旋向下的电子处于 $\phi_b$：把它记作
+\begin{align*}
+\Psi_{a\uparrow b\downarrow}&=\frac{1}{\sqrt{2}}
+\begin{vmatrix}
+\phi_a(1)\,\alpha_1 & \phi_a(2)\,\alpha_2\\
+\phi_b(1)\,\beta_1 & \phi_b(2)\,\beta_2
+\end{vmatrix}\\
+&=\phi_a(1)\phi_b(2)\,\alpha_1\beta_2-\phi_a(2)\phi_b(1)\,\beta_1\alpha_2
+\end{align*}
+那么 $\Psi_{a\downarrow b\uparrow}$ 呢？就对称性而言，它其实是一个完全等价的波函数；而两者都不是令人满意的总波函数，因为两者都不按对称群的一个不可约表示变换。正确的波函数是
+\begin{align*}
+\Psi_{\text{singlet}}&=\Psi_{a\uparrow b\downarrow}-\Psi_{a\downarrow b\uparrow}\\
+&=\frac{1}{2}\Big[\phi_a(1)\phi_b(2)+\phi_a(2)\phi_b(1)\Big]\big(\alpha_1\beta_2-\alpha_2\beta_1\big)
+\end{align*}
+以及
+\begin{align*}
+\Psi_{\text{triplet}}&=\Psi_{a\uparrow b\downarrow}+\Psi_{a\downarrow b\uparrow}\\
+&=\frac{1}{2}\Big[\phi_a(1)\phi_b(2)-\phi_a(2)\phi_b(1)\Big]\big(\alpha_1\beta_2+\alpha_2\beta_1\big)
+\end{align*}
+它经由一个自旋转动与真正的 Hartree-Fock 解
+\begin{align*}
+\Psi_{a\uparrow b\uparrow}&=\frac{1}{\sqrt{2}}
+\begin{vmatrix}
+\phi_a(1)\,\alpha_1 & \phi_b(1)\,\alpha_1\\
+\phi_a(2)\,\alpha_2 & \phi_b(2)\,\alpha_2
+\end{vmatrix}\\
+&=\frac{1}{\sqrt{2}}\ \alpha_1\alpha_2\left(\phi_a(1)\phi_b(2)-\phi_a(2)\phi_b(1)\right)
+\end{align*}
+等价，并且类似地与 $\Psi_{a\downarrow b\downarrow}$ 等价。
+
+尽管如此，如果我们愿意越出这一方法之外，依靠我们关于自旋本征函数的知识，那么从 Hartree-Fock 不仅可以得到三重态（triplet）的能量，也可以得到单态（singlet）的能量。这可以通过比较 $\Psi_{a\uparrow b\downarrow}$ 与 $\Psi_{a\uparrow b\uparrow}$ 的能量来做到。在 Hartree-Fock 中，这两个能量相差某一项，它来自我们在式 (1) 中导出的平行自旋情形下两个电子的附加关联（译注：原书此处作 “Eq. (1)”；但本章编号公式 (1) 在 A.2 节，与此处所指不符，当系讲义原稿残留的引用，所指应即下式中的交换项。）：
+\begin{equation*}
+\rho(\mathbf{r}_1,\mathbf{r}_2)=\rho_{\text{product}}-\psi_1^*(\mathbf{r}_1)\psi_2^*(\mathbf{r}_2)\psi_2(\mathbf{r}_1)\psi_1(\mathbf{r}_2)
+\end{equation*}
+由此导致一个能量差
+\begin{equation*}
+J=\int d\mathbf{r}_1\,d\mathbf{r}_2\ \mathcal{H}(r_{12})\left(\psi_1^*\psi_2(\mathbf{r}_1)\right)\left(\psi_2^*\psi_1(\mathbf{r}_2)\right)
+\end{equation*}
+现在，Dirac-Van Vleck 矢量模型告诉我们，各个态的能量必须按算符乘积 $J\,\boldsymbol{\sigma}_a\cdot\boldsymbol{\sigma}_b$ 依赖于自旋；在前一情形中它的平均值为 $J/4$，在后一情形中为 $-J/4$。而真正的单态，其能量为 $-3J/4$；于是我们可以通过由 $a\uparrow b\downarrow-a\uparrow b\uparrow$ 之差求出交换积分（exchange integral）来估计单态的能量。
+
+这一技术有两个教益。第一，在诸如自旋问题这类情形中——即我们对相互作用的形式拥有额外的知识、而单靠 Hartree-Fock 又不会立即给出正确对称类型的本征函数的情形——只要稍具巧思，往往就能走得远远超出 Hartree-Fock。同样类型的技巧如今也被用于诸如非球形核的转动等问题：在那里 Hartree-Fock 给出一个椭球形的自洽场，它显然不满足“波函数必须是角动量的本征函数”这一必要要求；但人们可以相当人为地取出 Hartree-Fock 解并使它转动，迫使它具有正当解的形式 (13)。
+
+第二个教益涉及无限系统中的同类问题——例如，设想我们讨论的是一整个由相距很远的原子组成的晶格，如反铁磁体（antiferromagnet）中那样。在这样的大系统中常常出现这样的情形：问题的真正解其实是 Hartree-Fock 的非对称解，而不是某个对称的替代品——例如，反铁磁体的真实基态其实并\emph{非}单态，毋宁说每个原子都\emph{带有}一个确定的自旋。但是，当两个 Hartree-Fock 解在\emph{无限}系统中彼此不同时，由于自洽的特殊性质，新的、非常实在的困难便出现了。这就是说，为了从一个解过渡到另一个解，$N\to\infty$ 个（译注：原文为“N—∞”）Hartree-Fock 本征函数中的每一个都必须经历一次正则变换（canonical transformation），于是这个变换在某种意义上是无穷多个幺正变换（unitary transformation）的乘积。这意味着两个态的交叠基本上为零——场论学家们把这种局面弄得令人生畏，他们说这两个态实际上处在不同的 Hilbert 空间之中。尽管如此，在无限系统中两个自洽解可以定性地完全不同——其差别之大，犹如同一物质的两个相，比如说一个固相与一个液相——这一事实具有重大的意义与重要性。类似的现象也出现在超导之中，甚至出现在固体凝聚这个日常问题里——我们所处理的这块物质可以抛弃其基本哈密顿量的某一个对称元素，建立起它自己的非对称自洽场。这些问题将在本讲义的最后一部分中更充分地加以讨论。
+
+\subsection{自洽方程的推导：二次量子化}
+
+% ---- 原书 p.15 (PDF p030) ----
+所有这些，相对于把 Hartree-Fock 理论应用于固体中的电子这一正题来说，已经是相当一段题外话了。为了进一步强调 Hartree-Fock 背后的物理，并顺便毫不费力地多导出几个结果——例如 Koopmans 定理——我将在这里给出从变分原理（variational principle）导出 Hartree-Fock 的基本推导的一个相当不寻常的版本。这同时也可以用来引入产生（creation）与湮灭（destruction）算符的概念，它们在本课程后面的部分将会用到。标准的推导可以在许多教科书中找到（例如可参见文献 2 和 11）。
+
+正如我先前所说，表示一个多粒子波函数
+
+\begin{equation*}
+\Psi(r_1\ldots r_N)
+\end{equation*}
+
+的实际上唯一可行的办法，是借助乘积函数
+
+\begin{equation*}
+\phi_1(r_1)\,\phi_2(r_2)\ldots\ \phi_N(r_N)
+\end{equation*}
+
+当然，这是一种非常特殊的多电子函数；但可以证明，任何实际合理的多粒子波函数都可以用足够数目的这类乘积线性展开——例如，多变量 Fourier 积分便正是这样一种展开。
+
+% ---- 原书 p.16 (PDF p031) ----
+像这样一个简单的乘积，对于一组全同的量子力学粒子来说并不是合适的波函数，因为这些粒子在原则上不可分辨。正如大家都知道的，自然界中出现的粒子只有两类：或者是 Bose 粒子，对它们要求对称波函数；或者是 Fermi 粒子，它们只具有反对称波函数。在两种情形下都存在该乘积的一个合适的推广：对 Bose 粒子，是对称化乘积（symmetrized product）
+
+\begin{equation*}
+(N!)^{-1/2}\sum_P \phi_1(Pr_1)\,\phi_2(Pr_2)\ldots
+\end{equation*}
+
+而对 Fermi 粒子，则是反对称化乘积（antisymmetrized product），即行列式（determinant）
+
+\begin{equation*}
+(N!)^{-1/2}\sum_P (-1)^P\,\phi_1(Pr_1)\ldots
+\end{equation*}
+
+在这些波函数中，唯一有意义的信息只是这样一个事实：一个粒子处在 $\phi_1$ 中，另一个处在 $\phi_2$ 中，等等。事实上，如果我们当初是从一个正交归一集合中选取这些 $\phi$ 的，那么标记这个函数的一个合理方式便是
+
+\begin{equation*}
+\Psi(r_1\ldots r_N)\ \longleftrightarrow\ \Psi(n_1 \text{ 在 } \phi_1 \text{ 中，} n_2 \text{ 在 } \phi_2 \text{ 中，} \ldots)\ =\ \Psi(n_1,n_2,n_3\ldots)
+\end{equation*}
+
+这称为"n"表示，或"占据数表示"（occupation number representation）。当然，对费米子而言，直接计算表明 $n$ 只能取 0 或 1；而对玻色子，$n$ 可以取任何值。例子：
+
+\begin{equation*}
+\Psi(n_1=1,\ n_2=0,\ n_3=0\ldots)\ \text{对应于}\ \phi_1(r_1)
+\end{equation*}
+
+\begin{equation*}
+\Psi(n_1=1,\ n_2=1,\ n_3=0\ldots)\ \longleftrightarrow\ \frac{1}{\sqrt{2}}\left(\phi_1(1)\phi_2(2)\pm\phi_1(2)\phi_2(1)\right)
+\end{equation*}
+
+等等。
+
+这可以简单地看成是从一组变量到另一组变量的一个线性幺正变换（unitary transformation）。看出这必定如此的一个办法，是利用选取 $\phi$ 的自由，采用一组特别简单的函数，即 $\delta$ 函数 $\delta(r-R)$ 那一组，这时 $\phi_n$ 的函数指标 $n$ 便成了连续变量 $R$。函数 $\Psi(n_R=1,\ n_{R'\neq R}=0)$ 是有一个粒子肯定位于 $R$ 处的函数；而任何一个单粒子函数都可以通过幺正变换
+
+\begin{equation*}
+\phi(R)\ \longleftrightarrow\ \int dR\ \phi(R)\,\Psi(n_R=1,\ n_{R'\neq R}=0)
+\end{equation*}
+
+得到，而这个式子随即给出幺正变换
+
+\begin{equation*}
+\Psi(n_\phi=1,\ n_{\phi'\neq\phi}=0)\ =\ \int dR\ \phi(R)\,\Psi(n_R=1,\ n_{R'}=0)
+\end{equation*}
+
+其中波函数 $\phi(R)$ 所扮演的角色，正如在普通的单粒子理论中那样，是 $r$ 空间表象与 $\phi$ 表象之间的幺正变换 $(R\,|\,\phi)$。类似的技术也可以用来把任何具有恰当反对称性的 $n$ 粒子函数，用由"一个粒子在 $R_1$ 处、第二个粒子在 $R_2$ 处"等等所标记的函数表示出来。（此后我们把自己限于费米子。）
+
+% ---- 原书 p.17 (PDF p032) ----
+因此，占据数表示只不过是把展开式用行列式波函数（determinantal wave functions）写出的一种方便方式。当人们再引入另外几种量子力学算符，即所谓"产生"与"湮灭"算符——它们作用于这些函数的方式，是在某一个特定波函数中添加或移除——即产生或消灭——一个粒子——便开始得到形式上更简单、也更为有用的结果。
+
+如果我们有一组已经正交归一化的函数 $\phi_n$，我们就引入一个算符 $C_{\phi_n}^{\dagger}$，或更简单地记作 $C_n^{\dagger}$，当它作用在任何 $n$ 表示函数 $\Psi(n_1,n_2,\ldots,n_N)$ 上时，便在态 $\phi_n$ 中添加一个新粒子。也就是说，
+
+\begin{equation*}
+C_n^{\dagger}\ \Psi(n_1,n_2,\ldots,n_n\ldots)\ =\ \Psi(n_1,n_2,\ldots,n_n+1\ldots)
+\end{equation*}
+
+我们还引入它的厄米共轭（hermitian conjugate）$C_n$，它恰好起相反的作用：使 $n_n$ 减一，也就是说，消灭一个处在态 $n$ 中的粒子。有两点值得注意：第一，事实上，对费米子来说，含有两个或更多个处于态 $n$ 的粒子的行列式为零，所以当它作用在 $n_n=1$ 或更大的态 $\Psi$ 上时 $C_n^{\dagger}=0$。这一点用 $(C_n^{\dagger})^2=(C_n)^2=0$ 来表述最为简捷。第二，波函数的相位——因而甚至连它的正负号——迄今为止都还没有被这个定义所确定。于是，如果我们有波函数
+
+\begin{equation*}
+\Psi(0\ldots n_1=1,\,0\ldots)\ \longleftrightarrow\ \phi_1(r)
+\end{equation*}
+
+那么我们还不知道该给行列式
+
+\begin{equation*}
+C_{n_2}^{\dagger}\ \Psi(0\ldots n_1=1,0\ldots)\ =\ \Psi(0\ldots n_1=1,\ n_2=1,0\ldots)
+\end{equation*}
+
+以什么相位：是说它是
+
+\begin{equation*}
+\frac{1}{\sqrt{2}}\left(\phi_1(r_1)\phi_2(r_2)-\phi_1(r_2)\phi_2(r_1)\right)
+\end{equation*}
+
+还是反过来，抑或给相应的行列式一个任意的相位因子。
+
+% ---- 原书 p.18 (PDF p033) ----
+事实上，当然，在这种情形下相位是任意的，因为物理结果不可能依赖于它。然而，在比较用不同方式产生粒子而构建起来的两个行列式时，相位就是有关系的了——例如，我们可能想把上面的波函数——它可以写成 $C_2^{\dagger}(C_1^{\dagger}\,|\,\Psi_{\mathrm{vac}})$——与先把粒子产生到态 $\phi_2$ 中、然后再产生到态 $\phi_1$ 中的那个波函数 $C_1^{\dagger}(C_2^{\dagger}\Psi_{\mathrm{vac}})$ 相比较。显然，如果把第一个写成
+
+\begin{equation*}
+\frac{1}{\sqrt{2}}\ e^{if}\ \left(\phi_1(r_1)\phi_2(r_2)-\phi_2(r_1)\phi_1(r_2)\right)
+\end{equation*}
+
+那么第二个就必须是
+
+\begin{equation*}
+\frac{1}{\sqrt{2}}\ e^{if}\ \left(\phi_2(r_1)\phi_1(r_2)-\phi_1\phi_2\right)
+\end{equation*}
+
+（译注：原书末项排印为 $\phi_1\phi_2$，漏去了宗量；按上下文应为 $\phi_1(r_1)\phi_2(r_2)$。）它恰恰是第一个的负值。于是，这可以通过规定
+
+\begin{equation*}
+C_1^{\dagger} C_2^{\dagger}(\Psi_{\mathrm{vac}})\ =\ -C_2^{\dagger} C_1^{\dagger}\left|\Psi_{\mathrm{vac}}\right)
+\end{equation*}
+
+或者
+
+\begin{equation*}
+\left(C_1^{\dagger} C_2^{\dagger}+C_2^{\dagger} C_1^{\dagger}\right)\left|\Psi_{\mathrm{vac}}\right)\ =\ 0
+\end{equation*}
+
+来描述。事实上，你可以立刻看出：为了确保波函数在 $r_1$ 与 $r_2$ 互换时保持反对称，而我们指明哪一个是 $r_1$、哪一个是 $r_2$ 的唯一途径就是产生算符乘积中因子的次序，因此只需让不同 $n$ 的产生算符彼此\emph{反对易}（anticommute）便已足够：$C_1^{\dagger}C_2^{\dagger}+C_2^{\dagger}C_1^{\dagger}=0$，只要作用在任何波函数上都如此。
+
+这条反对易规则使得把诸 $C^{\dagger}$ 用矩阵显式表示出来变得极其复杂，因此，尽管这样的表示可以找到，我们在这里不打算给出。
+
+通过取厄米共轭你可以看出 $C_n C_{n'}+C_{n'}C_n=0$，而且 $C_n^2=C_n^{\dagger 2}=0$ 其实恰好就是这条规则的 $n=n'$ 那个元素。这一点自己可以做出——我把它留作练习——即 $C_n C_{n'}^{\dagger}+C_{n'}^{\dagger}C_n=0$，当 $n'\neq n$ 时也成立。
+
+% ---- 原书 p.19 (PDF p034) ----
+这就只剩下 $C_n^{\dagger}C_n$ 和 $C_nC_n^{\dagger}$ 了。这两个乘积其实非常简单。考虑它们对 $\Psi_0=\Psi(\ldots n_n=0,\ldots)$ 和对 $\Psi_1=\Psi(\ldots n_n=1,\ldots)$ 的作用；省略号代表所有其余指标的一组相同的取值。
+
+\begin{equation*}
+C_n^{\dagger} C_n\,\Psi_0\ =\ 0\quad\text{因为}\quad C_n\,\Psi_0=0
+\end{equation*}
+
+\begin{equation*}
+C_n C_n^{\dagger}\,\Psi_1\ =\ 0\quad\text{因为}\quad C_n^{\dagger}\,\Psi_1=0
+\end{equation*}
+
+\begin{equation*}
+C_n^{\dagger}\,\Psi_0\ =\ \pm\Psi_1\qquad\quad C_n\,\Psi_1\ =\ \pm\Psi_0
+\end{equation*}
+
+相位未定，但它们必须相同，于是
+
+\begin{equation*}
+C_n C_n^{\dagger}\,\Psi_0\ =\ \Psi_0\qquad\quad C_n^{\dagger} C_n\,\Psi_1\ =\ \Psi_1
+\end{equation*}
+
+既然所有波函数都可以写成这两种类型的线性组合，这些方程就意味着：对所有 $\Psi$，
+
+\begin{equation*}
+C_n^{\dagger} C_n+C_n C_n^{\dagger}\ =\ 1;\ \text{因而}\ C_n^{\dagger} C_{n'}+C_{n'}C_n^{\dagger}\ =\ \delta_{nn'}
+\end{equation*}
+
+我们还看到，算符 $C_n^{\dagger}C_n$ 就是\emph{测量}处于态 $n$ 中电子数目的那个算符。
+
+\begin{equation*}
+C_n^{\dagger} C_n\ =\ n_n\qquad\quad C_n C_n^{\dagger}\ =\ 1-n_n
+\end{equation*}
+
+到这里，我们已经证明了：利用占据数表示以及产生与湮灭算符，能够建立起行列式波函数的一套完整的代数——事实上，我们可以把前者弃置不用，而总是从真空出发，写成
+
+\begin{equation*}
+\Psi(n_1,n_2,\ldots,n_N,\ldots)\ =\ (C_1^{\dagger})^{n_1}(C_2^{\dagger})^{n_2}\ldots(C_N^{\dagger})^{n_N}\ldots\ \Psi_{\mathrm{vac}}
+\end{equation*}
+
+% ---- 原书 p.20 (PDF p035) ----
+为了利用这一点，我们还必须把物理可观测量也用产生与湮灭算符展开。这实际上不难。如何做到这一点，考虑一个简单的单电子空间势 $V(r)$ 的情形就能最简单地予以说明。先看 $V(r)$ 作用在一个单电子函数上的效果。如果我们有一组正交函数 $\phi_n(r)$，
+
+\begin{equation*}
+V(r)\phi_n(r)\ =\ \sum_m V_{mn}\phi_m(r)
+\end{equation*}
+
+（译注：原书右端排印为 $\phi_n(r)$，按上下文应为 $\phi_m(r)$。）$V_{mn}$ 是通常的矩阵元（matrix element）$\int\phi_m^*\,V\phi_n\,dr$。于是，就单电子函数而言，$V(r)$ 的效果与
+
+\begin{equation*}
+V\ \longleftrightarrow\ \sum_{m,n} C_m^{\dagger} V_{mn} C_n
+\tag{1}
+\end{equation*}
+
+相同，这只要把它作用在 $C_n^{\dagger}\Psi_{\mathrm{vac}}\leftrightarrow\phi_n(r)$ 上便可以看到。
+
+类似地，在一个双电子问题中，由不可分辨性我们知道 $V(r)$ 必须作用在两个坐标上，因此我们把 $V(r_1)+V(r_2)$ 插入所研究的哈密顿量或其他可观测量之中。计算它作用在乘积 $\phi_m(r_1)\phi_{m'}(r_2)$ 上的效果，我们得到
+
+\begin{equation*}
+\sum_n\left[\phi_n(r_1)\,\phi_{m'}(r_2)\,V_{nm}\ +\ V_{nm'}\,\phi_m(r_1)\,\phi_n(r_2)\right]
+\end{equation*}
+
+这又恰好是这样的效果：消灭 $m$ 或 $m'$ 中的任何一个，乘上相应的 $V$，再换上 $n$；也就是说，还是同一个算符。（我留给读者一个练习：证明诸 $C$ 的反对易性再加上反对称化，会导致行列式的正确符号。）
+
+现在只差最后一步，就会使在这套理论中构造可观测量——例如哈密顿量——的一般规则变得一目了然。让我们作正则变换（canonical transformation），变换到 $\delta$ 函数 $\delta(r-R)$，以及相应的产生与湮灭算符 $\Psi^{\dagger}(R)$、$\Psi(R)$。这里采用记号 $\Psi^{\dagger}$ 与 $\Psi$，是因为这些算符常常被称为\emph{电子场}（electron field）算符，它们与普通 Schrödinger 方程中的波函数 $\Psi$ 扮演着十分相似的角色；它们正是这一 c 数量（c-number）的算符版本——故名"二次量子化"。这个变换当然是
+
+% 原书在 $\phi_m$ 上方以箭头标注 $(m|R)$，指明 $\phi_m(R)$ 即幺正变换矩阵元 $(m|R)$
+\begin{equation*}
+C_m^{\dagger}\ =\ \int dR\ \overset{(m|R)}{\phi_m}(R)\ \Psi^{\dagger}(R)
+\tag{2}
+\end{equation*}
+
+% ---- 原书 p.21 (PDF p036) ----
+然后用 $(R'|m)=\phi_m^{\dagger}$ 遍乘两边并求和，我们便得到逆变换
+
+\begin{equation*}
+\sum_m \phi_m^{*}(R')\,C_m^{\dagger}\ =\ \int dR\ \sum_m (R'|m)(m|R)\,\Psi^{\dagger}(R)
+\end{equation*}
+
+而且我们认出和式中的 $\delta$ 函数：$\sum_m (R'|m)(m|R)=\delta(R'-R)$，
+
+\begin{equation*}
+\Psi^{\dagger}(R')\ =\ \sum_m C_m^{\dagger}\phi_m^{*}(R')
+\tag{3}
+\end{equation*}
+
+把式 (2) 代入式 (1)，我们得到
+
+\begin{align*}
+V\ \longleftrightarrow\ \sum_{m,n}\int dR&\int dR'\ \phi_m(R)\Psi^{\dagger}(R)\int dR''\ \phi_m(R'')\\
+&\times\ V(R'')\phi_n(R'')\phi_n^{*}(R')\ \Psi(R')
+\end{align*}
+
+再一次，这些和式引入一系列 $\delta$ 函数，于是我们得到
+
+\begin{equation*}
+V\ \longleftrightarrow\ \int dR\ \Psi^{\dagger}(R)V(R)\Psi(R)
+\end{equation*}
+
+这个公式看上去是不言自明的。积分号下的量常常被称为一个"密度"——在这个情形下是一个"势密度"（potential density）。
+
+我再一次留给读者去证明：这条显然的规则也可以应用于相互作用势
+
+\begin{align*}
+\frac{1}{2}\sum_{i,j}\frac{e^2}{R_{ij}}\ \longleftrightarrow\ V_{\mathrm{int}}\
+&=\ \frac{1}{2}\sum_{m,n,l,p} C_m^{\dagger} C_n^{\dagger} C_l C_p\, V_{mnlp}\\
+&=\ \frac{1}{2}\sum_{\sigma,\sigma'}\int dR\,dR'\ \Psi_{\sigma}^{\dagger}(R)\Psi_{\sigma'}^{\dagger}(R')\ \frac{e^2}{|R-R'|}\ \Psi_{\sigma'}(R')\Psi_{\sigma}(R)
+\end{align*}
+
+\begin{equation*}
+V_{mnlp}\ =\ e^2\int dR\int dR'\ \frac{\phi_m^{*}(R)\phi_n^{*}(R')\phi_l(R')\phi_p(R)}{|R-R'|}\ \delta_{\sigma_m\sigma_p}\,\delta_{\sigma_n\sigma_l}
+\tag{4}
+\end{equation*}
+
+% 衔接说明：本文件首句承上文件（p036，式 (4) 之后）关于“密度”的讨论；
+% 原书 p042 末尾（本文件最后一式之后）即转入大节 B（ENERGY BANDS IN SOLIDS），不属本文件。
+
+而相应地，我们也可以写出一个动能密度，于是
+\begin{equation*}
+\mathcal{H} = \sum_{\sigma} \int \mathrm{d}R\;\Psi_{\sigma}^{\dagger}(R)\left(-\frac{\hbar^2\nabla^2}{2m} + V(R)\right)\Psi_{\sigma}(R) + V_{\mathrm{int}}
+\tag{5}
+\end{equation*}
+
+这种以场算符写出的形式之所以有用，主要在于它可以按我们愿意使用的任意一组单电子函数来展开。
+
+现在，我们终于可以在这一表述框架（formalism）中着手推导 Hartree-Fock 方程和 Koopmans 定理（Koopmans' theorem）了。如果我们利用这样一个自由——在可以借以表示式 (5) 的各组可能的 $\phi_n$ 之间自由变换——把一切都用我们希望最终得到的那组解来表示，那么这两个问题的证明都最为容易。也就是说，我们选取一组 $\phi_n$，使其中的前 $N$ 个是最低能量的行列式波函数中被占据的态。于是，这个最低能量函数便写作
+\begin{equation*}
+\Psi_N = \prod_{n=1}^{N} C_n^{\dagger}\,\Psi_{\mathrm{vac}}
+\end{equation*}
+
+若要 $\Psi_N$ 具有最低能量，我们就必须要求
+\begin{equation*}
+E_N = \frac{\left(\Psi_N,\, \mathcal{H}\Psi_N\right)}{\left(\Psi_N,\, \Psi_N\right)}
+\end{equation*}
+取极小，因而也就是要求
+\begin{equation*}
+\left(\delta\Psi_N,\, \mathcal{H}\Psi_N\right) = 0
+\end{equation*}
+这里我们略去了第二个 $\Psi$ 的变分，因为它给出的恰恰是复共轭，而归一化我们稍后再作保证。
+
+依次变动组成 $\Psi_N$ 的每一个 $\phi_n$——也就是变动每一个 $C_n^{\dagger}$——便可以顾及 $\Psi_N$ 的一切可能的无穷小变分。这样我们就必须保证
+\begin{equation*}
+\left(\delta C_n^{\dagger}\left(\prod_{m\neq n}^{N} C_m^{\dagger}\right)\Psi_{\mathrm{vac}}\,,\; \mathcal{H}\, C_n^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right) = 0
+\end{equation*}
+
+若把 $\delta C_n^{\dagger}$ 取作诸 $C_m^{\dagger}$ 的任意线性组合：$\delta C_n^{\dagger} = \sum_m \delta_m C_m^{\dagger}$，那么，为保证归一化，我们可以假定 $\delta_{m=n}$ 为零；而其余那些 $m < N$ 的项都自动给出零，因为 $(C_m^{\dagger})^2 = 0$。于是我们的检验函数是 $\delta C_n^{\dagger} = \sum_{m>N} \delta_m C_m^{\dagger}$；实际上我们可以要求：对一切 $M > N$，$n \leq N$：
+\begin{equation*}
+\left(C_M^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\,,\; \mathcal{H} \prod_{m}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right) = 0
+\tag{6}
+\end{equation*}
+
+直接计算这个式子确实会给出 Hartree-Fock 方程；但我愿意走一条更物理的路线，并同时演示 Koopmans 定理。
+
+把式 (5) 中的 $\mathcal{H}$ 按我们假定的一组解展开，便得到
+\begin{equation*}
+\mathcal{H} = \sum_{m,n} \mathcal{H}^1_{mn}\, C_m^{\dagger} C_n + \frac{1}{2}\sum_{lmnp} V_{lmnp}\, C_l^{\dagger} C_m^{\dagger} C_n C_p
+\end{equation*}
+其中 $\mathcal{H}^1$ 是 (5) 中的单电子部分：
+\begin{equation*}
+\mathcal{H}^1_{mn} = \int \phi_m^{*}(r)\left(\frac{p^2}{2m} + V\right)\phi_n(r)\,\mathrm{d}r
+\end{equation*}
+$V_{lmnp}$ 已在前面由式 (4) 定义。
+
+现在让我们来计算 $\mathcal{H}$ 与被占据态之一的产生算符 $C_n^{\dagger}$ 的\emph{对易子}（commutator）。直截了当地运用我们的反对易关系，即可看到
+\begin{align*}
+\left[C_l^{\dagger} C_p,\, C_n^{\dagger}\right] &= C_l^{\dagger} C_p C_n^{\dagger} - C_n^{\dagger} C_l^{\dagger} C_p = -\,C_l^{\dagger} C_n^{\dagger} C_p - C_n^{\dagger} C_l^{\dagger} C_p = 0\\
+\left[C_n^{\dagger} C_p,\, C_n^{\dagger}\right] &= 0\\
+\left[C_l^{\dagger} C_n,\, C_n^{\dagger}\right] &= C_l^{\dagger} C_n C_n^{\dagger} + C_l^{\dagger} C_n^{\dagger} C_n = C_l^{\dagger}\\
+\left[C_n^{\dagger} C_n,\, C_n^{\dagger}\right] &= C_n^{\dagger}
+\end{align*}
+
+规则便是：若两个算符的乘积中不含 $C_n$，它就与 $C_n^{\dagger}$ 对易；否则我们就把 $C_n$ 湮灭掉，而留下一个落单的 $C_n^{\dagger}$ 算符。因此，与一个产生算符的对易子所产生的效果，与该算符本身的作用大体相同。注意
+\begin{equation*}
+\left[C_a^{\dagger} C_b,\, C_c^{\dagger}\right]^{\dagger} = -\left[C_b^{\dagger} C_a,\, C_c\right]
+\end{equation*}
+因此，穿过一个湮灭算符作对易，得到的将是带一个负号的共轭结果。
+
+$C_n^{\dagger}$ 穿过四算符乘积的对易子，其符号取决于 $C_n$ 出现在两个可能位置中的第一个还是第二个：
+\begin{align*}
+\left[C_a^{\dagger} C_b^{\dagger} C_l C_m,\, C_n^{\dagger}\right] &= 0\qquad l,\, m \neq n\\
+\left[C_a^{\dagger} C_b^{\dagger} C_l C_n,\, C_n^{\dagger}\right] &= C_a^{\dagger} C_b^{\dagger} C_l\\
+\left[C_a^{\dagger} C_b^{\dagger} C_n C_l,\, C_n^{\dagger}\right] &= -\,C_a^{\dagger} C_b^{\dagger} C_l
+\end{align*}
+最后一式是因为：$C_n$ 必须先穿过 $C_l$ 作反对易，然后才能去湮灭 $C_n^{\dagger}$。
+
+利用这些简单的规则，我们得到
+\begin{equation*}
+\left[\mathcal{H},\, C_n^{\dagger}\right] = \sum_m \mathcal{H}^1_{mn}\, C_m^{\dagger} + \frac{1}{2}\sum_{mlp}\left(V_{mlpn} - V_{mlnp}\right) C_m^{\dagger} C_l^{\dagger} C_p
+\tag{7}
+\end{equation*}
+
+最后，让我们把这个结果用于计算能量变分，即式 (6)。我们让任一个 $C_n^{\dagger}$ 穿过哈密顿量 $\mathcal{H}$ 作对易；这就给出
+\begin{align*}
+0 = {}& \left(C_M^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\,,\; C_n^{\dagger}\,\mathcal{H} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right)\\
+&+ \left(C_M^{\dagger} \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\,,\; \left[\mathcal{H},\, C_n^{\dagger}\right] \prod_{m\neq n}^{N} C_m^{\dagger}\,\Psi_{\mathrm{vac}}\right)
+\tag{8}
+\end{align*}
+
+第一项立即为零，因为态 $n$ 在右边的态中肯定被占据，而在左边的态中肯定未被占据。于是剩下的就是含对易子的那个标量积项：即上文式 (8) 中的第二项。
+
+如果 $\left[\mathcal{H},\, C_n^{\dagger}\right]$ 中没有那些三费米子项，这件事本来很容易解决，只须要求
+\begin{equation*}
+\mathcal{H}^1_{Mn} = 0\qquad M > N,\; n \leq N
+\end{equation*}
+也就是说，要求
+\begin{equation*}
+\left[\mathcal{H},\, C_n^{\dagger}\right] = \sum_{\substack{m\ \text{occupied}\\ \text{only}}} \lambda_{mn}\, C_m^{\dagger}
+\end{equation*}
+事实上，不同被占据态之间的混合无关紧要；我们总可以通过把诸 $C_n^{\dagger}$ 作线性组合，使矩阵 $\lambda_{mn}$ 对角化，从而找到一组态，使得
+\begin{equation*}
+\left[\mathcal{H},\, C_n^{\dagger}\right] = E_n\, C_n^{\dagger}
+\end{equation*}
+
+在确定三费米子项的效果时，原则上遵循的正是同样的做法。形如 $C_m^{\dagger} C_l^{\dagger} C_p$ 的项在许多情形下会自动给出零；例如，$p$ 必须是某个被占据的态，否则 $C_p\,\Psi_{\mathrm{vac}} = 0$。但如果 $C_p$ 湮灭的是 $j$ 态上的粒子，即 $C_p = C_j$，那么必须有 $C_m^{\dagger}$ 或 $C_l^{\dagger}$ 把它补上，否则标量积将为零；因为左边的态中 $j$ 是被占据的。最后，$M$ 之所以能被占据，唯一的途径是 $C_m^{\dagger}$ 或 $C_l^{\dagger}$ 中的另一个去填它。于是我们有如下两类项：
+\begin{equation*}
+\left(V_{Mjjn} - V_{Mjnj}\right) C_M^{\dagger}\, n_j \qquad\text{与}\qquad -\left(V_{jMjn} - V_{jMnj}\right) C_M^{\dagger}\, n_j
+\end{equation*}
+
+考察 $V$ 的定义即可以看出，它对于内指标与外指标的交换是对称的，因此这两类项完全相同，从而消去了式 (7) 中的 1/2。此外我们还看到 $V_{Mnnn} = V_{Mnnn}$（译注：原文两处下标完全相同，显系排印之误；按正文所述对称性，疑第二处应为 $V_{nMnn}$），因此我们愿意的话，可以对称地插入 $C_n^{\dagger} n_n$ 这一项。因子 $n_j$（占据数算符）作用在乘积函数上时恰好就是 1，于是最终的方程是
+
+\begin{equation*}
+0 = \left(C_M^{\dagger} C_n\,\Psi_{\text{H-F}}\,,\; \left[\mathcal{H},\, C_n^{\dagger}\right] C_n\,\Psi_{\text{H-F}}\right) = \mathcal{H}^1_{Mn} + \sum_{m\ \text{occ.}}\left(V_{Mmmn} - V_{Mmnm}\right)
+\end{equation*}
+或者，
+\begin{equation*}
+\sum_{\text{all }m}\left(\mathcal{H}^1_{mn}\, C_m^{\dagger} + \sum_{j=1}^{N}\left(V_{mjjn} - V_{mjnj}\right)C_m^{\dagger}\right) = E_n\, C_n^{\dagger}
+\tag{9}
+\end{equation*}
+（同样，我们可以在诸被占据波函数之间重新对角化。）
+
+这个方程确实就是 Hartree-Fock 方程，这一点可以通过变换到空间（电子场）表象来验证。此时式 (9) 即为
+\begin{align*}
+&\sum_m \int \phi_m^{\dagger}(r)\,\mathcal{H}^1(r)\,\phi_n(r)\,\mathrm{d}r \int \mathrm{d}R\;\phi_m(R)\Psi^{\dagger}(R) \\
+&\quad+\sum_j\sum_m \int \mathrm{d}r \int \mathrm{d}r'\;\frac{e^2}{|r-r'|}\left[\phi_m^{*}(r)\phi_j^{*}(r')\phi_j(r')\phi_n(r)\right.\\
+&\qquad\left.-\;\phi_m^{*}(r)\phi_j(r')\phi_n(r')\phi_j(r)\right]\int \mathrm{d}R\;\phi_m(R)\Psi^{\dagger}(R)\\
+&\quad=E_n \int \mathrm{d}R\;\phi_n(R)\Psi^{\dagger}(R)
+\end{align*}
+对 $m$ 的求和给出一系列 $\delta$ 函数，使上式化为
+\begin{align*}
+\int \mathrm{d}R\;\Psi^{\dagger}(R)\;\mathcal{H}^1(R)\,\phi_n(R) &+ \int \mathrm{d}r_2\;\frac{e^2}{|r_2-R|}\;|\phi_j(r_2)|^2\,\phi_n(R) \\
+&- \int \mathrm{d}r_2\;\frac{e^2}{|r_2-R|}\;\phi_j^{*}(r_2)\,\phi_n(r_2)\,\phi_j(R) \\
+&= \int \mathrm{d}R\;\Psi^{\dagger}(R)\,E_n\,\phi_n(R)
+\end{align*}
+既然所有 $\Psi^{\dagger}(R)$ 都线性无关，作为 $R$ 的函数，这一系数必须为零；而这个系数正是 Hartree-Fock 方程。证讫（Q.E.D.）。
+
+Koopmans 定理的证明要容易得多。定理说的是：系数 $E_n$ 恰好就是在 Hartree-Fock 近似下把处于 $\phi_n$ 态的电子移走所需的激发能。
+
+作为整体的 Hartree-Fock 态的能量 $E_{\text{H-F}}$ 可以简单地定义为
+\begin{equation*}
+\mathcal{H}\,\Psi_{\text{H-F}} = E_{\text{H-F}}\,\Psi_{\text{H-F}}\quad(\text{当然，还有非对角项})
+\end{equation*}
+
+移走电子 $n$ 之后那个态的总能量则简单地由下式给出：
+\begin{equation*}
+\mathcal{H} \prod_{m\neq n} C_m^{\dagger}\,\Psi_{\mathrm{vac}} = \epsilon_n \prod_{m\neq n} C_m^{\dagger}\,\Psi_{\mathrm{vac}}
+\end{equation*}
+
+利用对易子，我们可以得到一个比较：
+\begin{align*}
+&C_n^{\dagger}\,\mathcal{H}\left(C_n\,\Psi_{\text{H-F}}\right) - \mathcal{H}\,C_n^{\dagger}\left(C_n\,\Psi_{\text{H-F}}\right)\\
+&\quad= \left(\epsilon_n - E_{\text{H-F}}\right)\Psi_{\text{H-F}} = -\left[\mathcal{H},\, C_n^{\dagger}\right] C_n\,\Psi_{\text{H-F}}
+\end{align*}
+
+但这最后一个乘积恰恰就是我们在计算 $\delta E$ 时所算过的东西；我们算出的是对角项，并把它\emph{定义}为 $E_n C_n^{\dagger}$；于是
+\begin{equation*}
+\epsilon_n - E_{\text{H-F}} = E_n
+\end{equation*}
+
+把态 $n$ 中的一个电子移走需要花费能量 $E_n$。这就是 Koopmans 定理。
+
+诚然，在这个形式下它并不十分严格，因为 $E_{\text{H-F}}$ 与 $\epsilon_n$ 并不严格可比——它们是电子数不同的两个系统的能量。但可以证明，在讨论由于掏空两个不同的态 $\phi_n$ 而引起的能量差时，$E_n$ 仍然是有意义的量。
+
+这样，参数 $E_n$ 的物理意义就清楚了。它们与总能量 $E_{\text{H-F}}$ 没有直接的关系，因为，当然，$E_n$ 中包含了粒子 $n$ 与所有其他粒子 $m$ 的相互作用能，而当我们移走这个粒子时，这份相互作用能便整个丢失了。如果我们接着移走粒子 $m$，其移出能将不再包含它与 $n$ 的相互作用，尽管 $E_m$ 中确实含有这份能量。因此，在所有 $E_n$ 之和中，必须扣去总相互作用能，以免把相互作用重复计算。于是
+\begin{align*}
+E_{\text{H-F}} &= \sum_n E_n - \frac{1}{2}\sum_{n,m}\left(V_{nmmn} - V_{nmnm}\right)\qquad\text{或}\\
+&= \sum_n \mathcal{H}^1_{nn} + \frac{1}{2}\sum_{n,m}\left(V_{nmmn} - V_{nmnm}\right)
+\end{align*}
+
+% （以下两段是上一小节 A.2 在原书页 28 顶部的收尾内容，装配时移走。）
+
+方程 $[\mathcal{H},\,C_n^{\dagger}] = E_n C_n^{\dagger}$（除那些会激发出三个粒子的项之外）本来可以或多或少地先验猜出，以作为 Hartree-Fock 近似之物理内涵的表述。换言之，人们想要做的，是找出一组产生单电子激发的算符，并用这些单电子态中最低的 $N$ 个态来填充。于是，对基态的自洽（self-consistency）性要求就相当于要求：相互作用项在平均意义上、并在我们近似的限度之内，其作用如同施加于我们所选诸态的一个平均势，而不去激发其他单电子态——我们把 $[\mathcal{H},C_n^{\dagger}]$ 视为 $i(\partial C_n^{\dagger}/\partial t)$，并要求时间演化不激发其他的态。全部操作上的复杂之处，并不在于计算 $[\mathcal{H},C_n^{\dagger}]$，而在于证明这样做确使总能量取极小。
+
+上面所述，是把对易子（commutator）与哈密顿量联用——亦即运动方程（equations of motion）——来在多体问题 (18) 中同时确定基态与激发能量的最直截了当的例子之一。这一技术在多体理论的大多数分支中都很有用，尽管它大概正逐渐被一个更普遍、更完备然而与之类似的方法——Green 函数方法——所取代。
+
+\section{固体中的能带}
+
+现在我们接着讨论用 Hartree-Fock 方法计算固体中能带（energy band）时所涉及的问题——它们实际得多，也远不那么形式化。
+
+在这一领域，Reitz (11)、Ham (19) 以及 Wigner 与 Seitz (20) 刊于《Seitzschrift》第 1 卷的文章极有价值，Brooks (21) 的文章与 Jones 的书 (22) 亦然。在讨论能带与内聚能（cohesive energy）的计算时，我将涵盖以下专题：
+
+\begin{enumerate}
+\item 弱周期势的微扰论（perturbation theory）——这将使我们获得关于布里渊区（Brillouin zone）与 Jones 区的一些概念。（我不打算谈紧束缚（tight binding）；就能带理论而言，在实际固体中它似乎从来都不是一种很有用的技术。）
+\item 元胞法（cellular method）。
+\item 自由电子气及其交换能——关于关联能（correlation energy）的简短评述。
+\item O.P.W.（正交化平面波，orthogonalized plane wave）与消去理论（cancellation theory）。
+\end{enumerate}
+
+\subsection{弱周期势的微扰论：布里渊区与 Jones 区、对称化平面波}
+
+当然，除了极简单的情形，没有人知道如何精确求解——哪怕动用机器——普遍的积分微分 Hartree-Fock 方程。实际使用的种种近似，全都只是基于对某种周期性局域势的估计——电子就在这种势中运动——然后在这个周期势 $V(\mathbf{r})$ 中求解波动方程。正如我们下面将要讨论的，所有这类波动方程的解都具有若干共同的一般性质；这些性质大概最容易在下面这种方案中加以描述——它是所有近似方案中最简单的一种，而且人们现已认识到它粗略地适用于许多金属。
+
+当然，一切能带结构中最简单的，莫过于周期势完全消失的极限下所得的那种。但要理解怎样才能把它看作一种能带结构，我们必须先考察周期势 $V(\mathbf{r})$ 相对较弱的情形。
+
+每一种晶体结构都有一个基本的空间平移群，或称“布拉维格子”（Bravais lattice），它由沿三个线性独立矢量 $\mathbf{a}_1$、$\mathbf{a}_2$、$\mathbf{a}_3$ 的平移构成；这一对称性保证了
+\begin{equation*}
+V(\mathbf{r} + l\mathbf{a}_1 + m\mathbf{a}_2 + n\mathbf{a}_3) = V(\mathbf{r})
+\end{equation*}
+
+选取 $\mathbf{a}_1$、$\mathbf{a}_2$ 与 $\mathbf{a}_3$ 总有无穷多种可能的方式，但它们全都生成同一个晶格，并且具有相同的初基原胞（primitive cell）尺寸
+\begin{equation*}
+\Omega = \mathbf{a}_1 \cdot (\mathbf{a}_2 \times \mathbf{a}_3)
+\end{equation*}
+
+作为这种周期性的一个后果，$V(\mathbf{r})$ 的 Fourier 变换 $V(\mathbf{k})$ 化为一个 Fourier 和而非 Fourier 积分：
+\begin{align*}
+V(\mathbf{k}) &= \frac{1}{\text{vol.}} \int d\mathbf{r}\; e^{-i\mathbf{k}\cdot\mathbf{r}}\,V(\mathbf{r}) \\
+&= \frac{n(\text{cells})}{\text{vol.}} \left( \int_{\text{cell}} d\mathbf{r}\; e^{-i\mathbf{k}\cdot\mathbf{r}}\,V(\mathbf{r}) \right) \sum_{m,l,n} e^{-i\mathbf{k}\cdot(m\mathbf{a}_1 + n\mathbf{a}_2 + l\mathbf{a}_3)}
+\end{align*}
+
+除非满足下述条件，否则对 $l$、$m$、$n$ 求和时最后这个和式为零：
+\begin{equation*}
+\mathbf{k}\cdot\mathbf{a}_1 = 2\pi n_1 \qquad \mathbf{k}\cdot\mathbf{a}_2 = 2\pi n_2 \qquad \mathbf{k}\cdot\mathbf{a}_3 = 2\pi n_3
+\end{equation*}
+其中 $n_1$、$n_2$ 与 $n_3$ 全为整数。这些关系式只有当 $\mathbf{k}$ 是我们晶体的布拉维格子的倒格子（reciprocal lattice）中的一个矢量 $\mathbf{K} = n_1\mathbf{b}_1 + n_2\mathbf{b}_2 + n_3\mathbf{b}_3$ 时才能被满足。倒格子的基矢 $\mathbf{b}_j$ 可以由 $\mathbf{a}_i\cdot\mathbf{b}_j = 2\pi\delta_{ij}$（译注：原书印作 $2\delta_{ij}$，系漏排 $\pi$）来定义——这就是说，$\mathbf{b}_i$ 垂直于两个晶格矢量，其长度由第三个矢量决定；或者由下式定义：
+\begin{equation*}
+V(\mathbf{r}) = \sum_k e^{i\mathbf{K}\cdot\mathbf{r}}\,V(\mathbf{K}) \tag{10}
+\end{equation*}
+（$\mathbf{K}$ 为倒格矢的集合。）
+
+此式可以反过来给出
+\begin{equation*}
+V(\mathbf{K}) = \frac{1}{N\Omega} \int d\mathbf{r}\; e^{i\mathbf{K}\cdot\mathbf{r}}\,V(\mathbf{r})
+\end{equation*}
+但由于 $e^{i\mathbf{K}\cdot(\mathbf{r} + l\mathbf{a}_1 + m\mathbf{a}_2 + n\mathbf{a}_3)} = e^{i\mathbf{K}\cdot\mathbf{r}}$，便有
+\begin{equation*}
+V(\mathbf{K}) = \frac{1}{\Omega} \int_{\text{primitive cell}} d\mathbf{r}\; e^{i\mathbf{K}\cdot\mathbf{r}}\,V(\mathbf{r})
+\end{equation*}
+
+晶格对称性的一切后果都总结在式 (10) 的形式之中。
+
+现在我们把 $V(\mathbf{r})$ 代入 Schrödinger 方程。
+\begin{equation*}
+-\frac{\hbar^2}{2m}\,\nabla^2\Psi(\mathbf{r}) + V(\mathbf{r})\Psi(\mathbf{r}) = E\Psi(\mathbf{r})
+\end{equation*}
+
+在没有 $V(\mathbf{r})$ 时，解将为平面波（plane wave）：
+\begin{equation*}
+\phi_k(\mathbf{r}) = \frac{1}{(N\Omega)^{1/2}}\,e^{i\mathbf{k}\cdot\mathbf{r}} \qquad\qquad -\frac{\hbar^2}{2m}\,\nabla^2\phi_k = -\frac{\hbar^2 k^2}{2m}\,\phi_k = E_k^{0}\,\phi_k
+\end{equation*}
+
+在晶体表面上所能施加的最简单边界条件，是 Born-von Karman 周期性边界条件——即设想晶格在 $x$、$y$、$z$ 三个可能方向的每一个方向上都折叠到自身之上，于是三个方向上的长度分别为 $L_1$、$L_2$、$L_3$，且 $L_1L_2L_3 = N$。于是 $\Psi(x+L_1,\,y,\,z) = \Psi(x,y,z)$，从而 $k_xL_1 = 2\pi n_x$，$k_x = 2\pi n_x/L_1$。这样，$\mathbf{k}$ 空间中每一体积 $(2\pi)^3/N\Omega$ 对应一个可能的态，因为每一体积为 $(2\pi)^3/L_1L_2L_3$ 的平行六面体对应一个态（当然，计入自旋则为两个态）。
+
+现在，当我们引入 $V(\mathbf{r})$ 之后，各个平面波态便不再相互独立。然而我们仍然可以希望：若 $V$ 很弱，真实的波函数便主要由单个平面波 $\phi_k$ 构成，于是我们用一个特定的 $\mathbf{k}$ 来标记它们：
+\begin{equation*}
+\Psi_k = \phi_k + \sum_{k'\neq k} a_{k'}\,\phi_{k'}
+\end{equation*}
+
+Schrödinger 方程于是变成下面这组关于 $a_k$ 与 $E_k$ 的耦合线性方程：
+\begin{equation*}
+E - E_k^{0} = \sum_{k'\neq k} (k'|V|k)\,a_{k'} + (k|V|k)
+\end{equation*}
+\begin{equation*}
+(E - E_{k'}^{0})\,a_{k'} = \sum_{k''\neq k} (k''|V|k')\,a_{k''} + (k|V|k')
+\end{equation*}
+
+从 $V$ 的表达式我们立即看出：一般而言，除非 $k' - k$ 等于某个倒格矢 $\mathbf{K}$，否则这些矩阵元（matrix element）为零。矢量 $\mathbf{K} = 0$ 给出一个平均势 $(k|V|k) = V_0$，它只是加到所有能量上的一个平凡常数；其余所有的 $V$ 则起到把 $\mathbf{k}$ 与通过倒格子平移与之相连的某个矢量 $\mathbf{k}+\mathbf{K}$ 耦合起来的作用。因此，我们的波函数实际上必定是
+\begin{equation*}
+\Psi_k = \phi_k + \sum_{\substack{K\neq 0 \\ \text{(倒格子)}}} a_{k+K}\,\phi_{k+K} \tag{11}
+\end{equation*}
+而我们的方程组是
+\begin{equation*}
+(E - E_k^{0})(1) = \sum_K V_K\,a_{k+K} \qquad (\text{即 } a_k = 1)
+\end{equation*}
+\begin{equation*}
+(E - E_{k+K}^{0})\,a_{k+K} = V_K^{*}(1) + \sum_{K'\neq -K} V_{K'}\,a_{k+K+K'}
+\end{equation*}
+
+在一般位置处，可以预期微扰论收敛；若果真如此，则我们看到 $a_{k+K}$ 具有 $V_K$ 的量级，于是右端最后一项具有 $V^2$ 的量级，应当略去。这样做的结果是
+\begin{equation*}
+a_{k+K} \simeq \frac{V_K^{*}}{E - E_{k+K}^{0}}
+\end{equation*}
+\begin{equation*}
+E - E_k^{0} = \sum_K \frac{|V_k|^{2}}{E - E_{k+K}^{0}}
+\end{equation*}
+（译注：原书此式及下文式 (12) 的分子均印作 $|V_k|^2$，按求和指标应为 $|V_K|^2$。）
+
+最后，若 $V$ 足够小，则 $E \simeq E_k^{0}$，于是得到
+\begin{equation*}
+E_k = E_k^{0} - \sum_K \frac{|V_K|^{2}}{E_{k+K}^{0} - E_k^{0}} \tag{12}
+\end{equation*}
+
+这样，平面波的能谱与平面波函数只不过是受到了微弱的微扰：混入了波矢为 $\mathbf{k}+\mathbf{K}$ 的态，这里 $\mathbf{K}$ 属于倒格子。
+
+值得指出的是，形如式 (11) 的波函数可以写成
+\begin{equation*}
+\Psi_k = e^{i\mathbf{k}\cdot\mathbf{r}}\left(1 + \sum_{K\neq 0} a_{k+K}\,e^{i\mathbf{K}\cdot\mathbf{r}}\right) = e^{i\mathbf{k}\cdot\mathbf{r}}\,u_k(\mathbf{r})
+\end{equation*}
+其中，正如我们在展开 $V(\mathbf{r})$ 时所见到的那样，$u_k(\mathbf{r})$ 以晶格周期为周期，因为它是关于倒格子波矢的一个 Fourier 和。这就是 Bloch 的著名结果；它显然不依赖于微扰论的收敛性，而是普遍成立的。
+
+一个相关的事实是：从晶格平移对称性的观点来看，$\phi_k$ 与 $\phi_{k+K}$ 本质上是相同的，因为如果我们施行一个位移为 $\mathbf{A} = l_1\mathbf{a}_1 + l_2\mathbf{a}_2 + l_3\mathbf{a}_3$ 的晶格平移 $T$，则
+\begin{equation*}
+T\phi_k = e^{i\mathbf{k}\cdot\mathbf{A}}\phi_k \qquad\qquad T\phi_{k+K} = e^{i\mathbf{k}\cdot\mathbf{A}}\phi_{k+K}
+\end{equation*}
+因此，从群论的角度看，它们具有相同的对称性质，可以预期它们会相互混合；当我们讨论布里渊区时，将会看到这一点的种种后果。
+
+当右端的求和不小时，式 (12) 并不能令人满意；而在 $\mathbf{k}$ 空间中大量位置上情形必然如此，因为存在若干区域，在其中
+\begin{equation*}
+E_{k+K}^{0} = \hbar^2(\mathbf{k}+\mathbf{K})^2/2\mathrm{m} \simeq \hbar^2 k^2/2\mathrm{m} = E_k^{0}
+\end{equation*}
+（译注：原书此式第一个系数印作 $h^2$，应为 $\hbar^2$。）
+
+这发生在满足下式的点附近：
+\begin{equation*}
+2\,\mathbf{k}\cdot\mathbf{K} + K^2 = 0
+\end{equation*}
+
+只要 $\mathbf{k}$ 平行于 $\mathbf{K}$ 的分量取值 $-K/2$，而其余两个分量任意，上式就会成立。而且，由于 $-\mathbf{K}$ 也是倒格矢，因此只要 $\mathbf{k}$ 落在平分某一倒格矢的平面上，这种情况就会出现（图 2）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.pdf}
+\caption*{图 2（原书图注仅 “Figure 2”：波矢 k 与倒格矢 ±K，竖直虚线为平分面）}
+\end{figure}
+
+现在，若 $V$ 确实很小，并且 $\mathbf{k}$ 不位于两个这类平面的交线上，那么除了涉及 $\mathbf{K}$ 的那一项之外，微扰求和中的所有其余项我们仍可以用 $E_k = E_k^{0}$ 来近似。这些附加的项于是加起来只给出一个无关紧要的常数修正，而留给我们的只不过是求解波函数中两个强耦合分量的一个二次方程：
+\begin{equation*}
+E - E_k^{0} = \frac{|V_K|^{2}}{E - E_{k+K}^{0}} + \sum_{K'\neq 0,\,K} \frac{|V_{K'}|^{2}}{E_k^{0} - E_{k+K'}^{0}}
+\end{equation*}
+或
+\begin{equation*}
+\left(E - \frac{\hbar^2 k^2}{2\mathrm{m}}\right)\left(E - \frac{\hbar^2 (k+K)^2}{2\mathrm{m}}\right) \simeq |V_K|^{2}
+\end{equation*}
+（倘若不得已，我们本可以把 $E_k^{0}$ 与 $E_{k+K}^{0}$ \emph{两者}都对其他所有态引起的微扰加以修正。只修正两个能量中的一个是不妥的，因为那会使区边界发生一个非物理的移动。）
+
+令 $\mathbf{k} = \mathbf{K}/2 + k_{\parallel} + k_{\perp}$，其中 $k_{\perp}$ 是沿垂直平分面方向、垂直于 $\mathbf{K}$ 的无关分量，而 $k_{\parallel}$ 是平行于 $\mathbf{K}$ 的分量，即 $\mathbf{k}$ 到该平面的距离。于是上面的方程变为
+\begin{align*}
+&\left[E - \frac{\hbar^2}{2\mathrm{m}}\left\{\left(\frac{K}{2}\right)^{2} + k_{\parallel}^{2} + k_{\perp}^{2}\right\} + \left(\frac{\hbar^2}{2\mathrm{m}}\right)k_{\parallel}K\right] \\
+&\quad\times\left[E - \frac{\hbar^2}{2\mathrm{m}}\left\{\left(\frac{K}{2}\right)^{2} + k_{\perp}^{2} + k_{\parallel}^{2}\right\} - \frac{\hbar^2}{2\mathrm{m}}\,k_{\parallel}K\right] \\
+&= |V_K|^{2}
+\end{align*}
+于是
+\begin{align*}
+E = {}& \frac{\hbar^2}{2\mathrm{m}}\left[\left(\frac{K}{2}\right)^{2} + k_{\perp}^{2} + k_{\parallel}^{2}\right] \\
+&\pm \sqrt{|V_K|^{2} + \left(\frac{\hbar^2}{2\mathrm{m}}\,k_{\parallel}K\right)^{2}}
+\end{align*}
+
+图 3 是沿一条 $k_{\perp}$（译注：原文印作 $K_{\perp}$）为常数的线对该方程所作的草图。这表明在布里渊区边界处存在带隙（band gap）$\Delta_K = 2V_K$。因此，周期势所起的作用，是使 $E$–$\mathbf{k}$ 曲线 $E = \hbar^2 k^2/2\mathrm{m}$ 在每一个平面 $(\mathbf{k}\cdot\mathbf{K}) = |\mathbf{K}|^2/2$ 处失去连续性；于是整条曲线的草图看上去可能就像图 4 所示那样。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.pdf}
+\caption*{图 3（原书图注仅 “Figure 3”：沿 $k_\parallel$ 方向的恒能线，自由电子交叉直线在区边界处劈裂，能隙为 $V_K$）}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_4.pdf}
+\caption*{图 4（原书图注仅 “Figure 4”：$E$–$k$ 曲线整体草图，自由电子抛物线在各区边界处张开隙；图中标注 −ℏ²k²/2m）}
+\end{figure}
+
+我们注意到，在这些区边界点的每一处，方程都有一个越过边界继续延伸的形式解。$\mathbf{k}$ 处的这个形式解事实上与 $\mathbf{k}' = \mathbf{k} - \mathbf{K}$ 处的解全同；这一事实例示了一个可以由我们出发的方程容易证明的一般性质：能量可以看作 $\mathbf{k}$ 的连续然而多值的函数，并具有倒格子的周期性：$E(\mathbf{k}+\mathbf{K}) = E(\mathbf{k})$。
+
+从这个观点来看，隙看起来在其中张开的那些平面是相当任意的；它们是由微扰计算挑出来的，而在原则上，在一个足够缺乏对称性的晶格中，这种计算并不给出任何唯一的方案——例如，对于带隙在何处最小、或者能带在何处可能是平坦的，它都给不出唯一答案。尽管如此，对称性通常使得能带结构在 $\mathbf{k}$ 空间中是偶的。若果真如此，布里渊区边界就绝不可能真的远离那些带隙间隔最小、以及能量相对极小与极大的位置。要严重违背这一点，将需要强的自旋-轨道耦合（spin-orbit coupling）以及对称中心的缺失。
+
+可以证明，这些平面边界中最内层的那一组恰好围出倒格子空间的一个单胞（unit cell）——理由很简单：我们可以围绕 R. L. S.（倒格子空间）的每一点画出这个胞，而没有任何一点会被遗漏。
+
+% ——本文件到此为止；原书句子在页 35 末 “the first” 处中断，下接 p051，由下一文件续译。
+
+% 衔接说明：本文件自上句半截处续起——原书 p050 末句 "This is called the first"
+% 与本文件首词 "布里渊区。" 合成完整一句（"第一布里渊区"）。
+
+这就是所谓的\emph{第一}布里渊区。如果愿意，我们可以采用所谓的“简约区图式”（reduced zone scheme），即把所有等能面用各种 $K$ 平移，从而把能带结构完全画在这第一区内，表示为 $k$ 的多值函数。这个区的体积显然是 $(2\pi)^3/\Omega$，因此它恰好包含 $N$ 个态，晶格的每个原胞对应一个态。
+
+现在我们继续讨论“Jones 区”（Jones zones）或“大区”（large zones）(22) 的问题。到目前为止，我一直假定晶格势 $V(r)$ 除单纯的平移群之外没有其他对称性——我把一切都建立在简单 Bravais 格子之上。许多晶格在 Bravais 格子的每个原胞里不止有一个原子；许多晶格在 Bravais 格子之内还具有附加的转动或反演对称性，例如面心立方（f.c.c.）或体心立方（b.c.c.）。然而，正如 Jones 所证明的，这并不必然使任何 $V(K)$ 为零。可是，当晶格对称性除平直的平移和转动之外还包含螺旋轴与滑移面时，在许多情形下，$V(K)$ 会对某些平面族恒等于零。
+
+一个极其重要的例子是金刚石格子 (23)，它具有反射-平移对称性的滑移面。找出 $V$ 的附加选择定则的一个简单而不严格的方法，是假定原子全同且球对称。众所周知，金刚石格子的 Bravais 格子是面心立方格子，具有 $\mathbf{a}_1=(a/2,\,a/2,\,0)$、$\mathbf{a}_2=(a/2,\,0,\,a/2)$ 等。相应的倒格子是一个b.c.c. 格子，其倒格矢为 $K=(2\pi/a)(1,1,1)$ 等；(200) 等；220；311；222；等等。原胞中的两个原子由矢量 $(a/4,\,a/4,\,a/4)$ 相联系。于是，在球对称假定下，它们对势的贡献恰正比于 X 射线结构因子（x-ray structure factor）
+\begin{equation*}
+S = 1 + e^{i(a/4,\,a/4,\,a/4)\,\cdot\,K} = 1 + \exp\left\{\frac{i\pi}{2}\,(l+m+n)\right\}
+\end{equation*}
+于是，当 $l+m+n=2(2N+1)$（$N$ 为整数）时，$S$ 为零：也就是说，对 200、222、420、600 等晶面为零。按照我们的微扰论计算，这意味着相应的能隙将为零，相应的布里渊区边界将会消失。
+
+事实是，这个困难可以在更高阶的微扰论中得到补救。一般地说，即使 $V_K$ 可能为零，也会存在两个矢量 $K_1$ 与 $K_2$，使得 $K_1+K_2=K$ 且 $V_{K_1}\ne 0\ne V_{K_2}$。例如在这个例子中，$V_{111}$ 与 $V_{+1\,-1\,-1}$ 都不为零。现在，若 $k$ 靠近 $2\pi/a\,(200)$ 的平分面，一般而言 $E^0_k$ 与 $E^0_{k+2\pi/a\,(111)}$ 不会相近，于是我们可以用微扰论处理 $a_{k+K_1}$ 与 $a_{k+K_2}$。于是有
+\begin{align*}
+(E - E^0_{k+K})\,a_{k+K} &= \sum_{K'\ne K} V_{K'}^{*}\,a_{k+K-K'} \\
+&\simeq V_{K_1}^{*}\,a_{k+K_2} + V_{K_2}^{*}\,a_{k+K_1}
+\end{align*}
+而
+\begin{equation*}
+(E^0_k - E^0_{k+K_1})\,a_{k+K_1} \simeq V_{K_1}\,a_k
+\end{equation*}
+所以净效果是：对 $K$ 区边界得到一个如下方程所示的\emph{有效}势：
+\begin{align*}
+(E - E^0_{k+K})\,a_{k+K} &\simeq V_{K}^{\mathrm{eff}}\,a_k \\
+V_{K}^{\mathrm{eff}} &= \sum_{K_1+K_2=K} V_{K_1}\,\frac{1}{E^0_k - E^0_{k+K_1}}\,V_{K_2}^{*}
+\end{align*}
+而这个有效势恰恰会以一个真实矩阵元 $V_K$ 所会有的方式造成一个能隙。
+
+这样我们就得到一般结果：在每个布里渊区边界处——除了某些特殊对称点，对其的讨论完全超出这些讲义的范围——都存在一个带隙。当然，这并不意味着作为能量的函数总有一个间隙，因为区边界不同部分的能隙肯定出现在不同的能量处，所以各能带一般会交叠。
+
+在势微弱但不为零的极限下，我们可以重新得到对能带结构的一种非常简单而且常常有用的近似：即略去区边界附近的那部分能带，把自由电子能量 $\hbar^2 k^2/2m$ 看作一种能带结构。也就是说，我们取自由电子抛物面，把它折回简约区图式。
+
+当我们把自由电子抛物线看作一种能带结构时，在二维或三维情形下，把自由电子抛物面的每一片折入第一区的过程中会发生相当复杂的事情；会得到复杂的简并、平坦之处等等。出于一般兴趣，我在这里复制了（图 5）f.c.c. 空间格子沿从原点到区边界六边形面的直线、即沿 $k=(x,x,x)$ 方向的能量对 $k$ 的曲线。如读者所见，简约区中相当复杂的能带结构，在铺展到“扩展区”（extended zone）之中时，可能离一条简单的自由电子抛物线并不远。研究那些反射到区内特殊对称点上的自由电子函数——特别是原点 $\Gamma$——使我们能够仅凭对称性猜测：这样一个点上的哪些波函数可能保持简并，而哪些只是自由电子近似的偶然巧合。例如，在 A 点，所有函数都具有 $e^{\pm i(2\pi x/a)}e^{\pm i(2\pi y/a)}e^{\pm i(2\pi z/a)}$ 的形式，并且可以把它们分离成四组，即四套“对称化平面波”（symmetrized plane waves；见图 5），列于表 2 中。这些对称化平面波在能带计算中是重要的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.66\textwidth]{fig_5.pdf}
+\caption*{图 5　f.c.c. 空间格子沿从原点到区边界六边形面的直线（即 $k=(x,x,x)$ 方向）的能量对 $k$ 曲线（自由电子抛物面折回简约区后的结果）}
+\end{figure}
+
+\begin{center}
+表 2
+
+\begin{tabular}{clc}
+\toprule
+简并度 & 对称化平面波（S.P.W.） & 记号 \\
+\midrule
+$1$ & $\cos\dfrac{2\pi x}{a}\ \ \cos\dfrac{2\pi y}{a}\ \ \cos\dfrac{2\pi z}{a}$ & $\Gamma_1$ \\[4pt]
+$1$ & $\sin\dfrac{2\pi x}{a}\ \ \sin\dfrac{2\pi y}{a}\ \ \sin\dfrac{2\pi z}{a}$ & $\Gamma_2$ \\[4pt]
+$3$ & $\cos\dfrac{2\pi x}{a}\ \ \cos\dfrac{2\pi y}{a}\ \ \sin\dfrac{2\pi z}{a}$，等等 & $\Gamma_{15}$ \\[4pt]
+$3$ & $\cos\dfrac{2\pi x}{a}\ \ \sin\dfrac{2\pi y}{a}\ \ \sin\dfrac{2\pi z}{a}$，等等 & $\Gamma'_{25}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+现在回到 Jones 区与布里渊区对比的问题。需要注意的一点是：二阶区边界处的能隙 $2V_K^{\mathrm{eff}}$ 很可能比一阶边界处的能隙小得多。因此，虽然我们一般预期每个边界处都有能隙，但在对称性复杂的情形下，特别大的能隙很可能只出现在真正的一阶边界处。这些边界就称为“Jones 区”的边界。以每原子态数来衡量的 Jones 区体积，与布里渊区的体积之间没有必然的联系；Jones 区只须每原子每自旋拥有某个有理数 $r>1$ 个态。例如，再回到众所周知的金刚石格子情形：第一布里渊区是一个胞，其区边界主要对应于 (111) $K$ 矢量，但该八面体的六个角尖被 (200) 边界切去。而在金刚石的 Jones 区中，八面体的角尖\emph{并未}被切去，这个胞每原子拥有 $9/8$ 个电子。
+
+对特别重要的区边界的搜寻，可以超出寻找 $V\ne 0$ 的边界，进而扩展到那些 $V$ 特别大的边界。一般地，我们预期这样的边界乃是具有大 X 射线结构因子的边界，而后者只需察看 X 射线衍射花样便可简单地猜出（当然只当所有原子全同或近于全同时才如此，因为 X 射线与低能平面电子波所感受到的有效势颇为不同）。例如，金刚石中 (111) 的结构因子为
+\begin{equation*}
+F = 1 + \exp\left(\frac{3i}{2}\,\pi\right) = 1 - i,\qquad |F|^2 = 2
+\end{equation*}
+而对 $l+m+n=4N$（220、440、400 等）的那些晶面则为 $2$，$|F|^2=4$。这样看来，(220) 这一组晶面很可能围出一个特别重要的 Jones 区。
+
+如果我们考察这一组倒格子矢量，就会认识到它们是一个棱长为 $4\times 2\pi/a$ 的面心立方倒格子的矢量；因此它也就是一个立方棱长为 $a/2$ 的体心格子的倒格子，原 f.c.c. 格子的每一个立方体对应于它的八个立方体。于是，由于b.c.c. 每个立方体只有 2 个原子而不是 4 个，这个格子的第一布里渊区对每个 f.c.c. 格子原子有 $8/2$ 即 4 个态，对每个金刚石格子原子有 2 个态——计入自旋总共 4 个。
+
+看待这个准体心（pseudo-body-centered）格子的另一种方式，是把金刚石格子画出来，如图 6。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_6.pdf}
+\caption*{图 6　金刚石格子。$\circ$＝f.c.c. 格子的第一平面；$\square$＝f.c.c. 格子的第二平面；斜纹圆＝金刚石格子的中间平面}
+\end{figure}
+
+给出这些强反射的b.c.c. 格子可以这样得到：把每个原子周围四面体所缺的位置补齐，使之构成立方体，如图 7 中的圆圈 O 所示。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_7.pdf}
+\caption*{图 7　补全每个原子周围四面体的空缺位置（圆圈 O）以构成立方体，即给出强反射的b.c.c. 格子}
+\end{figure}
+
+这表明恰有两倍之多的态能装进它的布里渊区；在金刚石格子的强 Jones 区中，每个原子有四个电子态。
+
+这一切都已被详细推演过，以此作为下述量子化学规则之半经验有效性的一个极好例证——正是这条规则赋予了 Jones 区重要性：晶体倾向于选择这样的结构，使得一个强的、对称的 Jones 区能够恰好或几乎恰好被填满。其理由很容易看出：如果晶体价带中的电子数使得在自由电子模型下费米面恰好会到达 Jones 区边界，那么该边界的形成就会降低区边界附近那群自由电子的能量——办法是使被占据的电子态相对于未被占据的态能量降低。
+
+为了定量估计这一效应，设相应的 $V_K$ 的大小为 $V$。平均而言，粗略地说，能量在费米面附近 $V$ 范围内的每个电子，其能量都被降低了 $V/2$，于是降低量为 $(V^2/2)$ 乘以费米面处的态密度。在自由电子模型下，这个态密度由下式给出：
+\begin{align*}
+\text{每个电子的态密度} &= \frac{dn}{dE}\,\frac{1}{n} \\
+&= \frac{dk}{dE}\left(\frac{1}{n}\,\frac{dn}{dk}\right) = \frac{dk}{dE}\,\frac{3}{k_F} \\
+&= \frac{3}{2E_F}
+\end{align*}
+于是每原子的结合能将为
+\begin{equation*}
+\sim \frac{4\times 3}{2\times 2E_F}\,V^2 = \frac{3V^2}{E_F}
+\end{equation*}
+必须提醒读者，这一估计中的数值因子实际上不可能算得比数量级更准；事实上，有关这一情形的能量学目前在相当程度上仍有争议 (24)。
+
+这一效应可能相当大，而且很可能正是它决定着晶体结构——只要在一些真实物质中估计一下它的影响便可以看出。例如，金刚石的自由电子费米能将是 30 ev（约 2 Rydberg），而在密度小得多的晶体 Si 和 Ge 中约为其一半。（这只须由 $n=k_F^3/3\pi^2$ 算出 $k_F$ 即可得到；结果金刚石的 $k_F$ 约为 $3\times 10^{8}\,\mathrm{cm}^{-1}$，Si 约为 $2\times 10^{8}\, \mathrm{cm}^{-1}$。）自由电子所感受到的势的各分量的实际数值，可从 Herman (23) 与 Phillips (25) 的计算中获得；它们给出：金刚石中 $V_{220}$ 约为 0.4 ryd，即 5 ev；Si 中约为 0.15--0.2 ryd，即 2 ev。于是内聚能的增益非常大：金刚石中为 3 伏特（译注：原文单位为 volts，此处即指电子伏），约占总内聚能的一半；Si 中为 1.5 伏特。诚然这是一个非常粗略的估计，但它表明，在决定一种物质将采取何种晶体结构的、通常相当微妙的能量平衡之中，这可能是一种真实而起支配作用的效应。
+
+一个有趣的事实是：$K=111$ 的 $V_K$ 也在金刚石和硅的带隙附近扮演重要角色，它在某些 $V_{220}$ 无法起作用的对称点——尤其是 $\Gamma$ 点——处对打开带隙至关重要。因此，对结合能的一个可观贡献也来自 $V_{111}$。这大概是几个因素的组合决定了所观察到的晶体结构的一个典型例子。
+
+在转向更定量的内容之前，我想从这一粗略计算中引出若干物理与化学上的教益。首先，注意我们在这里为开放型、价型（valence-type）结构看到了一个物理上的理由，它完全摆脱了把定向键设想为从原子沿确定方向伸出的若干小棍棒的观念。在一个多价物质中，开放结构完全可以只是一种手段，把重要的 Jones 区边界带进费米面所处的区域。不过我应当提醒读者：作为一件化学事实，键的方向性看来确实存在；而且，一个给定物质究竟会采取具有大致正确的密度与 Jones 区形状的哪一个具体结构，其计算很可能是 $V$ 的极多傅里叶分量之间复杂相互作用的问题。眼下这通常最好留给行之有效的半经验方法与化学直觉去处理；但我们至少看到了其中涉及的某些原理，而且这些原理并不像 Pauling 可能会提示的那样，要求抛弃能带理论这套非常成功的工具。
+
+其次，注意在这两种情形中，$V$ 实际上都小到使微扰论并不太差的程度。对金刚石来说这是相当令人吃惊的，但却是事实——金刚石巨大的能隙只是碳的整个能量标度很宽这一事实的后果，并不代表对近自由电子图像的真正大的偏离。
+
+最后，我应当提到，这个对金刚石和硅的应用实际上是这类应用中最新的一个；历史悠久得多、研究也彻底得多的领域，是把它应用于某些合金结构——或者更确切地说，金属间化合物结构——特别是著名的 Hume-Rothery 合金。欲知较好的论述，可参见 Jones (26)。这些化合物具有各种多少有些复杂的立方结构，往往有一个对称性相当高的突出 Jones 区位于非常靠近费米面之处。它们无疑是由同样的效应引起的，但毫无疑问，其能量贡献比价结构中的要小得多。我们看到这一点的依据是：这些化合物仍保持其金属性，表明区边界并未打开多大的能隙。还值得强调的是，即使在例如金刚石的情形中，某些特殊的对称方向——即 Jones 区的角点，按对称性它们等价于简约区的中心 $\Gamma$——在近自由图像中也无法仅由 $V_{220}$ 这一个分量使之劈裂，因此 $V$ 的其他分量，特别是我们前面提到的 $V_{111}$，在打开造成绝缘行为的实际能隙方面起着支配作用。
+
+% 衔接说明：p058 页首即本小节标题，其上无前节残句，本文件自标题起译。
+
+\subsection{元胞法：结合能的定量计算}
+
+这是一种完全不同的方法；在许多方面，它都已证明是计算金属内聚能（cohesive energy）迄今为止最为准确的方法。元胞法（cellular method）由 Wigner 和 Seitz 首先采用，可惜由于种种已知的原因，它似乎只容易应用于单价碱金属。
+
+元胞法在几乎每一个可能的方面都与基于平面波的方法形成对照。在近自由电子模型中，以及我们将会看到的、在 O.P.W.（正交化平面波）方法中，波函数从一开始就被选为恰当的能带函数，满足晶格周期性所强加的边界条件；随后的功夫则在于用微扰或其他方法足够精确地处理离子实（ion cores）的势对这些函数产生的效应。元胞法却是从相反的尝试出发：先在离子实区域求出尽可能精确的势和尽可能精确的解，然后再去近似地满足由周期性所强制的边界条件。看来，在计算能量时这是更为精确的途径，但它只是对固体 s 带中最低的波函数才是如此。
+
+具体做法是把实空间格子划分成元胞，方式与在倒格子中构成布里渊区的做法完全相同：对指向近邻的矢量作平分。对于碱金属通常被假定具有的 b.c.c. 格子，这样得到的是由 $\tfrac{1}{2}\,\tfrac{1}{2}\,\tfrac{1}{2}$ 平面构成的正八面体，其角被 $\tfrac{1}{2}\,00$ 平面切去——总共 14 个面——正是我们已经熟悉的那种多面体。元胞法的想法是：这个多面体其实同球相去不远，而且在发生偏离的外部区域，势非常弱、波函数非常平滑。于是就作出了元胞严格为球的近似。这使得对低态数值积分波动方程的问题得到如下若干简化：
+
+1. 格子的其余部分也不妨同样假定是球对称的；由于碱金属中原子间的距离使得离子实几乎不发生交叠，来自其他元胞的势纯粹是静电势，而在这个假定下它完全消失，因为格子整体是中性的。
+
+2. 再者，原子芯是闭合壳层，因而是球形的；结果我们在元胞内要求解的乃是一个球对称的——即完全可分离的——波动方程。
+
+3. 对于 s 带的最低态——它当然 $k=0$，因而其波函数是简单周期的，即 $u_0(r)$——边界条件取如下简单形式：斜率 $\mathrm{d}\psi/\mathrm{d}r\,\big|_{r=R_{\mathrm{cell}}}=0$。这是因为波函数必须水平地趋近元胞边界，因为根据反射对称性，它必须关于边界为偶。最低的原子态则是 $\mathrm{d}\psi/\mathrm{d}r\,\big|_{r=\infty}=0$ 的那个球对称态。碱金属内聚、而且实际上也就是所谓“金属键”的根本物理基础在于：$\mathrm{d}\psi/\mathrm{d}r\,\big|_{r=R_c}=0$ 的态，其能量比自由原子中态的能量低相当多。Wigner 称之为“边界修正”（boundary correction），并在他的《Seitzschrift》文章 (25) 中对多种金属作了估计。
+
+从相当粗略的考虑出发，我们立刻就能看出必然如此。球对称性使我们能够把波动方程 $-\nabla^2\Psi+V(r)\Psi=E\Psi$ 分离成角向方程和径向方程，只须假定 $\Psi=[U_L(r)/r]\,Y_{LM}(\theta,\phi)$；于是 $U_L$ 满足的方程是
+\begin{equation*}
+\frac{d^2 U_L}{dr^2}+\left[E-V(r)-\frac{L(L+1)}{r^2}\right]U_L=0
+\end{equation*}
+这里的单位是原子单位：$r$ 以玻尔半径计，所有能量以 rydberg 计。在碱金属原子的芯区之外，$V=-2Z/r$，在单价原子的情形即 $-2/r$；芯内的 $V$ 则更为复杂，而且实际上并不是一个局域算符，还包含与芯电子的交换。尽管如此，为了定性的目的，我们可以把它当作一个纯势 $-2Z(r)/r$ 来处理（图 8）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_8.pdf}
+\caption*{图 8}
+\end{figure}
+
+我们感兴趣的是低的 s 态（$L=0$），于是在 $r=0$ 处的边界条件是 $\Psi$ 有限，即 $U=0$ 且线性增大。让我们取某个很低的能量 $E_1$，在想象中从原点处这一边界条件出发把方程向外积分。在到达 $R_t(E_1)$ 处的“经典转折点”（classical turning point）之前，$E_1-V>0$，$\mathrm{d}^2U/\mathrm{d}r^2$ 与 $U$ 反号，曲率朝向轴；然而此后，$U>0$，$\mathrm{d}^2U/\mathrm{d}r^2>0$，曲率背离轴：$U$ 发散。现在让我们依次画出能量递增的 $E_1$、$E_2$、$E_3$ 以及 $E_f$——实际的自由原子本征值——的情形。我们看到，自由原子本征值高于使波函数在 $R_{\mathrm{cell}}$ 处恰好变平的那个能量；在此之后，波函数便转而增大并发散（图 9）。由此得到的动能收益可以相当可观。以钠为例，它是 3 1/2 伏特（译注：原文单位为 volts，此处即指电子伏）；在 Li 中更高，在重碱金属 K、Rb 和 Cs 中则更低。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_9.pdf}
+\caption*{图 9}
+\end{figure}
+
+从这幅图出发，还可以对 Kuhn、Van Vleck、Brooks (21) 和 Ham (18) 为计算这一能量而发展的既精确又巧妙的方法获得相当好的了解。在两幅图中，我都标明了一个对所有碱金属都成立的事实：芯轨道（Li 中的 1s、Na 中的 2s2p，等等）的尺度比原子元胞小得多。这意味着在径向积分中存在一段相当可观的区域，在其中我们确切知道必须使用的势，即 $V=-2/r$。当然，芯内的势是未知的；在较早的计算中，对这一区域的做法是先取一个 Hartree 或 Hartree-Fock 势，然后修改它，使之拟合观测到的光谱项值序列——对碱金属原子，这些项值已为人们以极高的精度所知。
+
+Kuhn 和 Van Vleck 指出，事实上也许永远不必穿过这一区域去积分径向方程。既然反正要使用一组取自光学光谱的经验能级来调整势，难道就不能有办法直接从光学光谱本身提取必要的信息吗？
+
+Kuhn-Van Vleck 方法在原理上比 Brooks 和 Ham 最终完成的更精确、更完备的技术要简单。他们的做法是：把波函数看作从 $R=0$ 处 $U=0$ 出发、一直积分到 $R_{\mathrm{core}}$ 点的结果。在该点上，要把积分继续下去所需的全部信息就是对数导数（logarithmic derivative）$(1/U)(\mathrm{d}U/\mathrm{d}r)\,\big|_{r=R_{\mathrm{core}}}$。这个数将是初始能量 $E$ 的某种函数；如我们所见，对大的负 $E$，它从某个高值出发，下降穿过零，最后变得像一条 $\cot^{-1}$ 曲线。从 $R_{\mathrm{core}}$ 点往外，我们确切地知道势具有 $(-2/r)$ 的形式，而 Wannier 等人已经求出了任意能量下这两个解的解析形式。于是，我们可以把这些解拟合到
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{fig_10.pdf}
+\caption*{图 10}
+\end{figure}
+
+任意给定的 $(1/U)(\mathrm{d}U/\mathrm{d}r)$ 值，并确定解在任意能量下的性质。特别地，我们能解析地定出那些可以导致 $\mathrm{d}U/\mathrm{d}r\,\big|_{r\to\infty}=0$ 的 $(1/U)(\mathrm{d}U/\mathrm{d}r)\,\big|_{R_{\mathrm{core}}}$ 值；它们就是观测到的光谱项能量处的值。随后我们就可以把这些值描绘出来；图 10 中的那些 $x$ 就是一组假想的值。在大致知道曲线应有的形状之后，我们可以试着过这些给定的点画一条光滑曲线，并假定它就是正确的 $(1/U)(\mathrm{d}U/\mathrm{d}r)\,\big|_{r=R_c}(E)$。
+
+我们还能解析地知道——这同样是因为我们掌握着库仑波方程解的精确解析行为——$(1/U)(\mathrm{d}U/\mathrm{d}r)\,\big|_{R_{\mathrm{core}}}$ 取什么值才会导致 $(1/U)(\mathrm{d}U/\mathrm{d}r)\,\big|_{R_{\mathrm{cell}}}=0$。把这个值记作 $(1/U)(\mathrm{d}U/\mathrm{d}r)\,\big|_0$。然后只须把我们的光滑曲线内插到这个值，便得到最低本征值的数值 $E_0$。
+
+事实上，由于对数导数曲线的形状相当难以驾驭，它并\emph{不}是应当描绘的正确量；正如 Kuhn 本人首先指出的，能给出真正光滑外推的正确量是\emph{量子亏损}（quantum defect），它在自由原子本征值处正是碱金属光谱的 Ritz 内插公式中的量 $\delta_m$，
+\begin{equation*}
+E_m=-\frac{1}{(m-\delta_m)^2}
+\end{equation*}
+$\delta_m$ 与碰撞理论中出现的相移 $\delta$ 密切相关，不过库仑势的长程性质引入了一些除专家以外无人感兴趣的额外复杂因素。无论如何，人们发现——而且可以在数学上加以证明——总能找到一个量 $\delta$，它在观测到的光谱系各项之间光滑地内插，并且可用来满足元胞表面上任意希望的边界条件。在 Ham 的文章中，对五种碱金属各自的若干种密度，以三到四位有效数字给出了相应的 $k=0$ 能量。
+
+这种方法的主要优点——这也可能是大多数内聚能计算（以别于实际能带形状的计算）用其他方法之所以不成功的最重要的原因之一——在于：价电子与芯电子相互作用中的多体效应，基本上被精确地包含在所使用的量子亏损经验值之中。甚至有可能在 $R_{\mathrm{core}}$ 之内根本不存在任何合理的局域势 $V(r)$ 能给出观测到的本征值谱；正如我们提到过的，即使在 H-F 中，正确的势也是非局域的。这看来实际上就是如下情形的主要原因：早期的 Wigner-Seitz 计算对 Li 和 Na 相当好，对 K 相当差，对 Rb 和 Cs 则根本行不通，而 Q.D.M.（量子亏损方法）对付重金属却毫无困难——在重金属中，由于芯更大、束缚更松，芯极化（core polarization）与交换都是很大的效应。
+
+于是，$k=0$ 处那单独一条能级的定位，由 Q.D.-元胞法做得极为出色；这也正是它胜过所有其他方法的地方：至少有一条能级可以按绝对值准确定位。尽管如此，这还不可能是全部的战斗；我们必须首先计入所谓的“费米能”，即由于其余电子不得不进入带中较高的状态而出现的额外动能。接着，我们还必须对电子相互作用作一组相当大的修正；不过，这些修正之和结果证明相当小。
+
+费米能是一个相当大的效应，从 Wigner 的定性论证 (20) 看得很清楚：该论证提示，一个 s 带被完全填满的物质将几乎是不结合的。从积分径向方程的观点看，带顶的状态必须是那种从原子到其近邻改变符号的状态，这意味着 $\psi$ 在 $R_{\mathrm{cell}}$ 处为零，而不是 $\mathrm{d}\psi/\mathrm{d}r$ 在 $R_c$ 处为零。$\psi=0$ 的波函数，其能量比自由原子波函数 $E_I$ 的能量所高出的量，大概与 $E_0$ 比 $E_I$ 低的量大致相同。可以看到，在某种意义上，$\psi$ 在 $\infty$ 处趋于 0 大致是 $\psi\big|_{R_c}=0$ 与 $\mathrm{d}\psi/\mathrm{d}R\,\big|_{R_c}=0$ 之间的一个中间判据（图 11）。于是，对半满的带，我们或许会预期在费米能上损失掉 $k=0$ 态所赢得的 3 到 4 伏特能量的一半或更多，而事实证明确实如此。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_11.pdf}
+\caption*{图 11}
+\end{figure}
+
+要计算费米能，就必须对 $k$ 空间中整个被占据区域的能带结构有相当准确的估计。结果表明，用元胞法时，对第一区边界附近的点、或者对波函数在元胞内不再呈 s 型的较高的带，这是一种困难而且常常不准确的计算。原因在于，元胞内波动方程的解正是角动量 $L=0,1,2$ 等等的 $s$、$p$、$d$ 等本征函数。……随着 $L$ 增大，计算或外推的精度迅速下降，因此，对 $L\geq 3$ 或 4 的波函数拟合规定的边界条件是非常困难的事情。这是由于有效排斥势能 $L(L+1)/r^2$ 的存在——在相应的光学能级中，它把电子挡在芯区之外；而固体问题中作边值拟合所需的波函数却确实穿透到芯区。
+
+结果证明，遗憾的是，对相当大的 $k$，能带波函数包含非常可观的一些成分，必须用高角动量值的波函数才能描述。看到这一点的最简易途径是 Shockley 的“空晶格”（empty lattice）检验——我们可以把对称化平面波（它们是能带波函数的一个可能的集合）绕元胞中心按球谐函数展开，而且的确发现，对接近或越过区边界的那些 $k$ 值，它们含有相当可观的 $L\geq 3$ 或 4 的分量。尽管在把球谐函数拟合到正确边界条件这一数学问题上已经取得进展，但对碱金属以外的一切金属，其精度仍属可疑。
+
+当然，对碱金属而言这个问题并不十分严重，因为很大一部分电子的 $k$ 值深处于第一区之内。这里使用的技巧是把能量 $E(k)$ 在原点附近按 $k$ 的幂级数展开；由对称性，第一项为零，第二项即所谓的有效质量（effective mass）项，
+\begin{equation*}
+E=E_0+\frac{\hbar^2 k^2}{2m^*}+\cdots
+\end{equation*}
+则可以用“$k\cdot p$”微扰论的一个计算求得。这种方法的原理是：写出并非由总波函数 $\psi_k(r)$、而是仅由其周期部分 $u_k$ 所满足的波动方程。我们从通常的波动方程
+\begin{equation*}
+\left[-\frac{\hbar^2}{2m}\nabla^2+V(r)\right]u_k(r)\,e^{ik\cdot r}=E_k\,u_k\,e^{ik\cdot r}
+\end{equation*}
+出发。显然，除 $\nabla^2$ 之外的一切都与 $e^{ik\cdot r}$ 对易，因此在完成如下的计算之后，指数因子便可以提出来：
+\begin{align*}
+\nabla^2\left(u_k\,e^{ik\cdot r}\right)&=\nabla\cdot\left(\nabla u_k+ik\,u_k\,e^{ik\cdot r}\right)\\
+&=-k^2 u_k\,e^{ik\cdot r}+2ik\,e^{ik\cdot r}\cdot\nabla u_k+\left(\nabla^2 u_k\right)e^{ik\cdot r}
+\end{align*}
+于是
+\begin{equation*}
+-\frac{\hbar^2}{2m}\left(\nabla^2+2ik\cdot\nabla\right)u_k+V(r)\,u_k=\left(E_k-\frac{\hbar^2 k^2}{2m}\right)u_k
+\end{equation*}
+当我们把它与本征函数 $\psi_0=u_0$ 所满足的方程
+\begin{equation*}
+-\frac{\hbar^2}{2m}\nabla^2 u_0+V(r)\,u_0=E_0\,u_0
+\end{equation*}
+相比较时，我们看到，除了
+\begin{equation*}
+-i\,\frac{\hbar^2}{m}\,k\cdot\nabla u_k=\frac{\hbar}{m}\,k\cdot p\,u_k
+\end{equation*}
+这一项之外，它就是同一个方程，而且由于 $u_k$ 是周期的，还具有相同的边界条件。于是，对足够小的 $k$，我们可以把这一项当作微扰来处理，从而得到用 $k=0$ 处的解表出的 $k$ 处能量的表达式。事实上，只须稍加修改，这个表达式就可以在任意一般点 $k_0$ 处使用，以求出邻近点上的波函数与本征值。
+
+在我们所讨论的碱金属这一特殊情形中，$k\cdot p$ 项含有梯度算符，因而把偶函数变为奇函数，反之亦然。这意味着对角矩阵元 $(u_{0n},\,(k\cdot p)\,u_{0n})$ 为零，所以一级修正为零。二级修正按标准微扰论为
+\begin{equation*}
+E_k-\left(\frac{\hbar^2 k^2}{2m}+E_0\right)=-\frac{\hbar^2 k^2}{m^2}\sum_n\frac{|(0n|p_x|00)|^2}{E_n(0)-E_0}
+\end{equation*}
+于是
+\begin{equation*}
+\frac{1}{m^*}=\frac{1}{m}\left[1-\frac{2}{m}\sum_n\frac{|(0n|p_x|00)|^2}{E_n(0)-E_0}\right]
+\end{equation*}
+乍看之下，有效质量似乎总应增大——能带变得更为平坦——因为右边的求和预期 $>0$，其中 $E_n>E_0$。对 Li 来说确实如此：在 Li 中不存在低于价带的 $p$ 带（由于 $p_x$ 是矢量，所有重要的矩阵元都是到 $p$ 带的）；但一般而言未必如此，而且事实上在其余碱金属中——可能 Na 除外——情形都不是如此。因此，到那些代表闭合壳层的带的矩阵元就相当重要。
+
+虽然 Wigner 和 Seitz 的原始计算直接使用了 $k\cdot p$ 理论，但 Bardeen (27) 很快就引入了一个简单得多也精确得多的程序，他注意到波函数的一级修正可以基本上精确地算出。做法是直接迭代波动方程，即从展开
+\begin{equation*}
+u_k=u_0(r)+u_1^{\,k}(r)+\cdots
+\end{equation*}
+出发，于是有
+\begin{equation*}
+\left(-\frac{\hbar^2}{2m}\nabla^2+V-E_0\right)u_1=\frac{i\hbar^2}{m}\,k\cdot\nabla u_0
+\end{equation*}
+他观察到，$u_1$ 的一个特解是
+\begin{equation*}
+u_1^{(a)}=-i\,k\cdot r\,u_0(r)
+\end{equation*}
+（代入即可验证；非齐次项与 $\nabla(k\cdot r)\cdot\nabla u_0$ 项正好相消）。但它并不满足边界条件；这个边界条件显然是（因为 $u_1$ 应当具有 $p$ 函数的对称性并且是周期的）：解在元胞边界上为零。
+
+我们可以在该解上加上齐次方程的一个 $p$ 函数解，使之在元胞边界上为零：
+\begin{equation*}
+V_1=\frac{i\,k\cdot r}{r^2}\,P(r)
+\end{equation*}
+其中 $P$ 是径向波动方程在固定能量 $E_0$ 下的一个解：
+\begin{equation*}
+\frac{d^2 P}{dr^2}-\frac{2}{r^2}\,P(r)+\frac{2m}{\hbar^2}\,(E_0-V)\,P=0
+\end{equation*}
+于是
+\begin{equation*}
+u_1=i\,k\cdot r\left(P/r^2-u_0(r)\right)
+\end{equation*}
+这样
+\begin{equation*}
+\left.\frac{P}{r^2}\right|_{R_c}=\left.u_0\right|_{R_c}
+\end{equation*}
+
+我们立刻认识到，量子亏损方法（quantum-defect method）的设置正是为了直接给我们——通过从 $p$ 态的光学光谱作内插——波函数 $P(r)$ 的一切有趣的性质，至少在元胞的外部部分是如此。通过运用一系列巧妙的变换，Bardeen 得以把二级能量修正完全用波函数的这个一级修正表示出来，甚至还用它在元胞边界处的行为表示出来：
+\begin{equation*}
+\alpha=\frac{m}{m^*}=\gamma\left[\frac{r}{P}\,\frac{dP}{dr}-1\right]_{R_c}
+\end{equation*}
+而
+\begin{equation*}
+\gamma=-\frac{1}{3}\,R_c\,\bigl[u_0(R_c)\bigr]^2\Bigg/\left[\gamma\,u_0(r)\,\frac{d}{dr}\left(\frac{1}{r}\,\frac{\partial u_0}{\partial E}\right)\right]_{R_0,\,E_0}
+\end{equation*}
+（译注：此式分母中的 $\gamma$ 与求值下标 $R_0$ 均按原书排印照录。）这个证明（部分归功于 Silverman 等人）相当冗长，所以我不打算在这里讨论。
+
+在所有碱金属中，微扰论都收敛得相当好，因为 $u_0$ 相当平滑（微扰即 $\alpha(k\cdot\nabla)u_0$）。在 Na 中，$u_0$ 在元胞 90\% 的范围内几乎是个常数。于是，动能修正亦即费米修正 $E_F$ 恰好就是自由电子气的那个值，再对修改后的有效质量加以改正。它就是
+\begin{equation*}
+\int_0^{k_f} k^2\,dk\,\frac{\hbar^2 k^2}{2m^*}\Bigg/\int_0^{k_f} k^2\,dk=\frac{3}{10}\,\frac{\hbar^2 k_F^{\,2}}{m^*}
+\end{equation*}
+其中 $k_F$ 由下式确定：
+\begin{equation*}
+n=\frac{k_F^{\,3}}{3\pi^2}
+\end{equation*}
+这可以写成
+\begin{equation*}
+E_F=\frac{2.21}{r_s^{\,2}}\left(\frac{m}{m^*}\right)\quad\mathrm{ryd}
+\end{equation*}
+其中
+\begin{equation*}
+\frac{4\pi}{3}\,a_0^{\,3}\,r_s^{\,3}=\frac{1}{n}
+\end{equation*}
+对若干种碱金属给出各种相关的量（见表 3），会使我们对各种效应的数量级有一个感受。
+
+% 注：p067 末句完整结束；其后正文所引“表 3”的表体在后续页，由下一文件处理。
+
+% ---- B.2 收尾：表 3 与讨论段（原书 p.53 / PDF p068 顶部，协调者补译） ----
+\begin{table}[H]
+\centering
+{\bfseries 表~3}\\[6pt]
+\small
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}llllllll@{}}
+\toprule
+元素 & $r_s$ & $-E_0$ & \shortstack{内聚边界修正\\$E_I-E_0$\ensuremath{,} ev}
+ & \shortstack{动能修正\\$m/m^*$} & $E_F$\ensuremath{,} ev
+ & \shortstack{未修正内聚能\\$E_I-E_0-E_F$\ensuremath{,} ev}
+ & \shortstack{观测内聚能\\ev}\\
+\midrule
+Li & 3.21 & \shortstack[r]{0.69 ryd =\\9.4 ev} & 4.0 & 0.67 & 1.90 & 2.10 & 1.65\\
+Na & 3.96 & \shortstack[r]{0.625 ryd =\\8.5 ev} & 3.15 & 1.02 & 2.0 & 1.15 & 1.20\\
+Rb & 5.20 & 6.27 ev & 1.65 & 1.10 & 1.23 & 0.42 & 0.85\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+这张表足以显示各种结果的大致面貌。正如我们所猜想的，Fermi 动能修正大致达到边界修正的二分之一到三分之二，而二者的差在数量级上给出金属的结合能。注意，内聚能是问题中最小的能量——它是作为大得多的数字之差被算出来的——这几乎总是如此，也正是结合能计算中困难的主要根源。把能带算准到 0.1 ryd 左右并不难，这对了解能带结构的一般面貌通常已令人满意，因为能带结构的尺度往往是 rydberg 量级，至少也是 0.4 到 0.5 ryd；但结合能却是 0.1 或更小。
+
+\subsection{自由电子气中的交换与关联}
+
+写到这里，各位也许会有一点惊讶：我们竟然已经非常接近于算出真实的结合能了。你完全有理由发问：金属电子自身的 Coulomb 相互作用又怎么样了呢？表面看来，我们把这些完全忽略了，因为在计算波函数时我们只用了离子实的场。
+
+实际上，价电子之间的相互作用已在很大程度上以一种非常巧妙而不动声色的方式考虑了进来。Wigner 所做的，实质上是把价电子处于不同原子上时的相互作用包括了进来，因为他让近邻的元胞呈电中性，而不像\emph{只}有离子实存在时那样带 $+1$ 电荷；但他有意略去了同一元胞内电子之间的相互作用。对于交换（exchange）与关联（correlation）效应而言，这是一个十分合理的近似。先说交换——我们知道，不相容原理会在一个给定电子周围的自旋平行电子分布中挖出一个“空穴”。Coulomb 排斥则倾向于把自旋反平行的电子也从给定电子的邻域排开，于是净效果是：从该电荷的邻域中大约移走了整整一个电子的电荷。这个空穴的半径为 $r_s$ 的量级，因此在计算波函数时，不妨当作每个元胞内在同一时刻只允许存在一个电子来处理。结果是：无须求解任何非常复杂的波动方程，我们所处理的波函数就已经算到了实际上与 Hartree-Fock 相当的精度。在多价金属中这种空穴相对较小、因而这一近似不再适用——这一事实也许是在此类金属中结合能计算困难的另一个原因。
+
+尽管如此，为了得到真正精确的最终答案，关键还是要回到这些波函数，并尝试对“多体”修正作出更完备的估计。基于上述理由，我们预期所有这些修正之和接近于零，但各个单项却会相当大。
+
+使 Wigner 和 Seitz (28, 29) 能够对这些项作出良好估计的，是一个幸运的事实：碱金属中的电子，除了那个使总能量整体下降的常数“边界修正”之外，其行为非常像一团真正自由的电子气体。如前所述，在 Na 中，在元胞体积的 90\% 以上的区域内，波函数实际上就是 $e^{i\mathbf{k}\cdot\mathbf{r}}$。这使得我们可以使用自由电子气自相互作用能的理论。而这一理论由于气体必须在空间中“均匀”这一事实而大为简化——也就是说，它在空间每一点处的性质必须相同。
+
+人们最先施加的修正是 Hartree 修正，即所有电子的平均场。在自由电子的情形下，它是整个均匀电荷分布的自相互作用能，并按 $v^{2/3}$ 发散；当然，这一发散必定会被来自离子电荷的一个等值反号的项所抵消，正是后者保证了电中性。研究自由电子气时，通常的做法是完全忽略这一项：人们用一团均匀的正电荷“果冻”（jelly）来代替离子实，它恰好抵消自由电子的平均电荷。
+
+而在真实的碱金属中，情况则不同：确实存在这样一项，而且事实上相对于内聚能它还是大的。我们此前已把与中心电荷球以外一切的相互作用包括了进来，所以还必须把一个电荷为 $e$、半径为 $R_{\mathrm{cell}} = r_s a_0$ 的球的 Coulomb 自能包括进来，它等于 $3e^2/5R_c = 6/5r_s$ ryd。如你所见，在 Li 中这超过了 4 伏特，足以把全部符合都破坏掉。
+
+为了与这一项相抗衡，我们必须计算那两种倾向于使电子彼此分开的效应：交换本身，以及关联。后一种能量的定义相当人为：它是最优的 Hartree-Fock 解与正确的解之间的能量差。我们不打算在这里计算关联能（correlation energy），但交换效应我们能够处理；而且，由于其数学与思想日后对我们有用，我们也就来做这件事。
+
+注意到在自由电子气的情形下 Hartree 项只是一个平庸的常数，包含交换的 H-F 方程即为
+\begin{equation*}
+-\frac{\hbar^2}{2m}\,\nabla^2\phi_{k\sigma} - \sum_{k'\ \mathrm{occ}} \int \mathrm{d}\mathbf{r}'\ \phi^*_{k'\sigma}(\mathbf{r}')\,\phi_{k\sigma}(\mathbf{r}')\,\frac{1}{|\mathbf{r}-\mathbf{r}'|}\,\phi_{k'\sigma}(\mathbf{r}) = E_k\,\phi_{k\sigma}(\mathbf{r})
+\end{equation*}
+由于系统作为一个整体仍具有平移对称性，通过假设
+\begin{equation*}
+\phi_k = \frac{1}{\sqrt{V}}\,e^{i\mathbf{k}\cdot\mathbf{r}}
+\end{equation*}
+便可以得到一个自洽解——即便它不一定就是最低的解。于是交换项变为
+\begin{equation*}
+A\phi_k(\mathbf{r}) = \int \mathrm{d}\mathbf{r}'\ A(\mathbf{r},\mathbf{r}')\,\phi_k(\mathbf{r}')
+\end{equation*}
+\begin{align*}
+A(\mathbf{r},\mathbf{r}') &= \sum_{k'}\frac{e^2}{|\mathbf{r}-\mathbf{r}'|}\,\phi^*_{k'}(\mathbf{r}')\,\phi_{k'}(\mathbf{r})\\
+&= \frac{e^2}{V}\sum_{k'}\frac{e^{i\mathbf{k}'\cdot(\mathbf{r}-\mathbf{r}')}}{|\mathbf{r}-\mathbf{r}'|} = A(\mathbf{r}-\mathbf{r}')
+\end{align*}
+这确实具有平移对称性（不依赖于 $\mathbf{r}+\mathbf{r}'$），因此方程的解的确可以是平面波。
+
+我们实际上能够把 $A(\mathbf{r}-\mathbf{r}')$ 的形式计算出来；它常被称作交换空穴（exchange hole）的势。这一推导的大部分应归功于 Dirac (30)。我们可以把它看作围绕 $\mathbf{r}'$ 处电子的电荷分布中一个“空穴”所产生的势：
+\begin{align*}
+\rho(\mathbf{r}-\mathbf{r}') &= \frac{e}{V}\sum_{k\ \mathrm{occ}} e^{i\mathbf{k}\cdot(\mathbf{r}-\mathbf{r}')}\\
+&= \frac{e}{V}\left(\frac{n}{2}V\right) \frac{\displaystyle \int_0^{k_F} k^2\,\mathrm{d}k \int_{-1}^{1}\mathrm{d}x\ e^{ik|\mathbf{r}-\mathbf{r}'|x}}{\displaystyle 2\int_0^{k_F} k^2\,\mathrm{d}k}
+\end{align*}
+利用
+\begin{equation*}
+\frac{n}{2} = \frac{4\pi}{3}\,\frac{k_F^3}{8\pi^3} = \frac{k_F^3}{6\pi^2}
+\end{equation*}
+并令 $R = |\mathbf{r}-\mathbf{r}'|$，它就是
+% 校注：原书此处两处分母均印作 2\pi^2 R；按本节自洽性（下文 A(R) =
+% e^2 k_F^4/2\pi^2[...]，以及精确核 A = (e^2/V)\sum e^{ik·R}/R），
+% 分母应为 2\pi^2 R^2，此处按本意转写。
+\begin{equation*}
+= -\frac{e^2}{2\pi^2 R^2}\,\frac{\mathrm{d}}{\mathrm{d}R}\left\{\int_0^{k_F} \cos kR\ \mathrm{d}k\right\} = -\frac{e^2}{2\pi^2 R^2}\,\frac{\mathrm{d}}{\mathrm{d}R}\left(\frac{\sin k_F R}{R}\right)
+\end{equation*}
+\begin{align*}
+&\left(\text{因为当 } k \to 0 \text{ 时 } \frac{\sin kR}{R} \to 0\right)\\
+% 校注：原书前置因子印作 e k_F/2\pi（放大核查确无上标）；但由 \rho(0)=en/2
+% （图 12 中水平线标记 n/2 = e k_F^3/6\pi^2，曲线自零出发）以及正文陈述
+% A = e\rho/R（与下式 A(R) 精确一致），前置因子应为 e k_F^3/2\pi^2，
+% 此处按本意转写。
+\rho(R) &= \frac{e k_F^3}{2\pi^2}\left[-\frac{\cos k_F R}{(k_F R)^2} + \frac{\sin k_F R}{(k_F R)^3}\right]
+\end{align*}
+图 12 给出了交换空穴的图像。（注意在 $R = 0$ 处诸奇性相互抵消。）图中画出的是：一个位于零点的电子在 $R$ 处所看到的自旋平行电子的总有效密度。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_12.pdf}
+\caption*{图 12　交换空穴：位于原点的电子周围自旋平行电子的总有效密度 $n/2-\rho$ 随 $k_F R$ 的变化，水平线标记 $n/2 = ek_F^3/6\pi^2$（原书图注仅作 “Figure 12”）}
+\end{figure}
+
+相应的核——交换势 $A(\mathbf{r}-\mathbf{r}')$——当然就是 $e\rho$ 除以 $R = \mathbf{r}-\mathbf{r}'$：
+\begin{equation*}
+A(R) = \frac{e^2 k_F^4}{2\pi^2}\left(\frac{\sin k_F R}{(k_F R)^4} - \frac{\cos k_F R}{(k_F R)^3}\right)
+\end{equation*}
+
+这些函数带着它们在无穷远处特有的甚长程振荡行为，在自由电子气理论中极其常见也极其有用。$A$ 类似于自由电子气的“Green 函数”，而熟悉自旋共振的读者会在 $A(\mathbf{r})$ 中认出 Ruderman-Kittel 函数。这种长程的振荡行为，是对费米分布的积分中存在尖锐上限的结果，而且只有在存在自由费米面时才会出现。这两个函数包含的是 $2k_F R$ 而非 $k_F R$，因为它们来自一个稍有不同的积分，但振荡的缘由是相同的。
+
+一个给定平面波态 $k$ 的能量中的交换贡献，很容易由
+\begin{equation*}
+A\phi_k(\mathbf{r}) = \int A(\mathbf{r}-\mathbf{r}')\,\phi_k(\mathbf{r}')\ \mathrm{d}\mathbf{r}'
+\end{equation*}
+导出。根据对 Fourier 变换作折叠的卷积定理（convolution theorem），它就是
+\begin{equation*}
+A\phi_k = A_k\phi_k
+\end{equation*}
+其中
+\begin{equation*}
+A_k = \int \mathrm{d}\mathbf{R}\ e^{i\mathbf{k}\cdot\mathbf{R}}\,A(R)
+\end{equation*}
+这个 Fourier 变换可以直接计算，也可以按下面的办法来做：$A(\mathbf{r}) = \rho(\mathbf{r})/r$，于是再次利用卷积定理，
+% 校注：原书此行被积函数印作 \rho(k)；按卷积定理并对照下一行应为 \rho(k')，
+% 此处按本意转写。
+\begin{align*}
+A_k &= \frac{e}{(2\pi)^3}\int \mathrm{d}\mathbf{k}'\ \rho(k')\left(\frac{1}{r}\right)_{k-k'}\\
+&= \frac{4\pi e}{(2\pi)^3}\int \mathrm{d}\mathbf{k}'\ \frac{\rho(k')}{|k-k'|^2}
+\end{align*}
+但 $\rho(k')$ 在 $k'$ 被占据即 $k' < k_F$ 时就是 $e/V$，否则为 0；于是
+% 校注：原书左端前置因子印作 4\pi e^2/((2\pi)^3 V)，与其右端 e^2/2\pi^2
+% 相差一个 (2\pi)^3 因子，等式不成立；使等式成立的前置因子为 4\pi e^2/V
+% （右端 e^2/2\pi^2 \int 为标准结果，且与下文 0.612/r_s 一致），按本意转写。
+\begin{equation*}
+A_k = \frac{4\pi e^2}{V}\sum_{k'\ \mathrm{occ.}}\frac{1}{|k-k'|^2} = \frac{e^2}{2\pi^2}\int\frac{\mathrm{d}^3k'}{|k-k'|^2}
+\end{equation*}
+据我所知，这个积分只能用直接的办法费力地算出；这项工作由 Dirac 于 1930 年完成。结果是
+\begin{equation*}
+A_k = \frac{0.612}{r_s}\left[2 + \frac{k_F^2 - k^2}{k\,k_F}\,\ln\left|\frac{k+k_F}{k-k_F}\right|\right]
+\end{equation*}
+这个积分是一个非常著名而且有用的函数。我们可以把方括号中的量勾画如下：它在 $k = 0$ 处的值为 4；分母中的奇性被 $\ln|k+k_F/k-k_F| \to 2k/k_F$ 所抵消。在 $k = k_F$ 处存在第二个奇性，但它取 $0\ln 0 = 0$ 的形式，故 $A = 2$，只是该点的斜率为无穷大（图 13）。
+
+我们可以把这条曲线看作费米分布函数的一幅被抹糊了的复本，其无穷大的斜率正对应于费米面处的陡然下降。其原因在于：当 $k < k_F$ 时，分母在 $k' = k$ 处趋于零；而当 $k > k_F$ 时则不然。这个零点虽是可积的，但也仅仅是勉强可积而已。这反过来又反映出 Coulomb 势的长程性质：$1/r$ 的 Fourier 变换是 $2\pi/k^2$。\footnote{无穷大的斜率可以直接证明：取
+\begin{align*}
+\nabla_k A_k &= \frac{4\pi e^2}{V\,\delta k}\left[\sum_{k\ \mathrm{occ.}}\frac{1}{|k-k'|^2} - \sum_{(k+\delta k)\ \mathrm{occ.}}\frac{1}{|k-k'|^2}\right]\\
+&= -\frac{4\pi e^2}{V}\sum_{\text{费米球面}}\frac{\cos\theta}{|k-k'|^2}
+\end{align*}
+面元按 $k\,\mathrm{d}k$ 变化，于是得到对数发散 $\int k\,\mathrm{d}k/k^2$。}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_13.pdf}
+\caption*{图 13　$A_k$ 表达式中方括号内的函数随 $k$ 的变化：$k=0$ 处值为 4，$k=k_F$ 处斜率无穷大，横轴标出 $k$、$k_F$、$2k_F$（原书图注仅作 “Figure 13”）}
+\end{figure}
+
+由 $A(k)$ 我们可以计算两件事。第一件是平均交换能（exchange energy），它将是 $(1/2N)\sum_k A(k)$。我们看到 $A$ 在 $0.612/r_s$ 的（2 到 4）倍之间变化；平均因子约为 3：$E_{\mathrm{exch}} = -0.916/r_s$，它抵消掉了 $1.2/r_s$ 的 Coulomb 自能中很大的一部分。尽管如此，在 Na 中 $0.25/r_s$ ryd $\cong 0.85$ ev 的差额，已足以移去内聚能的相当大一部分。
+
+剩下的修正是“关联能”，即由于即使是自旋反平行的电子也倾向于彼此保持距离而必须作出的那项修正。关于这一修正项有着浩繁的文献；只需说明这一点：Wigner 以及后来的 Pines (31)，在一类对 $r_s \lesssim 1$ 肯定良好的表达式与另一类对 $r_s \gtrsim 10$ 同样良好的表达式之间，于相当宽的范围内作了内插——尽管对于 $r_s = 4$ 而言，这两类表达式都谈不上有合理的希望能够接近——由此得到如下估计。鉴于它在已知范围内变化不快，而且各种估计彼此相符，我们可以猜测它在 $\pm 20\%$ 的范围内有效：$E_{\mathrm{corr}} = 0.88/(r_s + 7.8)$ ryd。［许多作者所用的并非此式，而是 Wigner 更早的一个表达式；他于 1938 年在一条脚注中对其作了修正 (29)。］用这个表达式我们得到表 4 所给出的结果。
+
+\begin{center}
+表 4
+
+\begin{tabular}{lccccc}
+\toprule
+元素 & 未修正 $E_{\mathrm{coh}}$，ev & $\Delta E_{\mathrm{HF}}$，ev & $\Delta E_{\mathrm{corr}}$，ev & 总计，ev & 实验，ev\\
+\midrule
+Li & $-2.1$ & $1.19$ & $-1.09$ & $-2.0$ & $-1.65$\\
+Na & $-1.15$ & $0.96$ & $-1.02$ & $-1.2$ & $-1.2$\\
+Rb & $-0.42$ & $0.73$ & $-0.92$ & $-0.61$ & $-0.85$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+我必须提醒各位：我在这里给出的这些表并不是权威的，也不代表 Q.D.M. 所已取得的最精确或最好的结果。至于更详细的结果，我请各位去查阅原始文献，特别是 Ham 的文章以及 Brooks 收在 Varenna 夏季学校报告中的文章。正如这后一篇文章所指出的，Ham 所取得的良好符合会因各种进一步的修正而打折扣。能够可靠引出的结论也许只有如下这些：Wigner 对自由电子关联能的估计离正确值并不远；而且我们确实知道碱金属中内聚的真正物理来源。与关联能中 $\pm 0.2$ ev 的误差同量级的修正，可能是费米能中的其他项，而最重要的则是由于波函数并非自由电子波函数而引起的对交换与关联的修正。稍后我们会看到，仅仅在这些效应的公式中塞进一个 $m^*$ 是不合法的，而这些修正的真正本质目前尚不清楚。［不过，可参见不久后将要讨论的 Phillips 的工作 (25)。］这些修正很容易达到关联能的 20\% 的量级。
+
+Q.D.M. 的数值结果中有一个方面引人注目且非常令人鼓舞：在这些金属的压缩率上得到的符合，几乎与在能量上得到的符合同样好。早年的许多计算以及大多数用其他方法所作的计算，给出的压缩率都非常糟糕。毕竟，压缩率是结合能曲线的二阶差分。Q.D.M. 之所以如此之好，其原因可能在于：对所有各项随密度的依赖形式我们确实了解得相当清楚——$E_0$ 项是因为它可以算得非常精确，其余各项则是因为它们由一般性的理论考虑所决定。动能按 $1/r_s^2$ 变化，而交换能、Coulomb 能与关联能则大致按 $1/r_s$ 变化。基于这一想法，用 Bardeen 的半经验状态方程 (27) 常常能够对 pV 曲线得到非常好的拟合：
+\begin{equation*}
+E = \frac{A}{r_s^3} + \frac{B}{r_s^2} - \frac{C}{r_s}
+\end{equation*}
+
+在接着讨论 O.P.W. 方法之前，我现在想先回到交换能上来略作讨论。$A(k)$ 的另一个重要方面是：它代表着对动量为 $k$ 的电子的自能（self-energy）$E_k$ 的一个依赖于 $k$ 的修正：$E_k = \hbar^2 k^2/2m^* - A(k)$。这是诸如交换这类非局域（nonlocal）势的特征行为。对于由各种多体效应所产生的有效势来说，非局域性是常态。这个势是 $A\phi = \int A(\mathbf{r}-\mathbf{r}')\,\phi(\mathbf{r}')\ \mathrm{d}\mathbf{r}'$；由卷积定理，它变换成自能的一个依赖 $k$ 的修正 $A\phi_k = A_k\phi_k$，可以粗略地把它看作一种\emph{有效质量}修正——不过它并非由晶格的周期势所引起，而是由交换空穴随粒子动量的变化所引起。
+
+在采用 Coulomb 相互作用的交换这一特殊情形下，有效质量修正恰好在费米面处发散：由于 $A(k)$ 具有无穷大的负斜率，$\mathrm{d}E_k/\mathrm{d}k\big|_{E_F} = +\infty$ 恰好在费米面处成立。态密度对数式地降到零。假如果真如此，就会与低温比热、自旋顺磁性等方面的许多实验结果相矛盾。Wigner 在原始论文中就已指出：实际上，在真实电子气中，Coulomb 相互作用的长程部分会被近旁其他电子的微小位移所屏蔽（screening），而这些位移同样也牵涉在关联能之中。对这种势屏蔽的一个粗略计算给出有效势 $e^{-k_0 r}/r$，其中 $k_0$ 是 Debye 波数，其量级为 $k_F$。这样一来，$A(k)$ 中的奇性被抹平，有效质量修正不再发散。我们应当强调，“交换空穴”仍然是一个长程的、振荡的函数，在 $k$ 空间的费米面处带有奇性；但它对交换势 $A$ 的影响，则会因相互作用范围的缩短而被抹平。这时 $A(k)$ 对 $k$ 的曲线看上去就像图 14 那样。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_14.pdf}
+\caption*{图 14　交换势 $A(k)$ 与屏蔽后的 $A_{\mathrm{eff}}$ 随 $k$ 的变化，水平线为 Slater 近似，$k_F$ 处的奇性已被抹平（原书图注仅作 “Figure 14”）}
+\end{figure}
+
+% ---- B.3 收尾（原书 p.61 / PDF p076 顶部，协调者补译） ----
+其净结果是有效质量的减小，在金属密度下其数值可能不大（5\% 到 20\%）。
+
+在实际晶体中，自由电子的密度并不是常数，自由电子模型不再适用，$A$ 也不再是 $A(\mathbf{r}-\mathbf{r}')$ 而是 $A(\mathbf{r},\mathbf{r}')$；它既是非定域的，又是随空间变化的。一个常常采用、源自 Slater (32) 的近似，是在这种情形下忽略 $A$ 的非定域性质，试图把它换成最好的定域势 $A(\mathbf{r})\,\delta(\mathbf{r}-\mathbf{r}')$，后者将正比于局域密度的 $1/3$ 次幂。$\delta$ 函数的傅里叶变换是常数，所以这样做的实质，是用一个适当的平均值代替 $A(\mathbf{k})$（见图~14）。这一近似能够成立的判据是：电子密度相对于交换空穴的尺度变化缓慢，而交换空穴的尺度大致为 $r_s$；此时非定域势所取样的区域将具有大致恒定的交换势。这样的近似在碱金属中是不可想象的——在那里 $r_s > r_{\mathrm{core}}$，因而远大于发生变化的长度尺度——但在 $r_s \sim 1$--$2$ 的多价物质中情形可能要好一些。Phillips 对金刚石（$r_s = 1.3$ (33)）就这一问题作过相当透彻的研究，结果表明 Slater 近似在那里并不严重，尽管对能带结构的某些方面仍有 20\% 到 30\% 的修正，尤其是对从最低态 $k=0$、$L=0$ 量起的费米面整体高度的修正。当然，这正是永远可以预期的一类效应：它对应于真实自由电子气中 $A(\mathbf{k})$ 的动量依赖性。\footnote{关于把核物质当作费米气体的最早评论，大概出自 Van Vleck：他指出在这种情形下，交换对有效质量的修正同样可能导致较轻的 $m^*$——这是一个确实发生并且至关重要的效应。}
+
+\subsection{O.P.W.（正交化平面波）方法}
+
+% 衔接说明：本文件自原书 p.61 的小节标题 “4. The O.P.W. Method” 起译；
+% p076 顶部（标题之前）为 B.3 小节的收尾两段及脚注 1（Van Vleck 注），归前一文件负责，此处从略。
+
+% ---- 原书 p.61 (PDF p076) ----
+现在我们接着来研究一种方法：它迄今在计算结合能方面从未十分成功过，但在计算能带结构方面却极为成功。这一强有力的方法得以幸运地重新兴起，恰逢多种实验方法已经可以用来细致研究复杂的能带结构——除碱金属外，所有的能带结构都是复杂的——这就使得最近 10 年间人们对固体中电子行为的理解发生了一场彻底的革命。
+
+O.P.W. 方法由 Herring 于 1940 年发明 (34)，Herring 和 Hill (35) 用它计算了 Be 的结合能。所得结合能不太好的这一事实，相当程度上掩盖了如下事实：这一计算很可能给出了非常好的能带结构——正如 Herring 在原始论文中所评论的那样。基本想法如下：基于近自由电子微扰论——亦即以真正的平面波作为初始本征函数——的计算，要想在真实固体中切实可行，希望是微乎其微的。这有两条理由。第一条是：原子芯的势在靠近原子核的区域内实际上变得极其巨大，
+
+% ---- 原书 p.62 (PDF p077) ----
+因此根本谈不上把它当作微扰来处理。在某种意义上，我们必须在这个区域内引进一个更加接近精确的解，因为真实的本征函数在那里必定变化迅速，而这种变化只有用 $k$ 矢量非常高的平面波才能描述。
+
+第二条理由更加有说服力。它说的是：即使我们成功地用平面波把这个计算做到无限高阶，其结果多半也不会收敛到对我们的目的而言正确的答案。原因在于：在所有真实金属中都存在若干芯能级（core levels）——在 Be 或 C 中是 $(1s)^2$，在更复杂的原子中还要多得多——相对于我们所关心的价电子能级，它们具有非常大的结合能。于是，在布里渊区内的任何一个 $k$ 处，都存在一个或多个芯带能级，而一个正确计算的最低本征值将趋于这些能级。众所周知，较高本征值的计算是相对困难的事情。
+
+Herring 对这个问题的解法几乎是显而易见的：取作初始波函数的不是平面波，而是对芯能级的波函数正交化了的平面波。只要芯波函数选得相当合理，这至少会解决第二个困难。幸运的是，由于芯能级大多位于来自原子核的强势区——这个势相对来说也已了解得比较清楚——即便是 Hartree 近似对它们也确实相当精确，因为电子-电子相互作用的效应并不十分严重。因此，芯函数的选取并不是一个敏感问题。
+
+Herring 还注意到，选取正交化平面波作为初始函数，至少也部分地解决了第一个问题。在把平滑变化的平面波函数对芯能级正交化的过程中，人们往平面波里引入了在原子核附近聚成尖峰的快速变化。起初人们只是从经验上观察到：这种快速变化似乎恰好能使初始函数成为芯势强区域中波动方程的一个过得去的解，因而这一步骤的收敛速率看来确实快得尚可应付。
+
+现在让我们把理论正式写下来。以某种方式——例如由自由原子的 Hartree-Fock 理论——得到的芯函数，我们记作
+\begin{equation*}
+\chi_n(\mathbf{r}-\mathbf{R}_j)
+\end{equation*}
+其中它就是围绕第 $j$ 个原子的第 $n$ 个芯轨道。如果 $\chi$ 确实是一个芯轨道，那么“由 $\mathbf{R}_j$ 到 $\mathbf{R}_j+\mathbf{a}$ 的交叠可以忽略”就必须是一个足够好的近似。（Herring 设计了一些办法，可以对任何残余的交叠作微扰论处理。）于是
+\begin{equation*}
+\left(\chi_n(\mathbf{r}-\mathbf{R}_j),\ \chi_m(\mathbf{r}-\mathbf{R}_k)\right)=\delta_{nm}\,\delta_{jk}\tag{13}
+\end{equation*}
+于是，对第一布里渊区内一个给定的 $k$，相应的能带函数恰好就是“紧束缚”函数
+
+% ---- 原书 p.63 (PDF p078) ----
+\begin{equation*}
+\phi_k^n=\frac{1}{N^{1/2}}\sum_j \exp(i\mathbf{k}\cdot\mathbf{R}_j)\,\chi_n(\mathbf{r}-\mathbf{R}_j)
+\end{equation*}
+如果式 (13) 得到满足，这些函数同样既正交又归一化。
+
+属于第一布里渊区中给定 $k$ 的各种可能的平面波，可以用倒格子矢量 $K$ 来标记：
+\begin{equation*}
+\phi_{k,K}(\mathbf{r})=\frac{1}{V^{1/2}}\,e^{i(\mathbf{k}+\mathbf{K})\cdot\mathbf{r}}
+\end{equation*}
+于是，正交化平面波函数便是
+\begin{equation*}
+\psi_{k,K}(\mathbf{r})=\phi_{k,K}(\mathbf{r})-\sum_n\left(\phi_{k,K},\ \phi_k^n\right)\phi_k^n(\mathbf{r})\tag{14}
+\end{equation*}
+其中
+\begin{equation*}
+\left(\phi_{k,K},\ \phi_k^n\right)=a_{K,n}\tag{15}
+\end{equation*}
+是平面波与芯函数之间的交叠积分（overlap integral）：
+\begin{align*}
+a_{K,n}&=\frac{1}{\sqrt{NV}}\int \mathrm{d}\mathbf{r}\ \exp\left[-i(\mathbf{k}+\mathbf{K})\cdot\mathbf{r}\right]\sum_j\ e^{i\mathbf{k}\cdot\mathbf{R}_j}\chi_n(\mathbf{r}-\mathbf{R}_j)\\
+&=\frac{1}{\Omega^{1/2}}\int \mathrm{d}\mathbf{r}\ e^{-i(\mathbf{k}+\mathbf{K})\cdot(\mathbf{r}-\mathbf{R}_j)}\chi_n(\mathbf{r}-\mathbf{R}_j)\\
+&=\frac{1}{\Omega^{1/2}}\int \mathrm{d}\mathbf{r}\ e^{-i(\mathbf{k}+\mathbf{K})\cdot\mathbf{r}}\chi_n(\mathbf{r})
+\end{align*}
+这正是 $\chi$ 的波矢为 $(\mathbf{k}+\mathbf{K})$ 的那个 Fourier 分量；或者说，如果你愿意这么看，它是动量空间波函数 $\chi_n(\mathbf{p})$ 在 $\mathbf{p}=\mathbf{k}+\mathbf{K}$ 处的振幅：
+\begin{equation*}
+a_{K,n}=\chi_n(\mathbf{p}=\mathbf{k}+\mathbf{K})
+\end{equation*}
+遗憾的是，正交化平面波——即式 (14)——既不归一，彼此之间也不正交。因此我们必须采用处理非正交归一函数的标准做法：
+
+% ---- 原书 p.64 (PDF p079) ----
+必须对久期行列式（secular determinant）求解本征值 $E$：
+\begin{equation*}
+\left|\left(\psi_{k,K},\ (\mathcal{H}-E)\,\psi_{k,K'}\right)\right|=0\tag{16}
+\end{equation*}
+其中 $E$ 也会出现在某些非对角元之中。式 (16) 的一般元素是可以算出的，只是要付出相当繁重的劳动，它就是
+\begin{align*}
+E\left(\delta_{KK'}-\sum_n a_{Kn}^{*}\,a_{K'n}\right)&=E_{k+K}^{0}\,\delta_{KK'}\\
+&\quad-\left(E_{k+K}^{0}+E_{k+K'}^{0}\right)\sum_n a_{Kn}^{*}\,a_{K'n}+V_{KK'}\\
+&\quad-\sum_n\Bigl\{a_{Kn}^{*}\left(\chi_n,\ V\phi_{k,K'}\right)+a_{K'n}\left(\phi_{k,K},\ V\chi_n\right)\Bigr\}\\
+&\quad+\sum_n a_{Kn}^{*}\,a_{K'n}\,E_n
+\end{align*}
+$E_n$ 是第 $n$ 个芯能级。我们已经假定芯带非常窄——交叠为零正蕴含着这一点。$E_k^0$ 是自由电子动能 $\hbar^2k^2/2m$。如你所见，这是一个相当复杂的表达式，不过只要知道了 $V(\mathbf{r})$ 和各芯能级，它的每一项原则上都能直接算出。
+
+当然，实际做法不是求解无限行列式 (16)，而是求解一个有限的行列式，它由审慎地截断所考虑的平面波数目而得到。一般说来，留待求解的久期行列式可能仍然相当大——尽管用现代计算机可以使用相当多的平面波，多达 20 个或更多——但为了容易得到结果并检验收敛性，人们通常把注意力集中在布里渊区的少数几个特殊对称点上。在对称点上，我们可以像前面结合近自由电子模型所讨论的那样，把平面波组成不同对称类型的对称化组合；而周期势的作用不能使不同对称类型相混合。
+
+例如各位当还记得：对 f.c.c. 空间格子、$\mathbf{k}=0$ 的情形，我们可以构成下列几组对称化平面波（symmetrized plane waves），它们全都来自与 $\mathbf{K}=2\pi/a\,(\pm 1,\pm 1,\pm 1)$ 相对应的八个函数的线性组合：
+
+% ---- 原书 p.65 (PDF p080) ----
+\begin{align*}
+\Gamma_1&:\ \cos\frac{2\pi x}{a}\ \cos\frac{2\pi y}{a}\ \cos\frac{2\pi z}{a} &&\qquad 1\\
+\Gamma_2'&:\ \sin\frac{2\pi x}{a}\ \sin\frac{2\pi y}{a}\ \sin\frac{2\pi z}{a} &&\qquad 1\\
+\Gamma_{15}&:\ \cos\frac{2\pi x}{a}\ \cos\frac{2\pi y}{a}\ \sin\frac{2\pi z}{a}\ +\ \text{置换} &&\qquad 3\\
+\Gamma_{25}'&:\ \cos\frac{2\pi x}{a}\ \sin\frac{2\pi y}{a}\ \sin\frac{2\pi z}{a}\ +\ \text{置换} &&\qquad 3
+\end{align*}
+在所有这些当中，只有 $\Gamma_1$ 与 $\mathbf{K}=0$ 的平面波 $\phi_0=1$ 相联系。于是，只需求解一个关于 $\Gamma_1$ 的 $2\times 2$ 方程，此外除了对角元的计算以外不需要任何别的方程，我们就已经把九个平面波考虑在内了。我们还可以在此之上再加入 $\mathbf{K}=2\pi/a\,(\pm 2,0,0)$ 等处的六个平面波，办法是把六个对称化平面波
+\begin{align*}
+\Gamma_{15}&:\ \sin\frac{4\pi x}{a},\ \text{等等} &&\qquad 3\\
+\Gamma_1&:\ \cos\frac{4\pi x}{a}\ +\ \cos\frac{4\pi y}{a}\ +\ \cos\frac{4\pi z}{a} &&\qquad 1
+\end{align*}
+以及一个二维表示 $\Gamma_{12}:\ \cos(4\pi x/a)-\cos(4\pi y/a)$（2）包括进来。这样，我们实际上就把 15 个平面波包括了进来，而所需的久期方程至多是三阶的，并且只有对那三个 $\Gamma_1$ 波才是如此。
+
+遗憾的是，与这一优点相伴的还有一个缺点：在这样的对称点上，正交化过程不仅被简化，而且被过分简化了。在上面的例子中，不妨设想所研究的物质只有 $1s$ 芯电子（这是一个虚构的情形，但足以说明原理）。于是，唯一不会因对称性而自动与芯正交的正交化平面波集合，是对称性为 $\Gamma_1$ 的那些：$\cos(2\pi x/a)\times\cos\times\cos$；$\cos(4\pi x/a)+\cos+\cos$；以及平面波 $\mathbf{k}=0$。这些全都必须对 $1s$ 函数正交化，并把完整的久期行列式解出来——当然，现在它并不十分复杂。在所有其他情形，我们直接只用平面波来做，对其而言久期行列式只不过是
+\begin{equation*}
+\left|\left(E_{k+K}-E\right)\delta_{KK'}+V_{KK'}\right|=0
+\end{equation*}
+而且至多是二阶的。
+
+一般说来，在任何一个对称点，总会有某些平面波集合出现这种情形。在 Si 中，需要作 $1s$、$2s$、$2p$ 三种正交化：前两种对着 $\Gamma_1$ 集合，后一种对着 $\Gamma_{15}$。另一方面，$\Gamma_{25}'$ 和 $\Gamma_{12}$ 集合仍然自动地与所有芯正交，因为它们在原子附近具有 d 型对称性；而 $\Gamma_2$ 则好比 $xyz$，是一个 f 型对称性的态：对它来说，直到 Lu 为止都无须作任何正交化。
+
+% ---- 原书 p.66 (PDF p081) ----
+这在省去大量麻烦的同时也带来了麻烦，因为这些函数于是保留了十足的平面波特征，在原子芯附近毫无原子型的貌相。为了赋予它们 Bloch 函数所特有的、在芯附近的急速变化，在截断之前必须引入比较多的平面波；O.P.W. 方法对这些函数的收敛相对较慢。不过它并不像人们可能担心的那样慢，因为单从这个例子已经可以看到，我们必须走到相当大的 $K$ 矢量才能找到可与它们组合的波；这背后有一个物理原因，我们很快就会明白。
+
+从一开始，物理上就很清楚：久期方程 (16) 中的各大项之间必定存在大量的相互抵消（cancellation）。矩阵元 $V_{KK'}$ 的性质是：如果没有正交化项，所得能量将会是芯能级非常大的结合能——例如在金刚石中为 $-22.7$ ryd。正交化项以某种方式成功地保证了：没有任何波函数以深于约 $-2$ ryd 的能量被束缚；这个值正是价电子壳层中原子函数的最低能量。因此，在某种意义上，对于被迫与芯能级正交的那些函数，$V(\mathbf{r})$ 这一巨大的吸引性势能除 10\% 之外已全部被抵消掉了。
+
+这种抵消的底层理论——我把它称作“Phillips 消去理论”——Phillips 已勾勒过其轮廓，Cohen 和 Heine (36) 则作了非常漂亮的表述。这里我将沿用后者的讨论。另一篇重要文献是 Austin、Heine 和 Sham (37)。
+
+消去理论的基本想法是：我们要试图找出的波动方程，其满足者不是真实波函数 $\psi_k$——它满足 $[(\mathbf{p}^2/2m)+V(\mathbf{r})]\,\psi_k=E_k\psi_k$——而是 Phillips 所称的 $\psi$ 的“光滑”部分；在本情形中，即平面波部分 $\phi$，正交化项正是要从它里面减去。
+
+那么我们就来做这件事。若严格波函数由式 (14) 给出：
+\begin{equation*}
+\psi_k=\phi_k-\sum_n\left(\phi_k,\ \phi_k^n\right)\phi_k^n
+\end{equation*}
+（其中 $E_k^n$ 为芯能级。译注：原书此处印作 $\phi_k^n$，按上下文应为 $E_k^n$。）我们便有
+\begin{align*}
+\left(\frac{\mathbf{p}^2}{2m}+V\right)\psi_k&=\left(\frac{\mathbf{p}^2}{2m}+V\right)\phi_k\\
+&\quad-\sum_n\left(\phi_k,\ \phi_k^n\right)\left(\frac{\mathbf{p}^2}{2m}+V\right)\phi_k^n=E_k\left(\phi_k-\sum_n\left(\phi_k,\ \phi_k^n\right)\cdot\phi_k^n\right)
+\end{align*}
+
+% ---- 原书 p.67 (PDF p082) ----
+或者，
+\begin{equation*}
+\left(\frac{\mathbf{p}^2}{2m}+V+V_R\right)\phi_k=E_k\,\phi_k
+\end{equation*}
+其中
+\begin{equation*}
+V_R=\sum_n\left(E_k-E_n\right)\ \frac{\phi_k^n}{\phi_k}\ \left(\phi_k,\ \phi_k^n\right)
+\end{equation*}
+$V_R$ 这样通过用 $\phi_k$ 相除来定义是相当任意的；但当我们看到——但愿如此——$\phi_k$ 在芯区内的变化相对于 $\phi_k^n$ 来说非常小，因而用 $\phi_k$ 相除只不过给出 $\phi_k^n$ 的一个常数倍；而且 $E_k$ 一般比芯结合能 $E_n$ 小，故其变化可以忽略——这时 $V_R$ 便取得了真实的意义。这样一来，$V$ 就有点像一个真正的势了。
+
+它究竟是什么，Cohen 和 Heine 已经讲明白了：它是我们的老朋友——一个非局域势。也就是
+\begin{align*}
+V_R\phi_k(\mathbf{r})&=\int \mathrm{d}\mathbf{r}'\ V_R(\mathbf{r},\mathbf{r}')\,\phi_k(\mathbf{r}')\\
+V_R(\mathbf{r},\mathbf{r}')&=\sum_n\left(E_k-E_n\right)\phi_k^n(\mathbf{r})\left(\phi_k^n(\mathbf{r}')\right)^*
+\end{align*}
+这一点通过积分立即可见。Phillips 的论断——实质上就是上面的物理推理——是：$V_R$ 是一个排斥势（因为 $E_n$ 为负），它常常几乎把 $V$ 完全抵消掉。
+
+Cohen 和 Heine 用下面的办法在数学上证明了这个抵消：考察方程 (14)——它实质上是以严格波函数 $\psi_k$ 来定义“光滑”波函数 $\phi_k$ 的——我们看到，这个定义绝非唯一。毕竟，在我们所考虑的应用中，平面波集合 $\phi_{k+K}$ 是一个完备集（complete set），因此即便是函数 $\phi_k^n$ 也可以用它们来展开。于是，如果我们愿意，实际上可以不用正交化、完全用平面波集合写出 $\psi_k$，但这当然会给出一个收敛性极差的平面波展开；或者，原则上我们也可以把正交化项以任意选定的比例分配在 $\phi$ 与显式项之间。
+
+% ---- 原书 p.68 (PDF p083) ----
+这意味着，我们必须凭某个附加的明确条件来规定所谓“光滑波函数 $\phi$”的含义。实际上我们清楚它指的是什么：它就是我们所能侥幸得到的最接近于少数几个平面波的那个东西。Cohen 和 Heine 指出，表达这一想法的一个数学方式，是要求有效势 $(V+V_R)$ 尽可能地弱：
+\begin{equation*}
+\left(\phi,\ (V+V_R)\,\phi\right)/\left(\phi,\phi\right)=\text{minimum}
+\end{equation*}
+由这一条件出发，经直接的数学演算，可以得到 $(V+V_R)\phi$ 所满足的如下方程：
+\begin{align*}
+(V+V_R)\phi&=V\phi-\sum_n\left(\phi_k^n,\ V\phi\right)\phi_k^n\\
+&\quad+\left(\phi,\ \left[V+V_R\right]\phi\right)\sum_n\left(\phi_k^n,\ \phi\right)\phi_k^n
+\end{align*}
+于是这一有效势的对角元就是
+\begin{equation*}
+\left(\phi,\ \left[V+V_R\right]\phi\right)=\frac{\left(\phi,\ V\phi\right)-\sum_n\left(\phi,\phi_k^n\right)\left(\phi_k^n,\ V\phi\right)}{1-\sum_n\left|\left(\phi_k^n,\ \phi\right)\right|^2}
+\end{equation*}
+相应的非局域势就是
+\begin{equation*}
+(V+V_R)(\mathbf{r},\mathbf{r}')=V(\mathbf{r})\left\{\frac{\delta(\mathbf{r}-\mathbf{r}')-\sum_n\phi_k^{*n}(\mathbf{r})\,\phi_k^n(\mathbf{r}')}{1-\sum_n\left|\left(\phi,\ \phi_k^n\right)\right|^2}\right\}\tag{17}
+\end{equation*}
+（注：Austin、Heine 和 Sham (37) 后来已经证明，这个分母是不必要的。）
+
+这样我们就证明了两件事：我们所使用的有效势在上述意义下是可能的最弱者；而且它可以写成式 (17) 的形式。现在请注意
+\begin{equation*}
+\sum_{\text{all states}}\phi_k^{*n}(\mathbf{r})\,\phi_k^n(\mathbf{r}')=\delta(\mathbf{r}-\mathbf{r}')\tag{18}
+\end{equation*}
+
+% ---- 原书 p.69 (PDF p084) ----
+因此，除了分母中的归一化因子之外，\emph{这个势已被束缚态的一个线性组合抵消到了它所能达到的最有效程度}。换一种说法：抵消的程度正比于束缚态在 $V$ 很大的区域内构成完备集的程度。Cohen 和 Heine 为 Si 给出了一幅令人赞叹的图，显示这种抵消可以达到何等好的程度。（图 15）（把图画成一个局域势时，是利用了如下事实：对 $s$ 态来说，就与芯函数作积分的目的而言，$\phi$ 是一个常数，因而\emph{对给定的 $l$}，非局域性无关紧要。）
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_15.pdf}
+\caption*{图 15　Si 中势的抵消：$V$ 与 $V+V_R$ 的有效电荷 $Z_{\mathrm{eff}}$ 随 $r$ 的变化（纵轴刻度自上而下为 4、8、12、14），$V$ 在芯区内深达 14，$V+V_R$ 很快趋于虚线所示的约 4 的浅势；横轴 $r$ 标 1、2、3（原书图注仅作 “Figure 15”）}
+\end{figure}
+
+典型地说，归一化因子 $1\big/\left(1-\sum_n\left|\left(\phi,\ \phi_k^n\right)\right|^2\right)$ 相当接近于 1：大约在 1.1 左右（见上面的注）。
+
+注意，势的非局域性对于使势对不同 $l$ 值表现得颇为不同这一点至关重要。例如，正如我们已经指出过的，当芯能级中没有 p 型的能级时，p 能级就不存在抵消；我们可以由观察到此时
+\begin{equation*}
+\int \mathrm{d}\mathbf{r}'\ V_R(\mathbf{r}-\mathbf{r}')\,\phi_p(\mathbf{r}')=0
+\end{equation*}
+看出这一点，因为它等同于
+\begin{equation*}
+\int \mathrm{d}\mathbf{r}'\ V(\mathbf{r})\,\phi_{1s}(\mathbf{r})\,\phi_{1s}(\mathbf{r}')\,\phi_p(\mathbf{r}')
+\end{equation*}
+这里的 $\phi_p$ 是指某个必然具有 p 对称性的对称化平面波，例如一个 $\Gamma_{15}$ 组合。一般说来，这种抵消就不那么完全——$l$ 值越高，就越是如此。对此有一个非常明显的原因：只要考察角动量为 $L$ 的轨道的径向波动方程
+
+% 衔接说明：末句在原书 p.69 末行中断（p.85 起首为 “complete for higher and higher l values.”），由下一文件续译。
+
+% 衔接说明：本文件为小节 “O.P.W.（正交化平面波）方法” 的后半，不含小节标题。
+% 首行承接原书 p.69（PDF p084）末句 “In general, the cancellation is less”，
+% 本文件自 “complete for higher and higher l values.” 起续译（与 ch2_B4a.tex 末行拼接）。
+
+% ---- 原书 p.70 (PDF p085) ----
+对此有一个非常明显的原因：只要考察角动量为 $L$ 的轨道的径向波动方程
+\begin{equation*}
+\frac{\mathrm{d}^2 u_L}{\mathrm{d}r^2} - \left[\frac{L(L+1)}{r^2} + V(r)\right] u_L(r) = E_L u_L(r)
+\end{equation*}
+并勾画出其中的势能项（图 16）。我们看到，离心势项把束缚态从 $V$ 的内部区域排除出去，因此对较大的 $L$，束缚态无论如何也不可能为正是 $V$ 最强的那个区域本身构成一个完备集。尽管如此，虽然这个想法并没有明显地出现在数学表述之中，
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_16.pdf}
+\caption*{图 16　径向方程中势能项的草图：实线为 $V(r)$，虚线为离心势 $V + \frac{L(L+1)}{r^2}$，其谷底处标有 “Bound state?”（束缚态？）（原书图注仅作 “Figure 16”）}
+\end{figure}
+
+$V$ 的大矩阵元对这些较高的 $L$ 态实际上起不了多大作用，因为平面波态同样不能很有效地穿入芯区——离心项对它们同样起作用。这样看来，必然要发生的抵消之中，有一部分来自 $k$ 相当高的平面波，这也是这些态收敛性差的部分原因。事实上，Heine 曾指出，一定程度的抵消会显式地出现在久期方程之中。
+
+我相信，这里的抵消理论仍然有进一步改进的余地。读者当中做核物理的人也许已经注意到，其中某些想法——无论是在 Q.D.M. 中还是在“被抵消的 O.P.W.”（cancelled O.P.W.）中——与多重散射理论（multiple scattering theory）和有效力程理论（effective range theory）的技术、以及在该理论中把散射矩阵 “T” 用作有效势的做法（38），有着惊人的相似。我想，通过与多重散射理论作类比，大概还能做成更多的事情，特别是把高动量的连续谱态连同束缚态一起从问题中消去。\footnote{在写完这些讲稿之后我获悉，Ham 与 Segall 的 Green 函数方法［Phys. Rev., \textbf{124}, 1786 (1961)］正是朝这个方向迈出的第一步：这一方法以及增广平面波方法（augmented plane-wave method）（M. M. Saffren，学位论文，M.I.T.，1959）之所以收敛极佳，很可能正是由于它们与多重散射理论的相似性。（译注：原文此处印作 “N.I.T.”，应为 M.I.T.。）}
+
+% ---- 原书 p.71 (PDF p086) ----
+用带抵消的 O.P.W. 所完成的详细定量工作是专家的课题。另一方面，我倒想提请各位注意它有助于说明的固体行为的若干定性特征。这些特征基本上有两类：（1）“好金属”行为中由它解释的那些方面；（2）固体量子化学中由 O.P.W. 何时良好、何时失效来解释的那些方面。
+
+1. 这些方面中对剑桥的人士来说更熟悉的一个，是近自由电子图像在定性解释所观测到的纯金属费米面方面的显著成功。我想这方面已广为人知，无须进一步讨论。在这一推广的几个显著的失败之中，铜是一例：其中相关的芯能级——d 能级——下得不够深，无法用正交化来处理；而各价半导体（valence semiconductors）定量地看，离开自由电子球其实并不那么远。
+
+第二个特征，是所谓“刚性能带”（rigid band）模型在无规合金和液态金属中的经验成功——正如 Heine 与 Ziman (39) 所强调的，这一成功实在可观。在这个模型中，人们忽略物质的无规背景结构，假装其行为受某种平均能带的控制，这个能带含有各组分所贡献的价电子的平均数目。在模型的极端形式下，人们假定金属的性质只由每原子的价电子数目决定，而不管这些电子由哪些原子贡献。在某些情形下，甚至晶体结构也能靠这种“对周期表取平均”的办法来预言。一个引人注目的例子是 Mo 与 Ru 的合金：它在晶体结构和其他若干性质上都模拟人造元素锝，而在所有这些性质上 Mo 和 Ru 都与 Tc 大相径庭 (40)。近来发现，越来越多的性质随电子/原子比这个参量相当平滑地变化，而这个参量当然只是决定相应费米面的大小 (10)。我不想造成一种错误印象，似乎刚性能带总能对合金与化合物的所有性质给出正确的描述——也许它们不奏效的时候比奏效的时候更多，特别是在混合彼此差别很大的金属时——而是想说：鉴于决定金属大部分物理性质的，是各种效应之间敏感的平衡，它们居然能够奏效，这件事本身就相当令人惊讶。
+
+2. Phillips、Cohen 与 Heine 强调了抵消定理与实测出现的价晶体（valence crystals，有别于金属）之间的关系。在周期表中 $Z$ 较低的成员里，可以用来展开式 (18) 中 $\delta$ 函数的芯轨道少得多。这意味着，即便在较低的元素中，势的 $s$ 部分的抵消效率也较低；而在第一行中根本没有 p 抵消，d 抵消则要到第二长周期的末尾——从镓开始——才出现。于是，剩下的有效势 $(V + V_R)$ 将是周期表行数的减函数——例如从 C 到 Si 到 Ge 到 Sn 到 Pb 依次减小。因此，较早的成员将有更强的区界、更宽的禁带，以及形成开放价结构的更大的能量上的好处。所有这些预言都在第四列的这些元素中得到漂亮的例证。
+
+至于随周期表第二个维度（即沿一行）的变化，则讨论得没有那么透彻。我想这是一个同样能被 O.P.W. 思想照亮的课题，我愿在此稍作讨论。
+
+% ---- 原书 p.72 (PDF p087) ----
+下面的讨论将基于这样一个事实：判定固体中价电子的波函数能否被相当好地描述为一组微扰效应相对较小的正交化平面波，实际上有两条判据。第一条我们已经见过——即芯能级必须相当深，使得正交化所给出的有效势的内芯部分已被相当好地抵消，而且芯能级不会强烈地混入价能级之中。
+
+第二条判据可以这样来理解：从能量上看，固体中原子的电子组态要想与自由原子的相差悬殊，是完全不可能的。这一点当然已被实验充分证实：固体中原子的 X 射线结构因子与自由原子相比，从不曾有过挪动一两个以上电子那样严重的差异。各位当中也许有人注意过关于 X 射线测量的那场讨论：测量似乎表明铁在固体中少了四个 d 电子；虽然这些实验后来当然被证明是错的，但这件事至少促成了 Herring 的决定性论证 (41)：挪动这四个电子所需的能量，根本不可能来自内聚中所涉及的那几类能量。把两三个电子挪动一个与 Bohr 半径 $a_0$ 相比可观的数量——从一个壳层挪到另一个壳层——要付出若干 Rydberg 的能量。
+
+因此，第二条重要判据是：\emph{我们预期价电子具有的那个原子波函数，必须能够相当好地用 O.P.W. 费米海内平面波态的占据来描述。}
+
+碰巧，在某些条件下，原子态的构造确实不坏，足以按那种方式被近似。为说明这一点，我们可以去查原子波函数的 Fourier 变换，即它们在动量空间中的波函数［例如查 Bethe-Salpeter 的书，文献 (42)］。举几个例子：$1s$ 函数为
+\begin{equation*}
+\phi_{1s} = A\,\mathrm{e}^{-\kappa r}
+\end{equation*}
+而它的（未归一化的）Fourier 变换是
+\begin{equation*}
+\frac{\kappa}{\left(\kappa^2 + k^2\right)^2}
+\end{equation*}
+$2p$ 函数的则是
+\begin{equation*}
+\frac{\kappa^2 k\,Y_{1m}(k)}{\left(\kappa^2 + k^2\right)^3}
+\end{equation*}
+$3d$ 函数的则是
+
+% ---- 原书 p.73 (PDF p088) ----
+\begin{equation*}
+\frac{\kappa^3 k^2}{\left(\kappa^2 + k^2\right)^4}\,Y_{2m}
+\end{equation*}
+
+这些函数的草图见图 17。当 $k$ 增大时，所有这些函数都在 $k = \kappa$ 附近相当陡峭地下降。如果费米面离这一点不太远，用 O.P.W. 便可对原子函数得到一个不错的近似。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_17.pdf}
+\caption*{图 17　动量空间波函数 $\phi_k$ 随 $k$ 的变化：$1s$、$3d$、$2p$ 三条曲线均在 $k \approx \kappa$ 附近陡降（原书图注仅作 “Figure 17”）}
+\end{figure}
+
+如果考虑一个由原子函数 $\phi_{nl}$ 组成的 Bloch 波，便容易形象化地看出作出这种近似的第二条判据。对这样一个波，一个合理的近似可以是
+\begin{equation*}
+b_{\mathbf{k};nl} = \mathrm{e}^{i\mathbf{k}\cdot\mathbf{r}}\sum_j \phi_{nl}(\mathbf{r} - \mathbf{R}_j)
+\end{equation*}
+立即可见，这样一个函数的动量空间表示是
+% 校注：原书求和号下印作小写 k；按物理意义（下页“与 k 由一个倒格矢相连的
+% 每一个点”）求和指标应为倒格矢 K，此处按本意转写。
+\begin{equation*}
+b_{\mathbf{k};nl}(\mathbf{p}) = \sum_{\mathbf{K}} \delta_{\mathbf{p},\,\mathbf{k}+\mathbf{K}}\,\phi_{nl}(\mathbf{k} + \mathbf{K})
+\end{equation*}
+
+% ---- 原书 p.74 (PDF p089) ----
+在与 $\mathbf{k}$ 由一个倒格矢相连的每一个点上，它取值 $\phi_{nl}(\mathbf{k} + \mathbf{K})$。以 $1s$ 函数为例在一维情形下把这一点形象化，我们可以把这个函数画成图 18 那样。在动量空间中，我们在 $\mathbf{k} + \mathbf{K}$ 的每个值处都有一个尖峰，其高度由原子动量空间波函数在该点处的大小给出。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_18.pdf}
+\caption*{图 18　一维动量空间中的 $b(p)$：在由倒格矢与 $k$ 相连的各点 $k-K$、$0$、$k$、$k+K$ 处的尖峰，其高度由原子动量空间波函数 $\phi_{1s}$（钟形曲线）在该点的大小给出（原书图注仅作 “Figure 18”）}
+\end{figure}
+
+近自由电子模型中的波函数由单个平面波构成，充其量由少数几个能量十分接近的平面波构成。于是，比方说像上图中那样，如果 $\mathbf{k}$ 与 $\mathbf{k} - \mathbf{K}$ 都带有大的尖峰，而能量又不十分相近，这两类波函数就会非常不同。也就是说，$\mathbf{K}$ 矢量相对于 $k_F$ 不得太小，而 $k_F$ 必须 $\approx \kappa$。这等价于说：重要的布里渊区边界不得深入费米面之内太远，因为布里渊区边界恰恰就是 $|\mathbf{k} - \mathbf{K}|$ 等于 $|\mathbf{k}|$ 的地方，而远在 BZ 边界之外，$|\mathbf{k}|$ 便比 $|\mathbf{k} - \mathbf{K}|$ 大出相当多。毫无疑问，这一要求容许相当大的宽容度，但可以肯定，当
+\begin{equation*}
+|\mathbf{k} - \mathbf{K}| < \frac{3}{4}\,|\mathbf{k}|
+\end{equation*}
+左右时，这两类函数之间就不再有多少相似之处了。
+
+这一要求的物理意义无非是：近自由电子图像无法很准确地描写变化剧烈的电子密度，因此，如果波函数的线度 $(1/\kappa)$ 比原子间距 $(1/K)$ 小，O.P.W. 就不可能是好的近似。换一个角度看：当 $1/\kappa$ 太小时，剩余的芯势开始变得太强。头一个要求在物理上同样不难理解：原子波函数中的动量分布与固体中的动量分布必须在大致相同的最大动能处截止；这就要求 $\kappa \approx k_F$。
+
+% ---- 原书 p.75 (PDF p090) ----
+这些要求中的头一条给了我们一个关于“好金属”行为的非常直截了当的判据；我们已经看到，波函数中的截止点与 $k_F$ 必须落在彼此非常靠近的地方，因而 BZ 不得深入费米球之内太远。但至少在 Bravais 的简单晶格中我们知道，第一布里渊区恰好含有每原子两个电子态，于是，若价电子数为 $Z$，则
+\begin{equation*}
+\text{BZ 的平均半径} = k_F \Big/ \left(\frac{Z}{2}\right)^{1/3}
+\end{equation*}
+（当 $Z = 2$ 时，BZ 的体积 = 费米球的体积。）因此这非常直接地就是对 $Z$ 本身的一个限制：它表明，$Z$ 大到 4 或 5 时还可以得到合理的拟合，但从此往后波函数将开始在径向方向上变化得非常快，平面波模型便行不通了。
+
+看一看这些想法沿周期表的两个典型的行如何展开是很有教益的：一个是第二短周期，Na、Mg 等；另一个是第一过渡系，K、Ca、Si、Ti、……（译注：原文如此，此处 “Si” 应为 “Sc”。）
+
+在 Na 等所在的一行中，我们先填充 $3s$ 能级，然后再填充 $3p$ 能级。$3s$ 与 $3p$ 原子能级在其动量空间表示中，正如在其径向空间函数中一样，带有径向节点（radial nodes）；但正交化过程将使恰好相应的节点结构出现在 O.P.W. 函数之中。因此，我们可以在一个“抹平”的空间中进行思考——其中径向节点被忽略——并假定波函数在这个“抹平”空间中的形状恰恰就是 $1s$ 或 $2p$ 函数的形状。
+
+% 校注：原书此处指数印作 $r^{l'}$（l 后带一撇状墨点），按 Slater 波函数本意
+% 转写为 $r^{\,l}$。
+1930 年，Slater 从若干 Hartree 计算和各种经验数据出发加以推广，得出了一个非常成功的近似原子波函数与“屏蔽常数”（screening constants）(43) 的体系，供原子和分子计算使用。这些是抹平了的无节点函数，形式为 $r^{\,l}\,\mathrm{e}^{-\kappa r}$；而且看来，在我们的计算中所应使用的 $\kappa$ 多半恰好就是这些公式中的 $\kappa$。这些屏蔽常数和波函数，常被用作原子重要外区中的势以及相应波函数的一个相当粗糙的估计。我们在这里对这些元素给出：由金属中的原子体积算出的 $k_F$、由 Slater 按上述办法算出的 $\kappa$，以及 $\kappa_{1/2}$ 这个量——即原子动量函数降至其峰值约一半时的那个 $k$。见表 5。符合得并不完美（注意 Mg 和
+
+\begin{table}[htbp]
+\centering
+{\bfseries 表~5}\\[5pt]
+\begin{tabular}{lccccc}
+\toprule
+ & Na & Mg & Al & Si & P\\
+\midrule
+$\kappa$ & $1.39\times10^{8}$ & $1.80$ & $2.20$ & $2.60$ & $3.00$\\
+$\kappa_{1/2}$ & $0.87$ & $1.12$ (p:1.6) & $2.00$ (s:1.4) & $2.32$ & \\
+$k_F$ & $0.90$ & $1.36$ & $1.55$ & $1.84$ & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ---- 原书 p.76 (PDF p091) ----
+\noindent Al 中的误差表明，在这两种情形下 s 与 p 的性质有所混合），但它一点也不坏；而且令人感到有趣的是：仅仅看一看原子波函数的形状，就能把固体的体积估计得多么漂亮。P 有各种各样复杂的晶体结构，一点也不像金属，也不遵守 $\kappa_{1/2} \cong k_F$ 的关系。因此，P、S 和 Cl 无法纳入 O.P.W. 理论：因为要使价电子分布相当均匀，所需的密度会高到使费米能从而平均动能远高于原子中的相应数值。换一种说法：在原子中，壳层简并（shell degeneracy）的存在使得一个填充得相当稠密的电子壳层可以在不付出过多动能的情况下被填满，因为不相容原理是凭借不同动量分量之间相当复杂的相位关系而得到满足的。这一效应只在壳层中电子数多于两三个的那些元素中才重要；但在这些元素中，它阻碍了真金属的形成，因为在真金属中这些相位关系必然要被破坏，而在芯附近维持给定电子密度所需的动能也就会太高。
+
+在 P、S、Cl 中，正如在 N、O、F 中一样，其结果是形成共价键合的分子体系，其中 p 壳层的空穴在很大程度上仍保持其原子 p 函数的身份，并形成有方向的、饱和的共价键。
+
+同样的过程也发生在过渡系中，只是结果不同。这里，所涉及的电子被正交化于 $(1s)^2$、$(2s)^2$、$(3s)^2$、$(2p)^6$ 和 $(3p)^6$。于是，单凭正交化本身，它们便可以带上 $4s$、$4p$ 和 $3d$ 的性质。$k$ 接近零的 O.P.W. 不可能带有可观的 d 性质，只能带有弱的 p 性质；因此，自然而然，起初在 K 中甚至在 Ca 中，O.P.W. 实际上就是 $4s$ 波函数。然而，在较高的 $k$ 值处，$3d$ 函数与 $4p$ 函数之间开始出现竞争。$4s$ 函数对 $4p$ 有有效的屏蔽，对 $3d$ 则没有；而较高的 $n$ 值意味着 $\kappa_{4p} < \kappa_{3d}$，于是在这一点上，$4p$ 函数在 $k$ 空间中的密度可以忽略，而电子——本质上仍是 O.P.W.——开始填充 $3d$ 能级。把屏蔽常数 $\kappa$ 与相应的费米动量加以比较即可表明这一点，见表 6。实际上，这里的符合甚至比前面还要好；而且显然，Sc、Ti 甚至 V 都是相当令人满意的 “O.P.W. 金属”。（括号中的数值是在如下假定下算出的：在这一系列的中段附近，
+\begin{table}[htbp]
+\centering
+{\bfseries 表~6}\\[5pt]
+\begin{tabular}{lccccccc}
+\toprule
+ & K & Ca & Sc & Ti & V & Cr & Mn\\
+\midrule
+$\kappa$ & $1.1\times10^{8}$ & $1.4$ & $1.65$ & $2.05$ & $2.45$ & $2.85$ & $3.25$ ($\kappa_{3d}$)\\
+$\kappa_{1/2}$ & $0.68$ & $0.87$ & $1.65$ & $2.05$ & $2.45$ & $2.85$ & $3.25$ ($\kappa_{3d}$)\\
+ & & & & & $(2.2)$ & $(2.65)$ & $(3.22)$\\
+$k_F$ & $0.75$ & $1.12$ & $1.59$ & $1.89$ & $2.19$ & $2.47$ & $2.57$\\
+\bottomrule
+\end{tabular}
+\end{table}
+% 上句未完，接原书 p.77（PDF p092，不属本文件范围）。
+4s 将开始再度变空。）然而在 Cr 和 Mn，以及在某种程度上在 V 中，晶格开始变得远比 3d 电子的 $\kappa$ 所要求的稀疏，于是“3d 带”作为一个实体——有别于那些恰好在核附近才带有 3d 性质的单纯 O.P.W.——开始成形。
+
+然而，由于未填满的 4s-4p 壳层的存在，这里的行为与 p 壳层系列中的行为颇为不同。4s-4p 壳层总保持着一定的占据，随着越来越多的 d 能级被占据、原子彼此相距相对更远，“O.P.W.”费米面便失去 3d 电子，回到只适合 4s-4p 电子的情形。于是在 V 与 Mn 之间的某处，d 带本身——作为由处于近似原子状态的电子构成的紧束缚带——得以成形；在此点之前，d 带与其他任何能带在定性上并无区别。
+
+“内层”能带在这一点上的出现，以行为的巨大变化为标志，正如 O.P.W. 在 p 壳层的失效以分子结构与价结构的出现为标志一样。这里金属性得以保留，但内层电子的特征磁性开始显露——表现为 3d 行中实际的铁磁性与反铁磁性，以及 Pd 族和 Pt 族中的高磁化率与非典型行为。
+
+在这一段题外话中，我试图说明：近满壳层中的空穴与近空壳层中的电子，为什么以及如何在其量子化学性质上表现得截然不同；也试图说明近自由电子图像在哪里、又为什么不能再指望奏效。我相信这样的分析以前从未有人做过。
+
+\section{有微扰场存在时的单电子能带理论}
+
+\subsection{引言}
+
+在离开单电子理论这一主题之前，讨论当通常的周期场上叠加某种非周期微扰时固体中电子的行为，似乎是相当重要的。自然，对固体中处于完全平衡的自由电子所做的实验，无法告诉我们多少关于它们的信息——充其量，除总能量之外，我们至多能通过比热，或者（若运气好的话）通过 X 射线与光学光谱的测量，了解到态密度。为了研究能带结构，我们必须先微扰它。微扰可以由外加的电场和/或磁场构成——相对于原子尺度而言，它们实际上可视为恒定——也可以由周期势受到这种或那种扰动而产生的局域微扰势构成——杂质、位错（dislocation）、表面等等。
+
+自然，真正微弱而局域的微扰——例如由与核磁矩的超精细相互作用、或由两种同位素核之间的差异所引起的微扰——可以用寻常的微扰论处理而无明显的复杂性。真正强的局域微扰——通常由结构中的间隙原子或缺失原子（空位）所引起——则无论在固体中还是在别处，都是一个本质上困难的问题。
+
+% ---- 原书 p.78 (PDF p093) ----
+
+另一方面，碰巧固体中人们感兴趣的最常见一类微扰，是这样一类：它们在总体上可以很强，却相对于原子尺度缓变。例如，均匀电场在哈密顿量中给出一个微扰项 $eEx$（译注：原书排印作 $Eex$），即使 $E$ 很小，它在大晶体中也能变得要多大有多大：$x \to \infty$。均匀磁场在数值上同样可以很大：矢量势可取为 $\mathbf{r} \times \mathbf{H}/2$，它随位置矢量 $\mathbf{r}$ 线性增长。由位错、带电杂质、激子（exciton）、表面等等引起的势分布，也常常是缓变而幅度很大的。正是在这个极限下，“有效哈密顿量”（effective Hamiltonian）理论可以指望是有效的。
+
+在这个理论中，所作的假定是：电子完全在单独一支能带的状态之间运动。这一假定的正当性我们稍后再讨论，但它显然足够合理：一个近乎恒定而平滑变化的势，可以使电子在能量几乎相同的状态之间绝热地来回移动，却不会引起向其他能带的真实跃迁。
+
+我将首先在“有效哈密顿量”或“有效质量”（effective mass）近似下、并在上述假定之内，对电子的动力学作一简短讨论；然后再较深入地考察这一近似的某些背景。有不少文献对其中电子动力学有相当完整的讨论：Ziman (3) 论电场与磁场，Kohn 在《Seitzschrift》第 5 卷中论杂质态（impurity states）(44)，Wannier（文献 4 第 6 章）——我将多少遵循其进路——以及其他多种。Kittel 对“有效质量”的缘由有一段相当漂亮的定性讨论，我推荐作为配套读物（第 2 版，第 288 页），因为我这里不打算采用那种讲法。Wannier 的书在背景论证方面相当不错，不逊于任何参考文献，只有一部例外——它艰深然而完备：即《Seitzschrift》第 13 卷中的 E. I. Blount。
+
+这个问题在如此长的时间里始终是一个活跃课题，本身就值得注意。相应的自由电子结果早在 1930 年就已知道——即 Landau 的抗磁性——其后不久，Jones 和 Zener 以及 Peierls 分别就电场情形和磁场情形，把它们推广到有效哈密顿量近似下的“准自由”电子 (46)。尽管如此，第一次试图体面地推导这些结果、并理解它们在何种意义上是近似的，来自 Wannier 1937 年关于 Wannier 函数的开创性论文。Seitz 书中的推导相当不完整。同样，这一近似的第一次失效由 Zener 于 1934 年——即 Zener 效应——以及 Houston 于 1940 年讨论过。然而，只有靠过去十年间 Luttinger、Adams、Wannier、Kohn、Blount 和 Gibson 的工作，人们才感到对这一问题达到了大概是最终的理解 (45)。有点令人惊讶的是，求解一个形式特别简单的单粒子 Schrödinger 方程竟然需要这一番功夫；而这些结果恰恰生动地表明，即便是自然界最简单的现象，其细节也可以何等复杂。
+
+那么让我们假定：在缓变势存在时，电子确实保持在单独一支能带之内，其能量曲线为 $E_n(\mathbf{k})$——我们讨论的是第 $n$ 支带。
+
+% ---- 原书 p.79 (PDF p094) ----
+
+马上就引进 Wannier 函数（Wannier functions）$a_n(\mathbf{r} - \mathbf{R}_j)$ 的概念是很有教益的。这些函数由一个能带的 Bloch 函数
+\begin{equation*}
+b_n(\mathbf{k},\mathbf{r}) = \mathrm{e}^{i\mathbf{k}\cdot\mathbf{r}}\, u^n_{\mathbf{k}}(\mathbf{r})
+\end{equation*}
+出发，通过如下的 Fourier 分析得到：
+\begin{equation*}
+a_n(\mathbf{r} - \mathbf{R}_j) = N^{-1/2} \sum_{\mathbf{k}} \mathrm{e}^{-i\mathbf{k}\cdot\mathbf{R}_j}\, b_n(\mathbf{k},\mathbf{r}) \tag{19}
+\end{equation*}
+于是
+\begin{equation*}
+b_n = N^{-1/2} \sum_{\mathbf{R}_j} \mathrm{e}^{i\mathbf{k}\cdot\mathbf{R}_j}\, a_n(\mathbf{R}_j)
+\end{equation*}
+
+在紧束缚带中，$a_n$ 显然就是原来的紧束缚函数，因为此时 $u^n_{\mathbf{k}}(\mathbf{r})$ 与 $\mathbf{k}$ 无关，而且 $\sum_{\mathbf{k}} \to \delta(\mathbf{r} - \mathbf{R}_j)$；否则，$a_n$ 是一组适当正交且归一的函数，多少局域在格点 $\mathbf{R}_j$ 附近。在单带理论中，$a_n(\mathbf{r} - \mathbf{R}_j)$ 代表所能达到的最接近位置本征函数的东西；对自由电子，它们对应于 $\delta(\mathbf{r} - \mathbf{R})$。让我们定义一个算符 $\mathbf{R}$，使得 $\mathbf{R}\, a_n(\mathbf{r} - \mathbf{R}_j) = \mathbf{R}_j\, a_n(\mathbf{r} - \mathbf{R}_j)$。在 $\mathbf{k}$ 只占据第一区、而 $\mathbf{R}$ 以一组分立的格点位置为本征值这两个限制之下，它们代表一对彼此共轭的变量，类似于自由电子理论中的 $\mathbf{p}$ 和 $\mathbf{r}$，即
+% 校注：按本页下文的推导（$i\,\partial/\partial\mathbf{R}$ 等价于 $\mathbf{k}$），
+% 此对易子似应为 $[\mathbf{k},\mathbf{R}] = i$；原书印作 “= 1”，照录。
+\begin{equation*}
+[\mathbf{k}, \mathbf{R}] = 1
+\end{equation*}
+这是因为——按定义——
+\begin{align*}
+i\,\frac{\partial}{\partial\mathbf{R}}\; a_n(\mathbf{r} - \mathbf{R}_j) &= i\,\frac{\partial}{\partial\mathbf{R}_j}\; a_n(\mathbf{r} - \mathbf{R}_j) \\
+&= \sum_{\mathbf{k}} \mathbf{k}\, b_n(\mathbf{k},\mathbf{r})\, \mathrm{e}^{i\mathbf{k}\cdot\mathbf{R}_j}
+\end{align*}
+［把 (19) 代入 $a_n$］。于是 $i(\partial/\partial\mathbf{R})$ 等价于 $\mathbf{k}$，反之亦然。现在，若 $V(\mathbf{r})$ 缓变，我们可以近似
+\begin{equation*}
+V(\mathbf{r})\, a_n(\mathbf{r} - \mathbf{R}_j) \simeq V(\mathbf{R}_j)\, a_n(\mathbf{r} - \mathbf{R}_j) = V(\mathbf{R})\, a_n(\mathbf{r} - \mathbf{R}_j)
+\end{equation*}
+
+% ---- 原书 p.80 (PDF p095) ----
+
+一般说来，对于缓变的磁微扰或电微扰，可以有效地假定 $V(\mathbf{r})$ 实际上就等于 $V(\mathbf{R})$。于是，一个近似哈密顿量为
+\begin{align*}
+\mathcal{H} &= E_n(\mathbf{k}) + V(\mathbf{r}) \simeq \mathcal{H}_{\text{eff}} = E_n(\mathbf{k}) + V(\mathbf{R}) \\
+\mathcal{H}_{\text{eff}} &= E_n\!\left(i\,\frac{\partial}{\partial\mathbf{R}}\right) + V(\mathbf{R}) \quad\text{或}\quad = E_n(\mathbf{k}) + V\!\left(-i\,\frac{\partial}{\partial\mathbf{k}}\right)
+\end{align*}
+在同样的限制下，显然可以同样不困难地证明：当存在使
+\begin{equation*}
+E_{\text{kin}} \to -\hbar^2\left(\nabla - \frac{e\mathbf{A}}{i\hbar c}\right)^{\!2}\Big/2m
+\end{equation*}
+的磁微扰时，把 $\mathbf{p}$ 换成 $\hbar\mathbf{k}$、把 $A(\mathbf{r})$ 换成 $A(\mathbf{R})$ 是正确的：
+\begin{equation*}
+\mathcal{H}_{\text{eff}} \simeq E_n\!\left(\mathbf{k} - \frac{e\mathbf{A}(\mathbf{R})}{\hbar c}\right) + V(\mathbf{R})
+\end{equation*}
+
+\subsection{弱束缚杂质态}
+
+这一形式理论所能应用的三类问题中，最简单的是半导体中带电杂质原子的问题，例如 Si 中的 P (44)。在 Si 中，P 以替位方式占据一个 Si 格位，但当然带有一个额外的正电荷；它是一个“施主”（donor）。其结果是：在足够低的温度下，一个额外的价电子被束缚在过剩正电荷的区域中。
+
+碰巧，这样得到的势相当弱，相应的波函数相当长程，这既因为 Si 的介电常数（dielectric constant）$\kappa$ 相当大（势为 $V = 2e^2/\kappa r$），也因为有效质量很小。因此可以采用“有效质量”或“有效哈密顿量”近似。就 Si 中的价电子而言，能量面 $E_n(\mathbf{k})$ 由一组六个“谷”（valleys）组成，这些谷沿六个 100 方向位于点 $(k_o, 0, 0)$ 处，其中 $k_o \cong 2\pi/a$（0.85）。在这些谷附近
+\begin{equation*}
+E_n(\mathbf{k}) \simeq \frac{\hbar^2 (k_x - k_o)^2}{2m^*_{\parallel}} + \frac{\hbar^2 (k_y^2 + k_z^2)}{2m^*_{\perp}}
+\end{equation*}
+于是，让我们把其中一个谷中的试探波函数（trial wave function）写成
+\begin{equation*}
+f(\mathbf{r}) = F(\mathbf{R})\, b_{k_o} = F(\mathbf{R}) \sum_{\mathbf{R}_j} \mathrm{e}^{i k_o \cdot \mathbf{R}_j}\, a_n(\mathbf{r} - \mathbf{R}_j) \tag{20}
+\end{equation*}
+并注意到
+\begin{equation*}
+k_x\, b_{k_o} = i\,\frac{\partial}{\partial R_x}\, b_{k_o} = k_o\, b_{k_o} \qquad\qquad k_y\, b_{k_o} = k_z\, b_{k_o} = 0
+\end{equation*}
+于是
+\begin{align*}
+(k_x - k_o)^2 F(\mathbf{R})\, b_{k_o} ={}& -\left[\frac{\partial^2}{\partial R_x^2}\, F(\mathbf{R})\right] b_{k_o} \\
+&- 2i\left[\frac{\partial}{\partial R_x}\, F(\mathbf{R})\right] k_o\, b_{k_o} + F(\mathbf{R})\, k_o^2\, b_{k_o} \\
+&- 2k_o \left\{ -\left[i\,\frac{\partial}{\partial R_x}\, F(\mathbf{R})\right] b_{k_o} + F(\mathbf{R})\, k_o\, b_{k_o} \right\} \\
+&+ k_o^2 F(\mathbf{R})\, b_{k_o} = -\left[\frac{\partial^2}{\partial R_x^2}\, F(\mathbf{R})\right] b_{k_o}
+\end{align*}
+这样，$b_{k_o}$ 便可以从整个波动方程中作为公因子提出，我们得到的简而言之就是一个各向异性的氢原子波动方程：
+
+% ---- 原书 p.81 (PDF p096) ----
+
+\begin{equation*}
+-\frac{\hbar^2}{2m^*_{\parallel}}\, \frac{\partial^2 F(\mathbf{R})}{\partial R_x^2} - \frac{\hbar^2}{2m^*_{\perp}} \left(\frac{\partial^2}{\partial R_y^2} + \frac{\partial^2}{\partial R_z^2}\right) F(\mathbf{R}) - \frac{2e^2}{\kappa R}\, F(\mathbf{R}) = E\, F(\mathbf{R}) \tag{21}
+\end{equation*}
+
+这样得到的波函数，其半径大致为 $\hbar^2 \kappa / \langle m^* \rangle_{\text{av}}\, e^2$，在 Si 中约为 50 个 Bohr 半径；其中 $\kappa$ 为 12，而 $\langle m^* \rangle_{\text{av}}$［所应使用的适当平均，必须由式 (21) 的数值解得出］约为 $\frac{1}{4} m_e$。
+
+在这个近似下，有六个简并的波函数，能量面上的每个谷给出一个。在中心原子处，有效质量理论绝不可能真正有效，理论的这一失效造成一个微扰，把这一简并分裂开；最低的波函数是全部六个函数的对称化线性组合，因而在中心原子处具有相当大的振幅，其能量也离式 (21) 的解相当远。Kohn 和 Luttinger 曾极其详细地考察过对有效质量理论的偏离。在对此效应作出修正之后，Kohn 和 Schechter 算出了 $F(\mathbf{R})$ 相当剧烈的变化，它来源于式 (20) 的六个函数之间的干涉。Feher 的经典实验测量了各种不同邻近格点处的振幅，对这一理论给出了定性上良好、但定量上尚不完善的支持 (47)。关于这些有效质量波函数的进一步细节，在这里就不适宜多谈了。
+
+% 衔接说明：本文件含小节 C.3（外场中的运动，原书 3 节）与 C.4（"击穿"效应，原书 4 节）。
+% 原书 p.82 顶部（本节标题之前）尚有 C.2 的收尾文字（"neighboring sites ... support
+% to this theory (47). Further detail on these effective mass wave functions is not
+% suitable here."），已按 ch2_C12.tex 文件尾注与该文件末句合并，本文件不重复。
+% 本文件结束于原书 p.90 末句（"The effect is called "magnetic breakdown.""），
+% 句子完整；原书 p.91（PDF p106）起的内容由下一文件续译。
+
+% ---- 原书 p.82 (PDF p097) ----
+
+\subsection{外场中的运动}
+
+在外场存在下有效质量近似的行为及其失效这个问题上，我将遵照 Wannier，取均匀电场（而不是磁场）的情形作为较简单的例子。在电场中，有效哈密顿量为
+\begin{equation*}
+\mathcal{H}_{\text{eff}} = E_n(\mathbf{k}) - e\,\mathbf{E}\cdot\mathbf{R}
+\end{equation*}
+取 $\mathbf{E}$ 沿 $x$ 方向，它便是
+% 校注：原书此式首项印作花体小写（形似 $\mathcal{E}_n(k)$），按上式与本书记号统一转写为 $E_n(k)$。
+\begin{equation*}
+E_n(k) - eER_x
+\end{equation*}
+
+试图求出这个哈密顿量的显式本征函数并没有多大教益——虽然事实上做得到——因为对这些本征函数的解释会相当没有意义；只要想到在自由电子情形中电子会径直加速奔向无穷远，我们就能明白这一点。
+
+我们不如来看这两个正则共轭变量的运动方程：
+\begin{equation*}
+i\hbar\,\frac{d\mathbf{R}}{dt} = [\mathcal{H},\,\mathbf{R}] = E_n(\mathbf{k})\left(-i\,\frac{\partial}{\partial\mathbf{k}}\right) + i\,\frac{\partial}{\partial\mathbf{k}}\,E_n(\mathbf{k})
+\end{equation*}
+即
+\begin{equation*}
+\mathbf{V} = \frac{d\mathbf{R}}{dt} = \frac{1}{\hbar}\,\nabla_{\mathbf{k}}\,E_n(\mathbf{k})
+\end{equation*}
+
+这是色散介质中波包群速度的一个熟知结果；但在这里，如果我们愿意，波包尽可以只由动量确定为 $\mathbf{k}$ 的单一成分构成，因为 $\nabla_{\mathbf{k}}E_n(\mathbf{k})$ 仅是 $\mathbf{k}$ 的函数。这一关系显然不依赖于微扰的形式，是能带电子的一条普遍性质。
+
+接下来我们求 $\mathbf{k}$ 的运动方程：
+\begin{equation*}
+i\hbar\,\frac{d\mathbf{k}}{dt} = [\mathcal{H},\,\mathbf{k}] = ie\mathbf{E}\left(\frac{\partial}{\partial k_x}\,k - k\,\frac{\partial}{\partial k_x}\right) = ie\mathbf{E}
+\end{equation*}
+
+% ---- 原书 p.83 (PDF p098) ----
+
+这又是一个非常简单的结果，并且可以立即积分：$\mathbf{k} = \mathbf{k}_0 + e\mathbf{E}t/\hbar$。
+% 校注：原书此处印作 $\mathbf{k} = \mathbf{k}_0 + \mathbf{E}t/\hbar$，缺因子 $e$；按
+% $i\hbar\, d\mathbf{k}/dt = ie\mathbf{E}$（即 $\hbar\, d\mathbf{k}/dt = e\mathbf{E}$）
+% 并对照后文（原书 p.88）的 $k_0 + eEt/\hbar$，补足为 $e\mathbf{E}t/\hbar$。
+$\hbar\mathbf{k}$ 常被称为“晶体动量”（crystal momentum）$\mathbf{P}_c$，而这一方程表明 $d\mathbf{P}_c/dt = \mathbf{F}$，其中 $\mathbf{F}$ 是作用在电荷 $e$ 上的力。有了这两个方程——在有效哈密顿量近似之内它们是精确的——我们便可以追踪一个电子的运动：它既可以是从任一单个 Bloch 波 $b_n(\mathbf{k}_0)$ 出发的电子，也可以是以给定 $\mathbf{k}_0$ 为中心的一个波包。
+
+于是，让我们在 $k$ 空间中沿某条平行于 $x$ 轴的直线画出 $E_n(\mathbf{k})$ 曲线；这就会给出能量随时间的变化（图 19）。注意，
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_19.pdf}
+\caption*{图 19　$E_n$（亦即位置 $x$）随 $k = eEt/\hbar$ 的周期性变化（横轴标出 $-K/2$、$0$、$K/2$、$K$、$3K/2$），以及速度 $v_x = \partial E_n/\partial k_x$ 随时间的对应周期性变化（原书图注仅作 "Figure 19"）}
+\end{figure}
+
+% ---- 原书 p.84 (PDF p099) ----
+
+当 $k$ 增大到区边界时，我们必须利用能带在 $k$ 空间中的周期性。我们看到，$k$ 越过边界后便继续进入下一个区，这恰恰等价于跳回到区的相对面上相应的点。
+
+相当重要的一点是：由此得到的速度是周期性的，既经历负值也经历正值。波包的净位移可以由速度对时间的积分得到：
+\begin{align*}
+x &= \int_0^t dt\; v_x(t) \\
+&= \int_0^t \frac{dt}{\hbar}\,\frac{\partial E_n}{\partial k_x} = \frac{1}{\hbar}\int_0^t \frac{dt}{dk}\,\frac{\partial E_n}{\partial k}\,dk = \frac{1}{eE}\left\{E_n[k_x(t)] - E_n(0)\right\}
+\end{align*}
+
+于是每经过一个周期，位移便回到零。这并不奇怪：满带电子必定不携带任何净电流，因为绝缘体正是由满带来描述的。
+
+实际金属或半导体之所以能承载电流，唯一的原因是弛豫效应的存在：电子在 $k$ 空间中才加速了极小的距离，弛豫效应就阻止它们继续完成周期性位移；所得的分布在 $+v$ 方向略有增多、在 $-v$ 方向略有减少，最终结果便是一真实电流。另一方面，在绝缘体中没有可供散射进入的空末态，所以我们必须把电子设想为确实在执行这周期性的位移。
+
+$x$ 方向的总位移是 $W/eE$，即带宽除以 $eE$。这鼓励我们借助一种非常有用的半经典图像来直观想象外势存在下的能带结构（图 20）。半经典地（并非真正经典地，因为能带概念不是经典的）看，固定能量的电子可预期在上、下带边之间来回振荡，被禁带（forbidden gaps）束缚在中间。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_20.pdf}
+\caption*{图 20　外势存在下能带结构的半经典图像：斜率为 $eE$ 的许带（Allowed）与斜纹的禁带（Forbidden）交替排列，带宽为 $W$，固定能量的电子沿水平线在上下带边之间往返，在实空间的总位移为 $W/eE$，横轴为 $x$（原书图注仅作 "Figure 20"）}
+\end{figure}
+
+% ---- 原书 p.85 (PDF p100) ----
+
+振荡的总时间周期，就是 $k$ 从一个区边界移动到下一个区边界所需的时间，即 $\hbar K/eE = T$。$K$ 为 $2\pi/a$（$a$ 为晶面间距），因此相应的能量劈裂是 $\hbar\omega = eEa$。这一劈裂的缘由显而易见：一个平移量恰好为 $a$ 的波函数仍满足同一波动方程，而能量的移动量是 $eEa$。这些被 Wannier 称为“Stark 阶梯”（Stark ladders）的能级 (48)，实际上已在 p-n 结中被观测到。即便取相当好的绝缘体中也能达到的正常电场——$10^3$ 到 $10^4$ v/cm，即 10 到 100 esu/cm——这一劈裂也极其微小——$10^{-6}$ 到 $10^{-7}$ ev——对应着极长的周期，量级为 $10^{-8}$ 秒；相比之下，散射的平均自由时间充其量不过 $10^{-11}$ 秒的量级。这就是为什么在有散射存在时，分布通常仍非常接近平衡。另一方面，在 p-n 结中，尤其是在隧道二极管中，人们可以在 10 到 100 个晶格间距上获得带隙量级的电压，此时小的位移便可能对应于相当可观的能量（图 21）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_21.pdf}
+\caption*{图 21　p-n 结的能带图：导带（Conduction band）、禁带（Gap）与价带（Valence band）在结区弯曲衔接，虚线为费米面 $E_F$（原书图注仅作 "Figure 21"）}
+\end{figure}
+
+这一能量劈裂也可以用一种与"Landau 能级"（Landau levels）劈裂的计算相像得多的方法来计算；Landau 能级在磁场情形中极为重要。假设我们试图用半经典的相位积分（phase-integral）法则，把电子在两条带边之间的往复运动加以量子化：
+\begin{equation*}
+\int p\,dx = \hbar\oint k\,dx = nh
+\end{equation*}
+现在让我们取这一轨道与下一个可能轨道之间的差 $\Delta k$：
+
+% ---- 原书 p.86 (PDF p101) ----
+
+\begin{equation*}
+2\pi = \oint \Delta k\,dx = \Delta E\oint \frac{\Delta k}{\Delta E}\,dx = \hbar^{-1}\,\Delta E\oint \frac{dt}{dx}\,dx
+\end{equation*}
+这便直接给出劈裂的 Einstein 频率条件：
+\begin{equation*}
+\hbar^{-1}\,\Delta E = 2\pi/T
+\end{equation*}
+$\Delta E$ 我们此前已从别的途径导出，但在磁场情形中，这一方法是唯一简单的方法。
+
+至此，在有效哈密顿量理论的框架之内，自由电子在均匀电场中的行为的讨论便告完成。我们看到，这些现象虽然迷人，却不能为能带结构提供多少信息；所幸磁场的情形在实验上要有用得多 (50)。对这个复杂得多的情形，我将作极为简略的处理，然后试着谈一谈整个有效哈密顿量理论在哪里、又如何失效。
+
+磁场的作用，是把晶体动量方程 $d\mathbf{p}_c/dt = \mathbf{F}$ 中的力 $e\mathbf{E}$ 换成洛伦兹力 $e(\mathbf{v}/c)\times\mathbf{H}$：
+% 校注：原书此处印作小写 $dp_c/dt$，与原书 p.83 的 $\mathbf{P}_c$ 同指晶体动量，记号大小写不一致，照录。
+\begin{equation*}
+\frac{d\mathbf{k}}{dt} = \frac{e}{c}\left[\nabla_{\mathbf{k}}\,E_n(\mathbf{k})\times\mathbf{H}\right] \tag{22}
+\end{equation*}
+于是，在磁场存在时，$\mathbf{k}$ 沿着一个既垂直于 $\mathbf{H}$、又垂直于能量面梯度的方向移动；这意味着它绕磁场方向描出一条恒能等值线（图 22）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_22.pdf}
+\caption*{图 22　磁场中的恒能面与轨道：两条闭合恒能线 $E_1$ 与 $E_2$，$\mathbf{k}$ 沿等能线绕行（箭头），$\mathbf{H}$ 垂直于纸面（图中以 $\oplus$ 标出）（原书图注仅作 "Figure 22"）}
+\end{figure}
+
+当 $E_n = \hbar^2k^2/2m^*$ 时，式 (22) 很容易求解，给出回旋频率（cyclotron frequency）$eH/m^*c$。在其它情形下，可以用各种方式证明这一频率为
+\begin{equation*}
+\Delta E = \hbar\omega_c = \frac{2\pi e}{\hbar c}\,\frac{\partial A}{\partial E}
+\end{equation*}
+
+% ---- 原书 p.87 (PDF p102) ----
+
+其中 $A$ 是垂直于场 $\mathbf{H}$ 的适当平面所截出的面积。相应地，在使
+\begin{equation*}
+A(E) = \frac{2\pi e}{\hbar c}\,n
+\end{equation*}
+成立的那些能量处，存在着量子化的能级。这些就是 Landau 能级；它们对 De Haas-van Alphen 效应与回旋效应的理论至关重要，而这些效应在实际能带结构的研究中一直极有价值。
+
+式 (22) 的一个重要推论，在过去几年中变得引人注目，特别是通过 Lifshitz 及其在哈尔科夫（Kharkov）的小组的工作。这就是磁场情形中所谓"开放轨道"（open orbits）得以存在的可能性 (51)。能带结构完全可能是这样的：当电子沿恒能面垂直于 $\mathbf{H}$ 漂移时，这个面与区的边界相交，电子便游荡着进入下一个区、再下一个区，如此继续（图 23）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_23.pdf}
+\caption*{图 23　开放轨道示意：扩展区图式中的恒能线，"or" 连出两种情形——或者在每个区内闭合，或者穿越一个又一个区边界延伸出去（原书图注仅作 "Figure 23"）}
+\end{figure}
+
+这种轨道与电场情形的非常相像；同样，在轨道穿越区边界的那个方向上，电子没有净漂移，但它可以在垂直于 $\mathbf{H}$ 的另一个方向上漂移——处于闭合轨道中的电子则做不到这一点。由于 $1/\omega_c$ 可以做到比 $\tau$ 短——这与电场情形相反——这类轨道可以产生非常强的效应。特别是，它们的存在解释了强场磁阻不饱和这一悬置数十年的难题。
+
+应当强调，所有这些结果不仅受制于有效哈密顿量理论的那些我稍后就要讨论的局限，而且还受制于如下事实：在磁场情形中，除非能量面实际上确是完美的球面或椭球面，否则它们\emph{仅仅}在半经典意义上正确。对于 Si 和 Ge 中能带简并点附近的回旋共振，Fletcher 与 Luttinger (52, 53) 已对量子数非常低的轨道计算并测量了其量子偏离。
+
+% ---- 原书 p.88 (PDF p103) ----
+
+\subsection{“击穿”效应}
+
+有一个物理上理解得相当透彻的效应，完全处于有效哈密顿量的适用域之外，这就是 Zener 隧穿效应（Zener tunneling effect）；它不仅在半导体的实际应用中十分重要，而且可以在一个非常简单的模型上相当容易地加以演示。让我们回到近自由电子的微扰论，讨论若此时施加电场，在区边界处会发生什么。
+
+方程 $\hbar\,(dk/dt) = eE$ 在任何情形下都成立，因此在没有区边界时，电子将在场中无限地加速：
+\begin{equation*}
+V = \frac{\hbar k}{m} = \frac{\hbar}{m}\left(k_0 + \frac{eEt}{\hbar}\right)
+\end{equation*}
+
+事实上，我们可以求得含时波动方程
+\begin{equation*}
+i\hbar\,\frac{\partial\Psi}{\partial t} = -\frac{\hbar^2}{2m}\,\frac{\partial^2\Psi}{\partial x^2} - eEx\,\Psi
+\end{equation*}
+的一个精确解，只要令 $\Psi = a(t)\exp\left\{i\left[k+(eEt/\hbar)\right]x\right\}$，便有
+% 校注：原书此行指数中印作 (Eet/ℏ)，按 $dk/dt = eE/\hbar$ 及上下文应为 eEt/ℏ，照本意转写。
+\begin{equation*}
+\left(i\hbar\,\frac{da}{dt} - eEx\,a\right)\exp[i\,k(t)\,x] = \frac{\hbar^2}{2m}\left(k+\frac{eEt}{\hbar}\right)^{\!2}\Psi - eEx\,\Psi
+\end{equation*}
+此时 $a(t)$ 满足一个带有随时间变化的动能的波动方程
+\begin{equation*}
+i\hbar\,\frac{da}{dt} = E^0(k(t))\,a = \frac{\hbar^2}{2m}\left(k+\frac{eEt}{\hbar}\right)^{\!2}a
+\end{equation*}
+
+这可以积分出来，但其结果相当无关紧要；要紧的是：一旦允许 $k$ 随时间变化，加速运动便可以用一个随时间变化的 $k$ 矢量与动能来代替。
+
+现在让我们引入周期势的 Fourier 分量 $V_K$。这将在波动方程中带来 $k(t)$ 与 $k(t)-K$ 之间的一个常值耦合，后者是另一个同样在不断加速的态。在能量对 $k$ 的图上，$k-K$ 随 $k$ 一同移动；我们既可以把它画在同一条抛物线上，也可以把它画在一条被倒格矢 $K$ 平移、并在区边界处与原抛物线相交的抛物线上（图 24）。在 $V$ 很小的近似之内，只需考虑靠近交叉点 $P$ 的两个 $k$ 矢量。在该点附近，我们可以把正确的波函数展开成这两个加速平面波之和：
+\begin{equation*}
+\Psi = a(t)\exp\left[i\left(k+\frac{eEt}{\hbar}\right)x\right] + b(t)\exp\left[i\left(k-K+\frac{eEt}{\hbar}\right)x\right]
+\end{equation*}
+
+% ---- 原书 p.89 (PDF p104) ----
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_24.pdf}
+\caption*{图 24　Zener 模型的 $E$–$k$ 图：自由电子抛物线与其经倒格矢 $K$ 平移的副本在区边界（竖直的 BZ 线）处交叉；$k$ 与 $k-K$ 两个加速态的轨迹（箭头）沿各自抛物线向上移动，底边双箭头标出间距 $K$（原书图注仅作 "Figure 24"）}
+\end{figure}
+
+并且容易看出，我们得到 $a$ 与 $b$ 的一对联立方程：
+\begin{align*}
+i\hbar\,\frac{da}{dt} &= E[k(t)]\,a + V_K\,b \\
+i\hbar\,\frac{db}{dt} &= E[k(t)-K]\,b + V_K\,a
+\end{align*}
+哈密顿量矩阵是
+\begin{equation*}
+\mathcal{H} = \begin{pmatrix} E[k(t)] & V_K \\ V_K & E[k(t)-K] \end{pmatrix}
+\end{equation*}
+
+这一波动方程的形式是众所周知的，例如在绝热通过或快速通过（adiabatic or rapid passage）的理论中。有两种极限情形：若 $V$ 足够弱，它便仅充当一个小微扰。如果我们从 $a=1$、$b=0$ 出发，则越过区边界后系数 $a$ 仍然很大、$b$ 很小，电子便简单地跳过能隙继续加速。容易证明
+
+% ---- 原书 p.90 (PDF p105) ----
+
+\begin{equation*}
+b \simeq \frac{|V_K|^2}{\hbar\,\dfrac{d}{dt}\left(E_k - E_{k-K}\right)}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_rapid.pdf}
+\caption*{无编号插图（原书不编号，旁注 Rapid）　快速通过极限示意：两支能级交叉，电子由 $a$ 沿原支直接穿过交叉点奔向 $b$（箭头），交叉处的虚线弧示弱耦合引起的微小避免交叉}
+\end{figure}
+
+这一情形即所谓的"快速极限"（rapid limit）。
+
+在绝热极限（adiabatic limit）下——此时 $V$ 相当大——更接近正确的假定是：哈密顿量在每一时刻都可以对角化，从而给出两个态的能量，它们分别等价于各自的能带能量 $E_n(k)$。在这种情形中，$a$ \emph{绝热地}（adiabatically）变为 $b$，而跳越能隙的概率极其微小：
+\begin{equation*}
+P \simeq \exp\left[-\,\frac{|V_K|^2}{\hbar\,\dfrac{d}{dt}\left(E_k - E_{k-K}\right)}\right]
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_adiabatic.pdf}
+\caption*{无编号插图（原书不编号，旁注 Adiabatic）　绝热通过极限示意：两支能级避免交叉，电子沿下面一支由 $a$ 出发绕过极小值绝热地过渡到 $b$}
+\end{figure}
+
+现在
+\begin{equation*}
+\frac{d}{dt}\left(E_k - E_{k-K}\right) = \frac{2d}{dt}\,\frac{\hbar^2k^2}{2m} = \frac{eE\hbar K}{m}
+\end{equation*}
+于是
+\begin{equation*}
+P \simeq \exp\left(\frac{-|V|^2 m}{\hbar^2KeE}\right)
+\end{equation*}
+
+这是远为常见的情形。对于 1 伏特的能隙和 $E = 10^4$ v/cm，$P = \mathrm{e}^{-200}$。
+% 校注：原书此处印作 "E = 10^4 cm"，单位疑漏 "v/"（对照原书 p.85 的 v/cm 及本段量纲），译文补足为 10^4 v/cm。
+而当 $E \sim 10^7$ 时——如 p-n 结中那样——$P$ 相当大，隧穿完全可能发生。
+
+Falicov (54) 最近指出——Blount (55) 则给出了一个好的理论——在磁场情形中，类似的现象在某些晶体中要容易发生得多。如果一条区边界打断了一条近自由电子的磁轨道，那么电子在绕能量面运行时便可以跳入下一条轨道（图 25）。正如我们已经指出的，磁场情形中的运动速率可以变得相当大，而这一效应确实已在 Mg 中被观测到。这一效应称为"磁击穿"（magnetic breakdown）。
+
+% ---- C.4 收尾（原书 p.91 / PDF p106，图 25 之下，协调者补译） ----
+值得指出的是，在这个极限下，$E$ 或 $H$ 是以 $\exp[-\mathrm{const}/E\ 或\ H]$ 的形式出现的，因此这些结果绝不可能作为关于 $E$ 或 $H$ 的微扰论的幂级数结果出现，因为 $\mathrm{e}^{-(1/x)}$ 在 $x=0$ 处的一切导数都为零。我们将会发现，有效哈密顿量理论可以被证明在微扰论的\emph{所有阶}上都正确；但当然，我们已经确凿地表明，尽管如此它并不包含全部的物理效应。因此，微扰理论充其量只能渐近收敛。
+
+% 衔接说明：原书 p.91（PDF p106）小节标题之上尚有 C.4（“击穿”效应）的收尾一段
+% （“It is worth noting that in this limit ... asymptotically convergent at best.”），
+% 按分工自本小节标题起译，该段完全略去。页首的 Figure 25 图身落在 p106，其正文引用
+% （“……便可以跳入下一条轨道（图 25）”）已见于 ch2_C34.tex，%FIG 标记置于此处。
+% 本小节正文另引 Figure 26、27、28，均出现在本文件范围内，随文标记。
+% 本文件末句在原书 p.95（PDF p110）以句号完整结束；p.96（PDF p111）起为第 3 章。
+
+% ---- 原书 p.91 (PDF p106) ----
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_25.pdf}
+\caption*{图 25　磁击穿示意：近自由电子的恒能轨道（圆）被区边界（直线网格）截断，电子绕轨道运行经过交点时跳跃（Hops）进入相邻轨道（原书图注仅作 “Figure 25”）}
+\end{figure}
+
+\subsection{有效哈密顿量理论的严格基础}
+
+现在我想简要讨论一下，人们如何着手改进有效哈密顿量理论 (56)。Adams 提出的一个非常简单的定性图像，将以直观的图形方式展示其中的原理。考虑一个非常开放的晶格，其中紧束缚理论是相当好的近似，于是 Bloch 函数就是紧束缚函数，
+\begin{equation*}
+b^n_k = \sum_j e^{ik\cdot R_j}\,\phi_n(r - R_j)
+\end{equation*}
+% ---- 原书 p.92 (PDF p107) ----
+我们假定交叠相当小，因而在相当好的近似下，$\phi_n$ 也就是 Wannier 函数 $a_n(r - R_j)$。Bloch 波函数实部的图像便可能如图 26 所示。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_26.pdf}
+\caption*{图 26　紧束缚 Bloch 波函数实部示意：缓变的 $b_n(k)$ 乘以各格点上的 Wannier 函数 $a_n(r - R_j)$（钟形峰），过零后峰反号；横轴为 $r$（原书图注仅作 “Figure 26”）}
+\end{figure}
+
+现在，在推导有效哈密顿量时我们做了一个基本假设：$V(r)$——内部场产生的真实微扰——可以用 $V(R)$ 代替，其中 $V(R)$ 由如下关系定义：
+\begin{equation*}
+V(R)\,a_n(r - R_j) = V(R_j)\,a_n(r - R_j)
+\end{equation*}
+例如，对均匀电场而言，这意味着 $r$ 可以用相应 Wannier 函数中心处的值代替。于是很容易看出，在我们正在讨论的高度局域情形中，如果 $V(r) = -er$ 是图中所示的线性势，那么 $V(R)$ 就是图 27 所示的阶梯势，而二者之差就是图 28 所示的锯齿波。让我们把这个差记为 $X = r - R$。显然，在任何实际情形中 $X$ 都不会长得像图中那样，但它总可以用这个差来定义，而这个差又依赖于 $a_n(r - R_j)$。我们立刻注意到：
+
+1. 差 $X$ 是 $eEa$ 量级的小量，其中 $a$ 是晶格常数，于是微扰的“大”完全包含在算符 $R$ 之中，从而有效哈密顿量理论本质上包含了所有\emph{大的}效应。
+
+2. $X$ 以晶格周期为周期。因此，在微扰论的任意阶上，我们都可以把 Bloch 函数和 Wannier 函数重新定义为如下\emph{新}能带问题的解：
+\begin{equation*}
+\mathcal{H} b_k = \left(\frac{p^2}{2m} + V(r) - eEX\right) b_k \simeq {(E^n_k)}'\, b_k
+\end{equation*}
+% ---- 原书 p.93 (PDF p108) ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_27.pdf}
+\caption*{图 27　强局域情形下的线性势与阶梯势：自上而下依次为各格点上的 Wannier 函数 $a_n$（钟形峰）、线性势 $r$（斜直线）与阶梯下降的 $R$（平台之间以虚线相连），竖直线标记各格点位置（原书图注仅作 “Figure 27”）}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_28.pdf}
+\caption*{图 28　差 $X = r - R$ 随 $r$ 变化的锯齿波（原书图注仅作 “Figure 28”）}
+\end{figure}
+
+从而消去 $X$ 的效应。这样，在微扰论的任意阶上都存在一组新能带，带有新能量 ${(E^n_k)}'$、新速度（不再严格地由 $\partial E/\partial k$ 给出）等等，而有效哈密顿量理论在附带这一条件的情况下对新能带仍然有效。但要注意，$X$ 是用 $a$ \emph{定义}出来的，而 $a$ 又依赖于 $b_k$，因此求解该方程的唯一办法不是一劳永逸，而是对所有阶逐次迭代。
+
+3. 这种情形下 $X$ 对 Wannier 函数的影响实际上是一个显而易见的物理效应，它确实被我们原有的理论遗漏了：电场不仅必定有加速电子的效应，它还有使单个原子的波函数极化的效应。例如，它必定会把一些 p 带函数混入 s 带中，等等；而且无论 Wannier 函数局域到什么程度，这一效应都必定存在。换句话说，十分明显，$X$ 可以具有带间矩阵元 $X^{nn'}$；但我们预期这些带间矩阵元将是某个周期势的矩阵元，是 $eEa$ 量级的小量。
+
+% ---- 原书 p.94 (PDF p109) ----
+
+讲到这里，这仅仅是一个纲领，而这些结果的实际证明，正是我前面提到的那一组人在过去 10 年里所从事的工作。为了看清必须做些什么，让我们离开紧束缚近似，对一个一般能带来定义 $X$。实际上有两种办法；最显然的一种是用 Wannier 函数来表述：
+\begin{equation*}
+X\,a_n(r - R_j) = (r - R_j)\,a_n(r - R_j)
+\end{equation*}
+于是 $X$ 的矩阵元就是
+\begin{equation*}
+(n, j\,|\,X\,|\,n', j') = \int dr\; a_n(r - R_j)\,a_{n'}(r - R_{j'})\,(r - R_{j'})
+\end{equation*}
+因此 $X$ 是 $R_j - R_{j'}$ 的函数，这就证明了它是周期的，但非局域。
+
+不那么显然的办法是所谓“晶体动量表象”（crystal momentum representation）。显然，由于
+\begin{equation*}
+b^n_k(r) = \sum_j e^{ik\cdot R_j}\,a_n(r - R_j)
+\end{equation*}
+便有
+\begin{equation*}
+R\,b^n_k = -\,i\,\frac{\partial}{\partial k}\,b^n_k
+\end{equation*}
+而用另一种表象，
+% 校注：按链式法则，此式末项应为 $-i\,e^{ik\cdot r}\frac{\partial}{\partial k}u_k(r)$；
+% 原书末项将因子 $-i$ 印漏，此处照原书转录。
+\begin{equation*}
+-\,i\,\frac{\partial}{\partial k}\,b^n_k(r) = r\,e^{ik\cdot r}\,u_k(r) - e^{ik\cdot r}\,\frac{\partial}{\partial k}\,u_k(r)
+\end{equation*}
+所以 $X$ 就是单独作用在周期部分 $u_k$ 上的运算 $-i(\partial/\partial k)$。同样，这显然是周期的，因为结果是一个具有同一 $k$ 的 Bloch 函数；但算符是非局域的。这种晶体动量表象在磁场情形中更有价值，因为在那里同样有必要把微扰中出现的算符 $p$ 展开成周期与非周期两部分。
+
+在这两种表象中，每一种都出现一个可能的困难。第一种表象中最为明显：如果 $a_n(r - R_j)$ 局域得不够充分，$X$ 的矩阵元可能很大甚至发散。例如，Wannier 在其原始论文中所算的正是把自由电子当作能带的情形，$a_n$ 仅按 $\sin r/r$ 衰减，因此矩阵元会发散得相当厉害。
+
+绕开这一困难的办法是 Gibson 与 Blount 的贡献。注意我们定义了
+% ---- 原书 p.95 (PDF p110) ----
+\begin{equation*}
+a_n(r - R_j) = \sum_k e^{ik\cdot R_j}\,b^n_k(r)
+\end{equation*}
+然而，这绝不是唯一的，因为各个 $b_k$ 彼此之间可以带有完全任意的相位，它们只是在相差一个任意常数因子的意义上被定义的。于是我们拥有一个由可能的 $a_n$ 组成的无穷空间：
+\begin{equation*}
+a_n = \sum_k e^{ik\cdot R_j}\,e^{i\phi_k}\,b^n_k(r)
+\end{equation*}
+正如 Blount 所证明的，这种相位变换非常像一个规范变换（gauge transformation），多数结果并不因它而真正改变；但方便的做法是以 $a_n$ \emph{尽可能局域}为要求来规定各相位——也就是说，通过一个变分原理。
+
+在 $\partial/\partial k$ 的定义中我们可以看到完全同样的麻烦；同样，每个 $b_n$ 都可以乘以一个任意相位，只有凭借某种特定的选取，我们才能使 $X$ 成为 $k$ 的光滑函数。
+
+在单一、分离的能带情形，可以证明在最佳的相位选取下 $a_n$ 随距离指数式衰减，整个理论收敛得非常好。当出现简并线或简并点时，$a_n$ 衰减得不太快，不过事实上它们衰减得恰好足够快，足以保证收敛。但在这样的点或线上，通过在不同能带之间作新的线性组合，使 Wannier 函数良好局域、$X$ 与 $k$ 算符行为良好，便可以得到简单得多的结果。然而，这时未微扰的能带能量不再是一个数值函数 $E_n(k)$，而是一个矩阵 $E_{nn'}(k)$。这一做法首先由 Luttinger 在处理 Ge 中简并价带顶处的回旋共振（cyclotron resonance）时使用。利用这种相位选取技术，Blount 已经证明了有效哈密顿量理论对微扰论所有阶的有效性。
+
+最后，不妨不再深入细节，对由这些结果可以得到的那种相当迷人的复杂性略作评论。一个重要结果是如下事实：在 $E$ 或 $H$ 的各个阶上，各种物理算符中会进入新的、相当出人意料的项——例如，反常 Hall 效应（anomalous Hall effect）(57) 中著名的反常电流——它可以导致电流、能量输运等等，这些纯粹是量子极化效应，处于正常输运理论的领域之外。当诸如自旋-轨道耦合（spin-orbit coupling）这类进一步的复杂性被恰当地引入时，还会出现许多其他效应，它们复杂但对专家来说饶有趣味。

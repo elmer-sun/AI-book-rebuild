@@ -1,0 +1,938 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第6章 电子动力学
+
+% 第6章 Dynamics of Electrons
+
+\chapter{电子动力学}
+
+\epigraphbook{自由是对必然性的认识。}{ENGELS}
+
+\section{普遍原理}
+
+到目前为止，我们讨论的都是固体的静态性质。但是许多最重要的物理现象，例如电导率和热导率，都是动力学效应——是外力和外场作用的结果。我们需要一套关于这类现象的理论，尤其是把它应用于传导电子（conduction electrons）的理论。
+
+初等的原理非常简单。我们先要计算处于态 $|\mathbf{k}\rangle$ 的电子的\emph{速度}。这个态具有能量 $\mathcal{E}(\mathbf{k})$；在初等波力学中，我们给它配上一个随时间变化的因子，仿佛它具有频率
+
+\begin{equation*}
+\nu_{\mathbf{k}} = \frac{1}{\hbar}\,\mathcal{E}(\mathbf{k}).
+\tag{6.1}
+\end{equation*}
+
+但在波动理论中，如果我们假定介质是色散性的，那么频率在此附近的波包，其\emph{群速}（group velocity）应为
+
+\begin{equation*}
+\mathbf{v}_{\mathbf{k}} = \nabla_{\mathbf{k}}\,\nu_{\mathbf{k}} = \frac{1}{\hbar}\,\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}.
+\tag{6.2}
+\end{equation*}
+
+\emph{“处于态 $|\mathbf{k}\rangle$ 中”的电子，其速度正是 $\mathcal{E}(\mathbf{k})$ 在 k 空间中的梯度。}
+
+对自由电子，这套做法完全有效：
+
+\begin{equation*}
+\mathcal{E}(\mathbf{k}) = \frac{\hbar^2 k^2}{2m},
+\tag{6.3}
+\end{equation*}
+
+即
+
+\begin{equation*}
+\mathbf{v}_{\mathbf{k}} = \frac{\hbar\mathbf{k}}{m} = \frac{\mathbf{p}}{m},
+\tag{6.4}
+\end{equation*}
+
+其中 $\mathbf{p}$ 是动量。从初等波力学大家都知道，这正是把电子看作一个在空间中自由运动的波包时它所具有的速度。
+
+再者，量 $\hbar\mathbf{k}$ 在衍射现象（§2.8）中的表现也非常像一个\emph{动量}。很自然可以假定，加速的动力学定律具有如下形式
+
+\begin{equation*}
+\hbar\dot{\mathbf{k}} = \mathbf{F},
+\tag{6.5}
+\end{equation*}
+
+其中 $\mathbf{F}$ 是作用在电子上的力。我们得到一条牛顿式的定律；\emph{晶体动量（crystal momentum）的变化率等于力。}
+
+式 (6.2) 和式 (6.5) 这两条原理确实成立，但需要加以论证。我们必须说明，晶体晶格的存在究竟是如何深刻地改变电子的传播性质的；并且对表述这些简单定律时所涉及的近似，也要有些了解。证明相当繁复，需要分几步论证。
+
+\section{Wannier 函数}
+
+回忆一下我们在 §3.4 中用原子轨道 $\phi_n$ 给出的 Bloch 函数定义：
+
+\begin{equation*}
+\psi_{\mathbf{k},n} = \frac{1}{\sqrt{N}}\sum_{\boldsymbol{l}} e^{i\mathbf{k}\cdot\boldsymbol{l}}\,\phi_n(\mathbf{r}-\boldsymbol{l}).
+\tag{6.6}
+\end{equation*}
+
+这是个相当漂亮的公式，因为它展示了一个波 $\exp(i\mathbf{k}\cdot\boldsymbol{l})$ 叠加在一组组局域的原子轨道上，给出每个格点处的相位和振幅。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_97.pdf}
+\caption*{图 97\quad 叠加在原子轨道上的波。}
+\end{figure}
+
+为了表示动力学效应，我们可以试着按同一模式构造一个随时间变化的波函数
+
+\begin{equation*}
+\psi(\mathbf{r},t) \sim \sum_{\boldsymbol{l}} f(\boldsymbol{l},t)\,\phi_n(\mathbf{r}-\boldsymbol{l}),
+\tag{6.7}
+\end{equation*}
+
+其中 $f(\boldsymbol{l},t)$ 将是一个包络函数（envelope function），表示叠加在局域原子轨道 $\phi_n(\mathbf{r}-\boldsymbol{l})$ 上的波在 $\boldsymbol{l}$ 附近处的强度。
+
+但是紧束缚表述本身并不完全可行，原因在于正交化上的困难。事实上，式 (6.6) 所定义的函数并不是晶体势的 Schrödinger 方程的解。我们知道，需要取原子轨道的线性组合，例如
+
+\begin{equation*}
+\psi_{\mathbf{k}} = \frac{1}{\sqrt{N}}\sum_{\boldsymbol{l},m} e^{i\mathbf{k}\cdot\boldsymbol{l}}\,c_m\,\phi_m(\mathbf{r}-\boldsymbol{l}),
+\tag{6.8}
+\end{equation*}
+
+其系数有待确定，以满足 Schrödinger 方程。因此，若不先解出 L.C.A.O.（原子轨道线性组合）问题——一件极其繁琐的准备工作——我们就无法使用 (6.7) 这种表示。
+
+不过，我们仍然可以\emph{定义}出一些函数，使之具备我们本来希望局域原子轨道具有的那些性质。\emph{设存在一个函数 $a_n(\mathbf{r})$，使得第 $n$ 个能带中真正的 Bloch 函数由下式给出}
+
+\begin{equation*}
+\psi_{\mathbf{k},n} = \frac{1}{\sqrt{N}}\sum_{\boldsymbol{l}} e^{i\mathbf{k}\cdot\boldsymbol{l}}\,a_n(\mathbf{r}-\boldsymbol{l}).
+\tag{6.9}
+\end{equation*}
+
+我们把这个新函数 $a_n$ 称为 \emph{Wannier 函数}（Wannier function）。它是位置的函数，但在一个布里渊区内与 $\mathbf{k}$ 无关。每一个电子能带都有一个不同的 Wannier 函数，正如紧束缚表述中每个原子轨道产生一个不同的能带一样。
+
+式 (6.9) 很容易反演。如果我们已经用某种方法——例如 O.P.W.（正交化平面波）方法——解出了 Bloch 函数 $\psi_{\mathbf{k},n}$，那么就可以用一个合适的波因子去乘 (6.9)，并对一个区内所有 $\mathbf{k}$ 值求和：
+
+\begin{align*}
+\sum_{\mathbf{k}} e^{-i\mathbf{k}\cdot\boldsymbol{l}'}\,\psi_{\mathbf{k},n}(\mathbf{r}) &= \frac{1}{\sqrt{N}}\sum_{\mathbf{k},\boldsymbol{l}} e^{i\mathbf{k}\cdot(\boldsymbol{l}-\boldsymbol{l}')}\,a_n(\mathbf{r}-\boldsymbol{l}) \\
+&= \sqrt{N}\sum_{\boldsymbol{l}} \delta_{ll'}\,a_n(\mathbf{r}-\boldsymbol{l}) \\
+&= \sqrt{N}\,.\,a_n(\mathbf{r}-\boldsymbol{l}'). \tag{6.10}
+\end{align*}
+
+这里我们用到一个并未真正证明过、但不难类比式 (2.92) 推出的结果：
+
+\begin{equation*}
+\sum_{\mathbf{k}} e^{i\mathbf{k}\cdot(\boldsymbol{l}-\boldsymbol{l}')} = 0,
+\tag{6.11}
+\end{equation*}
+
+其中求和遍及一个区内各允许值，除非 $\boldsymbol{l}-\boldsymbol{l}'=\mathbf{0}$。
+
+我们可以把 (6.10) 写成
+
+\begin{equation*}
+a_n(\mathbf{r}-\boldsymbol{l}) = \frac{1}{\sqrt{N}}\sum_{\mathbf{k}} e^{-i\mathbf{k}\cdot\boldsymbol{l}}\,\psi_{\mathbf{k},n}(\mathbf{r}).
+\tag{6.12}
+\end{equation*}
+
+容易证明，由 $\psi_{\mathbf{k},n}$ 与 $\psi_{\mathbf{k},n'}$（其中 $n$ 与 $n'$ 属于不同的\emph{能带}）的正交性可知，$a_n(\mathbf{r}-\boldsymbol{l})$ 与 $a_{n'}(\mathbf{r}-\boldsymbol{l})$ 正交。而且，中心处在不同\emph{格点}上的 Wannier 函数也总是正交的，即使它们属于同一能带。于是
+
+\begin{align*}
+\int a_n^{*}(\mathbf{r}-\boldsymbol{l})\,a_n(\mathbf{r}-\boldsymbol{l}')\,\mathbf{dr} &= \frac{1}{N}\sum_{\mathbf{k},\mathbf{k}'} e^{i\mathbf{k}\cdot\boldsymbol{l}}\,e^{-i\mathbf{k}'\cdot\boldsymbol{l}'} \int \psi_{\mathbf{k},n}^{*}\,\psi_{\mathbf{k}',n}\,\mathbf{dr} \\
+&= \frac{1}{N}\sum_{\mathbf{k}} e^{i\mathbf{k}\cdot(\boldsymbol{l}-\boldsymbol{l}')} \\
+&= \delta_{ll'} \tag{6.13}
+\end{align*}
+
+（我们用到了不同波矢的 Bloch 函数相互正交这一已知结果。）
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_98.pdf}
+\caption*{图 98\quad 相邻格点上的 Wannier 函数。}
+\end{figure}
+
+这样，Wannier 函数便是 Bloch 函数的一个幺正变换（unitary transformation），作为电子态的一种表示，二者在形式上等价。正如 §5.8 中所指出的，在绝缘体中——那里的电子被关联效应很好地局域化，束缚在自己的原子上——Wannier 函数或许实际上构成一种更合适的表示。然而在金属或半导体中，电子飞速穿越整个晶体，Bloch 态更适合用来描述那些粒子、准粒子、单电子激发、载流子，或者随便我们怎么称呼它们。
+
+如果我们假定式 (1.60)
+
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r}) = N^{-\frac{1}{2}}\,u(\mathbf{r})\,e^{i\mathbf{k}\cdot\mathbf{r}}
+\tag{6.14}
+\end{equation*}
+
+并取周期函数 $u(\mathbf{r})$ 对一个能带中所有 Bloch 态都近似相同，那么容易证明：对于边长为 $d$ 的简立方晶格，原点处的 Wannier 函数为
+
+\begin{equation*}
+a(\mathbf{r}) = u(\mathbf{r})\,\frac{\sin(\pi x/d).\ \sin(\pi y/d).\ \sin(\pi z/d)}{(\pi x/d).\ (\pi y/d).\ (\pi z/d)}.
+\tag{6.15}
+\end{equation*}
+
+这个函数在晶胞中心看起来像 $u(\mathbf{r})$，但它以逐渐衰减的振荡向外延伸得很远。这些振荡是保证正交性所必需的，却没有直接的物理意义。Wannier 函数对某些数学目的来说很方便，但无助于我们直接思考物理现象。
+
+\section{Wannier 表象中的运动方程}
+
+我们要为在晶格势加上外加场势中运动的电子求出含时 Schrödinger 方程的解。我们要求它满足
+
+\begin{equation*}
+(\mathcal{H}^0 + \mathcal{U})\,\psi(\mathbf{r},t) = i\hbar\,\frac{\partial\psi(\mathbf{r},t)}{\partial t},
+\tag{6.16}
+\end{equation*}
+
+其中 $\mathcal{H}^0$ 是电子在完整晶格中的哈密顿量，$\mathcal{U}$ 是微扰势。
+
+让我们试着构造一个类似 (6.7) 的解，但以 Wannier 函数作为局域函数：我们假设
+
+\begin{equation*}
+\psi(\mathbf{r},t) = \sum_{n,\boldsymbol{l}} f_n(\boldsymbol{l},t)\,a_n(\mathbf{r}-\boldsymbol{l}),
+\tag{6.17}
+\end{equation*}
+
+其中每一个能带——也就是说，每一种局域 Wannier 函数——都有各自独立的包络函数。
+
+把 (6.17) 代入 Schrödinger 方程，乘以 $a_{n'}^{*}(\mathbf{r}-\boldsymbol{l}')$，并对整个晶体积分，得到
+
+\begin{equation*}
+\sum_{n,\boldsymbol{l}} \int a_{n'}^{*}(\mathbf{r}-\boldsymbol{l}')\,(\mathcal{H}^0 + \mathcal{U})\,a_n(\mathbf{r}-\boldsymbol{l})\,f_n(\boldsymbol{l},t) = i\hbar\,\frac{\partial f_{n'}(\boldsymbol{l}',t)}{\partial t}
+\tag{6.18}
+\end{equation*}
+
+（我们在右端用到了正交关系 (6.13)。）
+
+但 Wannier 函数本身正是从无微扰晶体的方程的解导出的，即
+
+\begin{equation*}
+\mathcal{H}^0\,\psi_{\mathbf{k},n} = \mathcal{E}_n(\mathbf{k})\,\psi_{\mathbf{k},n}
+\tag{6.19}
+\end{equation*}
+
+在第 $n$ 个能带中成立。把它应用于 (6.9) 与 (6.12)，得
+
+\begin{align*}
+\mathcal{H}^0\,a_n(\mathbf{r}-\boldsymbol{l}) &= \frac{1}{\sqrt{N}}\sum_{\mathbf{k}} e^{-i\mathbf{k}\cdot\boldsymbol{l}}\,\mathcal{H}^0\,\psi_{\mathbf{k},n} \\
+&= \frac{1}{\sqrt{N}}\sum_{\mathbf{k}} e^{-i\mathbf{k}\cdot\boldsymbol{l}}\,\mathcal{E}_n(\mathbf{k})\,\psi_{\mathbf{k},n} \\
+&= \frac{1}{N}\sum_{\mathbf{k}} e^{-i\mathbf{k}\cdot\boldsymbol{l}}\,\mathcal{E}_n(\mathbf{k})\sum_{\boldsymbol{l}'} e^{i\mathbf{k}\cdot\boldsymbol{l}'}\,a_n(\mathbf{r}-\boldsymbol{l}') \\
+&= \sum_{\boldsymbol{l}'} \mathcal{E}_{n,\boldsymbol{l}-\boldsymbol{l}'}\,a_n(\mathbf{r}-\boldsymbol{l}'), \tag{6.20}
+\end{align*}
+
+其中我们\emph{定义}能量的 Fourier 变换，正如 (3.32) 中那样，即
+
+\begin{equation*}
+\mathcal{E}_{n,\boldsymbol{l}} \equiv \frac{1}{N}\sum_{\mathbf{k}} \mathcal{E}_n(\mathbf{k})\,e^{-i\mathbf{k}\cdot\boldsymbol{l}}.
+\tag{6.21}
+\end{equation*}
+
+把 (6.20) 和 (6.21) 与 (3.27) 类比一番是相当有意思的。系数 $\mathcal{E}_{n,\boldsymbol{l}}$ 是晶格哈密顿量在第 $n$ 个能带中相距 $\boldsymbol{l}$ 的两个格点的 Wannier 函数之间的交叠积分（overlap integral）。Wannier 函数的正交性使这些结果严格成立，而对原子轨道来说它们只是近似的。
+
+把 (6.20) 代入我们的运动方程 (6.18)，得
+
+\begin{equation*}
+\sum_{n,\boldsymbol{l}} \big\{\delta_{nn'}\,\mathcal{E}_{n,\boldsymbol{l}-\boldsymbol{l}'} + \mathcal{U}_{nn'}(\boldsymbol{l},\boldsymbol{l}')\big\}\,f_n(\boldsymbol{l},t) = i\hbar\,\frac{\partial f_{n'}(\boldsymbol{l}',t)}{\partial t},
+\tag{6.22}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\mathcal{U}_{nn'}(\boldsymbol{l},\boldsymbol{l}') \equiv \int a_{n'}^{*}(\mathbf{r}-\boldsymbol{l}')\,\mathcal{U}(\mathbf{r})\,a_n(\mathbf{r}-\boldsymbol{l})\,\mathbf{dr}
+\tag{6.23}
+\end{equation*}
+
+是微扰势在 Wannier 函数之间的一个矩阵元。
+
+这些方程都是严格的。在作近似之前，我们还能再走一步。考虑下面这个形式化的论证：
+
+\begin{align*}
+\mathcal{E}_n(-i\nabla)\,f(\mathbf{r}) &= \sum_{\boldsymbol{l}} \mathcal{E}_{n,\boldsymbol{l}}\,e^{i\boldsymbol{l}\cdot(-i\nabla)}\,f(\mathbf{r}) \\
+&= \sum_{\boldsymbol{l}} \mathcal{E}_{n,\boldsymbol{l}}\,\big[\,1 + \boldsymbol{l}\cdot\nabla + \tfrac{1}{2}(\boldsymbol{l}\cdot\nabla)^2\,\ldots\,\big]\,f(\mathbf{r}) \\
+&= \sum_{\boldsymbol{l}} \mathcal{E}_{n,\boldsymbol{l}}\,\Big[\,f(\mathbf{r}) + \boldsymbol{l}\cdot\nabla f(\mathbf{r}) + \frac{1}{2}\Big\{l_x^2\,\frac{\partial^2 f(\mathbf{r})}{\partial x^2} + \ldots\Big\}\ldots\Big] \\
+&= \sum_{\boldsymbol{l}} \mathcal{E}_{n,\boldsymbol{l}}\,f(\mathbf{r}+\boldsymbol{l}). \tag{6.24}
+\end{align*}
+
+在这一推演中，我们假定给定能带中的 $\mathcal{E}_n(\mathbf{k})$ 是 $\mathbf{k}$ 的连续解析函数，不靠近任何奇点或支点。我们利用 (6.21) 的逆关系来表达算符 $(-i\nabla)$ 的相应函数，即
+
+\begin{equation*}
+\mathcal{E}_n(\mathbf{k}) = \sum_{\boldsymbol{l}} \mathcal{E}_{n,\boldsymbol{l}}\,e^{i\mathbf{k}\cdot\boldsymbol{l}},
+\tag{6.25}
+\end{equation*}
+
+并把指数按算符 $\nabla$ 的幂级数展开。这个级数结果就是 $f(\mathbf{r}+\boldsymbol{l})$ 的 Taylor 展开。只要 $f(\mathbf{r})$ 连续等等，结果 (6.24) 便成立。
+
+把 (6.24) 代入 (6.22)，得
+
+\begin{equation*}
+\Big[\mathcal{E}_{n'}(-i\nabla)\,f_{n'}(\mathbf{r},t) - i\hbar\,\frac{\partial f_{n'}(\mathbf{r},t)}{\partial t}\Big]_{\mathbf{r}=\boldsymbol{l}'} + \sum_{n,\boldsymbol{l}} \mathcal{U}_{nn'}(\boldsymbol{l},\boldsymbol{l}')\,f_n(\boldsymbol{l},t) = 0.
+\tag{6.26}
+\end{equation*}
+
+这个方程——在单个能带内仍然是严格的——支配着包络函数 $f_n(\mathbf{r},t)$ 的行为。它既有趣又有用，因为我们现在把这个包络函数当作 $\mathbf{r}$ 的连续函数来处理，就像一个穿越晶体传播的连续波，而不再只是把它看作仅在各格点上有定义的量。颇为笨拙的差分方程组 (6.22) 由此换成了一个微分方程。
+
+而且，这个微分方程与含时 Schrödinger 方程颇为相似。例如，对自由电子我们有
+
+\begin{equation*}
+\mathcal{E}(\mathbf{k}) = \frac{\hbar^2 k^2}{2m},
+\tag{6.27}
+\end{equation*}
+
+于是 (6.26) 变成
+
+\begin{equation*}
+\Big[-\frac{\hbar^2}{2m}\nabla^2 - i\hbar\,\frac{\partial}{\partial t}\Big]\,f_n(\mathbf{r},t) + \sum_{n,\boldsymbol{l}} \mathcal{U}_{nn'}(\boldsymbol{l},\mathbf{r})\,f_n(\boldsymbol{l},t) = 0,
+\tag{6.28}
+\end{equation*}
+
+它就像普通的含时 Schrödinger 方程，其中 $f_n(\mathbf{r},t)$ 扮演着电子的普通波函数。
+
+\section{等效哈密顿量：杂质能级}
+
+为了最大限度地利用 (6.26)，通常要作若干近似。第一个近似是假定：只用出自单一能带的 Wannier 函数，就足以令人满意地表示运动电子。这意味着我们忽略 $n \neq n'$ 的所有矩阵元 $\mathcal{U}_{nn'}(\boldsymbol{l},\boldsymbol{l}')$。换言之，\emph{我们假定微扰不足以强到或陡峭到能引起带间跃迁。}这并不总是成立的。例如，高频电场可能引起向更高能带的光学跃迁；非常强的电场则可以导致 Zener 效应（Zener effect）（见 §6.8）。
+
+我们还将假定，当 $\boldsymbol{l} \neq \boldsymbol{l}'$ 时 $\mathcal{U}_{nn}(\boldsymbol{l},\boldsymbol{l}')$ 可以忽略。这同样是假定\emph{微扰随晶格中的位置缓慢变化}，从而由不同格点上 Wannier 函数的正交性，(6.23) 为零。如果 $\mathcal{U}(\mathbf{r})$ 是变化迅速的函数——例如金属或半导体中杂质邻域的场——这个近似就容易导致严重的误差。
+
+现在我们可以写出
+
+\begin{equation*}
+\mathcal{U}_{nn}(\boldsymbol{l},\boldsymbol{l}) = \big[\,\mathcal{U}(\mathbf{r})\,\big]_{\mathbf{r}=\boldsymbol{l}},
+\tag{6.29}
+\end{equation*}
+
+即第 $l$ 个格点处微扰势的取值。我们的运动方程便等价于
+
+\begin{equation*}
+\Big\{\mathcal{E}_n(-i\nabla) - i\hbar\,\frac{\partial}{\partial t}\Big\}\,f_n(\mathbf{r},t) + \mathcal{U}(\mathbf{r})\,f_n(\mathbf{r},t) = 0
+\tag{6.30}
+\end{equation*}
+
+并在每个格点处对 $\mathbf{r}$ 取值来计算。可以说，很自然的做法是在格点之间进行内插，把 $f_n(\mathbf{r},t)$ 当作位置的普通连续函数来处理，让它在局域势 $\mathcal{U}(\mathbf{r})$ 中扮演电子波函数的角色。
+
+(6.30) 与我们的出发方程 (6.16) 之间的差别在于：我们无须显式地包含电子在纯粹的完整晶体晶格的场中运动时的哈密顿量 $\mathcal{H}^0$。这个算符被一个\emph{等效哈密顿量}（equivalent Hamiltonian）——即算符 $\mathcal{E}_n(-i\nabla)$——所取代。只要知道单一能带中的 $\mathcal{E}(\mathbf{k})$，就可以在完全不理会晶格势本身的情况下讨论缓慢微扰场的一切动力学效应；我们把电子当作自由的来处理，只是它的动能算符换成了 $\mathcal{E}_n(-i\nabla)$ 这一修正过的形式。
+
+对普通的自由电子（即空晶格情形），我们已经在 (6.28) 中验证过，(6.30) 还原为普通的 Schrödinger 方程。如果像在半导体中那样，我们发现带底的能量仍是抛物型的，但形式为
+
+\begin{equation*}
+\mathcal{E}(\mathbf{k}) = \frac{\hbar^2 k^2}{2m^{*}},
+\tag{6.31}
+\end{equation*}
+
+其中 $m^{*}$ 并非电子的普通质量，那么我们的等效哈密顿量就会与自由电子的相同，只是处处以 $m^{*}$ 代替 $m$。
+
+这正是半导体中\emph{杂质能级}（impurity level）观念的核心。我们已经看到（§§4.6、5.5），像 Ge 中的 As 这样的杂质会产生一个有效场
+
+\begin{equation*}
+\mathcal{U}(\mathbf{r}) = \frac{-e^2}{\epsilon r},
+\tag{6.32}
+\end{equation*}
+
+其中 $\epsilon$ 是介质的静态介电常数。如果这个场可以当作缓慢变化的场来处理，而且 (6.31) 足以恰当地描述导带底附近电子的能量，那么我们的等效 Schrödinger 方程就与氢原子的方程相同，只是以 $m^{*}$ 代替电子的质量，以 $e/\sqrt{\epsilon}$ 代替它的电荷。
+
+这样，我们就可以搬用众所周知的氢原子能级理论。导带底算作动能的零点；在该零点之下将有位于
+
+\begin{equation*}
+W_n = -\frac{m^{*}e^{4}}{2\epsilon^{2}\hbar^{2}}\,\frac{1}{n^{2}}
+\tag{6.33}
+\end{equation*}
+
+处的束缚态。但这是一个很小的能量。例如，若 $m^{*} = m/10$、$\epsilon = 10$，则该杂质能级的电离能（ionization energy）将为 $10^{-3}$ 里德伯（rydberg）。因此，它只比导带底低一点点，处在带隙之内。
+
+我们还注意到，等效波函数（即包络函数 $f(\mathbf{r},t)$）的“Bohr 半径”被放大了 $(m\epsilon/m^{*})$ 倍，大约为 100 倍。正是这个大尺寸，使得我们用近似哈密顿量 (6.30) 去描述实际上在 $\mathbf{r}=0$ 附近变化很快的微扰 (6.32) 成为合理。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_99.pdf}
+\caption*{图 99\quad 杂质能级。}
+\end{figure}
+
+像 (6.33) 这样的能级确实已被观测到，不过理论的细节以及观测到的效应都比我们这里所述的更为复杂。例如，只有当相对浓度极低时，“杂质彼此互不影响”这一假定才是合理的。只要在 $10^{5}$ 个 Ge 或 Si 原子中所含的 As 或 Sb 原子不超过一个，邻近杂质上的电子态就必然开始交叠。虽然这些“原子”并非排列成规则晶格，但这样的集合类似于 §3.4 的紧束缚模型：各个“原子轨道”应当相互组合并展宽成一个窄带（图 100）。浓度更高时，交叠积分（参见式 (3.27)）超过杂质能级的电离能，于是这个带最终与导带底合并——事实上，杂质态本来就是从导带底引出来的。这个\emph{杂质带}（impurity band）的理论很有意思：它既是无序系统中电子态的一个极端例子，又是一个可以通过调节各种杂质的浓度来实现由绝缘导电到金属导电的 Mott 转变（§5.9）的体系。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_100.pdf}
+\caption*{图 100\quad (a) 相互交叠的杂质态导致 (b) 禁带中的杂质带。}
+\end{figure}
+
+但是，在离子晶体中\emph{负离子空位}（negative ion vacancy）或 \emph{F 心}（F-centre）在这类类似的情形下，等效哈密顿量的形式体系就失效了。不难论证：在静电中性的晶格中缺少一个负离子，等价于一个局域的正电荷，它以库仑场 (6.32) 吸引一个电子。然而，传导电子的有效质量 $m^{*}$ 不够小，$\epsilon$ 也不够大，不足以支持使用类氢波函数（hydrogenic wave functions）。电子的大部分时间都待在空位的紧邻区域，在那里最好把它当作一个普通的裸粒子，在各相邻离子的静电场叠加而成的场中运动——这个势看起来就像一个没有中心奇点的平底方势阱（图 101）。这个\emph{点离子模型}（point-ion model）尽管简单，却为色心（colour centre）中电子态的理论（见 §8.5）提供了良好的定量基础；F 心就是其中最简单的例子。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_101.pdf}
+\caption*{图 101\quad (a) F 心中的电子电荷云。(b) 点离子模型势阱。}
+\end{figure}
+
+\section{准经典动力学}
+
+在任何涉及电子在晶格中运动的问题里，我们都可以着手去求解等效 Schrödinger 方程 (6.30)。但如果 $\mathcal{E}(\mathbf{k})$ 是 $\mathbf{k}$ 的一个复杂函数，这样做可能会导致相当棘手的数学。
+
+应用对应原理（correspondence principle）可以避开其中大部分困难。众所周知，Schrödinger 方程的波包解与经典粒子遵循同样的轨迹，后者服从由相应的经典哈密顿量导出的运动方程。按照量子力学的Schrödinger 表述，波动方程中的哈密顿量\emph{算符}是这样得到的：在经典哈密顿量\emph{函数}中，用 $-i\hbar\nabla$ 代替经典动量变量 $\mathbf{p}$。把上述步骤反过来，我们可以在等效哈密顿量算符 $\mathcal{E}(-i\nabla)$ 中，把算符 $-i\nabla$ 换成动量变量 $\mathbf{p}/\hbar$，并把所得结果称为等效经典哈密顿量函数。于是，
+\begin{equation*}
+\mathcal{E}(-i\nabla)+\mathcal{U}(\mathbf{r})\;\rightarrow\;\mathcal{E}(\mathbf{p}/\hbar)+\mathcal{U}(\mathbf{r})=\mathcal{H}(\mathbf{r},\mathbf{p}). \tag{6.34}
+\end{equation*}
+我们的电子波包将表现得如同经典点粒子，服从由这个哈密顿量函数生成的运动方程。
+
+Hamilton 方程可以符号式地写成
+\begin{equation*}
+\dot{\mathbf{r}}=\frac{\partial\mathcal{H}}{\partial\mathbf{p}},\quad \dot{\mathbf{p}}=-\frac{\partial\mathcal{H}}{\partial\mathbf{r}}. \tag{6.35}
+\end{equation*}
+其中第一式便成为一个关于速度的方程，
+\begin{align*}
+\mathbf{v}&=\frac{\partial\mathcal{H}}{\partial\mathbf{p}}=\frac{\partial}{\partial\mathbf{p}}\bigl\{\mathcal{E}(\mathbf{p}/\hbar)+\mathcal{U}(\mathbf{r})\bigr\}\\
+&=\frac{\partial\mathcal{E}(\mathbf{p}/\hbar)}{\partial\mathbf{p}}\\
+&=\frac{1}{\hbar}\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}. \tag{6.36}
+\end{align*}
+用我们更常用的变量 $\mathbf{k}$ 表出。这正是式 (6.2)，至此终于得到证明。我们看到
+\begin{equation*}
+\hbar\mathbf{k}=\mathbf{p} \tag{6.37}
+\end{equation*}
+的确扮演着经典动量的角色；尽管它并不是一个唯一确定的变量，它却标记着波包恰好主要集中于其上的那个“态”。
+
+Hamilton 方程中的第二式可以写成
+\begin{equation*}
+\hbar\dot{\mathbf{k}}=-\frac{\partial\mathcal{H}}{\partial\mathbf{r}}=-\nabla\mathcal{U}(\mathbf{r}). \tag{6.38}
+\end{equation*}
+但如果 $\mathcal{U}(\mathbf{r})$ 譬如说是电子在固定静电场中的势能，那么右端就简单地是作用在电子上的经典力。例如，在电场 $\mathbf{E}$ 中，我们有
+\begin{equation*}
+\hbar\dot{\mathbf{k}}=e\mathbf{E}. \tag{6.39}
+\end{equation*}
+这就证明了我们的第二条动力学定律 (6.5)。变量 $\hbar\mathbf{k}$ 之所以扮演动量的角色，在于恒力的效果是使 $\hbar\mathbf{k}$ 以恒定速率增大。这里再次看到，$\mathbf{k}$ 不唯一这一事实并无妨碍，因为进入这些方程的只是它的导数。
+
+至于磁场 $\mathbf{H}$ 的效应，我们假定 \emph{Lorentz 力}（Lorentz force）方程成立，即
+\begin{equation*}
+\hbar\dot{\mathbf{k}}=e\Bigl(\mathbf{E}+\frac{1}{c}\,\mathbf{v}\wedge\mathbf{H}\Bigr), \tag{6.40}
+\end{equation*}
+其中 $\mathbf{v}$ 是波包的速度，由式 (6.36) 算得；$c$ 是光速。这个公式是从式 (6.39) 类比而来的，但它的正当推导要困难得多。人们相信，直到非常强的磁场它都成立得相当好（见 §9.8）。
+
+\section{质量张量：电子与空穴}
+
+让我们把运动学方程和动力学方程 (6.36) 与 (6.39) 结合起来，计算一个电子的\emph{加速度}，
+\begin{align*}
+\dot{\mathbf{v}}&=\frac{\partial}{\partial t}\biggl\{\frac{1}{\hbar}\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}\biggr\}\\
+&=\frac{1}{\hbar}\frac{\partial}{\partial\mathbf{k}}\biggl\{\frac{1}{\hbar}\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}\biggr\}\cdot\frac{\hbar\,\partial\mathbf{k}}{\partial t}\\
+&=\frac{1}{\hbar^{2}}\frac{\partial^{2}\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}\,\partial\mathbf{k}}\cdot e\mathbf{E}. \tag{6.41}
+\end{align*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_102.pdf}
+\caption*{图 102\quad 质量沿"谷"的方向很大。}
+\end{figure}
+
+若把它与常规的 Newton 方程
+\begin{equation*}
+m\dot{\mathbf{v}}=e\mathbf{E}, \tag{6.42}
+\end{equation*}
+相比较，我们看到电子质量的等效物如今是一个张量的逆：
+\begin{equation*}
+\frac{1}{m}\;\rightarrow\;\frac{1}{\hbar^{2}}\frac{\partial^{2}\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}\,\partial\mathbf{k}}. \tag{6.43}
+\end{equation*}
+这个张量是最接近于电子的动力学质量的等效物。例如，在半导体中，能量面可以具有 (4.35) 的形式，即
+\begin{equation*}
+\mathcal{E}(\mathbf{k})=\frac{\hbar^{2}k_{1}^{2}}{2m_{1}}+\frac{\hbar^{2}k_{2}^{2}}{2m_{2}}+\frac{\hbar^{2}k_{3}^{2}}{2m_{3}} \tag{6.44}
+\end{equation*}
+它参照某个局域主轴系写出。电场在不同方向上对电子加速的效果于是将大不相同。如果能量面沿 $k_{1}$ 方向拉长成椭球，即若 $m_{1}\gg m_{2}\sim m_{3}$，那么沿“谷”方向测得的质量就显得比横向方向大得多。在计算各种态对电子平均迁移率的贡献时，这一点很重要。施主杂质能级的简单类氢公式 (6.33) 也必须加以修正，以顾及每个谷的等效哈密顿量的各向异性，以及许多半导体导带底处同一能量诸谷的多重性。
+
+\emph{逆质量张量}（inverse mass tensor）不一定是正定的。在（如贵金属 Cu、Ag、Au 中）费米面与区边界相接触之处，我们可以近似地把它表成 (6.44) 的形式，但取 $m_{3}$ 为\emph{负}，从而给出双曲型能量面（在 §3.3 的重复区图式中，可以让它们恰好穿过区边界）。从经典的观点看，$\mathbf{k}$ 空间中这样一点上电子的动力学行为会显得非常奇怪。
+
+它们被来自区边界的强 Bragg 反射深刻地改变。实际上，电子倾向于沿着晶格平面传播，仿佛穿过一系列波导一般。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_103.pdf}
+\caption*{图 103\quad 双曲面状能量面（"颈"）。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_104.pdf}
+\caption*{图 104\quad 近满带带顶处的"空穴袋"。}
+\end{figure}
+
+更常见的情形是像半导体或半金属中那样的\emph{近满带}（nearly full band）。由于 $\mathcal{E}(\mathbf{k})$ 在重复区中是连续的周期函数，被占据的态将几乎一直填充到 $\mathcal{E}(\mathbf{k})$ 的某个明确的极大值。若这个极大值出现在 $\mathbf{k}_{0}$ 处，那么作为 $\mathcal{E}(\mathbf{k})$ 的梯度的 $\mathbf{v}_{\mathbf{k}}$ 在 $\mathbf{k}=\mathbf{k}_{0}$ 处为零，而且在 $\mathbf{k}_{0}$ 附近的一切方向上，$\partial^{2}\mathcal{E}/\partial\mathbf{k}\,\partial\mathbf{k}$ 的主分量都是\emph{负}的。
+
+具有\emph{负有效质量}（negative effective mass）的电子，其性质与寻常粒子相差太远，以至于更便当的做法是把论证反过来说，去讨论满带中少数\emph{空穴}（hole）的性质。我们在 §4.6 中已经指出，这种空穴的数目可以相当简单地用 费米–狄拉克 统计算出，只需把能量\emph{向下}量度；现在我们要证明，如果把空穴当作\emph{带正电}的粒子来处理，同一个能量约定将以经典上可理解的形式描述它们的动力学性质。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_105.pdf}
+\caption*{图 105\quad (a) 电子分布中的一个空隙。(b) 相应的"空穴"，能量标度已倒置。}
+\end{figure}
+
+我们首先注意到，“处于态 $\mathbf{k}$ 的空穴”必须由一个行列式来描述，这个行列式包含带中除态 $\psi_{\mathbf{k}}$ 之外的所有波函数。我们还可以更进一步，实际构造出这种行列式的波包。但需要注意的要点是，空穴的“速度”与那个缺失态的速度相同；波包将以与空穴两侧邻居相同的速率被携带着通过空间：
+\begin{equation*}
+\mathbf{v}_{\mathbf{k}}=\frac{1}{\hbar}\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}. \tag{6.45}
+\end{equation*}
+现在来考虑与一个空穴相联系的电流。满带的电流为零。处于态 $\mathbf{k}$ 的一个电子的电流是 $-|e|\mathbf{v}_{\mathbf{k}}$。因此，缺了一个电子的满带，其电流必定是
+\begin{equation*}
+\mathbf{J}_{h}=0-(-|e|\mathbf{v}_{\mathbf{k}})=|e|\mathbf{v}_{\mathbf{k}}. \tag{6.46}
+\end{equation*}
+可见空穴的行为就像一个\emph{带正电的粒子}（positively charged particle）。
+
+同样，空穴的动力学必定与它两侧各态的动力学相同。速度将以式 (6.41) 所定义的速率改变。若用电流来表述，我们有
+\begin{align*}
+|e|\dot{\mathbf{v}}&=|e|\,\frac{1}{\hbar^{2}}\frac{\partial^{2}\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}\,\partial\mathbf{k}}\cdot(-|e|)\mathbf{E}\\
+&=|e|\biggl\{-\frac{1}{\hbar^{2}}\frac{\partial^{2}\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}\,\partial\mathbf{k}}\biggr\}\cdot|e|\mathbf{E}, \tag{6.47}
+\end{align*}
+这就是一个电荷为正、大小为 $|e|$ 的粒子的加速度方程，只是其质量为 $m^{*}$，其中
+\begin{equation*}
+\frac{1}{m^{*}}\sim-\frac{1}{\hbar^{2}}\frac{\partial^{2}\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}\,\partial\mathbf{k}}. \tag{6.48}
+\end{equation*}
+但由于我们是在带顶附近，曲率的所有分量都是负的，所以 $m^{*}$ 现在是一个正量。于是，空穴的动力学性质未必各向同性，但它们基本上就是具有正质量的经典粒子的动力学性质。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_106.pdf}
+\caption*{图 106\quad 小重叠的能带：(a) 扩展区图式；(b) 重复区图式。}
+\end{figure}
+
+价带带顶的空穴导电，当然是半导体的一个特征性质。在 Si 和 Ge 中，区中心的能量面被自旋–轨道相互作用所分裂（参看图 66），我们实际上可以观察到“轻”“重”两种空穴，它们对应于 $\mathcal{E}(\mathbf{k})$ 的两支，曲率不同而在极大值处相接触。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_107.pdf}
+\caption*{图 107\quad (a) 电子分布中的一个空球变成 (b) 一个"空穴球"。}
+\end{figure}
+
+显然，当我们离开极大值位置时，空穴的速度会增大，也就是说，随 $\mathcal{E}(\mathbf{k})$ 的减小而增大。同样方便的做法是把空穴的动能看成 $\mathcal{E}_{h}=\mathcal{E}_{v}-\mathcal{E}(\mathbf{k})$，即从价带顶这个原点向外增大。这就是 §4.6 中引入的约定。
+
+对于每单位晶胞含偶数个电子的半金属（如 Bi），如果存在向更高能带的小重叠、有少量电子溢了出去，我们也会遇到类似的情形。这时在近满带中会留下等数目的空穴——它们将由费米面的若干碎片包住，这些碎片可以像 §3.3 中那样在重复区图式中拼合成闭合曲面。把这样一个空穴\emph{袋}（pocket）设想成少数几个带正电的粒子、其速度矢量由中心指向外，要比讨论一个电子的费米面（其速度矢量画成指向未占据空间区域的内部）来得容易。然而应当强调，把态分类为“空穴”和“电子”的做法可能失效——例如在图 103 的“颈”上。
+
+空穴在离子晶体中能否像自由粒子那样运动，是值得怀疑的。相邻离子上价轨道之间的小重叠意味着价带非常窄（§3.4），有效质量相应地很大。这似乎允许空穴发生\emph{自陷}（self-trapping）——例如在 KCl 中，空穴定域在两个 Cl$^{-}$ 离子之间，这两个离子被拉近而形成一个稳定的 \emph{V 心}（V centre），只有靠热激发才能把空穴从中释放出来。这样的\emph{小极化子}（small polaron）（§8.3）对晶格的颗粒性如此敏感，以至于只能靠从一个晶胞到另一个晶胞的“跳跃”来移动。由于这个原因，“价带”的概念在离子晶体中没有什么意义（§4.2）。
+
+\section{激子}
+
+存在两种载流子，电荷相反，但其他方面的性质基本上相似——这一点处于半导体应用物理的核心。我们在 §4.6 中已经证明，如何通过掺入受主杂质把空穴的数目增加到任意想要的数量，做成 \emph{p} 型样品。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_108.pdf}
+\caption*{图 108\quad 半导体中的杂质能级。}
+\end{figure}
+
+对于施主杂质，我们在 §6.4 中已经看到：由于带电杂质对额外电子的吸引，会形成正好位于导带底之下的杂质能级。对于受主杂质有一个完全等效的理论：受主杂质带负电（因为它们必须再接纳第四个价电子以维持键结构），因此吸引的是空穴。其效果是在空穴动能零点之下不远处为空穴产生束缚态——也就是说，在价带顶之上不远处。这种\emph{受主能级}（acceptor level）的“电离能”可以完全像式 (6.33) 那样近似地算出——尽管这里又出现了同样的假设，即 $\mathcal{E}(\mathbf{k})$ 是像 (6.31) 倒置过来那样的简单二次函数，这可能又过于天真。
+
+在一个\emph{补偿样品}（compensated sample）中，施主和受主杂质都有相当的数量，一些电子可以从施主能级“落下”去，同受主上的空穴湮灭。正如式 (4.42) 中指出的，载流子的净数目及其符号将是差 $N_{d}-N_{a}$。然而值得指出的是，“腾空”了的杂质并不是电中性的客体；施主将带正电，受主将带负电，因此它们会吸引或排斥余下的载流子。
+
+假设我们有一块本征半导体，或者一块补偿得如此精心、以致电子和空穴的数目
+由热激发公式 (4.39) 给出，而且几乎相等。这两种粒子电荷相反——所以它们彼此吸引。我们可以建立类氢的波函数，让电子和空穴绕着它们共同的质心旋转；这一对粒子的能量降低将具有与 (6.33) 相同的形式，只是 $m^{*}$ 如今应取为约化有效质量。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_109.pdf}
+\caption*{图 109\quad (a) 被电子和空穴占据的施主能级与受主能级。(b) 电子与空穴结合。(c) 多余的电子被热激发进入导带。}
+\end{figure}
+
+这意味着，我们有一个略低于导带底的电子能级，与一个恰好在价带之上的空穴能级相联系——事实上，是整整一系列这样的能级，对应于类氢态的不同量子数——确切地说，是整整一条\emph{激子态}（exciton state）的带，对应于电子–空穴对共同质心的运动动能的叠加（图 110、111(a)）。
+
+思考激子的另一种方式是借助受激原子。原子或离子上的一个电子被提升到某个激发态，譬如说 $\phi_{e}(\mathbf{r})$。于是我们构造一个如下形式的 Bloch 函数
+\begin{equation*}
+\psi_{\mathbf{k}}=\sum_{l}e^{i\mathbf{k}\cdot l}\,\phi_{e}(\mathbf{r}-l) \tag{6.49}
+\end{equation*}
+以使这个激发能在晶体中传播（图 111(b)）。乍一看，这似乎不过是导带中的一个态。但我们据以导出这一论证的紧束缚法（§3.4）是单电子理论；它没有考虑电子–电子相互作用。激子态比 (6.49) 更复杂：这个运动的电子随身携带着价带中其他电子的一种局域极化——换句话说，它随身拖着自己的空穴。因此，要把这对电子–空穴分开成独立的载流子，还需要额外的一小份能量。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_110.pdf}
+\caption*{图 110\quad 激子态。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_111.pdf}
+\caption*{图 111\quad (a) Wannier 激子。(b) Frenkel 激子。}
+\end{figure}
+
+虽然激子的这两种描述实质上是等价的，但它们各自的实际适用范围不同。在半导体中，载流子很轻、介电常数很高，\emph{Wannier 激子}（Wannier exciton）的那种扩展的类氢轨道是较好的近似；在分子晶体（如固态氩或蒽）中，从\emph{Frenkel 激子}（Frenkel exciton）模型出发更为准确，这种激子的波函数大部分位于单个晶胞之内。在 NaCl 这类离子晶体中，激子的大小居中，用“一个电子从 Cl$^{-}$ 离子转移到邻近的 Na$^{+}$ 格点”来描述就相当不错。
+
+在半导体和绝缘体的光学光谱中可以探测到激子谱线（§8.5）；但由于这种激发是电中性的，它对电导没有直接贡献。激子虽然是可移动的，并且原则上应当能够把能量输运着穿过晶体，但要在实验上演示这一现象并不容易。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_112.pdf}
+\caption*{图 112\quad 电子在一维电场中运动。(a) $k$ 空间中的轨迹。(b) 实空间中的路径。}
+\end{figure}
+
+\section{Zener 击穿：隧穿}
+
+§6.4 中阐述的等效哈密顿量理论，依赖于可以忽略带间跃迁这一假设。这只有在电场不太强时才成立；我们必须能够以不同能带的 Wannier 函数相互正交为理由，略去如下形式的矩阵元
+\begin{equation*}
+\mathcal{U}_{nn'}(l,l)=\int a^{*}_{n'}(\mathbf{r}-l)\,\mathcal{U}(\mathbf{r})\,a_{n}(\mathbf{r}-l)\,\mathrm{d}\mathbf{r}, \tag{6.50}
+\end{equation*}
+但如果 $\mathcal{U}(\mathbf{r})$ 随 $\mathbf{r}$ 快速变化，矩阵元 (6.50) 就未必定会为零。从纯数学的观点看，显然带间跃迁的概率将取决于 $\nabla\mathcal{U}$ 的大小。
+
+我们想必能够由 §6.4 的表述出发来计算这个概率。但换一个更“物理的”角度来看待这一现象要容易些。让我们先考虑一个电子在弱电场中会遇到什么情况。如果电子是自由的，它就会被不断地加速，速度无限增大，一路前进，直到被散射，或者跑出样品。
+
+但假定电子处在单一的一条简单能带中——我们可以设想一个一维模型，电场沿 $x$ 轴。代表点便稳稳地前进，从 $O$ 到 $A$。这与 $A'$ 等价——所以我们可以让它突然跳回那里——或者，采用 §3.3 的重复区图式，我们可以看到它沿周期曲线 $OABC$ 等等上下往复运动。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_113.pdf}
+\caption*{图 113\quad 电子不是继续走向 $B$，而是可能“跳”过带隙到达 $A''$。}
+\end{figure}
+
+在实空间中，电子从 $O$ 出发被加速，但当它接近 $A$ 时开始减慢，然后反向运动，直到它到达 $B$，再次被加速，如此往复。在 $A$ 处发生 Bragg 反射；电子不能进入 $A$ 以外的区域，因为它的能量将落入能隙之中。电子被限制在 $x$ 轴的一个有限范围内。
+
+但现在假定还有另一条能带，其最低点 $A''$ 位于 $A$ 之上能量 $\mathcal{E}_{\mathrm{gap}}$ 处。电子总有这种可能：它从电场获得太多的能量，以至于从 $A$ 跃迁到 $A''$（译注：原文印作 to $A$ from $A''$，当为排印倒置）。
+
+为看出这确实是可能的，设电场为恒定的。我们可以沿 $x$ 轴画出电子从电场获得的能量 $eEx$。设电子已到达较低能带顶部的 $A$ 点。那么通常它将被反射回去。但如果它能再走过一段距离
+\begin{equation*}
+d=\frac{\mathcal{E}_{\mathrm{gap}}}{eE}, \tag{6.51}
+\end{equation*}
+到达 $A''$ 点，它就已从电场获得了足以越过带隙的能量（图 114）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_114.pdf}
+\caption*{图 114\quad 被强电场倾斜的能带。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_115.pdf}
+\caption*{图 115\quad 穿过势垒的隧穿。}
+\end{figure}
+
+这本质上是一个\emph{隧穿}（tunnelling）问题。电子必须穿透一个禁戒区域。在传统的隧穿问题中，势垒是这样一个区域：势能 $\mathcal{V}$ 大于电子在自由空间中的总能量 $\mathcal{E}$，因而在势垒内部电子的动能将是负的。从量子力学上看，这意味着电子波函数获得一个实的指数因子
+\begin{equation*}
+\psi=\psi_{0}e^{-\beta x}, \tag{6.52}
+\end{equation*}
+其中
+\begin{equation*}
+\beta^{2}=\mathcal{V}-\mathcal{E}. \tag{6.53}
+\end{equation*}
+如果 $\mathcal{V}$ 是 $x$ 的函数，我们可以用 W.K.B. 方法导出跃迁概率，即透射与反射之比，其形式为
+\begin{equation*}
+P=\exp\Biggl\{-2\int_{x_{1}}^{x_{2}}\beta(x)\,\mathrm{d}x\Biggr\}, \tag{6.54}
+\end{equation*}
+其中 $x_{1}$ 和 $x_{2}$ 是势垒区域的边界，因子 2 来自把波函数平方以得到概率密度。
+
+要把这一论证用到我们眼下的问题上，我们需要考虑能隙中电子波函数的性质。这是我们此前未曾考虑过的一点。偏微分方程
+\begin{equation*}
+-\frac{\hbar^{2}}{2m}\nabla^{2}\psi+\bigl\{\mathcal{V}(\mathbf{r})-\mathcal{E}\bigr\}\psi=0 \tag{6.55}
+\end{equation*}
+对任何 $\mathcal{E}$ 值都有解，即使当 $\mathcal{V}(\mathbf{r})$ 是满足
+\begin{equation*}
+\mathcal{V}(\mathbf{r}+l)=\mathcal{V}(\mathbf{r}), \tag{6.56}
+\end{equation*}
+的周期势时也是如此；只不过这些解不满足 Bloch 条件，因而不能作为本征函数去配合周期边界条件。
+
+不过，我们并没有理由不采用 §3.2 中那样的势的 Fourier 分析，并尝试如下形式的解
+\begin{equation*}
+\psi=\sum_{\mathbf{g}}\alpha_{\mathbf{k}-\mathbf{g}}\,e^{i(\mathbf{k}-\mathbf{g})\cdot\mathbf{r}}, \tag{6.57}
+\end{equation*}
+只是让 $\mathbf{k}$ 的分量取复数值。我们将得到与 (3.14) 同样的系数线性方程组——只是必须把
+\begin{equation*}
+\mathcal{E}^{0}_{\mathbf{k}-\mathbf{g}}\equiv\frac{\hbar^{2}}{2m}(\mathbf{k}-\mathbf{g})^{2} \tag{6.58}
+\end{equation*}
+显式地写出来，因为它严格说来已不再是“未微扰能量”，而不过是 $(-\hbar^{2}/2m)\nabla^{2}$ 作用于 (6.57) 中各项的结果。
+
+让我们考察一个一维模型中能隙附近的区域，即 $\mathbf{k}$ 位于与波矢
+\begin{equation*}
+\tfrac{1}{2}G=\frac{\pi}{a} \tag{6.59}
+\end{equation*}
+相应的区边界邻域的情形，此处晶面与电场垂直，其间距为 $a$。对自由电子，能量本应是
+\begin{equation*}
+\mathcal{E}^{0}=\frac{\hbar^{2}}{2m}\bigl(\tfrac{1}{2}G\bigr)^{2} \tag{6.60}
+\end{equation*}
+但正如 (3.16) 中那样，由于存在微扰 $\mathcal{V}_{G}$，我们必须求解行列式方程
+\begin{equation*}
+\biggl\{\frac{\hbar^{2}}{2m}k^{2}-\mathcal{E}\biggr\}\biggl\{\frac{\hbar^{2}}{2m}(k-G)^{2}-\mathcal{E}\biggr\}=|\mathcal{V}_{G}|^{2} \tag{6.61}
+\end{equation*}
+正如我们在 (3.19) 和 (3.20) 中看到的那样，若 $k$ 为实数，则此方程在能隙内没有 $\mathcal{E}$ 的根，也就是说，在
+\begin{equation*}
+\mathcal{E}^{0}-|\mathcal{V}_{G}|<\mathcal{E}<\mathcal{E}^{0}+|\mathcal{V}_{G}|. \tag{6.62}
+\end{equation*}
+的范围内无根。
+
+但现在我们把 $\mathcal{E}$ 当作一个任意参量，转而求解 $k$。若写成
+\begin{equation*}
+k=\tfrac{1}{2}G+\kappa,\qquad\mathcal{E}=\mathcal{E}^{0}+\epsilon, \tag{6.63}
+\end{equation*}
+其中 $\kappa$ 和 $\epsilon$ 设为小量，则我们求得一个近似解
+\begin{equation*}
+\kappa^{2}\approx\frac{2m}{\hbar^{2}}\biggl[\frac{\epsilon^{2}-|\mathcal{V}_{G}|^{2}}{4\mathcal{E}^{0}}\biggr]. \tag{6.64}
+\end{equation*}
+
+显而易见，若 $|\epsilon|<|\mathcal{V}_{G}|$，则 $\kappa$ 将是纯虚数——也就是说，按 (6.62) 与 (6.63)，\emph{能量处在能隙内的电子，其波函数含有一个实的指数因子}。这完全是 Schrödinger 方程的一个正当的解——但通常在物理上无关紧要，因为在大晶体整个宽度上无法使它配合周期边界条件或其他简单边界条件。电子根本无法在固体中传播任何距离。周期系统中波函数的这种普遍性质，已经在频率位于声子谱之外的晶格振动的情形（§2.12）中指出过。
+
+回到我们的隧穿问题，我们看到：令 (6.64) 中系数 $\beta$ 等于 $\kappa$ 的虚部，便可以用 (6.54) 来计算穿过禁戒区的透射。如果电场使电子能量在跨越禁戒区时线性增大，即 $\epsilon$ 正比于离开势垒中心（势垒总宽度为 $d$）的距离 $x$，那么我们有
+\begin{equation*}
+\beta(x)=\frac{|\mathcal{V}_{G}|}{2\mathcal{E}^{0}}\bigl(\tfrac{1}{2}G\bigr)\biggl(1-\frac{4x^{2}}{d^{2}}\biggr)^{\frac{1}{2}},
+\end{equation*}
+积分后得
+\begin{align*}
+P&=\exp-\biggl\{\frac{\pi d\,|\mathcal{V}_{G}|\,(\tfrac{1}{2}G)}{2\mathcal{E}^{0}}\biggr\}\\
+&=\exp-\biggl\{\frac{\pi^{2}}{4}\,\frac{\mathcal{E}_{\mathrm{gap}}^{2}}{\mathcal{E}^{0}eEa}\biggr\}, \tag{6.65}
+\end{align*}
+这里用到了 (6.51)、(6.59)，以及 $2|\mathcal{V}_{G}|$ 即能隙宽度这一事实。
+
+这个公式表明，如果电场 $E$ 强到电子在走过一个晶格间距 $a$ 内就能获得带隙能量的 $\mathcal{E}_{\mathrm{gap}}/\mathcal{E}^{0}$ 份额，就应当发生 Zener 击穿。然而，这一效应在实践中能否观察到尚不确定，因为它会被其他更复杂的现象所掩盖，例如\emph{雪崩击穿}（avalanche breakdown），即在由高能电子或空穴组成的电流中通过使杂质能级电离而令载流子倍增。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_116.pdf}
+\caption*{图 116\quad 隧道二极管特性：(a) 近零偏压；(b) 隧穿入带隙；(c) 声子辅助隧穿；(d) 少数载流子注入。}
+\end{figure}
+
+一个非常类似的效应出现在\emph{隧道二极管}或 \emph{Esaki 二极管}（Esaki diode）中：在分隔重掺杂 \emph{p} 型与 \emph{n} 型材料的一层薄绝缘膜两端加上外电场。隧穿速率主要由势垒的厚度和性质决定，但也受载流子所要进入的能带中可资利用的态密度的调制——而态密度对于电子被外加电场携带着越过禁戒区时所到达的确切能量颇为敏感。
+
+例如在零偏压下（图 116(a)），势垒两侧的费米能级必须相同（§4.6），于是一个小的“正向”电压会使 \emph{n} 型区的电子隧穿过来，与 \emph{p} 型材料中的空穴相遇而复合，从而使电流得以流动。但势垒两侧更大的电压差会把载流子从一侧驱入另一侧的带隙之中，在那里它们无法传播（图 116(b)）。于是电流下降——但不降至零，因为载流子可以通过与声子的相互作用损失能量（\emph{声子辅助隧穿}（phonon-assisted tunnelling），图 116(c)）。与光子类似的一个效应在光学上表现为 \emph{Franz--Keldysh 效应}（Franz--Keldysh effect）。当然，在更大的电压下，隧穿之后态又变得可资利用了（图 116(d)），于是随着\emph{少数载流子}（minority carriers）的注入——即电子注入 \emph{p} 型材料、空穴注入 \emph{n} 型材料——电流再度上升。
+
+超导体之间的结的行为与此类似，而且还表现出\emph{相干隧穿}（coherent tunnelling）现象，这将在 §11.10 中讨论。
+
+\section{表面上的电子}
+
+第 3 章中讨论的电子波函数被假定满足循环边界条件 (1.76)，仿佛深处大晶体内部。那么在表面附近会发生什么呢？
+
+首先，我们需要对表面各层中原子、离子和电子密度的分布建立某种模型。我们一般可以假定势有一个抬升——即\emph{功函数}（work function）（图 117），说的是把一个电子从体材料的费米能级带到离表面相当远处所需的能量提升——但要计算所需爬越的势垒的确切形式却极其困难。即使所有化学杂质都已清除——这是一项艰巨的技术任务——仍可能有结构重排和电子密度的复杂移动，其起因是未饱和的化学键、镜像力等等。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_117.pdf}
+\caption*{图 117\quad 表面处的功函数势垒。}
+\end{figure}
+
+然而，容易证明，普通 Bloch 态的分布几乎不受表面条件的影响。一个在晶体外呈指数衰减的波函数，可以同一个本来就近乎简并的内部波的组合相匹配，能量只需移动一个无穷小量。匹配的确切细节将依赖于势垒的精确形状，但这对体材料的能带结构等没有影响。
+
+但要考虑能量处在带隙内的电子。如上一节所示，晶体\emph{内部} Schrödinger 方程的解同样由距离的指数函数 (6.52) 主导。设此函数是向晶体内部衰减的，然后我们成功地把它在振幅和梯度上同一个简单指数函数匹配起来——后者描写一个试图穿过表面势垒逃逸出去的电子。这样我们就构造出了一个满足有限性等一般条件的本征态，但它定域在晶体表面处（图 118）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_118.pdf}
+\caption*{图 118\quad 表面态。}
+\end{figure}
+
+设在某一维模型的一个带隙中，我们已在能量 $\mathcal{E}_{0}$ 处发现了一个定域态 $\psi_{0}(z)$，这个一维模型代表的或许是当我们沿离开表面的 $z$ 方向逐层前进时的平均原子势或赝势。既然晶体在平行于表面的方向上想必仍是周期的，Bloch 定理 (1.58) 对该平面内的平移就必定仍然成立。因此，一维的定域态必定扩展成整整一条\emph{表面态}（surface states）或 \emph{Tamm 态}（Tamm states）的带，其形式为
+\begin{equation*}
+\psi_{\mathbf{k}}=\psi_{0}(z)\exp i(k_{x}x+k_{y}y), \tag{6.66}
+\end{equation*}
+其中 $k_{x}$ 和 $k_{y}$ 是在表面平面内量度的波矢的分量。例如在 N.F.E. 情形，我们应预期这条带的行为有如
+\begin{equation*}
+\mathcal{E}(\mathbf{k})\sim\mathcal{E}_{0}+(\hbar^{2}/2m)(k_{x}^{2}+k_{y}^{2}) \tag{6.67}
+\end{equation*}
+一直延伸到 $k_{x}$ 与 $k_{y}$ 的倒格子空间中某种二维区边界的类似物为止。
+
+事实上，电子表面态在原理上与 §2.12 中讨论的晶格振动表面模式完全相同。只要对符号作适当的重新标注，我们甚至可以把 (2.138)–(2.145) 的代数演算诠释为在适当边界条件下描写紧束缚模型中的电子表面态。但这类态能够出现的确切能量依赖于模型的细节。即使在一维情形也很显然：势垒的形状及其相对于晶格中最近“原子”的位置，会对 $\psi$ 的局部曲率有举足轻重的影响，从而决定能否实现良好的匹配。在三维情形，情况更加复杂，因为匹配必须在整个表面上进行，而表面绝不会是电子势的一个简单的平面突变。原则上我们可以讨论这类态在给定带隙中出现的条件，但它们对结构细节、化学杂质和空间电荷场的敏感性，阻碍了对能谱及其他性质的定量计算。尽管理论上不可预测，人们还是发现表面态在实际半导体器件的物理中扮演着重要角色：它们可能造成陷阱、复合中心、短路沟道、附加电容以及其他不良效应。这类态在表面催化以及界面上的其他化学现象中也很重要。
+
+真正的表面态只有在功函数势垒之下存在带隙时才能出现。在更高的能量处，与之相应的\emph{倏逝表面波}（evanescent surface waves）在时间上只是准驻定的，类似于共振（参见 §2.12）。这时的典型表面现象便是电子的发射——热发射或光激活发射（见 §8.5）——以及其逆过程：电子从外部射向表面。
+
+高能电子穿过薄膜的衍射已在 §2.6、§3.3 中讨论过。\emph{低能电子衍射}（Low Energy Electron Diffraction, L.E.E.D.）现象则要难作定量解释得多。对于被表面反射回来的电子，晶体动量的法向分量不再是好量子数。衍射峰的基本条件是 (2.79) 的二维类似式，即
+\begin{equation*}
+\mathbf{k}'_{\parallel}=\mathbf{k}_{\parallel}+\mathbf{g}_{\parallel}, \tag{6.68}
+\end{equation*}
+其中初始波矢、末态波矢和倒格矢都用它们在平行于表面的平面——即 (6.66) 的 $(x,y)$ 平面——内的投影来表示。反射束的法向分量总可以调节得满足能量守恒条件 $|\mathbf{k}'|^{2}=|\mathbf{k}|^{2}$，因此无论入射束的能量或方向如何，衍射都是允许的。
+
+但要计算衍射强度，我们需要把入射波和反射波同晶体内部 Schrödinger 方程全部解的一个组合相匹配，也就是同固体的\emph{复能带结构}（complex band structure）的所有分支相匹配。不同衍射束的相对强度将依赖于这些内部波函数中相应平面波的相对比例。例如，最强的峰必定出现在入射电子试图以普通 Bloch 态带隙中的能量进入晶体之时——也就是说，接近完整的三维 Bragg--von Laue 衍射条件 (2.79) 处。但在这一区域还可能出现对能量敏感的“共振”效应，此时倏逝表面波可以把电子“导入”不同的衍射束。杂质散射、吸收以及其他非弹性效应，是解释 L.E.E.D. 观测时额外的复杂因素。
+
+\section{电子被杂质散射}
+
+在 §5.2、§5.3 中已经证明，金属中带电杂质的势会受到屏蔽，取 (5.29) 的形式，
+\begin{equation*}
+\mathcal{U}(\mathbf{r})=\frac{Ze^{2}}{r}\,e^{-\lambda r}, \tag{6.69}
+\end{equation*}
+其中 $\lambda$ 由 (5.22) 给出。用初等的含时微扰理论容易证明，这个势给出微分散射截面
+\begin{equation*}
+\sigma(\theta)=\biggl(\frac{2mZe^{2}}{\hbar^{2}}\biggr)^{2}\frac{1}{(K^{2}+\lambda^{2})^{2}}, \tag{6.70}
+\end{equation*}
+其中 $K=2k_{F}\sin\tfrac{1}{2}\theta$。
+
+对于在半导体中被散射的载流子，类似的结果应当同样成立：此时 $\lambda$ 由 (5.26) 给出，用 $m^{*}$ 代替 $m$，并再乘上一个因子 $1/\epsilon^{2}$ 以顾及介质的介电常数。这不过是等效哈密顿量原理的一次直接应用。
+
+然而，对这些公式不应过分拘泥于字面。它们在求解散射问题时假定了 Born 近似；这对于处于费米能的电子被深势 (6.69) 散射的情形并不很好。更好的做法是使用分波法，
+如在式 (5.40) 中那样，并辅以 Friedel 求和规则。再者，我们并不能保证电子波函数真的是简单的平面波——而且势太强，无法恰当地使用等效哈密顿量。最后，散射也不应全部归因于溶质原子与溶剂原子之间的电荷差异；还可能有来自芯势差异的散射——比方说，杂质离子与被它所替代的离子在有效势上有所不同。因此，把 Ag 掺入 Au 中时同样会有散射，尽管二者价数相同，原子体积也几乎完全一样。
+
+由过渡金属杂质引起的散射以 $d$ 共振（§5.5）为主导。由 (3.81) 与 (5.40) 显然可见，散射截面必在 $d$ 相移通过 $\pi/2$ 的共振能量处经过极大值。然而要注意，这一共振可能依赖于杂质的磁极化方向相对于被散射电子自旋取向的关系，如图 95 所示。
+
+在某些情形下，在被散射传导电子的自旋 $\mathbf{s}$ 与杂质处 $d$ 电子的总自旋 $\mathbf{S}$ 之间，还存在一个附加的微弱的\emph{s--d 交换}（s--d-exchange）相互作用。正如 §10.6 将要证明的，这个相互作用的哈密顿量应取如下形式
+\begin{equation*}
+\mathcal{H}_{s\text{-}d} = -(J/N)\,\mathbf{S}\cdot\mathbf{s}, \tag{6.71}
+\end{equation*}
+其中“交换”参量 $J$ 通常为负。这具有重要的物理后果，因为入射电子的自旋在被散射时可能被“翻转”。
+
+在半导体中，还可能有来自中性杂质的散射——例如，一个电子已落入施主杂质能级，或者一个空穴驻留在受主能级上（§§6.4、6.7）。这时的散射计算是一个相当可观的问题，等同于计算慢电子被中性氢原子散射的问题。
+
+\section{绝热原理}
+
+现在我们要考虑传导电子与格波之间的相互作用。这乍看是一个极其复杂的动力学问题——直到我们发现它可以拿初等微扰论来处理。这样做的依据是 Born--Oppenheimer 定理，下面我们就来推导它。
+
+让我们写下离子与电子整个系统的哈密顿算符。如同第 2 章那样，令 $\mathbf{u}_l$ 代表第 $l$ 个离子相对于第 $l$ 个格点的位置（为简单起见，我们假定每个晶胞只含一个原子）；令 $\mathbf{r}_i$ 代表第 $i$ 个电子的位置。总哈密顿量为
+\begin{equation*}
+\mathcal{H} = -\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}} - \sum_{i}\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial\mathbf{r}_{i}^{2}} + \sum_{i<j}\frac{e^{2}}{|\mathbf{r}_{i}-\mathbf{r}_{j}|} + \mathcal{V}(\mathbf{u},\mathbf{r}) + G(\mathbf{u}). \tag{6.72}
+\end{equation*}
+头两项是离子和电子的动能算符。下一项是电子间相互作用。再下一项是电子在离子（处于其位移后的位置）场中的势能。最后，$G(\mathbf{u})$ 代表离子之间任何直接作用的势能。
+
+让我们试着取如下的函数作为这个哈密顿量的一个本征函数：
+\begin{equation*}
+\Psi = \psi(\mathbf{u},\mathbf{r})\,\Phi(\mathbf{u}), \tag{6.73}
+\end{equation*}
+其中我们让 $\psi$ 满足电子在静态晶格——被冻结、第 $l$ 个离子位于 $\mathbf{u}_l$ 处——中的 Schr\"odinger 方程
+\begin{equation*}
+\biggl\{\sum_{i}-\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial\mathbf{r}_{i}^{2}} + \sum_{ij}\frac{e^{2}}{|\mathbf{r}_{i}-\mathbf{r}_{j}|} + \mathcal{V}(\mathbf{u},\mathbf{r})\biggr\}\,\psi(\mathbf{u},\mathbf{r}) = \mathcal{E}_{e}(\mathbf{u})\,\psi(\mathbf{u},\mathbf{r}). \tag{6.74}
+\end{equation*}
+这可以——事实上也必须——是一个多电子波函数；我们仍然假定能够求出它的本征值 $\mathcal{E}_{e}(\mathbf{u})$，例如把它们当作一组准粒子能级。但这些本征值将是 $\mathbf{u}_l$ 的函数；电子气的能量将依赖于离子的位置。
+
+现在把算符 $\mathcal{H}$ 作用到这个波函数上：
+\begin{align*}
+\mathcal{H}\Psi &= -\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}}\,\Psi + \mathcal{E}_{e}(\mathbf{u})\Psi + G(\mathbf{u})\Psi \\
+&= \psi(\mathbf{u},\mathbf{r})\biggl\{-\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}} + \mathcal{E}_{e}(\mathbf{u}) + G(\mathbf{u})\biggr\}\Phi(\mathbf{u}) \\
+&\quad -\sum_{l}\frac{\hbar^{2}}{2M}\biggl\{2\frac{\partial\Phi}{\partial\mathbf{u}_{l}}\cdot\frac{\partial\psi}{\partial\mathbf{u}_{l}} + \Phi\frac{\partial^{2}\psi}{\partial\mathbf{u}_{l}^{2}}\biggr\}. \tag{6.75}
+\end{align*}
+倘若此表达式中的第二行可以忽略，我们便能令 $\Phi(\mathbf{u})$ 满足一个 Schr\"odinger 型方程，从而求解完整的本征值问题 $\mathcal{H}\Psi = \mathcal{E}\Psi$：
+\begin{equation*}
+\biggl\{-\sum_{l}\frac{\hbar^{2}}{2M}\frac{\partial^{2}}{\partial\mathbf{u}_{l}^{2}} + \mathcal{E}_{e}(\mathbf{u}) + G(\mathbf{u})\biggr\}\,\Phi(\mathbf{u}) = \mathcal{E}\,\Phi(\mathbf{u}). \tag{6.76}
+\end{equation*}
+这就是说，我们必须在离子之间的直接相互作用之外，再加上 $\mathcal{E}_{e}(\mathbf{u})$ 一项，它是电子系统的总能量作为离子位置的函数。这就是电子对晶格能量的\emph{绝热}（adiabatic）贡献。它是电子为了跟随晶格运动而不得不付出的能量改变。原则上，这一项将依赖于电子组态的细节，例如依赖于在金属温度下被激发的准粒子的数目——但实际上它对这类差别非常不敏感，通常可以假定电子处于基态来进行计算。
+
+还有必要证明 (6.75) 中的非绝热项可以忽略。容易证明，它们对系统处于态 $\Psi$ 时的能量期望值几乎没有贡献。第一个这样的项为零：它将给出如下形式的积分
+\begin{align*}
+\int\psi^{*}\frac{\partial\psi}{\partial\mathbf{u}_{l}}\,\mathbf{dr} &= \frac{1}{2}\frac{\partial}{\partial\mathbf{u}_{l}}\int\psi^{*}\psi\,\mathbf{dr} \\
+&= \frac{1}{2}\frac{\partial n_{e}}{\partial\mathbf{u}_{l}}, \tag{6.77}
+\end{align*}
+其中 $n_{e}$ 是电子的总数。第二项之所以小，是因为往最坏里说，电子也不过是被紧紧束缚在各自的离子上
+\begin{equation*}
+\psi(\mathbf{u}_{l},\mathbf{r}_{i}) = \psi(\mathbf{r}_{i}-\mathbf{u}_{l}), \tag{6.78}
+\end{equation*}
+这会给出如下形式的贡献
+\begin{align*}
+-\int\psi^{*}\frac{\hbar^{2}}{2M}\frac{\partial^{2}\psi}{\partial\mathbf{u}_{l}^{2}}\,\mathbf{dr} &= -\int\psi^{*}\frac{\hbar^{2}}{2M}\frac{\partial^{2}\psi}{\partial\mathbf{r}_{i}^{2}}\,\mathbf{dr} \\
+&= -\frac{m}{M}\int\psi^{*}\frac{\hbar^{2}}{2m}\frac{\partial^{2}\psi}{\partial\mathbf{r}_{i}^{2}}\,\mathbf{dr}. \tag{6.79}
+\end{align*}
+这不过是电子动能的 $m/M$ 倍——与寻常的热能相比可以忽略不计，因为 $m/M$ 的量级为 $10^{-4}$ 或 $10^{-5}$。
+
+我们刚才只是非常抽象地勾画了这一论证，它没有考虑非对角的非绝热项。特别是其中的第一项，含有 $\partial\psi/\partial\mathbf{u}_{l}$，当离子运动时能够在电子态之间引起跃迁。这恰恰就是\emph{电子--声子相互作用}（electron--phonon interaction），我们将在 §6.13 中讨论它。我们在 (6.77) 中所证明的只不过是它的对角元为零。若计入涉及此项非对角元的二阶微扰，我们将得到对晶格能量的贡献。
+
+绝热原理之所以重要，是因为它使我们得以把离子的运动与电子的运动分开，而在电子与声子之间只留下一个残余的相互作用。它为我们证实了一个直观的观念：电子气的能量是固体总弹性能的一个重要组成部分——正如在讨论金属内聚性（§4.3）时所假定的那样。计入这个能量项之后，我们就可以把电子和格波当作近乎独立的实体来处理。
+
+\section{声速的重整化}
+
+绝热原理诱使我们作如下简单的论证。假设我们计算一个裸离子晶格的振动谱。那么加入电子会有什么影响？
+
+碰巧，我们可以不费任何气力就得出一个结果。由点电荷组成的晶格的长波纵振动会引起体积变化和极化场，它们可以宏观地计算出来，一如 (5.60)--(5.62)。设正离子的密度为每单位体积 $N$ 个、质量为 $M$、电荷为 $Ze$，其位移的运动方程为
+\begin{equation*}
+M\ddot{\mathbf{x}} = -4\pi NZ^{2}e^{2}\mathbf{x}. \tag{6.80}
+\end{equation*}
+这就是说，对于波矢为 $\mathbf{q}$ 的纵波，其频率就是离子的等离体频率
+\begin{equation*}
+\Omega_{p} = \biggl(\frac{4\pi NZ^{2}e^{2}}{M}\biggr)^{\frac{1}{2}}, \tag{6.81}
+\end{equation*}
+而且几乎不依赖于 $q$。
+
+现在假设我们把电子气倾注进去。如第 5 章所示，这会修正来自其他源的一切有效静电场。例如，波矢为 $\mathbf{q}$、频率为 $\omega$ 的外加场要除以在 (5.16) 中定义的介电函数 $\epsilon(\mathbf{q},\omega)$。这应当同样适用于源于离子等离体极化的力；(6.80) 的右端应当除以 $\epsilon(\mathbf{q},\omega)$，其中 $\mathbf{q}$ 是所考虑的振动的波矢，$\omega$ 是它的实际频率。这意味着观测到的频率将是
+\begin{equation*}
+\nu_{\mathbf{q}}^{2} = \frac{\Omega_{p}^{2}}{\epsilon(\mathbf{q},\nu_{\mathbf{q}})}. \tag{6.82}
+\end{equation*}
+实际上 $\nu_{\mathbf{q}}$ 很小，在 $\epsilon$ 中可以忽略（也就是说，离子等离体振动的频率与一切电子过程相比都很低）。对 $\epsilon(\mathbf{q},0)$ 采用近似 (5.21)，我们得到
+\begin{equation*}
+\nu_{\mathbf{q}}^{2} \approx \frac{4\pi NZ^{2}e^{2}}{M}\,\frac{q^{2}}{q^{2}+4\pi e^{2}\mathcal{N}(\mathcal{E}_{F})}, \tag{6.83}
+\end{equation*}
+亦即
+\begin{equation*}
+\nu_{\mathbf{q}} \rightarrow q\biggl(\frac{NZ^{2}}{M\mathcal{N}(\mathcal{E}_{F})}\biggr)^{\frac{1}{2}}. \tag{6.84}
+\end{equation*}
+换句话说，纵声学模的速度趋于一个常数；对于密度为 $NZ$ 的自由电子气，它就是简单地
+\begin{equation*}
+s = \biggl(\frac{mZ}{3M}\biggr)^{\frac{1}{2}}v_{F}, \tag{6.85}
+\end{equation*}
+其中 $v_{F}$ 照例是电子的费米速度。对大多数金属的声速而言，这个估计并不坏，对碱金属尤其好用。公式 (6.82) 表明 Kohn 效应（§5.4）是如何产生的。群速是 $\nu_{\mathbf{q}}$ 对 $q$ 的导数——而 $\epsilon(\mathbf{q},0)$ 的导数在 $q = 2k_{F}$ 处含有对数奇异性。
+
+要对金属的晶格动力学作更系统的处理——对一切偏振方向、一切波长都成立——我们应当按如下步骤进行：(i) 计算完整晶体的电子能带结构；(ii) 计算同一晶体在离子按波矢为 $\mathbf{q}$ 的声子图样（如 (2.49) 那样）发生位移时的能带结构；(iii) 把这两个结构的总能量之差当作这种位移图样中“势能”的改变（如 (2.2) 那样），从而算出该模的频率 $\omega_{\mathbf{q}}$。
+
+这个程序看上去令人生畏，因为绝热原理只有在每个结构都自洽地算出时才成立。但假设我们处理的是横声子模，其中局地原子体积保持不变。晶体内聚能的大部分（参看 §4.3）不发生变化，于是我们可以只集中于来自费米面畸变的小贡献——这样的畸变可以描述成电子被位移了的离子散射所产生的微扰（参看 §§2.7、6.13）。对于简单的 N.F.E. 金属，§5.3 的屏蔽赝势方案恰好精确地、完全自洽地描述了这类位移的效应。于是我们发现频率 $\omega_{\mathbf{q}}$ 与屏蔽离子赝势的各个 Fourier 分量 $w_{s}(\mathbf{q}+\mathbf{g})$ 之间有一个关系式。
+
+这个关系已被颇为成功地用于解释用中子衍射（§2.8）在金属横向晶格谱中观测到的复杂色散曲线。我们甚至可以回到实空间表示，证明金属的动力学行为就好像“中性赝原子”（neutral pseudo-atoms）之间存在两两成对的弹性力——这种力也可以解释成裸金属离子的“赝电荷”云之间的屏蔽静电相互作用。但这个图像用于长波纵模时却会引人误入歧途，因为在那里体积效应占主导地位；对于过渡金属和共价键合的半导体（§4.2），它也完全不适用。
+
+\section{电子–声子相互作用}
+
+处理这个问题的最简单方式，是假定金属中的传导电子被晶格振动非弹性地衍射，其方式与我们为 X 射线、中子或快电子的非弹性衍射所假定的完全相同。这个处理乍一看实在太过天真，但可以求助于 §6.11 的绝热原理来为它辩护。我们径直接过 §§2.7、2.8 的全部理论。在 (2.86) 与 (2.97) 中我们得到过如下公式：从态 $\mathbf{k}$ 到态 $\mathbf{k}'$ 的跃迁矩阵元可以写成
+\begin{equation*}
+\mathcal{M}_{\mathbf{k}\mathbf{k}'} = i\mathcal{V}_{a}(\mathbf{K})\cdot(\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}), \tag{6.86}
+\end{equation*}
+其中 $\mathbf{K} = \mathbf{k}' - \mathbf{k}$；$\mathbf{q} = \mathbf{K}$ 或 $\mathbf{q} = \mathbf{K} - \mathbf{g}$，视我们遇到的是 N 过程还是 U 过程而定；$\mathbf{U}_{\mathbf{q}}$ 是波矢为 $\mathbf{q}$ 的晶格振动的矢量振幅；而 $\mathcal{V}_{a}(\mathbf{K})$ 是单个原子或离子的势对这个跃迁的矩阵元。
+
+我们可以把它非常简单地表述如下。取 $\mathcal{M}_{\mathbf{k}\mathbf{k}'}$ 的模平方，再用常规微扰论算出一个散射概率。于是晶格中每个原子的行为就如同它具有一个平均的有效微分散射截面
+\begin{equation*}
+\overline{\sigma}(\mathbf{K}) = \sigma_{a}(\mathbf{K})\,N\,|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}, \tag{6.87}
+\end{equation*}
+其中 $\sigma_{a}(\mathbf{K})$ 是\emph{孤立的}（isolated）原子散射过矢量 $\mathbf{K}$ 的微分截面。
+
+这个公式十分透明。它仿佛是说每个原子都能独立地散射电子——但散射量的多少依赖于它在晶格中与相邻原子相对位移的大小。因子 $|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}$ 对所有 $\mathbf{q}$ 的平均出现在 §2.9 讨论的 Debye--Waller 因子的理论之中；如 (2.107) 与 (2.118) 所示，它正是离子偏离其格点的均方位移，表示为晶格间距的分数。但当我们细致考察每一个过程——也就是说，当我们选定一个特定的 $\mathbf{K}$ 值时——就必须考虑来自具有确定波矢的一组晶格位移的散射；此时相邻离子位移之间的关联就变得重要起来，长波模引起的散射遂被削弱。
+
+参看 (2.86) 与 (2.103)，我们可以把这一点看得更加清楚。因子 $N|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}$ 是结构因子平方的一个近似，而结构因子正比于 $S(\mathbf{K})$，即原子位置的对关联函数（pair correlation function）的 Fourier 变换；亦即
+\begin{equation*}
+\overline{\sigma}(\mathbf{K}) = \sigma_{a}(\mathbf{K})\,S(\mathbf{K}). \tag{6.88}
+\end{equation*}
+这个结果对液体和对固体同样成立；传导电子的散射依赖于液体中原子的径向分布函数。
+
+等我们讨论电阻率等问题时，还要进一步考虑这个结构因子，并分析来自各个晶格频率的贡献。我们还需要计入电子被散射时的能量变化，一如 (2.101)。眼下我们只指出：绝热原理使我们得以证明 (6.87)，因为它允许我们假定晶格冻结在任一构型上，然后再计算电子在这个稍稍非周期的排布中的散射。离子运动的唯一动力学效应，就是我们方才提到的那个能量变化。
+
+电子--声子相互作用的问题就这样主要归结为计算 $\sigma_{a}(\mathbf{K})$。假如原子只是一个被整体携带着走的浅势 $\mathcal{V}(\mathbf{r})$，那么由初等波力学，在 Born 近似下我们应当有
+\begin{equation*}
+\frac{\partial\sigma_{a}}{\partial\Omega} = \biggl(\frac{m}{2\pi\hbar^{2}N}\biggr)^{2}\,|\mathcal{V}_{a}(\mathbf{K})|^{2} \tag{6.89}
+\end{equation*}
+作为每单位立体角 $\Omega$ 的微分散射。在这个公式中
+\begin{equation*}
+\mathcal{V}_{a}(\mathbf{K}) = N\int\mathcal{V}_{a}(\mathbf{r})\,e^{-i\mathbf{K}\cdot\mathbf{r}}\,\mathbf{dr}; \tag{6.90}
+\end{equation*}
+它是离子势的 Fourier 变换，按晶体的一个晶胞归一化。
+
+但是正如 §3.9 中所见，原子或离子的真实势对散射截面的 Born 近似来说太深了。分波公式 (3.78)，或某种类似的散射振幅精确公式，要合适得多。特别是，我们可以采用 §§3.6、3.9 的赝势形式体系，在与能带结构计算相同的框架内计算电子--声子相互作用。
+
+这就提示我们，(6.89) 中 $\mathcal{V}_{a}$ 的 Fourier 分量应当换成原子赝势的相应分量。
+但移动一个离子所引起的势的改变，必须把电子气电荷分布的移动所产生的任何效应都包括进来。如 §5.3 所见，这可以近似地加以照顾：把裸离子势的 Fourier 分量除以介电函数。
+
+长话短说，正确的做法是使我们关于电子--声子相互作用的整个讨论从叠加的\emph{赝原子}（pseudo-atom）势 (5.35) 出发，而不是从叠加的“原子”势 (2.83) 出发。代替 (6.89)，我们得到
+\begin{equation*}
+\frac{\partial\sigma_{a}}{\partial\Omega} = \biggl(\frac{m}{2\pi\hbar^{2}N}\biggr)^{2}\,|w_{s}(K)|^{2}, \tag{6.91}
+\end{equation*}
+其中 $w_{s}(K)$ 是某个中性赝原子“势”的 Fourier 变换。这个公式在散射微扰级数的所有阶次上并不精确，而且在 $K$ 大时相当不确定，因为线性屏蔽在原子芯区内并不适用；但对于简单的 N.F.E. 金属，它是一个良好的自洽近似。
+
+$w_{s}(K)$ 的行为对所有简单金属而言大体相同。如 §5.3 所见，\emph{裸}（bare）离子的赝势 $w_{b}(r)$ 包含价电荷 $Ze$ 的长程 Coulomb 场。因此，作 Fourier 变换后（参看 (5.31)），它必定表现如下
+\begin{equation*}
+w_{b}(K) \approx -\frac{4\pi ZNe^{2}}{K^{2}} + \mathcal{V}'(K) \tag{6.92}
+\end{equation*}
+其中当 $\mathbf{K} \rightarrow 0$ 时 $\mathcal{V}'(\mathbf{K})$ 保持有限，无论离子芯内部 $\mathcal{V}(\mathbf{r})$ 的形式如何。
+
+(6.92) 中的奇异性当然在 $\mathbf{K} = \mathbf{0}$ 处被 $\epsilon(\mathbf{K})$ 的奇异性所抵消，一如 (5.32)。把这些不同的结果合在一起，我们可以写出
+\begin{align*}
+w_{s}(K) = \frac{w_{b}(K)}{\epsilon(K)} &\approx \frac{-4\pi ZNe^{2}/K^{2} + \mathcal{V}'(\mathbf{K})}{1 + 4\pi e^{2}\mathcal{N}(\mathcal{E}_{F})/K^{2}} \\
+&\approx \frac{-\frac{2}{3}\mathcal{E}_{F} + (K^{2}/\lambda^{2})\,\mathcal{V}'(\mathbf{K})}{1 + (K^{2}/\lambda^{2})}, \tag{6.93}
+\end{align*}
+其中屏蔽参量 $\lambda$ 来自 (5.22)，或者更确切地说，来自 (5.21) 与 (5.36)。本质上，这就是 Bardeen 在 1937 年为碱金属中电子--声子相互作用的矩阵元导出的公式。我们现在看到，这个赝原子形状因子（图 119）在简单的
+N.F.E. 金属的理论中占据核心地位。知道了 $w_{s}(K)$，我们原则上就可以计算能带结构（§3.9）、晶格谱（§6.12）、晶相与液相的电输运性质（§7.5），甚至超导转变温度（§11.1）。遗憾的是，(6.93) 中的芯贡献 $\mathcal{V}'(\mathbf{K})$ 既不是“局域的”（§3.6），也没有唯一的定义，因此这些性质之间的关联并不如我们所期望的那样完美。生活很少那么简单！
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_119.pdf}
+\caption*{图 119\quad 赝原子形状因子。能带结构只依赖于它在倒格矢 $\mathbf{g}_1$、$\mathbf{g}_2$ 等处的取值。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_120.pdf}
+\caption*{图 120\quad 在重复区图式中，U 过程可以化为 N 过程。}
+\end{figure}
+
+在这番讨论中有一点需要当心。假设我们要求两个电子态 $\mathbf{k}$ 与 $\mathbf{k}'$ 之间的电子--声子相互作用，而这两个态相距几乎恰好一个倒格矢。这时若用诸如 (6.89) 那样的自由电子公式来计算微分散射截面，就肯定错了。这两个态看似相差一个很大的波矢，其实在重复区图式上看彼此相当接近。由于二者都贴近某个区边界，正如 §§3.2、3.3 中指出的，每一个都是平面波的复杂混合。
+就可以发现（出于自洽性的要求也必然如此）：当把 $\mathcal{V}_{a}(\mathbf{K})$ 作为在经过正确混合的波函数之间取的矩阵元来计算时，它的值在 $\mathbf{K} \rightarrow \mathbf{g}$ 时趋于零。
+
+我们可以换一种说法。一个在单一简约区内标记时看似倒逆过程的跃迁，在重复区图式中可以显得像正常过程——而且此时矩阵元正比于 $\mathbf{q}\cdot\mathbf{U}_{\mathbf{q}}$，当声子波矢 $\mathbf{q}$ 趋于零时它也趋于零。
+
+\section{形变势}
+
+在半导体中，波函数十分复杂，方便的办法是采用一种唯象理论，把晶体当作连续的弹性介质来处理。这时晶格振动可以描述成弹性应变的波，例如
+\begin{equation*}
+\mathsf{W}_{ij}(\mathbf{r}) = \mathsf{W}_{ij}^{0}\,e^{i\mathbf{q}\cdot\mathbf{r}} \tag{6.94}
+\end{equation*}
+给出 $\mathbf{r}$ 处应变张量的笛卡尔分量。于是我们论证：局域应变使载流子的能量改变如下的数量
+\begin{equation*}
+\delta\mathcal{E}(\mathbf{r}) = \sum_{ij}\mathcal{E}_{ij}\,\mathsf{W}_{ij}(\mathbf{r}), \tag{6.95}
+\end{equation*}
+其中 $\mathcal{E}_{ij}$ 是\emph{形变势}（deformation potential）张量。
+
+我们可以容易地算出一个电子散射的矩阵元。譬如说，如 (2.84) 中那样，
+\begin{align*}
+\mathcal{M}_{\mathbf{k}\mathbf{k}'} &= \int e^{-i\mathbf{k}'\cdot\mathbf{r}}\,\delta\mathcal{E}(\mathbf{r})\,e^{i\mathbf{k}\cdot\mathbf{r}}\,\mathbf{dr} \\
+&= \bigl(\sum_{ij}\mathsf{W}_{ij}^{0}\,\mathcal{E}_{ij}\bigr)\delta_{\mathbf{k}-\mathbf{k}'+\mathbf{q}}, \tag{6.96}
+\end{align*}
+这是在单位体积的晶体中。
+
+这种散射守恒晶体动量；这很自然，因为我们已经把晶格抹平了。散射概率正比于 $|\mathsf{W}^{0}|^{2}$，它与更精确的理论中 (6.88) 的结构因子属于同一类量。为了求出系数 $\mathcal{E}_{ij}$，我们可以设想让整个固体经受均匀应变 $\mathsf{W}^{0}$，并测量能隙宽度的改变。
+
+对于金属，$\mathcal{E}_{ij}$ 的膨胀分量很容易确定。论证本质上就是 §5.2 中所用的那一套。一个变化的体膨胀 $\Delta(\mathbf{r})$ 使 $\mathbf{r}$ 附近的电子密度从 $n_{0}$ 变为 $n_{0}(1-\Delta)$。这会使费米能级改变
+\begin{equation*}
+\delta\zeta(\mathbf{r}) = \frac{n_{0}\Delta(\mathbf{r})}{\mathcal{N}(\mathcal{E}_{F})} = \frac{2}{3}\mathcal{E}_{F}\Delta(\mathbf{r}) \tag{6.97}
+\end{equation*}
+——在自由电子气中。对于密度的长波振荡，我们可以让少数电子从较稠密的区域回流出来，从而使费米能级恢复均匀。这个对局域电中性的小偏离产生一个电场，其势恰好使费米能级在整个晶体中恢复处处相同。这个场必定是 $-\delta\zeta(\mathbf{r})$，我们把它等同于 $\delta\mathcal{E}(\mathbf{r})$；也就是说，形变势张量的迹必为
+\begin{equation*}
+\sum_{i}\mathcal{E}_{ii} = -\frac{2}{3}\mathcal{E}_{F}. \tag{6.98}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_121.pdf}
+\caption*{图 121\quad (a) 晶格中的密度波使电子密度发生变化。(b) 费米能级被升高或降低。(c) 电子回流以保持费米能级恒定，从而产生形变势。}
+\end{figure}
+
+这是对 (6.93) 中 $w_{s}(K)$ 在 $K \rightarrow 0$ 时的极限值的一个严格推导；它表明赝原子形状因子的这个特征是完全自洽的，而且对微扰论的所有阶次都精确。任何想在发生了形变的晶体中使用 muffin-tin 势（§3.7）的做法，也都必须把这个效应作为 muffin-tin 零点的改变考虑进去。

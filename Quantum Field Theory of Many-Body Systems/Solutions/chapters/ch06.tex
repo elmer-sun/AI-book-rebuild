@@ -1,0 +1,814 @@
+% ch06 第6章习题解答（16 题）
+\chapter{量子规范理论}
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.1}
+\begin{problem}
+证明：环面上的 $Z_2$ 规范理论满足约束 $\prod_{\pmb i}F_{\pmb i}=1$（式 (6.2.2)），其中
+\begin{equation*}
+F_{\pmb i}=s_{\pmb i,\pmb i+\pmb x}\,s_{\pmb i+\pmb x,\pmb i+\pmb x+\pmb y}\,s_{\pmb i+\pmb x+\pmb y,\pmb i+\pmb y}\,s_{\pmb i+\pmb y,\pmb i}
+\end{equation*}
+是穿过方格 $\pmb i$ 的 $Z_2$ 通量。
+\end{problem}
+\solution
+
+把式 (6.2.2) 的左端按链变量重新整理：
+\begin{align*}
+\prod_{\pmb i}F_{\pmb i}
+&=\prod_{\pmb i}s_{\pmb i,\pmb i+\pmb x}\,s_{\pmb i+\pmb x,\pmb i+\pmb x+\pmb y}\,s_{\pmb i+\pmb x+\pmb y,\pmb i+\pmb y}\,s_{\pmb i+\pmb y,\pmb i}
+=\prod_{\langle\pmb{ij}\rangle}\bigl(s_{\pmb{ij}}\bigr)^{2}=1 .
+\end{align*}
+第二步把乘积从"按方格"重组为"按链"：环面是无边界的闭曲面，每条链恰好是两个方格的公共边，因此在 $\prod_{\pmb i}F_{\pmb i}$ 中每个链变量 $s_{\pmb{ij}}$ 恰好出现两次（链变量满足 $s_{\pmb{ij}}=s_{\pmb{ji}}$，取向无关紧要）；第三步用 $s_{\pmb{ij}}=\pm1$，即 $s_{\pmb{ij}}^2=1$。
+
+物理解释：$\prod_{\pmb i}F_{\pmb i}=1$ 表明 $Z_2$ 通量线不能在闭合曲面内部凭空开始或终止——把每个 $F_{\pmb i}=-1$ 的方格视为一个 $Z_2$ 涡旋，则涡旋在环面上只能成对产生（正文 6.2.3 节正是用这一点说明 $Z_2$ 涡旋成对激发）。注意此约束本质上是拓扑的：在带边界的格子上（问题 6.2.5），边界链只属于一个方格，逐链配对失效，约束不再成立。
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.2}
+\begin{problem}
+环面上由式 (6.2.3) 定义的四个位形 $s^{(m,n)}_{\pmb{ij}}=f_x^{m}(\pmb{ij})\,f_y^{n}(\pmb{ij})\,s^0_{\pmb{ij}}$（$m,n=0,1$；当链 $\pmb{ij}$ 跨过 $x$ 线时 $f_x=-1$，跨过 $y$ 线时 $f_y=-1$，否则为 $+1$）给出相同的方格通量 $F_{\pmb i}$。证明这四个位形互不规范等价。
+\end{problem}
+\solution
+
+约定几何：$x$ 线是位于固定 $x^1$ 处、沿 $\pmb y$ 方向绕环面一周的闭合线；跨过它的链是 $\pmb x$ 方向的链，共 $L_y$ 条。$y$ 线类似（沿 $\pmb x$ 方向、位于固定 $x^2$ 处，被跨过的是 $\pmb y$ 方向的链，共 $L_x$ 条）。
+
+\textbf{第一步：$U(C)$ 是规范不变量。}对回路 $C$ 上的 Wegner--Wilson 圈变量 $U(C)=\prod_{C}s_{\pmb{ij}}$ 作规范变换 (6.2.1)：
+\begin{equation*}
+\tilde U(C)=\prod_{C}W_{\pmb i}\,s_{\pmb{ij}}\,W_{\pmb j}^{-1}
+=\Bigl(\prod_{\text{回路上的格点}}W_{\pmb i}W_{\pmb i}^{-1}\Bigr)U(C)=U(C),
+\end{equation*}
+因为回路上每个格点恰被两条链经过，$W$ 因子成对相消。故 $U(C)$ 只依赖于规范等价类，可用来区分不同的物理态。
+
+\textbf{第二步：$f_x,f_y$ 对绕环面回路的作用。}取 $C_x$ 为沿 $\pmb x$ 方向绕环面一周的回路（由 $L_x$ 条 $\pmb x$ 方向的链组成），$C_y$ 类似。$C_x$ 恰好横跨 $x$ 线一次（贡献一条 $f_x=-1$ 的链），而它的链全是 $\pmb x$ 方向的链，没有一条跨过 $y$ 线；$C_y$ 恰好横跨 $y$ 线一次而不跨 $x$ 线。于是
+\begin{equation*}
+U(C_x)\bigl[s^{(m,n)}\bigr]=(-1)^{m}\,U(C_x)\bigl[s^{(0,0)}\bigr],
+\qquad
+U(C_y)\bigl[s^{(m,n)}\bigr]=(-1)^{n}\,U(C_y)\bigl[s^{(0,0)}\bigr] .
+\end{equation*}
+
+\textbf{第三步：结论。}四个位形给出四组不同的 $(U(C_x),U(C_y))=(\pm1,\pm1)$。由于这两个量都是规范不变量，若某两个位形规范等价，它们必须给出相同的 $(U(C_x),U(C_y))$；现在四组互不相同，故四个位形互不规范等价，代表四个不同的物理态。
+
+物理解释：$U(C_x)$、$U(C_y)$ 是穿过环面两个洞的 $Z_2$ 通量（见图 9.6）；$f_x$、$f_y$ 分别往其中一个洞插入一份 $Z_2$ 通量。方格通量 $F_{\pmb i}$ 无法探测这种"整体"通量，这正是同一通量组态 $\{F_{\pmb i}\}$ 对应四个态的根源。
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.3}
+\begin{problem}
+$Z_2$ 规范理论的希尔伯特空间 $\mathcal{H}_{Z_2}$ 可由链上放自旋 $1/2$ 的模型之希尔伯特空间 $\mathcal{H}_{\text{spin}}$ 构造。$\mathcal{H}_{\text{spin}}$ 中在所有幺正变换 $\hat W_G=\prod_{\langle\pmb{ij}\rangle}(\sigma^1_{\pmb{ij}})^{G_{\pmb i}-G_{\pmb j}}$（$G_{\pmb i}=0,1$ 为格点上的任意函数）下不变的态构成子空间 $\mathcal{H}_{\text{sub}}$。证明 $\mathcal{H}_{\text{sub}}=\mathcal{H}_{Z_2}$，且 $\hat W_G$ 生成 $Z_2$ 规范变换。
+\end{problem}
+\solution
+
+\textbf{第一步：基底认同。}取 $\sigma^3_{\pmb{ij}}$ 的本征态为基底：$\sigma^3_{\pmb{ij}}|\{s\}\rangle=s_{\pmb{ij}}|\{s\}\rangle$，$s_{\pmb{ij}}=\pm1$，即 $|\uparrow\rangle_{\pmb{ij}}\leftrightarrow s_{\pmb{ij}}=+1$，$|\downarrow\rangle_{\pmb{ij}}\leftrightarrow s_{\pmb{ij}}=-1$。于是 $\mathcal{H}_{\text{spin}}=\text{span}\{|\{s_{\pmb{ij}}\}\rangle\}$，正是定义 $\mathcal{H}_{Z_2}$ 时使用的位形空间。
+
+\textbf{第二步：$\hat W_G$ 生成式 (6.2.1) 的规范变换。}由 $(\sigma^1)^2=1$ 及 $(\sigma^1)^{-1}=\sigma^1$，指数 $G_{\pmb i}-G_{\pmb j}\in\{-1,0,1\}$ 只区分"奇偶"：
+\begin{equation*}
+\hat W_G=\prod_{\substack{\langle\pmb{ij}\rangle\\ G_{\pmb i}\neq G_{\pmb j}}}\sigma^1_{\pmb{ij}} .
+\end{equation*}
+它作用在位形基上只翻转那些 $G_{\pmb i}\neq G_{\pmb j}$ 的链：
+\begin{equation*}
+\hat W_G|\{s_{\pmb{ij}}\}\rangle=\bigl|\{\tilde s_{\pmb{ij}}\}\bigr\rangle,
+\qquad
+\tilde s_{\pmb{ij}}=(-1)^{G_{\pmb i}-G_{\pmb j}}\,s_{\pmb{ij}} .
+\end{equation*}
+令 $W_{\pmb i}=(-1)^{G_{\pmb i}}$，则 $W_{\pmb i}$ 是取值 $\pm1$ 的任意格点函数（每个 $\{\pm1\}$ 标签函数都可写成这种形式），且
+\begin{equation*}
+\tilde s_{\pmb{ij}}=W_{\pmb i}\,W_{\pmb j}^{-1}\,s_{\pmb{ij}},
+\end{equation*}
+恰为 $Z_2$ 规范变换 (6.2.1)。故 $\{\hat W_G\}$ 生成全部 $Z_2$ 规范变换；其乘法规则为 $\hat W_G\hat W_{G'}=\hat W_{(G+G')\,\mathrm{mod}\,2}$，实现规范群 $Z_2^{N_{\text{site}}}$（$G$ 与 $G+\text{常数}$ 给出同一算符，对应不变规范群 IGG 的两个元素 $\{\pm1\}$）。
+
+\textbf{第三步：$\mathcal{H}_{\text{sub}}=\mathcal{H}_{Z_2}$。}把任意态写成 $|\psi\rangle=\sum_{\{s\}}c_{\{s\}}|\{s\}\rangle$。因 $\hat W_G$ 置换位形基矢量，$|\psi\rangle$ 规范不变当且仅当系数在每个规范轨道内为常数：
+\begin{equation*}
+|\psi\rangle=\sum_{\text{轨道 }[s]}c_{[s]}\ \sum_{\{s\}\in[s]}|\{s\}\rangle ,
+\end{equation*}
+即 $\mathcal{H}_{\text{sub}}$ 由规范轨道和 $\sum_{\{s\}\in[s]}|\{s\}\rangle$ 张成，且各轨道和线性无关。另一方面，$\mathcal{H}_{Z_2}$ 的基正是规范等价类（态与等价类一一对应）。轨道和与等价类一一对应、个数相等，故 $\mathcal{H}_{\text{sub}}$ 与 $\mathcal{H}_{Z_2}$ 同维；在此自然同构下，所有规范不变算符（如 $F_{\pmb i}=\prod\sigma^3_{\pmb{ij}}$、圈算符 $\prod_{C}\sigma^1_{\pmb{ij}}$、以及 $\sigma^1_{\pmb{ij}}$ 本身，见问题 6.2.4）的作用完全相同。因此可以把两个空间等同：$\mathcal{H}_{\text{sub}}=\mathcal{H}_{Z_2}$。
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.4}
+\begin{problem}
+设 $\hat W$ 生成规范变换 $\hat W|\{s_{\pmb{ij}}\}\rangle=|\{\tilde s_{\pmb{ij}}\}\rangle$，$\tilde s_{\pmb{ij}}$ 与 $s_{\pmb{ij}}$ 通过式 (6.2.1) 相联系。若算符 $\hat O$ 满足 $\hat W\hat O\hat W^{-1}=\hat O$，则称 $\hat O$ 规范不变。证明 $\sigma^1_{\pmb{ij}}$ 是规范不变算符。
+\end{problem}
+\solution
+
+\textbf{证法一（对易，一行）。}由问题 6.2.3，$\hat W_G=\prod_{\langle\pmb{kl}\rangle}(\sigma^1_{\pmb{kl}})^{G_{\pmb k}-G_{\pmb l}}$ 是一串 $\sigma^1$ 的乘积。作用在不同链（或同一条链）上的诸 $\sigma^1$ 彼此对易（$(\sigma^1)^2=1$；不同自旋的算符对易），故
+\begin{equation*}
+\hat W_G\,\sigma^1_{\pmb{ij}}\,\hat W_G^{-1}
+=\sigma^1_{\pmb{ij}}\ \hat W_G\hat W_G^{-1}
+=\sigma^1_{\pmb{ij}} .
+\end{equation*}
+
+\textbf{证法二（在位形基上逐点验证）。}由于 $W_{\pmb i}^{-1}=W_{\pmb i}$，$\hat W_G$ 是自逆的。对任意位形基矢：
+\begin{align*}
+\hat W_G\,\sigma^1_{\pmb{ij}}\,\hat W_G^{-1}|\{s\}\rangle
+&=\hat W_G\,\sigma^1_{\pmb{ij}}\,|\{W_{\pmb k}s_{\pmb{kl}}W_{\pmb l}\}\rangle
+=\hat W_G\,\bigl|\{u_{\pmb{kl}}\}\bigr\rangle,\\
+u_{\pmb{kl}}&=W_{\pmb k}s_{\pmb{kl}}W_{\pmb l}\ (\pmb{kl}\neq\pmb{ij}),
+\qquad
+u_{\pmb{ij}}=-W_{\pmb i}s_{\pmb{ij}}W_{\pmb j},
+\end{align*}
+再作用 $\hat W_G$：非 $\pmb{ij}$ 链恢复为 $s_{\pmb{kl}}$，而 $\pmb{ij}$ 链变为 $W_{\pmb i}(-W_{\pmb i}s_{\pmb{ij}}W_{\pmb j})W_{\pmb j}=-s_{\pmb{ij}}$。结果正是 $\sigma^1_{\pmb{ij}}|\{s\}\rangle$。由基底的任意性得 $\hat W_G\sigma^1_{\pmb{ij}}\hat W_G^{-1}=\sigma^1_{\pmb{ij}}$。
+
+物理含义：规范不变的算符把物理态映射为物理态。$\sigma^1_{\pmb{ij}}$ 与所有规范变换对易，因此允许出现在哈密顿量中——这正是式 (6.2.4) 中 $-t\sum_{\langle\pmb{ij}\rangle}\sigma^1_{\pmb{ij}}$ 项合法的原因。
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.5}
+\begin{problem}
+$t=0$ 时 $H_{Z_2}=-g\sum_{\pmb p}F_{\pmb p}$（式 (6.2.4)）定义在 $L_x\times L_y$ 个格点上。(a) 开格子：求基态能量与简并度。(b) 格子沿 $y$ 方向周期（圆柱面）：求基态能量与简并度。(c) 沿 $x,y$ 都周期（环面），取 $g<0$：对 (i) $L_x,L_y$ 均偶；(ii) $L_x$ 偶、$L_y$ 奇；(iii) $L_x,L_y$ 均奇三种情形求基态能量与简并度。
+\end{problem}
+\solution
+
+\textbf{预备。}$t=0$ 时 $H$ 在位形基下对角，能量只依赖通量组态 $\{F_{\pmb p}\}$；而通量规范不变，故每个规范等价类能量确定。基态＝使 $\sum_{\pmb p}F_{\pmb p}$ 极小的通量组态所对应的全部规范等价类。用两个计数事实（设格子连通、格点数 $N_{\text{site}}$）：
+
+(1) \emph{轨道大小恒为 $2^{N_{\text{site}}-1}$。}使 $W_{\pmb i}W_{\pmb j}s_{\pmb{ij}}=s_{\pmb{ij}}$ 对一切链成立的 $W$ 满足 $W_{\pmb i}=W_{\pmb j}$（因 $s_{\pmb{ij}}\neq0$），由连通性 $W$ 为常数：不变规范群 $\text{IGG}=\{\pm1\}$ 有 2 个元素，故轨道大小 $=2^{N_{\text{site}}}/2$，与位形无关。
+
+(2) \emph{通量映射的纤维。}带边界的格子上方格通量彼此独立：给定任意目标 $\{F_{\pmb p}\}$，把每个方格的"下边链"留作自由链，自上而下逐方格用它唯一实现该方格的目标通量（每条链至多是一条方格的下边链，互不冲突），故通量映射是到 $\{\pm1\}^{N_p}$ 的满射，纤维大小 $2^{N_l-N_p}$。环面上约束 (6.2.2) 使像只剩 $2^{N_p-1}$ 个通量组态，纤维大小 $2^{N_l-N_p+1}$。
+
+\textbf{(a) 开格子。}$N_{\text{site}}=L_xL_y$，链数 $N_l=2L_xL_y-L_x-L_y$，方格数 $N_p=(L_x-1)(L_y-1)$。基态通量均匀（$g>0$ 取全 $+1$；$g<0$ 取全 $-1$）：
+\begin{equation*}
+E_0=-|g|\,(L_x-1)(L_y-1).
+\end{equation*}
+简并度：全 $+1$ 通量的位形数为 $2^{N_l-N_p}$，除以轨道大小 $2^{N_{\text{site}}-1}$：
+\begin{equation*}
+2^{\,N_l-N_p-N_{\text{site}}+1}
+=2^{\,(2L_xL_y-L_x-L_y)-(L_xL_y-L_x-L_y+1)-L_xL_y+1}=2^{0}=1 .
+\end{equation*}
+\begin{equation*}
+\boxed{\ E_0=-|g|(L_x-1)(L_y-1),\qquad \text{基态不简并（1 重）}.\ }
+\end{equation*}
+物理原因：开格子没有非收缩回路，不存在绕数（holonomy）标签，四重拓扑简并被边界完全解除。
+
+\textbf{(b) 圆柱面（$y$ 方向周期）。}$N_l=(L_x-1)L_y+L_xL_y=(2L_x-1)L_y$，$N_p=(L_x-1)L_y$。基态通量仍均匀，$E_0=-|g|(L_x-1)L_y$。全 $+1$ 通量位形数 $2^{N_l-N_p}=2^{L_xL_y}$，简并度
+\begin{equation*}
+2^{L_xL_y}\big/2^{L_xL_y-1}=2 .
+\end{equation*}
+\begin{equation*}
+\boxed{\ E_0=-|g|(L_x-1)L_y,\qquad \text{基态 2 重简并}.\ }
+\end{equation*}
+显式构造：设 $s^0$ 是一个基态位形；令 $f$ 在跨过一条固定水平线（沿 $\pmb x$ 方向、连接两个边界的线段，被跨过的是 $L_x$ 条 $\pmb y$ 方向的链）上取 $-1$、其余取 $+1$。每个方格恰含 0 或 2 条被跨链，故 $f\,s^0$ 与 $s^0$ 通量相同；但绕圆柱一周的回路 $C$（沿 $\pmb y$ 方向）恰跨该线一次，$U(C)$ 差一负号，故二者不规范等价，正是仅有的两个基态。圆柱面有一个"洞"，提供 1 比特的拓扑标签。
+
+\textbf{(c) 环面，$g<0$。}能量 $E=-g\sum_{\pmb p}F_{\pmb p}=|g|\bigl(2n_{+}-N_p\bigr)$，其中 $n_{+}$ 为 $F_{\pmb p}=+1$ 的方格数，$N_p=L_xL_y$。约束 (6.2.2)（等价地：$Z_2$ 涡旋数为偶）给出 $n_{+}\equiv N_p\ (\mathrm{mod}\ 2)$。环面上每个\emph{允许的}通量组态对应 $2^{N_l-N_p+1}/2^{N_{\text{site}}-1}=4$ 个规范等价类（问题 6.2.2 的四个绕数扇区）。
+
+\textbf{(i) $L_x,L_y$ 均偶：}$N_p$ 偶，$n_{+}=0$ 允许：全部 $F_{\pmb p}=-1$。通量组态唯一：
+\begin{equation*}
+\boxed{\ E_0=-|g|\,L_xL_y,\qquad \text{简并度 }4\ (\ U(C_x),U(C_y)=\pm1\ \text{四个扇区}) .\ }
+\end{equation*}
+
+\textbf{(ii) $L_x$ 偶、$L_y$ 奇；\textbf{(iii)} $L_x,L_y$ 均奇：}两种情形都有 $N_p=L_xL_y$ 为奇。此时全部 $F_{\pmb p}=-1$ 需要 $N_p$ 个涡旋（奇数个），违反约束，不可实现；最小允许的 $n_{+}$ 为 1，即恰好保留一个 $F_{\pmb p}=+1$ 方格（$N_p-1$ 个涡旋）。基态能量
+\begin{equation*}
+E_0=|g|\,(2-N_p)=|g|\,(2-L_xL_y),
+\end{equation*}
+而该 $+1$ 方格的位置有 $N_p=L_xL_y$ 种选择（不同通量组态，规范不变量互不相同，必属不同态），每个通量组态又有 4 个绕数扇区：
+\begin{equation*}
+\boxed{\ E_0=|g|\,(2-L_xL_y),\qquad \text{简并度 }4L_xL_y .\ }
+\end{equation*}
+(ii) 与 (iii) 答案相同，因为能量与简并度只依赖 $N_p$ 的奇偶和环面拓扑。
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.6}
+\begin{problem}
+证明当 $g=0$、$t>0$ 时，$|\Psi_0\rangle=\sum_{\{s_{\pmb{ij}}\}}|\{s_{\pmb{ij}}\}\rangle$（式 (6.2.5)，求和遍及所有位形）是 $H_{Z_2}=-t\sum_{\langle\pmb{ij}\rangle}\sigma^1_{\pmb{ij}}$ 的（唯一）基态。
+\end{problem}
+\solution
+
+\textbf{$|\Psi_0\rangle$ 是物理态。}对所有位形的求和等于对所有规范轨道的求和，故 $|\Psi_0\rangle$ 在每个规范轨道内系数均匀，是规范不变态，属于 $\mathcal{H}_{Z_2}$。
+
+\textbf{它是本征态。}翻转任何一条链把全部位形集合一一映到自身，故 $\sigma^1_{\pmb{ij}}|\Psi_0\rangle=|\Psi_0\rangle$ 对每条链成立，从而
+\begin{equation*}
+H_{Z_2}|\Psi_0\rangle=-t\sum_{\langle\pmb{ij}\rangle}|\Psi_0\rangle=-t\,N_l\,|\Psi_0\rangle .
+\end{equation*}
+
+\textbf{它是最低能量态。}$H_{Z_2}$ 规范不变，保持 $\mathcal{H}_{Z_2}$（也保持更大的 $\mathcal{H}_{\text{spin}}$）。对任意归一态 $|\psi\rangle$，因 $\sigma^1_{\pmb{ij}}\leqslant\mathbb{1}$：
+\begin{equation*}
+\langle\psi|H_{Z_2}|\psi\rangle
+=-t\sum_{\langle\pmb{ij}\rangle}\langle\psi|\sigma^1_{\pmb{ij}}|\psi\rangle
+\ \geqslant\ -t\,N_l .
+\end{equation*}
+等号要求 $\sigma^1_{\pmb{ij}}|\psi\rangle=|\psi\rangle$ 对\emph{每}条链同时成立。所有 $\sigma^1_{\pmb{ij}}$ 彼此对易，其联合 $+1$ 本征空间是一维的：把每条链换成 $|\rightarrow\rangle_{\pmb{ij}}=\frac{1}{\sqrt2}(|\uparrow\rangle+|\downarrow\rangle)$，展开正是对所有位形的均匀叠加
+\begin{equation*}
+\bigotimes_{\langle\pmb{ij}\rangle}|\rightarrow\rangle_{\pmb{ij}}
+=\frac{1}{2^{N_l/2}}\sum_{\{s\}}|\{s\}\rangle\ \propto\ |\Psi_0\rangle .
+\end{equation*}
+因此基态能量为 $-tN_l$（$N_l$ 为链数），且基态唯一（在 $\mathcal{H}_{Z_2}$ 内也唯一，因为上述唯一本征矢恰好落在 $\mathcal{H}_{Z_2}$ 内）。在链上伊辛模型图像中，$|\Psi_0\rangle$ 就是所有自旋指向 $x$ 方向的态，这与正文的说法一致。
+
+\begin{equation*}
+\boxed{\ g=0,\ t>0:\ E_0=-t\,N_l,\qquad |\Psi_0\rangle=\sum_{\{s\}}|\{s\}\rangle\ \text{是唯一基态}.\ }
+\end{equation*}
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.7}
+\begin{problem}
+考虑 $L\times L$ 格点环面上的两个位形 $s^1_{\pmb{ij}},s^2_{\pmb{ij}}$，它们生成相同的 $Z_2$ 通量 $F_{\pmb i}$。证明：若二者不规范等价，则把 $s^1$ 变成 $s^2$ 至少要翻转 $L$ 条链上的 $s_{\pmb{ij}}$（即至少在 $L$ 条链上 $s^1_{\pmb{ij}}s^2_{\pmb{ij}}=-1$）。
+\end{problem}
+\solution
+
+由于诸 $\sigma^1_{\pmb{ij}}$ 对易，"翻转一组链"的净效果只依赖被翻转链的集合，故把 $s^1$ 变成 $s^2$ 所需的最少翻转数等于差值位形
+\begin{equation*}
+\eta_{\pmb{ij}}:=s^1_{\pmb{ij}}\,s^2_{\pmb{ij}}\in\{\pm1\}
+\end{equation*}
+中 $\eta=-1$ 的链数。要证明：不规范等价 $\Rightarrow$ $|\{\text{链}:\eta_{\pmb{ij}}=-1\}|\geqslant L$。
+
+\textbf{第一步（平坦引理）：$\eta$ 是"平坦"位形，且可写成 $\eta_{\pmb{ij}}=W_{\pmb i}W_{\pmb j}\,f_x^{m}f_y^{n}$。}
+两个位形通量相同，故对每个方格 $\prod_{\partial\square}\eta=F_{\pmb p}[s^1]F_{\pmb p}[s^2]=1$：$\eta$ 平坦。给定平坦 $\eta$：取生成树 $T$，从基准格点沿 $T$ 定义 $W_{\pmb j}=W_{\pmb i}\,\eta_{\pmb{ij}}$；对任一非树链 $(\pmb k,\pmb l)$，$W_{\pmb k}\eta_{\pmb{kl}}W_{\pmb l}$ 等于 $\eta$ 沿"树路径 + 该链"构成的回路的乘积，回路可缩、可分解为方格之积，由平坦性其值为 $+1$。于是 $\eta'_{\pmb{ij}}:=W_{\pmb i}\eta_{\pmb{ij}}W_{\pmb j}$ 在树链上为 $+1$、在所有方格上平坦。这样的位形由沿两个非收缩回路的值 $U(C_x)[\eta'],U(C_y)[\eta']=\pm1$ 完全分类；取 $(m,n)$ 使 $f_x^{m}f_y^{n}$ 具有相同的两个值，则 $\eta'f_x^{m}f_y^{n}$ 平坦且两个绕数均为 $+1$，由上述树构造它是纯规范变换。合并得
+\begin{equation*}
+\eta_{\pmb{ij}}=W_{\pmb i}\,W_{\pmb j}\,\bigl[f_x(\pmb{ij})\bigr]^{m}\bigl[f_y(\pmb{ij})\bigr]^{n},
+\qquad m,n\in\{0,1\} .
+\end{equation*}
+若 $(m,n)=(0,0)$，则 $s^2_{\pmb{ij}}=W_{\pmb i}s^1_{\pmb{ij}}W_{\pmb j}$，即 $s^1,s^2$ 规范等价，与假设矛盾。故 $(m,n)\neq(0,0)$。
+
+\textbf{第二步（计数）。}不妨设 $m=1$（若 $m=0,n=1$，把下述论证中的水平回路换成竖直回路即可）。考虑 $L$ 条水平回路 $C^{(1)},\dots,C^{(L)}$（每行一条，各沿 $\pmb x$ 方向绕环面一周）。任一条 $C^{(j)}$：恰跨 $x$ 线一次 $\Rightarrow\prod_{C^{(j)}}f_x=-1$；其链全为 $\pmb x$ 方向，不跨 $y$ 线 $\Rightarrow\prod_{C^{(j)}}f_y=+1$；$W$ 因子在回路上成对相消 $\Rightarrow\prod_{C^{(j)}}W_{\pmb i}W_{\pmb j}=1$。故对每条 $C^{(j)}$：
+\begin{equation*}
+\prod_{\pmb{ij}\in C^{(j)}}\eta_{\pmb{ij}}=-1 ,
+\end{equation*}
+即每条水平回路上至少有 1 条（奇数条）$\eta=-1$ 的链。这 $L$ 条回路互不相交，且覆盖了全部 $\pmb x$ 方向的链，因此
+\begin{equation*}
+\#\{\text{链}:\eta_{\pmb{ij}}=-1\}
+\ \geqslant\ \#\{\pmb x\text{ 方向链}:\eta_{\pmb{ij}}=-1\}
+\ \geqslant\ L .
+\end{equation*}
+
+\begin{equation*}
+\boxed{\ \text{不规范等价}\ \Longrightarrow\ \text{至少需翻转 }L\text{ 条链（在至少 }L\text{ 条链上 }s^1_{\pmb{ij}}s^2_{\pmb{ij}}=-1\text{）}.\ }
+\end{equation*}
+
+这解释了正文 6.2.3 节的微扰论估计：连接四个简并基态 $s^{(m,n)}$ 中任意两个至少要翻转 $L$ 条链，故 $t$ 项的劈裂 $\Delta E\sim t^{L}/g^{L-1}$，热力学极限下消失——拓扑简并。
+
+\emph{（译注：原题括号中"在多于 $L$ 条链上 $s^1_{\pmb{ij}}s^2_{\pmb{ij}}=-1$"应读作"在至少 $L$ 条链上"。下界 $L$ 可以取到：取 $s^2_{\pmb{ij}}=f_x(\pmb{ij})\,s^1_{\pmb{ij}}$，二者通量相同、不规范等价，且恰在跨 $x$ 线的 $L$ 条链上相差一个负号。）}
+
+% ---------------------------------------------------------------
+\section*{问题 6.2.8}
+\begin{problem}
+$Z_2$ 涡旋的跳跃由跳跃算符 $P\sigma^1_{\pmb{ij}}P$、$P\sigma^1_{\pmb{ij}}P\sigma^1_{\pmb{jk}}P$ 等生成，其中 $P$ 是到固定 $Z_2$ 涡旋数子空间的投影。利用统计代数 (4.1.10)（$\hat t_{\pmb{ji}}\hat t_{\pmb{ik}}\hat t_{\pmb{li}}=\mathrm{e}^{\mathrm{i}\theta}\hat t_{\pmb{li}}\hat t_{\pmb{ik}}\hat t_{\pmb{ji}}$）证明 $Z_2$ 涡旋是玻色子。
+\end{problem}
+\solution
+
+\textbf{元跳跃算符。}翻转一条链 $\ell=(\pmb i,\pmb j)$ 使共享该链的两个方格的 $F$ 同时变号：若两方格恰有一个涡旋，涡旋跨链移动一步；若两方格均无涡旋，产生一对相邻涡旋；若均有涡旋，湮灭一对。故元跳跃算符为
+\begin{equation*}
+\hat t_{\ell}=P\,\sigma^1_{\ell}\,P ,
+\end{equation*}
+题中 $P\sigma^1_{\pmb{ij}}P\sigma^1_{\pmb{jk}}P$ 等是这类元跳跃的乘积（两条共线相邻链的组合即把一个涡旋移动一格）。
+
+\textbf{按 (4.1.10) 的方案检验交换相位。}以方格充当 (4.1.10) 中的"格点"，$\hat t_{\pmb{ab}}$ 表示翻转相邻方格 $\pmb a,\pmb b$ 公共链的元跳跃。设两个涡旋位于方格 $\pmb i,\pmb j$，方格 $\pmb k,\pmb l$ 为空（布局同书图 4.3）。用同一组五次跳跃构造两种交换历史（作用次序从右到左）：
+\begin{align*}
+\text{历史 1：}&\quad \hat t_{\pmb{jl}}\hat t_{\pmb{lk}}\hat t_{\pmb{il}}\hat t_{\pmb{lj}}\hat t_{\pmb{ki}} :
+&& \pmb i\to\pmb k,\ \ \pmb j\to\pmb l,\ \ \pmb l\to\pmb i,\ \ \pmb k\to\pmb l,\ \ \pmb l\to\pmb j
+&& \text{（两涡旋交换）},\\
+\text{历史 2：}&\quad \hat t_{\pmb{jl}}\hat t_{\pmb{lj}}\hat t_{\pmb{il}}\hat t_{\pmb{lk}}\hat t_{\pmb{ki}} :
+&& \pmb i\to\pmb k\to\pmb l\to\pmb i,\ \ \pmb j\to\pmb l\to\pmb j
+&& \text{（不交换）}.
+\end{align*}
+逐步核对可见每次跳跃都把涡旋移入空方格，中间态始终处于固定涡旋数子空间，各 $P$ 仅起限制作用。于是两个历史分别化为
+\begin{align*}
+\text{历史 1：}&\quad P\,\sigma^1_{\pmb{jl}}\sigma^1_{\pmb{lk}}\sigma^1_{\pmb{il}}\sigma^1_{\pmb{lj}}\sigma^1_{\pmb{ki}}\,P ,\\
+\text{历史 2：}&\quad P\,\sigma^1_{\pmb{jl}}\sigma^1_{\pmb{lj}}\sigma^1_{\pmb{il}}\sigma^1_{\pmb{lk}}\sigma^1_{\pmb{ki}}\,P .
+\end{align*}
+二者是\emph{同一组}链翻转（多重集 $\{\pmb{jl},\pmb{lk},\pmb{il},\pmb{lj},\pmb{ki}\}$）的不同排列。所有 $\sigma^1$ 彼此对易，故两个乘积作为算符完全相等：
+\begin{equation*}
+C_1=C_2 .
+\end{equation*}
+按 (4.1.10) 的逻辑，$C_1$ 对应交换了两粒子、$C_2$ 未交换，其比值给出统计角：
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}\theta}=\frac{C_1}{C_2}=+1
+\qquad\Longrightarrow\qquad
+\theta=0 .
+\end{equation*}
+
+\begin{equation*}
+\boxed{\ Z_2\ \text{涡旋的跳跃算符满足 }\theta=0\ \text{的统计代数 (4.1.10)，故 } Z_2\ \text{涡旋是玻色子}.\ }
+\end{equation*}
+
+物理根源：交换两个 $Z_2$ 涡旋的两种历史之别只是对易的链翻转的先后次序，链翻转本身不携带任何相位结构（在通量基中跃迁振幅全为实正），因此编织不积累统计相位。这与正文的论断（各 $\sigma^1_{\pmb{ij}}$ 对易，由 (4.1.10) 得涡旋为玻色子）一致。
+% ---------------------------------------------------------------
+\section*{问题 6.3.1}
+\begin{problem}
+证明环面上紧致 $U(1)$ 规范理论的总磁通量子化：$\int\mathrm{d}^2\pmb x\,b=2\pi N/q$，$N\in\mathbb{Z}$（式 (6.3.6)）。（提示：利用库仑规范展开式 (6.3.4)。）
+\end{problem}
+\solution
+
+\textbf{第一步：用展开 (6.3.4) 计算总通量。}在库仑规范下（环面，尺寸 $L_1\times L_2$）
+\begin{equation*}
+a_i=\frac{X_i}{L_i}+b_0\,x^1\delta_{i,2}+\sum_{\pmb k}\mathrm{i}\,c_{\pmb k}\,\epsilon_{ij}k_j\,\mathrm{e}^{\mathrm{i}\pmb k\cdot\pmb x},
+\qquad c_{\pmb k}=c^*_{-\pmb k} .
+\end{equation*}
+逐项计算 $b=\partial_1a_2-\partial_2a_1$：
+\begin{itemize}
+\item $X_i/L_i$ 是常数，对旋度无贡献；
+\item 振子项是光滑周期函数的偏导数之差（全微分），在环面上的积分为零：$\int\mathrm{d}^2x\,(\partial_1-\text{周期函数})=0$；
+\item 只有 $b_0x^1\delta_{i,2}$ 有贡献：$\partial_1a_2=b_0$，$\partial_2a_1=0$。
+\end{itemize}
+故
+\begin{equation*}
+\int\mathrm{d}^2\pmb x\,b=b_0\,L_1L_2 .
+\end{equation*}
+
+\textbf{第二步：物理态条件给出 $b_0$ 的量子化。}$a_i$ 本身不是物理量；$x^1$ 与 $x^1+L_1$ 是环面上同一点，故只要求
+\begin{equation*}
+a_i(x^1+L_1,x^2)\ \text{与}\ a_i(x^1,x^2)\ \text{规范等价} .
+\end{equation*}
+由展开式，除 $b_0x^1\delta_{i,2}$ 外所有项都严格周期，故差为
+\begin{equation*}
+a_i(x^1+L_1,x^2)-a_i(x^1,x^2)=(0,\ b_0L_1) .
+\end{equation*}
+它必须等于一个规范变换 $\partial_i f$：$\partial_1f=0$，$\partial_2f=b_0L_1$，即 $f=b_0L_1x^2+\text{const}$。紧致 $U(1)$ 理论要求 $\mathrm{e}^{\mathrm{i}qf}$ 在环面上单值（大规范变换的合法性条件，见正文对式 (6.3.5) 的讨论），即
+\begin{equation*}
+q\,b_0L_1(x^2+L_2)-q\,b_0L_1x^2=2\pi N,
+\qquad N\in\mathbb{Z} .
+\end{equation*}
+代入第一步的结果：
+\begin{equation*}
+\boxed{\ \int\mathrm{d}^2\pmb x\,b=b_0L_1L_2=\frac{2\pi N}{q},\qquad N\in\mathbb{Z}\ }
+\end{equation*}
+
+\textbf{自洽性检查。}$\int b$ 是规范不变量，而大规范变换 $f=\frac{2\pi N_2x^2}{qL_2}$ 使 $a_2\to a_2+\frac{2\pi N_2}{qL_2}$，即 $b_0\to b_0+\frac{2\pi N_2}{qL_1L_2}$：$b_0$ 是周期为 $\frac{2\pi}{qL_1L_2}$ 的紧致变量，其规范不变函数正是 $\int b=2\pi N/q$，与上式一致。把结果代入零模能量 $E=\frac{b_0^2L_1L_2}{2g^2}$ 得 $E_N=\frac{(2\pi)^2}{2g^2q^2L_1L_2}N^2$，正是式 (6.3.7) 的第一项。
+
+\textbf{非紧致极限。}非紧致理论只允许单值 $f$ 的"小"规范变换，$f=b_0L_1x^2$ 单值要求 $b_0=0$，即 $\int\mathrm{d}^2\pmb x\,b=0$，与正文的论断一致。
+
+% ---------------------------------------------------------------
+\section*{问题 6.3.2}
+\begin{problem}
+将 $1+1$ 维紧致 $U(1)$ 规范理论量子化：空间为长 $L$ 的圆环，电荷量子为 $q$。求标记全部能量本征态的整数集合及本征态能量。
+\end{problem}
+\solution
+
+\textbf{规范固定与约化。}$1+1$ 维没有磁场分量（$b=\epsilon_{ij}\partial_ia_j$ 只有零曲率），拉格朗日量为
+\begin{equation*}
+\mathcal{L}=\frac{1}{2g^2}e^2,\qquad e=\partial_0a_1-\partial_1a_0 .
+\end{equation*}
+取库仑规范 $\partial_1a_1=0$：环上满足此条件的场只有零模，$a_1(x^1,t)=\dfrac{X(t)}{L}$。作用量中
+\begin{equation*}
+L=\int_0^L\frac{\mathrm{d}x^1}{2g^2}\Bigl(\frac{\dot X}{L}-\partial_1a_0\Bigr)^{2}
+=\frac{1}{2g^2L}\dot X^{2}
+-\frac{2}{2g^2}\bigl[a_0(L)-a_0(0)\bigr]\frac{\dot X}{L}
++\int_0^L\frac{\mathrm{d}x^1}{2g^2}(\partial_1a_0)^{2} ,
+\end{equation*}
+交叉项因 $a_0$ 的周期性消失；末项不含 $\dot a_0$，无动力学，可积掉（等价于取 $a_0=0$）。于是理论约化为\emph{单个自由粒子}：
+\begin{equation*}
+L=\frac{1}{2g^2L}\,\dot X^{2},
+\qquad
+P=\frac{\partial L}{\partial\dot X}=\frac{\dot X}{g^2L},
+\qquad
+H=\frac{g^2L}{2}\,P^{2} .
+\end{equation*}
+
+\textbf{紧致性与大规范变换。}紧致理论允许大规范变换 $f=\dfrac{2\pi Nx^1}{qL}$，它使
+\begin{equation*}
+a_1\to a_1+\partial_1f=a_1+\frac{2\pi N}{qL}
+\qquad\Longleftrightarrow\qquad
+X\to X+\frac{2\pi N}{q} .
+\end{equation*}
+故 $X$ 与 $X+2\pi/q$ 标记同一物理态：$X$ 生活在周长为 $2\pi/q$ 的圆上（非紧致理论则允许 $X\in\mathbb{R}$）。
+
+\textbf{量子化。}物理波函数是圆上的单值函数，$\psi(X+2\pi/q)=\psi(X)$，故动量本征态为
+\begin{equation*}
+\psi_n(X)=\sqrt{\frac{q}{2\pi}}\ \mathrm{e}^{\,\mathrm{i}nqX},
+\qquad n\in\mathbb{Z},
+\qquad
+P\,\psi_n=nq\,\psi_n .
+\end{equation*}
+能量为
+\begin{equation*}
+\boxed{\ E_n=\frac{g^2q^2L}{2}\,n^{2},\qquad n\in\mathbb{Z}\ \text{（一个整数标记所有本征态，无简并）} .\ }
+\end{equation*}
+
+物理解释：$X$ 是环绕环的 $U(1)$ 通量（holonomy），整数 $n$ 是环上的总电通量（Wilson 线量子）；紧致性（电荷量子 $q$）直接导致能谱的分立。作为检查：非紧致极限 $q\to0$（$X$ 无周期）时 $P$ 连续，能谱连续，与"非紧致理论电荷不量子化"一致。
+
+% ---------------------------------------------------------------
+\section*{问题 6.3.3}
+\begin{problem}
+含瞬子的 $1+2$ 维 $U(1)$ 规范理论与含 $\cos\theta$ 项的 XY 模型之间的对偶性：
+(1) 计算在 $x^\mu$ 处一个瞬子、$y^\mu$ 处一个反瞬子的 $U(1)$ 配分函数 $Z(x^\mu,y^\mu)$（精确到整体常数）；
+(2) 写出含多瞬子气体贡献的配分函数；
+(3) 计算 XY 模型在 $x^\mu$ 处插入 $\mathrm{e}^{\mathrm{i}\theta}$、$y^\mu$ 处插入 $\mathrm{e}^{-\mathrm{i}\theta}$ 的配分函数（精确到整体常数）；
+(4) 证明按 $K$ 的幂次展开后，含瞬子的 $U(1)$ 配分函数与加 $K\cos\theta$ 项的 XY 配分函数一致。
+\end{problem}
+\solution
+
+以下在欧氏时空工作，$\chi=(qg/2\pi)^{2}$；记 $r\equiv|x^\mu-y^\mu|$（三维欧氏距离），体截断 $R$、紫外截断（瞬子芯尺寸）$a$。
+
+\textbf{(1) 瞬子--反瞬子对的配分函数。}
+
+位于 $x^\mu$ 的瞬子由（三维欧氏形式的）库仑型位形描述：
+\begin{equation*}
+F_{\mu\nu}(X)=\frac{1}{2q}\,\epsilon_{\mu\nu\lambda}\,\frac{(X-x)^\lambda}{|X-x|^{3}} ,
+\end{equation*}
+它确实使通量跳变 $2\pi/q$：$\int\mathrm{d}^2x\,b(X^0)=\frac{1}{2q}X^0\cdot2\pi\int_0^\infty\frac{r\,\mathrm{d}r}{[(X^0)^2+r^2]^{3/2}}=\frac{\pi}{q}\,\mathrm{sgn}(X^0)$，上下半平面之差为 $2\pi/q$。反瞬子取 $F\to-F$。由于理论是二次的，瞬子对的经典位形是两个库仑场的线性叠加，高斯涨落的行列式与 $x,y$ 无关（平移不变；$x,y$ 只作为集体坐标出现），故
+\begin{equation*}
+Z(x,y)=Z_0\,\mathrm{e}^{-S_{\text{cl}}[F^{(1)}+F^{(2)}]} .
+\end{equation*}
+
+作用量 $S=\frac{1}{2g^{2}}\int\mathrm{d}^{3}X\,\frac{1}{2}F_{\mu\nu}F_{\mu\nu}$ 分解为自能项与交叉项。记 $F^{(i)}_{\mu\nu}=q_i\,\frac{1}{2q}\epsilon_{\mu\nu\lambda}\frac{(X-x_i)^\lambda}{|X-x_i|^{3}}$（$q_i=\pm1$ 对应瞬子/反瞬子）：
+\begin{equation*}
+\int\mathrm{d}^{3}X\,F^{(i)}_{\mu\nu}F^{(j)}_{\mu\nu}
+=q_iq_j\,\frac{1}{4q^{2}}\cdot2\int\mathrm{d}^{3}X\,
+\frac{(X-x_i)\cdot(X-x_j)}{|X-x_i|^{3}\,|X-x_j|^{3}}
+=q_iq_j\,\frac{1}{2q^{2}}\cdot\frac{4\pi}{|x_i-x_j|} ,
+\end{equation*}
+其中用到恒等式（分部积分两次；$\frac{X-x}{|X-x|^{3}}=-\nabla_X\frac{1}{|X-x|}$，$\nabla^{2}\frac{1}{|X-y|}=-4\pi\delta(X-y)$）
+\begin{equation*}
+\int\mathrm{d}^{3}X\ \frac{(X-x)\cdot(X-y)}{|X-x|^{3}|X-y|^{3}}
+=\int\mathrm{d}^{3}X\ \nabla\frac{1}{|X-x|}\cdot\nabla\frac{1}{|X-y|}
+=\frac{4\pi}{|x-y|} .
+\end{equation*}
+于是
+\begin{equation*}
+S_{\text{cl}}=2S_{\text{core}}+S_{\text{int}},
+\qquad
+S_{\text{core}}=\frac{1}{2g^{2}}\cdot\frac{1}{2}\cdot\frac{1}{4q^{2}}\cdot\frac{4\pi}{a}
+=\frac{\pi}{4g^{2}q^{2}a}\ \ (\text{每个瞬子，与位置无关}),
+\end{equation*}
+\begin{equation*}
+S_{\text{int}}=\frac{1}{2g^{2}}\cdot\frac{2\pi\,q_1q_2}{q^{2}r}
+=\frac{\pi}{g^{2}q^{2}}\,\frac{q_1q_2}{r}
+=\frac{1}{4\pi\chi}\,\frac{q_1q_2}{r}
+\qquad(\text{用了 }\tfrac{1}{4\pi\chi}=\tfrac{\pi}{g^{2}q^{2}}).
+\end{equation*}
+对瞬子--反瞬子对（$q_1q_2=-1$）作用量被\emph{降低}：相互吸引。把与 $x,y$ 无关的 $Z_0\,\mathrm{e}^{-2S_{\text{core}}}$ 吸入整体常数：
+\begin{equation*}
+\boxed{\ Z(x^\mu,y^\mu)=Z_0\,\exp\Bigl[\frac{1}{4\pi\chi\,|x^\mu-y^\mu|}\Bigr]
+=Z_0\,\exp\Bigl[\frac{\pi}{g^{2}q^{2}\,|x^\mu-y^\mu|}\Bigr]\ }
+\end{equation*}
+
+\textbf{(2) 多瞬子气体。}在稀薄近似下，一般位形是 $N$ 个瞬子/反瞬子的气体，每个携带芯作用量 $S_{\text{core}}$（对应 fugacity $\kappa\equiv\mathrm{e}^{-S_{\text{core}}}$）与两体作用量 $S_{\text{int}}$。对瞬子数目与位置求和得
+\begin{equation*}
+\boxed{\ Z_{U(1)}=Z_0\sum_{N=0}^{\infty}\frac{\kappa^{N}}{N!}
+\sum_{\{q_i=\pm1\}}\int\prod_{i=1}^{N}\mathrm{d}^{3}x_i\;
+\exp\Bigl[-\frac{1}{4\pi\chi}\sum_{i<j}\frac{q_iq_j}{|x_i^\mu-x_j^\mu|}\Bigr]\ }
+\end{equation*}
+即欧氏三维中的单位电荷库仑气体：异号（瞬子--反瞬子）相吸、同号相斥。单体项（$N=1$）与 $x,y$ 无关，属整体常数；决定物理（关联函数、质量隙）的是中性簇。
+
+\textbf{(3) XY 模型一侧。}欧氏拉格朗日量 $\mathcal{L}_{XY}=\frac{\chi}{2}(\partial_\mu\theta)^{2}$ 是高斯的，传播子为
+\begin{equation*}
+\langle\theta(X)\theta(Y)\rangle_0
+=\frac{1}{\chi}\int\frac{\mathrm{d}^{3}k}{(2\pi)^{3}}\,\frac{\mathrm{e}^{\mathrm{i}\pmb k\cdot(\pmb X-\pmb Y)}}{k^{2}}
+=\frac{1}{4\pi\chi\,|X-Y|} .
+\end{equation*}
+配分函数（题给定义）
+\begin{equation*}
+Z(x,y)=\int\mathcal{D}\theta\ \mathrm{e}^{\mathrm{i}\theta(x)}\mathrm{e}^{-\mathrm{i}\theta(y)}\,
+\mathrm{e}^{-\int\mathrm{d}^{3}X\,\mathcal{L}_{XY}}
+=Z_{XY}^{(0)}\,\exp\Bigl[-\frac{1}{2}\bigl\langle(\theta(x)-\theta(y))^{2}\bigr\rangle_0\Bigr]
+\end{equation*}
+（完成平方，Gaussian 恒等式 $\langle\mathrm{e}^{\mathrm{i}A}\rangle=\mathrm{e}^{-\frac{1}{2}\langle A^{2}\rangle}$）。用
+$\langle(\theta(x)-\theta(y))^{2}\rangle_0=2\bigl[G(0)-G(r)\bigr]$，$G(0)=\frac{1}{4\pi\chi a}$（紫外截断），得
+\begin{equation*}
+Z(x,y)=Z_{XY}^{(0)}\,\exp\Bigl[-\frac{1}{4\pi\chi a}+\frac{1}{4\pi\chi r}\Bigr]
+\ \xrightarrow{\ \text{吸收常数}\ }\ 
+\boxed{\ Z_{XY}(x^\mu,y^\mu)=Z_{XY}^{(0)}\,\exp\Bigl[\frac{1}{4\pi\chi\,|x^\mu-y^\mu|}\Bigr]\ }
+\end{equation*}
+与 (1) 的结果逐字相同（注意 $Z_0,Z_{XY}^{(0)}$ 都是未计算的整体常数）。
+
+\textbf{(4) 按 $K$ 的幂次展开后的逐阶一致。}把瞬子效应对应的 $K\cos\theta$ 项作为微扰展开：
+\begin{equation*}
+Z_{XY}[K]=\int\mathcal{D}\theta\ \mathrm{e}^{-S_0[\theta]}\,
+\mathrm{e}^{K\int\mathrm{d}^{3}X\cos\theta}
+=Z_{XY}^{(0)}\sum_{N=0}^{\infty}\frac{K^{N}}{N!}
+\int\prod_{i=1}^{N}\mathrm{d}^{3}x_i\ \Bigl\langle\prod_{i=1}^{N}\cos\theta(x_i)\Bigr\rangle_0 .
+\end{equation*}
+用 $\cos\theta=\frac{1}{2}\bigl(\mathrm{e}^{\mathrm{i}\theta}+\mathrm{e}^{-\mathrm{i}\theta}\bigr)$ 把每个 $\cos$ 拆成电荷 $q_i=\pm1$ 的插入，再对 $\{q_i\}$ 求和：
+\begin{equation*}
+Z_{XY}[K]
+=Z_{XY}^{(0)}\sum_{N=0}^{\infty}\frac{1}{N!}\int\prod_{i}\mathrm{d}^{3}x_i
+\Bigl(\frac{K}{2}\Bigr)^{\!N}\sum_{\{q_i=\pm1\}}
+\Bigl\langle\mathrm{e}^{\mathrm{i}\sum_iq_i\theta(x_i)}\Bigr\rangle_0 .
+\end{equation*}
+Wick 定理给出
+\begin{equation*}
+\Bigl\langle\mathrm{e}^{\mathrm{i}\sum_iq_i\theta(x_i)}\Bigr\rangle_0
+=\exp\Bigl[-\frac{1}{2}\sum_{i,j}q_iq_j\,G(x_i-x_j)\Bigr]
+=\underbrace{\exp\Bigl[-\frac{1}{2}G(0)\cdot N\Bigr]}_{\text{自能}}
+\exp\Bigl[-\frac{1}{4\pi\chi}\sum_{i<j}\frac{q_iq_j}{|x_i-x_j|}\Bigr] .
+\end{equation*}
+（自能项来自 $i=j$；交叉项因 $\sum_{ij}$ 对每对计两次而带系数 1。）于是
+\begin{equation*}
+Z_{XY}[K]
+=Z_{XY}^{(0)}\sum_{N=0}^{\infty}\frac{1}{N!}\int\prod_{i}\mathrm{d}^{3}x_i\;
+\Bigl[\frac{K}{2}\,\mathrm{e}^{-\frac{1}{2}G(0)}\Bigr]^{N}
+\sum_{\{q_i\}}\exp\Bigl[-\frac{1}{4\pi\chi}\sum_{i<j}\frac{q_iq_j}{|x_i-x_j|}\Bigr] .
+\end{equation*}
+与 (2) 的瞬子气体表达式逐项比较：$N$ 阶 $K$ 微扰项 $=$ $N$ 瞬子气体项，只要
+\begin{equation*}
+\kappa=\frac{K}{2}\,\mathrm{e}^{-\frac{1}{2}G(0)}\times(\text{依赖截断的常数})
+\qquad\Longleftrightarrow\qquad
+K\propto 2\kappa ,
+\end{equation*}
+（瞬子芯作用量 $S_{\text{core}}$ 与 $\frac{1}{2}G(0)$ 都是截断依赖的非普适量，其差并入 fugacity 的定义；而 $r$ 依赖的两体权重 $\exp[-\frac{q_iq_j}{4\pi\chi r_{ij}}]$ 两侧\emph{精确}相等，系数 $\frac{1}{4\pi\chi}=\frac{\pi}{g^{2}q^{2}}$。）另外，两侧的"总荷"零模（XY 侧的 $\theta_0$，$U(1)$ 侧与总通量共轭的 Wilson 线变量）的积分同样把非中性（$\sum_iq_i\neq0$）组态投影掉，不影响逐阶对应；热力学极限下即通常的稀薄中性瞬子气体图像。
+
+\begin{equation*}
+\boxed{\begin{gathered}
+\kappa\leftrightarrow\frac{K}{2}\times(\text{常数}),\qquad
+\text{两体权重 }\exp\Bigl[-\frac{1}{4\pi\chi}\,\frac{q_iq_j}{r_{ij}}\Bigr]\ \text{两侧完全相同},\\[3pt]
+\Longrightarrow\quad Z_{U(1)}^{\text{含瞬子}}=Z_{XY}[K\cos\theta]\ .
+\end{gathered}}
+\end{equation*}
+
+这正是正文 6.3.2 节结论的路径积分形式：瞬子气体 $=$ 对偶 XY 模型中的 $K\cos\theta$ 扰动，它在 $1+2$ 维给规范玻色子打开能隙并把电荷间的对数势变为线性禁闭势。
+% ---------------------------------------------------------------
+\section*{问题 6.4.1}
+\begin{problem}
+(a) 把连续场与格点场的关系式 (6.4.1) 推广到三维立方格子。(b) 利用 (6.4.1) 证明三维格点规范理论在连续极限下变为 $\mathcal{L}=\frac{1}{8\pi\alpha}\bigl(c^{-1}\pmb e^{2}-c\pmb b^{2}\bigr)$，其中 $e_i=\partial_0a_i-\partial_ia_0$，$b_i=\epsilon_{ijk}\partial_ja_k$；用 $J$、$g$ 与晶格常数 $l$ 表示 $\alpha$ 与 $c$。
+\end{problem}
+\solution
+
+\textbf{(a) 三维推广。}标势仍定义在格点上，矢势定义为沿链的线积分——形式与二维完全相同，只是格点指标取遍 $\mathbb{Z}^{3}$：
+\begin{equation*}
+\boxed{\ a_0(\pmb j)=a_0(\pmb x)\big|_{\pmb x=l\pmb j},
+\qquad
+a_{\pmb j_1\pmb j_2}=\int_{l\pmb j_1}^{\,l\pmb j_2}\mathrm{d}x^{i}\,a_i(\pmb x),\qquad
+\pmb j,\pmb j_1,\pmb j_2\in\mathbb{Z}^{3}\ }
+\end{equation*}
+其中线积分沿连接最近邻格点 $l\pmb j_1$ 与 $l\pmb j_2$ 的直链进行，且 $a_{\pmb j_1\pmb j_2}=-a_{\pmb j_2\pmb j_1}$。
+
+\textbf{(b) 连续极限。}设 $a_\mu(\pmb x)$ 随 $\pmb x$、$t$ 缓变，用中点近似展开：
+
+\emph{动能项}：链变量与电动组合分别为
+\begin{equation*}
+a_{\pmb i,\pmb i+\pmb\mu}\approx l\,a_\mu\Big|_{\pmb x=l\pmb i+\frac{l}{2}\pmb\mu},
+\qquad
+\dot a_{\pmb i,\pmb i+\pmb\mu}+a_0(\pmb i)-a_0(\pmb i+\pmb\mu)
+\approx l\,\bigl(\partial_0a_\mu-\partial_\mu a_0\bigr)
+=l\,e_\mu ,
+\end{equation*}
+（$a_0(\pmb i)-a_0(\pmb i+\pmb\mu)\approx-l\,\partial_\mu a_0$）。对格点求和换为体积分，$\sum_{\pmb i,\pmb\mu}\to\frac{1}{l^{3}}\int\mathrm{d}^{3}x\sum_{\mu}$：
+\begin{equation*}
+\frac{1}{4J}\sum_{\pmb i,\pmb\mu}\bigl(l\,e_\mu\bigr)^{2}
+\longrightarrow
+\int\mathrm{d}^{3}x\ \frac{l^{2}}{4Jl^{3}}\,\pmb e^{2}
+=\int\mathrm{d}^{3}x\ \frac{1}{4Jl}\,\pmb e^{2} .
+\end{equation*}
+
+\emph{磁通项}：方格 $\pmb p$（法向 $\pmb n$）上的通量是环量，
+\begin{equation*}
+\Phi_{\pmb p}=\sum_{\text{四条边}}\pm a_{\pmb i\pmb j}
+\approx l^{2}\bigl(\partial_\mu a_\nu-\partial_\nu a_\mu\bigr)
+=l^{2}\,b_{n} ,
+\qquad
+-\frac{g}{2}\sum_{\pmb p}\Phi_{\pmb p}^{2}
+\longrightarrow
+-\int\mathrm{d}^{3}x\ \frac{g}{2}\,l^{4}\,\frac{1}{l^{3}}\,\pmb b^{2}
+=-\int\mathrm{d}^{3}x\ \frac{gl}{2}\,\pmb b^{2} .
+\end{equation*}
+
+于是连续极限为
+\begin{equation*}
+\mathcal{L}=\frac{1}{4Jl}\,\pmb e^{2}-\frac{gl}{2}\,\pmb b^{2}
+=\frac{1}{8\pi\alpha}\Bigl(\frac{1}{c}\,\pmb e^{2}-c\,\pmb b^{2}\Bigr) .
+\end{equation*}
+逐项比对系数：
+\begin{equation*}
+\frac{1}{8\pi\alpha c}=\frac{1}{4Jl},
+\qquad
+\frac{c}{8\pi\alpha}=\frac{gl}{2} .
+\end{equation*}
+两式相除消去 $\alpha$：
+\begin{equation*}
+c^{2}=\frac{gl/2}{1/(4Jl)}=2gJ\,l^{2},
+\end{equation*}
+代回第一式：
+\begin{equation*}
+\boxed{\ c=l\,\sqrt{2gJ},
+\qquad
+\alpha=\frac{Jl}{2\pi c}=\frac{1}{2\pi}\sqrt{\frac{J}{2g}}\ }
+\end{equation*}
+
+检查：(i) $c=l\sqrt{2gJ}$ 是速度量纲，正是低能光子模式 $\omega=c|\pmb k|$ 的速度；(ii) 在本书的单位制（$\hbar=1$、$a_\mu$ 无量纲）中 $[1/J]=[g]\cdot t^{2}$，故 $\sqrt{J/g}$ 无量纲，$\alpha$ 恰为无量纲的"精细结构常数"；对比 $1+2$ 维的式 (6.4.8)，那里 $\alpha_{2D}=\frac{1}{2\pi l}\sqrt{\frac{J}{2g}}$ 多一个 $1/l$，正是正文所说"$\alpha_{2D}$ 在 $1+2$ 维中量纲为 1/长度"。
+
+% ---------------------------------------------------------------
+\section*{问题 6.4.2}
+\begin{problem}
+考虑带一条对角链的正方形上的 $U(1)$ 格点规范理论（图 6.8：格点 $1,2,3,4$ 依次构成周界，对角链为 $a_{24}$）。(a) 把式 (6.4.10) 推广到该系统。(b) 取 $g=0$，求基态与激发态的能量。
+\end{problem}
+\solution
+
+\textbf{(a) 推广的路径积分。}链变量为周界四条链 $a_{12},a_{23},a_{34},a_{41}$ 加对角链 $a_{24}$（$a_{42}=-a_{24}$）；对角链把正方形分成两个三角形，紧致通量项按三角形写出：
+\begin{equation*}
+\Phi_{124}=a_{12}+a_{24}+a_{41},
+\qquad
+\Phi_{234}=a_{23}+a_{34}-a_{24} .
+\end{equation*}
+推广式 (6.4.10) 得
+\begin{align*}
+Z=\int\mathcal{D}a\,\mathcal{D}a_0\ \mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\Bigl\{}
+&\frac{1}{4J}\Bigl[\sum_{i=1}^{4}\bigl(\dot a_{i,i+1}+a_0(i)-a_0(i+1)\bigr)^{2}
++\bigl(\dot a_{24}+a_0(2)-a_0(4)\bigr)^{2}\Bigr]\\
+&+g\bigl[\cos\Phi_{124}+\cos\Phi_{234}\bigr]\Bigr\}
+\end{align*}
+（$i=1,\dots,4$ 循环，$a_{45}\equiv a_{41}$）。它同样在格点 $U(1)$ 规范变换 $a_{\pmb{ij}}\to a_{\pmb{ij}}+\phi_i-\phi_j$，$a_0(i)\to a_0(i)+\dot\phi_i$ 下不变。
+
+\textbf{(b) $g=0$ 的能谱。}完全平行于正文的做法：引入正则动量 $\frac{\partial L}{\partial\dot a_{\pmb{ij}}}=\frac{1}{2J}e_{\pmb{ij}}$（$e_{\pmb{ij}}=\dot a_{\pmb{ij}}+a_0(i)-a_0(j)$），积掉无动力学的 $a_0$。$a_0(i)$ 的系数为 $\frac{1}{2J}\sum_{j\sim i}e_{ij}$，故得每个格点上的高斯约束
+\begin{equation*}
+\sum_{j\sim i}e_{\pmb{ij}}=0 .
+\end{equation*}
+哈密顿量与量子化条件为
+\begin{equation*}
+H=\frac{1}{4J}\sum_{\text{5 条链}}e_{\pmb{ij}}^{2},
+\qquad
+\bigl[a_{\pmb{ij}},(2J)^{-1}e_{\pmb{ij}}\bigr]=\mathrm{i}\hbar
+\quad\Longrightarrow\quad
+\frac{e_{\pmb{ij}}}{2J}=n_{\pmb{ij}}\in\mathbb{Z},
+\end{equation*}
+于是 $H=J\sum_{\pmb{ij}}n_{\pmb{ij}}^{2}$，整数 $n_{\pmb{ij}}$ 满足逐点约束 $\sum_{j\sim i}n_{\pmb{ij}}=0$。
+
+解约束（四条周界链记 $n_{12},n_{23},n_{34},n_{41}$，对角链记 $n_{24}$）：
+\begin{align*}
+\text{格点 1：}&\ n_{12}-n_{41}=0, &&\text{格点 3：}\ -n_{23}+n_{34}=0,\\
+\text{格点 2：}&\ -n_{12}+n_{23}+n_{24}=0, &&\text{格点 4：}\ -n_{34}+n_{41}-n_{24}=0 .
+\end{align*}
+（四式只有三个独立——对全部格点求和恒为零，故 5 个整数余 2 个独立量子数。）令 $n_{12}=n_{41}\equiv a$，$n_{23}=n_{34}\equiv b$，则约束给出 $n_{24}=a-b$，$a,b\in\mathbb{Z}$ 为两个独立的整数。能谱为
+\begin{equation*}
+\boxed{\ E_{a,b}=J\Bigl[2a^{2}+2b^{2}+(a-b)^{2}\Bigr],\qquad a,b\in\mathbb{Z}\ }
+\end{equation*}
+物理解释：$(a,b)$ 是绕两个独立回路（三角形 124 与 234）的电通量线（整数）。最低几层：
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+$(a,b)$ & 能量 & 简并度\\
+\midrule
+$(0,0)$ & $0$ & 1（基态）\\
+$(\pm1,0),(0,\pm1)$ & $3J$ & 4（单三角形内的通量线）\\
+$(1,1),(-1,-1)$ & $4J$ & 2（绕周界一周的通量线）\\
+$(1,-1),(-1,1)$ & $8J$ & 2\\
+\bottomrule
+\end{tabular}
+\end{center}
+即基态能量 $E_0=0$（唯一），第一激发能量 $3J$（4 重）。对比无对角链的正方形（$E_n=4Jn^{2}$，第一激发 $4J$）：对角链增加了一个独立的通量量子数并把第一激发降为 $3J$。
+
+% ---------------------------------------------------------------
+\section*{问题 6.4.3}
+\begin{problem}
+二维正方格子上的非紧致格点 $U(1)$ 规范理论（式 (6.4.2)）：
+(a) 证明库仑规范固定后的路径积分具有题给形式；
+(b) 证明约束 $\sum_{\mu=\pm x,\pm y}a_{\pmb i,\pmb i+\mu}=0$ 可用定义在方格上的实场 $\phi_{\pmb p}$ 求解：$a_{\pmb i,\pmb i+\mu}=\phi_{\pmb p_1}-\phi_{\pmb p_2}$（$\pmb p_{1,2}$ 为链两侧的方格），并用 $\phi_{\pmb p}$ 写出路径积分；
+(c) 求 $\phi_{\pmb p}$ 涨落的色散关系。
+\end{problem}
+\solution
+
+\textbf{(a) 规范固定。}非紧致拉格朗日量为
+\begin{equation*}
+L=\frac{1}{4J}\sum_{\pmb i,\pmb\mu=\pmb x,\pmb y}\bigl[\dot a_{\pmb i,\pmb i+\pmb\mu}+a_0(\pmb i)-a_0(\pmb i+\pmb\mu)\bigr]^{2}
+-\frac{g}{2}\sum_{\pmb p}\Phi_{\pmb p}^{2} .
+\end{equation*}
+在规范变换 $a_{\pmb i,\pmb j}\to a_{\pmb i,\pmb j}+\phi_{\pmb i}-\phi_{\pmb j}$ 下，$\sum_{\mu=\pm\pmb x,\pm\pmb y}a_{\pmb i,\pmb i+\mu}$ 按离散拉普拉斯 $\sum_\mu\Box\,\phi_{\pmb i}$ 变换；解格点泊松方程可把任意组形规范变换到满足库仑规范条件
+\begin{equation*}
+\sum_{\mu=\pm\pmb x,\pm\pmb y}a_{\pmb i,\pmb i+\mu}=0\quad(\forall\,\pmb i),
+\end{equation*}
+（环面上尚有两个调和零模 $X_1/L_1,X_2/L_2$ 不能被规范变换消去；它们是正文的集体坐标 $X_i$，此处取零。）把规范固定条件以 $\prod_{\pmb i,t}\delta\bigl(\sum_{\mu}a_{\pmb i,\pmb i+\mu}\bigr)$ 插入路径积分。在约束面上对时间求导仍有 $\sum_\mu\dot a_{\pmb i,\pmb i+\mu}=0$，而 $a_0(\pmb i)$ 与链变量的耦合恰为 $a_0(\pmb i)\sum_\mu\dot a_{\pmb i,\pmb i+\mu}$，故 $a_0$ 解耦；又 $a_0$ 无动力学项，可径直去掉。磁通项不含 $a_0$，原样保留。于是
+\begin{equation*}
+Z=\int\mathcal{D}a\ \mathrm{e}^{-\mathrm{i}\int\mathrm{d}t\,\bigl(\frac{1}{4J}\sum_{\pmb i,\pmb\mu}\dot a_{\pmb i,\pmb i+\pmb\mu}^{2}-\frac{g}{2}\sum_{\pmb p}\Phi_{\pmb p}^{2}\bigr)}
+\prod_{\pmb i,t}\delta\Bigl(\sum_{\mu=\pm\pmb x,\pm\pmb y}a_{\pmb i,\pmb i+\mu}\Bigr),
+\end{equation*}
+即题给形式。
+
+\emph{（译注：题面印刷的磁通项系数为 $-\frac{1}{2g}$，应为 $-\frac{g}{2}$：规范固定不改动该项，它必须与拉格朗日量 (6.4.2) 中的 $-\frac{g}{2}\sum_{\pmb p}\Phi_{\pmb p}^{2}$ 一致。）}
+
+\textbf{(b) 用方格场求解约束。}约定：方格 $\pmb p$ 以格点 $\pmb p$ 为左下角；对沿 $+\pmb x$（$+\pmb y$）方向的链，取 $\pmb p_1$ 为链的左手边方格（$+\pmb y$／$-\pmb x$ 一侧），$\pmb p_2$ 为右手边方格。令
+\begin{equation*}
+a_{\pmb i,\pmb i+\pmb x}=\phi_{\pmb i}-\phi_{\pmb i-\pmb y},
+\qquad
+a_{\pmb i,\pmb i+\pmb y}=\phi_{\pmb i-\pmb x}-\phi_{\pmb i}
+\qquad(\text{即通式 }a_{\pmb i,\pmb i+\mu}=\phi_{\pmb p_1}-\phi_{\pmb p_2}) .
+\end{equation*}
+
+\emph{它满足约束}：在任一格点 $\pmb i$ 处四条链给出
+\begin{align*}
+a_{\pmb i,\pmb i+\pmb x}&=\phi_{\pmb i}-\phi_{\pmb i-\pmb y},&
+a_{\pmb i,\pmb i-\pmb x}&=\phi_{\pmb i-\pmb x-\pmb y}-\phi_{\pmb i-\pmb x},\\
+a_{\pmb i,\pmb i+\pmb y}&=\phi_{\pmb i-\pmb x}-\phi_{\pmb i},&
+a_{\pmb i,\pmb i-\pmb y}&=\phi_{\pmb i-\pmb y}-\phi_{\pmb i-\pmb x-\pmb y},
+\end{align*}
+四式相加，$\phi_{\pmb i},\phi_{\pmb i-\pmb x},\phi_{\pmb i-\pmb y},\phi_{\pmb i-\pmb x-\pmb y}$ 各出现两次、正负各一，总和为零。几何原因：$\sum_\mu a_{\pmb i,\pmb i+\mu}=0$ 是绕方格 $\pmb i$ 的对偶小回路的 $\phi$ 净跳变。
+
+\emph{反之任意解均可如此表示}：给定满足约束的 $a$，沿对偶格子的路径定义 $\phi$ 的跳变为跨链 $\pm a_\ell$（符号按定向）；绕任一包围单个格点的对偶小回路净跳变为 $\sum_\mu a_{\pmb i,\pmb i+\mu}=0$（约束），故 $\phi$ 良定义（在环面上还差沿两个非收缩对偶回路的跳变，即两个零模 $X_{1,2}$，已取零）。计数核验：链数 $2N_p$，独立约束 $N_p-1$（对格点求和自动为零），自由度 $N_p+1=(N_p-1)+2$，恰为"$\phi$ 模去常数"加两个零模。
+
+\emph{通量与路径积分}：方格 $\pmb p$ 的通量是四条边界链之和，每条边贡献 $\phi_{\pmb p}-\phi_{\pmb p+\mu}$（$\mu=\pm\pmb x,\pm\pmb y$）：
+\begin{equation*}
+\Phi_{\pmb p}=4\phi_{\pmb p}-\phi_{\pmb p+\pmb x}-\phi_{\pmb p-\pmb x}-\phi_{\pmb p+\pmb y}-\phi_{\pmb p-\pmb y}
+=-\,(\Delta\phi)_{\pmb p}\ \ (\text{离散拉普拉斯}) .
+\end{equation*}
+动能项对链求和恰是对"相邻方格对"求和：$\sum_{\text{链}}\dot a^{2}=\sum_{\pmb p,\mu=\pmb x,\pmb y}(\dot\phi_{\pmb p}-\dot\phi_{\pmb p+\mu})^{2}$。于是（对 $\phi$ 的积分理解为其常数零模已固定，例如 $\sum_{\pmb p}\phi_{\pmb p}=0$，因为 $\phi\to\phi+\text{const}$ 不改变 $a$）：
+\begin{equation*}
+\boxed{\ Z=\int\mathcal{D}\phi\ \mathrm{e}^{-\mathrm{i}\int\mathrm{d}t\,\Bigl[\frac{1}{4J}\sum_{\pmb p,\mu=\pmb x,\pmb y}\bigl(\dot\phi_{\pmb p}-\dot\phi_{\pmb p+\mu}\bigr)^{2}-\frac{g}{2}\sum_{\pmb p}\Phi_{\pmb p}^{2}\Bigr]},
+\qquad
+\Phi_{\pmb p}=4\phi_{\pmb p}-\sum_{\mu=\pm\pmb x,\pm\pmb y}\phi_{\pmb p+\mu}\ }
+\end{equation*}
+$\phi_{\pmb p}$ 正是 $2+1$ 维 $U(1)$ 规范理论的对偶光子。
+
+\textbf{(c) 色散关系。}傅里叶变换 $\phi_{\pmb p}(t)=\sum_{\pmb k}\phi_{\pmb k}\,\mathrm{e}^{\mathrm{i}(\pmb k\cdot\pmb p-\omega t)}$（$c_{\pmb k}=c^*_{-\pmb k}$），记 $\bar s_{\pmb k}=\sum_{\mu}\sin^{2}(k_\mu/2)$：
+\begin{equation*}
+\sum_{\pmb p,\mu}(\phi_{\pmb p}-\phi_{\pmb p+\mu})^{2}
+=4N_p\sum_{\pmb k}\bar s_{\pmb k}\,|\phi_{\pmb k}|^{2},
+\qquad
+\sum_{\pmb p}\Phi_{\pmb p}^{2}
+=16N_p\sum_{\pmb k}\bar s_{\pmb k}^{2}\,|\phi_{\pmb k}|^{2},
+\end{equation*}
+（第二个等式用了 $\Phi_{\pmb k}=\phi_{\pmb k}\sum_\mu(2-2\cos k_\mu)=4\bar s_{\pmb k}\phi_{\pmb k}$）。各 $\pmb k$ 模式解耦，拉格朗日量为
+\begin{equation*}
+L_{\pmb k}=\frac{N_p}{J}\,\bar s_{\pmb k}\,|\dot\phi_{\pmb k}|^{2}-8gN_p\,\bar s_{\pmb k}^{2}\,|\phi_{\pmb k}|^{2},
+\end{equation*}
+运动方程 $\frac{\bar s_{\pmb k}}{J}\ddot\phi_{\pmb k}=-8g\bar s_{\pmb k}^{2}\phi_{\pmb k}$ 给出
+\begin{equation*}
+\boxed{\ \omega_{\pmb k}=\sqrt{8gJ\sum_{\mu=\pmb x,\pmb y}\sin^{2}\frac{k_\mu}{2}}\ }
+\end{equation*}
+长波极限 $\pmb k\to0$：$\sin^{2}(k_\mu/2)\approx k_\mu^{2}/4$，
+\begin{equation*}
+\omega_{\pmb k}\approx\sqrt{2gJ}\,|\pmb k|\equiv c_a|\pmb k| :
+\end{equation*}
+单个无能隙线性色散模式（光子），速度 $c_a=l\sqrt{2gJ}$，与问题 6.4.1 及式 (6.4.8) 的连续极限完全一致。
+
+% ---------------------------------------------------------------
+\section*{问题 6.4.4}
+\begin{problem}
+证明相空间路径积分表达式 (6.4.12)。（提示：相空间路径积分为 $\int\mathcal{D}p\,\mathcal{D}q\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,[p\dot q-H(p,q)]}$，$H(p,q)=p\dot q-L$。）
+\end{problem}
+\solution
+
+\textbf{单元自由度的恒等式。}对单个变量 $q$，拉格朗日量含 $\frac{1}{4J}(\dot q+\beta)^{2}$（$\beta$ 与 $\dot q$ 无关）。在路径积分中插入该恒等式：
+\begin{equation*}
+\int\mathcal{D}p\ \mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\left[\,p(\dot q+\beta)-Jp^{2}\right]}
+=\int\mathcal{D}p\ \mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\left[-J\left(p-\frac{\dot q+\beta}{2J}\right)^{2}+\frac{(\dot q+\beta)^{2}}{4J}\right]}
+=\mathcal{N}\ \mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\frac{(\dot q+\beta)^{2}}{4J}} ,
+\end{equation*}
+其中完成平方后对 $p$ 的高斯泛函积分只给出与 $q$ 无关的归一化常数 $\mathcal{N}$（$p$ 的整体平移不变性），把它吸收进测度定义，即
+\begin{equation*}
+\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\frac{(\dot q+\beta)^{2}}{4J}}
+\ \leftrightarrow\
+\int\mathcal{D}p\ \mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,[p\dot q+p\beta-Jp^{2}]} .
+\end{equation*}
+
+\textbf{应用到每条链。}对式 (6.4.10) 的每条链取 $q=a_{i,i+1}$、$\beta=a_0(i)-a_0(i+1)$，并对五条链（本题只含周界四条）逐一应用，记共轭动量为 $p_{i,i+1}$。与正文的定义比较：$p_{ij}$ 正是 $a_{ij}$ 的正则动量 $\frac{\partial L}{\partial\dot a_{ij}}=\frac{1}{2J}e_{ij}$，即 $e_{ij}=2Jp_{ij}$。代换 $p_{ij}\to\frac{e_{ij}}{2J}$：
+\begin{align*}
+p\,\dot q&\ \longrightarrow\ \frac{e_{i,i+1}}{2J}\,\dot a_{i,i+1},\\
+p\,\beta&\ \longrightarrow\ \frac{e_{i,i+1}}{2J}\bigl(a_0(i)-a_0(i+1)\bigr),\\
+Jp^{2}&\ \longrightarrow\ \frac{e_{i,i+1}^{2}}{4J},
+\end{align*}
+于是
+\begin{equation*}
+\boxed{\ Z=\int\mathcal{D}a\,\mathcal{D}a_0\,\mathcal{D}e_{ij}\ \mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\Bigl(\sum_i\frac{e_{i,i+1}}{2J}\bigl(\dot a_{i,i+1}+a_0(i)-a_0(i+1)\bigr)-\frac{1}{4J}\sum_ie_{i,i+1}^{2}+g\cos\Phi\Bigr)}\ }
+\end{equation*}
+即式 (6.4.12)。
+
+\textbf{与哈密顿量形式的一致性。}作勒让德变换验证 $H=p\dot q-L$：
+\begin{equation*}
+H=\sum_i\frac{e_{i,i+1}}{2J}\dot a_{i,i+1}-L
+=\frac{1}{4J}\sum_ie_{i,i+1}^{2}-g\cos\Phi
++\sum_i\frac{e_{i,i+1}}{2J}\bigl(a_0(i)-a_0(i+1)\bigr),
+\end{equation*}
+末项正是拉格朗日乘子项：相空间作用量 $\int\mathrm{d}t\,[p\dot q-H]$ 中它以 $\sum_i a_0(i)(e_{i,i+1}+e_{i,i-1})$ 的形式出现，积掉 $a_0$ 即得高斯约束 $\delta(e_{i,i+1}+e_{i,i-1})$——这正是正文由式 (6.4.12) 得到式 (6.4.13) 的步骤。故 (6.4.12) 与哈密顿量 $H=\frac{1}{4J}\sum e_{i,i+1}^{2}-g\cos\Phi$ 及物理态条件 $(e_{i,i+1}+e_{i,i-1})|\text{phy}\rangle=0$ 完全自洽。
+
+% ---------------------------------------------------------------
+\section*{问题 6.4.5}
+\begin{problem}
+考虑含电荷的立方格子紧致 $U(1)$ 规范理论
+\begin{equation*}
+L=\sum_{\pmb i,\pmb\mu=\pmb x,\pmb y,\pmb z}\frac{\bigl[\dot a_{\pmb i,\pmb i+\pmb\mu}+a_0(\pmb i)-a_0(\pmb i+\pmb\mu)\bigr]^{2}}{4J}+g\sum_{\pmb p}\cos\Phi_{\pmb p}-\sum_{\pmb i}a_0(\pmb i)\,q_{\pmb i} ,
+\end{equation*}
+其中 $q_{\pmb i}$ 是格点 $\pmb i$ 上的 $U(1)$ 电荷。
+(a) 求相空间路径积分中的拉格朗日量；(b) 证明积掉 $a_0$ 给出格点高斯定律 $\sum_{\mu=\pm\pmb x,\pm\pmb y,\pm\pmb z}e_{\pmb i,\pmb i+\mu}=2Jq_{\pmb i}$；(c) 取 $g=0$，求 $\pmb i=0$ 处 $q=1$、$\pmb i=l\pmb x$ 处 $q=-1$ 时的基态能量，证明相互作用能随 $l$ 线性增长。
+\end{problem}
+\solution
+
+\textbf{(a) 相空间拉格朗日量。}对每条链引入正则动量 $p_{\pmb{ij}}=\frac{\partial L}{\partial\dot a_{\pmb{ij}}}=\frac{1}{2J}e_{\pmb{ij}}$，其中 $e_{\pmb{ij}}=\dot a_{\pmb{ij}}+a_0(\pmb i)-a_0(\pmb j)$（$e_{\pmb{ij}}=-e_{\pmb{ji}}$）。按问题 6.4.4 的恒等式（$Jp^{2}\to\frac{e^{2}}{4J}$）：
+\begin{equation*}
+\boxed{\ L_{\text{phase}}=\sum_{\pmb i,\pmb\mu=\pmb x,\pmb y,\pmb z}\frac{e_{\pmb i,\pmb i+\pmb\mu}}{2J}\bigl[\dot a_{\pmb i,\pmb i+\pmb\mu}+a_0(\pmb i)-a_0(\pmb i+\pmb\mu)\bigr]
+-\sum_{\pmb i,\pmb\mu}\frac{e_{\pmb i,\pmb i+\pmb\mu}^{2}}{4J}
++g\sum_{\pmb p}\cos\Phi_{\pmb p}
+-\sum_{\pmb i}a_0(\pmb i)\,q_{\pmb i}\ }
+\end{equation*}
+
+\textbf{(b) 高斯定律。}收集含 $a_0(\pmb i)$ 的项：来自链 $(\pmb i,\pmb i+\pmb\mu)$ 的 $+\frac{e_{\pmb i,\pmb i+\pmb\mu}}{2J}a_0(\pmb i)$，来自链 $(\pmb i-\pmb\mu,\pmb i)$ 的 $-\frac{e_{\pmb i-\pmb\mu,\pmb i}}{2J}a_0(\pmb i)$，以及源项 $-a_0(\pmb i)q_{\pmb i}$：
+\begin{equation*}
+L\supset a_0(\pmb i)\left[\frac{1}{2J}\sum_{\mu=\pmb x,\pmb y,\pmb z}\bigl(e_{\pmb i,\pmb i+\pmb\mu}-e_{\pmb i-\pmb\mu,\pmb i}\bigr)-q_{\pmb i}\right]
+=a_0(\pmb i)\left[\frac{1}{2J}\sum_{\mu=\pm\pmb x,\pm\pmb y,\pm\pmb z}e_{\pmb i,\pmb i+\pmb\mu}-q_{\pmb i}\right] .
+\end{equation*}
+对 $a_0(\pmb i,t)$ 的路径积分给出 $\delta$ 泛函（见式 (6.4.13) 的脚注），即约束
+\begin{equation*}
+\boxed{\ \sum_{\mu=\pm\pmb x,\pm\pmb y,\pm\pmb z}e_{\pmb i,\pmb i+\pmb\mu}=2J\,q_{\pmb i} :
+\text{流出格点的净电通量}=\text{格点电荷（格点高斯定律）}.\ }
+\end{equation*}
+与连续理论的 $\pmb\partial\cdot\pmb e=\rho$ 对应：$\sum_\mu e/2J$ 是离散散度，$q_{\pmb i}$ 是电荷密度。附带指出：把约束对所有格点求和，左边每条链出现两次、正负相消，故要求 $\sum_{\pmb i}q_{\pmb i}=0$——环面上的总电荷必须为零（本题 $\pm1$ 对满足）。
+
+\textbf{(c) $g=0$：线性禁闭。}此时 $H=\frac{1}{4J}\sum e^{2}=J\sum n_{\pmb{ij}}^{2}$，其中 $n_{\pmb{ij}}=e_{\pmb{ij}}/2J\in\mathbb{Z}$，约束为
+\begin{equation*}
+\sum_{\mu=\pm\pmb x,\pm\pmb y,\pm\pmb z}n_{\pmb i,\pmb i+\pmb\mu}=q_{\pmb i},
+\qquad
+q_{\pmb 0}=+1,\quad q_{l\pmb x}=-1,\quad\text{其余为 }0 .
+\end{equation*}
+求基态即求满足约束、使 $\sum n^{2}$ 最小的整数流形。
+
+\emph{下界}：对 $k=1,\dots,l$，考虑平面 $x=k-\tfrac12$ 上横穿它的全部链（连接 $i_x=k-1$ 与 $i_x=k$ 两层格点的链）。把约束对半空间 $\{i_x<k\}$ 内的格点求和：内部链的贡献成对相消，得
+\begin{equation*}
+\sum_{\text{横穿平面的链}}\pm\,n_{\pmb{ij}}=\sum_{i_x<k}q_{\pmb i}=1 ,
+\end{equation*}
+即每张平面必须输运净通量 1。因 $n$ 取整数，$n^{2}\geqslant|n|$，故
+\begin{equation*}
+\sum_{\text{平面}}n_{\pmb{ij}}^{2}\ \geqslant\ \sum_{\text{平面}}|n_{\pmb{ij}}|\ \geqslant\ \Bigl|\sum_{\text{平面}}\pm n_{\pmb{ij}}\Bigr|=1 .
+\end{equation*}
+$l$ 张平面互不共享链，求和得 $E=J\sum n^{2}\geqslant J\,l$。注意此下界与通量如何"铺开"无关：整数化（电通量量子 $2J$）使通量无法像连续库仑场那样弥散到降低能量的程度。
+
+\emph{可达}：取直线通量管——
+\begin{equation*}
+n_{(m,0,0),(m+1,0,0)}=1\quad(m=0,\dots,l-1),
+\qquad\text{其余链 }n=0 .
+\end{equation*}
+逐点验证：$\pmb 0$ 处净流出 $=1=q_{\pmb 0}$；$l\pmb x$ 处净流入 $=1$（即 $-1$ 流出 $=q$）；路径中间格点一进一出，净通量 0。能量 $E=J\,l$。下界被达到，故
+\begin{equation*}
+\boxed{\ E_0(l)=J\,l ,\qquad V(l)=E_0(l)-(\text{与 }l\text{ 无关的自能})=J\,l\ \propto\ l\ }
+\end{equation*}
+（若以物理距离 $L=l\cdot l_0$ 表示，$V(L)=\sigma L$，弦张力 $\sigma=J/l_0$。）
+
+物理解释：$g=0$ 的禁闭相中所有激发有能隙、电通量以整数量子 $2J$ 沿链流动；相隔 $l$ 的一对正负电荷必须由一条（最少激发的）电通量管连接，管长至少 $l$ 个晶格常数，能量按 $Jl$ 线性增长——这正是正文所说的"两个电荷由一条电通量线连接，产生线性禁闭势"。对照库仑相（$g/J\gg1$，问题 6.4.1 的光子媒介）：那里相互作用为 $\sim1/r$；线性势的出现是 $e_{\pmb{ij}}/2J$ 整数量子化（紧致性）的直接后果。

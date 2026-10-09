@@ -1,0 +1,699 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第6章 量子规范理论
+
+% 第6章 QUANTUM GAUGE THEORIES
+% 块界说明：本块自章首起，至书页 262（p277）末段"……我们就求解了环面上的紧致 U(1) 规范理论。"自然结束；
+% 书页 263（p278）顶部为新段落"接下来让我们转向 XY 模型……"，属下一块（ch6_b），无 TAIL/JOIN。
+\chapter{量子规范理论}
+
+量子场论大致可以分为三类，即玻色理论、费米理论和规范理论。玻色子与费米子的量子场论已在前几章中讨论过。本章我们将讨论规范理论。这里我们形式地引入规范理论，更物理的讨论将在第 10 章给出。
+
+人们或许会奇怪，为什么量子场论恰好有三类。自然界选择用哪些量子场论来描述它自身？按照 $U(1)\times SU(2)\times SU(3)$ 标准模型，自然界选择了费米理论和规范理论。因此，规范理论对高能粒子物理十分重要。可是，自然界为什么选择较为复杂的费米理论和规范理论，而跳过了较简单的玻色理论？第 10 章将对上述问题给出回答。结果表明，我们并不是非得引入费米理论和规范理论不可：它们可以作为一个局域玻色系统的有效理论演生出来。既然规范理论是演生（emergent）的，那么规范理论也出现在某些凝聚态系统中就不足为奇了。事实上，从凝聚态系统演生出来的规范理论，其种类可能比我们的真空所提供的还要多。\footnote{这一演生图像还引出一个有趣的问题：除了费米理论和规范理论之外，还会不会有新的量子场论从玻色模型中演生出来？}
+
+\section{简单规范理论}
+
+\subsection{规范“对称性”与规范“对称性”破缺}
+
+\begin{keypoints}
+\item 规范理论是指我们用多于一个标签来标记同一个量子态的理论。\footnote{规范理论的这一观念相当非常规，但却是正确的。关于规范理论历史发展的讨论，见 10.7.4 节。}
+\item 规范“对称性”不是对称性，永远不会被破坏。
+\end{keypoints}
+
+当两个不同的量子态 $|a\rangle$ 和 $|b\rangle$（即 $\langle a|b\rangle = 0$）具有相同的性质时，我们说 $|a\rangle$ 与 $|b\rangle$ 之间存在一个对称性。如果我们用两个不同的标签“$a$”和“$b$”来标记同一个态，$|a\rangle = |b\rangle$，那么 $|a\rangle$ 和 $|b\rangle$ 显然具有（或者说“它”具有）相同的性质。这时我们说 $|a\rangle$ 与 $|b\rangle$ 之间存在规范“对称性”，而关于 $|a\rangle$ 和 $|b\rangle$ 的理论就是一个规范理论（至少形式上是）。由于 $|a\rangle$ 和 $|b\rangle$ 是同一个态，总是具有（或者说“它”具有）相同的性质，因此根据定义，规范“对称性”永远不会被破坏。
+
+通常，当同一个“东西”具有相同的性质时，我们并不说存在对称性。因此，“规范对称性”和“规范对称性破缺”是理论物理中最容易引起误解的两个术语。下面我们将不再使用这两个令人困惑的术语。当我们用多个标签来标记同一个态时，我们将说存在一个规范结构（gauge structure）（而不是规范“对称性”）；当我们改变标记方案时，我们将说规范结构发生了改变（而不是规范“对称性”破缺）。
+
+\subsection{无规范场的规范理论}
+
+\begin{keypoints}
+\item 规范变换、规范不变态与规范不变算符的概念。
+\end{keypoints}
+
+上面那个规范理论的简单例子（只含一个态）太简单了。因此本节我们将研究一个更复杂些的例子。考虑在一个一维周期势中运动的粒子：
+\begin{gather*}
+H = \frac{1}{2m}p^2 + V\cos(2\pi x/a)\\
+\mathcal{H} = \{|x\rangle\}\tag{6.1.1}
+\end{gather*}
+其中 $\mathcal{H}$ 是系统中可能态的希尔伯特空间。这里我们强调，单凭哈密顿量并不能确定一个系统；确定系统的正是哈密顿量\emph{和}希尔伯特空间 $(H,\mathcal{H})$。
+
+上述系统具有平移对称性：
+\begin{equation*}
+T_a^\dagger H T_a = H, \qquad T_a|x\rangle = |x+a\rangle
+\end{equation*}
+我们可以把这一对称性变成一个规范结构，从而定义一个规范理论。所得的规范理论为
+\begin{gather*}
+H = \frac{1}{2m}p^2 + V\cos(2\pi x/a)\\
+\mathcal{H}_a = \{|\psi\rangle,\ T_a|\psi\rangle = |\psi\rangle\}\tag{6.1.2}
+\end{gather*}
+也就是说，我们在保持“同一个”哈密顿量的同时，通过修改希尔伯特空间来定义我们的规范理论。新的希尔伯特空间是对称变换下的不变子空间。由于哈密顿量具有该对称性，它只在该不变子空间内起作用。我们称变换 $T_a$ 为规范变换（gauge transformation），称新希尔伯特空间中的态为规范不变态。我们的这个规范理论描述的其实只是一个圆上的粒子。
+
+利用这个“更复杂”的规范理论，可以讨论规范理论的许多概念。对于直线上的粒子，态 $|x\rangle$ 和 $|x+a\rangle$ 是具有相同性质的不同态，因此存在平移对称性。对于圆上的粒子，$|x\rangle$ 和 $|x+a\rangle$ 是同一个态：这里 $x$ 和 $x+a$ 只是标记同一个量子态的两个标签。规范变换不过是标记同一个态的那些标签之间的变换。因此，根据定义，规范变换是一个“什么也不做”的变换；根据定义，所有物理态都是规范不变的。如果一个态不是规范不变的（即在我们的例子中，一个非周期的波函数 $\psi(x)$），那么这样的态不属于物理希尔伯特空间（即它不能是圆上粒子的波函数）。所有物理算符也必须是规范不变的，即 $O = T_a^\dagger O T_a$；否则，该算符将把一个物理态映射成物理希尔伯特空间之外的非物理态。我们看到，在规范理论中保持规范不变性是至关重要的：只有规范不变的态和规范不变的算符才是有意义的。
+
+另一个我们熟悉的规范理论是全同粒子系统（identical-particle system），在其中交换对称性被变成了规范结构。考虑下列两粒子系统：
+\begin{gather*}
+H = H(x^1) + H(x^2)\\
+\mathcal{H} = \{|x^1, x^2\rangle\}
+\end{gather*}
+它具有交换对称性 $(x^1, x^2) \to (x^2, x^1)$。然而，它并不是一个全同粒子系统。如果我们把交换对称性变成规范结构（即通过缩减希尔伯特空间），那么新系统由
+\begin{gather*}
+H = H(x^1) + H(x^2)\\
+\mathcal{H}_b = \{|x^1, x^2\rangle \mid |x^1, x^2\rangle = |x^2, x^1\rangle\}.
+\end{gather*}
+描述，这样的系统就是一个全同粒子系统。注意，全同粒子系统并不具有交换\emph{对称性}，因为 $|x^1, x^2\rangle$ 和 $|x^2, x^1\rangle$ 根本就是同一个态。与全同粒子相联系的所有特殊干涉现象都来自规范结构。
+
+\section{$Z_2$ 格点规范理论}
+
+在本节中，我们将研究带有规范场的最简单的规范理论——$Z_2$ 规范理论。$Z_2$ 规范理论是最简单的拓扑场论。它作为若干具有拓扑序的量子液体态的有效理论而出现，我们将在第 9 章和第 10 章中讨论这些态。因此，$Z_2$ 规范理论对理解这些量子液体态的物理性质十分重要。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.1.pdf}
+\caption*{图 6.1\quad 一个正方形上的 $Z_2$ 规范理论。}
+\end{figure}
+
+正如任何量子理论一样，要定义一个 $Z_2$ 规范理论，我们需要定义它的希尔伯特空间和哈密顿量；要理解 $Z_2$ 规范理论的基本性质，我们需要求出它的激发谱。这就是我们在接下来几节中要做的事。
+
+\subsection{希尔伯特空间}
+
+\begin{keypoints}
+\item $Z_2$ 规范理论中的态与位形的规范等价类之间存在一一对应。
+\end{keypoints}
+
+要定义一个量子的 $Z_2$ 格点规范理论（Wegner, 1971），我们首先需要定义它的希尔伯特空间。具体起见，让我们考虑一个用 $\pmb{i}$ 标记的二维正方格子。在每条最近邻链上，我们指定一个链变量 $s_{\pmb{ij}} = s_{\pmb{ji}}$，它可取 $\pm 1$ 两个值。希尔伯特空间中的态由 $s_{\pmb{ij}}$ 的位形标记，即 $|\{s_{\pmb{ij}}\}\rangle$。如果这种标记是一对一的，那么该希尔伯特空间就将是一个量子伊辛模型（自旋放在链上）的希尔伯特空间。为了得到 $Z_2$ 规范理论的希尔伯特空间，标记不是一对一的：两个规范等价的位形标记同一个量子态。
+
+根据定义，如果两个位形 $s_{\pmb{ij}}$ 和 $\tilde{s}_{\pmb{ij}}$ 通过一个 $Z_2$ 规范变换
+\begin{equation*}
+\tilde{s}_{\pmb{ij}} = W_{\pmb{i}} s_{\pmb{ij}} W_{\pmb{j}}^{-1}\tag{6.2.1}
+\end{equation*}
+相联系，其中 $W_{\pmb{i}}$ 是取值 $\pm 1$ 的任意函数，则称它们规范等价。规范变换定义了一个等价关系。如果我们把所有相互规范等价的位形归成一组，这样的组就称为规范等价类。我们看到，希尔伯特空间中的态与规范等价类之间存在一一对应。
+
+作为练习，让我们考虑一个正方形上的 $Z_2$ 规范理论（见图 6.1），求出其希尔伯特空间的维数。首先，有 4 条链，因此有 $2^4 = 16$ 个不同的 $s_{\pmb{ij}}$ 位形。其次，有 4 个格点，因此有 $2^4 = 16$ 个不同的 $Z_2$ 规范变换。如果一个规范等价类中位形的数目等于不同规范变换的数目，
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.2.pdf}
+\caption*{图 6.2\quad 跨过 $x$ 线和/或 $y$ 线的链可以再附加一个负号。}
+\end{figure}
+那么就将只有一个规范等价类。然而我们注意到，下面两个规范变换
+\begin{equation*}
+W_{\pmb{i}} = 1, \qquad W_{\pmb{i}} = -1
+\end{equation*}
+不改变位形 $s_{\pmb{ij}}$。这两个规范变换构成一个群，称为不变规范群（invariant gauge group，IGG）（另见 9.4.2 节）。于是，16 个规范变换只诱导出 $16/2 = 8$ 个规范等价的位形，因子 2 正是 IGG 中元素的数目。由于每个规范等价类含 8 个位形，故共有 $16/8 = 2$ 个规范等价类，从而希尔伯特空间中有两个态。
+
+为了找到一种显式标记希尔伯特空间中各态的方法，重要的是找出在规范变换下不变的那些规范不变的量。其中一个规范不变的量是 Wegner--Wilson 圈变量（Wegner, 1971; Wilson, 1974），对一条回路 $C$ 定义为
+\begin{equation*}
+U(C) = s_{\pmb{ij}} s_{\pmb{jk}} \cdots s_{\pmb{li}}
+\end{equation*}
+其中 $\pmb{i}, \pmb{j}, \pmb{k}, \ldots, \pmb{l}$ 是回路上的格点。我们将称 $U(C)$ 为穿过该回路的 $Z_2$ 通量。读者容易验证：$U(C)$ 只取 $\pm 1$ 两个值，并且在 $Z_2$ 规范变换下不变。正方形上 $Z_2$ 规范理论的两个态由 $s_{12}s_{23}s_{34}s_{41} = \pm 1$ 标记。
+
+现在我们来数一数有限正方格子上 $Z_2$ 规范理论中态的数目。设格子沿两个方向都有周期性边界条件（即格子构成一个环面）。若格子有 $N_{\text{site}}$ 个格点，则它有 $2N_{\text{site}}$ 条最近邻链，因而有 $2^{2N_{\text{site}}}$ 个不同的 $s_{\pmb{ij}}$ 位形。又有 $2^{N_{\text{site}}}$ 个不同的规范变换，而 IGG 仍有 2 个元素。于是共有 $\frac{2^{2N_{\text{site}}}}{2^{N_{\text{site}}}/2} = 2 \times 2^{N_{\text{site}}}$ 个不同的规范等价类，对应于 $2 \times 2^{N_{\text{site}}}$ 个不同的态。
+
+为了找到标记这 $2 \times 2^{N_{\text{site}}}$ 个态的方法，我们考虑穿过一个方格（plaquette）的 $Z_2$ 通量：
+\begin{equation*}
+F_{\pmb{i}} = s_{\pmb{i},\pmb{i}+\pmb{x}} s_{\pmb{i}+\pmb{x},\pmb{i}+\pmb{x}+\pmb{y}} s_{\pmb{i}+\pmb{x}+\pmb{y},\pmb{i}+\pmb{y}} s_{\pmb{i}+\pmb{y},\pmb{i}}
+\end{equation*}
+由于共有 $N_{\text{site}}$ 个方格且 $F_{\pmb{i}} = \pm 1$，人们自然会以为不同的 $\{F_{\pmb{i}}\}$ 可以提供 $2^{N_{\text{site}}}$ 个不同的标记。然而，各 $F_{\pmb{i}}$ 并不独立，它们满足
+\begin{equation*}
+\prod_{\pmb{i}} F_{\pmb{i}} = 1\tag{6.2.2}
+\end{equation*}
+因此，$\{F_{\pmb{i}}\}$ 只能提供 $2^{N_{\text{site}}}/2$ 个不同的标记。显然，我们不能用 $\{F_{\pmb{i}}\}$ 标记全部 $2 \times 2^{N_{\text{site}}}$ 个态。事实上，每一个通量位形 $\{F_{\pmb{i}}\}$ 对应于四个不同的态。
+
+为看清这一点，我们考虑由一个位形 $s^0_{\pmb{ij}}$ 得到的下列四个位形：
+\begin{equation*}
+s^{(m,n)}_{\pmb{ij}} = f_x^m(\pmb{ij}) f_y^n(\pmb{ij}) s^0_{\pmb{ij}}, \qquad m, n = 0, 1\tag{6.2.3}
+\end{equation*}
+函数 $f_{x,y}(\pmb{ij})$ 取 $-1$ 或 $1$：当链 $\pmb{ij}$ 跨过 $x$ 线时（见图 6.2）$f_x(\pmb{ij}) = -1$，否则 $f_x(\pmb{ij}) = 1$；类似地，当链 $\pmb{ij}$ 跨过 $y$ 线时 $f_y(\pmb{ij}) = -1$，否则 $f_y(\pmb{ij}) = 1$。这四个位形在每一个方格上给出相同的 $Z_2$ 通量 $F_{\pmb{i}}$。尽管如此，这四个位形并不规范等价（见问题 6.2.2），因为它们对应于从环面的两个洞插入不同的 $Z_2$ 通量（见图 9.6）。因此，$2^{N_{\text{site}}}/2$ 个不同的通量位形 $\{F_{\pmb{i}}\}$ 加上四重简并，使我们得以恢复 $2 \times 2^{N_{\text{site}}}$ 个态。
+
+\subsection*{问题 6.2.1}
+
+证明环面上的 $Z_2$ 规范理论满足式 (6.2.2)。
+
+\subsection*{问题 6.2.2}
+
+证明式 (6.2.3) 中的四个位形并不规范等价。（提示：考虑 $C$ 绕环面一整圈的 $U(C)$。）
+
+\subsection*{问题 6.2.3}
+
+$Z_2$ 规范理论的希尔伯特空间 $\mathcal{H}_{Z_2}$ 也可以从一个自旋-$1/2$ 模型的希尔伯特空间 $\mathcal{H}_{\text{spin}}$ 构造出来，该模型在正方格子的每条链上放有一个自旋。$\mathcal{H}_{\text{spin}}$ 有一个子空间 $\mathcal{H}_{\text{sub}}$，它由在所有形如 $\prod_{\langle\pmb{ij}\rangle} (\sigma^1_{\pmb{ij}})^{G_{\pmb{i}} - G_{\pmb{j}}}$ 的幺正变换下不变的态构成。这里 $G_{\pmb{i}}$ 是格点上的任意函数，取值 $G_{\pmb{i}} = 0, 1$；$\sigma^1_{\pmb{ij}}$ 是作用在链 $\langle \pmb{ij} \rangle$ 上的自旋上的自旋算符。证明 $\mathcal{H}_{\text{sub}} = \mathcal{H}_{Z_2}$，且 $\prod_{\langle\pmb{ij}\rangle} (\sigma^1_{\pmb{ij}})^{G_{\pmb{i}} - G_{\pmb{j}}}$ 生成 $Z_2$ 规范变换。
+
+\subsection{哈密顿量}
+
+\begin{keypoints}
+\item $Z_2$ 规范理论的哈密顿量必须是规范不变的。
+\end{keypoints}
+
+到目前为止我们只讨论了 $Z_2$ 格点规范理论的希尔伯特空间。那么哈密顿量呢？我们不能随意挑一个 $Z_2$ 希尔伯特空间中的算符来充当哈密顿量。哈密顿量应当具有某些“局域”性质。构造局域哈密顿量的一种办法，是把它写成 $s_{\pmb{ij}}$ 的局域函数。然而，由于 $s_{\pmb{ij}}$ 是物理态的多对一标记，我们必须保证等价的标记给出相同的能量，也就是说，哈密顿量必须是规范不变的。构造规范不变哈密顿量的一个简单办法，是把哈密顿量写成规范不变算符（如 $U(C)$ 和 $F_{\pmb{i}}$）的函数。除了 $U(C)$ 之外，把一条链上的 $s_{\pmb{ij}}$ 变号的算符 $\sigma^1_{\pmb{ij}}$，即 $s_{\pmb{ij}} \to -s_{\pmb{ij}}$，也是规范不变算符（见问题 6.2.4）。于是，$Z_2$ 规范理论的一个规范不变的局域哈密顿量可以写成
+\begin{equation*}
+H_{Z_2} = -g \sum_{\pmb{i}} F_{\pmb{i}} - t \sum_{\langle \pmb{ij} \rangle} \sigma^1_{\pmb{ij}}\tag{6.2.4}
+\end{equation*}
+
+\subsection*{问题 6.2.4}
+
+设 $\hat{W}$ 生成一个规范变换 $\hat{W}|\{s_{\pmb{ij}}\}\rangle = |\{\tilde{s}_{\pmb{ij}}\}\rangle$，其中 $\tilde{s}_{\pmb{ij}}$ 与 $s_{\pmb{ij}}$ 通过式 (6.2.1) 相联系。若算符 $\hat{O}$ 满足 $\hat{W}\hat{O}\hat{W}^{-1} = \hat{O}$，则称其为规范不变的。证明 $\sigma^1_{\pmb{ij}}$ 是规范不变算符。
+
+\subsection{物理性质}
+
+\begin{keypoints}
+\item 尽管能隙有限，低能下的 $Z_2$ 规范理论并非平庸。它在环面上的低能性质由四重拓扑简并的基态表征。
+\end{keypoints}
+
+当 $t = 0$、$g > 0$ 时，$H_{Z_2}$ 在环面上有四个简并的基态，它们由 $F_{\pmb{i}} = +1$ 表征。激发通过翻转 $F_{\pmb{i}}$ 的符号产生（见图 6.3）。这些激发的行为像局域粒子，将被称为 $Z_2$ 涡旋。由于约束 (6.2.2)，在环面上 $Z_2$ 涡旋只能成对地产生。这些激发的能隙是 $g$ 的量级。$H_{Z_2}$ 中的 $t$ 项诱导 $Z_2$ 涡旋的跳跃。由于各 $\sigma^1_{\pmb{ij}}$ 算符彼此对易，利用跳跃算符的统计代数（见式 (4.1.10)），我们发现 $Z_2$ 涡旋是玻色子。
+
+我们想指出，基态的四重简并是一种所谓的拓扑简并（topological degeneracy）。根据定义，拓扑简并是指不能被哈密顿量的任何局域微扰所消除的简并。拓扑简并十分重要，它使我们能够在第 8 章中定义拓扑序。
+
+为了理解 $Z_2$ 规范理论中四重简并的稳健性，让我们把 $t$ 项当作微扰，看看 $t$ 项如何解除 $t = 0$ 哈密顿量的四重简并基态。四个简并的基态由 $s^0_{\pmb{ij}} = 1$ 时的式 (6.2.3) 给出。我们看到，把一个态 $s^{(m,n)}_{\pmb{ij}}$ 变成另一个不同的态 $s^{(m',n')}_{\pmb{ij}}$ 的唯一办法，是把 $s^0_{\pmb{ij}}$ 在环绕环面一整圈的一条链上的符号统统翻转。如果环面由 $L \times L$ 的格子构成，那么至少需要 $L$ 个 $\sigma^1_{\pmb{ij}}$ 算符才能连接不同的简并态，这只可能在微扰论的 $L$ 阶以上发生。因此，$t$ 项能够解除四重简并，但能量劈裂 $\Delta E$ 仅为 $t^L/g^{L-1}$ 的量级。在热力学极限下，$L \to \infty$，$\Delta E \to 0$。上述讨论不依赖于任何对称性，即使 $t$ 不均匀也成立。（热力学极限下的）四重简并是一个相的稳健性质。四重简并反映了 $Z_2$ 通量的低能动力学，是 $Z_2$ 规范理论最重要的特征。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.3.pdf}
+\caption*{图 6.3\quad 把 $F_{\pmb{i}}$ 从 $+1$ 变到 $-1$ 产生一个 $Z_2$ 涡旋。}
+\end{figure}
+
+当 $g = 0$、$t > 0$ 时，$H_{Z_2}$ 的基态为
+\begin{equation*}
+|\Psi_0\rangle = \sum_{\{s_{\pmb{ij}}\}} |\{s_{\pmb{ij}}\}\rangle\tag{6.2.5}
+\end{equation*}
+其中求和 $\sum_{\{s_{\pmb{ij}}\}}$ 遍及所有位形 $\{s_{\pmb{ij}}\}$。该基态非简并，能量为 $-tN_l$，其中 $N_l$ 是链的数目。如果我们把 $H_{Z_2}$ 看作一个自旋放在链上的伊辛模型，这个结果很容易理解：这里 $s_{\pmb{ij}}$ 可以认定为自旋算符 $\sigma^3_{\pmb{ij}}$ 在 $z$ 方向的本征值，而 $\sigma^1_{\pmb{ij}}$ 是 $x$ 方向的自旋算符。在这一伊辛模型图像中，$|\Psi_0\rangle$ 态不过是所有自旋都指向 $x$ 方向的态。
+
+从上述讨论我们看到，$H_{Z_2}$ 有两个相。当 $g \gg t$ 时，基态具有四重简并，激发是 $Z_2$ 涡旋。我们将称这个相为 $Z_2$ 解禁闭相（deconfined phase）。该相的低能性质由一个 $Z_2$ 规范理论描述。当 $g \ll t$ 时，基态不简并。我们将称这个相为 $Z_2$ 禁闭相（confined phase）。其低能性质不具有 $Z_2$ 规范理论的任何特征。
+
+如果你觉得 $Z_2$ 规范理论的定义过于形式化，而且这样得到的 $Z_2$ 规范理论很古怪，那么你就抓住了要点。$Z_2$ 规范理论其实是一个非局域理论，其意义是：它的总希尔伯特空间不能表示成局域希尔伯特空间的直积。在 10.3 节中，我们将对 $Z_2$ 规范理论给出更物理的描述。我们将看到，$Z_2$ 规范理论其实是一种闭合弦的理论。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.4.pdf}
+\caption*{图 6.4\quad 一个开放的二维正方格子。}
+\end{figure}
+
+\subsection*{问题 6.2.5}
+
+\begin{enumerate}
+\item[(a)] 一个 $Z_2$ 规范理论 $H_{Z_2}$（见式 (6.2.4)）定义在一个 $L_x \times L_y$ 个格点的开放正方格子上（见图 6.4）。设 $t = 0$，求基态能量和简并度。
+\item[(b)] 设格子沿 $y$ 方向周期，构成一个圆柱面。设 $t = 0$，求基态能量和简并度。
+\item[(c)] 设格子沿 $x$、$y$ 两个方向都周期。设 $t = 0$ 且 $g < 0$，对下列三种情形求基态能量和简并度：(i) $L_x$ 为偶、$L_y$ 为偶；(ii) $L_x$ 为偶、$L_y$ 为奇；(iii) $L_x$ 为奇、$L_y$ 为奇。
+\end{enumerate}
+
+\subsection*{问题 6.2.6}
+
+证明当 $g = 0$、$t > 0$ 时，式 (6.2.5) 是 $H_{Z_2}$ 的基态。
+
+\subsection*{问题 6.2.7}
+
+考虑 $L \times L$ 个格点的环面上的两个位形 $s^1_{\pmb{ij}}$ 和 $s^2_{\pmb{ij}}$。这两个位形生成相同的 $Z_2$ 通量 $F_{\pmb{i}}$。证明：如果这两个位形不规范等价，那么要把 $s^1_{\pmb{ij}}$ 变成 $s^2_{\pmb{ij}}$，至少需要翻转 $L$ 条链上 $s_{\pmb{ij}}$ 的符号（或者在多于 $L$ 条链上有 $s^1_{\pmb{ij}} s^2_{\pmb{ij}} = -1$）。
+
+\subsection*{问题 6.2.8}
+
+注意 $Z_2$ 涡旋的跳跃由跳跃算符 $P\sigma^1_{\pmb{ij}}P$、$P\sigma^1_{\pmb{ij}}P\sigma^1_{\pmb{jk}}P$ 等生成，其中 $P$ 是到具有固定 $Z_2$ 涡旋数的子空间上的投影。利用统计代数 (4.1.10)，证明 $Z_2$ 涡旋是玻色子。
+
+\section{$1+2$ 维 $U(1)$ 规范理论与 XY 模型}
+
+我们在 3.7.1 节构造了 $U(1)$ 规范理论的拉格朗日量，并在 3.7.5 节研究了它的经典运动方程。本节将研究量子的 $U(1)$ 规范理论。我们不是孤立地研究 $U(1)$ 规范理论，而是把它与 $1+2$ 维的 XY 模型放在一起研究。我们将证明，XY 模型与 $U(1)$ 规范理论之间存在对偶关系，并利用这一对偶关系研究 $(1+2)$ 维 $U(1)$ 规范理论中的瞬子效应与禁闭。
+
+\subsection{$1+2$ 维 $U(1)$ 规范理论与 XY 模型之间的对偶}
+
+\begin{keypoints}
+\item 规范固定与库仑规范。
+\item $U(1)$ 规范理论的量子化。
+\item 量子化的电荷、大规范变换与紧致 $U(1)$ 规范理论。
+\item $U(1)$ 规范理论中量子化的电荷就是对偶 XY 模型中量子化的涡旋。
+\end{keypoints}
+
+XY 模型由路径积分
+\begin{gather*}
+Z_{XY} = \int \mathcal{D}\theta\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,\mathrm{d}^2\pmb{x}\; \mathcal{L}_{XY}}\\
+\mathcal{L}_{XY} = \frac{\chi}{2}\left(\dot{\theta}^{\,2} - (\partial_{\pmb{x}}\theta)^2\right)\tag{6.3.1}
+\end{gather*}
+描述。$U(1)$ 规范理论也可以由路径积分
+\begin{gather*}
+Z_{U(1)} = \int \mathcal{D}a_\mu\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,\mathrm{d}^2\pmb{x}\; \mathcal{L}_{U(1)}},\tag{6.3.2}\\
+\mathcal{L}_{U(1)} = \frac{1}{2g^2}\left(\pmb{e}^2 - b^2\right), \qquad e_i = \partial_0 a_i - \partial_i a_0, \qquad b = \partial_1 a_2 - \partial_2 a_1,
+\end{gather*}
+描述，其中 $\pmb{e}$ 是 $a_\mu$ 的“电”场，$b$ 是它的“磁”场。这两条路径积分如此不同，以至于很难看出两个理论之间有任何关系。然而，我们下面将证明，这两条路径积分描述的是同一个物理系统。
+
+我们注意到，两个理论都是二次的，因而都精确可解。理解两理论之间关系的一个办法，是把它们量子化，找出两个理论中所有的低能激发。
+
+让我们先试着量子化 $U(1)$ 规范理论，即求出 $U(1)$ 规范理论的希尔伯特空间和哈密顿量。我们注意到，$\mathcal{L}_{U(1)}$ 在变换 $a_\mu \to a_\mu + \partial_\mu f$ 下不变：
+\begin{equation*}
+\mathcal{L}_{U(1)}(a_\mu) = \mathcal{L}_{U(1)}(a_\mu + \partial_\mu f)
+\end{equation*}
+如果我们把 $a_\mu$ 和 $a_\mu + \partial_\mu f$ 当作两条不同的路径，那么该理论就有一个对称性。然而在这里，我们把 $a_\mu$ 和 $a_\mu + \partial_\mu f$ 当作\emph{同一条}路径的两个不同标签。这样一来，我们得到的是一个规范理论，而 $a_\mu \to a_\mu + \partial_\mu f$ 定义了规范结构。
+
+为了得到哈密顿量描述，我们先设法找到路径的一种一对一标记。考虑一条由 $a_\mu$ 标记的路径。规范变换告诉我们，$a'_\mu = a_\mu + \partial_\mu f$ 标记同一条路径。在同一条路径的这么多不同标签之中，通过调节 $f$，我们总可以挑选出满足
+\begin{equation*}
+\pmb{\partial} \cdot \pmb{a} = 0\tag{6.3.3}
+\end{equation*}
+的那一个。于是，满足式 (6.3.3) 的 $a_\mu$ 提供了不同路径的一种一对一标记。式 (6.3.3) 称为规范固定条件。能够导致路径一对一标记的规范固定条件有很多种；特定的规范固定条件 (6.3.3) 称为库仑规范。
+
+在库仑规范中，作用量中含有 $a_0$ 的部分形如 $S = \int \mathrm{d}t\,\mathrm{d}^2\pmb{x}\; \pmb{e}^2 = \int \mathrm{d}t\,\mathrm{d}^2\pmb{x}\; (\dot{a}_i^2 + \partial_i a_0\, \partial_i a_0)$。交叉项 $\int \mathrm{d}t\,\mathrm{d}^2\pmb{x}\; \partial_i a_0\, \partial_0 a_i$ 因 $\partial_i a_i = 0$ 而消失。我们看到，$a_0$ 与 $\pmb{a}$ 解耦，且没有动力学（即没有 $\dot{a}_0$ 项）。因此我们可以丢掉 $a_0$（相当于取 $a_0 = 0$）。于是，在库仑规范中，路径积分计算的是从 $a_i(\pmb{x}, t_1)$ 到 $a_i(\pmb{x}, t_2)$、且满足 $\partial_i a_i(\pmb{x}, t) = 0$（$t_1 \leqslant t \leqslant t_2$）的演化的振幅。这样，$U(1)$ 规范理论的量子态由一个波泛函 $\Psi[a_i(\pmb{x})]$ 描述，其中 $a_i$ 满足 $\partial_i a_i = 0$。这就定义了物理态的希尔伯特空间。
+
+接下来，我们将通过求出规范固定后的作用量来找出本征态及其能量。先把 $a_i$ 展开如下：
+\begin{equation*}
+a_i = \frac{X_i(t)}{L_i} + b_0 x^1 \delta_{i,2} + \sum_{\pmb{k}} \mathrm{i}\, c_{\pmb{k}}(t)\, \epsilon_{ij} k_j\, \mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}\tag{6.3.4}
+\end{equation*}
+其中 $c_{\pmb{k}} = c^*_{-\pmb{k}}$。上式给出的 $a_i$ 总是满足 $\partial_i a_i = 0$。于是，物理态的波函数是 $b_0$、$X_i$ 和 $c_{\pmb{k}}$ 的函数。规范固定后的拉格朗日量形如
+\begin{equation*}
+L = \frac{1}{2g^2}\left(-b_0^2 L_1 L_2 + \frac{L_2}{L_1}\dot{X}_1^{\,2} + \frac{L_1}{L_2}\dot{X}_2^{\,2} + \sum_{\pmb{k}} \left(|\dot{c}_{\pmb{k}}|^2 - \pmb{k}^2 |c_{\pmb{k}}|^2\right) L_1 L_2 \pmb{k}^2\right)
+\end{equation*}
+我们看到，环面上的 $U(1)$ 规范理论由一集振子 $c_{\pmb{k}}$ 加上一个由 $(X_1, X_2)$ 描述的二维自由粒子所描述。本征态的能量为
+\begin{equation*}
+E = \frac{1}{2g^2} b_0^2 L_1 L_2 + \frac{g^2 L_1}{2L_2} P_1^2 + \frac{g^2 L_2}{2L_1} P_2^2 + \sum_{\pmb{k}} |\pmb{k}| n_{\pmb{k}}
+\end{equation*}
+其中 $n_{\pmb{k}}$ 是振子的占据数，$P_i$ 是与 $X_i$ 共轭的动量。
+
+$U(1)$ 规范理论有两种，分别称为紧致与非紧致 $U(1)$ 理论（compact and non-compact $U(1)$ theories）。两种 $U(1)$ 规范理论中的规范变换定义不同，因此两个理论有不同的希尔伯特空间，应当加以区分。对于非紧致 $U(1)$ 理论，$a_\mu \to a_\mu + \partial_\mu f$ 是唯一允许的规范变换。我们后面会看到，在非紧致 $U(1)$ 理论中规范电荷不量子化。
+
+紧致 $U(1)$ 规范理论具有量子化的规范电荷。只有 Wegner--Wilson 圈振幅
+\begin{equation*}
+O_C = \mathrm{e}^{-\mathrm{i} q \oint_C \mathrm{d}x^\mu a_\mu}
+\end{equation*}
+才可以被观测。这里 $q$ 是电荷量子。通过选取不同取向的小回路，可以证明 $O_C$ 包含电场 $\pmb{e}$ 和磁场 $b$ 的所有分量。由于 $O_C$ 是唯一的可观测量，任何使 $O_C$ 不变的 $a_\mu$ 的变换都是规范变换。这类变换具有 $a_\mu \to a_\mu + \partial_\mu f$ 的形式，但此时 $f$ 可以不是时空的单值函数。特别地，环面上的下列 $f$ 生成一个合法的规范变换：
+\begin{equation*}
+f = \frac{2\pi N_1 x^1}{q L_1} + \frac{2\pi N_2 x^2}{q L_2}\tag{6.3.5}
+\end{equation*}
+例如，对于沿 $x^1$ 方向环绕环面的回路 $C$，可以直接验证：在上述规范变换下，Wegner--Wilson 圈振幅按 $O_C \to O_C\, \mathrm{e}^{-\mathrm{i} q \oint_C \mathrm{d}x^\mu \partial_\mu f} = O_C$ 变换。
+
+一般地，任何使 $\mathrm{e}^{\mathrm{i} q f}$ 单值的多值 $f$ 都使 $O_C$ 不变，这些 $f$ 生成合法的规范变换。我们还注意到，带电荷 $q$ 的电荷场按下式变换：
+\begin{equation*}
+\phi \to \mathrm{e}^{\mathrm{i} q f} \phi.
+\end{equation*}
+具有单值 $\mathrm{e}^{\mathrm{i} q f}$ 的规范变换保持电荷场单值。
+
+式 (6.3.5) 中的规范变换称为大规范变换（large gauge transformations）。这些变换，即 $\mathrm{e}^{\mathrm{i} q f} = \exp\!\left(\mathrm{i}q\left(\frac{2\pi N_1 x^1}{qL_1} + \frac{2\pi N_2 x^2}{qL_2}\right)\right)$，不能连续变形为恒等变换 $\mathrm{e}^{\mathrm{i} q f} = 1$。当 $x^1$ 从 0 变到 $L_1$ 时，$\mathrm{e}^{\mathrm{i} q f}$ 在复平面的单位圆上绕行 $N_1$ 圈。缠绕数 $N_1$ 不能连续改变。
+
+我们注意到，在规范变换 (6.3.5) 下，
+\begin{equation*}
+X_i \to X_i + 2\pi q^{-1} N_i
+\end{equation*}
+因此，对于紧致 $U(1)$ 理论，$(X_1, X_2)$、$(X_1 + 2\pi q^{-1}, X_2)$ 和 $(X_1, X_2 + 2\pi q^{-1})$ 标记同一个物理态（因为它们通过规范变换相联系）。由 $X_i$ 描述的自由粒子生活在大小为 $\frac{2\pi}{q} \times \frac{2\pi}{q}$ 的环面上。动量 $P_i$ 量子化为 $P_i = n_i q$。
+
+对于非紧致 $U(1)$ 理论，不允许大规范变换。于是 $X_1$ 和 $X_2$ 没有周期条件，由 $X_i$ 描述的自由粒子生活在平面上。
+
+我们看到，尽管两种理论的哈密顿量形式相同，紧致与非紧致 $U(1)$ 理论却有不同的物理希尔伯特空间。我们还看到，紧致 $U(1)$ 理论的 $q \to 0$ 极限给出非紧致 $U(1)$ 理论。这就是为什么我们说，在非紧致 $U(1)$ 理论中电荷是不量子化的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.5.pdf}
+\caption*{图 6.5\quad 单位球面上的一个圈可以是两个不同圆盘 $D$ 和 $D'$ 的边界。}
+\end{figure}
+
+由于我们的系统定义在环面上，每个物理量在 $x^1$ 和 $x^2$ 两个方向上都必须是周期的。人们也许会天真地把这一要求用于 $a_i$，要求 $a_i$ 是周期的：
+\begin{equation*}
+a_i(x^1, x^2) = a_i(x^1 + L_1, x^2) = a_i(x^1, x^2 + L_2).
+\end{equation*}
+然而我们注意到，$a_i$ 本身并不是物理的。不同的但规范等价的 $a_i$ 描述同一个物理态。因此，要使 $a_i$ 描述环面上的一个物理态，我们只要求 $a_i(x^1, x^2)$、$a_i(x^1 + L_1, x^2)$ 和 $a_i(x^1, x^2 + L_2)$ 规范等价。这只有当总磁通量子化时才可能发生（见问题 6.3.1）：
+\begin{equation*}
+\int \mathrm{d}^2\pmb{x}\; b = 2\pi N/q, \qquad N = \text{整数}\tag{6.3.6}
+\end{equation*}
+总通量的上述量子化，是圈振幅 $\mathrm{e}^{-\mathrm{i} q \int_C \mathrm{d}x^\mu a_\mu}$ 在紧致曲面上有意义所必需的。这是因为，对于二维空间 $S$ 中的回路 $C$，$\mathrm{e}^{-\mathrm{i} q \int_C \mathrm{d}x^\mu a_\mu} = \mathrm{e}^{\mathrm{i} q \int_D \mathrm{d}^2\pmb{x}\; b}$，其中 $D$ 是以回路 $C$ 为边界的二维圆盘。对于紧致二维空间，圆盘并不唯一（见图 6.5）。具有同一边界的两个不同圆盘 $D$ 和 $D'$ 相差紧致空间的总面积 $S$，故 $q\int_D \mathrm{d}^2\pmb{x}\; b - q\int_{D'} \mathrm{d}^2\pmb{x}\; b = q\int_S \mathrm{d}^2\pmb{x}\; b$。因此，为了让 $\mathrm{e}^{-\mathrm{i} q \int_C \mathrm{d}x^\mu a_\mu}$ 良好定义，$q\int_S \mathrm{d}^2\pmb{x}\; b/2\pi$ 必须量子化为整数。我们还注意到，对于非紧致 $U(1)$ 理论，$q = 0$，$\int_S \mathrm{d}^2\pmb{x}\; b$ 必须为零。
+
+现在，紧致 $U(1)$ 规范理论的总能量可以改写为
+\begin{equation*}
+E = \frac{(2\pi)^2}{2g^2 q^2 L_1 L_2} N + \frac{g^2 q^2 L_1}{2L_2} n_1^2 + \frac{g^2 q^2 L_2}{2L_1} n_2^2 + \sum_{\pmb{k}} |\pmb{k}| n_{\pmb{k}}\tag{6.3.7}
+\end{equation*}
+环面上 $U(1)$ 规范理论的所有本征态都由一组整数 $(N, n_i, n_{\pmb{k}})$ 标记。这样，我们就求解了环面上的紧致 $U(1)$ 规范理论。
+
+% ------------------------------------------------------------------
+% 新增术语（ch6_a）
+% ------------------------------------------------------------------
+% gauge 'symmetry' / gauge 'symmetry' breaking : 规范“对称性” / 规范“对称性”破缺
+% gauge-invariant states / operators : 规范不变态 / 规范不变算符
+% gauge-equivalent class : 规范等价类
+% invariant gauge group (IGG) : 不变规范群（IGG）
+% Wegner–Wilson loop variable / amplitude : Wegner–Wilson 圈变量 / 圈振幅
+% plaquette : 方格
+% identical-particle system : 全同粒子系统
+% exchange symmetry : 交换对称性
+% translational symmetry : 平移对称性
+% gauge-fixing condition : 规范固定条件
+% large gauge transformation : 大规范变换
+% compact / non-compact U(1) theory : 紧致 / 非紧致 U(1) 理论
+% charge quantum : 电荷量子
+% wave functional : 波泛函
+% topological degeneracy : 拓扑简并
+% Z2 vortex : Z2 涡旋
+% deconfined / confined phase : 解禁闭相 / 禁闭相
+% topological field theory : 拓扑场论
+% energy splitting : 能量劈裂
+% hopping operator : 跳跃算符
+% quantum Ising model : 量子伊辛模型
+% boson-number density / current density : 玻色子数密度 / 玻色子数流密度
+% open lattice : 开放格子
+% degeneracy : 简并度
+
+% 块界说明：书页 262 以完整段落结束（"…we have solved the compact U(1) gauge theory on a torus."），
+% 本块起始段为新段，无需 %JOIN%。本块为第 6 章章末块，至书页 274（p289）自然收束，无 TAIL。
+
+下面我们转向 XY 模型及其本征态。我们展开
+\begin{equation*}
+\theta(t,\pmb{x})=\theta_{0}(t)+\frac{2\pi}{L_{i}}m_{i}x^{i}+\sum_{\pmb{k}}\lambda_{\pmb{k}}(t)\,\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}.
+\end{equation*}
+这里 $m_{1}$ 与 $m_{2}$ 分别是 $\theta$ 在 $x^{1}$ 与 $x^{2}$ 方向上的缠绕数。XY 模型的拉格朗日量现在具有如下形式：
+\begin{equation*}
+L=\frac{\chi}{2}\left(L_{1}L_{2}\dot{\theta}_{0}^{2}-\frac{(2\pi)^{2}L_{2}}{L_{1}}m_{1}^{2}-\frac{(2\pi)^{2}L_{1}}{L_{2}}m_{2}^{2}+L_{1}L_{2}\sum_{\pmb{k}}\left(|\dot{\lambda}_{\pmb{k}}|^{2}-\pmb{k}^{2}|\lambda_{\pmb{k}}|^{2}\right)\right)
+\end{equation*}
+我们看到，XY 模型由一群振子（由 $\lambda_{\pmb{k}}$ 描述）和一个圆上的自由粒子（由 $\theta_{0}$ 描述）构成。XY 模型的本征态由 $(N,m_{i},n_{\pmb{k}})$ 标记，其能量为
+\begin{equation*}
+E=\frac{1}{2\chi L_{1}L_{2}}N^{2}+\frac{\chi(2\pi)^{2}L_{2}}{2L_{1}}m_{1}^{2}+\frac{\chi(2\pi)^{2}L_{1}}{2L_{2}}m_{2}^{2}+\sum_{\pmb{k}}|\pmb{k}|n_{\pmb{k}} \tag{6.3.8}
+\end{equation*}
+我们看到，如果
+\begin{equation*}
+\chi=\left(\frac{qg}{2\pi}\right)^{2}
+\end{equation*}
+并且在标记 U(1) 理论与 XY 模型的本征态时把 $n_{i}$ 认作 $\epsilon_{ij}m_{j}$，那么 XY 模型与 U(1) 规范理论就具有完全相同的谱。本征态还携带确定的总动量 $\pmb{K}$：对 XY 模型的态 $|N,m_{i},n_{\pmb{k}}\rangle$ 或 U(1) 理论的态 $|N,n_{i},n_{\pmb{k}}\rangle$，
+\begin{equation*}
+K_{i}=Nm_{i}\frac{2\pi}{L_{i}}+\sum_{\pmb{k}}k_{i}n_{\pmb{k}}=N\epsilon_{ij}n_{j}\frac{2\pi}{L_{i}}+\sum_{\pmb{k}}k_{i}n_{\pmb{k}}.
+\end{equation*}
+从 XY 模型这一侧我们看到，标记 $N$ 具有物理意义：它是玻色子的总数减去平衡时的玻色子数，即 $N=N_{tot}-N_{0}$。因此，$\frac{1}{\chi}\dot{\theta}$ 与 $\frac{q}{2\pi}b$ 可以看作玻色子数密度减去平衡密度：
+\begin{equation*}
+\rho-\rho_{0}=\frac{q}{2\pi}b=\frac{1}{\chi}\dot{\theta}
+\end{equation*}
+U(1) 理论中的约束 $\partial_{0}b-\epsilon_{ij}\partial_{i}e_{j}=0$ 可以看作守恒流的连续性方程，即 $\partial_{0}\rho+\partial_{i}j_{i}=0$。于是，若把 $\frac{q}{2\pi}b$ 认作玻色子数密度，则 U(1) 理论中的玻色子数流密度由下式给出：
+\begin{equation*}
+j_{i}=-\frac{q}{2\pi}\epsilon_{ij}e_{j}
+\end{equation*}
+
+XY 模型的运动方程，即 $\partial_{0}^{2}\theta-\partial_{x}^{2}\theta=0$，同样可以看作守恒流的连续性方程。我们发现，在 XY 模型中同一个流由下式给出：
+\begin{equation*}
+j_{i}=-\frac{1}{\chi}\partial_{i}\theta
+\end{equation*}
+我们发现，U(1) 理论中的场与 XY 模型中的场之间存在一个简单关系：
+\begin{equation*}
+\frac{q}{2\pi}b=\frac{1}{\chi}\dot{\theta}, \qquad\qquad \frac{q}{2\pi}\epsilon_{ij}e_{j}=\frac{1}{\chi}\partial_{i}\theta. \tag{6.3.9}
+\end{equation*}
+事实上，把式 (6.3.9) 代入式 (6.3.2)，就会把 U(1) 规范拉格朗日量变成 XY 模型的拉格朗日量 (6.3.1)。这是看出 2+1 维中 U(1) 规范理论与 XY 模型之间对偶关系最直接的途径。
+
+U(1) 规范理论可以与电荷耦合。设 $J_{\mu}$ 为 U(1) 电荷的密度与流密度，则耦合后的拉格朗日量具有如下形式：
+\begin{equation*}
+\mathcal{L}=\frac{1}{2g^{2}}(e^{2}-b^{2})-J_{\mu}a_{\mu}
+\end{equation*}
+对于位于 $\pmb{x}=0$ 处的点电荷，我们有 $J_{0}=q\delta(\pmb{x})$，并且从运动方程得到
+\begin{equation*}
+\frac{1}{g^{2}}\pmb{\partial}\cdot\pmb{e}=q\delta(\pmb{x})
+\end{equation*}
+即
+\begin{equation*}
+\pmb{e}=\frac{g^{2}q\pmb{x}}{2\pi\pmb{x}^{2}}
+\end{equation*}
+上面的 $\pmb{e}$ 对应于 XY 模型中的一个环形流：
+\begin{equation*}
+\partial_{i}\theta=\frac{\chi q}{2\pi}\frac{g^{2}q}{2\pi\pmb{x}^{2}}\epsilon_{ij}x^{j}=\frac{\epsilon_{ij}x^{j}}{\pmb{x}^{2}}
+\end{equation*}
+我们看到，U(1) 规范理论中的量子化电荷正是 XY 模型中的量子化涡旋。
+
+\subsection*{问题 6.3.1}
+
+证明式 (6.3.6)。（提示：你会发现展开式 (6.3.4) 很有用。）
+
+\subsection*{问题 6.3.2}
+
+将 1+1 维的紧致 U(1) 规范理论量子化，假设空间是长度为 $L$ 的一个圆环，电荷量子为 $q$。求标记所有能量本征态的整数集合，并求出这些本征态的能量。
+
+\subsection{1+2 维紧致 U(1) 规范理论的禁闭}
+
+\begin{keypoints}
+\item 1+2 维 U(1) 规范理论中的瞬子效应赋予规范玻色子有限的能隙，并导致 U(1) 电荷之间的禁闭。
+\item 瞬子效应可以用对偶 XY 模型中的一个 $\cos(\theta)$ 项来描述。
+\end{keypoints}
+
+这里我们考虑虚时间中的 U(1) 规范理论：
+\begin{equation*}
+\mathcal{L}_{U(1)}=\frac{1}{2g^{2}}\left(e^{2}+b^{2}\right) \tag{6.3.10}
+\end{equation*}
+形式上看，U(1) 规范理论像是一个具有无能隙激发的自由理论。然而事情并非如此简单。对于具有有限截断标度的紧致 U(1) 规范理论，理论中含有瞬子。瞬子效应将使 U(1) 规范理论成为一个相互作用理论。我们将会看到，这种相互作用会以剧烈的方式影响 U(1) 规范理论的低能性质。
+
+什么是瞬子？位于 $x^{\mu}=0$ 处的瞬子由如下位形描述：
+\begin{equation*}
+b(x^{\mu})=\frac{1}{2q}\frac{x^{0}}{|\pmb{x}|^{3}}, \qquad e_{i}(x^{\mu})=\frac{1}{2q}\frac{x^{i}}{|\pmb{x}|^{3}}
+\end{equation*}
+上述瞬子的设计意图是使通量改变 $2\pi/q$，即
+\begin{equation*}
+\int_{x^{0}>0}\mathrm{d}^{2}x\,b-\int_{x^{0}<0}\mathrm{d}^{2}x\,b=\frac{2\pi}{q}
+\end{equation*}
+这是与电荷量子 $q$ 相容的最小允许瞬子。在存在有限截断时，路径积分不仅应当包含规范场的光滑涨落，还应当包含瞬子涨落。
+
+把瞬子效应包括进来之后，U(1) 规范理论就不再是自由理论。现在的问题是如何理解含瞬子的紧致 U(1) 理论的低能性质。一种方法是利用 XY 模型与 U(1) 规范理论之间的对偶性。
+
+对虚时间而言，$\theta$ 与 $a_{\mu}$ 通过下式相联系：
+\begin{equation*}
+\frac{q}{2\pi}b=\frac{1}{\chi}\dot{\theta}, \qquad \frac{q}{2\pi}\epsilon_{ij}e_{j}=-\frac{1}{\chi}\partial_{i}\theta \tag{6.3.11}
+\end{equation*}
+此式也可写为
+\begin{equation*}
+\frac{q}{2\pi}\epsilon_{\mu\nu\lambda}\partial_{\nu}a_{\lambda}=\frac{1}{\chi}\partial_{\mu}\theta \tag{6.3.12}
+\end{equation*}
+把式 (6.3.12) 代入式 (6.3.10) 后，我们得到
+\begin{equation*}
+\mathcal{L}=\frac{\chi}{2}(\partial_{\mu}\theta)^{2}
+\end{equation*}
+其中 $\chi=\left(\frac{qg}{2\pi}\right)^{2}$。我们注意到，瞬子产生 $2\pi/q$ 的通量。如前所见，这样一份通量对应于 XY 模型中的一个粒子。因此，瞬子产生或湮灭一个粒子。在 XY 模型中，产生或湮灭一个粒子的算符正是 $\mathrm{e}^{\pm\mathrm{i}\theta}$。我们发现，位于 $x^{\mu}$ 处的瞬子对应于 $\mathrm{e}^{\mathrm{i}\theta(x^{\mu})}$。由于瞬子与反瞬子在路径积分中以相同的权重出现，我们可以通过在 XY 模型中加入一项 $\mathrm{e}^{\mathrm{i}\theta}+\mathrm{e}^{-\mathrm{i}\theta}=2\cos(\theta)$ 来把瞬子效应包括进来，如下所示：
+\begin{equation*}
+\mathcal{L}=\frac{\chi}{2}(\partial_{\mu}\theta)^{2}-K\cos(\theta)
+\end{equation*}
+
+当 $\chi$ 很大时，$\theta$ 在 $\theta=0$ 附近的涨落很小。我们可以把 $\mathcal{L}$ 近似为
+\begin{equation*}
+\mathcal{L}=\frac{\chi}{2}(\partial_{\mu}\theta)^{2}+\frac{1}{2}K\theta^{2}
+\end{equation*}
+
+把瞬子效应包括进来之后，$\partial_{\mu}\theta$ 之间（或 $(b,e_{i})$ 之间）的关联变成短程的。我们看到，瞬子效应在 1+2 维中为 U(1) 规范场打开了能隙。这里我们想强调，$K\cos(\theta)$ 项是一个相关微扰，无论 $K$ 多么小，U(1) 规范玻色子都会获得能隙。
+
+如果规范玻色子是无能隙的，那么在 1+2 维中带电粒子之间将通过对数势相互作用。电荷为 $q$ 的粒子与电荷为 $-q$ 的粒子之间的势由下式给出：
+\begin{equation*}
+\pi\frac{g^{2}q^{2}}{(2\pi)^{2}}\ln r=\pi\chi\ln r
+\end{equation*}
+
+把瞬子效应包括进来之后，规范场获得了能隙。但瞬子效应会如何影响带电粒子之间的长程相互作用呢？我们注意到，电荷为 $q$ 的粒子在 XY 模型中由一个涡旋描述。在瞬子效应存在时，即在 $K\cos(\theta)$ 项存在时，涡旋与反涡旋之间的势随两个涡旋的间距线性增长（见图 6.6）。因此，瞬子效应把对数势变成了电荷之间的线性势。
+
+我们已经证明，在 1+2 维中 XY 模型可以用紧致 U(1) 规范理论来描述；我们也已经证明，U(1) 规范理论中的瞬子效应会打开能隙。这两个结果似乎相互矛盾：具有无能隙 Nambu--Goldstone 模的 XY 模型，怎么会等价于有能隙的 U(1) 规范理论呢？然而我们意识到，瞬子会产生通量，而通量对应于粒子数，所以瞬子的存在意味着相应 XY 模型中的粒子数不守恒。于是一切都自洽了。在瞬子存在时，粒子数不守恒。紧致 U(1) 规范理论描述的是一个不具有 U(1) 对称性的 XY 模型。这解释了为什么瞬子效应对应于 XY 模型中的势项 $K\cos(\theta)$。反过来，如果 XY 模型具有 U(1) 对称性并保持粒子数守恒，那么相应的 U(1) 规范理论中就不允许存在瞬子。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.6.pdf}
+\caption*{图 6.6\quad XY 模型中相距 $l$ 的涡旋--反涡旋对：$\theta$ 场在连接两个涡旋的连线的两侧必须跳变 $2\pi$。在 $-K\cos(\theta)$ 项存在时，通常的涡旋拟设 $\theta(x,y)=\arctan(x/y)$ 付出巨大的能量，其大小按 $l^{2}$ 增长。为使能量最小，非零的 $\theta$ 被限制在阴影区内。（虚线是 $\theta$ 场的等值线。）这导致两个涡旋之间的线性禁闭势。}
+\end{figure}
+
+\subsection*{问题 6.3.3}
+
+\textbf{含瞬子的 1+2 维 U(1) 规范理论与含 $\cos(\theta)$ 项的 XY 模型之间的对偶性}
+
+\begin{enumerate}
+\item 计算在 $x^{\mu}$ 处有一个瞬子、在 $y^{\mu}$ 处有一个反瞬子的 U(1) 规范理论的配分函数 $Z(x^{\mu},y^{\mu})$，精确到一个整体常数因子。
+\item 利用上述结果，写出包含多瞬子气体贡献的 U(1) 规范理论配分函数的表达式。
+\item 计算在 $x^{\mu}$ 处插入 $\mathrm{e}^{\mathrm{i}\theta}$、在 $y^{\mu}$ 处插入 $\mathrm{e}^{-\mathrm{i}\theta}$ 的 XY 模型的下列配分函数 $Z(x^{\mu},y^{\mu})$，精确到一个整体常数因子：
+\begin{equation*}
+Z(x^{\mu},y^{\mu})=\int\mathcal{D}\theta\,\mathrm{e}^{\mathrm{i}\theta(x^{\mu})}\mathrm{e}^{-\mathrm{i}\theta(y^{\mu})}\mathrm{e}^{-\int\mathrm{d}^{3}x^{\mu}\,\mathcal{L}_{XY}(\theta)}
+\end{equation*}
+\item 证明：含瞬子的 U(1) 配分函数与加了 $K\cos(\theta)$ 项的 XY 模型配分函数相一致（按 $K$ 的幂次展开之后）。
+\end{enumerate}
+
+\section{格点上的量子 U(1) 规范理论}
+
+\subsection{格点 U(1) 规范理论的拉格朗日量}
+
+\begin{keypoints}
+\item 格点 U(1) 规范理论由链上的变量 $a_{\pmb{i}\pmb{j}}$ 与格点上的变量 $a_{0}(\pmb{i})$ 描述。
+\item 紧致与非紧致的格点 U(1) 规范理论。
+\item 电场 $e_{\pmb{i}\pmb{j}}$ 的通量。
+\end{keypoints}
+
+U(1) 规范理论也可以定义在格点上。U(1) 格点规范理论使我们能够在任意维度中研究强耦合极限与禁闭。为简单起见，这里我们考虑二维正方格子上的 U(1) 规范理论。标势 $a_{0}(\pmb{x})$ 定义在每个格点 $\pmb{i}$ 上，记作 $a_{0}(\pmb{i})$；矢势 $\pmb{a}(\pmb{x})$ 定义在每条链上，记作 $a_{\pmb{i}\pmb{j}}$。我们注意到，$a_{\pmb{i}\pmb{j}}$ 与 $a_{\pmb{j}\pmb{i}}$ 并不独立，它们通过 $a_{\pmb{i}\pmb{j}}=-a_{\pmb{j}\pmb{i}}$ 相联系。连续场与格点场通过下式相联系：
+\begin{equation*}
+a_{0}(\pmb{j})=a_{0}(\pmb{x})|_{\pmb{x}=l\pmb{j}}, \qquad a_{\pmb{j}_{1}\pmb{j}_{2}}=\int_{l\pmb{j}_{1}}^{l\pmb{j}_{2}}\mathrm{d}x^{i}a_{i}(\pmb{x}) \tag{6.4.1}
+\end{equation*}
+其中 $l$ 是晶格常数。描述 U(1) 格点规范理论的拉格朗日量是 $a_{0}(\pmb{i})$ 与 $a_{\pmb{i}\pmb{j}}$ 的下列函数：
+\begin{equation*}
+L=\frac{1}{4J}\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y}}\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]^{2}-\frac{g}{2}\sum_{\pmb{p}}\Phi_{\pmb{p}}^{2} \tag{6.4.2}
+\end{equation*}
+其中 $\Phi_{\pmb{p}}$ 是穿过标记为 $\pmb{p}$ 的正方形的 U(1) 通量：
+\begin{equation*}
+\Phi_{\pmb{p}}=a_{\pmb{i},\pmb{i}+\pmb{x}}+a_{\pmb{i}+\pmb{x},\pmb{i}+\pmb{x}+\pmb{y}}+a_{\pmb{i}+\pmb{x}+\pmb{y},\pmb{i}+\pmb{y}}+a_{\pmb{i}+\pmb{y},\pmb{i}}. \tag{6.4.3}
+\end{equation*}
+可以直接验证，上述拉格朗日量在下列格点 U(1) 规范变换
+\begin{equation*}
+a_{\pmb{i}\pmb{j}}(t)\rightarrow a_{\pmb{i}\pmb{j}}(t)+\phi_{\pmb{j}}(t)-\phi_{\pmb{i}}(t), \qquad a_{0}(\pmb{i},t)\rightarrow a_{0}(\pmb{i},t)+\dot{\phi}_{\pmb{i}}(t) \tag{6.4.4}
+\end{equation*}
+之下不变。
+
+式 (6.4.2) 定义的是一个非紧致的格点 U(1) 规范理论。紧致的格点 U(1) 规范理论则通过把 $u_{\pmb{i}\pmb{j}}=\mathrm{e}^{\mathrm{i}a_{\pmb{i}\pmb{j}}}$ 取作链变量来定义。在紧致格点 U(1) 规范理论中，$a_{\pmb{i}\pmb{j}}$ 与 $a'_{\pmb{i}\pmb{j}}=a_{\pmb{i}\pmb{j}}+2\pi$ 被视为等价。紧致格点 U(1) 规范理论的拉格朗日量具有如下形式：
+\begin{equation*}
+L=\frac{1}{4J}\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y}}\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]^{2}+g\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}}) \tag{6.4.5}
+\end{equation*}
+它由式 (6.4.2) 修改而来，以便与周期性条件 $a_{\pmb{i}\pmb{j}}\sim a_{\pmb{i}\pmb{j}}+2\pi$ 相容。在本节余下的部分中，我们只考虑紧致 U(1) 格点规范理论。
+
+经典运动方程由 $\delta L/\delta a_{\pmb{i}\pmb{j}}=0$ 与 $\delta L/\delta a_{0}(\pmb{i})=0$ 得到。我们发现
+\begin{equation*}
+\frac{1}{2J}\frac{\mathrm{d}e_{\pmb{i},\pmb{i}+\pmb{\mu}}}{\mathrm{d}t}+g\left[\sin(\Phi_{\pmb{p}_{1}})-\sin(\Phi_{\pmb{p}_{2}})\right]=0, \tag{6.4.6}
+\end{equation*}
+\begin{equation*}
+\sum_{\pmb{\mu}=\pm\pmb{x},\pm\pmb{y}}e_{\pmb{i},\pmb{i}+\pmb{\mu}}=0, \qquad e_{\pmb{i}\pmb{j}}=\dot{a}_{\pmb{i}\pmb{j}}+a_{0}(\pmb{i})-a_{0}(\pmb{j}) \tag{6.4.7}
+\end{equation*}
+其中 $\pmb{p}_{1}$ 与 $\pmb{p}_{2}$ 标记链 $(\pmb{i},\pmb{i}+\pmb{\mu})$ 两侧的两个正方形。
+
+把 $e_{\pmb{i}\pmb{j}}$ 与连续模型中的 $e$ 作比较，我们看到 $e_{\pmb{i}\pmb{j}}$ 可以解释为流过链 $(\pmb{i},\pmb{j})$ 的电场通量。式 (6.4.7) 表明电通量是守恒的，它对应于连续模型中的高斯定律 $\pmb{\partial}_{\pmb{x}}\cdot\pmb{e}=0$。此外，$\Phi_{\pmb{p}}$ 作为穿过正方形 $S_{\pmb{p}}$ 的通量，对应于连续模型中的 $\Phi_{\pmb{p}}=\int_{S_{\pmb{p}}}\mathrm{d}^{2}\pmb{x}\,b$。
+
+要获得式 (6.4.2) 或式 (6.4.5) 所描述的格点 U(1) 规范理论的动力学性质，最简单的办法是取连续极限。假设 $a_{\mu}$ 很小并且是 $t$ 与 $\pmb{x}$ 的光滑函数，我们把连续变量与格点变量之间的关系式 (6.4.1) 代入格点拉格朗日量，便得到下列标准的 U(1) 拉格朗日量：
+\begin{equation*}
+\mathcal{L}=\frac{1}{8\pi\alpha_{2D}}\left(\frac{1}{c}e^{2}-cb^{2}\right) \tag{6.4.8}
+\end{equation*}
+从所得的麦克斯韦方程我们发现，格点 U(1) 规范理论含有一个速度为 $c$ 的无能隙模式。耦合常数 $\alpha_{2D}$ 在 1+2 维中的量纲为 1/长度。
+
+在 3.7.1 节中，我们曾利用规范不变性在连续空间中构造了带电玻色子与 U(1) 规范场相耦合的理论。同样的构造也适用于格点模型。我们发现，与带电玻色子耦合的格点 U(1) 规范理论由下列拉格朗日量描述：
+\begin{align*}
+L={}&+\sum_{\langle\pmb{i}\pmb{j}\rangle}t_{\pmb{i}\pmb{j}}\left(\varphi_{\pmb{i}}^{\dagger}\varphi_{\pmb{j}}\mathrm{e}^{-\mathrm{i}a_{\pmb{j}\pmb{i}}}+h.c\right)+\sum_{\pmb{i}}\varphi_{\pmb{i}}^{\dagger}\,\mathrm{i}\left[\partial_{0}+\mathrm{i}a_{0}(\pmb{i})\right]\varphi_{\pmb{i}}\\
+&+\frac{1}{4J}\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y}}\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]^{2}+g\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}}) \tag{6.4.9}
+\end{align*}
+该拉格朗日量在下列格点规范变换下不变：
+\begin{equation*}
+c_{\pmb{i}}\rightarrow\mathrm{e}^{\mathrm{i}\phi(\pmb{i},t)}c_{\pmb{i}}, \quad a_{0}(\pmb{i})\rightarrow a_{0}(\pmb{i})-\partial_{0}\phi(\pmb{i},t), \quad a_{\pmb{i}\pmb{j}}\rightarrow a_{\pmb{i}\pmb{j}}+\phi(\pmb{i},t)-\phi(\pmb{j},t).
+\end{equation*}
+
+\subsection*{问题 6.4.1}
+
+\begin{enumerate}
+\item[(a)] 把式 (6.4.1) 推广到三维立方格子。
+\item[(b)] 利用式 (6.4.1) 证明，三维格点规范理论的拉格朗日量在连续极限下变为 $\frac{1}{8\pi\alpha}(c^{-1}\pmb{e}^{2}-c\pmb{b}^{2})$，其中 $e_{i}=\partial_{0}a_{i}-\partial_{i}a_{0}$，$b_{i}=\epsilon_{ijk}\partial_{j}a_{k}$。试用 $J$、$g$ 与晶格常数 $l$ 求出 $\alpha$ 和 $c$ 的值。这里无量纲常数 $\alpha$ 就是精细结构常数，$c$ 是光速。
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.7.pdf}
+\caption*{图 6.7\quad 一个正方形上的 U(1) 规范理论。}
+\end{figure}
+
+\subsection{格点 U(1) 规范理论的哈密顿量}
+
+\begin{keypoints}
+\item 格点 U(1) 规范理论的哈密顿量可以通过固定规范或相空间路径积分得到。
+\item 穿过一条链的电通量 $e_{\pmb{i}\pmb{j}}$ 是同一条链上的矢势 $a_{\pmb{i}\pmb{j}}$ 的正则“动量”。
+\end{keypoints}
+
+拉格朗日量 (6.4.5) 描述的是经典的 U(1) 格点规范理论。本节我们来求它的量子描述。为简单起见，我们考虑单个正方形上的格点规范理论（见图 6.7）。该量子理论由路径积分
+\begin{equation*}
+Z=\int\mathcal{D}a\,\mathcal{D}a_{0}\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\left(\frac{1}{4J}\sum_{i}(\dot{a}_{i,i+1}+a_{0}(i)-a_{0}(i+1))^{2}+g\cos\Phi\right)}, \tag{6.4.10}
+\end{equation*}
+描述，其中 $i=1,2,3,4$。这里 $i=1$ 与 $i=5$ 被视为同一个点。作为一个规范理论，$(a_{ij}(t),a_{0}(i,t))$ 是路径的一种多对一标记。我们可以通过“固定规范”获得一对一的标记。我们注意到，$\sum_{j=i\pm1}a_{ij}$ 在规范变换下按
+$\sum_{j=i\pm1}a_{ij}\rightarrow\sum_{j=i\pm1}\tilde{a}_{ij}=\sum_{j=i\pm1}(a_{ij}+\phi_{i}-\phi_{j})$
+变换。通过调节 $\phi_{i}$，我们总能使 $\sum_{j=i\pm1}\tilde{a}_{ij}=0$。因此，对任意路径 $(a_{ij}(t),a_{0}(i,t))$，我们总能构造一个规范变换，使 $\sum_{j=i\pm1}a_{ij}=0$。于是，我们可以通过选择规范固定条件
+\begin{equation*}
+\sum_{j=i\pm1}a_{ij}=0
+\end{equation*}
+来固定规范。这样的规范称为库仑规范，对于连续理论它具有 $\pmb{\partial}\cdot\pmb{a}=0$ 的形式。在库仑规范下，我们的路径积分变为
+\begin{equation*}
+Z=\int\mathcal{D}a\,\mathcal{D}a_{0}\,\mathrm{e}^{-\mathrm{i}\int\mathrm{d}t\left(\frac{1}{4J}\sum_{i}(\dot{a}_{i,i+1}+a_{0}(i)-a_{0}(i+1))^{2}+g\cos\Phi\right)}\prod_{i,t}\delta\left(\sum_{j=i\pm1}a_{ij}\right)
+\end{equation*}
+我们注意到，$a_{0}(i)$ 与 $a_{ij}$ 之间的耦合具有 $a_{0}(i)\sum_{j=i\pm1}\dot{a}_{ij}$ 的形式。因此，对满足约束 $\sum_{j=i\pm1}a_{ij}=0$ 的 $a_{ij}$ 而言，$a_{0}(i)$ 与 $a_{ij}$ 解耦。由于 $a_{0}(i)$ 没有动力学（即不含 $\dot{a}_{0}(i)$ 项），我们可以积掉 $a_{0}(i)$，这相当于简单地把 $a_{0}$ 去掉。所得的路径积分变为
+\begin{equation*}
+Z=\int\mathcal{D}a\,\mathrm{e}^{-\mathrm{i}\int\mathrm{d}t\left(\frac{1}{4J}\sum_{i}\dot{a}_{i,i-1}^{2}+g\cos\Phi\right)}\prod_{i,t}\delta\left(\sum_{j=i\pm1}a_{ij}\right).
+\end{equation*}
+一般地，库仑规范下的路径积分可以由两个简单步骤得到：第一步，插入规范固定条件 $\prod_{i,t}\allowbreak\delta(\sum_{j=i\pm1}\allowbreak a_{ij})$；第二步，去掉 $a_{0}(i)$ 场。
+
+对我们的问题，约束 $\prod_{i,t}\delta(\sum_{j=i\pm1}a_{ij})$ 要求 $a_{12}=a_{23}=a_{34}=a_{41}\equiv\Phi/4$。这里 $\Phi$ 描述穿过正方形的 U(1) 通量。路径积分取如下简单形式：
+\begin{equation*}
+Z=\int\mathcal{D}\theta\,\mathrm{e}^{-\mathrm{i}\int\mathrm{d}t\left(\frac{1}{16J}\dot{\Phi}^{2}+g\cos\Phi\right)} \tag{6.4.11}
+\end{equation*}
+我们注意到，位形 $(a_{12},a_{23},a_{34},a_{41})=(\pi/2,\pi/2,\pi/2,\pi/2)$ 与 $(a_{12},a_{23},a_{34},a_{41})=(2\pi,0,0,0)$ 规范等价（即存在一个把 $(\pi/2,\pi/2,\pi/2,\pi/2)$ 变到 $(2\pi,0,0,0)$ 的规范变换）。此外，由于 $a_{i,i+1}$ 生活在圆上，$a_{12}=2\pi$ 与 $a_{12}=0$ 等价。于是，$\Phi=2\pi$ 与 $\Phi=0$ 对应同一个物理点。路径积分 (6.4.11) 描述的是单位圆上一个质量为 $(8J)^{-1}$ 的粒子，通量能量 $-g\cos\Phi$ 就是该粒子所感受的势。当 $g=0$ 时，能级为 $E_{n}=4Jn^{2}$。
+
+求解式 (6.4.10) 还有另一种方法。我们先引入 $a_{ij}$ 的正则动量，即
+\begin{equation*}
+\frac{\partial L}{\partial\dot{a}_{ij}}=\frac{1}{2J}e_{ij}
+\end{equation*}
+并把路径积分 (6.4.10) 写成相空间路径积分（见问题 6.4.4）
+\begin{equation*}
+Z=\int\mathcal{D}a\,\mathcal{D}a_{0}\,\mathcal{D}e_{ij}\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\left(\sum_{i}\frac{e_{i,i+1}}{2J}(\dot{a}_{i,i+1}+a_{0}(i)-a_{0}(i+1))-\frac{1}{4J}\sum_{i}e_{i,i+1}^{2}+g\cos\Phi\right)}. \tag{6.4.12}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_6.8.pdf}
+\caption*{图 6.8\quad 带一条对角链的正方形上的 U(1) 规范理论。}
+\end{figure}
+
+然后我们积掉 $a_{0}$，得到\footnote{注意 $a_{0}(i)$ 与 $e_{ij}$ 之间的耦合具有 $\sum_{i}a_{0}(i)(e_{i,i+1}+e_{i,i-1})$ 的形式。路径积分 $\int\mathcal{D}a_{0}\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\sum_{i}a_{0}(i)(e_{i,i+1}+e_{i,i-1})}$ 正比于 $\prod_{i,t}\delta(e_{i,i+1}(t)+e_{i,i-1}(t))$。}
+\begin{equation*}
+Z=\int\mathcal{D}a\,\mathcal{D}e_{ij}\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\left(\sum_{i}\frac{e_{i,i+1}}{2J}\dot{a}_{i,i+1}-\frac{1}{4J}\sum_{i}e_{i,i+1}^{2}+g\cos\Phi\right)}\prod_{i,t}\delta\left(e_{i,i+1}+e_{i,i-1}\right) \tag{6.4.13}
+\end{equation*}
+上述系统的量子哈密顿量为
+\begin{equation*}
+H=\frac{1}{4J}\sum_{i}e_{i,i+1}^{2}-g\cos\Phi, \qquad \left[a_{i,i+1},(2J)^{-1}e_{i,i+1}\right]=\mathrm{i}\hbar.
+\end{equation*}
+物理希尔伯特空间由满足
+\begin{equation*}
+\left(e_{i,i+1}+e_{i,i-1}\right)|\text{phy}\rangle=0
+\end{equation*}
+的态构成。由于 $\left[e_{i,i+1}+e_{i,i-1},H\right]=0$，$H$ 在物理希尔伯特空间内部起作用。
+
+为求系统的能级，我们注意到 $a_{ij}$ 以 $2\pi$ 为周期，而 $a_{ij}$ 的动量是 $e_{ij}/2J$。于是，$e_{ij}/2J$ 量子化为整数 $n_{ij}$。当 $g=0$ 时，系统的能级为 $J\sum_{i}n_{i,i+1}^{2}$，其中 $n_{ij}$ 满足约束 $\sum_{j=i\pm1}n_{ij}=0$。对我们的四格点系统，该约束要求 $n_{12}=n_{23}=n_{34}=n_{41}\equiv n$。能量本征态由 $n$ 标记，能量为 $E_{n}=4Jn^{2}$，与先前的计算一致。
+
+\subsection*{问题 6.4.2}
+
+\begin{enumerate}
+\item[(a)] 把式 (6.4.10) 推广到带一条对角链的正方形（见图 6.8）。
+\item[(b)] 假设 $g=0$，求基态与激发态的能量。
+\end{enumerate}
+
+\subsection*{问题 6.4.3}
+
+\begin{enumerate}
+\item[(a)] 证明：对于二维正方格子上的非紧致格点 U(1) 规范理论，固定规范后的路径积分具有如下形式：
+\begin{equation*}
+Z=\int\mathcal{D}a\,\mathrm{e}^{-\mathrm{i}\int\mathrm{d}t\left(\frac{1}{4J}\sum_{i,\mu=x,y}\dot{a}_{i,i+\mu}^{2}-\frac{1}{2g}\sum_{p}\Phi_{p}^{2}\right)}\prod_{i,t}\delta\left(\sum_{\mu=\pm x,\pm y}a_{i,i+\mu}\right)
+\end{equation*}
+\item[(b)] 证明：约束 $\sum_{\mu=\pm x,\pm y}a_{i,i+\mu}=0$ 可以通过引入一个定义在正方形上的实场 $\phi_{p}$ 来求解，并把链上的规范势写成 $a_{i,i+\mu}=\phi_{p_{1}}-\phi_{p_{2}}$，其中 $p_{1}$ 与 $p_{2}$ 是链 $(i,i+\mu)$ 两侧的两个正方形。试用 $\phi_{p}$ 场写出路径积分。
+\item[(c)] 求 $\phi_{p}$ 涨落的色散关系。
+\end{enumerate}
+
+\subsection*{问题 6.4.4}
+
+证明式 (6.4.12)。（提示：相空间路径积分由 $\int\mathcal{D}p\,\mathcal{D}q\,\mathrm{e}^{\mathrm{i}\int\mathrm{d}t[p\dot{q}-H(p,q)]}$ 给出，其中 $H(p,q)=p\dot{q}-L$ 是哈密顿量。）
+
+\subsection{格点 U(1) 规范理论的库仑相与禁闭相}
+
+\begin{keypoints}
+\item 在 1+3 维中，当 $g/J\gg1$ 时，紧致格点 U(1) 规范理论处于库仑相；当 $g/J\ll1$ 时，处于禁闭相。
+\end{keypoints}
+
+我们知道，在 1+2 维中，由于瞬子效应，紧致 U(1) 规范理论总是处于禁闭相。本节我们将研究立方格子上的紧致 U(1) 规范理论。我们将论证，1+3 维的 U(1) 规范理论既有禁闭相，也有库仑相。
+
+U(1) 规范理论的拉格朗日量为
+\begin{equation*}
+L=\frac{1}{4J}\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]^{2}+g\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}})
+\end{equation*}
+我们可以把上述拉格朗日量的作用量写成下列无量纲形式：
+\begin{equation*}
+S=\sqrt{\frac{g}{J}}\int\mathrm{d}\tilde{t}\left(\frac{1}{4}\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y}}\left[\partial_{\tilde{t}}a_{\pmb{i},\pmb{i}+\pmb{\mu}}+\tilde{a}_{0}(\pmb{i})-\tilde{a}_{0}(\pmb{i}+\pmb{\mu})\right]^{2}+\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}})\right)
+\end{equation*}
+（译注：原文此处求和指标为 $\pmb{\mu}=\pmb{x},\pmb{y}$，按上下文疑为 $\pmb{x},\pmb{y},\pmb{z}$ 之误。）其中 $\tilde{t}=\sqrt{gJ}\,t$ 是无量纲时间，$\tilde{a}_{0}=a_{0}/\sqrt{gJ}$ 是无量纲势。我们看到，当 $g/J\gg1$ 时，$\Phi_{\pmb{p}}$ 的涨落很弱，我们可以假定 $a_{\pmb{i}\pmb{j}}\sim0$。在这个极限下，$L$ 变成如下非紧致的 U(1) 规范理论：
+\begin{equation*}
+L=\frac{1}{4J}\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]^{2}-\frac{g}{2}\sum_{\pmb{p}}\Phi_{\pmb{p}}^{2}
+\end{equation*}
+这个二次型理论可以精确求解。在连续极限下，上式变为 U(1) 规范理论的标准麦克斯韦拉格朗日量。我们发现，低能下存在两个以 $\omega=c_{a}|\pmb{k}|$ 线性色散的模式，它们就是无能隙的光子。
+
+当 $g/J\ll1$ 时，我们可以去掉 $\cos(\Phi_{\pmb{p}})$ 项。所得的二次型理论同样可以精确求解，就像上一节中所做的那样。相空间路径积分的拉格朗日量具有如下形式：
+\begin{equation*}
+L=\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}\frac{e_{\pmb{i},\pmb{i}+\pmb{\mu}}}{2J}\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]-\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}\frac{e_{\pmb{i},\pmb{i}+\pmb{\mu}}^{2}}{4J}+g\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}})
+\end{equation*}
+积掉 $a_{0}$ 之后，我们得到约束
+\begin{equation*}
+\sum_{\pmb{\mu}=\pm\pmb{x},\pm\pmb{y},\pm\pmb{z}}e_{\pmb{i},\pmb{i}+\pmb{\mu}}=0
+\end{equation*}
+哈密顿量为
+\begin{equation*}
+H=\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}\frac{e_{\pmb{i},\pmb{i}+\pmb{\mu}}^{2}}{4J}-g\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}})
+\end{equation*}
+由于 $e_{\pmb{i}\pmb{j}}/2J$ 量子化为整数 $n_{\pmb{i}\pmb{j}}$，当 $g=0$ 时，能级为 $E=J\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}n_{\pmb{i},\pmb{i}+\pmb{\mu}}^{2}$，其中 $n_{\pmb{i},\pmb{i}+\pmb{\mu}}$ 满足 $\sum_{\pmb{\mu}=\pm\pmb{x},\pm\pmb{y},\pm\pmb{z}}n_{\pmb{i},\pmb{i}+\pmb{\mu}}=0$。我们看到，$g=0$ 极限下的所有激发都是有能隙的。这些有能隙的激发是由非零的 $n_{\pmb{i}\pmb{j}}$ 构成的圈，这些圈代表电通量线。当存在一对正、负电荷时，两个电荷由一条电通量线连接，这在两个电荷之间产生线性禁闭势。因此，这个有能隙的相就是 U(1) 规范理论的禁闭相。
+
+\subsection*{问题 6.4.5}
+
+为证明在禁闭相中电荷之间以线性势相互作用，考虑存在电荷时的格点 U(1) 规范理论：
+\begin{equation*}
+L=\sum_{\pmb{i},\pmb{\mu}=\pmb{x},\pmb{y},\pmb{z}}\frac{\left[\dot{a}_{\pmb{i},\pmb{i}+\pmb{\mu}}+a_{0}(\pmb{i})-a_{0}(\pmb{i}+\pmb{\mu})\right]^{2}}{4J}+g\sum_{\pmb{p}}\cos(\Phi_{\pmb{p}})-\sum a_{0}(\pmb{i})q_{\pmb{i}}
+\end{equation*}
+其中 $q_{\pmb{i}}$ 是格点 $\pmb{i}$ 上的 U(1) 电荷。
+\begin{enumerate}
+\item[(a)] 求相空间路径积分中的拉格朗日量。
+\item[(b)] 证明：积掉 $a_{0}$ 导出如下约束：
+\begin{equation*}
+\sum_{\pmb{\mu}=\pm\pmb{x},\pm\pmb{y},\pm\pmb{z}}e_{\pmb{i},\pmb{i}+\pmb{\mu}}=2Jq_{\pmb{i}}
+\end{equation*}
+这就是格点上的高斯定律。
+\item[(c)] 假设 $g=0$，求在 $\pmb{i}=0$ 处有电荷 $q=1$、在 $\pmb{i}=l\pmb{x}$ 处有电荷 $q=-1$ 的规范理论的基态能量。证明两个电荷之间的相互作用能随 $l$ 线性增长。
+\end{enumerate}

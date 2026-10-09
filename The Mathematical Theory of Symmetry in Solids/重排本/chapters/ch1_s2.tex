@@ -1,0 +1,218 @@
+% 1.2 群论
+\section{群论}
+
+我们以对本书将要使用的数学理论——群论及其表示理论——的简要叙述开始。各定理的证明从略，读者可在许多名著（如 Hamermesh (1962)、Lomont (1959)、Lyubarskii (1960)、Wigner (1959)）的开头几章中找到。不过为了清晰起见，我们通过例子来说明其中的若干定义和定理；为此我们使用一个含有六个元素的群，作为抽象群记为 $\mathbf{G}_6^2$（见表 5.1），它的一个具体实现是正三角形的对称群。
+
+之所以先做这样的预备性叙述，有两个原因。其一，它明确了本书所需的预备知识，建议读者在继续阅读之前先熟悉这些内容。其二，它可以引入大量记号；在相对熟悉的话题上引入记号，读者更容易适应本书的风格与记号体系，总比一上来就一头扎进新内容要好。
+
+下面这组定义和定理构成了本书所需的群论基础。后续章节中，其中一些将作为更深入或更贴近固体理论的定理的基石。固体理论中出现的群结构相当复杂，如果严格而完整地证明所需定理，将用到初学者不常接触的代数方法；其中一部分方法出现在第 4 章，它们高度依赖本节与下一节的内容。
+
+\textbf{定义 1.2.1.} \textit{群.} 一个\textit{群} $\mathbf{G}$ 是一个由元素组成的集合，连同一种称为\textit{乘法}（product）的二元合成，使得
+
+\begin{quote}
+(i) 群中任意两个元素的乘积有定义，且仍是该群的元素：若 $A, B \in \mathbf{G}$，则 $AB \in \mathbf{G}$；
+(ii) 乘法满足结合律：对一切 $A, B, C \in \mathbf{G}$，$A(BC) = (AB)C$；
+(iii) 群中存在唯一的单位元\footnote{单位元与逆元的唯一性及双侧性并非必须作为公设：由右单位元的存在（$AE = A$）与右逆的存在（$AA^{-1} = E$）连同公理 (i)、(ii) 即足以建立唯一性与双侧性。但这些性质过于基本，许多作者仍将其写入定义。} $E$：对一切 $A \in \mathbf{G}$，$EA = AE = A$；
+(iv) 每个元素有唯一的逆\textsuperscript{\ddag}：任给 $A \in \mathbf{G}$，存在唯一的元素 $A^{-1}$ 使 $AA^{-1} = A^{-1}A = E$。
+\end{quote}
+
+\textbf{定义 1.2.2.} \textit{群的阶.} 群 $\mathbf{G}$ 中元素的数目称为群的\textit{阶}（order）。
+
+以下只讨论\textit{有限阶群}。常用记号 $|\mathrm{G}|$ 表示群 $\mathbf{G}$ 的阶。
+
+\textbf{定义 1.2.3.} \textit{元素的阶.} 元素 $A \in \mathbf{G}$ 的\textit{阶}是使 $A^{s} = E$ 的最小正整数 $s$。
+
+由定义 1.2.1 可知，群完全由其乘法表确定。事实上，只需给出一组关于某些元素的关系式，使整个乘法表可以由此构造出来即可。若群 $\mathbf{G}$ 的每个元素都能表示为 $P_{1}, P_{2}, \ldots, P_{m}$ 的幂（包括负幂）的有限乘积，则称 $P_{1}, P_{2}, \ldots, P_{m}$ 为 $\mathbf{G}$ 的一组\textit{生成元}（generators，或称 \textit{生成元素}）。生成元所满足的、足以确定 $\mathbf{G}$ 的整个乘法表的关系式 $g_{k}(P_{1}, P_{2}, \ldots, P_{m}) = E$（$k = 1, 2, \ldots, s$）称为 $\mathbf{G}$ 的\textit{定义关系}（defining relations，或称 \textit{生成关系}）。关于生成元与生成关系的详尽讨论见 Coxeter and Moser（1965）的书。
+
+\textit{例} 1.2.1. 表 1.1 给出群 $\mathbf{G}_6^2$（阶为 6）的乘法表，其生成元为 $P$ 与 $Q$，定义关系为 $P^{3} = E$、$Q^{2} = E$、$QP = P^{2}Q$。$P$ 的阶为 3，$Q$ 的阶为 2。
+
+生成元与定义关系的取法并非唯一；实际上，多取几个生成元往往比"刚刚够用"更方便。当然总存在一个最小数目的生成元组，少于此数便无法生成该群；但用最小生成元组时定义关系有时会极其复杂，为了避免这种复杂性，人们常取超定的生成元组。不过在上面的简单例子中，我们用的恰是最小生成元组。
+
+上述群的一个几何实现是使正三角形 $\triangle ABC$ 变为其自身的对称操作集合。设三角形三条中线的交点为 $O$，则操作 $P$ 可以看作绕过 $O$ 且垂直于平面 $ABC$ 的直线的 120° \textit{逆时针}旋转，$Q$ 看作关于直线 $AO$ 的反射。同样也可以取 $P$ 为 120° \textit{顺时针}旋转、$Q$ 为关于 $BO$ 的反射，甚至关于 $CO$ 的反射；每种取法都得到同一个群，只是元素的标号不同。这是生成元组不唯一性的一个简单例子。本例中上述所有六组生成元给出相同的定义关系；下面几段将说明这绝非偶然，但也不能认为不同的生成元组总导致相同的定义关系。
+
+\textbf{定义 1.2.4.} \textit{同态、同构.} 设 $\mathbf{G}$ 与 $\mathbf{G}'$ 是两个群，$\mathbf{G}$ 到 $\mathbf{G}'$ 上的保持乘法的映射 $\theta$ 称为\textit{同态}（homomorphism）。即对同态 $\theta$，对一切 $G_{1}, G_{2} \in \mathbf{G}$ 有
+
+\begin{equation*}
+(\theta G_{1})(\theta G_{2}) = \theta(G_{1}G_{2}). \tag{1.2.1}
+\end{equation*}
+
+若 $\theta$ 还是一一映射，则称为\textit{同构}（isomorphism），此时称 $\mathbf{G}$ 与 $\mathbf{G}'$ \textit{同构}。若 $\theta$ 是同构且 $\mathbf{G} = \mathbf{G}'$，则称 $\theta$ 为\textit{自同构}（automorphism）。
+
+\textit{例} 1.2.2. 取 $\mathbf{G} = \mathbf{G}_6^2$，$\mathbf{G}' = \mathbf{G}_2^1$（由元素 $E$ 与 $P'$ 组成的 2 阶循环群，$P'^{2} = E$，$E$ 为单位元；见表 5.1）。若定义 $\theta$ 使 $\theta E = E$、$\theta P = E$、$\theta P^{2} = E$、$\theta Q = P'$、$\theta(PQ) = P'$、$\theta(P^{2}Q) = P'$，则 $\theta$ 是 $\mathbf{G}_6^2$ 到 $\mathbf{G}_2^1$ 的同态。
+
+反之，若已知 $\theta$ 是 $\mathbf{G}_6^2$ 到 $\mathbf{G}_2^1$ 的同态，则由式 (1.2.1)，只需给出 $\theta$ 在 $\mathbf{G}_6^2$ 的生成元上的作用即可完全确定 $\theta$。例如，同态 $\theta$ 由 $\theta P = E$ 与 $\theta Q = P'$ 完全确定。
+
+\textit{例} 1.2.3. 取 $\mathbf{G} = \mathbf{G}' = \mathbf{G}_6^2$。若 $\phi$ 满足 $\phi(E) = E$、$\phi(P) = P^{2}$、$\phi(P^{2}) = P$、$\phi(Q) = Q$、$\phi(PQ) = P^{2}Q$、$\phi(P^{2}Q) = PQ$，则 $\phi$ 是 $\mathbf{G}_6^2$ 到自身的自同构。
+
+\textbf{定理 1.2.1.} \textit{若 $\phi_{1}$ 与 $\phi_{2}$ 是群 $\mathbf{G}$ 的两个自同构，则映射乘积 $\phi_{1}\phi_{2}$（即对一切 $G \in \mathbf{G}$ 定义 $(\phi_{1}\phi_{2})G = \phi_{1}(\phi_{2}G)$）也是 $\mathbf{G}$ 的自同构。进而，群 $\mathbf{G}$ 的全体自同构在上述映射乘法下本身构成群 $\mathbf{A}(\mathbf{G})$。}
+
+\textit{例} 1.2.4. 考虑 $\mathbf{A}(\mathbf{G}_6^2)$。它是六元素群。生成元可取例 1.2.3 中的 $\phi$，以及满足 $\rho(P) = P$、$\rho(Q) = P^{2}Q$ 的 $\rho$。记恒等自同构为 $\varepsilon$，则 $\phi^{2} = \varepsilon$、$\rho^{3} = \varepsilon$、$\phi\rho = \rho^{2}\phi$。取 $\mathbf{G} = \mathbf{G}_6^2$、$\mathbf{G}' = \mathbf{A}(\mathbf{G}_6^2)$，则 $\mathbf{G}$ 与 $\mathbf{G}'$ 在映射 $\alpha$（$\alpha P = \rho$，$\alpha Q = \phi$）下同构。
+
+\textit{例} 1.2.5. $\mathbf{G}_6^2$ 与 $S_{3}$（三个相同对象的置换群）同构。
+
+\textit{例} 1.2.6. 例 1.2.4 解释了例 1.2.1 末尾提到的 $\mathbf{G}_6^2$ 的六组可能生成元：每个自同构都对应群的一种不同标号方式。
+
+\textbf{定义 1.2.5.} \textit{核.} 若 $\theta\mathbf{G} = \mathbf{G}'$ 是 $\mathbf{G}$ 到 $\mathbf{G}'$ 上的同态，则 $\theta$ 的\textit{核}（kernel）是 $\mathbf{G}$ 中被映射到 $\mathbf{G}'$ 的单位元的那些元素构成的集合。
+
+\textit{例} 1.2.7. 同构的核只有一个元素，即 $\mathbf{G}$ 的单位元。
+
+\textit{例} 1.2.8. 例 1.2.2 中定义的同态 $\theta$ 的核由元素 $E$、$P$、$P^{2}$ 组成。
+
+\textbf{定义 1.2.6.} \textit{子群.} 群 $\mathbf{G}$ 的子集 $\mathbf{H}$ 若在 $\mathbf{G}$ 的同一二元合成下自身成群，则称为 $\mathbf{G}$ 的\textit{子群}（subgroup）。
+
+\textit{例} 1.2.9. $\mathbf{G}_6^2$ 的子群有：(i) $\mathbf{G}_6^2$ 自身；(ii) $\mathbf{G}_3^1$，由 $E$、$P$、$P^{2}$ 组成；(iii) $\mathbf{G}_2^1$，由 $E$、$Q$ 组成；(iv) $\mathbf{G}_2^{1'}$，由 $E$、$PQ$ 组成；(v) $\mathbf{G}_2^{1''}$，由 $E$、$P^{2}Q$ 组成；(vi) $\mathbf{G}_1^1$，仅由单位元 $E$ 组成。
+
+任何群至少有两个子群：群自身以及仅由单位元组成的群。这两者称为\textit{非真子群}（improper subgroups）；其余子群称为\textit{真子群}（proper subgroups）。因此 $\mathbf{G}_6^2$ 有 4 个真子群。
+
+若 $\mathbf{H}$ 是 $\mathbf{G}$ 的由 $t$ 个元素组成的子集（$H_{1}, H_{2}, \ldots, H_{t}$），则对 $A \in \mathbf{G}$，记号 $\mathbf{AH}$ 表示 $t$ 个元素组成的子集 $(AH_{1}, AH_{2}, \ldots, AH_{t})$。
+
+若 $\mathbf{K}$ 是 $\mathbf{G}$ 的由 $s$ 个元素组成的子集（$K_{1}, K_{2}, \ldots, K_{s}$），则 $\mathbf{KH}$ 表示 $st$ 个元素的集合 $K_{i}H_{j}$（$i = 1$ 到 $s$，$j = 1$ 到 $t$）；$\mathbf{H} + \mathbf{K}$ 表示由 $(t+s)$ 个元素组成的集合 $(H_{1}, H_{2}, \ldots, H_{t}, K_{1}, K_{2}, \ldots, K_{s})$。
+
+\textbf{定义 1.2.7.} \textit{共轭元素.} 若存在 $G \in \mathbf{G}$ 使 $G_{2} = GG_{1}G^{-1}$，则称元素 $G_{1}, G_{2} \in \mathbf{G}$ \textit{共轭}（conjugate）。
+
+\textit{例} 1.2.10. 在群 $\mathbf{G}_6^2$ 中，$P$ 与 $P^{2}$ 是一对共轭元素：由定义关系立即可得 $P^{2} = QPQ^{-1}$ 及 $P = QP^{2}Q^{-1}$。
+
+\textbf{定义 1.2.8.} \textit{阿贝尔群.} 若群 $\mathbf{G}$ 中对一切 $G_{1}, G_{2} \in \mathbf{G}$ 都有 $G_{1}G_{2} = G_{2}G_{1}$，则称 $\mathbf{G}$ 为\textit{阿贝尔群}（Abelian group，或称交换群）。
+
+\textit{例} 1.2.11. 例 1.2.9 提到的群 $\mathbf{G}_3^1$ 是阿贝尔群。
+
+\textbf{定理 1.2.2.} \textit{群 $\mathbf{G}$ 可分解为若干"共轭类"（conjugacy classes）$C_{1}, C_{2}, \ldots, C_{r}$，满足：}
+
+\begin{quote}
+(i) \textit{$\mathbf{G}$ 的每个元素都属于某个类，且只属于一个类，即 $\mathbf{G} = C_{1} + C_{2} + \ldots + C_{r}$；}
+(ii) \textit{同一类中的元素互相共轭，因而具有相同的阶（当然，同阶的元素未必属于同一类）；}
+(iii) \textit{与群中所有元素对易的元素自成一类，称为"自共轭"元素（单位元永远自成一类；若 $\mathbf{G}$ 是阿贝尔群，则每个元素都自成一类）；}
+(iv) \textit{每类中元素的数目是群的阶的因子；}
+(v)
+
+\end{quote}
+\begin{equation*}
+C_{i}C_{j} = \sum_{k=1}^{r} h_{ij,k}C_{k} \tag{1.2.2}
+\end{equation*}
+
+\begin{quote}
+
+\textit{其中系数 $h_{ij,k}$ 称为"类乘系数"（class multiplication coefficients），为正整数或零。并且}
+
+\end{quote}
+\begin{equation*}
+h_{ij,k} = h_{ji,k}. \tag{1.2.3}
+\end{equation*}
+
+\textit{例} 1.2.12. 对群 $\mathbf{G}_6^2$，取 $C_{1} = E$；$C_{2} = P$，$P^{2}$；$C_{3} = Q$，$PQ$，$P^{2}Q$。则定理 1.2.2 的条件在 $r = 3$ 时满足。$C_{2}$ 中的元素阶为 3，$C_{3}$ 中的元素阶为 2。单位元是唯一自成一类的元素。1、2、3 分别是类 $C_{1}$、$C_{2}$、$C_{3}$ 中元素的个数，都是 $\mathbf{G}_6^2$ 的阶 6 的因子。类乘系数 $h_{ij,k}$ 可用表 1.1 容易算出：$h_{11,1} = 1$，$h_{12,2} = 1$，$h_{13,3} = 1$，$h_{22,1} = 2$，$h_{22,2} = 1$，$h_{23,3} = 2$，$h_{33,1} = 3$，$h_{33,2} = 3$，其余不与它们通过式 (1.2.3) 相联系的系数均为零。
+
+\textbf{定义 1.2.9.} \textit{陪集.} 设 $\mathbf{H}$ 是 $\mathbf{G}$ 的子群，$A$ 是 $\mathbf{G}$ 中任一元素，则子集 $\mathbf{H}A$ 称为 $\mathbf{H}$ 的\textit{右陪集}（right coset）；同理 $A\mathbf{H}$ 称为\textit{左陪集}（left coset）。$A$ 称为\textit{陪集代表元}（coset representative）。（它并没有任何特殊之处：若 $B \in \mathbf{H}A$，则 $\mathbf{H}B = \mathbf{H}A$，即陪集中任何元素都可充当代表元。）
+
+\textbf{定理 1.2.3.} \textit{带子群 $\mathbf{H}$ 的群 $\mathbf{G}$ 可分解为 $\mathbf{H}$ 的若干"左陪集"，满足：}
+
+\begin{quote}
+(i) \textit{$\mathbf{G}$ 的每个元素都属于某个左陪集，且只属于一个左陪集；}
+(ii) \textit{每个左陪集含有相同数目的元素，即 $\mathbf{H}$ 的阶。因而 $\mathbf{H}$ 的阶整除 $\mathbf{G}$ 的阶；商 $|\mathbf{G}|/|\mathbf{H}|$ 恰是 $\mathbf{H}$ 的左陪集个数 $t$，称为 $\mathbf{H}$ 在 $\mathbf{G}$ 中的"指数"（index）。}
+\end{quote}
+
+\textit{例} 1.2.13. 取 $\mathbf{G} = \mathbf{G}_6^2$，$\mathbf{H} = \mathbf{G}_3^1$（由 $E$、$P$、$P^{2}$ 组成）。把 $\mathbf{G}_6^2$ 写成 $(E\mathbf{G}_3^1 + Q\mathbf{G}_3^1)$，就得到一个满足定理 1.2.3（取 $t = 2$）的分解。
+
+\textit{例} 1.2.14. 由例 1.2.9，$\mathbf{G}_6^2$ 各子群的阶为 1、2、3、6，都是 $\mathbf{G}_6^2$ 的阶 6 的因子。这一整除性质称为拉格朗日定理（Lagrange's theorem）。
+
+\textbf{定义 1.2.10.} \textit{不变子群.} 若 $\mathbf{H}$ 是 $\mathbf{G}$ 的子群，且对一切 $G \in \mathbf{G}$、$H \in \mathbf{H}$ 都有 $GHG^{-1} \in \mathbf{H}$，则称 $\mathbf{H}$ 为 $\mathbf{G}$ 的\textit{不变子群}（invariant subgroup，或称正规子群、自共轭子群）。
+
+\textbf{定理 1.2.4.} \textit{若 $\mathbf{H}$ 是 $\mathbf{G}$ 的子群，则 $\mathbf{H}$ 是不变子群当且仅当对一切 $A \in \mathbf{G}$ 有 $A\mathbf{H} = \mathbf{H}A$；也就是说，当且仅当所有右陪集与左陪集重合。}
+
+\textit{例} 1.2.15. 由定理 1.2.4 立即得到：指数为 2 的子群都是不变子群。特别地，由例 1.2.13 可见 $\mathbf{G}_3^1$ 在 $\mathbf{G}_6^2$ 中不变。
+
+\textbf{定义 1.2.11.} \textit{内自同构.} 设 $B$ 为 $\mathbf{G}$ 的一个固定元素，把 $\mathbf{G}$ 映到自身的映射 $\beta$：对一切 $G \in \mathbf{G}$，$\beta G = BGB^{-1}$。它是自同构；以这种方式通过共轭得到的自同构称为\textit{内自同构}（inner automorphism），其余的称为\textit{外自同构}（outer automorphisms）。
+
+\textit{例} 1.2.16. $\mathbf{G}_6^2$ 的所有自同构都是内自同构。事实上由例 1.2.4 与表 1.1 很快可以验证：$\rho$ 对应于用 $P$ 作共轭，$\phi$ 对应于用 $Q$ 作共轭。
+
+\textbf{定理 1.2.5.} \textit{子群 $\mathbf{H}$ 是 $\mathbf{G}$ 的不变子群，当且仅当 $\mathbf{H}$ 在 $\mathbf{G}$ 的一切内自同构下不变。}
+
+\textbf{定理 1.2.6.} \textit{子群 $\mathbf{H}$ 是 $\mathbf{G}$ 的不变子群，当且仅当 $\mathbf{H}$ 由 $\mathbf{G}$ 的若干完整的共轭类组成。}
+
+\textit{例} 1.2.17. 由定理 1.2.6 及例 1.2.9、1.2.13 立即可知：子群 $\mathbf{G}_3^1$ 是 $\mathbf{G}_6^2$ 唯一的真不变子群。
+
+\textbf{定义 1.2.12.} \textit{单群.} 若群 $\mathbf{G}$ 没有真不变子群，则称它为\textit{单群}（simple）。若群 $\mathbf{G}$ 没有真的阿贝尔不变子群，则称它为\textit{半单群}（semi-simple）。
+
+\textit{例} 1.2.18. $\mathbf{G}_6^2$ 不是单群；甚至不是半单群，因为其子群 $\mathbf{G}_3^1$ 是真的阿贝尔不变子群。
+
+\textbf{定理 1.2.7.}
+
+\begin{quote}
+(i) \textit{若 $\mathbf{H}$ 是 $\mathbf{G}$ 的不变子群，则 $\mathbf{H}$ 的各左陪集在如下乘法下构成群：}
+
+\end{quote}
+\begin{equation*}
+(G_{i}\mathbf{H})(G_{j}\mathbf{H}) = (G_{i}G_{j})\mathbf{H}. \tag{1.2.4}
+\end{equation*}
+
+\begin{quote}
+
+\textit{该群称为商群（quotient group）$\mathbf{G}/\mathbf{H}$，其阶等于 $\mathbf{H}$ 在 $\mathbf{G}$ 中的指数。$\mathbf{G}/\mathbf{H}$ 的单位元就是子群 $\mathbf{H}$ 自身。}
+
+(ii) \textit{若 $\theta$ 是 $\mathbf{G}$ 到 $\mathbf{G}'$ 上的同态，$\mathbf{H}$ 是 $\theta$ 的核，则 $\mathbf{H}$ 是 $\mathbf{G}$ 的不变子群，且 $\mathbf{G}'$ 与 $\mathbf{G}/\mathbf{H}$ 同构。}
+
+(iii) \textit{反之，若 $\mathbf{H}$ 是 $\mathbf{G}$ 的不变子群，$\theta$ 是 $\mathbf{G}$ 到 $\mathbf{G}/\mathbf{H}$ 上满足 $\theta G = G\mathbf{H}$（对一切 $G \in \mathbf{G}$）的映射，则 $\theta$ 是同态，且其核为 $\mathbf{H}$。}
+\end{quote}
+
+\textit{例} 1.2.19. 取 $\mathbf{G} = \mathbf{G}_6^2$，$\mathbf{H} = \mathbf{G}_3^1$。由例 1.2.15，$\mathbf{G}_3^1$ 不变，故商群 $\mathbf{G}_6^2/\mathbf{G}_3^1$ 有定义；由例 1.2.13，它由两个元素 $E\mathbf{G}_3^1$ 与 $Q\mathbf{G}_3^1$ 组成。由例 1.2.2 及定理 1.2.7(ii)，该商群与例 1.2.2 中定义的 2 阶循环群 $\mathbf{G}' = \mathbf{G}_2^1$ 同构。
+
+\textbf{定义 1.2.13.} \textit{外直积.} 设 $\mathbf{G}$ 是一个群，有子群 $\mathbf{H}$ 与 $\mathbf{K}$ 满足
+
+\begin{quote}
+(i) 若 $H \in \mathbf{H}$，$K \in \mathbf{K}$，则 $HK = KH$；
+(ii) $\mathbf{G}$ 中每个元素都可写成 $G = HK$ 的形式，其中 $H \in \mathbf{H}$，$K \in \mathbf{K}$；
+(iii) $\mathbf{H}$ 与 $\mathbf{K}$ 的交为 $\mathbf{H} \cap \mathbf{K} = \{E\}$，即仅由 $\mathbf{G}$ 的单位元组成的集合。
+\end{quote}
+
+则称 $\mathbf{G}$ 为 $\mathbf{H}$ 与 $\mathbf{K}$ 的\textit{外直积}（outer direct product），且 (ii) 中的分解唯一。记作 $\mathbf{G} = \mathbf{H} \otimes \mathbf{K} = \mathbf{K} \otimes \mathbf{H}$。
+
+\textbf{定理 1.2.8.} \textit{若 $\mathbf{G} = \mathbf{H} \otimes \mathbf{K}$，则}
+
+\begin{quote}
+(i) \textit{$\mathbf{H}$ 与 $\mathbf{K}$ 都是 $\mathbf{G}$ 的不变子群；}
+(ii) \textit{$\mathbf{G}$ 中类的个数等于 $\mathbf{H}$ 中类的个数与 $\mathbf{K}$ 中类的个数的乘积。}
+
+\textit{再者，若 $\mathbf{H}$ 与 $\mathbf{K}$ 都是阿贝尔群，则 $\mathbf{G}$ 也是阿贝尔群。}
+\end{quote}
+
+\textit{例} 1.2.20. 给定两个群 $\mathbf{H}$ 与 $\mathbf{K}$，总可以把外直积 $\mathbf{H} \otimes \mathbf{K} = \mathbf{G}$ 造出来：把 $\mathbf{G}$ 的元素写成 $(H, K)$，乘法定义为
+
+\begin{equation*}
+(H_{1}, K_{1})(H_{2}, K_{2}) = (H_{1}H_{2}, K_{1}K_{2}). \tag{1.2.5}
+\end{equation*}
+
+式 (1.2.5) 保证了定义 1.2.13 的规则 (i)–(iii) 成立。\footnote{群 $\mathbf{H}$ 与 $\mathbf{G}$ 的子群 $\mathbf{H}'$（由一切 $(H, E)$，$H \in \mathbf{H}$，组成）同构。若同样定义 $\mathbf{K}'$，则按定义 1.2.13 严格地说我们得到的是 $\mathbf{G} = \mathbf{H}' \otimes \mathbf{K}'$；但由于 $\mathbf{H}$ 与 $\mathbf{H}'$、$\mathbf{K}$ 与 $\mathbf{K}'$ 之间的同构，习惯上仍写作 $\mathbf{G} = \mathbf{H} \otimes \mathbf{K}$。}
+
+\textbf{定义 1.2.14.} \textit{内直积.} 外直积 $\mathbf{H} \otimes \mathbf{H}$ 中形如 $(H, \dot{H})$ 的元素组成一个子群，它与 $\mathbf{H}$ 同构，称为 $\mathbf{H}$ 与自身的\textit{内直积}（inner direct product）。记作 $\mathbf{G} = \mathbf{H} \boxtimes \mathbf{H}$。这一记号正是为了区分外直积 $\mathbf{H} \otimes \mathbf{H}$ 与两个同构群的内直积 $\mathbf{H} \boxtimes \mathbf{H}$ 而特意引入的。
+
+\textbf{定义 1.2.15.} \textit{正规列.} 群 $\mathbf{G} = \mathbf{H}_{0}$ 的一个\textit{正规列}（normal series）是一列子群 $\mathbf{H}_{0}, \mathbf{H}_{1}, \ldots, \mathbf{H}_{s}, \mathbf{G}_1^1$（$\mathbf{G}_1^1$ 表示仅由单位元 $E$ 组成的群），使得 $\mathbf{H}_{k+1}$ 是 $\mathbf{H}_{k}$ 的真不变（正规）子群，$k = 0$ 到 $(s-1)$。
+
+\textit{例} 1.2.21. 由例 1.2.9 可知 $\mathbf{G}_6^2$，$\mathbf{G}_3^1$，$\mathbf{G}_1^1$ 构成 $\mathbf{G}_6^2$ 的一个正规列。
+
+\textbf{定义 1.2.16.} \textit{可解群.} 若群 $\mathbf{H}_{0}$ 拥有一个正规列 $\mathbf{H}_{0}, \mathbf{H}_{1}, \ldots, \mathbf{H}_{s}, \mathbf{G}_1^1$，其商群 $\mathbf{H}_{0}/\mathbf{H}_{1}$，$\mathbf{H}_{1}/\mathbf{H}_{2}$，$\ldots$，$\mathbf{H}_{s}/\mathbf{G}_1^1$ 都是阿贝尔群，则称 $\mathbf{H}_{0}$ \textit{可解}（solvable）。
+
+\textit{例} 1.2.22. $\mathbf{G}_6^2$ 是可解群，因为 $\mathbf{G}_6^2/\mathbf{G}_3^1$ 与 $\mathbf{G}_2^1$ 同构，且 $\mathbf{G}_2^1$ 与 $\mathbf{G}_3^1$ 都是阿贝尔群。
+
+\textbf{定义 1.2.17.} \textit{半直积.} 设 $\mathbf{G}$ 是一个群，有子群 $\mathbf{H}$ 与 $\mathbf{K}$ 满足
+
+\begin{quote}
+(i) 若 $K \in \mathbf{K}$，则 $K\mathbf{H} = \mathbf{H}K$；
+(ii) $\mathbf{G}$ 中每个元素都可写成 $G = HK$ 的形式，其中 $H \in \mathbf{H}$，$K \in \mathbf{K}$；
+(iii) $\mathbf{H} \cap \mathbf{K} = \{E\}$，即仅由 $\mathbf{G}$ 的单位元组成的集合。
+\end{quote}
+
+则称 $\mathbf{G}$ 为 $\mathbf{H}$ 与 $\mathbf{K}$ 的\textit{半直积}（semi-direct product），且 (ii) 中的分解唯一。记作 $\mathbf{G} = \mathbf{H} \wedge \mathbf{K}$。注意与 $\otimes$ 不同，符号 $\wedge$ 不可交换：$\mathbf{H}$ 在 $\mathbf{G}$ 中不变，而 $\mathbf{K}$ 未必不变。在形如 $\mathbf{H} \wedge \mathbf{K}$ 的表达式中，\textit{我们总是把不变子群写在前面}。
+
+\textit{例} 1.2.23. 按例 1.2.9 的记号，$\mathbf{G}_6^2 = \mathbf{G}_3^1 \wedge \mathbf{G}_2^1$。注意 $\mathbf{G}_2^1$ 在 $\mathbf{G}_6^2$ 中并不不变，因此 $\mathbf{G}_6^2$ \textit{不是} $\mathbf{G}_3^1$ 与 $\mathbf{G}_2^1$ 的直积。
+
+设 $\mathbf{G}$ 是一个群，$\mathbf{A}(\mathbf{G})$ 是它的自同构群。则总可以构造半直积 $\mathbf{G} \wedge \mathbf{A}(\mathbf{G})$。它由有序对 $(G, \alpha)$ 组成，其中 $G \in \mathbf{G}$，$\alpha \in \mathbf{A}(\mathbf{G})$，乘法定义为
+
+\begin{equation*}
+(G_{1}, \alpha_{1})(G_{2}, \alpha_{2}) = (G_{1}\alpha_{1}(G_{2}), \alpha_{1}\alpha_{2}). \tag{1.2.6}
+\end{equation*}
+
+\textbf{定义 1.2.18.} \textit{全形.} 群 $\mathbf{G} \wedge \mathbf{A}(\mathbf{G})$ 称为 $\mathbf{G}$ 的\textit{全形}（holomorph）。
+
+\textit{例} 1.2.24. $\mathbf{G}_3^1$ 的全形与 $\mathbf{G}_6^2$ 同构。（实际上，任何半直积都与由其不变子群出发造出的全形的某个子群同构。）原因在于 $\mathbf{G}_6^2 = \mathbf{G}_3^1 \wedge \mathbf{G}_2^1$，且 $\mathbf{G}_2^1$ 与 $\mathbf{A}(\mathbf{G}_3^1)$ 同构。
+
+以上若干例子的推理有所省略。建议读者补全这些推理，并对似乎需要进一步解释的论断自行核实。
+

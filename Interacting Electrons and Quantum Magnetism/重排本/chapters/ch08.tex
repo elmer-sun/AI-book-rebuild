@@ -1,0 +1,440 @@
+% 第8章 变分波函数与母哈密顿量
+\chapter{变分波函数与母哈密顿量}
+
+对大多数非铁磁 Heisenberg 模型，我们并不知道其基态。即使是解析形式已知的那些（如一维 Bethe 解），其自旋关联也需要数值计算。变分波函数为基态提供了有根据的猜测。通过相对于选定参数集极小化能量的变分计算，可以获得物理洞察。变分途径把我们带到任何特定展开方案——半经典的、大 $N$ 的或其他——的适用范围之外。如 Hubbard 模型的情形所示（见 4.1 节），变分途径的首要优点是概念简单明了。
+
+这里我们把变分波函数与“母哈密顿量”（parent Hamiltonian）的概念联系起来。母哈密顿量是使某个特定波函数恰好成为其精确基态的哈密顿量。虽然该哈密顿量可能因额外的相互作用而不同于物理模型，但它有助于加深对后者的理解，揭示相互作用与基态关联之间的关系。把母哈密顿量方法扩展到理解激发，是第 9 章的主题。
+
+如文献注释所示，变分态与母哈密顿量的方法论很大程度上为其他高度关联的量子体系所共有。特别地，本章的方法与分数量子霍尔效应的著名处理极为类似。
+
+\section{价键态}
+
+价键态是反铁磁 Heisenberg 模型的变分波函数，在量子磁学与高温超导的语境下已被广泛研究。其一般形式为
+
+\begin{equation*}
+\left| \{c _ {\alpha} \}, S \right\rangle = \sum_ {\alpha} c _ {\alpha} \left| \alpha \right\rangle ,
+\tag{8.1}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{fig8_1.jpg}
+\caption{$S = 1$ 的一个价键组态。}
+\label{fig:8.1}
+\end{figure}
+
+其中 $c_{\alpha}$ 是变分参数，而
+
+\begin{equation*}
+\left| \alpha \right\rangle = \prod_ {(ij) \in \Lambda_ {\alpha}} \left( a _ {i} ^ {\dagger} b _ {j} ^ {\dagger} - b _ {i} ^ {\dagger} a _ {j} ^ {\dagger} \right) \left| 0 \right\rangle .
+\tag{8.2}
+\end{equation*}
+
+$a_{i}, b_{i}$ 是格点 $i$ 上的 Schwinger 玻色子\footnote{见 7.2 节。}。$\Lambda_{\alpha}$ 是格子上键 $(ij)$ 的一个特定组态，如图~\ref{fig:8.1} 所示。对 $\Lambda_{\alpha}$ 的条件是：恰好 $2S$ 条键从每个格点发出。某些情形下，大幅子极限中 (8.1) 的求和由有限数目的组态主导。而 (8.1) 中含有宏观多组态的情形，被 Anderson 称为“共振价键态”（RVB）。
+
+由 (7.13) 容易验证，所有键算符 $a_i^\dagger b_j^\dagger - b_i^\dagger a_j^\dagger$ 在整体自旋转动下不变。因此 $|\{c_\alpha\}, S\rangle$ 是总自旋单态。价键态的一个特殊类由
+
+\begin{equation*}
+\left| \hat {u}, S \right\rangle = \sum_ {\alpha} \left( \prod_ {(ij) \in \alpha} u _ {ij} \right) \left| \alpha \right\rangle .
+\tag{8.3}
+\end{equation*}
+
+给出，其中独立变分参数 $u_{ij}$ 至多 $\mathcal{N}(\mathcal{N}-1)/2$ 个，$\mathcal{N}$ 是格点数。
+
+若键参数是二分的且为正：
+
+\begin{equation*}
+u _ {ij} = \left\{ \begin{array}{ll} u _ {ij} > 0 & i \in A \text{ 且 } j \in B \\ 0 & i, j \text{ 在同一子晶格} \end{array} \right. ,
+\tag{8.4}
+\end{equation*}
+
+则 (8.3) 满足 Marshall 符号判据 (5.13)——这正是二分 Heisenberg 反铁磁体基态所要求的。
+
+Schwinger 玻色子平均场态定义为
+
+\begin{equation*}
+\left| \hat {u} \right\rangle = \exp \left[ \frac {1}{2} \sum_ {ij} u _ {ij} \left( a _ {i} ^ {\dagger} b _ {j} ^ {\dagger} - b _ {i} ^ {\dagger} a _ {j} ^ {\dagger} \right) \right] \left| 0 \right\rangle ,
+\tag{8.5}
+\end{equation*}
+
+其中 $u_{ij} = -u_{ji}$。这类态由 Heisenberg 反铁磁体的 Schwinger 玻色子平均场理论产生（见第 18 章）。$|\hat{u}\rangle$ 包含各个格点上不同自旋大小的贡献，因此并不是真正的自旋态。对 Schwinger 玻色子作 Bogoliubov 变换，可把它变成可因子化的 Fock 态（实际上是变换后玻色子的真空）。如习题所示，平均场态的关联可以解析求出。价键态 $|\hat{u}, S\rangle$ 可由 (8.5) 经 (7.7) 的 $P_{S}$ 投影构造：
+
+\begin{equation*}
+\left| \hat {u}, S \right\rangle = P _ {S} \left| \hat {u} \right\rangle .
+\tag{8.6}
+\end{equation*}
+
+但由于 $P_{S}$ 引入的关联，投影后的态不再可因子化。
+
+计算 $|\hat{u}\rangle$ 中的关联远比 $|\hat{u}, S\rangle$ 容易。可用于计算价键态自旋关联的方法多种多样：有数值方法（组合计算或对波函数作 Monte Carlo 抽样）；有用自旋相干态表示的精确计算（见 8.3.1 小节）；还有 $1/N$ 展开（$N$ 为 Schwinger 玻色子味的数目）。矩阵 $\{\hat{u}\}$ 的整体大小固定为每格点平均 $2S$ 个玻色子。平均场态 $|\hat{u}\rangle$ 的自旋关联是该展开的零阶近似；通过对受约束的生成泛函作 $1/N$ 展开，可系统地改进之——与第 16 章配分函数的大 $N$ 展开极为类似。这些方法的例子见文献注释。
+
+某些价键态是已知“母”哈密顿量的精确基态。下面描述投影算符技术，它对构造母哈密顿量普遍有用\footnote{Haldane 曾用投影算符方法论证分数量子霍尔效应的 Laughlin 波函数，见文献注释。}。
+
+\section{$S = \frac{1}{2}$ 态}
+
+任何格点上 $S = \frac{1}{2}$ 的态用旋量态标记：
+
+\begin{equation*}
+\left| \uparrow_{i} \right\rangle \equiv a _ {i} ^ {\dagger} \left| 0 \right\rangle \, , \quad \left| \downarrow_{i} \right\rangle \equiv b _ {i} ^ {\dagger} \left| 0 \right\rangle .
+\tag{8.7}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{fig8_2.jpg}
+\caption{两个价键组态的交叠（$S = \frac{1}{2}$）。}
+\label{fig:8.2}
+\end{figure}
+
+任何满足 Marshall 符号的二分价键组态 (8.2) 都可以写成归一化的单态键乘积：
+
+\begin{equation*}
+\left| \alpha \right\rangle_{S = \frac {1}{2}} = \prod_{(ij) \in \Lambda_ {\alpha}}^ {i \in A, \, j \in B} \left( \left| \uparrow_{i} \right\rangle \left| \downarrow_{j} \right\rangle - \left| \downarrow_{i} \right\rangle \left| \uparrow_{j} \right\rangle \right) / \sqrt {2}.
+\tag{8.8}
+\end{equation*}
+
+(8.8) 的自旋关联简单地为
+
+\begin{equation*}
+\langle \mathbf {S} _ {i} \mathbf {S} _ {j} \rangle = \left\{ \begin{array}{ll} \frac {3}{4} & i = j \\ - \frac {3}{4} & (ij) \in \Lambda_ {\alpha} \\ 0 & (ij) \notin \Lambda_ {\alpha} \end{array} \right. .
+\tag{8.9}
+\end{equation*}
+
+于是，若 $\Lambda_{\alpha}$ 中的键是短程的，$|\alpha\rangle_{S=\frac{1}{2}}$ 是无序的“自旋液体”态。不同价键组态彼此不正交，其有限交叠由\footnote{见 Sutherland，文献注释。}
+
+\begin{align*}
+\langle \alpha | \beta \rangle & = \prod_{l \in \langle \alpha | \beta \rangle} 2 ^ {1 - L _ {l} / 2}\\
+& = 2 ^ {N _ {L} ^ {\langle \alpha \beta \rangle} - \mathcal {N}} ,
+\tag{8.10}
+\end{align*}
+
+给出。第一行是对两个组态交叠中出现的所有长度为 $L_{l}$ 的回路 $l$ 求积。交叠可以把两个价键组态叠在一起画出，如图~\ref{fig:8.2}。$\alpha$ 与 $\beta$ 中两条相同的键产生长度 $L = 2$ 的回路。(8.10) 第二行中 $N_{L}$ 是回路总数，$\mathcal{N}$ 是格子上的格点数。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{fig8_3.jpg}
+\caption{两个二聚体态 $|d\rangle_{\pm}$，分别用实线与虚线画出。}
+\label{fig:8.3}
+\end{figure}
+
+由于 $|\alpha\rangle$ 每格点含一条键，而所有简单格子的配位数大于等于二，$|\alpha\rangle$ 破缺格子平移对称。在 (8.1) 中对 $\alpha$ 求和可以恢复这一对称。
+
+以下我们把自己限于近邻键或“二聚体”的价键态。一维与二维情形分别讨论。
+
+\subsection{Majumdar--Ghosh 哈密顿量}
+
+Majumdar 与 Ghosh 引入哈密顿量
+
+\begin{equation*}
+H ^ {\mathrm{MG}} = \frac {4 | K |}{3} \sum_ {i = 1} ^ {\mathcal {N}} \left( \mathbf {S} _ {i} \cdot \mathbf {S} _ {i + 1} + \frac {1}{2} \mathbf {S} _ {i} \cdot \mathbf {S} _ {i + 2} \right) + \frac {1}{2} \mathcal {N} ,
+\tag{8.11}
+\end{equation*}
+
+$i$ 标记偶数格点数的一维链的格点，$S_{\mathcal{N}+1} = S_{1}$。下面将看到，$H^{\mathrm{MG}}$ 是图~\ref{fig:8.3} 所画两个二聚体态的母哈密顿量：
+
+\begin{equation*}
+\left| d \right\rangle_{\pm} = \prod_ {n = 1} ^ {\mathcal {N}/2} \left( \left| \uparrow_{2n} \right\rangle \left| \downarrow_{2n \pm 1} \right\rangle - \left| \downarrow_{2n} \right\rangle \left| \uparrow_{2n \pm 1} \right\rangle \right) / \sqrt {2}.
+\tag{8.12}
+\end{equation*}
+
+我们将证明
+
+\begin{equation*}
+H ^ {\mathrm{MG}} \left| d \right\rangle_{\pm} = 0 ,
+\tag{8.13}
+\end{equation*}
+
+且所有其他本征能量为正。于是 $|d\rangle_{\pm}$ 张成 $H^{\mathrm{MG}}$ 的基态流形。$H^{\mathrm{MG}}$ 包含次近邻间的反铁磁相互作用，部分阻挫了近邻关联。因此可以预期基态比纯近邻模型更无序。的确，近邻模型 Bethe 波函数的关联按距离的负幂衰减，而由 (8.9)，二聚体态的关联超出一个格点常量即为零。
+
+(8.13) 的证明富有启发性，因为它演示了构造母哈密顿量的一般技术。格点 $(i-1, i, i+1)$ 上三自旋的总自旋为
+
+\begin{equation*}
+\mathbf {J} _ {i} = \mathbf {S} _ {i - 1} + \mathbf {S} _ {i} + \mathbf {S} _ {i + 1} ,
+\tag{8.14}
+\end{equation*}
+
+其平方具有本征值 $J(J + 1)$，$J = \frac{1}{2}, \frac{3}{2}$。基本思想是把 $H^{\mathrm{MG}}$ 表为投影算符之和：
+
+\begin{equation*}
+H ^ {\mathrm{MG}} = | K | \sum_ {i} \mathcal {P} _ {3/2} ( i - 1, i, i + 1 ) ,
+\tag{8.15}
+\end{equation*}
+
+其中
+
+\begin{align*}
+\mathcal {P} _ {3/2} ( i - 1, i, i + 1 ) & = \frac {1}{3} \left( \mathbf {J} _ {i} ^ {2} - \frac {3}{4} \right)\\
+& = \frac {1}{2} + \frac {2}{3} \left( \mathbf {S} _ {i - 1} \cdot \mathbf {S} _ {i} + \mathbf {S} _ {i - 1} \cdot \mathbf {S} _ {i + 1} + \mathbf {S} _ {i} \cdot \mathbf {S} _ {i + 1} \right) .
+\tag{8.16}
+\end{align*}
+
+显然，$\mathcal{P}_{3/2}$ 湮灭三自旋组 $(i-1, i, i+1)$ 总自旋 $J = \frac{1}{2}$ 的任何态。另外，二聚体态 (8.12) 不含任何三个格点总 $J^{z} > \frac{1}{2}$ 的分量，因为三个自旋中有两个的 $S^{z}$ 量子数相消。
+
+这蕴含不存在总自旋 $J > \frac{1}{2}$ 的三自旋组，论证如下：假设有一个 $J^{z} = \frac{1}{2}$ 但 $J = \frac{3}{2}$ 的三自旋组。对 $|d\rangle$ 作整体转动，这将通过 $J_{i}^{+}$ 的作用把 $J_{i}^{z} = \frac{3}{2}$ 的分量混入波函数，与 $|d\rangle$ 的转动不变性矛盾（见 (8.3) 之前的讨论）。于是 $|d\rangle$ 中不可能有任何 $J > \frac{1}{2}$ 分量，故每个算符 $\mathcal{P}_{3/2}$ 湮灭 $|d\rangle_{\pm}$。由于 $|K|\mathcal{P}_{3/2}$ 是非负算符，$|d\rangle_{\pm}$ 张成 $H^{\mathrm{MG}}$ 的基态流形。证毕。
+
+\subsection{正方格子 RVB 态}
+
+在 $S = \frac{1}{2}$ 的正方格子上，共振价键（RVB）态 (8.3) 满足量子反铁磁体 Marshall 定理 5.1 与 5.2 的一切要求。P. W. Anderson 提出这些态作为自旋液体基态的候选。虽然（各种迹象表明）正方格子上的近邻反铁磁体在 $T = 0$ 是有序的，这些态在掺杂反铁磁体与高温超导的语境下非常流行（见文献注释与第 19 章）。
+
+遗憾的是，RVB 态的关联不易计算。由 (8.10) 可见其分量 $|\alpha\rangle$ 并不正交。正方格子上不同键覆盖的数目随格点数指数增长。M. E. Fisher 曾计算（见文献注释）大小为 $\mathcal{N}$ 的正方格子上二聚体组态的数目增长为
+
+\begin{equation*}
+\text{二聚体组态数} \sim ( 1.791623 ) ^ {\mathcal {N}/2}.
+\tag{8.17}
+\end{equation*}
+
+Liang、Douçot 与 Anderson 在有限格子上的数值 Monte Carlo 模拟表明，若键至少按
+
+\begin{equation*}
+u _ {ij} \propto \left| \mathbf {x} _ {i} - \mathbf {x} _ {j} \right| ^ {- p} \, , \quad p \geq 5
+\tag{8.18}
+\end{equation*}
+
+衰减，RVB 态便没有长程序。因此 RVB 态既可用作有序相、也可用作无序相的变分基态，这使它们成为研究从 Néel 反铁磁体到顺磁相转变的诱人候选。
+
+\section{价键固体与 AKLT 模型}
+
+价键固体（VBS）是
+
+\begin{equation*}
+\left| \Psi^ {\mathrm{VBS}} \right\rangle = \prod_{\langle ij \rangle} \left( a _ {i} ^ {\dagger} b _ {j} ^ {\dagger} - b _ {i} ^ {\dagger} a _ {j} ^ {\dagger} \right) ^ {M} \left| 0 \right\rangle ,
+\tag{8.19}
+\end{equation*}
+
+其中 $\langle ij\rangle$ 是格子的所有近邻键，整数 $M$ 满足
+
+\begin{equation*}
+M = 2 S / z.
+\tag{8.20}
+\end{equation*}
+
+$z$ 是格子配位数。显然 (8.20) 使 $S$ 的取值依赖于格子结构：例如一维格子 $S = 1, 2 \ldots$，正方格子 $S = 2, 4 \ldots$。若干 VBS 态画于图~\ref{fig:8.4}。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{fig8_4.jpg}
+\caption{若干价键固体。}
+\label{fig:8.4}
+\end{figure}
+
+Affleck、Kennedy、Lieb 与 Tasaki（AKLT）为 VBS 态构造了母哈密顿量：
+
+\begin{equation*}
+\mathcal {H} ^ {\mathrm{AKLT}} = \sum_{\langle ij \rangle} \sum_{J = 2S - M + 1} ^ {2S} K _ {J} \, \mathcal {P} _ {J} ( ij ) \, , \quad K _ {J} \geq 0.
+\tag{8.21}
+\end{equation*}
+
+键投影算符 $\mathcal{P}_{J}(ij)$ 把键自旋 $J_{ij} = S_{i} + S_{j}$ 投影到大小为 $J$ 的子空间。$m = 0, 1, 2, \ldots$ 次幂的 $S_{i} \cdot S_{j}$ 的任何幂次都可以用 $J_{ij}^{2}$ 的幂写出，并展开为键投影算符的线性组合：
+
+\begin{equation*}
+\left( \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} \right) ^ {m} = \sum_ {J = 0} ^ {2 S} \left[ \frac {1}{2} J ( J + 1 ) - S ( S + 1 ) \right] ^ {m} \mathcal {P} _ {J} ( ij ).
+\tag{8.22}
+\end{equation*}
+
+反过来，(8.22) 可以反解，把键投影算符表示为 $\mathbf{S}_i\cdot \mathbf{S}_j$ 的多项式。
+
+为证明 (8.19) 是 (8.21) 的基态，我们证明
+
+\begin{equation*}
+\mathcal {H} ^ {\mathrm{AKLT}} \left| \Psi^ {\mathrm{VBS}} \right\rangle = 0 ,
+\tag{8.23}
+\end{equation*}
+
+这在 $|\Psi^{\mathrm{VBS}}\rangle$ 对任何 $(ij)$ 都不含键自旋 $J(ij) > 2S - M$ 的分量时成立。
+
+考虑对 $\left|\Psi^{\mathrm{VBS}}\right\rangle$ 的如下贡献——特定键 $(ij)$ 上 $a^{\dagger}$ 个数取最大可能值的项：
+
+\begin{equation*}
+\dots \left( a _ {i} ^ {\dagger} \right) ^ {2S - M} \left( a _ {i} ^ {\dagger} b _ {j} ^ {\dagger} - b _ {i} ^ {\dagger} a _ {j} ^ {\dagger} \right) ^ {M} \left( a _ {j} ^ {\dagger} \right) ^ {2S - M} \dots .
+\tag{8.24}
+\end{equation*}
+
+数一下键上 $a^{\dagger}$ 与 $b^{\dagger}$ 个数之差，发现 (8.19) 中 $J_{ij}^{z}$ 的最大本征值为
+
+\begin{equation*}
+J _ {\mathrm{max}} ^ {z} = 2 S - M.
+\tag{8.25}
+\end{equation*}
+
+若 $\left|\Psi^{\mathrm{VBS}}\right\rangle$ 含有键自旋 $J > J_{max}^{z}$ 的分量，则对整个波函数作整体转动将产生 $J^{z'} = J$ 的分量；但 $\left|\Psi^{\mathrm{VBS}}\right\rangle$ 在整体转动下不变，与 (8.25) 矛盾。于是 $J_{max} = 2S - M$，我们证明了 $\left|\Psi^{\mathrm{VBS}}\right\rangle$ 被 $H^{\mathrm{AKLT}}$ 湮灭——后者只含 $J > J_{max}$ 的投影算符。由于 (8.21) 中 $K_{J}$ 非负，$H^{\mathrm{AKLT}}$ 的本征值非负，$\left|\Psi^{\mathrm{VBS}}\right\rangle$ 是一个基态。证毕。
+
+一个重要例子是自旋 1 链：$S = 1$、$M = 1$。由 (8.22)，哈密顿量的显式形式为
+
+\begin{align*}
+\mathcal {H} ^ {\mathrm{AKLT}} & = K \sum \mathcal {P} _ {2} ( ij )\\
+& = K \sum_{\langle ij \rangle} \left[ \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} + \frac {1}{3} \left( \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} \right) ^ {2} + \frac {2}{3} \right].
+\tag{8.26}
+\end{align*}
+
+这一模型在标准 Heisenberg 模型上加了一个双二次项。我们将看到，该模型的基态和激发与用其他方法对标准 Heisenberg 模型预言的相似。就此而言，可以断定双二次微扰实际上是“小”的。
+
+\subsection{价键固体中的关联}
+
+为计算 VBS 态 (8.19) 的关联，利用 (7.18) 定义的自旋相干态 $|\hat{\Omega}\rangle$。这一基底使我们能把 VBS 关联表达为经典统计力学平均。
+
+VBS 态与自旋相干态的交叠为
+
+\begin{align*}
+\Psi^ {\mathrm{VBS}} [ \hat {\Omega} ] & = \langle 0 | \prod_{\langle ij \rangle} \left( a _ {i} b _ {j} - b _ {i} a _ {j} \right) ^ {M} \prod_ {i} \frac {\left( u _ {i} a _ {i} ^ {\dagger} + v _ {i} b _ {i} ^ {\dagger} \right) ^ {2S}}{\sqrt {( 2 S ) !}} \left| 0 \right\rangle\\
+& = \sqrt {( 2 S ) !} \prod_{\langle ij \rangle} \left( u _ {i} v _ {j} - v _ {i} u _ {j} \right) ^ {M}\\
+& = \sqrt {( 2 S ) !} \prod_{\langle ij \rangle} \left( \frac {1 - \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j}}{2} \right) ^ {M/2} ,
+\tag{8.27}
+\end{align*}
+
+其中 $u(\theta,\phi)$、$v(\theta,\phi)$ 已在 (7.14) 定义。用单位矢量显式表达的 VBS 波函数对理解其关联极为有用。由 (7.26)，自旋关联为
+
+\begin{align*}
+\langle \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} \rangle & = Z ^ {- 1} ( S + 1 - \delta_ {ij} ) ( S + 1 )\\
+& \quad \times \int \prod_ {i} d \hat {\Omega} _ {i} \left| \Psi^ {\mathrm{VBS}} [ \hat {\Omega} ] \right| ^ {2} \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} ,
+\tag{8.28}
+\end{align*}
+
+归一化分母为
+
+\begin{equation*}
+Z = \int \prod_ {i} d \hat {\Omega} _ {i} \left| \Psi^ {\mathrm{VBS}} [ \hat {\Omega} ] \right| ^ {2}.
+\tag{8.29}
+\end{equation*}
+
+对开放的一维格子，(8.28) 可以用迭代程序显式计算\footnote{见 Arovas、Auerbach 与 Haldane，文献注释。}。距离为 $n$ 个格点间隔时结果为
+
+\begin{align*}
+\langle \mathbf {S} _ {0} \cdot \mathbf {S} _ {n} \rangle & = \left\{ \begin{array}{ll} ( - 1 ) ^ {n} ( S + 1 ) ^ {2} \exp [ - \kappa | n | ] & n \neq 0 \\ S ( S + 1 ) & n = 0 \end{array} \right. ,\\
+\kappa ( S ) & = \ln \left( 1 + \frac {2}{S} \right) .
+\tag{8.30}
+\end{align*}
+
+关联的大小以纯指数方式衰减。后续章节我们将看到，这一行为类似于第 12、13 章综述的 Haldane 连续近似对 Heisenberg 反铁磁体的预言。这支持了我们此前的论断：(8.26) 与标准 Heisenberg 模型相距不“远”。
+
+对更高维，可以通过考虑一个等价的经典统计力学体系来理解关联。定义经典 Boltzmann 权重
+
+\begin{equation*}
+\exp \left( - \frac {\Phi}{T} \right) \Leftrightarrow \left| \Psi^ {\mathrm{VBS}} [ \hat {\Omega} ] \right| ^ {2} ,
+\tag{8.31}
+\end{equation*}
+
+其中有效“温度”为
+
+\begin{equation*}
+T \Leftrightarrow \frac {1}{M} ,
+\tag{8.32}
+\end{equation*}
+
+经典“能量”由在 Néel 关联附近（即 $(1 + \hat{\Omega}_{i} \cdot \hat{\Omega}_{j})$ 小值处）展开得到：
+
+\begin{align*}
+\Phi & = - \sum_{\langle ij \rangle} \ln \left[ ( 1 - \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} ) / 2 \right]\\
+& \approx \sum_{\langle ij \rangle} \left[ \frac {1}{2} + \frac {1}{2} \left( \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} \right) + \mathcal {O} \left( 1 + \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j} \right) ^ {2} \dots \right] .
+\tag{8.33}
+\end{align*}
+
+$\Phi$ 是一个类经典 Heisenberg 哈密顿量，具有短程反铁磁相互作用与 $O(3)$ 转动对称。由 Mermin--Wagner 定理 6.2 的经典版本（见 (6.35)），预期有限 $T$（即有限 $M$）下一维、二维无长程序。于是一维、二维格子上的 VBS 态只有短程序，即它们描述“量子自旋液体”。另一方面，在三维格子上，对足够大的 $M$（即低“温度”），预期经典哈密顿量产生长程反铁磁序；此时 VBS 态描述一个转动不变的、但具有真反铁磁长程序的态\footnote{类似的经典类比技巧曾被 Laughlin 用于分数量子霍尔效应，见文献注释。}。
+
+\begin{exercises}
+
+\item 画出线性链、正方、蜂窝、三角与立方格子的价键态。每种格子允许的 $S$ 值是什么？
+
+\item 对二分格子，证明价键固体 (8.19) 满足 Marshall 符号判据 (5.13)。
+
+\item 证明恒等式
+
+\begin{equation*}
+\mathcal {P} _ {2} ( ij ) = \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} + \frac {1}{3} \left( \mathbf {S} _ {i} \cdot \mathbf {S} _ {j} \right) ^ {2} + \frac {2}{3}.
+\tag{8.34}
+\end{equation*}
+
+\item Schwinger 玻色子平均场态中关联的生成泛函由泛函
+
+\begin{equation*}
+Z [ j ] = \left\langle \hat {u} \left| \exp \left[ \sum_ {im} a _ {im} ^ {\dagger} j _ {im} a _ {im} \right] \right| \hat {u} \right\rangle .
+\tag{8.35}
+\end{equation*}
+
+给出。证明
+
+\begin{equation*}
+Z [ \hat {j} ] = \det_{im} \left| 1 - \hat {u} e ^ {\hat {j}} \hat {u} e ^ {\hat {j}} \right| ^ {-1/2} ,
+\tag{8.36}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\hat {j} _ {im, i'm'} \equiv \delta_ {ii '} \delta_ {mm '} j _ {im}.
+\tag{8.37}
+\end{equation*}
+
+提示：插入用玻色子相干态（见附录 C）表示的单位分解，把 $Z$ 写成复 Gauss 积分。
+
+\item 考虑一维平均场态 $|\hat{u}\rangle$，其中
+
+\begin{equation*}
+\hat {u} _ {ij} = u \left( \delta_ {j, i + 1} + \delta_ {j, i - 1} \right).
+\tag{8.38}
+\end{equation*}
+
+用对角源 $j_{im} = j$ 的 (8.36)，把平均占据数方程写为
+
+\begin{equation*}
+n ( u ) = \sum_ {m} \frac {\partial \ln Z [ \hat {j} ]}{\partial j _ {im}} = 2 S.
+\tag{8.39}
+\end{equation*}
+
+解出函数 $u(S)$。
+
+\item 利用
+
+\begin{equation*}
+S _ {i} ^ {z} \equiv \frac {1}{2} \left( n _ {i, \frac {1}{2}} - n _ {i, - \frac {1}{2}} \right),
+\tag{8.40}
+\end{equation*}
+
+通过把 $Z(j)$ 对适当的源项求导，证明在位平均场涨落为
+
+\begin{equation*}
+\frac {\left\langle \hat {u} ^ {\mathrm{VBS}} \left| \left( S _ {i} ^ {z} \right) ^ {2} \right| \hat {u} ^ {\mathrm{VBS}} \right\rangle}{\langle \hat {u} ^ {\mathrm{VBS}} | \hat {u} ^ {\mathrm{VBS}} \rangle} = \frac {1}{2} S ( S + 1 ).
+\tag{8.41}
+\end{equation*}
+
+利用转动不变性把结果与 $\langle S^{2}\rangle$ 联系起来。忽略局域约束带来的误差是多少？
+
+\item 用 (8.36) 的 $Z(j)$，计算一维价键态的平均场关联函数
+
+\begin{equation*}
+\frac {\left\langle \hat {u} ^ {\mathrm{VBS}} \left| S _ {0} ^ {z} S _ {n} ^ {z} \right| \hat {u} ^ {\mathrm{VBS}} \right\rangle}{\langle \hat {u} ^ {\mathrm{VBS}} | \hat {u} ^ {\mathrm{VBS}} \rangle} ,
+\tag{8.42}
+\end{equation*}
+
+并把结果与 (8.30) 的精确 VBS 关联比较。
+
+\end{exercises}
+
+\begin{chapbib}
+\item 本章的若干想法与例子取自
+  D. P. Arovas and S. M. Girvin, \textit{Exact Answers to Some Interesting Questions}, Proc. 7th International Conference on Many Body Theories, Minneapolis (1991) 的讲义。
+\item AKLT 模型引入于
+  I. Affleck, T. Kennedy, E. H. Lieb, and H. Tasaki, Phys. Rev. Lett. \textbf{59}, 799 (1987)。
+\item Majumdar--Ghosh 模型定义于
+  C. K. Majumdar and D. K. Ghosh, J. Math Phys. \textbf{10}, 1388 (1969)。
+\item 一维价键固体的精确关联计算于
+  D. P. Arovas, A. Auerbach, and F. D. M. Haldane, Phys. Rev. Lett. \textbf{60}, 531 (1988)。
+\item 共振价键及其与高温超导可能的联系由
+  P. W. Anderson, Science \textbf{235}, 1196 (1987)；
+  S. Kivelson, D. Rokhsar, and J. Sethna, Phys. Rev. B \textbf{35}, 8865 (1987)
+  提出。
+\item 式 (8.17) 导出于
+  M. E. Fisher, Phys. Rev. \textbf{124}, 1664 (1961)。
+\item RVB 态关联的计算见
+  W. Sutherland, Phys. Rev. B \textbf{37}, 3786 (1988)；
+  M. Kohmoto and Y. Shapir, Phys. Rev. Lett. \textbf{61}, 9439 (1988)；
+  S. Liang, B. Douçot, and P. W. Anderson, Phys. Rev. Lett. \textbf{61}, 365 (1988)；
+  E. Fradkin, \textit{Field Theories of Condensed Matter Systems} (Addison-Wesley, 1991), 第六章。
+\item 价键态关联的 $1/N$ 展开完成于
+  M. Raykin and A. Auerbach, Phys. Rev. B \textbf{47}, 5118 (1993)。
+  发现其低阶结果与精确关联 (8.30) 出人意料地吻合。
+\item 投影算符方法在分数量子霍尔效应 Laughlin 波函数上的应用综述于
+  F. D. M. Haldane, \textit{The Quantum Hall Effect}, edited by R. E. Prange and S. M. Girvin (Springer-Verlag, 1987), 第八章。
+\item 著名的“经典等离子体类比”可以计算分数量子霍尔效应 Laughlin 态的关联，其精神与 (8.31) 十分相似。见
+  R. B. Laughlin, Phys. Rev. Lett. \textbf{50}, 1395 (1983)；
+  及上引 \textit{The Quantum Hall Effect} 一书第七章。
+\end{chapbib}

@@ -1,0 +1,1133 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第7章 输运性质
+
+% 第7章 Transport Properties
+
+\chapter{输运性质}
+
+\epigraphbook{没有谁喊“一、二、三，预备——跑！”，\\ 它们喜欢什么时候开始跑就什么时候开始跑，喜欢什么时候停就什么时候停，\\ 所以很难说清这场比赛究竟什么时候才算结束。}{LEWIS CARROLL}
+
+\section{Boltzmann 方程}
+
+金属或半导体中的载流子会受到外场的影响，也会受到温度梯度的影响。它们还会遭受来自杂质、格波等的散射。这些效应必须相互达到平衡——我们必须考虑这样的情形：电子被电场加速，却又通过散射失去其多余的能量和动量。在本章中，我们将考虑“普通的”输运性质，也就是加上恒定场时所观察到的那些性质。
+
+一般说来，处理这个问题远为最简单的途径，是建立输运方程（transport equation）即 Boltzmann 方程。我们研究一个量 $f_{\mathbf{k}}(\mathbf{r})$，它表示在空间中点 $\mathbf{r}$ 附近处于态 $\mathbf{k}$ 的载流子的局域浓度。严格地说，这个量只能借助细粒度分布、系综平均、密度矩阵等来定义。关于这一点已有相当多的文献——但它更多属于量子统计力学的形式理论，而不是固体理论。
+
+现在考虑 $f_{\mathbf{k}}(\mathbf{r})$ 如何随时间变化。有三类效应：
+
+（i）载流子会流入和流出区域 $\mathbf{r}$。设 $\mathbf{v}_{\mathbf{k}}$ 是态 $\mathbf{k}$ 中载流子的速度。那么，在时间间隔 $t$ 内，这个态中的载流子移动一段距离 $t\mathbf{v}_{\mathbf{k}}$。于是，根据 Liouville 关于相空间中所占据体积不变的定理，$t$ 时刻位于 $\mathbf{r}$ 附近的载流子数目，等于 $0$ 时刻位于 $\mathbf{r}-t\mathbf{v}_{\mathbf{k}}$ 附近的数目：
+\begin{equation*}
+f_{\mathbf{k}}(\mathbf{r},t)=f_{\mathbf{k}}(\mathbf{r}-t\mathbf{v}_{\mathbf{k}},0).\tag{7.1}
+\end{equation*}
+这意味着，由于扩散引起的分布的变化率为
+\begin{equation*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{diff.}}
+=-\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}}{\partial \mathbf{r}}
+=-\mathbf{v}_{\mathbf{k}}\cdot\nabla f_{\mathbf{k}}.\tag{7.2}
+\end{equation*}
+
+（ii）外场会改变每个载流子的 $\mathbf{k}$ 矢量，其变化率为式 (6.40)，即
+\begin{equation*}
+\dot{\mathbf{k}}=\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right).\tag{7.3}
+\end{equation*}
+我们可以把它看作载流子在 $\mathbf{k}$ 空间中的速度，于是，通过与式 (7.1) 类比，
+\begin{equation*}
+f_{\mathbf{k}}(\mathbf{r},t)=f_{\mathbf{k}-\dot{\mathbf{k}}t}(\mathbf{r},0);\tag{7.4}
+\end{equation*}
+也就是说，由于场（\emph{fields}）的作用，分布以下列速率变化：
+\begin{align*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{field}}
+&=-\dot{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{k}}\\
+&=-\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{k}}\tag{7.5}
+\end{align*}
+（其中我们把 $\partial/\partial\mathbf{k}$ 写作 $\mathbf{k}$ 空间中的梯度——即算符 $\nabla_{\mathbf{k}}$）。
+
+（iii）散射的效应更为复杂。但我们在此主要限于弹性散射。它使 $f_{\mathbf{k}}$ 获得一个变化率
+\begin{equation*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
+=\int\{f_{\mathbf{k}'}(1-f_{\mathbf{k}})-f_{\mathbf{k}}(1-f_{\mathbf{k}'})\}\,Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'.\tag{7.6}
+\end{equation*}
+由 $\mathbf{k}$ 散射到 $\mathbf{k}'$ 的过程使 $f_{\mathbf{k}}$ 减小。这一过程的概率既取决于 $f_{\mathbf{k}}$，即态 $\mathbf{k}$ 中载流子的数目，也取决于 $(1-f_{\mathbf{k}'})$，即末态中可供占用的空位数目。同时还存在逆过程，即从 $\mathbf{k}'$ 进入 $\mathbf{k}$ 的过程，它使 $f_{\mathbf{k}}$ 增大，其权重为 $f_{\mathbf{k}'}(1-f_{\mathbf{k}})$。我们对所有其他可能的态 $\mathbf{k}'$ 求和。不过，对于每一对 $\mathbf{k}$ 和 $\mathbf{k}'$，都存在一个基本跃迁概率 $Q(\mathbf{k},\mathbf{k}')$，它量度跃迁速率——比如说，在已知 $\mathbf{k}$ 被占据而 $\mathbf{k}'$ 为空的情形下。\emph{微观可逆性}（microscopic reversibility）原理告诉我们，同一个函数也给出从 $\mathbf{k}'$ 到 $\mathbf{k}$ 的跃迁速率，所以它是被积函数中的一个公共因子。
+
+Boltzmann 方程说：在任一点、对任意的 $\mathbf{k}$ 值，$f_{\mathbf{k}}(\mathbf{r})$ 的净变化率为零，即
+\begin{equation*}
+\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
++\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{field}}
++\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{diff.}}=0.\tag{7.7}
+\end{equation*}
+
+注意，这是一个\emph{定常态}（steady state），而不是\emph{平衡态}（equilibrium state）；平衡态我们记作 $f_{\mathbf{k}}^{0}$，它在没有场和温度梯度时成立。如果外场本身随时间变化，那么这三项之和必须等于 $f_{\mathbf{k}}$ 在此力作用下随时间的变化（见 §8.6）。
+
+但我们假定，定态分布不会偏离平衡太远。我们写出
+\begin{equation*}
+g_{\mathbf{k}}=f_{\mathbf{k}}-f_{\mathbf{k}}^{0},\tag{7.8}
+\end{equation*}
+其中，如 §4.5 中那样，
+\begin{equation*}
+f_{\mathbf{k}}^{0}=\frac{1}{\exp\{(\mathcal{E}_{\mathbf{k}}-\zeta)/kT\}+1}=f^{0}(\mathcal{E}_{\mathbf{k}}).\tag{7.9}
+\end{equation*}
+
+这里我们必须稍稍小心一点：当温度逐点各不相同时，$f_{\mathbf{k}}^{0}$ 该如何定义？我们假定每一点都有一个明确确定的温度 $T(\mathbf{r})$，并写出
+\begin{equation*}
+g_{\mathbf{k}}(\mathbf{r})=f_{\mathbf{k}}(\mathbf{r})-f_{\mathbf{k}}^{0}\{T(\mathbf{r})\}.\tag{7.10}
+\end{equation*}
+如果难以确定 $T(\mathbf{r})$ 应当取什么，我们可以坚持要求最终解满足某个附加条件，例如
+\begin{equation*}
+\int g_{\mathbf{k}}(\mathbf{r})\,\mathrm{d}\mathbf{k}=0.\tag{7.11}
+\end{equation*}
+
+把式 (7.8) 代入式 (7.7)，并利用式 (7.2) 和式 (7.5)，Boltzmann 方程变为
+\begin{equation*}
+-\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{r}}
+-\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial f_{\mathbf{k}}}{\partial\mathbf{k}}
+=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}},\tag{7.12}
+\end{equation*}
+亦即
+\begin{align*}
+-\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial f_{\mathbf{k}}^{0}}{\partial T}\nabla T
+-\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial f_{\mathbf{k}}^{0}}{\partial\mathbf{k}}\\
+=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
++\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}}
++\frac{e}{\hbar}\left(\mathbf{E}+\frac{1}{c}\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{k}}.\tag{7.13}
+\end{align*}
+
+借助式 (7.9) 以及运动学关系式 (6.2)，我们可以把它写成
+\begin{align*}
+\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)
+\mathbf{v}_{\mathbf{k}}\cdot\left\{-\frac{\mathcal{E}(\mathbf{k})-\zeta}{T}\nabla T
++e\left(\mathbf{E}-\frac{1}{e}\nabla\zeta\right)\right\}\\
+=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}
++\mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}}
++\frac{e}{\hbar c}(\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H})\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{k}}.\tag{7.14}
+\end{align*}
+
+这就是线性化的 Boltzmann 方程。我们略去了 $(\mathbf{E}\cdot\partial g_{\mathbf{k}}/\partial\mathbf{k})$ 这一项，它是 $E^{2}$ 量级的，对应于对 Ohm 定律的偏离。我们还可以去掉 $(\mathbf{v}_{\mathbf{k}}\cdot\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H})$ 这一项，它恒等于零；于是磁场不出现在左端。
+
+如果把式 (7.6) 代入式 (7.14)，我们就会看到，Boltzmann 方程是关于分布函数的“失衡”部分 $g_{\mathbf{k}}(\mathbf{r})$ 的一个线性积分微分方程。这个函数的值由电场的强度和温度梯度通过左端的驱动项来确定。本章其余部分将讨论在越来越复杂的条件下求这个方程的解。
+
+具有批判眼光的读者读到此处，恐怕早已对这种以头脑简单的方式使用准经典概念来描述量子力学系统行为的做法感到反感了。难道真的能够以这样满不在乎的方式忽略电子波包之间的干涉吗？
+
+要回答这类问题，我们需要一种更先进的技术，即使用密度矩阵和（或）Green 函数的技术。如 §5.1 中那样，外场被当作作用在我们多粒子系统平衡态上的一个小微扰，它激发出一个\emph{线性响应}（linear response），其大小量度相应的输运系数。例如，电导率张量可以抽象地用 \emph{Kubo 公式}表出：
+\begin{equation*}
+\sigma_{\mu\nu}=\frac{1}{kT}\int_{0}^{\infty}\langle j_{\mu}(t)\,j_{\nu}(0)\rangle\,\mathrm{d}t.\tag{7.15}
+\end{equation*}
+换言之，电导率取决于电流算符在零时刻的分量 $j_{\nu}(0)$ 与稍后某一时刻 $t$ 的分量 $j_{\mu}(t)$ 之间的\emph{时间关联}（time correlation）（对照 §2.8）；对全部时间积分，并把乘积的期望值对平衡系综取平均。当然，$j(t)$ 本身的平均值是零，但电流中\emph{涨落}（fluctuations）的衰减，恰恰取决于与它对外场响应所依赖的完全相同的系统特征——杂质散射，等等。
+
+这类公式十分优雅，并且为涉及输运系数的各种定理提供了严格的基础——例如不可逆过程的 Onsager 关系（§7.9）。但是，要用散射截面等量把式 (7.15) 这样的表达式显式计算出来却格外微妙，至今只在少数简单的标准情形中完成过。所幸其结果几乎证实了由 Boltzmann 方法远为直接地得到的全部结论。
+
+\section{电导率}
+
+假定我们只有一个电场 $\mathbf{E}$，介质是“无限”的并保持恒温。方程变为
+\begin{align*}
+\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{E}
+&=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}\\
+&=\int(f_{\mathbf{k}}-f_{\mathbf{k}'})\,Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'\\
+&=\int(g_{\mathbf{k}}-g_{\mathbf{k}'})\,Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'\tag{7.16}
+\end{align*}
+（由式 (7.6)）。这是关于未知函数 $g_{\mathbf{k}}$ 的一个简单的积分方程。
+
+我们不直接求解这个方程，而是作如下的唯象假设：
+\begin{equation*}
+-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}=\frac{1}{\tau}\,g_{\mathbf{k}}.\tag{7.17}
+\end{equation*}
+也就是说，我们引入一个\emph{弛豫时间}（relaxation time）$\tau$。如果撤去电场，那么任何失衡量 $g_{\mathbf{k}}$ 都将按
+\begin{equation*}
+-\frac{\partial g_{\mathbf{k}}}{\partial t}=\frac{g_{\mathbf{k}}}{\tau},
+\end{equation*}
+即
+\begin{equation*}
+g_{\mathbf{k}}(t)=g_{\mathbf{k}}(0)\,e^{-t/\tau}\tag{7.18}
+\end{equation*}
+而衰减到零。这个假设看起来是合理的——但需要论证，我们将在 §7.3 中给出。
+
+把式 (7.17) 代入式 (7.16)，得到
+\begin{equation*}
+g_{\mathbf{k}}=\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\tau\,\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{E}.\tag{7.19}
+\end{equation*}
+为了计算电导率，我们需要相应的电流密度
+\begin{align*}
+\mathbf{J}&=2\int e\mathbf{v}_{\mathbf{k}}f_{\mathbf{k}}\,\mathrm{d}\mathbf{k}\\
+&=2\int e\mathbf{v}_{\mathbf{k}}g_{\mathbf{k}}\,\mathrm{d}\mathbf{k}\quad\left(\text{由于}\int e\mathbf{v}_{\mathbf{k}}f_{\mathbf{k}}^{0}\,\mathrm{d}\mathbf{k}\equiv 0\right)\\
+&=\frac{1}{4\pi^{3}}\iint e^{2}\tau\,\mathbf{v}_{\mathbf{k}}(\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E})\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\frac{\mathrm{d}S}{\hbar v_{\mathbf{k}}}\,\mathrm{d}\mathcal{E},\tag{7.20}
+\end{align*}
+这里利用式 (2.66) 和式 (4.6)，把对 $\mathbf{k}$ 空间一个体积的积分变换为对恒定能量面的积分。
+
+按 §4.5，在金属中函数 $(-\partial f^{0}/\partial\mathcal{E})$ 的行为如同 费米能级处的一个 delta 函数；于是剩下的只是展布于 费米面上的一个积分。这样，
+\begin{equation*}
+\mathbf{J}=\frac{1}{4\pi^{3}}\frac{e^{2}\tau}{\hbar}\int\frac{\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\,\mathrm{d}S_{F}}{v_{\mathbf{k}}}\cdot\mathbf{E}.\tag{7.21}
+\end{equation*}
+我们将它与标准的宏观方程
+\begin{equation*}
+\mathbf{J}=\boldsymbol{\sigma}\cdot\mathbf{E},\tag{7.22}
+\end{equation*}
+相比较，其中 $\boldsymbol{\sigma}$ 是一个张量。用并矢（dyadic）记号，
+\begin{equation*}
+\boldsymbol{\sigma}=\frac{1}{4\pi^{3}}\frac{e^{2}\tau}{\hbar}\int\frac{\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\,\mathrm{d}S_{F}}{v_{\mathbf{k}}}.\tag{7.23}
+\end{equation*}
+
+要从 Kubo 公式 (7.15) 出发导出此式，我们可以把 $\tau$ 定义为态 $\mathbf{k}$ 中电流 $e\mathbf{v}_{\mathbf{k}}$ 的一个涨落的衰减时间。在系综平均中，这些涨落由 费米–狄拉克 分布支配，它在式 (7.23) 中以一个态密度因子代替 $1/kT$。
+
+我们通常处理的是具有立方对称性的晶体，这时\emph{电导率张量}（conductivity tensor）约化为一个标量。考虑 $\mathbf{E}$ 和 $\mathbf{J}$ 都沿 $x$ 方向的情形，我们在被积函数中得到
+\begin{equation*}
+(\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E})_{x}=v_{x}^{2}E,\tag{7.24}
+\end{equation*}
+它是总速度的平方的贡献 $v^{2}E$ 的 $1/3$。于是
+\begin{align*}
+\sigma&=\frac{1}{4\pi^{3}}\frac{e^{2}\tau}{\hbar}\,\frac{1}{3}\int v\,\mathrm{d}S_{F}\\
+&=\frac{1}{4\pi^{3}}\frac{e^{2}}{\hbar}\,\frac{1}{3}\int\Lambda\,\mathrm{d}S_{F},\tag{7.25}
+\end{align*}
+其中我们引入\emph{平均自由程}（mean free path）
+\begin{equation*}
+\Lambda=\tau v.\tag{7.26}
+\end{equation*}
+这就是计算电导率的基本公式。
+
+观察一下由式 (7.8) 定义的分布函数 $f_{\mathbf{k}}$ 的形式（图 122）是很有意思的。由式 (7.19) 可见，$g_{\mathbf{k}}$ 只在 费米面处才大。在 $\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{E}$ 为正的一侧——也就是电子被电场加速的那一侧——加上一小块；同时在另一侧减去同样大小的一块。
+
+实际上，我们有
+\begin{align*}
+f_{\mathbf{k}}&=f_{\mathbf{k}}^{0}-\frac{\partial f_{\mathbf{k}}^{0}}{\partial\mathcal{E}(\mathbf{k})}\,\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}}\cdot\frac{e\tau}{\hbar}\mathbf{E}\\
+&=f^{0}\left(\mathbf{k}-\frac{e\tau}{\hbar}\mathbf{E}\right),\tag{7.27}
+\end{align*}
+这由 Taylor 定理得到。这就好像整个 费米面在 $\mathbf{k}$ 空间中移动了一个数量 $(e\tau/\hbar)\mathbf{E}$。但这是一个稍微令人误解的概念。能带底部附近、深入 Fermi 球内部的那些态，实际上并不受电场影响。Pauli 原理使它们既不会被电场加速，也不会被杂质散射。
+
+不过我们注意到，电导率是与温度无关的（也许除了 $\tau$ 随温度的变化之外）。同样的公式在 $T=0$ 时也成立，此时 费米分布的边缘是完全陡峭的。我们可以说，电导率可以根据一个\emph{坚硬 费米面}（hard Fermi surface）的位移计算出来。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_122.pdf}
+\caption*{图 122\quad (a)移位的 费米面。(b)移位的 费米分布。}
+\end{figure}
+
+另一个值得注意之点是，式 (7.27) 可以写成
+\begin{equation*}
+f_{\mathbf{k}}=f^{0}(\mathcal{E}_{\mathbf{k}}-e\tau\,\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}),\tag{7.28}
+\end{equation*}
+就好像态 $\mathbf{k}$ 中的电子获得了大小为
+\begin{equation*}
+\delta\mathcal{E}_{\mathbf{k}}=e\tau\,\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}.\tag{7.29}
+\end{equation*}
+的能量。这正是经典图像中它应有的行为：假如它以速度 $\mathbf{v}_{\mathbf{k}}$ 在电场 $\mathbf{E}$ 中运动一段平均时间 $\tau$，就会得到这样一份能量。处理输运问题的\emph{分子运动论方法}（kinetic method）正是以这一论证为基础的。在与杂质两次碰撞之间获得的这份额外能量，等价于沿场方向的一个\emph{漂移速度}（drift velocity）$\delta\mathbf{v}$，它满足
+\begin{equation*}
+\delta\mathbf{v}\cdot\frac{\partial\mathcal{E}}{\partial\mathbf{v}}=e\mathbf{v}\cdot\mathbf{E}\,\tau,\tag{7.30}
+\end{equation*}
+即
+\begin{equation*}
+\delta\mathbf{v}=\frac{e\tau v}{mv}\,\mathbf{E},\tag{7.31}
+\end{equation*}
+这是对质量为 $m$ 的经典粒子而言的。
+
+如果每单位体积有 $n$ 个粒子，则净电流密度为
+\begin{equation*}
+\mathbf{J}=ne\,\delta\mathbf{v},\tag{7.32}
+\end{equation*}
+而把式 (7.31)、(7.32) 与式 (7.22) 相比较，就得到
+\begin{equation*}
+\sigma=\frac{ne^{2}\tau}{m}.\tag{7.33}
+\end{equation*}
+
+很容易证明，对自由电子气而言，式 (7.25) 与式 (7.33) 给出相同的结果；但对金属来说，前者在原理上是好得多的公式。从线性响应理论的观点看，把它写成
+\begin{equation*}
+\sigma=\frac{1}{3}\,j_{F}^{2}\tau\,\mathcal{N}(\mathcal{E}_{F})\tag{7.34}
+\end{equation*}
+甚至还要更好，这表明电导率只取决于 费米能级处电子的性质，而不取决于金属中电子的总数。金属的高电导率应归因于 费米分布顶端的少数电子所携带的大电流 $j_{F}=ev_{F}$，而不是归因于可以被拉动而缓慢漂移的自由电子具有很高的总密度。
+
+基本公式 (7.25) 还表明，如果自由 费米面的面积因与区边界的相互作用而减小，情况会怎样；它还把使 费米面上电子的有效速度降低的晶格效应考虑在内。这类效应在诸如 Bi 这样的金属中肯定可以观察到。
+
+另一方面，分子运动论公式 (7.33) 则适用于半导体，其中 $n$ 是自由载流子的数目。习惯上写成
+\begin{equation*}
+\sigma=n\,|e|\,\mu,\tag{7.35}
+\end{equation*}
+其中
+\begin{equation*}
+\mu=\frac{|e|\tau}{m}\tag{7.36}
+\end{equation*}
+是载流子的\emph{迁移率}（mobility）。更一般地，人们假定电子和空穴分别对电流作出贡献，于是写成
+\begin{equation*}
+\sigma=n_{e}|e|\,\mu_{e}+n_{h}|e|\,\mu_{h},\tag{7.37}
+\end{equation*}
+并分别定义\emph{电子迁移率}（electron mobility）与\emph{空穴迁移率}（hole mobility）。
+
+比如说，从式 (7.20) 出发推导式 (7.35) 并不困难：对 $f^{0}$ 采用类似式 (4.32) 的经典分布函数，并计算像式 (4.36) 那样的积分。这时要假定 $\tau$ 可以是能量的函数，于是求得其平均值（用以代入式 (7.36)）为
+\begin{equation*}
+\bar{\tau}=\frac{2}{3kT}\int\mathcal{E}\,\tau(\mathcal{E})\,e^{-\mathcal{E}/kT}\mathcal{N}(\mathcal{E})\,\mathrm{d}\mathcal{E}\;\bigg/\int e^{-\mathcal{E}/kT}\mathcal{N}(\mathcal{E})\,\mathrm{d}\mathcal{E},\tag{7.38}
+\end{equation*}
+其中 $\mathcal{N}(\mathcal{E})$ 是载流子所在的那个特定能带中的态密度。于是
+\begin{equation*}
+\mu_{e}=\frac{|e|\,\bar{\tau}_{e}}{m_{e}},\tag{7.39}
+\end{equation*}
+其中 $m_{e}$ 是电子的有效质量——空穴亦然。这些公式表明，迁移率可以是温度的函数；随着 $T$ 升高，分布展宽，平均弛豫时间随之改变。在金属中，$\tau$ 随能量的变化关系影响不大；重要的只是 $\tau(\mathcal{E}_{F})$ 的数值。
+
+\section{弛豫时间的计算}
+
+我们至今还没有求解积分方程 (7.16)。事实上，它最普遍的可能解应当写成
+\begin{equation*}
+g_{\mathbf{k}}=\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)e\mathbf{E}\cdot\boldsymbol{\Lambda}(\mathbf{k}),\tag{7.40}
+\end{equation*}
+其中 $\boldsymbol{\Lambda}(\mathbf{k})$ 是在 费米面上每一点 $\mathbf{k}$ 处定义的一个矢量。我们的初等解 (7.19) 相当于取
+\begin{equation*}
+\boldsymbol{\Lambda}(\mathbf{k})=\tau\,\mathbf{v}_{\mathbf{k}},\tag{7.41}
+\end{equation*}
+这表明 $\boldsymbol{\Lambda}$ 是电子的\emph{矢量平均自由程}（vector mean free path）。在一般情形下，$\boldsymbol{\Lambda}(\mathbf{k})$ 的大小可以变化，而且在 费米面上还可以偏离 $\mathbf{v}_{\mathbf{k}}$ 的方向。
+
+有时人们假定可以写成
+\begin{equation*}
+\boldsymbol{\Lambda}(\mathbf{k})=\tau(\mathbf{k})\,\mathbf{v}_{\mathbf{k}},\tag{7.42}
+\end{equation*}
+其中 $\tau(\mathbf{k})$ 是一个在 费米面上变化的\emph{各向异性弛豫时间}（anisotropic relaxation time）。然而容易证明，这并不总是积分方程的完整解——而且也不存在计算函数 $\tau(\mathbf{k})$ 的直接方法。
+
+事实上，唯一简单的解就是初等解 (7.19)。假设我们把它作为 $g_{\mathbf{k}}$ 代入 (7.16)，并且还假定散射是弹性的，即
+\begin{equation*}
+Q(\mathbf{k},\mathbf{k}')\,\mathrm{d}\mathbf{k}'=\delta(\mathcal{E}-\mathcal{E}')\,\mathcal{Q}(\mathbf{k},\mathbf{k}')\,\mathrm{d}\Omega'\,\mathrm{d}E,\tag{7.43}
+\end{equation*}
+其中 $\mathrm{d}\Omega'$ 是散射后 $\mathbf{k}'$ 的方向上的立体角元（$\mathbf{k}'$ 的大小现在由它必须与 $\mathbf{k}$ 具有相同能量 $\mathcal{E}'$ 这一要求所确定）。
+
+在两边消去能量的 delta 函数之后，我们得到
+\begin{equation*}
+\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}=\tau\int(\mathbf{v}_{\mathbf{k}}-\mathbf{v}_{\mathbf{k}'})\cdot\mathbf{E}\,\mathcal{Q}(\mathbf{k},\mathbf{k}')\,\mathrm{d}\Omega'\tag{7.44}
+\end{equation*}
+积分在 费米面上进行。这是一个泛函关系，它对 $\mathcal{Q}(\mathbf{k},\mathbf{k}')$ 的形式施加了若干条件。容易证明：当我们有球形 费米面、$|\mathbf{v}_{\mathbf{k}}|$ 为常数，并且
+\begin{equation*}
+\mathcal{Q}(\mathbf{k},\mathbf{k}')=\mathcal{Q}(\theta);\tag{7.45}
+\end{equation*}
+也就是说，当散射概率仅是两个波矢之间夹角的函数时，关系式 (7.44) 便能够成立。这个证明只不过是球面三角学的一道练习题，我们把它留给读者。
+
+如果这些条件得到满足，我们立刻得到
+\begin{equation*}
+\frac{1}{\tau}=\int(1-\cos\theta)\,\mathcal{Q}(\theta)\,\mathrm{d}\Omega'.\tag{7.46}
+\end{equation*}
+这表明，弛豫时间反比于一个对所有过程的散射概率的积分——但带上了因子 $(1-\cos\theta)$ 的权重，向大角散射倾斜。正如在 (7.44) 中所见，这个因子来自 $(\mathbf{v}_{\mathbf{k}}-\mathbf{v}_{\mathbf{k}'})\cdot\mathbf{E}$；重要的并不是电子被散射这件事，而是在此过程中电子速度沿电场方向的分量改变了多少。
+
+我们可以借助数密度为 $N_{i}$ 的杂质的微分散射截面 $\sigma(\theta)$ 来表达散射概率：平均自由程 $\Lambda$ 由下式给出
+\begin{equation*}
+\frac{1}{\Lambda}=N_{i}\,2\pi\int_{0}^{\pi}(1-\cos\theta)\,\sigma(\theta)\sin\theta\,\mathrm{d}\theta.\tag{7.47}
+\end{equation*}
+
+\section{杂质散射}
+
+现在，有了 (6.70)、(7.25) 和 (7.47)，我们就具备了从第一性原理出发计算含带电杂质的自由电子金属之电导率所需的材料。我们通常把它表示成\emph{电阻率}
+\begin{align*}
+\rho&=\frac{mv_{F}}{ne^{2}\Lambda}\\
+&=\frac{mv_{F}}{ne^{2}}\,N_{i}\,2\pi\int_{0}^{\pi}(1-\cos\theta)\left(\frac{2mZe^{2}}{\hbar^{2}}\right)^{2}\frac{\sin\theta\,\mathrm{d}\theta}{(K^{2}+\lambda^{2})^{2}}\\
+&=\frac{mv_{F}}{ne^{2}}\,N_{i}\,2\pi\left(\frac{2mZe^{2}}{\hbar^{2}\lambda^{2}}\right)^{2}\int_{0}^{1}\frac{8z^{3}\,\mathrm{d}z}{\left\{1+(2k_{F}/\lambda)^{2}z^{2}\right\}^{2}}.\tag{7.48}
+\end{align*}
+这里我们利用了散射的几何关系，即 $K=2k_{F}\sin\frac{1}{2}\theta$，并在被积函数中令 $z=\sin\frac{1}{2}\theta$。
+
+(7.48) 中的积分作为 $(2k_{F}/\lambda)$ 的函数很容易算出——我们不打算写出精确的公式。要注意的要点是：一个带电杂质的行为就像一个半径为
+\begin{equation*}
+R\sim\left(\frac{2mZe^{2}}{\hbar^{2}\lambda^{2}}\right)\tag{7.49}
+\end{equation*}
+的几何障碍物；由 (5.22) 和 (3.6)，它与原子球的半径相当。我们还注意到，这一电阻与温度无关，而且应当按价差 $Z$ 的平方变化（\emph{Linde 定则}，Linde's rule）。
+
+实际上，由 (7.48) 给出的电阻太大了。更好的做法是采用分波公式 (5.40) 来计算散射截面。对 $\theta$ 的积分可以做出来；我们得到
+\begin{equation*}
+\frac{1}{\Lambda}=N_{i}\,\frac{4\pi}{k_{F}^{2}}\sum_{l=1}^{\infty}l\sin^{2}(\eta_{l-1}-\eta_{l}).\tag{7.50}
+\end{equation*}
+然后可以确定各相移，使之满足 Friedel 求和规则 (5.43)。任何在 费米能级附近具有 $d$ 共振（§§5.5、6.10）的过渡金属杂质，显然必定产生很大的\emph{剩余电阻率}（residual resistivity），此时 $\eta_{2}\sim\pi/2$。对磁性杂质而言，依赖于自旋的 s--d 相互作用还会导致\emph{电阻极小}（resistance minimum），即 \emph{Kondo 效应}（Kondo effect），这将在 §10.6 中讨论。
+
+要计算半导体中与带电杂质散射相联系的迁移率，我们可以采用与 (7.48) 本质上相同的论证。此时弛豫时间实际上是依赖于能量的：
+\begin{equation*}
+\frac{1}{\tau(\mathcal{E})}=N_{i}\,v\cdot 2\pi\left(\frac{Ze^{2}}{\epsilon\mathcal{E}}\right)^{2}\int_{0}^{1}\frac{\frac{1}{2}z^{3}\,\mathrm{d}z}{\left\{z^{2}+\lambda^{2}\hbar^{2}/8m^{*}\mathcal{E}\right\}^{2}},\tag{7.51}
+\end{equation*}
+其中 $\lambda$——现在由 (5.26) 给出——被假定远小于热激发所容许的 $k$ 值范围。
+
+我们若把这个积分算出来，就会发现它随 $\mathcal{E}$ 只变化得很慢：$\tau$ 通过因子 $\mathcal{E}^{2}/v\propto\mathcal{E}^{\frac{3}{2}}m^{*\frac{1}{2}}$ 依赖于载流子的能量。当我们把它代入 (7.38) 时，实际上发现这相当于用平均值 $kT$ 代替 $\mathcal{E}$。于是，对于杂质散射，
+\begin{equation*}
+\mu\propto T^{\frac{3}{2}}m^{*\frac{3}{2}}.\tag{7.52}
+\end{equation*}
+（译注：按式 (7.51) 的 $\tau\propto\mathcal{E}^{3/2}m^{*1/2}$ 代入 (7.38)、(7.39)，
+这类公式确实非常粗糙，但“迁移率应当随温度升高而增大”这一普遍的定性论证是可靠的。我们的意思是：载流子气越热，平均载流子就运动得越快，也就越不容易被带电杂质散射。
+
+\section{“理想”电阻}
+
+计算金属的所谓\emph{“理想”电阻}（'ideal' resistance）——即来源于晶格热振动之散射的电阻——是一个更为复杂的问题。我们只能把论证的主要线索勾画出来。
+
+作为一级近似，我们可以利用 §6.14 中引入的形变势原理。电子感受到一个涨落势，其大小为
+\begin{equation*}
+\delta\mathcal{E}=\tfrac{2}{3}\mathcal{E}_{F}\,\Delta,\tag{7.53}
+\end{equation*}
+其中 $\Delta$ 是局域的、随热涨落的体膨胀。因此，电阻应当正比于密度的均方涨落；按照经典统计力学的一个熟知原理，它由下式给出
+\begin{equation*}
+\overline{\Delta^{2}}=NkT\beta,\tag{7.54}
+\end{equation*}
+其中 $\beta$ 是压缩率。
+
+如果用声速 $s$ 和密度 $D$ 来表示，就有
+\begin{equation*}
+\overline{\Delta^{2}}=\frac{NkT}{Ds^{2}}=\frac{kT}{Ms^{2}},\tag{7.55}
+\end{equation*}
+其中 $M$ 是一个离子的质量。这个结果更为人们熟悉的形式是如下的一般关系
+\begin{equation*}
+\rho_{t}\propto\frac{T}{M\Theta^{2}}\tag{7.56}
+\end{equation*}
+它表明电阻正比于绝对温度。电阻随原子质量以及随 Debye 温度 $\Theta$（如 §2.4 中那样，$\Theta$ 与 $s$ 成正比）的变化，大体上与实验相符。
+
+为了在这一结果上有所改进，我们可以采用 (6.87)，即晶格中每个离子的有效微分截面。由 (7.47) 我们得到平均自由程
+\begin{equation*}
+\frac{1}{\Lambda_{t}}=N\,2\pi\int_{0}^{\pi}\sigma_{a}(\theta)\,N|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}(1-\cos\theta)\sin\theta\,\mathrm{d}\theta,\tag{7.57}
+\end{equation*}
+其中 $\sigma_{a}(\theta)$ 是“自由原子”的微分散射截面。
+
+假设我们只考虑 N 过程，即散射矢量 $\mathbf{K}$ 等于声子波矢 $\mathbf{q}$ 的过程。在 (2.109) 与 (2.110) 中已经算出因子 $|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}$。在高温下
+\begin{align*}
+N|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}&\approx\frac{kTK^{2}}{M\nu_{\mathbf{q}}^{2}}\\
+&\approx\frac{kT}{Ms^{2}}\\
+&\approx\frac{\hbar^{2}q_{D}^{2}\,kT}{Mk^{2}\Theta^{2}}\tag{7.58}
+\end{align*}
+——以 Debye 温度表出。实际上，这就是 (7.54) 与 (7.55) 中的 $\overline{\Delta^{2}}$。
+
+由于 (7.58) 与 $\mathbf{K}$ 无关，也就是与散射角 $\theta$ 无关，我们可以把这个积分单独算出来，并写成
+\begin{equation*}
+\frac{1}{\Lambda_{t}}=N\bar{\sigma}_{a}\,\frac{\hbar^{2}q_{D}^{2}\,kT}{Mk^{2}\Theta^{2}},\tag{7.59}
+\end{equation*}
+其中
+\begin{equation*}
+\bar{\sigma}_{a}\equiv 2\pi\int\sigma_{a}(\theta)\,(1-\cos\theta)\sin\theta\,\mathrm{d}\theta,\tag{7.60}
+\end{equation*}
+即孤立原子的总散射截面，并以因子 $(1-\cos\theta)$ 计及沿场方向动量的变化。
+
+利用 Lindemann 熔化公式 (2.117)，这个公式还可以进一步约化。我们得到
+\begin{equation*}
+\frac{1}{\Lambda_{t}}\approx N\bar{\sigma}_{a}\cdot\tfrac{2}{3}x_{m}^{2}\,\frac{T}{T_{m}},\tag{7.61}
+\end{equation*}
+其中 $x_{m}$ 是 (2.117) 中量级为 0.2 的常数，$T_{m}$ 是熔化温度。我们还可以再往前走一点，假定一个离子的散射截面与带电杂质的散射截面大体相同。对 (7.49) 稍作变换，就得到大致如下的结果
+\begin{equation*}
+\Lambda_{t}\sim 50a\,\frac{T_{m}}{T},\tag{7.62}
+\end{equation*}
+其中 $a^{3}$ 是一个晶胞的体积；金属中电子的平均自由程在熔点处应当具有晶格常数 50 倍的量级。这并不严格正确——但作为数量级的估计还是站得住脚的。
+
+要得到电阻本身，我们应当把 (7.59) 或 (7.62) 与 (7.33) 结合起来，写成
+\begin{equation*}
+\rho_{t}=\frac{mv_{F}}{ne^{2}\Lambda_{t}},\tag{7.63}
+\end{equation*}
+这对自由电子气近似地成立。这些公式使我们粗糙的函数关系 (7.56) 有了具体的数字。
+
+但在低温下情况要更复杂。(7.58) 这个结构因子是在经典统计的假设下算出来的。如果进入低温区，我们就必须把比如 $(kT/\hbar\nu_{\mathbf{q}})$ 换成由 (2.46) 给出的 $\bar{n}_{\mathbf{q}}$。\footnote{零点能并不进入这个公式；要证明这一点，需要对散射作细致的分析，把声子的发射过程与吸收过程区分开来。}我们得到
+\begin{equation*}
+N|\mathbf{K}\cdot\mathbf{U}_{\mathbf{q}}|^{2}\approx\frac{kT}{Ms^{2}}\left\{\frac{\hbar\nu_{\mathbf{q}}/kT}{\exp(\hbar\nu_{\mathbf{q}}/kT)-1}\right\}.\tag{7.64}
+\end{equation*}
+
+(7.57) 积分中的这个因子起到了在角度变量上设置切断的作用。当我们需要吸收或发射频率高得无法被热激发的声子时，散射概率迅速下降；也就是说，对于满足
+\begin{equation*}
+\hbar\nu_{\mathbf{q}}>kT.\tag{7.65}
+\end{equation*}
+的散射，我们实际上不予考虑。
+
+对于 Debye 模型以及球形 费米面上的 N 过程，这种情况发生于如下的 $q$ 值和散射角 $\theta$，使得
+\begin{equation*}
+\frac{q}{2k_{F}}=\sin\tfrac{1}{2}\theta>\frac{q_{D}}{2k_{F}}\,\frac{T}{\Theta}.\tag{7.66}
+\end{equation*}
+
+如果我们假定 $\sigma_{a}(\theta)$ 并非随 $\theta$ 急剧变化的函数，因而可以作为一个常数提到积分之外，就能相当精确地计算平均自由程。于是 (7.57) 给出
+\begin{equation*}
+\frac{1}{\Lambda_{t}}=N\bar{\sigma}_{a}\,\frac{\hbar^{2}q_{D}^{2}\,kT}{Mk^{2}\Theta^{2}}\left(\frac{T}{\Theta}\right)^{4}\int_{0}^{\Theta/T}\frac{4z^{4}\,\mathrm{d}z}{(e^{z}-1)},\tag{7.67}
+\end{equation*}
+其中我们已令
+\begin{equation*}
+z=\frac{\hbar\nu_{\mathbf{q}}}{kT}=\left(\frac{q}{q_{D}}\right)\left(\frac{\Theta}{T}\right).\tag{7.68}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_123.pdf}
+\caption*{图 123\quad 电子--声子 N 过程：(a)高温下；(b)低温下。}
+\end{figure}
+
+在高温下，$\Theta/T$ 很小，积分趋于 $(\Theta/T)^{4}$，我们就回到了 (7.59)。在低温下，积分趋于一个常数 124.4，于是电阻正比于 $T^{5}$。“理想”电阻的这种强烈的温度依赖性是一种典型的量子效应，可与 Debye $T^{3}$ 比热定律相比拟。
+
+我们可以看出发生了什么。有效散射截面是一个对角度的积分，带有因子
+\begin{equation*}
+(1-\cos\theta)\sin\theta\,\mathrm{d}\theta=8\sin^{3}\tfrac{1}{2}\theta\,\mathrm{d}(\sin\tfrac{1}{2}\theta)\tag{7.69}
+\end{equation*}
+因而对 (7.64) 所提示的切断非常敏感。如果取 (7.66) 作为切断角，我们就应当发现一个正比于
+\begin{equation*}
+\int_{0}^{(q_{D}/2k_{F})(T/\Theta)}8\sin^{3}(\tfrac{1}{2}\theta)\,\mathrm{d}(\sin\tfrac{1}{2}\theta)\propto\left(\frac{T}{\Theta}\right)^{4},\tag{7.70}
+\end{equation*}
+的因子，这正是 (7.67) 中出现的那一个。长波声子作为电阻的来源效果很差，因为它们只能把电子散射过一个小角——而这个角随温度成比例地减小。
+
+把 (7.67) 与 (7.63) 结合起来得到的公式，就是所谓的 \emph{Bloch--Grüneisen 定律}（Bloch--Grüneisen law）。许多金属在低温下近似遵从它——但不应对它过分拘泥于字面，理由如下：
+
+（i）我们假定了电子被弹性散射。这并不真实——但如果我们按照电子--声子的产生与湮没过程作一个形式上的分析，并计入电子失去或获得的能量，就得到几乎相同的结果。(7.67) 中的积分变为
+\begin{equation*}
+\int_{0}^{\Theta/T}\frac{4z^{5}\,\mathrm{d}z}{(e^{z}-1)(1-e^{-z})},
+\end{equation*}
+它在 $T$ 很小和很大时的渐近行为都与 (7.67) 相同。
+
+（ii）Debye 谱的假设只是一种方便的过分简化。纵模与横模各自的贡献应当分别考虑。
+
+（iii）函数 $\sigma_{a}(\theta)$ 不是常数，因此不能把它从 (7.57) 的积分号下提出来。计算 $\sigma_{a}(\theta)$ 的公式由 (6.89) 与 (6.93) 给出。特别是，当 $\theta$ 超过大约 $20^{\circ}$--$30^{\circ}$ 以后，$\sigma_{a}(\theta)$ 趋于减小——这也对电阻随温度的变化产生影响。
+
+（iv）最严重的误差在于忽略了 U 过程。如 §2.7 所示，如果 $\mathbf{K}$ 越出了某个 Brillouin 区的边界，我们就应当写成
+\begin{equation*}
+\mathbf{q}=\mathbf{K}-\mathbf{g},\tag{7.71}
+\end{equation*}
+其中 $\mathbf{g}$ 是一个倒格矢。在我们的公式 (7.57) 中，并没有什么特殊理由使这样的 $\mathbf{K}$ 值无法达到；原子的散射截面作为角度的函数会一直延伸到 $\theta=\pi$，那将使 $K=2k_{F}$，大于 Debye 极限 $q_{D}$。
+
+U 过程给电阻造成的困难只不过在于，它们会引起复杂的几何问题。即使在高温下，如果把 (7.71) 代入 (7.58)，我们也会发现“结构因子”不再与散射角无关：它包含一个额外的因子 $K^{2}/q^{2}$，这个因子可以远大于 1。我们可以在图 124(a) 中看到这一点，其中 $K$ 显然远大于 $q$。对于这样大的 $\theta$ 值，微分散射截面 $\sigma_{a}(\theta)$ 也许很小——但对电阻的贡献却被因子 $(1-\cos\theta)$ 重重地加权。
+
+某些 U 过程所需要的很小的 $q$ 值，在我们考虑电阻随温度的变化时也很重要。正如 (7.66) 所表明的，直到温度降到很低，这些过程才被“冻结”。如果把图 124(a) 的矢量三角形在重复区图式中重新画出，这一点可以看得更清楚。这时，一个倒逆过程所要求的 $q$ 的最小值，显然就是一个区中的 费米面与其在相邻区中的重复像之间的最小距离。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_124.pdf}
+\caption*{图 124\quad 电子--声子 U 过程：(a)在自由电子球上；(b)在重复区图式中。}
+\end{figure}
+
+如果 费米面朝区边界的方向鼓出，那么 $q$ 的最小值就减小——于是 (7.57) 中带因子 $K^{2}/q^{2}$ 的贡献将得到增强。的确，看起来几乎就好像：倘若 费米面碰到区边界，$\rho_{i}$ 中就会出现一个奇点——不过，正如 §6.13 中指出的，对于这样的过程，电子--声子相互作用的矩阵元自动为零。
+
+U 过程对电阻的贡献没有简单的公式。不过，给出 (7.56) 和 (7.67) 的那些同样的普遍因素仍在起作用——尽管后一个表达式作为精确的理论结果并不成立。我们能够理解这一现象的全部物理特征，但必须依靠繁冗的数值计算才能得到答案。举一点为例：按照 (6.93)，原子在 $\mathbf{K}$ 值大（即 $\theta$ 大）时的有效截面依赖于 $\mathcal{V}'$ 的大小，即赝原子的“芯赝势”（'core pseudo-potential'）。这应当反映在电阻的大小上——但电阻对 $\mathcal{V}'$ 的敏感，既可能来自它使 费米面畸变、使区边界附近的波函数相混合的方式，也同样可能来自它对散射矩阵元的直接贡献。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_125.pdf}
+\caption*{图 125\quad 液态金属的典型结构因子，图中标出不同价数下的 $2k_{F}$，以及温度依赖性。}
+\end{figure}
+
+对\emph{液态}金属的类似计算实际上要容易得多。假定一个 N.F.E. 模型是合理的，此时 (6.88)、(6.91)、(7.25) 和 (7.47) 引导我们得到公式
+\begin{equation*}
+\rho_{L}=\frac{3\pi}{4}\,\frac{1}{\hbar^{2}e^{2}v_{F}^{2}k_{F}^{4}}\,\frac{1}{N}\int_{0}^{2k_{F}}|w_{s}(K)|^{2}\,S(K)\,K^{3}\,\mathrm{d}K.\tag{7.72}
+\end{equation*}
+在这个表达式中，起实质性作用的要素是赝原子形状因子 $|w_{s}(K)|^{2}$ 和液体结构因子 $S(K)$，后者可以用中子或 X 射线衍射在实验上测定。事实上，大多数液态金属中原子的排列方式如此相似，以致在按原子半径标度之后，$S(K)$ 可以近似地用一条统一的标准曲线来表示（图 125）。在小的 $K$ 处，结构因子很小，因为原子分布在密度上近乎均匀——事实上，经典公式 (7.54) 在这里仍然成立。但第一
+配位壳层——即径向分布函数 $P(R)$ 中的近邻壳层（参见式 (2.103)）——在 $S(K)$ 中给出一个峰，越过此峰后 $S(K)$ 便在 1 附近振荡。在这张图上，Fermi 球的直径 $2k_{F}$ 依赖于价数 $Z$，因此 (7.72) 中的积分上限在碱金属中达不到 $S(K)$ 的峰，而当 $Z=2$ 时则落入其后的谷中。
+
+由于没有能够产生 Brillouin 区等等的长程序，N 过程与 U 过程之间的区分便失去意义。尽管如此，几何因子 $K^{3}$ 使被积函数的权重强烈地偏向 $2k_{F}$ 附近的值，于是“芯”赝势 $\mathcal{V}'$ 再一次成为占主导的效应。金属熔化时电阻的增大，可以归结为结构因子在大 $K$ 处的变化——即从仍正比于 $T$ 的电子--声子 U 过程，变为来自 $S(K)$ 峰附近的散射；此峰已达 1 的量级，而且在更高的温度下实际上还可能减小。
+
+\section{载流子迁移率}
+
+半导体中载流子被晶格振动的散射，就其一般原理而言是一个简单得多的问题。因为载流子通常被认为集中在 $\mathbf{k}$ 空间的一个小区域内，即 $\mathcal{E}(\mathbf{k})$ 的某个极小值附近，散射中 $\mathbf{k}$ 矢量的可能改变很小。这使我们能够利用 §6.13 的形变势（deformation potential）。散射概率正比于
+\begin{equation*}
+|\mathcal{M}_{\mathbf{k}'\mathbf{k}}|^{2}\,\mathcal{N}(\mathcal{E})=\Bigl|\sum_{ij}\mathsf{W}^{0}_{ij}\,\mathcal{E}_{ij}\Bigr|^{2}\mathcal{N}(\mathcal{E}),\tag{7.73}
+\end{equation*}
+其中 $\mathsf{W}^{0}_{ij}$ 是弹性波中应变某个分量的振幅，而 $\mathcal{E}_{ij}$ 是形变势张量的一个分量。
+
+由于 $\mathbf{k}'-\mathbf{k}$ 很小，我们可以对弹性波诸模采用经典统计：如同 (7.54) 那样，
+\begin{equation*}
+\overline{|\mathsf{W}^{0}_{ij}|^{2}}\propto kT.\tag{7.74}
+\end{equation*}
+于是，正比于 (7.73) 之倒数的弛豫时间将按如下方式变化
+\begin{equation*}
+\frac{1}{\tau(\mathcal{E})}\propto T\mathcal{E}^{\frac{1}{2}}m^{*\frac{3}{2}},\tag{7.75}
+\end{equation*}
+因为态密度是能量和“有效质量”二者的函数（参见式 (4.33)）。把它代入 (7.38) 和 (7.39)，我们得到
+\begin{equation*}
+\mu\propto T^{-\frac{3}{2}}m^{*-\frac{5}{2}}.\tag{7.76}
+\end{equation*}
+小有效质量带来的“报酬”是非常高的。
+
+然而，即使引入矩阵元等等，这个理论也仍然太简单。许多半导体的电子极小值不止一个——用行话说，有很多\emph{能谷}（many valleys）（§6.6）——而借助大波矢声子进行的谷间散射十分重要。关系式 (7.76) 在实践中并不很令人满意。
+
+在半导体中，发射或吸收声子时载流子能量的变化不可忽略。它对低场下载流子迁移率的影响不大，但却是\emph{高场}（high-field）输运现象中的主导机制。例如，设想在一个薄的导电样品两端加上几伏的电动势。在两极之间运动的载流子必须把这些能量作为 Joule 热放出——实际上就是发射若干个声子。在金属中，电子--声子两次散射之间的平均自由程非常短（参见式 (7.62)），以致在这个机制失效之前，样品本身早就被气化了。然而在好的半导体中，相当温和的电场（例如 1000 V/cm）就能使能量转移过程过载，于是电子的能量分布可能不再像 (7.38) 所假设的那样处于晶格温度下的平衡。随之发生的\emph{热电子}（hot electron）现象在理论上相当复杂，因为它细致地依赖于电子--声子矩阵元、声学支与光学支的频谱以及固体的电子能带结构。不过，总的效果是偏离 Ohm 定律，趋向于载流子电流几乎与 $E$ 无关的状态。
+
+这个关于电导的讨论还假定晶体动量 $\mathbf{k}$ 是电子态的一个好量子数。在某些情形下——例如在玻璃、非晶态半导体或补偿杂质带中（§§4.2、5.9、6.7）——最好把载流子描述为\emph{定域}（localized）在材料中的各个位置上。这时，导电只能通过热激活的\emph{跳跃}（hopping）从一个位置到另一个位置来实现，同时发射或吸收一个合适的声子以容许这一跃迁。
+
+\section{普遍输运系数}
+
+现在假定样品中除了电场之外还存在温度梯度。忽略尺寸和形状效应，Boltzmann 方程 (7.14) 就成为
+\begin{equation*}
+\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\mathbf{v}_{\mathbf{k}}\cdot\left\{\frac{\mathcal{E}(\mathbf{k})-\zeta}{T}(-\nabla T)+e\left(\mathbf{E}-\frac{1}{e}\nabla\zeta\right)\right\}=-\left.\frac{\partial f_{\mathbf{k}}}{\partial t}\right]_{\text{scatt.}}\tag{7.77}
+\end{equation*}
+我们所做的一切，只是把 (7.16) 中的 $\mathbf{E}$ 换成一个更为复杂的、依赖于 $\mathbf{k}$ 的矢量函数。如果弛豫时间得以存在的条件仍然成立——正如 §7.3 中讨论过的——那么我们就知道解的形式：
+\begin{equation*}
+f_{\mathbf{k}}-f^{0}_{\mathbf{k}}=\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\tau\mathbf{v}_{\mathbf{k}}\cdot\left[e\left(\mathbf{E}-\frac{1}{e}\nabla\zeta\right)+\frac{\mathcal{E}(\mathbf{k})-\zeta}{T}(-\nabla T)\right].\tag{7.78}
+\end{equation*}
+我们可以把它代入一个像 (7.20) 那样的积分中来计算电流，
+\begin{align*}
+\mathbf{J}&=\frac{1}{4\pi^{3}}\,\frac{e^{2}\tau}{\hbar}\iint\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\frac{\mathrm{d}S}{v_{\mathbf{k}}}\,\mathrm{d}\mathcal{E}\cdot\left(\mathbf{E}-\frac{1}{e}\nabla\zeta\right)\\
+&\quad+\frac{1}{4\pi^{3}}\,\frac{e^{2}\tau}{\hbar}\iint\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}\left(\frac{\mathcal{E}-\zeta}{T}\right)\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\frac{\mathrm{d}S}{v_{\mathbf{k}}}\,\mathrm{d}\mathcal{E}\cdot(-\nabla T).\tag{7.79}
+\end{align*}
+这表明，温度梯度 $\nabla T$ 即使单独作用也会产生电流——这正是存在温差电效应（thermo-electric effect）的证据。
+
+但是，温度梯度最重要的效应是产生\emph{热}流。我们也许会把它看作一种能量通量，
+\begin{equation*}
+2\int f_{\mathbf{k}}\,\mathcal{E}(\mathbf{k})\,\mathbf{v}_{\mathbf{k}}\,\mathrm{d}\mathbf{k}.
+\end{equation*}
+（译注：按式 (7.78) 代入 (7.20)，第二项似应为 $e\tau/\hbar$；原书印作 $e^{2}\tau$。）
+但这并不正确。“热”是“内能”减去“自由能”。电子的自由能是 $\zeta$，即它的化学势。因此，处于态 $\mathbf{k}$ 的电子所携带的热量是 $\mathcal{E}(\mathbf{k})-\zeta$。更严格的分析证实，热通量的总量（每单位体积）必须由下式计算：
+\begin{equation*}
+\mathbf{U}=2\int f_{\mathbf{k}}\{\mathcal{E}(\mathbf{k})-\zeta\}\,\mathbf{v}_{\mathbf{k}}\,\mathrm{d}\mathbf{k}.\tag{7.80}
+\end{equation*}
+
+在写下 $\mathbf{U}$ 的表达式之前，我们还可以注意到，(7.78) 中含有一个 $\nabla\zeta$ 项——这一项来自电子气温度的改变所引起的化学势变化（参见式 (4.23)）。但在电学性质的普通测量中，任何这类 $\zeta$ 的梯度都应当计入电路中所测得的诸电动势之内。我们将径直略去这一项，假定它的任何效应都已包含在 $\mathbf{E}$——即“观测到的”电场——之中。
+
+由 (7.78)、(7.79) 和 (7.80)，我们可以构造出如下的普遍输运方程
+\begin{align*}
+\mathbf{J}&=e^{2}\mathsf{K}_{0}\cdot\mathbf{E}+\frac{e}{T}\,\mathsf{K}_{1}\cdot(-\nabla T),\tag{7.81a}\\
+\mathbf{U}&=e\,\mathsf{K}_{1}\cdot\mathbf{E}+\frac{1}{T}\,\mathsf{K}_{2}\cdot(-\nabla T),\tag{7.81b}
+\end{align*}
+其中各系数（其实是张量，不过这只是为了抽象的普遍性而已）定义为
+\begin{equation*}
+\mathsf{K}_{n}\equiv\frac{1}{4\pi^{3}}\,\frac{\tau}{\hbar}\iint\mathbf{v}\mathbf{v}\,(\mathcal{E}-\zeta)^{n}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\frac{\mathrm{d}S}{v}\,\mathrm{d}\mathcal{E}.\tag{7.82}
+\end{equation*}
+这些系数可以借助我们关于 Fermi 函数对能量积分的普遍定理 (4.21) 来求值：
+\begin{equation*}
+\int\Phi(\mathcal{E})\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\mathrm{d}\mathcal{E}=\Phi(\zeta)+\tfrac{1}{6}\pi^{2}(kT)^{2}\left[\frac{\partial^{2}\Phi(\mathcal{E})}{\partial\mathcal{E}^{2}}\right]_{\mathcal{E}=\zeta}+\cdots,\tag{7.83}
+\end{equation*}
+这里 $\Phi(\mathcal{E})$ 本身是能量面 $\mathcal{E}(\mathbf{k})=\mathcal{E}$ 上的一个积分。但这并不带来特殊的困难。
+
+正如 (7.21) 中那样，我们有
+\begin{equation*}
+\mathsf{K}_{0}=\frac{1}{4\pi^{3}}\,\frac{\tau}{\hbar}\int\mathbf{v}\mathbf{v}\,\frac{\mathrm{d}S_{F}}{v}.\tag{7.84}
+\end{equation*}
+现在设想 $\mathsf{K}_{0}(\mathcal{E})$ 是 (7.84) 在某个能量为 $\mathcal{E}$（而非 费米能级处）的面上的取值。对于 $\mathsf{K}_{2}$，我们必须考虑 $\Phi(\mathcal{E})=(\mathcal{E}-\zeta)^{2}\mathsf{K}_{0}(\mathcal{E})$，它在 $\mathcal{E}=\zeta$ 处为零，于是在 (7.83) 的第二项中只剩下
+\begin{equation*}
+\mathsf{K}_{2}=\tfrac{1}{3}\pi^{2}(kT)^{2}\mathsf{K}_{0}(\zeta)\tag{7.85}
+\end{equation*}
+而 $\mathsf{K}_{1}$ 的表达式则化为
+\begin{equation*}
+\mathsf{K}_{1}=\tfrac{1}{3}\pi^{2}(kT)^{2}\left[\frac{\partial}{\partial\mathcal{E}}\,\mathsf{K}_{0}(\mathcal{E})\right]_{\mathcal{E}=\zeta},\tag{7.86}
+\end{equation*}
+这在原理上要更复杂一些。
+
+(7.81a) 中 $\mathbf{E}$ 的系数当然就是电导率——即我们在等温条件（$\nabla T=0$）下应当测得的电流。我们只是重新确认了 (7.23)；我们写下
+\begin{equation*}
+\boldsymbol{\sigma}=e^{2}\mathsf{K}_{0},\tag{7.87}
+\end{equation*}
+而当张量由于具有立方对称性而约化为标量时，还有与之等价的关系式。我们实际上就是利用 (7.87) 用已知的电导率来表示 $\mathsf{K}_{0}$。
+
+\section{热导率}
+
+(7.81b) 是热流方程，其中温度梯度的系数就是我们应当称为电子气的热导率（thermal conductivity）的量。
+
+实际上，这并不完全正确。我们做实验时并不会保持 $\mathbf{E}=\mathbf{0}$。更方便的做法是把样品接成开路，使 $\mathbf{J}=\mathbf{0}$。由 (7.81a)，这意味着沿导线将建立起一个电场
+\begin{equation*}
+\mathbf{E}=\frac{1}{e^{2}}\,\mathsf{K}_{0}^{-1}\mathsf{K}_{1}\,\frac{e}{T}\cdot\nabla T\tag{7.88}
+\end{equation*}
+把它代入 (7.81b)，我们得到
+\begin{align*}
+\mathbf{U}&=\frac{1}{T}\,\mathsf{K}_{1}\mathsf{K}_{0}^{-1}\mathsf{K}_{1}\cdot\nabla T-\frac{1}{T}\,\mathsf{K}_{2}\cdot\nabla T\\
+&=\frac{1}{T}\,(\mathsf{K}_{2}-\mathsf{K}_{1}\mathsf{K}_{0}^{-1}\mathsf{K}_{1})\cdot(-\nabla T),\tag{7.89}
+\end{align*}
+我们应当把它与
+\begin{equation*}
+\mathbf{U}=\boldsymbol{\kappa}\cdot(-\nabla T)\tag{7.90}
+\end{equation*}
+中的热导率 $\kappa$ 等同起来。但对金属而言这一修正可以忽略，于是
+\begin{equation*}
+\kappa=\frac{1}{T}\,\mathsf{K}_{2}.\tag{7.91}
+\end{equation*}
+而根据 (7.85) 和 (7.87)，此式可以写成
+\begin{equation*}
+\kappa=\frac{\pi^{2}}{3}\,\frac{k^{2}}{e^{2}}\,T\sigma,\tag{7.92}
+\end{equation*}
+这个关系称为 Wiedemann--Franz 定律。它是一个老结果，而且非常容易理解。在电传导中，每个电子携带电荷 $e$，受力 $e\mathbf{E}$ 的作用；单位场强下的电流正比于 $e^{2}$。在热传导中，每个电子携带其热能 $kT$，受“热力”$k\nabla T$ 的作用；单位温度梯度下的热流正比于 $k^{2}T$。这两个输运系数之比必须具有 $k^{2}T/e^{2}$ 的量级；因子 $\frac{1}{3}\pi^{2}$ 来自如下事实：我们处理的只是 费米面上服从 费米统计的电子。
+
+容易证明，这个定律是非常普遍的。倘若 (7.40) 成立——也就是说，倘若散射的效应只用一个在 费米面上变化的矢量平均自由程就能定义——这一定律便会成立。但它要求散射是\emph{弹性}的。
+
+为了证明这一点，让我们考察热传导条件下实际分布函数的形式。由 (7.78)，
+\begin{equation*}
+f_{\mathbf{k}}-f^{0}_{\mathbf{k}}=\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\left(\frac{\mathcal{E}-\zeta}{T}\right)\tau\,\mathbf{v}_{\mathbf{k}}\cdot(-\nabla T).\tag{7.93}
+\end{equation*}
+让我们看一看 费米分布的一个截面。如图 126 所示，在 $f^{0}$ 上加上一个像 (7.93) 那样的表达式，其效果是使 $\mathbf{v}_{\mathbf{k}}\cdot(-\nabla T)$ 为正的一侧的分布展宽，而在另一侧则使分布变窄。
+
+我们可以把它解析地表示出来：
+\begin{align*}
+f_{\mathbf{k}}&=f^{0}_{\mathbf{k}}-(\tau\,\mathbf{v}_{\mathbf{k}}\cdot\nabla T)\,\frac{\partial f^{0}}{\partial T}\\
+&=f^{0}(T-\tau\,\mathbf{v}_{\mathbf{k}}\cdot\nabla T).\tag{7.94}
+\end{align*}
+沿 $\nabla T$ 为负的方向运动的电子，即沿温度梯度下行方向运动的电子，要“热”出这样一个数量：
+\begin{equation*}
+\delta T=-\tau\,\mathbf{v}_{\mathbf{k}}\cdot\nabla T.\tag{7.95}
+\end{equation*}
+沿相反方向运动的电子，则比电子气的平均温度“冷”。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_126.pdf}
+\caption*{图 126\quad 热传导中的 费米分布。}
+\end{figure}
+
+的确，这正是我们按分子运动论的推理所应得出的结论。从方向 $\mathbf{v}$ 过来、到达温度为 $T$ 的区域的电子，已经走过了一段距离 $\tau v$。它们离开的那个区域——即它们上一次经受使其热化的碰撞的区域——将处于温度 $T+\delta T$。因此，这些电子要“热”出一个量 $\delta T$。
+
+于是，在热传导实验中没有净的电子通量——没有净的电荷通量。之所以有热流，是因为有“热”电子向一个方向行进，同时有同等数目的“冷”电子向相反方向行进。图 127(a) 中粗略地画出了这一情形。右边有一些被激发到 费米能级以上的电子；左边则有一些凝聚入 费米面之内的电子。
+
+现在考虑这个分布可以通过哪些散射方式而弛豫。我们可以把一个热电子沿 Fermi 球一直散射过去，使其方向反转。我们称之为\emph{水平过程}（horizontal process）。这类散射同样也是降低电导率的有效过程，如图 127(b) 所示。这类过程是弹性的——对它们而言 Wiedemann--Franz 定律成立。
+
+但也存在\emph{竖直}跃迁：一个“热”电子失去它的全部多余能量，落到 费米能级以下。这类过程对电导率的影响很小——但在热传导中，它在削减热流方面与大角散射同等重要。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_127.pdf}
+\caption*{图 127\quad 电子分布与散射过程：(a) 热传导中；(b) 电传导中。}
+\end{figure}
+
+按定义，竖直跃迁是\emph{非弹性}的。杂质散射不会发生这种跃迁，由杂质散射引起的热阻服从 Wiedemann--Franz 定律。换言之，由于 $\rho$ 为常数，$\kappa\propto T$。在高温下的声子散射中，竖直跃迁也不十分重要，因为那时电子能够获得或失去的最大能量就是一个声子的最大能量，即 $k\Theta$。它小于 费米分布相对于 费米能级的展宽 $kT$：结果表明，在高温极限下，对“理想”电阻而言 Wiedemann--Franz 定律同样成立。由于 $\rho_{i}$ 正比于 $T$，我们发现 $\kappa_{i}$ 应当趋于一个常数。
+
+但在低温下，电子平均获得或失去的能量就是该温度下声子的平均能量，即它必须具有 $kT$ 的量级。这恰好足以使电子穿过热层——恰好足以把一个“热”电子变成“冷”的。
+
+对这种情形推导一个公式，显然需要仔细研究产生或吸收声子的各个具体过程。但是，如果我们假定现在所有散射过程在削减热流方面都同等有效，就可以大致看出会发生什么。也就是说，在像 (7.46) 那样计算“弛豫时间”时，我们现在略去因子 $(1-\cos\theta)$，正是这个因子顾及了电子速度沿场方向分量的变化。
+
+但这个因子 $(1-\cos\theta)$ 在低温下曾在积分 (7.70) 中贡献了 $2\sin^{2}\frac{1}{2}\theta$。于是，在我们的“截止”近似中应当去掉一个因子 $(T/\Theta)^{2}$。在像 (7.67) 那样的计算中，“热导率弛豫时间”将得出为
+\begin{equation*}
+\frac{1}{\tau}\propto\frac{T^{3}}{M\Theta^{4}}\tag{7.96}
+\end{equation*}
+而不是电导率中所得到的 $T^{5}$ 定律。把它代入 (7.91)、(7.85) 和 (7.84)（即在把热导率与电导率相比较时总是要计入的、正比于 $T$ 的 Wiedemann--Franz 因子），我们得到
+\begin{equation*}
+\kappa_{i}\propto\frac{M\Theta^{4}}{T^{2}}.\tag{7.97}
+\end{equation*}
+这在实际中被观察到——在 Debye 温度以下，电子--声子过程给出如下形式的 Lorenz 比（Lorenz ratio）：
+\begin{equation*}
+\frac{\kappa_{i}}{\sigma_{i}T}\propto\left(\frac{T}{\Theta}\right)^{2}\tag{7.98}
+\end{equation*}
+而不是 Wiedemann--Franz 定律 (7.92) 所要求的常数值 $(\tfrac{1}{3}\pi^{2})(k/e)^{2}$。但在极低温度下，剩余电阻（§7.4）来自杂质的弹性散射，这个比值便回到 Lorenz 比 (7.92)。
+
+当然，还必须考虑 U 过程对热阻率的贡献，但这又是一个复杂的计算问题。
+
+\section{温差电效应}
+
+普遍关系 (7.81) 表明，电流与热流之间存在交互效应。例如，设想在一个开路的样品中建立温度梯度。在 (7.81a) 中令 $\mathbf{J}=\mathbf{0}$（这里悄悄换成标量系数），我们得到
+\begin{align*}
+\mathbf{E}&=\frac{1}{eT}\,(\mathsf{K}_{0}^{-1}\mathsf{K}_{1})\,\nabla T\\
+&=Q\nabla T;\tag{7.99}
+\end{align*}
+这时将观测到一个电动势。
+
+为了演示并测量这个效应，必须用两种金属 $A$ 和 $B$ 组成一个闭合回路，两个接头处于不同的温度 $T_{1}$ 和 $T_{2}$，并在某个中间点（温度 $T_{0}$）接入一个伏特计。回路中的电动势定义为 $\mathbf{E}$ 沿导线全长的积分
+\begin{align*}
+\phi&=\int_{0}^{1}E_{B}\,\mathrm{d}x+\int_{1}^{2}E_{A}\,\mathrm{d}x+\int_{2}^{0}E_{B}\,\mathrm{d}x\\
+&=\int_{2}^{1}Q_{B}\,\frac{\partial T}{\partial x}\,\mathrm{d}x+\int_{1}^{2}Q_{A}\,\frac{\partial T}{\partial x}\,\mathrm{d}x\\
+&=\int_{T_{1}}^{T_{2}}(Q_{A}-Q_{B})\,\mathrm{d}T.\tag{7.100}
+\end{align*}
+回路中产生的电压看起来像是两个接头温度之差、以及两种金属的\emph{绝对温差电功率}（absolute thermo-electric power）$Q$ 之差的函数。这就是著名的 Seebeck 效应。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_128.pdf}
+\caption*{图 128\quad Seebeck 效应。}
+\end{figure}
+
+但是还有另一种现象，它与 (7.81) 中出现的量 $\mathsf{K}_{1}$ 相联系。设想我们使一个如图 129 那样的回路保持 $\nabla T=\mathbf{0}$。由 (7.81a)，我们有
+\begin{equation*}
+\mathbf{U}=e\,\mathsf{K}_{1}\,\mathbf{E},\qquad\mathbf{J}=e^{2}\mathsf{K}_{0}\,\mathbf{E},\tag{7.101}
+\end{equation*}
+于是
+\begin{align*}
+\mathbf{U}&=\frac{1}{e}\,\mathsf{K}_{0}^{-1}\mathsf{K}_{1}\,\mathbf{J}\\
+&=\Pi\,\mathbf{J}.\tag{7.102}
+\end{align*}
+现在用电池在回路中驱动一个电流 $J$。在支路 $A$ 中将有一个热流 $\Pi_{A}J$；在支路 $B$ 中则将有另一个热流 $\Pi_{B}J$。在接头处，热的平衡必须重新建立；热通量 $(\Pi_{A}-\Pi_{B})J$ 将在一个接头处放出，而在另一个接头处吸收。一个接头将变热，另一个变冷。这就是 Peltier 效应。
+
+正如从 (7.99) 和 (7.102) 所看到的，\emph{Peltier 系数}与绝对温差电功率有以下关系：
+\begin{equation*}
+\Pi=QT.\tag{7.103}
+\end{equation*}
+这并非偶然。它是温差电学的 \emph{Kelvin 关系}（Kelvin relations）之一，也是不可逆过程热力学的 Onsager 关系的一个特例。实质上，方程 (7.81) 若用 $\mathbf{J}$ 和 $\mathbf{U}/T$ 来表达，就必须具有一个对称的矩阵——这解释了为什么 $\mathsf{K}_{1}$ 作为系数出现了两次。还有另一种
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_129.pdf}
+\caption*{图 129\quad Peltier 效应。}
+\end{figure}
+温差电效应——\emph{Thomson 效应}（Thomson effect），它在同时载有热流和电流的回路中被观察到——不过这个效应的系数已经包含在普遍关系 (7.81) 之中。
+
+至于温差电功率的实际数值，我们援引 (7.86) 和 (7.87)：
+\begin{equation*}
+Q=\frac{\pi^{2}}{3}\,\frac{k}{e}\,kT\left[\frac{\partial\ln\sigma(\mathcal{E})}{\partial\mathcal{E}}\right]_{\mathcal{E}=\zeta},\tag{7.104}
+\end{equation*}
+其中 $\sigma(\mathcal{E})$ 意指“在一个假想的、费米能级位于 $\mathcal{E}$ 处的金属中电导率所取的值”。把这个公式应用于各种情形下电导率的计算结果，在原则上足够容易（尽管在实践中往往复杂而不成功）。
+
+例如，设想我们写出
+\begin{equation*}
+\sigma(\mathcal{E})=n(\mathcal{E})\,e\,\mu(\mathcal{E})\tag{7.105}
+\end{equation*}
+即以一个随能量变化的载流子密度和一个有效载流子迁移率来表述。于是我们有
+\begin{equation*}
+Q=\frac{\pi^{2}}{3}\,\frac{k}{e}\,kT\left[\frac{\mathcal{N}(\mathcal{E})}{n}+\frac{\partial\ln\mu(\mathcal{E})}{\partial\mathcal{E}}\right]_{\mathcal{E}=\zeta}.\tag{7.106}
+\end{equation*}
+第一项很容易理解。正如 §4.7 中所见，“每电子比热”是
+\begin{equation*}
+C_{\text{el.}}=\frac{\pi^{2}}{3}\,k^{2}T\,\frac{\mathcal{N}(\mathcal{E}_{F})}{n}.\tag{7.107}
+\end{equation*}
+因此，Peltier 系数 $QT$ 就是“每电子热”与电子电荷之比——正如 (7.100) 所提示的那样。
+
+之所以出现迁移率的导数，是因为我们必须顾及电子电流按能量分布的方式。于是，如果 $\mu(\mathcal{E})$ 随能量增大，那么电流中有很高的比例是由能量较高的电子承载的，而这些电子按比例携带着较大的热流。
+
+当然，对于金属，(7.105) 并不合理；应当像 (7.25) 那样用 费米面面积和平均自由程来表示电导率，或者像 (7.34) 那样用态密度、Fermi 电流和弛豫时间来表示。对于自由电子系统，两种作法的结果相同；但要正确解释金属或合金中的温差电现象，就必须小心选择模型，使得上述各种因素随能量的变化都能得到正确的评估。磁性杂质所产生的巨大温差电功率（§10.6）就是这类效应的一个极端例子。值得注意，电荷 $e$ 按惯例取负值，因此 $Q$ 应当为负——尤其是因为 $\mu(\mathcal{E})$ 倾向于随 $\mathcal{E}$ 而增大；较快的电子不那么容易被散射。
+
+在半导体中，这类公式不能令人满意。我们必须回到各系数的定义 (7.82)，并且不能再像 (7.83) 那样利用 Fermi 函数的性质。特别地，$\mathsf{K}_{1}$ 的积分具有如下形式
+\begin{equation*}
+\int(\mathcal{E}-\zeta)\,f_{\mathbf{k}}\,\mathbf{v}_{\mathbf{k}}\,\mathrm{d}\mathbf{k},\tag{7.108}
+\end{equation*}
+其中将含有对应于 §4.6 中 $\zeta_{e}$ 的“热”——即载流子的能量，不是从最近的带边量起，而是从真正的 费米能级量起。于是，温差电功率中有一个形如下式的贡献
+\begin{equation*}
+Q_{e}\sim\frac{1}{T}\,\frac{\zeta_{e}}{e}\tag{7.109}
+\end{equation*}
+此外还有一项通常较小的、来自 $\mu(\mathcal{E})$ 行为的贡献。
+
+如果我们的半导体主要含有“空穴”，那么就应当
+也应当有类似的结果，只是改由 $\zeta_{h}$ 扮演“每个载流子所携带的热量”的角色，并且此时电荷为正。当两类载流子同时存在时，我们得到的将是一个平均的温差电功率（thermo-electric power），介于电子的负贡献与空穴的正贡献之间而取得平衡，各自按其在总电流中所占的份额加权。
+
+有趣的是，不妨想一想：对于金属，在考虑“空穴球”时，我们有哪两种可供选择的处理办法。如同 §6.6，我们可以把它看作一个电子的 费米面，其 $e$ 为负，但具有一个奇特的性质：电子的面积、速度和弛豫时间全都随能量的增加而\emph{减小}，于是在式 (7.104) 中 $\partial\ln\sigma(\mathcal{E})/\partial\mathcal{E}$ 也是负的，从而 $Q$ 为正。更自然的做法是把它看作一个由“空穴”组成的球，空穴的数目和迁移率随其“能量”自中心向外而\emph{增加}，但它们携带的是正电荷。两种办法的结果相同。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_130.pdf}
+\caption*{图 130\quad 计算温差电功率的两种可供选择的模型：(a)电子 费米面；(b)“空穴”费米面。}
+\end{figure}
+
+\section{晶格热传导}
+
+在电绝缘体和半导体中，仍可能有经由格波的良好的热传导。这是一个极为复杂的课题，我们只对它作一点粗浅的研究。
+
+设想我们把声子当作一种粒子气体来处理。初等分子运动论中已经证明，热导率为
+\begin{equation*}
+\kappa=\tfrac{1}{3}\,Cv\Lambda,\tag{7.110}
+\end{equation*}
+其中 $C$ 是比热，$v$ 是速度，$\Lambda$ 是载流子的平均自由程（mean free path）。
+
+在高温下，我们可以认为声子具有其通常的比热 $3Nk$，如式 (2.60)；也可以认为它们以声速 $s$ 行进。但要计算 $\Lambda$，我们还须作某些粗略的近似。其中最简单的一种，与 §7.5 中估计电子平均自由程时所用的论证相仿。
+
+让我们回忆一下，晶格的膨胀 $\Delta$ 会局部地改变声速，相对改变量为
+\begin{equation*}
+\frac{\delta s}{s}=\gamma\Delta,\tag{7.111}
+\end{equation*}
+其中 $\gamma$ 是 Grüneisen 常数。这个常数在式 (2.120) 中讨论热膨胀理论时已经定义过。
+
+密度的局域热涨落将引起散射，其强度正比于这个量的均方。与式 (7.59) 直接比较，可以写出
+\begin{equation*}
+\frac{1}{\Lambda}\sim\frac{\gamma^{2}\overline{\Delta^{2}}}{a},\tag{7.112}
+\end{equation*}
+亦即
+\begin{equation*}
+\Lambda\sim\frac{Ds^{2}}{NkT}\,\frac{a}{\gamma^{2}},\tag{7.113}
+\end{equation*}
+其中 $a$ 是具有晶格常数量级的一个长度。于是，利用式 (7.110) 并略去数值因子，便得到
+\begin{equation*}
+\kappa\sim\frac{Ds^{3}}{\gamma^{2}T}\,a,\tag{7.114}
+\end{equation*}
+其中 $D$ 是密度。这个公式有意思之处在于，除了 $a$ 以外，式中出现的全是宏观量。
+
+改写式 (7.113) 的另一种方式是用熔化温度来表示：如式 (7.62)，我们有
+\begin{equation*}
+\Lambda\sim\frac{20}{\gamma^{2}}\,\frac{T_{m}}{T}\,a.\tag{7.115}
+\end{equation*}
+
+这些公式在函数行为和数量级上是合理的；晶格热导率对绝对温度倒数的依赖关系已被很好地理解，尽管其余因子是相当粗糙的。
+
+然而，这只在高于 Debye 温度的高温下才成立，而且实际情形远不像表面上那样简单。事实是，“密度的热涨落”与“携带热流的声子”并无本质区别，整个系统应当像 §2.10 中那样用声子--声子相互作用来分析。
+
+于是我们得到一个非常特别的结果。设想只有晶体动量守恒的声子--声子 N 过程。设想我们建立起一个在模式 $\mathbf{q}$ 中含有 $n_{\mathbf{q}}$ 个声子的态——即一个具有净晶体动量
+\begin{equation*}
+\mathbf{P}=\sum_{\mathbf{q}}n_{\mathbf{q}}\hbar\mathbf{q}\tag{7.116}
+\end{equation*}
+的态。这时，声子--声子 N 过程并不改变 $\mathbf{P}$ 的值。因此，与 $\mathbf{P}$ 相联系的任何净热流都不会耗散：热导率必须为无穷大。
+
+实际上，我们得到的是声子沿样品的\emph{对流}（convection）。正如在\emph{流动的气体}中那样，粒子之间的碰撞允许动量发生交换，并在气体内部建立起某种程度的局域平衡；除了通过与器壁的相互作用而间接起作用之外，它们并不会减慢热的质量输运。当然，对于气体中的\emph{热传导}，条件就完全不同了；我们刻意坚持不许粒子有任何质量输运，这时碰撞才变得重要起来，因为朝一个方向运动的“热”粒子把能量交给朝相反方向运动的“冷”粒子。但在声子气体中，“粒子”并没有净的守恒性，所以我们不能强加这样的条件。携带热量所需的额外声子在热端产生，流向冷端，并在那里被消灭。
+
+晶体热导率之所以有限，是由于 U 过程（U-process）的存在。由于在这类过程中晶体动量不守恒，量 (7.116) 不能保持恒定，热流于是被耗散。这种情形下热阻的计算相当复杂，但其结果在高温下正与式 (7.114) 和 (7.115) 相合。这个非常朴素的近似方法结果证明是有道理的。
+
+但在低温下，声子--声子 U 过程引起的电阻迅速降为零。我们回忆一下（§2.11）波矢所满足的几何条件
+\begin{equation*}
+\mathbf{q}+\mathbf{q}'=\mathbf{q}''+\mathbf{g},\tag{7.117}
+\end{equation*}
+以及频率所满足的能量条件
+\begin{equation*}
+\nu+\nu'=\nu''.\tag{7.118}
+\end{equation*}
+这样，$\mathbf{q}''$ 必须足够大，使其能量等于 $\mathbf{q}$ 与 $\mathbf{q}'$ 的能量之和；但要发生 U 过程，这些矢量之和必须越出第一 Brillouin 区，因此 $\mathbf{q}''$ 的长度不可能比 $\frac{1}{2}\mathbf{g}$ 小很多。在 Debye 模型中，这意味着
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_131.pdf}
+\caption*{图 131\quad 声子--声子 U 过程。}
+\end{figure}
+\begin{equation*}
+q''\geqslant\beta q_{D},\tag{7.119}
+\end{equation*}
+其中 $\beta$ 是一个分数，量级为 $\frac{1}{2}$ 或 $\frac{2}{3}$。换句话说，
+\begin{equation*}
+\hbar\nu''\geqslant\beta k\Theta.\tag{7.120}
+\end{equation*}
+形如式 (7.118) 的 U 过程出现的概率，正比于相应声子模式占据数的乘积
+\begin{align*}
+n_{\mathbf{q}}\,n_{\mathbf{q}'}&\approx\exp(-\hbar\nu/kT)\exp(-\hbar\nu'/kT)\\
+&\approx\exp(-\hbar\nu''/kT)\\
+&\approx\exp(-\beta\Theta/kT)\tag{7.121}
+\end{align*}
+在低温下它迅速趋于零。我们说倒逆散射被“冻结”了，热导率按
+\begin{equation*}
+\kappa\sim T^{n}\exp\left(\frac{\beta\Theta}{T}\right),\tag{7.122}
+\end{equation*}
+趋于无穷，其中 $n$ 是一个依赖于模型细节的指数。
+
+实际发生的情形是：声子的平均自由程变得可以与晶体的尺寸相比拟。设想我们处理的是一根直径为 $D$ 的棒。于是在式 (7.110) 中可以取
+\begin{equation*}
+\Lambda=D,\tag{7.123}
+\end{equation*}
+从而
+\begin{equation*}
+\kappa\propto T^{3}D,\tag{7.124}
+\end{equation*}
+这是因为低温下比热服从 $T^{3}$ 定律（§2.4）。这个 $T^{3}$ \emph{尺寸效应}（size effect）在实验上有确凿的证据。
+
+然而，还存在使声子受到散射的其他机制。即使在“完美”晶体中，原子也并非全都等价；对每一种化学元素来说，通常都是一些不同质量的同位素的混合。这些质量上的差别能够散射声子。我们很容易——比如用初等弹性理论——证明 \emph{Rayleigh 公式}：密度为 $D$ 的介质中一个点质量 $\delta M$ 对波数为 $q$ 的波的散射截面为
+\begin{equation*}
+\sigma(q)=\frac{q^{4}}{4\pi D^{2}}\,(\delta M)^{2}.\tag{7.125}
+\end{equation*}
+倘若晶体中每个原子的质量都可能偏离平均值这么多，那么声子的平均自由程将为
+\begin{align*}
+\Lambda(q)&=\frac{4\pi NM^{2}}{q^{4}(\delta M)^{2}}\\
+&=\left(\frac{M}{\delta M}\right)^{2}\frac{4\pi a}{(aq)^{4}},\tag{7.126}
+\end{align*}
+其中 $N=1/a^{3}$。
+
+$\Lambda(q)$ 随 $q$ 的强烈变化现在成了一个难题。自然的做法是把式 (7.110) 加以推广，写成
+\begin{equation*}
+\kappa=\frac{1}{3}\int C(q)\,v(q)\,\Lambda(q)\,\mathrm{d}\mathbf{q}\tag{7.127}
+\end{equation*}
+把各种模式的贡献加起来。但这会在 $q\to 0$ 处导致一个奇异性：在那里比热 $C(q)$ 和速度 $v(q)$ 实际上是常数，而 $\Lambda(q)\propto q^{-4}$；于是，对长波模式的分布利用类似于 (2.56) 的 Debye 谱，便得到
+\begin{equation*}
+\kappa\propto\int\frac{q^{2}\,\mathrm{d}q}{q^{4}}\sim\int_{0}\frac{\mathrm{d}q}{q^{2}}\to\infty\tag{7.128}
+\end{equation*}
+
+这一困难的解决是一个复杂的问题，但论证的实质是：即使在低温下，晶体中也总有强烈的声子--声子 N 过程在进行。这些过程本身并不产生热阻，但它们倾向于使各种模式彼此趋于平衡，因而不允许那些不受同位素强烈散射的长波模式携带过大的热流。
+
+倘若声子--声子 N 过程确实非常强烈，我们就可以论证：式 (7.127) 中应当加以平均的量是 $1/\Lambda(q)$，这样积分才是有限的。在这种情形下，我们可以这样来估计用于分子运动论公式 (7.110) 中的平均自由程：假定在温度 $T$ 下只有一个“典型”的声子模式，其波矢为
+\begin{equation*}
+\overline{q}\sim\frac{T}{\Theta}\,q_{D}.\tag{7.129}
+\end{equation*}
+于是我们应当写出
+\begin{equation*}
+\Lambda\sim\Lambda(\overline{q})\propto T^{-4},\tag{7.130}
+\end{equation*}
+这将给出
+\begin{equation*}
+\kappa\propto\left(\frac{M}{\delta M}\right)^{2}\frac{1}{T}.\tag{7.131}
+\end{equation*}
+然而，更细致的分析——采用声子--声子相互作用的唯象模型——给出一种更复杂的行为：
+\begin{equation*}
+\kappa\propto\frac{M}{\delta M}\,\frac{1}{T^{1/2}}.\tag{7.132}
+\end{equation*}
+这与实验观测大致相符。
+
+\section{声子曳引}
+
+金属中的电子受声子散射。反过来，声子也受电子散射。一般说来，这种散射十分强烈，以致与电子气的热导率相比，晶格热传导就很难观察到了。
+
+然而，在金属和半导体中，有一个由声子引起的重要电学效应。设想一根导线中流有电流。如式 (7.27) 所示，这可以描述为 费米面在 $\mathbf{k}$ 空间中的位移，位移量为 $(e\tau/\hbar)\mathbf{E}$。这个电子系统正在与声子相互作用。如果只有电子--声子相互作用，声子系统将力图与\emph{位移了的}电子系统达到平衡；也就是说，声子系统本身将倾向于在自己的动量空间中发生位移。
+
+但声子系统的这样一种位移，对应于声子在真实空间中的“漂移”——也就是说，它对应于一个热流。设想声子的漂移速度与电子的漂移速度 (7.31) 相同。若 $C_{L}$ 是整个声子系统的比热，就会存在一个晶格热流
+\begin{equation*}
+\mathbf{U}_{L}\sim C_{L}T\,\delta\mathbf{v}.\tag{7.133}
+\end{equation*}
+但它又如式 (7.32) 那样伴随有一个电流。于是将有一个 Peltier 系数（参见式 (7.102)）
+\begin{equation*}
+\frac{U_{L}}{J}\sim\frac{C_{L}T}{ne},\tag{7.134}
+\end{equation*}
+亦即一个\emph{晶格温差电功率}（lattice thermo-electric power）
+\begin{equation*}
+Q_{L}\sim\frac{C_{L}}{ne}.\tag{7.135}
+\end{equation*}
+
+与普通的电子贡献 (7.106) 相比，这将是一个很大的效应；在后者中起作用的是电子的小得多的比热——如式 (7.107)——而不是晶格的比热。但当然，我们原本曾假定：除了电子--声子相互作用之外，声子不受任何其他机制的散射。在寻常温度下情况并非如此；那里存在着 §7.10 中讨论过的声子--声子 U 过程等等，它们使这个 \emph{Gurevitch 效应}（Gurevitch effect）大为减弱。
+
+然而，在低温下，当声子--声子相互作用变得可以忽略时，\emph{声子曳引}（phonon drag）效应就很容易探测到了。在这种情况下，晶格比热按 $T^{3}$ 变化。对于单价金属，公式应当是
+\begin{equation*}
+Q_{L}\sim\frac{k}{e}\,\frac{4\pi^{4}}{5}\left(\frac{T}{\Theta}\right)^{3},\tag{7.136}
+\end{equation*}
+这是一个很大的\emph{负}温差电功率，其符号由电子电荷 $e$ 的符号决定。
+
+但这并不总是实际观察到的情形，理由如下。“声子分布以电子的漂移速度一道被曳引”这一假设，依赖于电子--声子过程中晶体动量的守恒。考虑（图 132(a)）一个普通的 N 过程：电子由态 $\mathbf{k}$ 被散射到态 $\mathbf{k}'$，同时发射出一个声子。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_132.pdf}
+\caption*{图 132\quad 电子对声子的曳引：(a)N 过程；(b)U 过程。}
+\end{figure}
+如果这一过程恰好使 $\mathbf{k}$ 沿场方向的分量反转，那么声子便沿该方向发射。于是，使电流减慢的这个过程，就产生了沿载流子运动方向运动的过剩声子。
+
+现在考虑在电子--声子 U 过程中会发生什么。如图 132(b) 所示，声子倾向于沿与载流子电流\emph{相反}的方向被发射；矢量 $\mathbf{k}$、$\mathbf{k}'$ 与 $\mathbf{q}$ 之和必须给出大的倒格矢 $\mathbf{g}$。这样，声子分布就不随电子一道被“曳引”；它反而可能向相反的方向漂移。
+
+因此，$Q_{L}$ 的实际符号可正可负，取决于在金属的“理想”电阻中 N 过程与 U 过程哪一种更为重要。这一效应显然非常敏感
+% 注：本文件末句在原书 p259 末行处中断（sensitive to...），由 ch7_e（p260 起）直接续接，勿加标点。
+于费米面的形状及其与区边界的距离，如 §7.5 中所讨论的那样。
+
+应当指出，如果只有电子--声子 N 过程，那么式 (7.116) 的论证本来也适用：声子的曳引恰好抵偿电子的漂移，动量便不会有任何净的耗散。电导率将会增大，而且在没有剩余电阻时会趋于无穷。在实际金属中并未观察到这种现象，原因多半在于存在强烈的电子--声子 U 过程。
+
+我们在这里给出的论证，也可以应用到半导体中的载流子上——如 §7.6 中那样，载流子会“曳引”与之相互作用的声子。这种效应在半导体中更大，因为只有波矢 $q$ 小的声子才散射载流子，而这些声子的平均自由程很长。在低温下，人们甚至能探测到温差电功率对样品尺寸的依赖。晶格温差电功率的符号与载流子的符号相同。
+
+\section{Hall 效应}
+
+让我们回到 Boltzmann 方程 (7.14)，只是现在除了电场之外还有磁场 $\mathbf{H}$。假定可以取一个弛豫时间，则该方程可写为
+\begin{equation*}
+e\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)=\frac{g_{\mathbf{k}}}{\tau}+\frac{e}{\hbar c}\left(\mathbf{v}_{\mathbf{k}}\wedge\mathbf{H}\right)\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{k}}.\tag{7.137}
+\end{equation*}
+
+这是关于 $\mathbf{k}$ 空间中函数 $g_{\mathbf{k}}$ 的一个微分方程。假设我们处理的是自由电子，对它们有
+\begin{equation*}
+\hbar\mathbf{k}=m\mathbf{v},\tag{7.138}
+\end{equation*}
+于是我们可以用速度而不用 $\mathbf{k}$ 来标记每个态。我们尝试如下形式的解
+\begin{equation*}
+g_{\mathbf{k}}=\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\tau\,\mathbf{v}_{\mathbf{k}}\cdot e\mathbf{A},\tag{7.139}
+\end{equation*}
+其中 $\mathbf{A}$ 是一个有待确定的矢量。这当然是式 (7.19) 的类似式；在没有磁场时，$\mathbf{A}$ 结果就是 $\mathbf{E}$。
+
+把式 (7.138) 和 (7.139) 代入式 (7.137)，得到
+\begin{equation*}
+\mathbf{v}\cdot\mathbf{E}=\mathbf{v}\cdot\mathbf{A}+\left(\frac{e\tau}{mc}\right)\left(\mathbf{v}\wedge\mathbf{H}\right)\cdot\mathbf{A},\tag{7.140}
+\end{equation*}
+显然，对 $\mathbf{v}$ 的一切值，下式都使它得到满足：
+\begin{equation*}
+\mathbf{E}=\mathbf{A}+\frac{e\tau}{mc}\,\mathbf{H}\wedge\mathbf{A}.\tag{7.141}
+\end{equation*}
+
+这是一个矢量方程，可以从中解出 $\mathbf{A}$。不难用初等几何证明（图 133），它的一个解是
+\begin{equation*}
+\mathbf{A}=\frac{\mathbf{E}-\dfrac{e\tau}{mc}\,\mathbf{H}\wedge\mathbf{E}}{1+\dfrac{e^{2}\tau^{2}}{m^{2}c^{2}}\,H^{2}}.\tag{7.142}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_133.pdf}
+\caption*{图 133\quad （原书此图无图注。）}
+\end{figure}
+
+但我们也可以直接从式 (7.141) 出发。取由式 (7.139) 给出的 $g_{\mathbf{k}}$，便容易看出电流就是简单地
+\begin{equation*}
+\mathbf{J}=\sigma_{0}\mathbf{A},\tag{7.143}
+\end{equation*}
+其中 $\sigma_{0}$ 是金属或半导体在没有磁场时的普通电导率；这由式 (7.19) 至 (7.23) 把 $\mathbf{E}$ 换成 $\mathbf{A}$ 即可得到。于是，由式 (7.141) 和 (7.143)
+\begin{align*}
+\mathbf{E}&=\frac{1}{\sigma_{0}}\mathbf{J}+\frac{e\tau}{mc}\,\mathbf{H}\wedge\frac{1}{\sigma_{0}}\mathbf{J}\\
+&=\rho_{0}\mathbf{J}+\frac{e\tau}{mc}\,\rho_{0}\,\mathbf{H}\wedge\mathbf{J},\tag{7.144}
+\end{align*}
+其中 $\rho_{0}$ 是样品的普通电阻率。
+
+这个方程表明，产生电流 $\mathbf{J}$ 所需的电场有两个分量。沿 $\mathbf{J}$ 的方向，即沿金属丝或金属带的长度方向，
+\begin{equation*}
+E_{\parallel}=\rho_{\parallel}J.\tag{7.145}
+\end{equation*}
+这告诉我们，样品的表观电阻不因磁场而改变；也就是说，\emph{没有磁致电阻（magneto-resistance）}。
+
+但如果 $\mathbf{H}$ 垂直于 $\mathbf{J}$ 加上，就会有一个横向电场
+\begin{equation*}
+E_{H}=\frac{e\tau}{mc}\,\rho_{0}HJ.\tag{7.146}
+\end{equation*}
+
+这就是 \emph{Hall 效应（Hall effect）}。对自由电子，Hall 系数（Hall coefficient）为
+\begin{align*}
+R&=\frac{e\tau}{mc}\,\rho_{0}\\
+&=\frac{1}{nec},\tag{7.147}
+\end{align*}
+这里我们用式 (7.33) 消去了弛豫时间。
+
+这个结果——Hall 常数反比于载流子密度——用分子运动论的论证很容易理解。假定像式 (7.31) 中那样，载流子以速度 $\delta\mathbf{v}$ 漂移，那么它们将受到一个横越磁场方向的 Lorentz 力
+\begin{equation*}
+\frac{e}{c}\,\delta\mathbf{v}\wedge\mathbf{H}\tag{7.148}
+\end{equation*}
+的作用。恰好能够补偿这一侧向偏转的，正是一个横向电场
+\begin{align*}
+\mathbf{E}_{H}&=\frac{1}{c}\,\mathbf{H}\wedge\delta\mathbf{v}\\
+&=\frac{1}{c}\,\mathbf{H}\wedge\frac{1}{ne}\mathbf{J}\tag{7.149}
+\end{align*}
+与 $1/n$ 成正比的原因在于：电流给定时，载流子密度越小，每个载流子就必须运动得越快，从而被磁场偏转得越厉害。
+
+这个分子运动论的论证也告诉我们，为什么在这个简单情形下没有磁致电阻。横向的两个偏转效应恰好平衡，所以载流子在纵向电场的作用下沿金属丝行进时，就好像根本不存在磁场一样。
+
+结果 (7.147) 实际上对任何球形的载流子集合都成立。假设我们在整个 费米面上写
+\begin{equation*}
+\hbar k_{F}=m^{*}v_{F}\tag{7.150}
+\end{equation*}
+这不过是用这个关系来定义参量 $m^{*}$。于是我们应当得到
+\begin{equation*}
+R=\frac{e\tau}{m^{*}c\sigma_{0}}\tag{7.151}
+\end{equation*}
+正如式 (7.146) 中那样。但这时（参照式 (7.25)）
+\begin{align*}
+\sigma_{0}&=\frac{e^{2}}{12\pi^{3}\hbar}\int\tau v_{F}\,\mathrm{d}S_{F}\\
+&=\frac{e^{2}\tau}{12\pi^{3}}\int\frac{k_{F}\,\mathrm{d}S_{F}}{m^{*}}\\
+&=\frac{e^{2}\tau}{m^{*}}\,\frac{1}{4\pi^{3}}\,\frac{4\pi}{3}\,k_{F}^{3}\\
+&=\frac{ne^{2}\tau}{m^{*}},\tag{7.152}
+\end{align*}
+其中 $n$ 正是半径为 $k_{F}$ 的球内所包含的载流子数目。由式 (7.151) 和 (7.152) 便得到式 (7.147)，与 $\tau$ 和 $m^{*}$ 都无关。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_134.pdf}
+\caption*{图 134\quad (a)“电子”球：$m^{*}$ 为正。(b)“空穴”球：$m^{*}$ 为负。}
+\end{figure}
+
+但请注意，假如我们有的一个 \emph{空穴球}（sphere of holes），我们就应当预期 $e$ 为正，也就是说，Hall 场的符号将与电子情形下得到的相反。这与上面的论证是一致的。假如我们把围绕球心的\emph{电子} 费米面拿来处理，式 (7.150) 仍然成立，但 $m^{*}$ 为负，因为此时电子速度指向球心。这个量在式 (7.151) 中仍是负的；然而在式 (7.152) 中，分母里出现的将是 $|m^{*}|$，因为正如式 (7.23) 中那样，我们实际计算的是
+\begin{equation*}
+\frac{e^{2}}{12\pi^{3}\hbar}\int\tau v_{F}^{2}\,\frac{\mathrm{d}S_{F}}{|v_{F}|}=\frac{e^{2}\tau}{12\pi^{3}}\int\frac{k_{F}\,\mathrm{d}S_{F}}{|m^{*}|}.\tag{7.153}
+\end{equation*}
+于是，$R$ 中将含有因子 $|m^{*}|/m^{*}=-1$，电荷的表观符号便反了过来。
+
+这些公式即使在半导体的单一载流子带中也并不严格成立，因为 $\tau(\mathcal{E})$ 在被占据的各态之间可以变化。因此，修正因子依赖于散射机制 (7.50) 与 (7.73) 对能量的依赖关系，但它通常离 1 不远。把式 (7.147) 与式 (7.34) 结合起来，就给出 Hall 迁移率（Hall mobility）
+\begin{equation*}
+\mu_{H}=|R|\,\sigma c\tag{7.154}
+\end{equation*}
+即样品中多数载流子的 Hall 迁移率；其电荷的符号由 $R$ 的符号给出。
+
+Hall 效应以及其他电流磁效应（galvanomagnetic phenomena）的理论，显然在很大程度上依赖于 Bloch 定理以及电子态的倒格子描述。在无序系统中，$\mathbf{k}$ 不再是好的量子数，通过 Boltzmann 方程进行的推导立刻变得可疑，我们就得转向某种更基本的理论，例如 Kubo 公式 (7.15)。然而事实是，目前还没有任何精确的理论可以取代简单的“电子球”公式 (7.147)——人们观察到，即使在电子平均自由程只有原子间距量级的情形下，这个公式在液态金属（§7.5）中也符合得非常好。不过，在局域态之间发生跳跃导电（hopping conduction）的极端情形下，是否还能观察到 Hall 效应，是很值得怀疑的。
+
+\section{双带模型：磁致电阻}
+
+现在假设我们有两类载流子，比如说，电子和空穴。对其中每一类单独而言，我们得到的都是同样的方程 (7.144)：
+\begin{equation*}
+\mathbf{E}=\frac{1}{\sigma_{1}}\mathbf{J}_{1}+\beta_{1}\,\mathbf{H}\wedge\frac{1}{\sigma_{1}}\mathbf{J}_{1},\tag{7.155}
+\end{equation*}
+其中
+\begin{equation*}
+\beta_{1}=\frac{e\tau_{1}}{m_{1}c}\tag{7.156}
+\end{equation*}
+而 $\sigma_{1}$ 是与第一类载流子相联系的电导率，这类载流子对电流的贡献为 $\mathbf{J}_{1}$。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_135.pdf}
+\caption*{图 135\quad 来自两个载流子带的 Hall 效应贡献。}
+\end{figure}
+同样，对第二类载流子，
+\begin{equation*}
+\mathbf{E}=\frac{1}{\sigma_{2}}\mathbf{J}_{2}+\beta_{2}\,\mathbf{H}\wedge\frac{1}{\sigma_{2}}\mathbf{J}_{2}\tag{7.157}
+\end{equation*}
+表示它们的电流贡献与外加电场之间的关系。我们要求的是总电流
+\begin{equation*}
+\mathbf{J}=\mathbf{J}_{1}+\mathbf{J}_{2}.\tag{7.158}
+\end{equation*}
+对式 (7.155) 和 (7.157) 逐个使用形如式 (7.142) 的解，我们得到
+\begin{equation*}
+\mathbf{J}=\left(\frac{\sigma_{1}}{1+\beta_{1}^{2}H^{2}}+\frac{\sigma_{2}}{1+\beta_{2}^{2}H^{2}}\right)\mathbf{E}-\left(\frac{\sigma_{1}\beta_{1}}{1+\beta_{1}^{2}H^{2}}+\frac{\sigma_{2}\beta_{2}}{1+\beta_{2}^{2}H^{2}}\right)\mathbf{H}\wedge\mathbf{E},\tag{7.159}
+\end{equation*}
+这是一个相当复杂的公式\footnote{译注：原书式 (7.159) 第一括号中第二项的分母印作 $1+\beta_{2}^{2}H_{2}$，应为 $1+\beta_{2}^{2}H^{2}$。}，其几何表示见图 135。
+
+要计算 Hall 系数，本应把这个公式反解出来，把 $\mathbf{E}$ 用 $\mathbf{J}$ 和 $\mathbf{H}\wedge\mathbf{J}$ 表出。但对弱的磁场，结果很容易得到：
+\begin{align*}
+R&=\frac{\sigma_{1}\beta_{1}+\sigma_{2}\beta_{2}}{(\sigma_{1}+\sigma_{2})^{2}}\\
+&=\frac{\sigma_{1}^{2}R_{1}+\sigma_{2}^{2}R_{2}}{(\sigma_{1}+\sigma_{2})^{2}},\tag{7.160}
+\end{align*}
+其中 $R_{1}$ 和 $R_{2}$ 是相应的各类载流子单独存在时的 Hall 常数。这样，若 $R_{1}$ 与 $R_{2}$ 符号相反，我们看到的就是一个折中值。在半导体中，我们应当用相应载流子群的数目和迁移率来表出分电导率，即 $\sigma_{1}=n_{1}e\mu_{1}$，等等；这样一来，只有当某一类载流子明显占多数时，观测到的 Hall 迁移率 (7.154) 才会对应于某个确定的微观量。
+
+磁致电阻则需要更细致的分析。我们要把 $\mathbf{J}$ 与 $\mathbf{E}$ 沿 $\mathbf{J}$ 方向的分量相比较。于是
+\begin{align*}
+\rho&=(\mathbf{J}\cdot\mathbf{E})/J^{2}\\
+&=\frac{\dfrac{\sigma_{1}}{1+\beta_{1}^{2}H^{2}}+\dfrac{\sigma_{2}}{1+\beta_{2}^{2}H^{2}}}{\left(\dfrac{\sigma_{1}}{1+\beta_{1}^{2}H^{2}}+\dfrac{\sigma_{2}}{1+\beta_{2}^{2}H^{2}}\right)^{2}+\left(\dfrac{\sigma_{1}\beta_{1}H}{1+\beta_{1}^{2}H^{2}}+\dfrac{\sigma_{2}\beta_{2}H}{1+\beta_{2}^{2}H^{2}}\right)^{2}}.\tag{7.161}
+\end{align*}
+把它与没有磁场时的电阻
+\begin{equation*}
+\rho_{0}=\frac{1}{\sigma_{1}+\sigma_{2}}.\tag{7.162}
+\end{equation*}
+相比较，经过一点代数运算，就得到
+\begin{equation*}
+\frac{\Delta\rho}{\rho_{0}}\equiv\frac{\rho-\rho_{0}}{\rho_{0}}=\frac{\sigma_{1}\sigma_{2}(\beta_{1}-\beta_{2})^{2}H^{2}}{(\sigma_{1}+\sigma_{2})^{2}+H^{2}(\beta_{1}\sigma_{1}+\beta_{2}\sigma_{2})^{2}}.\tag{7.163}
+\end{equation*}
+
+这个公式本身并不十分重要；载流子能被当作分成两群、每群都具有如此简单性质的情形并不多见。尽管如此，它仍然展示了磁致电阻现象的主要特征。
+
+首先，$\Delta\rho$ 本质上是正的，只有当 $\beta_{1}=\beta_{2}$ 时才为零。换句话说，当两群载流子在磁场中被偏转的量不同时——或者因为它们的质量不同、电荷不同，或者因为它们在被散射之前行经的距离不同——就不可能找到一个电场，使电流的这两个分量都保持沿同一方向行进。净电流作为各分量的矢量和，变小了；介质的表观电阻因而增大。
+
+同样典型的是，$\Delta\rho$ 在弱场下正比于 $H^{2}$，但在强场下趋于\emph{饱和}（saturate）。不过后一效应与我们把载流子的能量面取为闭合曲面这一选择有关。正如我们在 §9.4 中将要看到的，有时可以找到一些特殊的晶向，使得 $\Delta\rho$ 并不饱和。
+
+这类公式很容易推广到有许多不同类型载流子、各自分别对电流作出贡献的情形。换句话说，我们可以处理复杂的 费米面，其不同部分具有不同的 $\beta$ 值。因此，金属中磁致电阻的存在，就是 $\beta$ 在 费米面上多变——即有效质量取不同数值，或者也可能是 $\tau$ 有变化——的证据。但实际的公式是一个复杂的积分，其中含有 $\mathcal{E}(\mathbf{k})$ 在各处的各种局域导数，既不透明，也不便于用来从观测到的 $\Delta\rho$ 值推算 费米面的形状。
+
+最简单的情形是半导体中载流子的一个“谷”（valley）（§6.6）；假如假定 $\tau$ 在每个能量面上为常数，这类载流子对电流磁效应的贡献可以相当容易地计算出来。式 (7.137) 中的 Lorentz 力算符显然是沿既垂直于 $\mathbf{v}$ 又垂直于 $\mathbf{H}$ 的方向取对 $\mathbf{k}$ 的导数。当电流沿谷轴方向时，形如式 (7.139) 的公式中的“Hall 质量”显然就是这个“横向”方向上的系数，比如说式 (6.44) 中的 $m_{i}$。但是，取不同取向的各个谷、连同逆质量张量 (6.48) 的各种非对角分量的贡献，
+加起来，得到一个单一的 Hall 系数；假如晶体具有宏观立方对称性，这个系数必定是各向同性的。然而，这一对称性限制并不适用于磁致电阻：当晶体相对于电场和磁场的方向转动时，磁致电阻可以随之改变，从而给出关于半导体电子能带结构的重要信息。
+
+上面的计算是针对\emph{横向磁致电阻}（transverse magneto-resistance）的——磁场垂直于电流方向。当磁场与载流导线平行时，还可以观察到\emph{纵向磁致电阻}（longitudinal magneto-resistance）。我们这个简单的双带模型不给出纵向磁致电阻，因为它假定每个能带都具有球对称性。纵向效应的公式要复杂得多，因为它们要求非球形的 费米面。在金属和半导体中也观察到这种效应。事实上，单晶样品电阻的改变，是电流方向和磁场方向相对晶体轴的取向的一个复杂函数。
+
+在原理上不难、在实践上也并非不可能设想出其他依赖于环境磁场的输运“效应”。例如，热量沿温度梯度流动时，会产生一个类似于 Hall 效应的横向 \emph{Nernst 电场}（Nernst electric field）。按照晶体对称性对这些效应进行分类，并借助 Onsager 关系找出它们之间的相互联系，本身就是一项可观的理论研究；但只要弛豫时间近似成立，这些系数全都可以由 Boltzmann 方程导出。
+
+关于式 (7.163)，还有一点值得注意。假设两群载流子具有相同的 $\tau$ 值，那么 $\Delta\rho/\rho_{0}$ 就只是 $\tau H$ 的函数。但此时 $\tau$ 本身将反比于电阻率 $\rho_{0}$，于是我们可以写出
+\begin{equation*}
+\frac{\Delta\rho}{\rho_{0}}=F\left(\frac{H}{\rho_{0}}\right),\tag{7.164}
+\end{equation*}
+其中 $F$ 是一个依赖于金属本身性质的函数。
+
+这就是所谓的 \emph{Köhler 定则}（Köhler's rule）。它告诉我们：原则上，我们可以把不同样品的磁致电阻测量结果画在同一张基本图上；或者，利用在极低温度下 $\rho_{0}$ 很小的极纯样品，来研究超强磁场可能产生的效应。
+
+但这条定则显然只是一个近似。两种不同类型的载流子具有相同的弛豫时间，或者甚至它们的弛豫时间之比保持不变——无论它们是被杂质还是被声子散射、在高温还是在低温——这些都绝不是必然的。这个定则所说的不过是：载流子的偏转正比于磁场与两次碰撞之间的时间的乘积。对 Köhler 定则的偏离，则表明不同类型的散射机制对不同群落的载流子有不同的影响。

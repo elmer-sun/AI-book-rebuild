@@ -1,0 +1,676 @@
+% 第11章 自旋波理论
+\chapter{自旋波理论}
+
+第 10 章我们构造了自旋路径积分，并证明其大 $S$ 极限恢复经典自旋的热力学与动力学。这里我们专门讨论量子 Heisenberg 模型，导出低阶（谐波）自旋波理论。这一途径对长程有序相的处理在物理上很有吸引力，因为量子效应以绕经典基态的（实或虚）时间依赖涨落的形式进入。自旋波模式与色散由线性化的经典运动方程得到。在 $1/S$ 的最低阶，自旋波是独立的谐振子，可以半经典地量子化。这一途径的一大优点是：对任何具有复杂基态的受挫 Heisenberg 模型都可以如法炮制。稍后我们再专门讨论较简单的铁磁与反铁磁情形。
+
+然而，路径积分因动能项中时间导数的连续定义 (10.6) 而带有算符排序的含糊性。我们将用 Holstein--Primakoff 玻色子重新导出自旋波理论（该玻色子“先前在 11.2 节引入”\footnote{原书如此；HP 玻色子实际引入于 7.1 节，11.2 节是再次使用。}）。这将解决基态能量量子修正中的含糊。
+
+\section{自旋波：路径积分途径}
+
+考虑量子 Heisenberg 哈密顿量
+
+\begin{equation*}
+\mathcal {H} = \frac {1}{2} \sum_ {i, j} J _ {ij} \, \mathbf {S} _ {i} \cdot \mathbf {S} _ {j}.
+\tag{11.1}
+\end{equation*}
+
+利用 (7.34)（习题 2），$\mathcal{H}$ 在相干态 $|\hat{\Omega}\rangle$ 中的期望值为
+
+\begin{equation*}
+H [ \hat {\Omega} ] = \langle \hat {\Omega} | \mathcal {H} | \hat {\Omega} \rangle = \frac {S ^ {2}}{2} \sum_ {i, j} J _ {ij} \, \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j}.
+\tag{11.2}
+\end{equation*}
+
+$H$ 的经典基态依赖耦合常数 $J_{ij}$ 的细节。由模型的 $O(3)$ 对称性，整体自旋转动产生一个连续的简并基态流形。某些模型由于阻挫还有额外的基态简并。阻挫指没有任何组态能同时极小化所有单键相互作用。与 $H$ 的对称性无关的简并通常会被热涨落与量子涨落解除（lift）\footnote{文献中称为“无序导致的有序”（order due to disorder），见文献注释。}。这里不讨论受挫情形。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\textwidth]{fig11_1.jpg}
+\caption{绕 $\hat{\Omega}^{cl}$ 的自旋涨落参数化。}
+\label{fig:11.1}
+\end{figure}
+
+自旋波理论的基本假设是：可以选取经典基态流形中的一个成员 $\hat{\Omega}^{cl}$，以 10.2 节所述、由自旋大小 $S$ 控制的鞍点展开，把配分函数与 Green 函数绕它展开。
+
+在每个格点取两个横向单位矢量 $\hat{\phi}_{i}, \hat{\theta}_{i}$，它们描述 $\hat{\Omega}_{i}^{cl}$ 处的方位角方向与经度方向，如图~\ref{fig:11.1}：
+
+\begin{equation*}
+\hat {\phi} _ {i} \times \hat {\theta} _ {i} = \hat {\Omega} _ {i} ^ {cl}.
+\tag{11.3}
+\end{equation*}
+
+自旋涨落 $\delta\hat{\Omega} = \hat{\Omega} - \hat{\Omega}^{cl}$ 由两组投影变量参数化：
+
+\begin{align*}
+\mathbf {q} = \{ q _ {i} \} _ {1} ^ {\mathcal {N}} & \equiv \{ \delta \hat {\Omega} _ {i} \cdot \hat {\phi} _ {i} \} _ {1} ^ {\mathcal {N}} ,\\
+\mathbf {p} = \{ p _ {i} \} _ {1} ^ {\mathcal {N}} & \equiv \{ S \, \delta \hat {\Omega} _ {i} \cdot \hat {\theta} _ {i} \} _ {1} ^ {\mathcal {N}} .
+\tag{11.4}
+\end{align*}
+
+假设路径积分由小涨落主导，即 $|\delta\hat{\Omega}| \ll 1$。于是把测度换成相空间测度
+
+\begin{equation*}
+\mathcal {D} \delta \hat {\Omega} \rightarrow \nu \, \mathcal {D} \mathbf {q} \, \mathcal {D} \mathbf {p} \, , \quad \nu = \left( \frac {2 S + 1}{4 \pi S} \right) ^ {N _ {\epsilon} \mathcal {N}} ,
+\tag{11.5}
+\end{equation*}
+
+$N_{\epsilon}$ 是时间步数，$\nu$ 是一个无穷大（但无趣）的归一化常数。$p$、$q$ 的积分域可扩为 $\int_{-\infty}^{\infty}$，得到相空间路径积分\footnote{实时相干态路径积分见 Schulman 的书。}：
+
+\begin{equation*}
+G \propto e ^ {i S [ \hat {\Omega} ^ {cl} ]} \int \mathcal {D} \mathbf {q} \, \mathcal {D} \mathbf {p} \, \exp \left[ \frac {i S}{2} \int_ {0} ^ {t} d t ' \, (\mathbf {q}, \mathbf {p}) \, \mathcal {L} ^ {(2)} \binom{\mathbf {q}}{\mathbf {p}} \right] \left[ 1 + \mathcal {O} (\mathbf {p}, \mathbf {q}) ^ {3} \right] ,
+\tag{11.6}
+\end{equation*}
+
+其中 $\mathcal{L}^{(2)}$ 是绕固定基态组态 $\hat{\Omega}^{cl}$ 展开的自旋波 Lagrange 量矩阵。三次及更高阶涨落引入 $S^{-1}$ 更高阶的修正。由于 $\frac{d}{dt}\hat{\Omega}^{cl}=0$，Berry 相位的最低阶贡献为
+
+\begin{align*}
+S \sum_ {i} \omega_ {i} & \approx \frac {1}{2} S \sum_ {i} \int_ {0} ^ {t} d t ' \left( \hat {\Omega} ^ {cl} \cdot \delta \dot {\hat {\Omega}} \times \delta \hat {\Omega} \right)\\
+& = \frac {1}{2} \int_ {0} ^ {t} d t ' \left( \mathbf {p} \cdot \dot {\mathbf {q}} - \dot {\mathbf {p}} \cdot \mathbf {q} \right),
+\tag{11.7}
+\end{align*}
+
+这里用了 (10.34)。动能项 (11.7) 表明 $q$、$p$ 分别扮演坐标与正则动量的角色。
+
+哈密顿量的二阶展开给出自旋波哈密顿量矩阵
+
+\begin{align*}
+H - H [ \hat {\Omega} ^ {cl} ] & \approx \frac {1}{2} (\mathbf {q}, \mathbf {p}) \, H ^ {(2)} \binom{\mathbf {q}}{\mathbf {p}} ,\\
+H ^ {(2)} & = \left( \begin{array}{cc} K & P \\ P ^ {T} & M ^ {- 1} \end{array} \right) .
+\tag{11.8}
+\end{align*}
+
+$H^{(2)}$ 是耦合谐振子的动力学矩阵，$M$、$K$ 分别是质量与力常数矩阵：
+
+\begin{align*}
+K & = \left. \frac {\partial^ {2} H}{\partial \mathbf {q} \, \partial \mathbf {q}} \right| _ {\mathbf {q} = \mathbf {p} = 0} ,\\
+M ^ {- 1} & = \left. \frac {\partial^ {2} H}{\partial \mathbf {p} \, \partial \mathbf {p}} \right| _ {\mathbf {q} = \mathbf {p} = 0} .
+\tag{11.9}
+\end{align*}
+
+$P$ 耦合坐标与动量：
+
+\begin{equation*}
+P = \left. \frac {\partial^ {2} H}{\partial \mathbf {p} \, \partial \mathbf {q}} \right| _ {\mathbf {q} = \mathbf {p} = 0}.
+\tag{11.10}
+\end{equation*}
+
+组合 (11.7) 与 (11.8)，得到小振动对作用量的贡献
+
+\begin{equation*}
+\mathcal {S} ^ {(2)} \approx \mathcal {S} _ {0} + \int_ {0} ^ {t} d t ' \, (\mathbf {q}, \mathbf {p}) \, \mathcal {L} ^ {(2)} \binom{\mathbf {q}}{\mathbf {p}} ,
+\tag{11.11}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+L ^ {(2)} = - \left( \begin{array}{cc} K & \partial_ {t} + P \\ - \partial_ {t} + P ^ {T} & M ^ {- 1} \end{array} \right).
+\tag{11.12}
+\end{equation*}
+
+自旋波模式 $(q_{\mathbf{k},\alpha}, p_{\mathbf{k},\alpha})$ 由解小振动的经典运动方程得到：
+
+\begin{equation*}
+\frac {\delta \mathcal {S} ^ {(2)} ( \mathbf {p}, \mathbf {q} )}{\delta \hat {\Omega}} = L ^ {(2)} \left( q _ {\mathbf {k}, \alpha} \; p _ {\mathbf {k}, \alpha} \right) \exp \left( i \omega_ {\mathbf {k}, \alpha} t \right) = 0.
+\tag{11.13}
+\end{equation*}
+
+若 $\hat{\Omega}^{cl}$（从而 $L^{(2)}$）在格子上是周期的，自旋波以动量 $\mathbf{k}$ 与能带指标 $\alpha$ 标记。自旋波频率由特征方程
+
+\begin{equation*}
+\det \left( \begin{array}{cc} K & i \omega + P \\ - i \omega + P ^ {T} & M ^ {- 1} \end{array} \right)_{\omega = \omega_ {\mathbf {k}, \alpha}} = 0.
+\tag{11.14}
+\end{equation*}
+
+给出。谐波自旋波是无相互作用的玻色子。其本征模式与能量使我们能计算所有热力学平均与动力学响应函数。特别地，自旋波对自由能的修正是
+
+\begin{align*}
+F ^ {(2)} & = \frac {T}{2} \ln \det \mathcal {L} ^ {(2)}\\
+& = T \sum_ {\mathbf {k}, \alpha} \ln \sinh \left( \frac {\omega_ {\mathbf {k}}}{2 T} \right) .
+\tag{11.15}
+\end{align*}
+
+可以把自旋波变换到 Bose 相干态变量（见附录 C）：
+
+\begin{equation*}
+\binom{\mathbf {z} _ {i} ( \tau )}{\mathbf {z} _ {i} ( \tau ) ^ {*}} = \frac {1}{\sqrt {2}} \left( \begin{array}{cc} 1 & i \\ 1 & - i \end{array} \right) \binom{\mathbf {q} _ {i} ( \tau )}{\mathbf {p} _ {i} ( \tau )}.
+\tag{11.16}
+\end{equation*}
+
+$z$ 变量把相空间路径积分 (11.6) 变成 Bose 相干态路径积分\footnote{实时相干态路径积分见 Schulman 的书。}。测度之间满足
+
+\begin{equation*}
+\mathcal {D} \mathbf {p} \, \mathcal {D} \mathbf {q} = \mathcal {D} ^ {2} \mathbf {z}
+\tag{11.17}
+\end{equation*}
+
+而动能项为
+
+\begin{equation*}
+\frac {i}{2} \int_ {0} ^ {t} d t ' \left( \mathbf {p} \cdot \dot {\mathbf {q}} - \dot {\mathbf {p}} \cdot \mathbf {q} \right) = \frac {1}{2} \int_ {0} ^ {t} d t ' \left( \mathbf {z} ^ {*} \dot {\mathbf {z}} - \dot {\mathbf {z}} ^ {*} \mathbf {z} \right).
+\tag{11.18}
+\end{equation*}
+
+于是 Green 函数为
+
+\begin{equation*}
+G = \int \mathcal {D} ^ {2} \mathbf {z} \, \exp \left[ i \frac {1}{2} \int_ {0} ^ {t} d t ' \left( \mathbf {z} ^ {*} \dot {\mathbf {z}} - \dot {\mathbf {z}} ^ {*} \mathbf {z} \right) - H [ \mathbf {z} ^ {*}, \mathbf {z} ] \right] ,
+\tag{11.19}
+\end{equation*}
+
+其中谐波 Bose 哈密顿量为
+
+\begin{align*}
+H [ \mathbf {z} ^ {*}, \mathbf {z} ] & \approx \frac {1}{2} ( \mathbf {z} ^ {*}, \mathbf {z} ) \, \tilde {H} ^ {(2)} \left( \begin{array}{l} \mathbf {z} \\ \mathbf {z} ^ {*} \end{array} \right) ,\\
+\tilde {H} ^ {(2)} & = \left( \begin{array}{cc} \frac {1}{2} ( K + M ^ {- 1} ) & \frac {1}{2} ( K - M ^ {- 1} ) + iP \\ \frac {1}{2} ( K - M ^ {- 1} ) - iP & \frac {1}{2} ( K + M ^ {- 1} ) \end{array} \right)
+\tag{11.20}
+\end{align*}
+
+同时含有正规（$z^{*}z$）与反常（$z^{*}z^{*}$ 及 $zz$）项。
+
+用从实时间到虚时间的变换
+
+\begin{equation*}
+\begin{array}{ccc}
+t ' & \rightarrow & - i \tau ,\\
+t & \rightarrow & - i \beta .
+\end{array}
+\tag{11.21}
+\end{equation*}
+
+(11.19) 中 $G$ 的路径积分变成配分函数 (10.10)。自旋波对配分函数（定义见 (10.23)）的贡献为
+
+\begin{align*}
+Z ' & \approx \oint \mathcal {D} ^ {2} z \, \exp \left\{ - \beta \sum_ {\omega_ {n}} \left[ i \omega_ {n} \mathbf {z} ^ {*} \mathbf {z} - \frac {1}{2} ( \mathbf {z} ^ {*}, \mathbf {z} ) \tilde {H} ^ {(2)} \binom {\mathbf {z}} {\mathbf {z} ^ {*}} \right] \right\}\\
+& = \prod_ {n} \det \left[ \left( \begin{array}{cc} i \omega_ {n} & 0 \\ 0 & - i \omega_ {n} \end{array} \right) - \tilde {H} ^ {(2)} \right] ^ {- 1}\\
+\omega_ {n} & = 2 n \pi / \beta .
+\tag{11.22}
+\end{align*}
+
+$\omega_{n}$ 是 Bose Matsubara 频率，$\sum_{\omega}$ 是附录 D（D.3 节）定义的离散 Matsubara 求和。
+
+从相干态哈密顿量 (11.20) 反推二次量子化的 Bose 哈密顿量，得到
+
+\begin{equation*}
+\mathcal {H} ^ {(2)} = \frac {1}{2} \left( b ^ {\dagger}, b \right) \left( \begin{array}{cc} \frac {1}{2} ( K + M ^ {- 1} ) & \frac {1}{2} ( K - M ^ {- 1} ) + iP \\ \frac {1}{2} ( K - M ^ {- 1} ) - iP & \frac {1}{2} ( K + M ^ {- 1} ) \end{array} \right) \binom{b}{b ^ {\dagger}} + E _ {0} ' ,
+\tag{11.23}
+\end{equation*}
+
+它同时含正规与反常项。$E_{0}'$ 是未知常数：(11.22) 的作用量不含 $\mathcal{H}^{(2)}$ 中 $b$ 与 $b^{\dagger}$ 正确排序的信息，这正是 $E_{0}'$ 含糊性的来源。下一节我们将用 Holstein--Primakoff 玻色子解决这一含糊。
+
+方程 (11.13) 或 (11.23) 是通用的：一旦指定 $\hat{\Omega}^{cl}$，它们就确定任何 Heisenberg 模型的自旋波模式。下面我们限于最简单的模型——一、二、三维立方格子上的 Heisenberg 铁磁体与反铁磁体：
+
+\begin{align*}
+H & = \pm | J | S ^ {2} \sum_{\langle ij \rangle} \hat {\Omega} _ {i} \cdot \hat {\Omega} _ {j}\\
+& = J S ^ {2} \sum_{\langle ij \rangle} \left[ \cos \theta_ {i} \cos \theta_ {j} + \sin \theta_ {i} \sin \theta_ {j} \cos ( \phi_ {i} - \phi_ {j} ) \right] ,
+\tag{11.24}
+\end{align*}
+
+$\langle ij\rangle$ 表示立方格子上的近邻键。这些哈密顿量的自旋波展开特别简单，因为其经典基态要么是均匀铁磁体，要么是 Néel 反铁磁体。
+
+\subsection{铁磁体}
+
+假设路径积分绕有序的经典基态展开是有效的，可以用小磁场或边条件把自旋极化到 $\hat{x}$ 方向：
+
+\begin{equation*}
+\hat {\Omega} ^ {cl} = \left( \theta^ {cl}, \phi^ {cl} \right) = ( \pi / 2, 0 ).
+\tag{11.25}
+\end{equation*}
+
+涨落参数化为
+
+\begin{align*}
+q _ {i} & = \phi _ {i} ,\\
+p _ {i} & = S \cos \theta_ {i} .
+\tag{11.26}
+\end{align*}
+
+对小的
+
+\begin{equation*}
+| \cos \theta | \ll 1 \, , \quad | \phi_ {i} | \ll \pi
+\tag{11.27}
+\end{equation*}
+
+展开铁磁（$-|J|$）哈密顿量 (11.24)，保留到二阶（谐波）：
+
+\begin{equation*}
+H \approx - \frac {\mathcal {N} z}{2} | J | S ^ {2} + \frac {1}{2} | J | S ^ {2} \sum_{\langle ij \rangle} \left[ \frac {\left( p _ {i} - p _ {j} \right) ^ {2}}{S ^ {2}} + \left( q _ {i} - q _ {j} \right) ^ {2} \right] + \dots ,
+\tag{11.28}
+\end{equation*}
+
+$\mathcal{N}$ 是格点数，$z = 2d$ 是 $d$ 维配位数。由 (11.9) 与 (11.10) 得 $P = 0$ 且
+
+\begin{align*}
+M _ {ij} ^ {- 1} & = - z | J | \, \nabla_ {ij} ^ {2} ,\\
+K _ {ij} & = - z | J | S ^ {2} \nabla_ {ij} ^ {2} ,
+\tag{11.29}
+\end{align*}
+
+其中格子 Laplace 算符由矩阵
+
+\begin{equation*}
+\nabla_ {ij} ^ {2} = z ^ {- 1} \sum_ {\eta} \left( \delta_ {i + \eta, j} - \delta_ {i, j} \right).
+\tag{11.30}
+\end{equation*}
+
+给出，$\eta$ 是近邻矢量。$\nabla^{2}$ 的本征值为
+
+\begin{align*}
+\nabla_ {\mathbf {k}} ^ {2} & = \mathcal {N} ^ {- 1} \sum_ {ij} e ^ {- \mathbf {k} \cdot ( \mathbf {x} _ {i} - \mathbf {x} _ {j} )} \nabla_ {ij} ^ {2}\\
+& = z ^ {- 1} \sum_ {\eta} \left( e ^ {i \mathbf {k} \eta} - 1 \right) \equiv \gamma_ {\mathbf {k}} - 1 ,
+\tag{11.31}
+\end{align*}
+
+这定义了“紧束缚”函数 $\gamma_{k}$。(11.29) 代入 (11.14)：
+
+\begin{equation*}
+\det \left( \begin{array}{cc} - z | J | S ^ {2} ( \gamma_ {\mathbf {k}} - 1 ) & i \omega_ {\mathbf {k}} \\ - i \omega_ {\mathbf {k}} & - z | J | ( \gamma_ {\mathbf {k}} - 1 ) \end{array} \right) = 0 ,
+\tag{11.32}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{fig11_2.jpg}
+\caption{铁磁自旋波。(a)~$d = 1$ 的色散；(b)~$k \approx 0$ 的偏振。}
+\label{fig:11.2}
+\end{figure}
+
+其零点在
+
+\begin{equation*}
+\omega_ {\mathbf {k}} \equiv z | J | S \left( 1 - \gamma_ {\mathbf {k}} \right).
+\tag{11.33}
+\end{equation*}
+
+如习题 1 与图~\ref{fig:11.2} 所示，自旋波描述所有自旋绕 $\hat{x}$ 以角频率 $\omega_{k}$ 随时间进动。
+
+\subsection{反铁磁体}
+
+假设路径积分可以绕经典 Néel 态展开。不失一般性，取 Néel 态在子晶格 $A(B)$ 上指向 $\hat{x}(-\hat{x})$ 方向：
+
+\begin{equation*}
+\left( \theta_ {i} ^ {cl}, \phi_ {i} ^ {cl} \right) = \left\{ \begin{array}{ll} ( \pi / 2, 0 ) & i \in A \\ ( \pi / 2, - \pi ) & i \in B \end{array} \right. .
+\tag{11.34}
+\end{equation*}
+
+（这里把矢量势的奇点定义在远离 $\hat{x}$ 与 $-\hat{x}$ 处是方便的，即用 (10.18) 的规范势，它只在南极奇异。）小涨落定义为
+
+\begin{align*}
+q _ {i} & = \left\{ \begin{array}{ll} \phi_ {i} & i \in A \\ \phi_ {i} + \pi & i \in B \end{array} \right. ,\\
+p _ {i} & = S \cos \theta_ {i} .
+\tag{11.35}
+\end{align*}
+
+反铁磁（$+|J|$）哈密顿量 (11.24) 的二阶展开为
+
+\begin{equation*}
+H \approx - \frac {\mathcal {N} z}{2} | J | S ^ {2} + \frac {1}{2} | J | S ^ {2} \sum_{\langle ij \rangle} \left[ \frac {\left( p _ {i} + p _ {j} \right) ^ {2}}{S ^ {2}} + \left( q _ {i} - q _ {j} \right) ^ {2} \right] + \dots .
+\tag{11.36}
+\end{equation*}
+
+质量与力常数矩阵为
+
+\begin{align*}
+M _ {ij} ^ {- 1} & = z J \left( \nabla_ {ij} ^ {2} + \frac {2}{z} \delta_ {ij} \right) ,\\
+K _ {ij} & = - z J S ^ {2} \nabla_ {ij} ^ {2} ,
+\tag{11.37}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{fig11_3.jpg}
+\caption{反铁磁自旋波。(a)~$d = 1$ 的色散；(b)~两个简并模式的偏振。}
+\label{fig:11.3}
+\end{figure}
+
+可在 Fourier 空间中同时对角化为
+
+\begin{align*}
+M _ {\mathbf {k}} ^ {- 1} & = z J \left( 1 + \gamma_ {\mathbf {k}} \right) ,\\
+K _ {\mathbf {k}} & = z J S ^ {2} \left( 1 - \gamma_ {\mathbf {k}} \right) .
+\tag{11.38}
+\end{align*}
+
+解 (11.14) 得自旋波谱：
+
+\begin{equation*}
+\det \left( \begin{array}{cc} - z | J | S ^ {2} ( \gamma_ {\mathbf {k}} - 1 ) & i \omega_ {\mathbf {k}} \\ - i \omega_ {\mathbf {k}} & z | J | ( \gamma_ {\mathbf {k}} + 1 ) \end{array} \right) = 0 ,
+\tag{11.39}
+\end{equation*}
+
+对立方格子给出两个模式
+
+\begin{equation*}
+\omega_ {\mathbf {k}} \equiv z J S \sqrt {1 - \gamma_ {\mathbf {k}} ^ {2}} \sim c \left| \mathbf {k} - \mathbf {k} _ {c} \right| ,
+\tag{11.40}
+\end{equation*}
+
+其中 $\mathbf{k}_c = 0, \vec{\pi}$，$\vec{\pi} = (\pi, \pi, \ldots)$。$d$ 维立方格子的自旋波速度为
+
+\begin{equation*}
+c = 2 \sqrt {d} \, J S.
+\tag{11.41}
+\end{equation*}
+
+反铁磁自旋波是绕经典方向 $\pm\hat{x}$ 进动的单位矢量。如习题 2 与图~\ref{fig:11.3} 所示，两个子晶格上的自旋沿相反方向进动。与铁磁自旋波 (11.33) 不同，存在两个简并的反铁磁自旋波模式，其频率分别在 $k\rightarrow0$ 与 $k\rightarrow\vec{\pi}$ 处消失。
+
+\section{自旋波：Holstein--Primakoff 途径}
+
+上一节我们看到低阶自旋波可以写成无相互作用的玻色子。作为定量的量子理论，必须确定哈密顿量中 Bose 算符的正确次序。
+
+为此，用 Holstein--Primakoff（HP）玻色子表示量子模型。HP 玻色子此前在 (7.1) 中相对自旋空间的 $\hat{z}$ 方向定义。这里把定义推广到使 $H[\hat{\Omega}]$ 极小的任意经典组态 $\hat{\Omega}_{i}^{cl}$。用 $\hat{\Omega}^{cl}$ 可在每个格点定义三个基底矢量 $(\mathbf{e}^{1},\mathbf{e}^{2},\hat{\Omega}^{cl})$：
+
+\begin{equation*}
+\mathbf {e} _ {i} ^ {1} \times \mathbf {e} _ {i} ^ {2} = \hat {\Omega} _ {i} ^ {cl}.
+\tag{11.42}
+\end{equation*}
+
+这一坐标系中的升降算符为
+
+\begin{equation*}
+S ^ {\pm} = \mathbf {S} \cdot \mathbf {e} ^ {1} \pm i \, \mathbf {S} \cdot \mathbf {e} ^ {2}.
+\tag{11.43}
+\end{equation*}
+
+与 (7.1) 类似，自旋分量（相对 (11.42) 的三元组）可用 HP 玻色子表示：
+
+\begin{align*}
+S ^ {+} & = \left( \sqrt {2 S - n _ {b}} \, \right) b ,\\
+S ^ {-} & = b ^ {\dagger} \sqrt {2 S - n _ {b}} ,\\
+\mathbf {S} \cdot \hat {\Omega} ^ {cl} & = - n _ {b} + S .
+\tag{11.44}
+\end{align*}
+
+这一表示在 $n_{b} \leq 2S$ 的 Hilbert 子空间中是精确的。然而平方根函数代表数算符乘以 $1/S$ 因子的无穷幂级数。若能事后证明
+
+\begin{equation*}
+\langle n _ {b} \rangle \ll 2 S ,
+\tag{11.45}
+\end{equation*}
+
+即绕经典方向的自旋涨落很小，则级数截断到低阶就是合理的。
+
+下一步，把哈密顿量中的自旋算符换成 (11.42) 型表达式，合并 $1/S$ 同阶的项。玻色子的二次阶以下各项构成自旋波哈密顿量。
+
+\subsection{铁磁体}
+
+不失一般性，取经典方向沿 $\hat{z}$，把 HP 算符代入铁磁哈密顿量：
+
+\begin{align*}
+\mathcal {H} & = - | J | \sum_{\langle ij \rangle} \mathbf {S} _ {i} \cdot \mathbf {S} _ {j}\\
+& = - S ^ {2} | J | \mathcal {N} z / 2 - 2 | J | \sum_{\langle ij \rangle} \Big[ S b _ {i} ^ {\dagger} \sqrt {1 - n _ {i} / 2S} \sqrt {1 - n _ {j} / 2S} \, b _ {j}\\
+& \quad - \frac {1}{2} S \left( n _ {i} + n _ {j} \right) + \frac {1}{2} n _ {i} n _ {j} \Big] .
+\tag{11.46}
+\end{align*}
+
+用 (7.4) 展开平方根，收集到 $1/S^{0}$ 阶：
+
+\begin{align*}
+\mathcal {H} & \approx - S ^ {2} | J | \mathcal {N} z / 2 + H _ {1} + H _ {2} + \mathcal {O} ( 1/S ) ,\\
+H _ {1} & = \sum_ {\mathbf {k}} \omega_ {\mathbf {k}} \, b _ {\mathbf {k}} ^ {\dagger} b _ {\mathbf {k}} ,\\
+H _ {2} & = | J | / 4 \sum_{\langle ij \rangle} \left[ b _ {i} ^ {\dagger} b _ {j} ^ {\dagger} \left( b _ {i} - b _ {j} \right) ^ {2} + \left( b _ {i} ^ {\dagger} - b _ {j} ^ {\dagger} \right) ^ {2} b _ {i} b _ {j} \right] ,
+\tag{11.47}
+\end{align*}
+
+其中
+
+\begin{equation*}
+b _ {\mathbf {k}} = \frac {1}{\sqrt {\mathcal {N}}} \sum_ {i} e ^ {- i \mathbf {k} \cdot \mathbf {x} _ {i}} b _ {i}
+\tag{11.48}
+\end{equation*}
+
+而
+
+\begin{equation*}
+\omega_ {\mathbf {k}} = S | J | z \left( 1 - z ^ {- 1} \sum_{j \, \in \langle ij \rangle} e ^ {i ( \mathbf {x} _ {j} - \mathbf {x} _ {i} ) \mathbf {k}} \right) \equiv S | J | z \left( 1 - \gamma_ {\mathbf {k}} \right) ,
+\tag{11.49}
+\end{equation*}
+
+与 (11.33) 一致。$H_{1}$ 描述色散为 $\omega_{k}$ 的无相互作用自旋波。$H_{2}$ 及更高阶项描述自旋波间的相互作用，可用微扰论或平均场近似处理。$T = 0$ 时，由 (11.47) 显然能量等于经典能量
+
+\begin{equation*}
+E _ {0} = - S ^ {2} | J | \mathcal {N} z / 2.
+\tag{11.50}
+\end{equation*}
+
+这与第 5 章定理 5.1 相符：量子铁磁体的基态就是经典基态。
+
+铁磁自旋波色散的长波极限按
+
+\begin{equation*}
+\omega_ {\mathbf {k}} \sim S | J | | \mathbf {k} | ^ {2}
+\tag{11.51}
+\end{equation*}
+
+消失。这是无能隙的 Goldstone 模，是铁磁基态破缺对称的结果（见 9.2 节）。Goldstone 模主导铁磁体低温、长波关联。有限温下基态磁化的最低阶修正为
+
+\begin{align*}
+\Delta m _ {0} & = \frac {1}{\mathcal {N}} \langle S _ {\mathrm{tot}} ^ {z} \rangle - S\\
+& = - \langle n _ {i} \rangle = - \frac {1}{\mathcal {N}} \sum_ {\mathbf {k}} n _ {\mathbf {k}} ,
+\tag{11.52}
+\end{align*}
+
+其中 Bose--Einstein 占据数为（见 (A.25)）
+
+\begin{equation*}
+n _ {\mathbf {k}} = \frac {1}{e ^ {\omega_ {\mathbf {k}} / T} - 1}.
+\tag{11.53}
+\end{equation*}
+
+(11.52) 中求和的低温渐近行为，可通过引入小的“红外”截断 $k_{0}$ 求得。再取一个位于 (11.51) 适用区内的小而有限的动量 $\bar{k} > k_{0}$，即
+
+\begin{equation*}
+\omega_ {\bar {k}} \ll T \ll | J | S.
+\tag{11.54}
+\end{equation*}
+
+把 (11.52) 中的求和分成 $k_{0} < |k| < \bar{k}$ 与 $|k| \geq \bar{k}$ 两段：
+
+\begin{equation*}
+\Delta m _ {0} \approx - \int_{k _ {0}} ^ {\bar {k}} \frac {d k \, k ^ {d - 1}}{( 2 \pi ) ^ {d}} \frac {T}{J S k ^ {2}} - \mathcal {N} ^ {- 1} \sum_{| \mathbf {k} | > \bar {k}} \frac {1}{\exp [ \omega_ {\mathbf {k}} / T ] - 1}.
+\tag{11.55}
+\end{equation*}
+
+$d = 1, 2$ 且 $T > 0$ 时，第一个积分在 $k_{0} \to 0$ 发散：
+
+\begin{equation*}
+\Delta m _ {0} \propto \left\{ \begin{array}{ll} - \dfrac {t}{k _ {0}} + \dots & d = 1 \\[4pt] t \log k _ {0} + \dots & d = 2 \end{array} \right. ,
+\tag{11.56}
+\end{equation*}
+
+其中 $t = T/(JS)$。(11.55) 的第二个求和有限，不影响红外奇性。(11.56) 最重要的结论是：在一维、二维，涨落引起的磁化修正随红外截断 $k_{0}$ 消失而发散。因此我们最初的假设——自旋涨落 $\langle(S_{i}^{z} - S)^{2}\rangle$ 很小——在这些情形是不成立的，HP 展开的低阶截断不合法。自旋波理论的失效与 Mermin--Wagner 定理 6.2 一致：后者确实排除了 $d=1,2$ 在一切非零温度下的有限自发磁化。
+
+$d = 3$ 没有红外发散。$M$ 的领头温度依赖可以这样计算：把 Bose 函数 (11.53) 写成几何级数，动量积分上限取到无穷：
+
+\begin{align*}
+\Delta m _ {0} ^ {d = 3} & = - \int_{k _ {0}} ^ {\bar {k}} \frac {d k \, k ^ {2}}{2 \pi^ {2}} \sum_ {n = 1} ^ {\infty} \exp [ - n k ^ {2} / t ] \left[ 1 + \mathcal {O} ( t ) \right]\\
+& \approx - \frac {1}{8} \left( \frac {t}{\pi} \right) ^ {3/2} \sum_ {n = 1} ^ {\infty} n ^ {- 3/2} = - \frac {1}{8} \left( \frac {t}{\pi} \right) ^ {3/2} \zeta ( 3/2 ) ,
+\tag{11.57}
+\end{align*}
+
+$\zeta$ 是 Riemann $\zeta$ 函数 $\zeta(s)=\sum_{n}n^{-s}$。于是三维中有序矩的领头温度修正正比于 $-T^{3/2}$。
+
+\subsection{反铁磁体}
+
+这里取经典 Néel 态沿子晶格 A、B 的 $\hat{z}$ 与 $-\hat{z}$ 方向。定义转动后的自旋 $\tilde{S}$（对 $j \in B$）：
+
+\begin{align*}
+j \in B :\quad \tilde {S} _ {j} ^ {z} & = - S _ {j} ^ {z} ,\\
+\tilde {S} _ {j} ^ {x} & = S _ {j} ^ {x} ,\\
+\tilde {S} _ {j} ^ {y} & = - S _ {j} ^ {y} .
+\tag{11.58}
+\end{align*}
+
+显然 $\tilde{S}^{\alpha}$ 与 $S^{\alpha}$ 满足相同的对易关系，因此同样可用 Holstein--Primakoff 玻色子表示。用子晶格转动后的表示，反铁磁哈密顿量为
+
+\begin{align*}
+\mathcal {H} & = - | J | \sum_{\langle ij \rangle} S _ {i} ^ {z} \tilde {S} _ {j} ^ {z}\\
+& \quad + \frac {1}{2} | J | \sum_{\langle ij \rangle} \left( S _ {i} ^ {+} \tilde {S} _ {j} ^ {+} + S _ {i} ^ {-} \tilde {S} _ {j} ^ {-} \right) .
+\tag{11.59}
+\end{align*}
+
+对子晶格 $A$ 的 $\mathbf{S}$ 与子晶格 $B$ 的 $\tilde{\mathbf{S}}$ 用 HP 玻色子表示 (11.44)：
+
+\begin{align*}
+\mathcal {H} & = - S ^ {2} J \mathcal {N} z / 2 + \mathcal {H} _ {1} + \mathcal {H} _ {2} + \mathcal {O} ( 1/S ) ,\\
+\mathcal {H} _ {1} & = J S z \sum_ {\mathbf {k}} \left[ b _ {\mathbf {k}} ^ {\dagger} b _ {\mathbf {k}} + \frac {\gamma_ {\mathbf {k}}}{2} \left( b _ {\mathbf {k}} ^ {\dagger} b _ {- \mathbf {k}} ^ {\dagger} + b _ {\mathbf {k}} b _ {- \mathbf {k}} \right) \right] ,\\
+\mathcal {H} _ {2} & = - \frac {J}{4} \sum_{\langle ij \rangle} \left[ b _ {i} ^ {\dagger} \left( b _ {j} ^ {\dagger} + b _ {i} \right) ^ {2} b _ {j} + b _ {j} ^ {\dagger} \left( b _ {i} ^ {\dagger} + b _ {j} \right) ^ {2} b _ {i} \right] .
+\tag{11.60}
+\end{align*}
+
+$\mathcal{H}_{1}$ 是含正规与反常项（如 $a^{\dagger}a^{\dagger}$）的二次哈密顿量，可用 Bogoliubov 变换对角化。定义自旋波算符 $\alpha_{\mathbf{k}}$：
+
+\begin{align*}
+\alpha_ {\mathbf {k}} & = \cosh \theta_ {\mathbf {k}} \, a _ {\mathbf {k}} - \sinh \theta_ {\mathbf {k}} \, a _ {- \mathbf {k}} ^ {\dagger} ,\\
+a _ {\mathbf {k}} & = \cosh \theta_ {\mathbf {k}} \, \alpha_ {\mathbf {k}} + \sinh \theta_ {\mathbf {k}} \, \alpha_ {- \mathbf {k}} ^ {\dagger} .
+\tag{11.61}
+\end{align*}
+
+参数 $\theta_{\mathbf{k}}$ 为实，且在 $\mathbf{k} \to -\mathbf{k}$ 下为偶。(11.61) 是正则变换，因为
+
+\begin{align*}
+\left[ \alpha_ {\mathbf {k}}, \alpha_ {\mathbf {k} '} ^ {\dagger} \right] & = \delta_ {\mathbf {kk} '} ,\\
+\left[ \alpha_ {\mathbf {k}}, \alpha_ {\mathbf {k} '} \right] & = \left[ \alpha_ {\mathbf {k}} ^ {\dagger}, \alpha_ {\mathbf {k} '} ^ {\dagger} \right] = 0 .
+\tag{11.62}
+\end{align*}
+
+用自旋波算符表示：
+
+\begin{align*}
+\mathcal {H} _ {1} & = | J | S z \sum_ {\mathbf {k}} \Big[ \left( \cosh 2 \theta_ {\mathbf {k}} + \gamma_ {\mathbf {k}} \sinh 2 \theta_ {\mathbf {k}} \right) \alpha_ {\mathbf {k}} ^ {\dagger} \alpha_ {\mathbf {k}}\\
+& \quad + \frac {1}{2} \left( \sinh 2 \theta_ {\mathbf {k}} + \gamma_ {\mathbf {k}} \cosh 2 \theta_ {\mathbf {k}} \right) \left( \alpha_ {\mathbf {k}} ^ {\dagger} \alpha_ {- \mathbf {k}} ^ {\dagger} + \alpha_ {\mathbf {k}} \alpha_ {- \mathbf {k}} \right)\\
+& \quad + \sinh^ {2} \theta_ {\mathbf {k}} + \frac {\gamma_ {\mathbf {k}}}{2} \sinh 2 \theta_ {\mathbf {k}} \Big] .
+\tag{11.63}
+\end{align*}
+
+选 $\theta_{k}$ 使反常项 $\alpha^{\dagger}\alpha^{\dagger}$ 与 $\alpha\alpha$ 消失，条件是
+
+\begin{equation*}
+\tanh 2 \theta_ {\mathbf {k}} = - \gamma_ {\mathbf {k}} ,
+\tag{11.64}
+\end{equation*}
+
+由此得
+
+\begin{align*}
+\mathcal {H} _ {1} & = \sum_ {\mathbf {k}} \omega_ {\mathbf {k}} \left( \alpha_ {\mathbf {k}} ^ {\dagger} \alpha_ {\mathbf {k}} + \frac {1}{2} \right) - \frac {J S z \mathcal {N}}{2} ,\\
+\omega_ {\mathbf {k}} & = | J | S z \sqrt {1 - \gamma_ {\mathbf {k}} ^ {2}} ,
+\tag{11.65}
+\end{align*}
+
+与 (11.40) 一致。由 (11.65) 可见，与铁磁体 (11.50) 不同，$H_{1}$ 含有大小为
+
+\begin{equation*}
+E _ {0} ' = E _ {0} - \left( - \frac {z}{2} \mathcal {N} | J | S ^ {2} \right) = \frac {1}{2} \sum_{\mathbf {k}} | J | S z \left( \sqrt {1 - \gamma_{\mathbf {k}} ^ {2}} - 1 \right).
+\tag{11.66}
+\end{equation*}
+
+的量子零点能。注意 $E_{0}'$ 为负，即量子涨落降低反铁磁体的能量。考虑两格点的最简单情形即可理解：经典基态能量为 $-JS^{2}$，而量子能量明显更低：$-JS(S+1)$。
+
+量子反铁磁体的基态是 $\alpha$ 玻色子的真空。Bogoliubov 变换使基态中混入任意数目的 HP 玻色子；用自旋语言说，基态混入了相对 Néel 态含任意数目自旋翻转的组态。这削弱 $T = 0$ 的长程 Néel 序。
+
+在 $\mathbf{k} = 0$ 与 $\mathbf{k} = \vec{\pi} = (\pi, \pi, \ldots)$ 附近，自旋波谱按
+
+\begin{equation*}
+\omega_ {\mathbf {k}} \sim \left\{ \begin{array}{ll} J S \sqrt {2 z} \, | \mathbf {k} | & | \mathbf {k} | \approx 0 \\ J S \sqrt {2 z} \, | \mathbf {k} - ( \pi, \pi, \ldots ) | & \mathbf {k} \approx ( \pi, \pi, \ldots ) \end{array} \right.
+\tag{11.67}
+\end{equation*}
+
+消失。序参量是交错磁化。其低阶修正由 $H_{1}$ 给出：
+
+\begin{align*}
+\Delta m _ {0} ^ {s} & = \frac {1}{\mathcal {N}} \Big\langle \sum_ {i} e ^ {i \vec {\pi} \mathbf {X} _ {i}} S _ {i} ^ {z} \Big\rangle - S\\
+& = - \frac {1}{\mathcal {N}} \Big\langle \sum_ {i} a _ {i} ^ {\dagger} a _ {i} \Big\rangle\\
+& = + \frac {1}{2} - \frac {1}{\mathcal {N}} \sum_ {\mathbf {k}} \left( n _ {\mathbf {k}} + \frac {1}{2} \right) \frac {1}{\sqrt {1 - \gamma_{\mathbf {k}} ^ {2}}} .
+\tag{11.68}
+\end{align*}
+
+与铁磁体一样，只有当 $\Delta m_{0}^{s} \ll S$ 时，HP 展开截断到二次阶才是合理的。
+
+低温下 $\Delta m_{0}^{s}$ 的领头红外奇性由展开 Bose 函数（在 $\omega_{k} \approx 0$ 附近）求得。用 $k_{0}$ 截断 $k \approx 0$ 与 $k \approx \vec{\pi}$ 附近的动量和：
+
+\begin{equation*}
+\Delta m _ {0} \sim \left\{ \begin{array}{ll} \dfrac {c _ {1}}{k _ {0}} & d = 1 \\[4pt] - c _ {2} + t \log k _ {0} & d = 2 \\[4pt] - c _ {3} + c _ {3} ' t ^ {2} & d = 3 \end{array} \right.
+\tag{11.69}
+\end{equation*}
+
+其中
+
+\begin{align*}
+c _ {d} & = \frac {1}{2 \mathcal {N}} \sum_ {\mathbf {k}} \frac {1}{\sqrt {1 - \gamma_{\mathbf {k}} ^ {2}}} - 1 \, , \ d = 2, 3 ,\\
+c _ {3} ' & = 6 ^ {- 5/2} / 2 ,\\
+t & = \frac {T}{| J | S \sqrt {d}} .
+\tag{11.70}
+\end{align*}
+
+与铁磁体情形一样，只有当存在真长程序且 $\Delta m_{0}^{s} \ll S$ 时，HP 展开的截断才是合理的。注意一维中交错磁化修正实际上随 $k_{0} \to 0$ 发散，这标志着自旋波理论的失败和基态无长程序。稍后我们将看到，$d$ 维量子模型基态长程序的缺失，与 $d+1$ 维经典 Heisenberg 模型有限温的 Mermin--Wagner 定理相关。
+
+我们还注意到，由 (11.69)，$d = 2, 3$ 基态长程序的存在与否取决于 $c'$ 与 $S$ 的相对大小。$d=3$ 是有限温下可能存在长程自旋序的最低维数。
+
+\begin{exercises}
+
+\item 把 (11.13) 用于铁磁自旋波模式，证明 $k \approx 0$ 处进动自旋的方向如图~\ref{fig:11.2} 所示。
+
+\item 对一维反铁磁体 $k = 0$ 与 $k = \pi$ 的两个自旋波模式重复上题，并与图~\ref{fig:11.3} 比较。
+
+\item 近邻键的 Néel 矢量定义为
+
+\begin{equation*}
+\hat {\mathbf {n}} = \frac {1}{2} \left( \hat {\Omega} _ {i} - \hat {\Omega} _ {j} \right).
+\tag{11.71}
+\end{equation*}
+
+证明 $\hat{n}$ 近似地作周期性平面振荡。求 $k = 0$ 与 $k = \vec{\pi}$ 时 $\hat{n}$ 的偏振面。
+
+\item 考虑立方格子上的亚铁磁体：子晶格 A 上大小为 $S_{A}$ 的自旋与子晶格 B 上大小为 $S_{B}$ 的近邻自旋反铁磁耦合。循 11.1.2 小节，用自旋波理论计算元激发的色散。
+
+\item 反铁磁自旋波哈密顿量 $\mathcal{H}_1$（见 (11.60)）的基态必须满足
+
+\begin{equation*}
+\alpha_ {\mathbf {k}} \Psi_ {0} = 0 \, , \quad \forall \mathbf {k}.
+\tag{11.72}
+\end{equation*}
+
+用 (11.61) 中 $\alpha_{\mathbf{k}}$ 的定义证明
+
+\begin{align*}
+\Psi_ {0} & = \nu \exp \left[ \frac {1}{2} \sum_ {\mathbf {k}} u _ {\mathbf {k}} b _ {\mathbf {k}} ^ {\dagger} b _ {- \mathbf {k}} ^ {\dagger} \right] \left| 0 \right\rangle ,\\
+u _ {\mathbf {k}} & = \tanh \theta_ {\mathbf {k}} .
+\tag{11.73}
+\end{align*}
+
+求归一化常数 $\nu$。注意：(11.73) 的 $\Psi_{0}$ 不是纯自旋态，因为它含有 $n_{b} > 2S$ 非物理态的贡献。用自旋升降算符替换 HP 玻色子可以定义合适的变分自旋态。
+
+\item 求 $u_{ij}$ 对大 $|x_{i}-x_{j}|$ 的渐近衰减：
+
+\begin{equation*}
+u _ {ij} = \frac {1}{\mathcal {N}} \sum_ {\mathbf {k}} u _ {\mathbf {k}} \exp \left[ - i \mathbf {k} \cdot ( \mathbf {x} _ {i} - \mathbf {x} _ {j} ) \right] ,
+\tag{11.74}
+\end{equation*}
+
+其中 $u_{\mathbf{k}}$ 已在 (11.73) 定义。提示：用量纲分析把 $|\mathbf{x}_i - \mathbf{x}_j|$ 的幂次从积分中标度出来。
+
+\item 用 HP 表示对铁磁体展开各向同性自旋关联函数
+
+\begin{equation*}
+S ( \mathbf {q} ) = \mathcal {N} ^ {- 1} \langle \mathbf {S}_{\mathbf {q}} \cdot \mathbf {S} _ {- \mathbf {q}} \rangle
+\tag{11.75}
+\end{equation*}
+
+到四玻色子项。用成对收缩把有限温的 $S(\mathbf{q})$ 写成单个动量求和。
+
+\end{exercises}
+
+\begin{chapbib}
+\item 自旋波理论的开创性工作：
+  P. W. Anderson, Phys. Rev. \textbf{83}, 1260 (1951)；
+  R. Kubo, Phys. Rev. \textbf{87}, 568 (1952)；
+  T. Oguchi, Phys. Rev. \textbf{117}, 117 (1960)。
+\item 自旋波理论及应用的大量综述见
+  D. C. Mattis, \textit{Theory of Magnetism I} (Springer-Verlag, 1988)；
+  R. M. White, \textit{Quantum Theory of Magnetism} (Springer-Verlag, 1987)。
+\item 受挫 Heisenberg 反铁磁体的自旋波修正与“无序导致的有序”效应：
+  E. F. Shender and P. C. W. Holdsworth, \textit{Fluctuations and Order: The New Synthesis}, edited by M. M. Millonas (MIT Press, 1994)；
+  C. L. Henley, Phys. Rev. Lett. \textbf{62}, 2056 (1989)。
+\end{chapbib}

@@ -1,0 +1,84 @@
+% 《多体量子场论》中文重排本
+% Xiao-Gang Wen, Quantum Field Theory of Many-Body Systems:
+%   From the Origin of Sound to an Origin of Light and Electrons
+%   (Oxford University Press, 2004)
+% 编译：xelatex ×3
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+\usepackage{amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{microtype}
+\ctexset{
+  chapter/name = {第,章},
+  section/format = \Large\bfseries,
+}
+\setcounter{secnumdepth}{3}% 原书有 N.M.K.L 四级标题（如 3.3.8.1），需给 \subsubsection 编号
+\setcounter{tocdepth}{1}% 目录只到节一级（与原书目录一致）
+\allowdisplaybreaks
+\raggedbottom
+\emergencystretch=3em% 排版层：仅当段落原本会 overfull 时启用第三轮试排，消除行溢出
+\clubpenalty=10000 \widowpenalty=10000 \predisplaypenalty=10000
+\graphicspath{{figures/}}
+\xeCJKDeclareCharClass{CJK}{"201C, "201D, "2018, "2019}
+
+% 插入的空白衬页真正空白（无页眉页脚）
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% 原书小字号段落（评注/进阶话题，正文排版但字号略小）
+\newenvironment{smallnote}{\par\begingroup\small}{\endgroup\par}
+
+% 章首题词（原书各章卷首引语）
+\newcommand{\epigraphbook}[2]{%
+  \begin{center}\itshape #1\\[0.3em]\scshape #2\end{center}}
+
+% 节首要点列表（原书每节开头的破折号要点）
+\newenvironment{keypoints}{\begin{itemize}[leftmargin=1.6em,itemsep=0.1em]
+  \setlength\parskip{0pt}}{\end{itemize}}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\centering
+{\Huge\bfseries 多体量子场论\\[0.8em]
+\huge ——从声音的起源到光与电子的起源\\[4em]}
+{\Large Quantum Field Theory of Many-Body Systems\\[0.5em]
+\large From the Origin of Sound to an Origin of Light and Electrons\\[3em]}
+{\Large Xiao-Gang Wen（文小刚）\quad 著\\[1em]}
+{\large 麻省理工学院\\[0.5em]}
+{\large 牛津大学出版社　2004 年版\\[5em]}
+{\large 中文重排本\\[0.5em]}
+{\large 依据 2004 年 Oxford University Press 版\\[0.3em]
+扫描件识别、翻译并重新排版\\[0.3em]
+仅供个人学习研究使用\\[3em]}
+\end{titlepage}
+\thispagestyle{empty}\mbox{}\clearpage
+\tableofcontents
+
+\input{chapters/ch00_front}
+
+\mainmatter
+
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+\input{chapters/ch08}
+\input{chapters/ch09}
+\input{chapters/ch10}
+
+\input{chapters/ch11_bib}
+
+\end{document}

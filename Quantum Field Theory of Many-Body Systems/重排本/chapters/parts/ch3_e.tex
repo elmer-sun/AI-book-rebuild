@@ -1,0 +1,261 @@
+% ch3_e 第3章 §3.5 重整化群 (书页 112–122 / p127–p137)
+%JOIN%
+% ——— 块边界说明（起点）———
+% 书页 111（p126）末行为 §3.5.4 的无编号有效作用量
+%   S = ∫d²x(κ_l/2(∂_xθ_λ)² − g_l cos(nθ_λ) + ½g_l cos(nθ_λ)K(0))
+%     − ∫d²x d²y ½(g_l)²sin(nθ_λ(x))K(x−y)sin(nθ_λ(y))，
+% 本块自书页 112（p127）顶部残句 "where K(x) = n²⟨δθ(x)δθ(0)⟩. We note that
+% the last term can be rewritten as" 续起，上面 %JOIN% 使本块与 ch3_d 末式直接缝合。
+% ——— 块边界说明（终点）———
+% 书页 122（p137）末句 "Let us consider the spectral expansion" 跨页延续到
+% 书页 123（p138）顶部 "of the density correlation function:"。按 assemble.py
+% 约定（X 文件的 %--XX-TAIL-- 区内容会移到 X−1 之后、X 正文之前），该残句的
+% 译文（"密度关联函数的谱展开："）应由 ch3_f 写入其 %--E-TAIL-- 区（或在其
+% 正文开头以 %JOIN% 续译），本块正文因此止于"让我们考虑"，本文件不设
+% %--D-TAIL-- 区。ch3_f 请勿重复翻译该残句；其正文请从 p138 顶部的谱展开
+% 无编号式 ⟨ρ(t,x)ρ(0,0)⟩ = ⟨0|ρ(x)U(t,0)ρ(0)|0⟩/⟨0|U(t,0)|0⟩ = … 起译。
+% ——————————————————————————————
+其中，$K(\pmb{x}) = n^2\langle\,\delta\theta(\pmb{x})\,\delta\theta(0)\rangle$。我们注意到，最后一项可以改写为
+\begin{align*}
+&\int \mathrm{d}^2\pmb{x}\,\mathrm{d}^2\pmb{y}\,\frac{g_l^2}{4}[\sin(n\theta_\lambda(\pmb{x})) - \sin(n\theta_\lambda(\pmb{y}))]^2 K(\pmb{x}-\pmb{y}) - \int \mathrm{d}^2\pmb{x}\,\frac{g_l^2}{2}\sin^2(n\theta_\lambda)\bar{K} \\
+={}& \int \mathrm{d}^2\pmb{x}\,\mathrm{d}^2\pmb{y}\,\frac{n^2}{8}(g_l)^2\cos^2(n\theta_\lambda(\pmb{x}))(\partial_{\pmb{x}}\theta_\lambda(\pmb{x}))^2(\pmb{x}-\pmb{y})^2 K(\pmb{x}-\pmb{y}) \\
+&- \int \mathrm{d}^2\pmb{x}\,\frac{1}{2}(g_l)^2(\sin(n\theta_\lambda(\pmb{x})))^2\bar{K}
+\end{align*}
+其中，$\bar{K} = \int \mathrm{d}^2\pmb{x}\,K(\pmb{x})$。我们看到，像 $\cos(2n\theta_\lambda)$、$(\partial_{\pmb{x}}\theta_\lambda)^2$、$\cos(2n\theta_\lambda)(\partial_{\pmb{x}}\theta_\lambda)^2$、$(\partial_{\pmb{x}}\theta_\lambda)^4$ 等等这样的项被产生了出来。RG 流可以产生许多初始作用量中没有的新项。事实上，任何不破坏 $Z_n$ 对称性的局域项都可能被产生。然而，$\cos(\theta_\lambda)$ 项在 $n>1$ 时不会被产生，因为它破坏 $Z_n$ 对称性。目前，让我们只保留初始作用量中已有的 $(\partial_{\pmb{x}}\theta_\lambda)^2$ 与 $\cos(\theta_\lambda)$ 两项。\footnote{事实证明，所有其他项都是不相关的。如果这些项在 RG 流开始时很小，那么经过长时间流动后它们会变得更小。这就是我们可以忽略这些项的原因。当然，如果这些项一开始就很大，那么它们可以改变一切。}我们发现，模型的作用量变为
+\begin{equation*}
+S = \int \mathrm{d}^2\pmb{x}\left(\frac{\kappa_\lambda}{2}(\partial_{\pmb{x}}\theta_\lambda)^2 - g_\lambda\cos(n\theta_\lambda)\right)\tag{3.5.8}
+\end{equation*}
+其中 $\lambda$ 是新的截断。有效耦合常数依赖于截断 $\lambda$，称为跑动耦合常数（running coupling constants）。它们由下式给出（假定 $\frac{\lambda-l}{l}\ll 1$）
+\begin{equation*}
+g_\lambda = g_l - \frac{1}{2}K(0),\qquad \kappa_\lambda = \kappa_l + \frac{n^2}{8}g_l^2 K_2
+\end{equation*}
+\begin{equation*}
+K(0) = \int_{2\pi/\lambda < |\pmb{k}| < 2\pi/l} \frac{\mathrm{d}^2\pmb{k}}{(2\pi)^2}\,\frac{n^2}{\kappa_l|\pmb{k}|^2} = \frac{n^2}{2\pi\kappa_l}\ln\frac{\lambda}{l}
+\end{equation*}
+\begin{align*}
+K_2 &\equiv \int \mathrm{d}^2\pmb{x}\,|\pmb{x}|^2 K(\pmb{x}) = \int_{2\pi/\lambda < |\pmb{k}| < 2\pi/l} \mathrm{d}^2\pmb{x}\,\frac{\mathrm{d}^2\pmb{k}}{(2\pi)^2}\,\frac{n^2\pmb{x}^2\,\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x} - 0^+|\pmb{x}|}}{\kappa_l\pmb{k}^2} \\
+&= \frac{\lambda-l}{l}\,\frac{3n^2l^4}{16\pi^5\kappa_l}\int \mathrm{d}\theta\,\frac{1}{(\cos\theta + \mathrm{i}0^+)^4} = \frac{\lambda-l}{l}\,\frac{3n^2l^4}{2\pi^4\kappa_l}
+\end{align*}
+
+%FIG{3.10}: {(a) 由式 (3.5.9) 确定的 $g_\lambda$ 与 $\kappa_\lambda$ 的重整化群流。(b) 由式 (3.5.10) 确定的 $g_\lambda$ 与 $\kappa_\lambda$ 的重整化群流。}
+
+令 $b = \ln\lambda$，则耦合常数的变化由下列微分方程描述：
+\begin{align*}
+\frac{\mathrm{d}g_\lambda}{\mathrm{d}b} &= -\frac{n^2}{4\pi\kappa_l}\,g_\lambda \\
+\frac{\mathrm{d}\kappa_\lambda}{\mathrm{d}b} &= \frac{3n^4 g_\lambda^2\lambda^4}{16\pi^4\kappa_\lambda}
+\end{align*}
+用无量纲耦合 $\bar{\kappa}_\lambda = \kappa_\lambda\lambda^0$ 与 $\bar{g}_\lambda = g_\lambda\lambda^2$ 表示，上述微分方程可以改写为
+\begin{align*}
+\frac{\mathrm{d}\bar{g}_\lambda}{\mathrm{d}b} &= \left(2 - \frac{n^2}{4\pi\bar{\kappa}_\lambda}\right)\bar{g}_\lambda \\
+\frac{\mathrm{d}\bar{\kappa}_\lambda}{\mathrm{d}b} &= \frac{3n^4\bar{g}_\lambda^2}{16\pi^4\bar{\kappa}_\lambda}\tag{3.5.9}
+\end{align*}
+它们称为 RG 方程。$(\bar{\kappa},\bar{g})$ 的流绘于图 3.10(a)。
+
+\subsection{重整化群理论与相变}
+
+\begin{keypoints}
+\item 不动点的概念，以及针对不动点的有效理论。
+\end{keypoints}
+
+为了理解 RG 流的物理含义，让我们先忽略 $\bar{\kappa}_\lambda$ 的流动，转而研究下列 RG 方程：
+\begin{align*}
+\frac{\mathrm{d}\bar{g}_\lambda}{\mathrm{d}b} &= \left(2 - \frac{n^2}{4\pi\bar{\kappa}_\lambda}\right)\bar{g}_\lambda \\
+\frac{\mathrm{d}\bar{\kappa}_\lambda}{\mathrm{d}b} &= 0\tag{3.5.10}
+\end{align*}
+$(\bar{g}_\lambda,\bar{\kappa}_\lambda)$ 的流绘于图 3.10(b)。我们发现，由 RG 方程得到
+\begin{equation*}
+\bar{g}_\lambda = \bar{g}_l\,\mathrm{e}^{\left(2 - \frac{n^2}{4\pi\kappa_l}\right)\ln(\lambda/l)} = \bar{g}_l(\lambda/l)^{2-h}
+\end{equation*}
+其中 $h = \frac{n^2}{4\pi\kappa_l}$ 是 $\cos(n\theta)$ 的标度量纲。当 $\cos(n\theta)$ 是相关的时，只要流得足够长，一个非常小的 $\bar{g}_l$ 就可以变得要多大有多大。特别地，当 $\lambda = l(\bar{g}_l)^{-1/(2-h)}$ 时，$\bar{g}_\lambda = 1$。此时耦合常数停止流动，因为 RG 方程 (3.5.9) 由于在推导中被略去的高阶 $\bar{g}_\lambda$ 项而失效。所得的有效理论与式 (3.5.8) 具有相同的形式，称为不动点理论（fixed-point theory）。我们可以用不动点理论求出原模型的长程关联及其他长距离物理性质。
+
+当 $\bar{g}_\lambda = 1$ 时，若以 $\lambda$ 为单位来度量，重整化后的不动点理论中的一切都是 1 的量级。于是，如果我们相信大的 $g_\lambda\cos(n\theta_\lambda)$ 会使 $\theta_\lambda$ 具有短程关联，那么以 $\lambda$ 度量的关联长度 $\xi$ 必须是 1 的量级。这样，我们得到
+\begin{equation*}
+\xi = l\left(\frac{1}{\bar{g}_l}\right)^{1/(2-h)}
+\end{equation*}
+只要认识到上一节中的微扰 $O$ 对应于 $O = l^{-h}\cos(n\theta)$，此式便与上一节得到的普遍结果 $\xi = a^{-1/(d-h)}$ 相一致。（式 (3.5.1) 确定了 $O$ 的归一化。）于是 $a = gl^h$。用 $\kappa$ 来表示，上述结果导致
+\begin{equation*}
+\xi = l\bar{g}_l^{-4\pi\kappa/(8\pi\kappa - n^2)}.\tag{3.5.11}
+\end{equation*}
+
+此外，在长度尺度 $\xi$ 处，一个大的势项 $g_\xi\cos(n\theta_\xi)$ 会把 $\theta_\xi$ 俘获在势的某一个极小值处。因此，相关的微扰 $g_l\cos(n\theta_l)$ 总是导致自发的 $Z_n$ 对称性破缺，无论 $g_l$ 在截断尺度处是多么小。
+
+当 $\kappa$ 趋近 $n^2/8\pi$ 时，关联长度 $\xi \to \infty$。因此，在 $n^2/8\pi$ 处存在一个相变。当 $\kappa < n^2/8\pi$ 时，微扰 $g_l\cos(n\theta_l)$ 是不相关的。经过长时间的 RG 流之后，我们得到另一个不动点理论 $\frac{\bar{\kappa}_\lambda}{2}(\partial_{\pmb{x}}\theta_\lambda)^2$，因为 $\bar{g}_\lambda$ 流向零。这个不动点理论具有完全的 $U(1)$ 对称性！这是一个非常出人意料而又非常重要的现象，称为动力学对称性恢复（dynamical symmetry restoration）。有时某个项可能会显式地破坏某个对称性（例如 $g_l\cos(n\theta_l)$ 项把 $U(1)$ 对称性破缺降为 $Z_n$ 对称性）。如果该项是不相关的，那么在长距离和/或低能下，该项流向零，对称性得以恢复。
+
+总结起来，非紧致时钟模型 (3.5.3) 具有 $Z_n$ 对称性。当 $\kappa$ 小于临界值 $\kappa_c = n^2/8\pi$ 时，模型处于一个不破坏 $Z_n$ 对称性的相。此外，该相在长距离下具有 $U(1)$ 对称性。关联长度为无穷大。当 $\kappa$ 高于临界值 $\kappa_c$ 时，模型处于破坏 $Z_n$ 对称性的相。关联长度为有限。
+
+如果模型中没有边际算符，上述讨论是正确而且普遍的。在这种情况下，$h$ 可以当作常数处理。然而，对于 XY 模型，算符 $(\partial_{\pmb{x}}\theta)^2$ 的量纲恰好等于 2，是一个严格的边际算符（exact marginal operator）。结果，$\kappa$ 是一个边际耦合常数。常数 $\kappa$（从而 $h$）的取值可以在 RG 流中移动。这就导致了式 (3.5.9) 所描述并在图 3.10(a) 中示出的 RG 流。我们注意到，在相变点 $\bar{\kappa}_\infty = n^2/8\pi$ 附近，图 3.10(a) 所描述的 RG 流与图 3.10(b) 中的流相当不同。结果 (3.5.11) 只适用于图 3.10(b) 中的 RG 流，对于 $\kappa_c = n^2/8\pi$ 附近图 3.10(a) 中的 RG 流并不成立。下一节中，我们将对图 3.10(a) 的 RG 流计算 $\xi$。
+
+在上面，我们用 RG 方法讨论了非紧致时钟模型中的相与相变。我们也可以用同样的 RG 结果，讨论带有涡旋涨落的紧致时钟模型中的相与相变。
+
+乍一看，有人可能会说，由于势项 $g_l\cos(n\theta_l)$，涡旋与反涡旋总是被禁闭的。如果 $\kappa > \kappa_c$ 且 $\kappa\cos(n\theta)$ 是相关的，这确实正确。当 $\kappa < \kappa_c$ 时，$\kappa\cos(n\theta)$ 不相关。此时，涡旋的性质与 XY 模型中的一样。当 $\kappa < 2/\pi$ 时涡旋涨落是相关的，当 $\kappa > 2/\pi$ 时是不相关的。当涡旋涨落相关时，它们会改变时钟模型的相结构。
+
+紧致的二维时钟模型依 $n$ 的取值不同，可以有几种不同的行为。
+\begin{enumerate}
+\item $n > 4$：当 $\kappa > n^2/8\pi$ 时，模型处于 $Z_n$ 对称性破缺相。$Z_n$ 序参量 $\mathrm{e}^{\mathrm{i}\theta}$ 具有长程序：$\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle = \text{constant} + C\mathrm{e}^{-|\pmb{x}|/\xi}$。在相变点 $n^2/8\pi$ 附近，我们有 $\kappa > 2/\pi$，涡旋涨落不相关。于是，当 $n^2/8\pi > \kappa > 2/\pi$ 时，系统处于一个 $Z_n$ 对称的相，在长距离下具有演生的 $U(1)$ 对称性。$Z_n$ 序参量 $\mathrm{e}^{\mathrm{i}\theta}$ 具有代数长程序：$\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle \sim 1/|\pmb{x}|^{1/2\pi\kappa}$。当 $\kappa < 2/\pi$ 时，涡旋涨落是相关的，它会破坏代数长程序。系统处于 $Z_n$ 对称的相。$Z_n$ 序参量 $\mathrm{e}^{\mathrm{i}\theta}$ 具有短程关联：$\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle \sim \mathrm{e}^{-|\pmb{x}|/\xi}$。由于没有长程关联，我们甚至无法谈论长距离下演生的 $U(1)$ 对称性。
+\item $n = 4$：当 $\kappa > n^2/8\pi = 2/\pi$ 时，模型处于 $Z_4$ 对称性破缺相；当 $\kappa < 2/\pi$ 时，处于 $Z_4$ 对称的相。在对称性破缺相中，$g_l\cos(4\theta)$ 相关而涡旋不相关。在 $Z_4$ 对称相中，$g_l\cos(4\theta)$ 不相关而涡旋相关。因此，$Z_4$ 对称相既没有代数长程序，也没有演生的 $U(1)$ 对称性。在相变点，$g_l\cos(4\theta)$ 与涡旋都是边际的。
+\item $n < 4$：当 $\kappa \gg n^2/8\pi$ 时，模型处于 $Z_n$ 对称性破缺相；当 $\kappa \ll n^2/8\pi$ 时，处于 $Z_n$ 对称的相。在相变点附近，$\mathrm{e}^{\mathrm{i}n\theta}$ 与涡旋都相关且强烈涨落。相变由 Ginzburg–Landau 理论描述，见式 (3.5.7)。当 $n = 1$ 时，没有对称性破缺，也没有相变。
+\end{enumerate}
+
+\subsection*{问题 3.5.2}
+
+\textbf{流动的“耦合函数”}\quad 考虑模型 $S = \int \mathrm{d}^2\pmb{x}\left(\frac{\kappa}{2}(\partial_x\theta)^2 + V(\theta)\right)$，其中 $V(\theta)$ 是一个小的周期函数：$V(\theta + 2\pi) = V(\theta)$。试求描述“耦合函数” $V$ 流动的 RG 方程。因为我们已假定 $V$ 很小，你可以忽略 $\kappa$ 的流动。试讨论：如果从一个非常小的 $V$ 出发，经过长时间流动后 $V$ 的形式如何。
+
+\subsection*{问题 3.5.3}
+
+$n = 1$ 的时钟模型 (3.5.3) 描述处在外磁场 $B_x$ 中的一个二维 XY 自旋系统，其中 $S_x = \cos(\theta)$、$S_y = \sin(\theta)$、$S_z = 0$，且 $B_x = g$。假设 $\cos(\theta)$ 是相关的。试用 RG 论证求出小磁场感应出的 $S_x$ 的值。现在假设 $\cos(\theta)$ 是不相关的，小磁场感应出的 $S_x$ 是多少？将你的结果与式 (3.5.2) 比较。（提示：你可以用原有的耦合常数 $B_x$ 写出重整化后的作用量，再用重整化后的作用量计算感应出的 $S_x$。你只需把感应出的 $S_x$ 计算到一个 $O(1)$ 系数的精度。）
+
+\subsection{相变点附近的关联长度}
+
+为了理解图 3.10(a) 的 RG 流中 $\xi$ 在相变点附近的行为，让我们把 RG 方程 (3.5.9) 对小的 $\delta\kappa_\lambda \equiv \bar{\kappa}_\lambda - \frac{n^2}{8\pi}$ 展开如下：
+\begin{align*}
+\frac{\mathrm{d}\bar{g}_\lambda}{\mathrm{d}b} &= \frac{16\pi}{n^2}\,\delta\bar{\kappa}_\lambda\,\bar{g}_\lambda \\
+\frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\mathrm{d}b} &= \frac{3n^2\bar{g}_\lambda^2}{2\pi^3}\tag{3.5.12}
+\end{align*}
+我们发现
+\begin{equation*}
+\frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\mathrm{d}\bar{g}_\lambda} = \frac{3n^4}{32\pi^4}\,\frac{\bar{g}_\lambda}{\delta\bar{\kappa}_\lambda}
+\end{equation*}
+该微分方程导致 $(\delta\bar{\kappa}_\lambda)^2 = \frac{3n^4}{32\pi^4}\bar{g}_\lambda^2 + C$。按照常数项 $C$ 的符号，解分为三类（见图 3.10(a)）。第 I 类和第 II 类解由下式给出
+\begin{equation*}
+\delta\bar{\kappa}_\lambda = \mathrm{sgn}(\delta\bar{\kappa}_\infty)\sqrt{\frac{3n^4}{32\pi^4}\bar{g}_\lambda^2 + \delta\bar{\kappa}_\infty^2}
+\end{equation*}
+其中 $C = \delta\bar{\kappa}_\infty^2 > 0$。第 III 类解具有如下形式
+\begin{equation*}
+\bar{g}_\lambda = \sqrt{\frac{32\pi^4}{3n^4}\delta\bar{\kappa}_\lambda^2 + \bar{g}_{min}^2}\tag{3.5.13}
+\end{equation*}
+它对应于 $C < 0$ 的情形。
+
+把式 (3.5.13) 代入式 (3.5.12) 中的第二个方程，我们得到
+\begin{equation*}
+\frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\frac{32\pi^4}{3n^4}\delta\bar{\kappa}_\lambda^2 + \bar{g}_{min}^2} = n^2\,\mathrm{d}\ln(\lambda)
+\end{equation*}
+我们可以把上式两边从 $\lambda = l$ 积分到 $\lambda = \xi$，得到
+\begin{equation*}
+\int_{\delta\bar{\kappa}_l}^{\delta\bar{\kappa}_\xi} \frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\frac{32\pi^4}{3n^4}\delta\bar{\kappa}_\lambda^2 + \bar{g}_{min}^2} = n^2\ln\!\left(\frac{\xi}{l}\right)\tag{3.5.14}
+\end{equation*}
+
+我们知道，在关联长度 $\xi$ 处，$\bar{g}_\xi \sim 1$。式 (3.5.13) 告诉我们 $\delta\bar{\kappa}_\xi$ 也是 1 的量级。式 (3.5.13) 与 (3.5.14) 把 $\delta\bar{\kappa}_l$、$\bar{g}_l$ 与 $\xi$ 联系起来，使我们能够确定关联长度 $\xi$ 如何依赖于 $\kappa_l - \kappa_c$。
+
+让我们先固定 $g_l$，调节 $\kappa_l$，使 $\delta\bar{\kappa}_l = \kappa_l - \frac{n^2}{8\pi}$ 等于 $-\sqrt{\frac{3n^4}{32\pi^4}}\,\bar{g}_l$。由式 (3.5.13) 我们看到 $\bar{g}_{min} = 0$。式 (3.5.14) 左端的积分发散，这意味着 $\xi = \infty$。我们看到，$Z_n$ 对称性破缺相变真正发生在 $\kappa_l = \kappa_c$ 处，其中
+\begin{equation*}
+\kappa_c = \frac{n^2}{8\pi} - \sqrt{\frac{3n^4}{32\pi^4}}\,g_l
+\end{equation*}
+如果 $\kappa_l$ 略高于 $\kappa_c$，则我们发现
+\begin{equation*}
+\bar{g}_{min}^2 = 2\left(\frac{32\pi^4}{3n^4}\right)^{1/2} g_l(\kappa_l - \kappa_c)
+\end{equation*}
+由于 $\bar{g}_{min}$ 远小于 $|\delta\bar{\kappa}_l|$ 与 $\delta\bar{\kappa}_\xi$，式 (3.5.14) 变为
+\begin{equation*}
+\sqrt{\frac{3}{32\pi^2}}\,\frac{1}{g_{min}} = \ln\!\left(\frac{\xi}{l}\right)
+\end{equation*}
+我们发现
+\begin{equation*}
+\xi = l\,\mathrm{e}^{\left(C/(\kappa_l - \kappa_c)\right)^{1/2}},\qquad C = \frac{n^2}{2\pi\bar{g}_l}\left(\frac{3}{32\pi^2}\right)^{3/2}
+\end{equation*}
+
+\subsection{不动点与相变}
+
+\begin{keypoints}
+\item 不动点与普适性质。
+\item 没有相关微扰的不动点对应一个稳定的相。有一个相关微扰的不动点对应两个稳定相之间的相变点。
+\end{keypoints}
+
+跑动耦合常数与不动点（或普适类）可能是 RG 理论中最重要的两个概念。本节我们将在一个一般性的框架中讨论它们。让我们考虑一个具有两个耦合常数 $g_1$ 与 $g_2$ 的理论。与截断尺度 $l$ 相结合，我们可以定义无量纲耦合常数 $\tilde{g}_a = g_a l^{\lambda_a}$，$a = 1, 2$。当我们积掉短距离涨落时，无量纲耦合常数可能会流动。一种可能的流图见图 3.11(a)。
+
+从这样的流图中我们能学到什么？首先，我们注意到流有两个吸引不动点（attractive fixed point）A 与 B。如果 $(\tilde{g}_1,\tilde{g}_2)$ 位于 DCD$'$ 线下方的任何位置，那么经过长流之后，系统将由 $(\tilde{g}_1(A),\tilde{g}_2(A))$ 描述。因此在长距离下，系统由不动点 A 描述。这幅图像演示了普适性原理：系统的长距离行为不依赖于系统的短距离细节。DCD$'$ 线下方的所有系统，都享有由 A 处的不动点理论所描述的共同长距离行为。共同的长距离性质之一是关联函数中的代数衰减指数。DCD$'$ 线下方的所有系统，在相应的关联中都有相同的衰减指数。这些共同性质称为普适性质（universal properties）。流向同一个不动点的所有系统构成一个普适类（universality class）。
+
+%FIG{3.11}: {(a) A 与 B 是代表两个相的两个稳定不动点。C 是具有一个相关算符/方向的不稳定不动点。A 相与 B 相之间的相变是连续相变。临界点由不稳定不动点 C 描述。(b) 模型 (3.5.3) 的不动点/不动点线结构。CA 是一条稳定不动点线。B 与 B$'$ 是两个稳定不动点。CA、B 与 B$'$ 代表三个相。C 是临界点，代表 A 相（具有代数长程关联）与 B/B$'$ 相（没有长程关联）之间的转变，该转变为 KT 相变。CA$'$ 是一条不稳定不动点线，描述 B 相与 B$'$ 相之间的转变。}
+
+DCD$'$ 线上方的系统流向另一个不同的不动点，构成另一个普适类。这些系统具有不同的（长距离）普适性质。特别地，它们的衰减指数不同。
+
+普适类与相紧密相关。我们看到，当 $(\tilde{g}_1,\tilde{g}_2)$ 穿过 DCD$'$ 线时，系统的长距离行为与长波涨落突然改变。结果，系统的自由能在 DCD$'$ 线上具有奇异性。因此，DCD$'$ 线是分隔两个相的一条相变线。在这幅图像之下，我们可以说 DCD$'$ 线下方的系统构成一个相，DCD$'$ 线上方的系统构成另一个相。相与普适类在这里意味着同一件事。
+
+让我们从正好位于不动点 A 上的系统出发。我们加上一些微扰，使耦合常数 $(\tilde{g}_1,\tilde{g}_2)$ 偏离 $(\tilde{g}_1(A),\tilde{g}_2(A))$。当 $(\tilde{g}_1,\tilde{g}_2)$ 流回 $(\tilde{g}_1(A),\tilde{g}_2(A))$ 时，微扰在长距离下流向零。因此，这些微扰是不相关微扰。由于稳定不动点周围的所有微扰都流向零，\emph{稳定不动点处的有效理论不含任何相关或边际微扰}。
+
+现在让我们考虑相变点（即临界点）的长距离性质。如果我们从 DCD$'$ 线上的任何位置出发，就可以看到系统流向不动点 C。因此，临界点的长距离行为由不稳定不动点 C 描述。这里我们再次看到普适性：无论从何处穿过相变线，相变点的长距离行为总是相同的。
+
+不动点 C 有一个（且仅有一个）不稳定方向。该方向上的微扰将流离这个不动点。因此，C 的不动点理论有且仅有一个相关微扰。一般地，\emph{描述两相之间相变的临界点有且仅有一个相关微扰}。如果一个不稳定不动点有两个相关微扰，那么该不动点将描述一个三临界点（tri-critical point）。
+
+模型 (3.5.3) 含有一个边际微扰。它的流图更为复杂。（见图 3.11(b)，其中 $(\tilde{g}_1,\tilde{g}_2)$ 对应于 $(\tilde{\eta},\tilde{g})$。）系统有三个相。DCD$'$ 线下方的相由稳定不动点线 AC 控制。这个相具有代数长程关联。代数长程关联的指数依赖于在 AC 线上的位置。DCA$'$ 线上方的相由稳定不动点 B 控制。它没有长程关联，比方说，由 $\langle\cos(\theta)\rangle < 0$ 刻画。D$'$CA$'$ 线右边的相由稳定不动点 B$'$ 控制。它也没有长程关联，由 $\langle\cos(\theta)\rangle > 0$ 刻画。AC 相与 B 相（或 B$'$ 相）之间的相变由不稳定不动点 C 控制，而 B 相与 B$'$ 相之间的相变由不稳定不动点线 CA$'$ 控制。临界指数依赖于在 CA$'$ 线上的位置。
+
+从上面两个简单的例子我们看到，从一个系统的 RG 流图，我们能学到许多关于相与相变的知识。在 3.3.2 节中，我们从对称性破缺的观点讨论了相与相变。本节中我们看到，相与相变也可以基于 RG 图像来理解。这里我想指出，RG 图像（尽管不那么具体）比对称性破缺图像更为基本。对称性破缺图像假定图 3.11(a) 中的两个稳定不动点具有不同的对称性，并且相变线 DCD$'$ 是一条对称性破缺的相变线。这幅对称性破缺图像并不总是正确的。我们可以构造出显式的例子，其中不动点 A 与 B 具有相同的对称性，而相变线 DCD$'$ 不改变任何对称性（Coleman and Weinberg, 1973; Halperin et al., 1974; Fradkin and Shenker, 1979; Wen and Wu, 1993; Senthil et al., 1999; Read and Green, 2000; Wen, 2000）。
+
+\section{玻色超流到莫特绝缘体的转变}
+
+\begin{keypoints}
+\item 贝里相项（式 (3.3.20) 中的全导数项 $-\rho_0\partial_t\theta$）在量子 XY 模型中是重要的。它定性地改变了涡旋的性质。
+\end{keypoints}
+
+在 $1+1$ 维和零温下，量子玻色超流在低能下同样由一个 XY 模型 (3.3.10) 描述。在虚时中，如果我们取 $v = 1$，量子 XY 模型就与上一节中研究的二维 XY 模型完全相同。虚时 XY 模型中的涡旋对应于可以改变量子系统动力学的隧穿过程。根据 3.4 节得到的结果，看起来当
+\begin{equation*}
+\chi v < 2/\pi
+\end{equation*}
+时，瞬子将破坏长程序，使所有关联在空间与时间两个方向上都变成短程的。这意味着瞬子将为所有激发打开一个能隙。上述结论显然是错误的。自由空间中的玻色系统总是可压缩的，它至少含有来自密度波的无能隙模式。
+
+上述论证中的错误相当微妙。为了理解这个错误，我们需要先讨论玻色超流的激发谱。玻色超流中有两类低能激发：对应于声波的局域激发，以及对应于玻色子总数和伽利略助推（Galileo boost）的整体激发。让我们用自由玻色系统作例子，来说明这两类激发。自由玻色系统的基态为 $|k_1,\ldots,k_N\rangle = |0,\ldots,0\rangle$。局域激发通过把若干个 $k$ 改变为某些非零值而产生。低能下，$\sum_i |k_i| \ll \sqrt{\rho}$。整体激发通过往 $k = 0$ 态上添加（或移除）几个玻色子、或者把所有 $k_i$ 平移相同的量而产生。后者称为伽利略助推。对于相互作用玻色系统，伽利略助推可以通过把玻色子的边界条件从 $0$ 扭转到 $2\pi$ 或 $2\pi\times$ 整数来实现，即把常数 $\varphi(x) = \varphi_0$ 改为 $\varphi(x) = \mathrm{e}^{\mathrm{i}2\pi nx/L}\varphi_0$。
+
+让我们考虑处于超流态的相互作用 $N$ 玻色子系统的能级。低能、小动量的激发由声波给出。这些激发的能级如图 3.12(a) 所示。伽利略助推只涉及质心运动。最小的伽利略助推对应于把所有 $k_i$ 平移 $2\pi/L$，其中 $L$ 是系统的线性尺寸。这样的伽利略助推给出一个动量为 $K_1 = 2\pi N/L = 2\pi\rho$、能量为 $E_1 = K_1^2/2mN$ 的激发。我们看到，伽利略助推能量极低但动量很大。因此，伽利略助推不能由声波产生。由 $2\pi n/L$ 的平移所产生的更一般的伽利略助推，具有动量 $K_n = 2\pi nN/L = 2\pi n\rho$ 和能量 $E_n = K_n^2/2mN$。这样，相互作用 $N$ 玻色子系统的低能能级就如图 3.12(b) 所示。$k = K_n$ 附近的能级由第 $n$ 个伽利略助推加上声波给出。
+
+%FIG{3.12}: {$(1+1)$ 维相互作用玻色子的能级，(a) $k \sim 0$，(b) 大 $k$。}
+
+现在的问题是：超流的低能 XY 模型，即
+\begin{equation*}
+L_{XY} = \frac{\chi}{2}\dot{\theta}^2 - \frac{\rho}{2m}(\partial_x\theta)^2\tag{3.6.1}
+\end{equation*}
+能否重现上述谱？让我们展开
+\begin{equation*}
+\theta(x,t) = \theta_0(t) + n\frac{2\pi x}{L} + \sum_{k\neq 0}\theta_k L^{-1/2}\,\mathrm{e}^{\mathrm{i}kx}
+\end{equation*}
+第二项描述了当 $x$ 从 $x = 0$ 走到 $x = L$ 时，$\mathrm{e}^{\mathrm{i}\theta(x)}$ 绕零点的缠绕。作用量可以改写为
+\begin{equation*}
+S_{XY} = \frac{\chi L}{2}\dot{\theta}_0^2 - \frac{K_n^2}{2mN} + \sum_{k>0}\Big[\chi\dot{\theta}_k^\dagger\dot{\theta}_k - \frac{\rho k^2}{2m}\theta_k^\dagger\theta_k\Big]
+\end{equation*}
+我们看到，$(\theta_k,\theta_{-k})$ 描述一个二维振子，它对应于声波模式。由 3.3.7 节我们看到，$\dot{\theta}_0$ 描述玻色子数涨落，这里将其忽略。现在清楚了，缠绕项 $n\frac{2\pi x}{L}$ 描述一个伽利略助推。这是因为伽利略助推把玻色子场的边界条件从 $\varphi(L) = \varphi(0)$ 扭转到 $\varphi(L) = \mathrm{e}^{\mathrm{i}2\pi n}\varphi(0)$，从而把 $\theta(x) = 0$ 变为 $\theta(x) = 2\pi nx/L$。$\theta$ 场的缠绕与伽利略助推之间的这种关系，也与缠绕所产生的能量 $\frac{K_n^2}{2mN}$ 相一致。
+
+$(1+1)$ 维超流体中 $(x,t)$ 处的一个涡旋，对应于一个算符 $O_v(x,t)$。上述分析表明，算符 $O_v(x,t)$ 把 $k = 0$ 附近的态映射到 $k = 2\pi\rho$ 附近的态。这是因为涡旋把 $\theta(x) = 0$ 变为 $\theta(x) = \frac{2\pi x}{L}$。这样，涡旋就产生了一个伽利略助推。在虚时中，含涡旋的配分函数应具有如下形式
+\begin{equation*}
+Z = Z_0\sum_n \frac{1}{n!n!}\int\prod_{i=1}^{2n}\mathrm{d}^2\pmb{r}_i\;K^{2n}\,\mathrm{e}^{\mathrm{i}2\pi\rho\sum_j q_j x_j}\,\mathrm{e}^{\sum_{i<j}^{2n} q_iq_j 2\pi\eta\ln\frac{|x_i - x_j|}{l}}
+\end{equation*}
+其中 $Z_0$ 是没有涡旋时的配分函数。额外的相位项 $\mathrm{e}^{\mathrm{i}2\pi\rho\sum_j q_j x_j}$ 反映了涡旋所携带的大动量。由于这个相位项，涡旋与反涡旋必须成对运动以相互抵消相位，才能有大的贡献。因此，相位项把涡旋与反涡旋禁闭在一起，“库仑”气体没有等离子体相。于是，即使把涡旋包括进来，玻色系统对任何 $\chi$ 与 $v$ 的取值都处于超流相。
+
+然而，如果我们加入一个周期等于平均玻色子间距 $a = 1/\rho$ 的弱周期势，相位项就可以与周期势发生干涉，平均而言变成一个常数。现在我们可以在临界值 $\chi v = 2/\pi$ 处得到 KT 相变。$(1+1)$ 维相互作用玻色子在弱周期势中的相图绘于图 3.13。对于 $\chi v > 2/\pi$，玻色子形成具有代数长程序和无能隙声波模式的导电态。对于 $\chi v < 2/\pi$，所有激发都将具有有限的能隙，玻色子形成一种绝缘体，称为莫特绝缘体（Mott insulator），因为其绝缘性质来源于相互作用而非能带。大势极限下的莫特绝缘体很容易理解：在该极限下，基态在每个势阱中有一个玻色子；把一个玻色子移到另一个势阱，会由于玻色子之间的排斥而耗费有限的能量（见图 3.14）。
+
+%FIG{3.13}: {$(1+1)$ 维相互作用玻色子在弱周期势中的相图。这里 $\eta = \chi v$，$\eta_c = 2/\pi$。}
+
+%FIG{3.14}: {强周期势中 $(1+1)$ 维相互作用玻色子的莫特绝缘体。}
+
+对涡旋的上述理解也使我们能够计算低能和\emph{大}动量下的密度关联。让我们考虑密度关联函数的谱展开：
+
+% ------------------------------------------------------------
+% 块边界备注：
+%   起点：书页 111（p126）末行为无编号有效作用量（见本文件顶部注释），
+%   本块以 %JOIN% 续书页 112 顶部残句 "where K(x) = n²⟨δθ(x)δθ(0)⟩.
+%   We note that the last term can be rewritten as"，与 ch3_d 末式无缝缝合。
+%   终点：书页 122（p137）末句 "Let us consider the spectral expansion"
+%   跨页延续到书页 123（p138）顶部 "of the density correlation function:"。
+%   按 assemble.py 约定，该残句译文（"密度关联函数的谱展开："）应由 ch3_f
+%   放入其 %--E-TAIL-- 区（或在其正文开头以 %JOIN% 续译），装配后正好接在
+%   本块末尾"让我们考虑"之后；ch3_f 请勿重复翻译，其正文请从 p138 顶部的
+%   谱展开无编号式起译。
+%   本块含：§3.5.4 末段（自书页 112 顶部续起）、§3.5.5、§3.5.6、§3.5.7 三个
+%   \subsection、问题 3.5.2 与 3.5.3、§3.6 的 \section 及其开头（至书页 122 末）。
+%   带编号公式 8 个：式 (3.5.8)–(3.5.14)、(3.6.1)；图 3.10–3.14 共 5 个 %FIG；
+%   脚注 1 条（原书脚注 23）。
+% ------------------------------------------------------------
+% 新增术语（ch3_e，待并入术语表"新增术语"区）：
+%   running coupling constant 跑动耦合常数；
+%   fixed-point theory 不动点理论；attractive fixed point 吸引不动点；
+%   unstable fixed point / fixed line 不稳定不动点 / 不动点线；
+%   stable fixed line 稳定不动点线；
+%   marginal perturbation / operator / coupling constant 边际微扰 / 边际算符 / 边际耦合常数；
+%   exact marginal operator 严格边际算符；
+%   universality class 普适类；universal properties 普适性质；principle of universality 普适性原理；
+%   tri-critical point 三临界点；dynamical symmetry restoration 动力学对称性恢复；
+%   Galileo boost 伽利略助推；winding 缠绕；
+%   "Coulomb" gas "库仑"气体；plasma phase 等离子体相；
+%   conducting state 导电态；potential well 势阱；periodic potential 周期势；
+%   local / global excitation 局域激发 / 整体激发；compressible 可压缩的；
+%   （备查，ch3_d 范围：Z_n clock model Z_n 时钟模型；compact / non-compact
+%   clock model 紧致 / 非紧致时钟模型；background-field RG approach 背景场 RG 方法；
+%   Ginzburg–Landau theory Ginzburg–Landau 理论）
+% ------------------------------------------------------------

@@ -1,0 +1,703 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第5章 电子间相互作用
+
+% 第5章 Electron–Electron Interaction
+\chapter{电子间相互作用}
+
+\epigraphbook{“这整个事情就是一个糊弄我们高贵轻信的低劣骗局”\\——Sam 说}{NORMAN LINDSAY，\emph{The Magic Pudding}}
+
+\section{微扰表述}
+
+第 3 章所讲述的电子结构理论是一种\emph{单电子模型}（one-electron model）：每个电子都被当作一个独立的粒子，在一个完全确定的势中运动，而传导电子之间的相互作用则被略去。但我们知道，这些相互作用是强的，而且是长程的——它们就是电荷之间的库仑力（Coulomb force），以及与波函数的反对称性相联系的所谓交换力（exchange force）。
+
+我们天真地假定，这些相互作用可以靠一次 Hartree 或 Hartree--Fock 自洽计算来料理妥当：这种计算按照价电子的电荷分布（当然，也包括离子实各闭壳层中的电子）来调整原子势。但要把这件事做得妥当并不容易——我们也许不得不退而依靠某种假设，例如 Wigner 和 Seitz（§4.3）所用的那一个：电子看到的是它恰好置身其中的那个晶胞里一个带单电荷的离子的势，而相邻的晶胞则是电中性的。
+
+因此，近年来人们在一团经由各自库仑势相互作用的电子气的这个\emph{多体问题}（many-body problem）上耗费了大量精力，如今相互作用的基本效应已被理解得相当清楚。这理论的许多部分是用复杂的形式语言表述的；其主要结果却出人意料地简单，而且可以用初等的论证推导出来。
+
+我们考虑一个自由电子气，它受到一个随时间变化的微扰。设在时刻 $t$、位于 $\mathbf{r}$ 处的电子感受到的势为
+\begin{equation*}
+\delta\mathcal{U}(\mathbf{r},t)=\mathcal{U}\,e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}e^{\alpha t}.
+\tag{5.1}
+\end{equation*}
+我们施加了一个频率为 $\omega$、波矢为 $\mathbf{q}$ 的振荡，它以时间常数 $\alpha$ 缓慢增长。
+
+作用在态 $|\mathbf{k}\rangle=\exp i\{\mathbf{k}\cdot\mathbf{r}+\mathcal{E}(\mathbf{k})t/\hbar\}$ 上时，它把别的态混入进来，于是波函数变成
+\begin{equation*}
+\psi_{\mathbf{k}}(\mathbf{r},t)=|\mathbf{k}\rangle+b_{\mathbf{k}+\mathbf{q}}(t)\,|\mathbf{k}+\mathbf{q}\rangle,
+\tag{5.2}
+\end{equation*}
+其中系数可以用微扰论算到一级：
+\begin{align*}
+b_{\mathbf{k}+\mathbf{q}}(t)&=\frac{\langle\mathbf{k}+\mathbf{q}\,|\,\delta\mathcal{U}\,|\,\mathbf{k}\rangle}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha}\\
+&=\frac{\mathcal{U}\,e^{i\omega t}e^{\alpha t}}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha}.
+\tag{5.3}
+\end{align*}
+这可以直接由 $\psi_{\mathbf{k}}$ 的含时 Schrödinger 方程看出：未微扰的哈密顿量——正好就是动能算符，其本征值为 $\mathcal{E}(\mathbf{k})$——被式 (5.1) 所增广，而式 (5.1) 被认为是小的。
+
+现在考虑电子波函数的这一变化所引起的电荷密度的改变。我们假定所处理的是\emph{凝胶}（jellium），即电子在其上运动的一种均匀带正电的介质。
+\begin{align*}
+\delta\rho(\mathbf{r},t)&=e\sum_{\mathbf{k}}\left\{\left|\psi_{\mathbf{k}}(\mathbf{r},t)\right|^{2}-1\right\}\\
+&=e\sum_{\mathbf{k}}\left[\left\{e^{-i\mathbf{k}\cdot\mathbf{r}}+b_{\mathbf{k}+\mathbf{q}}^{*}(t)\,e^{-i(\mathbf{k}+\mathbf{q})\cdot\mathbf{r}}\right\}\left\{e^{i\mathbf{k}\cdot\mathbf{r}}+b_{\mathbf{k}+\mathbf{q}}(t)\,e^{i(\mathbf{k}+\mathbf{q})\cdot\mathbf{r}}\right\}-1\right]\\
+&\approx e\sum_{\mathbf{k}}\left\{b_{\mathbf{k}+\mathbf{q}}(t)\,e^{i\mathbf{q}\cdot\mathbf{r}}+b_{\mathbf{k}+\mathbf{q}}^{*}(t)\,e^{-i\mathbf{q}\cdot\mathbf{r}}\right\},
+\tag{5.4}
+\end{align*}
+这里是舍去了 $|b|^{2}$ 项的结果。此处的求和遍及所有被占据的电子态。
+
+由于 $\delta\rho$ 按其定义是实的，我们发现波 (5.1) 产生两类电荷扰动：一类随波一同行进，另一类则与波有 $180^{\circ}$ 的相位差。如果我们假定实际上遇到的是实微扰，也就是说，如果在 (5.1) 上加上它的复共轭
+\begin{equation*}
+\delta\mathcal{U}^{*}(\mathbf{r},t)=\mathcal{U}\,e^{-i\mathbf{q}\cdot\mathbf{r}}e^{-i\omega t}e^{\alpha t},
+\tag{5.5}
+\end{equation*}
+那么我们发现电荷密度的变化就跟随总微扰，而不引入任何额外的 Fourier 分量，即
+\begin{align*}
+\delta\rho=e\sum_{\mathbf{k}}\bigg\{&\frac{\mathcal{U}}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha}\\
+&+\frac{\mathcal{U}}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}-\mathbf{q})-\hbar\omega+i\hbar\alpha}\bigg\}e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}e^{\alpha t}+\text{复共轭}.
+\tag{5.6}
+\end{align*}
+
+为了把这一点弄得稍微更一般些，让我们引入 $f_{0}(\mathbf{k})$，作为未微扰金属中 $|\mathbf{k}\rangle$ 被占据的概率——例如它可以是费米--狄拉克（Fermi--Dirac）函数 (4.8)。在 (5.6) 的第二项中把标记 $\mathbf{k}$ 换写成 $\mathbf{k}-\mathbf{q}$，我们便可以把求和写成如下形式
+\begin{equation*}
+\delta\rho=e\mathcal{U}\sum_{\mathbf{k}}\left\{\frac{f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha}\right\}e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}e^{\alpha t}+\text{复共轭},
+\tag{5.7}
+\end{equation*}
+其中求和现在遍及所有态 $|\mathbf{k}\rangle$，无论“被占据的”还是“未被占据的”。
+
+这一电荷分布经由库仑相互作用产生一个作用于电子的势能场。若把它记作 $\delta\Phi(\mathbf{r},t)$，则按泊松（Poisson）方程必有
+\begin{equation*}
+\nabla^{2}(\delta\Phi)=-4\pi e\,\delta\rho.
+\tag{5.8}
+\end{equation*}
+我们可以假定 $\delta\Phi$ 与 $\delta\rho$ 具有同样的空间和时间变化，即写成
+\begin{equation*}
+\delta\Phi(\mathbf{r},t)=\Phi\,e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}e^{\alpha t}+\text{复共轭}.
+\tag{5.9}
+\end{equation*}
+把 (5.7)、(5.8) 与 (5.9) 联立，便得
+\begin{equation*}
+-q^{2}\Phi=-4\pi e^{2}\mathcal{U}\sum_{\mathbf{k}}\frac{f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha},
+\tag{5.10}
+\end{equation*}
+即
+\begin{equation*}
+\Phi=\left\{\frac{4\pi e^{2}}{q^{2}}\sum_{\mathbf{k}}\frac{f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha}\right\}\mathcal{U}.
+\tag{5.11}
+\end{equation*}
+
+这就是与原来的势 $\delta\mathcal{U}$ 所感生的电荷重新分布相联系的势（能）。但这个新的势 $\delta\Phi$ 其实本来就应该被算作电子分布所受微扰的一部分。为了使计算自洽，我们所假设的微扰 $\delta\mathcal{U}$ 本应已经把 $\delta\Phi$ 包含在内。换言之
+\begin{equation*}
+\delta\mathcal{U}(\mathbf{r},t)=\delta\mathcal{V}(\mathbf{r},t)+\delta\Phi(\mathbf{r},t),
+\tag{5.12}
+\end{equation*}
+其中 $\delta\mathcal{V}(\mathbf{r},t)$ 是我们自以为施加了的那个真实外势。
+
+如果我们假定 $\delta\mathcal{V}$ 具有如下形式
+\begin{equation*}
+\delta\mathcal{V}=\mathcal{V}\,e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}e^{\alpha t}+\text{复共轭},
+\tag{5.13}
+\end{equation*}
+那么由 (5.12) 和 (5.11) 得
+\begin{equation*}
+\mathcal{U}=\mathcal{V}+\left\{\frac{4\pi e^{2}}{q^{2}}\sum_{\mathbf{k}}\frac{f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})}{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q})+\hbar\omega-i\hbar\alpha}\right\}\mathcal{U}
+\tag{5.14}
+\end{equation*}
+或
+\begin{equation*}
+\mathcal{U}=\frac{\mathcal{V}}{\epsilon(\mathbf{q},\omega)},
+\tag{5.15}
+\end{equation*}
+其中
+\begin{equation*}
+\epsilon(\mathbf{q},\omega)\equiv 1+\frac{4\pi e^{2}}{q^{2}}\sum_{\mathbf{k}}\frac{f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})}{\mathcal{E}(\mathbf{k}+\mathbf{q})-\mathcal{E}(\mathbf{k})-\hbar\omega+i\hbar\alpha}
+\tag{5.16}
+\end{equation*}
+（求和中分母的正负号是为了方便而作了更换）。
+
+换句话说，作用于电子的有效势 $\mathcal{U}$ 并不是外加的势 $\mathcal{V}$，而是要除以一个\emph{介电常数}（dielectric constant）$\epsilon(\mathbf{q},\omega)$；它是外加微扰的波长和频率的函数。我们是对单个 Fourier 分量导出这个结果的，但由于我们在 (5.2)、(5.4) 等处已把方程线性化，所以可以把不同 Fourier 分量的效应加起来。于是，若把 $\delta\mathcal{V}$ 用 Fourier 积分表示为
+\begin{equation*}
+\delta\mathcal{V}(\mathbf{r},t)=\iint\mathcal{V}(\mathbf{q},\omega)\,e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}\,\mathrm{d}\mathbf{q}\,\mathrm{d}\omega,
+\tag{5.17}
+\end{equation*}
+就可以由下式算出电子所感受到的有效势：
+\begin{equation*}
+\delta\mathcal{U}(\mathbf{r},t)=\iint\frac{\mathcal{V}(\mathbf{q},\omega)}{\epsilon(\mathbf{q},\omega)}\,e^{i\mathbf{q}\cdot\mathbf{r}}e^{i\omega t}\,\mathrm{d}\mathbf{q}\,\mathrm{d}\omega.
+\tag{5.18}
+\end{equation*}
+
+公式 (5.16) 被称为 \emph{Lindhard 表达式}（Lindhard's expression）。在本章下面几节中我们将证明，它孕育着对一系列物理现象的种种富有成果的描述的种子。
+
+\section{静态屏蔽}
+
+让我们考虑 $\omega=0$ 的静态微扰的效应。先考察 $\epsilon(\mathbf{q},0)$ 在 $q=0$ 附近的形式。在 (5.16) 中我们可以近似地写
+\begin{equation*}
+\mathcal{E}(\mathbf{k}+\mathbf{q})-\mathcal{E}(\mathbf{k})\approx\mathbf{q}\cdot\nabla_{\mathbf{k}}\mathcal{E}(\mathbf{k})
+\tag{5.19}
+\end{equation*}
+并且，注意到 $f^{0}(\mathbf{k})$ 只是 $\mathcal{E}(\mathbf{k})$ 的函数，
+\begin{equation*}
+f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})\approx-\mathbf{q}\cdot\frac{\partial f^{0}}{\partial\mathcal{E}}\,\nabla_{\mathbf{k}}\mathcal{E}(\mathbf{k}).
+\tag{5.20}
+\end{equation*}
+
+(5.16) 中的求和可以写成一个积分（记住，原则上它现在遍及所有态，既包括占据的也包括空的）：
+\begin{align*}
+\epsilon(\mathbf{q},0)&\to 1+\frac{4\pi e^{2}}{q^{2}}\int\frac{\left\{\mathbf{q}\cdot\nabla_{\mathbf{k}}\mathcal{E}(\mathbf{k})\right\}}{\left\{\mathbf{q}\cdot\nabla_{\mathbf{k}}\mathcal{E}(\mathbf{k})\right\}}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\mathrm{d}\mathbf{k}\\
+&=1+\frac{4\pi e^{2}}{q^{2}}\int\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)\mathcal{N}(\mathcal{E})\,\mathrm{d}\mathcal{E}\\
+&=1+\frac{\lambda^{2}}{q^{2}},
+\tag{5.21}
+\end{align*}
+其中
+\begin{equation*}
+\lambda^{2}=4\pi e^{2}\mathcal{N}(\mathcal{E}_{F})
+\tag{5.22}
+\end{equation*}
+因为 $\left(-\partial f^{0}/\partial\mathcal{E}\right)$ 只是能量的函数，而且按 (4.13)--(4.18)，它实际上就是费米能级处的一个 $\delta$ 函数。
+
+这个结果表明，当 $q\to 0$ 时 $\epsilon\to\infty$。看一眼 (5.15) 便知，这意味着对固定的 $\mathcal{V}$，当 $q\to 0$ 时 $\mathcal{U}\to 0$。换言之，\emph{长波长的外场几乎完全被电子的流动所屏蔽}。
+
+用更初等的论证——在 Thomas--Fermi 近似中——也能得到同样的结果。设在某点 $\mathbf{r}$ 处有一个微扰势 $\delta\mathcal{U}$。于是电子的费米分布将相对于 $\delta\mathcal{U}$ 为零之处的分布被抬高这一数量。但这意味着，除非电子从这一区域流走，否则费米能级 $\zeta$ 就会改变。事实上这必定发生，因为 $\zeta$ 作为化学势，在整个体积内处处相同。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_86.pdf}
+\caption*{图 86\quad 微扰对费米分布的效应。}
+\end{figure}
+
+如果 $\delta\mathcal{U}$ 很小，我们就从分布的顶部削去这样厚的一层；也就是说，局域电子密度改变了
+\begin{equation*}
+\delta n(\mathbf{r})=-\mathcal{N}(\mathcal{E}_{F})\,\delta\mathcal{U}(\mathbf{r}).
+\tag{5.23}
+\end{equation*}
+但电子密度的改变对应于局域电荷密度的改变，而后者又转而产生一个势 $\delta\Phi(\mathbf{r})$。它必须满足泊松方程
+\begin{align*}
+\nabla^{2}(\delta\Phi)&=-4\pi e^{2}\,\delta n(\mathbf{r})\\
+&=4\pi e^{2}\mathcal{N}(\mathcal{E}_{F})\,\delta\mathcal{U}(\mathbf{r})\\
+&=\lambda^{2}\delta\mathcal{U}.
+\tag{5.24}
+\end{align*}
+这就是 (5.11) 在作 Fourier 变换之前的等价形式，只是用 $\mathcal{N}(\mathcal{E}_{F})$ 代替了对 $\mathbf{k}$ 的求和：我们便回到了 (5.21)。
+
+注意，对\emph{经典气体}（classical gas）——例如半导体中的载流子——我们可以论证 (5.23) 应当代之以下式
+\begin{align*}
+\delta n(\mathbf{r})&\approx n_{0}\exp\left\{-\delta\mathcal{U}(\mathbf{r})/kT\right\}-n_{0}\\
+&\approx-\frac{n_{0}}{kT}\,\delta\mathcal{U},
+\tag{5.25}
+\end{align*}
+其中 $n_{0}$ 是载流子的局域平均密度。这可以由 (4.32) 之类的公式得到。我们得到与 (5.24) 同类型的公式，只是现在
+\begin{equation*}
+\lambda^{2}=\frac{4\pi e^{2}n_{0}}{kT}.
+\tag{5.26}
+\end{equation*}
+自由电子气的态密度可以写成
+\begin{equation*}
+\mathcal{N}(\mathcal{E}_{F})=\frac{3}{2}\,\frac{n}{kT_{F}},
+\tag{5.27}
+\end{equation*}
+其中 $T_{F}$ 是气体的\emph{费米温度}（Fermi temperature）（即 $\mathcal{E}_{F}/k$）。于是，\emph{屏蔽参数}（screening parameter）$\lambda$ 的量子理论公式 (5.22) 在“电子具有非常高的有效温度 $\sim T_{F}$”这一假设之下，就等价于经典的 \emph{Debye--Hückel 公式} (5.26)。在 (5.21) 的推导中直接取 $f^{0}$ 为 Boltzmann 分布，同样可以直接得到 (5.26)。
+
+\section{被屏蔽的杂质与中性赝原子}
+
+固体中微扰场的一个典型例子是带电杂质周围的静电场。如果在金属晶格中用一个 Zn 离子替换一个 Cu 离子，我们就在原先只有一个电荷的地方放进了电荷 $+2|e|$。我们把这一杂质当作中性背景中一个净电荷 $+|e|$ 来处理，并计算它对自由电子气的效应。
+
+计算这个问题最简单的办法，是在 (5.24) 中假定 $\delta\mathcal{U}$ 和 $\delta\Phi$ 相同，只是杂质的最中心处除外。方程
+\begin{equation*}
+\nabla^{2}(\delta\mathcal{U})=\lambda^{2}(\delta\mathcal{U})
+\tag{5.28}
+\end{equation*}
+具有如下形式的解
+\begin{equation*}
+\delta\mathcal{U}=\frac{e^{2}}{r}\exp(-\lambda r),
+\tag{5.29}
+\end{equation*}
+其中我们让势在 $r=0$ 附近表现得如同点电荷的势。这是一个典型的结果：我们得到一个\emph{被屏蔽的库仑势}（screened Coulomb potential），它随距离按指数律衰减，\emph{屏蔽半径}（screening radius）为 $1/\lambda$。按照我们的一般屏蔽原理，在这个半径的几倍之外，电子就“看不见”这个杂质了。在金属中，这个半径是原子间距的量级；在半导体中它则要大得多。
+
+让我们从介电表述出发来得到这个结果。“外”场 $\delta\mathcal{V}(\mathbf{r})$ 是一个裸库仑势
+\begin{equation*}
+\delta\mathcal{V}(\mathbf{r})=\frac{e^{2}}{r}.
+\tag{5.30}
+\end{equation*}
+这个函数在单位体积的三维盒子中的 Fourier 变换式 (5.17) 是众所周知的：
+\begin{equation*}
+\mathcal{V}(\mathbf{q})=\frac{4\pi e^{2}}{q^{2}}.
+\tag{5.31}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_87.pdf}
+\caption*{图 87\quad (a) 单价金属中的二价杂质换成为 (b) 连续媒质中的点电荷。}
+\end{figure}
+
+我们注意到它在 $q=0$ 处是奇异的，这正对应于库仑势的无限“程长”。
+
+由 (5.15) 和 (5.21)，屏蔽势为
+\begin{align*}
+\mathcal{U}(\mathbf{q})&=\frac{4\pi e^{2}}{q^{2}\left(1+\lambda^{2}/q^{2}\right)}\\
+&=\frac{4\pi e^{2}}{\lambda^{2}+q^{2}}.
+\tag{5.32}
+\end{align*}
+众所周知，这正是我们在 (5.29) 中已经导出的势 $\delta\mathcal{U}(\mathbf{r})$ 的 Fourier 变换式 (5.18)。$\epsilon(\mathbf{q},0)$ 在 $q\to 0$ 处的奇异性抵消了 $\mathcal{V}(\mathbf{q})$ 的奇异性，从而除去了裸库仑势 (5.30) 的长程部分。
+
+这一形式体系也可以用来处理电子--电子相互作用对纯金属中势分布的影响。原则上，我们可以算出自洽屏蔽势 $\mathcal{U}_{s}(\mathbf{r})$ 的矩阵元——诸如在 N.F.E.（近自由电子）能带结构计算（§5.3；译注：疑为 §3.3 之误印）中我们会需要的那样——办法是把裸离子势 $\mathcal{V}_{b}(r)$ 的相应 Fourier 分量除以介电函数，如 (5.18) 那样。
+
+对于真实的深芯势，这种做法并不适用。但是，假如我们循着赝势方法的思路，用在 §3.9 中定义的模型赝势 $w_{b}(r)$ 来表示每个裸离子的场，那么，只要离子实不相互交叠，我们就可以把屏蔽之前的总“势”写成离子赝势的叠加，即
+\begin{equation*}
+\mathcal{V}_{b}(\mathbf{r})=\sum_{l}w_{b}(\mathbf{r}-\mathbf{R}_{l}).
+\tag{5.33}
+\end{equation*}
+按 (2.86) 和 (5.18)，相应的自洽势具有 Fourier 分量
+\begin{equation*}
+\mathcal{U}_{s}(\mathbf{K})=\frac{1}{N}\sum_{l}e^{i\mathbf{K}\cdot\mathbf{R}_{l}}\,\frac{w_{b}(\mathbf{K})}{\epsilon(K,0)},
+\tag{5.34}
+\end{equation*}
+其中现在的 $w_{b}(\mathbf{K})$ 是赝势 $w_{b}$ 的 Fourier 变换或矩阵元。在规则晶格中，结构因子 (2.92) 只不过挑出倒格矢，于是这个公式就给出了 N.F.E. 形式体系（例如 (3.64)）中系数 $\Gamma$ 的屏蔽赝势矩阵元。
+
+适当地选取结构因子，我们还可以把 (5.34) 用作传导电子被对晶体序的偏离所散射的净矩阵元的估计——例如被声子（§6.12）散射，甚至在液态金属中也如此。在这类情形下，把这个公式改写成某个实空间函数的 Fourier 变换（与 (5.33) 类似）是有启发意义的：线性屏蔽近似使我们得以把屏蔽与叠加这两个操作互换次序，从而给出
+\begin{equation*}
+\mathcal{U}_{s}(\mathbf{r})\doteq\sum_{l}w_{s}(\mathbf{r}-\mathbf{R}_{l}),
+\tag{5.35}
+\end{equation*}
+其中每个原子中心 $\mathbf{R}_{l}$ 现在似乎都携带着一个被屏蔽的离子赝势 $w_{s}(r)$，其 Fourier 变换为 $w_{b}(\mathbf{K})/\epsilon(K,0)$（图 88）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_88.pdf}
+\caption*{图 88\quad (a) 裸离子势；(b) 裸离子赝势；(c) 被屏蔽的赝势。}
+\end{figure}
+
+如我们所见，屏蔽的主要后果是把长程库仑势变成屏蔽库仑函数 (5.29)。由 (5.7) 或 (5.23)，我们不难证明，每个离子现在都携带着一团电子电荷云，其密度随距离按指数律衰减，程长为 $\lambda$（译注：按式 (5.29)，衰减的程长应为 $1/\lambda$）。从远处看，这团电荷云必定恰好含有足以中和价电荷 $+Z|e|$ 的负电荷。换言之，我们造就了一种\emph{中性赝原子}（neutral pseudo-atom），在许多金属体系中可以把它当作一个单一实体来对待。例如在热振动中（图 89），离子偏离其格点的位移产生一个电场，使电子气极化，从而引起进一步的电荷转移：在线性响应近似之内，所有这些效应都只需把赝原子作为一个整体挪动，便可自洽地计入。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_89.pdf}
+\caption*{图 89\quad 中性赝原子。}
+\end{figure}
+
+然而要注意，相邻离子的屏蔽云必定总是相互交叠的，而且它们加起来差不多就是间隙区域中假定的自由电子密度。在真正的“原子性”聚集体（例如固态氩）中，电子定域在原子轨道上，这些轨道一旦被迫相互接触，就倾向于强烈地彼此排斥。金属中的屏蔽云无非是由传导电子气的无数\emph{非定域}（non-localized）态所贡献的\emph{平均}电荷密度的一种局域堆积而已。
+
+赝原子方法不过是消除裸离子势在芯区深处和长程处的发散的一种近似手段。尽管如此，对于简单金属来说，它在直观上是可靠的，并且对许多可观测的量给出极好的“零级”估计（见 §§6.12、6.13）。
+
+\section{屏蔽中的奇点：Kohn 效应}
+
+介电常数的公式 (5.21) 只是一个近似。如果想研究短距离上的屏蔽，我们就需要对大的 $\mathbf{q}$ 值算出 (5.16) 中的和。这依赖于能量面 $\mathcal{E}(\mathbf{k})$ 的细致结构。对于绝对零度下的自由电子模型，通过对 $\mathbf{k}$ 空间作直接积分来求出这个和并不十分困难。结果如下：
+\begin{equation*}
+\epsilon(\mathbf{q},0)=1+\frac{4\pi e^{2}}{q^{2}}\,\frac{n}{\frac{2}{3}\mathcal{E}_{F}}\left\{\frac{1}{2}+\frac{4k_{F}^{2}-q^{2}}{8k_{F}q}\ln\left|\frac{2k_{F}+q}{2k_{F}-q}\right|\right\},
+\tag{5.36}
+\end{equation*}
+其中 $k_{F}$ 是费米球的半径。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_90.pdf}
+\caption*{图 90\quad 屏蔽参数随波数的变化。}
+\end{figure}
+
+如果按 (5.21) 的形式把它写出来，那么我们看到 $\lambda$ 变成了 $q$ 的函数，当 $q\to 0$ 时趋于 (5.22)。有效屏蔽长度（effective screening length）$1/\lambda$ 随 $q$ 的增大而趋于增大。要让电子分布把短波长的势屏蔽掉，变得越来越困难。
+
+这个公式有趣之处在于 $q=2k_{F}$ 处发生的情况，在那里对数项是奇异的。这是真实的效应。它来源于 (5.16) 中和式的形式，其中含有 $f^{0}(\mathbf{k})-f^{0}(\mathbf{k}+\mathbf{q})$。因此，我们只需考虑这样的 $\mathbf{k}$ 值：$|\mathbf{k}\rangle$ 被占据而 $|\mathbf{k}+\mathbf{q}\rangle$ 为空，或者相反。当 $q$ 小时，它们位于覆盖球面的两个区域中（图 91(a)）。随着 $q$ 增大，这些区域稳步扩张，于是和随之增大。但最终会到达这样一个 $q$ 值，此时整个球面对和都有贡献。这发生在
+\begin{equation*}
+q=q_{c}=2k_{F}.
+\tag{5.37}
+\end{equation*}
+
+越过这一点之后，对 $\mathbf{k}$ 的求和中不再添入新项，于是和的函数形式发生改变，尽管其中每一项都仍然是 $\mathbf{q}$ 的连续函数。不过，在我们到达 $2k_{F}$ 之前球面上最后少数几个点的贡献很小，所以这个奇异性并不严重。介电函数本身保持连续，但 $\partial\epsilon/\partial q$ 在 $q=q_{c}$ 处有一个对数型的无穷大。这一论证可以推广到费米面不是球面的情形：任何具有 (5.16) 那般普遍形式之和，对于恰好张跨费米面的那些 $\mathbf{q}$ 值都会有类似的奇异性。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_91.pdf}
+\caption*{图 91\quad 对介电常数有贡献的费米球区域：(a) 小 $q$；(b) $q<2k_{F}$；(c) $q>2k_{F}$。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_92.pdf}
+\caption*{图 92\quad (a) 当 $\mathbf{q}$ 联接费米面上切线彼此平行的两点时出现 Kohn 异常；(b) 对给定的 $\mathbf{q}$ 方向，$q_{c}$ 可能有几个不同的值。}
+\end{figure}
+
+如果固定 $\mathbf{q}$ 的方向，我们预期 $q_{c}$ 出现在费米面在该方向上的极端卡钳口径（caliper dimension）处。如果我们能测出 $q_{c}$ 随方向的变化，就可以把费米面测绘出来——尽管（图 92(b)）对某一给定方向可能存在好几个 $q_{c}$ 值，对应于“直径”的极小值以及极大值。
+
+这就是晶格谱中 \emph{Kohn 效应}（Kohn effect）的起源。波矢为 $q$ 的声子由于离子的运动而建立起具有 (5.16) 型分量的势。电子移动过来把这个场屏蔽掉。于是离子之间就通过这个被屏蔽的场相互作用，这个场将与 $\epsilon(\mathbf{q})$ 成反比。这样，离子之间的力将
+%JOIN%
+受到修正，而且这种振动模式的晶格频率将依赖于 $\epsilon(\mathbf{q})$（见 §6.11）。于是，$\epsilon$ 中的奇异性将反映在声子频率上。
+
+在固体中传播的任何其他波动系统中，只要它们与传导电子有相互作用，也很可能观察到同样的效应，例如自旋波（§10.10）。原则上，这为研究费米面提供了一种普遍方法——尽管在实践中这一效应未必探测得到。
+
+\section{Friedel 求和规则}
+
+$\epsilon(\mathbf{q},0)$ 中的奇异性还有另一个有趣的后果。假设我们把式 (5.36) 代入点电荷屏蔽势的公式。按照式 (5.18) 与 (5.31)，应当得到
+
+\begin{equation*}
+\mathcal{U}(\mathbf{r}) = 4\pi e^2 \int \left\{ q^2 + \frac{4\pi e^2 n}{\frac{2}{3}\mathcal{E}_F} \left[ \frac{1}{2} + \frac{4k_F^2 - q^2}{8k_F q} \ln\left| \frac{2k_F + q}{2k_F - q} \right| \right] \right\}^{-1} e^{-i\mathbf{q}\cdot\mathbf{r}} \,\mathrm{d}\mathbf{q}
+\tag{5.38}
+\end{equation*}
+
+此即距离 $r$ 处的势。不必真的完成这个计算，我们也很容易相信：$q = 2k_F$ 处的奇异性将作为一项特殊贡献显现在 $\mathcal{U}(\mathbf{r})$ 中；它将不再是光滑的指数函数，而会含有波数为 $2k_F$ 的振荡。
+
+让我们不从式 (5.38) 出发来推导这一效应，而是循着 Friedel 提出的另一条颇为不同的论证路线。考虑一个球对称势 $\mathcal{U}(\mathbf{r})$。我们知道，在这种势存在时，Schrödinger 方程有一个形如下式的解
+
+\begin{equation*}
+\psi_{k,l} \sim \frac{1}{r} \sin\left( kr - \tfrac{1}{2}l\pi + \eta_l \right) P_l(\cos\theta)
+\tag{5.39}
+\end{equation*}
+
+它在远处成立。式中 $P_l(\cos\theta)$ 是 $l$ 阶的普通球谐函数。我们现在考虑的不是散射问题，而是一个“自由”电子的定态；这个空间中除了位于中心的势 $\mathcal{U}(\mathbf{r})$ 之外空无一物。
+
+像 (5.39) 这类解的存在——与 $\mathcal{U}(\mathbf{r}) = 0$ 时的对应解相比，其相位移动了一个量 $\eta_l$——正是求解这类势的散射问题的\emph{分波法}（partial wave method）的核心（参见 §3.9）。众所周知，像 (5.39) 这样的函数可与表示初态的平面波 $\exp(i\mathbf{k}\cdot\mathbf{r})$ 相匹配，而散射部分便可以计算出来。\emph{微分散射截面}由下式给出
+
+\begin{equation*}
+\sigma(\theta) = \frac{1}{k^2} \left| \sum_{l=0}^{\infty} (2l+1)\, e^{i\eta_l} \sin\eta_l \, P_l(\cos\theta) \right|^2 .
+\tag{5.40}
+\end{equation*}
+
+但还是回到我们的定态 (5.39)。假设我们取它们作为体系的基本本征态，并像对待平面波态那样，按能量递增的次序把它们逐个填满。为了便于计数状态，方便的办法是换用另一类边界条件——明显的规则是在 $r = R$ 处 $\psi_k = 0$，就好像我们有一个半径为 $R$ 的大球，原子置于中心。于是 $k$ 的“允许”值必须满足
+
+\begin{equation*}
+kR - \tfrac{1}{2}l\pi + \eta_l = \text{integer} \times \pi .
+\tag{5.41}
+\end{equation*}
+
+倘若我们的球是空的，使得所有相移（phase shift）$\eta_l$ 都为零，那么 $k$ 的“允许”值就应当是集合
+
+\begin{equation*}
+k_n = \frac{\left(n + \tfrac{1}{2}l\right)\pi}{R} .
+\tag{5.42}
+\end{equation*}
+
+当然，对每一个 $n$ 值有许多不同的 $l$ 值，而对每个 $l$ 又有 $(2l+1)$ 个不同的波函数。但是可以证明——事实上，由关于本征值分布的一个普遍定理即可推出——能量小于 $\mathcal{E}_F$（即波矢小于 $k_F$）的态的总数，在这种方案下与 §1.6 中所用的更常见的立方盒情形相同。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_93.pdf}
+\caption*{图 93\quad （译注：原书本图未附图注文字；图中沿 $k$ 轴标出"允许"值，相移使其移动一个量 $\eta(k)/R$，相邻间隔为 $\pi/R$。）}
+\end{figure}
+
+但原子位于中心时，各 $\eta_l$ 不为零，所以 $k$ 的“允许”值并不恰好落在 $k_n$ 处；它们将移动一个量 $\eta_l/R$。而 $\eta_l$ 又随 $k$ 变化。由图 93 容易看出，在 $k$ 轴上的两点 $k$ 与 $k'$ 之间，新的集合将含有
+
+\begin{equation*}
+\{\eta_l(k) - \eta_l(k')\}/\pi
+\end{equation*}
+
+个新的允许值。
+
+现在假设（这是合理的）$\eta_l$ 在 $k = 0$ 处趋于零。把各个能级填充到同一费米波矢 $k = k_F$ 所需的新电子总数必为
+
+\begin{equation*}
+Z = \frac{2}{\pi} \sum_l (2l+1)\, \eta_l(k_F)
+\tag{5.43}
+\end{equation*}
+
+这里对给定的 $l$ 计入了 $(2l+1)$ 个态，再加上电子的 2 个自旋态。我们已把这个数取作 $Z$，即杂质与溶剂金属之间的价电子数之差，因为恰好需要这么多的额外电子聚集在杂质附近来中和它的电荷。
+
+这就是 \emph{Friedel 求和规则}（Friedel sum rule）。它依据两条普遍原理：杂质的电荷必须在有限距离内被过剩的电子所中和；在远离杂质处，费米波矢 $k_F$ 必须与纯净完整晶体中的相同。
+
+这个公式为计算杂质的散射截面提供了一种极有用的方法。我们选取某个函数，例如带一个可调参数 $\lambda$ 的屏蔽 Coulomb 势 (5.29)。我们算出诸相移，并求出使它们满足 (5.43) 的 $\lambda$ 值。利用这些 $\eta_l$ 值，便可由分波公式 (5.40) 求得散射截面。这一步骤给出相当好的结果，而且对函数 $\mathcal{U}(\mathbf{r})$ 的形状不很敏感。原则上，它肯定比——比如说——在 Born 近似中使用 (5.38) 的矩阵元要好。传导电子太慢，那种做法并不成立。
+
+但现在来考虑与像 (5.39) 那样带相移的波相联系的电子密度。在距原子很远的 $r$ 处，我们将发现多余电荷
+
+\begin{align*}
+\delta\rho &= e \sum_l (2l+1) \int_0^{k_F} \left\{ |\psi_{k,l}(\eta_l)|^2 - |\psi_{k,l}(0)|^2 \right\} \frac{2R}{\pi}\, \mathrm{d}k \\
+&= \frac{e}{2\pi^2} \sum_l (2l+1) \int_0^{k_F} \left\{ \sin^2\left(kr - \tfrac{1}{2}l\pi + \eta_l\right) - \sin^2\left(kr - \tfrac{1}{2}l\pi\right) \right\} \frac{1}{r^2}\, \mathrm{d}k \\
+&= \frac{e}{2\pi^2} \sum_l (2l+1) \int_0^{k_F} \sin\left(2kr - l\pi + \eta_l\right) \sin\eta_l \, \frac{1}{r^3}\, \mathrm{d}(kr) \\
+&\sim \frac{e}{2\pi^2} \sum_l (2l+1) \left(-1\right)^l \sin\eta_l \, \frac{\cos(2k_F r + \eta_l)}{r^3}
+\tag{5.44}
+\end{align*}
+
+这里对半径为 $R$ 的球中的波函数 (5.39) 使用了归一化因子 $(2\pi R)^{-\frac{1}{2}}$，并略去了在 $r$ 很大时更快趋于零的各项。
+
+这就是与 (5.38) 中的奇异性相联系的振荡电荷密度。它仅以 $1/r^3$ 的方式趋于零，因此绝非可忽略的效应。有趣的是，杂质附近的电荷并不是简单地堆积起来；存在 $\delta\rho$ 为负的区域，在那里电子实际上被驱赶出去。这一点在与杂质间相互作用以及合金中 Knight 位移（Knight shift）有关的现象中具有重要意义（见 §10.2）。
+
+实际情况是：这份局域电荷并不是束缚在杂质周围的一两个电子的电荷。它来自费米气体中的快电子被吸引向杂质——它们倾向于在邻近处稍作逗留，并在那里挤得更紧。电子波长的陡峭截断于是引起干涉效应，在散射中心四周投下电荷的晕环。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_94.pdf}
+\caption*{图 94\quad 杂质周围的电荷晕}
+\end{figure}
+
+当\emph{过渡金属}溶入“正常”金属时，我们必须考虑未满的 d 壳层。正如 §3.10 中所见，自由原子的 d 轨道表现为一个\emph{共振}；在其中，如式 (3.81) 那样，\emph{d 相移}在宽度为 $W$ 的能量区间内迅速通过 $\pi/2$。由 Friedel 求和规则 (5.43) 可知，当我们穿越共振时，最多可达 10 个电子的电荷迅速在杂质上积累起来。但杂质上的总电荷必须自行稳定以求中和它的核电荷；离子中“d 电子”的数目必须与自由原子中的大致相同。这意味着溶剂金属的费米能级必须位于共振区之内。
+
+自由原子 d 壳层中的电子总是磁极化的：按照 Hund 规则，它们的自旋排列成与 Pauli 原理相容的最大磁矩。例如在 Mn 中，全部 5 个 d 电子可以取相同的自旋。当原子溶入另一金属时，这种倾向可能延续下来，尽管自旋极化已不能再归因于一个定态原子能级。
+
+例如，假设杂质恰好拥有过剩的“向上”自旋电子。对于另一个自旋相同的电子来说，遇到这个原子时，它看到的是一个位于费米能级之下的共振，并被吸引进去（图 95）。于是“向上”自旋密度得到增强，极化态得以稳定。反之，对“向下”自旋的电子，d--d 交换相互作用把共振的能量推高，从而耗减杂质内向下自旋的密度。净效果必须补偿离子的总电荷；但在合适的溶剂中，我们还可能观察到一种动力学的多电子磁矩，其方向缓慢涨落，而大小与自由原子的磁矩相当。这一过程解释了过渡金属稀合金的许多特殊的电学和磁学性质（见 §10.6）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_95.pdf}
+\caption*{图 95\quad 磁性杂质处电子的共振，杂质极化沿"向上"方向}
+\end{figure}
+
+\section{半导体的介电常数}
+
+金属的宏观介电常数当 $\mathbf{q} \to 0$ 时趋于无穷，因为金属具有高电导率。这个结果由 (5.16) 和 (5.21) 得出。然而在半导体或绝缘体中，电导率很小；除载流子的热激发之外，它可取为零。静态介电常数 $\epsilon(\mathbf{q},0)$ 在长波下应保持有限。
+
+这源于已满态与空态之间的能隙。形如 (5.16) 的求和中的分母在 $\mathbf{q} = \mathbf{0}$ 处并不为零，而是保持有限。
+
+要计算一个实际半导体的 $\epsilon(\mathbf{q},0)$，需要能带结构的细致模型。我们不能使用 §5.1 的简单理论，因为未微扰的电子态 $|\mathbf{k}\rangle$ 已不再是简单的平面波。不过很容易证明：只需把微扰波 $\exp(i\mathbf{q}\cdot\mathbf{r})$ 的矩阵元的平方引入求和 (5.16)，便得到正确的公式
+
+\begin{equation*}
+\epsilon(\mathbf{q},\omega) = 1 + \frac{4\pi e^2}{q^2} \sum_{\mathbf{k},\mathbf{g}} \frac{\left| \langle \mathbf{k}|\, e^{i\mathbf{q}\cdot\mathbf{r}}\, |\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle \right|^2 \left\{ f^0(\mathbf{k}) - f^0(\mathbf{k}+\mathbf{q}+\mathbf{g}) \right\}}{\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g}) - \mathcal{E}(\mathbf{k}) - \hbar\omega + i\hbar\alpha} .
+\tag{5.45}
+\end{equation*}
+
+我们必须计入倒格矢 $\mathbf{g} \neq \mathbf{0}$ 的那些项，因为 Bloch 函数之间 $\exp(i\mathbf{q}\cdot\mathbf{r})$ 的矩阵元在二者的波矢相差 $\mathbf{q}+\mathbf{g}$ 时并不为零。这里的情形与 §2.7 的衍射理论本质上相同。
+
+我们不打算精确求值 (5.45)，但可以按下面的办法得到一个粗略近似。让我们采用简约区图式。于是，当 $|\mathbf{k}\rangle$ 是一个已满态时，可用的空态全都在下一个带中；若 $\mathbf{q}$ 很小，$|\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle$ 这时指的是一个几乎竖直地处在 $|\mathbf{k}\rangle$ “正上方”的态。假定能量分母对所有的 $\mathbf{k}$ 值都相同：我们把它取为带隙宽度
+
+\begin{equation*}
+\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g}) - \mathcal{E}(\mathbf{k}) \approx \mathcal{E}_{\mathrm{gap}} .
+\tag{5.46}
+\end{equation*}
+
+现在我们要对每个 $\mathbf{k}$ 值计算
+
+\begin{equation*}
+\sum_{\mathbf{g}} \left| \langle \mathbf{k}|\, e^{i\mathbf{q}\cdot\mathbf{r}}\, |\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle \right|^2
+\tag{5.47}
+\end{equation*}
+
+为此可以利用下面的定理：——
+
+\begin{equation*}
+\sum_n \left( \mathcal{E}_n - \mathcal{E}_s \right) \left| \langle n|\, e^{i\mathbf{q}\cdot\mathbf{r}}\, |s\rangle \right|^2 = \frac{\hbar^2 q^2}{2m},
+\tag{5.48}
+\end{equation*}
+
+它对 哈密顿量 $\mathcal{H}$ 的本征态 $|n\rangle$ 与 $|s\rangle$ 之间 $\exp(i\mathbf{q}\cdot\mathbf{r})$ 的矩阵元成立，此 哈密顿量的动能项为 $-(\hbar^2/2m)\nabla^2$。这个定理的证明（它是众所周知的\emph{振子强度求和规则}（sum rule for oscillator strengths）的推广）来自把双对易子
+
+\begin{equation*}
+\left[ \left[ \mathcal{H},\, e^{i\mathbf{q}\cdot\mathbf{r}} \right],\, e^{-i\mathbf{q}\cdot\mathbf{r}} \right]
+\tag{5.49}
+\end{equation*}
+
+的期望值在态 $|s\rangle$ 中展开。
+
+如果我们取 $|s\rangle$ 实际上就是我们的态 $|\mathbf{k}\rangle$，并且像 (5.46) 那样，假设对求和中唯一重要的那些态 $|n\rangle$ 有
+
+\begin{equation*}
+\mathcal{E}_n - \mathcal{E}_s = \mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g}) - \mathcal{E}(\mathbf{k}) \approx \mathcal{E}_{\mathrm{gap}}
+\tag{5.50}
+\end{equation*}
+
+那么我们就得到
+
+\begin{equation*}
+\sum_{\mathbf{g}} \left| \langle \mathbf{k}|\, e^{i\mathbf{q}\cdot\mathbf{r}}\, |\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle \right|^2 \approx \frac{1}{\mathcal{E}_{\mathrm{gap}}} \, \frac{\hbar^2 q^2}{2m} .
+\tag{5.51}
+\end{equation*}
+
+把 (5.46) 和 (5.51) 代入 (5.45)，并把满带中 $n$ 个电子各自的贡献加起来（同时也计入 $|\mathbf{k}\rangle$ 为空而 $|\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle$ 为满的那些项），便得
+
+\begin{align*}
+\epsilon(\mathbf{q},0) &\approx 1 + \frac{4\pi e^2}{q^2}\, \frac{n}{\mathcal{E}_{\mathrm{gap}}}\, \frac{\hbar^2 q^2}{2m}\, \frac{2}{\mathcal{E}_{\mathrm{gap}}} \\
+&= 1 + \frac{4\pi n e^2 \hbar^2}{m\left(\mathcal{E}_{\mathrm{gap}}\right)^2} \\
+&= 1 + \left( \frac{\hbar\omega_p}{\mathcal{E}_{\mathrm{gap}}} \right)^2 ,
+\tag{5.52}
+\end{align*}
+
+其中我们定义了\emph{等离体频率}（plasma frequency）
+
+\begin{equation*}
+\omega_p = \left( \frac{4\pi n e^2}{m} \right)^{\frac{1}{2}}
+\tag{5.53}
+\end{equation*}
+
+——这个参量的物理意义稍后即将显现。
+
+公式 (5.52) 表明，静态介电常数在 $\mathbf{q} = \mathbf{0}$ 处趋于一个常数。这应当就是固体观测到的宏观介电常数。能隙越小，介质越容易极化，即 $\epsilon$ 值越大。当然，我们不能把所取的 $\mathcal{E}_{\mathrm{gap}}$ 值等同于导带底与价带顶之间的光学间隙；它更像是简约区中竖直方向上相互对着的那些态之间的平均能量距离。
+
+于是，半导体中杂质周围的静电场并不像金属中那样受到屏蔽：它只是简单地缩减为 $e^2/\epsilon r$，其中 $\epsilon$ 是静态介电常数。这使得束缚电子态得以在杂质周围形成——这就是\emph{杂质能级}（impurity levels），我们将在 §6.4 中再次讨论。当然，如果介质中存在残余载流子密度 $n_0$，那么在远处我们仍会看到杂质受到经典屏蔽，正如 Debye--Hückel 公式 (5.26)、(5.29) 所给出的那样。
+
+\section{等离体振荡}
+
+现在我们考虑时间相关的效应，其中“外”微扰场的频率 $\omega$ 不为零。这里会出现几个重要现象。最明显的一个是：(5.16) 或 (5.45) 中的 $\hbar\omega$ 恰好与被微扰所混合的一对态之间的能量差相合，也就是说，对占据能级中的某个 $\mathbf{k}$ 值，
+
+\begin{equation*}
+\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g}) - \mathcal{E}(\mathbf{k}) = \hbar\omega .
+\tag{5.54}
+\end{equation*}
+
+这时 $\epsilon(\mathbf{q},\omega)$ 中出现奇异性——或者说虚部 $i\hbar\alpha$ 变为占优。这恰恰对应于电子的光学吸收（或发射），即电子从态 $|\mathbf{k}\rangle$ 跃迁到态 $|\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle$。我们把这称为体系的一种\emph{单粒子激发}（single-particle excitation）。这些效应我们在 §8.5 中再来讨论。
+
+但假设 $\hbar\omega$ 很大——远大于 (5.16) 分母中的任何一个能量差。我们可以把求和改写成如下形式：
+
+\begin{equation*}
+\epsilon(\mathbf{q},\omega) = 1 + \frac{4\pi e^2}{q^2} \sum_{\mathbf{k}} \frac{2f^0(\mathbf{k}) \left\{ \mathcal{E}(\mathbf{k}) - \mathcal{E}(\mathbf{k}+\mathbf{q}) \right\}}{(\hbar\omega)^2 - \left\{ \mathcal{E}(\mathbf{k}) - \mathcal{E}(\mathbf{k}+\mathbf{q}) \right\}^2} .
+\tag{5.55}
+\end{equation*}
+
+于是可以把分母就取为 $(\hbar\omega)^2$，并把分子按 $\mathbf{q}$ 的幂展开。头几项为零，我们便得到
+
+\begin{align*}
+\epsilon(\mathbf{q},\omega) &= 1 + \frac{4\pi e^2}{q^2} \sum_{\mathbf{k}} \frac{f^0(\mathbf{k})}{(\hbar\omega)^2} \left( -q^2 \frac{\partial^2 \mathcal{E}}{\partial k^2} \right) \\
+&= 1 - \frac{4\pi n e^2 \hbar^2}{\hbar^2 \omega^2 m} \\
+&= 1 - \frac{\omega_p^2}{\omega^2} ,
+\tag{5.56}
+\end{align*}
+
+其中 $\omega_p$ 是由 (5.53) 定义的等离体频率。
+
+这是对自由电子导出的。但同样的结果也可以由 (5.45) 得到，后者可以改写成
+
+\begin{equation*}
+\epsilon(\mathbf{q},\omega) = 1 + \frac{4\pi e^2}{q^2} \sum_{\mathbf{k},\mathbf{g}} \frac{2f^0(\mathbf{k}) \left| \langle \mathbf{k}|\, e^{i\mathbf{q}\cdot\mathbf{r}}\, |\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle \right|^2 \left\{ \mathcal{E}(\mathbf{k}) - \mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g}) \right\}}{(\hbar\omega)^2 - \left\{ \mathcal{E}(\mathbf{k}) - \mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g}) \right\}^2} .
+\tag{5.57}
+\end{equation*}
+
+如果分母可以当作常数处理，即如果
+
+\begin{equation*}
+\hbar\omega \gg \mathcal{E}(\mathbf{k}) - \mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g})
+\tag{5.58}
+\end{equation*}
+
+对所有被占据的 $\mathbf{k}$，以及对所有矩阵元不可忽略的 $\mathbf{g}$ 都成立，那么我们可以把求和规则 (5.48) 用于对 $\mathbf{g}$ 的求和，对被占据态中 $n$ 个电子的每一个都得到一项 $(4\pi e^2/m\omega^2)$。
+
+公式 (5.56) 表明，当 $\omega \to \omega_p$ 时 $\epsilon \to 0$。而当 $\epsilon = 0$ 时，由 (5.15)，我们有
+
+\begin{equation*}
+\mathcal{U} = \frac{\mathcal{V}}{\epsilon} \to \infty .
+\tag{5.59}
+\end{equation*}
+
+换言之，一个无穷小的“外场” $\mathcal{V}$ 会引起很大的有效场 $\mathcal{U}$：体系是自激发的。频率 $\omega_p$ 是电子气的一个固有振荡模式——称为\emph{等离体模式}（plasma mode）。
+
+这个结果可以用一个初等的论证导出。设体积密度为 $n$ 的电子相对于晶格的固定正电荷背景整体移动一段距离 $\mathbf{x}$。这就建立起一个极化
+
+\begin{equation*}
+\mathbf{P} = ne\mathbf{x},
+\tag{5.60}
+\end{equation*}
+
+它转而又产生一个电场
+
+\begin{equation*}
+\mathbf{E} = -4\pi\mathbf{P} .
+\tag{5.61}
+\end{equation*}
+
+于是每个电荷的运动方程为
+
+\begin{equation*}
+m\ddot{\mathbf{x}} = e\mathbf{E} = -4\pi n e^2 \mathbf{x},
+\tag{5.62}
+\end{equation*}
+
+它定义了频率为 $\omega_p$ 的简谐振荡。
+
+等离体频率对应于相当大的能量，约为 10–20 eV，所以这些模式不会在热能量下被激发。但如果让电子穿过金属薄膜，就可以观察到相应于这些模式中一个或多个量子被激发的能量损失。有趣的是，即使在半导体中，$\omega_p$ 也只依赖于价带中的总电子密度。这是因为只要等离体能量比价带与导带之间的能量差高出相当多——通常后者在 5 eV 以下——条件 (5.58) 就会成立。另一方面，离子芯中的电子不作贡献；它们束缚得太紧。这些能级与导带中的态之间的能量差远大于 $\hbar\omega_p$。
+
+我们可以把 $\epsilon(\mathbf{q},\omega)$ 展开到 $\mathbf{q}$ 的更高次幂，求出使 $\epsilon$ 为零的 $\omega$ 作为 $\mathbf{q}$ 的函数。对自由电子，结果是
+
+\begin{equation*}
+\omega(q) = \omega_p \left[ 1 + \frac{3}{10}\, \frac{q^2 v_F^2}{\omega_p^2} + \ldots \right],
+\tag{5.63}
+\end{equation*}
+
+其中 $v_F$ 是费米面上电子的速度。这样，等离体振荡可以在各种波长下发生——这些模式中的量子可称为\emph{等离激元}（plasmon）。但色散定律 (5.63) 表明，频率对 $q$ 的依赖并不强；等离激元倾向于成为只在介质中缓慢移动的局域化振荡。
+
+严格说来，$\epsilon(\mathbf{q},\omega)$ 是复数：(5.55) 和 (5.57) 表示的是它的实部（假定 $\alpha$ 很小）。虚部由下式给出
+
+\begin{equation*}
+\epsilon_2(\mathbf{q},\omega) = \frac{-4\pi^2 e^2}{q^2} \sum_{\mathbf{k}} \left\{ f^0(\mathbf{k}) - f^0(\mathbf{k}+\mathbf{q}) \right\} \delta\!\left\{ \mathcal{E}(\mathbf{k}+\mathbf{q}) - \mathcal{E}(\mathbf{k}) - \hbar\omega \right\},
+\tag{5.64}
+\end{equation*}
+
+其中的 $\delta$ 函数来自积分 (5.16) 中位于实轴附近的极点
+
+\begin{equation*}
+\hbar\omega = \mathcal{E}(\mathbf{k}+\mathbf{q}) - \mathcal{E}(\mathbf{k})
+\tag{5.65}
+\end{equation*}
+
+处。关于这个公式，有趣的一点是：当
+
+\begin{equation*}
+\omega \geqslant q v_F,
+\tag{5.66}
+\end{equation*}
+
+时它为零；也就是说，此时 $\omega$ 大到仅凭波矢改变 $\mathbf{q}$ 已不能把单个粒子从费米分布中激发出来。这表明等离体模式在这个频率之上不会迅速耗散。
+
+由 (5.56) 还可导出与等离体振荡相联系的另一个有趣现象。如果它表示金属实际的介电常数——如同用长波长的高频电
+场所测得的那样——我们可以写出介质的一个\emph{复折射率}（complex refractive index）$\mathbf{N}$：
+\begin{equation*}
+\mathbf{N}^{2}=\epsilon(\mathbf{q},\omega)\approx 1-\frac{\omega_{p}^{2}}{\omega^{2}}. \tag{5.67}
+\end{equation*}
+若 $\omega<\omega_{p}$，则 $\epsilon$ 为负，$\mathbf{N}$ 为纯虚数，这引起光的\emph{全反射}。但若 $\omega>\omega_{p}$，则 $\epsilon$ 为正，$\mathbf{N}$ 为实数；当沿垂直于表面的方向观察时，金属就变成\emph{透明}的。当对电子引入散射机制之后，这个理论要稍作修改（见 §8.6），但在碱金属中确实观察到了\emph{紫外透明}现象。
+
+\section{准粒子与内聚能}
+
+当然，上述基于介电常数的分析只是一种近似。实质性的步骤在 §5.1 中已经完成：在那里假定势的每一个 Fourier 分量都可以独立地处理。这在使用术语上称为\emph{无规相位近似}（Random Phase Approximation），在对这个问题几乎所有更细致的分析中都不得不采用这一假定。
+
+除了作一些一般性的评论之外，我们将不讨论这些更复杂的理论。结果发现，与 Coulomb 势相联系的电子之间的强长程相互作用，可以约化成类似式 (5.29) 的屏蔽相互作用。电子不仅在杂质周围形成电荷云、把远距离处的场屏蔽掉；每个电子还可以说都随身携带着自己的电荷云——实际上是一个“正”的云，对应于把“其他”电子有效地排除在它的邻域之外。
+
+反过来，在晶体中到处运动的\emph{正电子}（positron）会把一个“负”的电荷云吸引到自己周围。因此，金属中\emph{正电子湮灭}（positron annihilation）的速率，由于正电子中心处电子概率密度的增强，要比未受扰动的均匀电子气情形略高一些。但是，多体效应并不会严重干扰对湮灭过程中所发射的两个 $\gamma$ 射线量子方向之间角关联的简单解释。由于认为正电子在湮灭之前已在晶格中静止下来，发射方向对相反方向的任何偏离，必定来自湮灭电子所提供的动量（图 96）。因此，角 $\theta$ 的分布给出了传导电子气中动量分布的一种量度，这或许会被证明是对金属与合金电子结构理论的一种有用检验。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_96.pdf}
+\caption*{图 96\quad 正电子湮灭中的动量守恒}
+\end{figure}
+
+严格说来，一个带着正电荷晕的电子，需要用非常复杂的波函数才能得到对它的恰当描述。然而，它的行为确实非常像一个粒子，因为它携带着电子电荷 $e$。“其他”电子的效应，是改变这个量子态的能量与波矢之间的关系；例如，可以有
+\begin{equation*}
+\mathcal{E}(\mathbf{k})=\frac{\hbar^{2}k^{2}}{2m^{*}}, \tag{5.68}
+\end{equation*}
+其中 $m^{*}$ 并不完全等于普通的自由电子质量 $m$。结果发现，这些准粒子（quasi-particle）在费米能级附近是相当稳定的，但在远离费米面时便趋于瓦解和耗散。这一点对于输运理论以及费米面概念的形式论证十分重要。
+
+准粒子图像实际上正是电子气的\emph{元激发}（elementary excitations）谱的一种表示。虽然我们不能对真实金属精确地算出这个谱，但对于处在正凝胶（§5.1）中的、具有相应密度的理想电子气，我们可以对它的性质作出相当好的估计。例如，这个模型的基态能量就告诉我们一些关于金属内聚能（cohesive energy）（§4.3）的信息。Wigner 和 Seitz 的粗糙假定——电子把它到访的原胞中的所有其他传导电子统统驱赶出去——可以换成对电子与其屏蔽云之间静电相互作用的直接计算，从而对金属键合中电子关联（electron correlation）的效应作出好得多的估计。
+
+同样，我们应当预期两个准粒子之间的相互作用相当弱，多少就如同通过屏蔽的 Coulomb 相互作用那样。因此，我们的系统符合\emph{Fermi 液体}（Fermi liquid）的 Landau 模型：其中较低的诸能级用把一个或多个准粒子激发到更高的态来表示，就好像我们拥有一团极低温度下的由\emph{独立}费米子（fermions）组成的气体一样。但是，当我们把越来越多的粒子激发到费米能级之上时，就必须计及它们之间的相互作用。这些相互作用由下列形式的附加能量项表示：
+\begin{equation*}
+E_{2}=\frac{1}{2}\sum_{\mathbf{k},\sigma;\,\mathbf{k}',\sigma'}f(\mathbf{k},\sigma;\,\mathbf{k}',\sigma')\,\delta n(\mathbf{k},\sigma)\,\delta n(\mathbf{k}',\sigma') \tag{5.69}
+\end{equation*}
+其中 $\delta n(\mathbf{k},\sigma)$ 是当我们从基态过渡到系统的某个较高能级时，波矢为 $\mathbf{k}$、自旋为 $\sigma$ 的准粒子模式的占据数的变化。
+
+Landau 模型的参数决定了传导电子气的谱，从而决定了诸如电子比热（§4.7）这样的一些性质。相互作用项 $f(\mathbf{k},\sigma;\mathbf{k}',\sigma')$ 的一个重要特点是：它确实依赖于两个电子的自旋的相对取向。在普通金属密度下，这种\emph{交换}（exchange）力有利于平行排列——这本质上是因为 Pauli 原理使两个自旋相同的电子不致占据空间同一点，从而增强了关联效应并稍稍降低了它们的相互静电势能。这个效应并不大，但显然在金属磁性的理论中起着重要作用（见 §§10.2--10.5）。
+
+\section{Mott 转变}
+
+还有一种本质上起因于电子之间作用力的定性效应，它并不常被观察到，但在原理上颇为重要。设想我们把大量的氢原子（或 Na 原子——或者任何每个原胞含有奇数个电子的原子阵列）缓慢地聚拢在一起。按照 §4.1 中阐述的原理，每个原子上的电子波函数将发生交叠，能带将会形成，固体就应当立即变成导体。而且看起来，无论原子相距多远，这都应当发生。
+
+这是一个悖论性的结果，难以令人相信。实际上，很可能并非如此。§3.4 中曾提示，一组局域轨道（localized orbitals）$\phi_{a}(\mathbf{r}-\mathbf{l})$ 与一组 Bloch 函数 $\phi_{\mathbf{k}}(\mathbf{r})$ 形式上等价；但这种等价性只有在我们忽略 Pauli 原理和电子间相互作用时才成立。如果每个原子有两个电子，那么满带中所有态 $\phi_{\mathbf{k}}(\mathbf{r})$ 构成的行列式波函数，与所有局域原子轨道\footnote{严格说来，这里我们应当指的是 Wannier 函数（见 §6.2）。但是，假如我们假定当原子相距很远时紧束缚近似成立，论证也完全一样。}$\phi_{a}(\mathbf{r}-\mathbf{l})$ 构成的行列式相同。但如果每个原子只有一个电子，半满带中诸态的行列式就不等同于局域轨道的行列式。它倾向于把两个电子安放到某些原子上，而让另一些原子近乎空着——这样的电荷分布可能给系统的总 Coulomb 能贡献一些很大的正项。因此，作为系统的试探波函数，局域态的集合也许比离域（delocalized）的能带态集合更好。前一类波函数描述绝缘体，后一类描述导体。
+
+为了区分这两者，我们可以采用如下的论证。设想从局域态阵列中取出一个电子。它将在身后留下一个空的离子，即一个正电荷。电子会被这个离子吸引，甚至可能在它那里形成一个束缚态，以致它实际上并不能自由地穿越晶体去传导电流。但假如已经有许多这样的电子存在，它们就会屏蔽离子的电荷，此时离子的势可以取为如下形式：
+\begin{equation*}
+-\frac{e^{2}}{r}\,e^{-\lambda r}, \tag{5.70}
+\end{equation*}
+如同式 (5.29) 一样。若已电离电子的密度为 $n$，则按照式 (5.22)，
+\begin{equation*}
+\lambda^{2}\approx\frac{4me^{2}n^{1/3}}{\hbar^{2}} \tag{5.71}
+\end{equation*}
+（利用了式 (3.3)、(3.4) 和 (4.3)）。
+
+普通的 Coulomb 场是能够束缚一个电子的。最低的态——氢原子的基态——具有半径
+\begin{equation*}
+a_{H}=\frac{\hbar^{2}}{me^{2}}. \tag{5.72}
+\end{equation*}
+如果屏蔽半径 $1/\lambda$ 小于 $a_{H}$，那么连这个态也无法被束缚。因此，具有势 (5.70) 的电离原子能够重新俘获从它那里取走的电子，其条件是
+\begin{gather*}
+\lambda<a_{H}^{-1}, \\
+\text{即}\quad n^{-1/3}>4a_{H}. \tag{5.73}
+\end{gather*}
+如果我们原子的平均间距大于 4 个原子单位，金属态就不能自我维持，系统应当变成绝缘体。而且，这是一种合作效应；每一个额外的自由电子都有助于使其余的电子松脱。即使我们没有把式 (5.73) 中的数字 4 算对，这个转变在原则上看来也会相当陡峭；把我们的氢或 Na 原子聚拢起来，我们应当会看到它们在某个确定的原子间距处突然从绝缘体转变为金属。
+
+\emph{Mott 转变}（Mott transition）已经在某些过渡金属氧化物中观察到，它们在某个温度以上非常突然地变成导电的。这个理论也可以应用于半导体中的杂质中心，此时须对 $a_{H}$ 加以修正，即乘以半导体的体介电常数（如 §5.6 中那样；原书误印作 §5.5）（见 §6.4）。
+
+上述论证其实与 \emph{Wigner 假说}密切相关：密度极低的电子气将倾向于“结晶”。令 $r_{0}$ 为一个电子所占据的球的平均半径，即
+\begin{equation*}
+\tfrac{4}{3}\pi r_{0}^{3}=1/n. \tag{5.74}
+\end{equation*}
+每个电子的势能，由于在它周围有一圈带正电的背景凝胶球，将是
+\begin{equation*}
+-e^{2}/2r_{0}. \tag{5.75}
+\end{equation*}
+的量级。但每个电子由于被限制在这个球的区域之内，还会有量级为
+\begin{equation*}
+\hbar^{2}/mr_{0}^{2} \tag{5.76}
+\end{equation*}
+的零点能（zero-point energy）。因此，当
+\begin{gather*}
+e^{2}/2r_{0}\geqslant\hbar^{2}/mr_{0}^{2}, \\
+\text{即}\quad r_{0}\geqslant 2a_{H}. \tag{5.77}
+\end{gather*}
+时，势能将占上风。其中的数值因子，如同式 (5.73) 中的一样，不必当真；而且在什么样的条件下这个转变实际上可能被观察到，也完全不清楚。尽管如此，认识到第 4 章的简单能带理论以及本章的简单电子关联理论的这些局限性，是十分重要的。

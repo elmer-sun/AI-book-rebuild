@@ -1,0 +1,1190 @@
+% ch03 第3章习题解答（22 题）
+\chapter{相互作用玻色子系统}
+
+% ---------------------------------------------------------------
+\section*{问题 3.1.1}
+\begin{problem}
+（Wick 定理）(1) 对算符 $O=aa\,a^{\dagger}a^{\dagger}$ 作正规排序，并用 Wick 定理验证所得结果。(2) 用 Wick 定理计算 $\langle 0|aa^{\dagger}aa^{\dagger}|0\rangle$。
+\end{problem}
+\solution
+
+\textbf{(1)} 先直接计算。反复利用 $aa^{\dagger}=1+a^{\dagger}a$：
+\begin{align*}
+O&=a(aa^{\dagger})a^{\dagger}=a(1+a^{\dagger}a)a^{\dagger}=aa^{\dagger}+(aa^{\dagger})(aa^{\dagger})
+=(1+a^{\dagger}a)+(1+a^{\dagger}a)^{2},\\
+(1+a^{\dagger}a)^{2}&=1+2a^{\dagger}a+a^{\dagger}aa^{\dagger}a
+=1+2a^{\dagger}a+a^{\dagger}(1+a^{\dagger}a)a
+=1+3a^{\dagger}a+a^{\dagger}a^{\dagger}aa,
+\end{align*}
+故
+\begin{equation*}
+O=2+4a^{\dagger}a+a^{\dagger}a^{\dagger}aa,
+\qquad\text{即}\qquad
+:O:\;=\;a^{\dagger}a^{\dagger}aa .
+\end{equation*}
+
+再用 Wick 定理验证。把四个因子记为 $W=a_1a_2a_3^{\dagger}a_4^{\dagger}$（其中 $a_i\equiv a$）。唯一的非零两算符真空关联是
+\begin{equation*}
+\langle 0|a_i a_j^{\dagger}|0\rangle=1\quad(i\in\{1,2\},\;j\in\{3,4\}),\qquad
+\langle 0|a_ia_j|0\rangle=\langle 0|a_i^{\dagger}a_j^{\dagger}|0\rangle=0 .
+\end{equation*}
+非零的单收缩共有四项（每项收缩值为 $1$）：
+\begin{equation*}
+(1,3):\;:a_2a_4^{\dagger}: =a_4^{\dagger}a_2,\quad
+(1,4):\;:a_2a_3^{\dagger}: =a_3^{\dagger}a_2,\quad
+(2,3):\;:a_1a_4^{\dagger}: =a_4^{\dagger}a_1,\quad
+(2,4):\;:a_1a_3^{\dagger}: =a_3^{\dagger}a_1,
+\end{equation*}
+其和为 $4a^{\dagger}a$。非零的双收缩有两项：$(1,3)(2,4)$ 与 $(1,4)(2,3)$，每项值为 $1\times1=1$，而此时 $:W_{ijkl}:\,=1$，故双收缩贡献 $2$。于是 Wick 定理给出
+\begin{equation*}
+O\;=\;a^{\dagger}a^{\dagger}aa+4a^{\dagger}a+2 ,
+\end{equation*}
+与直接计算完全一致。
+
+\textbf{(2)} 记 $W=a_1a_2^{\dagger}a_3a_4^{\dagger}$。非零收缩为 $\langle a_1a_2^{\dagger}\rangle=\langle a_1a_4^{\dagger}\rangle=\langle a_3a_4^{\dagger}\rangle=1$，而 $\langle a_2^{\dagger}a_3\rangle=\langle 0|a^{\dagger}a|0\rangle=0$。单收缩三项：
+\begin{equation*}
+(1,2):\;a_4^{\dagger}a_3,\qquad (1,4):\;a_2^{\dagger}a_3,\qquad (3,4):\;a_2^{\dagger}a_1,
+\end{equation*}
+合计 $3a^{\dagger}a$；双收缩中 $(1,2)(3,4)$ 给出 $1$，$(1,4)(2,3)$ 因 $\langle a_2^{\dagger}a_3\rangle=0$ 而为零。故
+\begin{equation*}
+aa^{\dagger}aa^{\dagger}=a^{\dagger}a^{\dagger}aa+3a^{\dagger}a+1
+\end{equation*}
+（与直接展开 $aa^{\dagger}aa^{\dagger}=(1+a^{\dagger}a)^{2}=1+3a^{\dagger}a+a^{\dagger}a^{\dagger}aa$ 一致）。在真空上只有全收缩项存活：
+\begin{equation*}
+\boxed{\;\langle 0|\,aa^{\dagger}aa^{\dagger}\,|0\rangle=1\;}
+\end{equation*}
+
+% ---------------------------------------------------------------
+\section*{问题 3.1.2}
+\begin{problem}
+一维自由玻色系统含 $N$ 个玻色子，基态为 $|\Phi_0\rangle$。(1) 对 $N=0$ 与有限 $N$ 计算编时传播子 $\mathrm{i}G(x,t)=\langle\Phi_0|T(a(x,t)a^{\dagger}(0,0))|\Phi_0\rangle$；证明 $\mathrm{i}G(x,0^{+})-\mathrm{i}G(x,0^{-})=[a(x),a^{\dagger}(0)]=\delta(x)$；证明有限 $N$ 时 $x\to\infty$ 有 $\mathrm{i}G\neq0$（非对角长程序）。(2) 计算编时密度关联 $\langle\Phi_0|T(\rho(x,t)\rho(0,0))|\Phi_0\rangle$（提示：先分离 $a_0$ 算符再用 Wick 定理）。
+\end{problem}
+\solution
+
+由 $a(x,t)=\mathrm{e}^{\mathrm{i}Ht}a(x)\mathrm{e}^{-\mathrm{i}Ht}$ 与 $H=\sum_k\epsilon_ka_k^{\dagger}a_k$，
+\begin{equation*}
+a(x,t)=\sum_k\frac{\mathrm{e}^{\mathrm{i}kx-\mathrm{i}\epsilon_kt}}{\sqrt{\mathcal{V}}}\,a_k ,
+\qquad \epsilon_k=\frac{k^{2}}{2m}.
+\end{equation*}
+
+\textbf{(1) $N=0$。}此时 $|\Phi_0\rangle=|0\rangle$，且 $t<0$ 时 $\langle 0|a^{\dagger}(0)a(x,t)|0\rangle=0$，故
+\begin{equation*}
+\mathrm{i}G(x,t)=\theta(t)\,\frac{1}{\mathcal{V}}\sum_k\mathrm{e}^{\mathrm{i}(kx-\epsilon_kt)}
+\;\xrightarrow{\ \mathcal{V}\to\infty\ }\;
+\theta(t)\int\frac{\mathrm{d}k}{2\pi}\,\mathrm{e}^{\mathrm{i}(kx-k^{2}t/2m)} .
+\end{equation*}
+在 $t=0$ 处，$T$ 序两侧分别为 $\langle0|a(x)a^{\dagger}(0)|0\rangle$ 与 $\langle0|a^{\dagger}(0)a(x)|0\rangle$，其差正是对易子在真空上的期望值：
+\begin{equation*}
+\mathrm{i}G(x,0^{+})-\mathrm{i}G(x,0^{-})=\langle0|\,[a(x),a^{\dagger}(0)]\,|0\rangle
+\underset{N=0}{=}\delta(x) .
+\end{equation*}
+
+\textbf{有限 $N$。}基态为 $|\Phi_0\rangle=(N!)^{-1/2}(a_0^{\dagger})^{N}|0\rangle$，即 $n_k=N\delta_{k0}$。利用 $\langle\Phi_0|a_ka_q^{\dagger}|\Phi_0\rangle=(n_k+1)\delta_{kq}$ 与 $\langle\Phi_0|a_q^{\dagger}a_k|\Phi_0\rangle=n_k\delta_{kq}$：
+\begin{align*}
+t>0:\quad \mathrm{i}G&=\frac{1}{\mathcal{V}}\sum_k\mathrm{e}^{\mathrm{i}(kx-\epsilon_kt)}\,(n_k+1)
+=\rho+\frac{1}{\mathcal{V}}\sum_k\mathrm{e}^{\mathrm{i}(kx-\epsilon_kt)},\\
+t<0:\quad \mathrm{i}G&=\frac{1}{\mathcal{V}}\sum_k\mathrm{e}^{\mathrm{i}(kx+\epsilon_kt)}\,n_k=\rho ,
+\end{align*}
+其中 $\rho=N/\mathcal{V}$。于是
+\begin{equation*}
+\mathrm{i}G(x,t)=\rho+\theta(t)\,\frac{1}{\mathcal{V}}\sum_k\mathrm{e}^{\mathrm{i}(kx-\epsilon_kt)} ,
+\end{equation*}
+跳变仍然为
+\begin{equation*}
+\boxed{\;\mathrm{i}G(x,0^{+})-\mathrm{i}G(x,0^{-})=\rho+\delta(x)-\rho=\delta(x)=[a(x),a^{\dagger}(0)]\;}
+\end{equation*}
+（等时对易子是算符恒等式，与态无关；此处 $\delta(x)$ 来自传播子中的真空部分“$+1$”项。）
+
+当 $x\to\infty$，上式中的求和项因相位相消而趋于零（Riemann--Lebesgue 引理），而 $\rho$ 项不衰减：
+\begin{equation*}
+\lim_{x\to\infty}\mathrm{i}G(x,t)=\rho\neq0
+\qquad\Longleftrightarrow\qquad
+\lim_{x\to\infty}\langle\Phi_0|a^{\dagger}(x)a(0)|\Phi_0\rangle=\rho .
+\end{equation*}
+这就是非对角长程序：它存在的原因是全部 $N$ 个玻色子占据 $\pmb{k}=0$ 态。对无凝聚的态（如 $N=0$，或 $n_{\pmb{k}}$ 分散在 $\pmb{k}\neq0$ 的态），求和项总是相消，长程关联为零。因此非对角长程序只存在于玻色凝聚态中。
+
+\textbf{(2)} 密度算符
+\begin{equation*}
+\rho(x)=a^{\dagger}(x)a(x)=\frac{1}{\mathcal{V}}\sum_{p,q}\mathrm{e}^{\mathrm{i}(p-q)x}\,a_p^{\dagger}a_q .
+\end{equation*}
+按提示先分离凝聚体算符：在 $|\Phi_0\rangle$ 上 $a_0|\Phi_0\rangle=\sqrt{N}\,|\Phi_0(N-1)\rangle$，其量子涨落被 $1/\sqrt{N}$ 压低，可用 c 数代替：$a_0\to\sqrt{N}$。写
+\begin{equation*}
+a(x)=\sqrt{\frac{N}{\mathcal{V}}}+a'(x),\qquad
+a'(x)=\sum_{k\neq0}\frac{\mathrm{e}^{\mathrm{i}kx}}{\sqrt{\mathcal{V}}}\,a_k ,
+\end{equation*}
+则 $\rho(x)=\dfrac{N}{\mathcal{V}}+\sqrt{\dfrac{N}{\mathcal{V}}}\,\big(a'(x)+a'^{\dagger}(x)\big)+a'^{\dagger}(x)a'(x)$。$a'(x,t)$ 是 $a_k,a_k^{\dagger}$ 的线性组合，可用 Wick 定理。保留 $k\neq0$ 算符的线性阶（更高阶被 $1/\mathcal{V}$ 压低）：
+\begin{equation*}
+\langle T\rho\rho\rangle
+=\rho^{2}+\frac{N}{\mathcal{V}}\,\langle T\,a'(x,t)\,a'^{\dagger}(0,0)\rangle+O(\mathcal{V}^{-1}) .
+\end{equation*}
+由于 $n_{k\neq0}=0$，$t<0$ 的贡献 $\langle a'^{\dagger}a'\rangle=0$（须先从凝聚体中拿走一个 $k\neq0$ 玻色子，这不可能），而
+\begin{equation*}
+\langle T\,a'(x,t)\,a'^{\dagger}(0)\rangle=\theta(t)\,\frac{1}{\mathcal{V}}\sum_{k\neq0}\mathrm{e}^{\mathrm{i}(kx-\epsilon_kt)} .
+\end{equation*}
+于是
+\begin{equation*}
+\boxed{\;\langle\Phi_0|T(\rho(x,t)\rho(0,0))|\Phi_0\rangle
+=\rho^{2}+\theta(t)\,\frac{\rho}{\mathcal{V}}\sum_{k\neq0}\mathrm{e}^{\mathrm{i}(kx-\epsilon_kt)}
+=\rho^{2}+\theta(t)\,\rho\Big(\frac{m}{2\pi\mathrm{i}t}\Big)^{\!d/2}\mathrm{e}^{\,\mathrm{i}mx^{2}/2t}\;}
+\end{equation*}
+末式用了 $\mathcal{V}^{-1}\sum_k\to\int\mathrm{d}^dk/(2\pi)^d$ 与高斯积分。注意关联对 $t$ 不对称：$t<0$ 时只有常数 $\rho^{2}$（去掉一个非凝聚玻色子需要有限能量 $k^{2}/2m$，低能下被禁闭）。
+
+% ---------------------------------------------------------------
+\section*{问题 3.2.1}
+\begin{problem}
+对密度为 $\rho=N/\mathcal{V}$ 的一维相互作用玻色系统，确定平均场理论中的 $N_0$ 与 $\mu$，并证明一维相互作用玻色子即使在零温下也不能凝聚（无相互作用的玻色子在零温下可以凝聚）。
+\end{problem}
+\solution
+
+平均场热势为（见式 (3.2.2) 之后的讨论）
+\begin{equation*}
+\Omega_g=\mathcal{V}\Big(-\mu\rho_0+\frac{1}{2}\rho_0^{2}V_0\Big)
+-\sum_{k\neq0}\frac{1}{2}\big(\epsilon_k-\mu'_k-E_k\big),
+\qquad
+E_k=\sqrt{(\epsilon_k-\mu'_k)^{2}-\rho_0^{2}V_k^{2}},
+\end{equation*}
+其中 $\mu'_k=\mu-\rho_0V_0-\rho_0V_k$（取实对称的 $V_k=V_0$）。
+
+\textbf{第一步：定 $\mu$。}激发谱 $E_k$ 必须处处为实数，要求 $\mu\le\rho_0V_0$（否则 $E_0$ 为虚，态不稳定）；另一方面可压缩玻色流体必含无能隙密度波（Nambu--Goldstone 定理），要求 $E_{k\to0}\to0$，即 $\mu=\rho_0V_0$。于是
+\begin{equation*}
+\mu=\rho_0V_0,\qquad
+\mu'_k=-\rho_0V_0,\qquad
+E_k=\sqrt{\epsilon_k(\epsilon_k+2\rho_0V_0)}
+\quad(\text{即式 (3.2.8)}).
+\end{equation*}
+
+\textbf{第二步：量子耗尽。}由式 (3.2.5)（取 $v_k$ 的模方）
+\begin{equation*}
+|v_k|^{2}=\frac{\epsilon_k-\mu'_k}{2E_k}-\frac12
+=\frac{\epsilon_k+\rho_0V_0-E_k}{2E_k}
+\;\xrightarrow{k\to0}\;
+\frac{\rho_0V_0}{2\sqrt{2\rho_0V_0\epsilon_k}}
+=\frac{mv}{2|k|},
+\qquad v=\sqrt{\frac{\rho_0V_0}{m}} ,
+\end{equation*}
+其中用了 $E_k\approx\sqrt{2\rho_0V_0\epsilon_k}=v|k|$。玻色子总数由式 (3.2.7) 给出：
+\begin{equation*}
+N=N_0+\sum_{k\neq0}|v_k|^{2},
+\qquad
+\sum_{k\neq0}|v_k|^{2}
+=\frac{\mathcal{V}}{2\pi}\int_{2\pi/L}^{\Lambda}\frac{mv}{k}\,\mathrm{d}k
+=\frac{\mathcal{V}mv}{2\pi}\ln\frac{\Lambda L}{2\pi}\;\xrightarrow{L\to\infty}\;\infty .
+\end{equation*}
+在 $1$ 维，耗尽对 $k\to0$ \emph{对数发散}：有限 $N$ 时方程 $N=N_0+\sum|v_k|^{2}$ 在热力学极限下无 $N_0\ge0$ 的解——涨落把全部粒子都挤出凝聚体。自洽的结果只能是
+\begin{equation*}
+\boxed{\;N_0=0,\qquad \mu=\rho_0V_0\to0\;}
+\end{equation*}
+即一维相互作用玻色子在零温下也没有 $\pmb{k}=0$ 的宏观占据，不发生凝聚。作为对照：无相互作用时 $v_k\equiv0$，耗尽为零，$N_0=N$，一维自由玻色子在零温下可以凝聚。物理上，凝聚体一旦存在，其相位涨落（声子）在 $1+1$ 维按幂律发散（见 3.3.8 节），摧毁非对角长程序，与上式一致。
+
+\emph{补充}：热势的涨落修正在 $1$ 维也压倒经典项。对小 $\rho_0$，$\sum_k\frac12(\epsilon_k-\mu'_k-E_k)\propto\mathcal{V}\rho_0V_0\cdot k_0\propto\mathcal{V}\rho_0^{3/2}$（$k_0=\sqrt{2m\rho_0V_0}$），比经典项 $\frac12\mathcal{V}\rho_0^{2}V_0$ 在 $\rho_0\to0$ 时大，同样说明一维凝聚态不是自洽的平均场基态。
+
+% ---------------------------------------------------------------
+\section*{问题 3.2.2}
+\begin{problem}
+(1) 找一个 $V_{\pmb{k}}$，使平均场激发谱 $E_{\pmb{k}}=\sqrt{\epsilon_{\pmb{k}}(\epsilon_{\pmb{k}}+2\rho_0V_{\pmb{k}})}$ 中的旋子极小降到零以下，并在实空间画出 $V(\pmb{x})$。(2) 当旋子极小果真降到零以下时，超流态会发生什么？
+\end{problem}
+\solution
+
+\textbf{(1)} $E_{\pmb{k}}$ 为实数的条件是 $\epsilon_{\pmb{k}}+2\rho_0V_{\pmb{k}}\ge0$。旋子极小降到零以下，即存在某个 $\pmb{k}_r\neq0$ 使
+\begin{equation*}
+E_{\pmb{k}_r}^{2}=\epsilon_{\pmb{k}_r}\big(\epsilon_{\pmb{k}_r}+2\rho_0V_{\pmb{k}_r}\big)<0
+\quad\Longleftrightarrow\quad
+V_{\pmb{k}_r}<-\frac{\epsilon_{\pmb{k}_r}}{2\rho_0}<0 .
+\end{equation*}
+故只需 $V_{\pmb{k}}$ 在某个有限 $\pmb{k}$ 处有足够强的\emph{吸引}傅里叶分量，而在 $\pmb{k}\approx0$ 处仍为正（保证声速稳定，$v^{2}=\rho_0V_0/m>0$）。取一维模型
+\begin{equation*}
+V(x)=V_1\delta(x)+\frac{V_2}{2}\big[\delta(x-a)+\delta(x+a)\big]
+\quad\Longrightarrow\quad
+V_k=V_1+V_2\cos(ka),\qquad V_1,V_2>0 .
+\end{equation*}
+当 $V_2>V_1$ 时：$V_0=V_1+V_2>0$（小 $k$ 稳定），而
+\begin{equation*}
+V_{\pi/a}=V_1-V_2<0,\qquad
+E_{\pi/a}^{2}=\frac{1}{2m}\Big[\frac{1}{2m}\Big(\frac{\pi}{a}\Big)^{2}-2\rho_0(V_2-V_1)\Big]<0
+\quad\text{当}\quad
+\rho_0(V_2-V_1)>\frac{1}{4m}\Big(\frac{\pi}{a}\Big)^{2} .
+\end{equation*}
+即旋子极小（位于 $k\approx\pi/a$ 附近）降到零以下。实空间图像：原点处一个强度为 $V_1$ 的\emph{排斥}尖峰（芯），左右相距 $a$ 处各一个强度为 $V_2/2$ 的\emph{吸引}尖峰（阱）：
+
+实空间图像：$V(x)$ 在原点处是一个强度为 $V_1$ 的排斥 $\delta$ 尖峰（芯），在 $x=\pm a$ 处各有一个强度为 $V_2/2$ 的吸引 $\delta$ 阱——即“排斥核 $+$ 相距 $2a$ 的对吸引阱”。
+
+\textbf{(2)} $E_{\pmb{k}_r}^{2}<0$ 意味着波矢 $\pmb{k}_r$ 附近的涨落频率为虚数：
+$\delta\varphi_{\pmb{k}_r}\sim\mathrm{e}^{\,|E_{\pmb{k}_r}|t}$，密度调制随时间\emph{指数增长}。这说明所假设的均匀凝聚态 $\varphi_0$ 根本不是（亚）稳定的极小：平均场二次展开在 $\varphi_0$ 附近已失去意义（$\Omega_g$ 沿该方向无下界）。物理后果：有限距离 $a$ 上的吸引 favor 粒子在相距 $a$ 的位置上聚团，系统将驰豫到另一个相——或者相分离/成团（液滴），或者形成周期为 $2a$ 的密度调制（晶体序，平移对称性破缺，即“超固体”倾向）。旋子软化到零正是这一结构相变的前兆（与液 He$_4$ 加压下旋子变软、结晶的图像一致）。要点：平均场谱出现 $E^2<0$ 是“当前基态选择错误”的信号，必须改在新的（破缺平移对称的）位形附近重新展开。
+
+% ---------------------------------------------------------------
+\section*{问题 3.2.3}
+\begin{problem}
+自旋链 $H=J\sum_i\pmb{S}_i\cdot\pmb{S}_{i+1}$，$J<0$，$\pmb{S}$ 为自旋 $S$ 的自旋算符。$S\gg1$ 时量子涨落弱，以 $s=\langle S_i\rangle$（设与 $i$ 无关）代替一个 $\pmb{S}$。(a) 写出平均场哈密顿量并求平均场基态；(b) 自洽定出 $s$；(c) 求平均场基态能量；(d) 求激发能量。
+\end{problem}
+\solution
+
+\textbf{(a)} 作平均场分解 $\pmb{S}_i\cdot\pmb{S}_{i+1}
+=s\cdot(\pmb{S}_i+\pmb{S}_{i+1})-s^{2}$（准确到涨落的线性阶）：
+\begin{equation*}
+H_{\mathrm{MF}}=J\sum_i\big[s\pmb{S}_{i+1}+\pmb{S}_i s-s^{2}\big]
+=2Js\sum_i S_i^{z}-NJs^{2} ,
+\end{equation*}
+（取 $N$ 个格点的环，量子化轴沿平均磁矩方向。）这是 $N$ 个\emph{独立}自旋在均匀“磁场” $2Js$ 中的哈密顿量。$J<0$ 使 $2Js<0$，能量 $2Js\,S_i^{z}$ 在 $S_i^{z}=+S$ 时最低，故平均场基态为完全铁磁排列的态
+\begin{equation*}
+|\mathrm{FM}\rangle=\prod_{i}|S,S_i^{z}{=}S\rangle .
+\end{equation*}
+
+\textbf{(b)} 在 $|\mathrm{FM}\rangle$ 中 $\langle S_i^{z}\rangle=S$，自洽条件 $s=\langle S_i\rangle$ 给出
+\begin{equation*}
+\boxed{\;s=S\;}
+\end{equation*}
+
+\textbf{(c)} 平均场基态能量
+\begin{equation*}
+E_0^{\mathrm{MF}}=2Js\cdot Ns-NJs^{2}=JNs^{2}=-|J|NS^{2} .
+\end{equation*}
+（顺带一提：对铁磁链完全极化态是严格本征态且确为基态，故此处平均场能量恰好等于严格基态能量——但这只是铁磁体的特例。）
+
+\textbf{(d)} 激发即个别自旋的翻转。把一个自旋从 $S^{z}=S$ 降为单位格点激发：能量差
+\begin{equation*}
+\Delta E=2Js\,(S-1)-2Js\,S=-2Js=2|J|S .
+\end{equation*}
+由于各格点独立，所有激发都是\emph{无色散}（平带）的、带隙为
+\begin{equation*}
+\boxed{\;\varepsilon_n=2|J|S\,n\quad(n=1,2,\dots)\;}
+\end{equation*}
+的局域自旋翻转。对照严格结果：铁磁海森堡链的自旋波色散为 $\varepsilon_k=|J|S(1-\cos k)$，在 $k\to0$ 无能隙。平均场完全丢掉了无能隙的自旋波（Nambu--Goldstone 模）——这正是 3.2 节的教训：平均场理论不保证无能隙激发；用路径积分的经典近似（2.4 节）会好得多。
+
+% ---------------------------------------------------------------
+\section*{问题 3.3.1}
+\begin{problem}
+由作用量 (3.3.1) 导出经典运动方程；分别对对称相（$\mu<0$）与对称性破缺相（$\mu>0$）线性化，证明对称基态附近的涨落有有限能隙，破缺基态附近含零能隙、线性色散 $\omega\propto k$ 的模式。
+\end{problem}
+\solution
+
+作用量 (3.3.1)：
+\begin{equation*}
+S=\int\mathrm{d}^dx\,\mathrm{d}t\,
+\Big[\mathrm{i}\tfrac12(\varphi^{*}\partial_t\varphi-\varphi\partial_t\varphi^{*})
+-\frac{1}{2m}\partial_{\pmb{x}}\varphi^{*}\partial_{\pmb{x}}\varphi
++\mu|\varphi|^{2}-\frac{V_0}{2}|\varphi|^{4}\Big] .
+\end{equation*}
+把 $\varphi,\varphi^{*}$ 当独立变量作变分：
+\begin{equation*}
+\frac{\partial L}{\partial\varphi^{*}}-\partial_t\frac{\partial L}{\partial(\partial_t\varphi^{*})}
+-\partial_i\frac{\partial L}{\partial(\partial_i\varphi^{*})}=0
+\quad\Longrightarrow\quad
+\boxed{\;\mathrm{i}\partial_t\varphi=-\frac{\nabla^{2}}{2m}\varphi-\mu\varphi+V_0|\varphi|^{2}\varphi\;}
+\end{equation*}
+这是 Gross--Pitaevskii 型方程。均匀解满足 $(-\mu+V_0|\varphi_0|^{2})\varphi_0=0$，给出式 (3.3.3)：$\mu<0$ 时 $|\varphi_0|=0$；$\mu>0$ 时 $|\varphi_0|=\sqrt{\mu/V_0}$。
+
+\textbf{对称相（$\mu<0$，$\varphi_0=0$）。}保留 $\delta\varphi$ 的线性项：
+\begin{equation*}
+\mathrm{i}\partial_t\delta\varphi=\Big(-\frac{\nabla^{2}}{2m}-\mu\Big)\delta\varphi
+\quad\Longrightarrow\quad
+\omega=\frac{k^{2}}{2m}-\mu .
+\end{equation*}
+即式 (3.3.6)：能隙 $\Delta=\omega(0)=-\mu>0$ 有限。这正是“产生一个自由玻色子”的能量。
+
+\textbf{破缺相（$\mu>0$）。}取 $\varphi_0=\sqrt{\mu/V_0}$ 为实数，写 $\varphi=\varphi_0+\eta_1+\mathrm{i}\eta_2$，展开到线性阶（利用 $-\mu+V_0\varphi_0^{2}=0$）：
+\begin{equation*}
+\mathrm{i}\partial_t(\eta_1+\mathrm{i}\eta_2)
+=-\frac{\nabla^{2}}{2m}(\eta_1+\mathrm{i}\eta_2)+2\mu\,\eta_1
+\quad\Longrightarrow\quad
+\begin{cases}
+-\partial_t\eta_2=-\dfrac{\nabla^{2}}{2m}\eta_1+2\mu\,\eta_1,\\[6pt]
+\partial_t\eta_1=-\dfrac{\nabla^{2}}{2m}\eta_2 .
+\end{cases}
+\end{equation*}
+消去 $\eta_2$：$\partial_t^{2}\eta_1=\dfrac{\mu}{m}\nabla^{2}\eta_1-\dfrac{\nabla^{4}}{4m^{2}}\eta_1$。代入平面波得单一分支
+\begin{equation*}
+\boxed{\;\omega^{2}=\frac{k^{2}}{2m}\Big(\frac{k^{2}}{2m}+2\mu\Big)\;}
+\end{equation*}
+小 $k$ 时 $\omega=v|\pmb{k}|$，$v=\sqrt{\mu/m}=\sqrt{\rho_0V_0/m}$：无能隙、线性色散（与式 (3.3.12)、(3.2.8) 一致；$\mu=\rho_0V_0$ 即式 (3.2.9) 的 $v^{2}=\rho_0V_0/m$，\emph{译注：原书该式中的 $-\rho_0^2/2$ 为排印之误}）。这就是 $U(1)$ 自发破缺的 Nambu--Goldstone 模（声子）；大 $k$ 时 $\omega\to k^{2}/2m+\mu$ 过渡到“粒子型”行为（能隙 $\mu$ 为加进一个玻色子的能量）。物理上：无能隙性来自基态圆周上的简并——相位方向的运动不受势阻碍。
+
+% ---------------------------------------------------------------
+\section*{问题 3.3.2}
+\begin{problem}
+水--水蒸气相变用 $G(T,P;n)=hn+an^{2}+cn^{3}+bn^{4}$ 描述，$n$ 为水分子密度，$G(T,P)=\min_n G(T,P;n)$。系统有一条终止于临界点的一级相变线。求确定一级相变线与临界点的方程（先考虑 $c=0$）。
+\end{problem}
+\solution
+
+记 $G'(n)=h+2an+3cn^{2}+4bn^{3}$（设 $b>0$）。
+
+\textbf{一级相变线。}线上 $(T,P)$ 处 $G(T,P;n)$ 有两个简并的局部极小 $n_1\neq n_2$：
+\begin{equation*}
+G'(n_1)=G'(n_2)=0,\qquad G(n_1)=G(n_2),\qquad G''(n_{1,2})>0 .
+\end{equation*}
+令 $s=n_1+n_2$，$p=n_1n_2$，则 $n_1^2+n_1n_2+n_2^2=s^{2}-p$，$n_1^{2}+n_2^{2}=s^{2}-2p$。两式相减（约去 $n_1-n_2$）分别给出
+\begin{align*}
+&2a+3cs+4b(s^{2}-p)=0
+\quad\Longrightarrow\quad
+p=s^{2}+\frac{2a+3cs}{4b},\\
+&h+as+c(s^{2}-p)+bs(s^{2}-2p)=0 .
+\end{align*}
+把前式代入后式化简（$as$ 项恰好消去）：
+\begin{equation*}
+\boxed{\;4bh=4b^{2}s^{3}+6bcs^{2}+3c^{2}s+2ac\;}
+\end{equation*}
+即相变线由
+\begin{equation*}
+h=\Big[4b^{2}s^{3}+6bcs^{2}+3c^{2}s+2ac\Big]\Big/4b,
+\qquad
+n_{1,2}=\frac{s\mp\sqrt{s^{2}-4p}}{2}
+\end{equation*}
+（连同“共同斜率为零”$G'(n_1)=0$ 一并成立）参数化；$n_1\neq n_2$、$G''>0$ 把 $s$ 限制在两相均稳定的区间内。
+
+\textbf{$c=0$（与伊辛模型同构）。}此时 $h=bs^{3}$。更严格地看：设两极小有共同切线，$G(n)-(mn+c_0)$ 是以 $n_1,n_2$ 为二重根的四次式 $b(n-n_1)^{2}(n-n_2)^{2}=bn^{4}-2bs\,n^{3}+\cdots$；而 $G(n)-(mn+c_0)$ 的 $n^{3}$ 项系数为零，比较得 $-2bs=0$，即 $s=0$。于是
+\begin{equation*}
+h=0,\qquad a<0:\quad n_1=-n_2=\sqrt{\frac{-a}{2b}}
+\end{equation*}
+——一级线就是 $h=0$（$a<0$），对应伊辛模型中磁场为零的共存线，$n$ 类比自旋密度、$h$ 类比外磁场。临界点在 $a=0$、$h=0$、$n_c=0$。
+
+\textbf{临界点。}临界点是一级线终止处：两极小与中间的极大合并为一个三重根，即 $G'(n)=4b(n-n_c)^{3}$。比较系数：
+\begin{equation*}
+4bn^{3}+3cn^{2}+2an+h=4b(n-n_c)^{3}
+=4bn^{3}-12bn_c\,n^{2}+12bn_c^{2}\,n-4bn_c^{3}
+\end{equation*}
+得
+\begin{equation*}
+\boxed{\;n_c=-\frac{c}{4b},\qquad
+a_c=\frac{3c^{2}}{8b},\qquad
+h_c=\frac{c^{3}}{16b^{2}}\;}
+\end{equation*}
+临界温度与压强由 $a(T_c,P_c)=3c^{2}/8b$、$h(T_c,P_c)=c^{3}/16b^{2}$ 确定。
+
+% ---------------------------------------------------------------
+\section*{问题 3.3.3}
+\begin{problem}
+(a) 通过求解 $\delta\rho$ 的运动方程、代回作用量，导出只含 $\theta$ 的有效作用量，证明与 XY 模型 (3.3.10) 相同。(b) 证明由此得到的 $\rho$、$\pmb{j}$ 满足 $\partial_t\rho+\partial_{\pmb{x}}\cdot\pmb{j}=0$。(c) 用式 (3.3.13) 计算动量--频率空间中的密度--密度关联。
+\end{problem}
+\solution
+
+\textbf{(a)} 二次作用量为式 (3.3.8)：
+\begin{equation*}
+S=\int\mathrm{d}^dx\,\mathrm{d}t\,
+\Big[-(\rho_0+\delta\rho)\partial_t\theta-\frac{\rho_0(\partial_{\pmb{x}}\theta)^{2}}{2m}
+-\frac{(\partial_{\pmb{x}}\delta\rho)^{2}}{8m\rho_0}-\frac{V_0}{2}\delta\rho^{2}\Big] .
+\end{equation*}
+它对 $\delta\rho$ 是二次的，故“解运动方程后代回”与高斯积分（式 (3.3.9)）严格等价。$\delta\rho$ 的 Euler--Lagrange 方程：
+\begin{equation*}
+\frac{\partial L}{\partial\,\delta\rho}
+-\partial_i\frac{\partial L}{\partial(\partial_i\delta\rho)}=0
+\;\Longrightarrow\;
+-\partial_t\theta-V_0\,\delta\rho+\frac{\nabla^{2}\delta\rho}{4m\rho_0}=0 ,
+\end{equation*}
+即
+\begin{equation*}
+\delta\rho=-\Big(V_0-\frac{\nabla^{2}}{4m\rho_0}\Big)^{\!-1}\partial_t\theta .
+\end{equation*}
+代回 $-\delta\rho\,\partial_t\theta-\frac{V_0}{2}\delta\rho^{2}$：
+\begin{equation*}
+-K(\partial_t\theta)^{2}+\frac{V_0}{2}K^{2}(\partial_t\theta)^{2}
+\quad\xrightarrow{K=(V_0-X)^{-1},\;X=\frac{\nabla^{2}}{4m\rho_0}}\quad
+\frac12\,\partial_t\theta\,(V_0-X)^{-1}\partial_t\theta-\frac12\,\partial_t\theta\,V_0^{-3}X^{2}\,\partial_t\theta+\cdots
+\end{equation*}
+（用 $(1-y)^{-1}=1+y+y^{2}$、$(1-y)^{-2}=1+2y+3y^{2}$ 展开时，$X$ 的一阶项恰好相消。）末项含四个空间导数，长波下可忽略。于是
+\begin{equation*}
+S_{\mathrm{eff}}=\int\mathrm{d}^dx\,\mathrm{d}t\,
+\Big[-\rho_0\partial_t\theta-\frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^{2}
++\frac12\,\partial_t\theta\Big(V_0-\frac{\nabla^{2}}{4m\rho_0}\Big)^{\!-1}\partial_t\theta\Big]
+\;\approx\;
+\int\mathrm{d}^dx\,\mathrm{d}t\,
+\Big[\frac{1}{2V_0}(\partial_t\theta)^{2}-\frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^{2}\Big],
+\end{equation*}
+前一对路径积分中的 $\delta\rho$ 高斯积分（式 (3.3.9)）完全相同；弃掉全时间导数 $-\rho_0\partial_t\theta$ 并对平滑 $\theta$ 取长波近似，即得 XY 模型 (3.3.10)。证毕。
+
+\textbf{(b)} 由上式
+\begin{equation*}
+\rho=\rho_0+\delta\rho=\rho_0-\Big(V_0-\frac{\nabla^{2}}{4m\rho_0}\Big)^{\!-1}\partial_t\theta
+\;\approx\;\rho_0-\frac{\partial_t\theta}{V_0}
+\quad(\text{式 (3.3.13)})，
+\end{equation*}
+而流算符由原拉格朗日量直接给出：$\pmb{j}=\mathrm{Re}\,\varphi^{\dagger}\frac{\partial_{\pmb{x}}}{\mathrm{i}m}\varphi
+=\frac{\rho_0+\delta\rho}{m}\nabla\theta\approx\frac{\rho_0}{m}\nabla\theta$（式 (3.3.14)，$\delta\rho\cdot\nabla\theta$ 为二阶小量）。利用 $S_{\mathrm{eff}}$ 的精确运动方程
+\begin{equation*}
+\partial_t\Big[\Big(V_0-\frac{\nabla^{2}}{4m\rho_0}\Big)^{\!-1}\partial_t\theta\Big]
+=\frac{\rho_0}{m}\nabla^{2}\theta ,
+\end{equation*}
+立得
+\begin{equation*}
+\partial_t\rho+\nabla\cdot\pmb{j}
+=-\Big(V_0-\frac{\nabla^{2}}{4m\rho_0}\Big)^{\!-1}\partial_t^{2}\theta+\frac{\rho_0}{m}\nabla^{2}\theta=0 .
+\end{equation*}
+长波近似下即 $\partial_t\rho=-\partial_t^{2}\theta/V_0=-(\rho_0/m)\nabla^{2}\theta=-\nabla\cdot\pmb{j}$。这正是玻色子数守恒：$\theta$ 所描写的低能涨落就是密度--流涨落。
+
+\textbf{(c)} 由式 (3.3.13)，$\delta\rho(\omega,\pmb{k})=\dfrac{\mathrm{i}\omega}{V_0}\,\theta(\omega,\pmb{k})$，而 XY 模型的编时 $\theta$ 传播子为
+\begin{equation*}
+\mathrm{i}G_\theta(\omega,\pmb{k})=\frac{\mathrm{i}\,\chi^{-1}}{\omega^{2}-v^{2}\pmb{k}^{2}+\mathrm{i}0^{+}\,\mathrm{sgn}\,\omega},
+\qquad \chi=\frac1{V_0},\quad v^{2}=\frac{\rho_0V_0}{m} .
+\end{equation*}
+因此（连通部分；$\rho_0^{2}$ 给出 $\delta$ 函数背底）
+\begin{equation*}
+\boxed{\;\langle\rho\rho\rangle_c(\omega,\pmb{k})
+=\frac{\omega^{2}}{V_0^{2}}\,\frac{\chi^{-1}}{\omega^{2}-v^{2}\pmb{k}^{2}+\mathrm{i}0^{+}\mathrm{sgn}\,\omega}
+=\frac{\chi\,\omega^{2}}{\omega^{2}-v^{2}\pmb{k}^{2}+\mathrm{i}0^{+}\mathrm{sgn}\,\omega}\;}
+\end{equation*}
+检验：$\omega\to0$（固定 $\pmb{k}$）时 $\langle\rho\rho\rangle_c\to0$——守恒量在零温下无静态涨落；而线性响应 $\Pi^{00}=\chi\big(\frac{\omega^{2}}{\omega^{2}-v^{2}\pmb{k}^{2}}-1\big)$（含来自 $-\frac{A_i^{2}}{2m}\rho$ 的接触项）在 $\omega=0$ 给出压缩率 $\chi(\pmb{k})=-\Pi^{00}(0,\pmb{k})=\chi$，为有限常数，与 3.7.2 节一致。
+
+% ---------------------------------------------------------------
+\section*{问题 3.3.4}
+\begin{problem}
+零温下 $1\,\mathrm{cm}^{3}$ 的超流 He$_4$，制备相位 $\langle\theta_0\rangle=0$、“基态”，相位弥散 $\sqrt{\langle\theta_0^{2}\rangle}=\pi/10$。问经过多长时间相位弥散达到 $2\pi$？（提示：由声速估计 $V_0$，它正是压缩率的倒数。）
+\end{problem}
+\solution
+
+均匀相位模式由式 (3.3.20)--(3.3.22) 描写：质量 $M=\mathcal{V}/V_0$ 的粒子在圆上运动，量子化能级 $E_n=\frac{V_0}{2\mathcal{V}}n^{2}-\mu n$，$n\in\mathbb{Z}$。“相位为 $\theta_0$”的态是 $|n\rangle$ 的波包：$|\theta_0\rangle=\sum_n\mathrm{e}^{\mathrm{i}\theta_0 n}|n\rangle$。由不确定关系 $\Delta n\,\Delta\theta_0\sim1/2$，
+\begin{equation*}
+\Delta n=\frac{1}{2\Delta\theta_0}=\frac{1}{2\cdot\pi/10}=\frac{5}{\pi}\approx1.6 .
+\end{equation*}
+能级差 $E_{n+1}-E_n=\frac{V_0}{\mathcal{V}}(n-n_0)$（$n_0=\mu\mathcal{V}/V_0=N$）在波包宽度内变化
+\begin{equation*}
+\Delta\dot\theta_0=\frac{V_0\,\Delta n}{\mathcal{V}} ,
+\end{equation*}
+这就是相位弥散的增长速率。要弥散从 $\pi/10$ 长到 $2\pi$，所需时间为
+\begin{equation*}
+t\approx\frac{2\pi-\pi/10}{V_0\Delta n/\mathcal{V}}=\frac{1.9\pi\,\mathcal{V}}{V_0\,\Delta n} .
+\end{equation*}
+
+\textbf{数值估计。}He$_4$：$\rho=0.145\,\mathrm{g/cm^{3}}=145\,\mathrm{kg/m^{3}}$，$m=6.64\times10^{-27}\,\mathrm{kg}$，
+\begin{equation*}
+\rho_0=\frac{\rho}{m}=2.2\times10^{28}\ \mathrm{m^{-3}},\qquad
+v\approx240\ \mathrm{m/s}\ (\text{实验声速}) .
+\end{equation*}
+由 $v^{2}=\rho_0V_0/m$（即 $V_0=m v^{2}/\rho_0$；等价地 $V_0=1/(\kappa\rho_0)$，$\kappa$ 为压缩率，与提示一致）：
+\begin{equation*}
+V_0=\frac{mv^{2}}{\rho_0}
+=\frac{6.64\times10^{-27}\times(240)^{2}}{2.2\times10^{28}}
+\approx1.8\times10^{-50}\ \mathrm{J\,m^{3}} .
+\end{equation*}
+代入 $\mathcal{V}=10^{-6}\,\mathrm{m^{3}}$、$\Delta n=5/\pi$：
+\begin{equation*}
+\frac{V_0\,\Delta n}{\mathcal{V}}
+=\frac{1.8\times10^{-50}\times1.6}{10^{-6}}
+\approx2.8\times10^{-44}\ \mathrm{s^{-1}},
+\end{equation*}
+\begin{equation*}
+\boxed{\;t\approx\frac{6.0\times10^{-6}}{2.8\times10^{-44}}\approx2\times10^{44}\ \mathrm{s}
+\approx7\times10^{36}\ \text{年}\;}
+\end{equation*}
+宇宙年龄仅 $\sim4\times10^{17}\,\mathrm{s}$。所以尽管有限系统严格说不自发破缺 $U(1)$（见 3.3.7 节），制备好的相位在实际任何时间尺度内都不会弥散掉——宏观系统“事实上”处于对称性破缺基态。顺带检验自洽性：均匀模式能隙 $V_0/\mathcal{V}\sim1.8\times10^{-44}\,\mathrm{J}$（$\hbar\omega\sim10^{-10}\,\mathrm{s}^{-1}$）远小于声波最小能隙 $2\pi v/L\approx1.5\times10^{5}\,\mathrm{s}^{-1}$（$L=1\,\mathrm{cm}$），均匀近似成立。
+
+% ---------------------------------------------------------------
+\section*{问题 3.3.5}
+\begin{problem}
+长程相互作用 $\frac12\int\mathrm{d}^dx\,\mathrm{d}^dx'\,|\varphi(\pmb{x})|^{2}V(\pmb{x}-\pmb{x}')|\varphi(\pmb{x}')|^{2}$，$V(r)=V_dr^{\epsilon-d}$，$\epsilon>0$。(1) 导出修改后的 XY 模型；(2) 求临界空间维数 $d_l$：低于它相位涨落总破坏长程序（短程时 $d_l=1$）；(3) 求 $g$ 与上临界维数 $d_c$。
+\end{problem}
+\solution
+
+\textbf{(1)} 重复式 (3.3.7)--(3.3.9) 的推导，唯一改变是 $\delta\rho$ 的二次型核：$V_0\delta\rho^{2}/2\to\frac12\int\mathrm{d}^dy\,\delta\rho(\pmb{x})V(\pmb{x}-\pmb{y})\delta\rho(\pmb{y})$，即动量空间中质量项为 $\frac12V_k|\delta\rho_k|^{2}$。长程势的傅里叶分量在小 $k$ 处
+\begin{equation*}
+V_k=\int\mathrm{d}^dr\,V_d\,r^{\epsilon-d}\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{r}}
+\propto V_d\,|\pmb{k}|^{-\epsilon}\equiv\tilde V|\pmb{k}|^{-\epsilon}
+\qquad(\epsilon>0 \text{ 时 } V_k \text{ 由大 } r \text{ 主导}) .
+\end{equation*}
+对 $\delta\rho$ 的高斯积分给出（与式 (3.3.9) 同理，把 $V_0$ 换成 $V_k$）
+\begin{equation*}
+S_{\mathrm{eff}}=\int\mathrm{d}^dx\,\mathrm{d}t\,\Big[-\rho_0\partial_t\theta-\frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^{2}\Big]
++\frac12\int\frac{\mathrm{d}^dk}{(2\pi)^d}\,\partial_t\theta_{-\pmb{k}}\,\frac{1}{V_{\pmb{k}}}\,\partial_t\theta_{\pmb{k}} ,
+\end{equation*}
+即\textbf{修改后的 XY 模型}
+\begin{equation*}
+\boxed{\;L_{\mathrm{eff}}=\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^{d}}
+\Big[\frac{|\pmb{k}|^{\epsilon}}{2\tilde V}\,|\partial_t\theta_{\pmb{k}}|^{2}
+-\frac{\rho_0}{2m}\,\pmb{k}^{2}|\theta_{\pmb{k}}|^{2}\Big]\;}
+\end{equation*}
+（长波下 $V_k\gg k^{2}/4m\rho_0$，$\delta\rho$ 的梯度项可略。）色散关系变为分数幂：
+\begin{equation*}
+\omega(\pmb{k})=\sqrt{\frac{\tilde V\rho_0}{m}}\;|\pmb{k}|^{\,1-\epsilon/2} .
+\end{equation*}
+
+\textbf{(2)} 长程序存活 $\Leftrightarrow\langle[\theta(x,0)-\theta(0,0)]^{2}\rangle$ 有限。由上式，$G_\theta(\omega,\pmb{k})=\big(\tilde V^{-1}|\pmb{k}|^{\epsilon}\omega^{2}+\frac{\rho_0}{m}\pmb{k}^{2}\big)^{-1}$，先积频率：
+\begin{equation*}
+\int\frac{\mathrm{d}\omega}{2\pi}\,
+\frac{1}{\tilde V^{-1}k^{\epsilon}\,\omega^{2}+(\rho_0/m)k^{2}}
+=\frac{1}{2\sqrt{\tilde V^{-1}(\rho_0/m)}}\;k^{-1-\epsilon/2} ,
+\end{equation*}
+故（系数无关紧要）
+\begin{equation*}
+\langle[\theta(x)-\theta(0)]^{2}\rangle\propto
+\int_0^\Lambda\mathrm{d}k\;k^{d-2-\epsilon/2}\,\big(1-\cos kx\big) .
+\end{equation*}
+分段估计：$k\lesssim1/x$ 处 $(1-\cos kx)\approx(kx)^{2}/2$，积分为 $\int^{1/x}k^{d}\,\mathrm{d}k\cdot x^{2}\sim x^{1-d}$，仅当 $d\le1$ 时发散；$k\gtrsim1/x$ 处积分为 $\int_{1/x}k^{d-2-\epsilon/2}\mathrm{d}k\sim x^{-(d-1-\epsilon/2)}$，当 $d\le1+\epsilon/2$ 时发散。两者合并：长程序被破坏当且仅当
+\begin{equation*}
+\boxed{\;d\le d_l=1+\frac{\epsilon}{2}\;}
+\end{equation*}
+（$\epsilon\to0$ 退回短程结果 $d_l=1$；相互作用越长程，长程序可存活的维数越低。）
+
+\textbf{(3)} 重复 3.3.8 节末尾的量纲分析。取
+\begin{equation*}
+x=\xi\tilde x,\qquad t=t_0\tilde t,\qquad \varphi=\sqrt{\rho_0}\,\tilde\varphi ,
+\end{equation*}
+并令梯度项与相互作用项相等：$\dfrac{\rho_0}{2m\xi^{2}}\sim\dfrac{\tilde V\rho_0\xi^{\epsilon}}{2}$（实空间中 $\int^{r}\mathrm{d}^dr'\,V(r')\sim\tilde Vr^{\epsilon}$），得相干长度与时间标度
+\begin{equation*}
+\xi=(4m\tilde V\rho_0)^{-1/(2+\epsilon)},\qquad
+t_0=\omega(\xi^{-1})^{-1}=\sqrt{\frac{m}{\tilde V\rho_0}}\;\xi^{\,1-\epsilon/2} .
+\end{equation*}
+直接验证：此时梯度项 $\frac{\rho_0\xi^{d-2}}{2m}t_0$、Berry 项 $\rho_0\xi^{d}$、相互作用项 $\frac{\tilde V\rho_0^{2}\xi^{d+\epsilon}}{2}t_0$ 三者都正比于 $\rho_0\xi^{d}$，故 $S=g^{-1}\tilde S$ 中的
+\begin{equation*}
+\boxed{\;g=\frac{1}{\rho_0\xi^{d}}=\rho_0^{\frac{d}{2+\epsilon}-1}(4m\tilde V)^{\frac{d}{2+\epsilon}}\;}
+\end{equation*}
+（$\epsilon\to0$ 退回式 (3.3.29)。）$g\to0$（半经典近似可信）当且仅当指数 $\frac{d}{2+\epsilon}-1>0$，故\textbf{上临界维数}
+\begin{equation*}
+d_c=2+\epsilon .
+\end{equation*}
+（$\epsilon=0$ 时 $d_c=2$，与正文一致；相互作用越 long-ranged，量子涨落越容易控制临界点。）
+
+% ---------------------------------------------------------------
+\section*{问题 3.3.6}
+\begin{problem}
+$1+1$ 维有限温关联。(1) 在长度为 $L$ 的圆上计算虚时关联 $\mathcal{G}(x,\tau)=\langle\mathrm{e}^{\mathrm{i}\theta(x,\tau)}\mathrm{e}^{-\mathrm{i}\theta(0,0)}\rangle$；(2) 在无限长直线上计算有限温虚时关联 $\mathcal{G}^{\beta}(x,\tau)$（交换 $x$ 与 $\tau$）；(3) 计算有限温实时编时关联 $G^{\beta}(x,t)$，证明 $G^{\beta}(0,t)\propto\mathrm{e}^{-\mathrm{i}\frac{\pi}{4\pi v\chi}}\big(\frac{\pi T}{\sinh(\pi T|t|)}\big)^{1/2\pi v\chi}$。
+\end{problem}
+\solution
+
+XY 模型 (3.3.23) 的欧氏形式为 $L_E=\frac{\chi}{2}\big[(\partial_\tau\theta)^{2}+v^{2}(\partial_x\theta)^{2}\big]$。对高斯场
+\begin{equation*}
+\mathcal{G}(x,\tau)=\mathrm{e}^{\,\langle\theta(x,\tau)\theta(0,0)\rangle-\langle\theta^{2}\rangle}
+=\mathrm{e}^{\,\mathcal{G}_\theta(x,\tau)-\mathcal{G}_\theta(l,0)} ,
+\end{equation*}
+其中 $l$ 为短距离截断（$\langle\theta^{2}\rangle$ 紫外发散，须用参考点 $(l,0)$ 正规化）。
+
+\textbf{(1) 零温、空间为圆。}$k=2\pi n/L$，每个模式是频率 $v|k|$ 的振子：
+\begin{equation*}
+\mathcal{G}_\theta(x,\tau)
+=\frac{1}{L}\sum_{k\neq0}\frac{\mathrm{e}^{\mathrm{i}kx-v|k||\tau|}}{2\chi v|k|}
+=-\frac{1}{4\pi\chi v}\ln\!\big(1-2\mathrm{e}^{-t}\cos y+\mathrm{e}^{-2t}\big),
+\end{equation*}
+其中 $t=2\pi v|\tau|/L$，$y=2\pi x/L$（用了 $\sum_{n\ge1}\cos(ny)\mathrm{e}^{-nt}/n=-\frac12\ln(1-2\mathrm{e}^{-t}\cos y+\mathrm{e}^{-2t})$；$k=0$ 零模为常数已略去）。而 $\mathcal{G}_\theta(l,0)=-\frac{1}{2\pi\chi v}\ln\!\big(2\sin\frac{\pi l}{L}\big)$。于是
+\begin{equation*}
+\boxed{\;\mathcal{G}(x,\tau)=
+\left[\frac{4\sin^{2}(\pi l/L)}
+{1-2\,\mathrm{e}^{-2\pi v|\tau|/L}\cos(2\pi x/L)+\mathrm{e}^{-4\pi v|\tau|/L}}\right]^{\frac{1}{4\pi\chi v}}\;}
+\end{equation*}
+检验：$\tau=0$ 给出圆上的幂律 $\mathcal{G}(x,0)=\big[\sin(\pi l/L)/\sin(\pi x/L)\big]^{1/2\pi\chi v}$；$L\to\infty$ 时分母 $\to(2\pi/L)^{2}(x^{2}+v^{2}\tau^{2})$，得式 (3.3.25) 的虚时延续 $\mathcal{G}=\big[l^{2}/(x^{2}+v^{2}\tau^{2})\big]^{1/4\pi\chi v}$。
+
+\textbf{(2) 有限温、无限线。}有限温即虚时方向是周期 $\beta=1/T$ 的圆、$x$ 无限。把 (1) 中“圆”与“自由”两个方向的角色交换（$x\leftrightarrow v\tau$，$L\to v\beta$；由度规 $\mathrm{d}s^{2}=\mathrm{d}\tau^{2}+\mathrm{d}x^{2}/v^{2}$，此交换是精确的等距变换），或等价地直接做 Matsubara 求和 $T\sum_n\int\frac{\mathrm{d}k}{2\pi}\frac{\mathrm{e}^{\mathrm{i}kx+\mathrm{i}\omega_n\tau}}{\chi(\omega_n^{2}+v^{2}k^{2}}$，得
+\begin{equation*}
+\mathcal{G}^{\beta}_\theta(x,\tau)
+=-\frac{1}{4\pi\chi v}\ln\!\Big[\cosh\frac{2\pi x}{v\beta}-\cos\frac{2\pi\tau}{\beta}\Big]+\text{const.}
+\end{equation*}
+以等时参考点 $(l,0)$ 正规化（$\cosh\frac{2\pi l}{v\beta}-1\simeq\frac{2\pi^{2}l^{2}}{v^{2}\beta^{2}}$）：
+\begin{equation*}
+\boxed{\;\mathcal{G}^{\beta}(x,\tau)=
+\left[\frac{2\pi^{2}l^{2}/(v^{2}\beta^{2})}
+{\cosh\!\big(2\pi x/v\beta\big)-\cos\!\big(2\pi\tau/\beta\big)}\right]^{\frac{1}{4\pi\chi v}}
+=\left[\frac{\pi l/(\sqrt2\,v\beta)}
+{\big|\sinh\frac{\pi}{\beta}\big(\frac{x}{v}+\mathrm{i}\tau\big)\big|}\right]^{\frac{1}{2\pi\chi v}}\;}
+\end{equation*}
+（末式用了 $|\sinh(a+\mathrm{i}b)|^{2}=\sinh^{2}a+\sin^{2}b=\frac12[\cosh2a-\cos2b]$。）
+检验：$\beta\to\infty$ 退回零温结果；$x=0$ 给出 $\big[\frac{\pi l/(v\beta)}{\sin(\pi|\tau|/\beta)}\big]^{1/2\pi\chi v}$（热圆上的幂律）；$x\gg v\beta$ 时 $\mathcal{G}^{\beta}(x,0)\sim\mathrm{e}^{-x/2\chi v\beta}$——有限温下准长程序被\emph{指数}摧毁（热关联长度 $\xi_T\sim2\chi v\beta$）。
+
+\textbf{(3) 实时编时关联。}解析延拓 $\tau\to\mathrm{i}t+0^{+}$（费曼 $0^{+}$ 规定选取时间序分支）：
+\begin{equation*}
+G^{\beta}(x,t)=\left[\frac{2\pi^{2}l^{2}/(v^{2}\beta^{2})}
+{\cosh(2\pi x/v\beta)-\cosh\!\big(2\pi(|t|-\mathrm{i}0^{+})/\beta\big)}\right]^{\frac{1}{4\pi\chi v}} .
+\end{equation*}
+取 $x=0$：分母 $=1-\cosh\frac{2\pi(|t|-\mathrm{i}0^{+})}{\beta}=-2\sinh^{2}\frac{\pi(|t|-\mathrm{i}0^{+})}{\beta}$，取连续支路 $(-2\sinh^{2})^{-\alpha}=|2\sinh^{2}|^{-\alpha}\mathrm{e}^{-\mathrm{i}\pi\alpha}$，$\alpha=\frac{1}{4\pi\chi v}$：
+\begin{equation*}
+G^{\beta}(0,t)
+=\mathrm{e}^{-\mathrm{i}\frac{\pi}{4\pi\chi v}}
+\left[\frac{\sqrt2\,\pi l/(v\beta)}{\sinh\!\big(\pi T|t|\big)}\right]^{\frac{1}{2\pi\chi v}}
+\;\propto\;
+\boxed{\;\mathrm{e}^{-\mathrm{i}\frac{\pi}{4\pi v\chi}}
+\left(\frac{\pi T}{\sinh(\pi T|t|)}\right)^{\frac{1}{2\pi v\chi}}\;}
+\end{equation*}
+（与 $l$ 有关的非普适常数已并入 $\propto$；注意 $x=0$ 处 $\sinh$ 的宗量不含 $v$。）检验：$T\to0$ 时 $\sinh(\pi T|t|)\to\pi T|t|$，退回零温幂律 $(l/v|t|)^{1/2\pi v\chi}$；大 $|t|$ 时以率 $\pi T/(2\pi v\chi)$ 指数衰减——有限温摧毁准长程序。
+
+% ---------------------------------------------------------------
+\section*{问题 3.4.1}
+\begin{problem}
+$T_c$ 附近 $S_{\mathrm{eff}}=\beta\int\mathrm{d}^dx\,[\frac{1}{2m^{*}}|\partial_{\pmb{x}}\varphi_c|^{2}+a(T-T_c)|\varphi_c|^{2}+b|\varphi_c|^{4}]$。(1) 用平均场方法求临界点处 $\langle\varphi_c(\pmb{x})\varphi_c^{*}(0)\rangle\sim1/|\pmb{x}|^{\gamma}$ 的 $\gamma$；(2) 用 $S_{\mathrm{eff}}=g^{-1}\tilde S$ 型量纲分析求上临界维数 $d_c$；(3) 对微扰 $\beta\int\mathrm{d}^dx\,c|\varphi|^{\sigma}$，确定 $\sigma$ 的相关/不相关范围。
+\end{problem}
+\solution
+
+\textbf{(1)} $T=T_c$ 处质量项消失，作用量的二次部分为 $\beta\int\mathrm{d}^dx\,\frac{1}{2m^{*}}|\partial\varphi_c|^{2}$，传播子
+\begin{equation*}
+\langle\varphi_c(\pmb{k})\varphi_c^{*}(-\pmb{k})\rangle=\frac{2m^{*}}{\beta\,\pmb{k}^{2}}
+\quad\Longrightarrow\quad
+\langle\varphi_c(\pmb{x})\varphi_c^{*}(0)\rangle
+=\frac{2m^{*}}{\beta}\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^{d}}\frac{\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}}{\pmb{k}^{2}}
+\propto\frac{1}{|\pmb{x}|^{d-2}} .
+\end{equation*}
+故平均场的衰减指数为
+\begin{equation*}
+\boxed{\;\gamma=d-2\;}
+\end{equation*}
+（如 $d=3$：$\gamma=1$；$d=2$ 时对数——这正是二维以下经典涨落危险的前兆，见 (2)。）
+
+\textbf{(2)} 记 $\tau=T-T_c$。相干长度与平均场序参量为
+\begin{equation*}
+\xi=(2m^{*}a|\tau|)^{-1/2},\qquad
+\varphi_0=\sqrt{a|\tau|/b}\quad(\tau<0) .
+\end{equation*}
+作重标度 $x=\xi\tilde x$，$\varphi=\varphi_0\tilde\varphi$：梯度项与质量项的系数自动一致（因 $\xi^{2}=1/2m^{*}a|\tau|$），三项共同系数为
+\begin{equation*}
+g^{-1}=\beta\,\frac{a^{2}\tau^{2}}{b}\,\xi^{d}
+\propto|\tau|^{2-d/2}
+\qquad\Longrightarrow\qquad
+g\propto|\tau|^{d/2-2} .
+\end{equation*}
+等价的说法（Ginzburg 判据）：一个相干体积内的序参量涨落 $\langle(\delta\varphi)^{2}\rangle_{\xi}\sim2m^{*}T\,\xi^{2-d}$，与 $\varphi_0^{2}=a|\tau|/b$ 之比 $g\sim|\tau|^{(d-4)/2}$，两个定义一致（$\langle\delta\tilde\varphi^{2}\rangle\propto g$）。半经典（平均场）描述自洽要求 $g\to0$（$\tau\to0$），即
+\begin{equation*}
+\boxed{\;d_c=4\;}
+\end{equation*}
+$d>4$：$g\to0$，经典理论正确描写临界点（平均场指数可信）；$d<4$：$g\to\infty$，临界点由强涨落控制（Wilson--Fisher 型），平均场指数失效。
+
+\textbf{(3)} 在高斯不动点处 $[\varphi]=\frac{d-2}{2}$（由 (1) 的关联 $\langle\varphi\varphi^{*}\rangle\sim x^{-(d-2)}$ 按式 (3.5.1) 的归一化）。算符 $|\varphi|^{\sigma}$ 的标度量纲为 $\sigma(d-2)/2$，微扰 $\int\mathrm{d}^dx\,c|\varphi|^{\sigma}$ 的耦合量纲为
+\begin{equation*}
+[c]=d-\frac{\sigma(d-2)}{2} .
+\end{equation*}
+$[c]>0$（粗粒化下增长）为相关，$[c]<0$ 为不相关：
+\begin{equation*}
+\boxed{\;\sigma<\frac{2d}{d-2}:\ \text{相关};\qquad
+\sigma>\frac{2d}{d-2}:\ \text{不相关};\qquad
+\sigma=\frac{2d}{d-2}:\ \text{边缘}.\;}
+\end{equation*}
+检验 $\sigma=4$：相关 $\Leftrightarrow4<\frac{2d}{d-2}\Leftrightarrow d<4$，与 (2) 完全一致——$|\varphi|^{4}$ 微扰在 $d<4$ 时于高斯临界点相关，正是平均场失效的原因。
+
+% ---------------------------------------------------------------
+\section*{问题 3.5.1}
+\begin{problem}
+$S_{\mathrm{eff}}=\beta\int\mathrm{d}^d\pmb{x}\,\frac{1}{2m^{*}}|\partial_{\pmb{x}}\varphi|^{2}$ 描写一个临界点。计算 $\varphi$、$\varphi^{2}$、$|\varphi|^{2}$、$|\varphi|^{4}$ 的标度量纲；证明在某个 $d_0$ 以下 $\int\mathrm{d}^d\pmb{x}\,b|\varphi|^{4}$ 成为相关微扰，求 $d_0$，并解释为什么 $d_0$ 等于 $S_{\mathrm{eff}}=\beta\int[\frac{1}{2m^{*}}|\partial\varphi|^{2}+a(T-T_c)|\varphi|^{2}+b|\varphi|^{4}]$ 的上临界维数 $d_c$。
+\end{problem}
+\solution
+
+该作用量是（无质量的）高斯理论。关联函数
+\begin{equation*}
+\langle\varphi(\pmb{x})\varphi^{*}(0)\rangle
+=\frac{2m^{*}}{\beta}\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^{d}}\frac{\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}}{\pmb{k}^{2}}
+\propto\frac{1}{|\pmb{x}|^{d-2}}
+\end{equation*}
+按式 (3.5.1) 的归一化给出
+\begin{equation*}
+\boxed{\;[\varphi]=\frac{d-2}{2},\qquad
+[\varphi^{2}]=[|\varphi|^{2}]=d-2,\qquad
+[|\varphi|^{4}]=2(d-2).\;}
+\end{equation*}
+微扰 $\int\mathrm{d}^d\pmb{x}\,b|\varphi|^{4}$ 的耦合量纲为
+\begin{equation*}
+[b]=d-[|\varphi|^{4}]=d-2(d-2)=4-d .
+\end{equation*}
+按判据“$\int\mathrm{d}^dx\,O$ 量纲为负 $\Rightarrow$ 相关”：$4-d<0$，即
+\begin{equation*}
+\boxed{\;d_0=4:\quad d<4 \text{ 时 } b|\varphi|^{4}\ \text{相关（在长距离下不可忽略）},\quad
+d>4 \text{ 时不相关}.\;}
+\end{equation*}
+
+\textbf{为什么 $d_0=d_c$。}Ginzburg--Landau 临界点的高斯（自由）理论正是上述 $S_{\mathrm{eff}}$；$a(T-T_c)|\varphi|^{2}$ 在 $T=T_c$ 处为零，$b|\varphi|^{4}$ 是唯一决定临界点命运的微扰。若 $d>4$，$b|\varphi|^{4}$ 不相关：RG 流回到高斯不动点，临界点\emph{就是}高斯不动点，平均场（经典）理论精确——这正是“上临界维数”$d_c=4$ 的含义。若 $d<4$，$b|\varphi|^{4}$ 相关：它沿流放大，临界点移到强耦合（Wilson--Fisher）不动点，平均场指数失效。可见“$b|\varphi|^{4}$ 在 $d_0$ 以下变相关”与“Ginzburg--Landau 临界点在 $d_c$ 以下不再由经典理论描写”是同一陈述，故 $d_0=d_c=4$。
+
+% ---------------------------------------------------------------
+\section*{问题 3.5.2}
+\begin{problem}
+流动的“耦合函数”。考虑 $S=\int\mathrm{d}^{2}\pmb{x}\,\big[\frac{\kappa}{2}(\partial_{\pmb{x}}\theta)^{2}+V(\theta)\big]$，$V$ 为小的周期函数 $V(\theta+2\pi)=V(\theta)$。求描写 $V$ 流动的 RG 方程（$V$ 小，可忽略 $\kappa$ 的流动），并讨论：从非常小的 $V$ 出发，长时间流动后 $V$ 的形式。
+\end{problem}
+\solution
+
+把周期函数作傅里叶展开：
+\begin{equation*}
+V(\theta)=\sum_{n\neq0}V_n\,\mathrm{e}^{\mathrm{i}n\theta}\qquad(V_{-n}=V_n^{*}) .
+\end{equation*}
+由式 (3.5.5)，算符 $\mathrm{e}^{\mathrm{i}n\theta}$ 的标度量纲为 $h_n=\dfrac{n^{2}}{4\pi\kappa}$（$\langle\mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}n\theta(0)}\rangle=(l/|\pmb{x}|)^{n^{2}/2\pi\kappa}$）。$V$ 很小，各谐波可独立处理（一阶 RG；$\kappa$ 的流动为 $O(V^{2})$，按题意忽略）。把波长介于 $l$ 与 $\lambda$ 之间的涨落积掉并重标度回单位截断，与式 (3.5.9) 的推导相同，每个谐波按
+\begin{equation*}
+\boxed{\;\frac{\mathrm{d}V_n}{\mathrm{d}b}
+=\Big(2-\frac{n^{2}}{4\pi\bar\kappa}\Big)V_n+O(V^{2})\;}
+\end{equation*}
+流动（$\bar\kappa$ 为无量纲化的 $\kappa$，$b=\ln\lambda$；二阶项使 $V_{n}$ 与 $V_{n'}V_{n-n'}$ 耦合，即流动会产生 $2n$ 次等新谐波，但不改变下述定性结论）。等价地，把 $V$ 看作 $\theta$ 的函数，RG 流是一个“带生长的扩散方程”：
+\begin{equation*}
+\frac{\partial V(\theta,b)}{\partial b}=2V+\frac{1}{4\pi\bar\kappa}\,\frac{\partial^{2}V}{\partial\theta^{2}}
+\qquad\big(\partial_\theta^{2}\mathrm{e}^{\mathrm{i}n\theta}=-n^{2}\mathrm{e}^{\mathrm{i}n\theta}\big) .
+\end{equation*}
+
+\textbf{长时间行为。}谐波 $n$ 相关（增长）当且仅当 $n^{2}<8\pi\bar\kappa$。从很小的 $V$ 出发：
+
+(i) 若 $\bar\kappa>1/8\pi$：至少 $n=1$ 相关，且标度量纲最小的相关谐波 $n_0=\min\{n:\,n^{2}<8\pi\bar\kappa\}$ 增长最快（指数最大），长时间后
+\begin{equation*}
+V(\theta)\;\longrightarrow\;g_{n_0}\cos(n_0\theta-\phi)\quad\text{主导}，
+\end{equation*}
+一旦 $g_{n_0}\sim1$（在尺度 $\xi=l\,\bar g\,^{-1/(2-h_{n_0})}$ 处），RG 停止，$\theta$ 被锁在 $\cos(n_0\theta)$ 的极小上：关联变短程；若 $n_0=1$，$U(1)$ 在长波下完全破缺，若 $n_0>1$ 则残余 $Z_{n_0}$ 对称性。
+
+(ii) 若 $\bar\kappa<1/8\pi$：所有谐波都不相关，$V_n\to0$：流动到达具有完整 $U(1)$ 对称的自由不动点——\emph{动力学对称性恢复}，$\theta$ 具有代数长程关联（无论初始 $V$ 多么复杂的形状，其细节在长波下全部流失）。
+
+(iii) $\bar\kappa=1/8\pi$：$n=1$ 边缘，需二阶（Kosterlitz 型）RG 判定。
+
+这正体现 RG 的普适性：长波物理只由“哪些谐波相关”决定，与 $V$ 的微观形状无关。
+
+% ---------------------------------------------------------------
+\section*{问题 3.5.3}
+\begin{problem}
+$n=1$ 时钟模型描写外磁场 $B_x=g$ 中的二维 XY 自旋（$S_x=\cos\theta$）。若 $\cos\theta$ 相关，用 RG 求小磁场感应的 $S_x$；若不相关，再求之；并与式 (3.5.2) 比较。
+\end{problem}
+\solution
+
+$\cos\theta$ 的标度量纲为 $h=\frac{1}{4\pi\kappa}$。相关判据：$h<2\Leftrightarrow\kappa>1/8\pi$。
+
+\textbf{(i) $\cos\theta$ 相关（$\kappa>1/8\pi$）。}跑动耦合 $\bar g_\lambda=\bar g_l(\lambda/l)^{2-h}$ 沿流增长，在
+\begin{equation*}
+\xi=l\,\bar g_l^{-1/(2-h)},\qquad h=\frac{1}{4\pi\kappa}
+\end{equation*}
+处达到 $O(1)$，此后（按提示）用重整化后的作用量 $S_\xi=\int\mathrm{d}^{2}x\,\big[\frac{\kappa_\xi}{2}(\partial\theta_\xi)^{2}-g_\xi\cos\theta_\xi\big]$、$g_\xi\sim1$ 描写：$\theta_\xi$ 被俘获在 $\cos\theta$ 的极小附近，故
+\begin{equation*}
+\langle S_x\rangle=\langle\cos\theta\rangle\sim O(1)\;\longrightarrow\;1 .
+\end{equation*}
+按标度匹配（与式 (3.5.2) 的相关情形 $\langle O\rangle\sim a^{h/(d-h)}$ 一致，$d=2$、$a=B_x$）：
+\begin{equation*}
+\langle S_x\rangle\sim g^{\,h/(2-h)} ,
+\end{equation*}
+即感应磁矩对磁场的响应是\emph{非线性的、饱和的}：任意小的场最终把 $\theta$ 锁死，$\langle S_x\rangle$ 为 $1$ 的量级。
+
+\textbf{(ii) $\cos\theta$ 不相关（$\kappa<1/8\pi$）。}一阶微扰：
+\begin{equation*}
+\langle S_x\rangle=-g\int\mathrm{d}^{2}x\,\langle\cos\theta(\pmb{x})\cos\theta(0)\rangle
+=-\frac{g}{2}\int_{l}^{\infty}2\pi r\,\mathrm{d}r\,\Big(\frac{l}{r}\Big)^{2h}
+=-\frac{\pi\,g\,l^{2}}{2h-2}\cdot\big(O(1)\big),
+\end{equation*}
+（$2h>2$ 时积分收敛，由短距离 $r\sim l$ 主导；系数 $O(1)$ 非普适。）感应磁矩\emph{线性}于磁场且极小（被强相位涨落按幂次压低）。用式 (3.5.2) 的语言：对归一化算符 $O=l^{-h}\cos\theta$（$a=g\,l^{h}$），$\langle O\rangle\sim a\,l^{d-2h}=g\,l^{2-2h}$，正是上式。
+
+\textbf{与式 (3.5.2) 的比较。}相关情形 $\langle O\rangle\sim a^{h/(d-h)}=g^{h/(2-h)}$（饱和、非解析）；不相关情形 $\langle O\rangle\sim a\,l^{d-2h}$（线性、被 $l$ 幂压低）。两者与上面的 RG 结果逐项一致：相关微扰无论多小都在长波下产生 $O(1)$ 的序；不相关微扰只产生被截断标度压低的微弱响应。
+
+% ---------------------------------------------------------------
+\section*{问题 3.6.1}
+\begin{problem}
+证明式 (3.6.2)：
+$\langle\rho(t,x)\rho(0,0)\rangle=\rho_0^{2}-\frac{\chi v}{4\pi}\big[\frac{1}{(x-vt)^{2}}+\frac{1}{(x+vt)^{2}}\big]+\sum_n|C_n|^{2}\mathrm{e}^{\mathrm{i}K_nx}\big(\frac{l^{2}\mathrm{e}^{-\mathrm{i}\pi\Theta(v^{2}t^{2}-x^{2})}}{|x^{2}-v^{2}t^{2}|}\big)^{n^{2}\pi\chi v}$。
+\end{problem}
+\solution
+
+\textbf{第一步：密度算符的低能分解。}作谱展开 $\langle\rho(t,x)\rho(0,0)\rangle=\sum_{n,k}\langle0|\rho(x)|n,k\rangle\langle n,k|\rho(0)|0\rangle\,\mathrm{e}^{\mathrm{i}kx-\mathrm{i}\epsilon_{n,k}t}$。低能态聚在 $K_n=2\pi n\rho$ 附近；而涡旋算符 $O_v^{n}$ 把 $k\approx0$ 的低能态映射到 $k\approx K_n$ 的低能态（涡旋把 $\theta:0\to2\pi x/L$ 的缠绕，即一个伽利略助推）。于是可作假设 $\langle n,\delta k,i|\rho|0\rangle=C_i\langle n,\delta k,i|O_v^{i}|0\rangle$，等价于分解
+\begin{equation*}
+\rho(t,x)=\rho_0-\chi\,\partial_t\theta(t,x)+\sum_n C_n\,O_v^{n}(t,x) ,
+\end{equation*}
+其中平滑部分由式 (3.3.13) 给出，涡旋部分按动量 $K_n$ 分通道；不同 $K_n$ 通道（以及平滑部分与 $K_n\neq0$ 通道）之间的交叉项在该谱分解中为零。
+
+\textbf{第二步：平滑部分。}用 $\langle T\,\partial_t\theta(x,t)\,\partial_{t'}\theta(0,0)\rangle
+=\partial_t\partial_{t'}\big(\mathrm{i}G_\theta\big)$ 与 $1+1$ 维传播子（式 (3.3.24)）
+\begin{equation*}
+\mathrm{i}G_\theta(t,x)=-\frac{1}{4\pi v\chi}\ln\frac{x^{2}-v^{2}t^{2}+\mathrm{i}0^{+}}{l^{2}},
+\end{equation*}
+记 $s=t-t'$：$\partial_t\partial_{t'}\ln f(s)=-\partial_s^{2}\ln f(s)$，而
+$\partial_s^{2}\ln(x^{2}-v^{2}s^{2})=-\dfrac{2v^{2}(x^{2}+v^{2}s^{2})}{(x^{2}-v^{2}s^{2})^{2}}$，故
+\begin{equation*}
+\langle T\,\partial_t\theta(x,t)\,\partial_{t'}\theta(0,0)\rangle
+=-\frac{v}{2\pi\chi}\,\frac{x^{2}+v^{2}t^{2}}{(x^{2}-v^{2}t^{2})^{2}} .
+\end{equation*}
+由 $\rho=\rho_0-\chi\partial_t\theta$（线性阶）：
+\begin{equation*}
+\langle\rho\rho\rangle_{\text{smooth}}
+=\rho_0^{2}+\chi^{2}\langle T\,\partial_t\theta\,\partial_{t'}\theta\rangle
+=\rho_0^{2}-\frac{\chi v}{2\pi}\frac{x^{2}+v^{2}t^{2}}{(x^{2}-v^{2}t^{2})^{2}}
+=\rho_0^{2}-\frac{\chi v}{4\pi}\Big[\frac{1}{(x-vt)^{2}}+\frac{1}{(x+vt)^{2}}\Big] .
+\end{equation*}
+
+\textbf{第三步：涡旋部分。}欧氏时空中，荷为 $n$ 的涡旋与反涡旋相距 $r$ 的相互作用由 3.4/3.6 节的“库仑气体”给出：单涡旋作用量 $h=\pi\eta$、对势 $2h\ln(r/l)$，此处有效 $\eta=\chi v$（由 $S_E=\frac{\chi v}{2}\int\mathrm{d}\tau\mathrm{d}\tilde x[(\partial_\tau\theta)^{2}+(\partial_{\tilde x}\theta)^{2}]$，$\tilde x=vx$，即 $\kappa=\chi v$），故荷 $n$ 的对势为 $2\pi n^{2}\chi v\ln(r/l)$。于是
+\begin{equation*}
+\langle O_v^{n}(x,\tau)\,O_v^{n\dagger}(0,0)\rangle
+=\mathrm{e}^{-2\pi n^{2}\chi v\ln(r/l)}
+=\Big(\frac{l^{2}}{r^{2}}\Big)^{n^{2}\pi\chi v},
+\qquad r^{2}=x^{2}+\tau^{2} .
+\end{equation*}
+解析延拓 $\tau\to vt$（沿用式 (3.3.25) 的支路选取）：
+\begin{equation*}
+\langle O_v^{n}(t,x)O_v^{n\dagger}(0,0)\rangle
+=\Big(\frac{l^{2}}{x^{2}-v^{2}t^{2}+\mathrm{i}0^{+}}\Big)^{n^{2}\pi\chi v}
+=\Big(\frac{l^{2}\,\mathrm{e}^{-\mathrm{i}\pi\Theta(v^{2}t^{2}-x^{2})}}{|x^{2}-v^{2}t^{2}|}\Big)^{n^{2}\pi\chi v} .
+\end{equation*}
+物理上，涡旋对不发生禁闭（相位项 $\mathrm{e}^{\mathrm{i}2\pi\rho\sum q_jx_j}$ 在谱学关联中只体现为携带动量 $K_n$），故该幂律关联在超流相中成立。
+
+\textbf{第四步：合并。}三部分相加（$O_v^n$ 与平滑算符的交叉项为零，见第一步）即得
+\begin{equation*}
+\boxed{\;
+\langle\rho(t,x)\rho(0,0)\rangle
+=\rho_0^{2}-\frac{\chi v}{4\pi}\left[\frac{1}{(x-vt)^{2}}+\frac{1}{(x+vt)^{2}}\right]
++\sum_n|C_n|^{2}\,\mathrm{e}^{\mathrm{i}K_nx}
+\left(\frac{l^{2}\,\mathrm{e}^{-\mathrm{i}\pi\Theta(v^{2}t^{2}-x^{2})}}{|x^{2}-v^{2}t^{2}|}\right)^{n^{2}\pi\chi v}
+\;}
+\end{equation*}
+即式 (3.6.2)。系数 $C_n$ 依赖短距离物理（涡旋芯作用量），是非普适的；各幂指数 $n^{2}\pi\chi v$ 则是普适的。此式把低能长波（声子部分）与低能\emph{大}动量 $K_n=2\pi n\rho$（涡旋部分）的密度涨落统一在一个公式里。
+
+% ---------------------------------------------------------------
+\section*{问题 3.6.2}
+\begin{problem}
+有限动量响应率。设弱势 $V(x)$ 引起密度改变 $\delta\rho$。(1) 把 $\delta\rho_k=\chi(k)V_k$ 中的 $\chi(k)$ 用频率--动量空间密度关联表示；(2) 求 $\chi(K_n)$ 发散的 $\chi,v$ 取值；(3) 开启周期 $a=\rho^{-1}/n$ 的弱周期势，哪些 $\chi,v$ 下玻色子形成莫特绝缘体？
+\end{problem}
+\solution
+
+\textbf{(1)} 静态势 $V$ 通过 $-V\rho$ 耦合，线性响应给出 $\delta\rho(\pmb{k},\omega)=\Pi^{00}(\omega,\pmb{k})V(\pmb{k},\omega)$，故静态响应率
+\begin{equation*}
+\chi(\pmb{k})=-\Pi^{00}(0,\pmb{k})
+=-\frac{1}{\pi}\int_{-\infty}^{\infty}\mathrm{d}\omega\,
+\frac{\mathrm{Im}\,\langle\rho\rho\rangle^{\mathrm{R}}(\omega,\pmb{k})}{\omega} ,
+\end{equation*}
+其中 $\langle\rho\rho\rangle^{\mathrm{R}}$ 为延迟关联（$\mathrm{Im}\,\Pi^{00}=\mathrm{Im}\langle\rho\rho\rangle^{R}$ 的连通部分）。等价的（更便于计算的）虚时表示为
+\begin{equation*}
+\boxed{\;\chi(\pmb{k})=\int_{0}^{\beta}\mathrm{d}\tau\int\mathrm{d}x\;
+\mathrm{e}^{\mathrm{i}kx}\,
+\big\langle\rho(\tau,x)\rho(0,0)\big\rangle_{c}\;}
+\end{equation*}
+（对 $\tau$ 从 $0$ 到 $\beta$ 积分的虚时关联即静态极化率；两者由谱表示相联系。）
+
+\textbf{(2)} 由式 (3.6.2)，在 $k=K_n=2\pi n\rho$ 处起支配作用的是涡旋通道（平滑部分给出有限的 $\chi$）：
+\begin{equation*}
+\chi(K_n)\supset2|C_n|^{2}\int\mathrm{d}\tau\,\mathrm{d}x\,
+\Big(\frac{l^{2}}{x^{2}+\tau^{2}}\Big)^{\Delta_n},
+\qquad \Delta_n\equiv n^{2}\pi\chi v .
+\end{equation*}
+换到光锥坐标 $u=x+\tau$，$w=x-\tau$：积分 $\propto\int\mathrm{d}u\,\mathrm{d}w\,|u|^{-\Delta_n}|w|^{-\Delta_n}\,l^{2\Delta_n}$，在 $l$ 处紫外收敛，在红外收敛当且仅当 $\Delta_n>1$。故
+\begin{equation*}
+\boxed{\;\chi(K_n)=\infty\quad\Longleftrightarrow\quad
+\Delta_n=n^{2}\pi\chi v\le1
+\quad\Longleftrightarrow\quad
+\chi v\le\frac{1}{\pi n^{2}}\;}
+\end{equation*}
+（虚时中算：$n=1$ 时 $\chi v\le1/\pi$ 即发散。物理上，$K_n$ 处结构因子发散意味着体系对周期为 $\rho^{-1}/n$ 的调制失去抵抗。）
+
+\textbf{(3)} 周期势 $V(x)=V_0\cos(2\pi n\rho\,x+\varphi)$ 与密度耦合：
+\begin{equation*}
+\int\mathrm{d}x\,V(x)\rho(x)\;\supset\;
+V_0 C_n\int\mathrm{d}^{2}\pmb{r}\,
+\big[\mathrm{e}^{\mathrm{i}(2\pi n\rho\,x+\varphi)}O_v^{n}(\pmb{r})+\mathrm{h.c.}\big] ,
+\end{equation*}
+即对涡旋算符 $O_v^n$ 的微扰。按 3.5.1 节的判据，微扰相关（无论初始多么小都在长波下起作用、打开能隙）当且仅当其标度量纲小于空间维数 $2$：
+\begin{equation*}
+\Delta_n=n^{2}\pi\chi v<2
+\quad\Longleftrightarrow\quad
+\chi v<\frac{2}{\pi n^{2}} .
+\end{equation*}
+因此
+\begin{equation*}
+\boxed{\;\chi v<\frac{2}{\pi n^{2}}:\ \text{莫特绝缘体（所有激发有能隙）};\qquad
+\chi v>\frac{2}{\pi n^{2}}:\ \text{导电（超流）态}\;}
+\end{equation*}
+$n=1$ 时 $\chi v_c=2/\pi$，与正文图 3.13 一致；$n$ 越大（公度越高阶）临界 $\chi v$ 越小——高阶公度更脆弱。注意 (2)(3) 的差别：$\chi(K_n)$ 发散的条件 $\Delta_n\le1$ 比势变相关的条件 $\Delta_n<2$ 更苛刻；后者才是莫特转变的判据（在 $1/\pi n^{2}<\chi v<2/\pi n^{2}$ 区间内响应率有限，但弱势仍相关并打开能隙）。这正是 3.6 节的结论：相位项 $\mathrm{e}^{\mathrm{i}2\pi\rho\sum q_jx_j}$ 单独时把涡旋--反涡旋禁闭（纯系统无等离子体相、保持超流），一旦与公度周期势干涉使相位平均掉，$\chi v=2/\pi$ 处便出现真正的 KT 型转变——超流/导电相与莫特绝缘体相之分。
+
+% ---------------------------------------------------------------
+\section*{问题 3.7.1}
+\begin{problem}
+与规范场耦合的格点玻色子系统
+$L=\mathrm{i}\frac12\sum_i\big(\varphi_i^{*}(\partial_0+\mathrm{i}A_0(i))\varphi_i-\varphi_i(\partial_0-\mathrm{i}A_0(i))\varphi_i^{*}\big)+\sum_{\langle ij\rangle}\big(t_{ij}\varphi_j^{*}\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}}+\mathrm{h.c.}\big)$。
+(a) 证明 $L$ 在格点规范变换 $\varphi_i\to\mathrm{e}^{\mathrm{i}f_i}\varphi_i$、$A_0(i)\to A_0(i)-\partial_0f_i$、$a_{ij}\to a_{ij}-f_j+f_i$ 下不变；(b) 求 $\varphi_i$ 的运动方程；(c) 计算 $\partial_0\varphi_i^{*}\varphi_i$ 并证明可定义链上流 $J_{ij}$ 满足 $\partial_0\varphi_i^{*}\varphi_i+\sum_jJ_{ij}=0$；(d) 证明 $J_{ij}=-\partial L/\partial a_{ij}$。
+\end{problem}
+\solution
+
+\textbf{(a)} Berry 相位项：$(\partial_0+\mathrm{i}(A_0-\partial_0f_i))(\mathrm{e}^{\mathrm{i}f_i}\varphi_i)
+=\mathrm{e}^{\mathrm{i}f_i}(\partial_0+\mathrm{i}A_0)\varphi_i$（$\mathrm{i}\partial_0f_i\varphi_i$ 与 $-\mathrm{i}\partial_0f_i\varphi_i$ 相消），故 $\varphi_i^{*}(\partial_0+\mathrm{i}A_0)\varphi_i$ 及其复共轭不变。跳跃项：
+\begin{equation*}
+\varphi_j^{*}\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}}
+\;\longrightarrow\;
+(\mathrm{e}^{-\mathrm{i}f_j}\varphi_j^{*})(\mathrm{e}^{\mathrm{i}f_i}\varphi_i)\,
+\mathrm{e}^{-\mathrm{i}(a_{ij}-f_j+f_i)}
+=\varphi_j^{*}\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}} .
+\end{equation*}
+两项均不变，故 $L$ 规范不变。
+
+\textbf{(b)} 把 $\varphi_i,\varphi_i^{*}$ 作独立变量。$\frac{\partial L}{\partial(\partial_0\varphi_i^{*})}=-\frac{\mathrm{i}}{2}\varphi_i$，且
+\begin{equation*}
+\frac{\partial L}{\partial\varphi_i^{*}}
+=\frac{\mathrm{i}}{2}(\partial_0+\mathrm{i}A_0(i))\varphi_i
++\sum_{j\in\mathrm{n.n.}(i)}t_{ij}^{*}\,\mathrm{e}^{+\mathrm{i}a_{ij}}\varphi_j .
+\end{equation*}
+Euler--Lagrange 方程 $\frac{\partial L}{\partial\varphi_i^{*}}-\partial_0\frac{\partial L}{\partial(\partial_0\varphi_i^{*})}=0$ 给出
+\begin{equation*}
+\boxed{\;\mathrm{i}\,\partial_0\varphi_i=\frac{A_0(i)}{2}\,\varphi_i
+-\sum_{j\in\mathrm{n.n.}(i)}t_{ij}^{*}\,\mathrm{e}^{\mathrm{i}a_{ij}}\varphi_j\;}
+\end{equation*}
+（$t_{ij}^{*}\mathrm{e}^{\mathrm{i}a_{ij}}$ 是 $j\to i$ 的隧穿振幅；$A_0=0$ 时退回格点薛定谔方程 $\mathrm{i}\dot\varphi_i=-\sum_jt_{ij}^{*}\varphi_j$。可验证该方程在 (a) 的规范变换下协变。）
+
+\textbf{(c)} 取 (b) 及其复共轭：
+\begin{equation*}
+\partial_0\varphi_i=-\mathrm{i}\frac{A_0}{2}\varphi_i+\mathrm{i}\sum_jt_{ij}^{*}\mathrm{e}^{\mathrm{i}a_{ij}}\varphi_j,
+\qquad
+\partial_0\varphi_i^{*}=+\mathrm{i}\frac{A_0}{2}\varphi_i^{*}-\mathrm{i}\sum_jt_{ij}\mathrm{e}^{-\mathrm{i}a_{ij}}\varphi_j^{*} .
+\end{equation*}
+（$A_0$ 项相消——密度与标势无直接动力学耦合。）于是
+\begin{equation*}
+\partial_0(\varphi_i^{*}\varphi_i)
+=-\mathrm{i}\sum_j\Big[t_{ij}\,\varphi_j^{*}\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}}
+-t_{ij}^{*}\,\varphi_i^{*}\varphi_j\,\mathrm{e}^{+\mathrm{i}a_{ij}}\Big]
+=\sum_j J_{ij}^{(\mathrm{out})}
+\end{equation*}
+定义\textbf{从 $i$ 流向 $j$ 的流}
+\begin{equation*}
+\boxed{\;J_{ij}\equiv\mathrm{i}\Big[t_{ij}\,\varphi_j^{*}\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}}
+-t_{ij}^{*}\,\varphi_i^{*}\varphi_j\,\mathrm{e}^{+\mathrm{i}a_{ij}}\Big]\;}
+\end{equation*}
+则 $\partial_0\varphi_i^{*}\varphi_i+\sum_jJ_{ij}=0$，即格点流守恒。由 $t_{ji}=t_{ij}^{*}$、$a_{ji}=-a_{ij}$ 可验证 $J_{ji}=-J_{ij}$（流沿链来回守恒，无源无汇）。
+
+\textbf{(d)} 只有 $\langle ij\rangle$ 的两项依赖 $a_{ij}$：
+\begin{equation*}
+\frac{\partial L}{\partial a_{ij}}
+=-\mathrm{i}\,t_{ij}\varphi_j^{*}\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}}
++\mathrm{i}\,t_{ij}^{*}\varphi_i^{*}\varphi_j\,\mathrm{e}^{+\mathrm{i}a_{ij}}
+=-\mathrm{i}\Big[t_{ij}\varphi_j^{*}\varphi_i\mathrm{e}^{-\mathrm{i}a_{ij}}-t_{ij}^{*}\varphi_i^{*}\varphi_j\mathrm{e}^{+\mathrm{i}a_{ij}}\Big]
+=-J_{ij} .
+\end{equation*}
+故
+\begin{equation*}
+\boxed{\;J_{ij}=-\frac{\partial L}{\partial a_{ij}}\;}
+\end{equation*}
+与连续情形 $J^i=-\partial L/\partial A_i$ 一致：规范场的链向分量为“矢势”，其对拉格朗日量的负梯度正是电流——这是格点规范理论中流的标准定义。
+
+% ---------------------------------------------------------------
+\section*{问题 3.7.2}
+\begin{problem}
+非伽利略不变超流体。(1) 对常规范势 $\pmb{A}$（凝聚体 $\varphi=$ 常数）导出 XY 模型，求低能模式色散 $\epsilon_{\pmb{A}}(\pmb{k})$ 并与 $\epsilon_{\pmb{v}}(\pmb{k})=\epsilon(\pmb{k})+\pmb{v}\cdot\pmb{k}$ 比较；(2) 在拉格朗日量中加 $\frac{c}{2}|\dot\varphi|^{2}$ 破坏伽利略不变性后重复；(3) 导出该非伽利略系统的伦敦方程。
+\end{problem}
+\solution
+
+\textbf{(1)} 从带规范场的玻色子拉格朗日量 (3.7.3) 出发，写 $\varphi=\sqrt{\rho}\,\mathrm{e}^{\mathrm{i}\theta}$、积掉振幅涨落，得式 (3.7.10)：
+\begin{equation*}
+L=\frac{\chi}{2}(\partial_0\theta+A_0)^{2}-\frac{\rho}{2m}(\partial_i\theta+A_i)^{2} .
+\end{equation*}
+取 $A_0=0$、$\pmb{A}=$ 常数。静态能量泛函为 $E[\theta]=\frac{\rho}{2m}\int\mathrm{d}^dx\,(\partial_x\theta+A)^{2}$。在长度为 $L$ 的盒中，缠绕扇区 $\theta=2\pi n x/L$（总动量 $K_n=2\pi n\rho$）的能量为
+\begin{equation*}
+E_n(A)=\frac{\rho\mathcal{V}}{2m}\Big(\frac{2\pi n}{L}+A\Big)^{2}
+=E_n(0)+\frac{\rho\mathcal{V}A}{m}\cdot\frac{2\pi n}{L}
+=E_n(0)+\frac{A}{m}\,K_n ,
+\end{equation*}
+即低能（缠绕/伽利略助推）模式的色散为
+\begin{equation*}
+\epsilon_{\pmb{A}}(\pmb{k})=\epsilon(\pmb{k})+\frac{\pmb{A}}{m}\cdot\pmb{k},
+\qquad \epsilon(K_n)=\frac{K_n^{2}}{2mN}\ (\text{3.6 节}) .
+\end{equation*}
+这与被推动超流体的 Landau 谱 $\epsilon_{\pmb{v}}(\pmb{k})=\epsilon(\pmb{k})+\pmb{v}\cdot\pmb{k}$ 形式完全相同，只要认同
+\begin{equation*}
+\boxed{\;\pmb{A}=m\pmb{v}\;}
+\end{equation*}
+（扭转凝聚体 $\mathrm{e}^{\mathrm{i}m\pmb{v}\cdot\pmb{x}}\varphi_0$、$\pmb{A}=0$ 与无扭转凝聚体 $\varphi_0$、$\pmb{A}=m\pmb{v}$ 规范等价——伽利略不变性的规范表述。小动量声学模式的频率在共动系中仍为 $\omega=v_s k$，实验室系中按 $\epsilon_{\pmb{A}}$ 移动。）
+
+\textbf{(2)} 加入 $\frac{c}{2}|\dot\varphi|^{2}$。用 $\varphi=\sqrt{\rho}\mathrm{e}^{\mathrm{i}\theta}$：
+\begin{equation*}
+|\dot\varphi|^{2}=\frac{(\partial_0\rho)^{2}}{4\rho}+\rho(\partial_0\theta)^{2}
+\quad\Longrightarrow\quad
+\text{线性阶给 }\ \frac{c\rho_0}{2}(\partial_0\theta)^{2} .
+\end{equation*}
+即压缩率被重整：$\chi\to\chi_c=\chi+c\rho_0$，XY 模型变为
+\begin{equation*}
+L=\frac{\chi_c}{2}(\partial_0\theta+A_0)^{2}-\frac{\rho}{2m}(\partial_i\theta+A_i)^{2},
+\qquad
+v_c=\sqrt{\frac{\rho_0}{m\chi_c}}=\frac{v}{\sqrt{1+c\rho_0V_0}}\quad(\chi=1/V_0) .
+\end{equation*}
+低能色散 $\epsilon(\pmb{k})=v_c|\pmb{k}|$ 改变；而缠绕扇区的能量是\emph{静态}的，不受时间导数项影响：
+\begin{equation*}
+\epsilon_{\pmb{A}}(\pmb{k})=\epsilon(\pmb{k})+\frac{\pmb{A}}{m}\cdot\pmb{k}
+\quad\text{形式不变} .
+\end{equation*}
+但现在 $\pmb{A}/m$ 不再对应任何物理“推动速度”——伽利略等价 $\pmb{A}=m\pmb{v}$ 被破坏：声速变了而流对 $\pmb{A}$ 的响应系数（见下）不变，二者不再被同一个 $v$ 联系。
+
+\textbf{(3) 伦敦方程。}由 $L$ 对 $A_i$ 求负梯度：
+\begin{equation*}
+\pmb{j}=-\frac{\partial L}{\partial\pmb{A}}=\frac{\rho_0}{m}(\partial_{\pmb{x}}\theta+\pmb{A}) .
+\end{equation*}
+零温下基态 $\theta=0$（无扭转），得
+\begin{equation*}
+\pmb{j}=\frac{\rho_0}{m}\,\pmb{A}
+\qquad(\text{伦敦方程，}\rho_s=\rho_0).
+\end{equation*}
+有限温修正：动量为 $\pmb{k}$ 的激发具有色散 $\epsilon_{\pmb{A}}(\pmb{k})=\epsilon(\pmb{k})+\frac{\pmb{A}}{m}\cdot\pmb{k}$，按提示，其对流的贡献为 $n_B(\epsilon_{\pmb{A}})\,\partial\epsilon_{\pmb{A}}/\partial\pmb{A}=n_B(\epsilon_{\pmb{A}})\,\pmb{k}/m$。对方向平均（$\sum_kk_ik_j\to\delta_{ij}\frac1d\sum_kk^{2}$）：
+\begin{align*}
+\pmb{j}_{\mathrm{exc}}
+&=\frac{1}{\mathcal{V}}\sum_{\pmb{k}}n_B\Big(\epsilon(\pmb{k})+\frac{\pmb{A}\cdot\pmb{k}}{m}\Big)\frac{\pmb{k}}{m}
+=\frac{\pmb{A}}{m^{2}d}\int\frac{\mathrm{d}^{d}\pmb{k}}{(2\pi)^{d}}\,
+\pmb{k}^{2}\,n_B'(\epsilon(\pmb{k}))
+=-\frac{\rho_n}{m}\,\pmb{A} ,
+\end{align*}
+末步用了式 (3.7.13) $\rho_n=-\frac{1}{md}\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\pmb{k}^{2}n_B'(\epsilon)$。正常激发逆着流运动，削弱响应。于是
+\begin{equation*}
+\boxed{\;\pmb{j}=\frac{\rho_0-\rho_n}{m}\,\pmb{A}
+=\frac{\rho_s}{m}\,\pmb{A}\;}
+\end{equation*}
+正是伦敦方程，超流密度 $\rho_s=\rho-\rho_n$。要点：推导只用到 $\epsilon_{\pmb{A}}(\pmb{k})=\epsilon(\pmb{k})+\frac{\pmb{A}}{m}\cdot\pmb{k}$（即常数势等价于扭转边界条件），而这一点对任何晶格/非伽利略系统同样成立——所以伦敦方程及 $\rho_s=\rho-\rho_n$ 与伽利略不变性无关，只是 $\rho_n$ 中的 $\epsilon(\pmb{k})$（此处 $=v_c k$）不同。
+
+% ---------------------------------------------------------------
+\section*{问题 3.7.3}
+\begin{problem}
+求有限温度下隧穿 $I$--$V$ 曲线的表达式，并证明 $V=0$ 处微分电导满足 $\mathrm{d}I/\mathrm{d}V\propto T^{\eta_R+\eta_L-2}$。
+\end{problem}
+\solution
+
+两超流体通过 $H_T=\Gamma\mathrm{e}^{-\mathrm{i}a}I+\Gamma\mathrm{e}^{\mathrm{i}a}I^{\dagger}$ 耦合，$a(t)=-Vt$，$I=\varphi_L\varphi_R^{\dagger}$，线性响应给出式 (3.7.15)：
+\begin{equation*}
+\langle j_T\rangle=-\Gamma^{2}\int^{t}\mathrm{d}t'\,
+\Big(\mathrm{e}^{-\mathrm{i}a(t)+\mathrm{i}a(t')}\langle[I(t),I^{\dagger}(t')]\rangle+\mathrm{h.c.}\Big) .
+\end{equation*}
+
+\textbf{有限温格林函数。}由问题 3.3.6(3)（取 $x=0$，指数 $\eta\equiv1/2\pi v\chi$），
+\begin{equation*}
+\big\langle\varphi_{L,R}(t)\varphi_{L,R}^{\dagger}(0)\big\rangle^{\beta}
+=\mathcal{C}_{L,R}\,\mathrm{e}^{-\mathrm{i}\frac{\pi}{2}\eta_{L,R}}
+\left[\frac{\pi T v\,l}{\sinh\big(\pi T v(t-\mathrm{i}0^{+})\big)}\right]^{\eta_{L,R}} ,
+\end{equation*}
+（$\mathcal{C}$ 为 $O(1)$ 非普适常数；$t\to0$ 时退回零温形式 $\mathrm{e}^{-\mathrm{i}\eta\pi/2}(l/vt)^{\eta}$。）于是（记 $\eta_+\equiv\eta_R+\eta_L$）
+\begin{equation*}
+\langle I(t)I^{\dagger}(0)\rangle
+=\mathcal{C}\,\mathrm{e}^{-\mathrm{i}\frac{\pi}{2}\eta_+}
+\left[\frac{\pi T v\,l}{\sinh\big(\pi T v(t-\mathrm{i}0^{+})\big)}\right]^{\eta_+} ,
+\end{equation*}
+$\langle I^{\dagger}(0)I(t)\rangle$ 由 KMS 关系（即上式的 $t\to-t$、取共轭支路）给出。仿照正文零温脚注的推法，对易子 $\propto\sin\frac{\pi\eta_+}{2}$，隧穿流为
+\begin{equation*}
+\langle j_T\rangle
+\propto\;\Gamma^{2}\sin\!\Big(\frac{\pi\eta_+}{2}\Big)\Big(\frac{l}{v}\Big)^{\eta_+}
+\int_{-\infty}^{\infty}\mathrm{d}t\;\mathrm{e}^{\mathrm{i}Vt}\;
+\left\{\left[\frac{\pi T v}{\sinh\big(\pi T v(t-\mathrm{i}0^{+})\big)}\right]^{\eta_+}
+-\big[\,t\to-t\,\big]\right\},
+\end{equation*}
+
+\textbf{关键积分。}对 $t>0$ 写 $2\sinh(\pi Tvt)=\mathrm{e}^{\pi Tvt}(1-\mathrm{e}^{-2\pi Tvt})$，代入 $s=\mathrm{e}^{-2\pi Tvt}$ 化为欧拉贝塔函数：
+\begin{equation*}
+\int_0^{\infty}\mathrm{d}t\;\frac{\mathrm{e}^{\mathrm{i}Vt}}{\sinh^{\eta_+}(\pi Tvt)}
+=\frac{2^{\eta_+}}{2\pi Tv}\,
+B\!\Big(\frac{\eta_+}{2}+\mathrm{i}\frac{V}{2\pi Tv},\,1-\eta_+\Big),
+\end{equation*}
+$t<0$ 的部分给共轭贡献；两段组合后 $s\to1$（$|t|\to\infty$）的发散在差中相消，用 $\Gamma(1-\eta_+)\Gamma(\eta_+)=\pi/\sin(\pi\eta_+)$ 归并，得有限的
+\begin{equation*}
+\int_{-\infty}^{\infty}\mathrm{d}t\;\mathrm{e}^{\mathrm{i}Vt}
+\left[\frac{\pi T v}{\sinh\big(\pi T v(t-\mathrm{i}0^{+})\big)}\right]^{\eta_+}
+\propto\;\mathrm{e}^{V/2T}\,
+B\!\Big(\frac{\eta_+}{2}+\mathrm{i}\frac{V}{2\pi T},\,\frac{\eta_+}{2}-\mathrm{i}\frac{V}{2\pi T}\Big)
+=\mathrm{e}^{V/2T}\,
+\frac{\big|\Gamma\big(\frac{\eta_+}{2}+\mathrm{i}\frac{V}{2\pi T}\big)\big|^{2}}{\Gamma(\eta_+)} .
+\end{equation*}
+代入后（非普适 $O(1)$ 系数并入 $\mathcal{N}$）：
+\begin{equation*}
+\boxed{\;\langle j_T\rangle(V,T)
+=\mathcal{N}\,\Gamma^{2}\Big(\frac{l}{v}\Big)^{\eta_+}
+(2\pi T)^{\eta_+-1}\,
+\sinh\!\frac{V}{2T}\,
+\frac{\big|\Gamma\big(\frac{\eta_+}{2}+\mathrm{i}\frac{V}{2\pi T}\big)\big|^{2}}{\Gamma(\eta_+)}\;}
+\end{equation*}
+
+\textbf{检验与微分电导。}(i) $T\to0$：用 $|\Gamma(\Delta+\mathrm{i}y)|^{2}\sim2\pi y^{2\Delta-1}\mathrm{e}^{-\pi y}$（$y=V/2\pi T\to\infty$，$\Delta=\eta_+/2$），$\mathrm{e}^{V/2T}\mathrm{e}^{-\pi y}=1$，得 $\langle j_T\rangle\propto V^{\eta_+-1}\mathrm{sgn}(V)$，与正文零温结果一致。(ii) $V\to0$：$\sinh\frac{V}{2T}\approx\frac{V}{2T}$，$\Gamma$ 因子趋于 $\Gamma(\eta_+/2)^{2}/\Gamma(\eta_+)$：
+\begin{equation*}
+\boxed{\;\frac{\mathrm{d}I}{\mathrm{d}V}\Big|_{V=0}
+\propto T^{\,\eta_+-2}=T^{\,\eta_R+\eta_L-2}\;}
+\end{equation*}
+物理上：有限温为隧穿提供热激活的虚时截断 $\sim1/T$，把 $T=0$ 的幂律 $I\sim V^{\eta_+-1}$ 改写为 $G\sim T^{\eta_+-2}$。隧穿实验由此直接测出 $\eta_R+\eta_L$。
+
+% ---------------------------------------------------------------
+\section*{问题 3.7.4}
+\begin{problem}
+由 $L=\frac{1}{8\pi e^{2}}(c^{-1}\pmb{E}^{2}-c\pmb{B}^{2})$ 导出 Maxwell 方程，证明规范涨落无能隙且 $c$ 就是光速。
+\end{problem}
+\solution
+
+场强为（3.7.5 节约定）$E_i=\partial_0A_i-\partial_iA_0$，$B_i=\epsilon_{ijk}\partial_jA_k$。变分所需的导数：
+\begin{equation*}
+\frac{\partial L}{\partial(\partial_0A_i)}=\frac{E_i}{4\pi e^{2}c},\qquad
+\frac{\partial L}{\partial(\partial_jA_i)}=-\frac{c}{4\pi e^{2}}\epsilon_{ijk}B_k,\qquad
+\frac{\partial L}{\partial(\partial_iA_0)}=-\frac{E_i}{4\pi e^{2}c},
+\end{equation*}
+（用了 $\partial B_l/\partial(\partial_jA_i)=\epsilon_{lji}=\epsilon_{ijk}\delta_{lk}$、$\partial E_l/\partial(\partial_iA_0)=-\delta_{li}$；注意 $E$ 不含 $\partial_jA_i$。）$L$ 不显含 $A_\mu$，Euler--Lagrange 方程 $\partial_\mu\,\frac{\partial L}{\partial(\partial_\mu A_\nu)}=0$ 给出
+
+\begin{center}
+\begin{tabular}{ll}
+$\nu=0$：& $\partial_iE_i=0$\hfill（$\nabla\cdot\pmb{E}=0$）\\[2pt]
+$\nu=i$：& $\dfrac{1}{c}\partial_0E_i-c\,\epsilon_{ijk}\partial_jB_k=0$\hfill（$\partial_0\pmb{E}=c^{2}\nabla\times\pmb{B}$）
+\end{tabular}
+\end{center}
+再加上场强定义所内含的 Bianchi 恒等式：
+\begin{equation*}
+\nabla\cdot\pmb{B}=\epsilon_{ijk}\partial_i\epsilon_{jkl}\partial_kA_l=0,
+\qquad
+(\nabla\times\pmb{E})_i=\epsilon_{ijk}\partial_j(\partial_0A_k-\partial_kA_0)=\partial_0B_i .
+\end{equation*}
+\begin{equation*}
+\boxed{\;\nabla\cdot\pmb{E}=0,\qquad
+\partial_0\pmb{E}=c^{2}\nabla\times\pmb{B},\qquad
+\nabla\cdot\pmb{B}=0,\qquad
+\nabla\times\pmb{E}=\partial_0\pmb{B}\;}
+\end{equation*}
+（末式的符号随 $E_i=\partial_0A_i-\partial_iA_0$ 的约定而定，不影响物理。）这组正是真空 Maxwell 方程。
+
+\textbf{无能隙与光速。}由前两支方程消去 $\pmb{B}$：
+\begin{equation*}
+\partial_0^{2}\pmb{E}=c^{2}\nabla\times\partial_0\pmb{B}
+=c^{2}\nabla\times(\nabla\times\pmb{E})
+=c^{2}\big[\nabla(\nabla\cdot\pmb{E})-\nabla^{2}\pmb{E}\big]
+=-c^{2}\nabla^{2}\pmb{E},
+\end{equation*}
+即波动方程 $(\partial_0^{2}-c^{2}\nabla^{2})A_\mu=0$。色散为
+\begin{equation*}
+\boxed{\;\omega=c\,|\pmb{k}|\;}
+\end{equation*}
+——无能隙（$\omega(k\to0)\to0$；规范不变性禁止任何 $A_\mu^{2}$ 质量项的出现），且波速恰为拉格朗日量中的参数 $c$：在这个玩具宇宙中 $c$ 就是“光速”。
+
+% ---------------------------------------------------------------
+\section*{问题 3.8.1}
+\begin{problem}
+非简谐振子 $L=\frac12m\dot x^{2}-\frac12m\omega_0^{2}x^{2}-gx^{3}$。计算精确到 $g^{2}$ 阶的有限温自由能；讨论不稳定性（bounce）：证明基态衰变率为 $\omega_0\mathrm{e}^{-\#m^{3}\omega_0^{5}/g^{2}}$ 量级，反弹作为另一条驻定路径对自由能贡献非微扰项 $\propto\mathrm{e}^{-\#m^{3}\omega_0^{5}/g^{2}}$。
+\end{problem}
+\solution
+
+\textbf{(1) 微扰计算（$\tau$ 空间）。}欧氏作用量
+\begin{equation*}
+S=S_0+S_{\mathrm{int}},\qquad
+S_0=\int_0^{\beta}\mathrm{d}\tau\Big[\frac{m}{2}\dot x^{2}+\frac{m\omega_0^{2}}{2}x^{2}\Big],
+\qquad S_{\mathrm{int}}=\int_0^{\beta}\mathrm{d}\tau\;g\,x^{3} .
+\end{equation*}
+自由传播子与配分函数：
+\begin{equation*}
+\mathcal{G}(\tau)=\langle x(\tau)x(0)\rangle_0
+=\frac{1}{2m\omega_0}\Big[(1+n_B)\mathrm{e}^{-\omega_0|\tau|}+n_B\,\mathrm{e}^{\omega_0|\tau|}\Big],
+\quad n_B=\frac{1}{\mathrm{e}^{\beta\omega_0}-1},\qquad
+F_0=T\ln\!\big[2\sinh\tfrac{\beta\omega_0}{2}\big] .
+\end{equation*}
+$F=F_0-T\ln\langle\mathrm{e}^{-S_{\mathrm{int}}}\rangle_0$：一阶项 $\langle gx^{3}\rangle_0=0$（奇函数）；二阶项用 Wick 定理
+\begin{equation*}
+\big\langle x^{3}(\tau_1)x^{3}(\tau_2)\big\rangle_0
+=9\,\mathcal{G}(\tau_{12})\,\mathcal{G}(0)^{2}+6\,\mathcal{G}(\tau_{12})^{3},
+\end{equation*}
+（$15$ 个收缩 $=9$ 个“哑铃”$+6$ 个三线；哑铃图是连通的，对 $\ln Z$ 有贡献。）于是
+\begin{equation*}
+\delta F=-\frac{Tg^{2}}{2}\int_0^{\beta}\!\!\int_0^{\beta}\mathrm{d}\tau_1\mathrm{d}\tau_2\,
+\big[9\mathcal{G}(\tau_{12})\mathcal{G}(0)^{2}+6\mathcal{G}(\tau_{12})^{3}\big]
+=-\frac{g^{2}}{2}\int_0^{\beta}\mathrm{d}\tau\,
+\big[9\mathcal{G}(0)^{2}\mathcal{G}(\tau)+6\mathcal{G}(\tau)^{3}\big] .
+\end{equation*}
+需要的积分（记 $x=\beta\omega_0$，$y=\mathrm{e}^{x}$）：
+\begin{equation*}
+\mathcal{G}(0)=\frac{\coth(x/2)}{2m\omega_0},\qquad
+\int_0^{\beta}\mathcal{G}(\tau)\,\mathrm{d}\tau=\frac{1}{m\omega_0^{2}},
+\end{equation*}
+\begin{equation*}
+\int_0^{\beta}\mathcal{G}(\tau)^{3}\,\mathrm{d}\tau
+=\frac{1}{8m^{3}\omega_0^{4}}\left[\frac{2}{3}\coth^{2}\!\frac{x}{2}+\frac{4}{3}\,\mathrm{csch}^{2}\!\frac{x}{2}\right]
+\quad\Big(\text{用 }\frac{y^{2}+y+1}{(y-1)^{2}}=\coth^{2}\tfrac x2-\tfrac14\mathrm{csch}^{2}\tfrac x2,\;
+\frac{y}{(y-1)^{2}}=\tfrac14\mathrm{csch}^{2}\tfrac x2\Big) .
+\end{equation*}
+代入：
+\begin{equation*}
+\delta F=-\frac{9g^{2}}{8m^{3}\omega_0^{4}}\coth^{2}\frac{x}{2}
+-\frac{g^{2}}{8m^{3}\omega_0^{4}}\Big[2\coth^{2}\frac{x}{2}+4\,\mathrm{csch}^{2}\frac{x}{2}\Big] ,
+\end{equation*}
+\begin{equation*}
+\boxed{\;F=T\ln\!\Big[2\sinh\frac{\beta\omega_0}{2}\Big]
+-\frac{g^{2}}{8m^{3}\omega_0^{4}}\left[11\coth^{2}\!\frac{\beta\omega_0}{2}+4\,\mathrm{csch}^{2}\!\frac{\beta\omega_0}{2}\right]+O(g^{4})\;}
+\end{equation*}
+（$O(g^{3})=0$，因 $x\to-x$ 对称。）检验：
+\begin{itemize}
+\item $T\to0$：$\delta F\to-\dfrac{11g^{2}}{8m^{3}\omega_0^{4}}$，与通常 Rayleigh--Schr\"odinger 微扰论 $\Delta E_0=g^{2}\big[\frac{|\langle1|x^{3}|0\rangle|^{2}}{-\omega_0}+\frac{|\langle3|x^{3}|0\rangle|^{2}}{-3\omega_0}\big]=-\frac{11}{8}\frac{g^{2}}{m^{3}\omega_0^{4}}$ 一致（$\langle1|x^{3}|0\rangle=3(2m\omega_0)^{-3/2}$，$\langle3|x^{3}|0\rangle=\sqrt6(2m\omega_0)^{-3/2}$）。
+\item 高温 $\beta\omega_0\ll1$：$\delta F\to-\dfrac{15}{2}\dfrac{g^{2}T^{2}}{m^{3}\omega_0^{6}}$，与经典配分函数的二阶累积 $-\frac{\beta g^{2}}{2}\cdot15\langle x^{2}\rangle_{\mathrm{cl}}^{3}$（$\langle x^{2}\rangle_{\mathrm{cl}}=T/m\omega_0^{2}$）一致。
+\end{itemize}
+
+\textbf{(2) 反弹与非微扰不稳定性。}势阱 $U(x)=\frac12m\omega_0^{2}x^{2}+gx^{3}$ 在 $x=0$ 处是\emph{亚稳}的：$U\to-\infty$（$x\to-\infty$），势垒顶在 $x_b=-m\omega_0^{2}/3g$。微扰级数围绕 $x=0$ 收敛半径有限（最近奇点即势垒），且漏掉了指数小项。正确的非微扰处理要考虑另一条驻定路径——\emph{bounce}：从 $x=0$ 出发、滚到转折点 $x_t=-m\omega_0^{2}/g$（$U(x_t)=0$）再返回的欧氏解。其作用量差（“反弹指数”）为
+\begin{equation*}
+B=S_E[\text{bounce}]-S_E[0]
+=\int_{x_t}^{0}\mathrm{d}x\,\sqrt{2mU(x)}
+=m\omega_0\int_0^{m\omega_0^{2}/g}\mathrm{d}u\;u\sqrt{1-\frac{2gu}{m\omega_0^{2}}}
+\quad(u=-x)
+\end{equation*}
+代 $s=2gu/m\omega_0^{2}$：$B=\dfrac{m^{3}\omega_0^{5}}{4g^{2}}\int_0^1s\sqrt{1-s}\,\mathrm{d}s
+=\dfrac{m^{3}\omega_0^{5}}{4g^{2}}\cdot\frac{4}{15}$，
+\begin{equation*}
+\boxed{\;B=\frac{m^{3}\omega_0^{5}}{15g^{2}}\;}
+\end{equation*}
+故（含涨落行列式的前因子为 $O(\omega_0 B^{1/2})$）基态衰变率
+\begin{equation*}
+\Gamma\sim\omega_0\,\mathrm{e}^{-B}
+=\omega_0\,\mathrm{e}^{-m^{3}\omega_0^{5}/15g^{2}}
+\;\sim\;\omega_0\,\mathrm{e}^{-\#m^{3}\omega_0^{5}/g^{2}}
+\quad(\#=1/15) .
+\end{equation*}
+这样的项在围绕 $x=0$ 的微扰展开中\emph{不可能出现}：微扰级数的每一项都是 $g$ 的解析幂函数。但反弹作为驻定路径确实对配分函数有贡献：$Z\simeq Z_0\big[1+\frac{\mathrm{i}}{2}\beta K\,\mathrm{e}^{-B}\big]$（虚数来自反转点的半经典积分），于是
+\begin{equation*}
+F=-T\ln Z\simeq F_0-\frac{\mathrm{i}}{2}\,\Gamma\;\propto\;F_0-\frac{\mathrm{i}}{2}\,\omega_0\,\mathrm{e}^{-\#m^{3}\omega_0^{5}/g^{2}} ,
+\end{equation*}
+即自由能获得正比于 $\mathrm{e}^{-\#m^{3}\omega_0^{5}/g^{2}}$ 的非微扰（虚部）贡献——亚稳基态以速率 $\Gamma$ 衰变。这正是“微扰论内行为良好、但由 bounce 主导真实命运”的标准例子。
+

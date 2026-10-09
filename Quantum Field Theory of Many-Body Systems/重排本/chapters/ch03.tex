@@ -1,0 +1,2262 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第3章 相互作用玻色子系统
+
+% 第3章 INTERACTING BOSON SYSTEMS
+\chapter{相互作用玻色子系统}
+
+玻色系统是凝聚态物理中最简单的系统。它描述了五花八门的物理现象，例如超流、磁性、晶体的形成，等等。它也是研究相与相变的一个模型系统。
+
+\section{自由玻色系统与二次量子化}
+
+\begin{keypoints}
+\item 二次量子化是量子系统的一种算符描述。在二次量子化中，多体系统可以表述为一个场论。
+\end{keypoints}
+
+第一次量子化（first quantization）是利用波函数对量子系统的描述；二次量子化（second quantization）则是利用算符对量子系统的另一种描述。在二次量子化中，我们无需显式地写出波函数。例如，在谐振子的算符描述中，基态是通过算符定义的：$\hat{a}|0\rangle=0$。
+
+现在让我们考虑一个自由的 $d$ 维玻色系统（置于体积 $\mathcal{V}=L^d$ 的盒子中），其中含有 $N$ 个全同玻色子。在第一次量子化中，系统的波函数是 $N$ 个变量的对称函数。这些 $N$ 玻色子态构成一个希尔伯特空间，记作 $\mathcal{H}_N$。为了得到玻色系统的二次量子化描述，并避免书写复杂的 $N$ 变量对称函数，我们把具有各种不同玻色子数的希尔伯特空间全部合并起来，构成一个总希尔伯特空间
+\begin{equation*}
+\mathcal{H}=\mathcal{H}_0\oplus\mathcal{H}_1\oplus\mathcal{H}_2\oplus\cdots\oplus\mathcal{H}_N\oplus\cdots
+\end{equation*}
+总希尔伯特空间 $\mathcal{H}$ 具有如下基底
+\begin{equation*}
+\left|n_{\pmb{k}_1}n_{\pmb{k}_2}\ldots\right\rangle
+\end{equation*}
+其中 $n_{\pmb{k}}=0,1,2,\ldots$ 是单粒子动量本征态 $|\pmb{k}\rangle$ 上的玻色子数。态 $|n_{\pmb{k}_1}n_{\pmb{k}_2}\ldots\rangle$ 的总能量为
+\begin{equation*}
+E=\sum_{\pmb{k}}\frac{\pmb{k}^2}{2m}\,n_{\pmb{k}}
+\end{equation*}
+总希尔伯特空间 $\mathcal{H}$ 也可以看作由矢量 $\pmb{k}\equiv(k_x,k_y,\ldots)=\frac{2\pi}{L}(n_x,n_y,\ldots)$ 所标记的一簇谐振子的希尔伯特空间，而 $n_{\pmb{k}}$ 正是标记谐振子 $\pmb{k}$ 能级的整数。从玻色子的总能量可以看出，这些谐振子是相互独立的，谐振子 $\pmb{k}$ 由下面的哈密顿量描述：
+\begin{equation*}
+H_{\pmb{k}}=\epsilon_{\pmb{k}}a_{\pmb{k}}^{\dagger}a_{\pmb{k}},\qquad \epsilon_{\pmb{k}}=\frac{\pmb{k}^2}{2m}\tag{3.1.1}
+\end{equation*}
+这样，在二次量子化中，自由玻色系统由一簇谐振子描述，其哈密顿量为
+\begin{equation*}
+H=\sum_{\pmb{k}}\epsilon_{\pmb{k}}a_{\pmb{k}}^{\dagger}a_{\pmb{k}}
+\end{equation*}
+总玻色子数算符为
+\begin{equation*}
+\hat{N}=\sum_{\pmb{k}}a_{\pmb{k}}^{\dagger}a_{\pmb{k}}
+\end{equation*}
+满足
+\begin{equation*}
+a_{\pmb{k}}|0\rangle=0
+\end{equation*}
+的谐振子基态是一个没有玻色子的态。第 $i$ 个玻色子携带动量 $\pmb{k}_i$ 的 $N$ 玻色子态由 $N$ 个 $a_{\pmb{k}}^{\dagger}$ 算符产生：
+\begin{equation*}
+\left|\pmb{k}_1\pmb{k}_2\ldots\pmb{k}_N\right\rangle=C(\pmb{k}_1,\ldots,\pmb{k}_N)\,a_{\pmb{k}_1}^{\dagger}\ldots a_{\pmb{k}_N}^{\dagger}|0\rangle
+\end{equation*}
+其中 $C(\pmb{k}_1,\ldots,\pmb{k}_N)$ 是归一化系数。只有当所有 $\pmb{k}_i$ 彼此互不相同时，才有 $C(\pmb{k}_1,\ldots,\pmb{k}_N)=1$。注意，$a_{\pmb{k}}^{\dagger}$（$a_{\pmb{k}}$）使玻色子数增加（减少）$1$。因此，$a_{\pmb{k}}^{\dagger}$ 称为玻色子的产生算符，而 $a_{\pmb{k}}$ 称为湮灭算符。产生算符与湮灭算符并不出现在玻色系统的第一次量子化描述中，因为在那种描述里我们只考虑玻色子数固定的态。
+
+我们可以引入
+\begin{equation*}
+a(\pmb{x})=\sum_{\pmb{k}}a_{\pmb{k}}\mathcal{V}^{-1/2}\mathrm{e}^{\mathrm{i}\pmb{k}\pmb{x}}
+\end{equation*}
+或者，对无限系统，引入
+\begin{equation*}
+a(\pmb{x})=\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\,a_{\pmb{k}}\mathrm{e}^{\mathrm{i}\pmb{k}\pmb{x}}
+\end{equation*}
+可以看到，$a^{\dagger}(\pmb{x})$ 在 $\pmb{x}$ 处产生一个玻色子。态 $|\pmb{k}_1\pmb{k}_2\ldots\pmb{k}_N\rangle$ 的波函数现在可以如下算出：
+\begin{equation*}
+\psi(\pmb{x}_1,\ldots,\pmb{x}_N)=\langle\pmb{x}_1\ldots\pmb{x}_N|\pmb{k}_1\ldots\pmb{k}_N\rangle,\qquad |\pmb{x}_1\ldots\pmb{x}_N\rangle=a^{\dagger}(\pmb{x}_1)\ldots a^{\dagger}(\pmb{x}_N)|0\rangle
+\end{equation*}
+哈密顿量可以在实空间中写成
+\begin{equation*}
+H=\int \mathrm{d}^d\pmb{x}\;a^{\dagger}(\pmb{x})\left(-\frac{1}{2m}\frac{\mathrm{d}^2}{\mathrm{d}\pmb{x}^2}\right)a(\pmb{x})
+\end{equation*}
+算符 $a^{\dagger}(\pmb{x})a(\pmb{x})$ 统计位置 $\pmb{x}$ 处的玻色子数，因此玻色子密度算符为
+\begin{equation*}
+\rho(\pmb{x})=a^{\dagger}(\pmb{x})a(\pmb{x})
+\end{equation*}
+有了哈密顿量以及对应于各物理量的算符，我们就能通过计算物理算符的关联函数来计算玻色系统的物理性质。
+
+谐振子描述使我们能够计算玻色系统的所有关联函数。特别地，对 $t>0$，
+\begin{equation*}
+\mathrm{i}G(\pmb{x}_f-\pmb{x}_i,t)=\left\langle a(\pmb{x}_f)\mathrm{e}^{-\mathrm{i}tH}a^{\dagger}(\pmb{x}_i)\right\rangle=\left\langle a(\pmb{x}_f,t)a^{\dagger}(\pmb{x}_i,0)\right\rangle
+\end{equation*}
+正是 2.1.1 节所讨论的自由粒子的传播子，而
+\begin{equation*}
+\mathrm{i}G(\pmb{k},t)=\left\langle a_{-\pmb{k}}\mathrm{e}^{-\mathrm{i}tH}a_{\pmb{k}}^{\dagger}\right\rangle=\mathrm{e}^{-\mathrm{i}\epsilon_{\pmb{k}}t}
+\end{equation*}
+是相应的动量空间中的传播子。
+
+要计算多个玻色算符的关联，例如 $\rho$--$\rho$ 关联，我们需要使用 Wick 定理。Wick 定理对于做正规排序（normal ordering）和计算关联都非常有用。
+
+\textbf{定理.}（Wick 定理）设 $O_i$ 是 $a_{\pmb{k}}$ 与 $a_{\pmb{k}}^{\dagger}$ 的线性组合：$O_i=\int \mathrm{d}k\,\left(u_i(k)a_{\pmb{k}}+v_i(k)a_{\pmb{k}}^{\dagger}\right)$。（注意，对自由玻色系统，$a(t)=U^{\dagger}(t,0)aU(t,0)$ 就是这样一个算符。）设 $W=\prod_{i=1}^{N}O_i$，$W_{i_1,i_2}=\prod_{i=1,i\neq i_1,i\neq i_2}^{N}O_i$，等等。设 $:W:$ 是算符 $W$ 的正规排序形式（即把所有 $a_{\pmb{k}}^{\dagger}$ 都放到 $a_{\pmb{k}}$ 的左边），并设 $|0\rangle$ 是被所有 $a_{\pmb{k}}$ 湮灭的态（即对一切 $\pmb{k}$ 有 $a_{\pmb{k}}|0\rangle=0$）。那么 Wick 定理说：
+\begin{align*}
+W={}&:W:+\sum_{(i_1,j_1)}:W_{i_1,j_1}:\,\langle 0|O_{i_1}O_{j_1}|0\rangle\\
+&+\sum_{\substack{(i_1,j_1),(i_2,j_2)\\ (i_1,j_1)\neq(i_2,j_2)}}:W_{i_1,j_1,i_2,j_2}:\,\langle 0|O_{i_1}O_{j_1}|0\rangle\langle 0|O_{i_2}O_{j_2}|0\rangle+\cdots\tag{3.1.2}
+\end{align*}
+其中 $(i_1,j_1)$ 是满足 $i_1<j_1$ 的有序对。
+
+为了展示 Wick 定理的威力，我们考虑如下关联：
+\begin{equation*}
+\langle 0|A_1A_2A_3A_4|0\rangle
+\end{equation*}
+其中诸 $A_i$ 是 $a$ 与 $a^{\dagger}$ 的线性组合。由于 $\langle 0|:A_iA_j:|0\rangle=0$，Wick 定理给出
+\begin{align*}
+&\langle 0|A_1A_2A_3A_4|0\rangle\\
+&\quad=\langle 0|A_1A_2|0\rangle\langle 0|A_3A_4|0\rangle+\langle 0|A_1A_3|0\rangle\langle 0|A_2A_4|0\rangle+\langle 0|A_1A_4|0\rangle\langle 0|A_2A_3|0\rangle
+\end{align*}
+这样，四算符关联就可以用两算符关联来表达。
+
+\subsection*{问题 3.1.1}
+
+Wick 定理：
+\begin{enumerate}
+\item 对算符 $O=aa\,a^{\dagger}a^{\dagger}$ 进行正规排序，并证明 Wick 定理给出正确的结果。
+\item 用 Wick 定理计算 $\langle 0|aa^{\dagger}aa^{\dagger}|0\rangle$。
+\end{enumerate}
+
+\subsection*{问题 3.1.2}
+
+考虑一个含 $N$ 个玻色子的一维自由玻色系统，令 $|\Phi_0\rangle$ 为其基态。
+\begin{enumerate}
+\item 对 $N=0$ 与有限的 $N$，计算编时传播子
+\begin{equation*}
+\mathrm{i}G(x,t)=\langle\Phi_0|T(a(x,t)a^{\dagger}(0,0))|\Phi_0\rangle
+\end{equation*}
+其中 $a(x,t)=\mathrm{e}^{\mathrm{i}Ht}a(x)\mathrm{e}^{-\mathrm{i}Ht}$。证明 $\mathrm{i}G(x,0^{+})-\mathrm{i}G(x,0^{-})=[a(x),a^{\dagger}(0)]=\delta(x)$。证明：对有限的 $N$，在 $x\to\infty$ 极限下有 $\mathrm{i}G(x,t)\neq0$，这表明存在（非对角）长程序（off-diagonal long-range order）。非对角长程序只存在于玻色凝聚态之中。
+\item 计算编时密度关联函数
+\begin{equation*}
+\langle\Phi_0|T(\rho(x,t)\rho(0,0))|\Phi_0\rangle
+\end{equation*}
+证明 $a(x,t)$ 是 $a_{\pmb{k}}$ 与 $a_{\pmb{k}}^{\dagger}$ 的线性组合，因而可以使用 Wick 定理。（提示：你可能需要先把 $a_0$ 算符分离出来。）
+\end{enumerate}
+
+\section{超流的平均场理论}
+
+\begin{keypoints}
+\item 平均场理论这样得到：忽略一些算符的量子涨落，并用 c 数（c-number，通常取为这些算符的平均值）代替它们。
+\item 平均场基态可以看作一个尝试波函数（trial wave function）。平均场理论所给出的激发谱可能在定性上就是错的。在使用平均场激发谱之前，需要先用其他手段论证其正确性。
+\end{keypoints}
+
+零温下，自由的 $N$ 玻色系统处于其基态
+\begin{equation*}
+\left|\Phi_0\right\rangle=(N!)^{-1/2}\left(a_0^{\dagger}\right)^N|0\rangle
+\end{equation*}
+所有玻色子都处于 $\pmb{k}=0$ 的态。这个态称为玻色凝聚态（boson condensed state）。自由玻色系统的玻色凝聚态具有许多特殊性质，这些性质只对无相互作用的玻色子才成立。要理解真实玻色系统的零温态，我们需要研究由如下哈密顿量描述的相互作用玻色系统：
+\begin{equation*}
+H=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu)a_{\pmb{k}}^{\dagger}a_{\pmb{k}}+\int \mathrm{d}^d\pmb{x}\,\mathrm{d}^d\pmb{x}'\,\frac{1}{2}\rho(\pmb{x})V(\pmb{x}-\pmb{x}')\rho(\pmb{x}')
+\end{equation*}
+其中 $V(\pmb{x})$ 是密度--密度相互作用，$\mu$ 是化学势（chemical potential）。$\mu$ 的取值使得系统中平均有 $N$ 个玻色子。由于包含了化学势项 $-\mu N$，$H$ 是热势（thermal potential）的算符，而不是能量的算符。在动量空间中，我们有
+\begin{align*}
+H&=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu)a_{\pmb{k}}^{\dagger}a_{\pmb{k}}+\mathcal{V}\sum_{\pmb{q}}\frac{1}{2}\rho_{-\pmb{q}}V_{\pmb{q}}\rho_{\pmb{q}}\\
+&=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu)a_{\pmb{k}}^{\dagger}a_{\pmb{k}}+\mathcal{V}^{-1}\frac{1}{2}\sum_{\pmb{k},\pmb{k}',\pmb{q}}\left(a_{\pmb{k}'-\pmb{q}}^{\dagger}a_{\pmb{k}'}\right)V_{\pmb{q}}\left(a_{\pmb{k}+\pmb{q}}^{\dagger}a_{\pmb{k}}\right)\\
+&=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu+V(0))a_{\pmb{k}}^{\dagger}a_{\pmb{k}}+\mathcal{V}^{-1}\frac{1}{2}\sum_{\pmb{k},\pmb{k}',\pmb{q}}V_{\pmb{q}}\,a_{\pmb{k}'-\pmb{q}}^{\dagger}a_{\pmb{k}+\pmb{q}}^{\dagger}a_{\pmb{k}'}a_{\pmb{k}}\tag{3.2.1}
+\end{align*}
+其中
+\begin{equation*}
+a_{\pmb{k}}=\int \mathrm{d}\pmb{x}\,a(\pmb{x})\mathcal{V}^{-1/2}\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}},\qquad \rho_{\pmb{k}}=\int \mathrm{d}\pmb{x}\,\rho(\pmb{x})\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}},\qquad V_{\pmb{k}}=\int \mathrm{d}\pmb{x}\,V(\pmb{x})\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}
+\end{equation*}
+在式 (3.2.1) 的最后一行里，相互作用项已被写成正规排序的形式，即 $a^{\dagger}$ 总是出现在 $a$ 的左边。此外，由于 $V(\pmb{x})$ 是对称的，即 $V(\pmb{x})=V(-\pmb{x})$，$V_{\pmb{k}}$ 为实数，且 $V_{\pmb{k}}=V_{-\pmb{k}}$。下面我们将把 $V(0)$ 吸收进 $\mu$ 并略去 $V(0)$。这个相互作用哈密顿量在 $a_{\pmb{k}}$ 上不是二次型的，很难求解。
+
+下面我们将用平均场方法来求一个近似基态。平均场理论的基本想法是：找出一些量子涨落较弱的算符，用相应的经典值（一个 c 数）去代替它们。但愿这一替换能把完整的哈密顿量约化成二次型的。
+
+基于对自由玻色子基态的知识，我们可以假设：在相互作用玻色系统的基态中，有宏观数目的粒子占据 $\pmb{k}=0$ 态：
+\begin{equation*}
+\langle\Phi_0|a_0^{\dagger}a_0|\Phi_0\rangle=N_0
+\end{equation*}
+而其他态的占据数，即 $n_{\pmb{k}}=\langle\Phi_0|a_{\pmb{k}}^{\dagger}a_{\pmb{k}}|\Phi_0\rangle$，都很小。我们还注意到
+\begin{align*}
+&\langle\Phi_0|a_0^{\dagger}a_0a_0^{\dagger}a_0|\Phi_0\rangle=N_0^2\\
+&\langle\Phi_0|a_0^{\dagger}a_0^{\dagger}a_0a_0|\Phi_0\rangle=N_0(N_0-1)\approx N_0^2
+\end{align*}
+这样，精确到 $N_0^2$ 阶，$a_0$ 与 $a_0^{\dagger}$ 看上去彼此对易，表现得像普通的数（c 数）。这就是我们说算符 $a_0$ 的量子涨落很弱时的含义。在这种情形下，我们可以用它的经典值代替 $a_0$：
+\begin{equation*}
+a_0=a_0^{\dagger}=\sqrt{N_0}
+\end{equation*}
+相互作用哈密顿量这时可以写成
+\begin{align*}
+H_{mean}&=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu)a_{\pmb{k}}^{\dagger}a_{\pmb{k}}+O\left((a_{\pmb{k}\neq0})^3\right)+\frac{\mathcal{V}}{2}\rho_0^2V_0\\
+&\quad+\frac{\rho_0}{2}\sum_{\pmb{k}\neq0}\left(2a_{\pmb{k}}^{\dagger}a_{\pmb{k}}V_0+2a_{\pmb{k}}^{\dagger}a_{\pmb{k}}V_{\pmb{k}}+V_{\pmb{k}}a_{-\pmb{k}}a_{\pmb{k}}+V_{\pmb{k}}a_{-\pmb{k}}^{\dagger}a_{\pmb{k}}^{\dagger}\right)\\
+&=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu'_{\pmb{k}})a_{\pmb{k}}^{\dagger}a_{\pmb{k}}-\frac{1}{2}\rho_0^2V_0+\rho_0\frac{1}{2}\sum_{\pmb{k}\neq0}V_{\pmb{k}}\left(a_{-\pmb{k}}a_{\pmb{k}}+a_{-\pmb{k}}^{\dagger}a_{\pmb{k}}^{\dagger}\right)\tag{3.2.2}
+\end{align*}
+其中 $\mu'_{\pmb{k}}=\mu-\rho_0V_0-\frac{1}{2}\rho_0(V_{\pmb{k}}+V_{-\pmb{k}})$，$\rho_0=N_0/\mathcal{V}$，并且我们忽略了 $(a_{\pmb{k}\neq0})^3$ 以及更高阶的项。经过两次近似——第一步用 c 数代替 $a_0$（这在 $N\to\infty$ 极限下是准确的），第二步略去 $a_{\pmb{k}}^3$ 项（这在 $V\to0$ 或 $\rho\to0$ 极限下是准确的）——我们便得到一个二次型的平均场哈密顿量。
+
+由于出现了 $a_{-\pmb{k}}a_{\pmb{k}}$ 项，显然，所有 $N$ 个玻色子都处于 $\pmb{k}=0$ 态的态不再是相互作用玻色系统的基态。为了找到新的（平均场）基态，我们对 $\pmb{k}\neq0$ 引入
+\begin{equation*}
+\alpha_{\pmb{k}}=u_{\pmb{k}}a_{\pmb{k}}+v_{\pmb{k}}a_{-\pmb{k}}^{\dagger}
+\end{equation*}
+我们这样选取 $u_{\pmb{k}}$ 与 $v_{\pmb{k}}$，使得 $H_{mean}$ 具有 $\sum_{\pmb{k}}\alpha_{\pmb{k}}^{\dagger}\alpha_{\pmb{k}}E_{\pmb{k}}+\text{常数}$ 的形式，且 $\alpha_{\pmb{k}}$ 与 $\alpha_{\pmb{k}}^{\dagger}$ 满足同样的玻色子对易关系
+\begin{equation*}
+\left[\alpha_{\pmb{k}},\alpha_{\pmb{k}'}^{\dagger}\right]=\delta_{\pmb{k},\pmb{k}'}
+\end{equation*}
+后一条件要求 $|u_{\pmb{k}}^2|-|v_{\pmb{k}}|^2=1$。可以证明，如下选取满足我们的要求：
+\begin{align*}
+E_{\pmb{k}}&=\sqrt{(\epsilon_{\pmb{k}}-\mu'_{\pmb{k}})^2-\rho_0^2V_{\pmb{k}}^2}\tag{3.2.3}\\
+u_{\pmb{k}}&=\sqrt{\frac{\epsilon_{\pmb{k}}-\mu'_{\pmb{k}}}{2E_{\pmb{k}}}+\frac{1}{2}}\tag{3.2.4}\\
+v_{\pmb{k}}&=\frac{V_{\pmb{k}}}{|V_{\pmb{k}}|}\sqrt{\frac{\epsilon_{\pmb{k}}-\mu'_{\pmb{k}}}{2E_{\pmb{k}}}-\frac{1}{2}}\tag{3.2.5}
+\end{align*}
+并且
+\begin{equation*}
+\sum_{\pmb{k}\neq0}\left((\epsilon_{\pmb{k}}-\mu'_{\pmb{k}})a_{\pmb{k}}^{\dagger}a_{\pmb{k}}+\frac{V_{\pmb{k}}\rho_0}{2}\left(a_{-\pmb{k}}a_{\pmb{k}}+\text{h.c.}\right)\right)=\sum_{\pmb{k}\neq0}E_{\pmb{k}}\alpha_{\pmb{k}}^{\dagger}\alpha_{\pmb{k}}-\sum_{\pmb{k}\neq0}E_{\pmb{k}}|v_{\pmb{k}}|^2
+\end{equation*}
+把 $\pmb{k}=0$ 的部分也包括进来，我们得到
+\begin{align*}
+H_{mean}&=\sum_{\pmb{k}\neq0}E_{\pmb{k}}\alpha_{\pmb{k}}^{\dagger}\alpha_{\pmb{k}}+\Omega_g\\
+\Omega_g&=\mathcal{V}\left(-\mu\rho_0+\frac{1}{2}\rho_0^2V_0\right)-\sum_{\pmb{k}\neq0}\frac{1}{2}(\epsilon_{\pmb{k}}-\mu'_{\pmb{k}}-E_{\pmb{k}})
+\end{align*}
+平均场基态由
+\begin{equation*}
+\alpha_{\pmb{k}}|\Phi_{mean}\rangle=0
+\end{equation*}
+给出，而 $\Omega_g$ 就是平均场基态能量，或者更准确地说，是平均场基态的热势。在平均场理论中，基态之上的激发由一簇谐振子 $\alpha_{\pmb{k}}$ 描述，它们对应于玻色流体中的波。波的色散关系（dispersion relation）由 $E_{\pmb{k}}$ 给出。
+
+还有两个参量 $N_0$ 与 $\mu$ 待定。激发谱
+\begin{equation*}
+E_{\pmb{k}}=\sqrt{(\epsilon_{\pmb{k}}-\mu+\rho_0V_0+\rho_0V_{\pmb{k}})^2-(\rho_0V_{\pmb{k}})^2}
+\end{equation*}
+以一种敏感的方式依赖于 $\mu$。若 $\mu=\rho_0V_0$，则 $E_0=0$，激发是无能隙的（这里我们假设了 $\epsilon_0=0$）。若 $\mu<\rho_0V_0$，则激发具有有限的能隙。若 $\mu>\rho_0V_0$，则 $E_0$ 是虚数，这暗示着一种不稳定性。
+
+首先，$N_0$ 的值通过求热势 $\Omega_g$ 的极小（保持 $\mu$ 固定）得到：
+\begin{equation*}
+\frac{\partial\Omega_g}{\partial N_0}=0\tag{3.2.6}
+\end{equation*}
+求得 $N_0=N_0(\mu)$ 之后，注意到
+\begin{equation*}
+a_{\pmb{k}}=u_{\pmb{k}}^{*}\alpha_{\pmb{k}}-v_{\pmb{k}}^{*}\alpha_{-\pmb{k}}^{\dagger}
+\end{equation*}
+我们发现
+\begin{equation*}
+N=\langle\Phi_{mean}|\sum_{\pmb{k}}a_{\pmb{k}}^{\dagger}a_{\pmb{k}}|\Phi_{mean}\rangle=N_0(\mu)+\sum_{\pmb{k}}|v_{\pmb{k}}|^2\tag{3.2.7}
+\end{equation*}
+上式确定了给出总共 $N$ 个玻色子的 $\mu=\mu(N)$ 的值。
+
+让我们尝试在低密度或弱耦合极限下进行上述计算。保留 $V_{\pmb{k}}$ 的线性阶项（注意 $\epsilon_{\pmb{k}}-\mu'_{\pmb{k}}-E_{\pmb{k}}=O(V_{\pmb{k}}^2)$），我们得到
+\begin{equation*}
+\Omega_g=\mathcal{V}\left(-\mu\rho_0+\frac{1}{2}\rho_0^2V_0\right)
+\end{equation*}
+我们看到，为使 $\Omega_g$ 极小，要求 $\mu<0$ 时 $N_0=0$，而 $\mu>0$ 时 $N_0=\mathcal{V}\mu/V_0$。一旦知道了 $N_0$，玻色子总数就可以通过式 (3.2.7) 算出。如果已知 $N$，则 $\mu$ 由 $N=\mathcal{V}\mu/V_0+\sum_{\pmb{k}}|v_{\pmb{k}}|^2$ 确定。
+
+当玻色子密度非零时，我们求得 $\mu=\rho_0V_0>0$，激发谱
+\begin{equation*}
+E_{\pmb{k}}=\sqrt{\epsilon_{\pmb{k}}\left(\epsilon_{\pmb{k}}+2\rho_0V_{\pmb{k}}\right)}\tag{3.2.8}
+\end{equation*}
+对小 $\pmb{k}$ 是无能隙且线性的，不论 $N$ 与 $V_{\pmb{k}}$ 的取值如何：
+\begin{equation*}
+E_{\pmb{k}}=v|\pmb{k}|,\qquad v^2=\frac{\rho_0V_0}{m}-\frac{\rho_0^2}{2}\tag{3.2.9}
+\end{equation*}
+（译注：按式 (3.2.8) 在小 $\pmb{k}$ 下展开，应得 $v^2=\rho_0V_0/m$；原书式中的 $-\rho_0^2/2$ 一项疑为排印之误。）
+
+这个结果非常合理，因为 $\alpha_{\pmb{k}}^{\dagger}$ 产生的激发应当对应于可压缩玻色流体中的密度波（即 Nambu--Goldstone 模），因而理应总具有无能隙的线性色散。这种线性无能隙激发也称为声子（phonon）。
+
+如果我们就此止步，那么一切都会很好。可以说，我们得到了一个关于相互作用玻色系统基态与激发的平均场理论，它给出合理的结果。然而，如果我们想做得更好，事情反而可能变糟。在平均场理论中，能隙的消失是由于一个"奇迹"——$\mu$ 恰好等于 $\rho_0V_0$，从而使 $E_{\pmb{k}}$ 中的常数项相消。如果我们保留 $\Omega_g$ 中出现的 $V_{\pmb{k}}$ 的更高阶项，那么更精确的 $\mu$ 可能就不再等于 $\rho_0V_0$。在这种情形下，我们可能得到能隙不为零的不合理结果。当然，当我们在 $\Omega_g$ 中计入更高阶项时，我们应当同时在 $E_{\pmb{k}}$ 中计入更高阶项，这时仍可能发生相消而给出零能隙。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.1.pdf}
+\caption*{图 3.1\quad 声子激发位于 $\pmb{k}=0$ 附近，旋子激发位于有限 $\pmb{k}$ 处的局域极小附近。图中还标出了超流流动的临界速度（参见 3.7.3 节）。}
+\end{figure}
+
+然而，有一点是清楚的。平均场理论并不保证零能隙。要得到零能隙，我们只能依靠仔细的计算并祈盼奇迹。但是，从物理的角度看，无能隙激发的存在是一条普适原理，它不依赖于玻色系统的任何细节。无论相互作用取何种形式，自由空间中的玻色系统总是可压缩的，并且总含有无能隙的密度波。我们看到，平均场理论并没有把握住无能隙激发背后的原理。平均场理论的这个问题并不只出现在玻色系统中。一般而言，所有平均场理论都有这样的毛病：原理论的某些普遍原理没有被平均场理论捕捉到。在用平均场理论研究激发谱时，必须牢记这一点，并格外小心。
+
+在真实的超流体中，激发谱具有图 3.1 所示的形状。位于有限 $\pmb{k}$ 处极小附近的激发称为旋子（roton）。我们注意到，在适当的 $\pmb{k}$ 处，旋子的群速度可以为零。
+
+\subsection*{问题 3.2.1}
+
+对于一个密度为 $\rho=N/\mathcal{V}$ 的一维相互作用玻色系统，确定 $N_0$ 与 $\mu$。证明一维的相互作用玻色子即使在零温下也不能凝聚。（注意，无相互作用的玻色子在零温下可以在一维凝聚。）
+
+\subsection*{问题 3.2.2}
+
+\begin{enumerate}
+\item 找出一个 $V_{\pmb{k}}$，使得 $E_{\pmb{k}}$ 中的旋子极小降到零以下。在实空间中画出这个 $V(\pmb{x})$。
+\item 当旋子极小果真降到零以下时，超流态会发生什么？
+\end{enumerate}
+
+\subsection*{问题 3.2.3}
+
+自旋链的平均场理论。考虑自旋链
+\begin{equation*}
+H=J\sum_i S_iS_{i+1}
+\end{equation*}
+其中 $J<0$，$S$ 是携带自旋 $S$ 的自旋算符。当 $S\gg0$ 时，$S_i$ 的量子涨落很弱，我们可以把一个 $S$ 用其平均值 $s=\langle S_i\rangle$（假设它不依赖 $i$）代替，从而得到平均场哈密顿量。
+\begin{enumerate}
+\item 写出平均场哈密顿量，并求出平均场基态。
+\item 用平均场哈密顿量计算 $\langle S_i\rangle$，从而确定 $s$ 的值。
+\item 用平均场近似求出基态能量。
+\item 求出平均场基态之上各激发的能量。
+\end{enumerate}
+
+我们由此看到，平均场理论完全无法重现无能隙的自旋波激发。2.4 节所讨论的路径积分方法及其经典近似则会给出好得多的结果。
+
+\section{相互作用玻色系统的路径积分方法}
+
+\subsection{相互作用玻色系统的路径积分表示}
+
+如 3.1 节所述，自由玻色系统可以用一簇独立的谐振子来描述，其哈密顿量为
+\begin{equation*}
+H_0=\sum_{\pmb{k}}(\epsilon_{\pmb{k}}-\mu)a_{\pmb{k}}^{\dagger}a_{\pmb{k}}
+\end{equation*}
+这些谐振子（以及自由玻色系统）容许一个（相干态）路径积分表示
+\begin{equation*}
+\int\mathcal{D}^2\left[a_{\pmb{k}}(t)\right]\,\mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,\sum_{\pmb{k}}\left[\mathrm{i}\frac{1}{2}(a_{\pmb{k}}^{*}\dot{a}_{\pmb{k}}-a_{\pmb{k}}\dot{a}_{\pmb{k}}^{*})-(\epsilon_{\pmb{k}}-\mu)a_{\pmb{k}}^{*}a_{\pmb{k}}\right]}
+\end{equation*}
+在实空间中，我们有
+\begin{equation*}
+\int\mathcal{D}^2a\;\mathrm{e}^{\mathrm{i}\int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\left[\mathrm{i}\frac{1}{2}\left(a^{*}(\pmb{x},t)\partial_t a(\pmb{x},t)-a(\pmb{x},t)\partial_t a^{*}(\pmb{x},t)\right)-\frac{1}{2m}\partial_{\pmb{x}}a^{*}(\pmb{x},t)\partial_{\pmb{x}}a(\pmb{x},t)-\mu a^{*}(\pmb{x},t)a(\pmb{x},t)\right]}
+\end{equation*}
+现在我们可以很容易地把相互作用包括进来，只需在哈密顿量与路径积分中加上一项
+\begin{equation*}
+\int \mathrm{d}^d\pmb{x}\,\mathrm{d}^d\pmb{y}\;\frac{1}{2}a^{*}(\pmb{x},t)a(\pmb{x},t)V(\pmb{x}-\pmb{y})a^{*}(\pmb{y},t)a(\pmb{y},t)
+\end{equation*}
+这里我们将处理一个更简单的相互作用 $V(\pmb{x})=V_0\delta(\pmb{x})$，其傅里叶分量为 $V_{\pmb{k}}=V_0$。相互作用玻色子的路径积分于是具有形式
+\begin{equation*}
+\int\mathcal{D}^2\left[\varphi(\pmb{x},t)\right]\,\mathrm{e}^{\mathrm{i}\int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\left[\mathrm{i}\frac{1}{2}(\varphi^{*}\partial_t\varphi-\varphi\partial_t\varphi^{*})-\frac{1}{2m}\partial_{\pmb{x}}\varphi^{*}\partial_{\pmb{x}}\varphi+\mu|\varphi|^2-\frac{V_0}{2}|\varphi|^4\right]}
+\end{equation*}
+其中，按照惯例，我们已把 $a(\pmb{x},t)$ 改记为 $\varphi(\pmb{x},t)$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.2.pdf}
+\caption*{图 3.2\quad 热势 $\Omega(\mu)$ 的二阶导数出现不连续，这标志着一次二级相变。}
+\end{figure}
+
+有了路径积分表示，我们就可以把这个量子相互作用玻色系统当作一个经典场论来研究其物理性质，该经典场论由作用量
+\begin{equation*}
+S=\int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\left[\mathrm{i}\frac{1}{2}(\varphi^{*}\partial_t\varphi-\varphi\partial_t\varphi^{*})-\frac{1}{2m}\partial_{\pmb{x}}\varphi^{*}\partial_{\pmb{x}}\varphi+\mu|\varphi|^2-\frac{V_0}{2}|\varphi|^4\right]\tag{3.3.1}
+\end{equation*}
+描述。这里我们做的是半经典近似（而不是 3.2 节所做的平均场近似），其领头项就是经典理论。这个经典系统的能量（或者，更准确地说，热势）为
+\begin{equation*}
+\Omega=\int \mathrm{d}^d\pmb{x}\,\left[\frac{1}{2m}\partial_{\pmb{x}}\varphi^{*}\partial_{\pmb{x}}\varphi+\mu|\varphi|^2+\frac{V_0}{2}|\varphi|^4\right]\tag{3.3.2}
+\end{equation*}
+
+\subsection{相变与自发对称性破缺}
+
+\begin{keypoints}
+\item 零温相变发生在基态能量的非解析点处。
+\item 当一个非对称的基态从对称系统中涌现时，就发生了自发对称性破缺。
+\item 连续相变、自发对称性破缺与长程序密切相关。这正是 Landau 关于相与相变的对称性破缺理论的核心。
+\end{keypoints}
+
+经典基态是平移不变的，由一个复常数 $\varphi_0$ 刻画：$\varphi(\pmb{x},t)=\varphi_0$。经典基态的能量密度（或者，更准确地讲，是热势的密度）为
+
+% ------------------------------------------------------------
+% 块边界备注：
+%   终点：书页 78（p093）末句 "The energy density (or, more precisely, the
+%   density of the thermal potential) of the classical ground state is"
+%   跨页延续到书页 79（p094）顶部。p094 顶部残句 "density of the thermal
+%   potential) ..." 的译文（"密度）为"）已按任务约定写入本文件顶部
+%   %--A-TAIL-- 区。ch3_b 请勿重复翻译该残句，正文请从 p094 的无编号式
+%   Ω_0/𝒱 = −μ|φ_0|² + (V_0/2)|φ_0|⁴ 起译（其后为 "By minimizing the
+%   energy..." 一段）。
+%   另：本块含 §3.3 与 §3.3.1 的开头、§3.3.2 的标题＋要点＋首句（未完）。
+% ------------------------------------------------------------
+% 新增术语（ch3_a，待并入术语表"新增术语"区）：
+%   first quantization 第一次量子化
+%   normal ordering 正规排序
+%   c-number c 数
+%   boson condensed state 玻色凝聚态
+%   chemical potential 化学势
+%   dispersion relation 色散关系
+%   off-diagonal long-range order 非对角长程序
+%   trial wave function 尝试波函数
+%   phonon 声子
+%   roton 旋子
+%   critical velocity 临界速度
+%   group velocity 群速度
+%   density wave 密度波
+%   Nambu–Goldstone modes Nambu–Goldstone 模
+%   second-order phase transition 二级相变
+%   classical field theory 经典场论
+%   Fourier component 傅里叶分量
+%   spin chain 自旋链
+%   spin wave 自旋波
+%   weak-coupling limit 弱耦合极限
+%   low-density limit 低密度极限
+\begin{equation*}
+\frac{\Omega_0}{\mathcal{V}} = -\mu|\varphi_0|^2 + \frac{V_0}{2}|\varphi_0|^4
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.3.pdf}
+\caption*{图 3.3\quad 序参量 $\varphi_0$ 与超流相变。}
+\end{figure}
+
+对能量求极小，我们看到，对于 $\mu < 0$，基态由 $\varphi_0 = 0$ 表征，对应于没有玻色子的态。对于 $\mu > 0$，基态是简并的，由玻色场的下列幅值表征：
+\begin{equation*}
+\varphi_0 = \sqrt{\frac{\mu}{V_0}}\,\mathrm{e}^{\mathrm{i}\theta}\tag{3.3.3}
+\end{equation*}
+其中 $\theta$ 可任取。这样的态具有玻色子密度 $\rho_0 = \mu/V_0$。热势作为 $\mu$ 的函数由下式给出：
+\begin{equation*}
+\Omega_0(\mu) =
+\begin{cases}
+0, & \text{当 } \mu < 0\\[6pt]
+\dfrac{\mu^2}{V_0}, & \text{当 } \mu > 0
+\end{cases}
+\end{equation*}
+（译注：由上一式可得 $\mu>0$ 时 $\Omega_0/\mathcal{V} = -\mu^2/(2V_0)$；原书此处印作 $\mu^2/V_0$，未含体积 $\mathcal{V}$ 与因子 $-1/2$，疑为排印之误。）
+
+我们看到，作为 $\mu$ 的函数，基态能量 $\Omega_0(\mu)$ 在 $\mu = 0$ 处有一个奇点。该奇点标志着 $\mu = 0$ 处的一个二级相变，因为 $\Omega_0''(\mu)$ 在该点有一跳变（见图 3.2）。这个相变称为超流相变（superfluid transition）。\footnote{我们将在 3.7.3 节讨论超流性。}
+
+超流相的特征是非零的玻色场 $\varphi(\pmb{x}) \neq 0$，而无玻色子相的特征是玻色场为零 $\varphi(\pmb{x}) = 0$。超流相变由 $\varphi_0 = 0$ 到 $\varphi_0 \neq 0$ 的改变所标志（见图 3.3）。因此，我们称 $\varphi_0$ 为超流的序参量。
+
+超流相还以对称性破缺为特征。我们看到，我们的哈密顿量或拉格朗日量具有 $U(1)$ 对称性，因为在变换
+\begin{equation*}
+\varphi \rightarrow \mathrm{e}^{\mathrm{i}\theta}\varphi\tag{3.3.4}
+\end{equation*}
+之下，无论我们处于哪个相，它们都保持不变。然而，超流相中的（经典）基态（见式 (3.3.3)）不尊重 $U(1)$ 对称性，也就是说，它们在 $U(1)$ 变换 (3.3.4) 下不是不变的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.4.pdf}
+\caption*{图 3.4\quad (a)与(b)：在不同极小值之间的切换导致(c)中 $\Omega_0$ 的一个拐折，它代表一个一级相变。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.5.pdf}
+\caption*{图 3.5\quad 在存在 $\phi_0 \to -\phi_0$ 对称性时，极小值之间的切换可以连续地进行，并导致一个二级相变。(a)基态在 $\phi_0 \to -\phi_0$ 条件下是对称的。(b)转变点。(c)基态破坏 $\phi_0 \to -\phi_0$ 对称性。}
+\end{figure}
+
+超流相变展示了一条深刻的原理：以热势 $\Omega$ 的非解析点为特征的连续相变，与态的对称性的改变相关联。为领会这一点，让我们从头说起。我们知道，相变是由系统的能量或自由能中的奇点引起的。所以，要理解相变，就需要理解（自由）能是如何产生奇点的。
+
+对于相互作用玻色系统，能量函数 $\Omega_0(\mu; \phi_0)$ 作为 $\phi_0$ 和 $\mu$ 的函数是一个没有奇点的解析函数。基态能量 $\Omega_0(\mu)$ 是 $\Omega_0(\mu; \phi_0)$ 对 $\phi_0$ 取的极小值。一般地，$\Omega_0(\mu)$ 也是解析函数。然而，有时 $\Omega_0(\mu; \phi_0)$ 作为 $\phi_0$ 的函数有多个局部极小。当我们改变 $\mu$ 时，全局极小可能从一个局部极小切换到另一个（见图 3.4）。在这种情况下，所得的 $\Omega_0(\mu)$ 将在切换点有一个奇点。这样的奇点代表一个一级相变，因为 $\Omega_0'(\mu)$ 有一跳变（见图 3.4(c)）。
+
+然而，当能量函数 $\Omega_0(\mu,\phi_0)$ 具有对称性，比如说 $\Omega_0(\mu,\phi_0) = \Omega_0(\mu,\mathrm{e}^{\mathrm{i}\theta}\phi_0)$ 时，极小值之间的切换可以有非常不同的行为，并且可以是连续的（见图 3.5）。由于这一对称性，新的全局极小是简并的。系统面临一个艰难的抉择：要挑哪一个极小驻留。系统做出选择之后，新相便不再具有 $\phi_0 \to \mathrm{e}^{\mathrm{i}\theta}\phi_0$ 对称性。这种从对称系统中演生出非对称态的现象称为自发对称性破缺。我们看到，二级相变与基态对称性的改变密切相关。这正是 Landau 相与相变对称性破缺理论的核心（Landau, 1937）。这一简单的思想应用极为广泛。实际上，几乎所有连续相变都以某种自发对称性破缺为特征。
+
+一般地，自发对称性破缺可以用一个序参量来表征。序参量可以选为一个在对称变换下非平凡变换的算符的期望值。在上面，我们选 $\langle\varphi\rangle$ 作为序参量。由于其变换性质 $\langle\varphi\rangle \to \mathrm{e}^{\mathrm{i}\theta}\langle\varphi\rangle$，在对称相中 $\langle\varphi\rangle = 0$。相比之下，在对称性破缺相中 $\langle\varphi\rangle = \varphi_0 \neq 0$。
+
+在对称性破缺相中，如果我们知道 $\varphi$ 场在一点的相位，那么我们就知道它在任何其他点的相位。这一性质称为长程序。$\varphi$ 场中的长程关联可以在数学上表示为
+\begin{equation*}
+\left.\left\langle \varphi(t,\pmb{x})^{\dagger}\varphi(0,0)\right\rangle\right|_{(t,\pmb{x})\to\infty} = |\varphi_0|^2 \neq 0
+\end{equation*}
+如果 $\varphi$ 的相位在各点之间是无规且互不关联的，那么上述关联将为零。当然，这里我们只考虑没有量子涨落的经典基态。在这种情形下我们看到，非零序参量与 $\varphi$ 算符中的长程序密切相关。对称性破缺相既可以用非零序参量表征，也可以用长程关联表征。在下面几节中，我们将把量子涨落包括进来，看看它们会如何影响序参量和长程序。
+
+\subsection*{问题 3.3.1}
+
+由作用量 (3.3.1) 导出经典运动方程。只考虑基态附近的小涨落，对对称相（$\mu < 0$）与对称性破缺相（$\mu > 0$）分别导出线性化的运动方程。证明对称基态附近的涨落具有有限能隙，而对称性破缺基态附近的涨落包含一个零能隙的模式。此模式具有线性色散 $\omega \propto k$。
+
+\subsection*{问题 3.3.2}
+
+水–水蒸气相变可以用下列吉布斯能（Gibbs energy）函数描述：
+\begin{equation*}
+G(T,P;n) = h(T,P)n + a(T,P)n^2 + c(T,P)n^3 + b(T,P)n^4
+\end{equation*}
+其中 $n$ 是水分子的密度。系统的吉布斯能 $G(T,P)$ 由 $G(T,P;n)$ 对 $n$ 取极小值给出。系统有一条一级相变线，它终止于一个临界点。试求确定一级相变线与临界点的方程。（提示：先考虑 $c = 0$ 的情形。如果把 $n$ 看作自旋矩的密度，这样的吉布斯能与磁场 $\delta\rho$ 中伊辛模型的自由能具有相同的形式。）
+
+\subsection{低能有效理论}
+
+\begin{keypoints}
+\item 描述慢（即低能）涨落的有效拉格朗日量，可以通过积掉快（即高能）涨落得到。
+\end{keypoints}
+
+为研究经典基态之上的激发，让我们考虑经典基态附近的下述小涨落：
+\begin{equation*}
+\varphi = \varphi_0 + \delta\varphi
+\end{equation*}
+$\delta\varphi$ 的动力学由同一个作用量 (3.3.1) 支配。但现在我们可以假设 $\delta\varphi$ 很小，只保留 $\delta\varphi$ 的二次项。对于对称相 $\varphi_0 = 0$，我们有
+\begin{equation*}
+S = \int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Big[\mathrm{i}\frac{1}{2}(\varphi^*\partial_t\varphi - \varphi\partial_t\varphi^*) - \frac{1}{2m}\partial_{\pmb{x}}\varphi^*\,\partial_{\pmb{x}}\varphi + \mu\varphi^*\varphi\Big]\tag{3.3.5}
+\end{equation*}
+在对称相中，运动方程为
+\begin{equation*}
+\Big[\mathrm{i}\partial_t - \frac{1}{2m}(-\mathrm{i}\partial_{\pmb{x}})^2 + \mu\Big]\varphi = 0
+\end{equation*}
+由此得到涨落的如下色散：
+\begin{equation*}
+\omega = \frac{1}{2m}k^2 - \mu\tag{3.3.6}
+\end{equation*}
+在下一节中我们将看到，这些涨落对应于类粒子激发：涨落的频率与波矢量分别变成粒子的能量与动量。我们看到，激发具有有限能隙 $\Delta = -\mu$（注意 $\mu < 0$），这正是产生一个激发所需的能量。事实上，由色散 (3.3.6) 所描述的粒子恰好对应于构成我们系统的那些玻色子。
+
+为理解对称性破缺相中的低能激发，我们希望推导一个只包含与低能激发相关的模式的低能有效理论。至于哪些涨落具有低能量，我们注意到，在对称性破缺相中，凝聚体的不同相位 $\theta$ 导致简并的基态。如果我们在一个很大但有限的区域内改变凝聚体的相位，那么系统在局部上仍处于它的某个简并基态。系统得以知道自己处于激发态的唯一途径是通过 $\theta$ 的梯度。如果相位在空间中变化缓慢，相应的激发就具有较小的能量。因此，低能激发对应于诸简并基态之间的涨落，由 $\theta$ 场描述。基于这一图像，我们写出
+\begin{equation*}
+\varphi = \sqrt{\rho_0 + \delta\rho}\,\mathrm{e}^{\mathrm{i}\theta}\tag{3.3.7}
+\end{equation*}
+其中 $\rho_0 = \varphi_0^2 = \mu/V_0$ 是基态的密度，$\delta\rho$ 是密度涨落。在这种写法中，$\theta$ 描述低能的慢涨落，$\delta\rho$ 描述高能的快涨落。把式 (3.3.7) 代入式 (3.3.1)，并展开到 $\theta$ 与 $\delta\rho$ 的二次阶，我们得到
+\begin{equation*}
+S = \int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Big[-(\rho_0+\delta\rho)\partial_t\theta - \frac{\rho_0(\partial_{\pmb{x}}\theta)^2}{2m} - \frac{(\partial_{\pmb{x}}\delta\rho)^2}{8m\rho_0} - \frac{V_0}{2}\delta\rho^2\Big]\tag{3.3.8}
+\end{equation*}
+
+这里我们面对的是多体物理中一个十分典型的问题。我们有两个场，一个描述慢的低频（即低能）涨落，另一个描述快的高频涨落。如果我们只关心低能物理，如何移除快场，以得到一个简单的低能有效理论？
+
+得到低能有效理论的一种办法是令 $\delta\rho = 0$，把 $\delta\rho$ 场丢掉。这导致 $\theta$ 的下列低能有效作用量：
+\begin{equation*}
+S = \int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Big[-\varphi_0^2\partial_t\theta - \frac{1}{2m}\varphi_0^2(\partial_{\pmb{x}}\theta)^2\Big]
+\end{equation*}
+然而，这个有效作用量并不十分正确，因为 $\partial_t\theta$ 是一个全导数（total derivative），它不进入运动方程。我们需要得到 $(\partial_t\theta)^2$ 项，才能理解 $\theta$ 的低能动力学性质。要得到 $(\partial_t\theta)^2$ 项，移除 $\delta\rho$ 场时就必须更加小心。
+
+得到低能有效理论的一个更好的办法，是在路径积分中积分掉快场 $\delta\rho$。在这里这很容易做到，因为作用量 (3.3.8) 是 $\delta\rho$ 的二次型。完成高斯积分后，我们发现
+\begin{align*}
+Z &= \int \mathcal{D}\theta\,\mathrm{e}^{\mathrm{i}\int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\big[-\frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^2 + \frac{1}{2}\partial_t\theta\,\frac{1}{V_0 - \frac{1}{4m\rho_0}\partial_{\pmb{x}}^2}\,\partial_t\theta\big]}\\
+&\approx \int \mathcal{D}\theta\,\mathrm{e}^{\mathrm{i}\int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\big[-\frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^2 + \frac{1}{2V_0}(\partial_t\theta)^2\big]}\tag{3.3.9}
+\end{align*}
+其中我们假设了 $\theta$ 场在空间中变化缓慢，并丢掉了 $\frac{1}{4m\rho_0}(\partial_{\pmb{x}})^2$ 项；我们还丢掉了作用量中的全时间导数项。\footnote{在存在涡旋时，全时间导数项是重要的，那时不应将其丢掉。见 3.6 节。}我们得到 $\theta$ 的下列简单的低能有效作用量：
+\begin{equation*}
+S_{\mathrm{eff}} = \int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Big[\frac{1}{2V_0}(\partial_t\theta)^2 - \frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^2\Big]\tag{3.3.10}
+\end{equation*}
+注意 $\theta$ 场实际上生活在一个圆上，因此 $\theta$ 与 $\theta + 2\pi$ 描述同一点。为更准确起见，我们可以引入 $z = \mathrm{e}^{\mathrm{i}\theta}$，把上式改写为
+\begin{equation*}
+S_{\mathrm{eff}} = \int \mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Big[\frac{1}{2V_0}|\partial_t z|^2 - \frac{\rho_0}{2m}|\partial_{\pmb{x}} z|^2\Big]\tag{3.3.11}
+\end{equation*}
+由式 (3.3.10) 或式 (3.3.11) 所描述的模型称为 XY 模型（XY-model）。
+
+经典基态由均匀的 $\theta$ 场给出：$\theta(\pmb{x},t) = $ 常数。激发由 $\theta$ 的涨落描述，这些涨落满足运动方程
+\begin{equation*}
+\Big(-\frac{1}{2V_0}\partial_t^2 + \frac{\rho_0}{2m}\partial_{\pmb{x}}^2\Big)\theta = 0
+\end{equation*}
+上式是一个波动方程，它描述一列具有线性色散的波
+\begin{equation*}
+\omega = v|\pmb{k}|,\qquad v^2 = \frac{\rho_0 V_0}{m}\tag{3.3.12}
+\end{equation*}
+其中 $v$ 是波速。
+
+在许多情形下，仅仅知道低能有效作用量是不够的。同样重要的是要知道，原理论中的场（或算符）如何由低能有效理论中的场（或算符）来表示。下面我们以密度算符为例，说明原理论中的物理算符（或场）如何由有效理论中的场来表示。首先，在原拉格朗日量中加一个与密度耦合的源项 $-A_0\rho = -A_0(\rho_0 + \delta\rho)$。然后，进行同样的计算以得到有效理论。我们发现，有效理论中含有一个附加项（准确到 $A_0$ 的线性阶）$-A_0(\rho_0 - \frac{\partial_t\theta}{V_0})$。于是，密度算符在有效理论中表示为
+\begin{equation*}
+\rho = \rho_0 - \frac{\partial_t\theta}{V_0}\tag{3.3.13}
+\end{equation*}
+类似地，我们发现玻色子流密度 $\pmb{j} = \mathrm{Re}\,\varphi^{\dagger}\frac{\partial_{\pmb{x}}}{\mathrm{i}m}\varphi$ 在有效理论中变为
+\begin{equation*}
+\pmb{j} = \frac{\rho_0}{m}\partial_{\pmb{x}}\theta\tag{3.3.14}
+\end{equation*}
+式 (3.3.13)、式 (3.3.14) 与式 (3.3.10) 使我们能够在简单的低能有效理论之内，用路径积分计算密度关联与流关联。这些关联随后便可与诸如压缩率（compressibility）和电导率等实验结果相比较。$\rho$ 与 $\theta$ 之间的关系还告诉我们，$\theta$ 所描述的低能涨落正是密度–流涨落。
+
+\subsection*{问题 3.3.3}
+
+\begin{enumerate}
+\item[(a)] 得到 $\theta$ 的低能有效理论还有另一种办法：通过求解 $\delta\rho$ 场的运动方程，把 $\delta\rho$ 用 $\partial_t\theta$、$\partial_{\pmb{x}}\theta$ 等表示出来；然后把 $\delta\rho$ 代回作用量，得到一个只含 $\theta$ 的有效作用量。证明这一方法给出同样的 XY 模型作用量 (3.3.10)。
+\item[(b)] 如果把 $\delta\rho$ 代入密度算符和流算符，则会分别重新得到式 (3.3.13) 与式 (3.3.14)。证明 $\rho$ 和 $\pmb{j}$ 满足守恒定律 $\partial_t\rho + \partial_{\pmb{x}}\cdot\pmb{j} = 0$。
+\item[(c)] 用式 (3.3.13) 给出的密度算符表达式，计算动量–频率空间中超流的密度–密度关联函数。
+\end{enumerate}
+
+\subsection{波即是粒子}
+
+\begin{keypoints}
+\item 超流态中演生出一种新型的粒子——准粒子（quasiparticle）。准粒子是玻色型的、无相互作用的，并且具有线性色散。
+\end{keypoints}
+
+我们一直把经典基态附近的 $\theta$ 涨落（或者对称相中的 $\delta\varphi$）看作波。由于量子物理中的波粒二象性（particle–wave duality），波也可以看作粒子。这些粒子称为准粒子。下面我们将量子化低能有效理论，得到准粒子的量子理论。该量子理论结果是一个玻色子理论，这告诉我们准粒子是玻色子。
+
+我们先把低能有效拉格朗日量 (3.3.10) 在 $\pmb{k}$ 空间中写成如下形式：
+\begin{equation*}
+L_{\mathrm{eff}} = \sum_{\pmb{k}}\Big[\frac{A_{\pmb{k}}}{2}\dot{\theta}_{-\pmb{k}}\dot{\theta}_{\pmb{k}} - \frac{B_{\pmb{k}}}{2}\theta_{-\pmb{k}}\theta_{\pmb{k}}\Big],\tag{3.3.15}
+\end{equation*}
+其中
+\begin{equation*}
+A_{\pmb{k}} = V_0^{-1},\qquad B_{\pmb{k}} = \frac{\rho_0 k^2}{m},\tag{3.3.16}
+\end{equation*}
+$\theta_{\pmb{k}} = \mathcal{V}^{-1/2}\int \mathrm{d}^d\pmb{x}\,\theta(\pmb{x})\mathrm{e}^{-\mathrm{i}\pmb{k}\cdot\pmb{x}}$，而 $\mathcal{V}$ 是系统的总体积。上述作用量描述一组彼此退耦的谐振子。
+
+为得到描述量子化理论的量子哈密顿量，我们先算出经典哈密顿量。$\theta_{\pmb{k}}$ 的正则动量（canonical momentum）为
+\begin{equation*}
+\pi_{\pmb{k}} = \frac{\partial L_{\mathrm{eff}}}{\partial \dot{\theta}_{\pmb{k}}} = A_{\pmb{k}}\dot{\theta}_{-\pmb{k}}
+\end{equation*}
+经典哈密顿量 $H = \sum_{\pmb{k}}\pi_{\pmb{k}}\dot{\theta}_{\pmb{k}} - L_{\mathrm{eff}}$ 由下式给出：
+\begin{equation*}
+H = \sum_{\pmb{k}}\Big[\frac{1}{2A_{\pmb{k}}}\pi_{-\pmb{k}}\pi_{\pmb{k}} + \frac{B_{\pmb{k}}}{2}\theta_{-\pmb{k}}\theta_{\pmb{k}}\Big]
+\end{equation*}
+只需把 $\pi_{\pmb{k}}$ 和 $\theta_{\pmb{k}}$ 当作满足下列正则对易关系（canonical commutation relation）的算符，就得到量子哈密顿量：
+\begin{equation*}
+[\theta_{\pmb{k}}, \pi_{\pmb{k}'}] = \mathrm{i}\delta_{\pmb{k}\pmb{k}'}
+\end{equation*}
+现在我们引入
+\begin{equation*}
+\alpha_{\pmb{k}} = u_{\pmb{k}}\theta_{\pmb{k}} + \mathrm{i}v_{\pmb{k}}\pi_{-\pmb{k}},\quad u_{\pmb{k}} = \frac{1}{\sqrt{2}}(A_{\pmb{k}}B_{\pmb{k}})^{1/4},\quad v_{\pmb{k}} = \frac{1}{\sqrt{2}}(A_{\pmb{k}}B_{\pmb{k}})^{-1/4}.\tag{3.3.17}
+\end{equation*}
+我们发现 $\alpha_{\pmb{k}}$ 满足振子下降算符（lowering operator）的代数：
+\begin{equation*}
+[\alpha_{\pmb{k}}, \alpha_{\pmb{k}'}^{\dagger}] = \delta_{\pmb{k}\pmb{k}'},\qquad [\alpha_{\pmb{k}}, \alpha_{\pmb{k}'}] = 0.
+\end{equation*}
+用下降与上升算符（raising operator）$(\alpha_{\pmb{k}}, \alpha_{\pmb{k}}^{\dagger})$ 表示，哈密顿量取振子的标准形式：
+\begin{equation*}
+H = \sum_{\pmb{k}}\epsilon_{\pmb{k}}\alpha_{\pmb{k}}^{\dagger}\alpha_{\pmb{k}} + \text{常数},\qquad \epsilon_{\pmb{k}} = \sqrt{\frac{B_{\pmb{k}}}{A_{\pmb{k}}}} = \sqrt{\frac{V_0\rho_0}{m}}\,|\pmb{k}| = v|\pmb{k}|\tag{3.3.18}
+\end{equation*}
+这正是具有单玻色子能量 $\epsilon_{\pmb{k}} = v|\pmb{k}|$ 的自由玻色子哈密顿量 (3.1.1)。
+
+我们看到，$\theta$ 的集体涨落产生了具有线性色散的玻色型准粒子。由于 $\theta$ 的涨落对应于超流体中的密度波，我们也可以说，密度波在量子理论中变成了离散的准粒子。这一图像适用于更普遍的情形。事实上，量子基态的任何波状涨落在量子化之后都对应于离散的准粒子。\footnote{空气中的声波不对应于任何离散的准粒子。这是因为声波不是任何量子基态的涨落，因此它不对应于基态之上的任何激发。}固体中的声波变成由哈密顿量 (3.3.18) 描述的声子（phonon）。因此，我们也将把超流体中的准粒子称作声子。声子速度（即密度波的速度）$v = \sqrt{V_0\rho_0/m}$ 与平均场结果 (3.2.9) 相一致。
+
+我们想强调，玻色型准粒子——声子——与构成超流体的原来那些玻色子截然不同。原来的玻色子具有二次色散 $\epsilon_{\pmb{k}} = k^2/2m$，而声子具有线性色散 $\epsilon_{\pmb{k}} = v|\pmb{k}|$；原来的玻色子是有相互作用的，而声子是自由的。事实上，一个声子对应于许多原来玻色子的一种集体运动。这是从相互作用玻色系统中演生出一种新型玻色子——具有线性色散的无相互作用声子——的一个例子。
+
+\subsection{作为玩具宇宙的超流体}
+
+\begin{keypoints}
+\item 如果我们把超流体看作一个玩具宇宙，那么声子将是这个玩具宇宙中无质量的“基本粒子”。
+\item 旋子（roton，即涡环 vortex ring）可以通过交换声子发生相互作用。这导致两个旋子之间的 $1/r^4$ 偶极相互作用。
+\end{keypoints}
+
+为了领会我们的宇宙以及其中的基本粒子，让我们想象一个由超流体形成的玩具宇宙（toy universe）。假设构成超流体的玻色子太小，玩具宇宙中的居民看不见它们。问题是：在玩具宇宙的居民看来，这个玩具宇宙是什么样子的？
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.6.pdf}
+\caption*{图 3.6\quad (a)旋子（涡环）周围与(b)声子电荷的偶极子周围的玻色子流动图案。}
+\end{figure}
+
+这个玩具宇宙包含一种无质量激发\footnote{质量为 $m$ 的相对论性粒子具有色散 $\epsilon_{\pmb{k}} = \sqrt{m^2c^4 + c^2\pmb{k}^2}$，其中 $c$ 是光速。声子色散 $\epsilon_{\pmb{k}} = v|\pmb{k}|$ 可以看作 $\sqrt{m^2c^4 + c^2\pmb{k}^2}$ 的无质量极限，其中声子速度 $v$ 扮演光速的角色。}——声子。对玩具宇宙中的居民来说，声子只是一种类粒子激发，因为没有人能看见构成超流体的玻色子，也没有人知道声子从何而来。于是，玩具宇宙的居民便把声子称作一种“基本粒子”。
+
+我们看到，这个玩具宇宙与我们的宇宙十分相似。我们的宇宙也有一种无质量激发——光子。我们也把光子称作“基本粒子”。与声子一样，光子彼此之间也不相互作用。然而，电荷之间的 $1/r^2$ 库仑定律正是由光子传递的。那么，声子是否也会在它们的“电荷”之间诱导出类似的相互作用呢？
+
+上述问题的答案是肯定的。不过，我们首先需要解释声子的“电荷”是什么。我们知道，电荷产生守恒的通量——电场。类似地，声子的“电荷”也产生守恒的通量，只不过对声子而言，这个通量是超流体中玻色子的通量。按定义，一个正的“声子电荷”（phonon charge）是玻色子的源：玻色子在某个点以恒定速率被产生；一个负的声子电荷则是玻色子的汇：玻色子在某个点以恒定速率被湮没。
+
+为理解声子电荷之间的相互作用，我们对满足约束 $\partial_{\pmb{x}}\cdot\pmb{j} \allowbreak- J^0 = 0$ 的 $\theta$ 极小化能量 $\int \mathrm{d}^3\pmb{x}\,\allowbreak\frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^2$。这里 $\pmb{j} = \frac{\rho_0}{m}\partial_{\pmb{x}}\theta$ 是玻色子流，$J^0(\pmb{x},t) = \sum_i q_i\delta(\pmb{x} - \pmb{x}_i)$ 是声子电荷的密度，$q_i$ 是第 $i$ 个声子电荷的值。$q_i > 0$ 对应于源，$q_i < 0$ 对应于汇。我们发现，两个声子电荷 $q_1$ 与 $q_2$ 之间的势正比于 $q_1q_2/r$。声子电荷之间的相互作用与库仑定律非常相似：力正比于 $1/r^2$，同号电荷相斥，异号电荷相吸。
+
+在真实的超流体中，玻色子是守恒的。因此，源和汇——亦即声子电荷——是不允许存在的。唯一允许的激发是低能声子与高能旋子（见图 3.1）。应当注意，旋子可以看作由涡线（vortex line）构成的一个小环。\footnote{$(2+1)$ 维超流体中的涡旋定义见 3.4.2 节。这一定义可以推广到任意维度。}如果做多极展开（multipole expansion），旋子周围玻色子的流动图案可以看作由一组声子电荷产生的流动图案。玻色子数守恒要求多极展开中的声子电荷总和为零。涡环的对称性允许多极展开中存在有限的偶极矩（见图 3.6），而旋子的偶极矩一般不为零。因此，旋子彼此之间存在 $1/r^4$ 偶极相互作用。
+
+总而言之，这个玩具宇宙包含带有偶极矩的粒子，其长程偶极相互作用通过交换无质量的声子而产生。
+
+\subsection{自发对称性破缺与无能隙激发}
+
+\begin{keypoints}
+\item 普适性质（universal properties）的概念。
+\item 连续对称性的自发破缺总是导致无能隙的玻色型激发。
+\end{keypoints}
+
+我们想强调，在超流体中，声子的三个性质——无相互作用、无能隙的线性色散以及玻色统计——是普适性质，不依赖于玻色子之间相互作用的细节。在上面，我们假设玻色子具有 $\delta$ 函数相互作用。然而，只要相互作用 $V(\pmb{x}-\pmb{x}')$ 是短程的，即使玻色子具有更一般的相互作用 $L_{int} = -\int \mathrm{d}\pmb{x}\,\mathrm{d}\pmb{x}'\,\frac{1}{2}|\varphi(\pmb{x})|^2 V(\pmb{x}-\pmb{x}')|\varphi(\pmb{x}')|^2$，这些普适性质也保持不变。既然准粒子的无能隙性是不依赖于初始拉格朗日量细节的普适性质，就应当存在着一种不依赖这些细节的关于无能隙性的一般性理解。事实表明，超流相中无能隙激发的存在，与拉格朗日量的 $U(1)$ 对称性以及基态的自发对称性破缺密切相关。下面我们将解释这一关系。
+
+拉格朗日量 (3.3.1) 具有 $U(1)$ 对称性，因为它在 $U(1)$ 变换 $\varphi \to \mathrm{e}^{\mathrm{i}\eta}\varphi$ 下不变。如果我们显式破缺这一对称性，即使拉格朗日量不再尊重 $U(1)$ 对称性，低能模式也将获得有限能隙。例如，若在拉格朗日量中加入 $C\,\mathrm{Re}\varphi$ 项以显式破缺 $U(1)$ 对称性，则 XY 模型中会诱导出 $\cos(\theta)$ 形式的项：$\mathcal{L} = \frac{1}{2V_0}(\partial_t\theta)^2 - \frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^2 + g\cos(\theta)$。经典基态由 $\theta = 0$ 给出。对于基态附近的小涨落，拉格朗日量可以简化为 $\mathcal{L} = \frac{1}{2V_0}(\partial_t\theta)^2 - \frac{\rho_0}{2m}(\partial_{\pmb{x}}\theta)^2 - \frac{g}{2}\theta^2$。所得的波动方程 $(-\frac{1}{2V_0}\partial_t^2 + \frac{\rho_0}{2m}\partial_{\pmb{x}}^2 - g)\theta = 0$ 告诉我们，无论波矢量如何，波总有有限频率 $\omega = \sqrt{2V_0g + \frac{V_0\rho_0}{m}k^2}$。于是，势项 $\cos(\theta)$ 为 $\theta$ 准粒子打开了一个能隙。
+
+如果拉格朗日量和基态在 $U(1)$ 变换下都不变，那么对称性就没有破缺。由式 (3.3.6) 我们看到，对称基态一般也具有有限能隙。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.7.pdf}
+\caption*{图 3.7\quad 无能隙的 Nambu–Goldstone 模是简并基态之间的涨落。}
+\end{figure}
+
+超流相自发破缺 $U(1)$ 对称性：拉格朗日量具有 $U(1)$ 对称性，而基态没有（见 3.3.2 节）。只有在这种情形下，无能隙的声子激发才存在。
+
+Nambu 和 Goldstone 证明了一条普遍定理：如果一个连续对称性在一个相中被\emph{自发}破缺，那么该相必定包含无能隙激发（Nambu, 1960; Goldstone, 1961）。这些无能隙激发通常称为 Nambu–Goldstone 模。超流体中的无能隙声子就是一个 Nambu–Goldstone 模。
+
+直观地说，如果一个对称性（连续的或分立的）被自发破缺，那么各基态必定是简并的，因为哈密顿量具有该对称性而基态没有。不同的基态由对称变换相互联系。此外，\emph{连续}对称性的破缺导致一个简并基态流形，它可以由\emph{连续}变量 $\theta_i$ 参数化。这些简并基态之间的涨落对应于无能隙激发（见图 3.7）。我们可以用 $\theta_i(\pmb{x},t)$ 场写出一个低能有效作用量，来描述无能隙模式的动力学。这个低能有效理论称为非线性 $\sigma$ 模型（nonlinear $\sigma$-model）。XY 模型是最简单的非线性 $\sigma$ 模型。后面我们会看到非线性 $\sigma$ 模型的更多例子。
+
+\subsection{理解有限系统中的自发对称性破缺}
+
+\begin{keypoints}
+\item 量子涨落可以恢复对称性。有限系统的真实基态永远不可能破坏 $U(1)$ 对称性。然而，对于大系统，可以用许多近简并的基态构造出一个近似的对称性破缺基态。
+\item 对于无限系统，由序参量 $\varphi_0\mathrm{e}^{\mathrm{i}\theta}$ 表征的态自成一个“宇宙”。它要涨落到另一个由不同序参量表征的态，需要无穷长的时间。
+\end{keypoints}
+
+% ------------------------------------------------------------
+% 块边界备注：
+%   起点：书页 78（ch3_a）末行止于 "The energy density (or, more precisely, the"，
+%   本块正文以 %JOIN% 续书页 79 顶部半句 "density of the thermal potential) of
+%   the classical ground state is"（译作"热势的密度）为"），ch3_a 应将
+%   "经典基态的能量密度（或者更精确地说，"写入其 %--A-TAIL-- 区。
+%   终点：书页 89（p104）以 3.3.7 节小标题下的要点框自然收尾；书页 90（p105）
+%   顶部为新段落 "In Section 3.3.2, we mentioned ..."（式 (3.3.19) 起），
+%   无跨页半句，故本块不需要 %--B-TAIL--，ch3_c 直接从书页 90 的新段开始。
+%   本块内无 \section 级标题：3.3 节及 3.3.1、3.3.2 小节均在 ch3_a 范围
+%   （书页 77–78）；本块起于 3.3.2 节中段，含 \subsection 3.3.3–3.3.7 与
+%   问题 3.3.1–3.3.3。
+% ------------------------------------------------------------
+% 新增术语（ch3_b，待并入术语表"新增术语"区）：
+%   superfluid transition 超流相变；
+%   first-order / second-order phase transition 一级 / 二级相变；
+%   non-analytic point 非解析点；kink 拐折；
+%   degenerate ground states 简并基态；manifold 流形；
+%   Gibbs energy 吉布斯能；water–vapor transition 水–水蒸气相变；
+%   critical point 临界点；critical temperature 临界温度；
+%   integrating out (a field) 积掉（某个场）；
+%   total derivative / total time derivative 全导数 / 全时间导数；
+%   wave equation 波动方程；dispersion 色散；
+%   compressibility 压缩率；conductivity 电导率；
+%   density–current fluctuations 密度–流涨落；conservation law 守恒定律；
+%   particle–wave duality 波粒二象性；quasiparticle 准粒子（已入表）；
+%   phonon 声子；roton 旋子；phonon charge 声子电荷；
+%   vortex ring 涡环；vortex line 涡线；source / drain 源 / 汇；
+%   multipole expansion 多极展开；dipolar interaction 偶极相互作用；
+%   canonical momentum 正则动量；canonical commutation relation 正则对易关系；
+%   lowering / raising operator 下降 / 上升算符；
+%   decoupled harmonic oscillators 退耦谐振子；collective motion 集体运动；
+%   toy universe 玩具宇宙；elementary particle 基本粒子；
+%   relativistic particle 相对论性粒子；
+%   universal properties 普适性质；explicit symmetry breaking 显式（对称性）破缺；
+%   Nambu–Goldstone mode Nambu–Goldstone 模
+% ------------------------------------------------------------
+
+% 边界备注：起点——书页 90 顶部为完整新段（书页 89 止于 3.3.7 节要点列表），
+% 无接缝标记（JOIN）、无上一块收尾（TAIL）可写入；
+% 终点——书页 100 止于完整段落（"……描写了超流转变。"），书页 101 顶起新段
+% "In the superfluid phase, ..."，本块自然收束，无 TAIL。
+
+在 3.3.2 节中我们提到，超流相（或对称性破缺相）由非零序参量 $\varphi_0$ 表征。在量子理论中，序参量是玻色子场在基态上的期待值 $\varphi_0=\langle\Phi_0|\varphi(\pmb{x})|\Phi_0\rangle=\langle\Phi_0|a(\pmb{x})|\Phi_0\rangle$（记住我们已把玻色子湮灭算符 $a(\pmb{x})$ 改记为 $\varphi(\pmb{x})$）。对于一个有限的量子系统，序参量恒为零，不存在自发对称性破缺。这是因为在量子层次上，$U(1)$ 对称性由算符 $W=\mathrm{e}^{-\mathrm{i}\hat{N}\theta}$ 生成，其中 $\hat{N}$ 是总玻色子数算符。容易验证
+\begin{equation*}
+Wa(x)W^{\dagger}=\mathrm{e}^{\mathrm{i}\theta}a(x) \tag{3.3.19}
+\end{equation*}
+由于 $[H,W]=0$，有限系统的基态 $|\Phi_0\rangle$ 总是 $W$ 的本征态。于是 $\langle\Phi_0|a(\pmb{x})|\Phi_0\rangle=\langle\Phi_0|Wa(\pmb{x})W^{\dagger}|\Phi_0\rangle$，因而序参量 $\langle\Phi_0|a(\pmb{x})|\Phi_0\rangle=\langle\Phi_0|\varphi(\pmb{x})|\Phi_0\rangle=0$，无论 $\mu$ 取何值。
+
+与之相对，3.3.2 节中的经典计算确实预言了相变和破缺 $U(1)$ 对称性的简并基态，即使对有限系统也是如此。（事实上，上一节的所有计算都是对体积为 $V$ 的有限系统进行的。）$U(1)$ 对称性之所以能在有限的经典系统中破缺，是因为 $\varphi$ 场的均匀部分 $\varphi_0$ 没有涨落。下面我们将看到，如果把 $\varphi_0$ 当作量子变量处理，它的量子涨落将恢复有限系统的 $U(1)$ 对称性。我们还将看到，当系统体积 $\mathcal{V}\to\infty$ 时，$\varphi_0$ 的量子涨落趋于零。因此，$U(1)$ 对称性破缺可以在量子系统的 $\mathcal{V}\to\infty$ 极限下演生。
+
+我们知道，低能物理由 XY 模型支配。这里我们只关心均匀涨落，于是在式 (3.3.10) 中取 $\theta(\pmb{x},t)=\theta_0(t)$。支配 $\theta_0$ 动力学的有效理论由下式给出
+\begin{equation*}
+L=\mathcal{V}\big[\frac{1}{2V_0}(\partial_t\theta_0)^2-\rho_0\partial_t\theta_0+\mu\rho_0-\frac{1}{2}V_0\rho_0^2\big] \tag{3.3.20}
+\end{equation*}
+其中我们放回了一个全时间导数项和一些常数项。式 (3.3.20) 描写一个简单的系统：一个在由 $\theta_0\in[0,2\pi]$ 参数化的圆上运动的粒子。粒子的质量为 $M=\mathcal{V}/V_0$，动量为
+\begin{equation*}
+p=\partial_{\dot{\theta}_0}L=M\dot{\theta}_0-\frac{\mu\mathcal{V}}{V_0} \tag{3.3.21}
+\end{equation*}
+其中用到了 $\mu=\rho_0V_0$。哈密顿量为
+\begin{equation*}
+H=p\dot{\theta}_0-L=\frac{p^2}{2M}+\frac{\mu\mathcal{V}p}{V_0}
+\end{equation*}
+
+如果把 $H$ 当作经典系统处理，那么当粒子具有动量 $p=-\mu\mathcal{V}/V_0$（译注：原文为 $-\mu\mathcal{V}p/V_0$，疑多排了一个 $p$），即速度 $\dot{\theta}=0$ 时，它处于基态。粒子的位置可以任意。因此，描写粒子处于不同 $\theta_0$ 的所有态 $|\theta_0\rangle$ 都是简并的基态，$U(1)$ 对称性破缺。
+
+然而，量子理论给出了一幅截然不同的图像。在量子理论中，动量 $p$ 按整数量子化。动量为 $p=-n$ 的态具有能量
+\begin{equation*}
+E_n=\frac{n^2}{2M}-\frac{\mu\mathcal{V}n}{V_0M}=\frac{V_0n^2}{2\mathcal{V}}-\mu n \tag{3.3.22}
+\end{equation*}
+因此，$-p=n=\mu\mathcal{V}/V_0$ 的态能量最小，对应于真正的基态
+\begin{equation*}
+|\Phi_0\rangle=\int\mathrm{d}\theta_0\,\mathrm{e}^{-\mathrm{i}\frac{\mu\mathcal{V}}{V_0}\theta_0}|\theta_0\rangle
+\end{equation*}
+基态没有简并。现在可以明确地证明序参量为零：
+\begin{equation*}
+\langle\Phi_0|\varphi_0\mathrm{e}^{\mathrm{i}\theta_0}|\Phi_0\rangle=0
+\end{equation*}
+
+理解为什么没有 $U(1)$ 对称性破缺的另一种方式，是注意到总玻色子数为 $N=\mathcal{V}(\rho_0-\frac{\partial_t\theta_0}{V_0})$（见式 (3.3.13)）。由式 (3.3.21) 可见，$-N=p$ 正是 $\theta_0$ 的正则动量（canonical momentum）。因此，在量子世界中二者之间存在不确定关系（uncertainty relation）：
+\begin{equation*}
+[\hat{N},\theta_0]=\mathrm{i},\qquad \Delta N\,\Delta\theta_0\sim 1/2
+\end{equation*}
+所以，粒子数固定的有限系统不可能具有确定的相位 $\theta_0$。要得到对称性破缺态，我们必须允许粒子数容易地涨落。\footnote{因此，如果添加或移走一个玻色子需要花费有限的能量，那么该系统就不可能处于 $U(1)$ 对称性破缺相。作为这一理解的一个应用，让我们考虑一个具有强在位排斥（on-site repulsion）的格点玻色子系统 $H=\sum_{\langle ij\rangle}t_{ij}a_i^{\dagger}a_j+\sum_r U(a_r^{\dagger}a_r)^2$，其中 $U\gg t_{ij}$。若玻色子密度恰好是每格点整数个玻色子，则该系统不可能处于超流相，因为在这个密度下添加或移走一个玻色子需要花费有限的能量。}
+
+虽然量子涨落消除了简并、恢复了有限系统的 $U(1)$ 对称性，但对于大系统，低激发态是近乎简并的。能隙只有 $V_0/\mathcal{V}$ 的量级，当 $\mathcal{V}\to\infty$ 时趋于 0。如果该能隙低于所有我们感兴趣的能标（例如低于测量的能量分辨率），那么在一切实际用途中，这些低激发态都可以认为是简并的。这时，有限系统可以认为具有 $U(1)$ 对称性破缺。在问题 3.3.4 中我们将看到，如果我们制备一个相位为 $\theta_0$ 的态，那么当系统很大时，相位要经过很长时间才能变到其他值。因此，在短的时间间隔内，我们可以把相位当作刻画对称性破缺基态的一个常数。
+
+在 3.3.2 节的末尾我们讨论过序参量和长程关联。本节讨论一类特殊的量子涨落——$\varphi$ 的均匀相位涨落。我们看到，对于有限系统，即使 $\mu>0$，这类涨落也会破坏序参量。但同样清楚的是，$\mu>0$ 时存在的长程关联不会被均匀相位涨落破坏。因此，对于大的有限系统，我们可以用长程关联来刻画对称性破缺相变。
+
+在上面的讨论中，我们只考虑了 $\theta$ 的均匀涨落，忽略了依赖空间的涨落。这里的问题是，什么时候这样做才是正确的？我们注意到，依赖空间的涨落对应于具有有限动量的声波。这些声波激发的最小能隙为 $2\pi v/L$，其中 $L$ 是系统的线度。于是，在能量 $2\pi v/L$ 以下，我们可以忽略依赖空间的 $\theta$ 涨落，只考虑均匀涨落。本节的讨论仅在 $2\pi v/L$ 以下有效。
+
+具有固定角度的对称性破缺态 $|\theta_0\rangle$ 由 $|\theta_0\rangle=\sum_n\mathrm{e}^{\mathrm{i}\theta_0 n}|n\rangle$ 给出。要在上述近似之内构造这样一个态，我们需要在能量 $2\pi v/L$ 以下容纳无穷多个均匀涨落。在一维以外，均匀涨落的能隙为 $V_0/\mathcal{V}$，远小于声波的能隙。在 $L\to\infty$ 极限下，$2\pi v/L$ 以下有无穷多条均匀涨落的能级。因此，在一维以外可以构造对称性破缺态。在一维，$2\pi v/L$ 以下的均匀态数目有限，我们难以构造出对称性破缺态。在 3.3.8 节中我们将看到，一维的超流相不可能具有真正的长程序。
+
+\subsection*{问题 3.3.4}
+
+考虑零温下 $1\,\mathrm{cm}^3$ 的超流 $\mathrm{He}_4$。我们制备一个相位 $\langle\theta_0\rangle=0$ 的“基态”。假设相位的弥散为 $\sqrt{\langle\theta_0^2\rangle}=\pi/10$。问经过多长时间相位的弥散会达到 $2\pi$，使得基态的相位不再能定义？（提示：你需要猜测 $\mathrm{He}_4$ 中声波速度的数量级，以便估计 $V_0$——$V_0$ 恰好是压缩率（compressibility）的倒数。）
+
+\subsection{低维中的超流相}
+
+\begin{keypoints}
+\item 与 Nambu--Goldstone 模相联系的量子涨落可以破坏低维中的长程序和超流相。
+\item 量子涨落对量子临界点（quantum critical point）的影响，以及上临界维数（upper critical dimension）的概念。
+\end{keypoints}
+
+在 3.3.2 节的末尾，我们证明了对称性破缺相中长程序的存在。然而，那个计算几乎是在作弊，因为只考虑经典基态，就不允许存在依赖空间的相位涨落，其结果是不同位置处的相位总是关联的。这里我们将研究依赖空间的相位涨落的效应，看看长程关联何时能在依赖空间的相位涨落下存活。
+
+首先考虑零温下的玻色子系统。我们想计算 $\langle\varphi^{\dagger}(t,\pmb{x})\varphi(0,0)\rangle$。由于只关心低能激发，我们将使用有效 XY 模型（式 (3.3.10)），它可以改写为
+\begin{equation*}
+L=\frac{\chi}{2}\big((\partial_t\theta)^2-v^2(\partial_{\pmb{x}}\theta)^2\big) \tag{3.3.23}
+\end{equation*}
+其中 $\chi=1/V_0$ 是超流的压缩率。在路径积分方法中，关联函数可以写为
+\begin{equation*}
+\big\langle\varphi(t,\pmb{x})^{\dagger}\varphi(0,0)\big\rangle=|\varphi_0|^2\big\langle\mathrm{e}^{-\mathrm{i}\theta(t,\pmb{x})}\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle=\frac{\int\mathcal{D}\theta\,\mathrm{e}^{-\mathrm{i}\theta(t,\pmb{x})}\mathrm{e}^{\mathrm{i}\theta(0,0)}\mathrm{e}^{\mathrm{i}S}}{\int\mathcal{D}\theta\,\mathrm{e}^{\mathrm{i}S}}
+\end{equation*}
+引入
+\begin{equation*}
+Z[f(t,\pmb{x})]=\int\mathcal{D}\theta\,\mathrm{e}^{\mathrm{i}S}\mathrm{e}^{\mathrm{i}\int\mathrm{d}t\,\mathrm{d}^d\pmb{x}\,f(t,\pmb{x})\theta(t,\pmb{x})}
+\end{equation*}
+我们看到
+\begin{equation*}
+\big\langle\mathrm{e}^{-\mathrm{i}\theta(t_0,\pmb{x}_0)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle=\frac{Z[-\delta(t-t_0,\pmb{x}-\pmb{x}_0)+\delta(t,\pmb{x})]}{Z[0]}
+\end{equation*}
+这里 $Z[f(t,\pmb{x})]/Z[0]$ 可以用高斯积分容易地算出：
+\begin{equation*}
+\frac{Z[f(t,\pmb{x})]}{Z[0]}=\mathrm{e}^{-\mathrm{i}\frac{1}{2}\int\mathrm{d}t_1\mathrm{d}\pmb{x}_1\mathrm{d}t_2\mathrm{d}\pmb{x}_2\,f(t_1,\pmb{x}_1)G_{\theta}(t_1-t_2,\pmb{x}_1-\pmb{x}_2)f(t_2,\pmb{x}_2)}
+\end{equation*}
+其中 $G_{\theta}$ 是 $\chi(-\partial_t^2+v^2\partial_{\pmb{x}}^2)$ 的逆。它也是 $\theta$ 场的关联函数：
+\begin{equation*}
+\mathrm{i}G_{\theta}(t,\pmb{x})=\langle T[\theta(t,\pmb{x})\theta(0,0)]\rangle
+\end{equation*}
+我们发现
+\begin{equation*}
+\big\langle\mathrm{e}^{-\mathrm{i}\theta(t,\pmb{x})}\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle=\mathrm{e}^{\mathrm{i}G_{\theta}(t,\pmb{x})}\mathrm{e}^{-\mathrm{i}G_{\theta}(0,0)}\propto\mathrm{e}^{\langle(-\mathrm{i}\theta(t,\pmb{x}))(\mathrm{i}\theta(0,0))\rangle}
+\end{equation*}
+
+\subsubsection{$1+1$ 维中的超流相}
+
+$k$--$\omega$ 空间中的关联函数由下式给出
+\begin{equation*}
+G_{\theta}(\omega,\pmb{k})=\frac{\chi^{-1}}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+}.
+\end{equation*}
+我们可以用它按如下方式计算 $1+1$ 维的 $G_{\theta}(t,\pmb{x})$：
+\begin{align*}
+G_{\theta}(t,x)&=\int\frac{\mathrm{d}k\,\mathrm{d}\omega}{(2\pi)^2}\,G_{\theta}(\omega,k)\,\mathrm{e}^{\mathrm{i}(-\omega t+kx)}\\
+&=\chi^{-1}\int\frac{\mathrm{d}k\,\mathrm{d}\omega}{(2\pi)^2}\,\frac{1}{2v|k|}\left(\frac{1}{\omega-v|k|+\mathrm{i}0^+}-\frac{1}{\omega+v|k|-\mathrm{i}0^+}\right)\mathrm{e}^{\mathrm{i}(\omega t-kx)}\\
+&=\left\{\begin{array}{ll}
+\chi^{-1}\displaystyle\int\frac{\mathrm{d}k}{(2\pi)^2}\,\frac{-\mathrm{i}\pi}{v|k|}\,\mathrm{e}^{\mathrm{i}(-v|k|t+kx)}, & t>0\\[10pt]
+\chi^{-1}\displaystyle\int\frac{\mathrm{d}k}{(2\pi)^2}\,\frac{-\mathrm{i}\pi}{v|k|}\,\mathrm{e}^{\mathrm{i}(+v|k|t+kx)}, & t<0
+\end{array}\right.\\
+&=\chi^{-1}\int\frac{\mathrm{d}k}{(2\pi)^2}\,\frac{-\mathrm{i}\pi}{v|k|}\,\mathrm{e}^{\mathrm{i}(-v|k||t|+kx)}
+\end{align*}
+对于有限系统，$k$ 是量子化的：$k=\frac{2\pi}{L}\times\text{整数}$。把 $\int\mathrm{d}k/2\pi$ 换成 $L^{-1}\sum_k$ 后，我们得到
+\begin{align*}
+G_{\theta}(t,x)&=\chi^{-1}L^{-1}\sum_k\frac{-\mathrm{i}}{2v|k|}\,\mathrm{e}^{\mathrm{i}(-v|k||t|+kx)}\\
+&=\frac{\mathrm{i}}{4\pi v\chi}\left(\ln\big(1-\mathrm{e}^{2\pi\mathrm{i}\frac{-v|t|+x}{L}-0^+}\big)+\ln\big(1-\mathrm{e}^{2\pi\mathrm{i}\frac{-v|t|-x}{L}-0^+}\big)\right)
+\end{align*}
+两个对数项分别来自 $k>0$ 与 $k<0$ 的求和。$k=0$ 项是常数，已被略去。如果 $v|t|,\,x\ll L$，则
+\begin{equation*}
+G_{\theta}(t,x)=\frac{\mathrm{i}}{4\pi v\chi}\ln 4\pi^2\frac{x^2-v^2t^2+\mathrm{i}0^+}{L^2} \tag{3.3.24}
+\end{equation*}
+我们看到，在 $1+1$ 维中，
+\begin{align*}
+\big\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle&=\mathrm{e}^{-\mathrm{i}G_{\theta}(0,0)}\left(\frac{L^2}{4\pi^2(x^2-v^2t^2+\mathrm{i}0^+)}\right)^{1/4\pi v\chi}\\
+&=\mathrm{e}^{-\mathrm{i}G_{\theta}(0,0)}\,\mathrm{e}^{-\mathrm{i}\frac{\pi}{4\pi v\chi}\Theta(v^2t^2-x^2)}\left(\frac{L^2}{4\pi^2|x^2-v^2t^2|}\right)^{1/4\pi v\chi}
+\end{align*}
+由式 (3.3.24)，$G_{\theta}(0,0)=-\mathrm{i}\infty$，这似乎意味着 $\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\rangle=0$。我们提醒，XY 模型只是一个低能有效理论，它在短距离处失效。$G_{\theta}(0,0)$ 的发散应当被一个短距离标度 $l$ 截断。于是，我们可以把 $G_{\theta}(0,0)$ 换成 $G_{\theta}(0,l)$，这就得到
+\begin{align*}
+\big\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle&=\left(\frac{l^2}{x^2-v^2t^2+\mathrm{i}0^+}\right)^{1/4\pi v\chi}\\
+&=\mathrm{e}^{-\mathrm{i}\frac{\pi}{4\pi v\chi}\Theta(v^2t^2-x^2)}\left(\frac{l^2}{|x^2-v^2t^2|}\right)^{1/4\pi v\chi} \tag{3.3.25}
+\end{align*}
+
+上述结果告诉我们，在 $1+1$ 维中量子涨落破坏长程序，不存在对称性破缺。但这种破坏并不彻底。$\varphi$ 场仍然具有“准长程序”（quasi-long-range order），其关联按代数方式衰减。这导致如下相图：无论 $\mu<0$ 还是 $\mu>0$，玻色子基态都不破缺 $U(1)$ 对称性。然而，当 $\mu<0$ 时玻色子场只有短程关联；当 $\mu>0$ 时，短程关联被提升为按代数衰减的“准长程”关联。
+
+另一个重要之点是，关联 $\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\rangle$ 无法只用有效理论中的参数来表达，它还依赖一个短距离截断标度 $l$。这并不奇怪。要得到低能 XY 模型，我们必须扔掉原理论在短距离和高能量处的大量信息与结构。许多算符的定义本身就依赖这些短距离结构。例如，有些算符是同一空间点上的场量的乘积，而在低能有效理论中，“同一空间点”这一概念已经丧失，至少变得模糊。因此，我们不应指望把所有关联函数都用有效理论中的参数表达。在上面的例子中，我们发现关联 $\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\rangle$ 确实依赖理论的短距离结构。令人惊讶的是，所有复杂的短距离结构竟被总结进单一参数 $l$ 之中。这展示了低能有效理论的普适性（universality）。
+
+\subsubsection{$2+1$ 维中的超流相}
+
+为计算 $2+1$ 维的 $G_{\theta}$，我们先计算虚时关联
+\begin{equation*}
+\mathcal{G}_{\theta}(x^i)=\langle\theta(x^i)\theta(0)\rangle
+\end{equation*}
+这里 $x^{1,2}$ 是空间坐标，$x^3$ 是虚时间。为简单起见，我们取 $v=1$。XY 模型的配分函数为 $Z=\int\mathcal{D}\theta\,\exp(-\int\mathrm{d}^3x^i\,\frac{\chi}{2}(\partial_i\theta)^2)$。我们看到\footnote{我们用到了 $-\partial_i^2\,r^{-1}=4\pi\delta(x^i)$。}
+\begin{equation*}
+\mathcal{G}_{\theta}(x^i)=\frac{\chi^{-1}}{-\partial_i^2}=\frac{1}{4\pi\chi r}=\frac{1}{4\pi\chi\sqrt{\pmb{x}^2+\tau^2}}
+\end{equation*}
+其中 $r^2=x^ix^i$。
+
+由 $\mathrm{i}G_{\theta}$ 与 $\mathcal{G}_{\theta}$ 之间的关系（见式 (2.2.34)），我们得到
+\begin{equation*}
+\mathrm{i}G_{\theta}(t,x^1,x^2)=\mathcal{G}_{\theta}(x^1,x^2,\mathrm{e}^{\mathrm{i}\pi/2}t)=\frac{1}{4\pi\chi}\frac{1}{\sqrt{\pmb{x}^2-t^2}}
+\end{equation*}
+然而，当 $|t|>|\pmb{x}|$ 时传播子是含糊的：$\mathrm{i}G_{\theta}(t,x^1,x^2)=\pm\mathrm{i}\frac{1}{4\pi\chi}\frac{1}{\sqrt{|\pmb{x}^2-t^2|}}$。要固定 $\pm$ 号，我们需要更仔细地进行解析延拓。假设 $|t|\gg|\pmb{x}|$，并让 $\mathcal{G}_{\theta}(x^1,x^2,\mathrm{e}^{\mathrm{i}\eta}t)$ 中的 $\eta$ 从 0 连续地变到 $\pi/2$，我们发现
+\begin{equation*}
+\mathrm{i}G_{\theta}(t,x^1,x^2)=\frac{1}{4\pi v\chi}\frac{1}{\sqrt{|\pmb{x}^2-vt^2|}}\,\mathrm{e}^{-\mathrm{i}\frac{\pi}{2}\Theta(v|t|-|\pmb{x}|)}
+\end{equation*}
+其中我们已恢复速度 $v$。
+
+无论如何，当 $|t|$ 与 $|\pmb{x}|$ 趋于 $\infty$ 时，$\mathrm{i}G(\pmb{x},t)\to 0$。因此，$\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\rangle$ 在长距离处趋于常数 $\mathrm{e}^{-\mathrm{i}G_{\theta}(0,0)}$。然而，该常数的数值不同于经典值（经典值为 1）。引入短距离截断标度 $l$，我们看到
+\begin{equation*}
+\big\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle\to\mathrm{e}^{-\frac{1}{4\pi v\chi l}}=\big\langle\mathrm{e}^{-\mathrm{i}\theta(t,x)}\big\rangle\big\langle\mathrm{e}^{\mathrm{i}\theta(0,0)}\big\rangle \tag{3.3.26}
+\end{equation*}
+我们发现，相涨落在 $2+1$ 维及更高维中不破坏长程序，只是减小序参量的数值。
+
+\subsubsection{短距离截断与非线性效应}
+
+在上面，我们讨论了量子涨落对经典基态的影响。我们发现，在 $1+1$ 维中，量子涨落总是有很大的影响——它们破坏长程序。破坏长程序的量子涨落来自长波长和低频率。无论我们如何调整理论中的参数（例如截断标度），它们都在那里。在 $2+1$ 维及更高维中，长波长、低频涨落不产生发散的效应，一般说来长程序能在量子涨落下存活。序参量敏感地依赖截断标度这一事实表明，序参量的减小量由短距离涨落决定。短距离涨落只是在定量上修正经典结果。
+
+现在产生了一个问题：这些定量修正何时很小？也就是说，经典近似何时能定量地描写系统的物理性质？从关于序参量的结果（见式 (3.3.26)）我们看到，如果截断标度 $l\gg(v\chi)^{-1}$，涨落修正就很小。为得到截断标度，注意我们在式 (3.3.9) 中略去了 $\frac{\varphi_0^2}{2m}\partial_{\pmb{x}}^2$ 项，因为我们假定 $\theta$ 的涨落是平滑的。然而，在短距离标度处，当 $\frac{\varphi_0^2}{2m}\partial_{\pmb{x}}^2$ 与另一项 $2V_0\varphi_0^4$ 可比时，我们不能再忽略梯度项，XY 模型失效。这一跨越长度标度（crossover length scale）由
+\begin{equation*}
+\xi=(4mV_0\varphi_0^2)^{-1/2}
+\end{equation*}
+给出，称为相干长度（coherence length）。相干长度有如下含义：如果我们改变某一点的 $h$ 场或玻色子密度，那么这种改变将在 $\xi$ 的距离上传播。取 $l=\xi$，约化因子变为
+\begin{equation*}
+\mathrm{e}^{-\frac{1}{4\pi v\chi l}}=\mathrm{e}^{-\frac{mV_0}{\sqrt{2}\pi}} \tag{3.3.27}
+\end{equation*}
+我们可以把上述结果改写成一个更有意义的形式。注意 $E_{int}\equiv\frac{1}{2}V_0\varphi_0^2$ 具有能量的量纲，它表示每个粒子的相互作用能。在 $2+1$ 维中，$E_{qua}\equiv\rho_0/m$ 也具有能量的量纲。$E_{qua}$ 是这样一个能标（或温度标度），低于它时玻色子波函数开始交叠，我们需要把玻色子当作量子系统来处理。现在我们可以把约化因子改写为
+\begin{equation*}
+\mathrm{e}^{-\frac{1}{4\pi v\chi l}}=\mathrm{e}^{-\frac{\sqrt{2}E_{int}}{E_{qua}}}
+\end{equation*}
+我们看到，在弱相互作用极限下涨落修正很小，经典结果良好。
+
+然而，上述结果并不完整，因为我们只在二次近似之内考虑了短距离涨落的效应，还没有考虑高阶项带来的非线性效应。为了更系统地研究涨落的效应，我们想对我们的玻色子作用量作量纲分析（dimensional analysis）：
+\begin{equation*}
+S=\int\mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Big[\mathrm{i}\frac{1}{2}\big(\varphi^*\partial_t\varphi-\varphi\partial_t\varphi^*\big)-\frac{1}{2m}\partial_{\pmb{x}}\varphi^*\partial_{\pmb{x}}\varphi-\frac{V_0}{2}|\varphi|^2\big(|\varphi|^2-2\rho_0\big)\Big] \tag{3.3.28}
+\end{equation*}
+这里我们取了 $\mu=V_0\rho_0$。我们想重新标度 $t$、$\pmb{x}$ 和 $\varphi$，把作用量改写成 $S=\tilde{S}/g$ 的形式，使得 $\tilde{S}$ 中所有的系数都是 1 的量级。我们发现下述重新标度即可奏效：
+\begin{equation*}
+x=\xi\tilde{x},\qquad t=(V_0\rho_0)^{-1}\tilde{t},\qquad\varphi=\sqrt{\rho_0}\,\tilde{\varphi}
+\end{equation*}
+它给出
+\begin{equation*}
+S=g^{-1}\int\mathrm{d}^d\tilde{\pmb{x}}\,\mathrm{d}\tilde{t}\,\Big[\mathrm{i}\frac{1}{2}\big(\tilde{\varphi}^*\partial_t\tilde{\varphi}-\tilde{\varphi}\partial_t\tilde{\varphi}^*\big)-2\partial_{\pmb{x}}\tilde{\varphi}^*\partial_{\pmb{x}}\tilde{\varphi}-\frac{1}{2}|\tilde{\varphi}|^2\big(|\tilde{\varphi}|^2-2\big)\Big]
+\end{equation*}
+其中
+\begin{equation*}
+g=N_{\xi}^{-1},\qquad N_{\xi}=\rho_0\xi^d
+\end{equation*}
+这里 $N_{\xi}$ 是体积 $\xi^d$ 中的粒子数。我们也可以把 $g$ 写成
+\begin{equation*}
+g=\sqrt{\rho_0^{d-2}(4mV_0)^d} \tag{3.3.29}
+\end{equation*}
+
+现在很清楚，如果路径积分 $\int\mathcal{D}^2\tilde{\varphi}\,\mathrm{e}^{\mathrm{i}\frac{\tilde{S}}{g}}$ 中的 $g$ 很小，那么“势”很陡，势能极小值附近的涨落很小。这时，半经典近似（semiclassical approximation）是好的。实际上，半经典近似正对应于按 $g$ 的展开。在 $2+1$ 维中 $g=4mV_0$，它恰好与从短距离涨落得到的条件 (3.3.27) 相符。
+
+当 $g$ 大时，涨落可以大到这样的程度，以至于经典图像在定性上是否正确都不清楚了。事实上，人们相信，当 $g\gg1$ 时，短距离涨落可以破坏长程序并在基态中恢复 $U(1)$ 对称性，例如通过形成晶体（晶体具有不同的对称性破缺和不同的长程序）。这与 $1+1$ 维的情形形成对照，在那里无论 $g$ 取何值，长距离涨落都破坏长程序。
+
+按照经典理论，我们的玻色子系统在 $\mu=0$ 处经历一个量子相变（quantum phase transition）。该相变是连续的，由一个量子临界点描写。在经典理论之内，我们可以计算出所有的临界指数。例如，$\omega\propto k^z$ 中的动力学指数（dynamical exponent）$z$ 为 $z=2$；$\langle\varphi\rangle=\varphi_0\propto\mu^{\nu}$ 中的指数 $\nu$ 为 $\nu=1/2$。问题是，经典理论能正确地描写量子临界点吗？由式 (3.3.29) 可见，如果 $d>2$，那么我们离临界点（$\rho_0\to0$）越近，$g$ 越小，半经典近似就越好。因此，对于 $d>2$，经典理论能正确地描写量子临界点。然而，对于 $d<2$，当我们逼近临界点时 $g$ 发散。在这种情况下，我们必须把量子涨落包括进来才能得到正确的临界指数。这一跨越空间维数 $d_c=2$ 称为该临界点的上临界维数。
+
+\subsection*{问题 3.3.5}
+
+考虑一个具有长程相互作用的玻色子系统
+\begin{equation*}
+\frac{1}{2}\int\mathrm{d}^d\pmb{x}\,\mathrm{d}^d\pmb{x}'\,|\varphi(\pmb{x})|^2V(\pmb{x}-\pmb{x}')|\varphi(\pmb{x}')|^2
+\end{equation*}
+其中 $V(r)=V_dr^{\epsilon-d}$。如果 $\epsilon<0$，则相互作用实际上是短程的。这里我们假设 $\epsilon>0$。
+\begin{enumerate}
+\item 推导修改后的 XY 模型。
+\item 找出临界空间维数 $d_l$，低于它时相位涨落 $\theta$ 总是破坏长程序。这里我们把维数当作连续的实数处理。我们知道，对于短程相互作用 $d_l=1$。
+\item 重复本节末尾的讨论，求出 $g$（它决定量子涨落何时很小）以及上临界维数 $d_c$（超过它时经典理论能正确描写量子临界点）。
+\end{enumerate}
+
+\subsection*{问题 3.3.6}
+
+$1+1$ 维中的有限温关联。
+\begin{enumerate}
+\item 计算虚时关联
+\begin{equation*}
+\mathcal{G}(x,\tau)=\big\langle\mathrm{e}^{\mathrm{i}\theta(x,\tau)}\mathrm{e}^{-\mathrm{i}\theta(0,0)}\big\rangle
+\end{equation*}
+假设一维空间是长度为 $L$ 的有限圆。
+\item 计算有限温下的虚时关联 $\mathcal{G}^{\beta}(x,\tau)$，假设一维空间是一条无限长的直线。（提示：你可以交换 $x$ 与 $\tau$，并利用第 1 问的结果。）
+\item 计算有限温下的实时（编时）关联 $G^{\beta}(x,t)$，假设一维空间是一条无限长的直线。证明
+\begin{equation*}
+G^{\beta}(0,t)\propto\mathrm{e}^{-\mathrm{i}\frac{\pi}{4\pi v\chi}}\left(\frac{\pi T}{\sinh(\pi T|t|)}\right)^{1/2\pi v\chi}
+\end{equation*}
+\end{enumerate}
+
+\section{有限温度下的超流相}
+
+\subsection{有限温度下的路径积分}
+
+\begin{keypoints}
+\item $(d+1)$ 维量子系统在有限温度下的长距离性质，可以用一个 $d$ 维系统的路径积分来描写。
+\end{keypoints}
+
+本节中，我们将研究一个相互作用玻色子系统及其有限温度下的超流相。我们从虚时路径积分
+\begin{equation*}
+Z=\int\mathcal{D}^2[\varphi(\pmb{x},\tau)]\,\mathrm{e}^{-\int_0^{\beta}\mathrm{d}^d\pmb{x}\,\mathrm{d}\tau\,\big[\frac{1}{2}(\varphi^*\partial_{\tau}\varphi-\varphi\partial_{\tau}\varphi^*)+\frac{1}{2m}\partial_{\pmb{x}}\varphi^*\partial_{\pmb{x}}\varphi-\mu|\varphi|^2+\frac{V_0}{2}|\varphi|^4\big]}
+\end{equation*}
+出发，它表示系统的配分函数。注意，贝里相项在虚时路径积分中保持为虚的。
+
+为了把上述配分函数约化为一个熟悉的统计模型，我们先通过引入
+\begin{equation*}
+\varphi_{\omega_n}(\pmb{x})=\beta^{-1}\int_0^{\beta}\mathrm{d}\tau\,\varphi(\pmb{x},\tau)\mathrm{e}^{\mathrm{i}\tau\omega_n}
+\end{equation*}
+进入离散频率空间。然后，我们积掉所有有限频率的模式：
+\begin{equation*}
+Z=\int\prod_n\mathcal{D}^2[\varphi_{\omega_n}]\,\mathrm{e}^{-S}=\int\mathcal{D}^2[\varphi_c(\pmb{x})]\,\mathrm{e}^{-S_{\mathrm{eff}}}
+\end{equation*}
+其中 $\varphi_c(\pmb{x})=\varphi_{\omega_n=0}(\pmb{x})$ 是零频率模式。这一步很困难，所得的有效作用量 $S_{\mathrm{eff}}$ 可以非常复杂，甚至可以包含非局域项，例如 $\int\mathrm{d}^d\pmb{x}\,\mathrm{d}^d\pmb{x}'\,|\varphi_c(\pmb{x})|^2K(\pmb{x}-\pmb{x}')|\varphi_c(\pmb{x}')|^2$。然而，在有限频率处，原作用量包含 $\mathrm{i}|\varphi_c(\pmb{x})|^2\omega_n$ 项，它使 $\varphi_n$ 的传播子具有 $1/(\mathrm{i}\omega_n+ck^2+\mu)$ 的形式。该传播子是短程的，按指数衰减。因此，非零模式的涨落只能传递短程相互作用，$K(\pmb{x}-\pmb{x}')$ 应具有指数衰减：$K(\pmb{x}-\pmb{x}')\sim\mathrm{e}^{-|\pmb{x}-\pmb{x}'|/l_T}$。这里我们有一个新的长度标度 $l_T$，超出它之后，有效作用量 $S_{\mathrm{eff}}$ 就可以当作局域作用量处理。尽管 $S_{\mathrm{eff}}$ 可以非常复杂，但由于其对称性，局域作用量只能取某种确定的形式。在超出 $l_T$ 的长距离处，我们可以作梯度展开（gradient expansion）
+\begin{equation*}
+S_{\mathrm{eff}}=\beta\int\mathrm{d}^dx\,\big[\frac{1}{2m^*}|\partial_x\varphi_c|^2+V(|\varphi_c|,T)+\dots\big] \tag{3.4.1}
+\end{equation*}
+“…”代表更高阶导数项。有效势（effective potential）依赖于温度。当 $\mu<0$ 时，我们预期 $V$ 总有一个位于 $\varphi_c=0$ 的单一极小，代表对称态。当 $\mu>0$ 且温度较低时，$V$ 应有一个位于 $\varphi_c=\varphi_0\mathrm{e}^{\mathrm{i}\theta}$ 的极小圆圈，代表对称性破缺态。然而，超出临界温度 $T_c$ 之后，预期 $V$ 会变成在 $\varphi_c=0$ 处只有一个单一极小的形式。因此，$V$ 对温度的依赖描写了超流转变。
+
+% ==================================================================
+% 新增术语（ch3_c 新增，供术语表追加）：
+%   canonical momentum 正则动量；uncertainty relation 不确定关系；
+%   on-site repulsion 在位排斥；lattice boson system 格点玻色子系统；
+%   compressibility 压缩率；Nambu–Goldstone modes Nambu–Goldstone 模；
+%   quasi-long-range order 准长程序；universality 普适性；
+%   short-distance cut-off (scale) 短距离截断（标度）；crossover length scale 跨越长度标度；
+%   coherence length 相干长度；interaction energy per particle 每粒子相互作用能；
+%   dimensional analysis 量纲分析；semiclassical approximation 半经典近似；
+%   quantum phase transition 量子相变；quantum critical point 量子临界点；
+%   dynamical exponent 动力学指数；upper critical dimension 上临界维数；
+%   quantum critical exponents 量子临界指数；long-range interaction 长程相互作用；
+%   zero-frequency mode 零频率模式；discrete frequency space 离散频率空间；
+%   non-local term 非局域项；gradient expansion 梯度展开；
+%   effective potential 有效势；phase fluctuation 相位涨落
+% ==================================================================
+
+其中 $K(\pmb{x}) = n^{2}\langle \delta\theta(\pmb{x})\delta\theta(0)\rangle$。我们注意到，最后一项可以改写为
+
+% ---- 书页 101 (p116) ----
+在超流相中，只有相位涨落在长距离下才是重要的。令 $\varphi_c(\pmb{x}) = \varphi_0\mathrm{e}^{\mathrm{i}\theta(\pmb{x})}$，我们便得到一个 XY 模型
+\begin{equation*}
+S_{\mathrm{eff}} = \int \mathrm{d}^{d}\pmb{x}\ \frac{\eta}{2}(\partial_{\pmb{x}}\theta)^{2}
+\tag{3.4.2}
+\end{equation*}
+其中
+\begin{equation*}
+\eta = \frac{\varphi_{0}^{2}}{mT}
+\tag{3.4.3}
+\end{equation*}
+我们注意到，能量由 $TS_{\mathrm{eff}}$ 给出。因此，$T\eta$ 的数值决定了相位扭转 $\partial_{\pmb{x}}\theta \neq 0$ 的能量代价。这里 $T\eta$ 称为 XY 模型的相位劲度（phase rigidity）。
+
+当然，以上关于对称性破缺的讨论都基于经典图像，其中我们忽略了 $\varphi$ 和 $\theta$ 的涨落。（现在这些涨落对应于热涨落。）我们同样可以问：对称性破缺态能否在热涨落下存活？与上一节一样，我们可以用 XY 模型来处理这个问题。利用那些结果，我们发现，对于 $d>2$，热涨落并不总是破坏长程序。
+
+对于 $d<2$，热涨落总是破坏长程序，把它变为短程序。这是因为，对于 $d<2$，$\theta$ 的关联随 $|\pmb{x}|$ 呈幂次发散：
+\begin{equation*}
+\begin{aligned}
+&\ \langle \theta(\pmb{x})\theta(0)\rangle - \langle \theta(l)\theta(0)\rangle
+ = C_{d}\eta^{-1}(L^{2-d} - |\pmb{x}|^{2-d}) - C_{d}\eta^{-1}(L^{2-d} - l^{2-d}) \\
+&\ = -C_{d}\eta^{-1}|\pmb{x}|^{2-d}
+\end{aligned}
+\end{equation*}
+这里用到了傅里叶变换
+\begin{equation*}
+\int \mathrm{d}^{d}\pmb{k}\ \frac{\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x}}}{\eta|\pmb{k}|^{2}} = C_{d}\eta^{-1}(L^{2-d} - |\pmb{x}|^{2-d})
+\end{equation*}
+因此，
+\begin{equation*}
+\left\langle \mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}n\theta(0)} \right\rangle
+= \mathrm{e}^{-\frac{n^{2}}{2}\langle \theta(\pmb{x})-\theta(0)\rangle^{2}}
+= \mathrm{e}^{n^{2}\langle \theta(\pmb{x})\theta(0)\rangle - n^{2}\langle \theta(l)\theta(0)\rangle}
+= \mathrm{e}^{-C_{d}n^{2}\eta^{-1}|\pmb{x}|^{2-d}}
+\end{equation*}
+当 $n=1$ 时，衰减长度为 $(\eta/C_{d})^{1/(2-d)}$。
+
+对于 $d=2$，$\theta$ 关联具有对数发散 $\langle \theta(\pmb{x})\theta(0)\rangle - \langle \theta(l)\theta(0)\rangle = -\frac{1}{2\pi\eta}\ln(|\pmb{x}|/l)$，我们有以下的代数长程序（algebraic long-range order）：
+\begin{equation*}
+\left\langle \mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}n\theta(0)} \right\rangle \sim |\pmb{x}|^{-n^{2}/2\pi\eta}
+\tag{3.4.4}
+\end{equation*}
+
+% ---- 书页 102 (p117) ----
+
+\subsection{Kosterlitz--Thouless 相变}
+\begin{keypoints}
+\item 我们已经看到，依赖空间的 $\theta$ 涨落会把长程序变为代数长程序。这里我们将看到，一类新的涨落——涡旋涨落——能够把代数长程序变为短程序。
+\end{keypoints}
+
+上面的 $d=2$ 结果并不完全正确。当 $\eta$ 低于临界值 $\eta_{c}$（或温度高于临界温度 $T_{KT}$）时，代数长程序无法存活，只剩下短程关联（Kosterlitz and Thouless, 1973）。为了理解这一现象，我们需要把涡旋涨落包括进来。一个涡旋位形由下式给出
+\begin{equation*}
+\varphi_{c}(x,y) = f(r)\mathrm{e}^{\mathrm{i}\phi}, \qquad f(0)=0, \qquad f(\infty)=\varphi_{0}
+\end{equation*}
+其中 $x = r\cos(\phi)$，$y = r\sin(\phi)$。可以证明 $|\partial_{\pmb{x}}\theta| = 1/r$。因此，单个涡旋的作用量为
+\begin{equation*}
+S_{v} = \int \mathrm{d}^{2}r\ \frac{1}{2}\eta\frac{1}{r^{2}} + S_{c}
+= \int \pi\,\mathrm{d}(r^{2})\ \frac{1}{2}\eta\frac{1}{r^{2}} + S_{c}
+= h\ln\frac{L}{l} + S_{c}
+\end{equation*}
+其中
+\begin{equation*}
+h = \eta\pi,
+\end{equation*}
+$l$ 是短距离截断尺度，$S_{c}$ 是芯部作用量（core action，即来自涡旋芯内部的贡献，在那里 $f(r)$ 开始从 $\varphi_{0}$ 变为 0）。相距 $r$ 的一个涡旋与一个反涡旋（anti-vortex）之间的相互作用为 $2h\ln\frac{r}{l}$。
+
+这里的问题与 2.4.1 节和 2.4.3 节讨论的瞬子气体问题非常相似。为了计算配分函数，我们必须包括涡旋的贡献。在固定涡旋位形 $\varphi_{c} = \mathrm{e}^{\mathrm{i}\theta_{c}}$ 之下，使用 XY 模型，配分函数具有如下形式
+\begin{equation*}
+Z = \int \mathcal{D}\delta\theta\ \mathrm{e}^{-\int \mathrm{d}^{2}\pmb{x}\ \frac{\eta}{2}\left(\partial_{\pmb{x}}(\delta\theta+\theta_{c})\right)^{2}}
+\end{equation*}
+（译注：原文导数下标印作 $n$，按上下文应为 $\pmb{x}$。）
+
+由于 XY 模型是二次的，所得的配分函数取简单的因子化形式 $Z = Z_{0}\mathrm{e}^{-S_{\mathrm{eff}}(\theta_{c})}$，其中 $Z_{0}$ 是没有涡旋时的配分函数。由于 $S_{\mathrm{eff}}(\theta_{c})$ 由涡旋之间的对数相互作用给出，总配分函数具有如下形式
+\begin{equation*}
+Z = Z_{0} \sum_{n} \frac{1}{n!n!} \int \prod_{i=1}^{2n} \mathrm{d}^{2}\pmb{r}_{i}\ \mathrm{e}^{-2nS_{c}}\ \mathrm{e}^{\sum_{i<j}^{2n} 2hq_{i}q_{j}\ln\frac{r_{ij}}{l}}
+\tag{3.4.5}
+\end{equation*}
+求和中的每一项包含位于 $\pmb{r}_{1},\ldots,\pmb{r}_{n}$ 的 $n$ 个涡旋和位于 $\pmb{r}_{n+1},\ldots,\pmb{r}_{2n}$ 的 $n$ 个反涡旋。此外，$q_{i} = \pm$ 取决于第 $i$ 个涡旋是涡旋还是反涡旋，而 $r_{ij}$ 是第 $i$ 个与第 $j$ 个（反）涡旋之间的距离。
+
+% ---- 书页 103 (p118) ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.8.pdf}
+\caption*{图 3.8\quad $S_{\mathrm{eff}}$ 作为 $l/l_{n}$ 的函数。四个面板分别对应 $S_{c}\gg 1,\ h<2$；$S_{c}\ll -1,\ h<2$；$S_{c}\gg 1,\ h>2$；$S_{c}\ll -1,\ h>2$。}
+\end{figure}
+为了理解涡旋的效应，让我们估计 $n$ 个涡旋与 $n$ 个反涡旋的配分函数，即 $Z = \mathrm{e}^{-S_{\mathrm{eff}}}$，其中
+\begin{equation*}
+S_{\mathrm{eff}} \sim 2n\ln n + n\left(2h\ln\frac{l_{n}}{l} + 2S_{c}\right) - 2n\ln\frac{L^{2}}{l^{2}}
+= L^{2}\frac{2}{l_{n}^{2}}(h-2)\ln\frac{l_{n}\mathrm{e}^{S_{c}/(h-2)}}{l}
+\tag{3.4.6}
+\end{equation*}
+其中 $L$ 是系统的线性尺寸，$l_{n} = L/\sqrt{n}$ 是涡旋之间的平均间距。这里 $l_{n}$ 总是大于截断，即 $l_{n} > l$。式 (3.4.6) 的第一项来自 $1/(n!)^{2}$。第二项是 $n$ 对涡旋--反涡旋的作用量，每对占据大小 $\sim l_{n}$ 的一块面积。它包含两项贡献：涡旋相互作用 $2h\ln\frac{l_{n}}{l}$ 和芯部作用量 $2S_{c}$。第三项来自对涡旋位置的积分 $\int \prod_{i=1}^{2n}\mathrm{d}^{2}\pmb{r}_{i}$（它就是熵）。涡旋气体的行为由涡旋作用量（倾向于更少的涡旋）与熵（倾向于更多的涡旋）之间的竞争控制。
+
+涡旋的数目 $n$ 可以这样简单地得到：在 $l_{n} > l$ 的范围内对 $l_{n}$ 极小化 $S_{\mathrm{eff}}$。从图 3.8 中 $S_{\mathrm{eff}}$ 的行为我们看到，当 $S_{c} \ll -1$（即产生涡旋的代价很低）时，$S_{\mathrm{eff}}$ 在边界 $l_{n} \sim l$ 处取极小。在这种情况下，涡旋涨落是重要的，它把式 (3.4.4) 中的代数长程序变为短程序：
+\begin{equation*}
+\left\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)} \right\rangle \sim \mathrm{e}^{-|\pmb{x}|/\xi}
+\end{equation*}
+关联长度为 $\xi \sim l_{n} \sim l$。
+
+当 $S_{c} \gg 1$ 且 $h = \pi\eta < 2$ 时，$S_{\mathrm{eff}}$ 在 $l_{n} \sim \mathrm{e}^{S_{c}/(2-h)}l$ 处取极小。此时涡旋密度仍然是有限的，这同样把代数长程序变为
+
+% ---- 书页 104 (p119) ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.9.pdf}
+\caption*{图 3.9\quad 二维 XY 模型的相图。横轴为 $\eta$，在 $\eta_{c}$ 之左为短程序，之右为代数长程序。}
+\end{figure}
+短程序。关联长度为
+\begin{equation*}
+\xi \sim l_{n} \sim l\,\mathrm{e}^{S_{c}/(2-h)}
+\tag{3.4.7}
+\end{equation*}
+当 $S_{c} \gg 1$ 且 $h = \pi\eta > 2$ 时，$S_{\mathrm{eff}}$ 在 $l_{n} = \infty$ 处取极小，涡旋密度为零。在这种情况下，涡旋涨落在长距离下并不重要，代数长程序可以在涡旋涨落下存活。
+
+从上面的讨论我们看到，在 $S_{c} \gg 1$ 极限下，随着我们改变 $\eta$，二维玻色系统经历一个有限温度相变。该相变把代数长程序变为短程序。相变处的临界 $\eta$ 为 $\eta_{c} = 2/\pi$。图 3.9 中的相图总结了我们在 $S_{c} \gg 1$ 极限下的结果。$\eta_{c}$ 处的相变就是著名的 Kosterlitz--Thouless（KT）相变。利用 $\eta$ 与 $T$ 之间的关系 (3.4.3)，我们求得临界温度
+\begin{equation*}
+T_{KT} = \frac{\pi\varphi_{0}}{2m}
+\end{equation*}
+我们想指出，KT 相变不改变任何对称性，因而是 Landau 关于相与相变的对称性破缺理论的一个反例。
+
+利用 $h = \pi\eta = \pi\varphi_{0}^{2}/mT$，式 (3.4.7) 可以改写为
+\begin{equation*}
+\xi(T) \sim l\,\mathrm{e}^{E_{\xi}/(T-T_{KT})}
+\tag{3.4.8}
+\end{equation*}
+
+\begin{smallnote}
+在 $T_{KT}$ 附近，其中 $E_{\xi}$ 是某个能量尺度。这里我们想指出，当 $T \to T_{KT}$ 时式 (3.4.8) 并不正确。这个不正确的结果来自一个不正确的假设，即相位劲度 $\eta$ 不受涡旋存在的影响。事实上，涡旋气体会修改 $\eta$ 和 $h$ 的有效值。这是因为涡旋--反涡旋对可以被相位扭转 $\partial_{\pmb{x}}\theta$ 极化，从而释放部分应变并降低有效相位劲度。采用有效值 $h^{*}$，式 (3.4.7) 应当改写为
+\begin{equation*}
+\xi \sim l_{n} \sim l\,\mathrm{e}^{S_{c}/(2-h^{*})}
+\tag{3.4.9}
+\end{equation*}
+$h^{*}(T)$ 的温度依赖性比 $h(T)$ 的更为复杂。不过，按定义 $h^{*}(T_{KT}) = 2$。基于一个重整化群计算（见 3.5.6 节），我们发现
+\begin{equation*}
+2 - h^{*}(T_{KT}) \propto (T - T_{KT})^{1/2}
+\end{equation*}
+（译注：原文括号内印作 $T_{TK}$，应为 $T_{KT}$。）
+由此得到
+\begin{equation*}
+\xi(T) \sim l\,\mathrm{e}^{\left(E_{\xi}/(T-T_{KT})\right)^{1/2}}
+\tag{3.4.10}
+\end{equation*}
+\end{smallnote}
+
+% ---- 书页 105 (p120) ----
+\subsection*{问题 3.4.1}
+注意到，在 $T_{c}$ 附近，式 (3.4.1) 中的作用量 $S_{\mathrm{eff}}$ 可以近似为
+\begin{equation*}
+S_{\mathrm{eff}} = \beta\int \mathrm{d}^{d}\pmb{x}\ \left[ \frac{1}{2m^{*}}|\partial_{\pmb{x}}\varphi_{c}|^{2} + a(T-T_{c})|\varphi_{c}|^{2} + b|\varphi_{c}|^{4} \right] + O(|\varphi_{c}|^{6})
+\end{equation*}
+因为在 $T = T_{c}$ 处的临界点（或相变点）附近序参量 $\varphi_{c}$ 很小。在用平均场（或半经典）方法处理相变和临界点时，我们首先求出使作用量取极小的平均场解，然后假设平均场解附近的涨落很小，把作用量展开到涨落的二次阶。$S_{\mathrm{eff}}$ 的二次近似可以用来计算各种关联函数。
+
+\begin{enumerate}
+\item 用平均场方法计算临界点处 $\langle \varphi_{c}(\pmb{x})\varphi_{c}^{*}(0)\rangle \sim 1/|\pmb{x}|^{\gamma}$ 中的衰减指数 $\gamma$。
+\item 上述结果并非总是成立，因为经典理论可能会失效。重复 3.3.8 节末尾的讨论（即把 $S_{\mathrm{eff}}$ 写成 $g^{-1}\tilde{S}$ 的形式，$\tilde{S}$ 无量纲），看看平均场方法何时能正确描述临界点、何时临界点由强涨落控制；也就是说，求出上临界点 $d_{c}$。
+\item 这里我们想引入相关微扰与不相关微扰的概念。我们知道，在上临界维数以上，经典理论能正确描述相变处的临界点。现在我们在有效作用量 $S_{\mathrm{eff}}$ 中加一个微扰 $\beta\int \mathrm{d}^{d}x\ c|\varphi|^{\sigma}$。如果该微扰是重要的并且修改临界指数，我们就称它为相关微扰（relevant perturbation）；如果该微扰在临界点附近变得任意小，我们就称它为不相关微扰（irrelevant perturbation）。利用你在上面找到的同样的标度关系，考察微扰 $\beta\int \mathrm{d}^{d}x\ c|\varphi|^{\sigma}$ 如何修改标度后的作用量 $\tilde{S}$。确定 $\sigma$ 在什么范围内该微扰是相关的，在什么范围内是不相关的。
+\end{enumerate}
+
+\section{重整化群}
+
+\subsection{相关微扰与不相关微扰}
+\begin{keypoints}
+\item 相关微扰改变系统的长距离（或低能）行为，而不相关微扰不改变。
+\item 我们可以利用微扰的标度量纲来判断该微扰是相关的还是不相关的。
+\end{keypoints}
+
+在上面关于 KT 相变的讨论中我们注意到，当 $\mathrm{e}^{-S_{c}} \ll 1$ 时，涡旋涨落只是“小微扰”。然而，如果 $h < 2$，那么无论 $\mathrm{e}^{-S_{c}}$ 多么小，涡旋涨落总会破坏 $\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle$ 的代数长程关联。因此，当 $h<2$ 时，把涡旋涨落包括进来这一微扰被称为相关微扰。当 $h>2$ 时，该微扰被称为不相关微扰；而当 $h=2$ 时，该微扰被称为边缘微扰（marginal perturbation）。下面我们想在更一般的框架中讨论相关/不相关/边缘微扰。
+
+% ---- 书页 106 (p121) ----
+考虑一个由作用量
+\begin{equation*}
+S = S_{0} + \int \mathrm{d}^{d}x\ aO(x)
+\end{equation*}
+描写的理论，其中 $aO$ 是一个微扰。我们假设 $S_{0}$ 具有 $Z_{2}$ 对称性，且在 $Z_{2}$ 变换下 $O \to -O$。于是，当 $a=0$ 时 $\langle O\rangle = 0$。我们还假设，对于大的 $x$，在 $a=0$ 时
+\begin{equation*}
+\langle O(x)O(0)\rangle = \frac{1}{|x|^{2h}}
+\tag{3.5.1}
+\end{equation*}
+这里 $h$ 称为算符 $O$ 的标度量纲（scaling dimension，$1/x$ 的标度量纲定义为 1）。式 (3.5.1) 同时也定义了算符 $O$ 的归一化。
+
+在二阶微扰下，配分函数由下式给出
+\begin{equation*}
+Z = Z_{0} \int \mathrm{d}^{d}x\,\mathrm{d}^{d}y\ a^{2}\langle O(x)O(y)\rangle
+\end{equation*}
+其中 $Z_{0}$ 是零阶配分函数。我们看到，二阶微扰对有效作用量的改变为
+\begin{equation*}
+\Delta S_{\mathrm{eff}} = -\ln Z + \ln Z_{0} = -2\ln g + 2h\ln L - 2d\ln L
+\end{equation*}
+（译注：原文 $\ln g$ 按上下文应为 $\ln a$。）
+
+注意到，当 $h < d$ 且 $L > \xi = a^{-1/(d-h)}$ 时，我们有 $\Delta S_{\mathrm{eff}} < 0$。因此，系统倾向于有两个 $O(x)$ 插入。当 $L \gg \xi$ 时，系统希望在每个 $\xi^{d}$ 体积内有两个 $O(x)$ 插入。我们看到，如果我们感兴趣的是 $\xi$ 之外长度尺度上的关联函数，那么该微扰总是重要的。我们得出结论：如果 $O(x)$ 的标度量纲小于 $d$，则微扰 $\int \mathrm{d}^{d}x\ O(x)$ 是相关的。此时 $O(x)$ 称为相关算符。如果 $O(x)$ 的标度量纲大于（或等于）$d$，则 $O(x)$ 称为不相关（边缘）算符。记住这个结果的一个简单办法是：注意若 $\int \mathrm{d}^{d}x\ O(x)$ 的量纲小于零，则微扰 $\int \mathrm{d}^{d}x\ O(x)$ 是相关的。
+
+标度量纲的概念还使我们能够用量纲分析来估计有限微扰 $aO$ 所诱导的 $\langle O\rangle$。由于 $\delta S = \int \mathrm{d}^{d}x\ aO$ 的标度量纲按定义为零，系数 $a$ 具有标度量纲 $[a] = d - [O] = d - h$。当 $aO$ 是不相关微扰（即 $h > d$）时，诱导的 $\langle O\rangle$ 正比于 $a$。我们有
+\begin{equation*}
+\langle O\rangle \sim a\,l^{d-2h}
+\end{equation*}
+其中 $l$ 是短距离截断。当 $aO$ 是相关微扰（即 $h < d$）时，诱导的 $\langle O\rangle$ 大于 $a\,l^{d-2h}$。通过匹配标度量纲，
+
+% ---- 书页 107 (p122) ----
+我们求得
+\begin{equation*}
+\langle O\rangle \sim a^{h/(d-h)} = a\xi^{d-2h}.
+\tag{3.5.2}
+\end{equation*}
+
+\subsection*{问题 3.5.1}
+有效作用量
+\begin{equation*}
+S_{\mathrm{eff}} = \beta\int \mathrm{d}^{d}\pmb{x}\ \frac{1}{2m^{*}}|\partial_{\pmb{x}}\varphi|^{2}
+\end{equation*}
+描写一个临界点。计算 $\varphi$、$\varphi^{2}$、$|\varphi|^{2}$ 和 $|\varphi|^{4}$ 的标度量纲。证明：在某个空间维度 $d_{0}$ 以下，微扰 $\int \mathrm{d}^{d}\pmb{x}\ b|\varphi|^{4}$ 成为相关微扰。求出 $d_{0}$ 的值，并解释为什么 $d_{0}$ 等于
+\begin{equation*}
+S_{\mathrm{eff}} = \beta\int \mathrm{d}^{d}\pmb{x}\ \left[ \frac{1}{2m^{*}}|\partial_{\pmb{x}}\varphi|^{2} + a(T-T_{c})|\varphi|^{2} + b|\varphi|^{4} \right]
+\end{equation*}
+的上临界维数 $d_{c}$。
+
+\subsection{二维 XY 模型与二维时钟模型之间的对偶}
+\begin{keypoints}
+\item 二维 XY 模型中的涡旋可以看作粒子。描写这些粒子的场论是二维时钟模型（clock model）。
+\end{keypoints}
+
+为了更仔细地研究 XY 模型的涡旋涨落，我们想把二维 XY 模型映射到 $Z_{1}$ 二维时钟模型。一个一般的 $Z_{n}$ 时钟模型定义为
+\begin{equation*}
+S = \int \mathrm{d}^{2}\pmb{x}\ \left( \frac{\kappa}{2}(\partial_{\pmb{x}}\theta)^{2} - g\cos(n\theta) \right)
+\tag{3.5.3}
+\end{equation*}
+当 $g = 0$ 时，时钟模型就是有限温度下的 XY 模型。作用量是能量除以温度：$S = \beta E$。$g\cos(n\theta)$ 项（显式地）破坏 $U(1)$ 转动对称性。如果我们把 $(\cos(\theta), \sin(\theta)) = (S_{x}, S_{y})$ 看作自旋的两个分量，那么对于 $n = 1$，$g\cos(\theta)$ 项就是由 $S_{x}$ 方向的磁场诱导的项。对于一般的 $n$，时钟模型具有 $Z_{n}$ 对称性：$\theta \to \theta + \frac{2\pi}{n}$。
+
+为了证明对偶关系，我们考虑式 (3.5.3) 在 $n = 1$ 时的配分函数：
+\begin{equation*}
+\begin{aligned}
+Z &= \int \mathcal{D}\theta\ \sum_{k} \frac{1}{k!}\left( g\int \mathrm{d}^{2}x\ \frac{\mathrm{e}^{\mathrm{i}\theta} + \mathrm{e}^{-\mathrm{i}\theta}}{2} \right)^{k} \mathrm{e}^{-\int \mathrm{d}^{2}\pmb{x}\ \frac{\kappa}{2}(\partial_{\pmb{x}}\theta)^{2}} \\
+&= Z_{0} \sum_{k} \frac{1}{k!k!} \int \prod_{i=1}^{2k} \mathrm{d}^{2}\pmb{r}_{i}\ \mathrm{e}^{-2kS_{c}}\ \mathrm{e}^{\sum_{i<j}^{2k} 2hq_{i}q_{j}\ln\frac{r_{ij}}{l}}
+\end{aligned}
+\tag{3.5.4}
+\end{equation*}
+其中 $Z_{0}$ 是 $S = \int \mathrm{d}^{2}\pmb{x}\ \frac{\kappa}{2}(\partial_{\pmb{x}}\theta)^{2}$ 的配分函数。求和中的每一项来自关联 $\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{r}_{1})}\allowbreak\ldots\allowbreak\mathrm{e}^{\mathrm{i}\theta(\pmb{r}_{k})}\allowbreak\mathrm{e}^{-\mathrm{i}\theta(\pmb{r}_{k+1})}\allowbreak\ldots\allowbreak\mathrm{e}^{-\mathrm{i}\theta(\pmb{r}_{2k})}\rangle$。此外，
+
+% ---- 书页 108 (p123) ----
+$q_{i} = 1$（当 $1 \leqslant i \leqslant k$），$q_{i} = -1$（当 $k+1 \leqslant i \leqslant 2k$），$\mathrm{e}^{-S_{c}} = g/2$，以及
+\begin{equation*}
+h = \frac{1}{4\pi\kappa}
+\end{equation*}
+（译注：原文 $q_{i} = -1$ 的条件印作 $k+1 \leqslant i \leqslant 2n$，应为 $2k$。）
+
+如果 $\frac{1}{4\pi\kappa} = \pi\eta$，则式 (3.5.4) 与 XY 模型 (3.4.2) 的配分函数 (3.4.5) 完全相同。所以，当 $\frac{1}{2\pi\kappa} = 2\pi\eta$ 时，$Z_{1}$ 时钟模型 (3.5.3) 等价于（带涡旋的）XY 模型 (3.4.2)。XY 模型中的涡旋被映射到时钟模型中的 $\mathrm{e}^{\mathrm{i}\theta(\pmb{x})}$。类似地，时钟模型中的涡旋被映射到 XY 模型中的 $\mathrm{e}^{\mathrm{i}\theta(\pmb{x})}$。时钟模型中的涡旋具有标度量纲 $\pi\kappa$，而 XY 模型中的 $\mathrm{e}^{\mathrm{i}\theta(\pmb{x})}$ 算符具有标度量纲 $1/4\pi\eta$。关系 $\frac{1}{2\pi\kappa} = 2\pi\eta$ 保证了这两个标度量纲彼此一致。
+
+我们知道，XY 模型中的 $U(1)$ 对称性不允许 $\mathrm{e}^{\mathrm{i}\theta}$ 项出现在作用量中。利用上述映射我们看到，相应的时钟模型必须不允许涡旋涨落。在时钟模型中允许涡旋涨落，对应于在对偶的 XY 模型中显式破坏 $U(1)$ 对称性。我们看到，时钟模型有两种不同的类型：允许涡旋涨落的一种和不允许涡旋涨落的一种。由于相应的对偶模型具有不同的对称性，这两种时钟模型具有非常不同的性质。我们把允许涡旋涨落的时钟模型称为紧致时钟模型（compact clock model），把不允许涡旋涨落的称为非紧致时钟模型（non-compact clock model）。带涡旋的 XY 模型被映射到一个 $Z_{1}$ 非紧致时钟模型。这样的映射使我们能够通过研究相应非紧致时钟模型中的相变来研究 XY 模型中的 KT 相变。
+
+\subsection{时钟模型的物理性质}
+\begin{keypoints}
+\item 除非指定短距离截断，一个场论模型是没有良定义的。
+\item 包含强涡旋涨落的 Ginzburg--Landau 理论不能描述非紧致时钟模型中的相变。
+\end{keypoints}
+
+本节中，我们将讨论一般的 $Z_{n}$ 时钟模型中可能的相变。当 $g$ 大时，场 $\theta$ 被势 $-g\cos(n\theta)$ 的某个极小值俘获。我们相信，此时模型处于一个自发破缺 $Z_{n}$ 对称性的相。当 $\kappa$ 和 $g$ 都小时，$\theta$ 的涨落很强。我们预期模型将处于 $Z_{n}$ 对称相。
+
+尽管听起来相当合理，上述说法其实并没有真正的意义。这是因为 $g$ 具有量纲，谈论 $g$ 有多大是没有意义的。更糟的是，$g$ 是模型中唯一具有非平凡量纲的参量，所以我们无法构造一个无量纲组合来判断 $g$ 有多大。
+
+% ---- 书页 109 (p124) ----
+为了以物理的方式理解 $g\cos(n\theta)$ 项的重要性，我们想问 $\mathrm{e}^{\mathrm{i}n\theta}$ 算符有多大。回答这个问题的一个物理办法，是考察 XY 模型 $S = \int \mathrm{d}^{2}\pmb{x}\ \frac{\kappa}{2}(\partial_{\pmb{x}}\theta)^{2}$ 中 $\mathrm{e}^{\mathrm{i}n\theta}$ 的关联。该关联由下式给出（见式 (3.3.25)）
+\begin{equation*}
+\left\langle \mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}n\theta(0)} \right\rangle = (l/|\pmb{x}|)^{n^{2}/2\pi\kappa}
+\tag{3.5.5}
+\end{equation*}
+一个大的意外是，该关联依赖于短距离截断 $l$。这样一来，算符 $\mathrm{e}^{\mathrm{i}n\theta}$ 的大小（或重要性）在未指定截断 $l$ 之前甚至没有良定义。这说明了这样一点：\emph{要有一个良定义的场论，我们必须指定一个短距离截断 $l$}。为了强调这一点，我们想把 $l$ 依赖性显式地写出来，把作用量写成
+\begin{equation*}
+S = \int \mathrm{d}^{2}\pmb{x}\ \left( \frac{\kappa_{l}}{2}(\partial_{\pmb{x}}\theta_{l})^{2} - g_{l}\cos(n\theta_{l}) \right)
+\tag{3.5.6}
+\end{equation*}
+短距离截断是这样引入的：要求 $\theta_{l}$ 场不包含任何波长短于 $l$ 的涨落：
+\begin{equation*}
+\theta_{l}(\pmb{x}) = \int_{|\pmb{k}|<2\pi/l} \mathrm{d}^{2}\pmb{k}\ \theta_{\pmb{k}}\mathrm{e}^{\mathrm{i}\pmb{x}\cdot\pmb{k}}
+\end{equation*}
+我们看到，良定义的时钟模型 (3.5.6) 包含三个参量 $\kappa_{l}$、$g_{l}$ 和 $l$。所以，时钟模型实际上包含两个无量纲参量 $\kappa_{l}$ 和 $\bar{g}_{l} = g_{l}l^{2}$。
+
+现在我们可以做有意义的陈述了。当 $\bar{g}_{l} \gg 1$ 时，我们相信模型处于自发破缺 $Z_{n}$ 对称性的相。当 $\kappa_{l}$ 和 $\bar{g}_{l}$ 都远小于 1 时，我们预期模型处于 $Z_{n}$ 对称相。
+
+一个非平凡的极限是 $\kappa_{l} \gg 1$ 且 $\bar{g}_{l} \ll 1$。此时模型是处于 $Z_{n}$ 对称相还是 $Z_{n}$ 对称性破缺相？相关/不相关微扰的概念对回答这个问题非常有帮助。如果我们把 $g_{l}\cos(n\theta)$ 项当作 XY 模型的微扰，那么由式 (3.5.5)，XY 模型中 $\mathrm{e}^{\mathrm{i}n\theta}$ 的标度量纲为 $[\mathrm{e}^{\mathrm{i}n\theta}] = n^{2}/4\pi\kappa_{l}$。因此，$g_{l}\cos(n\theta)$ 项在 $n^{2}/4\pi\kappa_{l} < 2$ 时是相关的，在 $n^{2}/4\pi\kappa_{l} > 2$ 时是不相关的。
+
+这个结果是合理的。当 $\kappa_{l}$ 小时，$\theta$ 的涨落强。这使得 $g_{l}\cos(n\theta)$ 项平均为零，效果减弱。因此微扰 $g_{l}\cos(n\theta)$ 是不相关的。当 $g_{l}\cos(n\theta)$ 不相关且 $\bar{g}_{l}$ 小时，我们在计算长程关联时可以丢掉 $g_{l}\cos(n\theta)$ 项。这表明，在 $\kappa_{l}$ 和 $\bar{g}_{l}$ 都小时，长距离下我们不仅有 $Z_{n}$ 对称性，还有完整的 $U(1)$ 对称性。
+
+当 $\kappa$ 大时，$\theta$ 的涨落弱。这使得 $g_{l}\cos(n\theta)$ 项成为相关微扰。此时无论 $\bar{g}_{l}$ 多么小，$g_{l}\cos(n\theta)$ 项的效应都会在长距离下变得重要。
+
+% ---- 书页 110 (p125) ----
+这样，我们预期系统被俘获在势项的 $n$ 个极小之一中，$Z_{n}$ 对称性自发破缺，即使 $\bar{g}_{l}$ 很小。
+
+在认识到时钟模型可以有 $Z_{n}$ 对称性破缺相和 $Z_{n}$ 对称相之后，下一个自然的问题是：这两相之间如何相互转化？理解这种相变的一个办法，是引入复序参量 $\varphi(\pmb{x}) = \langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\rangle$，并写下相变的 Ginzburg--Landau 有效理论
+\begin{equation*}
+S_{GL} = \int \mathrm{d}^{2}\pmb{x}\ \left[ \frac{\gamma}{2}(\partial_{\pmb{x}}\varphi)^{2} + a|\varphi|^{2} + b|\varphi|^{4} - c\,\mathrm{Re}\,\varphi^{n} \right]
+\tag{3.5.7}
+\end{equation*}
+注意到，$c\,\mathrm{Re}\,\varphi^{n}$ 项（显式地）把 $U(1)$ 对称性破缺到 $Z_{n}$。当 $n > 1$ 时，随着 $a$ 从正值变为负值，Ginzburg--Landau 理论描述了一个对称性破缺相变。
+
+当 $n = 1$ 时，Ginzburg--Landau 理论不包含相变，因为没有对称性破缺。这似乎暗示 $Z_{1}$ 时钟模型不包含相变，而相应的 XY 模型不包含 KT 相变。
+
+那么问题出在哪里？在 Ginzburg--Landau 理论中，序参量在相变点附近有很强的振幅涨落。$\varphi$ 的一个典型位形包含许多 $\varphi = 0$ 的点，所以存在很强的涡旋涨落。Ginzburg--Landau 理论描述的是紧致时钟模型中的相变，它不适用于非紧致时钟模型。
+
+\subsection{非紧致时钟模型的重整化群方法}
+\begin{keypoints}
+\item 通过跑动耦合常数（running coupling constants）的概念，重整化群（RG）方法使我们能够看到，当我们走向长距离或低能量时理论如何演化。它非常有用，因为它告诉我们哪些动力学性质在长距离或低能量下演生。
+\item 由于一个有效理论只会演化成相似的有效理论，我们无法用重整化群方法得到性质上全新的现象的演生，例如从玻色模型演生出光和费米子。
+\end{keypoints}
+
+本节中，为了理解非紧致时钟模型的物理性质，我们将直接处理时钟模型中的 $\theta$ 场。
+
+我们注意到，如果不同位置处的涨落 $O(\pmb{x})$ 与 $O(\pmb{y})$ 彼此独立地涨落，那么所谓的\emph{连通关联}（connected correlation）
+\begin{equation*}
+G_{\mathrm{conn}} = \langle O(\pmb{x})O(\pmb{y})\rangle - \langle O(\pmb{x})\rangle\langle O(\pmb{y})\rangle
+\end{equation*}
+
+% ---- 书页 111 (p126) ----
+为零。所以，连通关联度量的正是 $O(\pmb{x})$ 与 $O(\pmb{y})$ 的涨落之间的关联。
+
+当 $g_{l} = 0$ 时，无论 $\kappa_{l}$ 取何值，非紧致时钟模型总是具有代数长程关联：$\langle \mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}n\theta(0)}\rangle - \langle \mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}\rangle\langle \mathrm{e}^{-\mathrm{i}n\theta(0)}\rangle \sim \frac{1}{|\pmb{x}|^{n^{2}/2\pi\kappa_{l}}}$。这里的问题是，$g_{l}\cos(n\theta)$ 项会如何影响代数长程关联。
+
+如上一节所讨论，当 $\kappa_{l} < n^{2}/8\pi$ 时，$\mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}$ 是不相关的，小的 $g_{l}\cos(n\theta)$ 项不会影响代数长程关联。当 $\kappa_{l} > n^{2}/8\pi$ 时，$\mathrm{e}^{\mathrm{i}n\theta(\pmb{x})}$ 是相关的。我们预期，无论 $\bar{g}_{l}$ 多么小，$g_{l}\cos(n\theta)$ 项都会把代数长程关联变为短程关联。我们看到，对于小的 $\bar{g}_{l}$，非紧致时钟模型在 $\kappa_{l} = n^{2}/8\pi$ 处有一个相变。下面我们将用 RG 方法来理解这个相变。
+
+我们注意到，只有在指定了短距离截断 $l$ 之后，时钟模型才是良定义的。RG 方法的关键一步，是把波长介于 $l$ 与 $\lambda$（$\lambda > l$）之间的涨落积掉。这得到一个具有新截断 $\lambda$ 的模型。为了把短波长 $\theta$ 涨落积掉，我们先写
+\begin{equation*}
+\theta_{l} = \theta_{\lambda} + \delta\theta
+\end{equation*}
+其中 $\delta\theta$ 只包含波长介于 $l$ 与 $\lambda$ 之间的涨落。由于短波长涨落 $\delta\theta$ 受到 $\kappa(\partial_{\pmb{x}}\delta\theta)^{2}$ 项的压制，我们预期 $\delta\theta$ 很小，并把作用量展开到 $\delta\theta$ 的二阶：
+\begin{equation*}
+\begin{aligned}
+S = {} & \int \mathrm{d}^{2}\pmb{x}\ \left( \frac{\kappa_{l}}{2}(\partial_{\pmb{x}}\theta_{\lambda})^{2} - g_{l}\cos(n\theta_{\lambda}) + \frac{\kappa_{l}}{2}(\partial_{\pmb{x}}\delta\theta)^{2} \right) \\
+& + \int \mathrm{d}^{2}\pmb{x}\ \left( -ng_{l}\sin(\theta_{\lambda})\delta\theta + \frac{n^{2}}{2}g_{l}\cos(n\theta_{\lambda})(\delta\theta)^{2} \right)
+\end{aligned}
+\end{equation*}
+（译注：原文 $\sin(\theta_{\lambda})$ 按展开式应为 $\sin(n\theta_{\lambda})$。）
+
+我们把 $\theta_{\lambda}$ 当作光滑的背景场，并把 $\delta\theta$ 积掉（这种方法称为背景场 RG 方法）。我们得到有效作用量
+\begin{equation*}
+\begin{aligned}
+S = {} & \int \mathrm{d}^{2}\pmb{x}\ \left( \frac{\kappa_{l}}{2}(\partial_{\pmb{x}}\theta_{\lambda})^{2} - g_{l}\cos(n\theta_{\lambda}) + \frac{1}{2}g_{l}\cos(n\theta_{\lambda})K(0) \right) \\
+& - \int \mathrm{d}^{2}\pmb{x}\,\mathrm{d}^{2}\pmb{y}\ \frac{1}{2}(g_{l})^{2}\sin(n\theta_{\lambda}(\pmb{x}))K(\pmb{x}-\pmb{y})\sin(n\theta_{\lambda}(\pmb{y}))
+\end{aligned}
+\end{equation*}
+% ——— 块边界说明（起点）———
+% 书页 111（p126）末行为 §3.5.4 的无编号有效作用量
+%   S = ∫d²x(κ_l/2(∂_xθ_λ)² − g_l cos(nθ_λ) + ½g_l cos(nθ_λ)K(0))
+%     − ∫d²x d²y ½(g_l)²sin(nθ_λ(x))K(x−y)sin(nθ_λ(y))，
+% 本块自书页 112（p127）顶部残句 "where K(x) = n²⟨δθ(x)δθ(0)⟩. We note that
+% the last term can be rewritten as" 续起，上面 %JOIN% 使本块与 ch3_d 末式直接缝合。
+% ——— 块边界说明（终点）———
+% 书页 122（p137）末句 "Let us consider the spectral expansion" 跨页延续到
+% 书页 123（p138）顶部 "of the density correlation function:"。按 assemble.py
+% 约定（X 文件的 %--XX-TAIL-- 区内容会移到 X−1 之后、X 正文之前），该残句的
+% 译文（"密度关联函数的谱展开："）应由 ch3_f 写入其 %--E-TAIL-- 区（或在其
+% 正文开头以 %JOIN% 续译），本块正文因此止于"让我们考虑"，本文件不设
+% %--D-TAIL-- 区。ch3_f 请勿重复翻译该残句；其正文请从 p138 顶部的谱展开
+% 无编号式 ⟨ρ(t,x)ρ(0,0)⟩ = ⟨0|ρ(x)U(t,0)ρ(0)|0⟩/⟨0|U(t,0)|0⟩ = … 起译。
+% ——————————————————————————————
+其中，$K(\pmb{x}) = n^2\langle\,\delta\theta(\pmb{x})\,\delta\theta(0)\rangle$。我们注意到，最后一项可以改写为
+\begin{align*}
+&\int \mathrm{d}^2\pmb{x}\,\mathrm{d}^2\pmb{y}\,\frac{g_l^2}{4}[\sin(n\theta_\lambda(\pmb{x})) - \sin(n\theta_\lambda(\pmb{y}))]^2 K(\pmb{x}-\pmb{y}) - \int \mathrm{d}^2\pmb{x}\,\frac{g_l^2}{2}\sin^2(n\theta_\lambda)\bar{K} \\
+={}& \int \mathrm{d}^2\pmb{x}\,\mathrm{d}^2\pmb{y}\,\frac{n^2}{8}(g_l)^2\cos^2(n\theta_\lambda(\pmb{x}))(\partial_{\pmb{x}}\theta_\lambda(\pmb{x}))^2(\pmb{x}-\pmb{y})^2 K(\pmb{x}-\pmb{y}) \\
+&- \int \mathrm{d}^2\pmb{x}\,\frac{1}{2}(g_l)^2(\sin(n\theta_\lambda(\pmb{x})))^2\bar{K}
+\end{align*}
+其中，$\bar{K} = \int \mathrm{d}^2\pmb{x}\,K(\pmb{x})$。我们看到，像 $\cos(2n\theta_\lambda)$、$(\partial_{\pmb{x}}\theta_\lambda)^2$、$\cos(2n\theta_\lambda)(\partial_{\pmb{x}}\theta_\lambda)^2$、$(\partial_{\pmb{x}}\theta_\lambda)^4$ 等等这样的项被产生了出来。RG 流可以产生许多初始作用量中没有的新项。事实上，任何不破坏 $Z_n$ 对称性的局域项都可能被产生。然而，$\cos(\theta_\lambda)$ 项在 $n>1$ 时不会被产生，因为它破坏 $Z_n$ 对称性。目前，让我们只保留初始作用量中已有的 $(\partial_{\pmb{x}}\theta_\lambda)^2$ 与 $\cos(\theta_\lambda)$ 两项。\footnote{事实证明，所有其他项都是不相关的。如果这些项在 RG 流开始时很小，那么经过长时间流动后它们会变得更小。这就是我们可以忽略这些项的原因。当然，如果这些项一开始就很大，那么它们可以改变一切。}我们发现，模型的作用量变为
+\begin{equation*}
+S = \int \mathrm{d}^2\pmb{x}\left(\frac{\kappa_\lambda}{2}(\partial_{\pmb{x}}\theta_\lambda)^2 - g_\lambda\cos(n\theta_\lambda)\right)\tag{3.5.8}
+\end{equation*}
+其中 $\lambda$ 是新的截断。有效耦合常数依赖于截断 $\lambda$，称为跑动耦合常数（running coupling constants）。它们由下式给出（假定 $\frac{\lambda-l}{l}\ll 1$）
+\begin{equation*}
+g_\lambda = g_l - \frac{1}{2}K(0),\qquad \kappa_\lambda = \kappa_l + \frac{n^2}{8}g_l^2 K_2
+\end{equation*}
+\begin{equation*}
+K(0) = \int_{2\pi/\lambda < |\pmb{k}| < 2\pi/l} \frac{\mathrm{d}^2\pmb{k}}{(2\pi)^2}\,\frac{n^2}{\kappa_l|\pmb{k}|^2} = \frac{n^2}{2\pi\kappa_l}\ln\frac{\lambda}{l}
+\end{equation*}
+\begin{align*}
+K_2 &\equiv \int \mathrm{d}^2\pmb{x}\,|\pmb{x}|^2 K(\pmb{x}) = \int_{2\pi/\lambda < |\pmb{k}| < 2\pi/l} \mathrm{d}^2\pmb{x}\,\frac{\mathrm{d}^2\pmb{k}}{(2\pi)^2}\,\frac{n^2\pmb{x}^2\,\mathrm{e}^{\mathrm{i}\pmb{k}\cdot\pmb{x} - 0^+|\pmb{x}|}}{\kappa_l\pmb{k}^2} \\
+&= \frac{\lambda-l}{l}\,\frac{3n^2l^4}{16\pi^5\kappa_l}\int \mathrm{d}\theta\,\frac{1}{(\cos\theta + \mathrm{i}0^+)^4} = \frac{\lambda-l}{l}\,\frac{3n^2l^4}{2\pi^4\kappa_l}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.10.pdf}
+\caption*{图 3.10\quad (a) 由式 (3.5.9) 确定的 $g_\lambda$ 与 $\kappa_\lambda$ 的重整化群流。(b) 由式 (3.5.10) 确定的 $g_\lambda$ 与 $\kappa_\lambda$ 的重整化群流。}
+\end{figure}
+
+令 $b = \ln\lambda$，则耦合常数的变化由下列微分方程描述：
+\begin{align*}
+\frac{\mathrm{d}g_\lambda}{\mathrm{d}b} &= -\frac{n^2}{4\pi\kappa_l}\,g_\lambda \\
+\frac{\mathrm{d}\kappa_\lambda}{\mathrm{d}b} &= \frac{3n^4 g_\lambda^2\lambda^4}{16\pi^4\kappa_\lambda}
+\end{align*}
+用无量纲耦合 $\bar{\kappa}_\lambda = \kappa_\lambda\lambda^0$ 与 $\bar{g}_\lambda = g_\lambda\lambda^2$ 表示，上述微分方程可以改写为
+\begin{align*}
+\frac{\mathrm{d}\bar{g}_\lambda}{\mathrm{d}b} &= \left(2 - \frac{n^2}{4\pi\bar{\kappa}_\lambda}\right)\bar{g}_\lambda \\
+\frac{\mathrm{d}\bar{\kappa}_\lambda}{\mathrm{d}b} &= \frac{3n^4\bar{g}_\lambda^2}{16\pi^4\bar{\kappa}_\lambda}\tag{3.5.9}
+\end{align*}
+它们称为 RG 方程。$(\bar{\kappa},\bar{g})$ 的流绘于图 3.10(a)。
+
+\subsection{重整化群理论与相变}
+
+\begin{keypoints}
+\item 不动点的概念，以及针对不动点的有效理论。
+\end{keypoints}
+
+为了理解 RG 流的物理含义，让我们先忽略 $\bar{\kappa}_\lambda$ 的流动，转而研究下列 RG 方程：
+\begin{align*}
+\frac{\mathrm{d}\bar{g}_\lambda}{\mathrm{d}b} &= \left(2 - \frac{n^2}{4\pi\bar{\kappa}_\lambda}\right)\bar{g}_\lambda \\
+\frac{\mathrm{d}\bar{\kappa}_\lambda}{\mathrm{d}b} &= 0\tag{3.5.10}
+\end{align*}
+$(\bar{g}_\lambda,\bar{\kappa}_\lambda)$ 的流绘于图 3.10(b)。我们发现，由 RG 方程得到
+\begin{equation*}
+\bar{g}_\lambda = \bar{g}_l\,\mathrm{e}^{\left(2 - \frac{n^2}{4\pi\kappa_l}\right)\ln(\lambda/l)} = \bar{g}_l(\lambda/l)^{2-h}
+\end{equation*}
+其中 $h = \frac{n^2}{4\pi\kappa_l}$ 是 $\cos(n\theta)$ 的标度量纲。当 $\cos(n\theta)$ 是相关的时，只要流得足够长，一个非常小的 $\bar{g}_l$ 就可以变得要多大有多大。特别地，当 $\lambda = l(\bar{g}_l)^{-1/(2-h)}$ 时，$\bar{g}_\lambda = 1$。此时耦合常数停止流动，因为 RG 方程 (3.5.9) 由于在推导中被略去的高阶 $\bar{g}_\lambda$ 项而失效。所得的有效理论与式 (3.5.8) 具有相同的形式，称为不动点理论（fixed-point theory）。我们可以用不动点理论求出原模型的长程关联及其他长距离物理性质。
+
+当 $\bar{g}_\lambda = 1$ 时，若以 $\lambda$ 为单位来度量，重整化后的不动点理论中的一切都是 1 的量级。于是，如果我们相信大的 $g_\lambda\cos(n\theta_\lambda)$ 会使 $\theta_\lambda$ 具有短程关联，那么以 $\lambda$ 度量的关联长度 $\xi$ 必须是 1 的量级。这样，我们得到
+\begin{equation*}
+\xi = l\left(\frac{1}{\bar{g}_l}\right)^{1/(2-h)}
+\end{equation*}
+只要认识到上一节中的微扰 $O$ 对应于 $O = l^{-h}\cos(n\theta)$，此式便与上一节得到的普遍结果 $\xi = a^{-1/(d-h)}$ 相一致。（式 (3.5.1) 确定了 $O$ 的归一化。）于是 $a = gl^h$。用 $\kappa$ 来表示，上述结果导致
+\begin{equation*}
+\xi = l\bar{g}_l^{-4\pi\kappa/(8\pi\kappa - n^2)}.\tag{3.5.11}
+\end{equation*}
+
+此外，在长度尺度 $\xi$ 处，一个大的势项 $g_\xi\cos(n\theta_\xi)$ 会把 $\theta_\xi$ 俘获在势的某一个极小值处。因此，相关的微扰 $g_l\cos(n\theta_l)$ 总是导致自发的 $Z_n$ 对称性破缺，无论 $g_l$ 在截断尺度处是多么小。
+
+当 $\kappa$ 趋近 $n^2/8\pi$ 时，关联长度 $\xi \to \infty$。因此，在 $n^2/8\pi$ 处存在一个相变。当 $\kappa < n^2/8\pi$ 时，微扰 $g_l\cos(n\theta_l)$ 是不相关的。经过长时间的 RG 流之后，我们得到另一个不动点理论 $\frac{\bar{\kappa}_\lambda}{2}(\partial_{\pmb{x}}\theta_\lambda)^2$，因为 $\bar{g}_\lambda$ 流向零。这个不动点理论具有完全的 $U(1)$ 对称性！这是一个非常出人意料而又非常重要的现象，称为动力学对称性恢复（dynamical symmetry restoration）。有时某个项可能会显式地破坏某个对称性（例如 $g_l\cos(n\theta_l)$ 项把 $U(1)$ 对称性破缺降为 $Z_n$ 对称性）。如果该项是不相关的，那么在长距离和/或低能下，该项流向零，对称性得以恢复。
+
+总结起来，非紧致时钟模型 (3.5.3) 具有 $Z_n$ 对称性。当 $\kappa$ 小于临界值 $\kappa_c = n^2/8\pi$ 时，模型处于一个不破坏 $Z_n$ 对称性的相。此外，该相在长距离下具有 $U(1)$ 对称性。关联长度为无穷大。当 $\kappa$ 高于临界值 $\kappa_c$ 时，模型处于破坏 $Z_n$ 对称性的相。关联长度为有限。
+
+如果模型中没有边际算符，上述讨论是正确而且普遍的。在这种情况下，$h$ 可以当作常数处理。然而，对于 XY 模型，算符 $(\partial_{\pmb{x}}\theta)^2$ 的量纲恰好等于 2，是一个严格的边际算符（exact marginal operator）。结果，$\kappa$ 是一个边际耦合常数。常数 $\kappa$（从而 $h$）的取值可以在 RG 流中移动。这就导致了式 (3.5.9) 所描述并在图 3.10(a) 中示出的 RG 流。我们注意到，在相变点 $\bar{\kappa}_\infty = n^2/8\pi$ 附近，图 3.10(a) 所描述的 RG 流与图 3.10(b) 中的流相当不同。结果 (3.5.11) 只适用于图 3.10(b) 中的 RG 流，对于 $\kappa_c = n^2/8\pi$ 附近图 3.10(a) 中的 RG 流并不成立。下一节中，我们将对图 3.10(a) 的 RG 流计算 $\xi$。
+
+在上面，我们用 RG 方法讨论了非紧致时钟模型中的相与相变。我们也可以用同样的 RG 结果，讨论带有涡旋涨落的紧致时钟模型中的相与相变。
+
+乍一看，有人可能会说，由于势项 $g_l\cos(n\theta_l)$，涡旋与反涡旋总是被禁闭的。如果 $\kappa > \kappa_c$ 且 $\kappa\cos(n\theta)$ 是相关的，这确实正确。当 $\kappa < \kappa_c$ 时，$\kappa\cos(n\theta)$ 不相关。此时，涡旋的性质与 XY 模型中的一样。当 $\kappa < 2/\pi$ 时涡旋涨落是相关的，当 $\kappa > 2/\pi$ 时是不相关的。当涡旋涨落相关时，它们会改变时钟模型的相结构。
+
+紧致的二维时钟模型依 $n$ 的取值不同，可以有几种不同的行为。
+\begin{enumerate}
+\item $n > 4$：当 $\kappa > n^2/8\pi$ 时，模型处于 $Z_n$ 对称性破缺相。$Z_n$ 序参量 $\mathrm{e}^{\mathrm{i}\theta}$ 具有长程序：$\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle = \text{constant} + C\mathrm{e}^{-|\pmb{x}|/\xi}$。在相变点 $n^2/8\pi$ 附近，我们有 $\kappa > 2/\pi$，涡旋涨落不相关。于是，当 $n^2/8\pi > \kappa > 2/\pi$ 时，系统处于一个 $Z_n$ 对称的相，在长距离下具有演生的 $U(1)$ 对称性。$Z_n$ 序参量 $\mathrm{e}^{\mathrm{i}\theta}$ 具有代数长程序：$\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle \sim 1/|\pmb{x}|^{1/2\pi\kappa}$。当 $\kappa < 2/\pi$ 时，涡旋涨落是相关的，它会破坏代数长程序。系统处于 $Z_n$ 对称的相。$Z_n$ 序参量 $\mathrm{e}^{\mathrm{i}\theta}$ 具有短程关联：$\langle \mathrm{e}^{\mathrm{i}\theta(\pmb{x})}\mathrm{e}^{-\mathrm{i}\theta(0)}\rangle \sim \mathrm{e}^{-|\pmb{x}|/\xi}$。由于没有长程关联，我们甚至无法谈论长距离下演生的 $U(1)$ 对称性。
+\item $n = 4$：当 $\kappa > n^2/8\pi = 2/\pi$ 时，模型处于 $Z_4$ 对称性破缺相；当 $\kappa < 2/\pi$ 时，处于 $Z_4$ 对称的相。在对称性破缺相中，$g_l\cos(4\theta)$ 相关而涡旋不相关。在 $Z_4$ 对称相中，$g_l\cos(4\theta)$ 不相关而涡旋相关。因此，$Z_4$ 对称相既没有代数长程序，也没有演生的 $U(1)$ 对称性。在相变点，$g_l\cos(4\theta)$ 与涡旋都是边际的。
+\item $n < 4$：当 $\kappa \gg n^2/8\pi$ 时，模型处于 $Z_n$ 对称性破缺相；当 $\kappa \ll n^2/8\pi$ 时，处于 $Z_n$ 对称的相。在相变点附近，$\mathrm{e}^{\mathrm{i}n\theta}$ 与涡旋都相关且强烈涨落。相变由 Ginzburg–Landau 理论描述，见式 (3.5.7)。当 $n = 1$ 时，没有对称性破缺，也没有相变。
+\end{enumerate}
+
+\subsection*{问题 3.5.2}
+
+\textbf{流动的“耦合函数”}\quad 考虑模型 $S = \int \mathrm{d}^2\pmb{x}\left(\frac{\kappa}{2}(\partial_x\theta)^2 + V(\theta)\right)$，其中 $V(\theta)$ 是一个小的周期函数：$V(\theta + 2\pi) = V(\theta)$。试求描述“耦合函数” $V$ 流动的 RG 方程。因为我们已假定 $V$ 很小，你可以忽略 $\kappa$ 的流动。试讨论：如果从一个非常小的 $V$ 出发，经过长时间流动后 $V$ 的形式如何。
+
+\subsection*{问题 3.5.3}
+
+$n = 1$ 的时钟模型 (3.5.3) 描述处在外磁场 $B_x$ 中的一个二维 XY 自旋系统，其中 $S_x = \cos(\theta)$、$S_y = \sin(\theta)$、$S_z = 0$，且 $B_x = g$。假设 $\cos(\theta)$ 是相关的。试用 RG 论证求出小磁场感应出的 $S_x$ 的值。现在假设 $\cos(\theta)$ 是不相关的，小磁场感应出的 $S_x$ 是多少？将你的结果与式 (3.5.2) 比较。（提示：你可以用原有的耦合常数 $B_x$ 写出重整化后的作用量，再用重整化后的作用量计算感应出的 $S_x$。你只需把感应出的 $S_x$ 计算到一个 $O(1)$ 系数的精度。）
+
+\subsection{相变点附近的关联长度}
+
+为了理解图 3.10(a) 的 RG 流中 $\xi$ 在相变点附近的行为，让我们把 RG 方程 (3.5.9) 对小的 $\delta\kappa_\lambda \equiv \bar{\kappa}_\lambda - \frac{n^2}{8\pi}$ 展开如下：
+\begin{align*}
+\frac{\mathrm{d}\bar{g}_\lambda}{\mathrm{d}b} &= \frac{16\pi}{n^2}\,\delta\bar{\kappa}_\lambda\,\bar{g}_\lambda \\
+\frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\mathrm{d}b} &= \frac{3n^2\bar{g}_\lambda^2}{2\pi^3}\tag{3.5.12}
+\end{align*}
+我们发现
+\begin{equation*}
+\frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\mathrm{d}\bar{g}_\lambda} = \frac{3n^4}{32\pi^4}\,\frac{\bar{g}_\lambda}{\delta\bar{\kappa}_\lambda}
+\end{equation*}
+该微分方程导致 $(\delta\bar{\kappa}_\lambda)^2 = \frac{3n^4}{32\pi^4}\bar{g}_\lambda^2 + C$。按照常数项 $C$ 的符号，解分为三类（见图 3.10(a)）。第 I 类和第 II 类解由下式给出
+\begin{equation*}
+\delta\bar{\kappa}_\lambda = \mathrm{sgn}(\delta\bar{\kappa}_\infty)\sqrt{\frac{3n^4}{32\pi^4}\bar{g}_\lambda^2 + \delta\bar{\kappa}_\infty^2}
+\end{equation*}
+其中 $C = \delta\bar{\kappa}_\infty^2 > 0$。第 III 类解具有如下形式
+\begin{equation*}
+\bar{g}_\lambda = \sqrt{\frac{32\pi^4}{3n^4}\delta\bar{\kappa}_\lambda^2 + \bar{g}_{min}^2}\tag{3.5.13}
+\end{equation*}
+它对应于 $C < 0$ 的情形。
+
+把式 (3.5.13) 代入式 (3.5.12) 中的第二个方程，我们得到
+\begin{equation*}
+\frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\frac{32\pi^4}{3n^4}\delta\bar{\kappa}_\lambda^2 + \bar{g}_{min}^2} = n^2\,\mathrm{d}\ln(\lambda)
+\end{equation*}
+我们可以把上式两边从 $\lambda = l$ 积分到 $\lambda = \xi$，得到
+\begin{equation*}
+\int_{\delta\bar{\kappa}_l}^{\delta\bar{\kappa}_\xi} \frac{\mathrm{d}\delta\bar{\kappa}_\lambda}{\frac{32\pi^4}{3n^4}\delta\bar{\kappa}_\lambda^2 + \bar{g}_{min}^2} = n^2\ln\!\left(\frac{\xi}{l}\right)\tag{3.5.14}
+\end{equation*}
+
+我们知道，在关联长度 $\xi$ 处，$\bar{g}_\xi \sim 1$。式 (3.5.13) 告诉我们 $\delta\bar{\kappa}_\xi$ 也是 1 的量级。式 (3.5.13) 与 (3.5.14) 把 $\delta\bar{\kappa}_l$、$\bar{g}_l$ 与 $\xi$ 联系起来，使我们能够确定关联长度 $\xi$ 如何依赖于 $\kappa_l - \kappa_c$。
+
+让我们先固定 $g_l$，调节 $\kappa_l$，使 $\delta\bar{\kappa}_l = \kappa_l - \frac{n^2}{8\pi}$ 等于 $-\sqrt{\frac{3n^4}{32\pi^4}}\,\bar{g}_l$。由式 (3.5.13) 我们看到 $\bar{g}_{min} = 0$。式 (3.5.14) 左端的积分发散，这意味着 $\xi = \infty$。我们看到，$Z_n$ 对称性破缺相变真正发生在 $\kappa_l = \kappa_c$ 处，其中
+\begin{equation*}
+\kappa_c = \frac{n^2}{8\pi} - \sqrt{\frac{3n^4}{32\pi^4}}\,g_l
+\end{equation*}
+如果 $\kappa_l$ 略高于 $\kappa_c$，则我们发现
+\begin{equation*}
+\bar{g}_{min}^2 = 2\left(\frac{32\pi^4}{3n^4}\right)^{1/2} g_l(\kappa_l - \kappa_c)
+\end{equation*}
+由于 $\bar{g}_{min}$ 远小于 $|\delta\bar{\kappa}_l|$ 与 $\delta\bar{\kappa}_\xi$，式 (3.5.14) 变为
+\begin{equation*}
+\sqrt{\frac{3}{32\pi^2}}\,\frac{1}{g_{min}} = \ln\!\left(\frac{\xi}{l}\right)
+\end{equation*}
+我们发现
+\begin{equation*}
+\xi = l\,\mathrm{e}^{\left(C/(\kappa_l - \kappa_c)\right)^{1/2}},\qquad C = \frac{n^2}{2\pi\bar{g}_l}\left(\frac{3}{32\pi^2}\right)^{3/2}
+\end{equation*}
+
+\subsection{不动点与相变}
+
+\begin{keypoints}
+\item 不动点与普适性质。
+\item 没有相关微扰的不动点对应一个稳定的相。有一个相关微扰的不动点对应两个稳定相之间的相变点。
+\end{keypoints}
+
+跑动耦合常数与不动点（或普适类）可能是 RG 理论中最重要的两个概念。本节我们将在一个一般性的框架中讨论它们。让我们考虑一个具有两个耦合常数 $g_1$ 与 $g_2$ 的理论。与截断尺度 $l$ 相结合，我们可以定义无量纲耦合常数 $\tilde{g}_a = g_a l^{\lambda_a}$，$a = 1, 2$。当我们积掉短距离涨落时，无量纲耦合常数可能会流动。一种可能的流图见图 3.11(a)。
+
+从这样的流图中我们能学到什么？首先，我们注意到流有两个吸引不动点（attractive fixed point）A 与 B。如果 $(\tilde{g}_1,\tilde{g}_2)$ 位于 DCD$'$ 线下方的任何位置，那么经过长流之后，系统将由 $(\tilde{g}_1(A),\tilde{g}_2(A))$ 描述。因此在长距离下，系统由不动点 A 描述。这幅图像演示了普适性原理：系统的长距离行为不依赖于系统的短距离细节。DCD$'$ 线下方的所有系统，都享有由 A 处的不动点理论所描述的共同长距离行为。共同的长距离性质之一是关联函数中的代数衰减指数。DCD$'$ 线下方的所有系统，在相应的关联中都有相同的衰减指数。这些共同性质称为普适性质（universal properties）。流向同一个不动点的所有系统构成一个普适类（universality class）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.11.pdf}
+\caption*{图 3.11\quad (a) A 与 B 是代表两个相的两个稳定不动点。C 是具有一个相关算符/方向的不稳定不动点。A 相与 B 相之间的相变是连续相变。临界点由不稳定不动点 C 描述。(b) 模型 (3.5.3) 的不动点/不动点线结构。CA 是一条稳定不动点线。B 与 B$'$ 是两个稳定不动点。CA、B 与 B$'$ 代表三个相。C 是临界点，代表 A 相（具有代数长程关联）与 B/B$'$ 相（没有长程关联）之间的转变，该转变为 KT 相变。CA$'$ 是一条不稳定不动点线，描述 B 相与 B$'$ 相之间的转变。}
+\end{figure}
+
+DCD$'$ 线上方的系统流向另一个不同的不动点，构成另一个普适类。这些系统具有不同的（长距离）普适性质。特别地，它们的衰减指数不同。
+
+普适类与相紧密相关。我们看到，当 $(\tilde{g}_1,\tilde{g}_2)$ 穿过 DCD$'$ 线时，系统的长距离行为与长波涨落突然改变。结果，系统的自由能在 DCD$'$ 线上具有奇异性。因此，DCD$'$ 线是分隔两个相的一条相变线。在这幅图像之下，我们可以说 DCD$'$ 线下方的系统构成一个相，DCD$'$ 线上方的系统构成另一个相。相与普适类在这里意味着同一件事。
+
+让我们从正好位于不动点 A 上的系统出发。我们加上一些微扰，使耦合常数 $(\tilde{g}_1,\tilde{g}_2)$ 偏离 $(\tilde{g}_1(A),\tilde{g}_2(A))$。当 $(\tilde{g}_1,\tilde{g}_2)$ 流回 $(\tilde{g}_1(A),\tilde{g}_2(A))$ 时，微扰在长距离下流向零。因此，这些微扰是不相关微扰。由于稳定不动点周围的所有微扰都流向零，\emph{稳定不动点处的有效理论不含任何相关或边际微扰}。
+
+现在让我们考虑相变点（即临界点）的长距离性质。如果我们从 DCD$'$ 线上的任何位置出发，就可以看到系统流向不动点 C。因此，临界点的长距离行为由不稳定不动点 C 描述。这里我们再次看到普适性：无论从何处穿过相变线，相变点的长距离行为总是相同的。
+
+不动点 C 有一个（且仅有一个）不稳定方向。该方向上的微扰将流离这个不动点。因此，C 的不动点理论有且仅有一个相关微扰。一般地，\emph{描述两相之间相变的临界点有且仅有一个相关微扰}。如果一个不稳定不动点有两个相关微扰，那么该不动点将描述一个三临界点（tri-critical point）。
+
+模型 (3.5.3) 含有一个边际微扰。它的流图更为复杂。（见图 3.11(b)，其中 $(\tilde{g}_1,\tilde{g}_2)$ 对应于 $(\tilde{\eta},\tilde{g})$。）系统有三个相。DCD$'$ 线下方的相由稳定不动点线 AC 控制。这个相具有代数长程关联。代数长程关联的指数依赖于在 AC 线上的位置。DCA$'$ 线上方的相由稳定不动点 B 控制。它没有长程关联，比方说，由 $\langle\cos(\theta)\rangle < 0$ 刻画。D$'$CA$'$ 线右边的相由稳定不动点 B$'$ 控制。它也没有长程关联，由 $\langle\cos(\theta)\rangle > 0$ 刻画。AC 相与 B 相（或 B$'$ 相）之间的相变由不稳定不动点 C 控制，而 B 相与 B$'$ 相之间的相变由不稳定不动点线 CA$'$ 控制。临界指数依赖于在 CA$'$ 线上的位置。
+
+从上面两个简单的例子我们看到，从一个系统的 RG 流图，我们能学到许多关于相与相变的知识。在 3.3.2 节中，我们从对称性破缺的观点讨论了相与相变。本节中我们看到，相与相变也可以基于 RG 图像来理解。这里我想指出，RG 图像（尽管不那么具体）比对称性破缺图像更为基本。对称性破缺图像假定图 3.11(a) 中的两个稳定不动点具有不同的对称性，并且相变线 DCD$'$ 是一条对称性破缺的相变线。这幅对称性破缺图像并不总是正确的。我们可以构造出显式的例子，其中不动点 A 与 B 具有相同的对称性，而相变线 DCD$'$ 不改变任何对称性（Coleman and Weinberg, 1973; Halperin et al., 1974; Fradkin and Shenker, 1979; Wen and Wu, 1993; Senthil et al., 1999; Read and Green, 2000; Wen, 2000）。
+
+\section{玻色超流到莫特绝缘体的转变}
+
+\begin{keypoints}
+\item 贝里相项（式 (3.3.20) 中的全导数项 $-\rho_0\partial_t\theta$）在量子 XY 模型中是重要的。它定性地改变了涡旋的性质。
+\end{keypoints}
+
+在 $1+1$ 维和零温下，量子玻色超流在低能下同样由一个 XY 模型 (3.3.10) 描述。在虚时中，如果我们取 $v = 1$，量子 XY 模型就与上一节中研究的二维 XY 模型完全相同。虚时 XY 模型中的涡旋对应于可以改变量子系统动力学的隧穿过程。根据 3.4 节得到的结果，看起来当
+\begin{equation*}
+\chi v < 2/\pi
+\end{equation*}
+时，瞬子将破坏长程序，使所有关联在空间与时间两个方向上都变成短程的。这意味着瞬子将为所有激发打开一个能隙。上述结论显然是错误的。自由空间中的玻色系统总是可压缩的，它至少含有来自密度波的无能隙模式。
+
+上述论证中的错误相当微妙。为了理解这个错误，我们需要先讨论玻色超流的激发谱。玻色超流中有两类低能激发：对应于声波的局域激发，以及对应于玻色子总数和伽利略助推（Galileo boost）的整体激发。让我们用自由玻色系统作例子，来说明这两类激发。自由玻色系统的基态为 $|k_1,\ldots,k_N\rangle = |0,\ldots,0\rangle$。局域激发通过把若干个 $k$ 改变为某些非零值而产生。低能下，$\sum_i |k_i| \ll \sqrt{\rho}$。整体激发通过往 $k = 0$ 态上添加（或移除）几个玻色子、或者把所有 $k_i$ 平移相同的量而产生。后者称为伽利略助推。对于相互作用玻色系统，伽利略助推可以通过把玻色子的边界条件从 $0$ 扭转到 $2\pi$ 或 $2\pi\times$ 整数来实现，即把常数 $\varphi(x) = \varphi_0$ 改为 $\varphi(x) = \mathrm{e}^{\mathrm{i}2\pi nx/L}\varphi_0$。
+
+让我们考虑处于超流态的相互作用 $N$ 玻色子系统的能级。低能、小动量的激发由声波给出。这些激发的能级如图 3.12(a) 所示。伽利略助推只涉及质心运动。最小的伽利略助推对应于把所有 $k_i$ 平移 $2\pi/L$，其中 $L$ 是系统的线性尺寸。这样的伽利略助推给出一个动量为 $K_1 = 2\pi N/L = 2\pi\rho$、能量为 $E_1 = K_1^2/2mN$ 的激发。我们看到，伽利略助推能量极低但动量很大。因此，伽利略助推不能由声波产生。由 $2\pi n/L$ 的平移所产生的更一般的伽利略助推，具有动量 $K_n = 2\pi nN/L = 2\pi n\rho$ 和能量 $E_n = K_n^2/2mN$。这样，相互作用 $N$ 玻色子系统的低能能级就如图 3.12(b) 所示。$k = K_n$ 附近的能级由第 $n$ 个伽利略助推加上声波给出。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.12.pdf}
+\caption*{图 3.12\quad $(1+1)$ 维相互作用玻色子的能级，(a) $k \sim 0$，(b) 大 $k$。}
+\end{figure}
+
+现在的问题是：超流的低能 XY 模型，即
+\begin{equation*}
+L_{XY} = \frac{\chi}{2}\dot{\theta}^2 - \frac{\rho}{2m}(\partial_x\theta)^2\tag{3.6.1}
+\end{equation*}
+能否重现上述谱？让我们展开
+\begin{equation*}
+\theta(x,t) = \theta_0(t) + n\frac{2\pi x}{L} + \sum_{k\neq 0}\theta_k L^{-1/2}\,\mathrm{e}^{\mathrm{i}kx}
+\end{equation*}
+第二项描述了当 $x$ 从 $x = 0$ 走到 $x = L$ 时，$\mathrm{e}^{\mathrm{i}\theta(x)}$ 绕零点的缠绕。作用量可以改写为
+\begin{equation*}
+S_{XY} = \frac{\chi L}{2}\dot{\theta}_0^2 - \frac{K_n^2}{2mN} + \sum_{k>0}\Big[\chi\dot{\theta}_k^\dagger\dot{\theta}_k - \frac{\rho k^2}{2m}\theta_k^\dagger\theta_k\Big]
+\end{equation*}
+我们看到，$(\theta_k,\theta_{-k})$ 描述一个二维振子，它对应于声波模式。由 3.3.7 节我们看到，$\dot{\theta}_0$ 描述玻色子数涨落，这里将其忽略。现在清楚了，缠绕项 $n\frac{2\pi x}{L}$ 描述一个伽利略助推。这是因为伽利略助推把玻色子场的边界条件从 $\varphi(L) = \varphi(0)$ 扭转到 $\varphi(L) = \mathrm{e}^{\mathrm{i}2\pi n}\varphi(0)$，从而把 $\theta(x) = 0$ 变为 $\theta(x) = 2\pi nx/L$。$\theta$ 场的缠绕与伽利略助推之间的这种关系，也与缠绕所产生的能量 $\frac{K_n^2}{2mN}$ 相一致。
+
+$(1+1)$ 维超流体中 $(x,t)$ 处的一个涡旋，对应于一个算符 $O_v(x,t)$。上述分析表明，算符 $O_v(x,t)$ 把 $k = 0$ 附近的态映射到 $k = 2\pi\rho$ 附近的态。这是因为涡旋把 $\theta(x) = 0$ 变为 $\theta(x) = \frac{2\pi x}{L}$。这样，涡旋就产生了一个伽利略助推。在虚时中，含涡旋的配分函数应具有如下形式
+\begin{equation*}
+Z = Z_0\sum_n \frac{1}{n!n!}\int\prod_{i=1}^{2n}\mathrm{d}^2\pmb{r}_i\;K^{2n}\,\mathrm{e}^{\mathrm{i}2\pi\rho\sum_j q_j x_j}\,\mathrm{e}^{\sum_{i<j}^{2n} q_iq_j 2\pi\eta\ln\frac{|x_i - x_j|}{l}}
+\end{equation*}
+其中 $Z_0$ 是没有涡旋时的配分函数。额外的相位项 $\mathrm{e}^{\mathrm{i}2\pi\rho\sum_j q_j x_j}$ 反映了涡旋所携带的大动量。由于这个相位项，涡旋与反涡旋必须成对运动以相互抵消相位，才能有大的贡献。因此，相位项把涡旋与反涡旋禁闭在一起，“库仑”气体没有等离子体相。于是，即使把涡旋包括进来，玻色系统对任何 $\chi$ 与 $v$ 的取值都处于超流相。
+
+然而，如果我们加入一个周期等于平均玻色子间距 $a = 1/\rho$ 的弱周期势，相位项就可以与周期势发生干涉，平均而言变成一个常数。现在我们可以在临界值 $\chi v = 2/\pi$ 处得到 KT 相变。$(1+1)$ 维相互作用玻色子在弱周期势中的相图绘于图 3.13。对于 $\chi v > 2/\pi$，玻色子形成具有代数长程序和无能隙声波模式的导电态。对于 $\chi v < 2/\pi$，所有激发都将具有有限的能隙，玻色子形成一种绝缘体，称为莫特绝缘体（Mott insulator），因为其绝缘性质来源于相互作用而非能带。大势极限下的莫特绝缘体很容易理解：在该极限下，基态在每个势阱中有一个玻色子；把一个玻色子移到另一个势阱，会由于玻色子之间的排斥而耗费有限的能量（见图 3.14）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.13.pdf}
+\caption*{图 3.13\quad $(1+1)$ 维相互作用玻色子在弱周期势中的相图。这里 $\eta = \chi v$，$\eta_c = 2/\pi$。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.14.pdf}
+\caption*{图 3.14\quad 强周期势中 $(1+1)$ 维相互作用玻色子的莫特绝缘体。}
+\end{figure}
+
+对涡旋的上述理解也使我们能够计算低能和\emph{大}动量下的密度关联。让我们考虑密度关联函数的谱展开：
+
+% ------------------------------------------------------------
+% 块边界备注：
+%   起点：书页 111（p126）末行为无编号有效作用量（见本文件顶部注释），
+%   本块以 %JOIN% 续书页 112 顶部残句 "where K(x) = n²⟨δθ(x)δθ(0)⟩.
+%   We note that the last term can be rewritten as"，与 ch3_d 末式无缝缝合。
+%   终点：书页 122（p137）末句 "Let us consider the spectral expansion"
+%   跨页延续到书页 123（p138）顶部 "of the density correlation function:"。
+%   按 assemble.py 约定，该残句译文（"密度关联函数的谱展开："）应由 ch3_f
+%   放入其 %--E-TAIL-- 区（或在其正文开头以 %JOIN% 续译），装配后正好接在
+%   本块末尾"让我们考虑"之后；ch3_f 请勿重复翻译，其正文请从 p138 顶部的
+%   谱展开无编号式起译。
+%   本块含：§3.5.4 末段（自书页 112 顶部续起）、§3.5.5、§3.5.6、§3.5.7 三个
+%   \subsection、问题 3.5.2 与 3.5.3、§3.6 的 \section 及其开头（至书页 122 末）。
+%   带编号公式 8 个：式 (3.5.8)–(3.5.14)、(3.6.1)；图 3.10–3.14 共 5 个 %FIG；
+%   脚注 1 条（原书脚注 23）。
+% ------------------------------------------------------------
+% 新增术语（ch3_e，待并入术语表"新增术语"区）：
+%   running coupling constant 跑动耦合常数；
+%   fixed-point theory 不动点理论；attractive fixed point 吸引不动点；
+%   unstable fixed point / fixed line 不稳定不动点 / 不动点线；
+%   stable fixed line 稳定不动点线；
+%   marginal perturbation / operator / coupling constant 边际微扰 / 边际算符 / 边际耦合常数；
+%   exact marginal operator 严格边际算符；
+%   universality class 普适类；universal properties 普适性质；principle of universality 普适性原理；
+%   tri-critical point 三临界点；dynamical symmetry restoration 动力学对称性恢复；
+%   Galileo boost 伽利略助推；winding 缠绕；
+%   "Coulomb" gas "库仑"气体；plasma phase 等离子体相；
+%   conducting state 导电态；potential well 势阱；periodic potential 周期势；
+%   local / global excitation 局域激发 / 整体激发；compressible 可压缩的；
+%   （备查，ch3_d 范围：Z_n clock model Z_n 时钟模型；compact / non-compact
+%   clock model 紧致 / 非紧致时钟模型；background-field RG approach 背景场 RG 方法；
+%   Ginzburg–Landau theory Ginzburg–Landau 理论）
+% ------------------------------------------------------------
+
+% 边界备注：
+%   起点JOIN——书页 123 顶部 "of the density correlation function:" 是书页 122 末句
+%   "Let us consider the spectral expansion of the density correlation function:" 的后半句；
+%   完整引导句（"让我们考虑密度关联函数的谱展开："）应由上一块的 E-TAIL 收入，
+%   本块正文以 %JOIN% 起头，直接从其后的谱展开公式开始。
+%   终点——书页 133 止于式 v_c = Min(ε(k)/|k|)，句意完结；书页 134 顶部为图 3.15 与
+%   新段落 "It is interesting to see that ..."，属下一块，本块自然结束，无 TAIL。
+%   本块范围内无插图（图 3.12–3.14 在书页 121–122，图 3.15 在书页 134），
+%   正文引用图 3.1、图 3.15(a)(b)；脚注共 1 处（原书脚注 24）。
+
+%JOIN%
+\begin{align*}
+\langle\rho(t,x)\rho(0,0)\rangle&=\frac{\langle0|\rho(x)U(t,0)\rho(0)|0\rangle}{\langle0|U(t,0)|0\rangle}\\
+&=\sum_{n,k}\langle0|\rho(x)|n,k\rangle\langle n,k|\rho(0)|0\rangle\,\mathrm{e}^{\mathrm{i}kx-\mathrm{i}\epsilon_{n,k}t}
+\end{align*}
+其中态 $|n,k\rangle$ 具有能量 $\epsilon_{n,k}$ 和动量 $k$。我们还假定了基态 $|0\rangle$ 的能量为零。由于低能态只出现在 $K_i$ 附近，在低能下我们可以把上述求和重新分组如下：
+\begin{equation*}
+\langle\rho(t,x)\rho(0,0)\rangle=\sum_{n,|\delta k|\ll K_1,i}\langle0|\rho(x)|n,\delta k,i\rangle\langle n,\delta k,i|\rho(0)|0\rangle\,\mathrm{e}^{\mathrm{i}(\delta k+K_i)x-\mathrm{i}\epsilon_{n,\delta k,i}t}
+\end{equation*}
+其中态 $|n,\delta k,i\rangle$ 具有能量 $\epsilon_{n,\delta k,i}$ 和动量 $\delta k+K_i$。我们看到，大动量处的密度关联，比如 $k\sim K_i$ 处的密度关联，是由矩阵元 $\langle n,\delta k,i|\rho(0)|0\rangle$ 产生的。我们知道，涡旋算符 $O_v^i$（当 $i<0$ 时 $O_v^i\equiv(O_v^\dagger)^{-i}$）把 $k=0$ 附近的低能态映射到 $k=K_i$ 附近的低能态。于是这里我们作如下大胆的假设：
+\begin{equation*}
+\langle n,\delta k,i|\rho(t,x)|0\rangle=C_i\langle n,\delta k,i|O_v^i(t,x)|0\rangle
+\end{equation*}
+低能密度算符现在可以推广为
+\begin{equation*}
+\rho(t,x)=\rho_0-\chi\dot{\theta}(t,x)+\sum_n C_nO_v^n
+\end{equation*}
+旧结果 $\rho(t,x)=\rho_0-\chi\dot{\theta}(t,x)$ 只描写低能长波长密度涨落，新结果则描写低能全波长密度涨落。我们发现关联函数具有如下形式：
+\begin{align*}
+\langle\rho(t,x)\rho(0,0)\rangle
+&=\rho_0^2-\frac{\chi v}{4\pi}\left(\frac{1}{(x-vt)^2}+\frac{1}{(x+vt)^2}\right)+\sum_n|C_n|^2\mathrm{e}^{\mathrm{i}K_nx}\left(\frac{l^2}{x^2-v^2t^2}\right)^{n^2\pi\chi v}\\
+&=\rho_0^2-\left(\frac{\chi v/4\pi}{(x-vt)^2}+\frac{\chi v/4\pi}{(x+vt)^2}\right)+\sum_n|C_n|^2\mathrm{e}^{\mathrm{i}K_nx}\left(\frac{l^2\mathrm{e}^{-\mathrm{i}\pi\Theta(v^2t^2-x^2)}}{|x^2-v^2t^2|}\right)^{n^2\pi\chi v}\tag{3.6.2}
+\end{align*}
+其中 $l$ 是短距离截断。注意，虚时中的关联 $\langle O_v^\dagger(x,t)O_v(0,0)\rangle$ 由 $\mathrm{e}^{-V}$ 给出，其中 $V$ 是涡旋/反涡旋对之间的势。实时关联则由解析延拓得到。
+
+\subsection*{问题 3.6.1}
+
+证明式 (3.6.2)。
+
+\subsection*{问题 3.6.2}
+
+有限动量下的响应率。
+\begin{enumerate}
+\item 设玻色子感受到一个弱势 $V(x)$，该势引起密度改变 $\delta\rho$。试把 $\delta\rho_k=\chi(k)V_k$ 中的有限动量响应率 $\chi(k)$ 用频率--动量空间中的密度关联函数表示出来。
+\item 求出使响应率 $\chi(K_n)$ 发散的 $\chi$ 与 $v$ 的取值。（提示：先在虚时中做计算可能会容易一些。）
+\item 如果我们开启一个周期 $a=\rho^{-1}/n$（$n$ 为整数）的弱周期势，那么对哪些 $\chi$ 与 $v$ 的取值，玻色子形成莫特绝缘体？
+\end{enumerate}
+
+\section{超流与超导}
+
+\subsection{与规范场的耦合和守恒流}
+
+\begin{keypoints}
+\item 具有整体 $U(1)$ 对称性的理论包含一个守恒荷。
+\item 具有整体 $U(1)$ 对称性的理论可以与 $U(1)$ 规范场耦合。电磁矢量势就是一个 $U(1)$ 规范场。
+\end{keypoints}
+
+带电玻色子系统会与电磁规范场耦合。当电磁场不为零时，带电玻色子系统的拉格朗日量需要修改。这里的问题是：我们如何找到修改后的拉格朗日量？我们知道，玻色子拉格朗日量
+\begin{equation*}
+L(\varphi)=\mathrm{i}\frac{1}{2}(\varphi^*\partial_t\varphi-\varphi\partial_t\varphi^*)-\frac{1}{2m}\partial_{\pmb{x}}\varphi^*\partial_{\pmb{x}}\varphi+\mu|\varphi|^2-\frac{V_0}{2}|\varphi|^4 \tag{3.7.1}
+\end{equation*}
+在整体 $U(1)$ 变换
+\begin{equation*}
+\varphi\rightarrow\mathrm{e}^{\mathrm{i}f}\varphi
+\end{equation*}
+下不变，即 $L(\mathrm{e}^{\mathrm{i}f}\varphi)=L(\varphi)$。但它在一个局域 $U(1)$ 变换
+\begin{equation*}
+\varphi(\pmb{x},t)\rightarrow\mathrm{e}^{\mathrm{i}f(\pmb{x},t)}\varphi(\pmb{x},t)
+\end{equation*}
+下并非不变。我们有
+\begin{align*}
+L(\mathrm{e}^{\mathrm{i}f(\pmb{x},t)}\varphi)&=\mathrm{i}\frac{1}{2}\big(\varphi^*(\partial_0+\mathrm{i}\partial_0f)\varphi-\varphi(\partial_0-\mathrm{i}\partial_0f)\varphi^*\big)\\
+&\quad-\frac{1}{2m}\big|(\partial_i+\mathrm{i}\partial_if)\varphi\big|^2+\mu|\varphi|^2-\frac{V_0}{2}|\varphi|^4 \tag{3.7.2}
+\end{align*}
+其中下标 0 标记时间方向，下标 $i=1,\dots,d$ 标记空间方向。我们将用希腊字母 $\mu,\nu$ 等标记时空方向。例如，$x^\mu$ 代表时空坐标。玻色子与电磁规范场的耦合现在只需把 $\partial_\mu f$ 换成 $A_\mu$ 便可得到：
+\begin{align*}
+L(\varphi,A_\mu)&=\mathrm{i}\frac{1}{2}\big(\varphi^*(\partial_0+\mathrm{i}A_0)\varphi-\varphi(\partial_0-\mathrm{i}A_0)\varphi^*\big)\\
+&\quad-\frac{1}{2m}\big|(\partial_i+\mathrm{i}A_i)\varphi\big|^2+\mu|\varphi|^2-\frac{V_0}{2}|\varphi|^4 \tag{3.7.3}
+\end{align*}
+所得的拉格朗日量有一个很好的性质：它是规范不变的：
+\begin{gather*}
+\varphi\rightarrow\tilde{\varphi}=\mathrm{e}^{\mathrm{i}f(\pmb{x},t)}\varphi\\
+A_\mu\rightarrow\tilde{A}_\mu=A_\mu-\partial_\mu f\\
+L(\varphi,A_\mu)\rightarrow L(\tilde{\varphi},\tilde{A}_\mu)=L(\varphi,A_\mu) \tag{3.7.4}
+\end{gather*}
+上述构造并不包含多少物理，它只是得到规范不变拉格朗日量的一个技巧。这一技巧给出最简单的拉格朗日量，称为最小耦合（minimal coupling）。我们也可以写出别的规范不变拉格朗日量，例如把 $\partial_\mu f$ 换成 $A_\mu+g\partial_\nu F_{\nu\mu}$，其中 $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$ 是 $A_\mu$ 的场强。注意 $F_{\mu\nu}$ 在规范变换下不变。
+
+式 (3.7.3) 只描写荷场 $\varphi$ 与规范场 $A_\mu$ 之间的耦合。同时描写 $\varphi$ 与 $A_\mu$ 二者动力学的完整规范不变拉格朗日量为
+\begin{align*}
+L(\varphi,A_\mu)&=\mathrm{i}\frac{1}{2}\big(\varphi^*(\partial_0+\mathrm{i}A_0)\varphi-\varphi(\partial_0-\mathrm{i}A_0)\varphi^*\big)-\frac{1}{2m}\big|(\partial_i+\mathrm{i}A_i)\varphi\big|^2\\
+&\quad+\mu|\varphi|^2-\frac{V_0}{2}|\varphi|^4+\frac{1}{8\pi e^2}\left(\frac{1}{c}\pmb{E}^2-c\pmb{B}^2\right) \tag{3.7.5}
+\end{align*}
+其中 $c$ 是光速，而
+\begin{equation*}
+E_i=\partial_0A_i-\partial_iA_0=F_{0i},\qquad B_i=\epsilon_{ijk}\partial_jA_k=\frac{1}{2}\epsilon_{ijk}F_{jk}
+\end{equation*}
+分别是 $U(1)$ 规范理论的电场和磁场。
+
+我们知道，具有整体 $U(1)$ 对称性的模型有一个守恒荷。借助规范场可以容易地证明这一点。规范化后的作用量是规范不变的：
+\begin{equation*}
+S(\varphi,A_\mu)=S(\mathrm{e}^{\mathrm{i}f(\pmb{x},t)}\varphi,A_\mu-\partial_\mu f)
+\end{equation*}
+设 $\varphi_c(\pmb{x},t)$ 是经典运动方程的一个解，那么
+\begin{equation*}
+S(\mathrm{e}^{\mathrm{i}f(\pmb{x},t)}\varphi_c,A_\mu)=S(\varphi_c,A_\mu)+O(f^2)
+\end{equation*}
+因此
+\begin{align*}
+S(\varphi_c,A_\mu)&=S(\varphi_c,A_\mu-\partial_\mu f)+O(f^2)\\
+&=S(\varphi_c,A_\mu)+\int\mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\partial_\mu f\,J^\mu(\varphi_c,A_\mu)+O(f^2)
+\end{align*}
+其中 $J^\mu$ 是流
+\begin{equation*}
+J^\mu(\varphi,A_\mu)\equiv-\partial_{A_\mu}L(\varphi,A_\mu)
+\end{equation*}
+我们看到，如果 $\varphi(\pmb{x},t)$ 满足经典运动方程，则对任意 $f$ 都有 $\int\mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\partial_\mu f\,J^\mu(\varphi_c,A_\mu)=0$，于是流 $J^\mu(\varphi_c,A_\mu)$ 守恒：
+\begin{equation*}
+\partial_\mu J^\mu(\varphi_c,A_\mu)=\partial_t\rho+\partial_iJ^i=0
+\end{equation*}
+其中 $\rho=J^0$ 是密度，$J^i$ 是流。当然，上述结果对 $A_\mu$ 场为零的情形同样成立，我们有 $\partial_\mu J^\mu(\varphi_c)=0$，这正是中性系统的流守恒。
+
+对我们的玻色子系统，求得守恒流为
+\begin{gather*}
+J^0=\rho=\varphi^*\varphi\\
+J^i=-\frac{\mathrm{i}}{2m}\big[\varphi^*(\partial_i\varphi)-(\partial_i\varphi^*)\varphi\big]+A_i|\varphi|^2
+\end{gather*}
+有意思的是，我们玻色子系统中的流依赖于规范势。
+
+\subsection*{问题 3.7.1}
+
+考虑一个与规范场耦合的格点玻色子系统：
+\begin{equation*}
+L=\mathrm{i}\frac{1}{2}\sum_i\big(\varphi_i^*(\partial_0+\mathrm{i}A_0(i))\varphi_i-\varphi_i(\partial_0-\mathrm{i}A_0(i))\varphi_i^*\big)+\sum_{\langle ij\rangle}\big(t_{ij}\varphi_j^*\varphi_i\,\mathrm{e}^{-\mathrm{i}a_{ij}}+\mathrm{h.c.}\big)
+\end{equation*}
+其中求和遍及所有对 $\langle ij\rangle$，$a_{ij}$ 是规范场 $a_{ij}=\int_i^j\mathrm{d}\pmb{x}\cdot\pmb{A}$。
+\begin{enumerate}
+\item 证明 $L$ 在格点规范变换（lattice gauge transformation）
+\begin{equation*}
+\varphi_i\rightarrow\mathrm{e}^{\mathrm{i}f_i(t)}\varphi_i,\qquad A_0(i)\rightarrow A_0(i)-\partial_0f_i,\qquad a_{ij}\rightarrow a_{ij}-f_j+f_i
+\end{equation*}
+下不变。
+\item 求 $\varphi_i(t)$ 的运动方程。
+\item 计算密度的时间导数，即 $\partial_0\varphi_i^*\varphi_i$。证明可以引入一个定义在链上的流 $J_{ij}$，并恢复格点流守恒关系
+\begin{equation*}
+\partial_0\varphi_i^*\varphi_i+\sum_jJ_{ij}=0
+\end{equation*}
+\item 证明 $J_{ij}$ 可以表示为 $-\partial L/\partial a_{ij}$。
+\end{enumerate}
+
+\subsection{流关联函数与电磁响应}
+
+\begin{keypoints}
+\item 流守恒对流关联施加了约束。许多重要的物理量，如压缩率和电导率（conductivity），都由流关联决定。
+\item 要得到正确的响应，重要的是按正确的次序取 $\pmb{k}\to0$ 与 $\omega\to0$ 这两个极限。
+\end{keypoints}
+
+现在让我们计算系统对外加规范势的响应。我们想看看规范势 $A_\mu$ 能产生多大的流 $J^\mu$。按下式引入 $j^\mu$：
+\begin{equation*}
+j^0=\rho,\qquad j^i=-\frac{\mathrm{i}}{2m}\big[\varphi^*(\partial_i\varphi)-(\partial_i\varphi^*)\varphi\big]
+\end{equation*}
+我们看到拉格朗日量具有形式
+\begin{equation*}
+L(\varphi,A_\mu)=L(\varphi)-A_0j^0-A_ij^i-\frac{1}{2m}(A^i)^2\rho
+\end{equation*}
+利用线性响应理论计算 $\langle j^\mu(\pmb{x},t)\rangle$ 到 $A_\mu$ 的领头阶，我们得到流 $J^\mu\equiv-\partial_{A_\mu}L$：
+\begin{equation*}
+\langle J^\mu(\pmb{x},t)\rangle=\langle j^\mu(\pmb{x},t)\rangle+(1-\delta^{\mu0})A^\mu\rho=\int\mathrm{d}^d\pmb{x}\,\mathrm{d}t\,\Pi^{\mu\nu}(\pmb{x},t;\pmb{x}',t')A_\nu(\pmb{x}',t')
+\end{equation*}
+其中响应函数为
+\begin{align*}
+\Pi^{00}(\pmb{x},t;\pmb{x}',t')&=-\mathrm{i}\Theta(t-t')\,\big\langle[\rho(\pmb{x},t),\rho(\pmb{x}',t')]\big\rangle\\
+\Pi^{0i}(\pmb{x},t;\pmb{x}',t')&=-\mathrm{i}\Theta(t-t')\,\big\langle[\rho(\pmb{x},t),j^i(\pmb{x}',t')]\big\rangle\\
+\Pi^{i0}(\pmb{x},t;\pmb{x}',t')&=-\mathrm{i}\Theta(t-t')\,\big\langle[j^i(\pmb{x},t),\rho(\pmb{x}',t')]\big\rangle\\
+\Pi^{ij}(\pmb{x},t;\pmb{x}',t')&=-\mathrm{i}\Theta(t-t')\,\big\langle[j^i(\pmb{x},t),j^j(\pmb{x}',t')]\big\rangle+\delta^{ij}\delta(\pmb{x}-\pmb{x}')\delta(t-t')\frac{\langle\rho\rangle}{m}
+\end{align*}
+由于流依赖于 $A_i$，我们多出一个接触项（contact term）$\delta^{ij}\delta(\pmb{x}-\pmb{x}')\delta(t-t')\frac{\langle\rho\rangle}{m}$。如果我们引入关联函数
+\begin{equation*}
+\pi^{\mu\nu}(\pmb{x},t;\pmb{x}',t')=-\mathrm{i}\Theta(t-t')\,\big\langle[j^\mu(\pmb{x},t),j^\nu(\pmb{x}',t')]\big\rangle
+\end{equation*}
+则
+\begin{equation*}
+\Pi^{\mu\nu}=\pi^{\mu\nu}+\delta^{\mu\nu}(1-\delta^{0\mu})(1-\delta^{0\nu})\delta(\pmb{x}-\pmb{x}')\delta(t-t')\langle\rho\rangle \tag{3.7.6}
+\end{equation*}
+上述结果对零温和有限温都成立。我们注意到
+\begin{equation*}
+\big(\Pi^{\mu\nu}(\pmb{x},t;\pmb{x}',t')\big)^*=\Pi^{\nu\mu}(\pmb{x}',t';\pmb{x},t)
+\end{equation*}
+或者，在 $\omega$--$\pmb{k}$ 空间中，
+\begin{equation*}
+\big(\Pi^{\mu\nu}_{(k_\lambda)}\big)^*=\Pi^{\nu\mu}_{(-k_\lambda)}
+\end{equation*}
+其中 $k_0=\omega$。
+
+由于流守恒，$\Pi^{\mu\nu}$ 的各分量并非完全独立。在 $\omega$--$\pmb{k}$ 空间中，我们有
+\begin{equation*}
+k_\mu\Pi^{\mu\nu}_{k_\lambda}=0
+\end{equation*}
+于是，完整的 $\Pi^{\mu\nu}$ 可以由 $\Pi^{ij}$ 按如下方式确定：
+\begin{align*}
+\Pi^{0i}_{(k_\lambda)}&=\big(\Pi^{i0}_{(-k_\lambda)}\big)^\dagger=-\frac{k_j}{\omega}\Pi^{ji}_{(k_\lambda)}\\
+\Pi^{00}_{(k_\lambda)}&=-\frac{k_j}{\omega}\Pi^{0j}_{(k_\lambda)}=\frac{k_ik_j}{\omega^2}\Pi^{ij}_{(k_\lambda)} \tag{3.7.7}
+\end{align*}
+对于转动不变的系统，我们还可以把 $\Pi^{ij}$ 和 $\pi^{ij}$ 进一步分解成一个纵向分量（longitudinal component）$\Pi^{\parallel}_{(k_\lambda)}$ 和一个横向分量（transverse component）$\Pi^{\perp}_{(k_\lambda)}$：
+\begin{align*}
+\Pi^{ij}_{(k_\lambda)}&=\frac{k_ik_j}{\pmb{k}^2}\Pi^{\parallel}_{(k_\lambda)}+\Big(\delta_{ij}-\frac{k_ik_j}{\pmb{k}^2}\Big)\Pi^{\perp}_{(k_\lambda)}\\
+\pi^{ij}_{(k_\lambda)}&=\frac{k_ik_j}{\pmb{k}^2}\pi^{\parallel}_{(k_\lambda)}+\Big(\delta_{ij}-\frac{k_ik_j}{\pmb{k}^2}\Big)\pi^{\perp}_{(k_\lambda)} \tag{3.7.8}
+\end{align*}
+式 (3.7.7) 现在可以写成
+\begin{equation*}
+\Pi^{0i}_{(k_\lambda)}=-k_i\Pi^{\parallel}_{(k_\lambda)},\qquad \Pi^{00}_{(k_\lambda)}=\frac{\pmb{k}^2}{\omega^2}\Pi^{\parallel}_{(k_\lambda)}
+\end{equation*}
+而式 (3.7.6) 可以写成
+\begin{equation*}
+\Pi^{\parallel}_{(k_\lambda)}=\pi^{\parallel}_{(k_\lambda)}+\frac{\langle\rho\rangle}{m},\qquad \Pi^{\perp}_{(k_\lambda)}=\pi^{\perp}_{(k_\lambda)}+\frac{\langle\rho\rangle}{m}, \tag{3.7.9}
+\end{equation*}
+响应函数 $\Pi^{\mu\nu}$ 与许多重要的物理量相关。让我们以金属为例。在 $\omega\to0$ 极限下，我们有
+\begin{equation*}
+\delta\rho(\pmb{k})=\Pi^{00}_{(0,\pmb{k})}A_0(\pmb{k})
+\end{equation*}
+注意 $A_0(\pmb{x})$ 正是外加势，而 $-\Pi^{00}_{(0,\pmb{k})}$ 就是（波矢 $\pmb{k}$ 处的）压缩率：
+\begin{equation*}
+\chi(\pmb{k})=-\Pi^{00}_{(0,\pmb{k})}
+\end{equation*}
+通常，我们预期 $\Pi^{00}_{(0,\pmb{k})}$ 对所有 $\pmb{k}$ 都有限。于是，在小 $\omega$ 以及 $\omega\ll\pmb{k}$ 的极限下（注意这里我们先取 $\omega\to0$），我们有
+\begin{equation*}
+\Pi^{\parallel}_{(k_\lambda)}=-\chi(\pmb{k})\frac{\omega^2}{\pmb{k}^2}
+\end{equation*}
+由式 (3.7.9) 可见，在 $\omega\to0$ 极限下，$\pi^{\parallel}_{(k_\lambda)}$ 必须恰好抵消 $\frac{\langle\rho\rangle}{m}$，才能使 $\Pi^{\parallel}_{(k_\lambda)}$ 像 $\omega^2$ 那样趋于零。
+
+现在让 $\pmb{k}$ 先趋于零。在 $|\pmb{k}|\ll\omega$ 极限下，$-\mathrm{i}\omega A_{i,(\omega,\pmb{k})}$ 是一个近乎均匀的电场，预期它会产生一个方向由 $A_i$ 给出、波矢由 $\pmb{k}$ 给出的流：
+\begin{equation*}
+J^i(\omega)=\lim_{\pmb{k}\to0}\frac{\Pi^{ij}}{-\mathrm{i}\omega}(-\mathrm{i}\omega)A_{j,(\omega,\pmb{k})}
+\end{equation*}
+由式 (3.7.8) 我们看到，只有当 $\omega\gg|\pmb{k}|$ 极限下 $\Pi^{\parallel}_{(k_\lambda)}=\Pi^{\perp}_{(k_\lambda)}$ 时，$\pmb{k}\to0$ 的极限才存在。假设情形正是如此，那么我们得到电导率
+\begin{equation*}
+\sigma(\omega)=\frac{\Pi^{\parallel}_{(\omega,0)}}{-\mathrm{i}\omega}=\frac{\Pi^{\perp}_{(\omega,0)}}{-\mathrm{i}\omega}
+\end{equation*}
+电导率的实部
+\begin{equation*}
+\mathrm{Re}\,\sigma(\omega)=-\mathrm{Im}\frac{\Pi^{\parallel}_{(\omega,0)}}{\omega}=-\mathrm{Im}\frac{\Pi^{\perp}_{(\omega,0)}}{\omega}
+\end{equation*}
+对应于耗散。电导率的虚部给出介电常数
+\begin{equation*}
+\epsilon(\omega)=-\frac{\mathrm{Im}\,\sigma(\omega)}{\omega}=\mathrm{Re}\frac{\Pi^{\parallel}_{(\omega,0)}}{\omega^2}=\mathrm{Re}\frac{\Pi^{\perp}_{(\omega,0)}}{\omega^2}
+\end{equation*}
+于是，在 $\omega\gg|\pmb{k}|$ 极限下，我们可以写成
+\begin{equation*}
+\Pi^{\parallel}_{(\omega,0)}=\Pi^{\perp}_{(\omega,0)}=\mathrm{i}\omega\,\mathrm{Re}\,\sigma(\omega)+\omega^2\epsilon(\omega)
+\end{equation*}
+我们注意到，极化矢量 $\pmb{P}$ 满足 $\partial_{\pmb{x}}\cdot\pmb{P}=-\delta\rho$，或者（假定 $A_i=0$）
+\begin{equation*}
+\mathrm{i}k_iP^i=-\delta\rho=-\Pi^{00}A_0=-\frac{\pmb{k}^2}{\omega^2}\Pi^{\parallel}_{(k_\lambda)}A_0=\mathrm{i}\frac{\Pi^{\parallel}_{(k_\lambda)}}{\omega^2}k_iE_i
+\end{equation*}
+因此
+\begin{equation*}
+P^i=\frac{\Pi^{\parallel}_{(k_\lambda)}}{\omega^2}E_i
+\end{equation*}
+我们又看到 $\Pi^{\parallel}_{(k_\lambda)}/\omega^2$ 是介电常数。
+
+我们已经考虑了 $\Pi^{\parallel}$ 和 $\Pi^{\perp}$ 的 $\omega\gg|\pmb{k}|$ 极限，以及 $\Pi^{\parallel}$ 的 $\omega\ll|\pmb{k}|$ 极限。那么 $\Pi^{\perp}$ 的 $\omega\ll|\pmb{k}|$ 极限是什么呢？一个自然的猜测是它对应于磁化率。磁矩密度 $\pmb{M}$ 满足 $\partial_{\pmb{x}}\times\pmb{M}=-\pmb{j}$。于是（假定 $A_0=0$），我们有
+\begin{align*}
+\mathrm{i}\epsilon^{ijk}k_jM_k&=-j^i=-\Pi^{ij}A_j=-(\delta^{ij}\pmb{k}^2-k^ik^j)A_j\frac{\Pi^{\perp}_{(k_\lambda)}}{\pmb{k}^2}\\
+&=+\epsilon^{ij'k'}k_{j'}\epsilon^{k'i'j}k_{i'}A_j\frac{\Pi^{\perp}_{(k_\lambda)}}{\pmb{k}^2}=-\mathrm{i}\epsilon^{ijk}k_jB_k\frac{\Pi^{\perp}_{(k_\lambda)}}{\pmb{k}^2}
+\end{align*}
+因此
+\begin{equation*}
+M_i=-\frac{\Pi^{\perp}_{(k_\lambda)}}{k^2}B_i
+\end{equation*}
+而 $-\Pi^{\perp}_{(k_\lambda)}/k^2$ 就是磁化率。
+
+现在让我们计算玻色子超流体的 $\Pi^{\mu\nu}$。我们从带规范场 (3.7.3) 的玻色子拉格朗日量出发，积掉振幅涨落，得到一个带规范场的 XY 模型。保留到 $(\partial_\mu\theta,A_\mu)$ 的二次阶，我们有
+\begin{equation*}
+L=\frac{\chi}{2}\big((\partial_0\theta+A_0)^2-v^2(\partial_i\theta+A_i)^2\big) \tag{3.7.10}
+\end{equation*}
+由此我们看到
+\begin{equation*}
+j^0=-\chi\partial_0\theta,\qquad j^i=\chi v^2\partial_i\theta
+\end{equation*}
+因此
+\begin{align*}
+\pi^{00}&=\chi^2(-\mathrm{i}\omega)(\mathrm{i}\omega)\big\langle\theta_{(\omega,\pmb{k})}\theta_{(-\omega,-\pmb{k})}\big\rangle=\chi\frac{\omega^2}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}\\
+\pi^{0i}&=\pi^{i0}=\chi^2(-\mathrm{i}\omega)(-\mathrm{i}k_i)\big\langle\theta_{(\omega,\pmb{k})}\theta_{(-\omega,-\pmb{k})}\big\rangle=-\chi v^2\frac{\omega k_i}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}\\
+\pi^{ij}&=\chi^2(\mathrm{i}k_i)(-\mathrm{i}k_j)\big\langle\theta_{(\omega,\pmb{k})}\theta_{(-\omega,-\pmb{k})}\big\rangle=\chi v^4\frac{k_ik_j}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}
+\end{align*}
+注意，$\mathrm{i}0^+\mathrm{sgn}(\omega)$ 的选择给出的正是响应函数。总的 $\Pi^{\mu\nu}$ 为
+\begin{align*}
+\Pi^{00}&=\chi\left(\frac{\omega^2}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}-1\right)\\
+\Pi^{0i}&=\Pi^{i0}=-\chi v^2\frac{\omega k_i}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}\\
+\Pi^{ij}&=\chi v^2\left(\delta_{ij}+v^2\frac{k_ik_j}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}\right)
+\end{align*}
+而
+\begin{gather*}
+\Pi^{\parallel}=\chi v^2\left(\frac{v^2k^2}{\omega^2-v^2\pmb{k}^2+\mathrm{i}0^+\mathrm{sgn}(\omega)}+1\right)\\
+\Pi^{\perp}=\chi v^2
+\end{gather*}
+压缩率 $-\Pi^{00}_{(0,\pmb{k})}$ 有限且等于 $\chi$。磁化率 $-\Pi^{\perp}/c\pmb{k}^2$ 在 $\pmb{k}\to0$ 时发散。电导率的实部
+\begin{equation*}
+\mathrm{Re}\,\sigma(\omega)=-\mathrm{Im}\frac{\Pi^{\parallel}_{(\omega,0)}}{\omega}=\mathrm{Im}\frac{\chi v^2}{\omega+\mathrm{i}0^+}=\pi\frac{\rho}{m}\delta(\omega)
+\end{equation*}
+在有限频率处为零。
+
+如果我们选取库仑规范（Coulomb gauge）$\partial_{\pmb{x}}\cdot\pmb{A}=0$，那么由 $J^i=\Pi^{ij}A_j$，我们发现流与\emph{规范势}之间的一个简单关系：
+\begin{equation*}
+\pmb{J}=\Pi^{\perp}\pmb{A}=\frac{\rho}{m}\pmb{A} \tag{3.7.11}
+\end{equation*}
+这就是著名的伦敦方程（London equation）。超导体的许多新奇性质——如持续电流（persistent current）、迈斯纳效应等——都由它负责。
+
+\subsection{超流性与有限温度效应}
+
+\begin{keypoints}
+\item 激发会削弱超流，但无法消灭它。这导致了超流性。
+\item 超流只能靠涡旋的隧穿来消灭。
+\item 超流的临界速度。
+\end{keypoints}
+
+最后，我们准备讨论相互作用玻色子对称性破缺相的超流性质（Landau, 1941）。首先考虑自由空间中的玻色子系统。该玻色子系统在伽利略变换（Galileo transformation）下不变。让我们假定对称性破缺基态之上的激发具有谱 $\epsilon(\pmb{k})$，并忽略激发之间的相互作用。后一假定在低温、激发稀薄时成立。
+
+考察（静止的）基态之上的一个单激发 $(\epsilon,\pmb{k})$。系统的总能量与总动量分别为 $E_{\mathrm{ground}}+\epsilon$ 与 $\pmb{P}=\pmb{k}$。如果我们以速度 $\pmb{v}$ 推动（boost）系统，则系统的总能量与总动量将分别变为 $E=E_{\mathrm{ground}}+\epsilon+\frac{1}{2}Nm\pmb{v}^2+\pmb{v}\cdot\pmb{k}$ 与 $\pmb{P}=\pmb{k}+Nm\pmb{v}$。与被推动基态的能量和动量（即 $E=E_{\mathrm{ground}}+\frac{1}{2}Nm\pmb{v}^2$ 与 $\pmb{P}=Nm\pmb{v}$）相比，我们看到被推动基态之上的激发具有新谱
+\begin{equation*}
+\epsilon_{\pmb{v}}(\pmb{k})=\epsilon(\pmb{k})+\pmb{v}\cdot\pmb{k}
+\end{equation*}
+在被推动的超流体中，动量为 $\pmb{k}$ 的激发的占据数由 $n_B(\epsilon(\pmb{k}))$ 给出，其中 $n_B(\epsilon)=1/(\mathrm{e}^{\epsilon/T}-1)$。被推动超流体的能量与动量分别可写为
+\begin{gather*}
+\tilde{E}=E_{\mathrm{ground}}+\sum_{\pmb{k}}\epsilon_{\pmb{v}}(\pmb{k})n_B(\epsilon(\pmb{k}))+\frac{1}{2}Nm\pmb{v}^2\\
+\tilde{\pmb{P}}=\sum_{\pmb{k}}\pmb{k}\,n_B(\epsilon(\pmb{k}))+Nm\pmb{v}=Nm\pmb{v}
+\end{gather*}
+在平衡态中，激发的占据数应为 $n_B(\epsilon_{\pmb{v}}(\pmb{k}))$。我们看到，被推动的超流体并不处于平衡态。如果我们让系统通过重新分配激发而弛豫到实验室系中的平衡态，那么能量与动量将分别变为
+\begin{gather*}
+E_{\pmb{v}}=E_{\mathrm{ground}}+\sum_{\pmb{k}}\epsilon_{\pmb{v}}(\pmb{k})n_B(\epsilon_{\pmb{v}}(\pmb{k}))+\frac{1}{2}Nm\pmb{v}^2\\
+\pmb{P}_{\pmb{v}}=\sum_{\pmb{k}}\pmb{k}\,n_B(\epsilon_{\pmb{v}}(\pmb{k}))+Nm\pmb{v}
+\end{gather*}
+对于小的 $\pmb{v}$，上式可重写为\footnote{$\pmb{P}_{\pmb{v}}$ 的结果很容易看出。为得到 $E_{\pmb{v}}$，我们注意到
+\begin{align*}
+E_{\pmb{v}}&=E_{\mathrm{ground}}+\sum_{\pmb{k}}\epsilon(\pmb{k})n_B(\epsilon(\pmb{k}))+\sum_{\pmb{k}}(\pmb{v}\cdot\pmb{k})^2\big[n_B'(\epsilon(\pmb{k}))+\tfrac{1}{2}\epsilon(\pmb{k})n_B''(\epsilon(\pmb{k}))\big]+\frac{1}{2}Nm\pmb{v}^2\\
+&=E_0-\frac{1}{2}\mathcal{V}m\rho_n\pmb{v}^2+\frac{1}{2d}\pmb{v}^2\sum_{\pmb{k}}\pmb{k}^2\frac{\mathrm{d}}{\mathrm{d}\epsilon(\pmb{k})}\big[\epsilon(\pmb{k})n_B'(\epsilon(\pmb{k}))\big]+\frac{1}{2}Nm\pmb{v}^2
+\end{align*}}
+\begin{align*}
+E_{\pmb{v}}&=E_0+\frac{1}{2}\big[Nm-\mathcal{V}(\rho_nm+\delta\rho_nm)\big]\pmb{v}^2\\
+\pmb{P}_{\pmb{v}}&=(Nm-\mathcal{V}\rho_nm)\pmb{v} \tag{3.7.12}
+\end{align*}
+其中
+\begin{equation*}
+\rho_n=-\frac{1}{md}\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\,\pmb{k}^2n_B'(\epsilon(\pmb{k})) \tag{3.7.13}
+\end{equation*}
+\begin{equation*}
+\delta\rho_n=-\frac{1}{md}\int\frac{\mathrm{d}^d\pmb{k}}{(2\pi)^d}\,\pmb{k}^2\frac{\mathrm{d}}{\mathrm{d}\epsilon(\pmb{k})}\big(\epsilon(\pmb{k})n_B'(\epsilon(\pmb{k}))\big) \tag{3.7.14}
+\end{equation*}
+如果对小 $\pmb{k}$ 有 $\epsilon(\pmb{k})\propto|\pmb{k}|$，则对小 $T$ 有 $\rho_n\propto T^{d+1}$。
+
+这里我们看到对称性破缺相的一个惊人性质：在我们让激发弛豫到平衡态之后，系统的总动量 $\pmb{P}_{\pmb{v}}$ 并不弛豫到零。平衡态中玻色子永远运动下去。正是这一性质让对称性破缺相得到了“超流体”这个名字。为了更好地理解这一现象，我们回顾一下：在对称性破缺相中，玻色子场可以写成
+\begin{equation*}
+\varphi=\varphi_0+\delta\varphi
+\end{equation*}
+其中 $\varphi_0$ 描写凝聚体，$\delta\varphi$ 描写凝聚体之上的激发。设玻色子处于线度为 $L$、带周期边界条件的盒子中。当我们推动系统时，我们把玻色子边界条件从 $\varphi(L)=\varphi(0)$ 扭转到 $\varphi(L)=\mathrm{e}^{\mathrm{i}mvL}\varphi(0)$。于是，在这一推动下，$\varphi$ 变为 $\mathrm{e}^{\mathrm{i}mvx}\varphi$。在被推动的超流体中，凝聚体被扭转：$\varphi_0\to\mathrm{e}^{\mathrm{i}mvx}\varphi_0$（见图 3.15(a)）。由于周期边界条件，$mvL$ 按 $2\pi\times$ 整数量子化。现在很清楚：由于 $|\varphi_0|$ 固定，我们不可能在不撕裂凝聚体的情况下解除扭转。解除凝聚体的扭转需要把凝聚体 $\varphi_0$ 压到零，这要耗费巨大的能量。更确切地说，解除扭转需要产生一个涡旋，并让这个涡旋一路移动、横穿整个样品（见图 3.15(b)）。因此，解除凝聚体的扭转是一个具有有限能量势垒的隧穿过程。按照这幅图像，我们看到：如果忽略隧穿过程，运动的超流体尽管能量较高，也不能弛豫回基态。我们还学到，超流体并不能真正地永远流动。隧穿会使流动弛豫到零，不过这可能需要非常非常长的时间。超流动性的关键在于无穷大系统中涡旋的无穷大能量代价，而这一无穷大的能量代价来自式 (3.4.2) 中有限的相位劲度（phase rigidity）$\eta\neq0$。
+
+然而，对激发来说，情况就大不相同了。这里 $\delta\varphi$ 在零附近涨落，可以扭转并轻易地改变自己的相位。因此，涨落（即激发）能够通过其与环境的相互作用（这种相互作用可以非常弱）轻易地弛豫到平衡态。
+
+上述讨论暗示了一幅两流体（two-fluid）图像。玻色子超流体包含两个组分：与凝聚体相联系的超流组分，以及与激发相联系的正常流体组分。当玻色子超流体流过管道时，只有超流组分能够无摩擦地流过。摩擦太大时，正常流体组分无法流动。（在稳态下管道内没有压差，正常流体组分便完全无法流动。）当然，超流的速度不能太大。如果 $\pmb{v}$ 太大，实验室系中的激发能量 $\epsilon_{\pmb{v}}(\pmb{k})$ 可能变成负值，这意味着不稳定以及无摩擦流动的终结。因此，临界速度为（见图 3.1）
+\begin{equation*}
+v_c=\mathrm{Min}\big(\epsilon(\pmb{k})/|\pmb{k}|\big)
+\end{equation*}
+
+% ==================================================================
+% 新增术语（ch3_f 新增，供术语表追加）：
+%   minimal coupling 最小耦合；contact term 接触项；
+%   conductivity 电导率；longitudinal/transverse component 纵向分量 / 横向分量；
+%   Coulomb gauge 库仑规范；polarization vector 极化矢量；
+%   magnetic moment density 磁矩密度；London equation 伦敦方程；
+%   Meissner effect 迈斯纳效应；persistent current 持续电流；
+%   lattice gauge transformation 格点规范变换；
+%   Galileo transformation / Galileo invariance 伽利略变换 / 伽利略不变性；
+%   boost 推动；two-fluid picture 两流体图像；
+%   superfluid component / normal fluid component 超流组分 / 正常流体组分；
+%   phase rigidity 相位劲度；energy barrier 能量势垒；
+%   laboratory frame 实验室系；field strength 场强
+% ==================================================================
+
+% 说明：本块自书页 134（p149）顶部起。p149 顶部为图 3.15 及一个完整段落，
+% 并非从书页 133 延续来的半句，故不用 %JOIN% 标记。本块为章末块，书页 143
+% 自然收束到第 3 章结尾（下一页 p159 为第 4 章章首），故不用 %--TAIL-- 标记。
+
+% ---- 书页 134 (p149) ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.15.pdf}
+\caption*{图 3.15\quad (a) 凝聚体的相位绕圆环扭转 $n$ 次，代表一个超流流动。(b) 一个涡旋可以把相位扭转从 $n$ 次变为 $n-1$ 次。}
+\end{figure}
+
+有趣的是，自由玻色子的 $v_{c}=0$，即使在零温下也是如此。因此，尽管零温下的自由玻色子具有长程序，但由于 $v_{c}=0$，它们并不形成超流体。
+
+让我们更仔细地考察二流体图像（two-fluid picture）。注意 $m\pmb{v}$ 决定凝聚体的扭转。因此，超流分量中的每个玻色子都携带动量 $m\pmb{v}$，而 $\pmb{P}_{\pmb{v}}/m\pmb{v}$ 给出超流分量中玻色子的数目。我们求得超流密度（superfluid density）为
+\begin{equation*}
+\rho_{s} = \frac{\pmb{P}_{\pmb{v}}}{\mathcal{V}m\pmb{v}} = \rho - \rho_{n}
+\end{equation*}
+而 $\rho_{n}$ 可以看作正常流体（normal fluid）的密度。由式 (3.7.13) 我们看到，零温下 $\rho_{s}=\rho$，尽管 $k=0$ 态中玻色子的数目小于 $N$。
+
+如果玻色子带电并与电磁规范场 $A_{\mu}$ 耦合，那么具有零规范势的扭转凝聚体（$\pmb{A}=0$，$\mathrm{e}^{\mathrm{i}m\pmb{v}\cdot\pmb{x}}\varphi_{0}$）与具有非零规范势的无扭转凝聚体（$\pmb{A}=m\pmb{v}$，$\varphi_{0}$）是规范等价的。在这种情形下，式 (3.7.12) 可以解释为：通过打开一个常规范势 $\pmb{A}=m\pmb{v}$ 来产生有限动量 $\pmb{P}_{\pmb{v}}$。由于伽利略不变性（Galileo invariance），动量密度 $\pmb{P}_{\pmb{v}}/\mathcal{V}$ 正比于流密度 $\pmb{j}=\pmb{P}_{\pmb{v}}/m\mathcal{V}$。于是式 (3.7.12) 可以改写为
+\begin{equation*}
+\pmb{j} = \frac{\rho_{s}}{m}\pmb{A}
+\end{equation*}
+这正是伦敦方程（London equation）。我们看到，有限温度下伦敦方程中的系数由 $\rho_{s}/m$ 给出，而式 (3.7.13) 使我们能够计算它对温度的依赖关系。
+
+% ---- 书页 135 (p150) ----
+\subsection*{问题 3.7.2}
+非伽利略不变超流体。尽管上面的讨论集中于伽利略不变的超流体，但所得到的大多数结果同样适用于非伽利略不变的超流体。
+
+\begin{enumerate}
+\item 对具有常规范势 $\pmb{A}$ 的玻色子系统导出 XY 模型，假设凝聚体 $\varphi=$ 常数。求出低能模式的色散 $\epsilon_{\pmb{A}}(\pmb{k})$，并与上面得到的 $\epsilon_{\pmb{v}}(\pmb{k})$ 比较。
+\item 重复上述计算，但现在在玻色子拉格朗日量中附加一项 $\frac{c}{2}|\dot{\varphi}|^{2}$，以破坏伽利略不变性。
+\item 导出上述非伽利略不变系统的伦敦方程。（提示：你可以先导出零温下的伦敦方程，然后考虑有限 $T$ 下的激发如何修正流。注意动量为 $\pmb{k}$ 的激发对流的贡献由 $\frac{\partial}{\partial\pmb{A}}\epsilon_{\pmb{A}}(\pmb{k})$ 给出。）
+\end{enumerate}
+
+\subsection{隧穿与约瑟夫森效应}
+
+我们已经看到，超流相中玻色子的格林函数在不同的维度下颇为不同。本节我们将讨论两个超流体或超导体之间的隧穿（tunneling）。我们将看到，隧穿实验使我们能够测量玻色子格林函数的性质。
+
+考虑由 $H_{R}$ 与 $H_{L}$ 描写、并通过一个隧穿算符 $I$ 耦合起来的两个玻色子系统，使得
+\begin{equation*}
+H = H_{R} + H_{L} + \Gamma I + \Gamma I^{\dagger}
+\end{equation*}
+其中
+\begin{equation*}
+I = \varphi_{L}\varphi_{R}^{\dagger}
+\end{equation*}
+$\Gamma$ 描写隧穿振幅。在存在电磁规范场时，总哈密顿量需要改写为
+\begin{equation*}
+H = H_{R} + H_{L} + \Gamma\mathrm{e}^{-\mathrm{i}a}I + \Gamma\mathrm{e}^{+\mathrm{i}a}I^{\dagger}
+\end{equation*}
+其中 $a=\int_{L}^{R}\pmb{A}\,\mathrm{d}\pmb{x}$ 是矢量势沿隧穿结的积分。隧穿流算符由下式给出
+\begin{equation*}
+j_{T} = \frac{\partial}{\partial a}H = -\mathrm{i}\Gamma\left(I\mathrm{e}^{-\mathrm{i}a} - I^{\dagger}\mathrm{e}^{+\mathrm{i}a}\right)
+\end{equation*}
+若 $\langle j_{T}\rangle>0$，则电流从 L 流向 R。在 $A_{0}=0$ 规范中，两个系统之间的电压差 $V=V_{L}-V_{R}$ 可以通过令
+\begin{equation*}
+a(t) = \int_{L}^{R}\pmb{A}\,\mathrm{d}\pmb{x} = -Vt
+\end{equation*}
+而包括进来。$A_{0}=0$ 规范的优点是，接通电压并不影响 $H_{R,L}$。
+
+% ---- 书页 136 (p151) ----
+有了上述设置，我们就可以利用线性响应理论（见式 (2.2.3)）写出隧穿流的如下表达式：
+\begin{align*}
+\langle j_{T}\rangle(t) ={}& -\mathrm{i}\Gamma\int^{t}\mathrm{d}t'\ \Big\langle\big[j_{T}(t), \big(\mathrm{e}^{-\mathrm{i}a(t')}I(t') + \text{h.c.}\big)\big]\Big\rangle + \langle j_{T}\rangle_{0}(t)\\
+={}& -\Gamma^{2}\int^{t}\mathrm{d}t'\ \mathrm{e}^{-\mathrm{i}a(t)}\Big(\mathrm{e}^{\mathrm{i}a(t')}\big\langle[I(t), I^{\dagger}(t')]\big\rangle + \mathrm{e}^{-\mathrm{i}a(t')}\big\langle[I(t), I(t')]\big\rangle + \text{h.c.}\Big)\\
+& + \langle j_{T}\rangle_{0}(t)
+\end{align*}
+其中 $\langle j_{T}\rangle_{0}(t)$ 是在没有隧穿项时的平均。
+
+如果两个玻色子系统都处于超流相或超导相，那么主要贡献来自 $\langle j_{T}\rangle_{0}(t)$：
+\begin{equation*}
+\langle j_{T}\rangle(t) = 2\Gamma|\varphi_{R}\varphi_{L}|\sin(\theta - a(t))
+\end{equation*}
+其中 $\theta$ 是两个凝聚体 $\varphi_{R}$ 与 $\varphi_{L}$ 之间的相位差。我们看到，即使在零电压 $a(t)=0$ 时，只要 $\theta\neq0$，隧穿流就可以不为零：
+\begin{equation*}
+\langle j_{T}\rangle = I_{c}\sin(\theta), \qquad I_{c} = 2\Gamma|\varphi_{R}\varphi_{L}|
+\end{equation*}
+其中 $I_{c}$ 是最大隧穿流（称为临界隧穿流）。
+
+如果其中一个玻色子系统处于正常相（包括代数衰减相），则 $\langle j_{T}\rangle_{0}(t)=0$ 且 $\langle[I(t), I(t')]\rangle=0$。我们有
+\begin{equation*}
+\langle j_{T}\rangle(t) = -\Gamma^{2}\int^{t}\mathrm{d}t'\left(\mathrm{e}^{-\mathrm{i}a(t)+\mathrm{i}a(t')}\big\langle[I(t), I^{\dagger}(t')]\big\rangle + \text{h.c.}\right) \tag{3.7.15}
+\end{equation*}
+由于 $\big\langle[I(t), I^{\dagger}(t')]\big\rangle$ 是没有隧穿时的关联，它可以表示成结两侧格林函数的乘积。例如，
+\begin{equation*}
+\big\langle I(t)I^{\dagger}(t')\big\rangle = \big\langle\varphi_{L}(t)\varphi_{L}^{\dagger}(t')\big\rangle\big\langle\varphi_{R}^{\dagger}(t)\varphi_{R}(t')\big\rangle
+\end{equation*}
+
+在 $1+1$ 维中，编时格林函数具有如下的代数衰减：
+\begin{equation*}
+\big\langle\varphi_{L,R}(t)\varphi_{L,R}^{\dagger}(t')\big\rangle \sim \mathrm{e}^{-\mathrm{i}\eta_{L,R}\pi/2}\,|t-t'|^{-\eta_{L,R}}.
+\end{equation*}
+
+% ---- 书页 137 (p152) ----
+我们发现隧穿流具有如下形式\footnote{我们用到了如下事实
+\begin{gather*}
+\big\langle\varphi_{L,R}(t)\varphi_{L,R}^{\dagger}(t')\big\rangle = \big\langle\varphi_{L,R}^{\dagger}(t)\varphi_{L,R}(t')\big\rangle,\\
+\big\langle\varphi_{L,R}^{\dagger}(t')\varphi_{L,R}(t)\big\rangle = \big\langle\varphi_{L,R}^{\dagger}(t)\varphi_{L,R}(t')\big\rangle^{*}
+\end{gather*}
+来证明
+\begin{align*}
+\big\langle[I(t), I^{\dagger}(t')]\big\rangle ={}& \big\langle\varphi_{R}^{\dagger}(t)\varphi_{R}(t')\big\rangle\big\langle\varphi_{L}(t)\varphi_{L}^{\dagger}(t')\big\rangle - \big\langle\varphi_{R}(t')\varphi_{R}^{\dagger}(t)\big\rangle\big\langle\varphi_{L}^{\dagger}(t')\varphi_{L}(t)\big\rangle\\
+={}& \mathrm{e}^{-\mathrm{i}(\eta_{R}+\eta_{L})\pi/2}\left(\frac{l}{v|t-t'|}\right)^{\eta_{R}+\eta_{L}} - \text{h.c.}\\
+={}& -2\mathrm{i}\sin\left(\frac{(\eta_{R}+\eta_{L})\pi}{2}\right)\left(\frac{l}{v|t-t'|}\right)^{\eta_{R}+\eta_{L}}
+\end{align*}}
+\begin{align*}
+\langle j_{T}\rangle ={}& 2\sin\left(\frac{(\eta_{R}+\eta_{L})\pi}{2}\right)\left(\frac{l}{v}\right)^{\eta_{R}+\eta_{L}}\\
+&\times \Gamma^{2}\int^{t}\mathrm{d}t'\ \left(\mathrm{i}\,\mathrm{e}^{\mathrm{i}V(t-t')}(t-t')^{-\eta_{R}-\eta_{L}}\frac{1}{|t-t'|^{\eta_{R}+\eta_{L}}} + \text{h.c.}\right)
+\end{align*}
+它导致一条非线性的 $I$--$V$ 曲线\footnote{我们用到了如下事实
+\begin{align*}
+\int_{-\infty}^{0}\mathrm{d}t\ \mathrm{e}^{\mathrm{i}Vt}|t|^{-a} ={}& \Big|_{t\to-\mathrm{i}\tau\,\mathrm{sgn}(V)}\ -\mathrm{i}\,\mathrm{sgn}(V)\,\mathrm{e}^{\mathrm{i}a\pi\,\mathrm{sgn}(V)/2}\int_{0}^{+\infty}\mathrm{d}\tau\ \mathrm{e}^{-|V|\tau}\tau^{-a}\\
+={}& -\mathrm{i}\,\mathrm{sgn}(V)\,\mathrm{e}^{\mathrm{i}a\pi\,\mathrm{sgn}(V)/2}\,|V|^{a-1}\Gamma(1-a)
+\end{align*}
+以及 $\Gamma(a)\Gamma(1-a) = \frac{\pi}{\sin(\pi a)}$。}
+\begin{equation*}
+\langle j_{T}\rangle = 2\left(\frac{l}{v}\right)^{\eta_{R}+\eta_{L}}\Gamma^{2}\frac{\pi}{\Gamma(\eta_{R}+\eta_{L})}\,|V|^{\eta_{R}+\eta_{L}-1}\,\mathrm{sgn}(V)
+\end{equation*}
+我们看到，代数衰减的指数 $\eta_{R}+\eta_{L}$ 可以在隧穿实验中测量。
+
+\subsection*{问题 3.7.3}
+求有限温度下隧穿 $I$--$V$ 曲线的表达式，并证明 $V=0$ 处的微分电导具有温度依赖关系 $\mathrm{d}I/\mathrm{d}V\propto T^{\eta_{R}+\eta_{L}-2}$。
+
+\subsection{Anderson--Higgs 机制}
+\begin{keypoints}
+\item Anderson--Higgs 机制把无能隙的 Nambu--Goldstone 模与无能隙的规范模结合成一个具有有限能隙的模。
+\end{keypoints}
+
+在上面的讨论中，我们把电磁规范场 $A_{\mu}$ 当作一个背景场（background field），它是固定的，不随电荷
+
+% ---- 书页 138 (p153) ----
+与流的变化而响应。本节中，我们将把 $A_{\mu}$ 当作一个具有自身涨落的动力学场来处理。
+
+玻色子与规范场的量子理论可以通过路径积分来定义
+\begin{equation*}
+Z = \int\mathcal{D}\varphi\,\mathcal{D}A_{\mu}\ \mathrm{e}^{\mathrm{i}\int \mathrm{d}^{d}\pmb{x}\,\mathrm{d}t\, L(\varphi,A_{\mu}) + \frac{1}{8\pi e^{2}}(\pmb{E}^{2}-\pmb{B}^{2})}
+\end{equation*}
+其中我们已令光速 $c=1$。这里 $L(\varphi,A_{\mu})$ 是式 (3.7.3) 给出的加了规范场的玻色子拉格朗日量。本节我们只考虑由
+\begin{equation*}
+L = L(\varphi,A_{\mu}) + \frac{1}{8\pi e^{2}}(\pmb{E}^{2}-\pmb{B}^{2}) \tag{3.7.16}
+\end{equation*}
+描写的经典理论。量子规范理论将在第 6 章讨论。
+
+由于规范不变性 (3.7.4)，如果 $(\varphi(\pmb{x},t), A_{\mu}(\pmb{x},t))$ 是运动方程的一个解，那么规范变换后的场 $(\tilde{\varphi}(\pmb{x},t), \tilde{A}_{\mu}(\pmb{x},t))$ 也满足运动方程。在规范理论中，我们不把 $(\varphi(\pmb{x},t), A_{\mu}(\pmb{x},t))$ 与 $(\tilde{\varphi}(\pmb{x},t), \tilde{A}_{\mu}(\pmb{x},t))$ 视为两个不同的运动，而是把它们视为同一个运动。换言之，场 $(\varphi(\pmb{x},t), A_{\mu}(\pmb{x},t))$ 是物理运动的多对一的标记。两组规范等价的场 $(\varphi(\pmb{x},t), A_{\mu}(\pmb{x},t))$ 与 $(\tilde{\varphi}(\pmb{x},t), \tilde{A}_{\mu}(\pmb{x},t))$ 是描写同一运动的两个标记。
+
+在对称性破缺相中，我们有 $|\varphi(\pmb{x},t)|\neq0$。我们可以通过一个规范变换使 $\varphi(\pmb{x},t)$ 成为实数，即 $\varphi(\pmb{x},t)=|\varphi(\pmb{x},t)|=\phi(\pmb{x},t)$。这一手续称为固定规范（fixing the gauge）或选取规范（choosing the gauge）。固定规范之后，不同的 $(\phi, A_{\mu})$ 对将描写物理上不同的运动。在 $\varphi(\pmb{x},t)$ 取实值的规范中，我们有
+\begin{equation*}
+L = -A_{0}\phi^{2} - \frac{1}{2m}(\partial_{i}\phi)^{2} - \frac{\phi^{2}}{2m}(A_{i})^{2} - V(\phi) + \frac{1}{8\pi e^{2}}(\pmb{E}^{2}-\pmb{B}^{2})
+\end{equation*}
+把 $\phi=\varphi_{0}+\delta\phi$ 的小涨落积掉之后，我们得到下列低能有效理论：
+\begin{equation*}
+L_{\mathrm{eff}} = \frac{1}{2V_{0}}(A_{0})^{2} - \frac{\rho}{2m}(A_{i})^{2} + \frac{1}{8\pi e^{2}}(\pmb{E}^{2}-\pmb{B}^{2}) \tag{3.7.17}
+\end{equation*}
+上式也可以从加了规范场的 XY 模型 (3.7.10) 出发、令 $\theta=0$ 而得到。注意到
+\begin{equation*}
+\frac{1}{8\pi e^{2}}\pmb{E}^{2} = \frac{1}{8\pi e^{2}}(\partial_{0}A_{i})^{2} + \frac{1}{8\pi e^{2}}(\partial_{i}A_{0})^{2} - \frac{1}{4\pi e^{2}}\partial_{i}A_{0}\partial_{0}A_{i}
+\end{equation*}
+而 $A_{0}$ 不含时间导数项。因此 $A_{0}$ 不是动力学变量，我们把它积掉，得到
+\begin{equation*}
+L_{\mathrm{eff}} = \partial_{0}A_{j}\left(\frac{1}{8\pi e^{2}}\delta_{ij} + \frac{1}{2}\,\frac{V_{0}}{(4\pi)^{2}e^{4}}\,\partial_{j}\partial_{i}\right)\partial_{0}A_{i} - \frac{\rho}{2m}A_{i}^{2} - \frac{1}{8\pi e^{2}}\pmb{B}^{2}
+\end{equation*}
+
+% ---- 书页 139 (p154) ----
+引入横分量与纵分量如下：
+\begin{equation*}
+A_{i} = \hat{k}_{i}A^{\parallel} + \hat{n}_{a}A_{a}^{\perp} \tag{3.7.18}
+\end{equation*}
+其中 $\hat{k}$、$\hat{n}_{1}$ 与 $\hat{n}_{2}$ 构成一组局域正交基，我们便可把 $L_{\mathrm{eff}}$ 改写为
+\begin{align*}
+L_{\mathrm{eff}} ={}& \frac{1}{8\pi e^{2}}\left((\partial_{0}A_{a}^{\perp})^{2} - (\partial_{i}A_{a}^{\perp})^{2}\right) - \frac{\rho}{2m}(A_{a}^{\perp})^{2}\\
+&+ \frac{1}{8\pi e^{2}}\,\partial_{0}A^{\parallel}\left(1 + \frac{V_{0}}{4\pi e^{2}}(\partial_{i})^{2}\right)\partial_{0}A^{\parallel} - \frac{\rho}{2m}(A^{\parallel})^{2}.
+\end{align*}
+由运动方程我们发现，$L_{\mathrm{eff}}$ 所描写的三个模式都具有相同的能隙 $\Delta = e\sqrt{4\pi\rho/m}$。不存在无能隙模式。无能隙规范模式与无能隙 Nambu--Goldstone 模式之间的耦合赋予这些模式有限的能隙。这一现象称为 Anderson--Higgs 机制（Anderson, 1963; Higgs, 1964）。我们还可以把 $\partial_{i}^{2}\partial_{0}^{2}$ 项中的 $\partial_{0}$ 换成 $-\mathrm{i}\Delta$，从而进一步简化 $L_{\mathrm{eff}}$：
+\begin{align*}
+L_{\mathrm{eff}} ={}& \frac{1}{8\pi e^{2}}\left((\partial_{0}A_{a}^{\perp})^{2} - (\partial_{i}A_{a}^{\perp})^{2}\right) - \frac{\rho}{2m}(A_{a}^{\perp})^{2}\\
+&+ \frac{1}{8\pi e^{2}}\left((\partial_{0}A^{\parallel})^{2} - v^{2}(\partial_{i}A^{\parallel})^{2}\right) - \frac{\rho}{2m}(A^{\parallel})^{2} \tag{3.7.19}
+\end{align*}
+（注意 $v^{2}=V_{0}\rho/m$ 是 XY 模型的速度。）从 $L_{\mathrm{eff}}$ 出发，我们可以研究带电超流体的所有经典电磁性质。
+
+\subsection*{问题 3.7.4}
+由拉格朗日量 $L=\frac{1}{8\pi e^{2}}(c^{-1}\pmb{E}^{2}-c\pmb{B}^{2})$ 导出 Maxwell 方程。证明规范涨落是无能隙的，且 $c$ 就是光速。
+
+\section{热势的微扰计算}
+
+\subsection{微扰与费曼规则}
+\begin{keypoints}
+\item 相互作用玻色子系统的费曼图与费曼规则。
+\end{keypoints}
+
+本节我们将讨论如何系统地计算相互作用玻色子系统的热势。为简单起见，我们假设玻色子场是实的。一个复玻色子场可以视为由两个分量组成，其中每个分量都是一个实玻色子场。下面的讨论可以容易地推广到多分量玻色子场。我们从有限温度下的虚时路径积分出发。计算热势的第一步是找到一个经典解 $\varphi_{c}$，并把作用量 $S$ 绕它
+
+% ---- 书页 140 (p155) ----
+展开如下：
+\begin{equation*}
+S(\varphi) = S(\varphi_{c}) + \int_{0}^{\beta}\mathrm{d}x^{\mu}\mathrm{d}y^{\mu}\ \frac{1}{2}\delta\varphi(x^{\mu})\mathcal{K}^{\beta}(x^{\mu}-y^{\mu})\delta\varphi(y^{\mu}) + \int_{0}^{\beta}\mathrm{d}x^{\mu}\,V(\delta\varphi)
+\end{equation*}
+其中 $V(\delta\varphi)=g_{3}\delta\varphi^{3}+g_{4}\delta\varphi^{4}+\dots$。如果我们忽略高阶项 $V(\delta\varphi)$，我们就得到一个自由系统，其热势 $\Omega_{0}$ 可以通过高斯积分算出，如 3.7.5 节所讨论。为计算相互作用系统的热势，我们注意到
+\begin{align*}
+Z = A\int\mathcal{D}\varphi\ \mathrm{e}^{-S} ={}& \mathrm{e}^{-S(\varphi_{c})}\mathrm{e}^{-\beta\Omega_{0}}\frac{\int\mathcal{D}\delta\varphi\ \mathrm{e}^{-S_{0}-\int \mathrm{d}x^{\mu}V(\delta\varphi)}}{\int\mathcal{D}\delta\varphi\ \mathrm{e}^{-S_{0}}}\\
+={}& \mathrm{e}^{-S(\varphi_{c})}\mathrm{e}^{-\beta\Omega_{0}}\sum_{n=0}\frac{(-)^{n}}{n!}\left\langle\left(\int \mathrm{d}x^{\mu}\,V(\delta\varphi)\right)^{n}\right\rangle_{0}
+\end{align*}
+其中 $\langle\dots\rangle_{0}$ 表示权重为 $\mathrm{e}^{-S_{0}}$ 的平均，而 $S_{0}$ 是作用量的二次部分，即 $S_{0}\allowbreak=\int_{0}^{\beta}\mathrm{d}x^{\mu}\mathrm{d}y^{\mu}\allowbreak\ \frac{1}{2}\delta\varphi(x^{\mu})\mathcal{K}^{\beta}(x^{\mu}-y^{\mu})\delta\varphi(y^{\mu})$。如果存在若干个经典解（或驻定路径）$\varphi_{c}^{(a)}$，那么我们应当把它们全部包括进来：
+\begin{equation*}
+Z = \sum_{a}\mathrm{e}^{-S(\varphi_{c}^{(a)})}\mathrm{e}^{-\beta\Omega_{0}^{(a)}}\frac{\int\mathcal{D}\delta\varphi\ \mathrm{e}^{-S_{0}^{(a)}-\int \mathrm{d}x^{\mu}V^{(a)}(\delta\varphi)}}{\int\mathcal{D}\delta\varphi\ \mathrm{e}^{-S_{0}^{(a)}}}
+\end{equation*}
+
+我们看到，为计算总热势，我们需要计算多点关联 $\langle\prod_{i=1}^{n}\delta\varphi(i)\rangle_{0}$。对 $n=2$，它就是玻色子场的格林函数 $\langle\delta\varphi(1)\delta\varphi(2)\rangle_{0}=\mathcal{G}^{\beta}(1,2)$，其中 1 与 2 分别代表第一个与第二个玻色子场的坐标 $x_{1}^{\mu}$ 与 $x_{2}^{\mu}$。作为一个算符，$\mathcal{G}^{\beta}(1,2)$ 是 $\mathcal{K}^{\beta}(1,2)$ 的逆，即 $\int \mathcal{G}^{\beta}(1,2)\mathcal{K}^{\beta}(2,3)=\delta(x_{1}^{\mu}-x_{3}^{\mu})$。这里我们还使用了缩写 $\int f(1)\equiv\int \mathrm{d}^{d}x_{1}^{\mu}f(x_{1}^{\mu})$、$\int f(1)g(1,2)\equiv\int \mathrm{d}^{d}x_{1}^{\mu}\mathrm{d}^{d}x_{2}^{\mu}f(x_{1}^{\mu})g(x_{1}^{\mu},x_{2}^{\mu})$ 等。引入生成泛函
+\begin{equation*}
+Z[j] = \frac{\int\mathcal{D}\delta\varphi\ \mathrm{e}^{-S_{0}-\int \mathrm{d}x^{\mu}j\delta\varphi}}{\int\mathcal{D}\delta\varphi\ \mathrm{e}^{-S_{0}}} = \mathrm{e}^{\frac{1}{2}\int j(1)\mathcal{G}^{\beta}(1,2)j(2)}
+\end{equation*}
+我们发现（对偶数的 $n$）
+\begin{align*}
+\left\langle\prod_{i=1}^{n}\delta\varphi(i)\right\rangle_{0} ={}& \frac{\delta^{n}}{\delta j(1)\dots\delta j(n)}Z[j]\Big|_{j=0}\\
+={}& \frac{1}{2^{n/2}(n/2)!}\ \frac{\delta^{n}}{\delta j(1)\dots\delta j(n)}\left(\int j\mathcal{G}^{\beta}j\right)^{n/2}\\
+={}& \left(\mathcal{G}^{\beta}(1,2)\mathcal{G}^{\beta}(3,4)\dots\mathcal{G}^{\beta}(n-1,n)\right) + \text{所有不同的排列}
+\end{align*}
+上式是 Wick 定理的另一种形式。
+
+% ---- 书页 141 (p156) ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.16.pdf}
+\caption*{图 3.16\quad 两个顶点，代表 $\int g_{4}\delta\varphi^{4}(1)\int g_{4}\delta\varphi^{4}(2)$。}
+\end{figure}
+
+利用 Wick 定理我们发现，例如 $\big\langle\int V(\delta\varphi)\int V(\delta\varphi)\big\rangle_{0}$ 包含许多项：
+\begin{align*}
+\left\langle\int V(\delta\varphi)\int V(\delta\varphi)\right\rangle_{0} ={}& \left\langle\int g_{4}\delta\varphi^{4}(1)\int g_{4}\delta\varphi^{4}(2)\right\rangle_{0} + \dots\\
+={}& \left[4!g_{4}^{2}\int\left(\mathcal{G}^{\beta}(1,2)\right)^{4}\right] + \left[(6^{2}\times 2)g_{4}^{2}\int\left(\mathcal{G}^{\beta}(1,2)\right)^{2}\mathcal{G}^{\beta}(1,1)\mathcal{G}^{\beta}(2,2)\right]\\
+&+ \left[3g_{4}\int\left(\mathcal{G}^{\beta}(1,1)\right)^{2}\right]\left[3g_{4}\int\left(\mathcal{G}^{\beta}(2,2)\right)^{2}\right] + \dots \tag{3.8.1}
+\end{align*}
+积分因子 $4!$、$6^{2}\times2$ 等来自 Wick 展开中恰好具有相同形状的不同项。例如，在一个更简单的情形中，Wick 展开 $\langle ABCD\rangle=\langle AB\rangle\langle CD\rangle+\langle AC\rangle\langle BD\rangle+\langle AD\rangle\langle BC\rangle$ 导致
+\begin{align*}
+\langle AABB\rangle ={}& \langle AA\rangle\langle BB\rangle + \langle AB\rangle\langle AB\rangle + \langle AB\rangle\langle AB\rangle\\
+={}& \langle AA\rangle\langle BB\rangle + 2\langle AB\rangle\langle AB\rangle
+\end{align*}
+更方便的做法是利用费曼图，通过费曼规则直接得到 Wick 展开 (3.8.1) 的结果。我们不在一般的框架中描述费曼图与费曼规则，而是选择用式 (3.8.1) 给出的具体例子来解释它们。我觉得在实战中理解费曼图与费曼规则更容易。我们在这里要描述的费曼规则是实空间（real-space）费曼规则。动量空间费曼规则将在 5.4.2 节中描述。
+
+为计算 $\big\langle\int g_{4}\delta\varphi^{4}(1)\int g_{4}\delta\varphi^{4}(2)\big\rangle_{0}$，我们从图 3.16 中代表 $\int g_{4}\delta\varphi^{4}(1)\int g_{4}\delta\varphi^{4}(2)$ 的两个顶点出发。为得到期望值 $\langle\dots\rangle_{0}$，我们需要把顶点的所有“腿”彼此连接起来。这就生成了图 3.17 中的图形。这些图形称为费曼图。为构造式 (3.8.1) 的结果，我们只需使用以下三条费曼规则。
+
+(i) 费曼图中的每条线代表一个传播子 $\mathcal{G}^{\beta}(a,b)$，其中 $a$ 与 $b$ 是该线两端的两个顶点。
+
+(ii) 每个顶点代表 $g_{4}\int$。
+
+(iii) 连通图的值由规则 (i) 与 (ii) 给出，而非连通图
+
+% ---- 书页 142 (p157) ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_3.17.pdf}
+\caption*{图 3.17\quad 对应于式 (3.8.1) 中三项的三个费曼图。这里 (a) 与 (b) 是连通图，(c) 是包含两个连通图的非连通图。}
+\end{figure}
+
+的值由连通子图的乘积给出。这样，我们从图 3.17(a)、(b) 与 (c) 所示的三个费曼图分别得到式 (3.8.1) 末行中的第一、第二与第三项。
+
+嗯，并不完全如此。我们忽略了诸如 $4!$、$6^{2}\times2$ 等数值因子。这些数值因子是费曼规则中最困难的部分。它们从何而来？我们先考虑与图 3.17(a) 中图形相联系的因子 $4!$。这个因子来自这样一个事实：每个顶点有四条腿，而把顶点 1 的四条腿与顶点 2 的四条腿连接起来共有 $4!$ 种不同的方式。与图 3.17(b) 中图形相联系的因子 $6^{2}\times2$ 更复杂一些，但它仍然代表八条腿彼此连接的不同方式。首先，顶点 1 的两条腿彼此相连。从四条腿中选取两条有六种方式，这样我们就得到 $6^{2}\times2$ 中的因子 6。第二个因子 6 类似地来自顶点 2。把顶点 1 剩下的两条腿与顶点 2 剩下的两条腿连接起来有两种方式，于是我们得到最后的因子 2。第三项中的因子 3 对应于把一个顶点的四条腿分成两组、每组各有两条腿的不同分法。（注意这不同于从四条腿中选取两条腿的不同选法。）
+
+让我们回到想要计算的热势。在得到所有的平均之后，相互作用对热势的修正可以这样求出：
+\begin{equation*}
+\delta\Omega = -T\ln\sum_{n=0}\frac{(-)^{n}}{n!}\left\langle\left(\int \mathrm{d}x^{\mu}\,V(\delta\varphi)\right)^{n}\right\rangle_{0}
+\end{equation*}
+有一个连链定理（linked-cluster theorem）可以简化上述计算。根据该定理，$\delta\Omega$ 由所有连通图之和给出：
+\begin{equation*}
+\delta\Omega = -T\sum_{n=0}\frac{(-)^{n}}{n!}\left\langle\left(\int \mathrm{d}x^{\mu}\,V(\delta\varphi)\right)^{n}\right\rangle_{0c}
+\end{equation*}
+其中 $\big\langle\big(\int \mathrm{d}x^{\mu}V(\delta\varphi)\big)^{n}\big\rangle_{0c}$ 是从 $\big\langle\big(\int \mathrm{d}x^{\mu}V(\delta\varphi)\big)^{n}\big\rangle_{0}$ 中去掉所有非连通图的贡献后得到的。
+
+% ---- 书页 143 (p158) ----
+\subsection{连链定理}
+\begin{keypoints}
+\item 只对连通的费曼图求和，就可以直接计算有效作用量。
+\end{keypoints}
+
+我们将用复制（replica）技巧来导出连链定理，这既是为了简洁，也是为了介绍这一有用的方法。复制方法的基本思想是，对整数 $n$，通过把系统复制 $n$ 份来计算 $Z^{n}$：
+\begin{equation*}
+\left(\frac{Z}{Z_{0}}\right)^{n} = \frac{\int\mathcal{D}\delta\varphi_{\alpha}\ \mathrm{e}^{-\sum_{\alpha=1}^{n}\left[S_{0}(\delta\varphi_{\alpha}) + \int \mathrm{d}x^{\mu}V(\delta\varphi_{\alpha})\right]}}{\int\mathcal{D}\delta\varphi_{\alpha}\ \mathrm{e}^{-\sum_{\alpha=1}^{n}S_{0}(\delta\varphi_{\alpha})}}
+\end{equation*}
+现在 $(Z/Z_{0})^{n}$ 可以通过微扰展开来计算。在每一个费曼图中，每条传播子都携带一个指标 $\alpha$，并且进入与离开同一个相互作用顶点的所有传播子都具有相同的指标。当我们把 $\alpha$ 从 1 求和到 $n$ 时，显然每个连通图都正比于 $n$，而每个非连通图正比于 $n^{N_{c}}$，其中 $N_{c}$ 是该非连通图中连通图的数目。因此，
+\begin{align*}
+\left(\frac{Z}{Z_{0}}\right)^{n} ={}& \mathrm{e}^{n\ln\frac{Z}{Z_{0}}} = 1 + n\ln\frac{Z}{Z_{0}} + \sum_{m=2}^{\infty}\frac{(n\frac{Z}{Z_{0}})^{m}}{m!}\\
+={}& 1 + n\sum(\text{所有连通图}) + O(n^{2})
+\end{align*}
+这样我们就证明了连链定理。
+
+\subsection*{问题 3.8.1}
+考虑一个非简谐振子 $L=\frac{1}{2}m\dot{x}^{2}-\frac{1}{2}m\omega_{0}^{2}x^{2}-gx^{3}$。计算该系统精确到 $g^{2}$ 阶的有限温度自由能。（提示：在 $\tau$ 空间中做计算可能更容易。）
+
+注意，在微扰论的框架内，上述非简谐振子是一个行为良好的系统。不稳定性来自反弹（bounce）。证明在小 $g$ 极限下，基态的衰变率具有 $\omega_{0}\mathrm{e}^{-\#m^{3}\omega_{0}^{5}/g^{2}}$ 的量级。这样的项不可能出现在围绕基态 $x=0$ 的微扰计算中。然而，反弹作为另一条驻定路径，确实对自由能有贡献。证明反弹的贡献以正比于 $\mathrm{e}^{-\#m^{3}\omega_{0}^{5}/g^{2}}$ 的非微扰项出现。
+
+% ==================================================================
+% 新增术语（ch3_g 新增，供术语表追加）：
+%   two-fluid picture 二流体图像
+%   superfluid density / normal fluid (density) 超流密度 / 正常流体（密度）
+%   London equation 伦敦方程
+%   Galileo invariance / Galileo non-invariant 伽利略不变性 / 非伽利略不变的
+%   twist 扭转
+%   tunneling / tunneling junction / tunneling amplitude 隧穿 / 隧穿结 / 隧穿振幅
+%   tunneling current / critical tunneling current 隧穿流 / 临界隧穿流
+%   algebraic-decay phase 代数衰减相
+%   time-ordered Green's function 编时格林函数
+%   I–V curve / differential conductance I–V 曲线 / 微分电导
+%   background field / dynamical field 背景场 / 动力学场
+%   fixing the gauge / choosing the gauge 固定规范 / 选取规范
+%   transverse / longitudinal component 横分量 / 纵分量
+%   Feynman diagram / Feynman rules 费曼图 / 费曼规则
+%   real-space / momentum-space Feynman rules 实空间 / 动量空间费曼规则
+%   vertex / leg（顶点的）腿  顶点
+%   connected / disconnected diagram 连通图 / 非连通图
+%   linked-cluster theorem 连链定理（术语表已有）
+%   replica technique 复制技巧
+%   anharmonic oscillator 非简谐振子
+%   Maxwell equation Maxwell 方程
+%   thermal potential 热势（术语表已有）
+% ==================================================================

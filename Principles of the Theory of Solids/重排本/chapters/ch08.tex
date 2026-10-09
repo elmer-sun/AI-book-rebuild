@@ -1,0 +1,911 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第8章 光学性质
+
+\chapter{光学性质}
+
+\epigraphbook{但是，轻些！那是什么光从那边的窗户透出来……}{Romeo and Juliet}
+
+\section{宏观理论}
+
+在本章中，我们讨论电磁波射入固体并在其中传播的问题。众所周知，有些固体是\emph{透明的}，另一些是\emph{不透明的}；有些固体表面\emph{强烈反射}，另一些则倾向于\emph{吸收}照射到其上的辐射。这些效应依赖于辐射的频率；因此我们把整个电磁波谱——从长波无线电波一直到软 X 射线——都包括进来。
+
+电磁波是 Maxwell 方程组的解。我们把它写成如下形式
+\begin{equation*}
+\left.\begin{aligned}
+\nabla\wedge\mathbf{H} &= \frac{\epsilon}{c}\,\frac{\partial\mathbf{E}}{\partial t} + \frac{4\pi\sigma}{c}\,\mathbf{E}, &\qquad \nabla\cdot\mathbf{E} &= 0,\\[4pt]
+\nabla\wedge\mathbf{E} &= -\frac{\mu}{c}\,\frac{\partial\mathbf{H}}{\partial t}, &\qquad \nabla\cdot\mathbf{H} &= 0.
+\end{aligned}\right\}\tag{8.1}
+\end{equation*}
+在本章中我们将不考虑任何磁效应：取 $\mu = 1$。
+
+自由空间中的传播同固体中的传播这两者的差别，由两个系数表述——介电常数（dielectric constant）$\epsilon$ 和电导率 $\sigma$。前者给出因 $\mathbf{E}$ 随时间变化而引起的位移电流的大小；后者则是电场所产生的真实电流的一种量度。
+
+从这些方程中消去磁场，得
+\begin{equation*}
+\nabla^2\mathbf{E} = \frac{\epsilon}{c^2}\,\frac{\partial^2\mathbf{E}}{\partial t^2} + \frac{4\pi\sigma}{c^2}\,\frac{\partial\mathbf{E}}{\partial t}\,.\tag{8.2}
+\end{equation*}
+这代表一个伴随耗散而传播的波。若选定频率 $\omega$，并写成
+\begin{equation*}
+\mathbf{E} = \mathbf{E}_0\exp\{i(\mathbf{K}\cdot\mathbf{r}-\omega t)\},\tag{8.3}
+\end{equation*}
+则波动方程要求
+\begin{equation*}
+-\mathbf{K}^2 = -\epsilon\,\frac{\omega^2}{c^2} - \frac{4\pi\sigma i\omega}{c^2}\,,\tag{8.4}
+\end{equation*}
+即
+\begin{equation*}
+K = \frac{\omega}{c}\left(\epsilon + \frac{4\pi\sigma i}{\omega}\right)^{\frac{1}{2}}.\tag{8.5}
+\end{equation*}
+这样，一般说来传播常数 $K$ 就是一个复数。而在自由空间中，我们应当简单地有
+\begin{equation*}
+K = \frac{\omega}{c},\tag{8.6}
+\end{equation*}
+正如一个以光速行进的波那样。在介质中，速度有所改变：我们说相速被一个\emph{复折射率}（complex refractive index）所除
+\begin{equation*}
+\mathsf{N} = \left(\epsilon + \frac{4\pi\sigma i}{\omega}\right)^{\frac{1}{2}}.\tag{8.7}
+\end{equation*}
+从宏观上观察到的光学性质的整个理论，都可以用 $\mathsf{N}$ 来表述。例如，设有一个频率为 $\omega$ 的扰动试图作为平面波沿 $z$ 方向传播，并设我们写出
+\begin{equation*}
+\mathsf{N} = \mathsf{n} + i\mathsf{k}\tag{8.8}
+\end{equation*}
+表示 $\mathsf{N}$ 的实部和虚部。于是传播常数变为
+\begin{equation*}
+K = \frac{\mathsf{n}\omega}{c} + \frac{i\mathsf{k}\omega}{c},\tag{8.9}
+\end{equation*}
+从而波 (8.3) 变为
+\begin{equation*}
+\mathbf{E} = \mathbf{E}_0\exp\left\{i\omega\left(\frac{\mathsf{n}z}{c} - t\right)\right\}\exp\left(-\frac{\mathsf{k}\omega z}{c}\right),\tag{8.10}
+\end{equation*}
+速度减小为 $c/\mathsf{n}$，而波在前进时受到\emph{阻尼}，每行进一个波长就衰减一个比例 $\exp(-2\pi\mathsf{k}/\mathsf{n})$。
+
+波的这种阻尼当然与电磁能量的吸收相联系。为计算吸收，我们应当用 Maxwell 方程求出与 (8.10) 相伴随的电流。它就是 (8.1) 第一式的右端
+\begin{equation*}
+\begin{aligned}
+\mathbf{J} &= \left(-\frac{i\omega\epsilon}{c} + \frac{4\pi\sigma}{c}\right)\mathbf{E}\\
+&= -\frac{i\omega}{c}\,\mathsf{N}^2\mathbf{E}
+\end{aligned}\tag{8.11}
+\end{equation*}
+依式 (8.7)。产生焦耳热的速率是下式的实部：
+\begin{equation*}
+\mathbf{J}\cdot\mathbf{E} = -\frac{i\omega}{c}\,\mathsf{N}^2 E^2.\tag{8.12}
+\end{equation*}
+于是，\emph{吸收系数}（absorption coefficient）——即每通过单位厚度材料所吸收的能量份额——由下式给出
+\begin{equation*}
+\eta = \frac{\mathrm{Re}(\mathbf{J}\cdot\mathbf{E})}{\mathsf{n}|\mathbf{E}|^2} = \frac{2\mathsf{k}\omega}{c}\,.\tag{8.13}
+\end{equation*}
+常被研究的另一种情形，是辐射入射到材料的平面表面上。一般说来，这是一个复杂的光学问题，但我们只需考虑
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_136.pdf}
+\caption*{图 136\quad （原书此图无图注。）}
+\end{figure}
+垂直入射的情形。我们要构造 Maxwell 方程组的一个解，使其在介质内部具有 (8.10) 的形式，而在外部则与一个入射波和一个反射波相匹配。于是，对 $z > 0$ 我们写出
+\begin{equation*}
+E_x = E_0\exp\{i\omega(\mathsf{N}z/c - t)\},\tag{8.14}
+\end{equation*}
+而对于 $z < 0$，即在外部自由空间中，我们写出
+\begin{equation*}
+E_x = E_1\exp\{i\omega(z/c - t)\} + E_2\exp\{-i\omega(z/c + t)\},\tag{8.15}
+\end{equation*}
+分别对应于振幅为 $E_1$、向右行进的波和振幅为 $E_2$、向左行进的波。在边界上使二者匹配，得
+\begin{equation*}
+E_0 = E_1 + E_2.\tag{8.16}
+\end{equation*}
+但这些波还伴随有磁场，其磁矢量譬如说沿 $y$ 方向。用 Maxwell 方程组算出 $H_y$，得
+\begin{equation*}
+-\mathsf{N}E_0 = E_2 - E_1\tag{8.17}
+\end{equation*}
+此式是与外部的波相匹配而得到的。于是，反射波与入射波的复振幅之比为
+\begin{equation*}
+\frac{E_2}{E_1} = \frac{1-\mathsf{N}}{1+\mathsf{N}},\tag{8.18}
+\end{equation*}
+它对应于一个实的\emph{反射系数}（reflection coefficient）
+\begin{equation*}
+\mathsf{R} = \left|\frac{1-\mathsf{N}}{1+\mathsf{N}}\right|^2 = \frac{(\mathsf{n}-1)^2+\mathsf{k}^2}{(\mathsf{n}+1)^2+\mathsf{k}^2}\tag{8.19}
+\end{equation*}
+以复折射率 $\mathsf{N}$ 的实部和虚部即式 (8.8) 表出。
+
+显然，对反射系数和吸收系数各作一次独立测量，便足以定出 $\mathsf{n}$ 和 $\mathsf{k}$ 的值。因此，它们就是人们通常引用的光学常数，其理论正是我们将在本章中讨论的。实际中的实验可能要复杂得多——例如相对表面成一定角度的反射，或穿过薄膜的透射——但从原则上讲，其结果都应当由这同样两个系数来描述。
+
+然而，系数 $\mathsf{n}$ 和 $\mathsf{k}$ 并非彼此完全独立。它们由\emph{色散关系}（dispersion relations）联系起来。(8.11) 中的 $\mathsf{N}^2$ 这类量，就是\emph{广义极化率}（generalized susceptibility）$\alpha(\omega)$ 的一个例子，出现在如下关系中
+\begin{equation*}
+D(\omega) = \alpha(\omega)\,F(\omega)\tag{8.20}
+\end{equation*}
+它联系着广义的“位移” $D$ 与“力” $F$ 在某个频率 $\omega$ 处的 Fourier 分量。正如初等交流电路理论中那样，它必须是一个复量
+\begin{equation*}
+\alpha(\omega) = \alpha'(\omega) + i\alpha''(\omega)\tag{8.21}
+\end{equation*}
+以描述 $D$ 与 $F$ 之间的相位差。
+
+但 (8.20) 只不过是
+\begin{equation*}
+D(t) = \int_{-\infty}^{\infty} A(t-t^{\prime})\,F(t^{\prime})\,dt^{\prime},\tag{8.22}
+\end{equation*}
+的 Fourier 变换；其中时刻 $t$ 的位移是系统对在所有其他时刻 $t^{\prime}$ 作用的力的\emph{线性响应}（linear response）的总和。但是在力施加\emph{之后}才可能有位移：响应函数受到\emph{因果性}（causality）这一严格条件的约束：
+\begin{equation*}
+A(t-t^{\prime}) \equiv 0 \qquad \text{当 } t^{\prime} > t \text{ 时}.\tag{8.23}
+\end{equation*}
+换言之，极化率的 Fourier 积分被完全确定为
+\begin{equation*}
+\alpha(\omega) = \int_{-\infty}^{\infty} A(t)\,e^{i\omega t}\,dt \equiv \int_0^{\infty} A(t)\,e^{i\omega t}\,dt.\tag{8.24}
+\end{equation*}
+其中不包含任何来自 $t$ 负值的贡献。
+
+为赋予这类积分以意义，通常把 $\alpha(\omega)$ 当作\emph{复}变量 $\omega$ 的函数来处理，比如说让它带上一个无穷小的正虚部 $i\epsilon$。此外，(8.24) 的形式还意味着：这个函数在复 $\omega$ 平面上实轴上方没有奇点，并且在下半平面的所有方向上随 $|\omega|\to\infty$ 而趋于零。稍作一点泛函分析——把 Cauchy 定理应用于一条沿实轴行进、再经无穷大半圆返回的围道——便得到公式
+\begin{equation*}
+\alpha(\Omega) = \frac{1}{i\pi}\int_{-\infty}^{\infty}\frac{\alpha(\omega)}{\omega-\Omega}\,d\omega\tag{8.25}
+\end{equation*}
+其中积分取其主值，而频率变量为实数。
+
+关于“负频率”的 Fourier 变换的定义意味着 $\alpha(-\omega)$ 是 $\alpha(\omega)$ 的复共轭。由 (8.25) 我们推出极化率 (8.21) 的实部与虚部之间的 \emph{Kramers--Kronig 关系}（Kramers--Kronig relations）
+\begin{equation*}
+\alpha'(\Omega) = \frac{2}{\pi}\int_0^{\infty}\frac{\omega\,\alpha''(\omega)\,d\omega}{\omega^2-\Omega^2} + \mathrm{const.},\tag{8.26}
+\end{equation*}
+以及
+\begin{equation*}
+\alpha''(\Omega) = -\frac{2\Omega}{\pi}\int_0^{\infty}\frac{\alpha'(\omega)\,d\omega}{\omega^2-\Omega^2}\,.\tag{8.27}
+\end{equation*}
+在我们这里的情形，$\mathsf{N}^2$ 的实部和虚部分别是
+\begin{equation*}
+\mathsf{N}^2 = (\mathsf{n}^2 - \mathsf{k}^2) + 2\mathsf{n}\mathsf{k}i,\tag{8.28}
+\end{equation*}
+于是我们得到如下条件
+\begin{equation*}
+\mathsf{n}^2(\omega) - \mathsf{k}^2(\omega) = \frac{2}{\pi}\int_0^{\infty}\frac{\omega'\,2\mathsf{n}(\omega^{\prime})\,\mathsf{k}(\omega^{\prime})\,d\omega^{\prime}}{\omega'^{2}-\omega^{2}} + \mathrm{const.},\tag{8.29}
+\end{equation*}
+以及
+\begin{equation*}
+2\mathsf{n}(\omega)\,\mathsf{k}(\omega) = -\frac{2\omega}{\pi}\int_0^{\infty}\frac{\left\{\mathsf{n}^2(\omega^{\prime}) - \mathsf{k}^2(\omega^{\prime})\right\}d\omega^{\prime}}{\omega'^{2}-\omega^{2}}\,.\tag{8.30}
+\end{equation*}
+由这些关系，假如我们比如说知道了吸收系数在所有频率上作为频率的函数，那么就能分别求出 $\mathsf{n}(\omega)$ 和 $\mathsf{k}(\omega)$。它们并不是某个特定模型的偶然结果；其证明仅仅依赖于因果性条件 (8.23)，是完全普遍的，适用于任何线性响应函数，例如介电函数（dielectric function）(5.16) 或表面阻抗 (8.106)。
+
+\section{色散与吸收}
+
+固体的最简单模型，是一组固定不动的、彼此独立的中性原子。电磁波对这样的系统会有什么影响？倘若读者对这一理论不太熟悉，我们就在一个简单的例子中把它勾画出来：设每个原子只含一个电子，该电子处于基态轨道 $\phi_0(\mathbf{r})$ 中，可以被激发到较高的轨道 $\phi_j(\mathbf{r})$。
+
+设波中原子附近的电场由下式给出
+\begin{equation*}
+\mathbf{E}(t) = \mathbf{E}_x\left(e^{i\omega t} + e^{-i\omega t}\right),\tag{8.31}
+\end{equation*}
+其中忽略了随距离的变化，正如 (8.3) 中那样。我们采用含时微扰论，并设电子波函数在任一特定时刻可以写成
+\begin{equation*}
+\psi(\mathbf{r},t) = \phi_0\exp(-i\mathcal{E}_0 t/\hbar) + \sum_j c_j(t)\,\phi_j\exp(-i\mathcal{E}_j t/\hbar).\tag{8.32}
+\end{equation*}
+我们把 $e\mathbf{E}\cdot\mathbf{r}$ 当作作用在电子上的微扰势。把 (8.32) 代入含时 Schrödinger 方程，用 $\phi_j^{*}$ 乘遍各项再积分（译注：原文为“用 $\phi_0$ 相乘”，按式 (8.33) 应为 $\phi_j^{*}$），容易证明：较高态的系数必须近似满足微分方程
+\begin{equation*}
+i\hbar\frac{dc_j}{dt} = \int \phi_j^{*}\,e\mathbf{E}(t)\cdot\mathbf{r}\,\phi_0\,d\mathbf{r}\,e^{i(\mathcal{E}_j-\mathcal{E}_0)t/\hbar}\tag{8.33}
+\end{equation*}
+它有解
+\begin{align*}
+c_j(t) &= \frac{1}{i\hbar}\int_0^t e\mathbf{E}_x\,x_{j0}\left(e^{i\omega t}+e^{-i\omega t}\right)e^{i(\mathcal{E}_j-\mathcal{E}_0)t/\hbar}\\
+&= e\mathbf{E}_x\,x_{j0}\left\{\frac{1-e^{i(\hbar\omega+\mathcal{E}_j-\mathcal{E}_0)t/\hbar}}{\hbar\omega+(\mathcal{E}_j-\mathcal{E}_0)} - \frac{1-e^{i(-\hbar\omega+\mathcal{E}_j-\mathcal{E}_0)t/\hbar}}{\hbar\omega-(\mathcal{E}_j-\mathcal{E}_0)}\right\},\tag{8.34}
+\end{align*}
+其中
+\begin{equation*}
+e\,x_{j0} \equiv \int \phi_j^{*}\,e\,x\,\phi_0\,d\mathbf{r},\tag{8.35}
+\end{equation*}
+也就是说，它是电子的电偶极矩沿场的电矢量方向、在态 $\phi_0$ 与 $\phi_j$ 之间的矩阵元。
+
+现在，量子理论书中的通常做法是研究 $|c_j(t)|^2$，并证明：除了满足条件
+\begin{equation*}
+\hbar\omega = \hbar\omega_j \equiv (\mathcal{E}_j - \mathcal{E}_0).\tag{8.36}
+\end{equation*}
+的那些 $\omega$ 值之外，它都剧烈振荡。于是人们证明，将会发生一次从态 $\phi_0$ 到态 $\phi_j$ 的量子跃迁，其概率由矩阵元 (8.35) 的平方决定。
+
+但现在我们改走另一条路：计算原子在这个含时态中的偶极矩之值。由 (8.32) 和 (8.34) 我们得到
+\begin{align*}
+\langle ex(t)\rangle &= \int \psi^{*}(\mathbf{r},t)\,ex\,\psi(\mathbf{r},t)\,d\mathbf{r}\\
+&= \sum_j \left\{ex_{0j}\,c_j(t)\,e^{-i\omega_j t} + ex_{j0}\,c_j^{*}(t)\,e^{i\omega_j t}\right\}\\
+&= \mathbf{E}_x\sum_j e^2\,|x_{0j}|^2\,\frac{1}{\hbar}\left\{\frac{1}{\omega_j-\omega}+\frac{1}{\omega_j+\omega}\right\}\left(e^{i\omega t}+e^{-i\omega t}\right)\tag{8.37}
+\end{align*}
+以及一些振荡迅速、与应用场不同相的项。
+
+这样，原子的偶极矩正比于场。我们说\emph{原子极化率}（atomic polarizability）由下式给出
+\begin{equation*}
+\alpha(\omega) = \sum_j \frac{e^2|x_{0j}|^2}{\hbar}\,\frac{2\omega_j}{\omega_j^2-\omega^2}\,.\tag{8.38}
+\end{equation*}
+为讨论这类表达式的数量级，我们可以利用 Thomas--Reiche--Kuhn 求和规则——它是 (5.48) 的一个较简单的特例。这个规则是
+\begin{equation*}
+\frac{2m}{\hbar^2}\sum_j \hbar\omega_j\,|x_{0j}|^2 = 1\,;\tag{8.39}
+\end{equation*}
+为方便起见，定义第 $j$ 个跃迁的\emph{振子强度}（oscillator strength）
+\begin{equation*}
+f_j = \frac{2m}{\hbar^2}\,\hbar\omega_j\,|x_{0j}|^2,\tag{8.40}
+\end{equation*}
+并把 (8.38) 写成如下形式
+\begin{equation*}
+\alpha(\omega) = \frac{e^2}{m}\sum_j \frac{f_j}{\omega_j^2-\omega^2},\tag{8.41}
+\end{equation*}
+其中各个数 $f_j$ 在所有跃迁上相加为一。
+
+现在，若把 $N$ 个这样的原子聚拢到每单位体积中，我们就得到一种介质，其介电常数有一个实部
+\begin{align*}
+\epsilon(\omega) &= 1 + 4\pi N\alpha(\omega)\\
+&= 1 + \frac{4\pi N e^2}{m}\sum_j \frac{f_j}{\omega_j^2-\omega^2}\,.\tag{8.42}
+\end{align*}
+严格说来，我们应当把这个\emph{横}（transverse）介电常数，与第 5 章中讨论过的静电场的\emph{纵}（longitudinally）偏振波的介电常数区分开来。不过在长波极限下——即对通常的“光学”现象——这两个量是相同的，因为屏蔽或原子极化效应相对地说是局域的，并且主要依赖于每个离子或原子紧邻区域中电场的强度。
+这是色散公式的原型。有趣的是，它恰好可以归结为 \S 5.7 中已经讨论过的情形。如果电子是“自由的”——也就是说，所有 $\omega_j$ 均为零，而各个 $f_j$ 之和为一——我们便可以像 (5.53) 那样写出
+\begin{equation*}
+\omega_p^2 = \frac{4\pi N e^2}{m}\tag{8.43}
+\end{equation*}
+来为我们这个每单位体积 $N$ 个电子的系统定义等离体频率（plasma frequency）；于是 (8.42) 就复现了 (5.67)，即导致紫外透明性现象的公式。然而要注意，横向光子实际上几乎不能直接激发纵向等离激元（plasmon）。要观察\emph{等离激元谱线}（plasmon lines），需要用高能电子去激发电子气，或者透过薄膜去观察，在后一种情形中可以观察到\emph{表面等离激元模}（surface plasmon modes）。
+
+但在一般情况下，$\omega_j$ 的最低值应对应于光学或红外频率，$\epsilon$ 随 $\omega$ 的变化要更复杂一些。在低频下，我们可能得到静态介电常数
+\begin{equation*}
+\epsilon(0) = 1 + \sum_j f_j\,\frac{\omega_p^2}{\omega_j^2},\tag{8.44}
+\end{equation*}
+它明显大于 1。但 $\epsilon(0)$ 不会非常大，因为对大多数固体来说，$\omega_p$ 与自由原子的普通光学频率大致相当。
+
+接着，随着 $\omega$ 增大，$\epsilon(\omega)$ 增大，直到在 $\omega = \omega_j$ 处出现一个奇点。此后，$\epsilon(\omega)$ 在某段频率范围内变为负值，直到靠近下一个共振频率时才重新变正。不过最终，$\epsilon(\omega)$ 将趋于公式 (5.67)：
+\begin{equation*}
+\epsilon(\omega) \to 1 - \frac{\omega_p^2}{\omega^2},\tag{8.45}
+\end{equation*}
+条件是 $\omega$ 大于所有 $\omega_j$。
+
+在每一个 $\omega_j$ 附近，我们都有一段\emph{反常色散}（anomalous dispersion）区。特别地，若 $\epsilon$ 为负，则由 (8.7)，折射率 $\mathsf{N}$ 变为纯虚数；于是
+\begin{equation*}
+\mathsf{n} = 0,\quad \mathsf{k} = |\epsilon|^{\frac{1}{2}},\tag{8.46}
+\end{equation*}
+从而由 (8.19)，光将被固体表面\emph{完全反射}（total reflection）。实际上，晶体看起来会一直保持透明——尽管折射率非常高——直到 $\omega = \omega_j$ 处突然变得不透明且完全反射，然后在更高的频率上重新变为透明。
+
+但这与我们的色散关系 (8.29) 和 (8.30) 不相容。还必须存在某种吸收，其量度是乘积 $2\mathsf{n}\mathsf{k}\omega$。的确，这正是我们在含时微扰处理中暂且搁置的那一方面——与原子跃迁 (8.36) 相联系的吸收。它作为频率 $\omega_j$ 处的一条锐线出现——想必是一个 delta 函数。为了满足色散关系 (8.29) 并在 (8.42) 中给出正确的色散项，我们必须有
+\begin{equation*}
+2\omega\,\mathsf{n}(\omega)\,\mathsf{k}(\omega) = \frac{\pi}{2}\,\frac{4\pi N e^2}{m}\sum_j f_j\,\delta(\omega-\omega_j);\tag{8.47}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_137.pdf}
+\caption*{图 137\quad 光的色散。}
+\end{figure}
+这必定是复介电常数的虚部，后者取如下形式
+\begin{equation*}
+\epsilon(\omega) = 1 + \frac{4\pi N e^2}{m}\sum_j f_j\left\{\frac{1}{\omega_j^2-\omega^2} + \frac{i\pi}{2\omega}\,\delta(\omega^2-\omega_j^2)\right\}.\tag{8.48}
+\end{equation*}
+$\omega_j$ 附近的大折射率在这个频率上变成一条尖锐的吸收线。
+
+实际上，我们永远不会看到一条无限锐的谱线。总会有某种展宽，来自杂质等因素，或者仅仅来自能级的自然辐射弛豫。正如标准量子理论所表明的，这类效应可以在分析中以唯象方式纳入：比如说在 (8.34) 中插入一个衰减因子 $\exp(-\frac{1}{2}\Gamma t)$，它对应于（振幅\emph{平方}的）量级为 $1/\Gamma$ 秒的衰减时间。
+
+在代数推导中很容易追踪这样一个因子的作用：它相当于
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_138.pdf}
+\caption*{图 138\quad 折射率的实部和虚部。}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_139.pdf}
+\caption*{图 139\quad 色散曲线的展宽。}
+\end{figure}
+在 (8.37) 或 (8.38) 的 $\omega_j$ 上加一个 $\frac{1}{2}i\Gamma$。如果相对于 $\omega_j^2$ 略去 $\Gamma^2$，那么对于极化率的实部——从而也就是 $\epsilon(\omega)$ 的实部——我们会得到如下类型的项
+\begin{equation*}
+f_j\,\frac{\omega_j^2-\omega^2}{(\omega_j^2-\omega^2)^2+\omega^2\Gamma^2}\tag{8.49}
+\end{equation*}
+用以取代 $f_j/(\omega_j^2-\omega^2)$。这起到了消除 $\mathsf{n}$ 中奇点的作用，
+并把色散函数在频率上铺展开来，形成宽度约为 $2\Gamma$ 的一段范围。
+
+众所周知，弛豫对吸收线本身的影响，是把 delta 函数铺展成一个有限大小的函数，在 $\omega = \omega_j$ 附近其形式为
+\begin{equation*}
+\frac{\Gamma/2\pi}{(\omega_j-\omega)^2+\frac{1}{4}\Gamma^2} \approx \frac{2\Gamma\omega^2/\pi}{(\omega_j^2-\omega^2)^2+\Gamma^2\omega^2}\tag{8.50}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_140.pdf}
+\caption*{图 140\quad Lorentz 修正：用均匀极化介质中一个球形空腔的场，取代相邻原子上的偶极子在原子处产生的局域场。}
+\end{figure}
+实际上，(8.49) 与 (8.50) 可以合并成一个类似 (8.48) 的公式
+\begin{align*}
+\epsilon(\omega) &= 1 + \frac{4\pi N e^2}{m}\sum_j f_j\left\{\frac{\omega_j^2-\omega^2}{(\omega_j^2-\omega^2)^2+\omega^2\Gamma_j^2} + \frac{i\Gamma_j\omega}{(\omega_j^2-\omega^2)^2+\omega^2\Gamma_j^2}\right\}\\
+&= 1 + \frac{4\pi N e^2}{m}\sum_j \frac{f_j}{(\omega_j^2-\omega^2)-i\omega\Gamma_j},\tag{8.51}
+\end{align*}
+它差不多就是最一般类型的色散公式。虽然它是针对独立原子模型算出的，却为任何吸收谱由一系列分立谱线组成的系统提供了一个唯象表达式。
+
+在这个分析中，还应作一个进一步的修正。关系 (8.42) 意味着极化每个原子的\emph{局域}场（local field）与施加于晶体的\emph{宏观}场（macroscopic field）相同。严格说来这并不成立；原子并非处于一种绝对连续的
+%JOIN%
+介质，而是占据格子中的一个格点；在那里，它被“其他”同样极化了的原子所包围，却并不被它们贯穿（见 §2.3）。众所周知，在初等静电学和静磁学中，局域场必须有一个修正；如果包围原子的“空腔”多少近似球形，那么我们就得到局域场的 \emph{Lorentz 修正}（Lorentz correction）
+\begin{equation*}
+\mathbf{E}_{\mathrm{local}} = \mathbf{E}_{\mathrm{macroscopic}} + \frac{4}{3}\pi\mathbf{P},\tag{8.52}
+\end{equation*}
+其中 $\mathbf{P}$ 是平均极化。这就导致 \emph{Clausius–Mosotti 关系}（Clausius–Mosotti relation）
+\begin{equation*}
+\left(\frac{\epsilon-1}{\epsilon+2}\right) = \frac{4}{3}\pi N\alpha\tag{8.53}
+\end{equation*}
+以取代 (8.42)。结果是，观测到的介电常数和折射率将遵循一个比 (8.51) 更复杂的公式；例如，“完全”反射的频段就可能得以避免。
+
+当介电极化是由于液体或固体分子上\emph{永久}偶极矩（permanent dipole moments）的排齐所致时，我们必须引入进一步的修正，例如 \emph{Onsager 局域场}（Onsager local field）模型，它把邻近原子矩取向的涨落考虑了进去。
+
+\section{离子晶体中的光学模}
+
+让我们回到格子的运动方程，如 §2.1 中那样。那里已经证明，第 $l$ 个晶胞中格点 $s$ 上的离子，其位移满足 (2.7)，即
+\begin{equation*}
+M_s \ddot{\mathbf{u}}_{sl} = -\sum_{s'\boldsymbol{h}} \mathsf{G}_{ss'}(\boldsymbol{h})\cdot\mathbf{u}_{s',\,l+\boldsymbol{h}}.\tag{8.54}
+\end{equation*}
+现在假设我们用形如 (8.3) 的电磁波来驱动这个系统。必须在 (8.54) 的右端加上一个力
+\begin{equation*}
+\boldsymbol{e}_s\,\mathbf{E}_0\exp\{i(\mathbf{K}\cdot\boldsymbol{l}-\omega t)\},\tag{8.55}
+\end{equation*}
+其中 $\boldsymbol{e}_s$ 是晶胞中格点 $s$ 上的离子所带的电荷。
+
+要处理这样的非齐次项，我们只需要微分方程 (8.54) 的一个特解。显然，采用 (2.8) 的假设并令 $\boldsymbol{q}=\mathbf{K}$，随空间变化的因子即被消去；我们便得到波矢为 $\mathbf{K}$ 的模的振幅 $\mathbf{U}_{s\mathbf{K}}$ 所满足的方程
+\begin{equation*}
+M_s \ddot{\mathbf{U}}_{s\mathbf{K}} = -\sum \mathsf{G}_{ss'}(\mathbf{K})\cdot\mathbf{U}_{s'\mathbf{K}} + \boldsymbol{e}_s\,\mathbf{E}_0\,e^{-i\omega t}.\tag{8.56}
+\end{equation*}
+要看出这些方程之解的形式，让我们考虑 (2.22) 中那个双原子线性链的简单模型。实际上，我们所考虑的电磁波在原子的尺度上波长非常之大，
+因此可以取 $\cos Ka \approx 1$。如果两个原子带有异号电荷——在典型的离子晶体中情形正是如此——那么我们就有
+\begin{equation*}
+\left.
+\begin{aligned}
+M_1 \ddot{U}_1 &= 2\alpha(U_2-U_1) + \boldsymbol{e}E_0\,e^{-i\omega t},\\
+M_2 \ddot{U}_2 &= 2\alpha(U_1-U_2) - \boldsymbol{e}E_0\,e^{-i\omega t}.
+\end{aligned}
+\right\}
+\tag{8.57}
+\end{equation*}
+这两个方程有解
+\begin{equation*}
+(U_1-U_2) = \frac{\boldsymbol{e}E_0(1/M_1+1/M_2)}{\omega_T^2-\omega^2}\,e^{-i\omega t},\tag{8.58}
+\end{equation*}
+其中 $\omega_T$ 是系统在 $\boldsymbol{q}=0$ 处的固有频率，即由 (2.25) 给出的值。我们可以算出与这种运动相联系的偶极矩，并把它表示成晶格的一个极化率
+\begin{equation*}
+4\pi N\alpha(\omega) = \frac{4\pi N\boldsymbol{e}^2(1/M_1+1/M_2)}{\omega_T^2-\omega^2}.\tag{8.59}
+\end{equation*}
+于是，一个纯粹经典的论证就把我们引到了一个类似于 (8.42) 的色散公式。(8.59) 的分子可以写成 $\Omega_p^{\prime 2}$，表明它非常像离子集合体的等离体频率 (6.81)。由于离子比电子重得多，它必定远小于 $\omega_p^2$。另一方面，$\omega_T$ 正是长波长晶格振动的频率，比原子或离子中任何电子跃迁的能量都小得多。因此，在很宽的频率范围内，我们可以写成
+\begin{equation*}
+\epsilon(\omega) \approx \epsilon(\infty) + \frac{\Omega_p^{\prime 2}}{\omega_T^2-\omega^2},\tag{8.60}
+\end{equation*}
+其中误差来自 (8.53) 那样的局域场效应。在这个公式中，$\epsilon(\infty)$ 表示在 $\omega \gg \omega_T$（即电子跃迁尚未被激发之前）由折射率的观测推出的介电常数。由此我们可以导出静态介电常数的 \emph{Born 方程}（Born equation）
+\begin{equation*}
+\epsilon(0) \approx \epsilon(\infty) + \Omega_p^{\prime 2}/\omega_T^2.\tag{8.61}
+\end{equation*}
+在三维离子晶体中，$\omega_T$ 将是一个\emph{横向}极化的光学支的频率，其偶极矩与横向电磁波强烈地相互作用。实际上，我们这里得到的是一个\emph{极化激元}（polariton）——光与晶体极化的一种混合模，它才是材料中真正的传播模。当 $\omega$ 扫过 $\omega_T$ 时，介电常数变为负值：正如 (5.67) 和 (8.46) 的情形，辐射将被晶体表面完全反射。\emph{剩余射线效应}（Reststrahlen effect）——晶体中电磁传播的一个禁区——将一直持续到譬如说 $\omega_L$ 处，在该处 (8.60) 重新变为正，即
+\begin{equation*}
+\omega_L^2 = \omega_T^2 + \Omega_p^{\prime 2}/\epsilon(\infty).\tag{8.62}
+\end{equation*}
+但介电常数的定义意味着（参见 (5.59)）：在这个频率上，无需任何外部激发，晶体内部就可以存在非常大的电场变化。这正是离子晶格中等离体振荡的类比，其中既有局域原子间力的贡献，也有长程静电场的贡献：$\omega_L$ 就是晶格谱中\emph{纵向}光学支的长波极限。由 (8.61) 和 (8.62) 我们得到与 (8.60) 相配的一个关系——\emph{Lyddane–Sachs–Teller 关系}（Lyddane–Sachs–Teller relation）
+\begin{equation*}
+\omega_L^2/\omega_T^2 = \epsilon(0)/\epsilon(\infty)\tag{8.63}
+\end{equation*}
+它对任何极性材料都相当普遍地成立。
+
+实际上，(8.59) 和 (8.60) 的分母中应当含有一个虚项（参见 (8.51)），对应于耗散效应。例如，通过产生声子，电磁场的能量可能被吸收，而这些声子将通过力常数的非谐性（anharmonicity）与光学支相联系（§§2.11, 7.10, 8.4）。这类效应将是依赖于温度的，并且也应能被观察到，表现为谐和近似 (2.25) 或 (8.53) 中有效力常数 $\alpha$ 的变化。甚至还可能出现这样的情况：对某一组晶格位移而言，原子间力的平衡如此精妙，以致这种温度依赖使 $\omega_T^2$ 在某个临界温度 $T_c$ 以下取负值——这个事件我们在宏观上应当认作是向\emph{铁电相}（ferro-electric phase）的转变（§10.5），晶格结构从此带有永久的、内建的介电极化。
+
+纵向光学支的频率比较低，这一点在\emph{极化子}（polaron）理论中很重要。离子晶体中的一个电子携带着静电场，使其周围的晶格极化。对于静止的电子，我们本可以用介电常数 $\epsilon(0)$；但晶格对运动电子的响应在动力学上受频率 $\omega_L$ 的限制，它描写介质介电极化的固有振荡。
+
+这种情形与等离激元理论（§5.8）中的情形非常相似。如果电子的能量超过 $\hbar\omega_L$，就会产生一个光学声子，电子将被减速并受到强烈散射。即使电子运动得很慢，我们也必须考虑光学模中量子的虚激发与再吸收；
+换言之，电子的行为就像一个被一团虚声子云包围着的粒子。这个复合客体的自能是速度的函数，因而载流子的有效“质量”会显著增大。
+
+\emph{大极化子}（large polaron）的理想化哈密顿量，作为一个强相互作用的场论系统的模型，已被广泛研究过，但它在实践中并不是一个容易观察的对象。这个模型本身只在极化区域比晶格的一个晶胞多少大一些的时候才有效；否则，更合适的是自陷的\emph{小极化子}（small polaron）模型（§6.7）。
+
+\section{光子–声子跃迁}
+
+用场论的语言来说，晶体对红外的吸收被描写为一个\emph{光子}（photon）与一个或多个声子的相互作用。这类过程的选择定则，已经在 §§2.7、2.8 中以\emph{非弹性衍射}（inelastic diffraction）的名义导出过。例如在最简单的情形，衍射束波矢的\emph{改变}必须等于所发射声子的波矢，即
+\begin{equation*}
+\mathbf{k}-\mathbf{k}' = \mathbf{q}\tag{8.64}
+\end{equation*}
+同时辐射频率的改变必须等于声子的频率，
+\begin{equation*}
+\omega-\omega' = \nu\tag{8.65}
+\end{equation*}
+如 (2.101) 和 (2.102) 中那样。在某些特殊情形下，可以满足这些条件而不产生任何出射的衍射波；光子的全部能量和动量都转移给了晶体。
+
+这里要注意的要点是，我们处理的是可见和红外波段的光，其波长比晶体的晶格常数大得多。因此，$|\mathbf{k}-\mathbf{k}'|$ 在布里渊区的尺度上必定极其微小。对于一切寻常的光学现象，我们可以取 $\mathbf{k}-\mathbf{k}'\approx 0$，而把注意力集中在区图式所允许的能量改变上；这一方面恰好与适用于 X 射线和中子的“衍射”观点互为补充——在后者中，动量的改变很大，但能量差却不容易探测。
+
+我们这里考虑的过程，即一个光学声子的吸收或发射，因而在简约区图式中由 $\mathbf{q}=0$ 处一条近乎竖直的线来表示。如果光学频谱有好几个分支，那么原则上应当能观察到好几条不同的谱线，如图 141(b) 那样。但是这类过程的
+强度将取决于电磁波与晶体耦合的矩阵元。正如 §8.3 中所见，对于大多数极性晶体的横向光学支，这种耦合强到如此程度，以致用弱相互作用的光子和声子来描述已不恰当，我们得到的将是剩余射线效应。但在某些化合物半导体中，可以找到偶极矩非常弱的光学支，在透过薄膜的透射光中能够观察到\emph{单声子吸收}（one-phonon absorption）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_141.pdf}
+\caption*{图 141\quad 光学模的吸收：(a) 一维图式；(b) 三维图式。}
+\end{figure}
+
+观察到光子的吸收（和发射）过程在布里渊区中是“竖直”的，这提示我们还可能有别的“竖直”跃迁，如图 142 所示。这是一个涉及一个声学支和一个光学支的跃迁。被吸收的光子，其能量显然由下式构成
+\begin{equation*}
+\hbar\omega = \hbar\nu_{\mathrm{optical}} - \hbar\nu_{\mathrm{acoustic}}.\tag{8.66}
+\end{equation*}
+实际上就是：一个光子和一个声学声子消失了；一个光学声子产生了。动量条件也同样得到满足。我们可以忽略光子的动量，简单地断言
+\begin{equation*}
+\hbar\mathbf{q}_{\mathrm{optical}} = \hbar\mathbf{q}_{\mathrm{acoustic}},\tag{8.67}
+\end{equation*}
+这正是“跃迁必须竖直”这句话所蕴含的意思。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_142.pdf}
+\caption*{图 142\quad 多声子吸收。}
+\end{figure}
+
+这类过程为选择定则所允许，因此可以观察到。它们在远红外区给出整段整段的吸收带。这种吸收带的宽度和总体结构，显然
+取决于从声学支到光学支可能发生的跃迁的种类及其间距。对这类过程作完整的讨论显然相当复杂，因为我们处理的是两个函数之差，而其中每一个函数都是布里渊区中 $\mathbf{q}$ 的函数。
+
+这还没有穷尽一切可能的过程。我们可以把上述跃迁称为“差式”（difference）过程。同样还可能有\emph{求和带}（summation bands），其中由光子的能量产生\emph{两个}声子，但它们的动量大小相等、方向相反。在那种情形下
+\begin{equation*}
+\hbar\omega = \hbar\nu_{\mathrm{optical}} + \hbar\nu_{\mathrm{acoustic}},\tag{8.68}
+\end{equation*}
+并有
+\begin{equation*}
+\hbar\mathbf{q}_{\mathrm{optical}} = -\hbar\mathbf{q}_{\mathrm{acoustic}}.
+\end{equation*}
+要真正计算跃迁概率，我们需要知道偶极矩作为晶格位移的函数中的非线性项。例如，我们需要在如下表达式中的张量 $\mathbf{B}_{ss'}$
+\begin{equation*}
+\mathbf{M}_l = \sum_s \mathbf{A}_s\cdot\mathbf{u}_{sl} + \sum_{ss'} \mathbf{u}_{sl}\cdot\mathbf{B}_{ss'}\cdot\mathbf{u}_{s'l}\tag{8.69}
+\end{equation*}
+它给出第 $l$ 个晶胞中由位移 $\mathbf{u}_{sl}$ 产生的偶极矩。于是我们用 (2.8)、(2.10) 和 (2.129) 把每一位移用谱的各个分支的声子的湮没和产生算符表出。$\mathbf{B}_{ss'}$ 项对应于两个此类算符的乘积，它给出我们所寻求的双声子过程。跃迁的实际概率将包含如下形式的两个矩阵元的平方
+\begin{equation*}
+\left.
+\begin{gathered}
+\langle n_{\mathbf{q}}+1|a_{\mathbf{q}}^{*}|n_{\mathbf{q}}\rangle = (n_{\mathbf{q}}+1)^{\frac{1}{2}},\\
+\text{或}\quad \langle n_{\mathbf{q}}-1|a_{\mathbf{q}}|n_{\mathbf{q}}\rangle = n_{\mathbf{q}}^{\frac{1}{2}},
+\end{gathered}
+\right\}
+\tag{8.70}
+\end{equation*}
+对应于声子态的占据数增加或减少一个量子。由于 $n_{\mathbf{q}}$ 的平均值是温度的函数（如 (2.46) 那样），这些过程将是依赖于温度的。不过一般说来，非线性系数 $\mathbf{B}_{ss'}$ 很小，所以与单声子过程相比，这些带是弱的。
+
+值得指出的是，对于任何一个分支，函数 $\nu_{\mathbf{q}}$ 都是 $\mathbf{q}$ 的连续周期函数，其周期为倒格子的周期（参见 §2.2）。由此可知，任何一对这类函数的和或差也具有同样的性质。于是，van Hove 定理（§2.5）适用于频率的分布；在观测谱中只可能出现图 27 所示的那四种类型的奇点（除非矩阵元引入额外的奇点）。
+
+在式 (8.64)、(8.65) 中，我们写下了光作非弹性衍射的选择定则——即一个光子 $|\mathbf{k},\omega\rangle$ 变换为另一个光子 $|\mathbf{k}',\omega'\rangle$ 并发射一个声子 $|\mathbf{q},\nu\rangle$。这将表现为晶体所散射的一部分光的频移。这种一阶 Raman 效应显然等价于单声子吸收。晶体的二阶 Raman 谱含有来自双声子过程的谱带——如此等等。当涉及有限波矢的声学支时，我们称之为 Brillouin 散射。
+
+动量选择定则 (8.64)、(8.67)、(8.68) 依赖于 Bloch 定理（见 §2.7）。若不存在完整的晶格平移对称性，跃迁便可以被允许到布里渊区中的任何一点。因此，晶格中的杂质或其他不完整性会诱发本来被禁止的红外吸收及类似的光学现象。这类效应的详细计算显然非常复杂，但由此可以直接观察到来自局域模（localized modes）的锐线以及来自共振（§2.12）的峰。
+
+\section{带间跃迁}
+
+当电子处于 Bloch 态、形成宽的能带时，电子从满态到空态的跃迁产生宽的吸收带。再者，对于光频，$\mathbf{K}$ 在布里渊区的尺度上很小，因此可以忽略光子的波矢，并假定所有跃迁都是“竖直的”（vertical），如图 143 所示。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_143.pdf}
+\caption*{图 143\quad 半导体中的竖直带间跃迁。}
+\end{figure}
+
+我们已经在式 (5.45) 中写下了半导体介电常数的公式。在那里我们更关心的是所有波长下的静态行为；而现在我们关心的是 $\epsilon(\mathbf{q},\omega)$ 在长波极限下的频率依赖。由式 (5.57) 我们有
+
+\begin{align*}
+\epsilon(\mathbf{q},\omega) &= 1 + \frac{4\pi e^2}{q^2} \sum_{\mathbf{k}} \frac{\left|\langle\mathbf{k}|\,e^{i\mathbf{q}\cdot\mathbf{r}}\,|\mathbf{k}+\mathbf{q}+\mathbf{g}\rangle\right|^2 \left\{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g})\right\}}{(\hbar\omega)^2-\left\{\mathcal{E}(\mathbf{k})-\mathcal{E}(\mathbf{k}+\mathbf{q}+\mathbf{g})\right\}^2} \\
+&\approx 1 + \frac{4\pi e^2}{m} \sum_{\mathbf{k}} \frac{f_{\mathbf{k}}}{\omega_{\mathbf{k}}^2-\omega^2},
+\tag{8.71}
+\end{align*}
+
+其中 $f_{\mathbf{k}}$ 是一个振子强度，如同式 (8.40) 中那样，对应于价带中 $|\mathbf{k}\rangle$ 与导带中 $|\mathbf{k}+\mathbf{g}\rangle$（在简约区图式中正位于其上方）之间的跃迁，这两个态的能量差为 $\hbar\omega_{\mathbf{k}}$。但由于 $\mathbf{k}$ 是连续的，求和变成如下形式的积分
+
+\begin{equation*}
+\epsilon(0,\omega) \approx 1 + \frac{4\pi e^2}{m} \int \frac{f(\omega')\mathcal{N}_d(\omega')\,d\omega'}{\omega'^2-\omega^2},
+\tag{8.72}
+\end{equation*}
+
+其中 $\mathcal{N}_d(\omega')\,d\omega'$ 是竖直能量差为 $\hbar\omega'$、落在 $d\omega'$ 范围内的能级数目，而 $f(\omega')$ 是该范围内跃迁的振子强度——即一个数量级为 1 的数。
+
+介电常数实部的这个公式不如虚部那么有意思。借助色散关系 (8.29) 与 (8.30) 可以看出，吸收系数必具有如下形式
+
+\begin{align*}
+2\omega\,\mathsf{n}(\omega)\,\mathsf{k}(\omega) &= \frac{\pi}{2}\,\frac{4\pi e^2}{m} \int f(\omega')\,\mathcal{N}_d(\omega')\,\delta(\omega-\omega')\,d\omega' \\
+&= \frac{2\pi^2 e^2}{m} f(\omega)\,\mathcal{N}_d(\omega).
+\tag{8.73}
+\end{align*}
+
+我们本来也可以通过另一种途径得到同一结果：注意式 (5.45) 中的 $\epsilon(\mathbf{q},\omega)$ 带有一个由参数 $\alpha$ 支配的虚部，这个 $\alpha$ 在式 (5.1) 中是作为被电子系统屏蔽的微扰的衰减常数引入的。显然，这个参数所扮演的角色与式 (8.51) 中的线宽参数 $\Gamma_j$ 相同；后者实际上本质上就具有 (5.45) 与 (5.57) 的形式。于是，沿着从 (8.51) 到 (8.47) 的步骤往回追溯——实际上就是让每个跃迁的线宽趋于零——我们就回到了式 (8.73)。
+
+式 (8.73) 中的函数 $\mathcal{N}_d(\omega)$ 是价带与导带能量之差的谱；由于这两个带各自都是倒格子中的连续周期函数，该谱只具有 §2.5 中指出的那些 van Hove 奇异性。其中最重要的是吸收带边（absorption band edge），对应于两带之间的最小竖直能量差 $\hbar\omega_0$。如式 (2.72) 所示，谱在该邻域内的行为必为
+
+\begin{equation*}
+\mathcal{N}_d(\omega) \propto (\omega-\omega_0)^{\frac{1}{2}}.
+\tag{8.74}
+\end{equation*}
+
+然而应当注意，$\hbar\omega_0$ 未必就是价带顶与导带底之间的那个“能隙” $\mathcal{E}_{\mathrm{gap}}$。这两个点在 $\mathbf{k}$ 空间中未必恰好上下正对：两带之间的最小\emph{竖直}间隔可能要稍大一些。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_144.pdf}
+\caption*{图 144\quad (a) 直接跃迁未必给出能隙；(b) 声子辅助跃迁。}
+\end{figure}
+
+不过，如果允许同时发射或吸收一个声子，便有可能观察到 $\hbar\omega\approx\mathcal{E}_{\mathrm{gap}}$ 的光学跃迁。这类\emph{间接}跃迁或\emph{声子辅助}跃迁（phonon-assisted transitions）很容易用二阶微扰论导出。过程分两步；例如，先通过吸收一个光子竖直地向上跃迁，然后通过发射或吸收一个波矢 $\mathbf{q}$ 足够大的声子，到达导带中相应的极小点。我们无须操心中间虚态中的能量守恒；总的条件将是
+
+\begin{equation*}
+\hbar\omega = \mathcal{E}_{\mathrm{gap}} \pm \hbar\nu_{\mathbf{q}},
+\tag{8.75}
+\end{equation*}
+
+其中 $\nu_{\mathbf{q}}$ 是声子的频率。由于在能隙的尺度上 $\hbar\nu_{\mathbf{q}}$ 是个小能量（例如 0.03 eV），我们会发现吸收带似乎从 $\mathcal{E}_{\mathrm{gap}}$ 附近开始。但间接跃迁的概率比直接跃迁小得多，并且如式 (8.70) 所示，通过声子态的占据数而依赖于温度。
+
+以上关于完整晶体中电子跃迁的讨论采用的是简单的单电子模型。然而在现实中，如图 144 那样的跃迁，其末态在导带中有一个电子之外，价带中还有一个空穴。如果这两个粒子没有立即彼此分飞开来，它们可以像 §6.7 中那样相互吸引而形成束缚态——Wannier 激子（exciton）能级——其总能量低于产生它们的那条带隙。换言之，光谱在基本吸收边之下显示出激子谱线。这一现象在离子晶体中特别显著（译注：原文作“in ionic and crystals”，疑有脱字）：其中的 Frenkel 激子虽然“小”且实际上不能移动，却具有很大的振子强度，对应于它们所源自的原子或分子激发态。
+在这些材料中，电磁场与激子振幅之间的耦合可以强到足以产生极化激元（polariton）传播模式（参见 §8.3）。
+
+杂质与不完整性的效应也使半导体和离子晶体的光学性质大大复杂化，同时也大大丰富起来。例如，人们可以观察到与带电杂质的类氢能级之间的跃迁相联系的各种吸收线（§6.4）。
+
+色心（colour centre）中光学跃迁的理论因不完整性周围的晶格畸变而变得稍微复杂一些。由于这种畸变受到与光学活性电子的静电相互作用的影响，它必然依赖于系统的电子态。因此，不完整性的本征态必须同时用电子坐标和原子坐标来描写。但是，光学跃迁在被吸收或发射的频率的周期时间内发生，而晶格畸变到新电子态所要求的位形所需的时间却是一个动力学模的周期，比前者长得多。因此，从晶格的观点看，跃迁必须当作\emph{非绝热}的或\emph{突然}的来处理（参见 §6.11）。
+
+这就是 Franck–Condon 原理的基础，如图 145 所示。设不完整性周围晶格的畸变可以用单一坐标 $u$ 来度量，例如离子向内或向外的“呼吸”式位移的振幅。当电子处于某态 $|a\rangle$ 时，晶格的势能在某个值 $u_a$ 处取极小，这与另一电子态 $|b\rangle$ 的平衡位移 $u_b$ 不同。从 $|a\rangle$ 到 $|b\rangle$ 的光吸收将在晶格畸变不变的情况下进行——即沿直线 $u=u_a$ “竖直地”进行。反之，发射则必须沿 $u_b$ 进行，它对应于初始电子态 $|b\rangle$ 中的平衡位移。显然，$\hbar\omega_{ab}\neq\hbar\omega_{ba}$。不过在实际上，我们还必须考虑每个势能极小点附近晶格模的热激发。声子发射会使谱线展宽，并且在高温下最终会把两个过程之间的差别抹平。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_145.pdf}
+\caption*{图 145\quad F 心处的光学跃迁，显示晶格畸变的效应：吸收 AB' 所需的能量高于发射 BA'。高温下，声子能级与两个方向的电子跃迁相结合（A'B'）。}
+\end{figure}
+
+带间光学跃迁当然在金属中也可以观察到——只是需要修正，以顾及电子未必完全填满一个带、或者可能分布于几个不同的布里渊区这一事实。这类跃迁的理论原则上遵循本节的论证——但该现象当然可能在一定程度上被电子系统的电导率所伴随的高反射率所掩盖（见 §8.6）。
+
+另一种本质上等价于带间跃迁的现象是软 X 射线的发射。当固体中一个原子的最深能级之一上的电子被移走时，电子从其他各个能级向下跃迁，便发射出 X 射线。我们关心的是从金属价带出发的跃迁——直观上很显然，发射辐射的谱将显示出一个频带，反映出传导电子或价电子所占据的态带。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_146.pdf}
+\caption*{图 146\quad X 射线发射。}
+\end{figure}
+
+这个谱的实际形状将取决于带中态密度与相应跃迁矩阵元平方二者的乘积。众所周知，电子与电磁场之间的相互作用是通过电子的动量算符进行的（即通过电子运动产生的电流），因此必须研究如下形式的矩阵元
+
+\begin{equation*}
+\int \psi_{\mathbf{k}}^{*}(\mathbf{r})\, e^{i\mathbf{K}\cdot\mathbf{r}}\, \mathrm{grad}\,\phi_a(\mathbf{r})\,\mathrm{d}\mathbf{r},
+\tag{8.76}
+\end{equation*}
+
+其中 $\phi_a$ 是失去电子的那个原子轨道，$\mathbf{K}$ 是 X 射线的波矢。与这类跃迁相联系的波长在原子距离的尺度上仍然是长的，所以这个波动因子可以忽略——而且，由于 $\phi_a(\mathbf{r})$ 是局域化的函数，不存在动量选择定则。
+
+然而，这个矩阵元在整个带内可能有相当大的变化，视能级 $\phi_a$ 是 s 态还是 p 态而定，也视 $\psi_{\mathbf{k}}(\mathbf{r})$ 在原子内部更偏 s 型还是 p 型而定。还有来自电子间相互作用的效应。因此，发射谱的确切形状未必是态密度的直接量度，尽管它应当反映该函数的某些特征，特别是 费米能级处的锐利截止。
+
+晶体对光或 X 射线的吸收伴随着电子被激发到更高的能级。在半导体或绝缘体中，这些激发电子通常是可以移动的，因而产生光电导（photoconductivity）。但是这样产生的载流子很容易被杂质和不完整性俘获（trapping），大量复杂的实验现象即为明证。
+
+如果能量足够，电子可以穿越晶体表面被光电发射出去。关于光电效应的初等 Einstein 公式只告诉我们，它在表面之外具有的能量不能超过
+
+\begin{equation*}
+\mathcal{E}_{\max} = \hbar\omega - \phi_W
+\tag{8.77}
+\end{equation*}
+
+因为它必须已经越过了功函数势垒 $\phi_W$（§6.9）。但能量较低的光电子必定来自晶体内 费米能量以下的能级。直接测量 $n(\mathcal{E},\omega)$——给定光子频率下发射电子的能量分布——应当能给出大量关于从占据带态到空带态的跃迁概率的信息，这类跃迁正是光吸收的成因。
+
+为了解释这些观察结果，我们自然会构造一幅能级图（图 147），并按照图 143 的方式清点竖直的或直接的跃迁。原则上，若能同时控制 $\mathcal{E}$ 和 $\omega$，我们由此应当能获得比诸如式 (8.73) 的带间谱密度所给出的稍多一点关于能带结构的信息。实际上，许多晶体固体的光电发射谱并不符合这一模式，而似乎表现得如同
+
+\begin{equation*}
+n(\mathcal{E},\omega) \sim \rho_f(\mathcal{E})\,\rho_i(\mathcal{E}-\hbar\omega),
+\tag{8.78}
+\end{equation*}
+
+仿佛在能量密度为 $\rho_i(\mathcal{E}-\hbar\omega)$ 的初态与能量为 $\rho_f(\mathcal{E})$ 的末态之间，“非直接”跃迁可以不加甄别地发生。实验在技术上很困难，但结论是明确的：尚不清楚这一与简单理论的分歧，究竟仅仅是像 L.E.E.D.（§6.9）中那样，由于发射表面附近晶体动量选择定则的失效所致，还是应归因于多电子效应。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_147.pdf}
+\caption*{图 147\quad 光电发射。}
+\end{figure}
+
+\section{与传导电子的相互作用}
+
+当固体是相对良好的导体时，光学性质会怎样？例如，假定我们在复折射率的公式 (8.7) 中忽略 $\epsilon$——这是一个对金属有效的假定。
+
+于是我们有
+
+\begin{equation*}
+\mathsf{N}^2 = \frac{4\pi\sigma}{\omega}\, i,
+\tag{8.79}
+\end{equation*}
+
+并且实部和虚部大小相等：
+
+\begin{equation*}
+\mathsf{n} + i\mathsf{k} = \left(\frac{2\pi\sigma}{\omega}\right)^{\frac{1}{2}}(1+i).
+\tag{8.80}
+\end{equation*}
+
+其最显而易见的后果是，固体的反射本领变得非常高。由式 (8.19)，
+
+\begin{equation*}
+\mathsf{R} \approx 1 - 2\left(\frac{\omega}{2\pi\sigma}\right)^{\frac{1}{2}},
+\tag{8.81}
+\end{equation*}
+
+这就是所谓的 Hagen--Rubens 关系。对完全反射性的偏离正比于
+
+\begin{equation*}
+\left(\frac{\omega}{2\pi\sigma}\right)^{\frac{1}{2}} \sim \left(\frac{2\omega}{\omega_p^2\tau}\right)^{\frac{1}{2}},
+\tag{8.82}
+\end{equation*}
+
+其中 $\tau$ 是电导率的经典公式 (7.33) 中的弛豫时间，而 $\omega_p$ 则是电子气无处不在的等离体频率。我们知道，即使 $\omega$ 接近红外频率，这个比值也仍然相当小。
+
+但这个初等的宏观理论假定 $\sigma$ 与频率无关。当场振荡得如此之快，以致电子来不及发生碰撞时——即当
+
+\begin{equation*}
+\omega\tau > 1.
+\tag{8.83}
+\end{equation*}
+
+时——情况就不再如此。要研究这个区域，我们必须回到输运方程 (7.14)。
+
+为了完整起见，也为了便于后面引用，让我们写下分布可以在空间和时间上变化的 Boltzmann 方程：
+
+\begin{equation*}
+e\mathbf{E}\cdot\mathbf{v}_{\mathbf{k}}\left(-\frac{\partial f^0}{\partial\mathcal{E}}\right) = \frac{g_{\mathbf{k}}}{\tau} + \mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}} + \frac{\partial g_{\mathbf{k}}}{\partial t}.
+\tag{8.84}
+\end{equation*}
+
+我们像 (7.17) 中那样假定一个弛豫时间。“失衡”分布 $g_{\mathbf{k}}$ 随时间的变化可以被显式地包括进来；正如从 (7.7) 所看到的，当 $\partial f_{\mathbf{k}}/\partial t$ 的所有其他贡献都被计入之后，剩下来的正是这一项。
+
+现在设
+
+\begin{equation*}
+\mathbf{E} = \mathbf{E}_0\exp\{i(\mathbf{K}\cdot\mathbf{r}-\omega t)\},
+\tag{8.85}
+\end{equation*}
+
+如 (8.3) 中那样，并设 $g_{\mathbf{k}}$ 出于“感应”（sympathy）也以同样的方式随空间和时间变化。于是，令
+
+\begin{equation*}
+g_{\mathbf{k}} = \left(-\frac{\partial f^0}{\partial\mathcal{E}}\right)\Phi(\mathbf{k})\exp\{i(\mathbf{K}\cdot\mathbf{r}-\omega t)\}.
+\tag{8.86}
+\end{equation*}
+
+代入 (8.84)，得到
+
+\begin{equation*}
+e\mathbf{E}_0\cdot\mathbf{v}_{\mathbf{k}} = \frac{\Phi(\mathbf{k})}{\tau} + i\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}}\,\Phi(\mathbf{k}) - i\omega\Phi(\mathbf{k}),
+\tag{8.87}
+\end{equation*}
+
+其解为
+
+\begin{equation*}
+\Phi(\mathbf{k}) = \frac{e\tau\,\mathbf{v}_{\mathbf{k}}\cdot\mathbf{E}_0}{1-i\omega\tau+i\tau\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}}}.
+\tag{8.88}
+\end{equation*}
+
+我们的 Boltzmann 方程的线性性质使得这个初等的解成为可能。
+
+对于电导率，如 (7.20)--(7.24) 中那样，我们有
+
+\begin{align*}
+\boldsymbol{\sigma}\cdot\mathbf{E}_0 &= \frac{e}{4\pi^3}\int \Phi(\mathbf{k})\,\mathbf{v}_{\mathbf{k}}\,\frac{dS_F}{\hbar v_{\mathbf{k}}} \\
+&= \frac{e^2}{4\pi^3}\int \frac{\tau\,\mathbf{v}_{\mathbf{k}}\mathbf{v}_{\mathbf{k}}}{1-i\tau(\omega-\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}})}\,\frac{dS_F}{\hbar v_{\mathbf{k}}}\cdot\mathbf{E}_0.
+\tag{8.89}
+\end{align*}
+
+于是，电导率本身就有了实部和虚部；$\boldsymbol{\sigma}$ 的实部将对 $\mathsf{N}^2$ 的虚部作出贡献，而 $\boldsymbol{\sigma}$ 的虚部则看上去像是实介电常数的一部分。
+
+对于普通的电磁波，其相速大于电子的 费米速度，我们可以略去 $\mathbf{K}\cdot\mathbf{v}_{\mathbf{k}}$ 项，它比 $\omega$ 小得多。为形式上简单起见，假定金属具有立方对称性，我们从 (8.89) 得到
+
+\begin{align*}
+\sigma(\omega) &= \frac{e^2}{12\pi^3}\int \frac{\tau v(1+i\omega\tau)}{1+\omega^2\tau^2}\,dS_F \\
+&= \sigma(0)\frac{1+i\omega\tau}{1+\omega^2\tau^2},
+\tag{8.90}
+\end{align*}
+
+其中 $\sigma(0)$ 是金属的普通静态电导率。
+
+应当把这个公式代入 (8.7) 和 (8.19)。若取 $\epsilon=1$，即忽略离子的任何内部极化率，则由 (8.7)、(8.8)、(7.33) 和 (5.53)，我们得到 $\mathsf{N}^2$ 的实部和虚部
+
+\begin{align*}
+\mathsf{n}^2-\mathsf{k}^2 &= 1-\frac{4\pi\sigma(0)\,\omega\tau}{\omega(1+\omega^2\tau^2)} \\
+&= 1-\frac{\omega_p^2\tau^2}{1+\omega^2\tau^2}
+\tag{8.91}
+\end{align*}
+
+以及
+
+\begin{align*}
+2\mathsf{n}\mathsf{k} &= \frac{4\pi\sigma(0)}{\omega(1+\omega^2\tau^2)} \\
+&= \frac{\omega_p^2\tau}{\omega(1+\omega^2\tau^2)},
+\tag{8.92}
+\end{align*}
+
+其中，电子气的等离体频率再一次扮演了最重要的角色。
+
+这个 \emph{Drude 理论}涵盖了三个不同的频率区域。
+
+(i) $\omega\ll 1/\tau$。这是普通的低频区。$\mathsf{N}^2$ 的虚部远大于实部，因而金属强烈反射，Hagen--Rubens 关系 (8.81) 成立。吸收系数大体上与 $\omega$ 无关，而正比于电导率。$\mathsf{N}^2$ 的实部为负，其大小远大于 1。
+
+(ii) $1/\tau\ll\omega\ll\omega_p$。这是\emph{弛豫区}（relaxation region），在此区域中 $\omega^2\tau^2$ 在 (8.91) 与 (8.92) 的分母里占了上风。吸收系数迅速下降，与 $1/\omega^2$ 成比例——而且说来奇怪，它与电导率成\emph{反}比。$\mathsf{N}^2$ 的虚部变得小于实部——但后者仍然很大且为负，如今具有如下形式
+
+\begin{equation*}
+\mathsf{n}^2-\mathsf{k}^2 = 1-\frac{\omega_p^2}{\omega^2}
+\tag{8.93}
+\end{equation*}
+
+如 (5.67) 和 (8.45) 中那样。于是，金属仍然强烈反射，此时
+
+\begin{equation*}
+\mathsf{R} \approx 1-\frac{1}{\sqrt{\pi\sigma_0\tau}} \approx 1-\frac{2}{\omega_p\tau}.
+\tag{8.94}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_148.pdf}
+\caption*{图 148\quad 金属光学性质的示意行为，图中示出介电常数的实部和虚部、反射系数以及吸收系数。注意频率采用对数标度。}
+\end{figure}
+
+(iii) $\omega_p\ll\omega$。$\mathsf{N}^2$ 的实部变为正数，反射本领降到零。这时金属应当显得或多或少是透明的，其吸收系数为
+
+\begin{equation*}
+\frac{2\omega\,\mathsf{n}(\omega)\,\mathsf{k}(\omega)}{c} \approx \frac{\omega_p^2}{\omega^2\tau c}.
+\tag{8.95}
+\end{equation*}
+
+式 (8.91) 和 (8.92) 蕴含着 $\mathsf{n}$ 与 $\mathsf{k}$ 作为 $\omega$ 的函数之间的某些关系，而事实上这些关系并不总是得到遵守。但
+这在某种程度上可以理解，只要认为积分 (8.89) 中的弛豫时间 $\tau$ 并非常数，而是在费米面上逐点变化的。这样，我们原则上可以区分出三种不同的积分
+\begin{equation*}
+\int \tau v\,dS_F,\quad \int \tau^2 v\,dS_F,\quad \int \frac{v}{\tau}\,dS_F, \tag{8.96}
+\end{equation*}
+它们对应于 $\tau(\mathbf{k})$ 在费米面上的三种不同类型的平均。没有理由认为这些不同的平均就应当全都相等。
+
+我们还注意到，$\mathsf{N}^2$ 在高频下的实部依赖于积分
+\begin{equation*}
+\int v\,dS_F, \tag{8.97}
+\end{equation*}
+对自由电子而言，它正比于电子数目，反比于电子质量。而在态密度中出现的却是另一种类型的速度平均——调和平均
+\begin{equation*}
+\int \frac{dS_F}{v} \tag{8.98}
+\end{equation*}
+如 (4.6) 中那样。这两类平均之间的差别，可以提供关于电子速度在费米面上各向异性的信息。用一个与“光学质量”相联系的因子去“修正” (8.97) 的观测值并不明智；事后往往发现，这样得到的因子与为使 (8.98) 符合电子比热的自由电子公式所需要的“热质量”大不相同。“一切费米面都是球面”这一隐含假设，即便对一价金属也常常站不住脚。
+
+\section{反常趋肤效应}
+
+Hagen–Rubens 关系 (8.81) 还可能以另一种方式失效。由 (8.79) 给出的吸收系数非常高，电磁波进入金属后很快就被衰减掉了。由 (8.10) 与 (8.80) 得出的阻尼距离的数量级为
+\begin{align*}
+\delta &= \frac{c}{\mathsf{k}\omega} \\
+&= \frac{c}{(2\pi\sigma\omega)^{\frac{1}{2}}}\,. \tag{8.99}
+\end{align*}
+这个现象在经典电动力学中早已众所周知，称为趋肤效应（skin effect）。我们把由 (8.99) 给出的 $\delta$ 称为经典趋肤深度（classical skin depth）$\delta_{\mathrm{cl}}$。
+
+在高频下，$\delta$ 可以变得非常小。如果我们在低温下取一块纯度极高的金属，就会发现趋肤深度可以变得远小于电子平均自由程 $\Lambda$。电导率的普通理论这时不再有效；作用在载流子上的有效场，在载流子于两次碰撞之间所走过的距离上变化急剧。
+
+为了处理这种情形，我们必须尝试求解 $g_{\mathbf{k}}$ 随空间变化的 Boltzmann 方程。如果忽略 $\mathbf{E}$ 与 $g_{\mathbf{k}}$ 的时间变化（这一现象很容易在远低于上述弛豫区起始处的频率下观察到），那么仿照 (8.84)，我们得到
+\begin{equation*}
+e\mathbf{E}(\mathbf{r})\cdot\mathbf{v}_{\mathbf{k}}\left(-\frac{\partial f^0}{\partial\mathcal{E}}\right) = \frac{g_{\mathbf{k}}}{\tau} + \mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}} \tag{8.100}
+\end{equation*}
+作为待求解的 $g_{\mathbf{k}}$ 的微分方程。
+
+求解 (8.100) 最直接的做法——它适用于涉及表面、薄膜、细丝等等的各类问题——是采用 Chambers 公式（Chambers formula）
+\begin{equation*}
+g(\mathbf{v},\mathbf{r}) = \frac{e}{v}\left(-\frac{\partial f^0}{\partial\mathcal{E}}\right)\int^{\mathbf{r}} \mathbf{v}\cdot\mathbf{E}(\mathbf{r}')\,e^{-s'/\tau v}\,ds'. \tag{8.101}
+\end{equation*}
+用完全形式化的办法证明这是微分方程的一个解并不十分困难；它只不过是方程 $dy/dx+\alpha y=f(x)$ 的通常求解公式的一个直接推广。
+
+从物理上讲，它意味着在点 $\mathbf{r}$ 处、沿方向 $\mathbf{v}$ 的电子电流，取决于对该电流有贡献的那些电子此前走过的历史。积分并不是遍及整个空间，而只是沿通过 $\mathbf{r}$ 点、方向为 $\mathbf{v}$ 的轨道向回追溯到距离 $s'$ 处。这样，在 $\mathbf{r}'$ 点处电子受到力 $e\mathbf{E}(\mathbf{r}')$ 而加速。但由于弛豫过程，这份贡献随时间衰减；指数因子度量的正是这种效应沿轨道随距离的变化。这个半经典公式在原理上与 Kubo 公式 (7.15) 密切相关，在那里我们同样要对体系此前的历史作积分。
+
+由 (8.101)，可以用通常的公式 (7.20) 计算总电流。但我们注意到，这个电流将是 $\mathbf{r}$ 的函数——同时也是函数 $g(\mathbf{v},\mathbf{r})$ 的边界条件的函数。于是，存在一个积分方程，把 $\mathbf{J}(\mathbf{r})$ 定义为电场分布 $\mathbf{E}(\mathbf{r})$ 的泛函。另一方面，这两个量又由如下比 (8.2) 更一般形式的 Maxwell 方程联系起来：
+\begin{align*}
+\nabla^2\mathbf{E} &= \frac{4\pi}{c^2}\frac{d\mathbf{J}}{dt} \\
+&= \frac{4\pi i\omega}{c^2}\,\mathbf{J}(\mathbf{r}) \tag{8.102}
+\end{align*}
+（略去通常的位移电流）。这样一来，人们可以求解由 (8.101) 与 (8.102) 导出的积分微分方程，得出表面附近 $\mathbf{J}(\mathbf{r})$ 与 $\mathbf{E}(\mathbf{r})$ 的分布。
+
+这个方程的精确解相当繁复，而且依赖于边界条件——它取决于电子在表面是被镜面反射，还是在表面受到无规散射。具体的公式并不如其物理诠释来得重要。事实是，并非所有电子都参与了电磁波的吸收和反射。只有在趋肤深度内跑完大半段平均自由程 $\Lambda$ 的那些电子，才能从
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_149.pdf}
+\caption*{图 149\quad 只有处于趋肤深度内的电子才是“有效的”。}
+\end{figure}
+电场中汲取可观的能量。例如，若趋肤深度为 $\delta'$，则可以认为只有份额为 $\delta'/\Lambda$ 的电子对电导是\emph{有效}的。我们可以写出
+\begin{equation*}
+\sigma' = \frac{3}{2}\,\beta\,\frac{\delta'}{\Lambda}\,\sigma_0 \tag{8.103}
+\end{equation*}
+作为表观电导率——数 $\beta$ 不过是个“凑算因子”（fudge factor）。
+
+但这样一来，按照 (8.99)，具有这一电导率的表面自身的趋肤深度就应为
+\begin{align*}
+\delta' &= \frac{c}{(2\pi\sigma'\omega)^{\frac{1}{2}}} \\
+&= \frac{c}{\left(2\pi\,\frac{3}{2}\,\beta\,\frac{\delta'}{\Lambda}\,\sigma_0\,\omega\right)^{\frac{1}{2}}}\,, \tag{8.104}
+\end{align*}
+由此可解出 $\delta'$，进而解出 $\sigma'$。于是
+\begin{equation*}
+\sigma' = \left(\frac{9\beta^2}{8\pi}\right)^{\frac{1}{3}} \frac{1}{\omega^{\frac{1}{3}}} \left(\frac{c\sigma_0}{\Lambda}\right)^{\frac{2}{3}}; \tag{8.105}
+\end{equation*}
+有效电导率将表现得如同 $\omega^{-\frac{1}{3}}$，但却与电子平均自由程无关——它与普通静态电导率 $\sigma_0$ 中的相应因子相消了。这时我们就处于反常趋肤效应（anomalous skin effect）的条件下。实践上人们的做法是把金属表面做成共振腔的一部分，然后观察腔的共振性质所受到的影响。比如说，可以测量表面阻抗（surface impedance），按 §8.1 的记号，它就是
+\begin{equation*}
+\mathbf{Z}(\omega) = -4\pi i\omega\,\frac{E(z)}{(\partial E/\partial z)}\bigg]_{z=0} = \frac{4\pi c}{\mathsf{N}} \tag{8.106}
+\end{equation*}
+在反常极限下，金属表观光学性质的理论中还有其他一些变化可以推演出来，特别是当频率进入弛豫区时。例如，若表面是“粗糙”的，则电子在表面的实际散射会从反射波中额外吸收功率——这一贡献可与前一节中算出的（忽略这种散射时的）效应同样大小。
+
+然而，反常趋肤效应最有意思的性质，是它对费米面几何形状的依赖。如上所述，只有那些几乎平行于表面运动的电子才对电导“有效”。如果样品是单晶，这些电子便来自环绕费米面的一条窄带。倘若费米面高度各向异性，那么在金属晶体的不同切面上、场的不同取向下测量，我们理应看到不同的表面阻抗值。
+
+所要测量的几何性质，可以通过把“无效性概念”（ineffectiveness concept）(8.103) 加以推广而导出。我们假定只需考虑速度矢量与 $(x,y)$ 平面（它界定金属边界）的平行度相差 $\pm\beta\delta'/\Lambda$ 角之内的电子（取电场沿 $x$ 方向）。
+
+在有效电子带的某个一般点 $P$ 处，速度 $\mathbf{v}$ 与 $\mathbf{E}$ 成 $\theta$ 角。带的该处宽度将为 $2\beta\delta'|\rho|/\Lambda$，其中 $|\rho|$ 是在 $\mathbf{v}$ 与 $z$ 轴所定平面内的曲率半径。带周长上长为 $ds$ 的一段元，于是对应于费米面上的一块面积
+\begin{equation*}
+dS = \frac{2\beta\delta'|\rho|}{\Lambda}\,ds, \tag{8.107}
+\end{equation*}
+并且显然会按照通常的公式 (7.23) 对 $x$ 方向的电导作出贡献：
+\begin{align*}
+d\sigma'_{xx} &= \frac{e^2}{4\pi^3\hbar}\,\tau v_x\,dS_x \\
+&= \frac{e^2}{4\pi^3\hbar}\,\Lambda\cos\theta\,\frac{2\beta\delta'|\rho|}{\Lambda}\,\cos\theta\,ds. \tag{8.108}
+\end{align*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_150.pdf}
+\caption*{图 150\quad 费米面上由有效电子构成的带。}
+\end{figure}
+于是，金属的总表观电导率将为
+\begin{align*}
+\sigma' &= \frac{e^2\beta\delta'}{2\pi^3\hbar}\int |\rho|\cos^2\theta\,ds \\
+&= \frac{e^2\beta\delta'}{2\pi^3\hbar}\oint |\rho_y|\,dk_y, \tag{8.109}
+\end{align*}
+其中 $\rho_y$ 表示费米面沿带的、平行于 $(x,z)$ 平面的截面的曲率半径，积分遍及带周围动量分量 $k_y$ 的取值范围。这就是我们代进 (8.104) 里的量，随后分别解出 $\delta'$ 与 $\sigma'$。更完整的分析表明
+\begin{equation*}
+\beta = \frac{8\pi}{3\sqrt{3}} \tag{8.110}
+\end{equation*}
+正是这个任意的“凑算因子”的合适数值。
+这个结果的美妙之处在于，表面阻抗既不依赖于电子的平均自由程，也不依赖于电子的速度，而只依赖于绕一条明确定义的带积分出来的局部曲率。积分 (8.109) 对曲率半径大的区域特别敏感——也就是说，对费米面上相对平坦的部位特别敏感。因此，它提供的信息在一定程度上与其他种种“效应”互补，那些效应往往依赖于细枝末节以及费米面上互不相连的小块碎段。然而，要把一个给定费米面与一组沿不同取向的带算出的 (8.109) 型积分值之间的关系反演出来并非易事；通常不得不经过一番繁琐的试错手续。
+
+\section{超声衰减}
+
+高频弹性波因与金属中传导电子相互作用而衰减，其理论虽然算不上严格的“光学”性质，却最自然地放到本章来讨论。固体中的声波会产生电场，并以与电磁波大体相同的方式加速电子。但声速比光速小得多——甚至比电子的费米速度还要小——因而可以观察到某些特殊的效应。
+
+在普通的低频区，衰减可以借助初等动理学理论（kinetic theory）来计算。一个由电子组成的气体，设其质量为 $m$、数密度为 $n$、平均速度为 $v_F$、平均自由程为 $\Lambda$，将具有黏度（viscosity）
+\begin{equation*}
+\eta = {\textstyle\frac{1}{3}}\,nm\Lambda v_F. \tag{8.111}
+\end{equation*}
+这个黏度可以作为一项纳入作用在介质体元上的力的普通经典方程。频率为 $\omega$ 的纵向弹性波的衰减常数便求出为
+\begin{equation*}
+\alpha = \frac{4}{5}\,\frac{\omega^2}{Ds^3}\,\eta, \tag{8.112}
+\end{equation*}
+其中 $D$ 是质量密度，$s$ 是声速。这些结果可以合并成各种不同的形式，例如按电导率 (7.33) 写成
+\begin{equation*}
+\alpha = \frac{4}{15}\,\frac{\omega^2 m v_F^2}{e^2 D s^3}\,\sigma, \tag{8.113}
+\end{equation*}
+如果金属非常纯，而在低温下进行测量，电子的弛豫时间会大为增长。然而，用超声波仍然难以进入 $\omega\tau>1$ 的弛豫区。
+不过，正因为声速远小于费米速度，我们有可能使平均自由程长于声波的波长，即做到
+\begin{equation*}
+q\Lambda > 1. \tag{8.114}
+\end{equation*}
+为了讨论这种情形，我们回到 (8.89)，在那里我们针对在空间和时间上都作正弦变化的电场，构造了 Boltzmann 方程解的一个公式。实际上，我们求得了一个广义电导率
+\begin{equation*}
+\boldsymbol{\sigma}(\mathbf{q},\omega) = \frac{e^2}{4\pi^3}\int \frac{\tau\mathbf{v}\mathbf{v}}{1-i\tau(\omega-\mathbf{q}\cdot\mathbf{v})}\,\frac{dS_F}{\hbar v}. \tag{8.115}
+\end{equation*}
+在 §8.6 中讨论这个公式时，我们取了 $q=0$，理由是电磁波的速度如此之大，以致其波数可以取作近乎为零。但是，当电场是由
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_151.pdf}
+\caption*{图 151\quad 冲浪共振。}
+\end{figure}
+声波产生时——声波比电子传播慢得多——这一项就必须保留。这时，电导率的实部主要来自费米面上 $\omega\sim\mathbf{q}\cdot\mathbf{v}$ 的区域。这等于换一种说法：电子速度在波传播方向上的分量等于声速。
+
+这就是所谓的冲浪共振（surf-riding resonance）。恰好位于波峰上的电子，可以沿几乎垂直于波传播矢量的方向行进，从而继续从场中汲取能量。显然，费米面上只有少数电子能满足这一条件。如果我们把 $\omega$ 完全略去，它便在费米面上定出一条电子速度垂直于 $\mathbf{q}$ 的带——这条带与反常趋肤效应理论（§8.7）中定义的那条带形状完全相同。
+
+在 $q\Lambda\gg1$ 的极限下计算 (8.115) 并不困难。带的有效宽度取决于当我们离开准确共振位置时 $\tau\mathbf{q}\cdot\mathbf{v}$ 增长的速率。$\tau$ 的值越大，带就变得越窄。正如 (8.107) 中那样，“有效”面积元正比于表面的局部曲率半径，反比于 $\Lambda$。
+例如，用初等微分几何可以证明，在 $q\Lambda\gg1$ 的极限下有精确公式
+\begin{equation*}
+\sigma_{xx}(\mathbf{q},0) = \frac{e^2}{4\pi^3\hbar q}\oint |\rho_y|\,dk_y, \tag{8.116}
+\end{equation*}
+其中方向 $x$ 与 $y$ 都垂直于传播方向 $\mathbf{q}$，其余符号与 (8.109) 中完全相同。
+
+这个公式的有趣之处在于它不依赖于 $\Lambda$。必须存在某种使电子最终受到散射的机制，这一点至关重要；但在这一极限下，
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_152.pdf}
+\caption*{图 152\quad 与声子 $\mathbf{q}$ 相互作用的电子带。}
+\end{figure}
+散射的强弱却无关紧要。这正是我们在 §8.7 中已经遇到过的情形。事实上，人们可以用 (8.116) 作为出发点，完整地推导出反常趋肤效应的公式 (8.109)，连凑算因子 $\beta$ 的取值也包括在内。这实质上是把由 Maxwell 方程导出的关系 (8.102) 用 Fourier 分量表示出来，并且计入顾及电子在金属表面处行为的边界条件。
+
+如果我们能单用 (8.116) 就建立起超声衰减的理论，那将是十分惬意的。测量沿各个方向穿过单晶传播的波的衰减，这一实验在技术上显然要比沿各种取向切出晶体表面、并在测量表面阻抗的同时保持它们清洁完好容易得多。
+
+遗憾的是，这并不能给出关于费米面形状的直接信息。衰减确实会趋向一个与电子平均自由程无关的值——(8.113) 不再成立——但其数值大小取决于电子与格波耦合的细节。换句话说，电子因晶格位移或晶格应变而感受到的电场无法直接计算，而且在费米面上各处不同。
+可以设想，需要在 (8.116) 的被积函数中插入一个形变势（deformation potential）——即 §6.14 中讨论过的那一类——但它要复杂得多；比如说，在多连通的费米面上，它远不像在简单的自由电子金属中那样容易用寥寥几个参数表达出来。
+
+自由载流子引起的超声衰减也可以在半导体中出现。没有对称中心的离子型材料——例如 III–V 或 II–VI 族化合物（§4.2）——通常是压电性的（piezo-electric）。局部应变 $W_{ij}(\mathbf{r})$ 会产生一个局部电场
+\begin{equation*}
+\delta E_k(\mathbf{r}) = \sum_{ij}\beta_{ijk}\,W_{ij}(\mathbf{r}) \tag{8.117}
+\end{equation*}
+它是 (6.95) 的形变势之外的一项。这个由宏观声波携带的电场行波作用于载流子，在达到相当高的微波频率之前，它是主要的相互作用机制。此时现象的细节将取决于压电张量 $\beta_{ijk}$ 在声波偏振矢量上的投影分量。
+
+在电导率相对较低的介质中，超声声子束把动量传递给载流子，由此产生的声电场（acousto-electric field）可以直接观测到。这显然是声子曳引效应（§7.11）的逆过程。一个密切相关的现象，是沿超声束施加直流电场而使声得到声电放大（acousto-electric amplification）。这可以看作微波激射（maser）作用的一种形式：来自电场的能量使载流子分布失去平衡，随后这一分布受激发而相干地发射声子。我们还可以注意到它与 Cerenkov 辐射的类似之处：电场使载流子获得一个超过声速的漂移速度 (7.31)，从而允许在能量与动量同时守恒的条件下直接产生声子。
+
+上面的推导都建立在对 Boltzmann 方程的准经典处理之上。但同样的结果也可以从量子理论得到——有人也许会说，那样更严格。例如，考虑在从态 $\mathbf{k}$ 到态 $\mathbf{k}+\mathbf{q}$ 的跃迁中吸收一个频率为 $\omega$ 的声子的能量条件 (2.101)。它给我们
+\begin{align*}
+\hbar\omega &= \mathcal{E}(\mathbf{k}+\mathbf{q}) - \mathcal{E}(\mathbf{k}) \\
+&\approx \mathbf{q}\cdot\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}} \\
+&= \hbar\mathbf{q}\cdot\mathbf{v}_{\mathbf{k}}, \tag{8.118}
+\end{align*}
+它与 (8.115) 本质上相同。换句话说，“冲浪共振”无非是电子–声子相互作用的一个初级过程，正如 §§2.8、6.13 中所讨论的那样。
+
+另外，(8.115) 还可以从一个完全不同的出发点导出。让我们把分母写成
+\begin{equation*}
+1-i\tau(\omega-\mathbf{q}\cdot\mathbf{v}) = \frac{i\tau}{\hbar}\bigl\{\mathcal{E}(\mathbf{k}+\mathbf{q}) - \mathcal{E}(\mathbf{k}) - \hbar\omega - i\hbar\alpha\bigr\}, \tag{8.119}
+\end{equation*}
+其中 $\alpha=-1/\tau$。我们认出，这正是 (5.16) 中以及第 5 章其他地方出现的那种求和的分母。稍加变换，并利用 (8.118)，我们发现可以写成
+\begin{equation*}
+\epsilon(\mathbf{q},\omega) \approx 1 + \frac{4\pi i\sigma_l(\mathbf{q},\omega)}{\omega} \tag{8.120}
+\end{equation*}
+当 $q$ 和 $\omega$ 都很小时。这里 $\sigma_l$ 指纵向电导率——即 $\boldsymbol{\sigma}$ 在声子传播方向上的分量。
+
+换言之，我们重新导出了 (8.7)。正如在 §5.1 中计算的那样，电子气的复介电常数已经把电导率作为其虚部包含在内。在 (5.1) 中我们把 $-\alpha$ 取作微扰场的一个任意衰减常数——而把它认同为 $1/\tau$ 显然是恰当的。(5.16) 之中竟然凝聚了多得惊人的物理内容。

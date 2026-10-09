@@ -1,0 +1,1304 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第5章 Schwarzschild 解
+
+% 第5章 The Schwarzschild Solution
+\chapter{Schwarzschild 解}
+
+\section{Schwarzschild 度规}
+
+% ---- 书页 193 / p208 ----
+一个引力理论最显而易见的应用对象就是球对称的引力场。这正是描述诸如地球或太阳（作为很好的近似）所产生的场的贴切情形——苹果下落、行星运动都发生在这样的场中。此外，我们首先关心的是\emph{外部}解（包围着引力体的空无一物的空间），因为理解物体外部检验粒子（test particle）的运动，比起考察相对难以触及的内部来，既更容易，也更加直接有用。除了这种实用价值之外，在广义相对论中这一问题的答案还将把我们引向一些非同寻常的解，它们描述了令物理学家和天文学家极感兴趣的新现象：黑洞（black hole）。在本章中，我们考察具有完美球对称性的真空解这一简单情形；下一章再在更一般的背景中考查黑洞的各种特征。
+
+在广义相对论中，唯一的球对称真空解就是 \textbf{Schwarzschild 度规}（Schwarzschild metric）；在重要时空的名单上，它的地位仅次于 Minkowski 空间。在球坐标 $\{t, r, \theta, \phi\}$ 下，该度规为
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{2GM}{r}\right)^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2,
+\tag{5.1}
+\end{equation*}
+其中 $\mathrm{d}\Omega^2$ 是单位二维球面上的度规，
+\begin{equation*}
+\mathrm{d}\Omega^2 = \mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2.
+\tag{5.2}
+\end{equation*}
+常数 $M$ 被解释为产生引力的物体的质量（尽管作此认定时还需要几分小心）。本节我们将用试错法（trial and error）导出 Schwarzschild 度规；下一节我们无论在解的推导上还是在其推论上都会更加系统。
+
+既然我们感兴趣的是球状天体\emph{外部}的解，我们关心的就是真空中的 Einstein 方程，
+\begin{equation*}
+R_{\mu\nu} = 0.
+\tag{5.3}
+\end{equation*}
+
+% ---- 书页 194 / p209 ----
+我们假设的源是静态的（不随时间演化）而且球对称，因此我们将寻找同样具有这些性质的解。“静态”和“球对称”两者的严格定义都需要小心对待，其中牵涉坐标无关性的种种微妙之处。眼下我们把静态理解为两个条件：所有度规分量都与时间坐标无关，而且度规中没有时间-空间交叉项 $(\mathrm{d}t\,\mathrm{d}x^i + \mathrm{d}x^i\,\mathrm{d}t)$。后一个条件的道理在于：设想作一个时间反演 $t \to -t$；$\mathrm{d}t^2$ 项保持不变，任何 $\mathrm{d}x^i\mathrm{d}x^j$ 项也保持不变，而交叉项则不然。既然我们希望找到一个与时间无关的解，它就应当在时间反演下不变，因此我们略去交叉项。为了施加球对称性，我们先写出 Minkowski 空间（一个我们对它已有所了解的球对称时空）在球坐标 $x^\mu = (t, r, \theta, \phi)$ 下的度规：
+\begin{equation*}
+\mathrm{d}s^2_{\mathrm{Minkowski}} = -\mathrm{d}t^2 + \mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.4}
+\end{equation*}
+保持球对称性的一个要求，是我们必须维持 $\mathrm{d}\Omega^2$ 的形式；也就是说，如果我们希望球面是完美的圆球，$\mathrm{d}\phi^2$ 项的系数就应当是 $\mathrm{d}\theta^2$ 项系数的 $\sin^2\theta$ 倍。但除此之外，我们可以随意给各项乘上不同的系数，只要它们仅仅是径向坐标 $r$ 的函数：
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + e^{2\beta(r)}\mathrm{d}r^2 + e^{2\gamma(r)}r^2\,\mathrm{d}\Omega^2.
+\tag{5.5}
+\end{equation*}
+我们把这些函数写成指数形式，为的是让度规的号差保持不变。若作完整的处理，我们会允许完全的自由，看看会发生什么。
+
+甚至在施加 Einstein 方程之前，我们就可以利用改变坐标的能力，对静态球对称度规 (5.5) 作一点小小的简化。与其他物理理论不同，在广义相对论中，我们是在同时定义坐标系、并把度规定义为这些坐标的函数。换句话说，我们无法预先知道，比方说，径向坐标 $r$ 究竟是什么；只有当解已经在我们手中之后，我们才能解释它。因此，让我们设想按下式定义一个新坐标 $\bar{r}$：
+\begin{equation*}
+\bar{r} = e^{\gamma(r)}r,
+\tag{5.6}
+\end{equation*}
+与之相应的是一个基 1-形式（basis one-form）
+\begin{equation*}
+\mathrm{d}\bar{r} = e^{\gamma}\mathrm{d}r + e^{\gamma}r\,\mathrm{d}\gamma = \left(1 + r\frac{d\gamma}{dr}\right)e^{\gamma}\mathrm{d}r.
+\tag{5.7}
+\end{equation*}
+用这个新变量表示，度规 (5.5) 变为
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + \left(1 + r\frac{d\gamma}{dr}\right)^{-2}e^{2\beta(r)-2\gamma(r)}\mathrm{d}\bar{r}^2 + \bar{r}^2\,\mathrm{d}\Omega^2,
+\tag{5.8}
+\end{equation*}
+其中每个 $r$ 的函数都以显而易见的方式成为 $\bar{r}$ 的函数。但现在让我们作如下重新标记：
+
+% ---- 书页 195 / p210 ----
+\begin{equation*}
+\bar{r} \to r
+\tag{5.9}
+\end{equation*}
+\begin{equation*}
+\left(1 + r\frac{d\gamma}{dr}\right)^{-2}e^{2\beta(r)-2\gamma(r)} \to e^{2\beta}.
+\tag{5.10}
+\end{equation*}
+没有什么能阻止我们这样做，因为它们不过是一些标签，并没有独立的外在定义。如果你愿意，尽可以继续使用 $\bar{r}$，并把 (5.10) 取为等于 $e^{2\bar{\beta}}$，但我们不想费这个事。我们的度规 (5.8) 就变为
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + e^{2\beta(r)}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.11}
+\end{equation*}
+它看上去与 (5.5) 一模一样，只是 $e^{2\gamma}$ 因子消失了。我们并没有把 $e^{2\gamma}$ 设成 1——那就成了关于几何本身的论断；我们只不过是选取了径向坐标，使得这个因子不复存在。因此，(5.11) 与 (5.5) 的普遍程度丝毫不差。
+
+现在让我们取这个度规，用 Einstein 方程求解函数 $\alpha(r)$ 和 $\beta(r)$。我们先计算 Christoffel 符号。如果按照通常的做法，用标记 $(t, r, \theta, \phi)$ 来代表 $(0, 1, 2, 3)$，则 Christoffel 符号为
+\begin{equation*}
+\begin{array}{lll}
+\Gamma^t_{tr} = \partial_r\alpha & \Gamma^r_{tt} = e^{2(\alpha-\beta)}\partial_r\alpha & \Gamma^r_{rr} = \partial_r\beta\\[8pt]
+\Gamma^\theta_{r\theta} = \dfrac{1}{r} & \Gamma^r_{\theta\theta} = -re^{-2\beta} & \Gamma^\phi_{r\phi} = \dfrac{1}{r}\\[8pt]
+\Gamma^r_{\phi\phi} = -re^{-2\beta}\sin^2\theta & \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta & \Gamma^\phi_{\theta\phi} = \dfrac{\cos\theta}{\sin\theta}.
+\end{array}
+\tag{5.12}
+\end{equation*}
+凡未明确写出的，意思都是零，或者通过对称性与写出的那些相联系。由这些我们得到 Riemann 张量的如下非零分量：
+\begin{align*}
+R^t{}_{rtr} &= \partial_r\alpha\,\partial_r\beta - \partial_r^2\alpha - (\partial_r\alpha)^2\\
+R^t{}_{\theta t\theta} &= -re^{-2\beta}\partial_r\alpha\\
+R^t{}_{\phi t\phi} &= -re^{-2\beta}\sin^2\theta\,\partial_r\alpha\\
+R^r{}_{\theta r\theta} &= re^{-2\beta}\partial_r\beta\\
+R^r{}_{\phi r\phi} &= re^{-2\beta}\sin^2\theta\,\partial_r\beta\\
+R^\theta{}_{\phi\theta\phi} &= (1 - e^{-2\beta})\sin^2\theta.
+\tag{5.13}
+\end{align*}
+按通常方式缩并，就得到 Ricci 张量：
+\begin{align*}
+R_{tt} &= e^{2(\alpha-\beta)}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{2}{r}\partial_r\alpha\right]\\
+R_{rr} &= -\partial_r^2\alpha - (\partial_r\alpha)^2 + \partial_r\alpha\,\partial_r\beta + \frac{2}{r}\partial_r\beta\\
+R_{\theta\theta} &= e^{-2\beta}\left[r(\partial_r\beta - \partial_r\alpha) - 1\right] + 1\\
+R_{\phi\phi} &= \sin^2\theta\,R_{\theta\theta},
+\tag{5.14}
+\end{align*}
+
+% ---- 书页 196 / p211 ----
+而且为了今后使用，我们还算出了标量曲率，
+\begin{equation*}
+R = -2e^{-2\beta}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{2}{r}(\partial_r\alpha - \partial_r\beta) + \frac{1}{r^2}\left(1 - e^{2\beta}\right)\right].
+\tag{5.15}
+\end{equation*}
+既然 Ricci 张量已经算出，我们想让它等于零。由于 $R_{tt}$ 和 $R_{rr}$ 各自独立地为零，我们可以写出
+\begin{equation*}
+0 = e^{2(\beta-\alpha)}R_{tt} + R_{rr} = \frac{2}{r}(\partial_r\alpha + \partial_r\beta),
+\tag{5.16}
+\end{equation*}
+这意味着 $\alpha = -\beta + c$，其中 $c$ 是某个常数。通过把时间坐标重新标度 $t \to e^{-c}t$，我们可以令这个常数等于零，此后便有
+\begin{equation*}
+\alpha = -\beta.
+\tag{5.17}
+\end{equation*}
+接下来让我们转向 $R_{\theta\theta} = 0$，它现在化为
+\begin{equation*}
+e^{2\alpha}(2r\partial_r\alpha + 1) = 1.
+\tag{5.18}
+\end{equation*}
+这等价于
+\begin{equation*}
+\partial_r\left(re^{2\alpha}\right) = 1.
+\tag{5.19}
+\end{equation*}
+我们可以解出
+\begin{equation*}
+e^{2\alpha} = 1 - \frac{R_S}{r},
+\tag{5.20}
+\end{equation*}
+其中 $R_S$ 是某个待定常数。利用 (5.17) 和 (5.20)，我们的度规变为
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{R_S}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{R_S}{r}\right)^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.21}
+\end{equation*}
+现在除了单个常数 $R_S$ 之外，我们已经没有任何剩余的自由度了，所以这个形式最好能满足余下的方程 $R_{tt} = 0$ 与 $R_{rr} = 0$；容易检验它确实满足，而且对 $R_S$ 的任何取值都成立。
+
+剩下唯一要做的事，是用某个物理参数来解释常数 $R_S$——它被称为 \textbf{Schwarzschild 半径}（Schwarzschild radius）。再没有比这更简单的事了。在第 4 章中我们曾发现，在弱场极限下，点质量周围度规的 $tt$ 分量满足
+\begin{equation*}
+g_{tt} = -\left(1 - \frac{2GM}{r}\right).
+\tag{5.22}
+\end{equation*}
+当 $r \gg 2GM$ 时，Schwarzschild 度规应当过渡到弱场情形；而就 $tt$ 分量而言，两者的形式已经完全相同，我们只需认定
+\begin{equation*}
+R_S = 2GM.
+\tag{5.23}
+\end{equation*}
+这可以看作参数 $M$ 的定义。
+
+% ---- 书页 197 / p212 ----
+我们的最终结果就是 Schwarzschild 度规，即式 (5.1)。我们已经证明，它是 Einstein 方程的一个静态、球对称真空解；$M$ 作为参数出现，而我们恰好知道这个参数可以解释为通常的 Newton 质量——只要在远离引力源处研究轨道运动，我们测到的正是这个质量。它并不简单地就是使时空弯曲的那个物体的各组元质量之和，因为我们或许会称之为引力结合能（gravitational binding energy）的东西也会有所贡献；不过在弱场极限下，这两个量将趋于一致。注意，当 $M \to 0$ 时我们回到 Minkowski 空间，这是意料之中的。还要注意，当 $r \to \infty$ 时度规越来越接近 Minkowski 度规；这一性质称为\textbf{渐近平直}（asymptotic flatness）。更技术性的定义涉及在共形图（conformal diagram）中匹配无限远处的各个区域，我们将在下一章讨论。
+
+\section{Birkhoff 定理}
+
+\textbf{Birkhoff 定理}（Birkhoff's theorem）断言：Schwarzschild 度规是\emph{唯一的}具有球对称性的真空解（特别地，不存在这种形式的含时解）；证明它是一项颇有教益的练习，由三个主要步骤组成。第一步，我们论证球对称时空可以被二维球面叶状分层（foliate）——换句话说，（几乎）每一个点都落在唯一的一个球面上，这个球面在球对称性生成元的作用下保持不变。第二步，我们仅凭几何论证，这种空间上的度规总可以（至少在局部区域内）化成如下形式
+\begin{equation*}
+\mathrm{d}s^2 = \mathrm{d}\tau^2(a, b) + r^2(a, b)\,\mathrm{d}\Omega^2(\theta, \phi),
+\tag{5.24}
+\end{equation*}
+其中 $(a, b)$ 是横向于球面的坐标，而 $r$ 是这些坐标的函数。第三步，我们把这个度规代入真空中的 Einstein 方程，证明 Schwarzschild 解是唯一的解。对前两点，我们将以大多数物理学家大概都会信服的严格程度来论证——尽管数学家会感到不安；第三点则是直截了当的计算。更细致的处理可参见 Hawking and Ellis (1973)。我们会用到附录 C 中的几个概念，此刻先去读一读附录 C 或许有好处。当然，如果你对探究 Schwarzschild 解的性质比对证明它的唯一性更感兴趣，尽可以直接跳到下一节。
+
+我们从四维球对称时空 $M$ 的概念开始。球对称的意思是具有与球面相同的对称性。（在本章中，“球面”一词专指 $S^2$，而不是其他维数的球。）球面的对称性恰恰就是三维欧几里得空间中普通转动的对称性；用群论的语言说，它们构成特殊正交群 SO(3)。（回忆第 1 章中关于洛伦兹群和转动群的讨论。）对流形上的度规而言，对称性由 Killing 矢量的存在来刻画。在 3.8 节中我们求出了 $S^2$ 的三个 Killing 矢量，记作 $(R, S, T)$；在 $(\theta, \phi)$ 坐标下它们取如下形式
+
+% ---- 书页 198 / p213 ----
+\begin{align*}
+R &= \partial_\phi\\
+S &= \cos\phi\,\partial_\theta - \cot\theta\sin\phi\,\partial_\phi\\
+T &= -\sin\phi\,\partial_\theta - \cot\theta\cos\phi\,\partial_\phi.
+\tag{5.25}
+\end{align*}
+球对称流形就是拥有三个与 $S^2$ 上的 Killing 矢量场相同的 Killing 矢量场的流形。但是，怎样以一种坐标无关的方式知道，一个流形上的一组 Killing 矢量与另一个流形上的那组是相同的呢？一组对称变换的结构由这些变换的对易关系给出，对易关系表达的是：按一种次序相继施行两个无穷小变换，与按相反次序施行，两者之间的差别。在群论中，它们由对称性生成元的李代数（Lie algebra）表达；而在微分几何中，它们由 Killing 矢量场的对易子表达。这里有一条深刻的联系，我们没有时间深究；见 Schutz (1980)。在第 3 章的习题中你验证过，转动 Killing 矢量 $(R, S, T)$ 的对易子满足
+\begin{align*}
+[R, S] &= T\\
+[S, T] &= R\\
+[T, R] &= S.
+\tag{5.26}
+\end{align*}
+这一 Killing 矢量代数完整地刻画了我们所讨论的那种对称性。一个流形，当且仅当存在三个满足 (5.26) 的 Killing 矢量场时，才称其具有\textbf{球对称性}（spherical symmetry）。
+
+在附录 C 中我们讨论过 Frobenius 定理，它说的是：如果你有一组矢量场，其对易子是封闭的——即这组场中任何两个场的对易子都是这组场中其他场的线性组合——那么这些矢量场的积分曲线就会拼合起来，描述它们都有定义的那个流形的子流形。子流形的维数可以小于矢量的数目，也可以相等，但显然不会更大。服从 (5.26) 的矢量场当然会张成一个个二维球面。由于矢量场延伸到整个空间，每个点都将恰好落在其中一个球面上。（实际上，是几乎每个点——下面我们将展示它如何在“绝不例外地每个点”这一点上失效。）于是我们说，球对称流形可以被叶状分层的成一个个球面。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.1.pdf}
+\caption*{图 5.1\quad 对 $\mathbf{R}^3$（除去原点）用二维球面作叶状分层。}
+\end{figure}
+
+让我们考虑几个例子，把讨论拉回地面。最简单的例子是平直的三维欧几里得空间。如果我们选定一个原点，那么 $\mathbf{R}^3$ 显然在绕这个原点的转动下是球对称的。在这样的转动下（也就是说，在 Killing 矢量场的流作用下），点与点相互换位，但每个点都停留在与原点距离固定的一张 $S^2$ 上。
+
+% ---- 书页 199 / p214 ----
+这些球面把 $\mathbf{R}^3$ 叶状分层，如图 5.1 所示。当然，它们并没有真正分层整个空间，因为原点自身在转动下原地不动——它不会在某个二维球面上四处移动。但应当清楚，几乎整个空间都被恰当地分层了，而这对我们来说将已经足够。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.2.pdf}
+\caption*{图 5.2\quad 用二维球面对虫洞作叶状分层。}
+\end{figure}
+
+我们也可以拥有无需一个原点来绕之转动的球对称性。一个例子是虫洞（wormhole），其拓扑为 $\mathbf{R} \times S^2$。如果我们压掉一个维度，把二维球面画成圆圈，这样的空间看起来可能就像图 5.2 那样。在这个情形下，整个流形都可以被二维球面叶状分层。
+
+既然具有 SO(3) 对称性的流形可以被球面分层，我们的第二步就是要证明 $M$ 上的度规可以化成 (5.24) 的形式。所有球面组成的集合构成一个二维空间（因为四维时空正在被二维球面所分层）。你可能希望我们干脆在每张球面上放坐标 $(\theta, \phi)$，再在所有球面组成的集合上放坐标 $(a, b)$，从而得到 $M$ 上的完整坐标组 $(a, b, \theta, \phi)$。这样一来，每张球面就由 $a = $ 常数、$b = $ 常数确定。我们知道圆球面上的度规是 $\mathrm{d}\Omega^2$，所以这一策略足以保证：把度规限制在任何固定值 $a = a_0$ 和 $b = b_0$（从而 $\mathrm{d}a = \mathrm{d}b = 0$）上时，它取如下形式
+\begin{equation*}
+\mathrm{d}s^2(a_0, b_0, \theta, \phi) = f(a_0, b_0)\,\mathrm{d}\Omega^2.
+\tag{5.27}
+\end{equation*}
+特别地，函数 $f$ 必须与 $\theta$ 和 $\phi$ 无关，否则球面就会坑坑洼洼而不是圆的。此外，同样清楚的是，把度规限制在任何固定值 $\theta = \theta_0$ 和 $\phi = \phi_0$（从而 $\mathrm{d}\theta = \mathrm{d}\phi = 0$）上时，它取如下形式
+\begin{equation*}
+\mathrm{d}s^2(a, b, \theta_0, \phi_0) = \mathrm{d}\tau^2(a, b).
+\tag{5.28}
+\end{equation*}
+同样，任何对 $\theta$ 或 $\phi$ 的依赖都会破坏对称性；那将意味着球面之间的横向几何依赖于你处在球面的哪个位置。
+
+然而，我们这样随手铺下这些坐标未免太过草率，因为我们无法排除 $\mathrm{d}a\,\mathrm{d}\theta + \mathrm{d}\theta\,\mathrm{d}a$ 之类的交叉项。换句话说，我们必须小心地把各张球面恰当地对齐，使得沿一条垂直于某张球面的曲线行进时，我们始终保持在常数 $\theta$ 和 $\phi$ 上。为了保证这一点，我们需要更细心地搭建坐标系。先考虑落在某张球面 $S_q$ 上的单个点 $q$（注意 $q$ 不得是所有 Killing 矢量都为零的退化点）。只在这张特定的球面上放坐标 $(\theta, \phi)$，暂不贯穿整个流形。在 $S_q$ 上的每一点 $p$ 处，都会有一个二维正交子空间 $O_p$，它由从 $p$ 出发的那些测地线上的点组成，这些测地线在 $p$ 处的切矢量与 $S_q$ 正交。注意，会存在一个使 $p$ 保持不动的一维转动子群 $R_p$；的确，这些转动把 $p$ 处任何垂直于 $S_q$ 的方向都保持固定，因而整张二维曲面 $O_p$ 在 $R_p$ 下不变。
+
+考虑一个不在 $S_q$ 上、而在分层中某张其他球面 $S_r$ 上的点 $r$，它落在 $p$ 处与 $S_q$ 正交的二维曲面 $O_p$ 内。由于 $p$ 是任意的，这包括了 $S_q$ 邻域内任何可能的点 $r$。注意，$O_p$ 不仅与 $S_q$ 正交，也将与 $S_r$ 正交。为了看清这一点，考虑
+
+% ---- 书页 200 / p215 ----
+切空间 $T_rM$ 中与二维曲面 $O_p$ 正交的矢量所构成的二维平面 $V_r$。由于 $O_p$ 在转动 $R_p$ 下不变，而这些转动是等距变换、因而保持正交性，它们必定把 $V_r$ 映到其自身。但 $R_p$ 也把切于 $S_q$ 的矢量集合映到其自身，因为这些转动使各球面保持不变。在四维空间中，同一个点处与给定平面都正交的两个平面必定是同一个平面；因此，切于 $S_r$ 的矢量必定与 $O_p$ 正交。
+
+会有一条唯一的测地线，它与 $S_q$ 正交，并把 $p$ 连到 $r$。沿着这类测地线行进提供了一个映射 $f : S_q \to S_r$，它既是单射又是满射（至少在原先球面的一个邻域内）。我们用这个映射来定义 $S_r$ 上的坐标（类似地也定义任何其他球面上的坐标）：把 $r \in S_r$ 的 $(\theta, \phi)$ 取值指派为点 $p \in S_q$ 处的坐标值。这样我们就在整个流形上定义了 $(\theta, \phi)$。现在为了定义坐标 $(a, b)$，在 $T_qM$ 中生成正交空间 $O_q$ 的那个子空间里选取两个基矢 $S$、$T$。任何其他球面都会由一条唯一的正交测地线与 $q$ 相连，其切矢量为 $aS + bT \in T_qM$。把这些分量 $(a, b)$ 作为该球面上各处的坐标。这就定义了整个流形上的完整坐标组 $(a, b, \theta, \phi)$。
+
+这组坐标下的度规满足 (5.27) 和 (5.28)；尚待证明的是，沿球面的方向与横向方向之间不存在交叉项。这意味着，比方说，矢量场 $\partial_a$ 应当与 $\partial_\theta$ 正交，等等；直接验证可知确实如此。首先，考虑某点 $r \in S_r$ 处的 $\partial_\theta$；这个矢量是沿形如 $x^\mu(\theta) = (a_r, b_r, \theta, \phi_r)$ 的曲线的方向导数。由于 $a$ 和 $b$ 沿曲线为常数，整条曲线都停留在球面 $S_r$ 内，所以 $\partial_\theta$ 切于球面。与此同时，$\partial_a$ 是沿 $x^\mu(a) = (a, b_r, \theta_r, \phi_r)$ 的导数。由于这条曲线停留在正交子空间 $O_r$ 内，$\partial_a$ 将与 $S_r$ 正交，从而与 $\partial_\theta$ 正交。类似的论证保证 $(a, b)$ 与 $(\theta, \phi)$ 之间不存在交叉项。
+
+于是我们已成功地把球对称时空的度规写成如下形式
+\begin{equation*}
+\mathrm{d}s^2 = g_{aa}(a, b)\,\mathrm{d}a^2 + g_{ab}(a, b)(\mathrm{d}a\,\mathrm{d}b + \mathrm{d}b\,\mathrm{d}a) + g_{bb}(a, b)\,\mathrm{d}b^2 + r^2(a, b)\,\mathrm{d}\Omega^2.
+\tag{5.29}
+\end{equation*}
+这里的 $r(a, b)$ 是某个尚未确定的函数，我们只是给了它一个容易引起联想的标签。不过，没有什么能阻止我们把坐标从 $(a, b)$ 换成 $(a, r)$——只需反解 $r(a, b)$ 即可——除非 $r$ 只是 $a$ 单个变量的函数；在那种情况下，我们照样可以轻而易举地换成 $(b, r)$，所以我们不把这个情形单独考虑。于是度规为
+\begin{equation*}
+\mathrm{d}s^2 = g_{aa}(a, r)\,\mathrm{d}a^2 + g_{ar}(a, r)(\mathrm{d}a\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}a) + g_{rr}(a, r)\,\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.30}
+\end{equation*}
+我们的下一步是寻找一个函数 $t(a, r)$，使得在 $(t, r)$ 坐标系中度规里不存在交叉项 $\mathrm{d}t\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}t$。注意到
+\begin{equation*}
+\mathrm{d}t = \frac{\partial t}{\partial a}\,\mathrm{d}a + \frac{\partial t}{\partial r}\,\mathrm{d}r,
+\tag{5.31}
+\end{equation*}
+
+% ---- 书页 201 / p216 ----
+因此
+\begin{equation*}
+\mathrm{d}t^2 = \left(\frac{\partial t}{\partial a}\right)^{2}\mathrm{d}a^2 + \left(\frac{\partial t}{\partial a}\right)\left(\frac{\partial t}{\partial r}\right)(\mathrm{d}a\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}a) + \left(\frac{\partial t}{\partial r}\right)^{2}\mathrm{d}r^2.
+\tag{5.32}
+\end{equation*}
+我们想把度规 (5.30) 中的前三项换成
+\begin{equation*}
+m\,\mathrm{d}t^2 + n\,\mathrm{d}r^2,
+\tag{5.33}
+\end{equation*}
+其中 $m$、$n$ 是某两个函数。这等价于如下要求：
+\begin{equation*}
+m\left(\frac{\partial t}{\partial a}\right)^{2} = g_{aa},
+\tag{5.34}
+\end{equation*}
+\begin{equation*}
+n + m\left(\frac{\partial t}{\partial r}\right)^{2} = g_{rr},
+\tag{5.35}
+\end{equation*}
+以及
+\begin{equation*}
+m\left(\frac{\partial t}{\partial a}\right)\left(\frac{\partial t}{\partial r}\right) = g_{ar}.
+\tag{5.36}
+\end{equation*}
+于是我们有三个方程、三个未知量 $t(a, r)$、$m(a, r)$ 和 $n(a, r)$，恰好足以（除 $t$ 的初始条件不计外）把它们完全确定。（当然，这里的“确定”是通过未知函数 $g_{aa}$、$g_{ar}$ 和 $g_{rr}$ 表述的，所以在这个意义上它们其实仍未确定。）这样我们就能把度规写成
+\begin{equation*}
+\mathrm{d}s^2 = m(t, r)\,\mathrm{d}t^2 + n(t, r)\,\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.37}
+\end{equation*}
+
+到此为止，坐标 $t$ 和 $r$ 之间唯一的差别在于，我们选了 $r$ 作为乘在二维球面度规上的那一个。这样选择的动机来自我们对平直 Minkowski 空间度规的了解，它可以写成 $\mathrm{d}s^2 = -\mathrm{d}t^2 + \mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2$。我们知道所考虑的时空是洛伦兹型的，所以 $m$ 或 $n$ 中必有一个取负值。让我们选 $\mathrm{d}t^2$ 的系数 $m$ 为负。这并不是一个我们可以随随便便就作出的选择，事实上后面会看到它可能出问题；但我们暂时先这样假定。这个假定并非毫无道理，因为我们知道 Minkowski 空间本身就是球对称的，因而将由 (5.37) 来描述。作了这个选择之后，我们就可以用新的函数 $\alpha$ 和 $\beta$ 来替换函数 $m$ 和 $n$，使得
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(t, r)}\mathrm{d}t^2 + e^{2\beta(t, r)}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.38}
+\end{equation*}
+
+单靠几何我们最多只能做到这里；关于函数 $\alpha(t, r)$ 和 $\beta(t, r)$，球对称性肯定还不足以说出任何实质性的内容。因此我们的下一步是真正去解 Einstein 方程；步骤与
+% ---- 书页 202 / p217 ----
+5.1 节中的如出一辙——在那一节里，我们考虑过一个与 (5.38) 类似、但额外假定了时间无关性的度规。这里我们将看到，那个假定其实并不必要，因为解必然是静态的。
+
+(5.38) 的非零 Christoffel 符号为
+\begin{equation*}
+\begin{array}{lll}
+\Gamma^t_{tt} = \partial_t\alpha & \Gamma^t_{tr} = \partial_r\alpha & \Gamma^t_{rr} = e^{2(\beta-\alpha)}\partial_t\beta\\[8pt]
+\Gamma^r_{tt} = e^{2(\alpha-\beta)}\partial_r\alpha & \Gamma^r_{tr} = \partial_t\beta & \Gamma^r_{rr} = \partial_r\beta\\[8pt]
+\Gamma^\theta_{r\theta} = \dfrac{1}{r} & \Gamma^r_{\theta\theta} = -re^{-2\beta} & \Gamma^\phi_{r\phi} = \dfrac{1}{r}\\[8pt]
+\Gamma^r_{\phi\phi} = -re^{-2\beta}\sin^2\theta & \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta & \Gamma^\phi_{\theta\phi} = \dfrac{\cos\theta}{\sin\theta},
+\end{array}
+\tag{5.39}
+\end{equation*}
+Riemann 张量的非零分量为
+\begin{align*}
+R^t{}_{rtr} &= e^{2(\beta-\alpha)}\left[\partial_t^2\beta + (\partial_t\beta)^2 - \partial_t\alpha\,\partial_t\beta\right] + \left[\partial_r\alpha\,\partial_r\beta - \partial_r^2\alpha - (\partial_r\alpha)^2\right]\\
+R^t{}_{\theta t\theta} &= -re^{-2\beta}\partial_r\alpha\\
+R^t{}_{\phi t\phi} &= -re^{-2\beta}\sin^2\theta\,\partial_r\alpha\\
+R^t{}_{\theta r\theta} &= -re^{-2\alpha}\partial_t\beta\\
+R^t{}_{\phi r\phi} &= -re^{-2\alpha}\sin^2\theta\,\partial_t\beta\\
+R^r{}_{\theta r\theta} &= re^{-2\beta}\partial_r\beta\\
+R^r{}_{\phi r\phi} &= re^{-2\beta}\sin^2\theta\,\partial_r\beta\\
+R^\theta{}_{\phi\theta\phi} &= (1 - e^{-2\beta})\sin^2\theta,
+\tag{5.40}
+\end{align*}
+而 Ricci 张量为
+\begin{align*}
+R_{tt} &= \left[\partial_t^2\beta + (\partial_t\beta)^2 - \partial_t\alpha\,\partial_t\beta\right] + e^{2(\alpha-\beta)}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{2}{r}\partial_r\alpha\right]\\
+R_{rr} &= -\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta - \frac{2}{r}\partial_r\beta\right]\\
+&\quad + e^{2(\beta-\alpha)}\left[\partial_t^2\beta + (\partial_t\beta)^2 - \partial_t\alpha\,\partial_t\beta\right]\\
+R_{tr} &= \frac{2}{r}\partial_t\beta\\
+R_{\theta\theta} &= e^{-2\beta}\left[r(\partial_r\beta - \partial_r\alpha) - 1\right] + 1\\
+R_{\phi\phi} &= R_{\theta\theta}\sin^2\theta.
+\tag{5.41}
+\end{align*}
+我们的任务是求解真空中的 Einstein 方程 $R_{\mu\nu} = 0$。由 $R_{tr} = 0$ 得到
+\begin{equation*}
+\partial_t\beta = 0.
+\tag{5.42}
+\end{equation*}
+
+% ---- 书页 203 / p218 ----
+如果我们考虑对 $R_{\theta\theta} = 0$ 取时间导数，并利用 $\partial_t\beta = 0$，就得到
+\begin{equation*}
+\partial_t\partial_r\alpha = 0.
+\tag{5.43}
+\end{equation*}
+因此可以写出
+\begin{align*}
+\beta &= \beta(r)\\
+\alpha &= f(r) + g(t).
+\tag{5.44}
+\end{align*}
+于是度规 (5.38) 的第一项就是 $-e^{2f(r)}e^{2g(t)}\mathrm{d}t^2$。但我们总可以通过替换 $\mathrm{d}t \to e^{-g(t)}\mathrm{d}t$ 来简单地重新定义时间坐标；换句话说，我们可以自由地选取 $t$ 使 $g(t) = 0$，从而 $\alpha(t, r) = f(r)$。于是我们有
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\mathrm{d}t^2 + e^{2\beta(r)}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.45}
+\end{equation*}
+度规的所有分量都与坐标 $t$ 无关。因此我们证明了一个至关重要的结果：\emph{任何球对称真空度规都拥有一个类时 Killing 矢量}。
+
+这条性质有趣到配得上一个专属名称：拥有一个在无限远处附近类时的 Killing 矢量的度规称为\textbf{稳态}（stationary）度规。（通常——包括 Schwarzschild 情形在内——在无限远处类时的 Killing 矢量会在内部的某处变成类空的。）在稳态度规中，我们可以选取坐标 $(t, x^1, x^2, x^3)$，使得 Killing 矢量为 $\partial_t$，而且度规分量与 $t$ 无关；稳态度规在这组坐标下的一般形式便为
+\begin{equation*}
+\mathrm{d}s^2 = g_{00}(\vec{x})\,\mathrm{d}t^2 + g_{0i}(\vec{x})(\mathrm{d}t\,\mathrm{d}x^i + \mathrm{d}x^i\,\mathrm{d}t) + g_{ij}(\vec{x})\,\mathrm{d}x^i\mathrm{d}x^j.
+\tag{5.46}
+\end{equation*}
+还有一个限制更强的性质：如果一个度规拥有一个与某族超曲面正交的类时 Killing 矢量，就称它为\textbf{静态}（static）度规。（关于超曲面的更多细节，见附录 D。）在第 4 章的习题中你证明过，超曲面正交的矢量场 $v^\mu$ 满足
+\begin{equation*}
+v_{[\mu}\nabla_\nu v_{\rho]} = 0.
+\tag{5.47}
+\end{equation*}
+但有一个更简单的判据：如果我们已经适配好坐标，使分量 $g_{\mu\nu}$ 都与 $t$ 无关，那么 Killing 矢量将与之正交的那些曲面就由条件 $t = $ 常数来定义。在操作层面上，这意味着 (5.46) 中的时间-空间交叉项将不复出现；一般的静态度规可以写成
+\begin{equation*}
+\mathrm{d}s^2 = g_{00}(\vec{x})\,\mathrm{d}t^2 + g_{ij}(\vec{x})\,\mathrm{d}x^i\mathrm{d}x^j.
+\tag{5.48}
+\end{equation*}
+我们注意到，这种形式中只出现时间坐标 $t$ 的偶数次幂；因此，“静态”的另一种定义是“稳态，且在时间反演 $(t \to -t)$ 下不变”。度规 (5.45) 显然是静态的。你可以把稳态理解为“在每个时刻都精确地做着同一件事情”，而静态则是“根本什么也不做”。
+
+% ---- 书页 204 / p219 ----
+例如，静态球对称度规 (5.45) 将描述不旋转的恒星或黑洞，而始终以同样方式旋转的转动系统则将由稳态但非静态的度规来描述。
+
+注意到 (5.45) 恰恰就是 (5.11)——我们在 5.1 节中最初用来导出 Schwarzschild 解的那个度规。因此我们已经证明了 Birkhoff 定理：唯一的球对称真空解就是 Schwarzschild 度规，
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{2GM}{r}\right)^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2,
+\tag{5.49}
+\end{equation*}
+一如所允诺的。
+
+对于 Schwarzschild 度规的源，除了要求它球对称之外，我们没有说过任何别的话。具体地说，我们并没有要求源本身是静态的；它完全可以是一颗正在坍缩的恒星，只要坍缩是对称的。因此，像超新星爆发这样的过程，如果它接近球对称，就只会产生非常少的引力辐射（与其他渠道释放的能量相比）——而一颗真实的超新星是否接近球对称，取决于它的起源。这与我们在电磁学中会得到的结果相同：围绕球状电荷分布的电磁场并不依赖于电荷的径向分布。
+
+\section{奇点}
+
+在探究 Schwarzschild 几何中检验粒子的行为之前，我们应该先谈谈奇点（singularity）。从 (5.1) 的形式看，度规系数在 $r = 0$ 和 $r = 2GM$ 处变为无穷——表面上这表明有什么东西出了问题。当然，度规系数是依赖于坐标的量，因此我们不应过分看重它们的数值；完全可能存在坐标奇点（coordinate singularity），它源于某个具体坐标系的失效，而不是底层流形的问题。一个例子出现在平面上极坐标的原点：在那里，度规 $\mathrm{d}s^2 = \mathrm{d}r^2 + r^2\mathrm{d}\theta^2$ 退化，逆度规的分量 $g^{\theta\theta} = r^{-2}$ 发散，尽管流形上的这个点与其他任何点并无不同。
+
+当几何的某处行将失控时，我们应当寻找什么样的坐标无关信号来发出警告呢？事实证明这是一个难以回答的问题，关于广义相对论中奇点的本性，已经有整本整本的著作专门论述。我们不打算深入这个问题，而是转向一个简单的判据来判断何处出了问题——那就是曲率变为无穷大。曲率由 Riemann 张量来量度，但很难说一个张量何时变为无穷，因为它的分量是依赖于坐标的。不过，我们可以由曲率构造出各种标量，而标量是坐标无关的，所以说它们变为无穷是有意义的。最简单的这类标量是 Ricci 标量曲率 $R = g^{\mu\nu}R_{\mu\nu}$，
+% 本块末句在原书书页204底部中断（"...the simplest such scalar is the Ricci scalar R = g R," 续接书页205顶部 "but we can also..."）；排版时已将 $R=g^{\mu\nu}R_{\mu\nu}$，随本句放在本块末，避免下一块以数学式开头。下一块请用 %JOIN% 续接本句。
+但我们还可以构造更高阶的标量，例如 $R^{\mu\nu}R_{\mu\nu}$、$R^{\mu\nu\rho\sigma}R_{\mu\nu\rho\sigma}$、$R_{\mu\nu\rho\sigma}R^{\rho\sigma\lambda\tau}R_{\lambda\tau}{}^{\mu\nu}$，等等。当我们逼近某个点时，如果这些标量中有任何一个（不必是全部）趋于无穷，我们就把这个点看作曲率的一个奇点。我们还应当检查这个点并不是位于无穷远处；也就是说，沿一条曲线走过有限的距离就能到达它。
+% ---- 书页 205 / p220 ----（本页第一段已在上面 tail 中接续，正文自第二段起）
+于是，我们有了把一个点当作奇点来对待的充分条件。然而这并不是必要条件，而且一般说来，要证明一个给定的点是非奇异的反而更难；就我们的目的而言，我们只是简单地检验测地线在所讨论的点处是否表现良好，如果表现良好，我们就认为这个点是非奇异的。对于 Schwarzschild 度规 (5.1)，直接计算给出
+\begin{equation*}
+R^{\mu\nu\rho\sigma}R_{\mu\nu\rho\sigma} = \frac{48G^2M^2}{r^6}.
+\tag{5.50}
+\end{equation*}
+这足以让我们相信，$r = 0$ 代表一个名副其实的奇点。
+
+另一个麻烦之处是 $r = 2GM$，即 Schwarzschild 半径。你可以验证，在那里没有任何曲率不变量发散。于是我们开始倾向于认为它实际上并不奇异，只不过我们选择了一个糟糕的坐标系。最好的办法是，只要可能，就变换到更合适的坐标。我们很快就会看到，在这个例子中这确实是可能的，而且 $r = 2GM$ 这个面在 Schwarzschild 度规中行为良好（尽管很有意思）——它标示出一个黑洞的事件视界（event horizon）。
+
+在为奇点操了一点心之后，我们应当指出，Schwarzschild 半径以内 Schwarzschild 度规的行为对日常生活几乎没有什么影响。我们导出的解只在真空中有效，而且我们预期它在一个球状天体（比如恒星）之外成立。然而，就太阳而言，我们所处理的天体延伸到的半径为
+\begin{equation*}
+R_\odot = 10^6 GM_\odot.
+\tag{5.51}
+\end{equation*}
+因此，$r = 2GM_\odot$ 深深处于太阳内部，在那里我们并不期望 Schwarzschild 度规适用。实际上，现实的恒星内部解就是把外部的 Schwarzschild 度规与一个在原点处完全光滑的内部度规匹配起来的构造。尽管如此，还是有一些天体需要完整的 Schwarzschild 度规——黑洞——因此在本书的这一章中，我们将让我们的想象力漫游到太阳系之外很远处。
+
+\section{Schwarzschild 测地线}
+
+为了更充分地理解 Schwarzschild 度规，我们将迈出的第一步是考察测地线的行为。我们需要 Schwarzschild 度规的非零 Christoffel 符号：
+\begin{equation*}
+\begin{array}{lll}
+\Gamma^r_{tt} = \dfrac{GM}{r^3}(r-2GM) & \Gamma^r_{rr} = \dfrac{-GM}{r(r-2GM)} & \Gamma^t_{tr} = \dfrac{GM}{r(r-2GM)}\\[10pt]
+\Gamma^\theta_{r\theta} = \dfrac{1}{r} & \Gamma^r_{\theta\theta} = -(r-2GM) & \Gamma^\phi_{r\phi} = \dfrac{1}{r}\\[10pt]
+\Gamma^r_{\phi\phi} = -(r-2GM)\sin^2\theta & \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta & \Gamma^\phi_{\theta\phi} = \dfrac{\cos\theta}{\sin\theta}.
+\end{array}
+\tag{5.52}
+\end{equation*}
+于是，测地线方程就变成了以下四个方程，其中 $\lambda$ 是仿射参量：
+\begin{gather*}
+\frac{\mathrm{d}^2 t}{\mathrm{d}\lambda^2} + \frac{2GM}{r(r-2GM)}\frac{\mathrm{d}r}{\mathrm{d}\lambda}\frac{\mathrm{d}t}{\mathrm{d}\lambda} = 0,\\[8pt]
+\frac{\mathrm{d}^2 r}{\mathrm{d}\lambda^2} + \frac{GM}{r^3}(r-2GM)\left(\frac{\mathrm{d}t}{\mathrm{d}\lambda}\right)^2 - \frac{GM}{r(r-2GM)}\left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2\\[2pt]
+-\,(r-2GM)\left[\left(\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\right)^2 + \sin^2\theta\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2\right] = 0,\\[8pt]
+\frac{\mathrm{d}^2\theta}{\mathrm{d}\lambda^2} + \frac{2}{r}\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\frac{\mathrm{d}r}{\mathrm{d}\lambda} - \sin\theta\cos\theta\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2 = 0,\\[8pt]
+\frac{\mathrm{d}^2\phi}{\mathrm{d}\lambda^2} + \frac{2}{r}\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\frac{\mathrm{d}r}{\mathrm{d}\lambda} + 2\frac{\cos\theta}{\sin\theta}\frac{\mathrm{d}\theta}{\mathrm{d}\lambda}\frac{\mathrm{d}\phi}{\mathrm{d}\lambda} = 0.
+\tag{5.53}
+\end{gather*}
+指望一眼看出这组耦合方程的解来，希望似乎不大。幸运的是，Schwarzschild 度规的高度对称性使我们的任务大为简化。我们知道有四个 Killing 矢量：三个对应球对称性，一个对应时间平移。其中每一个都会给出自由粒子的一个运动常数（constant of the motion）。如果 $K^\mu$ 是一个 Killing 矢量，我们知道
+\begin{equation*}
+K_\mu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda} = \mathrm{constant}.
+\tag{5.54}
+\end{equation*}
+此外，对测地线我们总是还有另一个运动常数：测地线方程（连同度规相容性）意味着如下这个量
+\begin{equation*}
+\epsilon = -g_{\mu\nu}\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda}\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}
+\tag{5.55}
+\end{equation*}
+沿路径是常数。（对任何一条轨迹，我们都可以选取参量 $\lambda$ 使得 $\epsilon$ 为常数；我们只是指出，这与沿测地线的仿射参数化是相容的。）当然，对有质量粒子我们通常取 $\lambda = \tau$，这个关系就简单地变成 $\epsilon = -g_{\mu\nu}U^\mu U^\nu = +1$。而对沿类光轨迹运动的无质量粒子，我们总有 $\epsilon = 0$，
+
+% ---- 书页 207 / p222 ----
+而这个方程并不固定参量 $\lambda$。正如 3.4 节所讨论的，方便的做法是在类光测地线上把 $\lambda$ 归一化，使得四维动量与四速度相等，$p^\mu = \mathrm{d}x^\mu/\mathrm{d}\lambda$。我们也可能关心类空测地线（尽管它们并不对应粒子的路径），对它们我们将取 $\epsilon = -1$。
+
+我们并不急于立刻写出与 Killing 矢量相联系的四个守恒量的显式表达式，而是先想一想它们在告诉我们什么。注意，它们所代表的对称性在平直时空中也同样存在，而在那里它们导致的守恒量是我们非常熟悉的。时间平移下的不变性导致能量守恒，而空间转动下的不变性导致角动量三个分量的守恒。本质上相同的事情也适用于 Schwarzschild 度规。我们可以把角动量想成一个三矢量，它具有一个大小（一个分量）和一个方向（两个分量）。角动量方向的守恒意味着粒子将在一个平面内运动。我们可以选取这个平面为坐标系的赤道面；如果粒子不在这个平面内，我们可以转动坐标，直到它在平面内为止。于是，导致角动量方向守恒的那两个 Killing 矢量就意味着，对一个单独的粒子，我们可以选取
+\begin{equation*}
+\theta = \frac{\pi}{2}.
+\tag{5.56}
+\end{equation*}
+剩下的两个 Killing 矢量分别对应能量和角动量的大小。能量来自类时 Killing 矢量
+\begin{equation*}
+K^\mu = (\partial_t)^\mu = (1, 0, 0, 0).
+\tag{5.57}
+\end{equation*}
+以角动量的大小为守恒量的那个 Killing 矢量则是
+\begin{equation*}
+R^\mu = (\partial_\phi)^\mu = (0, 0, 0, 1).
+\tag{5.58}
+\end{equation*}
+在这两种情形下，方便的做法都是降指标，得到
+\begin{equation*}
+K_\mu = \left(-\left(1-\frac{2GM}{r}\right), 0, 0, 0\right)
+\tag{5.59}
+\end{equation*}
+以及
+\begin{equation*}
+R_\mu = \left(0, 0, 0, r^2\sin^2\theta\right).
+\tag{5.60}
+\end{equation*}
+由于 (5.56) 意味着在我们感兴趣的测地线上 $\sin\theta = 1$，这两个守恒量便是
+\begin{equation*}
+E = -K_\mu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda} = \left(1-\frac{2GM}{r}\right)\frac{\mathrm{d}t}{\mathrm{d}\lambda}
+\tag{5.61}
+\end{equation*}
+
+% ---- 书页 208 / p223 ----
+以及
+\begin{equation*}
+L = R_\mu\frac{\mathrm{d}x^\mu}{\mathrm{d}\lambda} = r^2\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}.
+\tag{5.62}
+\end{equation*}
+对无质量粒子，这些量可以认为是守恒的能量和角动量；而对有质量粒子，它们是粒子单位质量的守恒能量和角动量。在下一章讨论转动黑洞时，我们将用 $E$ 和 $L$ 指真实的能量和角动量，而不是“每单位质量”的量；其含义从上下文应该看得很清楚。注意，(5.62) 的守恒性正是 Kepler 第二定律在广义相对论中的对应物——相等的时间里扫出相等的面积。
+
+回忆一下，在 3.4 节中我们曾断言，一个四维动量为 $p^\mu$ 的粒子的能量，由具有四速度 $U^\mu$ 的观者测量，应为 $-p_\mu U^\mu$。这个量并\emph{不}等于 (5.61)，甚至不与它成正比，即使把观者取为稳态的（$U^i = 0$）也是如此。从数学上看，这是因为四速度归一化为 $U_\mu U^\mu = -1$，而 Killing 矢量 $K^\mu$ 却不是这样：如果我们试图那样把它归一化，它就不再求解 Killing 方程了。在稍微深一个层次上，$-p_\mu U^\mu$ 可以认为是粒子的惯性能/动能，而 $-p_\mu K^\mu$ 则是总的守恒能量，其中包含引力场带来的势能。引力势能的概念并不总是良定义的，但只要存在类时 Killing 矢量，总能量就是良定义的。我们马上就会用 $E$ 来帮助刻画 Schwarzschild 的测地线；稍后我们还会把 $-p_\mu U^\mu$ 用于无质量粒子，在那里它可以认为是光子的观测频率，用来描述引力红移。
+
+守恒量 $E$ 和 $L$ 合在一起，为理解 Schwarzschild 几何中粒子的轨道提供了方便的途径。让我们把 (5.55) 的 $\epsilon$ 表达式展开，得到
+\begin{equation*}
+-\left(1-\frac{2GM}{r}\right)\left(\frac{\mathrm{d}t}{\mathrm{d}\lambda}\right)^2 + \left(1-\frac{2GM}{r}\right)^{-1}\left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2 + r^2\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^2 = -\epsilon.
+\tag{5.63}
+\end{equation*}
+如果我们把它乘以 $(1-2GM/r)$，并用 $E$ 和 $L$ 的表达式，就得到
+\begin{equation*}
+-E^2 + \left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2 + \left(1-\frac{2GM}{r}\right)\left(\frac{L^2}{r^2}+\epsilon\right) = 0.
+\tag{5.64}
+\end{equation*}
+这肯定是进展：我们已经把一个凌乱的耦合方程组变成了关于 $r(\lambda)$ 的单独一个方程。如果我们把它改写成
+\begin{equation*}
+\frac{1}{2}\left(\frac{\mathrm{d}r}{\mathrm{d}\lambda}\right)^2 + V(r) = \mathcal{E},
+\tag{5.65}
+\end{equation*}
+
+% ---- 书页 209 / p224 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.3.pdf}
+\caption*{图 5.3\quad 围绕恒星的轨道，由把半径 $r$ 表示为参量 $\lambda$ 的函数来刻画。}
+\end{figure}
+其中
+\begin{equation*}
+V(r) = \frac{1}{2}\epsilon - \epsilon\frac{GM}{r} + \frac{L^2}{2r^2} - \frac{GML^2}{r^3}
+\tag{5.66}
+\end{equation*}
+而
+\begin{equation*}
+\mathcal{E} = \frac{1}{2}E^2.
+\tag{5.67}
+\end{equation*}
+在 (5.65) 中，我们得到的恰恰是一个单位质量的经典粒子在由 $V(r)$ 给出的一维势中、带着“能量”$\mathcal{E}$ 运动时的方程。这有点令人混淆，但还不算太糟：单位质量的守恒能量是 $E$，而坐标 $r$ 的有效势（effective potential）对应的却是 $\mathcal{E} = E^2/2$。
+
+当然，我们的物理处境与在一维中运动的经典粒子相当不同；我们所考虑的轨迹是绕恒星或其他天体的轨道，如图 5.3 所示。我们感兴趣的量不仅有 $r(\lambda)$，还有 $t(\lambda)$ 和 $\phi(\lambda)$。尽管如此，通过理解轨道的径向行为，我们就能朝着理解所有轨道的目标走得非常远，而把这些行为约化成一个我们知道怎样求解的问题，帮助极大。
+
+对 Newton 引力中的轨道做类似的分析也会给出类似的结果；一般方程 (5.65) 将会相同，但有效势 (5.66) 将不会含有最后一项。（注意，这个方程不是 $1/r$ 的幂级数，它是精确的。）在势 (5.66) 中，第一项只是一个常数，第二项恰好对应 Newton 引力势，第三项是来自角动量的贡献，它在 Newton 引力和广义相对论中取相同的形式。最后一项——广义相对论的贡献——将被证明会带来巨大的差别，尤其是在 $r$ 很小的地方。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.4.pdf}
+\caption*{图 5.4\quad Newton 引力中的有效势。图中画出五条曲线，对应所标出的（单位质量的）角动量 $L$ 值，我们取 $GM = 1$。注意，只要能量足够大，每条轨道都会到达一个转折点并返回无穷远。}
+\end{figure}
+让我们来考察各种可能类型的轨道所对应的有效势，如图 5.4 和图 5.5 所示。不同的 $L$ 值有不同的曲线 $V(r)$；对其中任何一条曲线，轨道的行为都可以通过把 $\mathcal{E}$ 与 $V(r)$ 相比较来判断。粒子的一般行为将是在势中运动，直到它到达 $V(r) = \mathcal{E}$ 的一个“转折点”（turning point），这时它将开始
+% ---- 书页 210 / p225 ----
+朝另一个方向运动。有时可能没有转折点可碰，这时粒子就一直走下去。另一些情形下，粒子可以干脆在半径 $r_c$ 为常数的圆轨道上运动；这可能发生在势是平坦的地方，即 $\mathrm{d}V/\mathrm{d}r = 0$ 处。对 (5.66) 求微商，我们发现圆轨道出现在
+\begin{equation*}
+\epsilon GM r_c^2 - L^2 r_c + 3GML^2\gamma = 0,
+\tag{5.68}
+\end{equation*}
+其中在 Newton 引力中 $\gamma = 0$，在广义相对论中 $\gamma = 1$。如果圆轨道对应势的极小值，它将是稳定的；如果对应极大值，则是不稳定的。非圆的束缚轨道将围绕稳定圆轨道的半径振荡。
+
+转向 Newton 引力，我们发现圆轨道出现在
+\begin{equation*}
+r_c = \frac{L^2}{\epsilon GM}.
+\tag{5.69}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.5.pdf}
+\caption*{图 5.5\quad 广义相对论中的有效势。同样画出五条曲线，对应所标出的（单位质量的）角动量 $L$ 值，我们取 $GM = 1$。在广义相对论中存在一个大于或等于 $3GM$ 的最内层圆轨道，任何落到这个半径以内的轨道都会一直落到 $r = 0$（对沿测地线运动的粒子而言）。}
+\end{figure}
+对无质量粒子，$\epsilon = 0$，不存在圆轨道；这与图 5.4 中的第一幅图相一致，该图表明没有任何形式的束缚轨道。尽管在极坐标下这一点有些被掩盖，无质量粒子实际上沿直线运动，因为作用在无质量粒子上的 Newton 引力为零。当然，无质量粒子在 Newton 理论中的地位本来就有些成问题，所以随着你所做假设的不同，你可能得到不同的答案。用有效势的语言来说，一个具有给定能量 $E$ 的光子将从 $r = \infty$ 进入并逐渐减慢（实际上减慢的是 $\mathrm{d}r/\mathrm{d}\lambda$，光速并没有改变），直到它到达
+% ---- 书页 211 / p226 ----
+转折点，这时它将开始折返，回到 $r = \infty$。较低的 $L$ 值——光子在这些情形下会更靠近一些才开始折返——不过是那些初始瞄准得更贴近引力天体的轨迹。对有质量粒子，在半径 (5.69) 处将有稳定圆轨道，还有围绕这个半径振荡的束缚轨道。如果能量大于渐近值 $E = 1$，轨道将是非束缚的，描述一个先接近恒星然后再退离的粒子。我们知道，Newton 理论中的轨道是圆锥曲线（conic sections）——束缚轨道不是圆就是椭圆，而非束缚轨道不是抛物线就是双曲线——尽管我们不打算在这里证明这一点。
+
+在广义相对论中，情况有所不同，但只在 $r$ 足够小时才如此。既然差别就在于 $-GML^2/r^3$ 这一项，当 $r \to \infty$ 时两种理论中的行为完全相同。但当 $r \to 0$ 时，势趋于 $-\infty$，而不像 Newton 情形那样趋于 $+\infty$。在 $r = 2GM$ 处，势总是零；这个半径以内就是黑洞，我们稍后会更彻底地讨论它。对无质量粒子，总存在一个势垒（除了 $L = 0$ 的情形，此时势恒等于零），但一个能量足够高的光子仍然会越过势垒，被无可挽回地拖向中心。注意，“能量足够高”指的是“与它的角动量相比”——事实上光子的频率无关紧要，要紧的只是它所指向的方向。势垒的顶部是不稳定的圆轨道。对 $\epsilon = 0$、$\gamma = 1$，我们可以很容易地求解 (5.68)，得到
+\begin{equation*}
+r_c = 3GM.
+\tag{5.70}
+\end{equation*}
+
+% ---- 书页 212 / p227 ----
+图 5.5 的第一幅图证实了这一点：对每个 $L$，$V(r)$ 都在 $r = 3GM$ 处有一个极大值。这意味着光子可以在这个半径的圆上永远运转下去，但任何微扰都会使它飞走，不是飞向 $r = 0$，就是飞向 $r = \infty$。
+
+对有质量粒子，随着角动量的不同，再一次出现不同的区域。圆轨道位于
+\begin{equation*}
+r_c = \frac{L^2 \pm \sqrt{L^4 - 12G^2M^2L^2}}{2GM}.
+\tag{5.71}
+\end{equation*}
+对大的 $L$，将有两个圆轨道，一个稳定，一个不稳定。在 $L \to \infty$ 的极限下，它们的半径为
+\begin{equation*}
+r_c = \frac{L^2 \pm L^2(1-6G^2M^2/L^2)}{2GM} = \left(\frac{L^2}{GM},\, 3GM\right).
+\tag{5.72}
+\end{equation*}
+在这个极限下，稳定圆轨道移向更远处，而不稳定圆轨道则趋近 $3GM$，这种行为与无质量情形相类似。当我们减小 $L$ 时，两个圆轨道彼此靠近；当 (5.71) 中的判别式消失时，它们重合，此时
+\begin{equation*}
+L = \sqrt{12}\,GM,
+\tag{5.73}
+\end{equation*}
+相应地
+\begin{equation*}
+r_c = 6GM,
+\tag{5.74}
+\end{equation*}
+而对更小的 $L$，它们就完全消失了。因此，$6GM$ 是 Schwarzschild 度规中稳定圆轨道可能具有的最小半径。还有非束缚轨道，它们从无穷远进来然后折返；还有束缚但非圆的轨道，它们围绕稳定圆轨道的半径振荡。注意，这类轨道在 Newton 引力中会描绘出严格的圆锥曲线，在广义相对论中则不会如此，尽管要证明这一点我们还必须求解 $\mathrm{d}\phi/\mathrm{d}\lambda$ 的方程。最后，还有一些轨道从无穷远进来，一直落到 $r = 0$；这既可能发生在能量高于势垒的时候，也可能发生在 $L < \sqrt{12}\,GM$、势垒完全消失的时候。
+
+于是我们发现，Schwarzschild 解在 $r > 6GM$ 拥有稳定圆轨道，在 $3GM < r < 6GM$ 拥有不稳定圆轨道。需要记住的重要一点是，这些仅仅是测地线；没有什么能阻止一个加速的粒子下潜到 $r = 3GM$ 以下再冒出来，只要它保持在 $r = 2GM$ 之外就好。
+
+\section{实验检验}
+
+广义相对论的大多数实验检验都涉及检验粒子在太阳系中的运动，因而是 Schwarzschild 度规的测地线问题。Einstein 曾提出三项检验：
+% ---- 书页 213 / p228 ----（书页 213 实际自“Einstein 曾提出”起，注释随整句顺延） ----光线偏折、近日点进动（precession of perihelia）和引力红移。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.6.pdf}
+\caption*{图 5.6\quad 广义相对论中的轨道描绘出进动的椭圆。}
+\end{figure}
+光线偏折在弱场极限（weak-field limit）下就可以观测，因此放在第 7 章讨论。本节我们将讨论近日点进动和引力红移。（椭圆轨道的近日点（perihelion）是它最接近太阳的那一点；绕地球或恒星的轨道则分别有近地点（perigee）和近星点（periastron）。）
+
+近日点进动反映了这样一个事实：广义相对论中的非圆轨道并不是完美的闭合椭圆；在相当好的近似下，它们是进动着的椭圆，画出如图 5.6 所示的花瓣图案。尽管概念上简单，近日点进动的速率算起来却有些繁琐；这里我们遵循 d'Inverno（1992）的做法。策略是把径向坐标 $r$ 的演化描述为角坐标 $\phi$ 的函数；对一个完美的椭圆，$r(\phi)$ 将以 $2\pi$ 为周期，这反映了近日点在每一圈轨道都出现在相同角位置的事实。利用微扰论，我们可以展示广义相对论如何给周期带来微小的改变，从而产生进动。
+
+我们从 Schwarzschild 度规中有质量粒子的径向运动方程 (5.65) 出发。为了得到 $\mathrm{d}r/\mathrm{d}\phi$ 的方程，我们乘以
+\begin{equation*}
+\left(\frac{\mathrm{d}\phi}{\mathrm{d}\lambda}\right)^{-2} = \frac{r^4}{L^2},
+\tag{5.75}
+\end{equation*}
+这给出
+\begin{equation*}
+\left(\frac{\mathrm{d}r}{\mathrm{d}\phi}\right)^2 + \frac{1}{L^2}r^4 - \frac{2GM}{L^2}r^3 + r^2 - 2GMr = \frac{2\mathcal{E}}{L^2}r^4.
+\tag{5.76}
+\end{equation*}
+在求解这个方程时，有两个技巧很有用。第一个技巧是定义一个新变量
+
+% ---- 书页 214 / p229 ----
+\begin{equation*}
+x = \frac{L^2}{GMr}.
+\tag{5.77}
+\end{equation*}
+由 (5.69) 我们看到，在 Newton 圆轨道处 $x = 1$。我们的运动方程 (5.76) 变为
+\begin{equation*}
+\left(\frac{\mathrm{d}x}{\mathrm{d}\phi}\right)^2 + \frac{L^2}{G^2M^2} - 2x + x^2 - \frac{2G^2M^2}{L^2}x^3 = \frac{2\mathcal{E}L^2}{G^2M^2}.
+\tag{5.78}
+\end{equation*}
+第二个技巧是把它对 $\phi$ 求微商，得到 $x(\phi)$ 的一个二阶方程：
+\begin{equation*}
+\frac{\mathrm{d}^2 x}{\mathrm{d}\phi^2} - 1 + x = \frac{3G^2M^2}{L^2}x^2.
+\tag{5.79}
+\end{equation*}
+在 Newton 计算中最后一项将不存在，我们可以精确解出 $x$；在这里，我们可以把它当作微扰来处理。
+
+我们把 $x$ 展开成 Newton 解加上一个小的偏离，
+\begin{equation*}
+x = x_0 + x_1.
+\tag{5.80}
+\end{equation*}
+(5.79) 的零阶部分便是
+\begin{equation*}
+\frac{\mathrm{d}^2 x_0}{\mathrm{d}\phi^2} - 1 + x_0 = 0
+\tag{5.81}
+\end{equation*}
+而一阶部分是
+\begin{equation*}
+\frac{\mathrm{d}^2 x_1}{\mathrm{d}\phi^2} + x_1 = \frac{3G^2M^2}{L^2}x_0^2.
+\tag{5.82}
+\end{equation*}
+零阶方程的解可以写成
+\begin{equation*}
+x_0 = 1 + e\cos\phi.
+\tag{5.83}
+\end{equation*}
+这是 Newton 或 Kepler 的标准结果；它描述一个完美的椭圆，$e$ 是偏心率（eccentricity）。一个椭圆由半长轴（semi-major axis）$a$——从中心到椭圆上最远点的距离——和半短轴（semi-minor axis）$b$——从中心到最近点的距离——确定。偏心率满足 $e^2 = 1 - b^2/a^2$。
+
+把 Newton 解代入一阶方程 (5.82)，我们得到
+\begin{align*}
+\frac{\mathrm{d}^2 x_1}{\mathrm{d}\phi^2} + x_1 &= \frac{3G^2M^2}{L^2}(1+e\cos\phi)^2\\
+&= \frac{3G^2M^2}{L^2}\left[\left(1+\frac{1}{2}e^2\right) + 2e\cos\phi + \frac{1}{2}e^2\cos 2\phi\right].
+\tag{5.84}
+\end{align*}
+
+% ---- 书页 215 / p230 ----
+为了求解这个方程，注意到
+\begin{equation*}
+\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}(\phi\sin\phi) + \phi\sin\phi = 2\cos\phi
+\tag{5.85}
+\end{equation*}
+以及
+\begin{equation*}
+\frac{\mathrm{d}^2}{\mathrm{d}\phi^2}(\cos 2\phi) + \cos 2\phi = -3\cos 2\phi.
+\tag{5.86}
+\end{equation*}
+把它们与 (5.84) 相比较，我们看到一个解由下式给出
+\begin{equation*}
+x_1 = \frac{3G^2M^2}{L^2}\left[\left(1+\frac{1}{2}e^2\right) + e\phi\sin\phi - \frac{1}{6}e^2\cos 2\phi\right],
+\tag{5.87}
+\end{equation*}
+欢迎大家自行验证。这里的三项性质各不相同：第一项只是一个常数的移动，而第三项则在零附近振荡。重要的效应于是包含在第二项中，它在一圈接一圈的轨道上不断累积。因此我们把这一项与零阶解合并，写成
+\begin{equation*}
+x = 1 + e\cos\phi + \frac{3G^2M^2e}{L^2}\phi\sin\phi.
+\tag{5.88}
+\end{equation*}
+即使对微扰后的方程来说，这也不是一个完整的解，但它概括了我们关心的部分。特别地，$x$ 的这个表达式可以方便地改写成一个角周期并不完全恰好是 $2\pi$ 的椭圆方程：
+\begin{equation*}
+x = 1 + e\cos[(1-\alpha)\phi],
+\tag{5.89}
+\end{equation*}
+其中我们引入了
+\begin{equation*}
+\alpha = \frac{3G^2M^2}{L^2}.
+\tag{5.90}
+\end{equation*}
+(5.88) 与 (5.89) 的等价性，可以通过把 $\cos[(1-\alpha)\phi]$ 按小参量 $\alpha$ 展开成幂级数看出来：
+\begin{align*}
+\cos[(1-\alpha)\phi] &= \cos\phi + \alpha\frac{\mathrm{d}}{\mathrm{d}\alpha}\cos[(1-\alpha)\phi]_{\alpha=0}\\
+&= \cos\phi + \alpha\phi\sin\phi.
+\tag{5.91}
+\end{align*}
+
+于是我们发现，行星每运转一圈，近日点就前进一个角度
+\begin{equation*}
+\Delta\phi = 2\pi\alpha = \frac{6\pi G^2M^2}{L^2}.
+\tag{5.92}
+\end{equation*}
+为了把角动量 $L$ 换算成更常用的量，我们可以使用对 Newton 轨道有效的表达式，因为我们所考察的这个量已经是
+% ---- 书页 216 / p231 ----
+一个小的微扰了。一个普通的椭圆满足
+\begin{equation*}
+r = \frac{(1-e^2)a}{1+e\cos\phi},
+\tag{5.93}
+\end{equation*}
+其中 $a$ 是半长轴。与我们的零阶解 (5.83) 以及 $x$ 的定义 (5.77) 相比较，我们看到
+\begin{equation*}
+L^2 \approx GM(1-e^2)a.
+\tag{5.94}
+\end{equation*}
+这是一个近似，在轨道是完美闭合椭圆的前提下成立。把它代入 (5.92)，并恢复光速的显式因子，我们得到
+\begin{equation*}
+\Delta\phi = \frac{6\pi GM}{c^2(1-e^2)a}.
+\tag{5.95}
+\end{equation*}
+历史上，水星的近日点进动是广义相对论的第一个检验。事实上，早在 Einstein 发明广义相对论之前，人们就已经知道水星轨道存在一个表观上的偏差，并且已经提出了若干种解决方案（包括太阳系内部的“暗物质”）。Einstein 了解这个偏差，他在建立广义相对论之后最初的任务之一，就是证明它正确地解释了水星的近日点进动。对水星绕太阳的运动，相关的轨道参量为
+\begin{equation*}
+\begin{array}{c}
+\dfrac{GM_\odot}{c^2} = 1.48\times 10^5\,\mathrm{cm},\\[8pt]
+a = 5.79\times 10^{12}\,\mathrm{cm}\\[6pt]
+e = 0.2056,
+\end{array}
+\tag{5.96}
+\end{equation*}
+当然还有 $c = 3.00\times 10^{10}\,\mathrm{cm/sec}$。这就给出
+\begin{equation*}
+\Delta\phi_{\mathrm{Mercury}} = 5.01\times 10^{-7}\,\mathrm{radians/orbit} = 0.103^{\prime\prime}/\mathrm{orbit},
+\tag{5.97}
+\end{equation*}
+其中 $''$ 代表角秒。更常见的做法是用每世纪的进动来表示；水星每 88 天运转一周，由此得到
+\begin{equation*}
+\Delta\phi_{\mathrm{Mercury}} = 43.0^{\prime\prime}/\mathrm{century}.
+\tag{5.98}
+\end{equation*}
+于是，水星轨道的长轴以每 100 年 43.0 角秒的速率进动。观测值是 5601 角秒/100 年。然而，其中大部分来自我们的地心坐标系中分点的岁差（precession of equinoxes）；精确地说，是 5025 角秒/100 年。其他行星的引力摄动又贡献了额外的 532 角秒/100 年，剩下 43 角秒/100 年有待广义相对论来解释，而它解释得相当好。可以想见，Einstein 第一次算出这个结果时一定非常高兴。
+
+在第 2 章中，我们把光子的引力红移当作等效原理的一个推论讨论过。Schwarzschild 度规是一个精确
+% 本块末句在原书书页 216 底部中断（"...The Schwarzschild metric is an exact" 续接书页 217 顶部），下一块需用 %JOIN% 续接本句。
+解，因而应当预言一种在时空小区域内退化为等效原理（EP）预言的红移。让我们来看看这是如何实现的。
+
+% ---- 书页 217 / p232 ----
+考虑一个四速度为 $U^\mu$、在 Schwarzschild 坐标中静止（$U^i = 0$）的观者。我们本可以允许这个观者运动，但那只不过是在引力效应之上叠加一个通常的多普勒频移而已。四速度满足 $U_\mu U^\mu = -1$，对于 Schwarzschild 时空中的静止观者，这就意味着
+\begin{equation*}
+U^0 = \left(1 - \frac{2GM}{r}\right)^{-1/2}.
+\tag{5.99}
+\end{equation*}
+任何一个这样的观者，测量沿类光测地线 $x^\mu(\lambda)$ 传播的光子的频率，得到的都是
+\begin{equation*}
+\omega = -g_{\mu\nu}U^\mu\frac{\mathrm{d}x^\nu}{\mathrm{d}\lambda}.
+\tag{5.100}
+\end{equation*}
+实际上，正是这个关系定义了 $\lambda$ 的归一化。于是我们有
+\begin{align*}
+\omega &= \left(1 - \frac{2GM}{r}\right)^{1/2}\frac{\mathrm{d}t}{\mathrm{d}\lambda}
+\tag{5.101}\\
+&= \left(1 - \frac{2GM}{r}\right)^{-1/2}E,
+\tag{5.102}
+\end{align*}
+其中 $E$ 由式 (5.61) 定义，只是应用于光子的轨迹。$E$ 是守恒量，因此在不同的径向距离处测量时，$\omega$ 显然会取不同的值。对于在 $r_1$ 处发射、在 $r_2$ 处被观测到的光子，观测到的频率之间将有如下关系
+\begin{equation*}
+\frac{\omega_2}{\omega_1} = \left(\frac{1 - 2GM/r_1}{1 - 2GM/r_2}\right)^{1/2}.
+\tag{5.103}
+\end{equation*}
+这是频移的一个精确结果；在 $r \gg 2GM$ 的极限下，我们得到
+\begin{align*}
+\frac{\omega_2}{\omega_1} &= 1 - \frac{GM}{r_1} + \frac{GM}{r_2}\\
+&= 1 + \Phi_1 - \Phi_2,
+\tag{5.104}
+\end{align*}
+其中 $\Phi = -GM/r$ 是 Newton 引力势。这告诉我们，当 $\Phi$ 增大时频率会降低——而这正是我们从引力场中向外爬升时发生的事情：于是就出现了红移。（落向引力体的光子则会发生蓝移。）我们看到，$r \gg 2GM$ 的结果与基于等效原理的计算相一致。
+
+引力红移最早由 Pound 与 Rebka 于 1960 年探测到，他们让 $\gamma$ 射线向上穿行仅仅 72 英尺（哈佛大学物理系大楼的高度）的距离。后来的检验变得越来越精确，往往利用人造飞船或放置在飞机上的原子钟。在所有这些情形中，与 Einstein 预言的符合程度都极为出色。
+
+% ---- 书页 218 / p233 ----
+自 Einstein 提出三大经典检验以来，人们又提出了对广义相对论的若干进一步检验。其中最著名的当然是脉冲双星，我们将在第 7 章讨论。另一个是引力时间延迟，由 Shapiro 发现并观测到，同样在第 7 章讨论。在一个非常不同的情境下，大爆炸核合成为广义相对论提供了一个宇宙学检验——它发生在宇宙仅诞生几秒钟的年代，将在第 8 章讨论。现代的进展还引入了大量新的检验；全面的介绍可参阅 Will (1981)。
+
+\section{Schwarzschild 黑洞}
+
+现在，对于麻烦半径 $r = 2GM$ 之外测地线的行为我们已经有所了解——这正是太阳系以及其他大多数天体物理情形所关心的区域。接下来我们转而研究这样一些天体：即使在半径小于 $2GM$ 处，它们仍然由 Schwarzschild 解描述——黑洞。（我们暂时先使用“黑洞”这个术语，尽管还没有为这样一种天体引入确切的含义。）
+
+理解一个时空的几何的办法之一，是考察由光锥定义的因果结构。因此我们考虑径向类光曲线，即 $\theta$ 和 $\phi$ 保持不变且 $\mathrm{d}s^2 = 0$ 的曲线：
+\begin{equation*}
+\mathrm{d}s^2 = 0 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}t^2 + \left(1 - \frac{2GM}{r}\right)^{-1}\mathrm{d}r^2,
+\tag{5.105}
+\end{equation*}
+由此我们得到
+\begin{equation*}
+\frac{\mathrm{d}t}{\mathrm{d}r} = \pm\left(1 - \frac{2GM}{r}\right)^{-1}.
+\tag{5.106}
+\end{equation*}
+当然，这量度的正是 $t$-$r$ 平面的时空图上光锥的斜率。$r$ 很大时斜率为 $\pm 1$，与平直空间中一样；而当我们接近 $r = 2GM$ 时，$\mathrm{d}t/\mathrm{d}r \to \pm\infty$，光锥便“闭合”起来，如图 5.7 所示。因此，接近 $r = 2GM$ 的光线似乎永远到不了那里——至少在这个坐标系中是如此；它看起来是渐近地趋于这个半径。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.7.pdf}
+\caption*{图 5.7\quad 在 Schwarzschild 坐标中，当我们接近 $r = 2GM$ 时，光锥看似逐渐闭合。}
+\end{figure}
+正如我们将要看到的，到不了 $r = 2GM$ 只是一种表象，光线（或者有质量的粒子）实际上到达这个半径毫无困难。但远处的观者永远无法知晓这一点。如果我们待在外面，而一位勇敢的从事观测的广义相对论学家跳入黑洞、并不停地发回信号，我们只会看到信号到达我们这里越来越慢，如图 5.8 所描绘。在习题中会要求你更仔细地考察这一现象。当落入的观者接近 $r = 2GM$ 时，其固有时中任何固定的间隔 $\Delta\tau_1$，从我们的观点来看都对应于一个越来越长的间隔 $\Delta\tau_2$。这种情形永远持续下去；我们永远不会看到
+% ---- 书页 219 / p234 ----
+观者穿过 $r = 2GM$，只会看到他们运动得越来越慢（而且变得越来越红，仿佛因为干了跳进黑洞这么愚蠢的事而感到无地自容）。
+
+我们永远看不到落入的观者到达 $r = 2GM$，这一事实是一个有意义的陈述；但他们在 $t$-$r$ 平面中的轨迹永远到不了那里，这一事实则不是。后者高度依赖于我们的坐标系，而我们想问的是一个更不依赖坐标的问题（比如：“观者能否在自己的固有时有限量之内到达这个半径？”）。做到这一点的最好办法，是换成一组在 $r = 2GM$ 处表现更好的坐标系。现在我们就来寻找一组合适的这样的坐标。当然，坐标变换是无法“推导”出来的，我们只能径直说出新坐标是什么，然后代入公式。不过我们将分几步来建立这些坐标，希望这些选择看起来多少有些缘由。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.8.pdf}
+\caption*{图 5.8\quad 自由落入黑洞的一个信标以恒定固有时间隔 $\Delta\tau_1$ 发出信号。固定 $r$ 处的观者收到信号的时间间隔 $\Delta\tau_2$ 依次变长。}
+\end{figure}
+
+% ---- 书页 220 / p235 ----
+我们现有坐标的问题在于，沿接近 $r = 2GM$ 的径向类光测地线，$\mathrm{d}t/\mathrm{d}r \to \infty$；$r$ 方向上的推进相对于坐标时 $t$ 变得越来越慢。我们可以试着解决这个问题，办法是用一个沿类光测地线变化得更慢的坐标来取代 $t$。首先注意到，我们可以显式地解出刻画径向类光曲线的条件 (5.106)，得到
+\begin{equation*}
+t = \pm r^* + \text{constant},
+\tag{5.107}
+\end{equation*}
+其中\textbf{乌龟坐标}（tortoise coordinate）$r^*$ 定义为
+\begin{equation*}
+r^* = r + 2GM\ln\left(\frac{r}{2GM} - 1\right).
+\tag{5.108}
+\end{equation*}
+（乌龟坐标只有在 $r \geq 2GM$ 时才与 $r$ 有合理的关系，但反正在那个范围之外我们的坐标本来也不怎么好。）用乌龟坐标表示，Schwarzschild 度规变为
+\begin{equation*}
+\mathrm{d}s^2 = \left(1 - \frac{2GM}{r}\right)\left(-\mathrm{d}t^2 + \mathrm{d}r^{*2}\right) + r^2\,\mathrm{d}\Omega^2,
+\tag{5.109}
+\end{equation*}
+其中 $r$ 被看作 $r^*$ 的函数。这代表了一些进展，因为如图 5.9 所示，光锥现在看起来不再闭合；此外，在 $r = 2GM$ 处没有任何度规系数变为无穷（尽管 $g_{tt}$ 和 $g_{r^* r^*}$ 都变为零）。然而我们付出的代价是，感兴趣的曲面 $r = 2GM$ 只是被推到了无限远。
+
+我们的下一步行动，是定义自然地贴合类光测地线的坐标。若令
+\begin{align*}
+v &= t + r^*\\
+u &= t - r^*,
+\tag{5.110}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.9.pdf}
+\caption*{图 5.9\quad 乌龟坐标（式 (5.109)）下的 Schwarzschild 光锥。光锥保持非退化，但曲面 $r = 2GM$ 已被推到无限远。}
+\end{figure}
+
+% ---- 书页 221 / p236 ----
+则落入的径向类光测地线由 $v =$ 常数刻画，而出射的径向类光测地线满足 $u =$ 常数。现在考虑回到原来的径向坐标 $r$，但用新坐标 $v$ 取代类时坐标 $t$。这组坐标就是所谓的\textbf{Eddington--Finkelstein 坐标}。用这组坐标表示，度规为
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}v^2 + \left(\mathrm{d}v\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}v\right) + r^2\,\mathrm{d}\Omega^2.
+\tag{5.111}
+\end{equation*}
+这里我们第一次看到了真正进展的迹象。尽管度规系数 $g_{vv}$ 在 $r = 2GM$ 处为零，但并不存在真正的退化；度规的行列式为
+\begin{equation*}
+g = -r^4\sin^2\theta,
+\tag{5.112}
+\end{equation*}
+它在 $r = 2GM$ 处完全正则。因此度规是可逆的，而且我们一劳永逸地看到：在我们最初的 $(t, r, \theta, \phi)$ 坐标系中，$r = 2GM$ 只不过是一个坐标奇点。在 Eddington--Finkelstein 坐标中，径向类光曲线的条件解得
+\begin{equation*}
+\frac{\mathrm{d}v}{\mathrm{d}r} =
+\begin{cases}
+0, & \text{（落入）}\\[6pt]
+2\left(1 - \dfrac{2GM}{r}\right)^{-1}. & \text{（出射）}
+\end{cases}
+\tag{5.113}
+\end{equation*}
+于是我们能够看清发生了什么：在这个坐标系中，光锥在 $r = 2GM$ 处依然表现良好，而且这个曲面位于有限的坐标值处。追踪类光或类时粒子穿过该曲面的路径没有任何问题。另一方面，确实有某种有趣的事情在发生。虽然光锥并不闭合，但它们确实倾倒了下来，使得当 $r < 2GM$ 时，所有指向未来的路径都指向 $r$ 减小的方向，如图 5.10 所示。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.10.pdf}
+\caption*{图 5.10\quad 式 (5.111) 的 $(v, r)$ 坐标下的 Schwarzschild 光锥。在这些坐标中，指向未来的类时路径可以越过 $r = 2GM$。}
+\end{figure}
+
+% ---- 书页 222 / p237 ----
+曲面 $r = 2GM$ 虽然局部完全正则，但在整体上起着有去无回之点的作用——检验粒子一旦没入其内，就永远无法返回。我们把\textbf{事件视界}（event horizon）定义为粒子永远无法穿过它逃逸到无限远的曲面；在 Schwarzschild 时空中，事件视界位于 $r = 2GM$ 处。（这是一个粗略的定义；在下一章中我们会讲得稍微精确一些。）尽管位于固定的径向坐标处，事件视界却是一个类光曲面而非类时曲面，所以真正使得沿向外方向穿过视界成为不可能的，正是时空自身的因果结构。既然任何东西都无法逃出事件视界，我们也就不可能看到它的内部——这便是\textbf{黑洞}（black hole）这一名称的由来。黑洞不过是时空中的一个被事件视界与无限远分隔开的区域。事件视界的概念是一个整体性的概念；视界的位置是关于时空整体的陈述，不是仅知道该处的几何就能确定的。在更一般的时空中，这一点仍将成立。
+
+我们应该提一下黑洞的几个在大众想象中常常被混淆的特点。首先，黑洞的外部几何与我们本会在恒星或行星之外得到的 Schwarzschild 解是同一个解。特别地，黑洞并不比太阳更会把周围的一切吸进去；在远离 $r = 2GM$ 之外的地方，无论引力源是不是黑洞，粒子的行为都完全一样。其次，关于黑洞存在一种误导性的 Newton 式类比。质量为 $M$ 的引力体外距离 $r$ 处的一个粒子，其 Newton 逃逸速度为
+\begin{equation*}
+v_{\mathrm{esc}} = \sqrt{\frac{2GM}{r}}.
+\tag{5.114}
+\end{equation*}
+如果我们天真地问 Newton 逃逸速度在哪里等于光速，会发现恰好就是 $r = 2GM$。尽管光速在 Newton 理论中并不扮演任何基本角色，下面这件事看上去仍颇具挑衅意味：光——被当作以速度 $c$ 运动的惯性粒子——似乎无法从质量为 $M$、半径小于 $2GM$ 的天体逃出。但这种情况与我们在广义相对论中看到的存在深刻的差别。逃逸速度是粒子想要沿自由轨迹从引力源逃出时最初需要具有的速度；但没有什么能阻止我们考虑加速轨迹——比如，可以想象选取一个加速度，使得粒子以某个恒定的速度稳定地远离大质量天体。因此，假想的 Newton 黑洞将不会具有\emph{任何东西}都无法逃出这一关键性质；而在广义相对论中，任意的类时路径都必须待在各自的光锥之内，因而永远无法逃出事件视界。
+
+\section{最大延拓的 Schwarzschild 解}
+
+让我们回顾一下已经做了什么。出于对我们的坐标也许并不适用于整个流形的怀疑，我们已把原来的坐标 $t$ 换成了新坐标 $v$；后者的一个良好性质是，如果我们沿 $v =$ 常数的径向类光曲线减小 $r$，就会径直穿过事件视界而没有任何问题。
+
+% ---- 书页 223 / p238 ----
+的确，真正完成这趟旅行的局部观者未必知道事件视界是在何时被越过的——局部几何与其他任何地方并无不同。因此我们得出结论：我们的怀疑是对的，最初的坐标系未能很好地覆盖整个流形。区域 $r \leq 2GM$ 理所当然应当包含在我们的时空之中，因为物理粒子可以轻松到达并穿过那里。然而，这并不能保证我们已经大功告成；也许我们还能沿其他方向延拓流形。
+
+实际上确实还有其他方向。在 $(v, r)$ 坐标系中，我们能够沿指向未来的路径穿过事件视界，却不能沿指向过去的路径。这显得不合情理，因为我们一开始面对的是一个不依赖时间的解。但我们本可以选择 $u$ 而不是 $v$，那样的话度规将是
+\begin{equation*}
+\mathrm{d}s^2 = -\left(1 - \frac{2GM}{r}\right)\mathrm{d}u^2 - \left(\mathrm{d}u\,\mathrm{d}r + \mathrm{d}r\,\mathrm{d}u\right) + r^2\,\mathrm{d}\Omega^2.
+\tag{5.115}
+\end{equation*}
+现在我们又能穿过事件视界了，但这一次只能沿指向过去的曲线，如图 5.11 所示。
+
+这也许令人惊讶：我们可以自洽地沿指向未来或指向过去的曲线穿过 $r = 2GM$，但会到达不同的地方。这其实本来就该预料到，因为从定义 (5.110) 看，如果保持 $v$ 不变而减小 $r$，必有 $t \to +\infty$；而如果保持 $u$ 不变而减小 $r$，则有 $t \to -\infty$。（当 $r \to 2GM$ 时，乌龟坐标 $r^* \to -\infty$。）于是我们沿两个不同的方向延拓了时空：一个朝向未来，一个朝向过去。
+
+下一步本来可以沿着类空测地线走，看看是否还会发现更多的区域。答案是肯定的——我们会到达时空的另一块区域；不过让我们抄个近道，直接定义一组处处都好用的坐标。第一个猜测也许是同时使用 $u$ 和 $v$（来代替 $t$ 和 $r$），
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.11.pdf}
+\caption*{图 5.11\quad 式 (5.115) 的 $(u, r)$ 坐标下的 Schwarzschild 光锥。在这些坐标中，指向过去的类时路径可以越过 $r = 2GM$。}
+\end{figure}
+
+% ---- 书页 224 / p239 ----
+这导致
+\begin{equation*}
+\mathrm{d}s^2 = -\frac{1}{2}\left(1 - \frac{2GM}{r}\right)\left(\mathrm{d}v\,\mathrm{d}u + \mathrm{d}u\,\mathrm{d}v\right) + r^2\,\mathrm{d}\Omega^2,
+\tag{5.116}
+\end{equation*}
+其中 $r$ 通过下式由 $v$ 和 $u$ 隐式定义
+\begin{equation*}
+\frac{1}{2}(v - u) = r + 2GM\ln\left(\frac{r}{2GM} - 1\right).
+\tag{5.117}
+\end{equation*}
+实际上，我们重新引入了一开始就带着的那种退化；在这些坐标中，$r = 2GM$ 又变得“无限遥远”（位于 $v = -\infty$ 或 $u = +\infty$ 处）。该做的事情是换用一组能把这些点拉回有限坐标值的坐标；一个很好的选择是
+\begin{align*}
+v' &= e^{v/4GM}\\
+u' &= -e^{-u/4GM},
+\tag{5.118}
+\end{align*}
+用我们原来的 $(t, r)$ 坐标系表示，即
+\begin{align*}
+v' &= \left(\frac{r}{2GM} - 1\right)^{1/2}e^{(r+t)/4GM}\\
+u' &= -\left(\frac{r}{2GM} - 1\right)^{1/2}e^{(r-t)/4GM}.
+\tag{5.119}
+\end{align*}
+在 $(v', u', \theta, \phi)$ 坐标系中，Schwarzschild 度规为
+\begin{equation*}
+\mathrm{d}s^2 = -\frac{16G^3M^3}{r}e^{-r/2GM}\left(\mathrm{d}v'\mathrm{d}u' + \mathrm{d}u'\mathrm{d}v'\right) + r^2\,\mathrm{d}\Omega^2.
+\tag{5.120}
+\end{equation*}
+终于，$r = 2GM$ 的非奇异性变得完全显露出来；在这种形式下，在事件视界处没有任何度规系数表现出任何特殊的行为。
+
+$v'$ 和 $u'$ 都是类光坐标，意思是它们的偏导数 $\partial/\partial v'$ 和 $\partial/\partial u'$ 是类光矢量。这本身并没有任何问题，因为这个坐标系中四个偏导数矢量（两个类光、两个类空）完全可以充当切空间的一组良好的基。尽管如此，在一个坐标类时、其余坐标类空的坐标系中工作还是要让人安心一些。于是我们定义
+\begin{equation*}
+T = \frac{1}{2}(v' + u') = \left(\frac{r}{2GM} - 1\right)^{1/2}e^{r/4GM}\sinh\left(\frac{t}{4GM}\right)
+\tag{5.121}
+\end{equation*}
+以及
+\begin{equation*}
+R = \frac{1}{2}(v' - u') = \left(\frac{r}{2GM} - 1\right)^{1/2}e^{r/4GM}\cosh\left(\frac{t}{4GM}\right),
+\tag{5.122}
+\end{equation*}
+
+% ---- 书页 225 / p240 ----
+用它们表示，度规变为
+\begin{equation*}
+\boxed{\,\mathrm{d}s^2 = \frac{32G^3M^3}{r}e^{-r/2GM}\left(-\mathrm{d}T^2 + \mathrm{d}R^2\right) + r^2\,\mathrm{d}\Omega^2,\,}
+\tag{5.123}
+\end{equation*}
+其中 $r$ 由下式隐式定义
+\begin{equation*}
+T^2 - R^2 = \left(1 - \frac{r}{2GM}\right)e^{r/2GM}.
+\tag{5.124}
+\end{equation*}
+坐标 $(T, R, \theta, \phi)$ 被称为\textbf{Kruskal 坐标}（Kruskal coordinates），有时也称为 Kruskal--Szekeres 坐标。
+
+Kruskal 坐标具有许多奇妙的性质。与 $(t, r^*)$ 坐标一样，径向类光曲线看起来与平直空间中相同：
+\begin{equation*}
+T = \pm R + \text{constant}.
+\tag{5.125}
+\end{equation*}
+然而与 $(t, r^*)$ 坐标不同的是，事件视界 $r = 2GM$ 并不无限遥远；实际上它由下式定义
+\begin{equation*}
+T = \pm R,
+\tag{5.126}
+\end{equation*}
+这与它是一个类光曲面相一致。更一般地，我们可以考虑 $r =$ 常数的曲面。由式 (5.124)，这些曲面满足
+\begin{equation*}
+T^2 - R^2 = \text{constant}.
+\tag{5.127}
+\end{equation*}
+于是，它们在 $R$-$T$ 平面上呈现为一条条双曲线。此外，$t =$ 常数的曲面由下式给出
+\begin{equation*}
+\frac{T}{R} = \tanh\left(\frac{t}{4GM}\right),
+\tag{5.128}
+\end{equation*}
+这定义了过原点、斜率为 $\tanh(t/4GM)$ 的直线。注意，当 $t \to \pm\infty$ 时，式 (5.128) 变得与式 (5.126) 相同；因此 $t = \pm\infty$ 与 $r = 2GM$ 代表同一个曲面。
+
+我们的坐标 $(T, R)$ 应当被允许取遍它们在碰不到 $r = 0$ 处真实奇点的前提下所能取的一切值；因此允许的区域是
+\begin{align*}
+-\infty &\leq R \leq \infty\\
+T^2 &< R^2 + 1.
+\tag{5.129}
+\end{align*}
+由式 (5.121) 和 (5.122)，当 $r < 2GM$ 时 $T$ 和 $R$ 似乎会成为虚数，但这是一种错觉；在那个区域里 $(r, t)$ 坐标本来就不好用（具体地说，$|t| > \infty$）。现在我们可以在 $T$-$R$ 平面上（隐去 $\theta$ 和 $\phi$）画出一幅时空图，即所谓的\textbf{Kruskal 图}（Kruskal diagram），如图 5.12 所示。图上的每个点都是一个二维球面。这幅图表示的就是 Schwarzschild 几何的最大延拓，
+
+% ---- 书页 226 / p241 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.12.pdf}
+\caption*{图 5.12\quad Kruskal 图——Kruskal 坐标下的 Schwarzschild 解，其中所有光锥都张开 $\pm 45^{\circ}$。}
+\end{figure}
+
+这些坐标所覆盖的，正是我们应当看作由这个解所描述的整个流形。
+
+原来的 Schwarzschild 坐标 $(t, r)$ 只在 $r > 2GM$ 时好用，而这只是 Kruskal 图上所描绘的流形的一部分。把图分成四个区域会带来方便，如图 5.13 所示。区域 I 对应于 $r > 2GM$，即我们原来的坐标在其中具有良好定义的那一片。沿着指向未来的类光射线，我们到达区域 II；沿着指向过去的类光射线，则到达区域 III。如果当初探索的是类空测地线，就会被引到区域 IV。把 $(T, R)$ 与 $(t, r)$ 联系起来的定义 (5.121) 和 (5.122) 实际上只在区域 I 中好用；在其他区域中，必须引入适当的负号，以防止坐标变成虚数。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.13.pdf}
+\caption*{图 5.13\quad Kruskal 图的各个区域。}
+\end{figure}
+
+% ---- 书页 227 / p242 ----
+把 Schwarzschild 几何延拓到所能延拓的极致之后，我们描述了一个不同凡响的时空。当然，区域 II 就是我们所说的黑洞。任何东西一旦从区域 I 进入区域 II，就再也回不来了。实际上，区域 II 中每一条指向未来的路径最终都会撞上 $r = 0$ 处的奇点；一旦进入事件视界，你就在劫难逃。这一点值得强调：你不仅无法逃回区域 I，甚至无法让自己停止沿 $r$ 减小的方向运动，因为这恰恰是类时方向。这一点本来也可以在原来的坐标系中看出来：当 $r < 2GM$ 时，$t$ 变成类空的，而 $r$ 变成类时的。因此，你无法停止向奇点运动，就像你无法停止变老一样。由于固有时沿测地线取极大值，如果你不作挣扎，而是放松身体接近奇点，你就能活得最久。倒不是说你还有多久可以放松，这趟旅程也谈不上令人松弛：当你接近奇点时，潮汐力会变得无穷大。当你落向奇点时，你的脚和头会被彼此拉开，而你的躯干则被挤压到无穷薄。一位天体物理学家落入黑洞后的凄惨下场，在 Misner、Thorne 与 Wheeler (1973) 的第 32.6 节中有细致的描述。注意他们使用了正交归一标架，正如我们在附录 J 中讨论的那样（不过这可不会让这趟旅行变得更愉快）。
+
+区域 III 和区域 IV 可能有些出乎意料。区域 III 不过是区域 II 的时间反演，是时空中这样一个部分：其中的东西可以逃到我们这里，而我们却永远到不了那里。它可以被看作一个\textbf{白洞}（white hole）。在过去存在一个奇点，宇宙看起来正是从那里迸发而出的。区域 III 的边界是过去事件视界，而区域 II 的边界是未来事件视界。至于区域 IV，无论沿时间向前还是向后，都无法从我们的区域 I 到达那里，那边的人也同样无法到我们这里来。它是时空的另一个渐近平直区域，是我们这个区域的镜像。可以认为它通过一个虫洞（wormhole，或称 Einstein--Rosen 桥）与区域 I 相连——这是一种连接两个不同区域的瓶颈状结构。考虑把 Kruskal 图按 $T =$ 常数的类空曲面切片，如图 5.14 所示。现在我们可以把每个切片的图像画出来，为清晰起见把一个角坐标也画上，如图 5.15 那样。按这种切片方式，Schwarzschild 几何描述的是两个渐近平直的区域：它们相互伸向对方，经由虫洞连接一段时间，然后再断开。但虫洞闭合得太快，任何类时观者都来不及从一个区域穿过它进入另一个区域。
+
+尽管 Kruskal 图已经令人赏心悦目，通过构造共形图把 Schwarzschild 解压缩到有限区域之内，往往还要更有用。共形图的思想在附录 H 中讨论；它是分析广义相对论中时空的关键工具，建议你现在就把那里的讨论复习一遍。我们不会完整详尽地给出构造 Schwarzschild 共形图所必需的那些操作，因为它们与 Minkowski 情形如出一辙，只是代数上额外复杂了不少。我们会从类光版本的 Kruskal 坐标出发，在其中度规
+
+% ---- 书页 228 / p243 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.14.pdf}
+\caption*{图 5.14\quad Kruskal 坐标中的类空切片。}
+\end{figure}
+
+取如下形式
+\begin{equation*}
+\mathrm{d}s^2 = -\frac{16G^3M^3}{r}e^{-r/2GM}\left(\mathrm{d}v'\mathrm{d}u' + \mathrm{d}u'\mathrm{d}v'\right) + r^2\,\mathrm{d}\Omega^2,
+\tag{5.130}
+\end{equation*}
+其中 $r$ 通过下式隐式定义
+\begin{equation*}
+v'u' = -\left(\frac{r}{2GM} - 1\right)e^{r/2GM}.
+\tag{5.131}
+\end{equation*}
+然后，基本上照搬平直时空情形中用过的同一个变换，就足以把无限远收进有限的坐标值：
+\begin{align*}
+v'' &= \arctan\left(\frac{v'}{\sqrt{2GM}}\right)\\
+u'' &= \arctan\left(\frac{u'}{\sqrt{2GM}}\right),
+\tag{5.132}
+\end{align*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.15.pdf}
+\caption*{图 5.15\quad 图 5.14 中诸类空切片的几何。}
+\end{figure}
+范围为
+% ---- 书页 229 / p244 ----
+\begin{gather*}
+-\frac{\pi}{2} < v'' < +\frac{\pi}{2}\\
+-\frac{\pi}{2} < u'' < +\frac{\pi}{2}\\
+-\frac{\pi}{2} < v'' + u'' < \frac{\pi}{2}.
+\end{gather*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.16.pdf}
+\caption*{图 5.16\quad Schwarzschild 时空的共形图。}
+\end{figure}
+
+度规的 $(v'', u'')$ 部分（也就是说，在角坐标为常数的情形下）现在与 Minkowski 空间共形相关。在新坐标中，$r=0$ 处的奇点是一些直线，它们从一个渐近区域的类时无限远一直延伸到另一个渐近区域的类时无限远。
+
+于是，极大延拓的 Schwarzschild 解的共形图看上去就像图 5.16 那样。这幅图唯一真正微妙的地方，在于必须理解 $i^+$ 和 $i^-$（未来和过去无限远）与 $r=0$ 是彼此不同的——存在大量不会撞上奇点的类时路径。正如 Kruskal 图中那样，共形图中的光锥也张开 $45^{\circ}$；主要的不同在于，整个时空被表示在一个有限的区域之内。还要注意，共形无限远的结构与 Minkowski 空间的结构一模一样，这与 Schwarzschild 时空渐近平直的论断相一致。
+
+\section{恒星与黑洞}
+
+我们刚刚构造的极大延拓 Schwarzschild 解讲述了一个不同凡响的故事：其中不仅有我们苦苦寻找的黑洞，还有白洞，以及另一个通过虫洞与我们宇宙相连的渐近平直区域。然而，设想这些特征在真实世界中十分常见，还为时过早。Schwarzschild 解代表的是一种高度理想化的情形：它不仅球对称，而且在整个时空中完全不含能量-动量。Birkhoff 定理意味着，球对称时空的任何真空\emph{区域}都将由 Schwarzschild 度规的\emph{一部分}来描述，但宇宙中某处物质的存在可能会戏剧性地改变整体的图像。
+
+% ---- 书页 230 / p245 ----
+一个静态的球状物体——为明确起见，就把它叫作恒星——如果半径大于 $2GM$，其外部将是 Schwarzschild 的，但不会有任何奇点或视界，而且整体结构实际上与 Minkowski 时空非常相似。当然，真实的恒星会演化，恒星有可能最终在自身引力的拉拽下坍缩，收缩到 $r=2GM$ 以下，进而落入奇点，形成黑洞。然而，这并不需要白洞，因为这样一个时空的过去与完整 Schwarzschild 解的过去毫无相似之处。描绘恒星坍缩的共形图看上去会像图 5.17 那样。内部的阴影区域不是真空，因此不由 Schwarzschild 度规描述；特别地，不存在连接到另一个宇宙的虫洞。这个时空是渐近 Minkowski 型的，只是未来的一个区域会生成事件视界。我们看到，真实的黑洞可以与极大延拓的 Schwarzschild 解共有奇点和未来视界，而不带任何白洞、过去视界或另外的渐近区域。
+
+我们相信，这类引力坍缩绝不是恒星演化的必然终点，但在一定条件下将会发生。广义相对论对能够抵抗引力坍缩的恒星种类给出了严格的限制；对任何给定种类的物质，足够大的质量总会导致坍缩为黑洞。此外，从天体物理观测中我们已有了极好的证据，表明黑洞存在于我们的宇宙之中。
+
+为了理解向黑洞的引力坍缩，我们应当首先理解描述球对称恒星内部的静态位形。我们不打算深入钻研这个专题，只需对内解的基本特征获得一点感觉就够了。考虑取自式 (5.11) 的一般静态、球对称度规：
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_5.17.pdf}
+\caption*{图 5.17\quad 由坍缩恒星形成的黑洞的共形图。阴影区域包含物质，将由某个适当的动力学内解来描述；外部区域则是 Schwarzschild 的。}
+\end{figure}
+
+% ---- 书页 231 / p246 ----
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\,\mathrm{d}t^2 + e^{2\beta(r)}\,\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.133}
+\end{equation*}
+我们现在寻找的是非真空解，因此转向完整的 Einstein 方程，
+\begin{equation*}
+G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = 8\pi G\,T_{\mu\nu}.
+\tag{5.134}
+\end{equation*}
+Einstein 张量可由 Ricci 张量 (5.14) 与标量曲率 (5.15) 得到，
+\begin{align*}
+G_{tt} &= \frac{1}{r^2}e^{2(\alpha-\beta)}\left(2r\,\partial_r\beta - 1 + e^{2\beta}\right)\\
+G_{rr} &= \frac{1}{r^2}\left(2r\,\partial_r\alpha + 1 - e^{2\beta}\right)\\
+G_{\theta\theta} &= r^2 e^{-2\beta}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{1}{r}(\partial_r\alpha - \partial_r\beta)\right]\\
+G_{\phi\phi} &= \sin^2\theta\, G_{\theta\theta}.
+\tag{5.135}
+\end{align*}
+我们把恒星本身建模为理想流体，其能动张量为
+\begin{equation*}
+T_{\mu\nu} = (\rho + p)U_\mu U_\nu + p\,g_{\mu\nu}.
+\tag{5.136}
+\end{equation*}
+能量密度 $\rho$ 与压强 $p$ 将只是 $r$ 的函数。既然我们寻求的是静态解，就可以取四速度指向类时方向。归一化到 $U^\mu U_\mu = -1$，它便成为
+\begin{equation*}
+U_\mu = (e^{\alpha},\, 0,\, 0,\, 0),
+\tag{5.137}
+\end{equation*}
+于是能动张量的分量为
+\begin{equation*}
+T_{\mu\nu} =
+\begin{pmatrix}
+e^{2\alpha}\rho & & & \\
+& e^{2\beta}p & & \\
+& & r^2 p & \\
+& & & r^2(\sin^2\theta)p
+\end{pmatrix}.
+\tag{5.138}
+\end{equation*}
+这样我们便得到 Einstein 方程的三个独立分量：$tt$ 分量，
+\begin{equation*}
+\frac{1}{r^2}e^{-2\beta}\left(2r\,\partial_r\beta - 1 + e^{2\beta}\right) = 8\pi G\rho,
+\tag{5.139}
+\end{equation*}
+$rr$ 分量，
+\begin{equation*}
+\frac{1}{r^2}e^{-2\beta}\left(2r\,\partial_r\alpha + 1 - e^{2\beta}\right) = 8\pi Gp,
+\tag{5.140}
+\end{equation*}
+
+% ---- 书页 232 / p247 ----
+以及 $\theta\theta$ 分量，
+\begin{equation*}
+e^{-2\beta}\left[\partial_r^2\alpha + (\partial_r\alpha)^2 - \partial_r\alpha\,\partial_r\beta + \frac{1}{r}(\partial_r\alpha - \partial_r\beta)\right] = 8\pi Gp.
+\tag{5.141}
+\end{equation*}
+$\phi\phi$ 方程与 $\theta\theta$ 方程成比例，因此不必单独考虑。
+
+我们注意到，$tt$ 方程 (5.139) 只涉及 $\beta$ 和 $\rho$。用一个新的函数 $m(r)$ 来取代 $\beta(r)$ 会带来方便，$m(r)$ 定义为
+\begin{equation*}
+m(r) = \frac{1}{2G}\left(r - re^{-2\beta}\right),
+\tag{5.142}
+\end{equation*}
+或者等价地
+\begin{equation*}
+e^{2\beta} = \left[1 - \frac{2Gm(r)}{r}\right]^{-1},
+\tag{5.143}
+\end{equation*}
+于是
+\begin{equation*}
+\mathrm{d}s^2 = -e^{2\alpha(r)}\,\mathrm{d}t^2 + \left[1 - \frac{2Gm(r)}{r}\right]^{-1}\mathrm{d}r^2 + r^2\,\mathrm{d}\Omega^2.
+\tag{5.144}
+\end{equation*}
+度规分量 $g_{rr}$ 显然是 Schwarzschild 情形的直接推广，但 $g_{tt}$ 却不是这样。$tt$ 方程 (5.139) 变为
+\begin{equation*}
+\frac{dm}{dr} = 4\pi r^2\rho,
+\tag{5.145}
+\end{equation*}
+积分可得
+\begin{equation*}
+m(r) = 4\pi\int_0^r \rho(r')r'^2\,\mathrm{d}r'.
+\tag{5.146}
+\end{equation*}
+设想我们的恒星延伸到半径 $R$ 处，在此之外是真空，由 Schwarzschild 度规描述。为了使度规在这个半径处匹配，Schwarzschild 质量 $M$ 必须为
+\begin{equation*}
+M = m(R) = 4\pi\int_0^R \rho(r)r^2\,\mathrm{d}r.
+\tag{5.147}
+\end{equation*}
+看起来，$m(r)$ 不过是能量密度在恒星内部的一个积分，可以解释为半径 $r$ 以内的质量。
+
+把 $m(r)$ 解释为积分能量密度时有一个微妙之处；在一个适当的空间积分中，体积元应当是
+\begin{equation*}
+\sqrt{\gamma}\,\mathrm{d}^3x = e^{\beta}r^2\sin\theta\,\mathrm{d}r\,\mathrm{d}\theta\,\mathrm{d}\phi,
+\tag{5.148}
+\end{equation*}
+其中
+\begin{equation*}
+\gamma_{ij}\,\mathrm{d}x^i\mathrm{d}x^j = e^{2\beta}\,\mathrm{d}r^2 + r^2\,\mathrm{d}\theta^2 + r^2\sin^2\theta\,\mathrm{d}\phi^2
+\tag{5.149}
+\end{equation*}
+
+% ---- 书页 233 / p248 ----
+便是空间度规。因此，真正的积分能量密度是
+\begin{align*}
+\bar{M} &= 4\pi\int_0^R \rho(r)r^2 e^{\beta(r)}\,\mathrm{d}r\\
+&= 4\pi\int_0^R \frac{\rho(r)r^2}{\left[1 - \dfrac{2Gm(r)}{r}\right]^{1/2}}\,\mathrm{d}r.
+\tag{5.150}
+\end{align*}
+当然，这个差别来自结合能：恒星内流体元之间的相互引力吸引产生了一种结合能，它由下式给出
+\begin{equation*}
+E_{\mathrm{B}} = \bar{M} - M > 0.
+\tag{5.151}
+\end{equation*}
+结合能是把恒星中的物质驱散到无限远所需要的能量。在广义相对论中它并不总是一个有良定义的概念，但对球状恒星来说是有意义的。
+
+用 $m(r)$ 来表示，$rr$ 方程 (5.140) 可以写成
+\begin{equation*}
+\frac{d\alpha}{dr} = \frac{Gm(r) + 4\pi G r^3 p}{r\left[r - 2Gm(r)\right]}.
+\tag{5.152}
+\end{equation*}
+不直接使用 $\theta\theta$ 方程，而是转而借助能量-动量守恒 $\nabla_\mu T^{\mu\nu} = 0$，会更加方便。对我们的度规 (5.144)，容易推出 $\nu = r$ 是唯一非平庸的分量，它给出
+\begin{equation*}
+(\rho + p)\frac{d\alpha}{dr} = -\frac{dp}{dr}.
+\tag{5.153}
+\end{equation*}
+把它与 (5.152) 联立，就可以消去 $\alpha(r)$，得到
+\begin{equation*}
+\frac{dp}{dr} = -\frac{(\rho + p)\left[Gm(r) + 4\pi G r^3 p\right]}{r\left[r - 2Gm(r)\right]}.
+\tag{5.154}
+\end{equation*}
+这就是\textbf{Tolman--Oppenheimer--Volkoff 方程}，或简称流体静力学平衡方程。由于 $m(r)$ 通过 (5.146) 与 $\rho(r)$ 相联系，这个方程便把 $p(r)$ 与 $\rho(r)$ 联系了起来。为了得到一个封闭的方程组，我们还需要一个关系：物态方程。一般而言，它以能量密度和比熵给出压强，$p = p(\rho, S)$。我们关心的常常是熵非常小、从而可以忽略的情形；此时物态方程便取如下形式
+\begin{equation*}
+p = p(\rho).
+\tag{5.155}
+\end{equation*}
+天体物理系统常常服从多方物态方程（polytropic equation of state）$p = K\rho^{\gamma}$，其中 $K$ 和 $\gamma$ 是常数。
+
+一个简单而半现实的恒星模型来自如下假设：流体是不可压缩的——密度为常数 $\rho_*$，一直保持到恒星表面，过了表面它便为零，
+
+% ---- 书页 234 / p249 ----
+即
+\begin{equation*}
+\rho(r) =
+\begin{cases}
+\rho_*, & r < R\\
+0, & r > R.
+\end{cases}
+\tag{5.156}
+\end{equation*}
+显式地给定 $\rho(r)$ 便顶替了物态方程，因为 $p(r)$ 可以由流体静力学平衡确定。接下来直接积分 (5.146) 就得到
+\begin{equation*}
+m(r) =
+\begin{cases}
+\dfrac{4}{3}\pi r^3\rho_*, & r < R\\[8pt]
+\dfrac{4}{3}\pi R^3\rho_* = M, & r > R.
+\end{cases}
+\tag{5.157}
+\end{equation*}
+对流体静力学平衡方程积分，给出
+\begin{equation*}
+p(r) = \rho_*\left[\frac{R\sqrt{R-2GM} - \sqrt{R^3-2GMr^2}}{\sqrt{R^3-2GMr^2} - 3R\sqrt{R-2GM}}\right].
+\tag{5.158}
+\end{equation*}
+最后我们可以由 (5.152) 得到度规分量 $g_{tt} = -e^{2\alpha(r)}$；我们发现
+\begin{equation*}
+e^{\alpha(r)} = \frac{3}{2}\left(1 - \frac{2GM}{R}\right)^{1/2} - \frac{1}{2}\left(1 - \frac{2GMr^2}{R^3}\right)^{1/2}, \quad r < R.
+\tag{5.159}
+\end{equation*}
+正如所期待的那样，压强在恒星核心附近增大。实际上，对固定半径 $R$ 的恒星，如果质量超过
+\begin{equation*}
+M_{\mathrm{max}} = \frac{4}{9G}R.
+\tag{5.160}
+\end{equation*}
+中心压强 $p(0)$ 就必须大于无穷大。
+
+因此，如果我们试图把比这更大的质量挤进半径 $R$ 之内，广义相对论便不允许任何静态解；收缩到这种尺寸的恒星必然要继续收缩，最终形成一个黑洞。我们是在密度为常数这个相当强的假设下导出这一结果的，但当这一假设被大大放宽后它依然成立；\textbf{Buchdahl 定理}断言，任何合理的静态球对称内解都满足 $M < 4R/9G$。虽然严格的证明需要更多的工作，这个结果是说得通的；设想自然界存在某个最大可维持的密度，那么原则上我们所能造出的质量最大的物体将处处具有这一密度，而这正是我们考虑过的那个具体情形。
+
+当然，这仍然不意味着现实的天体物理客体最终总会坍缩为黑洞。一颗依靠物质压强支撑的普通行星，基本上会永远存续下去（除非出现某些概率低得离谱的量子隧穿——一颗行星隧穿成某种截然不同的东西——或者最终发生质子衰变的可能性）。但大质量恒星就是另一回事了。支撑恒星的压强来自轻核聚合成较重核所产生的热量。当核燃料耗尽时，温度下降，恒星便开始在引力的作用下收缩。
+
+% ---- 书页 235 / p250 ----
+坍缩最终可能被 Fermi 简并压强止住：电子被挤得如此靠近，以至于单凭 Pauli 不相容原理（不能有两个费米子处于同一个态），它们便能抵抗进一步的压缩。靠电子简并压强支撑的恒星遗骸称为\textbf{白矮星}（white dwarf）；典型的白矮星在大小上与地球相当。质量较小的粒子在比高质量粒子更低的数密度下就会变得简并，因此核子对白矮星中的压强没有可观的贡献。白矮星是大多数恒星的最终状态，在整个宇宙中极为常见。
+
+然而，如果总质量足够高，恒星将达到\textbf{Chandrasekhar 极限}，在那里连电子简并压强也不足以抵抗引力的拉拽。计算给出的 Chandrasekhar 极限约为 $1.4\,M_{\odot}$，其中 $M_{\odot} = 2\times 10^{33}$ g 是太阳的质量。一旦达到这一极限，恒星就被迫坍缩到更小的半径。在这一点上，电子与质子结合生成中子和中微子（逆 $\beta$ 衰变），而中微子则径直飞走。其结果是一颗\textbf{中子星}（neutron star），典型半径约为 10 km。中子星的总光度很低，但往往快速自转并具有强磁场。这种组合催生了\textbf{脉冲星}（pulsar）：它们沿着从磁极发出的喷流加速粒子，随着中子星的自转，看起来在迅速地闪烁。脉冲星由 Bell 于 1967 年发现；在短暂地猜测它们或许代表来自某个地外文明的信号之后，人们最终接受了这个更为平淡的天体物理解释。
+
+由于中子星中心处的条件与地球上的条件非常不同，我们对物态方程的理解并不完美。尽管如此，我们相信质量足够大的中子星自身将无法抵抗引力的拉拽，并将继续坍缩；目前对中子星最大可能质量的估计在 $3$--$4\,M_{\odot}$ 左右，即\textbf{Oppenheimer--Volkoff 极限}。由于中子流体是我们所知最致密的物质（除了某些非常思辨性的设想），人们相信这种坍缩的结局是一个黑洞。
+
+如果真有黑洞，我们会怎样知道它的存在？直接探测的根本障碍当然在于黑暗：黑洞本身不会发出任何辐射（忽略霍金辐射——那是一个非常小的效应，我们将在第 9 章讨论）。但黑洞带有极强的引力场，所以我们有望通过观测受这些场影响的物质来间接探测它们。物质落入黑洞时会升温并发出 X 射线，我们可以用卫星天文台探测到这些射线。用这种方法已经探测到大量黑洞候选体，我们宇宙中存在真实黑洞的证据是极其有力的。\footnote{关于黑洞的天体物理证据的综述，见 A.~Celotti、J.C.~Miller 与 D.W.~Sciama (1999)，\emph{Class.~Quant.~Grav.}~\textbf{16}, A3；\texttt{http://arxiv.org/abs/astro-ph/9912186}。}绝大多数候选体属于以下两类之一。一类是质量为太阳质量量级或略高一些的黑洞；它们被认为是质量非常大的恒星演化的终点。另一类描述超大质量黑洞（supermassive black holes），
+% ---- 书页 236 / p251 ----
+质量介于 $10^6$ 到 $10^9$ 个太阳质量之间。它们位于星系的中心，被认为是星系形成早期驱动类星体的引擎。我们自己的银河系就包含一个天体（Sgr A$^*$），据信它是一个质量至少为 $2\times 10^6\,M_{\odot}$ 的黑洞。这些超大质量黑洞形成的确切历史还不甚清楚。其他可能性还包括产生于极早期宇宙的非常小的原初黑洞（primordial black holes），以及所谓的“中量级”黑洞——质量在约一千个太阳质量量级。
+
+物质落入黑洞时，往往会安定下来形成一个旋转的吸积盘（accretion disk），能量和角动量都随之逐渐注入洞中。因此，我们预期在天体物理情形中看到的黑洞应当是旋转的，而且观测确实与已观测到的黑洞具有非常高的自转速率相一致。在本章中，我们通过聚焦于球对称的 Schwarzschild 解排除了黑洞自转的可能性；下一章我们将转向更一般类型的黑洞。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 一只太空猴子正快乐地沿一条圆形测地线轨道绕着一个 Schwarzschild 黑洞运转。一只邪恶的狒狒在远离黑洞的地方，企图把一颗时机经过精心计算的椰子沿径向投向黑洞，好把猴子送进黑洞内部置于死地——它知道猴子无法抗拒要接住那颗下落椰子的冲动。给定猴子的质量与初始轨道半径以及椰子的质量，请说明你打算如何着手求解这个问题（但不必真的把计算做出来）。我们这位无畏的太空猴子可能落得怎样的命运？
+
+\textbf{2.}\quad 考虑静态、圆对称的 $(2+1)$ 维时空中的一个理想流体；等价地说，即 $(3+1)$ 维中具有完全转动对称性的一个柱状位形。
+
+\textbf{(a)}\quad 推导 $(2+1)$ 维情形下 Tolman--Oppenheimer--Volkoff（TOV）方程的类似物。
+
+\textbf{(b)}\quad 证明真空解可以写成
+\begin{equation*}
+\mathrm{d}s^2 = -\mathrm{d}t^2 + \frac{1}{1-8GM}\,\mathrm{d}r^2 + r^2\,\mathrm{d}\theta^2
+\end{equation*}
+这里 $M$ 是常数。
+
+\textbf{(c)}\quad 证明同一个解还有另一种写法
+\begin{equation*}
+\mathrm{d}s^2 = -\mathrm{d}\tau^2 + \mathrm{d}\xi^2 + \xi^2\,\mathrm{d}\phi^2
+\end{equation*}
+其中 $\phi\in\left[0,\,2\pi(1-8GM)^{1/2}\right]$。
+
+\textbf{(d)}\quad 对一颗常密度恒星求解 $(2+1)$ 维 TOV 方程。求出 $p(r)$ 并解出度规。
+
+\textbf{(e)}\quad 对具有物态方程 $p = \kappa\rho^{3/2}$ 的恒星求解 $(2+1)$ 维 TOV 方程。求出 $p(r)$ 并解出度规。
+
+\textbf{(f)}\quad 对 (d)、(e) 两个小题中的解，求质量 $M(R) = \int_0^{2\pi}\int_0^R \rho\,\mathrm{d}r\,\mathrm{d}\theta$ 以及固有质量 $\bar{M}(R) = \int_0^{2\pi}\int_0^R \rho\sqrt{-g}\,\mathrm{d}r\,\mathrm{d}\theta$。
+
+% ---- 书页 237 / p252 ----
+\textbf{3.}\quad 考虑一个已经落入事件视界之内（$r < 2GM$）的粒子（不一定沿测地线运动）。使用通常的 Schwarzschild 坐标 $(t, r, \theta, \phi)$。试证明径向坐标必须以下式给出的最小速率减小：
+\begin{equation*}
+\left|\frac{\mathrm{d}r}{\mathrm{d}\tau}\right| \geq \sqrt{\frac{2GM}{r} - 1}.
+\end{equation*}
+计算一个粒子沿从 $r = 2GM$ 到 $r = 0$ 的轨迹所能具有的最大寿命。对质量以太阳质量计的黑洞，把这个结果用秒表示出来。试证明这一最大固有时是通过 $E \to 0$ 的自由下落实现的。
+
+\textbf{4.}\quad 考虑真空中的 Einstein 方程，但带有一个宇宙学常数：$G_{\mu\nu} + \Lambda g_{\mu\nu} = 0$。
+
+\textbf{(a)}\quad 求出最一般的球对称度规，所用的 $(t, r)$ 坐标在 $\Lambda = 0$ 时退化为通常的 Schwarzschild 坐标。
+
+\textbf{(b)}\quad 像式 (5.66) 那样，用有效势写出径向测地线的运动方程。概略画出有质量粒子的有效势。
+
+\textbf{5.}\quad 考虑一个共动观者，静止在质量为 $M$ 的 Schwarzschild 黑洞周围恒定的空间坐标 $(r_*, \theta_*, \phi_*)$ 处。该观者把一个信标投入黑洞（径直向下，沿径向轨迹）。信标以恒定波长 $\lambda_{\mathrm{em}}$（在信标静止系中）发出辐射。
+
+\textbf{(a)}\quad 计算信标的坐标速度 $\mathrm{d}r/\mathrm{d}t$，表示为 $r$ 的函数。
+
+\textbf{(b)}\quad 计算信标的固有速度。也就是说，设想在固定的 $r$ 处有一个共动观者，在信标经过时建立起一个局部惯性坐标系，试计算这个共动观者所测得的速度。它在 $r = 2GM$ 处是多少？
+
+\textbf{(c)}\quad 计算由 $r_*$ 处的观者测得的波长 $\lambda_{\mathrm{obs}}$，表示为辐射被发射处半径 $r_{\mathrm{em}}$ 的函数。
+
+\textbf{(d)}\quad 计算信标在半径 $r_{\mathrm{em}}$ 处发出的一束辐射将于 $r_*$ 处被观测到的时刻 $t_{\mathrm{obs}}$。
+
+\textbf{(e)}\quad 试证明在很晚的时刻，红移按指数增长：$\lambda_{\mathrm{obs}}/\lambda_{\mathrm{em}} \propto e^{t_{\mathrm{obs}}/T}$。给出时间常数 $T$ 用黑洞质量 $M$ 表示的表达式。
+
+% 第5章正文至此结束（原书书页 237 末；书页 238 起为第 6 章）。

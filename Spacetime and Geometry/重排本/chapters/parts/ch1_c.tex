@@ -1,0 +1,371 @@
+% ch1_c (书页 25-36 / p040-p051)
+%--B-TAIL--
+%JOIN%
+关系和变换性质都颇为神秘，我们却用单独一个张量场就描述了全部电磁学。（另一方面，也别得意忘形；有时在单一坐标系中用电场矢量和磁场矢量来工作反而更方便。）
+
+\section{张量的操作}
+
+有了这些例子在手，现在我们可以对张量的某些性质做得更系统一些了。首先考虑\textbf{缩并}（contraction）操作，它把一个 $(k,l)$ 张量变成 $(k-1,l-1)$ 张量。缩并通过对一个上指标和一个下指标求和来进行：
+\begin{equation*}
+S^{\mu\rho}{}_{\sigma} = T^{\mu\nu\rho}{}_{\sigma\nu}.
+\tag{1.70}
+\end{equation*}
+
+你可以验证，结果是一个良定义的张量。只有把一个上指标与一个下指标相缩并才是允许的（而不是两个同类型的指标相缩并）；否则结果将\emph{不是}良定义的张量。（所谓良定义的张量，意思要么是“按照张量变换规律进行变换”，要么是“定义了从一组矢量和对偶矢量到实数的唯一的多重线性映射”——任你挑选。）还要注意，指标的顺序是有关系的，因此用不同方式缩并会得到不同的张量；也就是说，在一般情况下
+\begin{equation*}
+T^{\mu\nu\rho}{}_{\sigma\nu} \neq T^{\mu\rho\nu}{}_{\sigma\nu}
+\tag{1.71}
+\end{equation*}
+成立。
+
+度规和逆度规可以用来对张量\textbf{升指标和降指标}。也就是说，给定一个张量 $T^{\alpha\beta}{}_{\gamma\delta}$，我们可以用度规定义新的张量，并且选择仍用同一个字母 $T$ 来表示它们：
+\begin{align*}
+T^{\alpha\beta\mu}{}_{\delta} &= \eta^{\mu\gamma}T^{\alpha\beta}{}_{\gamma\delta},\notag\\
+T_{\mu}{}^{\beta}{}_{\gamma\delta} &= \eta_{\mu\alpha}T^{\alpha\beta}{}_{\gamma\delta},\notag\\
+T_{\mu\nu}{}^{\rho\sigma} &= \eta_{\mu\alpha}\eta_{\nu\beta}\eta^{\rho\gamma}\eta^{\sigma\delta}T^{\alpha\beta}{}_{\gamma\delta},
+\tag{1.72}
+\end{align*}
+
+如此等等。注意，升降指标并不改变指标相对于其他指标的位置；而且还应注意，自由指标（free indices，不求和的指标）在方程两边必须相同，而哑指标（dummy indices，求和的指标）只出现在一边。举一个例子，我们可以通过升降指标把矢量和对偶矢量互相转换：
+\begin{equation*}
+\begin{gathered}
+V_{\mu} = \eta_{\mu\nu}V^{\nu}\\
+\omega^{\mu} = \eta^{\mu\nu}\omega_{\nu}.
+\end{gathered}
+\tag{1.73}
+\end{equation*}
+
+因为度规和逆度规确实互为逆，我们可以自由地把一对正被缩并的指标同时升降：
+\begin{equation*}
+A^{\lambda}B_{\lambda} = \eta^{\lambda\rho}A_{\rho}\eta_{\lambda\sigma}B^{\sigma} = \delta^{\rho}{}_{\sigma}A_{\rho}B^{\sigma} = A_{\sigma}B^{\sigma}.
+\tag{1.74}
+\end{equation*}
+
+用度规升降指标的能力解释了，为什么三维平直欧几里得空间中的梯度通常被当成一个普通矢量，尽管我们已经看到它是以对偶矢量的身份出现的；在欧几里得空间中（度规是对角的，且所有元素均为 $+1$），对偶矢量在升指标之后就变成一个分量完全相同的矢量。你可能因此要问：既然如此，为什么我们还要费力去区分它们？一个简单的理由当然是，在洛伦兹时空中两者的分量并不相等：
+\begin{equation*}
+\omega^{\mu} = (-\omega_{0}, \omega_{1}, \omega_{2}, \omega_{3}).
+\tag{1.75}
+\end{equation*}
+
+在弯曲时空中，度规的形式一般更为复杂，这种差别要显著得多。但还有一个更深刻的理由，即张量一般都有不依赖于度规的“自然的”定义。尽管我们手头总会有度规可用，但了解我们所引入的每个数学对象的逻辑地位是有益的。梯度凭借其作用于矢量的行为，无须任何度规便有完全良好的定义，而“带上指标的梯度”则不然。（举个例子，我们最终要对泛函作关于度规的变分，因而必须确切知道泛函是如何依赖于度规的，而这一点很容易被指标记号所掩盖。）
+
+继续收集张量行话：如果张量在交换它的某些指标之后保持不变，我们就称它关于这些指标是\textbf{对称的}（symmetric）。于是，如果
+\begin{equation*}
+S_{\mu\nu\rho} = S_{\nu\mu\rho},
+\tag{1.76}
+\end{equation*}
+我们就说 $S_{\mu\nu\rho}$ 在它的前两个指标上对称；而如果
+\begin{equation*}
+S_{\mu\nu\rho} = S_{\mu\rho\nu} = S_{\rho\mu\nu} = S_{\nu\mu\rho} = S_{\nu\rho\mu} = S_{\rho\nu\mu},
+\tag{1.77}
+\end{equation*}
+我们就说 $S_{\mu\nu\rho}$ 在它的全部三个指标上都对称。类似地，如果张量在某组指标交换时改变符号，就称它关于这些指标是\textbf{反对称的}（antisymmetric，或称 skew-symmetric）；于是，
+\begin{equation*}
+A_{\mu\nu\rho} = -A_{\rho\nu\mu}
+\tag{1.78}
+\end{equation*}
+就意味着 $A_{\mu\nu\rho}$ 在它的第一、第三两个指标上反对称（或干脆说“关于 $\mu$ 和 $\rho$ 反对称”）。如果一个张量在它的所有指标上都（反）对称，我们就简称它为（反）对称张量（有时还加上一个画蛇添足的修饰语“完全”）。例如，度规 $\eta_{\mu\nu}$ 和逆度规 $\eta^{\mu\nu}$ 是对称的，而 Levi–Civita 符号 $\tilde{\epsilon}_{\mu\nu\rho\sigma}$ 和电磁场场强张量 $F_{\mu\nu}$ 是反对称的。（请自行验证：如果把一组对称或反对称的指标升降，它们仍保持原样。）注意，上指标与下指标相互交换是没有意义的，所以别经不住诱惑，把 Kronecker $\delta$ 符号 $\delta^{\alpha}{}_{\beta}$ 看成对称的。另一方面，把 $\delta^{\alpha}{}_{\beta}$ 降下一个指标会得到一个对称张量（其实就是度规），这一事实表明指标的顺序实在无关紧要，这正是我们唯独不对这一个张量区分指标位置的原因。
+
+给定任意一个张量，我们可以对它的任意多个上指标或下指标\textbf{对称化}（symmetrize，或反对称化）。对称化就是把相关指标的所有置换求和，再除以项数：
+\begin{equation*}
+T_{(\mu_1\mu_2\cdots\mu_n)\rho}{}^{\sigma} = \frac{1}{n!}\left(T_{\mu_1\mu_2\cdots\mu_n\rho}{}^{\sigma} + \text{对指标 }\mu_1\cdots\mu_n\text{ 的置换求和}\right),
+\tag{1.79}
+\end{equation*}
+而反对称化则来自交错求和：
+\begin{equation*}
+T_{[\mu_1\mu_2\cdots\mu_n]\rho}{}^{\sigma} = \frac{1}{n!}\left(T_{\mu_1\mu_2\cdots\mu_n\rho}{}^{\sigma} + \text{对指标 }\mu_1\cdots\mu_n\text{ 的置换交错求和}\right).
+\tag{1.80}
+\end{equation*}
+所谓“交错求和”，是指经奇数次交换得到的置换取负号，即：
+\begin{equation*}
+T_{[\mu\nu\rho]\sigma} = \frac{1}{6}\left(T_{\mu\nu\rho\sigma} - T_{\mu\rho\nu\sigma} + T_{\rho\mu\nu\sigma} - T_{\nu\mu\rho\sigma} + T_{\nu\rho\mu\sigma} - T_{\rho\nu\mu\sigma}\right).
+\tag{1.81}
+\end{equation*}
+注意，圆括号/方括号表示对称化/反对称化。此外，我们有时想对彼此不相邻的指标作（反）对称化，这时就用竖线标出不参与求和的指标：
+\begin{equation*}
+T_{(\mu|\nu|\rho)} = \frac{1}{2}\left(T_{\mu\nu\rho} + T_{\rho\nu\mu}\right).
+\tag{1.82}
+\end{equation*}
+如果我们用某个张量上一对对称的上指标去缩并，那么另一个张量的下指标中只有对称的部分会有贡献；于是，
+\begin{equation*}
+X^{(\mu\nu)}Y_{\mu\nu} = X^{(\mu\nu)}Y_{(\mu\nu)},
+\tag{1.83}
+\end{equation*}
+与 $Y_{\mu\nu}$ 的对称性质无关。（对于反对称的指标，或者一开始对称的就是下指标的情形，也有类似的结论。）对任意\emph{两个}指标，我们可以把张量分解成对称部分和反对称部分，
+\begin{equation*}
+T_{\mu\nu\rho\sigma} = T_{(\mu\nu)\rho\sigma} + T_{[\mu\nu]\rho\sigma},
+\tag{1.84}
+\end{equation*}
+但这在三个或更多指标的情形一般不再成立，
+\begin{equation*}
+T_{\mu\nu\rho\sigma} \neq T_{(\mu\nu\rho)\sigma} + T_{[\mu\nu\rho]\sigma},
+\tag{1.85}
+\end{equation*}
+因为存在具有混合对称性的部分，它们既不由对称部分、也不由反对称部分确定。最后，有些人使用的约定是省去 $1/n!$ 因子。这里采用的约定更好，比如说，对称张量就满足
+\begin{equation*}
+S_{\mu_1\cdots\mu_n} = S_{(\mu_1\cdots\mu_n)},
+\tag{1.86}
+\end{equation*}
+反对称张量亦然。
+
+对一个 $(1,1)$ 型张量 $X^{\mu}{}_{\nu}$，\textbf{迹}（trace）是一个标量，通常省去指标来表示，它其实就是缩并：
+\begin{equation*}
+X = X^{\lambda}{}_{\lambda}.
+\tag{1.87}
+\end{equation*}
+如果把 $X^{\mu}{}_{\nu}$ 看成一个矩阵，这就是对角分量之和，所以说得通。不过，我们也会在 $(0,2)$ 型张量 $Y_{\mu\nu}$ 的语境下使用迹，这时它的意思是应当先升一个指标（$Y^{\mu}{}_{\nu} = g^{\mu\lambda}Y_{\lambda\nu}$），然后再缩并：
+\begin{equation*}
+Y = Y^{\lambda}{}_{\lambda} = \eta^{\mu\nu}Y_{\mu\nu}.
+\tag{1.88}
+\end{equation*}
+（必须如此，因为我们不能对两个下指标求和。）虽然这是 $Y^{\mu}{}_{\nu}$ 的对角分量之和，但它显然\emph{不是} $Y_{\mu\nu}$ 的对角分量之和；我们必须先升指标，而这一般会改变分量的数值。例如，你可能以为度规的迹是 $-1+1+1+1=2$，但并不是：
+\begin{equation*}
+\eta^{\mu\nu}\eta_{\mu\nu} = \delta^{\mu}{}_{\mu} = 4.
+\tag{1.89}
+\end{equation*}
+（在 $n$ 维时 $\delta^{\mu}{}_{\mu}=n$。）没有理由用 $g$（或 $\delta$）来记这个迹，因为它永远是同一个数，即便在我们过渡到度规分量更为复杂的弯曲空间之后也是如此。注意，反对称的 $(0,2)$ 型张量总是无迹的。
+
+迄今为止，我们一直小心地区分两类命题：一类总是成立（在带有任意度规的流形上），另一类只在惯性坐标下的 Minkowski 空间中成立。最重要的区别之一出现在\textbf{偏导数}上。如果在平直时空中采用惯性坐标，那么 $(k,l)$ 张量的偏导数是一个 $(k,l+1)$ 张量；也就是说，
+\begin{equation*}
+T_{\alpha}{}^{\mu}{}_{\nu} = \partial_{\alpha}R^{\mu}{}_{\nu}
+\tag{1.90}
+\end{equation*}
+在洛伦兹变换下正常变换。然而，在更一般的时空中这不再成立，我们将不得不定义协变导数（covariant derivative）来取代偏导数。尽管如此，在这一特殊情形中，我们仍然可以利用偏导数给出张量这一事实，只要我们保持头脑清醒。[这个警告的唯一例外是标量的偏导数 $\partial_{\alpha}\phi$，它在任何时空中都是一个完全良好的张量（即梯度）。]当然，如果固定某个具体的坐标系，偏导数是一个完全良好的算符，我们会一直使用它；它的失败仅仅在于，它不像我们将要使用的那些张量那样变换（或者说，它所定义的映射不是坐标无关的）。偏导数最有用的性质之一是它们可以对易，
+\begin{equation*}
+\partial_{\mu}\partial_{\nu}(\cdots) = \partial_{\nu}\partial_{\mu}(\cdots),
+\tag{1.91}
+\end{equation*}
+不论被微分的对象是什么类型。
+
+\section{麦克斯韦方程组}
+
+现在我们已经积累了足够的张量知识，可以用真实的物理来演示其中的一些概念了。具体地说，我们将考察电动力学中的\textbf{麦克斯韦方程组}。用 19 世纪的记号，它们是
+\begin{equation*}
+\begin{gathered}
+\nabla\times\mathbf{B} - \partial_t\mathbf{E} = \mathbf{J}\\
+\nabla\cdot\mathbf{E} = \rho\\
+\nabla\times\mathbf{E} + \partial_t\mathbf{B} = 0\\
+\nabla\cdot\mathbf{B} = 0.
+\end{gathered}
+\tag{1.92}
+\end{equation*}
+这里，$\mathbf{E}$ 和 $\mathbf{B}$ 是电场和磁场这两个 3 维矢量，$\mathbf{J}$ 是电流，$\rho$ 是电荷密度，而 $\nabla\times$ 和 $\nabla\cdot$ 是通常的旋度和散度。当然，这些方程在洛伦兹变换下不变；整桩事业正是由此发端的。但它们看上去并不显然不变；我们的张量记号可以弥补这一点。让我们先把它们写成分量记法，
+\begin{equation*}
+\begin{gathered}
+\tilde{\epsilon}^{ijk}\partial_j B_k - \partial_0 E^i = J^i\\
+\partial_i E^i = J^0\\
+\tilde{\epsilon}^{ijk}\partial_j E_k + \partial_0 B^i = 0\\
+\partial_i B^i = 0.
+\end{gathered}
+\tag{1.93}
+\end{equation*}
+在这些表达式中，空间指标被随心所欲地升降，全然不去追究度规出现在哪里，因为 $\delta_{ij}$ 就是平直 3 维空间上的度规，$\delta^{ij}$ 是它的逆（作为矩阵两者相等）。因此我们可以随意升降指标，因为分量不会改变。同时，三维 Levi–Civita 符号 $\tilde{\epsilon}^{ijk}$ 的定义与四维的那个完全一样，只是少一个指标（归一化使 $\tilde{\epsilon}^{123}=\tilde{\epsilon}_{123}=1$）。我们用 $J^{0}$ 替换了电荷密度 $\rho$；这是合法的，因为密度和电流合在一起构成了\textbf{电流四矢量}（current 4-vector）$J^{\mu}=(\rho,J^{x},J^{y},J^{z})$。
+
+从式 (1.93) 出发，再加上场强张量 $F_{\mu\nu}$ 的定义式 (1.69)，很容易得到一个完全张量化的、20 世纪版本的麦克斯韦方程组。首先注意到，我们可以用上指标把场强表示为
+\begin{equation*}
+\begin{gathered}
+F^{0i} = E^i\\
+F^{ij} = \tilde{\epsilon}^{ijk}B_k.
+\end{gathered}
+\tag{1.94}
+\end{equation*}
+为验证这一点，例如可以注意 $F^{01}=\eta^{00}\eta^{11}F_{01}$ 以及 $F^{12}=\tilde{\epsilon}^{123}B_{3}$。于是，式 (1.93) 中的前两个方程变成
+\begin{equation*}
+\begin{gathered}
+\partial_j F^{ij} - \partial_0 F^{0i} = J^i\\
+\partial_i F^{0i} = J^0.
+\end{gathered}
+\tag{1.95}
+\end{equation*}
+利用 $F^{\mu\nu}$ 的反对称性，我们看到这两式可以合并成单个张量方程
+\begin{equation*}
+\partial_{\mu}F^{\nu\mu} = J^{\nu}.
+\tag{1.96}
+\end{equation*}
+类似的推理（留作习题）表明，式 (1.93) 中的第三、第四两个方程可以写成
+\begin{equation*}
+\partial_{[\mu}F_{\nu\lambda]} = 0.
+\tag{1.97}
+\end{equation*}
+很容易验证，$F_{\mu\nu}$ 的反对称性意味着式 (1.97) 可以等价地表示为
+\begin{equation*}
+\partial_{\mu}F_{\nu\lambda} + \partial_{\nu}F_{\lambda\mu} + \partial_{\lambda}F_{\mu\nu} = 0.
+\tag{1.98}
+\end{equation*}
+于是，四个传统的麦克斯韦方程被两个方程所取代，生动地展示了张量记法的经济性。然而更重要的是，式 (1.96) 和式 (1.97) 的两边都明显地按张量方式变换；因此，只要它们在一个惯性系中成立，它们就必定在任何经洛伦兹变换而来的参考系中成立。这正是张量在相对论中如此有用的原因——我们常常希望表达某种不求助于任何参考系的关系，而方程两边的量在坐标改变时必须以相同的方式变换。按照行话的说法，我们有时会把用张量写出的量称为\textbf{协变的}（covariant）——这与作为“逆变”（contravariant）之反义词的那种“协变”毫无关系。于是我们说，式 (1.96) 和式 (1.97) 合起来构成了麦克斯韦方程组的协变形式，而式 (1.92) 或式 (1.93) 则是非协变的。
+
+\section{能量与动量}
+
+关于照料和饲养张量所要知道的一切，我们如今基本上都过了一遍。下一章我们将更仔细地考察流形和张量的严格定义，但基本的运作机制已经覆盖得相当不错了。在跳到更抽象的数学之前，让我们先回顾一下物理在 Minkowski 时空中是如何运作的。
+
+从单个粒子的世界线讲起。世界线由一个映射 $\mathbf{R}\to M$ 确定，其中 $M$ 是代表时空的流形；我们通常把路径看成参数化曲线 $x^{\mu}(\lambda)$。如前所述，这条路径的切矢量是 $dx^{\mu}/d\lambda$（注意它依赖于参数化方式）。首要感兴趣的对象是切矢量的范数，我们可以用它来刻画路径；如果切矢量在某个参数值 $\lambda$ 处是类时/类光/类空的，我们就说路径在该点是类时/类光/类空的。这解释了为什么同一套字眼既用来给切空间中的矢量分类，也用来给两点之间的间隔分类——因为比如说，连接两个类时分离的点的直线，本身在路径上的每一点都是类时的。
+
+尽管如此，要当心我们在这里耍的一个花招。度规作为一个 $(0,2)$ 型张量，是一台作用于两个矢量（或同一矢量的两份拷贝）而产生一个数的机器。因此，按照范数的符号给切矢量分类是非常自然的。但两点之间的间隔却没有这么自然；它依赖于连接两点的一条特定路径（一条“直线”）的选取，而这种选取又依赖于时空是平直的这一事实（平直性保证了在两点之间可以唯一地选定一条直线）。
+
+让我们从考察一般的路径转到有质量粒子的路径（它们总是类时的）。由于固有时是由沿类时世界线旅行的钟测量的，用 $\tau$ 作为沿路径的参量会很方便。也就是说，我们用式 (1.22) 算出 $\tau(\lambda)$，然后（只要 $\lambda$ 本来就是一个好的参数）把它反解出 $\lambda(\tau)$，此后就可以把路径看成 $x^{\mu}(\tau)$。这种参数化下的切矢量被称为\textbf{四速度}（four-velocity）$U^{\mu}$：
+\begin{equation*}
+\boxed{U^{\mu} = \frac{dx^{\mu}}{d\tau}.}
+\tag{1.99}
+\end{equation*}
+
+由于 $d\tau^2 = -\eta_{\mu\nu}dx^{\mu}dx^{\nu}$，四速度自动归一化：
+\begin{equation*}
+\eta_{\mu\nu}U^{\mu}U^{\nu} = -1.
+\tag{1.100}
+\end{equation*}
+
+这种绝对的归一化反映出如下事实：四速度并不是穿过空间的速度——后者当然可以取不同的大小——而是“穿过时空的速度”，以它旅行时速率总是一样的。四速度的范数永远是负的，因为我们只对类时轨迹定义它。对类空路径你也可以定义一个类似的矢量；而对类光路径，固有时为零，$\tau$ 不能用作参数，你必须更加小心。在粒子的静止系中，其四速度的分量为 $U^{\mu}=(1,0,0,0)$。
+
+一个与之相关的矢量是\textbf{动量四矢量}（momentum four-vector），定义为
+\begin{equation*}
+\boxed{p^{\mu} = mU^{\mu},}
+\tag{1.101}
+\end{equation*}
+其中 $m$ 是粒子的质量。质量是一个不依赖于惯性系的固定量，也就是你可能习惯称作“静止质量”的那个东西。事实证明，一劳永逸地把它取作质量，要比认为质量依赖于速度方便得多。粒子的\textbf{能量}就是 $E=p^{0}$，即其动量矢量的类时分量。既然它只是四维矢量的一个分量，它在洛伦兹变换下当然不是不变的；不过这是意料之中的，因为静止粒子的能量与同一粒子运动时的能量本不相同。在粒子的静止系中我们有 $p^{0}=m$；记得我们已令 $c=1$，可见我们已经找到了那个让 Einstein 名声大噪的方程 $E=mc^{2}$。（广义相对论的场方程其实比它更基本，但 $R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}$ 引不起 $E=mc^{2}$ 那种发自肺腑的反应。）在运动的参考系中，我们可以通过施行洛伦兹变换求出 $p^{\mu}$ 的各分量；对于沿 $x$ 轴以三速度 $v=dx/dt$ 运动的粒子，我们有
+\begin{equation*}
+p^{\mu} = (\gamma m, v\gamma m, 0, 0),
+\tag{1.102}
+\end{equation*}
+其中 $\gamma=1/\sqrt{1-v^{2}}$。当 $v$ 很小时，这给出 $p^{0}=m+\frac{1}{2}mv^{2}$（即我们通常所说的静能加动能）以及 $p^{1}=mv$（即我们通常所说的 Newton 动量）。超出这个近似，我们可以简单地写出
+\begin{equation*}
+p_{\mu}p^{\mu} = -m^{2},
+\tag{1.103}
+\end{equation*}
+或者
+\begin{equation*}
+E = \sqrt{m^{2} + \mathbf{p}^{2}},
+\tag{1.104}
+\end{equation*}
+其中 $\mathbf{p}^{2}=\delta_{ij}p^{i}p^{j}$。
+
+相对论以前物理学的核心是 Newton 第二定律，即 $\mathbf{f}=m\mathbf{a}=d\mathbf{p}/dt$。狭义相对论中应当有一个类似的方程，而对方程必须是张量的要求直接引导我们引入一个力四矢量（force four-vector）$f^{\mu}$，它满足
+\begin{equation*}
+f^{\mu} = m\frac{d^{2}}{d\tau^{2}}x^{\mu}(\tau) = \frac{d}{d\tau}p^{\mu}(\tau).
+\tag{1.105}
+\end{equation*}
+Newton 物理学中最简单的力是引力。但在相对论中，引力并不是用力来描述的，而是用时空自身的曲率。我们转而考虑电磁学。三维的洛伦兹力由 $\mathbf{f}=q(\mathbf{E}+\mathbf{v}\times\mathbf{B})$ 给出，其中 $q$ 是粒子所带的电荷。我们想要这个方程的张量化推广。结果存在一个唯一的答案：
+\begin{equation*}
+f^{\mu} = -qU^{\lambda}F_{\lambda}{}^{\mu}.
+\tag{1.106}
+\end{equation*}
+你可以自行验证，在小速度极限下它会退化回 Newton 形式。注意，方程必须是张量的这一要求——它同时也是保证洛伦兹不变性的一种方式——严格限制了我们所可能得到的表达式。这是一个非常普遍的现象的例子：表面上看，可能的物理定律五花八门、无穷无尽，而其中一小部分被对称性的要求挑选了出来。
+
+虽然 $p^{\mu}$ 完整描述了单个粒子的能量和动量，我们常常需要处理由数目巨大的粒子组成的延展系统。与其逐一指明每个粒子的动量矢量，不如把系统描述为一种\emph{流体}（fluid）——一种由密度、压强、熵、粘滞性等宏观量刻画的连续体。虽然这样的流体可以由许多具有不同四速度的粒子组成，流体本身却有一个整体的四速度场。想想空气或水这些日常流体就明白了：即便邻近的分子可能具有相当可观的相对速度，对每一个单个的流体元定义一个速度仍然是有意义的。
+
+单独一个动量四矢量场不足以描述流体的能量和动量；我们必须更进一步，定义\textbf{能量-动量张量}（energy-momentum tensor，有时称为能动张量）$T^{\mu\nu}$。这个对称的 $(2,0)$ 型张量告诉我们关于一个系统的能量方面所需要知道的一切：能量密度、压强、应力，等等。$T^{\mu\nu}$ 的一般定义是“四维动量 $p^{\mu}$ 穿过 $x^{\nu}$ 为常数的曲面的通量”。其实，这个定义并不会有多大用处；在第 4 章我们将用作用量对度规的泛函导数来定义能量-动量张量，那将是求 $T^{\mu\nu}$ 显式表达式的更程序化的步骤。不过这里的定义确实提供了某些物理洞见。考虑流体在其静止系中的一个无穷小流体元，此时没有整体流动。那么 $T^{00}$，即“$p^{0}$（能量）在 $x^{0}$（时间）方向上的通量”，正是静止系的\textbf{能量密度}（energy density）$\rho$。类似地，在此系中，$T^{0i}=T^{i0}$ 是动量密度。空间分量 $T^{ij}$ 是动量通量，也就是\emph{应力}（stress）；它们代表流体中相邻无穷小流体元之间的力。$T^{ij}$ 的非对角项代表剪切项，比如由粘滞性引起的那些。像 $T^{11}$ 这样的对角项给出（单位面积上）流体元沿 $x$ 方向所施加的力的 $x$ 分量；这就是我们所说的\textbf{压强}（pressure）的 $x$ 分量 $p_{x}$（不要与动量混淆）。压强有三个分量，在流体静止系（惯性坐标）中由下式给出：
+\begin{equation*}
+p_i = T^{ii}.
+\tag{1.107}
+\end{equation*}
+这里对 $i$ 不求和。
+
+为了更具体些，让我们从简单的\textbf{尘埃}（dust）例子开始。（宇宙学家往往把“物质”用作尘埃的同义词。）在平直时空中，尘埃可以定义为彼此相对静止的粒子集合。四速度场 $U^{\mu}(x)$ 显然将是各个粒子共同的那个常值四速度。确实，其分量在每一点都相同。定义\textbf{数通量四矢量}（number-flux four-vector）为
+\begin{equation*}
+N^{\mu} = nU^{\mu},
+\tag{1.108}
+\end{equation*}
+其中 $n$ 是在粒子静止系中测得的粒子数密度。（这听起来不像有坐标不变性，但其实有；在任何参考系中，假如你待在静止系里将会测得的那种数密度是一个固定量。）于是，$N^{0}$ 是在任何其他参考系中测得的粒子数密度，而 $N^{i}$ 是沿 $x^{i}$ 方向的粒子通量。现在设想每个粒子都具有相同的质量 $m$。那么在静止系中，尘埃的能量密度为
+\begin{equation*}
+\rho = mn.
+\tag{1.109}
+\end{equation*}
+根据定义，能量密度完全确定了尘埃。但 $\rho$ 只量度了静止系中的能量密度；其他参考系呢？我们注意到，$n$ 和 $m$ 都是相应四维矢量在静止系中的 $0$ 分量；具体地，$N^{\mu}=(n,0,0,0)$，$p^{\mu}=(m,0,0,0)$。因此，$\rho$ 正是张量 $p\otimes N$ 在其静止系中 $\mu=0$、$\nu=0$ 的分量。于是我们自然要为尘埃定义能量-动量张量：
+\begin{equation*}
+T^{\mu\nu}_{\mathrm{dust}} = p^{\mu}N^{\nu} = mn\,U^{\mu}U^{\nu} = \rho\,U^{\mu}U^{\nu},
+\tag{1.110}
+\end{equation*}
+其中 $\rho$ 定义为静止系中的能量密度。（通常你并不是靠这种办法猜出能量-动量张量的，而是从运动方程或作用量原理把它们推导出来。）注意，尘埃沿任何方向的压强都为零；这不足为奇，因为压强来自流体内粒子的无规运动，而我们定义的尘埃恰恰没有这种运动。
+
+尘埃还不够普遍，不足以描述广义相对论中出现的大多数有趣的流体；不过只需稍加推广，就能得到\textbf{理想流体}（perfect fluid）的概念。理想流体是可以完全由两个量确定的流体：静止系能量密度 $\rho$，以及各向同性的静止系压强 $p$。单个参数 $p$ 就规定了每一个方向上的压强。各向同性的一个推论是，$T^{\mu\nu}$ 在其静止系中是对角的——任何一个动量分量在正交方向上都没有净通量。此外，非零的类空分量必定全都相等：$T^{11}=T^{22}=T^{33}$。因此只有两个独立的数：能量密度 $\rho=T^{00}$ 和压强 $p=T^{ii}$；$p$ 不需要下标，因为压强在每一个方向上都相等。于是，理想流体的能量-动量张量在其静止系中取如下形式：
+\begin{equation*}
+T^{\mu\nu} =
+\begin{pmatrix}
+\rho & 0 & 0 & 0\\
+0 & p & 0 & 0\\
+0 & 0 & p & 0\\
+0 & 0 & 0 & p
+\end{pmatrix}.
+\tag{1.111}
+\end{equation*}
+（记住我们是在平直时空中；引入曲率之后这一点会改变。）当然，我们想要一个在任何参考系中都好用的公式。对尘埃我们有 $T^{\mu\nu}=\rho U^{\mu}U^{\nu}$，于是可以先猜测 $(\rho+p)U^{\mu}U^{\nu}$，它给出
+\begin{equation*}
+\begin{pmatrix}
+\rho+p & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{pmatrix}.
+\tag{1.112}
+\end{equation*}
+老实说，这个猜测并不高明。但从我们想要的结果中减去这个猜测，可以看到还需要加上
+\begin{equation*}
+\begin{pmatrix}
+-p & 0 & 0 & 0\\
+0 & p & 0 & 0\\
+0 & 0 & p & 0\\
+0 & 0 & 0 & p
+\end{pmatrix}.
+\tag{1.113}
+\end{equation*}
+幸运的是，它有一个明显的协变推广，即 $p\eta^{\mu\nu}$。于是，理想流体能量-动量张量的一般形式是
+\begin{equation*}
+\boxed{T^{\mu\nu} = (\rho+p)U^{\mu}U^{\nu} + p\eta^{\mu\nu}.}
+\tag{1.114}
+\end{equation*}
+得出这个公式的过程看上去有些随意，但我们可以对结果抱有充分的信心。既然式 (1.111) 应当是 $T^{\mu\nu}$ 在静止系中的形式，而式 (1.114) 是一个完全张量化的表达式、且在静止系中退化为式 (1.111)，我们就知道式 (1.114) 必定是任何参考系中的正确表达式。
+
+理想流体的概念足够普遍，可以描述五花八门的物质形态。要确定这种流体的演化，我们给定一个把压强和能量密度联系起来的状态方程 $p=p(\rho)$。尘埃是 $p=0$ 的特例，而各向同性的光子气体有 $p=\frac{1}{3}\rho$。一个更奇特的例子是真空能，其能量-动量张量与度规成正比：$T^{\mu\nu}=-\rho_{\mathrm{vac}}\eta^{\mu\nu}$。与式 (1.114) 比较可知，真空能是一种 $p_{\mathrm{vac}}=-\rho_{\mathrm{vac}}$ 的理想流体。在狭义相对论中，“真空中的能量密度”这种概念毫无意义，因为在不含引力的物理里，能量的绝对值并不重要，重要的只是两个态之间的能量差。但在广义相对论中，一切能量都与引力耦合，因此非零真空能的可能性将成为重要的考量，我们将在第 4 章更充分地讨论它。
+
+除了对称之外，$T^{\mu\nu}$ 还有一个更重要的性质：它是\emph{守恒}的。在这里，守恒表现为“散度”为零：
+\begin{equation*}
+\boxed{\partial_{\mu}T^{\mu\nu} = 0.}
+\tag{1.115}
+\end{equation*}
+这个表达式是一组四个方程，$\nu$ 的每个取值对应一个。$\nu=0$ 的那个方程对应能量守恒，而 $\partial_{\mu}T^{\mu k}=0$ 表示动量第 $k$ 个分量的守恒。让我们把这个方程用于理想流体，此时有
+\begin{equation*}
+\partial_{\mu}T^{\mu\nu} = \partial_{\mu}(\rho+p)U^{\mu}U^{\nu} + (\rho+p)(U^{\nu}\partial_{\mu}U^{\mu} + U^{\mu}\partial_{\mu}U^{\nu}) + \partial^{\nu}p.
+\tag{1.116}
+\end{equation*}
+为了分析这个方程的含义，一个有益的做法是分别考察：把它投影到沿四速度场 $U^{\mu}$ 的方向和与之正交的方向上，各会得到什么。我们首先注意，归一化条件 $U_{\nu}U^{\nu}=-1$ 蕴含一个有用的恒等式
+\begin{equation*}
+U_{\nu}\partial_{\mu}U^{\nu} = \frac{1}{2}\partial_{\mu}(U_{\nu}U^{\nu}) = 0.
+\tag{1.117}
+\end{equation*}
+要把式 (1.116) 沿四速度投影，只需把它与 $U_{\nu}$ 缩并：
+\begin{equation*}
+U_{\nu}\partial_{\mu}T^{\mu\nu} = -\partial_{\mu}(\rho U^{\mu}) - p\,\partial_{\mu}U^{\mu}.
+\tag{1.118}
+\end{equation*}
+令它为零，就得到理想流体相对论性的能量守恒方程。在非相对论极限下它看上去会更眼熟些，在该极限中
+\begin{equation*}
+U^{\mu} = (1, v^{i}), \qquad |v^{i}| \ll 1, \qquad p \ll \rho.
+\tag{1.119}
+\end{equation*}
+最后一个条件是合理的，因为压强来自单个粒子的无规运动，而在这个极限下这些运动（以及 $U^{\mu}$ 所描写的整体运动）都被视为很小。于是，用通常的非相对论语言，式 (1.118) 变成
+\begin{equation*}
+\partial_t\rho + \nabla\cdot(\rho\mathbf{v}) = 0,
+\tag{1.120}
+\end{equation*}
+即能量密度的连续性方程。接下来我们考察式 (1.116) 中与四速度正交的部分。要把一个矢量投影到与 $U^{\mu}$ 正交的方向上，我们用投影张量（projection tensor）去乘它：
+\begin{equation*}
+P^{\sigma}{}_{\nu} = \delta^{\sigma}{}_{\nu} + U^{\sigma}U_{\nu}.
+\tag{1.121}
+\end{equation*}
+为使自己相信它确实管用，可以验证：如果我们有一个平行于 $U^{\mu}$ 的矢量 $V^{\mu}_{\parallel}$，以及另一个垂直于 $U^{\mu}$ 的矢量 $W^{\mu}_{\perp}$，那么投影张量将湮灭平行的矢量而保持正交的矢量：
+\begin{equation*}
+\begin{gathered}
+P^{\sigma}{}_{\nu}V^{\nu}_{\parallel} = 0\\
+P^{\sigma}{}_{\nu}W^{\nu}_{\perp} = W^{\sigma}_{\perp}.
+\end{gathered}
+\tag{1.122}
+\end{equation*}
+把它用于 $\partial_{\mu}T^{\mu\nu}$，我们得到
+\begin{equation*}
+P^{\sigma}{}_{\nu}\partial_{\mu}T^{\mu\nu} = (\rho+p)U^{\mu}\partial_{\mu}U^{\sigma} + \partial^{\sigma}p + U^{\sigma}U^{\mu}\partial_{\mu}p.
+\tag{1.123}
+\end{equation*}
+在式 (1.119) 给出的非相对论极限下，令这个表达式的空间分量为零，便得到
+\begin{equation*}
+\rho\left[\partial_t\mathbf{v} + (\mathbf{v}\cdot\nabla)\mathbf{v}\right] + \nabla p + \mathbf{v}(\partial_t p + \mathbf{v}\cdot\nabla p) = 0.
+\tag{1.124}
+\end{equation*}

@@ -1,0 +1,367 @@
+% ch1_d (书页 37-47 / p052-p062)
+%--C-TAIL--
+但要注意，最后那一组项中含有 $p$ 的导数与三速度 $\mathbf{v}$ 的乘积，而 $\mathbf{v}$ 已假定为小量；因此与 $\nabla p$ 项相比，这些项可以忽略不计。于是剩下
+\begin{equation*}
+\rho\left[\partial_t\mathbf{v} + (\mathbf{v}\cdot\nabla)\mathbf{v}\right] = -\nabla p,
+\tag{1.125}
+\end{equation*}
+这正是流体力学中大家熟悉的 Euler 方程。
+
+\section{经典场论}
+
+当我们从狭义相对论过渡到广义相对论时，度规 $\eta_{\mu\nu}$ 将被提升为一个动力学张量场 $g_{\mu\nu}(x)$。广义相对论因此是经典场论的一个具体例子；通过考察定义在平直时空上的经典场，我们可以对这类理论如何运作建立起一些感觉。（我们说经典场论，是相对于量子场论而言的；量子场论是完全不同的另一个故事，我们将在第 9 章对它作简要讨论，但它超出了我们这里的主要兴趣范围。）
+
+让我们从熟悉的一维单粒子经典力学入手，粒子坐标为 $q(t)$。我们可以用“最小作用量原理”导出这种粒子的运动方程：我们寻找某个作用量 $S$ 的临界点（作为轨迹的函数），$S$ 写作
+\begin{equation*}
+S = \int dt\, L(q, \dot{q}),
+\tag{1.126}
+\end{equation*}
+其中函数 $L(q,\dot{q})$ 就是\textbf{拉格朗日量}（Lagrangian）。点粒子力学中的拉格朗日量通常取如下形式
+\begin{equation*}
+L = K - V,
+\tag{1.127}
+\end{equation*}
+其中 $K$ 是动能，$V$ 是势能。按照任何一本高等经典力学教材都会讲述的变分法流程，我们可以证明：作用量的临界点［即在微小变分下 $S$ 保持平稳的轨迹 $q(t)$］正是那些满足 \textbf{Euler--Lagrange 方程}（Euler--Lagrange equations）的轨迹，
+\begin{equation*}
+\frac{\partial L}{\partial q} - \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) = 0.
+\tag{1.128}
+\end{equation*}
+例如，$L = \frac{1}{2}\dot{q}^{2} - V(q)$ 导致
+\begin{equation*}
+\ddot{q} = -\frac{dV}{dq}.
+\tag{1.129}
+\end{equation*}
+
+场论也是类似的故事，只不过我们把单个坐标 $q(t)$ 换成了一组依赖于时空的\textbf{场}（fields）$\Phi^{i}(x^{\mu})$，而作用量 $S$ 变成这些场的\emph{泛函}（functional）。泛函不过是以无穷多个变量为自变量的函数，例如某一时空区域中场取的值。泛函常常表示为积分。每个 $\Phi^{i}$ 都是时空上的函数（至少在某个坐标系中是），而 $i$ 是标记我们各个场的指标。例如，在电磁学中（我们将在下面看到），场就是那个叫做“矢势”（vector potential）$A_{\mu}$ 的 1-形式的四个分量：
+\begin{equation*}
+\Phi^{i} = \{A_{0}, A_{1}, A_{2}, A_{3}\}.
+\tag{1.130}
+\end{equation*}
+我们在这里的做事实在够“俗”的：把一个 1-形式场当成四个不同的函数来想，而不是当成单独的一个张量对象。只要我们固守一个固定的坐标系，这种观点就说得通，而且它会让我们的计算更加直截了当。
+
+在场论中，拉格朗日量可以表示为对一个\textbf{拉格朗日密度}（Lagrange density）$\mathcal{L}$ 的空间积分，$\mathcal{L}$ 是场 $\Phi^{i}$ 及其时空导数 $\partial_{\mu}\Phi^{i}$ 的函数：
+\begin{equation*}
+L = \int d^{3}x\, \mathcal{L}(\Phi^{i}, \partial_{\mu}\Phi^{i}).
+\tag{1.131}
+\end{equation*}
+于是作用量就是
+\begin{equation*}
+S = \int dt\, L = \int d^{4}x\, \mathcal{L}(\Phi^{i}, \partial_{\mu}\Phi^{i}).
+\tag{1.132}
+\end{equation*}
+拉格朗日密度是一个洛伦兹标量。我们通常说“拉格朗日量”时，指的其实就是“拉格朗日密度”。定义一个场论时，最方便的做法往往是直接指定拉格朗日密度，所有的运动方程都可以由它轻而易举地导出。
+
+我们将使用“自然单位制”，其中不仅 $c=1$，而且 $\hbar=k=1$，这里 $\hbar=h/2\pi$，$h$ 是 Planck 常数，$k$ 是 Boltzmann 常数。可能有人会反对说，在纯经典的讨论中不该把 $\hbar$ 牵扯进来；但我们在这里做的只是选取单位，并不是在决定物理。（如果我们要把场论量子化并得到粒子，$\hbar$ 的相关性就会显现出来，不过我们现在不会走到那一步。）在自然单位制中我们有
+\begin{equation*}
+[\text{能量}] = [\text{质量}] = [(\text{长度})^{-1}] = [(\text{时间})^{-1}].
+\tag{1.133}
+\end{equation*}
+我们将最经常用能量或质量作为基本单位。既然作用量是 $L$（量纲为能量）对时间的积分，它就是无量纲的：
+\begin{equation*}
+[S] = [E][T] = M^{0}.
+\tag{1.134}
+\end{equation*}
+体积元的量纲为
+\begin{equation*}
+[d^{4}x] = M^{-4},
+\tag{1.135}
+\end{equation*}
+因此，为了使作用量无量纲，我们要求拉格朗日密度具有量纲
+\begin{equation*}
+[\mathcal{L}] = M^{4}.
+\tag{1.136}
+\end{equation*}
+
+Euler--Lagrange 方程来自这样的要求：作用量在场的微小变分下不变，
+\begin{equation*}
+\Phi^{i} \rightarrow \Phi^{i} + \delta\Phi^{i},
+\tag{1.137}
+\end{equation*}
+\begin{equation*}
+\partial_{\mu}\Phi^{i} \rightarrow \partial_{\mu}\Phi^{i} + \delta(\partial_{\mu}\Phi^{i}) = \partial_{\mu}\Phi^{i} + \partial_{\mu}(\delta\Phi^{i}).
+\tag{1.138}
+\end{equation*}
+$\partial_{\mu}\Phi^{i}$ 的变分表达式不过是 $\Phi^{i}$ 的变分的导数。既然假定 $\delta\Phi^{i}$ 是小量，我们就可以在这个变分下对拉格朗日密度作泰勒展开：
+\begin{align*}
+\mathcal{L}(\Phi^{i}, \partial_{\mu}\Phi^{i}) &\rightarrow \mathcal{L}(\Phi^{i} + \delta\Phi^{i}, \partial_{\mu}\Phi^{i} + \partial_{\mu}\delta\Phi^{i})\notag\\
+&= \mathcal{L}(\Phi^{i}, \partial_{\mu}\Phi^{i}) + \frac{\partial\mathcal{L}}{\partial\Phi^{i}}\delta\Phi^{i} + \frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\partial_{\mu}(\delta\Phi^{i}).
+\tag{1.139}
+\end{align*}
+相应地，作用量变为 $S\rightarrow S+\delta S$，其中
+\begin{equation*}
+\delta S = \int d^{4}x\left[\frac{\partial\mathcal{L}}{\partial\Phi^{i}}\delta\Phi^{i} + \frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\partial_{\mu}(\delta\Phi^{i})\right].
+\tag{1.140}
+\end{equation*}
+我们希望通过对第二项作分部积分，把 $\delta\Phi^{i}$ 从被积函数中提出来：
+\begin{align*}
+\int d^{4}x\, \frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\partial_{\mu}(\delta\Phi^{i}) &= -\int d^{4}x\, \partial_{\mu}\left(\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\right)\delta\Phi^{i}\notag\\
+&\quad + \int d^{4}x\, \partial_{\mu}\left(\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\delta\Phi^{i}\right).
+\tag{1.141}
+\end{align*}
+最后一项是一个全导数——形如 $\partial_{\mu}V^{\mu}$ 的某个量的积分——借助 Stokes 定理（是四维版本；讨论见附录 E）可以把它化为一个表面项。既然我们处理的是变分问题，我们可以选择考虑那些在边界上（连同其导数）为零的变分。因此在这种情形下，传统上总是肆无忌惮地作分部积分，把边界贡献一概略去。（有时这样做是不行的，例如 Yang--Mills 理论中的瞬子计算。）
+
+于是我们剩下
+\begin{equation*}
+\delta S = \int d^{4}x\left[\frac{\partial\mathcal{L}}{\partial\Phi^{i}} - \partial_{\mu}\left(\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\right)\right]\delta\Phi^{i}.
+\tag{1.142}
+\end{equation*}
+泛函 $S$ 相对于函数 $\Phi^{i}$ 的\textbf{泛函导数}（functional derivative）$\delta S/\delta\Phi^{i}$ 定义为满足
+\begin{equation*}
+\delta S = \int d^{4}x\, \frac{\delta S}{\delta\Phi^{i}}\delta\Phi^{i},
+\tag{1.143}
+\end{equation*}
+只要这样的表达式成立。因此我们可以把“$S$ 处于临界点”这一说法表述为泛函导数为零。于是，我们这个场论的最终运动方程就是：
+\begin{equation*}
+\boxed{\;\frac{\delta S}{\delta\Phi^{i}} = \frac{\partial\mathcal{L}}{\partial\Phi^{i}} - \partial_{\mu}\left(\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\Phi^{i})}\right) = 0.\;}
+\tag{1.144}
+\end{equation*}
+这些就是所谓的平直时空中场论的 Euler--Lagrange 方程。
+
+场最简单的例子是实标量场：
+\begin{equation*}
+\phi(x^{\mu}) : (\text{时空}) \rightarrow \mathbf{R}.
+\tag{1.145}
+\end{equation*}
+稍微复杂一些的例子可以包括复标量场，或者从时空到任意矢量空间、乃至任意流形的映射（有时称为“非线性 $\sigma$ 模型”（nonlinear sigma models））。量子化之后，场的激发作为粒子是可以观测到的。标量场给出无自旋粒子，而矢量场和其他张量给出更高自旋的粒子。如果场是复的而非实的，它将有两个而非仅仅一个自由度，这会被诠释为一个粒子加上一个不同的反粒子。实场就是它们自己的反粒子。实标量场的一个例子是中性的 $\pi$ 介子。
+
+那么我们来考虑单个实标量场的经典力学。它将具有一个能量密度，是时空的局域函数，并包含各种贡献：
+\begin{equation*}
+\begin{array}{lll}
+\text{动能} &:& \frac{1}{2}\dot{\phi}^{2}\\
+\text{梯度能量} &:& \frac{1}{2}(\nabla\phi)^{2}\\
+\text{势能} &:& V(\phi).
+\end{array}
+\tag{1.146}
+\end{equation*}
+实际上，虽然势是洛伦兹不变的函数，但动能和梯度能量本身并不是洛伦兹不变的；不过我们可以把它们组合成一个明显洛伦兹不变的形式：
+\begin{equation*}
+-\frac{1}{2}\eta^{\mu\nu}(\partial_{\mu}\phi)(\partial_{\nu}\phi) = \frac{1}{2}\dot{\phi}^{2} - \frac{1}{2}(\nabla\phi)^{2}.
+\tag{1.147}
+\end{equation*}
+［组合 $\eta^{\mu\nu}(\partial_{\mu}\phi)(\partial_{\nu}\phi)$ 常被缩写为 $(\partial\phi)^{2}$。］于是，对我们的单个实标量场，类比于点粒子情形的 $L=K-V$，一个合理的拉格朗日量选择是
+\begin{equation*}
+\mathcal{L} = -\frac{1}{2}\eta^{\mu\nu}(\partial_{\mu}\phi)(\partial_{\nu}\phi) - V(\phi).
+\tag{1.148}
+\end{equation*}
+这是把“动能减势能”推广成“动能减梯度能量减势能密度”。注意，由于 $[\mathcal{L}]=M^{4}$，必须有 $[V]=M^{4}$。又由于 $[\partial_{\mu}]=[\partial/\partial x^{\mu}]=M^{1}$，我们有
+\begin{equation*}
+[\phi] = M^{1}.
+\tag{1.149}
+\end{equation*}
+
+对于拉格朗日量 (1.148)，我们有
+\begin{equation*}
+\frac{\partial\mathcal{L}}{\partial\phi} = -\frac{dV}{d\phi}, \qquad \frac{\partial\mathcal{L}}{\partial(\partial_{\mu}\phi)} = -\eta^{\mu\nu}\partial_{\nu}\phi.
+\tag{1.150}
+\end{equation*}
+这两个式子中的第二个有点棘手，让我们慢慢来做。在对拉格朗日量求导时，诀窍是确保指标的摆放“相容”（也就是说，如果求导所针对的对象上带一个下指标，那么当同类对象出现在被求导的东西里时，它也应当只带下指标），同时还要保证指标严格不同。第一条在我们的例子中已经满足，因为我们是在把 $\partial_{\mu}\phi$ 的函数对 $\partial_{\mu}\phi$ 求导。往后我们就需要更加小心了。为了满足第二条，我们只需重新命名哑指标：
+\begin{equation*}
+\eta^{\mu\nu}(\partial_{\mu}\phi)(\partial_{\nu}\phi) = \eta^{\rho\sigma}(\partial_{\rho}\phi)(\partial_{\sigma}\phi).
+\tag{1.151}
+\end{equation*}
+然后我们可以使用如下的一般规则：对任何带一个指标的对象，比如 $V_{\mu}$，有
+\begin{equation*}
+\frac{\partial V_{\alpha}}{\partial V_{\beta}} = \delta^{\beta}{}_{\alpha}
+\tag{1.152}
+\end{equation*}
+因为 $V_{\alpha}$ 的每个分量都被当作一个独立的变量。于是我们有
+\begin{align*}
+\frac{\partial}{\partial(\partial_{\mu}\phi)}\left[\eta^{\rho\sigma}(\partial_{\rho}\phi)(\partial_{\sigma}\phi)\right] &= \eta^{\rho\sigma}\left[\delta^{\mu}{}_{\rho}(\partial_{\sigma}\phi) + (\partial_{\rho}\phi)\delta^{\mu}{}_{\sigma}\right]\notag\\
+&= \eta^{\mu\sigma}(\partial_{\sigma}\phi) + \eta^{\rho\mu}(\partial_{\rho}\phi) = 2\eta^{\mu\nu}\partial_{\nu}\phi.
+\tag{1.153}
+\end{align*}
+这就得出了 (1.150) 中的第二个表达式。
+
+把 (1.150) 代入 (1.144)，就得到运动方程
+\begin{equation*}
+\Box\phi - \frac{dV}{d\phi} = 0,
+\tag{1.154}
+\end{equation*}
+其中 $\Box\equiv\eta^{\mu\nu}\partial_{\mu}\partial_{\nu}$ 被称为 \textbf{d'Alembert 算符}（d'Alembertian）。注意，这个方程体现了我们的度规号差约定 $(-+++)$；如果采用另一种 $(+---)$ 约定，符号就会反过来。在平直时空中，(1.154) 等价于
+\begin{equation*}
+\ddot{\phi} - \nabla^{2}\phi + \frac{dV}{d\phi} = 0.
+\tag{1.155}
+\end{equation*}
+
+势 $V$ 的一个流行选择是简单谐振子的势，$V(\phi)=\frac{1}{2}m^{2}\phi^{2}$。参数 $m$ 叫做场的质量，你应该会注意到量纲恰好正确。你可能觉得奇怪，场怎么会有质量。当我们把场量子化，会发现动量本征态是粒子的集合，每个粒子的质量为 $m$。在经典层次上，我们把“质量”看作对场动力学的一种方便的刻画。于是我们的运动方程就是
+\begin{equation*}
+\Box\phi - m^{2}\phi = 0,
+\tag{1.156}
+\end{equation*}
+这就是著名的 \textbf{Klein--Gordon 方程}。这是一个线性微分方程，所以两个解的和仍是解；一组完备的解（平面波形式）很容易找到，你可以自行核验。
+
+电磁学提供了场论的一个稍微复杂些的例子。我们提到过，相关的场是\textbf{矢势}（vector potential）$A_{\mu}$；其类时分量 $A_{0}$ 可以等同于静电势 $\Phi$，类空分量则等同于传统的矢量势 $\mathbf{A}$（磁场由 $\mathbf{B}=\nabla\times\mathbf{A}$ 给出）。场强张量（其分量由式 (1.69) 给出）与矢势的关系为
+\begin{equation*}
+F_{\mu\nu} = \partial_{\mu}A_{\nu} - \partial_{\nu}A_{\mu}.
+\tag{1.157}
+\end{equation*}
+从这个定义我们看到，场强张量具有重要的\textbf{规范不变性}（gauge invariance）性质：当我们对矢势施加一个\textbf{规范变换}（gauge transformation）
+\begin{equation*}
+A_{\mu} \rightarrow A_{\mu} + \partial_{\mu}\lambda(x),
+\tag{1.158}
+\end{equation*}
+时，场强张量保持不变：
+\begin{equation*}
+F_{\mu\nu} \rightarrow F_{\mu\nu} + \partial_{\mu}\partial_{\nu}\lambda - \partial_{\nu}\partial_{\mu}\lambda = F_{\mu\nu}.
+\tag{1.159}
+\end{equation*}
+最后一个等号源于偏导数可以对易这一事实：$\partial_{\mu}\partial_{\nu}=\partial_{\nu}\partial_{\mu}$。规范不变性是我们理解电磁学的一种根本性对称，所有可观测量都必须是规范不变的。因此，虽然这个理论的动力学场（我们对它变分作用量来导出运动方程）是 $A_{\mu}$，物理量一般却会用 $F_{\mu\nu}$ 来表达。
+
+我们已经知道，电磁学的动力学方程就是麦克斯韦方程组，即式 (1.96) 和式 (1.97)。给定场强张量用矢势表达的定义，(1.97) 实际上是自动满足的：
+\begin{equation*}
+\partial_{[\mu}F_{\nu\sigma]} = \partial_{[\mu}\partial_{\nu}A_{\sigma]} - \partial_{[\mu}\partial_{\sigma}A_{\nu]} = 0,
+\tag{1.160}
+\end{equation*}
+同样是因为偏导数可以对易。另一方面，(1.96) 则等价于如下形式的 Euler--Lagrange 方程
+\begin{equation*}
+\frac{\partial\mathcal{L}}{\partial A_{\nu}} - \partial_{\mu}\left(\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}A_{\nu})}\right) = 0,
+\tag{1.161}
+\end{equation*}
+只要我们有先见之明地选取拉格朗日量为
+\begin{equation*}
+\mathcal{L} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + A_{\mu}J^{\mu}.
+\tag{1.162}
+\end{equation*}
+
+对这个选择，Euler--Lagrange 方程中的第一项是直截了当的：
+\begin{equation*}
+\frac{\partial\mathcal{L}}{\partial A_{\nu}} = \delta^{\nu}{}_{\mu}J^{\mu} = J^{\nu}.
+\tag{1.163}
+\end{equation*}
+第二项更棘手些。首先我们把 $F_{\mu\nu}F^{\mu\nu}$ 写成
+\begin{equation*}
+F_{\mu\nu}F^{\mu\nu} = F_{\alpha\beta}F^{\alpha\beta} = \eta^{\alpha\rho}\eta^{\beta\sigma}F_{\alpha\beta}F_{\rho\sigma}.
+\tag{1.164}
+\end{equation*}
+我们想在 $F_{\mu\nu}$ 上使用下指标，因为我们是相对于具有下指标的 $\partial_{\mu}A_{\nu}$ 求导。同样，我们把 $F_{\mu\nu}F^{\mu\nu}$ 的哑指标也换掉，因为我们希望被求导的对象与求导所针对的对象带有不同的指标。一旦你熟悉了这一套，它就会成为你的第二天性，你将不再需要这么多步骤。这使我们能够写下
+\begin{equation*}
+\frac{\partial(F_{\alpha\beta}F^{\alpha\beta})}{\partial(\partial_{\mu}A_{\nu})} = \eta^{\alpha\rho}\eta^{\beta\sigma}\left[\left(\frac{\partial F_{\alpha\beta}}{\partial(\partial_{\mu}A_{\nu})}\right)F_{\rho\sigma} + F_{\alpha\beta}\left(\frac{\partial F_{\rho\sigma}}{\partial(\partial_{\mu}A_{\nu})}\right)\right].
+\tag{1.165}
+\end{equation*}
+然后，由于 $F_{\alpha\beta}=\partial_{\alpha}A_{\beta}-\partial_{\beta}A_{\alpha}$，我们有
+\begin{equation*}
+\frac{\partial F_{\alpha\beta}}{\partial(\partial_{\mu}A_{\nu})} = \delta^{\mu}{}_{\alpha}\delta^{\nu}{}_{\beta} - \delta^{\mu}{}_{\beta}\delta^{\nu}{}_{\alpha}.
+\tag{1.166}
+\end{equation*}
+把 (1.166) 与 (1.165) 结合起来就得到
+\begin{align*}
+\frac{\partial(F_{\alpha\beta}F^{\alpha\beta})}{\partial(\partial_{\mu}A_{\nu})} &= \eta^{\alpha\rho}\eta^{\beta\sigma}\left[\left(\delta^{\mu}{}_{\alpha}\delta^{\nu}{}_{\beta} - \delta^{\mu}{}_{\beta}\delta^{\nu}{}_{\alpha}\right)F_{\rho\sigma} + \left(\delta^{\mu}{}_{\rho}\delta^{\nu}{}_{\sigma} - \delta^{\mu}{}_{\sigma}\delta^{\nu}{}_{\rho}\right)F_{\alpha\beta}\right]\notag\\
+&= \left(\eta^{\mu\rho}\eta^{\nu\sigma} - \eta^{\nu\rho}\eta^{\mu\sigma}\right)F_{\rho\sigma} + \left(\eta^{\alpha\mu}\eta^{\beta\nu} - \eta^{\alpha\nu}\eta^{\beta\mu}\right)F_{\alpha\beta}\notag\\
+&= F^{\mu\nu} - F^{\nu\mu} + F^{\mu\nu} - F^{\nu\mu}\notag\\
+&= 4F^{\mu\nu},
+\tag{1.167}
+\end{align*}
+因此
+\begin{equation*}
+\frac{\partial\mathcal{L}}{\partial(\partial_{\mu}A_{\nu})} = -F^{\mu\nu}.
+\tag{1.168}
+\end{equation*}
+再把 (1.163) 和 (1.168) 代入 (1.161)，恰好给出 (1.96)：
+\begin{equation*}
+\partial_{\mu}F^{\nu\mu} = J^{\nu}.
+\tag{1.169}
+\end{equation*}
+注意，我们交换了 $F^{\mu\nu}$ 上指标的顺序，免得自己吃进一个讨厌的负号。
+
+你可能纳闷，如果我们能够在知道拉格朗日量之前就发明运动方程（正如 Maxwell 对他的方程所做的那样），那么引入拉格朗日表述的目的何在。理由有好几个：首先是基本的简单性——设定一个单一的时空标量函数，即拉格朗日密度，而不是一堆（可能是张量值的）运动方程。另一个理由是实施对称性十分便利；要求作用量在某一对称性下不变，就保证了动力学同样尊重这一对称性。最后，正如我们将在第 4 章看到的，作用量经由一个直接的手续（包括对度规本身求变分）导向一个唯一的能量-动量张量。把这个手续应用于 (1.148)，就直接得到标量场论的能量-动量张量，
+\begin{equation*}
+T^{\mu\nu}_{\text{scalar}} = \eta^{\mu\lambda}\eta^{\nu\sigma}\partial_{\lambda}\phi\,\partial_{\sigma}\phi - \eta^{\mu\nu}\left[\frac{1}{2}\eta^{\lambda\sigma}\partial_{\lambda}\phi\,\partial_{\sigma}\phi + V(\phi)\right].
+\tag{1.170}
+\end{equation*}
+类似地，从 (1.162) 出发我们可以导出电磁学的能量-动量张量，
+\begin{equation*}
+T^{\mu\nu}_{\text{EM}} = F^{\mu\lambda}F^{\nu}{}_{\lambda} - \frac{1}{4}\eta^{\mu\nu}F^{\lambda\sigma}F_{\lambda\sigma}.
+\tag{1.171}
+\end{equation*}
+利用相应的运动方程，你可以证明这些能量-动量张量是守恒的，$\partial_{\mu}T^{\mu\nu}=0$（习题里也会要求你这样做）。
+
+我们考虑过的这两个例子——标量场论和电磁学——是我们当前对自然的理解中大部分内容的范本。粒子物理学的标准模型由三类场组成：规范场、Higgs 场和费米子。规范场描述自然的“力”，除电磁相互作用之外还包括强核力和弱核力。产生核力的那些规范场与电磁学中一样，由 1-形式势来描述；区别在于它们是矩阵值的，而非普通的 1-形式，因此与规范变换相对应的对称群是非对易（非阿贝尔）的对称性。Higgs 场和我们描述过的标量场非常相像，尽管它们也是矩阵值的。费米子包括轻子（例如电子和中微子）和夸克，它们不由我们这里讨论过的任何张量场来描述，而是由一种不同类型的场——所谓\textbf{旋量}（spinor）——来描述。在本书中我们不会展开讨论旋量，但它们在粒子物理中扮演着关键的角色，而且它们与引力的耦合既有趣又微妙。量子化之后，这些场给出具有不同自旋的粒子：规范场是自旋-1 的，标量场是自旋-0 的，而标准模型的费米子是自旋-$\frac{1}{2}$ 的。
+
+在结束本章之前，让我们问一个简单得让人不好意思的问题：为什么我们要考虑这一个经典场论，而不是别的某个？说得更具体些，假设我们在自然界中发现了某种粒子，并且我们知道想用哪一类场来描述它；那么我们该如何为这个场挑选拉格朗日量？例如，当我们写下标量场拉格朗日量 (1.148) 时，为什么我们没有包含形如下式的项
+\begin{equation*}
+\mathcal{L}' = \lambda\phi^{2}\eta^{\mu\nu}(\partial_{\mu}\phi)(\partial_{\nu}\phi),
+\tag{1.172}
+\end{equation*}
+其中 $\lambda$ 是一个耦合常数？归根结底，我们当然是通过试错来工作，努力拟合实验提供给我们的数据。在经典场论中，我们能做的也就不多了；一般来说我们会从一个简单的拉格朗日量出发，如果第一次尝试与数据不符，或许再把它复杂化。但量子场论实际上提供了一些简单的指导原则，而且既然我们把经典场论当作某个底层量子理论的近似来使用，利用这些原则就是有意义的。长话短说：量子场论允许任意高能量的“虚”过程对我们低能下观测到的东西作出贡献。所幸的是，这些过程的效应可以总结在一个低能\textbf{有效场论}（effective field theory）之中。在有效理论——这才是我们实际观测到的理论——中，高能过程的结果只不过是把我们理论的耦合常数“重整化”。考虑一个任意的耦合常数，它可以表示成参数 $\mu$（量纲为质量）的某次幂，$\lambda=\mu^{d}$（除非 $\lambda$ 无量纲，那样的话讨论会变得更微妙）。非常粗略地说，\emph{高能过程的效应将是使 $\mu$ 变得非常大。}稍微具体一点：$\mu$ 将被推高到一个新物理开始介入的尺度，不管那会是什么。因此，我们可能想往拉格朗日量里添加的潜在高阶项都被压低了，因为它们所乘的耦合常数非常小。例如对 (1.172) 来说，必须有 $\lambda=\mu^{-2}$，于是 $\lambda$ 会微乎其微（因为 $\mu$ 会很大）。我们在拉格朗日量中能放进去的最低阶项才带有无量纲的耦合常数（或者量纲为质量的正幂次的耦合常数），所以在低能下我们只需要操心这些项。场论的这一特点带来了巨大的简化，使我们得以考察所有想要研究的模型。
+
+正如本节开头所提到的，广义相对论本身就是一个经典场论，其动力学场就是度规张量。然而，把广义相对论看作某种与众不同的东西也是公允的；其他经典场论在很大程度上依赖于一个预先存在的时空几何，而在广义相对论中，几何是由运动方程决定的。（这一想法也有例外，称为拓扑场论，在其中度规根本不露面。）接下来几章里我们的任务是探究由时空度规所刻画的弯曲几何的性质，然后在第 4 章把这些概念付诸实践，构造出一个引力理论。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 考虑一个惯性系 $S$，其坐标为 $x^{\mu}=(t,x,y,z)$，以及一个参考系 $S'$，其坐标 $x^{\mu'}$ 与 $S$ 之间通过一个沿 $y$ 轴方向、速度参量为 $v$ 的推动相联系。设想有一堵墙静止在 $S'$ 中，位于直线 $x'=-y'$ 上。从 $S$ 的观点来看，一个击中墙壁的球（在 $x$--$y$ 平面内运动）的入射角与反射角之间是什么关系？碰前和碰后的速度又如何？
+
+\textbf{2.}\quad 设想空间（不是时空）实际上是一个有限的盒子，或者用更考究的说法，一个大小为 $L$ 的三维环面（three-torus）。我们的意思是：存在一个坐标系 $x^{\mu}=(t,x,y,z)$，使得坐标为 $(t,x,y,z)$ 的每个点都与坐标为 $(t,x+L,y,z)$、$(t,x,y+L,z)$ 和 $(t,x,y,z+L)$ 的每个点相\emph{认同}（identified）。注意时间坐标是相同的。现在考虑两个观者：观者 $A$ 在这个坐标系中静止（空间坐标为常数），而观者 $B$ 以恒定速度 $v$ 沿 $x$ 方向运动。$A$ 和 $B$ 从同一事件出发，当 $A$ 保持不动时，$B$ 绕宇宙一圈回来，与 $A$ 的世界线相交而完全不必加速（因为宇宙是周期性的）。在这段间隔中 $A$ 和 $B$ 经历的相对固有时是多少？这与你对洛伦兹不变性的理解一致吗？
+
+\textbf{3.}\quad 三个事件 $A$、$B$、$C$，在观者 $\mathcal{O}$ 看来按 $ABC$ 的顺序发生。另一位观者 $\bar{\mathcal{O}}$ 看到这些事件按 $CBA$ 的顺序发生。是否可能有第三位观者看到这些事件按 $ACB$ 的顺序发生？请通过画一张时空图来支持你的结论。
+
+\textbf{4.}\quad 投影效应会骗你以为某个天体物理对象在“超光速地”运动。考虑一个类星体，它以速率 $v$、与观者视线成 $\theta$ 角抛出气体。投影到天空上，气体看起来垂直于视线方向行进，角速度为 $v_{\mathrm{app}}/D$，其中 $D$ 是到类星体的距离，$v_{\mathrm{app}}$ 是表观速度。推导用 $v$ 和 $\theta$ 表出 $v_{\mathrm{app}}$ 的表达式。证明，对适当的 $v$ 和 $\theta$ 值，$v_{\mathrm{app}}$ 可以大于 1。
+
+\textbf{5.}\quad 粒子物理学家太习惯于取 $c=1$ 了，以至于他们用能量的单位来量度质量。特别是，他们倾向于使用电子伏特（$1\,\text{eV} = 1.6\times 10^{-12}\,\text{erg} = 1.8\times 10^{-33}\,\text{g}$），或者更常用的 keV、MeV 和 GeV（分别为 $10^{3}\,\text{eV}$、$10^{6}\,\text{eV}$ 和 $10^{9}\,\text{eV}$）。$\mu$ 子已被测得质量为 $0.106\,\text{GeV}$，静止系寿命为 $2.19\times 10^{-6}$ 秒。设想这样一个 $\mu$ 子在粒子加速器直径 1 千米的圆形储存环中运动，其总能量为 $1000\,\text{GeV}$。从实验者的观点来看，它看起来能活多久？它会绕环走过多少弧度？
+
+\textbf{6.}\quad 在欧几里得三维空间中，设 $p$ 是坐标为 $(x,y,z)=(1,0,-1)$ 的点。考虑下列经过 $p$ 的曲线：
+\begin{gather*}
+x^{i}(\lambda) = \left(\lambda, (\lambda-1)^{2}, -\lambda\right)\\
+x^{i}(\mu) = \left(\cos\mu, \sin\mu, \mu-1\right)\\
+x^{i}(\sigma) = \left(\sigma^{2}, \sigma^{3}+\sigma^{2}, \sigma\right).
+\end{gather*}
+\textbf{(a)}\quad 计算这些曲线在 $p$ 点的切矢量在坐标基 $\{\partial_{x}, \partial_{y}, \partial_{z}\}$ 下的分量。
+
+\textbf{(b)}\quad 设 $f = x^{2}+y^{2}-yz$。计算 $df/d\lambda$、$df/d\mu$ 和 $df/d\sigma$。
+
+\textbf{7.}\quad 设想我们有一个张量 $X^{\mu\nu}$ 和一个矢量 $V^{\mu}$，分量为
+\begin{equation*}
+X^{\mu\nu} =
+\begin{pmatrix}
+2 & 0 & 1 & -1\\
+-1 & 0 & 3 & 2\\
+-1 & 1 & 0 & 0\\
+-2 & 1 & 1 & -2
+\end{pmatrix},
+\qquad
+V^{\mu} = (-1, 2, 0, -2).
+\end{equation*}
+求下列各量的分量：
+
+\textbf{(a)}\quad $X^{\mu}{}_{\nu}$
+
+\textbf{(b)}\quad $X_{\mu}{}^{\nu}$
+
+\textbf{(c)}\quad $X^{(\mu\nu)}$
+
+\textbf{(d)}\quad $X_{[\mu\nu]}$
+
+\textbf{(e)}\quad $X^{\lambda}{}_{\lambda}$
+
+\textbf{(f)}\quad $V^{\mu}V_{\mu}$
+
+\textbf{(g)}\quad $V_{\mu}X^{\mu\nu}$
+
+\textbf{8.}\quad 若 $\partial_{\nu}T^{\mu\nu}=Q^{\mu}$，那么空间矢量 $Q^{i}$ 在物理上代表什么？请用尘埃的能量-动量张量来论证你的回答。
+
+\textbf{9.}\quad 对于一个分立点粒子系统，能量-动量张量取如下形式
+\begin{equation*}
+T_{\mu\nu} = \sum_{a} \frac{p^{(a)}_{\mu}\,p^{(a)}_{\nu}}{p^{0(a)}}\,\delta^{(3)}(\mathbf{x}-\mathbf{x}^{(a)}),
+\tag{1.173}
+\end{equation*}
+其中指标 $a$ 标记不同的粒子。证明，对于速度作各向同性分布的稠密粒子集合，我们可以把单个粒子的世界线抹平，从而得到理想流体的能量-动量张量 (1.114)。
+
+\textbf{10.}\quad 利用作用到 $F_{\mu\nu}$ 上的张量变换规律，证明电场和磁场的三维矢量 $\mathbf{E}$ 和 $\mathbf{B}$ 在下列情形下如何变换：
+
+\textbf{(a)}\quad 绕 $y$ 轴的转动；
+
+\textbf{(b)}\quad 沿 $z$ 轴的推动。
+
+\textbf{11.}\quad 验证 (1.98) 的确等价于 (1.97)，并且两者都等价于 (1.93) 中的最后两个方程。
+
+\textbf{12.}\quad 考虑我们明确讨论过的两个场论：Maxwell 电磁学（令 $J^{\mu}=0$）以及由 (1.148) 定义的标量场论。
+
+\textbf{(a)}\quad 用三维矢量记号表示每个理论的能量-动量张量的分量，使用散度、梯度、旋度、电场和磁场，并用上加点号表示时间导数。
+
+\textbf{(b)}\quad 利用运动方程，验证（用你喜欢的任何记号）能量-动量张量是守恒的。
+
+\textbf{13.}\quad 考虑在电磁学的拉格朗日量中添加一个形如 $\mathcal{L}' = \tilde{\epsilon}_{\mu\nu\rho\sigma}F^{\mu\nu}F^{\rho\sigma}$ 的附加项。
+
+\textbf{(a)}\quad 用 $\mathbf{E}$ 和 $\mathbf{B}$ 表示 $\mathcal{L}'$。
+
+\textbf{(b)}\quad 证明包含 $\mathcal{L}'$ 并不影响麦克斯韦方程组。你能想出一个深刻的理由吗？

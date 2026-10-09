@@ -1,0 +1,409 @@
+% ch9_a 弯曲时空量子场论 (书页 376-388 / p391-p403)
+% 第9章 Quantum Field Theory in Curved Spacetime
+\chapter{弯曲时空量子场论}
+
+\section{引言}
+
+% ---- 书页 376 / p391 ----
+没有人相信，就引力而言广义相对论就是最终的定论。奇点定理从理论内部提供了证据，表明这个理论在某种意义上是不完备的；然而更有说服力的是这样一个事实：广义相对论是一个经典理论，而世界在根本上是量子力学的。寻找一个能实际运作的量子引力理论，驱动着当今理论物理中的大量研究，这一路上我们也确实学到了许多，但令人信服的成功始终遥不可及。
+
+广义相对论有两个组成部分：其一是时空曲率的框架及其对物质的影响，其二是度规响应能量-动量的动力学（由 Einstein 方程描述）。虽然还没有一个真正的量子引力理论，我们仍然可以取广义相对论的前一部分——物质场在弯曲时空背景上传播这一观念——并考虑那些物质场本身是量子力学的情况。换句话说，我们把度规取为固定的，而不让它服从什么动力学方程，然后研究这个弯曲时空中的量子场论（quantum field theory，QFT）。
+
+弯曲时空量子场论研究中的划时代事件，是 Hawking 在 1976 年认识到黑洞其实并不真的黑，而是会发出热辐射，其温度是一个正比于表面引力（surface gravity）$\kappa$ 的\textbf{Hawking 温度}（Hawking temperature），
+\begin{equation*}
+\boxed{\;T = \frac{\kappa}{2\pi}.\;}\tag{9.1}
+\end{equation*}
+（回忆一下，我们的单位制取 $\hbar = c = k = 1$；Hawking 温度实际上正比于 $\hbar$，并反比于 Boltzmann 常数 $k$。）自这一非凡的发现以来，弯曲时空量子场论已被置于相当严格的理论基础之上，尽管人们普遍认为，它的适用范围离任何可能的实验探测都还相当遥远。Schwarzschild 黑洞的表面引力为 $\kappa = 1/4GM$，其 Hawking 温度可以写成
+\begin{equation*}
+T = \frac{1}{8\pi GM} = 1.2\times 10^{26}\,K\left(\frac{1\,\mathrm{g}}{M}\right) = 6.0\times 10^{-8}\,K\left(\frac{M_\odot}{M}\right),
+\tag{9.2}
+\end{equation*}
+其中 $M_\odot \sim 10^{33}$ g 是太阳的质量。因此，来自一个现实的天体物理黑洞的辐射，其温度甚至比 3K 的宇宙微波背景还要低得多，因而基本上毫无被观测到的希望。
+
+% ---- 书页 377 / p392 ----
+然而，近来宇宙学方面的观测在某种程度上改变了这一局面。一个例子是看似发现了宇宙正在加速，这一结果最容易解释为非零真空能（vacuum energy）的证据（如第 8 章所讨论）。虽然真空能的大小仍然是一个深刻的谜，但有一点似乎是清楚的：理解量子力学的物质在弯曲时空中如何行为，将在任何对这一谜题的最终解决中扮演重要角色。另一个例子来自宇宙学扰动。对微波背景和大尺度结构的观测，为原初扰动的近无标度谱提供了强有力的证据，其中包括那些波长将远大于常规宇宙学中视界尺度的扰动。关于这些扰动起源的领先理论来自暴胀（inflation）。在暴胀场景中，宇宙学扰动起源于正在暴胀的宇宙中量子场的真空涨落。如果这幅图像是正确的，那么我们在 CMB 图中看到的，就是原初量子涨落被宇宙的膨胀大大拉伸之后留下的印记，而正是这些涨落经由引力不稳定性最终成长为今天我们所看到的星系和星系团。因此，至少可以说，宇宙学观测为弯曲时空量子场论的研究提供了强有力的动机。
+
+即使没有这种经验上的动机，基于弯曲时空量子场论的思想实验，也已经在我们对量子引力的试探性探索中被证明是非常富有成果的。特别是，霍金辐射所预言的黑洞蒸发导致了信息丢失佯谬（information-loss paradox），我们将在下文讨论。由于直接触及量子引力问题的真实实验是如此困难，我们必须依靠聚焦于广义相对论与量子力学之间张力的思想实验，这很像 Einstein 当年试图调和经典动力学与电磁学的洛伦兹不变性时所用的思想实验。
+
+带着这些考虑，本章的目标是对弯曲时空量子场论的一些观念和结果作一个简要的介绍。许多广义相对论入门书不讲这个主题，通常是因为学习广义相对论不应以熟悉平直时空中的普通量子场论为先决条件。然而令人愉快的事实是：熟悉平直时空中的量子场论，对于学习弯曲时空中的量子场论完全不是必需的。这是因为，在平直时空中最有趣、最有用的那些量子场论特征，与在弯曲时空中有趣、有用的那些特征几乎完全不同。往深处说，量子场论不过是量子力学系统的一个例子，就同方势阱或氦原子一样。一旦定义了一个场论，它在平直时空中的应用（对粒子物理或凝聚态物质）自然会聚焦于各种场之间相互作用的问题，通常把相互作用处理成围绕某个自然真空态的微扰。然而在弯曲时空中，我们感兴趣的通常是时空本身对场的影响，对此相互作用根本不是要点。因此我们可以考虑自由（无相互作用）场，但我们必须格外小心地定义什么才是合适的真空态。（的确，正如我们将要看到的，我们与之打交道的态几乎全都是真空态！）其结果是，平直时空量子场论的知识对眼下的讨论不仅不必要，甚至可能帮不上什么忙；唯一的先决条件是熟悉普通量子力学的基础。
+
+% ---- 书页 378 / p393 ----
+我们将循序渐进地走向弯曲时空中的量子场论，从复习这样一个系统的量子力学开始——每个物理学家在遇到棘手问题时都会求助于它：简谐振子（simple harmonic oscillator）。这当然是量子力学原理如何运作的一个典范性例子，而且还有一个额外的好处：当我们接下来转向场论时会发现，平直时空中自由场的量子力学恰好就是无穷多个谐振子的量子力学。（并不是空间每一点上都有一个振子，而是场的傅里叶变换中的每一个模式都表现得像一个谐振子。）于是，从谐振子到场论的过渡相当直截了当。一旦掌握了场论的基础，鉴于我们先前对广义相对论的学习，推广到弯曲时空并不十分困难，尽管沿途会遇到不少微妙之处。我们的讨论必然有些浅尝辄止，重心放在这样一个目标上：通过理解平直时空中的安鲁效应（Unruh effect）来理解霍金辐射的物理基础。特别是，我们不会讨论弯曲时空量子场论在宇宙学中的重要应用，也不会深入细致地考察重整化及相关问题。我们在很大程度上遵循 Birrell and Davies (1982) 的讨论；欲作进一步的探究，可查阅该书、Wald (1994)，或 Ford\footnote{L. H. Ford, “Quantum field theory in curved spacetime,” (1997), \texttt{http://arxiv.org/gr-qc/9707062}。} 的综述。
+
+\section{量子力学}
+
+量子场论只不过是量子力学系统的一个特定例子，所以我们可以从提醒自己这意味着什么开始。当然，尽管世界在根本上是量子力学的，我们的直觉却更容易同经典物理对上号，所以让我们先通过思考经典力学来搭好舞台。任何描述某个特定系统的物理理论，无论经典的还是量子的，都由以下三个问题的答案构成：
+
+\begin{enumerate}
+\item 系统的可能态是什么？在经典力学中，态空间通常由一组坐标和动量给出（我们可以把它们看作系统的“初始条件”）。它们可以被精确地指定，而这就是关于系统状态所要知道的一切。
+\item 关于这个系统能观测到什么？这个问题在经典力学中往往只是隐含地处理，因为答案平淡无奇：坐标和动量的任何函数都有资格作为一个可观测量（observable）。
+\item 系统如何演化？这通常由一组运动方程来表达。给定态和运动方程，随后的演化就唯一地确定了；于是，初始条件的空间就等价于该理论的经典解的空间。
+\end{enumerate}
+
+% ---- 书页 379 / p394 ----
+为了让这些观念更具体，同时也因为它与我们研究场论直接相关，我们来考虑简谐振子。简谐振子可以想象成一维中受二次势作用的粒子。态由单个坐标 $x$ 和单个动量 $p$ 指定。为了得到运动方程，我们可以从拉格朗日量出发，它用 $x$ 及其时间导数 $\dot{x}$ 写成
+\begin{equation*}
+L = \frac{1}{2}\dot{x}^2 - \frac{1}{2}\omega^2 x^2,
+\tag{9.3}
+\end{equation*}
+其中为方便起见，我们把振子的质量取为 1。我们可以立即导出运动方程
+\begin{equation*}
+\ddot{x} + \omega^2 x = 0.
+\tag{9.4}
+\end{equation*}
+然而，为了过渡到量子力学，用哈密顿量来工作更加方便，它是 $x$ 和 $p$（而非 $x$ 和 $\dot{x}$）的函数。哈密顿量通过勒让德变换（Legendre transformation）与拉格朗日量相联系，
+\begin{equation*}
+H = p\dot{x} - L,
+\tag{9.5}
+\end{equation*}
+其中动量满足
+\begin{equation*}
+p = \frac{\partial L}{\partial \dot{x}} = \dot{x}.
+\tag{9.6}
+\end{equation*}
+于是我们得到振子的哈密顿量，
+\begin{equation*}
+H = \frac{1}{2}p^2 + \frac{1}{2}\omega^2 x^2,
+\tag{9.7}
+\end{equation*}
+以及哈密顿方程
+\begin{equation*}
+\frac{dx}{dt} = \partial_p H = p, \qquad \frac{dp}{dt} = -\partial_x H = -\omega^2 x,
+\tag{9.8}
+\end{equation*}
+它们充当运动方程。这些解当然是直截了当的；把它们表示成复数很有用：
+\begin{equation*}
+x(t) = x_0\, e^{i(\omega t + \alpha_0)},
+\tag{9.9}
+\end{equation*}
+其中 $x_0$ 是振幅，$\alpha_0$ 是相位。到最后我们取实部，就得到物理答案。
+
+现在我们转向量子力学。虽然量子力学与经典力学有着深刻的不同，但一个给定的理论仍然由与上面所列相同的三个问题的答案构成，只不过答案采取了多少有些不同的形式。
+
+% ---- 书页 380 / p395 ----
+\begin{enumerate}
+\item 系统的态表示为\textbf{希尔伯特空间}（Hilbert space）中的一个元素。在数学上，希尔伯特空间就是一个装备了复数值内积的复矢量空间，该内积具有如下性质：以相反的次序取两个态的内积，等价于取复共轭。我们把希尔伯特空间的元素记作 $|\psi\rangle$，对偶空间的元素记作 $\langle\psi|$，于是 $|\psi_1\rangle$ 与 $|\psi_2\rangle$ 的内积就是 $\langle\psi_2|\psi_1\rangle$，并且满足
+\begin{equation*}
+\langle\psi_2|\psi_1\rangle^{*} = \langle\psi_1|\psi_2\rangle.
+\tag{9.10}
+\end{equation*}
+（对于有关空间完备性的技术要求，我们在此不作深究。）在量子力学中，我们所感兴趣的希尔伯特空间往往都是无穷维的。例如，如果一个经典系统由坐标 $x$ 和动量 $p$ 来表示，那么希尔伯特空间可以取成由 $x$ 的所有平方可积复值函数组成，或者等价地由 $p$ 的所有平方可积复值函数组成（但不能同时取两者）。
+\item 可观测量表示为希尔伯特空间上的\textbf{自伴算符}（self-adjoint operators）。“自伴”的定义实际上相当微妙，但在简单的情形下，它就相当于我们通常对厄米算符（Hermitian operator）的理解，
+\begin{equation*}
+A^{\dagger} = A,
+\tag{9.11}
+\end{equation*}
+其中 $A^{\dagger}$ 满足
+\begin{equation*}
+\langle\psi_2|A\psi_1\rangle = \langle A^{\dagger}\psi_2|\psi_1\rangle
+\tag{9.12}
+\end{equation*}
+对所有态 $|\psi_1\rangle$、$|\psi_2\rangle$ 成立。当然，许多算符并不是厄米的，但可观测量应当具有这一性质。一般说来，这类算符彼此不对易，因此我们无法同时精确地指明我们想要测量的关于系统的一切量的数值；将会存在一个对易可观测量完备集，它一次性地代表了我们对一个系统所能说的一切。
+\item 系统的演化可以用两种方式之一来表示：或者作为希尔伯特空间中态矢量的幺正演化（\textbf{Schrödinger 绘景}，Schrödinger picture），或者保持态固定不动，而让可观测量按照运动方程演化（\textbf{Heisenberg 绘景}，Heisenberg picture）。
+\end{enumerate}
+
+严格说来，量子力学就是与经典力学不同；完全不必非得从一个经典模型出发，把它“量子化”。尽管如此，我们通常恰恰就是这么做的。即便是简单的经典模型，构造其量子化版本的方法也不止一种；其中包括正则量子化（canonical quantization）和路径积分量子化（path-integral quantization），以及一些更加奇特的手续。更糟的是，经典理论与量子理论之间并不存在简单的映射；有的经典理论没有良好定义的量子对应物，有的经典理论有好几个量子版本，还有的量子理论没有任何经典的类似物。就我们眼下的目的而言，我们可以对这些微妙之处满不在乎地一概置之不理，直接进行正则量子化。
+
+% ---- 书页 381 / p396 ----
+简谐振子再一次提供了一个有用的例子。先考虑大家熟悉的 Schrödinger 绘景，其中态由随时间演化的复值波函数表示，比如 $\psi(x,t)$。波函数实际上就是态矢量 $|\psi\rangle$ 的那一组分量，在“$\delta$ 函数位置基”$|x\rangle$ 中表出，于是 $|\psi(t)\rangle = \int dx\,\psi(x,t)|x\rangle$。正则量子化的内容就是加上正则对易关系（canonical commutation relation）
+\begin{equation*}
+[\hat{x}, \hat{p}] = i,
+\tag{9.13}
+\end{equation*}
+把它加在坐标算符 $\hat{x}$ 及其共轭动量 $\hat{p}$ 上。对于由依赖 $x$ 和 $t$ 的波函数所表示的态，$\hat{x}$ 不过就是乘以 $x$，所以式 (9.13) 可以通过令
+\begin{equation*}
+\hat{p} = -i\partial_x.
+\tag{9.14}
+\end{equation*}
+来实现。哈密顿算符是
+\begin{equation*}
+H = -\frac{1}{2}\partial_x^2 + \frac{1}{2}\omega^2 x^2,
+\tag{9.15}
+\end{equation*}
+而运动方程就是 Schrödinger 方程，
+\begin{equation*}
+H\psi = i\partial_t\psi.
+\tag{9.16}
+\end{equation*}
+由于哈密顿量不含时间，这个方程的解可以分离成空间的函数与时间的函数，$\psi(x,t) = f(t)g(x)$。这些解构成一个由整数 $n \geq 0$ 标记的离散集合，我们求得（在相差归一化因子的意义下）
+\begin{equation*}
+\psi_n(x,t) = e^{-(1/2)\omega x^2} H_n(\sqrt{\omega}\,x)\, e^{-iE_n t},
+\tag{9.17}
+\end{equation*}
+其中 $H_n$ 是 $n$ 次厄米多项式（Hermite polynomial），而
+\begin{equation*}
+E_n = \left(n + \frac{1}{2}\right)\omega.
+\tag{9.18}
+\end{equation*}
+这些态都是 $H$ 的本征函数，$E_n$ 就是能量本征值。振子的任意态无非就是能量本征态的叠加，
+\begin{equation*}
+\psi(x,t) = \sum_n c_n \psi_n(x,t),
+\tag{9.19}
+\end{equation*}
+其中诸系数 $c_n$ 适当归一化。
+
+这个简短的概述已包含了量子力学振子的许多重要特征。能量本征态具有分立谱；这正是它被称作“量子”力学的原因（尽管找出具有连续谱的系统并不困难）。存在一个能量最低的基态，以及一组由各自能量本征值唯一标记的激发态。基态具有非零的能量，
+\begin{equation*}
+E_0 = \frac{1}{2}\omega,
+\tag{9.20}
+\end{equation*}
+它有时被称为“零点”能（zero-point energy）。有趣的是，经典系统的最小能量本来会是零，对应于 $x = 0$、$p = 0$ 的粒子。量子的零点能可以追溯到 Heisenberg 不确定性原理：它不许我们同时在位置和动量上把一个态定域化；因此振子中总存在一个最低限度的“抖动”，导致非零的基态能量。另一方面，我们当然也可以选择去考察一个势由 $V(x) = \frac{1}{2}\omega^2 x^2 - \frac{1}{2}\omega$ 给出的振子；我们的分析将完全相同，只不过式 (9.18) 中的因子 $\frac{1}{2}$ 不再出现，而基态能量将会是零。量子力学并不坚持非要有非零的零点能，它只是把能量从经典值那里挪动了一下。
+
+% ---- 书页 382 / p397 ----
+求解简谐振子的另一种办法，是引进产生算符和湮灭算符 $\hat{a}^{\dagger}$ 与 $\hat{a}$（常称为升算符和降算符，raising and lowering operators），其定义为
+\begin{equation*}
+\hat{a} = \frac{1}{\sqrt{2\omega}}\left(\omega\hat{x} + i\hat{p}\right), \qquad \hat{a}^{\dagger} = \frac{1}{\sqrt{2\omega}}\left(\omega\hat{x} - i\hat{p}\right),
+\tag{9.21}
+\end{equation*}
+于是
+\begin{equation*}
+\hat{x} = \frac{1}{\sqrt{2\omega}}(\hat{a} + \hat{a}^{\dagger}), \qquad \hat{p} = -i\sqrt{\frac{\omega}{2}}(\hat{a} - \hat{a}^{\dagger}).
+\tag{9.22}
+\end{equation*}
+利用我们先前关于对易关系的表达式 (9.13) 和哈密顿量 (9.7)，我们可以容易地算出产生算符和湮灭算符的对易关系，
+\begin{equation*}
+[\hat{a}, \hat{a}^{\dagger}] = 1,
+\tag{9.23}
+\end{equation*}
+以及哈密顿量的新表达式，
+\begin{equation*}
+H = \left(\hat{a}^{\dagger}\hat{a} + \frac{1}{2}\right)\omega.
+\tag{9.24}
+\end{equation*}
+产生/湮灭算符与哈密顿量按如下方式对易：
+\begin{align*}
+[H, \hat{a}] &= -\omega\hat{a} \\
+[H, \hat{a}^{\dagger}] &= \omega\hat{a}^{\dagger}.
+\tag{9.25}
+\end{align*}
+把这个版本的哈密顿量与能量本征值 (9.18) 相比较，我们受到启发，定义一个粒子数算符（number operator）
+\begin{equation*}
+\hat{n} = \hat{a}^{\dagger}\hat{a}.
+\tag{9.26}
+\end{equation*}
+
+% ---- 书页 383 / p398 ----
+让我们想一想，为什么产生/湮灭算符和粒子数算符配得上这些名字。考虑粒子数算符的一个本征态 $|n\rangle$，
+\begin{equation*}
+\hat{n}|n\rangle = n|n\rangle,
+\tag{9.27}
+\end{equation*}
+其中左边的 $\hat{n}$ 代表粒子数算符，而右边第一个 $n$ 代表实际的数 $n$。（这个公式是整个量子力学中最迷人的公式。）摆弄一下对易关系，容易证明
+\begin{align*}
+\hat{n}\hat{a}^{\dagger}|n\rangle &= (n+1)\hat{a}^{\dagger}|n\rangle \\
+\hat{n}\hat{a}|n\rangle &= (n-1)\hat{a}|n\rangle.
+\tag{9.28}
+\end{align*}
+这样，当 $\hat{a}^{\dagger}$ 作用在 $|n\rangle$ 上时，它给出 $\hat{n}$ 的另一个本征态，本征值升高了 1；而 $\hat{a}$ 给出本征值降低了 1 的本征态。和前面一样，我们可以证明 $n$ 取从 $0$ 到 $\infty$ 的整数值，因此必定存在一个真空态 $|0\rangle$，满足
+\begin{equation*}
+\hat{a}|0\rangle = 0.
+\tag{9.29}
+\end{equation*}
+从这个态出发，借助产生算符的逐次作用，我们可以构造出所有的本征态，
+\begin{equation*}
+|n\rangle = \frac{1}{\sqrt{n!}}\left(\hat{a}^{\dagger}\right)^{n}|0\rangle.
+\tag{9.30}
+\end{equation*}
+粒子数算符计数的是高出基态的激发的数目。本征态的集合 $|n\rangle$ 充当一组基；任何态都是这些态的适当线性组合。产生算符和湮灭算符按如下方式作用在它们之上：
+\begin{align*}
+\hat{a}|n\rangle &= \sqrt{n}\,|n-1\rangle \\
+\hat{a}^{\dagger}|n\rangle &= \sqrt{n+1}\,|n+1\rangle,
+\tag{9.31}
+\end{align*}
+而每个态的能量当然由式 (9.18) 给出。基矢态取为不含时间，于是，一个服从 Schrödinger 方程的物理系统将用态
+\begin{equation*}
+|\psi(t)\rangle = \sum_n c_n e^{-iE_n t}|n\rangle,
+\tag{9.32}
+\end{equation*}
+来描述，其中诸 $c_n$ 同样是常数系数。
+
+为了让向场论的过渡更加平滑，把这种 Schrödinger 绘景的描述转译成 Heisenberg 绘景是有用的，在 Heisenberg 绘景中态是固定的，算符则随时间演化。给定 Schrödinger 方程 (9.16)，任何态都可以形式地写成某个固定的初始态经一个幺正时间演化算符作用后的结果，
+\begin{equation*}
+|\psi(t)\rangle = U(t)|\psi(0)\rangle,
+\tag{9.33}
+\end{equation*}
+
+% ---- 书页 384 / p399 ----
+其中
+\begin{equation*}
+U(t) = \mathcal{P}\, e^{-i\int H\,dt},
+\tag{9.34}
+\end{equation*}
+（幺正的意思是 $U^{\dagger}U = 1$。）符号 $\mathcal{P}$ 代表路径排序（path-ordering），如附录 I 中所讨论。当然，如果哈密顿量不含时间，我们就简单地有 $U(t) = e^{-iHt}$。一个不含时算符 $A$ 在两个含时态 $|\psi_1(t)\rangle$ 和 $|\psi_2(t)\rangle$ 之间矩阵元的 Schrödinger 绘景表达式，于是可以写成 Heisenberg 绘景的表达式，即用含时算符 $A(t)$ 与不含时态表示为
+\begin{align*}
+\langle\psi_2(t)|A|\psi_1(t)\rangle &= \langle\psi_2(0)|U^{\dagger}(t)AU(t)|\psi_1(0)\rangle \\
+&= \langle\psi_2|A(t)|\psi_1\rangle,
+\tag{9.35}
+\end{align*}
+显然，其中 Heisenberg 绘景的算符由下式给出：
+\begin{equation*}
+A(t) = U^{\dagger}(t)AU(t).
+\tag{9.36}
+\end{equation*}
+这样的算符满足\textbf{Heisenberg 运动方程}（Heisenberg equation of motion），
+\begin{equation*}
+\frac{dA(t)}{dt} = i[H, A(t)],
+\tag{9.37}
+\end{equation*}
+它在这个绘景中取代了 Schrödinger 方程的位置。对于谐振子，我们会发现
+\begin{equation*}
+\frac{d\hat{a}}{dt} = -i\omega\hat{a}, \qquad \frac{d\hat{a}^{\dagger}}{dt} = i\omega\hat{a}^{\dagger},
+\tag{9.38}
+\end{equation*}
+其解为
+\begin{equation*}
+\hat{a}(t) = e^{-i\omega t}\hat{a}(0), \qquad \hat{a}(t)^{\dagger} = e^{i\omega t}\hat{a}(0)^{\dagger}.
+\tag{9.39}
+\end{equation*}
+由此我们立即得到
+\begin{equation*}
+\hat{n}(t) = \hat{a}(t)^{\dagger}\hat{a}(t) = \hat{a}(0)^{\dagger}\hat{a}(0),
+\tag{9.40}
+\end{equation*}
+这反映了粒子数算符守恒这一事实。
+
+人们常说，在 Heisenberg 绘景中态是不含时的；这话尽管不假，却有些令人困惑。或许更好的说法是：态延伸贯穿于整个时间，而不只是定义在某个固定时刻。为了把这一点看得更清楚，考虑一个受到外界影响的简谐振子，比如简单地在哈密顿量中加上一个强迫项，
+\begin{equation*}
+H = \frac{1}{2}p^2 + \frac{1}{2}\omega^2 x^2 + F(t),
+\tag{9.41}
+\end{equation*}
+其中函数 $F(t)$ 在某个区间之外为零：
+\begin{equation*}
+F(t) =
+\begin{cases}
+0 & t < t_1 \\
+F(t) & t_1 \leq t \leq t_2 \\
+0 & t_2 < t .
+\end{cases}
+\tag{9.42}
+\end{equation*}
+
+% ---- 书页 385 / p400 ----
+我们可以想象有人走过来，把我们的振子摇晃了一小会儿，然后就撒手不管了。在 Schrödinger 绘景中，我们会说：开始时处于基态的振子会被外力激发，末态不再是基态。而在 Heisenberg 绘景中，我们把态取成对所有时刻都成立的运动方程的解，并且说粒子数算符从零变成了某个别的值。
+
+对于受到瞬态外力作用的振子，显然存在一组态，它们在早期看起来像能量本征态，尽管在将来就不再是这样了；我们可以把这样的态称为“in 态”$|n_{\mathrm{in}}\rangle$，它具有性质
+\begin{equation*}
+\hat{n}(t < t_1)|n_{\mathrm{in}}\rangle = n|n_{\mathrm{in}}\rangle.
+\tag{9.43}
+\end{equation*}
+还有另外一组态，它们在晚期看起来像能量本征态，相应地称为“out 态”$|n_{\mathrm{out}}\rangle$，满足
+\begin{equation*}
+\hat{n}(t > t_2)|n_{\mathrm{out}}\rangle = n|n_{\mathrm{out}}\rangle.
+\tag{9.44}
+\end{equation*}
+这两组态在所有时刻都存在，但只有在相应的渐近区域里，它们才看起来像能量本征态。任何一组都构成整个希尔伯特空间的一组基，所以特别地，我们可以用其中一组去展开另一组。例如，通过乘上一个 in 态的完备集，我们可以写出
+\begin{equation*}
+|n_{\mathrm{out}}\rangle = \sum_m \langle m_{\mathrm{in}}|n_{\mathrm{out}}\rangle|m_{\mathrm{in}}\rangle.
+\tag{9.45}
+\end{equation*}
+复数 $\langle m_{\mathrm{in}}|n_{\mathrm{out}}\rangle$ 是矩阵元，原则上可以从哈密顿量 (9.41) 算出；它们合在一起构成\textbf{S 矩阵}（S-matrix）。一个装备了某种探测振子激发之手段的观者会发现，激发的数目被所施加的力改变了，而 S 矩阵编码了刻画渐近过去与渐近未来之间这些改变所需的全部信息。不用说，这整段讨论几乎可以原封不动地搬到场论中。在粒子物理里，外力的角色由不同粒子之间的相互作用扮演；而在我们的目的中，扮演这一角色的将是时空的曲率。
+
+\section{平直时空中的量子场论}
+
+正如我们已经提到的，量子场论只是量子力学系统的一个特定例子，其中被量子化的不是一个单个的振子，而是一个场（定义在时空上的一个函数，或者更一般地某个张量场）。我们从最简单的例子开始：平直时空中的自由标量场；从单个振子过渡到这个场论，只需再作寥寥几个推广。而把理论扩展到弯曲时空，照例是直截了当的：把理论写成协变形式，然后宣布它成立。然而，一旦失去了 Minkowski 空间的对称性，我们通常视为量子场论核心的一些观念就不再显得那么关键；特别是，“真空”与“粒子”的概念将失去它们的特权地位。（讲解量子力学的书偶尔会指出，波和粒子是适用范围各不相同的互补概念，但不要被误导；在量子场论中，真正基本的是场，而粒子只是在某些受限情形下才有用的近似概念。）本节我们先研究平直时空中的量子场论，下一节再推广到弯曲时空。
+
+% ---- 书页 386 / p401 ----
+我们从经典理论出发，具体说来是平直时空中的实标量场 $\phi(x^{\mu})$，正如我们在第 1 章中考虑过的那样，只是这次推广到 $n$ 维。作用量是拉格朗日密度（Lagrange density）的时空积分，$S = \int d^{\,n}x\,\mathcal{L}$；我们将考虑 Klein–Gordon 拉格朗日量
+\begin{equation*}
+\mathcal{L} = -\frac{1}{2}\eta^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi - \frac{1}{2}m^2\phi^2.
+\tag{9.46}
+\end{equation*}
+没有必要纳入体积元因子 $\sqrt{|g|}$，因为我们在 Minkowski 空间中使用的是惯性坐标，其度规为
+\begin{equation*}
+ds^2 = -dt^2 + (d\mathbf{x})^2.
+\tag{9.47}
+\end{equation*}
+运动方程是 Klein–Gordon 方程，
+\begin{equation*}
+\Box\phi - m^2\phi = 0.
+\tag{9.48}
+\end{equation*}
+把场论转译成哈密顿描述是直截了当的。场的共轭动量（conjugate momentum）就是拉格朗日密度对该场的时间导数的导数，
+\begin{equation*}
+\pi = \frac{\partial\mathcal{L}}{\partial(\partial_0\phi)}.
+\tag{9.49}
+\end{equation*}
+对于 Klein–Gordon 拉格朗日量 (9.46)，这就是
+\begin{equation*}
+\pi = \dot{\phi}.
+\tag{9.50}
+\end{equation*}
+当然，一提到时间导数，就已默认我们选定了一个特定的惯性系；因此，哈密顿手续必然破坏显式的洛伦兹不变性。然而，只要我们足够小心，所得理论中的可观测量仍将是洛伦兹不变的。哈密顿量本身可以表示为哈密顿密度（Hamiltonian density）对空间的积分，
+\begin{equation*}
+H = \int d^{\,n-1}x\,\mathcal{H},
+\tag{9.51}
+\end{equation*}
+哈密顿密度通过勒让德变换与拉格朗日密度相联系：
+\begin{align*}
+\mathcal{H}(\phi,\pi) &= \pi\dot{\phi} - \mathcal{L}(\phi,\partial_\mu\phi) \\
+&= \frac{1}{2}\pi^2 + \frac{1}{2}(\nabla\phi)^2 + \frac{1}{2}m^2\phi^2,
+\tag{9.52}
+\end{align*}
+其中 $(\nabla\phi)^2 = \delta^{ij}(\partial_i\phi)(\partial_j\phi)$。这个场论与谐振子之间的对应应当是清楚的：场值 $\phi(x)$ 扮演坐标 $x$ 的角色，而动量场 $\pi(x)$ 取代了单个的动量 $p$。态不再由某个固定时刻的两个数（$x$ 与 $p$）来规定，而是必须在某个固定时刻给出遍布空间的场值 $[\phi(x^i)$ 和 $\pi(x^i)]$ 作为初始数据，另外还多出一项振子情形所没有的梯度项；除此之外，这套形式体系是非常相似的。
+
+% ---- 书页 387 / p402 ----
+我们应当强调，$\phi(x^{\mu})$ \emph{不是}波函数；它是一个动力学变量，是谐振子情形中单个自由度 $x$ 的推广。如果对这个场论作 Schrödinger 绘景的量子化，我们会去定义一个复的波泛函（wave functional）$\Psi[\phi(x^{\mu})]$，用它表示发现场处于各个组态的概率振幅。然而，我们将改用 Heisenberg 绘景，于是我们首要关心的事情，就是把 $\phi$ 提升为一个量子算符。
+
+首先，我们应当实际求出这个理论的解，以此完成经典分析。写下 Klein–Gordon 方程的解并不困难。一个好的例子是平面波，
+\begin{equation*}
+\phi(x^{\mu}) = \phi_0\, e^{ik_\mu x^\mu} = \phi_0\, e^{-i\omega t + i\mathbf{k}\cdot\mathbf{x}},
+\tag{9.53}
+\end{equation*}
+其中波矢的分量是
+\begin{equation*}
+k^{\mu} = (\omega, \mathbf{k}),
+\tag{9.54}
+\end{equation*}
+而频率必须满足色散关系（dispersion relation）
+\begin{equation*}
+\omega^2 = \mathbf{k}^2 + m^2.
+\tag{9.55}
+\end{equation*}
+这样的解与式 (9.9) 给出的简谐振子的解之间存在着明显的相似性。但二者也有一个重要的差别：对于振子，只有一个独立的解。由于振子具有唯一的频率，当我们把两个具有给定振幅 $x_0$ 与相位 $\alpha_0$ 的解相加时，它们合并成第三个频率相同、但振幅和相位不同的解。在场论中这不再成立。给定式 (9.55)，频率就由空间波矢 $\mathbf{k}$ 决定，至少在相差正负号的意义下如此。因此，我们面对的不再是单一的一种解，而是由 $\mathbf{k}$ 与 $\omega$ 的正负号所参数化的一族解。
+
+不过，我们仍然可以通过构造一组完备的、正交归一（orthonormal）的模式，来写下最一般的解，任何解都可以用这组模式表出。为了赋予“正交归一”以意义，我们需要在 Klein–Gordon 方程的解的空间上定义一个内积。虽然这些模式本身是时空的函数，但合适的内积可以表示成在常时超曲面 $\Sigma_t$ 上的积分：
+\begin{equation*}
+(\phi_1, \phi_2) = -i\int_{\Sigma_t}\left(\phi_1\partial_t\phi_2^{*} - \phi_2^{*}\partial_t\phi_1\right) d^{\,n-1}x.
+\tag{9.56}
+\end{equation*}
+
+% ---- 书页 388 / p403 ----
+正如我们所希望的，这个内积实际上\emph{不依赖于}积分所取的超曲面 $\Sigma_t$；利用 Stokes 定理和 Klein–Gordon 方程，你可以容易地验证这一点。把这个内积作用于两个波矢不同的平面波，得到
+\begin{align*}
+&\bigl(e^{ik_1^\mu x_\mu},\, e^{ik_2^\nu x_\nu}\bigr) \\
+&\quad = -i\int_{\Sigma_t}\bigl(e^{-i\omega_1 t + i\mathbf{k}_1\cdot\mathbf{x}}\,\partial_t\, e^{i\omega_2 t - i\mathbf{k}_2\cdot\mathbf{x}} - e^{i\omega_2 t - i\mathbf{k}_2\cdot\mathbf{x}}\,\partial_t\, e^{-i\omega_1 t + i\mathbf{k}_1\cdot\mathbf{x}}\bigr)\, d^{\,n-1}x \\
+&\quad = (\omega_2 + \omega_1)\, e^{-i(\omega_1 - \omega_2)t}\int_{\Sigma_t} e^{i(\mathbf{k}_1 - \mathbf{k}_2)\cdot\mathbf{x}}\, d^{\,n-1}x \\
+&\quad = (\omega_2 + \omega_1)\, e^{-i(\omega_1 - \omega_2)t}\,(2\pi)^{n-1}\delta^{(n-1)}(\mathbf{k}_1 - \mathbf{k}_2),
+\tag{9.57}
+\end{align*}
+其中我们用到了
+\begin{equation*}
+\int e^{i\mathbf{k}\cdot\mathbf{x}}\, d^{\,n-1}x = (2\pi)^{n-1}\delta^{(n-1)}(\mathbf{k}).
+\tag{9.58}
+\end{equation*}
+于是，除非两个模式的空间波矢 $\mathbf{k}$——从而它们的频率 $\omega$——相等，内积就为零。因此，一组正交归一的模式解由下式给出：
+\begin{equation*}
+f_{\mathbf{k}}(x^{\mu}) = \frac{e^{ik_\mu x^\mu}}{\left[(2\pi)^{n-1}2\omega\right]^{1/2}},
+\tag{9.59}
+\end{equation*}
+其中 $k^{\mu}$ 服从式 (9.55)，于是
+\begin{equation*}
+(f_{\mathbf{k}_1}, f_{\mathbf{k}_2}) = \delta^{(n-1)}(\mathbf{k}_1 - \mathbf{k}_2).
+\tag{9.60}
+\end{equation*}
+
+给定色散关系 (9.55)，$\mathbf{k}$ 只能把频率确定到相差一个整体的正负号。我们的策略是坚持让 $\omega$ 永远为正数，并把复共轭 $f^{*}_{\mathbf{k}}(x^{\mu})$ 包括进来，以补全模式的集合。（复共轭会同时改变指数中 $\mathbf{k}$ 项与 $\omega$ 项的正负号，不过 $\mathbf{k}$ 的分量本来就定义在从 $-\infty$ 到 $\infty$ 的范围上。）$f_{\mathbf{k}}$ 模式被称为正频的（positive-frequency），意思是它们满足
+\begin{equation*}
+\partial_t f_{\mathbf{k}} = -i\omega f_{\mathbf{k}}, \qquad \omega > 0,
+\tag{9.61}
+\end{equation*}
+而 $f^{*}_{\mathbf{k}}$ 模式是负频的（negative-frequency），满足
+\begin{equation*}
+\partial_t f^{*}_{\mathbf{k}} = i\omega f^{*}_{\mathbf{k}}, \qquad \omega > 0.
+\tag{9.62}
+\end{equation*}
+（当心：这些模式虽然 $\omega > 0$，却被称作负频的，因为时间导数提出来的因子是 $+i\omega$ 而不是 $-i\omega$。）复共轭模式与原来的模式正交，
+\begin{equation*}
+(f_{\mathbf{k}_1}, f^{*}_{\mathbf{k}_2}) = 0,
+\tag{9.63}
+\end{equation*}

@@ -1,0 +1,340 @@
+% 3.7 空间群表示理论的描述性叙述
+\section{空间群表示理论的描述性叙述}
+
+本节描述如何求出给定空间群的所有表示。这里的叙述并不完全严格；论证中的主要缺口在文中均有指出。这些缺口将在第四章补齐，该章对具有真不变 Abel 子群的群的表示理论给出严格而完整的论述，空间群正是这类群的一个特例。
+
+于是我们考虑具有平移子群 $\mathbf{T}$ 的空间群 $\mathbf{G}$。$\mathbf{T}$ 的表示已在 3.4 节给出，它们由 $\mathbf{G}$ 所依托的布拉维格子 $\mathbf{F}$ 的布里渊区中的矢量 $\mathbf{k}$ 刻画。这些表示 $\Delta^{\mathbf{k}}$ 满足（见式 (3.4.3)）
+\begin{equation*}
+\Delta^{\mathbf{k}}(\{E \mid \mathbf{t}\}) = \exp(-\mathrm{i}\mathbf{k} \cdot \mathbf{t}).
+\tag{3.7.1}
+\end{equation*}
+我们可以用 $\mathbf{T}$ 的左陪集代表写出 $\mathbf{G}$：
+\begin{equation*}
+\mathbf{G} = \{R_{1} \mid \mathbf{v}_{1}\}\mathbf{T} + \{R_{2} \mid \mathbf{v}_{2}\}\mathbf{T} + \dots + \{R_{h} \mid \mathbf{v}_{h}\}\mathbf{T}
+\tag{3.5.2}
+\end{equation*}
+其中一如既往可取 $R_{1} = E$、$\mathbf{v}_{1} = 0$，而 $\mathbf{v}_{i}$ 是与 $R_{i}$ 相联系的矢量。陪集代表构成集合 $\mathbf{Q}$，它不一定是群。然而商群 $\mathbf{G}/\mathbf{T}$ 是群，且同构于由算符 $R_{1}, R_{2}, \dots, R_{h}$ 构成的点群 $\mathbf{F}$。$\mathbf{F}$ 是 $\mathbf{G}$ 的同形点群，其阶 $h$ 是 $\mathbf{G}$ 的宏观阶。
+
+\noindent\textbf{定义 3.7.1}\quad （表示域）\ 对任何空间群 $\mathbf{G}$，相应布里渊区存在一个\textit{表示域}（representation domain）$\Phi$，使得 $(\sum_{R} R\Phi)$ 等于整个布里渊区，其中对 $R$ 的求和取遍 $\mathbf{G}$ 的同形点群 $\mathbf{F}$ 的元素。
+
+把表示域的这一定义与定义 3.3.3 中基本域的定义加以比较是有益的。若空间群 $\mathbf{G}$ 的同形点群就是相应晶系的全对称点群，即 $\mathbf{F}$ 与 $\mathbf{P}$ 重合，则表示域 $\Phi$ 与基本域 $\Omega$ 体积相同，并且可以取成彼此重合。但一般地 $\mathbf{F}$ 是 $\mathbf{P}$ 的子群；若 $|\mathbf{P}|/|\mathbf{F}| = i$，则表示域 $\Phi$ 的体积将等于基本域 $\Omega$ 体积的 $i$ 倍。还要注意，尽管 $\Omega$ 对每个布里渊区是固定的，$\Phi$ 却依赖于所考虑的空间群。对给定空间群 $\mathbf{G}$ 引入 $\Phi$ 的原因在于，它在推导 $\mathbf{G}$ 的完全表示集合的方案中至关重要。
+
+作为抽象数学问题，确定空间群 $\mathbf{G}$ 的表示是有趣的。然而，研究空间群表示的动机大多与它们在研究规则晶体中量子力学粒子或准粒子的哈密顿量的本征函数和本征值方面的用处有关。众所周知（也许近平凡）的一个说法是：若系统具有某群对称操作 $\mathbf{G}$，则该系统的任何物理可观察量也必具有这些对称操作；这一说法有时称为 Neumann 原理，例如用于简化描述晶体某种物理性质的张量的形式（Birss 1964, Nye 1957）。然而波函数 $\psi$ 不是系统的物理可观察量，因此不能必然地期望它展现 $\mathbf{G}$ 的全部对称性。尽管如此，仍然可以获得关于 $\psi$ 在 $\mathbf{G}$ 元素操作下的变换性质的若干信息。把群论应用于量子力学研究的基本原理在于 1.1 节提到的 Wigner 定理；该定理有若干种表述方式，这里只给出一种。
+
+\noindent\textbf{定理 3.7.1}\quad （Wigner 定理）\ 若 $R$ 是描述某个量子力学系统的哈密顿算符 $H$ 的对称操作，且 $\psi$ 是 $H$ 的本征函数，则 $R\psi$ 也是 $H$ 的本征函数，并与 $\psi$ 具有相同的本征值 $E$。
+
+关于该定理的证明，读者可参考 Wigner 关于群论与量子力学的经典著作（英译本 Wigner (1959)）。这一结果的另一种说法是：粒子或准粒子的波函数 $\psi$ 必定是 $\mathbf{G}$ 的某个不可约表示的基的一个分量。在我们眼下的问题中 $\mathbf{G}$ 是空间群。
+
+现在我们采用的方法是：假设给定 $\mathbf{G}$ 的任意一个表示，讨论它的性质；然后假设我们找到的性质不仅必要而且足以刻画 $\mathbf{G}$ 的表示——这一假设是使本处理不完全严格的原因之一。做完这些之后，我们将说明如何系统地构造出 $\mathbf{G}$ 的所有表示。
+
+设 $\Gamma$ 是作用在维数为 $d$ 的矢量空间 $V$ 上的 $\mathbf{G}$ 的表示。若只考虑 $\Gamma$ 中表示平移的那些元素，则它们构成 $\mathbf{T}$ 的一个表示，它一般是可约的。设它约化成由矢量 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{q}$ 刻画的 $\mathbf{T}$ 的表示。这些 $\mathbf{T}$ 的表示都是一维的，于是由 3.4 节的讨论可知，在 $V$ 中可以找到一组由 Bloch 函数 $\psi_{\mathbf{k}_{1}}(\mathbf{r}), \psi_{\mathbf{k}_{2}}(\mathbf{r}), \dots, \psi_{\mathbf{k}_{d}}(\mathbf{r})$ 构成的基，相对于这组基，$\mathbf{T}$ 的元素由对角矩阵表示；且由式 (3.7.1)，对角元 $\Gamma(\{E \mid \mathbf{t}\})_{pp}$ 为 $\exp(-\mathrm{i}\mathbf{k}_{p} \cdot \mathbf{t})$。矢量 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{d}$ 可能不全不同；此时需要对函数 $\psi_{\mathbf{k}_{p}}(\mathbf{r})$ 引入第二个指标，以区分用同一 $\mathbf{k}$ 矢量标记的两个函数。为了考察这是否可能，让我们仔细考察矢量 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{d}$ 最初是如何产生的。我们利用两个事实：$V$ 在 $\mathbf{G}$ 下不可约；以及定理 3.6.1——若 $\psi_{\mathbf{k}}(\mathbf{r})$ 是波矢为 $\mathbf{k}$ 的 Bloch 函数，则 $\{S \mid \mathbf{w}\}\psi_{\mathbf{k}}(\mathbf{r})$ 是波矢为 $S\mathbf{k}$ 的 Bloch 函数。$\Gamma$ 是表示这一事实意味着，若从 $\psi_{\mathbf{k}_{1}}(\mathbf{r})$ 出发，则 $\mathbf{G}$ 的任何元素 $\{R \mid \mathbf{v}\}$ 作用其上产生的是波矢为 $R\mathbf{k}_{1}$ 的 Bloch 函数，且它仍在 $V$ 中。
+
+\noindent\textbf{定义 3.7.2}\quad （星）\ 从集合 $\mathbf{k}_{i}$（$i = 1$ 到 $d$）中选出的一组互不相同的 $\mathbf{k}$ 矢量称为 $\Gamma$ 的\textit{星}（star）。（此处记住：若两个 $\mathbf{k}$ 矢量等价，它们就不是不同的——见式 (3.4.4)。）
+
+由于上述讨论不管从 $\mathbf{k}_{1}$ 还是从星的其他成员出发都成立，我们证明了：星可以从它的任一成员出发、用 $\mathbf{F}$ 的元素作用该成员而生成。
+
+\noindent\textbf{定义 3.7.3}\quad （小陪群）\ $\mathbf{F}$ 中使 $\mathbf{k}_{1}$ 不变的元素，即满足 $R\mathbf{k}_{1} \equiv \mathbf{k}_{1}$ 的元素 $R \in \mathbf{F}$，构成 $\mathbf{F}$ 的一个子群，称为 $\mathbf{k}_{1}$ 的\textit{小陪群}（little co-group），记作 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$。
+
+由定理 1.2.3(ii)，$\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的阶整除 $\mathbf{F}$ 的阶 $h$。现设 $R\mathbf{k}_{1} \equiv \mathbf{k}_{1}$，而 $S$ 是任一使 $S\mathbf{k}_{1} \equiv \mathbf{k}_{2}$ 的固定元素，则 $SRS^{-1}\mathbf{k}_{2} \equiv SR\mathbf{k}_{1} \equiv S\mathbf{k}_{1} \equiv \mathbf{k}_{2}$。这意味着 $S\overline{\mathbf{G}}^{\mathbf{k}_{1}}S^{-1}$ 的每个元素都含于 $\overline{\mathbf{G}}^{\mathbf{k}_{2}}$，因此 $\overline{\mathbf{G}}^{\mathbf{k}_{2}}$ 的阶大于或等于 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的阶。但 $\mathbf{k}_{1} \equiv S^{-1}\mathbf{k}_{2}$，故 $S^{-1}\overline{\mathbf{G}}^{\mathbf{k}_{2}}S$ 的每个元素都含于 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$。于是星中各成员的小陪群阶数相等，并且由于形如 $\overline{\mathbf{G}}^{\mathbf{k}_{2}} = S\overline{\mathbf{G}}^{\mathbf{k}_{1}}S^{-1}$ 的关系在所有小陪群之间成立，星成员的小陪群构成一组相互共轭的子群。
+
+接下来我们确定使 $P\mathbf{k}_{1} \equiv \mathbf{k}_{2}$ 的元素 $P \in \mathbf{F}$ 的数目。设 $T$ 是 $\mathbf{F}$ 中使 $T\mathbf{k}_{2} \equiv \mathbf{k}_{1}$ 的任一固定元素，则 $TP\mathbf{k}_{1} \equiv T\mathbf{k}_{2} \equiv \mathbf{k}_{1}$，故 $TP \in \overline{\mathbf{G}}^{\mathbf{k}_{1}}$。因此 $P$ 属于左陪集 $T^{-1}\overline{\mathbf{G}}^{\mathbf{k}_{1}}$，从而这样的元素 $P$ 的数目等于小陪群的阶。我们证明了：若把 $\mathbf{F}$ 写成星中任一成员的小陪群的左陪集之和，则这些陪集与星的成员一一对应。作为推论，小陪群的阶与星成员数之积等于 $\mathbf{F}$ 的阶。这些定理在布里渊区对称性方面的几何解释，Bouckaert, Smoluchowski, and Wigner (1936) 讲得非常清楚。从我们的观点看，重要的几何事实是：不失一般性，生成星的矢量 $\mathbf{k}_{1}$ 总可以取在布里渊区表示域的内部或表面上。的确，仔细考虑定义 3.7.1 与 3.7.2 可知，表示域的定义正是为了使它至少含有每颗星中的一个 $\mathbf{k}$ 矢量。
+
+当 $\mathbf{k}_{1}$ 在基本域内时，每种空间群所有对称线和对称点的 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 可以直接从表 3.6 读出。每种情形下 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的元素就是 $\mathbf{P}(\mathbf{k}_{1})$ 的元素中同时也是 $\mathbf{F}$ 成员的那些元素。
+
+当 $\mathbf{k}_{1}$ 位于表示域中基本域之外的部分时，$\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的元素与 $\overline{\mathbf{G}}^{\mathbf{k}}$ 的元素有很简单的关系，其中 $\mathbf{k}$ 是基本域中的一点，可由 $\mathbf{k}_{1}$ 经 $\mathbf{F}$ 的元素作用得到。
+
+\noindent\textbf{定义 3.7.4}\quad （小群）\ 设小陪群 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 由 $b$ 个元素 $S_{1}, S_{2}, \dots, S_{b}$ 组成。考察式 (3.5.2) 中 $\mathbf{G}$ 关于 $\mathbf{T}$ 的左陪集分解，把陪集代表的转动部分为 $S_{1}, \dots, S_{b}$ 的那 $b$ 个左陪集作集合论意义上的并，所得集合记为 $\mathbf{G}^{\mathbf{k}_{1}}$，称为 $\mathbf{k}_{1}$ 的\textit{小群}（little group）。
+
+不过，正如可以把 $\mathbf{F}$ 写成关于 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的左陪集之和：
+\begin{equation*}
+\mathbf{F} = T_{1}\overline{\mathbf{G}}^{\mathbf{k}_{1}} + T_{2}\overline{\mathbf{G}}^{\mathbf{k}_{1}} + \dots + T_{q}\overline{\mathbf{G}}^{\mathbf{k}_{1}},
+\tag{3.7.2}
+\end{equation*}
+其中 $q = h/b$ 是 $\mathbf{k}_{1}$ 的星的成员数，且若 $T_{i}\mathbf{k}_{1} \equiv \mathbf{k}_{i}$，则左陪集 $T_{i}\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的所有元素都把 $\mathbf{k}_{1}$ 变到 $\mathbf{k}_{i}$，故左陪集与矢量 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{q}$ 一一对应；同样可以写
+\begin{equation*}
+\mathbf{G} = \{T_{1} \mid \mathbf{x}_{1}\}\mathbf{G}^{\mathbf{k}_{1}} + \{T_{2} \mid \mathbf{x}_{2}\}\mathbf{G}^{\mathbf{k}_{1}} + \dots + \{T_{q} \mid \mathbf{x}_{q}\}\mathbf{G}^{\mathbf{k}_{1}}
+\tag{3.7.3}
+\end{equation*}
+并保持同样的一一对应。这源于如下事实：陪集 $\{T_{i} \mid \mathbf{x}_{i}\}\mathbf{G}^{\mathbf{k}_{1}}$ 的任何元素把波矢为 $\mathbf{k}_{1}$ 的 Bloch 函数变成波矢为 $\mathbf{k}_{i}$ 的 Bloch 函数。证明如下：$\{T_{i} \mid \mathbf{x}_{i}\}\mathbf{G}^{\mathbf{k}_{1}}$ 的元素形如 $\{T_{i} \mid \mathbf{x}_{i}\}\{S \mid \mathbf{w}\}$，其中 $S \in \overline{\mathbf{G}}^{\mathbf{k}_{1}}$，并且
+\begin{equation*}
+\{T_{i} \mid \mathbf{x}_{i}\}\{S \mid \mathbf{w}\}\psi_{\mathbf{k}_{1}}(\mathbf{r}) = \psi_{T_{i}S\mathbf{k}_{1}}(\mathbf{r} - \mathbf{x}_{i} - T_{i}\mathbf{w})
+\end{equation*}
+由于 $T_{i}S\mathbf{k}_{1} \equiv T_{i}\mathbf{k}_{1} \equiv \mathbf{k}_{i}$，它是波矢为 $\mathbf{k}_{i}$ 的 Bloch 函数。另见定理 3.6.1，它证明左端具有同样的性质。小群 $\mathbf{G}^{\mathbf{k}_{1}}$ 的特征性质是：它的每个元素都把波矢为 $\mathbf{k}_{1}$ 的 Bloch 函数变成另一个波矢仍为 $\mathbf{k}_{1}$ 的 Bloch 函数。
+
+现在回到最初的问题：刻画表示 $\Gamma$ 的矢量 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{d}$ 是否可能不全不同，还是 $d$ 必然等于 $q$？现在可以得到的答案是：$d$ 必是 $q$ 的固定倍数：$d = tq$，$t$ 为整数，且星 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{q}$ 在集合 $\mathbf{k}_{1}, \mathbf{k}_{2}, \dots, \mathbf{k}_{d}$ 中恰好重复 $t$ 次。
+
+这一论断的证明如下。由关于小群的讨论，$\mathbf{G}$ 中有可能从 $\psi_{\mathbf{k}_{1}}(\mathbf{r})$ 生成波矢为 $\mathbf{k}_{1}$ 的新 Bloch 函数的元素只有 $\mathbf{G}^{\mathbf{k}_{1}}$ 的元素；并且由于 $\{E \mid \mathbf{t}\}\{S_{i} \mid \mathbf{w}_{i}\}$ 与 $\{S_{i} \mid \mathbf{w}_{i}\}$（除一个可忽略的相位因子外）从 $\psi_{\mathbf{k}_{1}}(\mathbf{r})$ 生成同一个 Bloch 函数，所以基 $\psi_{\mathbf{k}_{1}}(\mathbf{r}), \psi_{\mathbf{k}_{2}}(\mathbf{r}), \dots, \psi_{\mathbf{k}_{d}}(\mathbf{r})$ 中波矢为 $\mathbf{k}_{1}$ 的 Bloch 函数的数目不超过 $t$。设 $\psi_{\mathbf{k}_{1}, i}(\mathbf{r})$（$i = 1$ 到 $t$）是它们的一组线性无关选择，则
+\begin{equation*}
+\sum_{i=1}^{t}\lambda_{i}\psi_{\mathbf{k}_{1}, i}(\mathbf{r}) = 0
+\tag{3.7.4}
+\end{equation*}
+蕴含 $\lambda_{i} = 0$（$i = 1$ 到 $t$）。现设
+\begin{equation*}
+\sum_{i=1}^{t}\lambda_{i}\{T_{j} \mid \mathbf{x}_{j}\}\psi_{\mathbf{k}_{1}, i}(\mathbf{r}) = 0,
+\end{equation*}
+用 $\{T_{j} \mid \mathbf{x}_{j}\}^{-1}$ 左乘并利用关系 (3.7.4) 得 $\lambda_{i} = 0$（$i = 1$ 到 $t$）。故函数 $\{T_{j} \mid \mathbf{x}_{j}\}\psi_{\mathbf{k}_{1}, i}(\mathbf{r})$（$i = 1$ 到 $t$）是波矢为 $\mathbf{k}_{j}$ 的线性无关 Bloch 函数。此外再没有别的函数能从 $\psi_{\mathbf{k}_{1}}(\mathbf{r})$ 生成，因为否则通过逆推可以找到另外的波矢为 $\mathbf{k}_{1}$ 的线性无关函数，与我们已选尽可能多的说法矛盾。
+
+另一个重要事实是：$t$ 个波函数 $\psi_{\mathbf{k}_{1}, 1}(\mathbf{r}), \psi_{\mathbf{k}_{1}, 2}(\mathbf{r}), \dots, \psi_{\mathbf{k}_{1}, t}(\mathbf{r})$ 构成 $\mathbf{G}^{\mathbf{k}_{1}}$ 的一个不可约表示的基。它们构成表示，这一点由其生成方式可知；而这 $t$ 个矢量张成的子空间 $V^{\mathbf{k}_{1}}$ 在 $\mathbf{G}^{\mathbf{k}_{1}}$ 下的不可约性则由整个空间 $V$ 在 $\mathbf{G}$ 下的不可约性得到：符号化地可写 $V = \sum_{j}\{T_{j} \mid \mathbf{x}_{j}\}V^{\mathbf{k}_{1}}$，且若 $V^{\mathbf{k}_{1}}$ 约化，即 $V^{\mathbf{k}_{1}} = U^{\mathbf{k}_{1}} \oplus W^{\mathbf{k}_{1}}$，其中 $U^{\mathbf{k}_{1}}$ 与 $W^{\mathbf{k}_{1}}$ 是 $V^{\mathbf{k}_{1}}$ 的真子空间，则 $V$ 也约化为 $V = U \oplus W$，其中
+\begin{equation*}
+U = \sum_{j}\{T_{j} \mid \mathbf{x}_{j}\}U^{\mathbf{k}_{1}} \quad\text{和}\quad W = \sum_{j}\{T_{j} \mid \mathbf{x}_{j}\}W^{\mathbf{k}_{1}}
+\end{equation*}
+是 $V$ 的真子空间。这一符号化证明的细节留给读者。
+
+至此我们已完全刻画了表示 $\Gamma$ 的基。假定这一刻画是充分的，现在可以概述求出 $\mathbf{G}$ 的所有表示的方案。把所有结果汇总，方案如下。
+
+（i）从布里渊区的表示域中选一个矢量 $\mathbf{k}_{1}$。（ii）确定 $\mathbf{k}_{1}$ 的小陪群 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$，它由 $b$ 个满足 $S_{i}\mathbf{k}_{1} \equiv \mathbf{k}_{1}$ 的元素 $S_{j}$ 组成，并由 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 构造小群 $\mathbf{G}^{\mathbf{k}_{1}}$。（iii）确定含有 $\mathbf{k}_{1}$ 的星；等价地，把 $\mathbf{G}$ 写成关于 $\mathbf{G}^{\mathbf{k}_{1}}$ 的左陪集分解，因为我们已经证明星的矢量与这些左陪集一一对应。左陪集分解由式 (3.7.3) 给出。星中有 $q$ 个成员，$q = h/b$。（iv）确定 $\mathbf{G}^{\mathbf{k}_{1}}$ 的一个不可约表示 $\Gamma^{\mathbf{k}_{1}}_{p}$，其基具有附加性质：基函数是波矢为 $\mathbf{k}_{1}$ 的 Bloch 函数（即 $\mathbf{T}$ 的本征函数，$\{E \mid \mathbf{t}\}$ 的本征值为 $\exp(-\mathrm{i}\mathbf{k}_{1} \cdot \mathbf{t})$）。（v）构造矢量空间 $V$，它由全部函数 $\{T_{j} \mid \mathbf{x}_{j}\}\psi_{\mathbf{k}_{1}, i}(\mathbf{r})$（$j = 1$ 到 $q$，$i = 1$ 到 $t$；$\{T_{j} \mid \mathbf{x}_{j}\}$ 是 $\mathbf{G}^{\mathbf{k}_{1}}$ 在 $\mathbf{G}$ 中的任一组左陪集代表）的线性闭包组成。（vi）对具有 (iv) 中所述附加性质的一切可能小表示 $\Gamma^{\mathbf{k}_{1}}_{p}$ 重复步骤 (iv)，从而得到 $\mathbf{G}$ 的所有以 $\mathbf{k}_{1}$ 刻画的星为其星的表示。（vii）对表示域中的每个矢量 $\mathbf{k}_{1}$ 重复整个过程。这样便得到 $\mathbf{G}$ 的所有表示。
+
+由这一方案可见，$\mathbf{G}$ 的每个表示由一颗包含表示域中矢量 $\mathbf{k}_{1}$ 的星、以及 $\mathbf{k}_{1}$ 的小群的一个小表示的标记共同刻画。
+
+乍看起来，上面概述的数学处理与固体物理教科书中通常采用的处理之间似乎有冲突。在我们采用的处理中使用了 Wigner 定理，它把波函数 $\psi$ 归于完整空间群 $\mathbf{G}$ 的表示之一；完全刻画这样一个表示需要两个标记——星的标记与小表示的标记。而在通常的物理处理中，人们只谈论布里渊区表示域中的波矢以及与它们相联系的（小群的）表示。我们之所以用 $\mathbf{G}$ 的诱导表示的语言、而不仅仅用小群 $\mathbf{G}^{\mathbf{k}_{1}}$ 的表示的语言来表述理论，是因为我们的目标之一就是为通常使用的物理处理提供数学上的论证。
+
+用更直观的方式也许可以说明这些话的意义。设 $\mathbf{k}_{1}$ 是图 3.19 所示布里渊区表示域中的某个波矢。在我们描述的数学与物理两种处理中，都要辨认 $\mathbf{G}^{\mathbf{k}_{1}}$ 并确定 $\mathbf{G}^{\mathbf{k}_{1}}$ 的小表示 $\Gamma^{\mathbf{k}_{1}}_{p}$。设 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的阶为 $b$，星的成员数为 $q$，小表示的维数为 $t$。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{fig3_19a_mu.jpg}
+\caption*{\textbf{图 3.19(a)}\ 布里渊区与确定一个空间群表示的星的矢量。}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{fig3_19b_mu.jpg}
+\caption*{\textbf{图 3.19(b)}\ 表示域与确定一个小表示的矢量。}
+\end{figure}
+
+在物理处理中人们会说：在 $\mathbf{k}_{1}$ 处有一组属于 $\Gamma^{\mathbf{k}_{1}}_{p}$ 的 $t$ 个简并本征函数（本征值 $\lambda_{1}$），并且在 $\mathbf{k}_{1}$ 的星中其他每个波矢 $S\mathbf{k}_{1}$ 处也有一组类似的 $t$ 个简并本征函数（本征值相同为 $\lambda_{1}$）。然而由于星的这些其他成员都在表示域之外，而且人们通常只关心本征值的数值（在各表示域中相同），所以只考虑 $\mathbf{k}_{1}$ 处的 $t$ 个本征函数及 $t$ 重简并的本征值。在更严格的数学处理中，则有一组 $(qt)$ 个本征函数具有本征值 $\lambda_{1}$，其中每组 $t$ 个函数与 $\mathbf{k}_{1}$ 的星中的每个波矢相联系。也就是说，$\mathbf{G}$ 的一个表示涉及 $\mathbf{k}_{1}$ 的星中的全部波矢，因此使用 $\mathbf{G}$ 的表示就要用到整个布里渊区，见图 3.19(a)。而小群 $\mathbf{G}^{\mathbf{k}_{1}}$ 的（小）表示只与表示域中的单个波矢 $\mathbf{k}_{1}$ 相联系，见图 3.19(b)。
+
+给出了求 $\mathbf{G}$ 表示的方案之后，现在考虑它在实践中的运作。关键步骤是小表示的确定，方案的其余部分是直截了当的。这里遇到一个基本困难：群 $\mathbf{G}^{\mathbf{k}_{1}}$ 本身是一个空间群！看起来我们几乎回到了出发点。不过 $\mathbf{G}^{\mathbf{k}_{1}}$ 关于 $\mathbf{T}$ 的商群的阶 $b$ 比 $\mathbf{G}/\mathbf{T}$ 的阶 $h$ 小，因此问题有所简化。设
+\begin{equation*}
+\mathbf{G}^{\mathbf{k}_{1}} = \{S_{1} \mid \mathbf{w}_{1}\}\mathbf{T} + \{S_{2} \mid \mathbf{w}_{2}\}\mathbf{T} + \dots + \{S_{b} \mid \mathbf{w}_{b}\}\mathbf{T},
+\tag{3.7.5}
+\end{equation*}
+并设
+\begin{equation*}
+\{S_{i} \mid \mathbf{w}_{i}\}\{S_{j} \mid \mathbf{w}_{j}\} = \{S_{i}S_{j} \mid \mathbf{w}_{i} + S_{i}\mathbf{w}_{j}\} = \{E \mid \mathbf{t}_{ij}\}\{S_{k} \mid \mathbf{w}_{k}\},
+\tag{3.7.6}
+\end{equation*}
+其中 $\{E \mid \mathbf{t}_{ij}\} \in \mathbf{T}$，且由式 (3.7.6)
+\begin{equation*}
+\mathbf{t}_{ij} = \mathbf{w}_{i} + S_{i}\mathbf{w}_{j} - \mathbf{w}_{k}.
+\tag{3.7.7}
+\end{equation*}
+因为 $\mathbf{t}_{ij}$ 是平移，所以
+\begin{equation*}
+\Gamma^{\mathbf{k}_{1}}_{p}\left(\{S_{i} \mid \mathbf{w}_{i}\}\right)\Gamma^{\mathbf{k}_{1}}_{p}\left(\{S_{j} \mid \mathbf{w}_{j}\}\right) = \exp\left(-\mathrm{i}\mathbf{k}_{1} \cdot (\mathbf{w}_{i} + S_{i}\mathbf{w}_{j} - \mathbf{w}_{k})\right)\Gamma^{\mathbf{k}_{1}}_{p}\left(\{S_{k} \mid \mathbf{w}_{k}\}\right).
+\tag{3.7.8}
+\end{equation*}
+现在若对所有 $\{R \mid \mathbf{v}\} \in \mathbf{G}^{\mathbf{k}_{1}}$ 令
+\begin{equation*}
+\Gamma^{\mathbf{k}_{1}}_{p}(\{R \mid \mathbf{v}\}) = \exp(-\mathrm{i}\mathbf{k}_{1} \cdot \mathbf{v})\mathbf{D}^{\mathbf{k}_{1}}_{p}(\{R \mid \mathbf{v}\})
+\tag{3.7.9}
+\end{equation*}
+则由式 (3.7.8) 得
+\begin{equation*}
+\mathbf{D}^{\mathbf{k}_{1}}_{p}\left(\{S_{i} \mid \mathbf{w}_{i}\}\right)\mathbf{D}^{\mathbf{k}_{1}}_{p}\left(\{S_{j} \mid \mathbf{w}_{j}\}\right) = \exp(-\mathrm{i}\mathbf{g}_{i} \cdot \mathbf{w}_{j})\mathbf{D}^{\mathbf{k}_{1}}_{p}\left(\{S_{k} \mid \mathbf{w}_{k}\}\right)
+\tag{3.7.10}
+\end{equation*}
+其中，注意到 $S_{i}\mathbf{k}_{1} \equiv \mathbf{k}_{1}$，$\mathbf{g}_{i}$ 是由方程
+\begin{equation*}
+S^{-1}_{i}\mathbf{k}_{1} = \mathbf{k}_{1} + \mathbf{g}_{i}
+\tag{3.7.11}
+\end{equation*}
+定义的倒格子矢量。另外，若 $\{E \mid \mathbf{t}\} \in \mathbf{T}$，则由式 (3.7.9)
+\begin{equation*}
+\mathbf{D}^{\mathbf{k}_{1}}_{p}(\{E \mid \mathbf{t}\}) = 1.
+\tag{3.7.12}
+\end{equation*}
+同样正确的是：若 $\{E \mid \mathbf{t}\} \in \mathbf{T}$，则
+\begin{equation*}
+\exp\left\{-\mathrm{i}\mathbf{g}_{i} \cdot (\mathbf{w}_{j} + \mathbf{t})\right\} = \exp(-\mathrm{i}\mathbf{g}_{i} \cdot \mathbf{w}_{j}).
+\tag{3.7.13}
+\end{equation*}
+式 (3.7.12)、(3.7.13) 与 (3.7.10) 合起来意味着：$\mathbf{D}^{\mathbf{k}_{1}}_{p}$ 的矩阵对式 (3.7.5) 中任一固定陪集的所有成员都是相同的。也就是说，$\mathbf{D}^{\mathbf{k}_{1}}_{p}$ 是定义在商群 $\mathbf{G}^{\mathbf{k}_{1}}/\mathbf{T}$ 的元素上的矩阵值函数。但这个商群同构于小陪群 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$。
+
+因此可以把式 (3.7.10) 改写为
+\begin{equation*}
+\mathbf{D}^{\mathbf{k}_{1}}_{p}(S_{i})\mathbf{D}^{\mathbf{k}_{1}}_{p}(S_{j}) = \exp(-\mathrm{i}\mathbf{g}_{i} \cdot \mathbf{w}_{j})\mathbf{D}^{\mathbf{k}_{1}}_{p}(S_{k}),
+\tag{3.7.14}
+\end{equation*}
+其中 $S_{i}S_{j} = S_{k}$ 且 $S^{-1}_{i}\mathbf{k}_{1} = \mathbf{k}_{1} + \mathbf{g}_{i}$。
+
+由式 (3.7.14) 可见，在如下两种重要情形中 $\mathbf{D}^{\mathbf{k}_{1}}_{p}$ 是 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 到一组矩阵的同态：
+
+（i）若对所有 $j = 1$ 到 $b$ 有 $\mathbf{w}_{j} = 0$。这是空间群 $\mathbf{G}$ 为点式群的情形。
+
+（ii）若对所有 $i = 1$ 到 $b$ 有 $S^{-1}_{i}\mathbf{k}_{1} = \mathbf{k}_{1}$（即 $\mathbf{g}_{i} = 0$）。这是 $\mathbf{k}_{1}$ 为布里渊区内点的情形，因为此时布里渊区中与 $\mathbf{k}_{1}$ 等价的点只有 $\mathbf{k}_{1}$ 自己。
+
+当 $\mathbf{D}^{\mathbf{k}_{1}}_{p}$ 是同态时，它是小陪群的一个表示，而且 $\Gamma^{\mathbf{k}_{1}}_{p}$ 的不可约性意味着 $\mathbf{D}^{\mathbf{k}_{1}}_{p}$ 也必不可约。因此在上述两种情形中，我们要做的只是求出小陪群 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 的不可约表示——这可以从表 2.2 与 2.3 读出。
+
+剩下的唯一情形是 $\mathbf{k}_{1}$ 位于布里渊区面上而空间群为非点式群的情形。
+
+若 $\mathbf{k}_{1}$ 是一般点，则小陪群仅由恒等元构成，又回到情形 (ii)。于是仅有的困难情形是：非点式空间群且 $\mathbf{k}_{1}$ 是对称点，或者 $\mathbf{k}_{1}$ 位于布里渊区面上的对称线或对称面上。
+
+为了覆盖这些困难情形，需要引入有限群的\textit{射影表示}（projective representation）概念。
+
+\noindent\textbf{定义 3.7.5}\quad （射影表示）\ 定义在群 $\mathbf{H}$（由元素 $H_{i}$，$i = 1$ 到 $|\mathbf{H}|$ 组成）上的非奇异矩阵值函数 $\Delta$ 称为 $\mathbf{H}$ 的射影表示，若它满足如下规则：
+
+若对每个群乘积 $H_{i}H_{j} = H_{k}$，存在有序对 $H_{i}, H_{j}$ 上的标量函数 $\mu(H_{i}, H_{j})$ 使得
+\begin{equation*}
+\Delta(H_{i})\Delta(H_{j}) = \mu(H_{i}, H_{j})\Delta(H_{k})
+\tag{3.7.15}
+\end{equation*}
+并且对一切 $i, j, l$ 有
+\begin{equation*}
+\mu(H_{i}, H_{j}H_{l})\mu(H_{j}, H_{l}) = \mu(H_{i}H_{j}, H_{l})\mu(H_{i}, H_{j}),
+\tag{3.7.16}
+\end{equation*}
+则称 $\Delta$ 为 $\mathbf{H}$ 的射影表示。式 (3.7.16) 是矩阵乘法结合律的要求。
+
+函数 $\mu(H_{i}, H_{j})$ 构成所谓的射影表示 $\Delta$ 的\textit{因子系统}（factor system）。若对所有 $i, j$ 有 $\mu(H_{i}, H_{j}) = 1$，则射影表示 $\Delta$ 成为普通（矢量）表示。若对所有 $i, j$ 有 $|\mu(H_{i}, H_{j})| = 1$，则总可以施行一个变换使 $\Delta$ 幺正化。幺正射影表示满足与式 (1.3.11) 类似的正交关系：
+\begin{equation*}
+\sum^{|H|}_{j=1}\Delta^{i}(H_{j})^{*}_{pv}\Delta^{k}(H_{j})_{qw} = \frac{|\mathbf{H}|}{d_{i}}\delta^{ik}\delta_{pq}\delta_{vw},
+\tag{3.7.17}
+\end{equation*}
+相应地，对特征标有
+\begin{equation*}
+\sum^{|H|}_{j=1}\chi^{i*}(H_{j})\chi^{k}(H_{j}) = |\mathbf{H}|\delta^{ik}.
+\tag{3.7.18}
+\end{equation*}
+给定带因子系统 $\mu$ 的射影表示 $\Delta$，若令
+\begin{equation*}
+\Delta'(H_{i}) = C_{i}\Delta(H_{i}) \quad\text{对一切 } i,
+\tag{3.7.19}
+\end{equation*}
+其中 $C_{i}$ 是复数，则与式 (3.7.15) 相应的方程为
+\begin{equation*}
+\Delta'(H_{i})\Delta'(H_{j}) = \frac{C_{i}C_{j}}{C_{k}}\mu(H_{i}, H_{j})\Delta'(H_{k}).
+\tag{3.7.20}
+\end{equation*}
+若再写
+\begin{equation*}
+\nu(H_{i}, H_{j}) = \frac{C_{i}C_{j}}{C_{k}}\mu(H_{i}, H_{j})
+\tag{3.7.21}
+\end{equation*}
+则 $\Delta'$ 是 $\mathbf{H}$ 的带因子系统 $\nu$ 的射影表示。凡由形如 (3.7.21) 的方程相联系的两个因子系统称为属于同一个\textit{类}。由于关系 (3.7.19) 很简单，我们只需从每个类中选一个因子系统来研究。为从特定类中选取合适的因子系统，注意到
+\begin{equation*}
+\Delta(E) = \mu(E, E)\mathbf{1}
+\tag{3.7.22}
+\end{equation*}
+若对所有 $i$ 令 $\Delta'(H_{i}) = \Delta(H_{i})/\mu(E, E)$，则
+\begin{equation*}
+\Delta'(E) = 1.
+\tag{3.7.23}
+\end{equation*}
+再由式 (3.7.21) 定义新的因子系统 $\nu$，取 $1/C_{i} = \mu(E, E)$ 对一切 $i$ 成立，则因为
+\begin{equation*}
+\Delta'(H_{i})\Delta'(E) = \nu(H_{i}, E)\Delta'(H_{i})
+\end{equation*}
+必须有
+\begin{equation*}
+\nu(H_{i}, E) = 1 \quad\text{对一切 } H_{i}.
+\tag{3.7.24}
+\end{equation*}
+类似地
+\begin{equation*}
+\nu(E, H_{i}) = 1 \quad\text{对一切 } H_{i}.
+\tag{3.7.25}
+\end{equation*}
+（对任何因子系统 $\mu$，当然有 $\mu(H_{i}, E) = \mu(E, H_{i}) = \mu(E, E)$，以及 $\mu(H_{i}, H^{-1}_{i}) = \mu(H^{-1}_{i}, H_{i})$。）
+
+现在不加证明地引用 Schur 关于射影表示的若干定理。
+
+\noindent\textbf{定理 3.7.1}\quad 有限群 $\mathbf{H}$ 的因子系统的类数 $m$ 是有限的；这些类可以与一个 $m$ 阶 Abel 群 $\mathbf{M}$（称为 $\mathbf{H}$ 的\textit{乘子}（multiplier））的元素一一对应。
+
+这一对应是这样的：若把 $\mathbf{M}$ 的元素记为 $M_{1}, M_{2}, \dots, M_{m}$，而 $\mu_{p}$、$\mu_{q}$ 是从分别对应于 $M_{p}$ 与 $M_{q}$ 的类中任取的因子系统，则对一切 $i, j$ 由
+\begin{equation*}
+\mu_{r}(H_{i}, H_{j}) = \mu_{p}(H_{i}, H_{j})\mu_{q}(H_{i}, H_{j})
+\tag{3.7.26}
+\end{equation*}
+定义的因子系统 $\mu_{r}$ 总属于对应于 $M_{r}$ 的类，其中 $M_{r} = M_{p}M_{q}$。此外，$\mathbf{M}$ 的每个元素的阶都整除 $|\mathbf{H}|$。特别地，若 $M_{p}$ 的阶为 $\alpha_{p}$，则可以从对应于 $M_{p}$ 的类中选出一个代表因子系统，其取值全是单位根的 $\alpha_{p}$ 次幂。
+
+Schur 的理论进而证明：对每个 $|\mathbf{H}|$ 阶、乘子 $\mathbf{M}$ 为 $m$ 阶的有限群 $\mathbf{H}$，可以构造一个 $|\mathbf{H}|m$ 阶的群 $\mathbf{H}_{M}$，使 $\mathbf{M}$ 同构于 $\mathbf{H}_{M}$ 中心的一个子群（群的中心是与所有元素可交换的不变子群）。
+
+\noindent\textbf{定理 3.7.2}\quad 通过遍取 $\mathbf{H}_{M}$ 的所有表示并限制在 $\mathbf{H}$ 的元素上，可以（在等价意义下）得到 $\mathbf{H}$ 的全部可能的幺正不可约射影表示。
+
+联系这个定理必须意识到：尽管 $\mathbf{H}$ 的元素可以被认作 $\mathbf{H}_{M}/\mathbf{M}$ 的陪集代表，$\mathbf{H}_{M}$ 的构造方式使得除平凡情形 $m = 1$ 外，$\mathbf{H}_{M}$ 中被认定为 $\mathbf{H}$ 元素的那些元素的乘法规则与 $\mathbf{H}$ 中的乘法规则不同。
+
+由于这个定理比我们需要的更强，我们将不说明如何构造 $\mathbf{H}_{M}$。记住我们只要求属于给定因子系统的射影表示。我们将不构造 $\mathbf{H}_{M}$，而是说明如何构造另一个群 $\mathbf{H}^{*}$，它给出的是属于给定因子系统的全部不可约射影表示（而不是所有因子系统的）。
+
+设我们有一个群 $\mathbf{H}$，希望求出它属于给定因子系统 $\mu$ 的幺正不可约射影表示。由目前的讨论可知，可以把 $\mu$ 选成对一切 $j, k$ 有
+\begin{equation*}
+\mu(H_{j}, H_{k}) = \exp\left\{2\pi\mathrm{i}\,a(H_{j}, H_{k})/g\right\},
+\tag{3.7.27}
+\end{equation*}
+其中 $g$ 与 $a(H_{j}, H_{k})$ 是由已知的 $\mu(H_{j}, H_{k})$ 及条件 $0 \leqslant a(H_{j}, H_{k}) \leqslant g-1$ 确定的整数，并且（见式 (3.7.24) 与 (3.7.25)）
+\begin{equation*}
+a(H_{j}, E) = a(E, H_{j}) = 0.
+\tag{3.7.28}
+\end{equation*}
+另外，由于 $\mu(H_{j}, H^{-1}_{j}) = \mu(H^{-1}_{j}, H_{j})$，
+\begin{equation*}
+a(H_{j}, H^{-1}_{j}) = a(H^{-1}_{j}, H_{j})
+\tag{3.7.29}
+\end{equation*}
+且由式 (3.7.16) 与 (3.7.27)，
+\begin{equation*}
+a(H_{i}, H_{j}H_{l}) + a(H_{j}, H_{l}) = a(H_{i}H_{j}, H_{l}) + a(H_{i}, H_{j}), \mod g.
+\tag{3.7.30}
+\end{equation*}
+设 $\mathbf{Z}_{g}$ 是整数 $0, 1, \dots, (g-1)$ 的循环群，群乘法定义为模 $g$ 加法。
+
+设 $\mathbf{H}^{*}$ 由 $g|\mathbf{H}|$ 个元素（即一对一对的 $(H_{j}, \alpha)$，其一来自 $\mathbf{H}$，另一来自 $\mathbf{Z}_{g}$）组成，并用方程
+\begin{equation*}
+(H_{j}, \alpha)(H_{k}, \beta) = (H_{j}H_{k}, \alpha + \beta + a(H_{j}, H_{k}))
+\tag{3.7.31}
+\end{equation*}
+定义乘法规则。关于这一乘法规则 $\mathbf{H}^{*}$ 是群：封闭性显然；结合性由 $\mathbf{H}$ 与 $\mathbf{Z}_{g}$ 中的结合性及式 (3.7.30) 得到；$\mathbf{H}^{*}$ 的恒等元是 $(E, 0)$；$(H_{j}, \alpha)$ 的逆是 $(H^{-1}_{j}, -\alpha - a(H^{-1}_{j}, H_{j}))$。
+
+由式 (3.7.31) 与 (3.7.28) 可知，对一切 $\alpha, \beta, k$ 有
+\begin{equation*}
+(E, \alpha)(H_{k}, \beta) = (H_{k}, \beta)(E, \alpha) = (H_{k}, \alpha + \beta).
+\tag{3.7.32}
+\end{equation*}
+式 (3.7.32) 蕴含由 $g$ 个元素 $(E, \alpha)$ 组成的子群位于 $\mathbf{H}^{*}$ 的中心。既然 $(E, \alpha)$ 与 $\mathbf{H}^{*}$ 的所有元素可交换，由 Schur 引理（见定理 1.3.6）可知，若 $\Gamma$ 是 $\mathbf{H}^{*}$ 的表示，则 $\Gamma(E, \alpha)$ 是单位矩阵的标量倍。
+
+现在假设存在 $\mathbf{H}^{*}$ 的一个表示使得对一切 $\alpha \in \mathbf{Z}_{g}$ 有
+\begin{equation*}
+\Gamma(E, \alpha) = \exp(2\pi\mathrm{i}\alpha/g)\mathbf{1}.
+\tag{3.7.33}
+\end{equation*}
+则
+\begin{equation*}
+\Gamma(H_{k}, \beta) = \Gamma(H_{k}, 0)\Gamma(E, \beta) = \Gamma(H_{k}, 0)\exp(2\pi\mathrm{i}\beta/g)
+\tag{3.7.34}
+\end{equation*}
+记 $\Gamma(H_{k}, 0) = \Delta(H_{k})$，便有
+\begin{equation*}
+\begin{aligned}
+\Delta(H_{j})\Delta(H_{k}) &= \Gamma(H_{j}, \alpha)\Gamma(H_{k}, \beta)\exp\left\{-2\pi\mathrm{i}(\alpha + \beta)/g\right\}\\
+&= \Gamma(H_{j}H_{k}, \alpha + \beta + a(H_{j}, H_{k}))\exp\left\{-2\pi\mathrm{i}(\alpha + \beta)/g\right\}\\
+&= \Delta(H_{j}H_{k})\exp\left\{2\pi\mathrm{i}\,a(H_{j}, H_{k})/g\right\}.
+\end{aligned}
+\tag{3.7.35}
+\end{equation*}
+由式 (3.7.35) 与 (3.7.27) 可知 $\Delta$ 是 $\mathbf{H}$ 的带因子系统 $\mu$ 的射影表示。而且它是幺正的（因为 $\Gamma$ 幺正），也是不可约的（因为若 $\Delta$ 可约，则由于 $(E, \alpha)$ 对一切 $\alpha$ 由标量矩阵表示，$\Gamma$ 的所有矩阵就都与 $\Delta$ 的矩阵处于同样的分块对角形式，与 $\Gamma$ 的不可约性矛盾）。
+
+反之，若 $\Delta$ 是 $\mathbf{H}$ 的幺正不可约射影表示，且对一切 $k, \beta$ 令
+\begin{equation*}
+\Gamma(H_{k}, \beta) = \Delta(H_{k})\exp(2\pi\mathrm{i}\beta/g)
+\tag{3.7.36}
+\end{equation*}
+则 $\Gamma$ 是 $\mathbf{H}^{*}$ 的表示。于是用纯数学家的语言说，$\mathbf{H}$ 的全部不可约射影表示都可以提升到 $\mathbf{H}^{*}$ 中，也就是说可以由 $\mathbf{H}^{*}$ 的普通矢量表示求得。
+
+现在回到小陪群，考察我们关心的因子系统。把 $\overline{\mathbf{G}}^{\mathbf{k}_{1}}$ 认同于 $\mathbf{H}$，把 $\mathbf{D}^{\mathbf{k}_{1}}_{p}$ 认同于 $\Delta$。因子系统由下式给出：
+\begin{equation*}
+\mu(S_{i}, S_{j}) = \exp(-\mathrm{i}\mathbf{g}_{i} \cdot \mathbf{w}_{j})
+\tag{3.7.37}
+\end{equation*}
+其中
+\begin{equation*}
+S^{-1}_{i}\mathbf{k}_{1} = \mathbf{k}_{1} + \mathbf{g}_{i}
+\tag{3.7.11}
+\end{equation*}
+而 $\mathbf{w}_{j}$ 是在 $\mathbf{G}^{\mathbf{k}_{1}}$ 关于 $\mathbf{T}$ 的左陪集分解 (3.7.5) 中与 $S_{j}$ 相联系的平移部分。
+
+由式 (3.7.11) 可见，当 $S_{i} = E$ 时 $\mathbf{g}_{i} = 0$，故
+\begin{equation*}
+\mu(E, S_{j}) = 1 \quad\text{对一切 } j.
+\end{equation*}
+此外，由于 $\mathbf{w}_{j}$ 总是平移的分数部分，$\mu(S_{j}, S_{k})$ 总具有 (3.7.27) 的形式；更重要的是，$g$ 必然是个小数目（事实上是 2、3、4 或 6）。于是由式 (3.7.37) 定义的因子系统已经处于适于上述处理的形式。这意味着，为求出空间群的所有表示，只需找出几个小群（的中央延拓群）的普通表示就够了。
+
+作为本节的最后一点，通过分析 $\mathbf{H}_{M}$ 的表示的维数，并注意其中哪些对给定因子系统成为不可约幺正射影表示，可以证明一个与定理 1.3.11 类似的定理：若给定因子系统的射影表示的维数为 $d_{i}$，则 $\sum_{i}d^{2}_{i} = |\mathbf{H}|$。这使式 (3.7.17) 可以反过来产生另一个矩阵元的正交关系。但要注意，$i$ 的取值个数不一定等于 $\mathbf{H}$ 的类的数目（这与普通矢量表示不同）。

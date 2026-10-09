@@ -1,0 +1,355 @@
+% ch2_a 第2章 §2.1开头 (书页 14–24 / p029–p039)
+%--A-TAIL--
+\begin{align*}
+\operatorname{Det}(M_N) &= 2\cosh(u)\operatorname{Det}(M_{N-1}) - \operatorname{Det}(M_{N-2}),\\
+\operatorname{Det}(M_1) &= 2\cosh(u), \qquad \operatorname{Det}(M_2) = 4\cosh^2(u) - 1.
+\end{align*}
+% 第2章 PATH INTEGRAL FORMULATION OF QUANTUM MECHANICS
+\chapter{量子力学的路径积分表述}
+
+本书讨论多体系统的量子行为。然而，以波函数和薛定谔方程为核心的标准量子理论表述并不适用于多体系统。在本章中，我们为量子理论引入半经典图像（semiclassical picture）与路径积分（path integral）表述。路径积分表述可以很方便地应用于多体系统。这里，我们将以单粒子系统为具体例子来建立这套表述。我们还将应用路径积分表述来研究量子摩擦、简单量子线路等问题。
+
+\section{半经典图像与路径积分}
+
+\begin{keypoints}
+\item 半经典图像与路径积分表述使我们能够直观地构想量子行为；它们给了我们一个量子系统的全局图像。
+\end{keypoints}
+
+当我们在思考一个物理问题或试图理解一个现象时，在头脑中有一幅图像、从而能在心里构想出谜题各个碎片之间的联系，是非常重要的。对于经典系统，这种心理构想要容易些，因为经典系统的图像与我们日常生活实际所见相当接近。然而，当我们考虑量子系统时，构想就困难得多了。这是因为量子世界与我们每天所见并不相似。在经典世界中，我们看到各种物体。稍加抽象，我们便把这些物体视为粒子的集合。粒子的概念是经典物理学中最重要的概念。它如此简单而平淡，以至于人们视之为理所当然，懒得去为这样一个显而易见的真理专门表述成一条物理定律。然而，正是这个显而易见的真理在量子世界中被证明是错误的。具有位置和速度的粒子概念在量子世界中根本不存在。于是，挑战就在于：在一个连粒子（即构成物体的积木块）概念都不存在的量子世界里，如何去构想任何东西。
+
+路径积分表述正是用经典世界的图像来描述量子世界的一种尝试。换言之，它是架在经典世界（我们拥有经验与图像之处）与量子世界（代表实在之处）之间的一座桥梁。路径积分表述将帮助我们借助相应经典系统的图像来直观地把握量子行为。
+
+\subsection{粒子的传播子}
+
+\begin{keypoints}
+\item 传播子的概念。
+\item 传播子在 $\omega$ 空间中的极点结构。
+\end{keypoints}
+
+考虑一个一维粒子：
+\begin{equation*}
+H = \frac{1}{2m}p^2 + V(x) \tag{2.1.1}
+\end{equation*}
+时间演化算符（time evolution operator）
+\begin{equation*}
+U(t_b,t_a) = \mathrm{e}^{-\mathrm{i}\hbar^{-1}(t_b-t_a)H} = \mathrm{e}^{-\mathrm{i}(t_b-t_a)H}
+\end{equation*}
+完全决定了系统的行为与性质。本节中我们总假定 $t_b > t_a$。全书我们取 $\hbar = 1$。
+
+$U$ 在坐标基下的矩阵元为
+\begin{equation*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) \equiv \langle x_b|U(t_b,t_a)|x_a\rangle
+\end{equation*}
+它表示：若粒子在时刻 $t_a$ 位于 $x_a$，则在时刻 $t_b$ 于位置 $x_b$ 找到该粒子的概率振幅。这里 $G(x_b,t_b,x_a,t_a)$ 称为传播子（propagator），它对我们的单粒子量子系统给出了完整而完备的描述。
+
+显然，传播子 $G$ 满足薛定谔方程
+\begin{equation*}
+\mathrm{i}\partial_t G(x,t,x_a,t_a) = H G(x,t,x_a,t_a)
+\end{equation*}
+初条件为
+\begin{equation*}
+G(x,t_a,x_a,t_a) = (-\mathrm{i})\,\delta(x-x_a)
+\end{equation*}
+求解薛定谔方程，得到 $V(x)=0$ 时自由粒子的传播子
+\begin{equation*}
+G(x_b,x_a,t) = (-\mathrm{i})\left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2} \exp\left[\frac{\mathrm{i}m(x_b-x_a)^2}{2t}\right] \tag{2.1.2}
+\end{equation*}
+其中 $t = t_b - t_a$。
+
+我们也可以用能量本征态 $|n\rangle$（能量为 $\epsilon_n$）来展开 $U$。在新基下，传播子具有以下更简单的形式：
+\begin{equation*}
+G_E(n_b,t_b,n_a,t_a) \equiv (-\mathrm{i})\langle n_b|U(t_b,t_a)|n_a\rangle = (-\mathrm{i})\mathrm{e}^{-\mathrm{i}\epsilon_n(t_b-t_a)}\delta_{n_b,n_a}
+\end{equation*}
+在频率空间中，它由下式给出：
+\begin{align*}
+G_E(n_b,n_a,\omega) &\equiv \int_0^{\infty} \mathrm{d}t\, G_E(n_b,t_a+t,n_a,t_a)\,\mathrm{e}^{\mathrm{i}t\omega-0^+t}\\
+&= \frac{1}{\omega-\epsilon_{n_a}+\mathrm{i}0^+}\,\delta_{n_b,n_a}
+\end{align*}
+它在每个能量本征值处都有一个单极点。这里 $0^+$ 是一个无穷小的正数，引入它是为了使积分收敛。坐标空间中的传播子具有类似的结构：
+\begin{align*}
+G(x_b,x_a,t) &= \sum_n \langle x_b|n\rangle\langle n|x_a\rangle G_E(n,n,t) = \sum_n \langle x_b|n\rangle\langle n|x_a\rangle(-\mathrm{i})\mathrm{e}^{-\mathrm{i}\epsilon_n t}\\
+G(x_b,x_a,\omega) &= \sum_n \frac{\langle x_b|n\rangle\langle n|x_a\rangle}{\omega-\epsilon_n+\mathrm{i}0^+}
+\end{align*}
+我们看到，通过分析 $G(x_b,x_a,\omega)$ 的极点结构，可以获得关于能量本征值的信息。
+
+为了重新得到时间中的传播子
+\begin{equation*}
+G_E(n_b,n_a,t) = \int \frac{\mathrm{d}\omega}{2\pi}\, \frac{1}{\omega-\epsilon_{n_a}+\mathrm{i}0^+}\,\delta_{n_b,n_a}\,\mathrm{e}^{-\mathrm{i}t\omega}
+\end{equation*}
+当 $t>0$ 时，我们需要在复 $\omega$ 平面的下半平面选取围道，$t<0$ 时则需在上半平面选取围道，以使沿围道的积分有限。由于 $0^+$ 使极点出现在复 $\omega$ 平面实轴的略下方，我们得到
+\begin{equation*}
+G_E(n_b,n_a,t) = (-\mathrm{i})\,\mathrm{e}^{-\mathrm{i}\epsilon_n(t_b-t_a)}\delta_{n_b,n_a}\,\Theta(t)
+\end{equation*}
+其中
+\begin{equation*}
+\Theta(t) = \left\{\begin{array}{ll} 1, & t>0\\ 0, & t<0 \end{array}\right. \tag{2.1.3}
+\end{equation*}
+
+\subsection*{问题 2.1.1}
+
+证明：在频率空间中，有
+\begin{equation*}
+G(x_b,x_a,\omega) = \sum_n \frac{\psi_n(x_b)\psi_n^{\dagger}(x_a)}{\omega-\epsilon_n}
+\end{equation*}
+其中 $\psi_n$ 为能量本征函数。谐振子的传播子具有如下形式：
+\begin{equation*}
+G(x_b,t,x_a,0) = (-\mathrm{i})\left(\frac{m\omega_0}{2\pi\mathrm{i}\sin(t\omega_0)}\right)^{1/2} \exp\left(\frac{\mathrm{i}m\omega_0}{2\pi\sin(t\omega_0)}\big[(x_b^2+x_a^2)\cos(\omega_0 t) - 2x_bx_a\big]\right)
+\end{equation*}
+（译注：按标准结果并参照问题 2.1.6，指数上的分母应为 $2\sin(t\omega_0)$，原书排印为 $2\pi\sin(t\omega_0)$。）研究并解释谐振子的 $G(0,0,\omega)$ 的极点结构。（提示：尝试把 $G(0,t,0,0)$ 展开成 $\sum C_n\mathrm{e}^{-\mathrm{i}t\epsilon_n}$ 的形式。）
+
+\subsection*{问题 2.1.2}
+
+试求三维自由粒子在波矢与频率空间中的传播子 $G_E(k_b,k_a,\omega)$。
+
+\subsection{传播子的路径积分表示}
+
+\begin{keypoints}
+\item 路径积分是量子物理中叠加原理的一种特殊表示。
+\end{keypoints}
+
+量子系统的路径积分表述，其精神实质非常简单。考虑一个粒子经由中间态 $|n\rangle$（$n = 1, 2, \dots$）从位置 $|x_a\rangle$ 传播到位置 $|x_b\rangle$。设经由态 $|n\rangle$ 从 $|x_a\rangle$ 到 $|x_b\rangle$ 的振幅为 $A_n$，则从 $|x_a\rangle$ 到 $|x_b\rangle$ 的总振幅为 $\sum_n A_n$。现在设想我们把从 $|x_a\rangle$ 到 $|x_b\rangle$ 的传播分成许多时间切片，每个时间切片拥有自己的一组中间态。从 $|x_a\rangle$ 到 $|x_b\rangle$ 的传播可以看成穿过各时间切片上中间态的所有路径之和。这就给出了传播振幅的路径积分表示的一幅图像。
+
+为了给上述图像找到一个数学表示，我们注意到从 $|x_a\rangle$ 到 $|x_b\rangle$ 的振幅由时间演化算符 $U$ 在位置空间中的矩阵元描述。$U$ 满足
+\begin{equation*}
+U(t_b,t_a) = U(t_b,t)\,U(t,t_a)
+\end{equation*}
+于是，传播子满足
+\begin{equation*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) = \int \mathrm{d}x\; \mathrm{i}G(x_b,t_b,x,t)\,\mathrm{i}G(x,t,x_a,t_a) \tag{2.1.4}
+\end{equation*}
+
+%FIG{2.1}: {总振幅是连接 $x_a$ 与 $x_b$ 的所有路径所对应的振幅之和。}
+
+让我们把时间区间 $[t_a,t_b]$ 分成 $N$ 个等长的小段，每段长度 $\Delta t = \frac{t_b-t_a}{N}$。将式 (2.1.4) 使用 $N-1$ 次，我们得到
+\begin{align*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) &= \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \prod_{j=1}^{N} \mathrm{i}G(x_j,t_j,x_{j-1},t_{j-1})\\
+&= A^N \int \prod_i \mathrm{d}x_i\, \exp\left(\mathrm{i} \sum \Delta t\, L\Big(t_j, \frac{x_j+x_{j-1}}{2}, \frac{x_j-x_{j-1}}{\Delta t}\Big)\right)\\
+&\equiv \int \mathcal{D}[x(t)]\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\, L(t,x,\dot{x})} \tag{2.1.5}
+\end{align*}
+其中 $(t_0,x_0)=(t_a,x_a)$，$(t_N,x_N)=(t_b,x_b)$，且
+\begin{equation*}
+\mathrm{i}\Delta t\, L\Big(t_i, \frac{x_i+x_{i-1}}{2}, \frac{x_i-x_{i-1}}{\Delta t}\Big) = \ln[\mathrm{i}G(x_i,t_i,x_{i-1},t_{i-1})/A] \tag{2.1.6}
+\end{equation*}
+
+假定适当选取 $A$ 之后，式 (2.1.6) 中 $L$ 的定义在 $\Delta t \to 0$ 极限下有意义，那么式 (2.1.5) 就是传播子的路径积分表示。
+
+在路径积分表示中，每条路径都被赋予一个振幅 $\mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,L}$。传播子不过是连接 $x_a$ 与 $x_b$ 的所有路径所对应的振幅之和（图 2.1）。这样的求和是一个无穷维积分，而式 (2.1.5) 给出了计算这种无穷维积分的一种方式。
+
+现在让我们对我们的单粒子系统 (2.1.1) 计算 $L(t,x,\dot{x})$。对于自由粒子系统，我们可以利用式 (2.1.2) 来计算 $L(t,x,\dot{x})$。下面我们将对由 $H = \frac{p^2}{2m} + V(x)$ 描述的更一般的单粒子系统计算 $L$。注意到，对于小的 $\Delta t$，有
+\begin{equation*}
+\exp\left(-\mathrm{i}\Big[\frac{p^2}{2m} + V(x)\Big]\Delta t\right) = \exp\left(-\mathrm{i}\frac{p^2}{2m}\Delta t\right)\exp\left(-\mathrm{i}V(x)\Delta t\right) + O(\Delta t^2)
+\end{equation*}
+因此
+\begin{align*}
+&\mathrm{i}G(x_{i-1},t_{i-1},x_i,t_i)\\
+&\qquad = \langle x_i| \exp\left(-\mathrm{i}\frac{p^2}{2m}\Delta t\right)\exp\left(-\mathrm{i}V(x)\Delta t\right) |x_{i-1}\rangle + O(\Delta t^2)\\
+&\qquad = \langle x_i| \exp\left(-\mathrm{i}\frac{p^2}{2m}\Delta t\right) |x_{i-1}\rangle\, \exp\left(-\mathrm{i}V(x_{i-1})\Delta t\right) + O(\Delta t^2)
+\end{align*}
+插入 $\int |p\rangle \frac{\mathrm{d}p}{2\pi}\langle p| = 1$ 并利用 $\langle p|x\rangle = \exp(-\mathrm{i}px)$，我们得到
+\begin{align*}
+&\mathrm{i}G(x_{i-1},t_{i-1},x_i,t_i)\\
+&\qquad = \int \frac{\mathrm{d}p_i}{2\pi}\, \exp\left(\mathrm{i}\big[p_i\frac{x_i-x_{i-1}}{\Delta t} - \frac{p_i^2}{2m} - V(x_i)\big]\Delta t\right) + O(\Delta t^2) \tag{2.1.7}\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{1/2} \exp\left(\mathrm{i}\big[\frac{m}{2}\frac{(x_i-x_{i-1})^2}{\Delta t^2} - V\big(\frac{x_i+x_{i-1}}{2}\big)\big]\Delta t\right) \tag{2.1.8}
+\end{align*}
+由式 (2.1.6) 可见
+\begin{align*}
+&L(x,\dot{x}) = \frac{m}{2}\dot{x}^2 - V(x) \tag{2.1.9}\\
+&A \equiv \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{1/2}
+\end{align*}
+于是，传播子的路径积分表示为
+\begin{align*}
+\mathrm{i}G(x_b,t_b,x_a,t_a) &= \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \prod_{j=1}^{N} \mathrm{i}G(x_j,t_j,x_{j-1},t_{j-1})\\
+&= \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \int \mathrm{d}x_1...\mathrm{d}x_{N-1}\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,[\frac{m}{2}\dot{x}^2 - V(x)]} \tag{2.1.10}
+\end{align*}
+
+上面算出的 $L(x,\dot{x})$ 正是相应经典系统的拉格朗日量。因此，原则上一旦我们了解了一个经典系统（通过拉格朗日量来描述），就可以利用同一个拉格朗日量，通过路径积分得到相应的量子系统。
+
+我们也可以把式 (2.1.7) 代入式 (2.1.5)，得到
+\begin{align*}
+&\mathrm{i}G(x_b,t_b,x_a,t_a)\\
+&\qquad = \left(\frac{1}{2\pi}\right)^{N} \int \mathrm{d}x_1...\mathrm{d}x_{N-1}\,\mathrm{d}p_1...\mathrm{d}p_N\; \exp\left(\mathrm{i}\sum_{i=1}^{N}\big[p_i\frac{x_i-x_{i-1}}{\Delta t} - \frac{p_i^2}{2m} - V(x_i)\big]\right)\\
+&\qquad \equiv \int \mathcal{D}[x(t)]\,\mathcal{D}[p(t)]\; \mathrm{e}^{\mathrm{i}\int \mathrm{d}t\,[p\dot{x} - H(x,p)]} \tag{2.1.11}
+\end{align*}
+这是相空间（phase space）中的路径积分。这里 $H(x,p)$ 是经典哈密顿量。如果我们把相空间测度定义为
+\begin{equation*}
+\mathcal{D}[x(t)]\,\mathcal{D}[p(t)] \equiv \prod_1^{N-1} \mathrm{d}x_i \prod_1^{N} \frac{\mathrm{d}p_i}{2\pi} \tag{2.1.12}
+\end{equation*}
+那么哈密顿量 $H$ 就与经典的完全相同。看起来，相空间路径积分比坐标空间路径积分更为基本，因为那个讨厌的系数 $A$（见式 (2.1.9)）不再出现在路径积分的测度之中。我们还注意到，上述相空间测度含有 $N-1$ 个 $\mathrm{d}x$ 积分和 $N$ 个 $\mathrm{d}p$ 积分。
+
+我们知道，给拉格朗日量加上一个全时间导数项，即 $L \to L + \frac{\mathrm{d}f(x)}{\mathrm{d}t}$，并不影响经典动力学。然而，这样的改变确实会影响量子传播子，只是以一种平凡的方式：
+\begin{equation*}
+G(x_b,t_b,x_a,t_a) \to G(x_b,t_b,x_a,t_a)\,\mathrm{e}^{\mathrm{i}[f(x_b)-f(x_a)]}
+\end{equation*}
+
+\subsection*{问题 2.1.3}
+
+相干态路径积分：
+
+考虑谐振子 $H = \omega\hat{a}^{\dagger}\hat{a}$。由复数 $a$ 标记的相干态（coherent state）$|a\rangle$ 是 $\hat{a}$ 的本征态：$\hat{a}|a\rangle = a|a\rangle$。我们可以定义相干态传播子
+\begin{equation*}
+\mathrm{i}G(a_b,t_b,a_a,t_a) = \langle a_b|U(t_b,t_a)|a_a\rangle
+\end{equation*}
+利用相干态的完备性
+\begin{equation*}
+\int \frac{\mathrm{d}^2a}{\pi} |a\rangle\langle a| = 1
+\end{equation*}
+（其中 $\mathrm{d}^2a = \mathrm{d}\mathrm{Re}(a)\,\mathrm{d}\mathrm{Im}(a)$）以及内积
+\begin{equation*}
+\langle a|a'\rangle = \mathrm{e}^{-|a|^2/2}\,\mathrm{e}^{-|a'|^2/2}\,\mathrm{e}^{a^*a'}
+\end{equation*}
+证明 $G$ 的路径积分表示为
+\begin{equation*}
+\mathrm{i}G(a_b,t_b,a_a,t_a) = \int \pi^{-N+1}\mathcal{D}^2[a(t)]\; \mathrm{e}^{\mathrm{i}\int_{t_a}^{t_b}\mathrm{d}t\,[\mathrm{i}\frac{1}{2}(a^{\dagger}\dot{a} - a\dot{a}^{\dagger}) - \omega a^{\dagger}a]}
+\end{equation*}
+其中 $\mathcal{D}^2[a(t)] = \prod_{j=1}^{N-1}\mathrm{d}^2a_j$。证明相干态路径积分中的拉格朗日量
+\begin{equation*}
+L = \mathrm{i}\frac{1}{2}(a^{\dagger}\dot{a} - a\dot{a}^{\dagger}) - \omega a^{\dagger}a
+\end{equation*}
+与相空间路径积分中的拉格朗日量
+\begin{equation*}
+L = p\dot{x} - H
+\end{equation*}
+仅相差一个全时间导数项。
+
+\subsection{配分函数的路径积分表示}
+
+\begin{keypoints}
+\item 路径积分也可以用来研究统计系统。
+\end{keypoints}
+
+当我们考虑量子系统在有限温度下的统计性质时，配分函数（partition function）非常有用。我们的单粒子系统 (2.1.1) 的配分函数为
+\begin{equation*}
+Z(\beta) = \operatorname{Tr}\left(\mathrm{e}^{-\beta H}\right) = \int \mathrm{d}x\; \mathcal{G}(x,x,\beta)
+\end{equation*}
+其中 $\beta = \frac{1}{T}$ 是温度的倒数，而
+\begin{equation*}
+\mathcal{G}(x_b,x_a,\beta) \equiv \langle x_b|\mathrm{e}^{-\beta H}|x_a\rangle
+\end{equation*}
+可以看作虚时（imaginary time）中的传播子。上一节的计算可以重复进行，我们得到 $\mathcal{G}$ 的如下路径积分表示：
+\begin{equation*}
+\mathcal{G}(x_b,x_a,\tau) = A_{\tau}^N \int \mathcal{D}[x(\tau)]\; \mathrm{e}^{-\int_0^{\tau} \big[\frac{m}{2}\big(\frac{\mathrm{d}x}{\mathrm{d}\tau}\big)^2 + V(x)\big]\mathrm{d}\tau'} \tag{2.1.13}
+\end{equation*}
+\begin{equation*}
+A_{\tau} \equiv \left(\frac{m}{2\pi\Delta\tau}\right)^{1/2} \tag{2.1.14}
+\end{equation*}
+相应的相空间路径积分为
+\begin{equation*}
+\mathcal{G}(x_b,x_a,\tau) = \int \mathcal{D}[x(\tau)]\,\mathcal{D}[p(\tau)]\; \mathrm{e}^{-\int_0^{\tau} \big[\frac{p^2}{2m} + V(x) - \mathrm{i}p\frac{\mathrm{d}x}{\mathrm{d}\tau}\big]\mathrm{d}\tau'} \tag{2.1.15}
+\end{equation*}
+于是，配分函数可以写成
+\begin{align*}
+Z(\beta) &= \int \mathcal{D}[x(\tau)]\,\mathcal{D}[p(\tau)]\; \mathrm{e}^{-\oint \big[\frac{p^2}{2m} + V(x) - \mathrm{i}p\frac{\mathrm{d}x}{\mathrm{d}\tau}\big]\mathrm{d}\tau'}\\
+&= A_{\tau}^N \int \mathcal{D}[x(\tau)]\; \mathrm{e}^{-\oint \big[\frac{m}{2}\big(\frac{\mathrm{d}x}{\mathrm{d}\tau}\big)^2 + V(x)\big]\mathrm{d}\tau'}
+\end{align*}
+其中 $x(0) = x(\beta)$，$p(0) = p(\beta)$，测度略有不同：$\mathcal{D}[x(\tau)] = \prod_1^{N}\mathrm{d}x_j$，$\mathcal{D}[x(\tau)]\mathcal{D}[p(\tau)] = \prod_1^{N}\frac{\mathrm{d}x_j\mathrm{d}p_j}{2\pi}$。如果我们把虚时方向紧致化，那么配分函数就不过是缠绕在虚时方向上的各条加权回路的和。
+
+路径积分 (2.1.13) 与 (2.1.15) 常被称为虚时路径积分，因为通过解析延拓（analytic continuation）
+\begin{equation*}
+\tau \to \mathrm{e}^{\mathrm{i}\theta}t \to \mathrm{i}t
+\end{equation*}
+即让 $\theta$ 从 $0$ 连续变到 $\frac{\pi}{2}$，它们可以被映射为实时路径积分 (2.1.5) 与 (2.1.11)。在虚时路径积分中把 $\tau$ 换成 $\mathrm{e}^{\mathrm{i}\theta}t$ 之后，我们得到
+\begin{equation*}
+\mathcal{G}\big(x_b,x_a,t\mathrm{e}^{\mathrm{i}\theta}\big) = \left(\frac{m}{2\pi\mathrm{e}^{\mathrm{i}\theta}\Delta t}\right)^{N/2} \int \mathcal{D}[x(t)]\; \mathrm{e}^{-\int_0^{t} \big[\frac{m}{2}\big(\frac{\mathrm{d}x}{\mathrm{d}t}\big)^2\mathrm{e}^{-\mathrm{i}\theta} + V(x)\mathrm{e}^{\mathrm{i}\theta}\big]\mathrm{d}t'}
+\end{equation*}
+可以发现，只要 $-\frac{\pi}{2} < \theta < \frac{\pi}{2}$，这些积分总是收敛的。
+
+作为解析延拓的结果，实时传播子与虚时传播子之间的关系为
+\begin{equation*}
+\boxed{\;\mathcal{G}(x_b,x_a,\tau)\big|_{\tau=\mathrm{i}t} = \mathrm{i}G(x_b,x_a,t)\;}
+\end{equation*}
+借助解析延拓，我们常常可以通过计算相应的虚时传播子来得到实时传播子，而虚时传播子的计算往往更为简单。
+
+\subsection*{问题 2.1.4}
+
+推导式 (2.1.13) 与式 (2.1.15) 所给出的虚时传播子的路径积分表示。
+
+\subsection{路径积分的计算}
+
+\begin{keypoints}
+\item 当量子涨落不强时，驻定路径（stationary path）以及驻定路径附近的二次涨落支配着路径积分。
+\item 驻定路径是经典运动方程的解。
+\end{keypoints}
+
+上面我们推导了量子传播子的一种路径积分表示。这里我们将直接计算路径积分，并证实路径积分确实重新给出量子传播子。这一计算也使我们得以对路径积分和量子传播子获得一些直观的理解。
+
+让我们考虑半经典极限，即典型路径的作用量（action）远大于 $\hbar = 1$ 的极限。在这个极限下，当我们对一段范围内的路径积分时，相位 $\mathrm{e}^{\mathrm{i}S}$ 变化剧烈，不同路径的贡献相互抵消。然而，在满足
+\begin{equation*}
+S[x_c(t) + \delta x(t)] = S[x_c(t)] + O[(\delta x)^2] \tag{2.1.16}
+\end{equation*}
+的驻定路径 $x_c(t)$ 附近，所有路径都具有相同的相位，发生相长干涉。因此，在半经典极限下，驻定路径及其邻近的路径对路径积分的贡献占主导地位。我们还注意到，驻定路径不过是作用量 $S[x(t)]$ 的经典运动路径。这样，路径积分表示使我们能清楚地看到经典运动与量子传播子之间的关系：粒子的量子传播基本上沿着由经典运动方程确定的路径行进，只是带有某种“晃动”。这种晃动称为量子涨落（quantum fluctuation）。路径积分表示使我们能够估计量子涨落的大小。更确切地说，围绕驻定路径 $x_c(t)$ 的、满足
+\begin{equation*}
+\big|S[x_c(t)+\delta x(t)] - S[x_c(t)]\big| \sim \pi/2
+\end{equation*}
+的涨落 $\delta x(t)$ 会对传播子有很大贡献，因而代表一个典型的量子涨落。
+
+让我们先对自由粒子计算路径积分 (2.1.5)。此时，式 (2.1.5) 成为
+\begin{align*}
+&\mathrm{i}G(x_b,t_b,x_a,t_a)\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \prod_{i=1}^{N} \exp\left(\mathrm{i}\big[\frac{m}{2}\frac{(x_i-x_{i-1})^2}{\Delta t^2}\big]\Delta t\right) \tag{2.1.17}
+\end{align*}
+自由粒子的经典路径（即驻定路径）为
+\begin{equation*}
+x_c(t) = x_a + \frac{x_b-x_a}{t_b-t_a}(t-t_a)
+\end{equation*}
+其经典作用量为
+\begin{equation*}
+S_c(x_b,t_b,x_a,t_a) = \frac{m(x_b-x_a)^2}{2(t_b-t_a)}
+\end{equation*}
+引入围绕经典路径的涨落
+\begin{equation*}
+\delta x_j = x_j - x_c(t_j), \qquad t_j = t_a + j\Delta t
+\end{equation*}
+路径积分 (2.1.17) 可以改写为
+\begin{align*}
+&\mathrm{i}G(x_b,t_b,x_a,t_a)\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \mathrm{e}^{\mathrm{i}S_c} \int \mathrm{d}x_1...\mathrm{d}x_{N-1} \exp\left(\mathrm{i}\sum_{j,k=1,N-1} \delta x_j M_{jk}\delta x_k\right)\\
+&\qquad = \left(\frac{m}{2\pi\mathrm{i}\Delta t}\right)^{N/2} \sqrt{\frac{\pi^{N-1}}{\operatorname{Det}(-\mathrm{i}M)}}\; \mathrm{e}^{\mathrm{i}S_c}
+\end{align*}
+其中这个 $(N-1)\times(N-1)$ 矩阵为
+\begin{equation*}
+M = \frac{m}{2\Delta t}\left(\begin{array}{cccc} 2 & -1 & 0 & \dots\\ -1 & 2 & -1 & \dots\\ 0 & -1 & 2 & \dots\\ \dots & \dots & \dots & \dots \end{array}\right)
+\end{equation*}
+在上面的例子中，我们用到了以下关于高斯积分（Gaussian integral）的重要公式：
+\begin{equation*}
+\int \mathrm{d}x_1...\mathrm{d}x_{N-1}\; \exp\left(\mathrm{i}\sum_{j,k=1,N-1} x_j M_{jk}x_k\right) = \frac{\sqrt{\pi}^{\,N-1}}{\sqrt{\operatorname{Det}(-\mathrm{i}M)}}
+\end{equation*}
+我们看到，传播子由经典作用量 $\mathrm{e}^{\mathrm{i}S_c}$ 乘以一个由高斯积分（或相应的行列式）给出的系数构成。该系数由围绕经典路径的量子涨落 $\delta x$ 决定。
+
+我们注意到，只有 $\mathrm{e}^{\mathrm{i}S_c}$ 项依赖 $x_a$ 与 $x_b$，其余各项仅依赖 $t_b - t_a \equiv t$。于是我们有
+\begin{equation*}
+G(x_b,t_b,x_a,t_a) = A(t_b-t_a)\,\mathrm{e}^{\mathrm{i}S_c(x_b,t_b,x_a,t_a)} \tag{2.1.18}
+\end{equation*}
+由归一化条件
+\begin{equation*}
+\int \mathrm{d}x_b\; G(x_b,t_b,x_a,t_a)G^*(x_b,t_b,x_a',t_a) = \delta(x_a-x_a')
+\end{equation*}
+我们得到
+\begin{equation*}
+A(t) = \left(\frac{m}{2\pi\mathrm{i}t}\right)^{1/2}\mathrm{e}^{\mathrm{i}\phi}
+\end{equation*}
+只要取相位 $\phi = 0$，它就与标准结果一致。
+
+要直接计算 $A(t)$，我们需要计算 $\operatorname{Det}(M)$。下面我们将讨论一些可用于计算行列式的技巧。我们先考虑以下 $N\times N$ 矩阵：
+\begin{equation*}
+M_N = \left(\begin{array}{cccc} 2\cosh(u) & -1 & 0 & \dots\\ -1 & 2\cosh(u) & -1 & \dots\\ 0 & -1 & 2\cosh(u) & \dots\\ \dots & \dots & \dots & \dots \end{array}\right)
+\end{equation*}
+可以证明
+
+% ------------------------------------------------------------
+% 新增术语（ch2_a，待并入术语表"新增术语"区）：
+%   stationary path 驻定路径
+%   analytic continuation 解析延拓
+%   phase space 相空间
+%   Gaussian integral 高斯积分
+%   time evolution operator 时间演化算符
+%   contour 围道
+%   constructive interference 相长干涉
+%   action 作用量
+%   law of superposition 叠加原理
+%   energy eigenstate 能量本征态
+%   energy eigenfunction 能量本征函数
+%   time slice 时间切片
+%   quantum friction 量子摩擦
+%   quantum circuit 量子线路
+%   matrix element 矩阵元
+% ------------------------------------------------------------

@@ -1,0 +1,967 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第2章 流形
+
+% 第2章 Manifolds
+\chapter{流形}
+
+% 2.1 Gravity as Geometry
+\section{引力即几何}
+
+引力是特殊的。在广义相对论的语境下，我们把这种特殊性归因于这样一个事实：产生引力的动力学场正是描写时空自身曲率的度规张量，而不是某种在时空中传播的附加场；这就是 Einstein 深刻的洞见。把他引向这一想法的物理原理，是引力相互作用的\emph{普适性}（universality），这一原理由\textbf{等效原理}（Principle of Equivalence）形式化。让我们看看这个物理原理如何把我们引向“将引力描述为弯曲流形（manifold）的几何”这一数学策略。
+
+等效原理有各种不同的形式，其中第一种是\textbf{弱等效原理}（Weak Equivalence Principle），简称WEP。WEP断言：任何物体的惯性质量与引力质量相等。为了弄清这意味着什么，想想Newton力学。第二定律把作用在物体上的力与物体经历的加速度联系起来，令二者互成比例，比例常数就是惯性质量$m_i$：
+\begin{equation*}
+\mathbf{F} = m_i\mathbf{a}.
+\tag{2.1}
+\end{equation*}
+惯性质量显然具有普适的特征：它与你试图推动物体时感受到的阻力有关，而且无论施加的是哪种力，它都取相同的值。我们还有Newton引力定律，它可以被理解为：作用在物体上的引力正比于某个标量场$\Phi$的梯度，这个$\Phi$称为引力势（gravitational potential）。此时比例常数称为引力质量$m_g$：
+\begin{equation*}
+\mathbf{F}_g = -m_g\nabla\Phi.
+\tag{2.2}
+\end{equation*}
+表面看来，$m_g$与$m_i$的性质非常不同；它是引力所特有的一种量。如果你愿意，可以把$m_g/m_i$看成该物体的“引力荷”（gravitational charge）。尽管如此，Galileo早就证明（流传的说法是他从比萨斜塔上扔下重物，实际上他是让小球沿斜面滚下）：物质对引力的响应是普适的——在引力场中每个物体都以相同的速率下落，与物体的组成无关。在Newton力学中，这就翻译成WEP，它简单地就是
+\begin{equation*}
+m_i = m_g
+\tag{2.3}
+\end{equation*}
+对任何物体都成立。一个直接的推论是，自由下落的检验粒子（test particle）的行为是普适的，与它们的质量（或它们可能具有的任何其他性质）无关；实际上，我们有
+\begin{equation*}
+\mathbf{a} = -\nabla\Phi.
+\tag{2.4}
+\end{equation*}
+在实验上，下落物体的重力加速度与其组成无关这一点，已由Eötvös实验及其现代后继者验证到了极高的精度。
+
+这提示了WEP的一个等价表述：存在一类穿过时空的特殊轨迹，称为\emph{惯性}（inertial）轨迹（或“自由下落”轨迹），不加速的粒子沿着它们运动——这里“不加速”的意思是“只受到引力作用”。显然，这对其他的力并不成立，比如电磁力。在电场中，带相反电荷的粒子将沿颇不相同的轨迹运动。与此相反，每个粒子都具有完全相同的引力荷。
+
+WEP所蕴含的引力的普适性，还可以用另一种更流行的形式来表述。设想我们考虑一位待在密封得严严实实的箱子里的物理学家，她无法观察外面的世界，正在做涉及检验粒子运动的实验，比如测量局部引力场。当然，如果箱子是放在月球或木星上，她得到的答案会与放在地球上时不同。但如果箱子正以恒定的速率加速，答案也会不同；因为这会改变自由下落粒子相对于箱子的加速度。WEP意味着：仅仅通过观察自由下落粒子的行为，无法把引力场的效应与处于匀加速参考系中的效应区分开来。这是引力普适性的推论；相比之下，在电动力学中，通过观察带不同电荷的粒子的行为，是可以把匀加速与电磁场区分开来的。但对引力来说这不可能，因为“荷”必然正比于（惯性）质量。
+
+谨慎起见，我们应该把“无法区分引力与匀加速”这一论断加以限制，只考虑“时空的足够小的区域”。如果密封箱足够大，引力场就会以可观察的方式随地点变化，而加速的效应却总是沿同一个方向。在火箭飞船或电梯里，粒子总是竖直下落。然而，在一个处于引力场中的非常大的箱子里，粒子会朝（比如说）地心运动，对于相距很远的实验来说，这就是不同的方向了。因此WEP可以表述如下：\emph{在时空的足够小的区域中，自由下落粒子在引力场中的运动与在匀加速参考系中的运动相同。}在更大的时空区域中，引力场会存在不均匀性，这会导致潮汐力（tidal force），而潮汐力是可以探测到的。
+
+狭义相对论出现之后，质量这一概念失去了它的某些独特性，因为人们逐渐清楚，质量只不过是能量和动量（正如我们在第1章中看到的）的一种表现。因此，Einstein 很自然地想到把WEP推广成某种更具包容性的东西。他的想法很简单：无论箱中的物理学家做什么实验（不只是让检验粒子下落），她都绝对没有任何办法区分匀加速与外部引力场。这一合理的外推就成了如今所说的\textbf{Einstein 等效原理}（Einstein Equivalence Principle），简称EEP：\emph{在时空的足够小的区域中，物理定律归结为狭义相对论的定律；不可能借助局部实验探测引力场的存在。}
+
+实际上，很难想象有什么理论遵守WEP却违反EEP。考虑一个氢原子，它是质子和电子的束缚态。它的质量其实小于质子与电子各自单独考虑时的质量之和，因为存在负的结合能——你必须把能量注入原子，才能把质子和电子分开。按照WEP，氢原子的引力质量因此小于其各组分质量之和；而引力场与电磁相互作用（正是它把原子束缚在一起）以恰到好处的方式耦合，使得引力质量恰好得出正确的值。这意味着，引力不仅必须普适地与静止质量耦合，还必须与所有形式的能量和动量耦合——这几乎就是EEP的论断。不过，反例也是可以构造的；比如，我们可以想象一种引力理论，在其中自由下落的粒子穿过引力场时开始旋转。这样，它们仍可以沿着与在加速参考系中相同的路径下落（从而满足WEP），但你仍然能够探测到引力场的存在（这就违反了EEP）。这类理论显得很做作，但自然界并没有什么定律禁止它们。
+
+有时人们会在“引力的物理定律”与“非引力的物理定律”之间做出区分，而EEP被定义为只适用于后者。于是\textbf{强等效原理}（Strong Equivalence Principle，SEP）被定义为涵盖所有物理定律，无论是否与引力有关。一个违反SEP但不违反EEP的理论，是这样一个理论：其中的\emph{引力}结合能对物体惯性质量和引力质量的贡献并不相等；这样，举例来说，具有显著自引力的检验粒子（在这样一种概念说得通的范围内）就可能沿与较轻粒子不同的轨迹下落。
+
+正是EEP蕴含（或至少暗示）了一点：我们应当把引力的作用归因于时空的曲率。记住，在狭义相对论（SR）中，惯性系扮演着突出的角色——虽然我们无法挑出某个参考系说它唯一地“静止”，却可以挑出一族“不加速的”（惯性）参考系。带电粒子在电磁场中的加速度因而可以相对这些参考系唯一地定义。而EEP则意味着引力是无法逃避的——根本不存在“引力中性物体”这种东西，使我们能相对它测量重力加速度。由此可知，重力加速度并不是某种能够被可靠定义的东西，因此也就没有多大用处。
+
+相反，更有意义的做法是去\emph{定义}“不加速”就是“自由下落”，而我们也将这样做。由此我们被引向这样一个观念：引力不是一种“力”——力是导致加速度的东西，而我们关于零加速度的定义是“在碰巧存在于周围的无论什么引力场中自由地运动”。
+
+这个看似无害的步骤对时空的本性有着深远的影响。在SR中，我们有一套程序：从某一点出发，通过把刚性杆连接起来并在杆上安装时钟，构造一个延伸至整个时空的惯性系。但由于引力场的不均匀性（又是因为这个原因），这不再可能。如果我们从某个自由下落的状态出发，用刚性杆搭建一个巨大的结构，那么在一段距离之外，自由下落的物体看起来就会相对这个参考系在加速，如图 2.1 所示。解决办法是保留惯性系的概念，但放弃它们能够被唯一地延伸至整个空间和时间的希望。作为替代，我们可以定义\textbf{局部惯性系}（locally inertial frames），即在时空足够小的区域内追随单个自由下落粒子运动的那些参考系。（每次我们说“足够小的区域”时，纯粹主义者应当想象一个极限过程，在其中我们把相应的时空体积取为零。）这是我们所能做到的最好程度，但它迫使我们放弃很多东西。例如，我们再也不能有把握地谈论遥远物体之间的相对速度，因为适合那些物体的惯性参考系与适合我们的完全不同。
+
+作为物理学家，我们的工作是构造世界的数学模型，然后用观测和实验来检验这些模型的预言。追寻引力普适性的种种推论，已经使我们放弃了把引力表达为一种在时空中传播的力的想法，甚至放弃了参考系可以延伸至整个时空的全球性观念。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.1.pdf}
+\caption*{图 2.1\quad 全球性参考系的失效。由于每个粒子都感受到引力的影响，我们把"不加速"定义为"自由下落"。其后果是，无法再按照第1章概述的程序定义全球性的惯性坐标系，因为初始静止的粒子将开始相对这样一个参考系运动。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.2.pdf}
+\caption*{图 2.2\quad 由相距为$z$、各自感受加速度$a$的两个火箭测得的多普勒频移。}
+\end{figure}
+
+因此我们需要引入一种数学框架，使物理理论能够与这些结论相容。解决办法将是设想时空具有弯曲的几何，而引力是这种曲率的一种表现。用来描述曲率的恰当数学结构就是\emph{微分流形}（differentiable manifold）：本质上，它是一类局部看起来像平直空间、但整体几何可能非常不同的集合。（记住，EEP可以表述为“在时空的小区域中物理定律归结为狭义相对论的定律”，这与“局部类似于平直空间的集合”这一数学观念配合得很好。）
+
+我们无法证明引力应当被看成时空的曲率；我们能做的是提出这个想法，推导它的种种后果，然后看结果是否与我们关于世界的经验合理地相符。让我们着手来做这件事。
+
+考虑EEP最著名的预言之一：引力红移（gravitational redshift）。想象两个火箭相距为$z$，各自以某个恒定的加速度$a$在远离任何引力场的区域中运动，如图 2.2 所示。在时刻$t_0$，后方火箭发出一个波长为$\lambda_0$的光子。两火箭之间的距离保持不变，所以在我们的背景参考系中，光子经过时间$\Delta t = z/c$后到达前方火箭。（我们假设$\Delta v/c$很小，所以只算到一阶。）在这段时间里，火箭将获得附加速度$\Delta v = a\Delta t = az/c$。因此，到达前方火箭的光子将被通常的多普勒效应红移，红移量为
+\begin{equation*}
+\frac{\Delta\lambda}{\lambda_0} = \frac{\Delta v}{c} = \frac{az}{c^2}.
+\tag{2.5}
+\end{equation*}
+按照EEP，同样的事情也应该发生在一个均匀引力场中。于是我们想象一座高度为$z$的塔矗立在某颗行星的表面上，引力场强度为$a_g$（也就是Newton所说的“重力加速度”），如图 2.3 所示。我们设想塔顶火箭中的观者能够探测到从地面发出的光子，但除此之外他们无法看到外面，从而不知道自己正坐在一座塔顶。换句话说，他们没有办法把这种情形与加速火箭的情形区分开。因此，EEP让我们能够立即得出结论：从地面发出的波长为$\lambda_0$的光子将被红移，红移量为
+\begin{equation*}
+\frac{\Delta\lambda}{\lambda_0} = \frac{a_g z}{c^2}.
+\tag{2.6}
+\end{equation*}
+这就是著名的引力红移。注意，它是EEP的直接推论；并不需要广义相对论的细节。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.3.pdf}
+\caption*{图 2.3\quad 地球表面上的引力红移，由不同高度的观者测量。}
+\end{figure}
+
+红移公式更常用Newton势$\Phi$来表述，其中$\mathbf{a}_g = \nabla\Phi$。（符号与通常的约定相反，因为我们这里把$\mathbf{a}_g$看成参考系的加速度，而不是粒子相对该参考系的加速度。）$\Phi$的非常数梯度类似于一个随时间变化的加速度，等价的净速度由对光子从发射到吸收之间的时间积分给出。于是我们有
+\begin{align*}
+\frac{\Delta\lambda}{\lambda_0} &= \frac{1}{c}\int \nabla\Phi\, dt\\
+&= \frac{1}{c^2}\int \partial_z\Phi\, dz\\
+&= \Delta\Phi,
+\tag{2.7}
+\end{align*}
+其中$\Delta\Phi$是引力势的总变化，而且我们再一次令$c=1$。这个简单的引力红移公式在更普遍的情形下依然成立。当然，只要用到了Newton势，我们就把适用范围限制在了弱引力场。
+
+我们已经从EEP出发论证了引力红移的存在；现在可以用这个现象来进一步支持“应当把时空看成弯曲的”这一观念。考虑与之前相同的实验装置，只是现在画在图 2.4 的时空图中。地面上的物理学家从高度$z_0$处发出一束波长为$\lambda_0$的光，光传播到高度为$z_1$的塔顶。从光的任意一个波长的起点被发出，到这同一个波长的终点被发出，二者之间的时间间隔是$\Delta t_0 = \lambda_0/c$；而吸收端相应的时间间隔是$\Delta t_1 = \lambda_1/c$，时间分别由位于两个高度处的时钟测量。既然我们设想引力场是静态的，单个波的波前与波尾所经过的时空路径就必须严格全等。（图中用一般的弯曲路径来表示它们，因为我们并不假装知道这些路径究竟是什么样子。）简单的几何似乎意味着$\Delta t_0$与$\Delta t_1$必定相同。但它们当然不相同；引力红移意味着高处的实验者每秒观测到的波长数目更少，所以$\Delta t_1 > \Delta t_0$。我们可以粗略地把这解释为“塔上的钟似乎走得更快”。那么，哪里出了问题？出在简单的几何上——光子所穿过的时空是弯曲的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.4.pdf}
+\caption*{图 2.4\quad 图 2.3 所绘引力红移实验的时空图。不同时刻出发的时空路径是全等的，但地面与塔上测得的时间间隔不同，这标志着欧几里得几何的失效。}
+\end{figure}
+
+因此，我们希望把时空描述成这样一种数学结构：它在局部看起来像 Minkowski 空间，但在延展的区域上可能具有非平凡的曲率。涵盖这一观念的那类对象就是流形。在本章中，我们将只限于理解流形的概念以及可以在其上定义的各种结构，而把曲率的精确刻画留到下一章。
+
+% 2.2 What Is a Manifold?
+\section{什么是流形？}
+
+流形（或微分流形）是数学和物理学中最基本的概念之一。我们都熟悉$n$维欧几里得空间$\mathbf{R}^n$的性质，它是$n$元组$(x^1,\ldots,x^n)$的集合，通常还配备一个平直的正定度规，其分量为$\delta_{ij}$。数学家们多年来致力于发展$\mathbf{R}^n$中的分析理论——微分、积分、函数的性质等等。但显然还存在其他一些空间（比如球面），我们直觉上认为它们是“弯曲的”，或者也许在拓扑上很复杂，我们也希望在它们上面进行类似的操作。
+
+为了解决这个问题，我们发明了流形的概念，它对应于这样一种空间：可以是弯曲的，可以有复杂的拓扑，但在局部区域看起来就像$\mathbf{R}^n$。这里“看起来像”并不是说度规相同，而只是说一些更原初的概念——比如函数和坐标——以类似的方式运作。整个流形是通过把这些局部区域光滑地缝合在一起而构造出来的。一个关键的要点是，所使用的欧几里得空间的维数$n$在流形的每一片（patch）上都必须相同；这时我们就说这个流形的维数是$n$。用这种方法，我们可以通过把函数（局部地）转化为欧几里得空间中的函数，来分析这类空间上的函数。流形的例子包括：
+
+\begin{itemize}
+\item $\mathbf{R}^n$本身，包括直线（$\mathbf{R}$）、平面（$\mathbf{R}^2$）等等。这一点应当是显然的，因为$\mathbf{R}^n$不仅在局部而且在整体上都看起来像$\mathbf{R}^n$。
+\item $n$维球面（$n$-sphere）$S^n$。它可以定义为$\mathbf{R}^{n+1}$中与原点相距某个固定距离的所有点的轨迹。圆周当然是$S^1$，而二维球面$S^2$是流形最有用的例子之一。（零维球面$S^0$，如果你仔细想想，由两个点组成。我们说$S^0$是一个不连通的零维流形。）值得强调的是，借助在$\mathbf{R}^{n+1}$中的嵌入来定义$S^n$只是一个方便的捷径；我们将讨论的所有流形都可以就其自身来定义，而无需求助于更高维的平直空间。
+\item $n$维环面（$n$-torus）$T^n$，由取一个$n$维立方体并认同其相对的面而得到。二维环面$T^2$是一个认同了对边的正方形，如图 2.5 所示。甜甜圈的表面是一个大家熟悉的例子。
+\item 亏格（genus）为$g$的黎曼面（Riemann surface），本质上是有$g$个洞而不止一个洞的二维环面，如图 2.6 所示。$S^2$可以看成亏格为零的黎曼面。用专业术语来说（这与我们眼下的讨论关系不大），每一个“紧致、可定向、无边界”的二维流形都是某个亏格的黎曼面。
+\item 更抽象一些，由连续变换构成的集合，比如$\mathbf{R}^n$中的转动，构成一个流形。李群（Lie group）是同时还具有群结构的流形。例如SO(2)，即二维空间中转动的集合，就与$S^1$是同一个流形（尽管一般而言群流形会比球面更复杂）。
+\item 两个流形的直积（direct product）是流形。也就是说，给定维数为$n$和$n'$的流形$M$和$M'$，我们可以构造一个维数为$n+n'$的流形$M\times M'$，它由有序对$(p,p')$组成，其中$p\in M$，$p'\in M'$。
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.5.pdf}
+\caption*{图 2.5\quad 通过认同正方形的对边构造出的环面$T^2$。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.6.pdf}
+\caption*{图 2.6\quad 不同亏格的黎曼面（genera是"genus"的复数）。}
+\end{figure}
+
+看了这么多例子，流形的概念可能显得空洞无物：哪些东西\emph{不是}流形呢？很多东西都不是流形，因为它们在某些地方局部看起来不像$\mathbf{R}^n$。例子包括：一条撞进二维平面里的一维直线，以及在顶点处粘在一起的两个锥面，如图 2.7 所示。更微妙的例子见图 2.8。比如考虑一个单独的（二维）锥面。显然，在某种意义上锥面局部看起来像$\mathbf{R}^2$；与此同时，同样明显的是，锥面的顶点处有某种奇异的东西。这正是“微分流形”中“可微”一词开始发挥作用的地方；正如我们在发展形式定义时将会看到的，作为流形，锥面是完全光滑的，尽管其曲率在顶点处并不光滑。（其他类型的奇异性更加严重，会使我们无法把某些空间看成流形——无论光滑与否。）另一个例子是线段（包括端点）。由于端点的存在，它肯定不符合我们将要发展的流形定义。尽管如此，我们可以把定义加以推广，把“带边流形”（manifolds with boundary）包括进来，线段就是它们的范例。关于带边流形的简要讨论见附录D。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.7.pdf}
+\caption*{图 2.7\quad 不是流形的空间的例子：一条终止于平面上的直线，以及在顶点处相交的两个锥面。每种情形中都存在一个点，它在局部看起来不像固定维数的欧几里得空间。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.8.pdf}
+\caption*{图 2.8\quad 微妙的例子。单个锥面是光滑流形，尽管其曲率在顶点处奇异。线段不是流形，但可以用更一般的"带边流形"概念来描述。}
+\end{figure}
+
+这些微妙的情形应该会让你相信，一个严格的定义是必要的，我们现在就开始构造它；这里的讨论遵循Wald (1984)的路数。流形的非正式想法是：一个由一些局部看起来像$\mathbf{R}^n$的“片”（patch）光滑地缝合而成的空间。因此我们需要把“局部看起来像$\mathbf{R}^n$”和“光滑地缝合在一起”这两个观念形式化。我们需要若干预备定义，其中大多数都相当明白，但完整一点总是好的。最基本的概念是两个集合之间的\textbf{映射}（map）。（我们假定你知道集合是什么，或者你认为你知道；我们不需要太精确。）给定两个集合$M$和$N$，映射$\phi:M\to N$是这样一种关系：它把$M$的每个元素恰好指派为$N$的一个元素。因此，映射不过是函数的简单推广。给定两个映射$\phi:A\to B$和$\psi:B\to C$，我们通过运算$(\psi\circ\phi)(a)=\psi(\phi(a))$定义\textbf{复合}（composition）$\psi\circ\phi:A\to C$，如图 2.9 所示。于是$a\in A$，$\phi(a)\in B$，从而$(\psi\circ\phi)(a)\in C$。映射书写的次序是有意义的，因为右边的先作用。
+
+如果$N$的每个元素至多有一个$M$的元素被映入其中，就称映射$\phi$是\textbf{一一的}（one-to-one，或单射/injective）；如果$N$的每个元素至少有一个$M$的元素被映入其中，就称它是\textbf{映上的}（onto，或满射/surjective）。（想一想就会发现，“one-to-one”更好的名字应该是“one-from-one”，或者干脆叫“two-to-two”。）考虑函数$\phi:\mathbf{R}\to\mathbf{R}$。那么$\phi(x)=e^x$是一一的但不是映上的；$\phi(x)=x^3-x$是映上的但不是一一的；$\phi(x)=x^3$两者都是；而$\phi(x)=x^2$两者都不是，如图 2.10 所示。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.9.pdf}
+\caption*{图 2.9\quad 映射$\psi\circ\phi:A\to C$由$\phi:A\to B$与$\psi:B\to C$复合而成。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.10.pdf}
+\caption*{图 2.10\quad 几类映射。}
+\end{figure}
+
+集合$M$称为映射$\phi$的\textbf{定义域}（domain），$M$被映入的$N$中那些点的集合称为$\phi$的\textbf{像}（image）。对任何子集$U\subset N$，$M$中被映到$U$的元素的集合称为$U$在$\phi$下的\textbf{原像}（preimage），记作$\phi^{-1}(U)$。既一一又映上的映射称为\textbf{可逆的}（invertible，或双射/bijective）。这时我们可以定义\textbf{逆映射}（inverse map）$\phi^{-1}:N\to M$，它满足$(\phi^{-1}\circ\phi)(a)=a$，如图 2.11 所示。注意，同一个符号$\phi^{-1}$既用于原像也用于逆映射，尽管前者总是有定义，而后者只在某些特殊情形下才有定义。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.11.pdf}
+\caption*{图 2.11\quad 一个映射及其逆映射。}
+\end{figure}
+
+映射的\textbf{连续性}（continuity）概念实际上是一个非常微妙的概念，其精确表述我们并不需要。我们将假定你理解连续性和可微性这两个概念对于通常的函数（即映射$\phi:\mathbf{R}\to\mathbf{R}$）的含义。接下来，把这些概念推广到更一般的欧几里得空间之间的映射$\phi:\mathbf{R}^m\to\mathbf{R}^n$将会很有用。从$\mathbf{R}^m$到$\mathbf{R}^n$的映射把一个$m$元组$(x^1,x^2,\ldots,x^m)$变成一个$n$元组$(y^1,y^2,\ldots,y^n)$，因此可以看成$n$个$m$元函数$\phi^i$的汇集：
+\begin{equation*}
+\begin{gathered}
+y^1 = \phi^1(x^1, x^2, \ldots, x^m)\\
+y^2 = \phi^2(x^1, x^2, \ldots, x^m)\\
+y^n = \phi^n(x^1, x^2, \ldots, x^m).
+\end{gathered}
+\tag{2.8}
+\end{equation*}
+如果这些函数中的任何一个的$p$阶导数存在且连续，我们就称它为$C^p$的；如果$\phi:\mathbf{R}^m\to\mathbf{R}^n$的每个分量函数都至少是$C^p$的，我们就称整个映射为$C^p$的。于是，$C^0$映射连续但不一定可微，而$C^\infty$映射连续并且可以想微分多少次就微分多少次。例如考虑一元函数$\phi(x)=|x^3|$。这个函数除$x=0$外处处无穷可微，而在$x=0$处可微两次但不能三次；因此我们说它是$C^2$的。$C^\infty$映射有时称为\textbf{光滑}（smooth）。
+
+如果存在一个$C^\infty$映射$\phi:M\to N$，其逆$\phi^{-1}:N\to M$也是$C^\infty$的，我们就称两个集合$M$和$N$是\textbf{微分同胚的}（diffeomorphic）；这时映射$\phi$就称为一个\textbf{微分同胚}（diffeomorphism）。这是我们关于“两个空间作为流形是相同的”所拥有的最好概念。例如，当我们说SO(2)与$S^1$是同一个流形时，意思就是它们微分同胚。更多的讨论见附录B。
+
+这些基本定义你可能早已熟悉，哪怕只是记得个大概。现在我们将把它们用于流形的严格定义。遗憾的是，要把这个相对直观的概念形式化，需要一套多少有些繁复的程序。我们必须首先定义开集的概念，在开集上我们可以放置坐标系，然后再以恰当的方式把开集缝合起来。
+
+我们从\textbf{开球}（open ball）的概念开始，它是$\mathbf{R}^n$中所有满足$|x-y|<r$的点$x$的集合，其中$y\in\mathbf{R}^n$和$r\in\mathbf{R}$固定，而$|x-y|=\left[\sum_i(x^i-y^i)^2\right]^{1/2}$。注意这是一个严格不等式——开球就是以$y$为中心、半径为$r$的$n$维球面的内部，如图 2.12 所示。$\mathbf{R}^n$中的\textbf{开集}（open set）是由开球的任意（可能是无限的）并构造出来的集合。换句话说，$V\subset\mathbf{R}^n$是开的，如果对任何$y\in V$，都存在一个以$y$为中心、完全位于$V$内部的开球。粗略地说，开集就是某个$(n-1)$维闭曲面的内部（或者若干个这种内部的并）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.12.pdf}
+\caption*{图 2.12\quad 定义在$\mathbf{R}^n$中的开球。}
+\end{figure}
+
+\textbf{卡片}（chart）或\textbf{坐标系}（coordinate system）由一个集合$M$的子集$U$连同某个一一映射$\phi:U\to\mathbf{R}^n$组成，且像$\phi(U)$在$\mathbf{R}^n$中是开的，如图 2.13 所示。（任何映射都是映到其像上的，所以只要$\phi:U\to\phi(U)$是一一的，它就可逆。）这样我们就可以说$U$是$M$中的一个开集。一个$C^\infty$的\textbf{图册}（atlas）是卡片的带指标的汇集$\{(U_\alpha,\phi_\alpha)\}$，它满足两个条件：
+\begin{enumerate}
+\item 各$U_\alpha$的并等于$M$；也就是说，诸$U_\alpha$覆盖$M$。
+\item 各卡片光滑地缝合在一起。更精确地说，如果两张卡片重叠，$U_\alpha\cap U_\beta\neq\varnothing$，那么映射$(\phi_\alpha\circ\phi_\beta^{-1})$把$\phi_\beta(U_\alpha\cap U_\beta)\subset\mathbf{R}^n$中的点\emph{映上}到开集$\phi_\alpha(U_\alpha\cap U_\beta)\subset\mathbf{R}^n$，并且所有这些映射在其有定义之处必须是$C^\infty$的。参照图 2.14（改编自Wald (1984)）应当会更清楚。
+\end{enumerate}
+所以，卡片就是我们通常所想的某个开集上的坐标系，而图册就是在重叠处彼此光滑相容的一个卡片系统。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.13.pdf}
+\caption*{图 2.13\quad 覆盖$M$的开子集$U$的一个坐标卡片。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.14.pdf}
+\caption*{图 2.14\quad 相互重叠的坐标卡片。}
+\end{figure}
+
+于是，经过漫长的铺垫：一个$C^\infty$的$n$维\textbf{流形}（manifold，或简称$n$维流形）不过是一个集合$M$连同它的一个极大图册，即包含每一个可能的相容卡片的图册。在上述所有定义中，我们也可以把$C^\infty$换成$C^p$。对我们的目的来说，流形的可微程度并不关键；我们总是假定任何流形都具有当前应用所必需的可微性。要求图册是极大的，是为了让配备了不同图册的两个等价空间不被算作不同的流形。这个定义用形式化的语言捕捉了我们关于“局部看起来像$\mathbf{R}^n$的集合”的观念。当然，我们很少会需要用上这个定义的全部力量，但精确本身就是一种回报。
+
+我们的这个定义有一个好处：它不依赖于把流形嵌入某个更高维的欧几里得空间。实际上，任何$n$维流形都可以嵌入$\mathbf{R}^{2n}$中（Whitney嵌入定理），有时我们也会用到这个事实，比如上面我们对球面的定义。（克莱因瓶就是一个二维流形的例子，它不能嵌入$\mathbf{R}^3$，尽管可以嵌入$\mathbf{R}^4$。）但重要的是要认识到，流形具有独立于任何嵌入的单独存在性。例如，我们没有必要相信四维时空是被塞在某个更大的空间里的。不过话说回来，它也可能是；我们真的不知道。弦论的近期进展使人提出这样的猜想：我们可见的宇宙其实也许是更高维空间中的一张“膜”（brane，“membrane”的推广）。但就经典GR而言，四维的图景完全够用。
+
+为什么有必要在卡片及其重叠的问题上如此讲究，而不是干脆用一张卡片覆盖每一个流形？因为大多数流形无法只用一张卡片覆盖。考虑最简单的例子$S^1$。有一个常规的坐标系$\theta:S^1\to\mathbf{R}$，其中$\theta=0$取在圆周的顶部，绕一圈直到$2\pi$。然而，在卡片的定义中我们已经要求像$\theta(S^1)$在$\mathbf{R}$中是开的。如果取$\theta=0$或$\theta=2\pi$中的任何一个，我们得到的都是一个闭区间而不是开区间；如果两个点都不取，我们
+% 本文件至此为止：书页60末句止于"如果两个点都不取，我们"，正文延续到书页61，由下一块接续。
+ 尚未覆盖整个圆。因此我们至少需要两个卡片，如图 2.15 所示。
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.15.pdf}
+\caption*{图 2.15\quad 共同覆盖 $S^1$ 的两个坐标卡片。}
+\end{figure}
+% ---- 书页 61 / p076 ----
+一个稍微复杂些的例子由 $S^2$ 提供：同样，没有任何单个卡片能覆盖整个流形。绘制世界地图时传统上使用的墨卡托投影（Mercator projection）就同时漏掉了北极和南极（还有国际日期变更线（International Date Line），它涉及的角度 $\theta$ 的问题与我们在 $S^1$ 中发现的相同）。我们把 $S^2$ 取为 $\mathbf{R}^3$ 中由 $(x^1)^2+(x^2)^2+(x^3)^2=1$ 所定义的点集。我们可以从一个开集 $U_1$ 出发构造一个卡片，$U_1$ 定义为球面去掉北极之后的集合；构造方法是球极投影（stereographic projection），如图 2.16 所示。具体做法是：从北极向由 $x^3=-1$ 定义的平面画一条直线，给 $S^2$ 上被这条直线截住的点指定平面上相应点的笛卡尔坐标 $(y^1,y^2)$。明确写出来，这个映射就是
+\begin{equation*}
+\phi_1(x^1,x^2,x^3)\equiv(y^1,y^2)=\left(\frac{2x^1}{1-x^3}\,,\ \frac{2x^2}{1-x^3}\right). \tag{2.9}
+\end{equation*}
+请你自行验证这一点。另一个卡片 $(U_2,\phi_2)$ 则由从南极向 $x^3=+1$ 所定义的平面投影得到。所得坐标覆盖去掉南极的球面，具体为
+\begin{equation*}
+\phi_2(x^1,x^2,x^3)\equiv(z^1,z^2)=\left(\frac{2x^1}{1+x^3}\,,\ \frac{2x^2}{1+x^3}\right). \tag{2.10}
+\end{equation*}
+这两个卡片合起来覆盖了整个流形，而且它们在区域 $-1<x^3<+1$ 中相互交叠。你可以验证的另一件事是，复合映射 $\phi_2\circ\phi_1^{-1}$ 由下式给出
+\begin{equation*}
+z^i=\frac{4y^i}{\left[(y^1)^2+(y^2)^2\right]}, \tag{2.11}
+\end{equation*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.16.pdf}
+\caption*{图 2.16\quad 通过从北极向切于南极的平面投影，在 $S^2$ 上定义球极坐标卡片。这样的卡片覆盖了除北极本身之外的整个球面。}
+\end{figure}
+% ---- 书页 62 / p077 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.17.pdf}
+\caption*{图 2.17\quad 链式法则把 $g\circ f$ 的偏导数与 $g$ 和 $f$ 各自的偏导数联系起来。}
+\end{figure}
+并且在交叠区域中是 $C^\infty$ 的。只要我们把注意力限制在这个区域，式 (2.11) 就正是我们通常所理解的坐标变换。
+
+于是我们看到了卡片和图册的必要性：许多流形无法用单一的坐标系覆盖。尽管如此，用单个卡片来工作常常是方便的，只需随时记住没有被包含进去的那组点即可。
+
+后面我们会用到的常规微积分中的一件武器是\textbf{链式法则}（chain rule）。设想我们有两个映射 $f:\mathbf{R}^m\to\mathbf{R}^n$ 和 $g:\mathbf{R}^n\to\mathbf{R}^l$，从而有复合映射 $(g\circ f):\mathbf{R}^m\to\mathbf{R}^l$，如图 2.17 所示。我们可以用分量来标记每个空间中的点：$\mathbf{R}^m$ 上用 $x^a$，$\mathbf{R}^n$ 上用 $y^b$，$\mathbf{R}^l$ 上用 $z^c$，指标各自取适当的取值范围。链式法则把复合映射的偏导数与各个映射的偏导数联系起来：
+\begin{equation*}
+\frac{\partial}{\partial x^a}(g\circ f)^c=\sum_b \frac{\partial f^b}{\partial x^a}\frac{\partial g^c}{\partial y^b}. \tag{2.12}
+\end{equation*}
+通常把它缩写为
+\begin{equation*}
+\frac{\partial}{\partial x^a}=\sum_b \frac{\partial y^b}{\partial x^a}\frac{\partial}{\partial y^b}. \tag{2.13}
+\end{equation*}
+使用这种简写形式的链式法则既不违法也不违背道德，但你应当能够在头脑中构想出这一构造背后的那些映射。回忆一下，当 $m=n$ 时，矩阵 $\partial y^b/\partial x^a$ 的行列式称为该映射的\textbf{雅可比行列式}（Jacobian），而且只要雅可比行列式非零，映射就可逆。
+
+% ---- 书页 63 / p078 ----
+
+\section{再谈矢量}
+
+打好了这些基础，我们现在可以着手在流形上引入各种类型的结构了。我们从矢量与切空间（tangent space）开始。在讨论狭义相对论时，我们对矢量的定义以及矢量与时空的关系刻意含糊其辞。我们强调过的一点是切空间的概念——即时空中单个一点上所有矢量的集合。之所以如此强调，是为了从大家头脑中去除“矢量从流形上一个点拉伸到另一个点”的观念；矢量其实只是与单个点相联系的对象。采取这种观点暂时失去的，是理解诸如“矢量指向 $x$ 方向”这类说法的一条途径——如果切空间只是与每个点相联系的一个抽象矢量空间，就很难知道这类说法应当意味着什么。现在是解决这个问题的时候了。
+
+设想我们想构造流形 $M$ 中一点 $p$ 处的切空间，而且只利用 $M$ 本身固有的东西（不嵌入更高维的空间）。第一反应也许是利用我们的直觉知识：存在一种叫做“曲线的切矢量”的对象，它们属于切空间。于是我们可能会考虑所有过 $p$ 点的参数化曲线的集合——也就是所有（非退化的）映射 $\gamma:\mathbf{R}\to M$ 构成的空间，要求 $p$ 属于 $\gamma$ 的像。一种诱人的做法是干脆把切空间定义为这些曲线在 $p$ 点的所有切矢量构成的空间。但这显然是作弊；切空间 $T_p$ 本应是 $p$ 点处矢量的空间，而在此之前，我们并没有“曲线的切矢量”应当是什么含义的独立概念。在某个坐标系 $x^\mu$ 中，任何过 $p$ 的曲线都通过 $n$ 个实数 $dx^\mu/d\lambda$（其中 $\lambda$ 是沿曲线的参量）确定了 $\mathbf{R}^n$ 中的一个元素，但这个映射明显依赖于坐标，而这并不是我们想要的。
+
+不过我们的思路是对的，只是必须让一切不依赖于坐标。为此我们定义 $\mathcal{F}$ 为 $M$ 上全体光滑函数的空间（即 $C^\infty$ 映射 $f:M\to\mathbf{R}$）。然后我们注意到，每条过 $p$ 点的曲线都在这个空间上定义了一个算符——方向导数（directional derivative），它把 $f$ 映为 $df/d\lambda$（在 $p$ 点取值）。我们将给出如下论断：\emph{切空间 $T_p$ 可以等同于沿过 $p$ 点曲线的方向导数算符构成的空间}。为了确立这一想法，我们必须证明两件事：其一，方向导数构成的空间是一个矢量空间；其二，它正是我们想要的那种矢量空间（它与 $M$ 维数相同，能自然给出“指向某一方向的矢量”的概念，等等）。
+
+第一个论断——方向导数构成矢量空间——看起来足够直接。设想两个算符 $d/d\lambda$ 与 $d/d\eta$，分别表示沿过 $p$ 点的两条曲线 $x^\mu(\lambda)$ 与 $x^\mu(\eta)$ 的导数。把它们相加并用实数缩放没有任何问题，于是得到新的算符 $a(d/d\lambda)+b(d/d\eta)$。然而，这个空间是否封闭并不一目了然；换句话说，所得的算符本身是否还是一个导数算符。一个好的导数算符应当线性地作用于函数，并且在函数的乘积上服从常规的 Leibniz（乘积）法则。我们的新算符显然是线性的，所以我们还需要
+% ---- 书页 64 / p079 ----
+验证它服从 Leibniz 法则。我们有
+\begin{align*}
+\left(a\frac{d}{d\lambda}+b\frac{d}{d\eta}\right)(fg)&=af\frac{dg}{d\lambda}+ag\frac{df}{d\lambda}+bf\frac{dg}{d\eta}+bg\frac{df}{d\eta}\\
+&=\left(a\frac{df}{d\lambda}+b\frac{df}{d\eta}\right)g+\left(a\frac{dg}{d\lambda}+b\frac{dg}{d\eta}\right)f. \tag{2.14}
+\end{align*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.18.pdf}
+\caption*{图 2.18\quad 偏导数定义为沿“保持所有其他坐标不变”的曲线的方向导数。}
+\end{figure}
+正如我们所希望的，乘积法则得到了满足，因此方向导数的集合是一个矢量空间。
+
+它就是我们想要等同于切空间的那种矢量空间吗？让自己信服的最容易的办法，是为这个空间找一组基。再次考虑带有坐标 $x^\mu$ 的一个坐标卡片。于是在 $p$ 点有一组显而易见的 $n$ 个方向导数，即 $p$ 点的偏导数 $\partial_\mu$，如图 2.18 所示。注意，这其实就是对 $x^\mu$ 的偏导数的\emph{定义}：沿由“$x^\nu=$ 常数（对一切 $\nu\neq\mu$）”所定义、以 $x^\mu$ 本身为参量的曲线的方向导数。我们现在要宣称：$p$ 点的偏导数算符 $\{\partial_\mu\}$ 构成切空间 $T_p$ 的一组基。（由此立即可知 $T_p$ 是 $n$ 维的，因为基矢就这么多。）为了看到这一点，我们将证明任何方向导数都可以分解为实数与偏导数乘积之和。这正是大家熟悉的切矢量分量的表达式，不过能从这套“大机器”方法中看到它，也是件令人愉快的事。考虑一个 $n$ 维流形 $M$、一个坐标卡片 $\phi:M\to\mathbf{R}^n$、一条曲线 $\gamma:\mathbf{R}\to M$，以及一个函数 $f:M\to\mathbf{R}$。这就导致了图 2.19 所示的那一团相互纠缠的映射。如果 $\lambda$ 是沿 $\gamma$ 的参量，我们想把矢量/算符 $d/d\lambda$ 用偏导数 $\partial_\mu$ 表示出来。利用链式法则 (2.12)，我们有
+% ---- 书页 65 / p080 ----
+\begin{align*}
+\frac{d}{d\lambda}f&=\frac{d}{d\lambda}(f\circ\gamma)\\
+&=\frac{d}{d\lambda}\left[(f\circ\phi^{-1})\circ(\phi\circ\gamma)\right]\\
+&=\frac{d(\phi\circ\gamma)^\mu}{d\lambda}\frac{\partial(f\circ\phi^{-1})}{\partial x^\mu}\\
+&=\frac{dx^\mu}{d\lambda}\partial_\mu f. \tag{2.15}
+\end{align*}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.19.pdf}
+\caption*{图 2.19\quad 把曲线 $\gamma:\mathbf{R}\to M$ 的切矢量按 $M$ 上坐标的偏导数分解。}
+\end{figure}
+第一行只是把左边的非正式表达式改写成函数 $(f\circ\gamma):\mathbf{R}\to\mathbf{R}$ 的实实在在的导数。第二行不过来自逆映射 $\phi^{-1}$ 的定义（以及复合运算的结合律）。第三行是正式的链式法则 (2.12)，最后一行则回到了开头的非正式记号。由于函数 $f$ 是任意的，我们有
+\begin{equation*}
+\frac{d}{d\lambda}=\frac{dx^\mu}{d\lambda}\partial_\mu. \tag{2.16}
+\end{equation*}
+这样，偏导数 $\{\partial_\mu\}$ 的确构成了方向导数矢量空间的一组好的基，因此我们可以放心地把它等同于切空间。
+
+当然，$d/d\lambda$ 所代表的矢量是我们早已认识的；它就是以 $\lambda$ 为参量的曲线的切矢量。因此式 (2.16) 可以看作式 (1.38) 的重述，在那里我们曾宣称切矢量的分量就是 $dx^\mu/d\lambda$。唯一的区别在于，我们现在是在任意流形上工作，并且我们把基矢指定为 $\hat{e}_{(\mu)}=\partial_\mu$。
+
+这种特殊的基（$\hat{e}_{(\mu)}=\partial_\mu$）称为 $T_p$ 的\textbf{坐标基}（coordinate basis）；它是“让基矢沿坐标轴指向”这一观念的形式化。考虑切矢量时，我们并没有理由只限于坐标基。例如，坐标基矢一般并不归一化到单位长度，彼此也不一定正交，我们很快就会看到
+% ---- 书页 66 / p081 ----
+这一点。这种局面可不是靠定义就能打发掉的；在弯曲流形上，只要某点处曲率不为零，坐标基在该点的任何邻域内都\emph{绝不会}是正交归一（orthonormal）的。当然，我们可以定义非坐标的正交归一基，例如在坐标基中给出它们的分量，有时这种技巧是有用的。然而，坐标基非常简单而自然，全书我们几乎只使用坐标基；想见识正交归一基，可参见附录 J。（在三维欧几里得空间的矢量分析研究中，标准做法是选取正交归一基而不是坐标基；因此，把 GR 教材中的公式应用到平直空间中非笛卡尔坐标的研究时，你应当多加小心。）
+
+我们对矢量采取的这一颇为抽象的观点，其优点之一是：坐标变换下的变换规律立即可得。既然基矢是 $\hat{e}_{(\mu)}=\partial_\mu$，某个新坐标系 $x^{\mu'}$ 中的基矢就由链式法则 (2.13) 给出为
+\begin{equation*}
+\partial_{\mu'}=\frac{\partial x^\mu}{\partial x^{\mu'}}\partial_\mu. \tag{2.17}
+\end{equation*}
+我们可以用平直空间中使用过的同一技巧得到矢量分量的变换规律：要求矢量 $V=V^\mu\partial_\mu$ 在基的改变下不变。我们有
+\begin{align*}
+V^\mu\partial_\mu&=V^{\mu'}\partial_{\mu'}\\
+&=V^{\mu'}\frac{\partial x^\mu}{\partial x^{\mu'}}\partial_\mu, \tag{2.18}
+\end{align*}
+于是，由于矩阵 $\partial x^{\mu'}/\partial x^\mu$ 是矩阵 $\partial x^\mu/\partial x^{\mu'}$ 的逆，
+\begin{equation*}
+V^{\mu'}=\frac{\partial x^{\mu'}}{\partial x^\mu}V^\mu. \tag{2.19}
+\end{equation*}
+由于基矢通常并不显式写出，分量变换规则 (2.19) 就是我们所说的“矢量变换定律”。我们注意到，它与狭义相对论中矢量分量在洛伦兹变换 $V^{\mu'}=\Lambda^{\mu'}{}_\nu V^\nu$ 下的变换是相容的，因为洛伦兹变换是一种特殊的坐标变换，即 $x^{\mu'}=\Lambda^{\mu'}{}_\nu x^\nu$。但 (2.19) 要普遍得多，它涵盖了矢量在任意坐标（从而基）改变下的行为，而不只是线性变换。一如既往，我们想强调的是一种有些微妙的存在论上的区分——原则上，张量分量在我们改变坐标时并不需要改变；它们是在我们改变切空间中的基时才改变的，只不过我们决定用坐标来定义基。因此，坐标的改变会诱发基的改变，如图 2.20 所示。
+
+既然一点的矢量可以看成沿过该点的路径的方向导数算符，那么显然，矢量\emph{场}（vector field）定义了一个从光滑函数到光滑函数、遍布整个流形的映射，办法是在每一点取导数。给定两个矢量场 $X$ 和 $Y$，我们因此可以定义它们的\textbf{对易子}（commutator）$[X,Y]$，办法是由它作用在函数 $f(x^\mu)$ 上的效果来刻画：
+% ---- 书页 67 / p082 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.20.pdf}
+\caption*{图 2.20\quad 坐标变换 $x^\mu\to x^{\mu'}$ 诱发切空间中基的改变。}
+\end{figure}
+\begin{equation*}
+[X,Y](f)\equiv X(Y(f))-Y(X(f)). \tag{2.20}
+\end{equation*}
+抽象观点的好处在于，这个算符显然不依赖于坐标。事实上，两个矢量场的对易子本身还是一个矢量场：如果 $f$ 和 $g$ 是函数，$a$ 和 $b$ 是实数，则对易子是线性的，
+\begin{equation*}
+[X,Y](af+bg)=a[X,Y](f)+b[X,Y](g), \tag{2.21}
+\end{equation*}
+并且服从 Leibniz 法则，
+\begin{equation*}
+[X,Y](fg)=f[X,Y](g)+g[X,Y](f). \tag{2.22}
+\end{equation*}
+这两个性质都很容易验证，是颇有用处的练习。同样有趣的练习是推导矢量场 $[X,Y]^\mu$ 分量的显式表达式，结果是
+\begin{equation*}
+\boxed{[X,Y]^\mu=X^\lambda\partial_\lambda Y^\mu-Y^\lambda\partial_\lambda X^\mu}. \tag{2.23}
+\end{equation*}
+按构造这是一个良定义的张量；但你对其中偏导数的出现应当有一丝担忧，因为矢量的偏导数并不是良定义的张量（下一节我们会讨论这一点）。还有一项迷人的练习是对式 (2.23) 显式地做一次坐标变换，验证所有可能非张量化的部分都相互抵消，结果像一个矢量场那样变换。对易子是李导数（Lie derivative）的特例，李导数将在附录 B 中讨论；它有时也被称为\textbf{李括号}（Lie bracket）。注意，由于偏导数相互对易，由坐标函数的偏导数给出的矢量场 $\{\partial_\mu\}$ 的对易子永远为零。
+
+% ---- 书页 68 / p083 ----
+\section{再谈张量}
+
+探索完矢量的世界，我们继续沿着在平直空间中走过的脚步前行，现在来考虑对偶矢量（one-form，1-形式）。余切空间 $T_p^*$ 同样可以看成线性映射 $\omega:T_p\to\mathbf{R}$ 的集合。1-形式最典型的例子是函数 $f$ 的梯度，记作 $\mathrm{d}f$，如式 (1.52) 那样。它作用在矢量 $d/d\lambda$ 上的结果，恰恰就是这个函数的方向导数：
+\begin{equation*}
+\mathrm{d}f\left(\frac{d}{d\lambda}\right)=\frac{df}{d\lambda}. \tag{2.24}
+\end{equation*}
+一个诱人的问题是：“为什么不能干脆把函数 $f$ 本身当作这个 1-形式，而把 $df/d\lambda$ 当作它的作用？”关键在于，1-形式和矢量一样，只存在于它被定义的那一点，不依赖于 $M$ 上其他点的信息。如果你知道一个函数在某点某个邻域内的取值，你可以求它的导数，但仅知道它在该点的值是不够的；而梯度恰恰编码了沿过 $p$ 点的任何曲线取方向导数所需的全部信息，从而尽到了它作为对偶矢量的职责。
+
+你可能已经注意到，我们利用流形固有的结构（沿曲线的方向导数）定义了矢量，再用这个定义、借助对偶矢量空间来定义 1-形式。这或许会给人一个印象：矢量在某种意义上更基本。然而事实上，我们同样可以从 1-形式的内禀定义出发，再用它把矢量定义为对偶空间。粗略地说，$p$ 点的 1-形式空间等价于所有在 $p$ 点为零、且具有相同二阶偏导数的函数构成的空间。而且真要说起来，那样做反而更基本，因为我们可以给出所有 $q$-形式（具有 $q$ 个下指标的完全反对称张量）的内禀定义，我们将在 2.9 节讨论它们（尽管不会深入内禀定义的细节）。
+
+正如沿坐标轴的偏导数为切空间提供了一组自然的基，坐标函数 $x^\mu$ 的梯度也为余切空间提供了一组自然的基。回忆一下，在平直空间中我们通过要求 $\hat{\theta}^{(\mu)}(\hat{e}_{(\nu)})=\delta^\mu_\nu$ 来构造 $T_p^*$ 的基。在任意流形上贯彻同样的思想，我们发现 (2.24) 导致
+\begin{equation*}
+\mathrm{d}x^\mu(\partial_\nu)=\frac{\partial x^\mu}{\partial x^\nu}=\delta^\mu_\nu. \tag{2.25}
+\end{equation*}
+因此，梯度 $\{\mathrm{d}x^\mu\}$ 是一组适当的基 1-形式；任意 1-形式按分量展开为 $\omega=\omega_\mu\mathrm{d}x^\mu$。
+
+基对偶矢量与分量的变换性质，可以按如今已是家常便饭的步骤得到。对基 1-形式，我们得到
+\begin{equation*}
+\mathrm{d}x^{\mu'}=\frac{\partial x^{\mu'}}{\partial x^\mu}\mathrm{d}x^\mu \tag{2.26}
+\end{equation*}
+% ---- 书页 69 / p084 ----
+而对分量则有
+\begin{equation*}
+\omega_{\mu'}=\frac{\partial x^\mu}{\partial x^{\mu'}}\omega_\mu. \tag{2.27}
+\end{equation*}
+以后谈到 1-形式 $\omega$ 时，我们通常直接写它的分量 $\omega_\mu$。
+
+和平直空间中一样，$(k,l)$ 型张量是从 $k$ 个对偶矢量与 $l$ 个矢量组成的集合到 $\mathbf{R}$ 的多重线性映射。它在坐标基下的分量，可以让这个张量作用于基 1-形式和基矢而得到：
+\begin{equation*}
+T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}=T(\mathrm{d}x^{\mu_1},\ldots,\mathrm{d}x^{\mu_k},\partial_{\nu_1},\ldots,\partial_{\nu_l}). \tag{2.28}
+\end{equation*}
+这等价于展开式
+\begin{equation*}
+T=T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}\,\partial_{\mu_1}\otimes\cdots\otimes\partial_{\mu_k}\otimes\mathrm{d}x^{\nu_1}\otimes\cdots\otimes\mathrm{d}x^{\nu_l}. \tag{2.29}
+\end{equation*}
+一般张量的变换定律遵循同样的模式：把平直空间中使用的洛伦兹变换矩阵，换成代表更一般坐标变换的矩阵：
+\begin{equation*}
+\boxed{T^{\mu_1'\cdots\mu_k'}{}_{\nu_1'\cdots\nu_l'}=\frac{\partial x^{\mu_1'}}{\partial x^{\mu_1}}\cdots\frac{\partial x^{\mu_k'}}{\partial x^{\mu_k}}\frac{\partial x^{\nu_1}}{\partial x^{\nu_1'}}\cdots\frac{\partial x^{\nu_l}}{\partial x^{\nu_l'}}\,T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}.} \tag{2.30}
+\end{equation*}
+这个张量变换定律好记得很：只要看看指标的摆放位置，它实在不可能是别的样子。
+
+不过实际上，变换张量时往往更省事的做法是：按字面接受“基矢就是偏导数、基 1-形式就是梯度”这一等式，然后直接把坐标变换代进去。举个例子，考虑二维流形上一个对称的 $(0,2)$ 型张量 $S$，它在坐标系 $(x^1=x,\ x^2=y)$ 下的分量为
+\begin{equation*}
+S_{\mu\nu}=\begin{pmatrix} 1 & 0 \\ 0 & x^2 \end{pmatrix}. \tag{2.31}
+\end{equation*}
+这可以等价地写成
+\begin{align*}
+S&=S_{\mu\nu}(\mathrm{d}x^\mu\otimes\mathrm{d}x^\nu)\\
+&=(\mathrm{d}x)^2+x^2(\mathrm{d}y)^2, \tag{2.32}
+\end{align*}
+其中最后一行为了简洁省略了张量积符号（今后我们都将如此）。现在考虑新坐标
+\begin{align*}
+x'&=\frac{2x}{y}\\
+y'&=\frac{y}{2} \tag{2.33}
+\end{align*}
+% ---- 书页 70 / p085 ----
+（例如在 $x>0$、$y>0$ 时有效）。它们可以立即反解出来，得到
+\begin{align*}
+x&=x'y'\\
+y&=2y'. \tag{2.34}
+\end{align*}
+我们不必动用张量变换定律，而只需利用我们知道如何求导这一事实，把 $\mathrm{d}x^\mu$ 用 $\mathrm{d}x^{\mu'}$ 表示出来。我们有
+\begin{align*}
+\mathrm{d}x&=y'\mathrm{d}x'+x'\mathrm{d}y'\\
+\mathrm{d}y&=2\,\mathrm{d}y'. \tag{2.35}
+\end{align*}
+只需把这些表达式直接代入 (2.32)，就得到（记住张量积不对易，故 $\mathrm{d}x'\mathrm{d}y'\neq\mathrm{d}y'\mathrm{d}x'$）：
+\begin{equation*}
+S=(y')^2(\mathrm{d}x')^2+x'y'\left(\mathrm{d}x'\mathrm{d}y'+\mathrm{d}y'\mathrm{d}x'\right)+\left[(x')^2+4(x'y')^2\right](\mathrm{d}y')^2, \tag{2.36}
+\end{equation*}
+或者
+\begin{equation*}
+S_{\mu'\nu'}=\begin{pmatrix} (y')^2 & x'y' \\ x'y' & (x')^2+4(x'y')^2 \end{pmatrix}. \tag{2.37}
+\end{equation*}
+注意它仍然是对称的。我们没有直接使用变换定律 (2.30)，但如果直接用，也会得到相同的结果，你可以自行核验。
+
+大体而言，我们在平直空间中定义的各种张量运算在更一般的场合依然如故：缩并、对称化，等等。但有三个重要的例外：偏导数、度规，以及 Levi-Civita 张量。我们先来看偏导数。
+
+遗憾的是，张量的偏导数一般不是新的张量。标量的偏导数——梯度——如我们所见是名副其实的 $(0,1)$ 型张量。但更高阶张量的偏导数就不是张量性的了；只要考察 1-形式的偏导数 $\partial_\mu W_\nu$ 并变换到一个新坐标系，就能看到这一点：
+\begin{align*}
+\frac{\partial}{\partial x^{\mu'}}W_\nu&=\frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial}{\partial x^\mu}\left(\frac{\partial x^\nu}{\partial x^{\nu'}}W_\nu\right)\\
+&=\frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial x^\nu}{\partial x^{\nu'}}\left(\frac{\partial}{\partial x^\mu}W_\nu\right)+W_\nu\frac{\partial x^\mu}{\partial x^{\mu'}}\frac{\partial}{\partial x^\nu}\frac{\partial x^\nu}{\partial x^{\nu'}}. \tag{2.38}
+\end{align*}
+假如 $\partial_\mu W_\nu$ 像 $(0,2)$ 型张量那样变换，最后一行中的第二项就不应该存在。可以看到，它之所以出现，是因为变换矩阵的导数不再为零——而在平直空间的洛伦兹变换下它原是为零的。
+
+微分显然是物理学中的重要工具，所以我们将不得不发明新的张量化运算来接替偏导数。实际上我们会发明好几种：外微分（exterior derivative）、协变导数（covariant derivative）和李导数（Lie derivative）。
+
+% ---- 书页 71 / p086 ----
+\section{度规}
+
+度规张量在弯曲空间中的地位如此重要，以至于它被赋予了一个新符号 $g_{\mu\nu}$（而 $\eta_{\mu\nu}$ 则专门保留给 Minkowski 度规）。对 $g_{\mu\nu}$ 分量的限制很少，只要求它是对称的 $(0,2)$ 型张量。通常——尽管并非总是——还要求它是非退化的（nondegenerate），意思是行列式 $g=|g_{\mu\nu}|$ 不为零。这使我们能够经由
+\begin{equation*}
+g^{\mu\nu}g_{\nu\sigma}=g_{\sigma\lambda}g^{\lambda\mu}=\delta^\mu_\sigma. \tag{2.39}
+\end{equation*}
+来定义逆度规 $g^{\mu\nu}$。
+
+$g_{\mu\nu}$ 的对称性意味着 $g^{\mu\nu}$ 也是对称的。正如狭义相对论中那样，度规及其逆可用来升降张量的指标。你可能熟悉拓扑学研究中“度规”（metric）的概念，在那里还要求度规是正定的（没有负本征值）。广义相对论中使用的度规不能用来定义拓扑，但它会有其他用途。
+
+要充分领略度规的全部荣耀尚需一些时间，但出于激励的目的[仿照 Sachs and Wu (1977)]，我们可以列出 $g_{\mu\nu}$ 将要承担的种种任务：（1）度规提供“过去”与“未来”的概念；（2）度规使计算路径长度和固有时成为可能；（3）度规确定两点之间的“最短距离”，从而确定检验粒子的运动；（4）度规取代 Newton 引力场 $\phi$；（5）度规提供局部惯性系的观念，从而给出“无转动”的意义；（6）度规通过定义光速——任何信号都无法超越的速度——来确定因果性；（7）度规取代 Newton 力学中传统的欧几里得三维点积。显然，这些想法并非都完全相互独立，但我们已经能对这个张量的重要性略窥一二。
+
+在狭义相对论中讨论路径长度时，我们（有些含糊其辞地）引入了线元 $ds^2=\eta_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu$，用它来求路径的长度。当然，既然我们如今知道 $\mathrm{d}x^\mu$ 其实是一个基对偶矢，把“度规”和“线元”这两个词互换使用就变得自然而然了，于是写作
+\begin{equation*}
+ds^2=g_{\mu\nu}\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu. \tag{2.40}
+\end{equation*}
+要做到完全一致，我们应当把它写作“$g$”，有时也确实如此；但更多时候 $g$ 被用来表示行列式 $|g_{\mu\nu}|$。例如我们知道，具有笛卡尔坐标的三维空间中，欧几里得线元为
+\begin{equation*}
+ds^2=(\mathrm{d}x)^2+(\mathrm{d}y)^2+(\mathrm{d}z)^2. \tag{2.41}
+\end{equation*}
+现在我们可以换到任何我们想用的坐标系。例如，取球坐标就有
+% ---- 书页 72 / p087 ----
+\begin{align*}
+x&=r\sin\theta\cos\phi\\
+y&=r\sin\theta\sin\phi\\
+z&=r\cos\theta, \tag{2.42}
+\end{align*}
+这直接给出
+\begin{equation*}
+ds^2=\mathrm{d}r^2+r^2\,\mathrm{d}\theta^2+r^2\sin^2\theta\,\mathrm{d}\phi^2. \tag{2.43}
+\end{equation*}
+显然，度规的分量看上去与笛卡尔坐标下的不同，但空间的全部性质依然未变。
+
+大多数文献不至于挑剔到要区分“$dx$”（无穷小位移的非正式概念）与“$\mathrm{d}x$”（严格的基 1-形式概念，由坐标函数的梯度给出）的地步。（它们还往往忽视张量积不对易这一事实，把诸如 $\mathrm{d}x\,\mathrm{d}y+\mathrm{d}y\,\mathrm{d}x$ 的表达式写成 $2\,\mathrm{d}x\,\mathrm{d}y$；含义如何应当能从上下文看清楚。）实际上，我们的记号“$ds^2$”既不指任何东西的微分，也不指任何东西的平方；它只是度规张量的习惯性简写，而度规张量是从两个矢量到实数的多重线性映射。于是，对两个矢量 $V^\mu$ 和 $W^\nu$ 的内积，我们有一组等价的表达式：
+\begin{equation*}
+g_{\mu\nu}V^\mu W^\nu=g(V,W)=ds^2(V,W). \tag{2.44}
+\end{equation*}
+而“$(\mathrm{d}x)^2$”则专门指实实在在的 $(0,2)$ 型张量 $\mathrm{d}x\otimes\mathrm{d}x$。
+
+非欧流形的一个好例子是二维球面（two-sphere），它可以看成 $\mathbf{R}^3$ 中与原点距离为 1 的点的轨迹。$(\theta,\phi)$ 坐标系下的度规，可以在 (2.43) 中令 $r=1$ 和 $\mathrm{d}r=0$ 得到：
+\begin{equation*}
+ds^2=\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2. \tag{2.45}
+\end{equation*}
+这与把 $ds$ 解释为无穷小长度完全一致，如图 2.21 所示。任何用心读到这里的人都应当在此发问：“令 $\mathrm{d}r=0$ 到底是什么意思？我们知道 $\mathrm{d}r$ 是一个良定义的、非零的 1-形式场啊。”正如偶尔会发生的那样，我们这里用了不太严谨的语言，来引导一步实际上完全正当的操作；关于子流形如何从其所嵌入的空间继承度规，参见附录 A 中的讨论。
+
+我们将会看到，度规张量包含了描述流形曲率所需的全部信息（至少在所谓的黎曼几何（Riemannian geometry）中是如此；下一章我们会讨论其中的若干微妙之处）。在 Minkowski 空间中，我们可以选取使度规分量为常数的坐标；但应当清楚，曲率是否存在这件事比“度规是否依赖于坐标”更为微妙，因为在上面的例子中我们已经看到，平直欧几里得空间在球坐标下的度规就是 $r$ 和 $\theta$ 的函数。后面我们将看到，度规分量为常数足以保证空间是平直的，而且事实上在任何
+ 平直空间上总存在一个度规分量为常数的坐标系。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.21.pdf}
+\caption*{图 2.21\quad 二维球面上的线元。}
+\end{figure}
+% ---- 书页 73 / p088 ----
+但是，我们未必知道如何找到这样一个坐标系，而且空间偏离平直的方式有很多种；因此我们会想要一个对曲率更精确的刻画，这将在后面引入。
+
+把$g_{\mu\nu}$化成它的\textbf{规范形式}（canonical form），便得到度规的一个有用刻画。在这种形式下，度规分量变为
+\begin{equation*}
+g_{\mu\nu}=\mathrm{diag}\,(-1,-1,\ldots,-1,+1,+1,\ldots,+1,0,0,\ldots,0),
+\tag{2.46}
+\end{equation*}
+其中“diag”指具有所给元素的对角矩阵。度规的\textbf{号差}（signature）指正、负本征值两者的个数；例如，对 Minkowski 空间我们会说“号差为负正正正的度规”。如果本征值中有零，度规就是“退化的”（degenerate），逆度规将不存在；如果度规连续且非退化，它的号差在每一点都相同。我们要处理的将总是连续、非退化的度规。如果所有符号都是正的，这个度规就称为\textbf{欧几里得型}（Euclidean）或\textbf{黎曼型}（Riemannian）的（或者干脆叫\textbf{正定}（positive definite）的）；如果只有单独一个负号，则称为\textbf{洛伦兹型}（Lorentzian）或\textbf{伪黎曼型}（pseudo-Riemannian）的；而任何既有若干$+1$又有若干$-1$的度规都称为\textbf{不定}（indefinite）的。（于是，“欧几里得”一词有时意味着空间是平直的，有时又不是，但它始终意味着规范形式严格为正；这套术语令人遗憾，却是通行的标准。）广义相对论中感兴趣的时空都具有洛伦兹型度规。
+
+我们还没有证明总可以把度规化成规范形式。事实上，在$M$的某一点$p$处总能做到这一点，但一般而言只在单独那一点处可行，在$p$的任何邻域内则不然。实际上我们还能做得比这稍微好一点；结果是，在任一点$p$都存在一个坐标系$x^{\hat\mu}$，使得$g_{\hat\mu\hat\nu}$在其中取其规范形式，而且一阶导数$\partial_{\hat\sigma}g_{\hat\mu\hat\nu}$全部为零（而二阶导数$\partial_{\hat\rho}\partial_{\hat\sigma}g_{\hat\mu\hat\nu}$则不可能全部变为零）：
+% ---- 书页 74 / p089 ----
+\begin{equation*}
+g_{\hat\mu\hat\nu}(p)=\eta_{\hat\mu\hat\nu},\qquad \partial_{\hat\sigma}g_{\hat\mu\hat\nu}(p)=0.
+\tag{2.47}
+\end{equation*}
+这样的坐标称为\textbf{局部惯性坐标系}（locally inertial coordinates），与之相联系的基矢量构成一个\textbf{局部洛伦兹标架}（local Lorentz frame）；当我们处于这些特殊坐标中时，常常给指标戴上帽号（hat）。注意，在局部惯性坐标系中，$p$点的度规在一阶近似下看上去就像平直空间的度规。这正是“时空的足够小区域看起来像平直的（Minkowski）空间”这一说法的严格含义。另外，在$M$的每一点上同时构造若干组\emph{基矢量}使得度规取其规范形式，这没有任何困难；问题在于，一般说来并不存在一个能从中导出这些基的\emph{坐标系}。这类基在附录 J 中有讨论。
+
+关于如何构造局部惯性坐标系，我们将推迟到第 3 章再讨论。然而，对四维洛伦兹型度规这一具体情形勾画出其存在性的一个证明，是有益的。想法是考察度规的变换规律
+\begin{equation*}
+g_{\hat\mu\hat\nu}=\frac{\partial x^\mu}{\partial x^{\hat\mu}}\frac{\partial x^\nu}{\partial x^{\hat\nu}}\,g_{\mu\nu},
+\tag{2.48}
+\end{equation*}
+并在待求的坐标$x^{\hat\mu}$下把两边作泰勒展开。旧坐标$x^\mu$的展开形如
+\begin{align*}
+x^\mu&=\left(\frac{\partial x^\mu}{\partial x^{\hat\mu}}\right)_p x^{\hat\mu}
++\frac{1}{2}\left(\frac{\partial^2 x^\mu}{\partial x^{\hat\mu_1}\partial x^{\hat\mu_2}}\right)_p x^{\hat\mu_1}x^{\hat\mu_2}\\
+&\quad+\frac{1}{6}\left(\frac{\partial^3 x^\mu}{\partial x^{\hat\mu_1}\partial x^{\hat\mu_2}\partial x^{\hat\mu_3}}\right)_p x^{\hat\mu_1}x^{\hat\mu_2}x^{\hat\mu_3}+\cdots,
+\tag{2.49}
+\end{align*}
+其余的展开沿同样的路线进行。[为简单起见，我们已令$x^\mu(p)=x^{\hat\mu}(p)=0$。]然后，用一套极其示意性的记号，(2.48)展开到二阶就是
+\begin{align*}
+&(\hat g)_p+\left(\hat\partial\hat g\right)_p\hat x+\left(\hat\partial\hat\partial\hat g\right)_p\hat x\hat x\\
+&\quad=\left(\frac{\partial x}{\partial \hat x}\frac{\partial x}{\partial \hat x}g\right)_p
++\left(\frac{\partial x}{\partial \hat x}\frac{\partial^2 x}{\partial \hat x\,\partial \hat x}g+\frac{\partial x}{\partial \hat x}\frac{\partial x}{\partial \hat x}\hat\partial g\right)_p\hat x\\
+&\quad\quad+\left(\frac{\partial x}{\partial \hat x}\frac{\partial^3 x}{\partial \hat x\,\partial \hat x\,\partial \hat x}g+\frac{\partial^2 x}{\partial \hat x\,\partial \hat x}\frac{\partial^2 x}{\partial \hat x\,\partial \hat x}g+\frac{\partial x}{\partial \hat x}\frac{\partial^2 x}{\partial \hat x\,\partial \hat x}\hat\partial g+\frac{\partial x}{\partial \hat x}\frac{\partial x}{\partial \hat x}\hat\partial\hat\partial g\right)_p\hat x\hat x.
+\tag{2.50}
+\end{align*}
+我们可以令两边$\hat x$的同阶项彼此相等。于是，分量$g_{\hat\mu\hat\nu}(p)$——总共 10 个数（用来描述一个对称的二指标张量）——就由矩阵$\left(\partial x^\mu/\partial x^{\hat\mu}\right)_p$决定。这是一个$4\times4$
+% ---- 书页 75 / p090 ----
+矩阵，不带任何约束；因此我们可以自由选择 16 个数。显然，至少就“有足够的自由度”这一点而言，这些自由度足以把$g_{\hat\mu\hat\nu}(p)$的 10 个数化成规范形式。（实际上存在一些限制——如果你仔细走完整个程序，你会发现例如号差是无法改变的。）剩下的六个自由度恰好可以诠释为洛伦兹群的六个参数；我们知道这些变换保持规范形式不变。在一阶，我们有导数$\partial_{\hat\sigma}g_{\hat\mu\hat\nu}(p)$，四个导数乘十个分量，总计 40 个数。但观察 (2.50) 的右边我们看到，现在我们还有选取$\left(\partial^2 x^\mu/\partial x^{\hat\mu_1}\partial x^{\hat\mu_2}\right)_p$的额外自由。在这组数中，指标$\hat\mu_1$和$\hat\mu_2$有 10 种独立取法（它是对称的，因为偏导数相互对易），$\mu$有四种取法，总计 40 个自由度。这恰好是我们确定度规所有一阶导数所需的选取数目，因此我们可以把它们全部设为零。然而在二阶，我们要关心的是$\partial_{\hat\rho}\partial_{\hat\sigma}g_{\hat\mu\hat\nu}(p)$；它在$\hat\rho$与$\hat\sigma$以及$\hat\mu$与$\hat\nu$中对称，总计$10\times10=100$个数。我们作出额外选取的能力包含在$\left(\partial^3 x^\mu/\partial x^{\hat\mu_1}\partial x^{\hat\mu_2}\partial x^{\hat\mu_3}\right)_p$之中。它在三个下指标中对称，给出 20 种可能，再乘以上指标的 4，给我们 80 个自由度——比把度规的二阶导数全部设为零所需的少 20 个。所以事实上我们无法让二阶导数消失；因此对平直的偏离必须由代表度规张量场二阶导数的那 20 个自由度来量度。稍后我们将会看到这是怎么一回事，届时我们会用 Riemann 曲率张量来刻画曲率，而它将被证明在四维中有 20 个独立分量。
+
+局部惯性坐标系有用得难以置信。最妙的是，它们的用处一般并不要求我们真的去做构造这种坐标的工作（尽管下一章我们会给出一个做法），而只要求我们知道它们确实存在。通常的窍门是：取一个有物理兴趣的问题，在局部惯性坐标系的框架下回答它，然后把答案表示成不依赖坐标的形式。举一个非常简单的例子：一位具有四速度$U^\mu$的观者，以及一枚以四速度$V^\mu$飞过的火箭。这位观者测得火箭的普通三速度是多少？在狭义相对论中答案很直接。在惯性坐标（全局地，而不仅局域地）中工作，让观者处于静止系，火箭沿$x$轴运动。于是观者的四速度是$U^\mu=(1,0,0,0)$，火箭的四速度是$V^\mu=(\gamma,\gamma v,0,0)$，其中$v$是三速度，而$\gamma=1/\sqrt{1-v^2}$，于是$v=\sqrt{1-\gamma^{-2}}$。由于（此刻）我们处在平直时空中，我们有
+\begin{equation*}
+\gamma=-\eta_{\hat\mu\hat\nu}U^{\hat\mu}V^{\hat\nu}=-U_{\hat\mu}V^{\hat\mu},
+\tag{2.51}
+\end{equation*}
+因为$\eta_{00}=-1$。因此平直时空中的答案应当是
+\begin{equation*}
+v=\sqrt{1-\left(U_{\hat\mu}V^{\hat\mu}\right)^{-2}}.
+\tag{2.52}
+\end{equation*}
+% ---- 书页 76 / p091 ----
+现在我们可以回到弯曲时空了，在那里度规不再是平直的。但在进行测量的那一点上，我们可以随意使用局部惯性坐标系，此时$g_{\hat\mu\hat\nu}$的分量恰好就是$\eta_{\hat\mu\hat\nu}$的分量。所以在这个特定的坐标系中，(2.52)在弯曲时空中依然成立。但 (2.52) 是一个完全张量式的方程，它不在乎我们用的是什么坐标系；因此它以完全的一般性成立。这类做法将一再证明自己的价值。
+
+\section{膨胀宇宙}
+
+一个非平凡洛伦兹几何的简单例子由一个四维宇宙学时空提供，其度规为
+\begin{equation*}
+ds^2=-\mathrm{d}t^2+a^2(t)\left[\mathrm{d}x^2+\mathrm{d}y^2+\mathrm{d}z^2\right].
+\tag{2.53}
+\end{equation*}
+这描写了一个宇宙，对它来说“某一固定时刻的空间”是一个平直的三维欧几里得空间，并且作为时间的函数在膨胀。保持在固定空间坐标$x^i$处不变的世界线称为共动的（comoving）；类似地，我们把随以固定空间坐标定义的边界一同膨胀的空间区域称为“共动体积”（comoving volume）。由于度规描写的是（距离）$^2$，在这个时空中，共动点之间的相对距离按$a(t)$增长；函数$a$称为尺度因子（scale factor）。这是 Robertson–Walker 度规的一个特殊情形，即空间切片在几何上平直的情形；还有另一些空间切片弯曲的情形（我们将在第 8 章讨论）。但我们此刻的兴趣不在于这个度规从何而来，而在于把它当作一个游乐场，用来演示我们已经发展出的某些想法。
+
+尺度因子的典型解是幂律，
+\begin{equation*}
+a(t)=t^q,\qquad 0<q<1.
+\tag{2.54}
+\end{equation*}
+实际上解五花八门，但上面这些是特别简单而又切题的几个。物质主导的平直宇宙满足$q=\frac{2}{3}$，而辐射主导的平直宇宙满足$q=\frac{1}{2}$。一个显著的特征是，当$t\to0$时尺度因子趋于零，度规的空间分量也随之趋于零。这是一个依赖于坐标的论断，原则上或许存在另一个坐标系使一切都显得有限；然而在这个例子中，$t=0$代表几何的一个真实奇点（即“大爆炸”），应当从流形中排除出去。因此$t$坐标的范围是
+\begin{equation*}
+0<t<\infty.
+\tag{2.55}
+\end{equation*}
+
+我们的时空在$t=0$处走到尽头。
+
+这个弯曲几何中的光锥由类光路径定义，即那些$ds^2=0$的路径。我们可以考虑使
+% ---- 书页 77 / p092 ----
+$y$和$z$保持不变的类光路径，来画出一幅时空图；于是
+\begin{equation*}
+0=-\mathrm{d}t^2+t^{2q}\,\mathrm{d}x^2,
+\tag{2.56}
+\end{equation*}
+这意味着
+\begin{equation*}
+\frac{dx}{dt}=\pm t^{-q}.
+\tag{2.57}
+\end{equation*}
+你也许会担心：我们前面才煞有介事地强调过$\mathrm{d}x^\mu$是基 1-形式而不是微分，转眼却马马虎虎地“用$\mathrm{d}t^2$作除法”从 (2.56) 得到了 (2.57)。实际情况要体面得多。我们实际所做的，是取由 (2.56) 定义的$(0,2)$型张量——它吃进两个矢量、返回一个实数——并把它作用在矢量$V=(dx^\mu/d\lambda)\partial_\mu$的两份拷贝上，$V$是曲线$x^\mu(\lambda)$的切矢量。只考虑$\mathrm{d}t^2$这一项作用在$V$上：
+\begin{equation*}
+\mathrm{d}t^2(V,V)\equiv(\mathrm{d}t\otimes\mathrm{d}t)(V,V)=\mathrm{d}t(V)\cdot\mathrm{d}t(V),
+\tag{2.58}
+\end{equation*}
+其中记号$\mathrm{d}t(V)$指一个实数，我们按如下方式计算它：
+\begin{align*}
+\mathrm{d}t(V)&=\mathrm{d}t\left(\frac{dx^\mu}{d\lambda}\partial_\mu\right)\\
+&=\frac{dx^\mu}{d\lambda}\,\mathrm{d}t\left(\partial_\mu\right)\\
+&=\frac{dx^\mu}{d\lambda}\frac{\partial t}{\partial x^\mu}\\
+&=\frac{dt}{d\lambda},
+\tag{2.59}
+\end{align*}
+其中第三行用到了式 (2.25)。对$\mathrm{d}x^2$重复同样的步骤，我们发现 (2.56) 蕴含
+\begin{equation*}
+0=-\left(\frac{dt}{d\lambda}\right)^2+t^{2q}\left(\frac{dx}{d\lambda}\right)^2,
+\tag{2.60}
+\end{equation*}
+由此经一维链式法则便得到 (2.57)：
+\begin{equation*}
+\frac{dx}{dt}=\frac{dx}{d\lambda}\frac{d\lambda}{dt}.
+\tag{2.61}
+\end{equation*}
+教训应当很清楚：像 (2.56) 这样的表达式描写的是良定义的张量，但把基 1-形式当作单纯的“微分”来操作，确实能给出正确答案。（至少在大多数时候如此；把更正式的定义记在脑子里是个好主意。）
+
+我们可以解 (2.57) 得到
+\begin{equation*}
+t=(1-q)^{1/(1-q)}\left(\pm x-x_0\right)^{1/(1-q)},
+\tag{2.62}
+\end{equation*}
+% ---- 书页 78 / p093 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.22.pdf}
+\caption*{图 2.22\quad 平直 Robertson–Walker 宇宙（$a(t)\propto t^q$，$0<q<1$）的时空图。图中底部的虚线表示$t=0$处的奇点。由于光锥与奇点相切，两点的过去可以不重叠。}
+\end{figure}
+其中$x_0$是积分常数。这些曲线定义了我们这个膨胀宇宙的光锥，如图 2.22 所绘。由于我们已假定$0<q<1$，光锥在$t=0$处与奇点相切。这个几何的一个关键特征是：两点的光锥在过去未必相交；这与 Minkowski 空间形成对照——在 Minkowski 空间中，任何两点的光锥在过去和未来都必定相交。我们说每个事件都定义了一个“视界”（horizon），在其之外存在对该事件处发生的事情不可能有任何影响的世界线。这是因为，既然没有任何东西能运动得比光快，每个点只能被那些或者位于其过去光锥之上、或者位于其内部的事件所影响（实际上，我们把过去光锥连同其内部合起来简称为一个事件的“过去”）。彼此处在对方视界之外的两个事件，称为“处于因果接触之外”（out of causal contact）。这些概念将在下一节以及第 4 章和第 8 章中得到更仔细的探讨。
+
+\section{因果性}
+
+许多物理问题都可以表述为初值问题（initial-value problem）：已知系统在某一时刻的状态，那么在稍后某时刻它的状态是什么？这类问题有确定答案，这件事归功于因果性（causality）——即这样一种观念：未来的事件可以被理解为初始条件加上物理定律所产生的后果。初值问题在 GR 中和在 Newton 物理学或狭义相对论中一样常见；然而，时空背景的动力学本性为初值表述的失效引入了新的可能方式。这里我们非常简略地介绍一些概念，它们用于理解因果性在 GR 中如何起作用。
+% ---- 书页 79 / p094 ----
+我们将考察在固定的背景时空上演化物质场的问题，而不是度规本身的演化。我们的指导原则是：任何信号都不能传播得比光速快；因此信息只会沿类时或类光的轨迹流动（不一定是测地线）。由于有时需要区分纯类时的路径和仅仅是非类空的路径，我们定义\textbf{因果曲线}（causal curve）为处处类时或类光的曲线。于是，给定流形$M$的任意子集$S$，我们定义$S$的\textbf{因果未来}（causal future），记作$J^+(S)$，为沿指向未来的因果曲线从$S$出发所能到达的点集；\textbf{编时未来}（chronological future）$I^+(S)$则是沿指向未来的类时曲线所能到达的点集。注意，零长度的曲线是因果的，但不是编时的；因此，点$p$永远在自己的因果未来$J^+(p)$之中，却不一定在自己的编时未来$I^+(p)$之中（尽管也可能在，下面会提到）。因果过去$J^-$与编时过去$I^-$可以类似地定义。
+
+$M$的子集$S$如果没有任何两点能用类时曲线相连，就称为\textbf{非编时的}（achronal）；例如，Minkowski 时空中任何无边缘的类空超曲面都是非编时的。给定一个闭的非编时集$S$，我们定义$S$的\textbf{未来依赖域}（future domain of dependence），记作$D^+(S)$，为所有这样的点$p$的集合：经过$p$的\emph{每一条}向过去行进的不可延伸因果曲线都必须与$S$相交。（不可延伸（inextendible）只是说这条曲线永远延伸下去，不在某个有限点处终止；闭则是说该集合的补集是开集。）$S$自身的元素也是$D^+(S)$的元素。把未来换成过去，同样定义过去依赖域$D^-(S)$。一般而言，$M$中有些点会落在某个依赖域之内，有些则在其外；我们把$D^+(S)$的边界定义为\textbf{未来 Cauchy 视界}（future Cauchy horizon）$H^+(S)$，类似地把$D^-(S)$的边界定义为过去 Cauchy 视界$H^-(S)$。你可以自行确信它们都是类光曲面。依赖域和 Cauchy 视界绘于图 2.23 中，图中$S$取为非编时曲面$\Sigma$的一个连通子集。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.23.pdf}
+\caption*{图 2.23\quad 类空曲面$\Sigma$的一个连通子集$S$及其因果结构。$D^\pm(S)$表示$S$的未来/过去依赖域，$H^\pm(S)$表示未来/过去 Cauchy 视界。}
+\end{figure}
+% ---- 书页 80 / p095 ----
+这些定义的用处应当很明显：如果没有任何东西运动得比光快，信号就不可能传播到任一点$p$的光锥之外。因此，如果留在该光锥内部的每条曲线都必须与$S$相交，那么在$S$上给出的信息就应当足以预言$p$处的情形；也就是说，在$S$上给出的物质场的初始数据可以用来解出$p$处场的值。通过知道$S$上发生的事就能预言其情形的所有点的集合，是并集$D(S)=D^+(S)\cup D^-(S)$，简称\textbf{依赖域}（domain of dependence）。如果闭的非编时曲面$\Sigma$的依赖域$D(\Sigma)$是整个流形，就称$\Sigma$为\textbf{Cauchy 面}（Cauchy surface）；有了 Cauchy 面上给出的信息，我们就能预言整个时空中发生的事。如果一个时空拥有 Cauchy 面（它可能没有），就称它是\textbf{全局双曲}（globally hyperbolic）的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.24.pdf}
+\caption*{图 2.24\quad 曲面$\Sigma$处处类空，但处在点$p$的过去光锥的过去；它的依赖域并不是整个时空。}
+\end{figure}
+任何闭的、非编时的、且没有边缘的集合$\Sigma$都称为\textbf{部分 Cauchy 面}（partial Cauchy surface）。一个部分 Cauchy 面之所以未能成为真正的 Cauchy 面，可能归咎于它自己，也可能归咎于时空。一种可能性是我们恰好选了一张“坏”超曲面（尽管很难给出一个一般判据，说明超曲面何时在这种意义上是坏的）。考虑 Minkowski 空间以及一张无边缘的类空超曲面$\Sigma$，它停留在某个点的光锥的过去一侧，如图 2.24 所示。此时$\Sigma$是一张非编时曲面，但显然$D^+(\Sigma)$终止于光锥处，我们无法用$\Sigma$上的信息预言整个 Minkowski 空间中发生的事。当然，我们本可以挑别的曲面，使依赖域是整个流形，所以这件事并不怎么令我们担心。
+
+Cauchy 视界出现的一种稍更不平凡的方式，是\textbf{闭合类时曲线}（closed timelike curves）的出现。在 Newton 物理学中，因果性靠时间的绝对观念冷酷无情地向前行进而得到强制。在狭义相对论中事情更加受限：你不仅必须在时间中前进，而且光速限制了你在空间中移动的迅捷程度（你必须待在自己的前向光锥之内）。在广义相对论中，你必须待在自己的前向光锥之内这一点仍然成立；然而它严格来说只是个局域的概念，因为从全局看，时空的曲率可能把光锥从一处“倾斜”到另一处。原则上，光锥可以被扭曲得足够厉害，使得一位观者能沿一条处处类时的前向路径运动，却与它自身在其“过去”的一点相交——这就是闭合类时曲线。
+
+作为一个简单的例子，考虑一个带坐标$(t,x)$的二维几何，使坐标为$(t,x)$与$(t,x+1)$的点被等同起来。于是拓扑为$\mathbf{R}\times S^1$。我们取度规为
+\begin{equation*}
+ds^2=-\cos(\lambda)\,\mathrm{d}t^2-\sin(\lambda)\left[\mathrm{d}t\,\mathrm{d}x+\mathrm{d}x\,\mathrm{d}t\right]+\cos(\lambda)\,\mathrm{d}x^2,
+\tag{2.63}
+\end{equation*}
+其中
+\begin{equation*}
+\lambda=\cot^{-1}t,
+\tag{2.64}
+\end{equation*}
+% ---- 书页 81 / p096 ----
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.25.pdf}
+\caption*{图 2.25\quad 一个带闭合类时曲线的柱状时空。光锥逐渐倾斜，使得曲面$\Sigma$的依赖域充满时空的下部，但当闭合类时曲线出现时，这个依赖域便告终结。}
+\end{figure}
+它从$\lambda(t=-\infty)=0$过渡到$\lambda(t=\infty)=\pi$。这个度规并不代表广义相对论的什么著名的特解，它只是被杜撰出来充当闭合类时曲线的一个有趣例子；不过有一个众所周知的例子叫 Misner 空间（Misner space），性质与此类似。在 (2.63) 定义的时空中，光锥随着你走向未来而逐渐倾斜，如图 2.25 所示。当$t<0$时，光锥指向前方，因果性得以维持。然而一旦$t>0$，$x$就变成了类时坐标，于是可以沿一条绕$S^1$一圈回到自身的类时轨迹运动；这就是一条闭合类时曲线。如果我们先前指定的曲面$\Sigma$位于该点的过去，那么含闭合类时曲线的区域中的任何点都不在$\Sigma$的依赖域之内，因为闭合类时曲线自身不与$\Sigma$相交。因此在曲面$t=0$处必然存在一个 Cauchy 视界。这显然是比前一例更糟的问题，因为在这个时空中似乎不存在良定义的初值问题。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.26.pdf}
+\caption*{图 2.26\quad $p$处的一个奇点把位于其未来的一切点，都从位于其过去的曲面$\Sigma$的依赖域中除去。}
+\end{figure}
+最后一个例子由奇点的存在性提供：奇点是不在流形之中的点，尽管沿测地线走上有限距离就能到达它们。典型情形是曲率在某一点变为无穷大时出现奇点；一旦发生，这一点就不能再算是时空的一部分。这种情形可以导致 Cauchy 视界的出现，如图 2.26 所绘——点$p$处于某个奇点的未来，它就不可能位于该奇点过去某张超曲面的依赖域之内，因为从$p$出发会有一些曲线径直终止在奇点上。
+% ---- 书页 82 / p097 ----
+当我们试图从初始数据演化度规自身时，这些障碍同样会出现在 GR 的初值问题中。然而，它们的麻烦程度各不相同。挑到一张“坏”初始超曲面的可能性并不常出现，尤其因为大多数解都是（通过在整个时空中求解 Einstein 方程）全局地找到的。你必须小心的唯一情形是 Einstein 方程的数值求解：超曲面选得不好会导致数值困难，即使原则上完全解存在。闭合类时曲线似乎是 GR 极力避免的东西——肯定有包含它们的解，但从一般的初始数据演化通常不会产生它们。而奇点实际上不可避免。引力总是吸引的这一简单事实倾向于把物质拉到一起，使曲率增大，一般会导致某种奇点。显然我们必须学会与此共处，尽管存在这样的希望：一个良定义的量子引力理论会消除（或至少教会我们如何对付）经典 GR 的奇点。
+
+\section{张量密度}
+
+张量具有令人信服的美与简洁，但有些时候考虑非张量的对象是有用的。回忆第 1 章中我们引入的完全反对称的 Levi–Civita 符号，定义为
+\begin{equation*}
+\tilde\epsilon_{\mu_1\mu_2\cdots\mu_n}=
+\begin{cases}
++1 & \text{若 $\mu_1\mu_2\cdots\mu_n$ 是 $01\cdots(n-1)$ 的偶置换（even permutation），}\\
+-1 & \text{若 $\mu_1\mu_2\cdots\mu_n$ 是 $01\cdots(n-1)$ 的奇置换，}\\
+0 & \text{其他情形。}
+\end{cases}
+\tag{2.65}
+\end{equation*}
+根据定义，Levi–Civita 符号在\emph{任何坐标系}中都具有上面规定的分量（至少在任何右手坐标系中是如此；交换手性会把$\tilde\epsilon_{\mu_1\mu_2\cdots\mu_n}$的分量乘上一个整体负号）。它之所以被称为“符号”，当然是因为它不是张量；它被定义为在坐标变换下不变。我们之所以只能在平直时空的惯性坐标中把它当作张量来处理，是因为洛伦兹变换反正不会改变其分量。它的行为可以与普通张量的行为联系起来，方法是首先注意到：给定任何$n\times n$矩阵$M^\mu{}_{\mu'}$，行列式$|M|$满足
+\begin{equation*}
+\tilde\epsilon_{\mu'_1\mu'_2\cdots\mu'_n}|M|=\tilde\epsilon_{\mu_1\mu_2\cdots\mu_n}\,M^{\mu_1}{}_{\mu'_1}M^{\mu_2}{}_{\mu'_2}\cdots M^{\mu_n}{}_{\mu'_n}.
+\tag{2.66}
+\end{equation*}
+这不过是任何矩阵的行列式的一个紧凑表达式，与用代数余子式（cofactor）矩阵写出的通常公式完全等价。（你可以对$2\times2$或$3\times3$矩阵自行验证。）于是，令$M^\mu{}_{\mu'}=\partial x^\mu/\partial x^{\mu'}$，我们就得到
+% ---- 书页 83 / p098 ----
+\begin{equation*}
+\tilde\epsilon_{\mu'_1\mu'_2\cdots\mu'_n}=\left|\frac{\partial x^{\mu'}}{\partial x^\mu}\right|\tilde\epsilon_{\mu_1\mu_2\cdots\mu_n}\,\frac{\partial x^{\mu_1}}{\partial x^{\mu'_1}}\frac{\partial x^{\mu_2}}{\partial x^{\mu'_2}}\cdots\frac{\partial x^{\mu_n}}{\partial x^{\mu'_n}},
+\tag{2.67}
+\end{equation*}
+其中我们还利用了这样两个事实：矩阵$\partial x^{\mu'}/\partial x^\mu$是$\partial x^\mu/\partial x^{\mu'}$的逆，而逆矩阵的行列式是行列式的逆，$|M^{-1}|=|M|^{-1}$。于是，Levi–Civita 符号的变换方式与张量变换规律很接近，只是前面多出一个行列式。按这种方式变换的对象称为\textbf{张量密度}（tensor densities）。另一个例子由度规的行列式$g=|g_{\mu\nu}|$给出。容易验证，对 (2.48) 两边取行列式，就得到坐标变换下
+\begin{equation*}
+g(x^{\mu'})=\left|\frac{\partial x^{\mu'}}{\partial x^\mu}\right|^{-2}g(x^\mu).
+\tag{2.68}
+\end{equation*}
+因此$g$也不是张量；它的变换方式与 Levi–Civita 符号类似，只是把雅可比行列式取到了$-2$次幂。雅可比行列式所取的幂称为张量密度的\textbf{权}（weight）；Levi–Civita 符号是权为 1 的密度，而$g$是权为$-2$的（标量）密度。
+
+不过，我们不像喜欢张量那样喜欢张量密度。有一个简单的办法可以把密度变成诚实的张量——乘以$|g|^{w/2}$，其中$w$是密度的权（加绝对值符号是因为对洛伦兹型度规有$g<0$）。结果将按张量变换规律变换。因此，例如，我们可以把\textbf{Levi–Civita 张量}（Levi–Civita tensor）定义为
+\begin{equation*}
+\boxed{\ \epsilon_{\mu_1\mu_2\cdots\mu_n}=\sqrt{|g|}\,\tilde\epsilon_{\mu_1\mu_2\cdots\mu_n}.\ }
+\tag{2.69}
+\end{equation*}
+由于这是一个真正的张量，我们可以升降指标等等。有时人们会定义一个带上指标的 Levi–Civita 符号版本$\tilde\epsilon^{\mu_1\mu_2\cdots\mu_n}$，其分量在数值上等于$\mathrm{sgn}(g)\tilde\epsilon_{\mu_1\mu_2\cdots\mu_n}$，其中$\mathrm{sgn}(g)$是度规行列式的符号。结果发现这是一个权为$-1$的密度，它与带上指标的张量（用$g^{\mu\nu}$把$\epsilon_{\mu_1\mu_2\cdots\mu_n}$的指标升起即得）之间的关系为
+\begin{equation*}
+\epsilon^{\mu_1\mu_2\cdots\mu_n}=\frac{1}{\sqrt{|g|}}\,\tilde\epsilon^{\mu_1\mu_2\cdots\mu_n}.
+\tag{2.70}
+\end{equation*}
+你最终经常会做的事情之一，是把$\epsilon^{\mu_1\mu_2\cdots\mu_n}$的$p$个指标与$\epsilon_{\mu_1\mu_2\cdots\mu_n}$缩并；结果可以用 Kronecker δ 的反对称化乘积表示为
+\begin{equation*}
+\epsilon^{\mu_1\mu_2\cdots\mu_p\alpha_1\cdots\alpha_{n-p}}\epsilon_{\mu_1\mu_2\cdots\mu_p\beta_1\cdots\beta_{n-p}}=(-1)^s p!(n-p)!\,\delta^{[\alpha_1}_{\beta_1}\cdots\delta^{\alpha_{n-p}]}_{\beta_{n-p}},
+\tag{2.71}
+\end{equation*}
+其中$s$是度规负本征值的个数（按我们的约定，洛伦兹号差下$s=1$）。最常见的例子是$p=n-1$，
+% ---- 书页 84 / p099 ----
+对此我们有
+\begin{equation*}
+\epsilon^{\mu_1\mu_2\cdots\mu_{n-1}\alpha}\epsilon_{\mu_1\mu_2\cdots\mu_{n-1}\beta}=(-1)^s (n-1)!\,\delta^\alpha_\beta.
+\tag{2.72}
+\end{equation*}
+
+\section{微分形式}
+
+现在让我们引入一类特殊的张量，称为\textbf{微分形式}（differential forms，或简称形式（form））。一个微分$p$形式不过是一个完全反对称的$(0,p)$型张量。于是，标量自动就是 0-形式，对偶矢量自动就是 1-形式（这就解释了此前的术语）。我们还有 4-形式$\epsilon_{\mu\nu\rho\sigma}$。所有$p$形式的空间记作$\Lambda^p$，流形$M$上所有$p$形式场的空间记作$\Lambda^p(M)$。一个半直截了当的组合练习揭示出，$n$维矢量空间上线性独立的$p$形式共有$n!/(p!(n-p)!)$个。于是在四维时空的一点上，有一个线性独立的 0-形式、四个 1-形式、六个 2-形式、四个 3-形式和一个 4-形式。$p>n$时不存在$p$形式，因为由反对称性，所有分量都自动为零。
+
+为什么我们要在乎微分形式？这个问题不加些功夫难以回答，但基本想法是：形式既可以被微分，也可以被积分，而不需要任何额外几何结构的帮助。我们将对这两种操作各作一番简要的浏览。
+
+给定一个$p$形式$A$和一个$q$形式$B$，取反对称化的张量积，我们可以构造出一个$(p+q)$形式，称为\textbf{楔积}（wedge product）$A\wedge B$：
+\begin{equation*}
+(A\wedge B)_{\mu_1\cdots\mu_{p+q}}=\frac{(p+q)!}{p!\,q!}\,A_{[\mu_1\cdots\mu_p}B_{\mu_{p+1}\cdots\mu_{p+q}]}.
+\tag{2.73}
+\end{equation*}
+于是，例如两个 1-形式的楔积就是
+\begin{equation*}
+(A\wedge B)_{\mu\nu}=2A_{[\mu}B_{\nu]}=A_\mu B_\nu-A_\nu B_\mu.
+\tag{2.74}
+\end{equation*}
+注意
+\begin{equation*}
+A\wedge B=(-1)^{pq}B\wedge A,
+\tag{2.75}
+\end{equation*}
+所以只要你小心对待符号，就可以改变楔积的顺序。使用形式时我们可以随意省略指标，因为我们知道所有指标都在下边，而且张量是完全反对称的。
+
+\textbf{外微分}（exterior derivative）$\mathrm{d}$使我们能够对$p$形式场求微分而得到$(p+1)$形式场。它定义为适当归一化的、反对称化的偏导数：
+\begin{equation*}
+(\mathrm{d}A)_{\mu_1\cdots\mu_{p+1}}=(p+1)\partial_{[\mu_1}A_{\mu_2\cdots\mu_{p+1}]}.
+\tag{2.76}
+\end{equation*}
+最简单的例子是梯度，它就是 0-形式的外微分：
+\begin{equation*}
+(\mathrm{d}\phi)_\mu=\partial_\mu\phi.
+\tag{2.77}
+\end{equation*}
+
+% ---- 书页 85 / p100 ----
+外微分算符作用在 $p$-形式 $\omega$ 与 $q$-形式 $\eta$ 的乘积上时，服从一种修正版的莱布尼茨（Leibniz）法则：
+\begin{equation*}
+\mathrm{d}(\omega\wedge\eta)=(\mathrm{d}\omega)\wedge\eta+(-1)^{p}\,\omega\wedge(\mathrm{d}\eta). \tag{2.78}
+\end{equation*}
+我们鼓励你们自己证明这一点。
+
+外微分值得特别关注的原因在于，它\emph{是一个张量}，即使在弯曲时空中也是如此；这一点与它的近亲——偏导数——不同。对于 $p=1$，我们可以从 1-形式的偏导数的变换律，即式 (2.38)，看出这一点；其中那个碍事的非张量项可以写成
+\begin{equation*}
+W_{\nu}\frac{\partial x^{\mu}}{\partial x^{\mu'}}\frac{\partial}{\partial x^{\mu}}\frac{\partial x^{\nu}}{\partial x^{\nu'}}=W_{\nu}\frac{\partial^{2}x^{\nu}}{\partial x^{\mu'}\partial x^{\nu'}}. \tag{2.79}
+\end{equation*}
+由于偏导数相互对易，这个表达式在 $\mu'$ 与 $\nu'$ 下是对称的。而外微分被定义为反对称化的偏导数，所以这一项会消失（对称表达式的反对称部分为零）。于是剩下的就是正确的张量变换律；推广到任意 $p$ 也很直接。所以外微分是一个堂堂正正的张量算符；然而，它并不能完全替代偏导数，因为它只对形式有定义。下一章我们将定义协变导数，它更接近我们通常所设想的“偏导数向任意流形的推广”。
+
+关于外微分运算，另一个有趣的事实是：对任何形式 $A$，
+\begin{equation*}
+\mathrm{d}(\mathrm{d}A)=0, \tag{2.80}
+\end{equation*}
+它也常写作 $\mathrm{d}^{2}=0$。这一恒等式是 $\mathrm{d}$ 的定义以及偏导数可对易这一事实的推论：作用在任何对象上都有 $\partial_{\alpha}\partial_{\beta}=\partial_{\beta}\partial_{\alpha}$。这把我们引向下面一段数学题外话，纯粹为了好玩。我们把一个 $p$-形式 $A$ 定义为\textbf{闭}（closed）的，如果 $\mathrm{d}A=0$；称它是\textbf{恰当}（exact）的，如果 $A=\mathrm{d}B$，其中 $B$ 是某个 $(p-1)$-形式。显然，所有恰当形式都是闭形式，但反之则未必成立。在流形 $M$ 上，闭 $p$-形式构成一个矢量空间 $Z^{p}(M)$，恰当形式构成一个矢量空间 $B^{p}(M)$。我们定义一个新的矢量空间，其元素称为上同调类（cohomology class），即闭形式模掉恰当形式所得的空间：
+\begin{equation*}
+H^{p}(M)=\frac{Z^{p}(M)}{B^{p}(M)}. \tag{2.81}
+\end{equation*}
+也就是说，两个闭形式［$Z^{p}(M)$ 的元素］如果相差一个恰当形式［$B^{p}(M)$ 的元素］，它们就定义同一个上同调类［$H^{p}(M)$ 的元素］。奇妙的是，上同调空间 $H^{p}(M)$ 的维数只依赖于流形 $M$ 的拓扑。Minkowski 空间在拓扑上等价于 $\mathbf{R}^{4}$，后者乏味得很，于是当 $p>0$ 时所有的 $H^{p}(M)$ 都为零；而 $p=0$ 时我们有 $H^{0}(M)=\mathbf{R}$。因此在 Minkowski 空间中，除了零形式之外，所有闭形式都是恰当的；零形式不可能是恰当形式，因为根本不存在 $-1$-形式，可以让零形式成为其外微分。
+% ---- 书页 86 / p101 ----
+以这种方式抽取出关于拓扑的信息，着实令人惊讶，而这本质上涉及的是微分方程的解。
+
+我们将要介绍的最后一种作用于微分形式的运算是\textbf{Hodge 对偶性}（Hodge duality）。我们在 $n$ 维流形上定义\textbf{Hodge 星算符}（Hodge star operator），它是一个从 $p$-形式到 $(n-p)$-形式的映射，
+\begin{equation*}
+(*A)_{\mu_{1}\cdots\mu_{n-p}}=\frac{1}{p!}\epsilon^{\nu_{1}\cdots\nu_{p}}{}_{\mu_{1}\cdots\mu_{n-p}}A_{\nu_{1}\cdots\nu_{p}}, \tag{2.82}
+\end{equation*}
+它把 $A$ 映为“$A$ 的对偶”。与我们其他作用于形式的运算不同，Hodge 对偶确实依赖于流形的度规［这一点应当显而易见，因为为了定义式 (2.82)，我们不得不提升了 Levi-Civita 张量的某些指标］。将 Hodge 星算符作用两次，得到的要么是原形式本身，要么是相差一个正负号的原形式：
+\begin{equation*}
+**A=(-1)^{s+p(n-p)}A, \tag{2.83}
+\end{equation*}
+其中 $s$ 是度规本征值中负号的个数。
+
+关于 Hodge 对偶有两个事实。第一，Hodge 意义上的“对偶性”有别于矢量与对偶矢量之间的关系。“对偶性”的观念是指从一个空间到另一个空间的变换，其性质是把该变换做两次就回到原来的空间。矢量与 1-形式之间的对偶，以及 $p$-形式与 $(n-p)$-形式之间的 Hodge 对偶，对二者而言这一点都成立，这应当是清楚的。矢量空间之间对偶性的一个要求是：原来的空间与变换后的空间具有相同的维数；$p$-形式空间与 $(n-p)$-形式空间正是如此。
+
+第二个事实涉及三维欧几里得空间中的微分形式。两个 1-形式的楔积的 Hodge 对偶给出另一个 1-形式：
+\begin{equation*}
+*(U\wedge V)_{i}=\epsilon_{i}{}^{jk}U_{j}V_{k}. \tag{2.84}
+\end{equation*}
+（所有前面的系数都恰好相消。）由于欧几里得空间中的 1-形式就像矢量一样，我们得到了一个从两个矢量到单个矢量的映射。你们应当让自己确信，这正是通常的叉乘（cross product）；而且 Levi-Civita 张量的出现解释了为什么叉乘在宇称变换下变号（两个坐标互换，等价地，基矢互换）。这正是叉乘只存在于三维的原因——因为只有在三维，我们才有一个从两个对偶矢量到第三个对偶矢量的有趣映射。
+
+电动力学为微分形式的应用提供了一个格外有说服力的例子。从外微分的定义可以清楚地看到，方程 (1.97) 可以被简洁地表述为 2-形式 $F_{\mu\nu}$ 的闭性：
+\begin{equation*}
+\mathrm{d}F=0. \tag{2.85}
+\end{equation*}
+这是否意味着 $F$ 也是恰当的？是的；正如我们已指出的，Minkowski 空间拓扑平凡，所以所有闭形式都是恰当的。因此必定存在某个 1-形式 $A_{\mu}$，使得
+\begin{equation*}
+F=\mathrm{d}A. \tag{2.86}
+\end{equation*}
+% ---- 书页 87 / p102 ----
+这个 1-形式就是大家熟悉的电磁学中的\textbf{矢势}（vector potential），其 0 分量由标势给出，$A_{0}=\Phi$，正如我们在第 1 章中讨论过的那样。规范不变性（gauge invariance）表现为：理论在 $A\to A+\mathrm{d}\lambda$ 下不变，其中 $\lambda$ 是某个标量（零形式）；从关系式 (2.86) 出发，这一点也是显而易见的。麦克斯韦方程组中的另一条，即 (1.96)，则可以表述为 3-形式之间的一个方程：
+\begin{equation*}
+\mathrm{d}(*F)=*J, \tag{2.87}
+\end{equation*}
+其中电流 1-形式 $J$ 不过是降低了指标的电流四维矢量。把细节补全就留给你们了，这是把微分形式记号转换为普通指标记号的绝佳练习。
+
+Hodge 对偶性与某些场论的一个迷人性质密切相关：强耦合与弱耦合之间的对偶。很难不注意到，方程 (2.85) 与 (2.87) 看起来非常相似。的确，如果令 $J_{\mu}=0$，方程在如下“对偶变换”下不变：
+\begin{gather*}
+F\to *F,\\
+*F\to -F. \tag{2.88}
+\end{gather*}
+因此我们说，真空中的麦克斯韦方程组是对偶不变的，而电荷的存在会破坏这种不变性。我们可以设想，自然界中除了电单极子之外还存在磁单极子；那样我们就可以在 (2.85) 的右端加上一个磁流项 $*J_{M}$，方程就会在下述组合下不变：对偶变换再加上一个额外的替换 $J\leftrightarrow J_{M}$。（当然，(2.85) 的右端若非零就与 $F=\mathrm{d}A$ 不相容，所以这个想法只有在 $A_{\mu}$ 不是基本变量时才行得通。）Dirac 考虑过磁单极子的想法，并证明了它们存在的一个必要条件：基本磁单极荷必须与基本电荷成反比。如今，基本电荷是一个小数目；电动力学是\emph{弱耦合}（weakly coupled）的，这正是微扰论在量子电动力学（QED）中如此惊人成功的原因。但 Dirac 关于磁荷的条件意味着，一个对偶变换会把一个弱耦合电荷的理论变成一个强耦合磁单极子的理论（反之亦然）。遗憾的是，磁单极子不太容易纳入普通电磁学，所以这些想法并不能直接应用；不过某种对偶对称性可能存在于某些理论之中（比如超对称非阿贝尔规范理论）。如果它确实存在，我们就有机会通过考察弱耦合的对偶版本，来分析一个看似强耦合（因而难以求解）的理论；在某些理论中，实际发生的正是这种情形。我们希望这些技术将使我们能够探索强耦合量子场论中确然存在的各种现象，比如夸克在强子中的禁闭。
+% ---- 书页 88 / p103 ----
+
+\section{积分}
+
+张量密度与微分形式的一个重要应用场合是流形上的积分。你们大概已经接触过这样的事实：在 $\mathbf{R}^{n}$ 上的普通微积分中，体积元 $d^{n}x$ 在坐标变换下会多出一个雅可比行列式因子：
+\begin{equation*}
+d^{n}x'=\left|\frac{\partial x^{\mu'}}{\partial x^{\mu}}\right|d^{n}x. \tag{2.89}
+\end{equation*}
+其实，从微分形式的观点出发，这个公式有一个漂亮的解释，它来自如下事实：\emph{在 $n$ 维流形 $M$ 上，被积函数应当被恰当地理解为 $n$-形式。}换句话说，$n$ 维区域 $\Sigma\subset M$ 上的积分是一个从 $n$-形式场 $\omega$ 到实数的映射：
+\begin{equation*}
+\int_{\Sigma}:\omega\to\mathbf{R}. \tag{2.90}
+\end{equation*}
+这样的说法初听起来可能有些奇怪，但在曲线积分的语境里它肯定显得眼熟。在一维情形，任何一个 1-形式都可以写成 $\omega=\omega(x)\mathrm{d}x$，其中第一个 $\omega$ 是 1-形式，$\omega(x)$ 表示（唯一的那一个）分量函数。确实，我们把一维积分写成 $\int\omega(x)\mathrm{d}x$；你们也许习惯于把符号 $\mathrm{d}x$ 想成一个无穷小距离，但更确切地说，它是一个微分形式。
+
+为了把这一点弄得更清楚，考虑不止一维的情形。如果我们宣称被积对象是一个 $n$-形式，就需要解释它在什么意义上是反对称的，而且顺便还要解释它为什么根本就是一个 $(0,n)$ 张量（从 $n$ 个矢量构成的集合到 $\mathbf{R}$ 的线性映射）。我们都同意积分可以写成 $\int f(x)\,d\mu$，其中 $f(x)$ 是流形上的标量函数，$d\mu$ 是体积元，或者叫测度。体积元的作用是给每个（无穷小的）区域指定一个（无穷小的）实数，即该区域的体积。无穷小区域（相对于有限大小的区域）的一个好处是，它们可以取成矩形的平行六面体——在存在曲率时，我们对“矩形平行六面体”应当是什么意思并没有清楚的概念，但当我们在无穷小区域中工作时，曲率的效应可以忽略。显然我们在这里并不严谨，但我们当下的目的纯粹是建立动机。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_2.27.pdf}
+\caption*{图 2.27\quad 一个无穷小的 $n$ 维区域，表示为一个平行六面体，由 $n$ 个矢量构成的有序集合定义，图中记为 $U$、$V$、$W$。}
+\end{figure}
+如图 2.27 所示（为了便于说明，我们把流形取成三维的），一个平行六面体由定义其棱边的 $n$ 个矢量确定。于是，我们的体积元应当是一个从 $n$ 个矢量到实数的映射：$d\mu(U,V,W)\in\mathbf{R}$。（严格说来，它应当是一个从无穷小矢量到无穷小数的映射，但这样的映射同样会把有限矢量映到有限的数。）同样清楚的是，它应当可以按实数线性缩放；如果我们改变任何一个定义矢量的长度，体积就会相应地改变：$d\mu(aU,bV,cW)=abc\,d\mu(U,V,W)$。至于对矢量相加的线性性，就不是那么显而易见了，不过你们可以通过画图让自己信服。
+% ---- 书页 89 / p104 ----
+因此，我们的体积元是一个名副其实的 $(0,n)$ 张量。为什么反对称？因为我们定义的是一个有向的（oriented）对象；如果交换其中两个矢量，得到的体积应当大小相同而符号相反。（如果这一点不明显，你们至少应当让自己相信：当两个矢量共线时，体积应当为零。）这样，$n$ 维情形下的体积元在非常切实的意义上就是 $n$-形式。
+
+要做实际计算，我们需要把这些想法变得更具体，而这其实很简单。关键的洞察是：把朴素的体积元 $d^{n}x$ 等同于用楔积构造出来的一个反对称张量密度：
+\begin{equation*}
+d^{n}x=\mathrm{d}x^{0}\wedge\cdots\wedge\mathrm{d}x^{n-1}. \tag{2.91}
+\end{equation*}
+右边的表达式可能有误导性，因为它看上去像一个张量（准确说是一个 $n$-形式），但其实是一个密度。当然，如果我们在 $M$ 上有两个函数 $f$ 和 $g$，那么 $\mathrm{d}f$ 和 $\mathrm{d}g$ 是 1-形式，而 $\mathrm{d}f\wedge\mathrm{d}g$ 是 2-形式。但出现在 (2.91) 中的函数是坐标函数本身，所以当我们变换坐标时，是把 1-形式 $\mathrm{d}x^{\mu}$ 换成一组新的 $\mathrm{d}x^{\mu'}$。你们看这里滑稽的地方——通常坐标变换改变的是分量，而不是 1-形式本身。(2.91) 的右端是一个依赖于坐标的对象（精确地说，是一个张量密度），它在 $x^{\mu}$ 坐标系中的行为就如同 $\mathrm{d}x^{0}\wedge\cdots\wedge\mathrm{d}x^{n-1}$。让我们看看它的实际运作。首先注意到，楔积的定义允许我们写出
+\begin{equation*}
+\mathrm{d}x^{0}\wedge\cdots\wedge\mathrm{d}x^{n-1}=\frac{1}{n!}\tilde{\epsilon}_{\mu_{1}\cdots\mu_{n}}\mathrm{d}x^{\mu_{1}}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}}, \tag{2.92}
+\end{equation*}
+这是因为楔积与 Levi-Civita 符号都是完全反对称的。（$1/n!$ 这个因子负责处理对指标的排列求和所引入的重复计数。）在坐标变换下，$\tilde{\epsilon}_{\mu_{1}\cdots\mu_{n}}$ 保持不变，而各个 1-形式按照式 (2.26) 变换，这就导致
+\begin{align*}
+\tilde{\epsilon}_{\mu_{1}\cdots\mu_{n}}\mathrm{d}x^{\mu_{1}}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}}&=\tilde{\epsilon}_{\mu_{1}\cdots\mu_{n}}\frac{\partial x^{\mu_{1}}}{\partial x^{\mu_{1}'}}\cdots\frac{\partial x^{\mu_{n}}}{\partial x^{\mu_{n}'}}\mathrm{d}x^{\mu_{1}'}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}'}\\
+&=\left|\frac{\partial x^{\mu}}{\partial x^{\mu'}}\right|\tilde{\epsilon}_{\mu_{1}'\cdots\mu_{n}'}\mathrm{d}x^{\mu_{1}'}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}'}. \tag{2.93}
+\end{align*}
+在两边同乘雅可比行列式，并利用 (2.91) 与 (2.92)，便回到了 (2.89)。
+
+显然，朴素的体积元 $d^{n}x$ 是按密度而非按张量变换的；不过，只要乘上 $\sqrt{|g|}$，就能直接构造出一个不变的体积元：
+\begin{equation*}
+\sqrt{|g'|}\,\mathrm{d}x^{0'}\wedge\cdots\wedge\mathrm{d}x^{(n-1)'}=\sqrt{|g|}\,\mathrm{d}x^{0}\wedge\cdots\wedge\mathrm{d}x^{n-1}, \tag{2.94}
+\end{equation*}
+它当然就正是 $(n!)^{-1}\epsilon_{\mu_{1}\cdots\mu_{n}}\mathrm{d}x^{\mu_{1}}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}}$。为简单起见，我们通常把体积元写成 $\sqrt{|g|}\,d^{n}x$，而不写成显式的楔积：
+% ---- 书页 90 / p105 ----
+\begin{equation*}
+\sqrt{|g|}\,d^{n}x\equiv\sqrt{|g|}\,\mathrm{d}x^{0}\wedge\cdots\wedge\mathrm{d}x^{n-1}\ ; \tag{2.95}
+\end{equation*}
+心里记住它本应是一个 $n$-形式，就足够了。事实上，体积元不多不少，恰恰就是 Levi-Civita 张量 $\epsilon_{\mu_{1}\cdots\mu_{n}}$；把基 1-形式显式地补写回来，我们看到
+\begin{align*}
+\epsilon&\equiv\epsilon_{\mu_{1}\cdots\mu_{n}}\mathrm{d}x^{\mu_{1}}\otimes\cdots\otimes\mathrm{d}x^{\mu_{n}}\\
+&=\frac{1}{n!}\epsilon_{\mu_{1}\cdots\mu_{n}}\mathrm{d}x^{\mu_{1}}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}}\\
+&=\frac{1}{n!}\sqrt{|g|}\,\tilde{\epsilon}_{\mu_{1}\cdots\mu_{n}}\mathrm{d}x^{\mu_{1}}\wedge\cdots\wedge\mathrm{d}x^{\mu_{n}}\\
+&=\sqrt{|g|}\,\mathrm{d}x^{0}\wedge\cdots\wedge\mathrm{d}x^{n-1}\\
+&\equiv\sqrt{|g|}\,d^{n}x. \tag{2.96}
+\end{align*}
+注意到，epsilon 张量引入的组合因子，恰好与从张量积换成楔积时引入的因子相消；之所以允许做这种替换，是因为 epsilon 张量会自动反对称化。
+
+于是，结论很简单：标量函数 $\phi$ 在 $n$ 维流形上的积分 $I$ 写作
+\begin{equation*}
+\boxed{I=\int\phi(x)\sqrt{|g|}\,d^{n}x.} \tag{2.97}
+\end{equation*}
+给定 $\phi(x)$ 和 $\sqrt{|g|}$ 的显式表达式，这样的积分就可以用多变量微积分的通常方法直接算出。度规的行列式所起的作用是自动保证正确的变换性质。你们有时会看到更抽象的记号
+\begin{equation*}
+I=\int\phi(x)\,\epsilon\ ; \tag{2.98}
+\end{equation*}
+鉴于 (2.96)，这两种写法传递的是同样的内容。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 一个流形在拓扑上非平凡，并不必然意味着它不能用单个卡片覆盖。与圆周 $S^{1}$ 的情形相对照，请通过显式地构造映射，证明无穷长圆柱 $\mathbf{R}\times S^{1}$ 可以只用一个卡片覆盖。
+
+\textbf{2.}\quad 通过巧妙地选取坐标卡片，我们能让 $\mathbf{R}^{2}$ 看起来像一个一维流形吗？能让 $\mathbf{R}^{1}$ 看起来像一个二维流形吗？如果能，请显式构造一个适当的图册；如果不能，请解释为什么不能。这个问题的要点在于促使你深入思考流形究竟是什么；若不进一步讨论拓扑空间的更多细节，就无法严格地回答它。特别是，你可能必须忘掉你在原来的 $\mathbf{R}^{2}$ 或 $\mathbf{R}^{1}$ 中已经知道的那套“开集”定义，而把它们定义为恰当地继承自所映射到的 $\mathbf{R}^{1}$ 或 $\mathbf{R}^{2}$。
+
+% ---- 书页 91 / p106 ----
+\textbf{3.}\quad 请通过显式构造一个适当的图册，证明二维环面 $T^{2}$ 是一个流形。（显然，不必是极大的图册。）
+
+\textbf{4.}\quad 验证 2.3 节末尾关于两个矢量场的对易子所作的那些论断（线性性、Leibniz 律、分量公式、作为一个矢量场的变换）。
+
+\textbf{5.}\quad 在 $\mathbf{R}^{2}$ 中给出两个线性无关、处处不为零的矢量场的例子，使它们的对易子不为零。注意，这两个场在每一点都给出切空间的一组基，但由于对易子不为零，它不可能是坐标基。
+
+\textbf{6.}\quad 把 $\mathbf{R}^{3}$ 看作一个带有平直欧几里得度规的流形，坐标为 $\{x,y,z\}$。引入球坐标 $\{r,\theta,\phi\}$，其与 $\{x,y,z\}$ 的关系为
+\begin{gather*}
+x=r\sin\theta\cos\phi\\
+y=r\sin\theta\sin\phi\\
+z=r\cos\theta, \tag{2.99}
+\end{gather*}
+于是度规取如下形式
+\begin{equation*}
+ds^{2}=\mathrm{d}r^{2}+r^{2}\mathrm{d}\theta^{2}+r^{2}\sin^{2}\theta\,\mathrm{d}\phi^{2}. \tag{2.100}
+\end{equation*}
+
+\textbf{(a)}\quad 一个粒子沿如下参数化曲线运动：
+\begin{equation*}
+x(\lambda)=\cos\lambda,\qquad y(\lambda)=\sin\lambda,\qquad z(\lambda)=\lambda. \tag{2.101}
+\end{equation*}
+请在 $\{r,\theta,\phi\}$ 系中表出这条曲线的路径。
+
+\textbf{(b)}\quad 分别在笛卡尔坐标系与球坐标系中，计算该曲线的切矢量的分量。
+
+\textbf{7.}\quad 长椭球坐标（prolate spheroidal coordinates）可以用来简化天体力学中的 Kepler 问题。它们与欧几里得三维空间中通常的笛卡尔坐标 $(x,y,z)$ 的关系为
+\begin{gather*}
+x=\sinh\chi\,\sin\theta\cos\phi,\\
+y=\sinh\chi\,\sin\theta\sin\phi,\\
+z=\cosh\chi\,\cos\theta.
+\end{gather*}
+把注意力限制在 $y=0$ 的平面上，回答下列问题。
+
+\textbf{(a)}\quad 联系 $(x,z)$ 与 $(\chi,\theta)$ 的坐标变换矩阵 $\partial x^{\mu}/\partial x^{\nu'}$ 是什么？
+
+\textbf{(b)}\quad 线元 $ds^{2}$ 在长椭球坐标下是什么样子？
+
+\textbf{8.}\quad 验证式 (2.78)：对 $p$-形式 $\omega$ 与 $q$-形式 $\eta$ 的乘积的外微分，我们有
+\begin{equation*}
+\mathrm{d}(\omega\wedge\eta)=(\mathrm{d}\omega)\wedge\eta+(-1)^{p}\,\omega\wedge(\mathrm{d}\eta). \tag{2.102}
+\end{equation*}
+
+% ---- 书页 92 / p107 ----
+\textbf{9.}\quad 在 Minkowski 空间中，设 $*F=q\sin\theta\,\mathrm{d}\theta\wedge\mathrm{d}\phi$。
+
+\textbf{(a)}\quad 计算 $\mathrm{d}*F=*J$。
+
+\textbf{(b)}\quad 2-形式 $F$ 等于什么？
+
+\textbf{(c)}\quad 对这个解来说，电场与磁场分别等于什么？
+
+\textbf{(d)}\quad 计算 $\int_{V}\mathrm{d}*F$，其中 $V$ 是在某个固定时刻、欧几里得三维空间中半径为 $R$ 的一个球。
+
+\textbf{10.}\quad 考虑二维时空中的麦克斯韦方程组 $\mathrm{d}F=0$、$\mathrm{d}*F=*J$。解释为什么这两组方程中可以舍弃一组。证明电磁场可以用一个标量场表出，并写出这个标量场的场方程的分量形式。
+
+\textbf{11.}\quad 本题为一个非常简单的问题附加了大量动机性的文字；别因此分心。在与点粒子相联系的普通电磁学中，作用量中代表规范势 1-形式 $A^{(1)}$ 与带电粒子相耦合的部分可以写成 $S=\int_{\gamma}A^{(1)}$，其中 $\gamma$ 是粒子的世界线。（$A^{(1)}$ 的上标只是为了提醒你它是一个 1-形式。）本题中你要考虑一个与普通电磁学有亲缘关系的理论，但这一次是在 11 维时空里，带有 3-形式规范势 $A^{(3)}$ 和 4-形式场强 $F^{(4)}=\mathrm{d}A^{(3)}$。注意，场强在规范变换 $A^{(3)}\to A^{(3)}+\mathrm{d}\lambda^{(2)}$（$\lambda^{(2)}$ 为任意 2-形式）下不变。
+
+\textbf{(a)}\quad 这种规范场自然与之耦合的对象，其空间维数应当是多少？（例如，普通电磁学（E+M）与零维对象——点粒子——相耦合。）
+
+\textbf{(b)}\quad 普通电子的电荷由如下积分给出：2-形式规范场强的对偶在围绕粒子的一个二维球面上的积分。对于 $A^{(3)}$ 所耦合的对象，你会如何定义它的“电荷”？请论证：如果 $\mathrm{d}*F^{(4)}=0$，这个荷是守恒的。
+
+\textbf{(c)}\quad 设想存在一个“对偶规范势” $\widetilde{A}$，满足 $\mathrm{d}(\widetilde{A})=*F^{(4)}$。它自然与之耦合的对象是多少维的？
+
+\textbf{(d)}\quad 规范场自身的作用量（相对于它与其他对象的耦合而言）将是整个 11 维时空上的一个积分。这样的作用量中，容许出现而且在“局域”规范变换下不变的项有哪些？例如，规范变换可以由一个在无穷远处为零的 2-形式 $\lambda^{(2)}$ 来规定。请把自己限制在关于 $A^{(3)}$ 及其一阶导数的线性、二次或三次的项（不含二阶导数，不含更高阶的项）。你可以使用外微分、楔积和 Hodge 对偶，但不允许度规的任何显式出现。
+
+更多的背景知识：“超对称性”（supersymmetry）是一种假想中的对称性，它把玻色子（自旋为整数的粒子）与费米子（自旋为 $\frac{1}{2}$、$\frac{3}{2}$ 等的粒子）联系起来。一个有趣的性质是，超对称理论只有在 11 维或更低维数中才是良定义的——在更高的维数下，超对称性将要求存在自旋大于 2 的粒子，而这样的粒子无法自洽地量子化。十一维超对称是一个独一无二的理论，它自然地包含一个 3-形式规范势（更不用说引力了）。近期的工作表明，它还包含本题所暗指的各种更高维的对象（尽管我们在这里走了些捷径）。这个理论最终被发现是某个称作 $M$-理论（M-theory）的东西的一个良定义的极限，而 $M$-理论的其他极限则是各种 10 维超弦理论。

@@ -1,0 +1,173 @@
+% ch8_d §8.7–8.8 (书页 282–291 / p296–p305)
+%--C-TAIL--
+%JOIN%这在某种程度上可以理解，只要认为积分 (8.89) 中的弛豫时间 $\tau$ 并非常数，而是在费米面上逐点变化的。这样，我们原则上可以区分出三种不同的积分
+\begin{equation*}
+\int \tau v\,dS_F,\quad \int \tau^2 v\,dS_F,\quad \int \frac{v}{\tau}\,dS_F, \tag{8.96}
+\end{equation*}
+它们对应于 $\tau(\mathbf{k})$ 在费米面上的三种不同类型的平均。没有理由认为这些不同的平均就应当全都相等。
+
+我们还注意到，$\mathsf{N}^2$ 在高频下的实部依赖于积分
+\begin{equation*}
+\int v\,dS_F, \tag{8.97}
+\end{equation*}
+对自由电子而言，它正比于电子数目，反比于电子质量。而在态密度中出现的却是另一种类型的速度平均——调和平均
+\begin{equation*}
+\int \frac{dS_F}{v} \tag{8.98}
+\end{equation*}
+如 (4.6) 中那样。这两类平均之间的差别，可以提供关于电子速度在费米面上各向异性的信息。用一个与“光学质量”相联系的因子去“修正” (8.97) 的观测值并不明智；事后往往发现，这样得到的因子与为使 (8.98) 符合电子比热的自由电子公式所需要的“热质量”大不相同。“一切费米面都是球面”这一隐含假设，即便对一价金属也常常站不住脚。
+
+\section{反常趋肤效应}
+
+Hagen–Rubens 关系 (8.81) 还可能以另一种方式失效。由 (8.79) 给出的吸收系数非常高，电磁波进入金属后很快就被衰减掉了。由 (8.10) 与 (8.80) 得出的阻尼距离的数量级为
+\begin{align*}
+\delta &= \frac{c}{\mathsf{k}\omega} \\
+&= \frac{c}{(2\pi\sigma\omega)^{\frac{1}{2}}}\,. \tag{8.99}
+\end{align*}
+这个现象在经典电动力学中早已众所周知，称为趋肤效应（skin effect）。我们把由 (8.99) 给出的 $\delta$ 称为经典趋肤深度（classical skin depth）$\delta_{\mathrm{cl}}$。
+
+在高频下，$\delta$ 可以变得非常小。如果我们在低温下取一块纯度极高的金属，就会发现趋肤深度可以变得远小于电子平均自由程 $\Lambda$。电导率的普通理论这时不再有效；作用在载流子上的有效场，在载流子于两次碰撞之间所走过的距离上变化急剧。
+
+为了处理这种情形，我们必须尝试求解 $g_{\mathbf{k}}$ 随空间变化的 Boltzmann 方程。如果忽略 $\mathbf{E}$ 与 $g_{\mathbf{k}}$ 的时间变化（这一现象很容易在远低于上述弛豫区起始处的频率下观察到），那么仿照 (8.84)，我们得到
+\begin{equation*}
+e\mathbf{E}(\mathbf{r})\cdot\mathbf{v}_{\mathbf{k}}\left(-\frac{\partial f^0}{\partial\mathcal{E}}\right) = \frac{g_{\mathbf{k}}}{\tau} + \mathbf{v}_{\mathbf{k}}\cdot\frac{\partial g_{\mathbf{k}}}{\partial\mathbf{r}} \tag{8.100}
+\end{equation*}
+作为待求解的 $g_{\mathbf{k}}$ 的微分方程。
+
+求解 (8.100) 最直接的做法——它适用于涉及表面、薄膜、细丝等等的各类问题——是采用 Chambers 公式（Chambers formula）
+\begin{equation*}
+g(\mathbf{v},\mathbf{r}) = \frac{e}{v}\left(-\frac{\partial f^0}{\partial\mathcal{E}}\right)\int^{\mathbf{r}} \mathbf{v}\cdot\mathbf{E}(\mathbf{r}')\,e^{-s'/\tau v}\,ds'. \tag{8.101}
+\end{equation*}
+用完全形式化的办法证明这是微分方程的一个解并不十分困难；它只不过是方程 $dy/dx+\alpha y=f(x)$ 的通常求解公式的一个直接推广。
+
+从物理上讲，它意味着在点 $\mathbf{r}$ 处、沿方向 $\mathbf{v}$ 的电子电流，取决于对该电流有贡献的那些电子此前走过的历史。积分并不是遍及整个空间，而只是沿通过 $\mathbf{r}$ 点、方向为 $\mathbf{v}$ 的轨道向回追溯到距离 $s'$ 处。这样，在 $\mathbf{r}'$ 点处电子受到力 $e\mathbf{E}(\mathbf{r}')$ 而加速。但由于弛豫过程，这份贡献随时间衰减；指数因子度量的正是这种效应沿轨道随距离的变化。这个半经典公式在原理上与 Kubo 公式 (7.15) 密切相关，在那里我们同样要对体系此前的历史作积分。
+
+由 (8.101)，可以用通常的公式 (7.20) 计算总电流。但我们注意到，这个电流将是 $\mathbf{r}$ 的函数——同时也是函数 $g(\mathbf{v},\mathbf{r})$ 的边界条件的函数。于是，存在一个积分方程，把 $\mathbf{J}(\mathbf{r})$ 定义为电场分布 $\mathbf{E}(\mathbf{r})$ 的泛函。另一方面，这两个量又由如下比 (8.2) 更一般形式的 Maxwell 方程联系起来：
+\begin{align*}
+\nabla^2\mathbf{E} &= \frac{4\pi}{c^2}\frac{d\mathbf{J}}{dt} \\
+&= \frac{4\pi i\omega}{c^2}\,\mathbf{J}(\mathbf{r}) \tag{8.102}
+\end{align*}
+（略去通常的位移电流）。这样一来，人们可以求解由 (8.101) 与 (8.102) 导出的积分微分方程，得出表面附近 $\mathbf{J}(\mathbf{r})$ 与 $\mathbf{E}(\mathbf{r})$ 的分布。
+
+这个方程的精确解相当繁复，而且依赖于边界条件——它取决于电子在表面是被镜面反射，还是在表面受到无规散射。具体的公式并不如其物理诠释来得重要。事实是，并非所有电子都参与了电磁波的吸收和反射。只有在趋肤深度内跑完大半段平均自由程 $\Lambda$ 的那些电子，才能从
+%FIG{149}: 只有处于趋肤深度内的电子才是“有效的”。
+电场中汲取可观的能量。例如，若趋肤深度为 $\delta'$，则可以认为只有份额为 $\delta'/\Lambda$ 的电子对电导是\emph{有效}的。我们可以写出
+\begin{equation*}
+\sigma' = \frac{3}{2}\,\beta\,\frac{\delta'}{\Lambda}\,\sigma_0 \tag{8.103}
+\end{equation*}
+作为表观电导率——数 $\beta$ 不过是个“凑算因子”（fudge factor）。
+
+但这样一来，按照 (8.99)，具有这一电导率的表面自身的趋肤深度就应为
+\begin{align*}
+\delta' &= \frac{c}{(2\pi\sigma'\omega)^{\frac{1}{2}}} \\
+&= \frac{c}{\left(2\pi\,\frac{3}{2}\,\beta\,\frac{\delta'}{\Lambda}\,\sigma_0\,\omega\right)^{\frac{1}{2}}}\,, \tag{8.104}
+\end{align*}
+由此可解出 $\delta'$，进而解出 $\sigma'$。于是
+\begin{equation*}
+\sigma' = \left(\frac{9\beta^2}{8\pi}\right)^{\frac{1}{3}} \frac{1}{\omega^{\frac{1}{3}}} \left(\frac{c\sigma_0}{\Lambda}\right)^{\frac{2}{3}}; \tag{8.105}
+\end{equation*}
+有效电导率将表现得如同 $\omega^{-\frac{1}{3}}$，但却与电子平均自由程无关——它与普通静态电导率 $\sigma_0$ 中的相应因子相消了。这时我们就处于反常趋肤效应（anomalous skin effect）的条件下。实践上人们的做法是把金属表面做成共振腔的一部分，然后观察腔的共振性质所受到的影响。比如说，可以测量表面阻抗（surface impedance），按 §8.1 的记号，它就是
+\begin{equation*}
+\mathbf{Z}(\omega) = -4\pi i\omega\,\frac{E(z)}{(\partial E/\partial z)}\bigg]_{z=0} = \frac{4\pi c}{\mathsf{N}} \tag{8.106}
+\end{equation*}
+在反常极限下，金属表观光学性质的理论中还有其他一些变化可以推演出来，特别是当频率进入弛豫区时。例如，若表面是“粗糙”的，则电子在表面的实际散射会从反射波中额外吸收功率——这一贡献可与前一节中算出的（忽略这种散射时的）效应同样大小。
+
+然而，反常趋肤效应最有意思的性质，是它对费米面几何形状的依赖。如上所述，只有那些几乎平行于表面运动的电子才对电导“有效”。如果样品是单晶，这些电子便来自环绕费米面的一条窄带。倘若费米面高度各向异性，那么在金属晶体的不同切面上、场的不同取向下测量，我们理应看到不同的表面阻抗值。
+
+所要测量的几何性质，可以通过把“无效性概念”（ineffectiveness concept）(8.103) 加以推广而导出。我们假定只需考虑速度矢量与 $(x,y)$ 平面（它界定金属边界）的平行度相差 $\pm\beta\delta'/\Lambda$ 角之内的电子（取电场沿 $x$ 方向）。
+
+在有效电子带的某个一般点 $P$ 处，速度 $\mathbf{v}$ 与 $\mathbf{E}$ 成 $\theta$ 角。带的该处宽度将为 $2\beta\delta'|\rho|/\Lambda$，其中 $|\rho|$ 是在 $\mathbf{v}$ 与 $z$ 轴所定平面内的曲率半径。带周长上长为 $ds$ 的一段元，于是对应于费米面上的一块面积
+\begin{equation*}
+dS = \frac{2\beta\delta'|\rho|}{\Lambda}\,ds, \tag{8.107}
+\end{equation*}
+并且显然会按照通常的公式 (7.23) 对 $x$ 方向的电导作出贡献：
+\begin{align*}
+d\sigma'_{xx} &= \frac{e^2}{4\pi^3\hbar}\,\tau v_x\,dS_x \\
+&= \frac{e^2}{4\pi^3\hbar}\,\Lambda\cos\theta\,\frac{2\beta\delta'|\rho|}{\Lambda}\,\cos\theta\,ds. \tag{8.108}
+\end{align*}
+%FIG{150}: 费米面上由有效电子构成的带。
+于是，金属的总表观电导率将为
+\begin{align*}
+\sigma' &= \frac{e^2\beta\delta'}{2\pi^3\hbar}\int |\rho|\cos^2\theta\,ds \\
+&= \frac{e^2\beta\delta'}{2\pi^3\hbar}\oint |\rho_y|\,dk_y, \tag{8.109}
+\end{align*}
+其中 $\rho_y$ 表示费米面沿带的、平行于 $(x,z)$ 平面的截面的曲率半径，积分遍及带周围动量分量 $k_y$ 的取值范围。这就是我们代进 (8.104) 里的量，随后分别解出 $\delta'$ 与 $\sigma'$。更完整的分析表明
+\begin{equation*}
+\beta = \frac{8\pi}{3\sqrt{3}} \tag{8.110}
+\end{equation*}
+正是这个任意的“凑算因子”的合适数值。
+这个结果的美妙之处在于，表面阻抗既不依赖于电子的平均自由程，也不依赖于电子的速度，而只依赖于绕一条明确定义的带积分出来的局部曲率。积分 (8.109) 对曲率半径大的区域特别敏感——也就是说，对费米面上相对平坦的部位特别敏感。因此，它提供的信息在一定程度上与其他种种“效应”互补，那些效应往往依赖于细枝末节以及费米面上互不相连的小块碎段。然而，要把一个给定费米面与一组沿不同取向的带算出的 (8.109) 型积分值之间的关系反演出来并非易事；通常不得不经过一番繁琐的试错手续。
+
+\section{超声衰减}
+
+高频弹性波因与金属中传导电子相互作用而衰减，其理论虽然算不上严格的“光学”性质，却最自然地放到本章来讨论。固体中的声波会产生电场，并以与电磁波大体相同的方式加速电子。但声速比光速小得多——甚至比电子的费米速度还要小——因而可以观察到某些特殊的效应。
+
+在普通的低频区，衰减可以借助初等动理学理论（kinetic theory）来计算。一个由电子组成的气体，设其质量为 $m$、数密度为 $n$、平均速度为 $v_F$、平均自由程为 $\Lambda$，将具有黏度（viscosity）
+\begin{equation*}
+\eta = {\textstyle\frac{1}{3}}\,nm\Lambda v_F. \tag{8.111}
+\end{equation*}
+这个黏度可以作为一项纳入作用在介质体元上的力的普通经典方程。频率为 $\omega$ 的纵向弹性波的衰减常数便求出为
+\begin{equation*}
+\alpha = \frac{4}{5}\,\frac{\omega^2}{Ds^3}\,\eta, \tag{8.112}
+\end{equation*}
+其中 $D$ 是质量密度，$s$ 是声速。这些结果可以合并成各种不同的形式，例如按电导率 (7.33) 写成
+\begin{equation*}
+\alpha = \frac{4}{15}\,\frac{\omega^2 m v_F^2}{e^2 D s^3}\,\sigma, \tag{8.113}
+\end{equation*}
+如果金属非常纯，而在低温下进行测量，电子的弛豫时间会大为增长。然而，用超声波仍然难以进入 $\omega\tau>1$ 的弛豫区。
+不过，正因为声速远小于费米速度，我们有可能使平均自由程长于声波的波长，即做到
+\begin{equation*}
+q\Lambda > 1. \tag{8.114}
+\end{equation*}
+为了讨论这种情形，我们回到 (8.89)，在那里我们针对在空间和时间上都作正弦变化的电场，构造了 Boltzmann 方程解的一个公式。实际上，我们求得了一个广义电导率
+\begin{equation*}
+\boldsymbol{\sigma}(\mathbf{q},\omega) = \frac{e^2}{4\pi^3}\int \frac{\tau\mathbf{v}\mathbf{v}}{1-i\tau(\omega-\mathbf{q}\cdot\mathbf{v})}\,\frac{dS_F}{\hbar v}. \tag{8.115}
+\end{equation*}
+在 §8.6 中讨论这个公式时，我们取了 $q=0$，理由是电磁波的速度如此之大，以致其波数可以取作近乎为零。但是，当电场是由
+%FIG{151}: 冲浪共振。
+声波产生时——声波比电子传播慢得多——这一项就必须保留。这时，电导率的实部主要来自费米面上 $\omega\sim\mathbf{q}\cdot\mathbf{v}$ 的区域。这等于换一种说法：电子速度在波传播方向上的分量等于声速。
+
+这就是所谓的冲浪共振（surf-riding resonance）。恰好位于波峰上的电子，可以沿几乎垂直于波传播矢量的方向行进，从而继续从场中汲取能量。显然，费米面上只有少数电子能满足这一条件。如果我们把 $\omega$ 完全略去，它便在费米面上定出一条电子速度垂直于 $\mathbf{q}$ 的带——这条带与反常趋肤效应理论（§8.7）中定义的那条带形状完全相同。
+
+在 $q\Lambda\gg1$ 的极限下计算 (8.115) 并不困难。带的有效宽度取决于当我们离开准确共振位置时 $\tau\mathbf{q}\cdot\mathbf{v}$ 增长的速率。$\tau$ 的值越大，带就变得越窄。正如 (8.107) 中那样，“有效”面积元正比于表面的局部曲率半径，反比于 $\Lambda$。
+例如，用初等微分几何可以证明，在 $q\Lambda\gg1$ 的极限下有精确公式
+\begin{equation*}
+\sigma_{xx}(\mathbf{q},0) = \frac{e^2}{4\pi^3\hbar q}\oint |\rho_y|\,dk_y, \tag{8.116}
+\end{equation*}
+其中方向 $x$ 与 $y$ 都垂直于传播方向 $\mathbf{q}$，其余符号与 (8.109) 中完全相同。
+
+这个公式的有趣之处在于它不依赖于 $\Lambda$。必须存在某种使电子最终受到散射的机制，这一点至关重要；但在这一极限下，
+%FIG{152}: 与声子 $\mathbf{q}$ 相互作用的电子带。
+散射的强弱却无关紧要。这正是我们在 §8.7 中已经遇到过的情形。事实上，人们可以用 (8.116) 作为出发点，完整地推导出反常趋肤效应的公式 (8.109)，连凑算因子 $\beta$ 的取值也包括在内。这实质上是把由 Maxwell 方程导出的关系 (8.102) 用 Fourier 分量表示出来，并且计入顾及电子在金属表面处行为的边界条件。
+
+如果我们能单用 (8.116) 就建立起超声衰减的理论，那将是十分惬意的。测量沿各个方向穿过单晶传播的波的衰减，这一实验在技术上显然要比沿各种取向切出晶体表面、并在测量表面阻抗的同时保持它们清洁完好容易得多。
+
+遗憾的是，这并不能给出关于费米面形状的直接信息。衰减确实会趋向一个与电子平均自由程无关的值——(8.113) 不再成立——但其数值大小取决于电子与格波耦合的细节。换句话说，电子因晶格位移或晶格应变而感受到的电场无法直接计算，而且在费米面上各处不同。
+可以设想，需要在 (8.116) 的被积函数中插入一个形变势（deformation potential）——即 §6.14 中讨论过的那一类——但它要复杂得多；比如说，在多连通的费米面上，它远不像在简单的自由电子金属中那样容易用寥寥几个参数表达出来。
+
+自由载流子引起的超声衰减也可以在半导体中出现。没有对称中心的离子型材料——例如 III–V 或 II–VI 族化合物（§4.2）——通常是压电性的（piezo-electric）。局部应变 $W_{ij}(\mathbf{r})$ 会产生一个局部电场
+\begin{equation*}
+\delta E_k(\mathbf{r}) = \sum_{ij}\beta_{ijk}\,W_{ij}(\mathbf{r}) \tag{8.117}
+\end{equation*}
+它是 (6.95) 的形变势之外的一项。这个由宏观声波携带的电场行波作用于载流子，在达到相当高的微波频率之前，它是主要的相互作用机制。此时现象的细节将取决于压电张量 $\beta_{ijk}$ 在声波偏振矢量上的投影分量。
+
+在电导率相对较低的介质中，超声声子束把动量传递给载流子，由此产生的声电场（acousto-electric field）可以直接观测到。这显然是声子曳引效应（§7.11）的逆过程。一个密切相关的现象，是沿超声束施加直流电场而使声得到声电放大（acousto-electric amplification）。这可以看作微波激射（maser）作用的一种形式：来自电场的能量使载流子分布失去平衡，随后这一分布受激发而相干地发射声子。我们还可以注意到它与 Cerenkov 辐射的类似之处：电场使载流子获得一个超过声速的漂移速度 (7.31)，从而允许在能量与动量同时守恒的条件下直接产生声子。
+
+上面的推导都建立在对 Boltzmann 方程的准经典处理之上。但同样的结果也可以从量子理论得到——有人也许会说，那样更严格。例如，考虑在从态 $\mathbf{k}$ 到态 $\mathbf{k}+\mathbf{q}$ 的跃迁中吸收一个频率为 $\omega$ 的声子的能量条件 (2.101)。它给我们
+\begin{align*}
+\hbar\omega &= \mathcal{E}(\mathbf{k}+\mathbf{q}) - \mathcal{E}(\mathbf{k}) \\
+&\approx \mathbf{q}\cdot\frac{\partial\mathcal{E}(\mathbf{k})}{\partial\mathbf{k}} \\
+&= \hbar\mathbf{q}\cdot\mathbf{v}_{\mathbf{k}}, \tag{8.118}
+\end{align*}
+它与 (8.115) 本质上相同。换句话说，“冲浪共振”无非是电子–声子相互作用的一个初级过程，正如 §§2.8、6.13 中所讨论的那样。
+
+另外，(8.115) 还可以从一个完全不同的出发点导出。让我们把分母写成
+\begin{equation*}
+1-i\tau(\omega-\mathbf{q}\cdot\mathbf{v}) = \frac{i\tau}{\hbar}\bigl\{\mathcal{E}(\mathbf{k}+\mathbf{q}) - \mathcal{E}(\mathbf{k}) - \hbar\omega - i\hbar\alpha\bigr\}, \tag{8.119}
+\end{equation*}
+其中 $\alpha=-1/\tau$。我们认出，这正是 (5.16) 中以及第 5 章其他地方出现的那种求和的分母。稍加变换，并利用 (8.118)，我们发现可以写成
+\begin{equation*}
+\epsilon(\mathbf{q},\omega) \approx 1 + \frac{4\pi i\sigma_l(\mathbf{q},\omega)}{\omega} \tag{8.120}
+\end{equation*}
+当 $q$ 和 $\omega$ 都很小时。这里 $\sigma_l$ 指纵向电导率——即 $\boldsymbol{\sigma}$ 在声子传播方向上的分量。
+
+换言之，我们重新导出了 (8.7)。正如在 §5.1 中计算的那样，电子气的复介电常数已经把电导率作为其虚部包含在内。在 (5.1) 中我们把 $-\alpha$ 取作微扰场的一个任意衰减常数——而把它认同为 $1/\tau$ 显然是恰当的。(5.16) 之中竟然凝聚了多得惊人的物理内容。

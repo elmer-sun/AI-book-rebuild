@@ -1,0 +1,103 @@
+% ch2 A.1 General Philosophy of Hartree-Fock (原书页 9–15 / PDF p024–p030)
+
+\chapter{单电子理论}
+
+\section{Hartree-Fock 理论}
+
+\subsection{Hartree-Fock 的一般哲学}
+
+单电子理论的出发点与基础自然就是 Hartree-Fock 方程，它在固态物理学中起着绝对根本性的作用。关于 Hartree-Fock 理论，好的参考资料有 Seitz 书中的那一章和附录，以及 Reitz 发表在《Seitzschrift》上的文章 (11)。人们或许会得到这样一种印象：如今听得如此之多的现代多体理论（many-body theory）早已远远超出了 Hartree-Fock，因此我们不必再为这类老式的东西费心。这全然不是事实——事实上，现代多体理论大多只是向我们表明了该如何、在何处以及何时使用 Hartree-Fock 理论，以及它可以是一门多么灵活而有用的技术。例如，Cohen 与 Ehrenreich (12) 等人把等离体（plasma）与关联能（correlation energy）同 Hartree-Fock 联系了起来；Valatin、Thouless (13) 等人用一种“含时的”Hartree-Fock 理论研究了核的集体运动；甚至连超导（superconductivity）理论也可以被写成一种与 Hartree-Fock 几乎完全相同的形式 (14)。在磁学方面，近来最大、最重要的进展则是“非限制”（unrestricted）Hartree-Fock 方法 (15) 的种种成就。
+
+Hartree-Fock 方程的基本思想如下：我们想求一个相互作用电子系统的最低本征态（eigenstate）$\Psi(\mathbf{r}_1\ldots\mathbf{r}_n)$，该系统具有哈密顿量
+\begin{equation*}
+H=\sum_j\left[\frac{P_j^2}{2m}+V(\mathbf{r}_j)\right]+\frac{1}{2}\sum_{jk}\frac{e^2}{|\mathbf{r}_j-\mathbf{r}_k|}
+\end{equation*}
+其中 $V(\mathbf{r}_j)$ 是某种外部势——在原子问题中是原子核的势，在固态问题中则通常是原子芯（atom cores）的势，等等。
+
+然而，要解在一个外部势中含有不止一个电子的问题是很困难的——即便是 He 和 $H_2$ 这两个最简单的多电子问题，也只能靠相当冗长的数值分析来处理，而且这种分析完全看不出有任何推广到更复杂系统的可能。于是，人们首先希望做到的，就是找到某种一次只处理一个电子的途径。显而易见的办法是把电子当作统计独立的来处理：也就是说，采用乘积型波函数
+\begin{equation*}
+\Psi(\mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_N)=\psi_1(\mathbf{r}_1)\psi_2(\mathbf{r}_2)\cdots\psi_N(\mathbf{r}_N)
+\end{equation*}
+因为这样一来，每个电子的概率密度 $|\psi|^2$ 以及它的所有其他单电子量，都与其他电子的相应量无关。随后人们会试图通过求解一个波方程来逐个算出这些函数，在这个波方程中，相互作用 $e^2/r_{ij}$ 被替换成它对所有其他电子的概率分布的平均值：
+\begin{equation*}
+\left(\frac{P_i^2}{2m}+V(\mathbf{r}_i)\right)\psi_i+\sum_{j\neq i}\int d\mathbf{r}_j\ |\psi_j(\mathbf{r}_j)|^2\ \frac{e^2}{|\mathbf{r}_i-\mathbf{r}_j|}\ \psi_i(\mathbf{r}_i)=E_i\psi_i(\mathbf{r}_i)
+\end{equation*}
+这就是 Hartree 近似；后来有人证明，这些方程保证了所得的总能量相对于所有邻近的乘积型函数取极值。如你所见，求解这些方程的唯一办法就是自洽（self-consistent）地求解：先假定一组 $\psi_j$，用由这组假定的 $\psi_j$ 得出的平均相互作用项重新计算诸 $\psi$，再把它们代回 Hartree 方程，最后指望结果达到自洽。
+
+然而，乘积函数既不满足 Pauli 不相容原理，也不满足费米统计（Fermi statistics）更基本的限制，即波函数应当是反对称的；事实上，在“所有可能的单电子量（如概率密度、流等）统计独立”这一假设下，最接近满足该假设的反对称波函数，就是 Slater-Fock 行列式
+\begin{equation*}
+\Psi(\mathbf{r}_1\ldots\mathbf{r}_N)=(N!)^{-1/2}
+\begin{vmatrix}
+\psi_1(\mathbf{r}_1) & \ldots & \psi_1(\mathbf{r}_N)\\
+\psi_2(\mathbf{r}_1) & \ldots & \psi_2(\mathbf{r}_N)\\
+\vdots & & \vdots\\
+\psi_N(\mathbf{r}_1) & \ldots & \psi_N(\mathbf{r}_N)
+\end{vmatrix}
+\end{equation*}
+（注：这里坐标 $\mathbf{r}_j$ 假定同时表示空间变量与自旋变量。）
+
+另一方面，在这种行列式波函数 $\Psi$ 中，成对电子的运动并非完全不相关，因为举例来说，不相容原理要求：若 $\mathbf{r}_1=\mathbf{r}_2$ 且两个电子的自旋坐标也相同，则头两列完全相同，行列式为零。我把它留作读者的一个练习：证明在只有两个电子的情形下，在 $\mathbf{r}_1$ 处找到一个电子、在 $\mathbf{r}_2$ 处找到另一个电子的概率密度为
+\begin{align*}
+\frac{1}{2}\Big\{&|\psi_1(\mathbf{r}_1)|^2\,|\psi_2(\mathbf{r}_2)|^2+|\psi_1(\mathbf{r}_2)\psi_2(\mathbf{r}_1)|^2\\
+&-\big[\psi_1^*(\mathbf{r}_1)\psi_2^*(\mathbf{r}_2)\psi_2(\mathbf{r}_1)\psi_1(\mathbf{r}_2)+\text{c.c.}\big]\Big\}
+\end{align*}
+（如果两自旋平行；若反平行，则第二项不出现。）显然，这改变了应当用来确定波函数 $\psi_1$ 的平均相互作用 $e^2/r_{12}$，而 Fock 从变分原理（variational principle）证明，新的正确波方程就是 Hartree-Fock 方程：
+\begin{align*}
+-\frac{\hbar^2}{2m}\nabla_1^2\,\psi_{i\sigma}(\mathbf{r}_1)&+V(\mathbf{r}_1)\psi_{i\sigma}(\mathbf{r}_1)+\sum_{j,\sigma'}\left[e^2\int\frac{|\psi_{j\sigma'}(\mathbf{r}_2)|^2}{|\mathbf{r}_1-\mathbf{r}_2|}\,d\mathbf{r}_2\right]\psi_{i\sigma}(\mathbf{r}_1)\\
+&-\left(\sum_j e^2\int\frac{\psi_{j\sigma}^*(\mathbf{r}_2)\,\psi_{i\sigma}(\mathbf{r}_2)}{|\mathbf{r}_1-\mathbf{r}_2|}\,d\mathbf{r}_2\right)\psi_{j\sigma}(\mathbf{r}_1)=E_i\,\psi_{i\sigma}(\mathbf{r}_1)
+\end{align*}
+注意，我们对 $j$ 的求和可以包含 $j=i$，因为 $j=i$ 的相互作用项彼此相同而相消。这样一来，左边的线性算符对所有波函数都是同一个，单粒子波函数对不同本征值 $E_i$ 便自动正交（当然，在本征值相同时也可以使之正交化）。
+
+关于自旋问题，简短说几句。首先，有一个常被遗忘的事实——尽管三十年代的文献中已有人对它有所认识——那就是：当然，并没有任何限制要求自旋相反的两套波函数必须相同、正交或具有任何特定的关系。对自旋向上与向下的两套函数而言，相同且正交的解常常存在，并且在许多不涉及磁性的问题中可以合理地接受它；但即便在那样的情况下，也没有任何保证说它就是最好的解。在磁性问题中，自旋向上与自旋向下的 Hartree-Fock 方程必然不同；最大的差别——也是一个常被忽视的差别——可以这样看出来：试问，如果我们计算函数 $\psi_{i,-\sigma}$ 的 Hartree-Fock 能量，而该函数是空的，但与之全同、只是自旋向上的函数 $\psi_{i,\sigma}$ 已被填满，那会发生什么。那个在 $\sigma=\sigma'$ 时会相消的相当大的 $i=j$ 项在这种情形下依然存在，并且可以产生很大的影响。“$\sigma\neq\sigma'$ 的两套函数不必相同也不必正交”这一“新奇”想法被称为“非限制 Hartree-Fock”近似，它在磁性理论中有重要的后果。
+
+对一般的 Hartree-Fock 方法必须提出两点告诫。第一，不仅关于解的唯一性根本不存在任何定理，而且在许多情形中显然存在若干种完全不同类型的解，其中只有一个与所考虑系统的真实基态（ground state）有任何关系。换言之，我们可以得到一个完全自洽的 Hartree-Fock 方程解，而它不仅不代表所考虑系统的真实基态（如自由电子气在可能出现超导时的情形），而且无论如何甚至不是最稳定的 Hartree-Fock 解，甚至也不是任何精确态的近似。$H_2$ 问题——两个质子、两个电子 (16)——给出了一个例子。显然，如果单电子势 $V(\mathbf{r})$ 具有某种对称性——正如本例中在两个质子互换之下（图 1）那样——我们就可以尝试采用反映这种对称性的单电子函数。
+%FIG{1}: 图 1
+在本例中，如果我们选取一个以 $a$ 为中心的函数 $\phi_a(\mathbf{r})$，这样的函数便是 $\phi_a+\phi_b$ 与 $\phi_a-\phi_b$，它们分别是偶函数与奇函数。自洽场可以被强制去严格保持 $V(\mathbf{r})$ 原有的对称性，做法有多种。在本例中这很容易：如果我们把每个电子都放入 $(\phi_a+\phi_b)/\sqrt{2}=\phi_{\mathrm{even}}$，一个自旋向上、一个自旋向下，那么显然就保持了一个偶的 $V(\mathbf{r})$。另一种做法（在更复杂的条件下）是把属于某一给定不可约表示（irreducible representation）的所有态都填满，即填满一个“壳层”（shell）或一个“能带”（band）。在这两种情形下我们都保持原有的对称性——在原子中是球对称，在固体中是周期对称。
+
+当质子相距较近时，上述解确实是正确的解，相当接近 $H_2$ 分子的基态；实际上我们已经构造出了这个分子的分子轨道（molecular orbital）波函数。但当质子相距很远时，把一个自旋向上的电子放入 $\phi_a$、把第二个自旋向下的电子放入 $\phi_b$，就可以得到一个好得多的解。这就是 Heitler-London 途径，或至少与它十分接近。在分子轨道解中，当分子相距很远时，两个电子有一半的时间待在\emph{同一个}原子上，因而在分离原子近似下，波函数一半是 $H+H$，一半是 $p+H^-$；而后者的能量远高于前者。系统在 $p+H^-$ 附近存在真实的激发态，在 $H+H$ 附近也存在真实的态，但 M.O.\ 波函数与任何真实激发态都没有多少相似之处。这是 Hartree-Fock 中的一种危险，它时而被人忽视——一个十分良好的自洽解甚至可能不接近任何真实激发态。
+
+在现代多体理论中已经发展出一些检验办法 (17)——我不打算在此讨论——用以验证一个给定的解相对于邻近的其他解是否局域稳定，也就是说，它相对于其他行列式型函数是极小还是极大。这多半能把此处的困难排除掉，但并非在所有情形中都必然如此。
+
+在原子相距很远的情形下，这个例子还说明了第二点。这就是：Hartree-Fock 方程的一个自洽解——它可能像本例中那样是正确的解——往往仍是一个不能令人满意的问题最终本征函数，因为它没有充分地把诸对称性考虑进去。我们在这里构造的行列式波函数是：自旋向上的电子处于波函数 $\phi_a$，自旋向下的电子处于 $\phi_b$：把它记作
+\begin{align*}
+\Psi_{a\uparrow b\downarrow}&=\frac{1}{\sqrt{2}}
+\begin{vmatrix}
+\phi_a(1)\,\alpha_1 & \phi_a(2)\,\alpha_2\\
+\phi_b(1)\,\beta_1 & \phi_b(2)\,\beta_2
+\end{vmatrix}\\
+&=\phi_a(1)\phi_b(2)\,\alpha_1\beta_2-\phi_a(2)\phi_b(1)\,\beta_1\alpha_2
+\end{align*}
+那么 $\Psi_{a\downarrow b\uparrow}$ 呢？就对称性而言，它其实是一个完全等价的波函数；而两者都不是令人满意的总波函数，因为两者都不按对称群的一个不可约表示变换。正确的波函数是
+\begin{align*}
+\Psi_{\text{singlet}}&=\Psi_{a\uparrow b\downarrow}-\Psi_{a\downarrow b\uparrow}\\
+&=\frac{1}{2}\Big[\phi_a(1)\phi_b(2)+\phi_a(2)\phi_b(1)\Big]\big(\alpha_1\beta_2-\alpha_2\beta_1\big)
+\end{align*}
+以及
+\begin{align*}
+\Psi_{\text{triplet}}&=\Psi_{a\uparrow b\downarrow}+\Psi_{a\downarrow b\uparrow}\\
+&=\frac{1}{2}\Big[\phi_a(1)\phi_b(2)-\phi_a(2)\phi_b(1)\Big]\big(\alpha_1\beta_2+\alpha_2\beta_1\big)
+\end{align*}
+它经由一个自旋转动与真正的 Hartree-Fock 解
+\begin{align*}
+\Psi_{a\uparrow b\uparrow}&=\frac{1}{\sqrt{2}}
+\begin{vmatrix}
+\phi_a(1)\,\alpha_1 & \phi_b(1)\,\alpha_1\\
+\phi_a(2)\,\alpha_2 & \phi_b(2)\,\alpha_2
+\end{vmatrix}\\
+&=\frac{1}{\sqrt{2}}\ \alpha_1\alpha_2\left(\phi_a(1)\phi_b(2)-\phi_a(2)\phi_b(1)\right)
+\end{align*}
+等价，并且类似地与 $\Psi_{a\downarrow b\downarrow}$ 等价。
+
+尽管如此，如果我们愿意越出这一方法之外，依靠我们关于自旋本征函数的知识，那么从 Hartree-Fock 不仅可以得到三重态（triplet）的能量，也可以得到单态（singlet）的能量。这可以通过比较 $\Psi_{a\uparrow b\downarrow}$ 与 $\Psi_{a\uparrow b\uparrow}$ 的能量来做到。在 Hartree-Fock 中，这两个能量相差某一项，它来自我们在式 (1) 中导出的平行自旋情形下两个电子的附加关联（译注：原书此处作 “Eq. (1)”；但本章编号公式 (1) 在 A.2 节，与此处所指不符，当系讲义原稿残留的引用，所指应即下式中的交换项。）：
+\begin{equation*}
+\rho(\mathbf{r}_1,\mathbf{r}_2)=\rho_{\text{product}}-\psi_1^*(\mathbf{r}_1)\psi_2^*(\mathbf{r}_2)\psi_2(\mathbf{r}_1)\psi_1(\mathbf{r}_2)
+\end{equation*}
+由此导致一个能量差
+\begin{equation*}
+J=\int d\mathbf{r}_1\,d\mathbf{r}_2\ \mathcal{H}(r_{12})\left(\psi_1^*\psi_2(\mathbf{r}_1)\right)\left(\psi_2^*\psi_1(\mathbf{r}_2)\right)
+\end{equation*}
+现在，Dirac-Van Vleck 矢量模型告诉我们，各个态的能量必须按算符乘积 $J\,\boldsymbol{\sigma}_a\cdot\boldsymbol{\sigma}_b$ 依赖于自旋；在前一情形中它的平均值为 $J/4$，在后一情形中为 $-J/4$。而真正的单态，其能量为 $-3J/4$；于是我们可以通过由 $a\uparrow b\downarrow-a\uparrow b\uparrow$ 之差求出交换积分（exchange integral）来估计单态的能量。
+
+这一技术有两个教益。第一，在诸如自旋问题这类情形中——即我们对相互作用的形式拥有额外的知识、而单靠 Hartree-Fock 又不会立即给出正确对称类型的本征函数的情形——只要稍具巧思，往往就能走得远远超出 Hartree-Fock。同样类型的技巧如今也被用于诸如非球形核的转动等问题：在那里 Hartree-Fock 给出一个椭球形的自洽场，它显然不满足“波函数必须是角动量的本征函数”这一必要要求；但人们可以相当人为地取出 Hartree-Fock 解并使它转动，迫使它具有正当解的形式 (13)。
+
+第二个教益涉及无限系统中的同类问题——例如，设想我们讨论的是一整个由相距很远的原子组成的晶格，如反铁磁体（antiferromagnet）中那样。在这样的大系统中常常出现这样的情形：问题的真正解其实是 Hartree-Fock 的非对称解，而不是某个对称的替代品——例如，反铁磁体的真实基态其实并\emph{非}单态，毋宁说每个原子都\emph{带有}一个确定的自旋。但是，当两个 Hartree-Fock 解在\emph{无限}系统中彼此不同时，由于自洽的特殊性质，新的、非常实在的困难便出现了。这就是说，为了从一个解过渡到另一个解，$N\to\infty$ 个（译注：原文为“N—∞”）Hartree-Fock 本征函数中的每一个都必须经历一次正则变换（canonical transformation），于是这个变换在某种意义上是无穷多个幺正变换（unitary transformation）的乘积。这意味着两个态的交叠基本上为零——场论学家们把这种局面弄得令人生畏，他们说这两个态实际上处在不同的 Hilbert 空间之中。尽管如此，在无限系统中两个自洽解可以定性地完全不同——其差别之大，犹如同一物质的两个相，比如说一个固相与一个液相——这一事实具有重大的意义与重要性。类似的现象也出现在超导之中，甚至出现在固体凝聚这个日常问题里——我们所处理的这块物质可以抛弃其基本哈密顿量的某一个对称元素，建立起它自己的非对称自洽场。这些问题将在本讲义的最后一部分中更充分地加以讨论。

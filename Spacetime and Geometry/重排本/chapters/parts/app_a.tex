@@ -1,0 +1,102 @@
+% app_a 附录A 流形之间的映射 (书页 423-428 / p438-p443)
+% 附录A Maps between Manifolds
+% 注：书页 428（p443）为空白页，附录 B 自书页 429（p444）始。
+
+\chapter{流形之间的映射}
+
+我们在第 2 章讨论流形时，曾经引入两个不同流形之间的映射，以及映射如何复合。这里我们将远为细致地考察这类映射，重点关注如何利用它们把张量场从一个流形携带到另一个流形。所讨论的流形，最终可能是一个子流形（submanifold）与它所嵌入的更大空间，也可能只是同一个抽象流形的两份不同副本彼此映射。
+
+考虑两个流形 $M$ 和 $N$，维数可以不同，分别配有坐标系 $x^{\mu}$ 和 $y^{\alpha}$。设想我们有一个映射 $\phi : M \to N$，以及一个函数 $f : N \to \mathbf{R}$。显然，我们可以把 $\phi$ 与 $f$ 复合，构造出映射 $(f\circ\phi) : M \to \mathbf{R}$，它不过是 $M$ 上的一个函数。这种构造非常有用，足以让它拥有自己的名字；我们把 $f$ 被 $\phi$ 的\textbf{拉回}（pullback）记作 $\phi^{*}f$，定义为
+\begin{equation*}
+\phi^{*}f = (f\circ\phi).
+\tag{A.1}
+\end{equation*}
+这个名字很有道理：我们把 $\phi^{*}$ 设想成把函数 $f$ 从 $N$ “拉回”到 $M$（见图 A.1）。
+
+%FIG{A.1}: {映射 $\phi : M \to N$ 把函数 $f$ 从 $N$ 拉回到 $M$，所得无非是 $\phi$ 与 $f$ 的复合。}
+
+我们可以把函数拉回，却不能把函数推前。如果我们有一个函数 $g : M \to \mathbf{R}$，就没有办法把 $g$ 与 $\phi$ 复合而创造出 $N$ 上的函数——箭头无法正确地衔接起来。但是回想一下，矢量可以看成一种把光滑函数映为实数的导数算符。这使我们能够定义矢量的\textbf{推前}（pushforward）；若 $V(p)$ 是 $M$ 上点 $p$ 处的一个矢量，我们就通过给出它对 $N$ 上函数的作用，来定义 $N$ 上点 $\phi(p)$ 处的推前矢量 $\phi_{*}V$：
+\begin{equation*}
+(\phi_{*}V)(f) = V(\phi^{*}f).
+\tag{A.2}
+\end{equation*}
+于是，要推前一个矢量场，我们可以说：“$\phi_{*}V$ 对任何函数的作用，无非就是 $V$ 对该函数之拉回的作用。”\footnote{遗憾的是，星号所在的位置并没有完全统一的标准；有些文献用上标 $*$ 表示推前、用下标 $*$ 表示拉回，所以要当心。}
+
+这番讨论有点抽象，若能有一个更具体的描述就好了。我们知道，$M$ 上矢量的一个基由偏导数集合 $\partial_{\mu} = \partial/\partial x^{\mu}$ 给出，而 $N$ 上的基由偏导数集合 $\partial_{\alpha} = \partial/\partial y^{\alpha}$ 给出。因此，我们希望把 $V = V^{\mu}\partial_{\mu}$ 的分量与 $(\phi_{*}V) = (\phi_{*}V)^{\alpha}\partial_{\alpha}$ 的分量联系起来。把推前后的矢量作用到一个检验函数（test function）上，并利用链式法则 (2.12)，就能找到想要的关系：
+\begin{align*}
+(\phi_{*}V)^{\alpha}\partial_{\alpha}f &= V^{\mu}\partial_{\mu}(\phi^{*}f)\\
+ &= V^{\mu}\partial_{\mu}(f\circ\phi)\\
+ &= V^{\mu}\frac{\partial y^{\alpha}}{\partial x^{\mu}}\partial_{\alpha}f.
+\tag{A.3}
+\end{align*}
+这个简单的公式让人难以抗拒地把推前操作 $\phi_{*}$ 看成一个矩阵算符 $(\phi_{*}V)^{\alpha} = (\phi_{*})^{\alpha}{}_{\mu}V^{\mu}$，其矩阵为
+\begin{equation*}
+(\phi_{*})^{\alpha}{}_{\mu} = \frac{\partial y^{\alpha}}{\partial x^{\mu}}.
+\tag{A.4}
+\end{equation*}
+矢量在推前之下的这种行为，与坐标变换下矢量的变换定律有着不容误认的相似之处。事实上它是后者的推广，因为当 $M$ 与 $N$ 是同一个流形时，两种构造（正如我们将要讨论的）完全同一；但不要被迷惑，因为一般而言 $\mu$ 和 $\alpha$ 允许的取值并不相同，而且矩阵 $\partial y^{\alpha}/\partial x^{\mu}$ 也没有理由必须可逆。
+
+让自己确信下面这件事是一次很有收获的练习：虽然给定映射 $\phi : M \to N$，你可以把矢量从 $M$ 推前到 $N$，但一般情况下你却不能把它们拉回——只管不断尝试去发明某种合适的构造，直到这种尝试的徒劳变得一目了然。由于 1-形式（one-form）与矢量对偶，听到 1-形式可以被拉回（但一般不能被推前）时，你不应感到惊讶。为了做到这一点，请记住 1-形式是从矢量到实数的线性映射。于是，$N$ 上 1-形式 $\omega$ 的拉回 $\phi^{*}\omega$ 可以通过它对一个 $M$ 上的矢量 $V$ 的作用来定义：让它等同于 $\omega$ 本身作用在 $V$ 的推前上：
+\begin{equation*}
+(\phi^{*}\omega)(V) = \omega(\phi_{*}V).
+\tag{A.5}
+\end{equation*}
+再一次，形式上的拉回算符有一个简单的矩阵描述 $(\phi^{*}\omega)_{\mu} = (\phi^{*})_{\mu}{}^{\alpha}\omega_{\alpha}$，我们可以用链式法则把它推导出来。它由下式给出：
+\begin{equation*}
+(\phi^{*})_{\mu}{}^{\alpha} = \frac{\partial y^{\alpha}}{\partial x^{\mu}}.
+\tag{A.6}
+\end{equation*}
+也就是说，它与推前式 (A.4) 中的矩阵是同一个，只不过当这个矩阵去拉回 1-形式时，缩并的当然是不同的指标。
+
+有一种思考方式可以解释为什么拉回和推前只对某些对象有效、对另一些则不然，或许会有所帮助。如果我们把 $M$ 上光滑函数的集合记为 $\mathcal{F}(M)$，那么 $M$ 上点 $p$ 处的矢量 $V(p)$（也就是切空间 $T_{p}M$ 的一个元素）可以看成从 $\mathcal{F}(M)$ 到 $\mathbf{R}$ 的一个算符。但我们已经知道，函数上的拉回算符把 $\mathcal{F}(N)$ 映到 $\mathcal{F}(M)$，正如 $\phi$ 本身把 $M$ 映到 $N$，只是方向相反。因此，作用在矢量上的推前 $\phi_{*}$ 可以简单地通过映射的复合来定义，正如我们最初定义函数的拉回那样；如图 A.2 所示。类似地，若 $T_{q}N$ 是 $N$ 上点 $q$ 处的切空间，那么 $q$ 处的 1-形式 $\omega$（也就是余切空间 $T_{q}^{*}N$ 的一个元素）可以看成从 $T_{q}N$ 到 $\mathbf{R}$ 的一个算符。由于推前 $\phi_{*}$ 把 $T_{p}M$ 映到 $T_{\phi(p)}N$，1-形式的拉回 $\phi^{*}$ 同样可以看成单纯的映射复合，如图 A.3 所示。如果这种看法对你没有帮助，不必在意。但务必分清哪些东西存在、哪些不存在；概念本身很简单，引人误入歧途的只是忘掉了哪个映射朝哪个方向走。
+
+你还会记得，$(0,l)$ 张量——即有 $l$ 个下指标而没有上指标的张量——是从 $l$ 个矢量的直积到 $\mathbf{R}$ 的线性映射。因此，我们不仅能拉回 1-形式，还能拉回具有任意数目下指标的张量。定义无非就是让原来的张量作用在推前后的矢量上：
+\begin{equation*}
+(\phi^{*}T)(V^{(1)},V^{(2)},\ldots,V^{(l)}) = T(\phi_{*}V^{(1)},\phi_{*}V^{(2)},\ldots,\phi_{*}V^{(l)}),
+\tag{A.7}
+\end{equation*}
+
+%FIG{A.2}: {矢量的推前，看成 $N$ 与 $M$ 上函数空间之间的一个映射，与从 $M$ 上的函数到 $\mathbf{R}$ 的一个映射的复合。}
+
+%FIG{A.3}: {1-形式的拉回，看成切空间 $T_{p}M$ 与 $T_{\phi(p)}N$ 之间的一个映射，与从 $T_{\phi(p)}N$ 到 $\mathbf{R}$ 的一个映射的复合。}
+
+其中 $T_{\alpha_{1}\cdots\alpha_{l}}$ 是 $N$ 上的一个 $(0,l)$ 张量。类似地，我们可以推前任意 $(k,0)$ 张量 $S^{\mu_{1}\cdots\mu_{k}}$，只要让它作用在拉回后的 1-形式上：
+\begin{equation*}
+(\phi_{*}S)(\omega^{(1)},\omega^{(2)},\ldots,\omega^{(k)}) = S(\phi^{*}\omega^{(1)},\phi^{*}\omega^{(2)},\ldots,\phi^{*}\omega^{(k)}).
+\tag{A.8}
+\end{equation*}
+幸运的是，推前式 (A.4) 与拉回式 (A.6) 的矩阵表示可以推广到更高阶的张量，只需给每个指标指派一个矩阵即可；于是，对于 $(0,l)$ 张量的拉回，我们有
+\begin{equation*}
+\boxed{\,(\phi^{*}T)_{\mu_{1}\cdots\mu_{l}} = \frac{\partial y^{\alpha_{1}}}{\partial x^{\mu_{1}}}\cdots\frac{\partial y^{\alpha_{l}}}{\partial x^{\mu_{l}}}\,T_{\alpha_{1}\cdots\alpha_{l}},\,}
+\tag{A.9}
+\end{equation*}
+而对于 $(k,0)$ 张量的推前，则有
+\begin{equation*}
+\boxed{\,(\phi_{*}S)^{\alpha_{1}\cdots\alpha_{k}} = \frac{\partial y^{\alpha_{1}}}{\partial x^{\mu_{1}}}\cdots\frac{\partial y^{\alpha_{k}}}{\partial x^{\mu_{k}}}\,S^{\mu_{1}\cdots\mu_{k}}.\,}
+\tag{A.10}
+\end{equation*}
+于是，我们完整的图像如图 A.4 所示。注意，既有上指标又有下指标的张量，一般来说既不能被推前也不能被拉回。
+
+%FIG{A.4}: {映射 $\phi : M \to N$ 使我们能够拉回 $(0,l)$ 张量并推前 $(k,0)$ 张量。}
+
+一旦在一个简单的例子中看到这套机器运转起来，它就显得不那么令人生畏了。两个流形之间出现映射的一种常见情形，是 $M$ 实际上是 $N$ 的一个子流形，我们将在附录 C 中更仔细地讨论这种情形。基本想法是：存在一个从 $M$ 到 $N$ 的映射，它只是把 $M$ 的一个元素带到 $N$ 中“同一个”元素上。考虑嵌入 $\mathbf{R}^{3}$ 中的\emph{二维球面}（two-sphere），把它看成与原点相距单位距离的点的轨迹。如果在 $M = S^{2}$ 上取坐标 $x^{\mu} = (\theta,\phi)$，在 $N = \mathbf{R}^{3}$ 上取坐标 $y^{\alpha} = (x, y, z)$，那么映射 $\phi : M \to N$ 就由下式给出：
+\begin{equation*}
+\phi(\theta,\phi) = (\sin\theta\cos\phi,\ \sin\theta\sin\phi,\ \cos\theta).
+\tag{A.11}
+\end{equation*}
+以这种方式把球面插进 $\mathbf{R}^{3}$，会在 $S^{2}$ 上诱导出一个度规，它正是平直空间度规的拉回。求出它的一个头脑简单的办法，是从 $\mathbf{R}^{3}$ 上的度规 $\mathrm{d}s^{2} = \mathrm{d}x^{2} + \mathrm{d}y^{2} + \mathrm{d}z^{2}$ 出发，把式 (A.11) 代入这个表达式，得到 $S^{2}$ 上的度规 $\mathrm{d}\theta^{2} + \sin^{2}\theta\,\mathrm{d}\phi^{2}$。让我们看看，用更体面的形式化方法，这个答案是如何得来的。（当然，如果我们在 $\mathbf{R}^{3}$ 上用球坐标来做，事情会更容易；但用费劲的办法做更有启发性。）偏导数矩阵由下式给出：
+\begin{equation*}
+\frac{\partial y^{\alpha}}{\partial x^{\mu}} =
+\begin{pmatrix}
+\cos\theta\cos\phi & \cos\theta\sin\phi & -\sin\theta\\
+-\sin\theta\sin\phi & \sin\theta\cos\phi & 0
+\end{pmatrix}.
+\tag{A.12}
+\end{equation*}
+$S^{2}$ 上的度规只需把 $\mathbf{R}^{3}$ 的度规拉回就能得到，
+\begin{align*}
+(\phi^{*}g)_{\mu\nu} &= \frac{\partial y^{\alpha}}{\partial x^{\mu}}\frac{\partial y^{\beta}}{\partial x^{\nu}}\,g_{\alpha\beta}\\
+ &= \begin{pmatrix} 1 & 0\\ 0 & \sin^{2}\theta \end{pmatrix},
+\tag{A.13}
+\end{align*}
+这一点你可以轻易检验。所以，答案确实与朴素代入所得的相同，只不过现在我们知道了为什么。

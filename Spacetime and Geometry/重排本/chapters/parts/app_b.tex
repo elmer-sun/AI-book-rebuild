@@ -1,0 +1,237 @@
+% app_b 附录B 微分同胚与李导数 (书页 429-438 / p444-p453)
+%--A-TAIL--
+% 附录B Diffeomorphisms and Lie Derivatives
+\chapter{微分同胚与李导数}
+
+% ---- 书页 429 / p444 ----
+在本附录中，我们继续前一附录的探索，现在聚焦于两个流形其实是同一个流形这一特殊情形。到目前为止，我们一直谨慎地强调：映射 $\phi: M \to N$ 可以用来把某些东西拉回（式 (A.9)），并把另一些东西推前（式 (A.10)）。一般之所以不能两头都做，其原因可以追溯到 $\phi$ 可能不可逆。如果 $\phi$ 可逆（而且 $\phi$ 与 $\phi^{-1}$ 都是光滑的——我们总是隐含地如此假定），那么它就定义了 $M$ 与 $N$ 之间的一个微分同胚（diffeomorphism）。这只有在 $M$ 与 $N$ 实际上是同一个抽象流形时才可能成立；事实上，微分同胚的存在性正是“两个流形相同”的定义。微分同胚的美妙之处在于，我们既可以利用 $\phi$ 也可以利用 $\phi^{-1}$ 把张量从 $M$ 搬到 $N$；这将使我们能够定义任意张量的推前（pushforward）与拉回（pullback）。具体地说，对于 $M$ 上的一个 $(k,l)$ 型张量场 $T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}$，我们定义其推前为
+\begin{equation*}
+\begin{aligned}
+(&\phi_* T)(\omega^{(1)}, \ldots, \omega^{(k)}, V^{(1)}, \ldots, V^{(l)}) \\
+&= T(\phi^*\omega^{(1)}, \ldots, \phi^*\omega^{(k)}, [\phi^{-1}]_* V^{(1)}, \ldots, [\phi^{-1}]_* V^{(l)}),
+\end{aligned}
+\tag{B.1}
+\end{equation*}
+其中诸 $\omega^{(i)}$ 是 $N$ 上的 1-形式，诸 $V^{(i)}$ 是 $N$ 上的矢量。写成分量，这就变成
+\begin{equation*}
+(\phi_* T)^{\alpha_1\cdots\alpha_k}{}_{\beta_1\cdots\beta_l}
+= \frac{\partial y^{\alpha_1}}{\partial x^{\mu_1}} \cdots \frac{\partial y^{\alpha_k}}{\partial x^{\mu_k}}
+\frac{\partial x^{\nu_1}}{\partial y^{\beta_1}} \cdots \frac{\partial x^{\nu_l}}{\partial y^{\beta_l}}
+T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}.
+\tag{B.2}
+\end{equation*}
+逆矩阵 $\partial x^\nu/\partial y^\beta$ 的出现是合理的，因为 $\phi$ 可逆。注意，我们也可以按显而易见的方式定义拉回，但没有必要另写一套公式，因为拉回 $\phi^*$ 与经由逆映射的推前 $[\phi^{-1}]_*$ 是同一回事。
+
+现在我们可以阐明微分同胚与坐标变换之间的关系了：它们是做同一件事的两种不同方式。如果你愿意这么说，微分同胚是“主动坐标变换”（active coordinate transformations），而传统的坐标变换则是“被动的”。考虑一个 $n$ 维流形 $M$，它带有坐标函数 $x^\mu : M \to \mathbf{R}^n$。要改变坐标，我们要么可以简单地引入新的函数 $y^\mu : M \to \mathbf{R}^n$（“保持流形不动，更换坐标映射”），要么也完全可以引入一个微分同胚 $\phi : M \to M$，此后坐标就成了拉回 $(\phi^* x)^\mu : M \to \mathbf{R}^n$（“移动流形上的点，然后求出这些新点的坐标”），如图 B.1 所示。在这个意义上，式 (B.2) 确实就是张量变换律，只不过是换了一个视角来看待它而已。
+
+% ---- 书页 430 / p445 ----
+由于微分同胚使我们能够对任意张量既作拉回又作推前，它提供了另一种比较流形上不同点处的张量的办法。给定一个微分同胚 $\phi : M \to M$ 和一个张量场 $T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(x)$，我们可以构造张量在某点 $p$ 处的值与 $\phi^*[T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(\phi(p))]$——即它在 $\phi(p)$ 处的值被拉回到 $p$——之间的差。这提示我们，可以定义另一种作用在张量场上的导数算符，用它来刻画张量在微分同胚的流动之下变化的快慢。然而，要做到这一点，单个离散的微分同胚是不够的；我们需要一个单参数族的微分同胚 $\phi_t$。这个族可以看成是一个光滑映射 $\mathbf{R} \times M \to M$，使得对每个 $t \in \mathbf{R}$ 我们都有一个微分同胚 $\phi_t$，并且满足 $\phi_s \circ \phi_t = \phi_{s+t}$。后面这个条件意味着 $\phi_0$ 是恒等映射。
+
+单参数族的微分同胚可以看成是由矢量场产生的（反之亦然）。如果我们考察点 $p$ 在整个族 $\phi_t$ 之下的去向，显然它会描绘出 $M$ 中的一条曲线；由于 $M$ 上的每个点都是如此，这些曲线充满了流形（尽管在微分同胚具有不动点的地方可能会有退化）。我们可以把矢量场 $V^\mu(x)$ 定义为这些曲线中每一条在每一点处的切矢量组成的集合，取 $t = 0$ 时的值。$\mathbf{S}^2$ 上的一个例子由微分同胚 $\phi_t(\theta, \phi) = (\theta, \phi + t)$ 给出，如图 B.2 所示。我们可以把这一构造反过来，从任意一个矢量场出发定义一个单参数族的微分同胚。给定矢量场 $V^\mu(x)$，我们把该矢量场的\textbf{积分曲线}（integral curves）定义为求解下式的那些曲线 $x^\mu(t)$：
+\begin{equation*}
+\frac{d x^\mu}{d t} = V^\mu.
+\tag{B.3}
+\end{equation*}
+
+%FIG{B.1}: {由微分同胚 $\phi: M \to M$ 诱导的坐标变换。}
+%FIG{B.2}: {二维球面上的一个微分同胚，由绕其轴的旋转给出。}
+
+% ---- 书页 431 / p446 ----
+注意，这个看似眼熟的方程现在要按照与我们通常用法相反的意义来理解：我们给定的是矢量，由矢量来定义曲线。只要我们不干诸如撞上流形边缘之类的蠢事，式 (B.3) 的解保证存在；其证明归结为找到一个坐标系，使问题化为常微分方程的基本定理。我们的微分同胚 $\phi_t$ 表现的是“沿积分曲线流下去”，而与之相应的矢量场就称为该微分同胚的\textbf{生成元}（generator）。（令人混淆的是，矢量场及其积分曲线也会出现在类光超曲面的语境里，不过在那种场合被称为“生成元”（generators）的是曲线，而不是矢量场。）积分曲线在初等物理里无时无刻不在使用，只是没有被冠以这个名字。磁铁旁边铁屑描出的“磁感线”（lines of magnetic flux）不过是磁场矢量 $\mathbf{B}$ 的积分曲线罢了。
+
+于是，给定矢量场 $V^\mu(x)$，我们就有了一个以 $t$ 为参数的微分同胚族，从而可以问：当我们沿积分曲线往下行进时，张量变化得有多快。对每个 $t$，我们可以把这个变化定义为张量被拉回到 $p$ 的值与它在 $p$ 处原有值之差，
+\begin{equation*}
+\Delta_t T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(p)
+= \phi_t^*\left[T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(\phi_t(p))\right]
+- T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(p).
+\tag{B.4}
+\end{equation*}
+注意，右端两项都是 $p$ 处的张量，如图 B.3 所示。于是我们把张量沿矢量场的\textbf{李导数}（Lie derivative）定义为
+\begin{equation*}
+\mathcal{L}_V T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}
+= \lim_{t \to 0} \left( \frac{\Delta_t T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}}{t} \right).
+\tag{B.5}
+\end{equation*}
+李导数是一个从 $(k,l)$ 型张量场到 $(k,l)$ 型张量场的映射，显然与坐标无关。由于这个定义实质上不过是把普通导数的传统定义用到张量的分量函数上，显然它是线性的，
+\begin{equation*}
+\mathcal{L}_V (a T + b S) = a \mathcal{L}_V T + b \mathcal{L}_V S,
+\tag{B.6}
+\end{equation*}
+
+% ---- 书页 432 / p447 ----
+%FIG{B.3}: {张量沿矢量场积分曲线的变化速率，由如下方法算得：把点 $p$ 处原来的张量 $T(p)$ 与张量在点 $\phi_t(p)$ 处的值相比较——即把 $T(\phi_t(p))$ 拉回到 $p$。}
+
+并且服从 Leibniz 法则，
+\begin{equation*}
+\mathcal{L}_V (T \otimes S) = (\mathcal{L}_V T) \otimes S + T \otimes (\mathcal{L}_V S),
+\tag{B.7}
+\end{equation*}
+其中 $S$ 和 $T$ 是张量，$a$ 和 $b$ 是常数。李导数实际上是比协变导数更原初的概念，因为它不需要指定联络（当然，它确实需要一个矢量场）。稍加思索你就会相信，作用在函数上时它就归结为普通的方向导数，
+\begin{equation*}
+\mathcal{L}_V f = V(f) = V^\mu \partial_\mu f.
+\tag{B.8}
+\end{equation*}
+
+为了借助我们已知的其他运算来讨论李导数对张量的作用，选取一个适配于我们问题的坐标系是很方便的。具体地，我们将在坐标 $x^\mu = (x^1, \ldots, x^n)$ 中工作，其中 $x^1$ 是沿积分曲线的参数，其余坐标则随我们任意选取。于是矢量场取 $V = \partial/\partial x^1$ 的形式；也就是说，它的分量为 $V^\mu = (1, 0, 0, \ldots, 0)$。这个坐标系的魔力在于，参数为 $t$ 的微分同胚相当于一个从 $x^\mu$ 到 $y^\mu = (x^1 + t, x^2, \ldots, x^n)$ 的坐标变换。这样，由式 (A.6)，拉回矩阵简单地就是
+\begin{equation*}
+(\phi_t^*)_\mu{}^\nu = \delta_\mu{}^\nu,
+\tag{B.9}
+\end{equation*}
+而从 $\phi_t(p)$ 拉回到 $p$ 的张量的分量就简单地是
+\begin{equation*}
+\phi_t^*\left[T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(\phi_t(p))\right]
+= T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}(x^1 + t, x^2, \ldots, x^n).
+\tag{B.10}
+\end{equation*}
+
+% ---- 书页 433 / p448 ----
+于是在这个坐标系中，李导数就成为
+\begin{equation*}
+\mathcal{L}_V T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l}
+= \frac{\partial}{\partial x^1} T^{\mu_1\cdots\mu_k}{}_{\nu_1\cdots\nu_l},
+\tag{B.11}
+\end{equation*}
+特别地，矢量场 $U^\mu(x)$ 的导数是
+\begin{equation*}
+\mathcal{L}_V U^\mu = \frac{\partial U^\mu}{\partial x^1}.
+\tag{B.12}
+\end{equation*}
+虽然这个表达式显然不是协变的，但我们知道对易子 $[V, U]$ 是一个良定义的张量，而且在这个坐标系中
+\begin{align*}
+[V, U]^\mu &= V^\nu \partial_\nu U^\mu - U^\nu \partial_\nu V^\mu \\
+&= \frac{\partial U^\mu}{\partial x^1}. \tag{B.13}
+\end{align*}
+因此，$U$ 相对于 $V$ 的李导数在这个坐标系中的分量与 $V$ 和 $U$ 的对易子相同；但由于两者都是矢量，它们在任何坐标系中都必须相等：
+\begin{equation*}
+\mathcal{L}_V U^\mu = [V, U]^\mu.
+\tag{B.14}
+\end{equation*}
+作为一个直接的推论，我们有 $\mathcal{L}_V U = -\mathcal{L}_U V$。正是因为式 (B.14)，对易子有时也被称为\textbf{李括号}（Lie bracket）。
+
+为了导出 $\mathcal{L}_V$ 作用在 1-形式 $\omega_\mu$ 上的结果，我们先考虑它作用在标量 $\omega_\mu U^\mu$ 上的情形，这里 $U^\mu$ 是任意矢量场。首先利用这样一个事实：当作用在标量上时，对矢量场的李导数就归结为该矢量本身的作用：
+\begin{align*}
+\mathcal{L}_V (\omega_\mu U^\mu) &= V(\omega_\mu U^\mu) \\
+&= V^\nu \partial_\nu (\omega_\mu U^\mu) \\
+&= V^\nu (\partial_\nu \omega_\mu) U^\mu + V^\nu \omega_\mu (\partial_\nu U^\mu). \tag{B.15}
+\end{align*}
+然后对原来的标量使用 Leibniz 法则：
+\begin{align*}
+\mathcal{L}_V (\omega_\mu U^\mu) &= (\mathcal{L}_V \omega)_\mu U^\mu + \omega_\mu (\mathcal{L}_V U)^\mu \\
+&= (\mathcal{L}_V \omega)_\mu U^\mu + \omega_\mu V^\nu \partial_\nu U^\mu - \omega_\mu U^\nu \partial_\nu V^\mu. \tag{B.16}
+\end{align*}
+令这两个表达式相等，并要求等式对任意 $U^\mu$ 都成立，我们就得到
+\begin{equation*}
+\mathcal{L}_V \omega_\mu = V^\nu \partial_\nu \omega_\mu + (\partial_\mu V^\nu) \omega_\nu,
+\tag{B.17}
+\end{equation*}
+此式（正如对易子的定义那样）是完全协变的，尽管从表面上不容易看出来。
+
+% ---- 书页 434 / p449 ----
+用类似的步骤，我们可以定义任意张量场的李导数。答案可以写成
+\begin{equation*}
+\boxed{
+\begin{aligned}
+\mathcal{L}_V T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} ={}& V^\sigma \partial_\sigma T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\partial_\lambda V^{\mu_1}) T^{\lambda\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\partial_\lambda V^{\mu_2}) T^{\mu_1\lambda\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} - \cdots \\
+&+ (\partial_{\nu_1} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\lambda\nu_2\cdots\nu_l} \\
+&+ (\partial_{\nu_2} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\lambda\cdots\nu_l} + \cdots.
+\end{aligned}
+}
+\tag{B.18}
+\end{equation*}
+尽管表面上看起来不是这样，这个表达式再一次是协变的。不过，倘若能有一个看上去明显是张量式的等价表达式，无疑会更让人安心。事实上我们可以写出
+\begin{align*}
+\mathcal{L}_V T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} ={}& V^\sigma \nabla_\sigma T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\nabla_\lambda V^{\mu_1}) T^{\lambda\mu_2\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} \\
+&- (\nabla_\lambda V^{\mu_2}) T^{\mu_1\lambda\cdots\mu_k}{}_{\nu_1\nu_2\cdots\nu_l} - \cdots \\
+&+ (\nabla_{\nu_1} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\lambda\nu_2\cdots\nu_l} \\
+&+ (\nabla_{\nu_2} V^\lambda) T^{\mu_1\mu_2\cdots\mu_k}{}_{\nu_1\lambda\cdots\nu_l} + \cdots, \tag{B.19}
+\end{align*}
+其中 $\nabla_\mu$ 代表\emph{任何}一个对称（无挠）的协变导数（当然也包括由度规导出的那些）。你可以验证，如果我们展开式 (B.19)，所有涉及联络系数的项都会相消，只剩下式 (B.18)。李导数公式的这两个版本在不同的场合各有用处。一个特别有用的公式是度规的李导数：
+\begin{align*}
+\mathcal{L}_V g_{\mu\nu} &= V^\sigma \nabla_\sigma g_{\mu\nu} + (\nabla_\mu V^\lambda) g_{\lambda\nu} + (\nabla_\nu V^\lambda) g_{\mu\lambda} \\
+&= \nabla_\mu V_\nu + \nabla_\nu V_\mu, \tag{B.20}
+\end{align*}
+或者
+\begin{equation*}
+\boxed{\mathcal{L}_V g_{\mu\nu} = 2 \nabla_{(\mu} V_{\nu)},}
+\tag{B.21}
+\end{equation*}
+其中 $\nabla_\mu$ 是由 $g_{\mu\nu}$ 导出的协变导数。
+
+让我们把其中的某些想法放到广义相对论的语境中来。你会常常听到人们宣称，GR 是一个“微分同胚不变”的理论。这句话的意思是：如果宇宙由一个流形 $M$ 连同度规 $g_{\mu\nu}$ 和物质场 $\psi$ 来表示，而 $\phi : M \to M$ 是一个微分同胚，那么 $(M, g_{\mu\nu}, \psi)$ 与 $(M, \phi^* g_{\mu\nu}, \phi^* \psi)$ 这两组对象代表的是同一个物理情形。由于微分同胚不过是主动坐标变换，这其实是“该理论是坐标不变的”的一种高深说法。%
+% ---- 书页 435 / p450 ----
+这种说法虽然没错，却是极大的误解之源，原因很简单：它几乎没有传达任何信息。任何还算像样的物理理论都是坐标不变的，包括那些基于狭义相对论或 Newton 力学的理论；GR 在这方面并非独一无二。当人们说 GR 是微分同胚不变的时候，他们十有八九想的是两个（密切相关的）概念之一：这个理论不含“先验几何”（prior geometry），而且时空没有\emph{优先}的坐标系。其中第一点来源于这样的事实：度规是一个动力学变量，联络、体积元等等也随之而来。没有任何东西是事先提供给我们的，这与经典力学或 SR 不同。其后果是，我们无法靠死守某个适配于几何中某些绝对要素的特定坐标系来让日子好过一点。这种局面迫使我们格外小心；GR 中两个号称不同的位形（物质与度规的位形）有可能实际上是“相同的”——它们通过一个微分同胚彼此联系。在量子引力的路径积分方法中，我们希望对所有可能的位形求和，这时必须格外小心，不要让物理上无法区分的位形贡献不止一次，造成重复计数。而在 SR 或 Newton 力学中，一组优先坐标的存在把我们从这种含糊性中解救了出来。“GR 没有优先坐标系”这一事实常常被歪曲成这样的说法：它是坐标不变的（或“广义协变的”，或“微分同胚不变的”）；这两种说法都对，但其中一个比另一个更有内容。
+
+另一方面，微分同胚不变性这一事实也可以好好地加以利用。回忆一下，引力与一组物质场 $\psi^i$ 耦合时的完整作用量，由 GR 的 Hilbert 作用量加上物质作用量之和给出，
+\begin{equation*}
+S = \frac{1}{16\pi G} S_H[g_{\mu\nu}] + S_M[g_{\mu\nu}, \psi^i].
+\tag{B.22}
+\end{equation*}
+Hilbert 作用量 $S_H$ 单独拿出来看是微分同胚不变的，因此如果要整个作用量不变，物质作用量 $S_M$ 也必须如此。我们可以把微分同胚之下 $S_M$ 的变分写成
+\begin{equation*}
+\delta S_M = \int d^n x \, \frac{\delta S_M}{\delta g_{\mu\nu}} \delta g_{\mu\nu}
++ \int d^n x \, \frac{\delta S_M}{\delta \psi^i} \delta \psi^i.
+\tag{B.23}
+\end{equation*}
+我们考虑的不是场的任意变分，而只是由微分同胚产生的那些变分。尽管如此，物质的运动方程告诉我们，$S_M$ 对 $\psi^i$ 的变分对任何变分都为零，因为作用量的引力部分不含物质场。于是，对一个微分同胚不变的理论而言，式 (B.23) 右端第一项也必须为零。如果微分同胚由一个无穷小矢量场 $V^\mu(x)$ 生成，度规的无穷小改变就简单地由它沿 $V^\mu$ 的李导数给出；由式 (B.20) 我们有
+
+% ---- 书页 436 / p451 ----
+\begin{align*}
+\delta g_{\mu\nu} &= \mathcal{L}_V g_{\mu\nu} \\
+&= 2 \nabla_{(\mu} V_{\nu)}. \tag{B.24}
+\end{align*}
+令 $\delta S_M = 0$ 便意味着
+\begin{align*}
+0 &= \int d^n x \, \frac{\delta S_M}{\delta g_{\mu\nu}} \nabla_\mu V_\nu \\
+&= - \int d^n x \, \sqrt{-g} \, V_\nu \nabla_\mu \left( \frac{1}{\sqrt{-g}} \frac{\delta S_M}{\delta g_{\mu\nu}} \right), \tag{B.25}
+\end{align*}
+其中我们能够去掉 $\nabla_{(\mu} V_{\nu)}$ 的对称化，因为 $\delta S_M/\delta g_{\mu\nu}$ 本来就是对称的。要求式 (B.25) 对由任意矢量场 $V^\mu$ 生成的微分同胚都成立，并利用能动张量（energy-momentum tensor）的定义，即式 (4.75)，我们便恰好得到能量-动量守恒定律，
+\begin{equation*}
+\nabla_\mu T^{\mu\nu} = 0.
+\tag{B.26}
+\end{equation*}
+$T_{\mu\nu}$ 的守恒是一个强有力的论断；我们竟然从微分同胚不变性这么弱的要求把它导了出来，这也许会让人吃惊。实际上我们偷偷夹带了一个强得多的假设，即“物质的”作用量与“引力的”作用量之间有一刀两断的分离（意思是没有物质场出现在引力作用量之中）。比方说，如果有一个标量场既乘在标量曲率上，又出现在物质作用量中（正如第 4 章讨论过的标量-张量理论那样），这个假设就被破坏了，$T_{\mu\nu}$ 自身也就不再守恒。
+
+回忆一下，在第 3 章里我们谈到过对称性和 Killing 矢量，并一再提请读者参阅附录。现在我们对微分同胚已经有了更多的了解，理解对称性便是水到渠成的事了。如果张量经 $\phi$ 拉回之后保持不变，我们就说微分同胚 $\phi$ 是某个张量 $T$ 的一个\textbf{对称性}（symmetry）：
+\begin{equation*}
+\phi^* T = T.
+\tag{B.27}
+\end{equation*}
+虽然对称性可以是分立的，但拥有一个单参数族的对称性 $\phi_t$ 也很常见。如果这个族由矢量场 $V^\mu(x)$ 生成，那么式 (B.27) 就相当于
+\begin{equation*}
+\mathcal{L}_V T = 0.
+\tag{B.28}
+\end{equation*}
+由式 (B.12)，对称性的一个推论是：如果 $T$ 在某个单参数族的微分同胚下对称，我们总能找到一个坐标系，使得 $T$ 的全部分量都与其中一个坐标无关（即矢量场的积分曲线坐标）。%
+% ---- 书页 437 / p452 ----
+反之亦然：如果全部分量都与其中一个坐标无关，那么与该坐标相联系的偏导数矢量场就生成该张量的一个对称性。
+
+最重要的对称性是度规的对称性，即 $\phi^* g_{\mu\nu} = g_{\mu\nu}$ 的情形。这种类型的微分同胚称为等距变换（isometry）。如果单参数族的等距变换由矢量场 $K^\mu(x)$ 生成，那么 $K^\mu$ 就是一个 Killing 矢量场。$K^\mu$ 为 Killing 矢量的条件于是就是
+\begin{equation*}
+\mathcal{L}_K g_{\mu\nu} = 0,
+\tag{B.29}
+\end{equation*}
+或者由式 (B.20)，
+\begin{equation*}
+\nabla_{(\mu} K_{\nu)} = 0.
+\tag{B.30}
+\end{equation*}
+我们认得出来，最后一个版本正是 Killing 方程，即式 (3.174)。从第 3 章的讨论我们知道，如果时空有一个 Killing 矢量，我们就能找到一个坐标系，使度规与其中一个坐标无关，并且量 $p_\mu K^\mu$ 沿具有切矢量 $p^\mu$ 的测地线保持常数。一旦我们建立起微分同胚与李导数的这套机制，Killing 矢量的推导就要优雅得多。
+
+\section{习题}
+
+% 习题编号照原书
+\textbf{1.}\quad 在欧几里得三维空间中，求出并画出下列矢量场的积分曲线：
+\begin{equation*}
+A = \frac{y - x}{r} \frac{\partial}{\partial x} - \frac{x + y}{r} \frac{\partial}{\partial y}
+\end{equation*}
+和
+\begin{equation*}
+B = x y \frac{\partial}{\partial x} - y^2 \frac{\partial}{\partial y}.
+\end{equation*}
+计算 $C = \mathcal{L}_A B$，并画出 $C$ 的积分曲线。
+
+% ---- 书页 438 / p453 ----
+% （本页为空白页）

@@ -1,0 +1,555 @@
+ % 本文件由 scripts/assemble.py 自动装配，勿手改（改 parts/ 后重跑）
+% 第4章 固体的静态性质
+
+% 第4章 STATIC PROPERTIES OF SOLIDS
+
+\chapter{固体的静态性质}
+
+\epigraphbook{停住吧，你们这永远运转的天球……}{MARLOWE}
+
+\section{固体的类型：能带图像}
+
+我们已经花了相当长的篇幅讨论电子结构理论，因为它决定了固体的类型及其宏观性质。
+
+考虑一条完全填满的能带，其上方存在一个能隙。这就是基态；由对称性可知，它必然处于这样的状态：没有电流在流动。要产生电流，可以施加一个电场，它把一些电子激发到代表净电流的态上。但如果存在能隙，就需要有限的激发能才能把电子抬升、越过能隙进入上面一条能带。这份能量无法由小的恒定电场提供，所以这种固体将是\emph{绝缘体}（insulator）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_67.pdf}
+\caption*{图 67\quad (a) 半导体中载流子的激发。(b) 金属中传输电流的电子。}
+\end{figure}
+
+但假定能隙 $\mathcal{E}_{\mathrm{gap}}$ 很小。在温度 $T$ 下，将会有一个小而非零的电子密度，它们被热涨落激发到上面的能带中去——这一密度由形如 $\exp(-\mathcal{E}_{\mathrm{gap}}/kT)$ 的 Boltzmann 因子刻画。这些电子很容易传输电流，于是材料将具有可观察的电导率，并且随温度升高迅速增大。这时我们就说，我们得到的是\emph{半导体}（semiconductor）。
+
+如果一条能带并未填满，例如在一价金属中，那么尽管系统的真实基态在 $\psi_{\mathbf{k}}$ 与 $\psi_{-\mathbf{k}}$ 之间是对称的、因而同样不载流，但在占据能级顶端之上能量距离为无穷小处，就存在着载流的态。此时电导率很高，而且对温度的依赖不大——温度只是在它支配电子散射机制这一点上才起作用。这样我们便得到了典型的\emph{金属}。
+
+要判断一个具有给定结构的固体究竟是金属、半导体，还是实质上的绝缘体，我们回顾一下（§1.6）：一个布里渊区所包含的“允许的 k 矢量”——即彼此不同的电子波函数——恰与晶体中晶胞的数目一样多。而每个被允许的空间波函数可以容纳 2 个自旋相反的电子。于是，若单位体积中有 $N$ 个晶胞，则每条能带有 $2N$ 个电子态，即每条能带在每个晶胞摊到 2 个电子态。数一数每个晶胞中的电子数，我们就能对固体可能具有的性质作出若干估计。
+
+(i) 每个晶胞有\emph{一个}自由电子的固体总是金属。典型的是一价金属——碱金属 Li、Na、K、Rb、Cs，以及贵金属（noble metals）Cu、Ag、Au。它们都恰好只有一条半满的能带，或者说半满的区。
+
+(ii) 每个晶胞有\emph{奇数}个电子的固体总是金属。于是，在 Al、Ga、In、Tl 中每个原子有 3 个电子，只够填满一条半的能带。
+
+但注意，As、Sb、Bi 每个原子有 5 个电子，它们结晶成的结构每个晶胞含 2 个原子，所以这条规则用不上。事实上，它们是半金属（semi-metal）：10 个电子几乎恰好填满 5 条能带，但第 5 条能带并未完全填满，还有少许\emph{交叠}进入第 6 条能带，因此不论温度如何，总有少量电子可以传导电流。
+
+(iii) 每个晶胞有\emph{偶数}个电子的固体则不一定是绝缘体。这是因为各条能带在能量上可以交叠。让较低的能带留着不填满、而让一部分电子进入上面的能带，在能量上可能是有利的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_68.pdf}
+\caption*{图 68\quad 相互交叠的能带。}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_69.pdf}
+\caption*{图 69\quad 二价金属的交叠能带：(a) 扩展区图式；(b) 简约区中能量随 k 的变化。}
+\end{figure}
+
+在一维情形这不会发生：各条能带彼此完全分开（见图 38）。但在真实金属中，我们可能遇到图 69 所描绘的情况。虽然在任何特定地点越过区边界时都可能有能隙，但第 2 条能带的最低部分（例如在 $A$ 处）可能位于第 1 条能带最高部分之下，于是电子在 $A$ 处“溢出”区的边界，而区的角隅则空着。
+
+这一点在扩展区图式的近自由电子（N.F.E.）模型中很容易看清（参见 §3.3）。一个容纳 $2N$ 个态的球面会在若干处与区边界相交。如果势（或赝势）相应的 Fourier 分量很小，其效果只不过是：当球面的各部分穿过每条区边界时把它们截断
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_70.pdf}
+\caption*{图 70\quad 被区边界截断的自由电子球。}
+\end{figure}
+——而费米面的其余部分实际上保持不变。对于通常的电学性质而言，费米面的这些碎片可以在简约区和重复区中重新连接起来，这一事实无关紧要。
+
+(iv) 结果发现，所有\emph{二价}元素都是金属：能隙还不够大，不足以把电子都容纳在单一区内。但其中一些（Sr、Ba）是劣导体，其交叠可能很小。
+
+(v) \emph{四价}元素或者是金属，或者是半导体。有趣的情形是 Sn，它在一种相中是金属，在另一种相中是半导体。晶体结构的改变会改变区的形状，从而改变出现足够大的能隙以容纳全部电子的可能性。在周期表第 IV 族中有一段有趣的递变：从 C——作为金刚石，它形成的半导体能隙如此之大，以致在实践中成了绝缘体——到 Si 和 Ge 这两种半导体，到既为金属又为半导体的 Sn，再到金属 Pb。所有这些元素的能带结构都可以用 N.F.E. 模型表示；半导体就是能隙很大且没有交叠的“金属”。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_71.pdf}
+\caption*{图 71\quad (a) 过渡金属。(b) 贵金属。}
+\end{figure}
+
+(vi) \emph{过渡元素}（transition elements），例如铁族的 Cr、Mn、Fe、Co、Ni，以及周期表中位置更高的其他各族，其特征在于内层 $d$ 壳层未满。例如在原子 Fe 中，尽管外层 $4s$ 态里还有另外 2 个电子，$3d$ 壳层的 10 个态中只有 6 个被填充。当原子聚到一起构成固体或液体时，这些外层价电子进入一条宽的“$s$ 能带”，与普通金属中的 N.F.E. 导带没有太大差别。在某些方面（见 §10.5），$d$ 电子的表现仍好像定域在各自的原子实中：对稀土族（rare earth group）的 $4f$ 电子来说，这实际上是一个极好的近似。但 $d$ 轨道实际上必须在原子之间相互交叠，以形成一条窄的“$d$ 能带”，每个原子至多可容纳 10 个电子。正如我们在 §3.10 中看到的，这条能带与 $s$ 能带交叉并杂化；严格说来，这种复杂的能带结构是与原先原子 $d$ 能级处的共振相联系的，不能分解成分开的 $s$ 能带与 $d$ 能带。
+
+尽管如此，比如说，下述说法仍然是自然的：两条能带都不满，故材料呈金属性，导电主要依靠“$s$ 电子”（图 71(a)）。在贵金属中，$d$ 态实际上是满的，但它们在价电子的普通 N.F.E. 能带之内、费米能级以下几电子伏处生成一条共振 $d$ 能带（图 31(b)）。这对那些本会是简单一价金属的材料有显著影响（见 §9.4）。
+
+\section{固体的类型：键图像}
+
+用能带模型，我们所能轻松走到的程度也就到此为止了。但让我们再来看一看半导体 Si 和 Ge。它们具有“金刚石结构”（diamond structure），与 F.C.C.（面心立方）相像（见 §1.3），只不过
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_72.pdf}
+\caption*{图 72\quad 金刚石结构中的四面体键。}
+\end{figure}
+每个晶胞有两个原子。取一个以 $A$ 为角隅的 F.C.C. 格子，在沿立方体主对角线 $1/4$ 处的 $B$ 点放上另一个原子。让这个新原子作为第二个 F.C.C. 格子的角隅，与第一个相互贯穿。
+
+这种结构与 F.C.C. 格子有相同的布里渊区。现在每个晶胞有 8 个电子，所以需要填满 4 条能带。如果从紧束缚模型的观点来看这 4 条能带，就会发现它们来自自由原子的 4 个轨道——Si 中的 $3s$ 轨道和三个 $3p$ 轨道；Ge 中的 $4s$ 与 $4p$ 轨道。当原子聚到一起时，这些轨道交叉并组合，形成 4 条能量范围大致相同的能带（我们在 §3.11 中注意到，若不是自旋–轨道相互作用，其中三条在区中心应当是简并的）。再上面一条能带与这些\emph{价带}（valence bands）之间隔着约 1 eV 量级的能隙。
+
+但这种 $s$ 轨道与 $p$ 轨道的组合在化学键理论中是众所周知的。人们知道，这些波函数可以组合起来，给出四个轨道波函数，每一个都指向一个四面体的顶点。人们还知道，诸如 CH$_4$ 之类分子的四面体对称性与\emph{共价键}（covalent bond）的形成相联系，即通过在这些 $s$-$p$ 杂化轨道中共享电子对而成键。再看图 72，我们看到 $B$ 处的原子恰好有 4 个最近邻，排在四面体的顶点上。它们每一个又同样与其近邻相连，如此等等：换言之，\emph{整个晶体就像一个巨大的共价键合的分子}。
+
+能带结构计算证实了这一点。用少数几个 O.P.W.（正交化平面波）配上合适的赝势系数，就能与实验能带结构符合得相当好。所得的波函数倾向于把电子密度集中到“键”上。我们示意地把电子结构表示成图 73 的样子。每个 Ge 或 Si 离子与近邻共享 8 个电子。这些电子其实并不定域在键上。像金属中的自由电子一样，它们的波函数扩展到整个晶体。但在相邻离子之间的区域中，总有一团高度集中的电子云，等效于一对自旋相反的电子。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_73.pdf}
+\caption*{图 73\quad Ge 的电子结构（示意图）。}
+\end{figure}
+
+然而要注意，这在某种程度上是一个自我实现的预言。在配位数低的格子中，muffin-tin 近似（§3.7）并不适用，电子的势能在间隙区域内并非处处均匀。在任何自洽计算的尝试（参见 §5.2）中，电子电荷都会自动沿相邻原子球之间的连线聚集，那里正是间隙势最低之处。如果我们一开始就要解释这类晶体结构何以出现，那么一般的化学论证看来是必不可少的。
+
+现在有趣的是把这幅图像稍加改动：把 Ge 换成 InSb。我们记得 In 和 Sb 与 Ge 处在周期表的同一横行，所以它们具有相同的闭壳层基础芯。但 In 只有 3 个外层电子，Sb 有 5 个。它同样形成一种类金刚石
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_74.pdf}
+\caption*{图 74\quad 锑化铟（示意图）。(a) 裸离子。(b) 带有对称的键。(c) 被离子上残余电荷极化的键电子。}
+\end{figure}
+的晶格，只不过现在 In 占据全部 $A$ 位，而 Sb 占据全部 $B$ 位。示意地，我们得到如图 74(a) 那样的离子排列。
+
+在许多方面它与 Ge 结构如此相像，以至于我们可以把每原子 8 个电子放入同样的“键-带”轨道，如图 74(b)。但这会留下一些残余电荷：Sb 上的电荷没有被它周围平均 4 个电子完全中和，而 In 上则多出一点额外的负电荷。不过，这些效应很容易通过让电荷云向 Sb 略微收缩、并离开 In 来容纳，如图 74(c)。这种化合物是半导体，基本能带结构与 Ge 相仿，尽管结果表明其能隙较小。它是典型的 \emph{III–V 族金属间化合物}（intermetallic compound）。
+
+现在转到 ZnS，它是一种 \emph{II–VI 族化合物}——Zn 有 2 个电子，S 有 6 个。它形成的晶体与 InSb 完全相似——事实上，这就叫作\emph{闪锌矿}（zinc-blende）结构——而且也是半导体。但现在，电子对 $\mathrm{S}^{6+}$ 离子的静电吸引又因\emph{电子亲和势}（electron affinity）而增强：这个离子所能看到的 8 个电子倾向于收得更紧，力图构成一个完整的闭壳层，而让 $\mathrm{Zn}^{2+}$ 离子几乎不含电子。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_75.pdf}
+\caption*{图 75\quad 硫化锌（示意图）。}
+\end{figure}
+
+这一过程在比如 CuCl 中走到了彻底的地步。Cu 原子完全失去它的电子，这个电子拿去构成 $\mathrm{Cl}^{-}$ 闭壳层。于是我们得到实际上相互独立的离子 $\mathrm{Cu}^{+}$ 和 $\mathrm{Cl}^{-}$，没有任何自由电子剩下。它将结晶成如图 76 那样的正负交替的晶格。但此时的内聚已不再与键相联系。它本质上来自离子间的静电吸引，可以按 §2.3 的方法计算。最近邻的四面体排列现在无关紧要了——要点是围绕一个负离子尽可能多地挤入正离子，反之亦然。\emph{离子型固体}倾向于结晶成 NaCl 和 CsCl 那样的结构。
+
+对于这种晶体中的价电子，谈论“能带结构”究竟还有多大意义，是一个微妙的问题。这些电子的波函数紧紧定域在各自的离子上，不表现出诸如自由载流子“空穴”迁移率（参见 §6.6）那样的“Bloch 函数”性质；“能隙”大致就相当于金属原子的第二电离势。当然，被激发到这个隙之上的电子，其行为会更像普通导带中可迁移的载流子。
+
+实际上，离子型固体与共价型固体之间并没有截然的分界。在 III–V 或 II–VI 族化合物中总存在某种程度的离子性。即便是离子晶体，也能表现出与半导体相似的性质。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_76.pdf}
+\caption*{图 76\quad (a) 氯化铜（示意图）。(b) NaCl 结构。(c) CsCl 结构。}
+\end{figure}
+
+这并没有穷尽固体的分类。还有\emph{分子型晶体}（molecular crystals），其构造单元是稳定的中性分子，例如 CH$_4$，靠彼此间的 van der Waals 引力凝聚在一起。还有一类特殊的\emph{氢键型结构}（hydrogen-bonded structures），其中分子基团之间的力通过一个共享的质子来传递。这些固体通常由分子的化学性质所支配。除了可作为简单晶体范式的稀有气体固体之外，它们往往结构复杂，其性质超出了本书的范围。
+
+\section{内聚性}
+
+固体理论的一个主要目标，是说明固体何以是其所是——也就是说，要证明把一大堆，比如说，Na 原子放进一个盒子里，它们会凝聚成一块金属钠晶体。这个目标过于雄心勃勃；但我们还是可以研究固体能量学的某些侧面。特别是，我们可以尝试计算固体的内聚能（cohesive energy）——从分离原子集合体的能级量起的能量——并将它与实验相比较，或者与由同样原子构成的其他假想固体（点阵常数不同，或晶体晶格不同）的能量相比较。
+
+例如，注意到分子晶体的内聚能很小——量级为每分子 0·1 eV——我们就证实了 van der Waals 力之弱。氢键型晶体（典型如 H$_2$O）的内聚要高一些——比如每分子 0·5 eV。这两类固体的熔点都很低。金属则更够得上典型的“固体”，内聚能介于每原子 1 至 5 eV 之间；而离子型和共价型固体结合得非常牢固，能量达每原子 10 eV 的量级。
+
+着手计算内聚能所依循的原理，从前几章已可看出。例如对离子晶体，我们先为该结构算出 Madelung 常数（式 (2.27)），从而把静电力的贡献确定为
+\begin{equation*}
+\mathcal{E}=-\frac{1}{2}N\alpha\frac{e^{2}}{a}.
+\tag{4.1}
+\end{equation*}
+这个能量显然趋于使固体塌缩，即使点阵常数 $a$ 减小。但这个力受到离子实之间排斥的对抗——这种排斥常用如下形式的势来代表：
+\begin{equation*}
+\phi(R)=B\exp(-R/\rho)
+\tag{4.2}
+\end{equation*}
+其中 $R$ 为离子间的距离。
+
+把这两项拼在一起、把固体的总能量估计为 $a$ 的函数，是一个不足道的计算。它可以同总内聚能以及固体压缩系数的实验值相比较。遗憾的是，对给定的一对离子，参数 $B$ 与 $\rho$ 不可能从第一性原理以任何高精度算出；我们至多只能导出一组经验值，它们或多或少地与对各种不同晶体——其中离子按一切可能的组合配成对——的观测相一致。这个唯象方案于是可以解释为给出若干元素的离子半径（ionic radii）。
+
+共价固体的内聚能是一个复杂得多的问题。原则上，可以通过计算能带结构、再求出每个电子态能量的贡献而把它找出来。实际上，更容易的做法是证实：晶体的总能量相当接近各共价键能量之和，而晶格谱可以由在声子模中弯曲和/或拉伸这些键所需的力导出。就金刚石而言，这种符合是极好的。如果我们懂得了共价键的能量学，那么在理解半导体内聚能的道路上，我们就已经走了很远了。
+
+既然共价固体的内聚几乎完全依赖于键的化学饱和性，结构就不一定非要具有晶体序不可。在一种没有长程序的网络中，常常也能让每个原子以非常接近正确的几何组态获得正确数目的近邻。例如，普通的硅石玻璃（silica glass）就是这样的集合体：每个 Si 原子都位于一个由氧构成的四面体的中心，而每个氧原子几乎正好位于两个 Si 原子的连线上（图 77）。这个网络在化学上和动力学上都显然是稳定的，但应当如何从能带的观点描述它的内聚，却不清楚。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_77.pdf}
+\caption*{图 77\quad 共价键网络：(a) 晶态；(b) 玻璃态。这是 SiO$_2$ 的二维类似物。}
+\end{figure}
+
+金属内聚（metallic cohesion）则是一个微妙得多的现象。大体上我们可以说，把每个电子从它在特定原子上的定域中解放出来，就增大了其位置坐标的不确定度；于是按 Heisenberg 原理，动量的散布便减小。这降低了电子的平均动能，从而把系统结合在一起。但是，总内聚能的计算属于整个金属理论中最难做对、也最难在原则上验证的问题之列。为了计入电子气体中的关联与交换这类复杂的多体效应（见 §5.8），切分这块“蛋糕”的办法有很多种。
+
+在最简单的分析中，我们考虑两个方向相反的主要贡献。当原子彼此接近、相互交叠时，每个电子能够在更大的区域内运动，在其中它的平均势能较低。另一方面，当我们压缩电子气体时，费米能被推高，从而增大了电子的平均动能。在金属密度下，这两种力处于平衡。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_78.pdf}
+\caption*{图 78\quad 内聚的 Wigner–Seitz 模型：(a) 单原子气体；(b) 金属。}
+\end{figure}
+
+为了说明这个论证，设想我们从诸如 Na 这样的碱金属的自由原子出发。每个原子有一个价电子处在原子势 $v_{a}(r)$ 的最低束缚态 $\mathcal{E}_{a}$ 上；在离子实之外，这个势的行为应当如同库仑势 $-e^{2}/r$。固体金属中的传导电子所感受到的晶体势 $\mathcal{V}(\mathbf{r})$ 显然会比这类函数的单纯叠加复杂得多，因为它现在还必须把“其他”传导电子等等的贡献包括进来。然而，作为一种粗糙近似，让我们假定：所选的这个电子凭其静电排斥，暂时把所有其他价电子都从它恰好所处的那个 Wigner–Seitz 原胞（§3.5）的整个范围中排除出去；而晶体中所有其余原胞这时都含有电子，恰好把它们静电中和。换句话说，原子交叠的效应和电子关联等等的效应，都通过取 $\mathcal{V}(\mathbf{r})$ 在每个原胞中等于 $v_{a}(r)$（对 $r\leqslant r_{s}$）来模拟（图 78）。
+
+在原子球的实际边界处，这显然是一个糟糕的近似。尽管如此，其净效果是晶体中电子的平均势能大幅降低。更精确地说，运用 Wigner–Seitz 元胞近似可以证明：导带底 $\mathcal{E}(0)$ 必定位于比这个势垒的能量稍低之处——即位于 $-e^{2}/r_{s}$ 以下的某个能级上。于是当 $r_{s}$ 减小时我们正在赢得势能。
+
+排斥项的理论对自由电子气体来说是不足道的。由 §3.1 的公式我们容易证明：能量态密度（density of states in energy）——单位能量间隔内的电子态数目——由下式给出：
+\begin{equation*}
+\mathcal{N}(\mathcal{E}_{F})=\frac{3}{2}\frac{n}{\mathcal{E}_{F}}
+\tag{4.3}
+\end{equation*}
+其中 $n$ 是费米能为 $\mathcal{E}_{F}$ 的电子的密度。由此可得
+\begin{equation*}
+\mathcal{N}(\mathcal{E})\propto\mathcal{E}^{1/2},
+\tag{4.4}
+\end{equation*}
+从而每个电子的平均能量为
+\begin{equation*}
+\bar{\mathcal{E}}_{\text{kin.}}=\frac{3}{5}\mathcal{E}_{F},
+\tag{4.5}
+\end{equation*}
+它按 $1/r_{s}^{2}$ 变化。
+
+把这两项合并起来，如图 79 那样，我们看到在某个 $r_{s}$ 值处出现一个极小；这个值应当就是实际金属中的原子半径，并且应当给出总内聚能的合理估计。由这个粗糙论证得到的结果至少数量级是对的，说明这个一般性解释在原则上站得住脚。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_79.pdf}
+\caption*{图 79\quad 金属内聚的诸贡献，表为原子间距的函数。}
+\end{figure}
+
+然而有意思的是，所有碱金属的内聚能都非常接近 $\frac{2}{5}\mathcal{E}_{F}$。由这个经验事实，我们从式 (4.5) 推断：金属中的费米能级与能带所由导出的那个原子能级的能量近似重合。这正是 L.C.A.O. 理论中半满能带所应有的结果，如式 (3.30)。对金属内聚的另一种解释则是：电子得以成对地进入 Bloch 态，两电子自旋相反，而不必像它们各自束缚于分立的原子轨道时那样付出静电能量的代价。
+
+内聚力的性质影响固体的弹性和塑性。共价固体刚硬而脆，因为键的方向性阻碍剪切运动，使一个原子无法从另一个原子旁边滑过——正如位错穿过晶格的迁移那样。离子晶体则更具塑性，只要它们是完善的纯晶体（不过普通晶体可能由于生长中带入的缺陷而是脆性的）。静电力没有方向性，因此除了受离子大小的阻碍之外，它们允许离子四处移动。金属是最具塑性的固体，允许位错自由运动，因为电子气体的费米能倾向于使离子彼此保持距离，而内聚能主要是堆积密度的函数。对严格晶格规则性的局域偏离很容易被容纳下来。
+
+\section{刚性能带模型与态密度}
+
+为什么许多金属会以不同的相出现，具有不同的晶体结构，并且随温度变化而从一个相转变到另一个相？与晶体热激发相联系的能量很小——量级为每原子 0·1 eV。不同结构的能量差必定很小。的确，我们上面基于 Wigner–Seitz 公式和紧束缚（tight-binding）公式的粗糙论证，无法区分密度相同而晶体结构不同的相。有意思的是，金属熔化时密度变化不大；上述论证对结构如此不敏感，以至于它们对液态金属同样适用——液态金属可以十分简单地描述为一种无规堆积的球形离子集合体，靠自由电子构成的“胶”黏结在一起。
+
+不过，有一个现象体现了一条关于固体结构能量的原理。考虑下表：
+
+%TAB{}: 代表性合金相的晶体结构与电子/原子比（原书此表未编号）
+\begin{table}[H]
+\centering
+\caption*{合金的晶体结构、代表性合金与电子/原子比}
+\begin{tabular}{lccc}
+\toprule
+结构 & 体心立方 & “$\gamma$ 黄铜” & 六角密堆积 \\
+\midrule
+合金 & AgZn & Ag$_5$Zn$_8$ & AgZn$_3$ \\
+ & Cu$_3$Al & Cu$_9$Al$_4$ & — \\
+ & Cu$_5$Sn & Cu$_{31}$Sn$_8$ & Cu$_3$Sn \\
+\midrule
+电子/原子 & $\frac{3}{2}=1\cdot5$ & $\frac{21}{13}=1\cdot615$ & $\frac{7}{4}=1\cdot75$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+每一列指的是一个合金系列，各系列中的合金都具有相同的基本晶体结构，并且各自形成一个成分或多或少确定的稳定相。它们有什么共同之处？在底行我们给出电子数对原子数之比，它对每一列都是常数。例如在 Cu$_9$Al$_4$ 中，Cu 原子提供 9 个电子，4 个 Al 原子每个提供 3 个电子，合计 13 个原子 21 个电子。
+
+这个现象所例示的，就是人们常在合金的刚性能带（rigid band）理论基础上讨论的 Hume–Rothery 定则（Hume–Rothery rules）。其论证是：把组元元素的价电子统统倒入单一的近自由电子（N.F.E.）能带中，这个能带类似于普通纯金属的能带（§3.3）。例如对 Cu$_{31}$Sn$_{8}$，这个假想金属每原子将拥有 1·615 个电子。
+
+我们现在假定合金的布里渊区结构依赖于基本晶格，而不太依赖于占据格点的实际离子。结果表明，对“$\gamma$ 黄铜”结构，这个区的形状和大小恰好使它同一个容纳每原子 1·615 个传导电子的自由电子球相切。于是可以预期，在这些固体中费米面会在相当大的面积上接触区边界，但多半还没有破入下一个区。由于正好在区边界之内的态比具有同一波矢的自由电子能量更低，金属若取这种结构便可在内聚能上获益。关于许多纯金属和复杂合金相之晶体结构的这个解释非常利落，常被算作金属电子理论的一项胜利。遗憾的是，把近自由电子（N.F.E.）模型用于诸如 Cu、Ag、Au 这样的金属是有异议的，因为在纯金属中费米面本来就接触区边界（见 §9.4）。刚性能带模型本身的理论地位也存在一些疑问（见 §5.3），尽管在个别情形中有“区边界效应”的有力证据。
+
+实际上，我们是说：结构使得费米能级落在一大段能量范围的顶端附近，在那里能量态密度很高。这个函数对自由电子气体已由式 (4.3) 给出。要计算实际金属的 $\mathcal{N}(\mathcal{E})$，我们必须求出布里渊区中逐级能量面之间所包围的体积。这个问题在形式上与 §2.5 中晶格谱的计算完全相同。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_80.pdf}
+\caption*{图 80\quad (a) 费米面接触区边界。(b) 能量降到自由电子值之下。(c) 费米能级靠近态密度的极大。}
+\end{figure}
+
+仿照式 (2.66)–(2.69) 的论证，我们可以写出
+\begin{equation*}
+\mathcal{N}(\mathcal{E})=\frac{1}{4\pi^{3}N\hbar}\int\frac{dS}{|\mathbf{v}_{\mathbf{k}}|},
+\tag{4.6}
+\end{equation*}
+为此我们暂时定义一个具有速度量纲的矢量
+\begin{equation*}
+\mathbf{v}_{\mathbf{k}}=\frac{1}{\hbar}\nabla_{\mathbf{k}}\mathcal{E}(\mathbf{k}),
+\tag{4.7}
+\end{equation*}
+即能量函数在 $k$ 空间中的梯度。出现在式 (4.6) 中的是这个矢量的模，须在能量为 $\mathcal{E}$ 的能量面上积分。
+
+由于 $\mathcal{E}(\mathbf{k})$ 像 $\nu_{q}$ 一样是倒格子空间中的连续函数，具有倒格子的周期性，van Hove 定理（van Hove's theorem）的论证对它适用。的确，由于 $\mathcal{E}(\mathbf{k})$ 通常在区中心（即 $\nu_{q}$ 中声学支所在的区域）没有特殊的重根，$\mathcal{E}(\mathbf{k})$ 中的奇点必定包括所有四种类型的临界点——极大点、极小点以及两类鞍点。
+
+一般地说，金属的态密度与自由电子值相去不远，只有过渡金属（transition metals）例外：狭窄的 $d$ 带（或几条 $d$ 带）必须能容纳每原子 10 个电子——所以其能量态密度必定远高于普通的 $s$ 带。既有证据表明这一点，也有证据表明 $d$ 电子对金属的内聚有贡献，正如我们从这个模型所预期的。
+
+\section{电子的费米统计}
+
+到目前为止，我们一直假定电子系统处于零温度；按照 Pauli 原理，我们把能级逐一填充，直到把全部电子用完为止，最后填到能量为 $\mathcal{E}_{F}$ 的费米能级。但我们从统计力学知道，电子服从费米–狄拉克统计（费米–狄拉克 statistics）；能量为 $\mathcal{E}$ 的能级被占据的概率是
+\begin{equation*}
+f^{0}(\mathcal{E})=\frac{1}{e^{(\mathcal{E}-\zeta)/kT}+1},
+\tag{4.8}
+\end{equation*}
+其中 $\zeta$ 是费米势（Fermi potential），即化学势，或每个电子的自由能；只要电子气体处于热力学平衡，它在整个材料中就必须是常数。
+
+设有 $\mathcal{N}(\mathcal{E})\,d\mathcal{E}$ 个态处在能量间隔 $d\mathcal{E}$ 内。若 $n$ 是电子的总密度（每单位晶体体积），则必须有
+\begin{equation*}
+n=\int_{0}^{\infty}f^{0}(\mathcal{E})\,\mathcal{N}(\mathcal{E})\,d\mathcal{E}.
+\tag{4.9}
+\end{equation*}
+这两个方程定出 $\zeta$ 的值，从而定出整个分布。
+
+在绝对零度下这是不足道的：容易看出，若 $\mathcal{E}<\zeta$，则 $f^{0}(\mathcal{E})$ 等于 1；而当 $\mathcal{E}>\zeta$ 时它为零。于是有
+\begin{equation*}
+n=\int_{0}^{\zeta}\mathcal{N}(\mathcal{E})\,d\mathcal{E}=\int_{0}^{\mathcal{E}_{F}}\mathcal{N}(\mathcal{E})\,d\mathcal{E},
+\tag{4.10}
+\end{equation*}
+这就是费米能级定义的数学表述：
+\begin{equation*}
+\zeta=\mathcal{E}_{F}\quad\text{当}\quad T=0.
+\tag{4.11}
+\end{equation*}
+
+要把 $\zeta$ 表为 $T$ 的函数，原则上需要知道 $\mathcal{N}(\mathcal{E})$。但在金属中分布是高度简并（degenerate）的，即 $kT\ll\mathcal{E}_{F}$。这时我们可以采用如下的数学技巧：——
+
+设有如下形式的积分需要求值：
+\begin{equation*}
+I=\int_{0}^{\infty}g(\mathcal{E})\,f^{0}(\mathcal{E})\,d\mathcal{E},
+\tag{4.12}
+\end{equation*}
+其中 $g(\mathcal{E})$ 是能量的某个函数。分部积分。我们得到
+\begin{equation*}
+I=\left[G(\mathcal{E})f^{0}(\mathcal{E})\right]_{0}^{\infty}-\int_{0}^{\infty}G(\mathcal{E})\frac{\partial f^{0}}{\partial\mathcal{E}}\,d\mathcal{E},
+\tag{4.13}
+\end{equation*}
+其中
+\begin{equation*}
+G(\mathcal{E})\equiv\int_{0}^{\mathcal{E}}g(\mathcal{E})\,d\mathcal{E}.
+\tag{4.14}
+\end{equation*}
+第一项在两个极限下都为零（只要把能量原点取得足够低，就可以令 $g(0)=0$）。
+
+剩下的积分比较容易对付；由于 $\partial f^{0}/\partial\mathcal{E}$ 在 $\mathcal{E}=\zeta$ 处有一个对称的峰，它在那一带的行为宛如一个宽度为 $kT$ 的 $\delta$ 函数（delta-function）。于是，我们把 $G(\mathcal{E})$ 在这一点作 Taylor 展开：
+\begin{equation*}
+G(\mathcal{E})=G(\zeta)+(\mathcal{E}-\zeta)G'(\zeta)+\tfrac{1}{2}(\mathcal{E}-\zeta)^{2}G''(\zeta)+\dots,
+\tag{4.15}
+\end{equation*}
+并代入式 (4.13)。我们得到
+\begin{equation*}
+I=G(\zeta)\int_{0}^{\infty}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)d\mathcal{E}+G'(\zeta)\int_{0}^{\infty}(\mathcal{E}-\zeta)\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)d\mathcal{E}+\dots.
+\tag{4.16}
+\end{equation*}
+但是
+\begin{equation*}
+\int_{0}^{\infty}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)d\mathcal{E}=f^{0}(0)-f^{0}(\infty)=1,
+\tag{4.17}
+\end{equation*}
+所以一级近似是
+\begin{equation*}
+I\approx G(\zeta)=\int_{0}^{\zeta}g(\mathcal{E})\,d\mathcal{E},
+\tag{4.18}
+\end{equation*}
+这正是我们在 $T=0$ 时本应得到的结果。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_81.pdf}
+\caption*{图 81\quad 费米–狄拉克函数及其导数：$T=0$ 时与有限温度下的情形。}
+\end{figure}
+
+式 (4.16) 中的普遍项含有积分
+\begin{align*}
+F_{n}&=\frac{1}{n!}\int_{0}^{\infty}(\mathcal{E}-\zeta)^{n}\left(-\frac{\partial f^{0}}{\partial\mathcal{E}}\right)d\mathcal{E}\\
+&=\frac{(kT)^{n}}{n!}\int_{0}^{\infty}\left(\frac{\mathcal{E}-\zeta}{kT}\right)^{n}\frac{\exp\{(\mathcal{E}-\zeta)/kT\}}{\left[\exp\{(\mathcal{E}-\zeta)/kT\}+1\right]^{2}}\,d\!\left(\frac{\mathcal{E}-\zeta}{kT}\right)\\
+&=\frac{(kT)^{n}}{n!}\int_{-\infty}^{\infty}\frac{z^{n}\,dz}{(e^{z}+1)(1+e^{-z})}\\
+&=\left\{\begin{array}{ll}
+2c_{n}(kT)^{n} & \text{当 } n \text{ 为偶数},\\
+0 & \text{当 } n \text{ 为奇数},
+\end{array}\right\}
+\tag{4.19}
+\end{align*}
+其中系数 $c_{n}$ 很容易求出，是一些可求和的级数。实践中我们很少超过第二项，
+\begin{equation*}
+2c_{2}=\frac{1}{6}\pi^{2}.
+\tag{4.20}
+\end{equation*}
+于是
+\begin{equation*}
+\int_{0}^{\infty}g(\mathcal{E})\,f^{0}(\mathcal{E})\,d\mathcal{E}\approx\int_{0}^{\zeta}g(\mathcal{E})\,d\mathcal{E}+\frac{\pi^{2}}{6}(kT)^{2}\left[\frac{\partial g(\mathcal{E})}{\partial\mathcal{E}}\right]_{\mathcal{E}=\zeta}+\dots.
+\tag{4.21}
+\end{equation*}
+
+例如，为了计算 $\zeta$ 随温度的变化，我们利用式 (4.9) 和式 (4.10)：
+\begin{align*}
+\int_0^{\mathcal{E}_F} \mathcal{N}(\mathcal{E})\,d\mathcal{E} &= \int_0^{\infty} \mathcal{N}(\mathcal{E})f^0(\mathcal{E})\,d\mathcal{E} \\
+&= \int_0^{\zeta} \mathcal{N}(\mathcal{E})\,d\mathcal{E} + \frac{\pi^2}{6}(kT)^2\left[\frac{\partial \mathcal{N}(\mathcal{E})}{\partial \mathcal{E}}\right]_{\mathcal{E}=\zeta} + \ldots,
+\tag{4.22}
+\end{align*}
+它具有近似解（可通过关于 $\zeta$ 求微商来检验）
+\begin{equation*}
+\zeta \approx \mathcal{E}_F - \frac{\pi^2}{6}(kT)^2\left[\frac{\partial}{\partial \mathcal{E}}\ln \mathcal{N}(\mathcal{E})\right]_{\mathcal{E}=\mathcal{E}_F}.
+\tag{4.23}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_82.pdf}
+\caption*{图 82\quad 高温下，费米–狄拉克 函数变为经典 Boltzmann 分布。}
+\end{figure}
+
+我们注意到 $\zeta<\mathcal{E}_F$，只有 $T=0$ 时例外——但当 $kT\ll\mathcal{E}_F$ 时，例如常温下的金属，这一修正很小。随着温度升高，$\zeta$ 的值不得不下降，因为 费米–狄拉克 函数在电子气的简并温度（degeneracy temperature）以上——即当 $kT>\mathcal{E}_F$ 时——必须趋于经典分布
+\begin{equation*}
+f^0(\mathcal{E})\propto e^{-\mathcal{E}/kT}
+\tag{4.24}
+\end{equation*}
+从式 (4.8) 的形式显然可见，这只对 $\zeta$ 以上的能量才成立；若要它对带中所有能量都成立，$\zeta$ 的值就必须位于 $\mathcal{E}=0$ 之下。
+
+\section{半导体中载流子的统计}
+
+在半导体中，态密度函数有一个很大的间隙。实际上，能量的积分范围被分成两段——一段到价带（valence band）顶 $\mathcal{E}_v$ 为止，另一段从导带（conduction band）底 $\mathcal{E}_c$ 起继续向上。于是，与式 (4.9) 和式 (4.10) 相当的条件是
+\begin{equation*}
+\int_0^{\mathcal{E}_v} \mathcal{N}(\mathcal{E})\,d\mathcal{E} = \int_0^{\mathcal{E}_v} f^0(\mathcal{E})\mathcal{N}_v(\mathcal{E})\,d\mathcal{E} + \int_{\mathcal{E}_c}^{\infty} f^0(\mathcal{E})\mathcal{N}_c(\mathcal{E})\,d\mathcal{E},
+\tag{4.25}
+\end{equation*}
+其中 $\mathcal{N}_c(\mathcal{E})$ 与 $\mathcal{N}_v(\mathcal{E})$ 分别是导带与价带中的态密度。
+
+我们可以把它写成
+\begin{equation*}
+\int_0^{\mathcal{E}_v} \{1-f^0(\mathcal{E})\}\mathcal{N}_v(\mathcal{E})\,d\mathcal{E} = \int_{\mathcal{E}_c}^{\infty} f^0(\mathcal{E})\mathcal{N}_c(\mathcal{E})\,d\mathcal{E},
+\tag{4.26}
+\end{equation*}
+这不过是说，被激发到导带中的电子数等于价带中留下的空穴（hole）数：
+\begin{equation*}
+n_h = n_e.
+\tag{4.27}
+\end{equation*}
+
+式 (4.26) 中的统计函数可以改写成一种有趣的形式。让我们注意
+\begin{align*}
+1-f^0(\mathcal{E}-\zeta) &= 1 - \frac{1}{\exp\{(\mathcal{E}-\zeta)/kT\}+1} \\
+&= \frac{1}{\exp\{-(\mathcal{E}-\zeta)/kT\}+1} \\
+&= f^0(\mathcal{E}_h+\zeta_h),
+\tag{4.28}
+\end{align*}
+其中
+\begin{equation*}
+\mathcal{E}_h+\zeta_h = -(\mathcal{E}-\zeta).
+\tag{4.29}
+\end{equation*}
+
+换言之，在电子的费米能级（Fermi level）之下距离 $|\mathcal{E}-\zeta|$ 处的能级 $\mathcal{E}$ 上找到一个空穴的概率，与在费米能级之上距离 $|\mathcal{E}-\zeta|$ 处找到一个电子的概率相同。空穴与电子一样遵从 费米–狄拉克 统计——只不过仿佛它们的能量是\emph{向下}量的。为方便起见，我们把所有电子能量都从 $\mathcal{E}_c$ 量起；用变量 $\mathcal{E}_e$ 表示 $\mathcal{E}-\mathcal{E}_c$。空穴能量则从价带顶量起：$\mathcal{E}_h=-(\mathcal{E}-\mathcal{E}_v)$。电子的费米能级位于某一点 $\mathcal{E}_e=-\zeta_e$ 处；空穴的费米能级则相应于 $\mathcal{E}_h=-\zeta_h$。于是我们的公式 (4.26) 便读作
+\begin{equation*}
+\int_0^{\infty} f^0(\mathcal{E}_h+\zeta_h)\mathcal{N}_v(\mathcal{E}_h)\,d\mathcal{E}_h = \int_0^{\infty} f^0(\mathcal{E}_e+\zeta_e)\mathcal{N}_c(\mathcal{E}_e)\,d\mathcal{E}_e.
+\tag{4.30}
+\end{equation*}
+
+这两个函数还须满足的进一步条件是：$\zeta_e$ 与 $\zeta_h$ 事实上应当对应于同一个总的费米势（over-all Fermi potential）$\zeta$。既然它们是从彼此相距 $\mathcal{E}_{\mathrm{gap}}$ 的能量原点分别量起的，我们便有\footnote{这里看来最方便的做法，是把 $\zeta_e$ 和 $\zeta_h$ 定义成通常均为正的量。}
+\begin{equation*}
+\zeta_e+\zeta_h = \mathcal{E}_{\mathrm{gap}}.
+\tag{4.31}
+\end{equation*}
+
+正如我们马上就要证明的，$\zeta$ 倾向于落在间隙之中，因此 $\zeta_e$ 与 $\zeta_h$ 都是正的，而且比 $kT$ 大得多。于是，在 $\mathcal{E}_e$ 与 $\mathcal{E}_h$ 为正的范围内，电子和空穴的 Fermi 函数实际上已无法与经典分布区分：
+\begin{equation*}
+f^0(\mathcal{E}_e+\zeta_e) \approx \exp\{-(\mathcal{E}_e+\zeta_e)/kT\}.
+\tag{4.32}
+\end{equation*}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_83.pdf}
+\caption*{图 83\quad (a) 半导体的绝对能量图式。(b) “电子”与“空穴”能量图式。}
+\end{figure}
+
+这在一定程度上简化了式 (4.30) 中积分的计算。按照 van Hove 定理（§2.5），导带底附近态密度的形式必定是
+\begin{equation*}
+\mathcal{N}_c(\mathcal{E}_e) = \frac{1}{2\pi^2}\left(\frac{2m_e}{\hbar^2}\right)^{3/2}\mathcal{E}_e^{1/2}.
+\tag{4.33}
+\end{equation*}
+这实际上就是\emph{有效质量}（effective mass）为 $m_e$ 的自由电子气的结果，但一般说来这个参量是
+\begin{equation*}
+m_e = (m_1 m_2 m_3)^{1/2},
+\tag{4.34}
+\end{equation*}
+其中 $m_1$、$m_2$、$m_3$ 是在 $\mathbf{k}$ 空间中围绕 $\mathcal{E}(\mathbf{k})$ 的极小值、以局部主轴为参照展开能量时的展开系数：
+\begin{equation*}
+\mathcal{E}_e = \frac{\hbar^2 k_1^2}{2m_1} + \frac{\hbar^2 k_2^2}{2m_2} + \frac{\hbar^2 k_3^2}{2m_3}.
+\tag{4.35}
+\end{equation*}
+其证明与式 (2.70)–(2.72) 完全相同。
+
+把式 (4.32) 与式 (4.33) 代入 (4.30)，我们得到
+\begin{align*}
+n_e &= \int_0^{\infty} \exp\{-(\mathcal{E}_e+\zeta_e)/kT\}\,\frac{1}{2\pi^2}\left(\frac{2m_e}{\hbar^2}\right)^{3/2}\mathcal{E}_e^{1/2}\,d\mathcal{E}_e \\
+&= \frac{1}{2\pi^2}\left(\frac{2m_e}{\hbar^2}\right)^{3/2} e^{-\zeta_e/kT}(kT)^{3/2}\int_0^{\infty} e^{-z}z^{1/2}\,dz \\
+&= 2\left(\frac{m_e kT}{2\pi\hbar^2}\right)^{3/2} e^{-\zeta_e/kT}.
+\tag{4.36}
+\end{align*}
+
+在简单的模型中——例如忽略自旋–轨道分裂（§3.11）时——价带顶也将具有与式 (4.33) 相同函数形式的态密度，只是改由一个具有质量量纲的类似参量 $m_h$ 刻画。对于“在温度 $T$ 下激发的空穴”的总数，将有类似的公式：
+\begin{equation*}
+n_h = 2\left(\frac{m_h kT}{2\pi\hbar^2}\right)^{3/2} e^{-\zeta_h/kT},
+\tag{4.37}
+\end{equation*}
+
+令 $n_e$ 与 $n_h$ 相等，并利用 (4.31)，就可以把二者分别求出。例如，将 (4.36) 与 (4.37) 相乘，得
+\begin{equation*}
+n_e n_h = 4\left(\frac{kT}{2\pi\hbar^2}\right)^3 (m_e m_h)^{3/2} e^{-\mathcal{E}_{\mathrm{gap}}/kT},
+\tag{4.38}
+\end{equation*}
+此式与费米能级的位置无关，因此只要费米能级保持在带隙之内，它就相当普遍地成立。对此式取平方根，得
+\begin{equation*}
+n_e = n_h = 2\left(\frac{kT}{2\pi\hbar^2}\right)^{3/2}(m_e m_h)^{3/4} e^{-\mathcal{E}_{\mathrm{gap}}/2kT},
+\tag{4.39}
+\end{equation*}
+这表明载流子（carrier）密度确实按 Boltzmann 因子变化，就好像需要能量 $\frac{1}{2}\mathcal{E}_{\mathrm{gap}}$ 才能把一个电子激活到导带中去。
+
+由 (4.36)、(4.37) 和 (4.39)，容易分别算出 $\zeta_e$ 与 $\zeta_h$；由对称性显然可知，若 $m_e=m_h$，$\zeta$ 将落在间隙正中。只要 $\mathcal{E}_g\gg kT$，这些公式就对载流子全部由热激发产生的\emph{本征半导体}（intrinsic semiconductor）成立。
+
+在本书中，我们把讨论主要限于纯净、有序的固体；但应当提到，大多数半导体并不很纯——实际上，我们几乎总是在掺入杂质、经过\emph{掺杂}（doped）的状态下使用它们。标准的情形是\emph{施主}（donor）杂质——一个以替位方式掺入 Ge 晶体的 As 原子。由 §4.2 的论证显然可知，只要让 As 的第 5 个电子被释放到晶体的导带之中，这种替换就可以在不损害晶格键结构的情况下实现。这样我们便制得一个 \emph{n 型}（n-type）样品；我们增加了几个电子，却没有在价带中产生任何空穴。
+
+若每单位体积中有 $N_d$ 个这样的\emph{施主原子}，则必有
+\begin{equation*}
+n_e - n_h = N_d
+\tag{4.40}
+\end{equation*}
+以此作为条件，从中求出 $n_e$、$n_h$、$\zeta_e$、$\zeta_h$ 随 $T$ 变化的函数关系。特别是，若通过添加大量施主使材料重度掺杂，电子将占压倒性的优势。这时费米能级必定落在这些\emph{多数载流子}（majority carriers）所占据的能量范围内——即靠近导带底。掺杂足够多时，这种载流子气可以达到金属的密度，从而即使在常温下分布也变成简并的。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_84.pdf}
+\caption*{图 84\quad (a) Ge 中的施主。(b) Ge 中的受主。}
+\end{figure}
+
+这类杂质还有一种对偶的情形。如果我们用 In——每个原子只有 3 个电子——来代替 Ge，键就不能完全填满；价带中留下一个空穴。晶体中密度为 $N_a$ 的\emph{受主}（acceptor）杂质造成一个 \emph{p 型}（p-type）样品，其中
+\begin{equation*}
+n_e - n_h = -N_a.
+\tag{4.41}
+\end{equation*}
+
+一般地，施主与受主可能同时存在，于是在\emph{补偿}（compensated）样品中有
+\begin{equation*}
+n_e - n_h = N_d - N_a.
+\tag{4.42}
+\end{equation*}
+不过，这些杂质也会把局域的杂质能级引入能隙之中（见 §6.4）；因此，当温度低到这些能级可能被相当大比例的过剩载流子占据时，统计理论就变得更复杂了。
+
+\section{电子比热}
+
+金属中的电子必然对比热有所贡献。为了计算这一贡献，让我们利用式 (4.21) 计算电子分布的平均能量，因为我们假定系统是高度简并的：
+\begin{align*}
+\overline{\mathcal{E}} &= \int \mathcal{E}f^0(\mathcal{E})\mathcal{N}(\mathcal{E})\,d\mathcal{E} \\
+&= \int_0^{\zeta} \mathcal{E}\mathcal{N}(\mathcal{E})\,d\mathcal{E} + \frac{\pi^2}{6}(kT)^2\left[\frac{\partial}{\partial \mathcal{E}}\{\mathcal{E}\mathcal{N}(\mathcal{E})\}\right]_{\mathcal{E}=\zeta} + \ldots.
+\tag{4.43}
+\end{align*}
+
+我们对温度求微商，同时注意到（参见式 (4.22)）$\zeta$ 是 $T$ 的函数：
+\begin{align*}
+C_{\mathrm{el.}} &= \frac{\partial \overline{\mathcal{E}}}{\partial T} = \zeta\mathcal{N}(\zeta)\frac{d\zeta}{dT} + \frac{\pi^2}{3}k^2T\left[\mathcal{N}(\mathcal{E}) + \zeta\frac{\partial \mathcal{N}(\mathcal{E})}{\partial \mathcal{E}}\right]_{\mathcal{E}=\zeta} + O(T^2) \\
+&= \frac{\pi^2}{3}k^2T\mathcal{N}(\mathcal{E}_F) + \zeta\mathcal{N}(\zeta)\left[\frac{d\zeta}{dT} + \frac{\pi^2}{3}\frac{k^2T}{\mathcal{N}(\mathcal{E})}\frac{\partial \mathcal{N}(\mathcal{E})}{\partial \mathcal{E}}\right]_{\mathcal{E}=\zeta} \\
+&= nk\,\frac{\pi^2}{3}kT\,\frac{\mathcal{N}(\mathcal{E}_F)}{n}
+\tag{4.44}
+\end{align*}
+其中最后一步由式 (4.22) 得出。$T^2$ 等更高阶的项都可以忽略。
+
+这是一个十分重要的结果。把式 (4.44) 与经典粒子气体的比热——譬如说 $\frac{3}{2}nk$——作一比较，量子结果要小得多。对自由电子，态密度式 (4.3) 为 $\frac{3}{2}n/\mathcal{E}_F$，于是
+\begin{equation*}
+C_{\mathrm{el.}}/C_{\mathrm{classical}} = \frac{\pi^2}{3}\frac{kT}{\mathcal{E}_F}.
+\tag{4.45}
+\end{equation*}
+在普通金属中、普通温度下，这个因子约为 $1/100$。它说明了为什么金属的总比热可以由 §2.4 的晶格项相当准确地给出，也说明了为什么 Dulong–Petit 定律在高温下成立。
+
+我们还注意到 $C_{\mathrm{el.}}$ 与 $T$ 成线性。在极低温度下，这一线性项——通常写作
+\begin{equation*}
+C_{\mathrm{el.}} = \gamma T,
+\tag{4.46}
+\end{equation*}
+——可以与晶格项区分开来，后者按 $T^3$ 更快地趋于零。测量 $\gamma$ 可以直接给出关于 $\mathcal{N}(\mathcal{E}_F)$——费米能级处的态密度——的信息。例如，在过渡金属中观察到很大的 $\gamma$ 值，正如 §4.4 中所讨论的。
+
+我们可以这样理解这条线性定律。看看 费米分布（图 85）；温度的作用是使少数电子被激发到更高的能级。但这一效应只在 $\mathcal{E}_F$ 附近 $kT$ 量级的能量范围内才是明显的。我们可以说，大约有 $kT\,\mathcal{N}(\mathcal{E}_F)$ 个电子各获得约 $kT$ 的能量。于是，整个固体获得的能量为
+\begin{equation*}
+\delta\overline{\mathcal{E}} \sim k^2T^2\mathcal{N}(\mathcal{E}_F).
+\tag{4.47}
+\end{equation*}
+与此相应，
+\begin{equation*}
+C_{\mathrm{el.}} = \frac{\partial \delta\overline{\mathcal{E}}}{\partial T} \sim 2k^2T\mathcal{N}(\mathcal{E}_F).
+\tag{4.48}
+\end{equation*}
+除一个数值因子外，这基本上就是我们的结果 (4.44)。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\textwidth]{fig_85.pdf}
+\caption*{图 85\quad 金属中电子的热激发。}
+\end{figure}
+
+实际上，我们要说的是：处在分布深处的电子几乎觉察不到温度的存在。它们的处境由 Pauli 原理决定；这一原理坚持要它们填满所有的能级，却不允许它们侵占彼此的状态。这并不比下面这件事更令人奇怪：离子实束缚态深处的电子不必算作对固体比热的一种单独贡献——至少在温度还没有高到足以把这些电子热激发起来之前是如此。

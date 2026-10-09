@@ -1,0 +1,97 @@
+% !TeX program = xelatex
+% ============================================================
+%  李政道《数学物理方法》第一章 矢量与张量分析
+%  扫描件重排试做：正文重新排版，插图全部用 TikZ/matplotlib 重绘
+% ============================================================
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+% 西文字体：Times New Roman（含西里尔字符，用于“Остроградский”等）
+\setmainfont{Times New Roman}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\tdplotsetmaincoords{70}{110}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{multirow}
+
+\newcommand{\ve}[1]{\bm{#1}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \chinese{chapter},
+    format = {\centering\zihao{2}\heiti},
+    beforeskip = 1.5em,
+    afterskip  = 1.5em,
+  },
+  section = {
+    name = {§,},
+    number = \arabic{section},
+    format = {\zihao{4}\heiti},
+    beforeskip = 1.4em,
+    afterskip  = 0.9em,
+  },
+}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 数学物理方法}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setstretch{1.18}
+
+% 防止段首/段末孤行、显示公式前断页
+\clubpenalty=10000
+\widowpenalty=10000
+\predisplaypenalty=10000
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+\begin{document}
+% ---------------- 扉页 ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{3.5cm}
+{\zihao{0}\heiti 数学物理方法}\\[2.2em]
+{\zihao{3}\kaishu 李政道\quad 著}
+\vfill
+\end{titlepage}
+
+% 扉页背面留空：保证正文第 1 页起于奇数页（正面）
+\thispagestyle{empty}\mbox{}\clearpage
+
+\frontmatter
+\tableofcontents
+
+\mainmatter
+
+\input{ch1}
+
+\input{ch2}
+
+\input{ch3}
+
+\input{ch4full}
+
+\input{ch5}
+
+\input{ch6}
+
+\input{ch7}
+
+\vfill
+\begin{center}\kaishu —— 全书完 ——\end{center}
+
+\end{document}
