@@ -1,0 +1,2432 @@
+% ============================================================
+%  第二卷 第九章 电磁波的辐射（前半：§66–§73 + 习题）
+%  底本：高教社中文版（第8版）；OCR 错误已修正，脚注文本待从纸版补录
+%  插图：图 15（原书 p.222/p-236，§73 习题2，width=4.2cm）
+%
+%  OCR/原书错误修正清单（均已对照原书页面 p-206…p-236 复核）：
+%  1. §66 "H = cot A"→"H = rot A"（OCR 误读 rot）；
+%  2. §66 "偶极距"→"偶极矩"、"引人"→"引入"（§67）；
+%  3. §66 习题首个大等式链中两处 "dω"→"do"（照原书 p.194，该式对立体角元、
+%     频率间隔展开）；
+%  4. §66 习题 χ^i = ∫exp(−ik_l x^l)dx^i 中 x 的多余粗体删除；
+%     末式 χ_iχ^{i*} 的共轭星号按原书补回；
+%  5. §67 习题2 立体角元 dσ′→do′（OCR 误读）；能量变换式
+%     "d𝓔′ = (d𝓔′−V·dP)/√(1−V²/c²)"→"d𝓔 = (d𝓔−V·dP)/√(1−V²/c²)"
+%     （左边应为 K 系能量，照能量—动量变换关系核正）；
+%  6. §68 (68.3) 中 A 的被积函数 "ḋ²"→"d̈²"（二阶导数，照原书 p.199）；
+%  7. §69 "由于该过程的"时间"τ→0" 的引号乱码修复；
+%     "当 ω 0"→"当 ω→0"；
+%  8. §70 正文 M = μr²φ→μr²φ̇（角动量，漏 dessus 点号，照第一卷 §15）；
+%  9. §70 习题1 "用φ来表示坐标 φr"→"用φ来表示坐标 r"（衍字）；
+%     "(从0到 φ2π)"→"(从0到 2π)"（衍字）；
+% 10. §70 习题2 "φ₀ ≢ cosφ₀ = 1/ε"→"φ₀ 由 ±cosφ₀ = 1/ε 来决定"
+%     （照原书 p.209，± 对应相吸/相斥两情形）；该习题末式逗号→句号；
+% 11. §70 习题3 "ṙ₀ = r₀(ρ)"→"r₀ = r₀(ρ)"（原书衍点号，按物理改，
+%     最近距离 r₀ 为 ρ 的函数）；
+% 12. §70 习题4 位移二阶导数的 "\vec x"→"ẍ"（OCR 误，照原书 p.210）；
+%     "惯性中∴"→"惯性中心"；
+% 13. §71 磁矩定义 "𝔪 = s(1/2c)∑er×v"→"𝔪 = (1/2c)∑er×v"
+%     （原书衍斜体 s，俄文原版与英文版均无此因子，物理上错误）；
+% 14. §71 (71.2) 末项 "(ṅ×n)"→"(𝔪̇×n)"；(71.4) E 式末项 "n×n̈"→"n×𝔪̈"
+%     （OCR 误，照原书 p.211 与英文原版）；
+% 15. §71 "因为角动量是守恒的，所以 m=0"→"所以 𝔪̇=0"
+%     （磁矩守恒即其对时间导数为零，照英文原版 ṁ = 0）；
+% 16. §72 OCR 混入正文的 "z = −d(t−R₀/c)/R₀，A = −ż/c，φ = div z" 一块
+%     实为脚注①（赫兹矢量）文本，按规范未转录，仅保留圈码①；
+% 17. §72 习题2 被积式 "(n·ḋ)(n·ḋ)"→"(n·d̈)(n·ḋ)"（首个因子应为 d̈，
+%     否则得不出 (3) 式）；"ℏ 距离"→"而距离"；
+% 18. §73 习题4 的 E、H、v、w 等矢量粗体按原书（p.222/p-236）恢复；
+% 19. 跨行断句接合：§66 "在平面/波内"、§71 "小得/多" 等；各处
+%     \pmb→\boldsymbol、被空格拆开的 \mathrm{d} 收紧、指数正体 e、
+%     虚数单位正体 i、函数名正体（sin/cos/cosh/sinh/exp/rot/div/grad）。
+%
+%  脚注已转录（2026-10-10）：前半（§66–§73）16 处圈码全部替换为
+%  \footnote{...}（转录自原书扫描页 p-206/211/213/215/216/219/220/221/
+%  226/227/228/231/235，与 MinerU OCR page_footnote 块逐字核对）。
+%  §70 三处圈码经核对原书各为所在页唯一脚注，均作 ① 无误。
+%
+%  遗留问题：
+%  * §70 三处脚注圈码照 OCR 均作①——已经核原书：三处分别位于 p.205/p.206/
+%    p.207 三页，各为该页唯一脚注，均作 ① 无误（已结）；
+%  * §71 习题2 末 "结果是：①" 的圈码位置照 OCR——已核原书：该圈码挂
+%    p.227 页脚注（"这个力比洛伦兹摩擦力（§75）高 1/c 级……"），
+%    求单位矢量分量之积平均值的公式系 p.226 页脚注（挂于正文），
+%    与正文所引"本节第一个脚注"相符（已结）；
+%  * §73 "引入在辐射方向的单位矢量 n（R = nR）" 中 R=nR 的标/矢量
+%    细节 OCR 存疑，按 R（矢）= n（矢）·R（标）排；
+%  * §67 习题2 所引 "（5.6）" 为第一卷公式编号，照 OCR 保留；
+%  * §68 (68.6) 中 d²_ω 按矢量粗体排（与 (67.10) |d_ω|² 一致），
+%    未逐页核对原书。
+% ============================================================
+\chapter{电磁波的辐射}
+
+\section{电荷体系在远处所产生的场}
+
+我们来考虑一个运动电荷体系在距离远大于该体系尺度的地方所产生的场.
+
+选择电荷体系内的任意一点为坐标原点O.用 $R_0$ 代表从O点到P点的径矢，P点是我们求场的点，并且用 $\boldsymbol{n}$ 表示 $R_0$ 方向的单位矢量.设电荷元 $\mathrm{d}e=\rho\,\mathrm{d}V$ 的径矢为 $\boldsymbol{r}$，而从 de到P点的径矢为$\boldsymbol{R}$.显然，$\boldsymbol{R}=\boldsymbol{R}_0-\boldsymbol{r}$.
+
+在与电荷体系相距甚远之处，$R_0\gg r$.因此，我们近似地得到
+\begin{equation*}
+  R=|\boldsymbol{R}_0-\boldsymbol{r}|=R_0-\boldsymbol{r}\cdot\boldsymbol{n}.
+\end{equation*}
+将上式代入推迟势的表达式（62.9），（62.10）中.在被积函数的分母内，$\boldsymbol{r}\cdot\boldsymbol{n}$ 与 $R_0$ 比较起来可以略去不计.然而在 $t-R/c$ 中，一般来说这种忽略是不可以的；是否可以略去这些项，并不决定于 $R_0/c$ 与 $\boldsymbol{r}\cdot\boldsymbol{n}/c$ 的相对值，而决定于 $\rho$ 和 $\boldsymbol{j}$ 在时间 $\boldsymbol{r}\cdot\boldsymbol{n}/c$ 内变化的多少.因为 $R_0$ 在积分中是常量，可以从积分号内取出，因此，对于与电荷体系相距甚远之处的场的势，我们得到以下二式：
+\begin{equation}
+  \varphi=\frac{1}{R_0}\int\rho_{t-\frac{R_0}{c}+\boldsymbol{r}\cdot\frac{\boldsymbol{n}}{c}}\,\mathrm{d}V,
+\end{equation}
+\begin{equation}
+  \boldsymbol{A}=\frac{1}{cR_0}\int\boldsymbol{j}_{t-\frac{R_0}{c}+\boldsymbol{r}\cdot\frac{\boldsymbol{n}}{c}}\,\mathrm{d}V.
+\end{equation}
+
+在距离电荷体系甚远之处，场在一个不很大的空间区域内可以当做平面波.为此，距离不仅必须比体系的尺度大很多，而且还要比体系所辐射的电磁波的波长大很多.空间的这个区域我们称为辐射的“波区”.
+
+在平面波内，场$\boldsymbol{E}$和$\boldsymbol{H}$彼此有关系式（47.4），$\boldsymbol{E}=\boldsymbol{H}\times\boldsymbol{n}$，因为 $\boldsymbol{H}=\operatorname{rot}\boldsymbol{A}$，为了完全决定波区内的场，只需求出矢势$\boldsymbol{A}$就够了.在平面波内，我们有 $\boldsymbol{H}=(1/c)\dot{\boldsymbol{A}}\times\boldsymbol{n}$（参见（47.3）），式中，$\boldsymbol{A}$ 上面的一点表示对时间微分\footnote{在目前情形下，这个公式也很容易验证，只要直接计算（66.2）式的旋度，与带 $\sim 1/R_0$ 的项相比，略去带 $1/R_0^2$ 的项就可以了.}.因此，假如知道了$\boldsymbol{A}$，我们就可以从公式\footnote{在这里公式 $\boldsymbol{E}=-\dot{\boldsymbol{A}}/c$（参见（47.3））不能应用于势 $\varphi$ 和 $\boldsymbol{A}$，因为它们不满足在 §47 中所加于它们的附加条件.}
+\begin{equation}
+  \boldsymbol{H}=\frac{1}{c}\dot{\boldsymbol{A}}\times\boldsymbol{n},\quad
+  \boldsymbol{E}=\frac{1}{c}(\dot{\boldsymbol{A}}\times\boldsymbol{n})\times\boldsymbol{n}
+\end{equation}
+求出$\boldsymbol{H}$ 和 $\boldsymbol{E}$.
+
+我们指出，远处的场与离开辐射体系距离 $R_0$ 的一次方成反比.我们还应当指出，在（66.1）到（66.3）各式中的时间$t$总是以组合 $t-R_0/c$ 的形式出现.
+
+对于一个作任意运动的点电荷所产生的辐射，用李纳-维谢尔势是便利的.在远处，我们可以用常矢量 $\boldsymbol{R}_0$ 代替公式（63.5）中的径矢 $\boldsymbol{R}$，而在决定 $t^{\prime}$ 的条件（63.1）内，必须使 $R=R_0-\boldsymbol{r}_0\cdot\boldsymbol{n}$（$\boldsymbol{r}_0(t)$ 是电荷的径矢）.因此\footnote{在对于电场的公式（63.8）中，本近似相应于略去第一项（与第二项相比）.}，
+\begin{equation}
+  \boldsymbol{A}=\frac{e\boldsymbol{v}(t^{\prime})}{cR_0\left(1-\dfrac{\boldsymbol{n}\cdot\boldsymbol{v}(t^{\prime})}{c}\right)},
+\end{equation}
+式中的 $t^{\prime}$ 由等式
+\begin{equation}
+  t^{\prime}-\frac{\boldsymbol{r}_0(t^{\prime})}{c}\cdot\boldsymbol{n}=t-\frac{R_0}{c}
+\end{equation}
+决定.
+
+辐射出去的电磁波带有能量.能流密度是由坡印亭矢量来决定的；对于平面波，它是
+\begin{equation*}
+  \boldsymbol{S}=c\,\frac{H^2}{4\pi}\boldsymbol{n}.
+\end{equation*}
+辐射到立体角元$\mathrm{d}o$之内的辐射强度$\mathrm{d}I$定义为在单位时间内经过球心在原点，半径为 $R_0$ 的球面面元 $\mathrm{d}f=R_0^2\,\mathrm{d}o$ 的能量.这个量显然等于能流密度$\boldsymbol{S}$乘以 $\mathrm{d}f$，即
+\begin{equation}
+  \mathrm{d}I=c\,\frac{H^2}{4\pi}R_0^2\,\mathrm{d}o.
+\end{equation}
+因为场$\boldsymbol{H}$与 $R_0$ 成反比，那么我们可以看出，在单位时间内这个体系辐射到立体角元$\mathrm{d}o$内的能量对于所有的距离都是一样的（当 $t-R_0/c$ 的值对于它们一样时）.这一点是理所当然的，因为从体系辐射出来的能量以光速c向四周散开，在任何地方既不堆积，也不消失.
+
+我们来推导体系辐射出来的波的场的谱分解公式.这些公式可以直接从§64 中的各公式得出.将 $R=R_0-\boldsymbol{r}\cdot\boldsymbol{n}$ 代入（64.2）式（在该式内的被积函数的分母中，我们可以令 $R=R_0$），我们便得到矢势的傅里叶分量
+\begin{equation}
+  \boldsymbol{A}_\omega=\frac{\mathrm{e}^{\mathrm{i}kR_0}}{cR_0}\int\boldsymbol{j}_\omega\,\mathrm{e}^{-\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}\,\mathrm{d}V
+\end{equation}
+（式中 $\boldsymbol{k}=k\boldsymbol{n}$）.利用公式（66.3)，可以求出分量 $\boldsymbol{H}_\omega$ 和 $\boldsymbol{E}_\omega$.分别用 $\boldsymbol{H}_\omega\mathrm{e}^{-\mathrm{i}\omega t}$，$\boldsymbol{E}_\omega\mathrm{e}^{-\mathrm{i}\omega t}$，$\boldsymbol{A}_\omega\mathrm{e}^{-\mathrm{i}\omega t}$，代替 $\boldsymbol{H}$，$\boldsymbol{E}$，$\boldsymbol{A}$，再以 $\mathrm{e}^{-\mathrm{i}\omega t}$ 除之，则得
+\begin{equation}
+  \boldsymbol{H}_\omega=\mathrm{i}\boldsymbol{k}\times\boldsymbol{A}_\omega,\quad
+  \boldsymbol{E}_\omega=\frac{\mathrm{i}c}{\omega}\boldsymbol{k}\times(\boldsymbol{A}_\omega\times\boldsymbol{k}).
+\end{equation}
+
+当研究辐射强度的谱分布时，我们必须区别展开为傅里叶级数和展为傅里叶积分两种情形.对于伴随带电粒子的碰撞而产生的辐射，我们将它展开为傅里叶积分.在这种情形下，我们感兴趣的量是在碰撞期间辐射的（也是碰撞粒子所损失的）总能量.设 $\mathrm{d}\mathcal{E}_{n\omega}$ 是在碰撞期间以波的形式（波的频率在间隔$\mathrm{d}\omega$之内）辐射到立体角元 do内的能量.按照通式（49.8)，总辐射在频率间隔 $\mathrm{d}\omega/2\pi$ 内的部分可以从强度的一般公式求得，不过要用傅里叶分量的模平方乘以2来代替场的平方.因此代替（66.6）我们有：
+\begin{equation}
+  \mathrm{d}\mathcal{E}_{n\omega}=\frac{c}{2\pi}|H_\omega|^2R_0^2\,\mathrm{d}o\,\frac{\mathrm{d}\omega}{2\pi}.
+\end{equation}
+
+如果电荷作周期性运动，那么，辐射场就应当展开为傅里叶级数.按照通式（49.4)，傅里叶级数展开式中各个分量的强度可以从强度的常用公式得之，不过要用傅里叶分量乘以2来代替场.因此，频率为 $\omega=n\omega_0$ 的辐射到立体角元 do内的强度等于
+\begin{equation}
+  \mathrm{d}I_n=\frac{c}{2\pi}|H_n|^2R_0^2\,\mathrm{d}o.
+\end{equation}
+
+最后，我们直接从辐射电荷的给定运动来决定辐射场傅里叶分量的公式.对于傅里叶积分展开，我们有：
+\begin{equation*}
+  \boldsymbol{j}_\omega=\int_{-\infty}^{\infty}\boldsymbol{j}\,\mathrm{e}^{\mathrm{i}\omega t}\,\mathrm{d}t.
+\end{equation*}
+将上式代入（66.7)，并从连续电流分布变到一个沿轨道 $\boldsymbol{r}_0=\boldsymbol{r}_0(t)$ 运动的点电荷（参见§64），我们得到：
+\begin{equation}
+  \boldsymbol{A}_\omega=\frac{\mathrm{e}^{\mathrm{i}kR_0}}{cR_0}\int_{-\infty}^{+\infty}e\,\boldsymbol{v}(t)\,\mathrm{e}^{\mathrm{i}[\omega t-\boldsymbol{k}\cdot\boldsymbol{r}_0(t)]}\,\mathrm{d}t.
+\end{equation}
+因为 $\boldsymbol{v}=\mathrm{d}\boldsymbol{r}_0/\mathrm{d}t$，那么 $\boldsymbol{v}\,\mathrm{d}t=\mathrm{d}\boldsymbol{r}_0$，这个公式也就可以写成沿着电荷轨道的线积分：
+\begin{equation}
+  \boldsymbol{A}_\omega=e\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{cR_0}\int\mathrm{e}^{\mathrm{i}(\omega t-\boldsymbol{k}\cdot\boldsymbol{r}_0)}\,\mathrm{d}\boldsymbol{r}_0.
+\end{equation}
+按照（66.8）式，磁场的傅里叶分量有如下的形式：
+\begin{equation}
+  \boldsymbol{H}_\omega=e\,\frac{\mathrm{i}\omega\,\mathrm{e}^{\mathrm{i}kR_0}}{c^2R_0}\int\mathrm{e}^{\mathrm{i}(\omega t-\boldsymbol{k}\cdot\boldsymbol{r}_0)}\,\boldsymbol{n}\times\mathrm{d}\boldsymbol{r}_0.
+\end{equation}
+
+如果电荷在一个闭合轨道上作周期性运动，那么，就应当将场展开为傅里叶级数.傅里叶级数展开式的分量可以从（66.11）到（66.13）求得，不过要将其中遍历所有时间的积分替换为对运动周期T（参见§49)的平均.对于频率为 $\omega=n\omega_0=2\pi n/T$ 的磁场的傅里叶分量，我们有
+\begin{equation}
+\begin{aligned}
+  \boldsymbol{H}_n&=e\,\frac{2\pi\mathrm{i}n\,\mathrm{e}^{\mathrm{i}kR_0}}{c^2T^2R_0}
+  \int_0^T\mathrm{e}^{\mathrm{i}[n\omega_0t-\boldsymbol{k}\cdot\boldsymbol{r}_0(t)]}\,\boldsymbol{n}\times\boldsymbol{v}(t)\,\mathrm{d}t\\
+  &=e\,\frac{2\pi\mathrm{i}n\,\mathrm{e}^{\mathrm{i}kR_0}}{c^2T^2R_0}
+  \oint\mathrm{e}^{\mathrm{i}(n\omega_0t-\boldsymbol{k}\cdot\boldsymbol{r}_0)}\,\boldsymbol{n}\times\mathrm{d}\boldsymbol{r}_0.
+\end{aligned}
+\end{equation}
+在第二个积分中，积分遍及粒子的整个闭合轨道.
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 求一个沿给定轨道运动电荷辐射的四维动量谱分解的四维表达式.
+
+解：将（66.8）代入（66.9)，并考虑到，由于洛伦兹条件（62.1) $k\varphi_\omega=\boldsymbol{k}\cdot\boldsymbol{A}_\omega$，我们有：
+\begin{equation*}
+\begin{aligned}
+  \mathrm{d}\mathcal{E}_{n\omega}&=\frac{c}{2\pi}\left(k^2|\boldsymbol{A}_\omega|^2-|\boldsymbol{k}\cdot\boldsymbol{A}_\omega|^2\right)R_0^2\,\mathrm{d}o\,\frac{\mathrm{d}\omega}{2\pi}=\\
+  &=\frac{c}{2\pi}k^2\left(|\boldsymbol{A}_\omega|^2-|\varphi_\omega|^2\right)R_0^2\,\mathrm{d}o\,\frac{\mathrm{d}\omega}{2\pi}
+  =-\frac{c}{2\pi}k^2A_{i\omega}A_\omega^{i*}R_0^2\,\mathrm{d}o\,\frac{\mathrm{d}\omega}{2\pi}.
+\end{aligned}
+\end{equation*}
+将四维势 $A_{i\omega}$ 表为类似（66.12）的形式，我们得到：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_{n\omega}=-\frac{k^2e^2}{4\pi^2}\chi_i\chi^{i*}\,\mathrm{d}o\,\mathrm{d}k,
+\end{equation*}
+式中 $\chi^i$ 表示四维矢量
+\begin{equation*}
+  \chi^i=\int\exp(-\mathrm{i}k_l x^l)\,\mathrm{d}x^i,
+\end{equation*}
+积分沿粒子轨道的世界线进行.最后，变到四维符号（包括$k$空间的四维“体积元”，如（10.1a)），我们得到辐射的四维动量：
+\begin{equation*}
+  \mathrm{d}P^i=-\frac{e^2k^i}{2\pi^2c}\,\chi_i\chi^{i*}\,\delta(k_mk^m)\,\mathrm{d}^4k.
+\end{equation*}
+
+\end{xiti}
+
+\section{偶极辐射}
+
+在推迟势（66.1）和（66.2）的被积函数中，时间 $\boldsymbol{r}\cdot\dfrac{\boldsymbol{n}}{c}$ 是可以略去的，假如电荷分布在这个时间内改变很小的话.满足这个要求的条件不难找到.假设在一段时间内，体系中的电荷分布有显著的改变，用T表示这段时间的数量级.这个体系的辐射显然含有与 T 同数量级的周期（即频率与 $1/T$ 同数量级).此外，我们用a来代表体系的尺度的量级.因此，时间 $\boldsymbol{r}\cdot\dfrac{\boldsymbol{n}}{c}$ 将与 $\dfrac{a}{c}$ 同数量级.要这个体系内的电荷分布在这段时间内不发生显著的改变，那么，就必须有 $\dfrac{a}{c}\ll T$，而 $cT$ 正是辐射的波长λ.因此，$a\ll cT$ 可以写为
+\begin{equation}
+  a\ll\lambda,
+\end{equation}
+就是说，电荷体系的尺度应当比辐射的波长小很多.
+
+我们指出，同一个条件（67.1）也可以从（66.7)式得到.在被积函数中，$\boldsymbol{r}$ 所取的值是在一个与电荷体系的尺度同数量级的间隔内，因为在电荷体系以外 $\boldsymbol{j}$ 等于零.因此，指数 $\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}$ 是很小的，对于那些 $ka\ll 1$ 的波，可以略去它们，而这个条件与（67.1）是等价的.
+
+如果 $v$ 与电荷速度的大小同量级，注意到 $T\sim a/v$，从而 $\lambda\sim ca/v$，那么，这个条件还可以写成另一形式.从 $a\ll\lambda$，我们得到
+\begin{equation}
+  v\ll c,
+\end{equation}
+就是说，电荷的速度应当比光速小很多.
+
+假设这个条件已被满足，我们来研究与辐射体系相距甚远之处的辐射，所谓与体系相距甚远就是指距离比波长大很多，因而在任何情形下，都比电荷体系的尺度大很多.正如我们在§66所指出的，在这样的距离上，场可以当做平面波，因此，在求场时，仅仅只计算矢势就够了.
+
+在远处的场的矢势（66.2）现在有如下的形式：
+\begin{equation}
+  \boldsymbol{A}=\frac{1}{cR_0}\int\boldsymbol{j}_{t^{\prime}}\,\mathrm{d}V,
+\end{equation}
+式中，$t^{\prime}=t-R_0/c$.时间t′现在已经与积分变量无关了.将 $\boldsymbol{j}=\rho\boldsymbol{v}$ 代入，我们就可将（67.3）改写为
+\begin{equation*}
+  \boldsymbol{A}=\frac{1}{cR_0}\left(\sum e\,\boldsymbol{v}\right),
+\end{equation*}
+（求和应对体系中所有的电荷进行；为简单起见，我们略去指标 $t^{\prime}$，这个方程右边所有的量都是取对 $t^{\prime}$ 时刻的值）.但是
+\begin{equation*}
+  \sum e\,\boldsymbol{v}=\frac{\mathrm{d}}{\mathrm{d}t}\sum e\,\boldsymbol{r}=\dot{\boldsymbol{d}},
+\end{equation*}
+式中，$\boldsymbol{d}$ 是电荷体系的偶极矩.因此，
+\begin{equation}
+  \boldsymbol{A}=\frac{1}{cR_0}\dot{\boldsymbol{d}}.
+\end{equation}
+利用公式（66.3)，我们求出磁场等于
+\begin{equation}
+  \boldsymbol{H}=\frac{1}{c^2R_0}\ddot{\boldsymbol{d}}\times\boldsymbol{n},
+\end{equation}
+而电场则等于
+\begin{equation}
+  \boldsymbol{E}=\frac{1}{c^2R_0}(\ddot{\boldsymbol{d}}\times\boldsymbol{n})\times\boldsymbol{n}.
+\end{equation}
+
+我们注意，在所考虑的近似情况下，辐射为电荷体系的偶极矩的二阶导数所决定.这样的辐射称为偶极辐射.
+
+因为 $\boldsymbol{d}=\sum e\,\boldsymbol{r}$，$\ddot{\boldsymbol{d}}=\sum e\,\dot{\boldsymbol{v}}$；所以电荷只有在它们作加速度运动时才能辐射.作匀速运动的电荷不辐射.这也可以直接从相对性原理推出，因为作匀速运动的电荷可以在某一个惯性参考系中静止，而一个静止电荷显然不辐射.
+
+将（67.5）代入（66.6），我们得到偶极辐射的强度：
+\begin{equation}
+  \mathrm{d}I=\frac{1}{4\pi c^3}(\ddot{\boldsymbol{d}}\times\boldsymbol{n})^2\,\mathrm{d}o=\frac{\ddot{\boldsymbol{d}}^{\,2}}{4\pi c^3}\sin^2\theta\,\mathrm{d}o,
+\end{equation}
+式中 $\theta$ 是矢量 $\ddot{\boldsymbol{d}}$ 和 $\boldsymbol{n}$ 之间的夹角.这就是在单位时间内电荷体系辐射到立体角元do内的能量，我们注意，辐射的角分布是由因子 $\sin^2\theta$ 给出的.
+
+代入 $\mathrm{d}o=2\pi\sin\theta\,\mathrm{d}\theta$，从0到π对 $\mathrm{d}\theta$ 积分，我们得到总辐射
+\begin{equation}
+  I=\frac{2}{3c^3}\ddot{\boldsymbol{d}}^{\,2}.
+\end{equation}
+
+如果我们只有一个电荷在外场中运动，那么，$\boldsymbol{d}=e\,\boldsymbol{r}$，而 $\ddot{\boldsymbol{d}}=e\,\boldsymbol{w}$，此处的 $\boldsymbol{w}$ 是电荷的加速度.因此，运动电荷的总辐射是
+\begin{equation}
+  I=\frac{2e^2\boldsymbol{w}^2}{3c^3}.
+\end{equation}
+
+我们注意，在由粒子所组成的封闭体系中，如果所有粒子的荷质比都相同，就不会有辐射（偶极辐射）.实际上，对于这样的体系，偶极矩为
+\begin{equation*}
+  \boldsymbol{d}=\sum e\,\boldsymbol{r}=\sum\frac{e}{m}\,m\boldsymbol{r}=\mathrm{const}\sum m\boldsymbol{r},
+\end{equation*}
+此处的常数是所有电荷共同的荷质比.但是 $\sum m\boldsymbol{r}=\boldsymbol{R}\sum m$，此处 $\boldsymbol{R}$ 是体系惯性中心的径矢（记着所有的速度 $v\ll c$，因此非相对论力学可以应用）.因此 $\ddot{\boldsymbol{d}}$ 与惯性中心的加速度成正比，这个加速度是零，因为惯性中心匀速地运动着.
+
+最后，我们写出偶极辐射强度的谱分解.对于伴随碰撞而产生的辐射，我们引入量 $\mathrm{d}\mathcal{E}_\omega$ 来表示碰撞期间以波的形式（频率在间隔 $\mathrm{d}\omega/2\pi$ 内）辐射出去的能量（参见§66).用傅里叶分量 $\ddot{\boldsymbol{d}}_\omega$ 代替（67.8）式中的 $\ddot{\boldsymbol{d}}$ 并乘以2就可得到它：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_\omega=\frac{4}{3c^3}|\ddot{\boldsymbol{d}}_\omega|^2\,\frac{\mathrm{d}\omega}{2\pi}.
+\end{equation*}
+为了决定傅里叶分量，我们有
+\begin{equation*}
+  \ddot{\boldsymbol{d}}_\omega\,\mathrm{e}^{-\mathrm{i}\omega t}=\frac{\mathrm{d}^2}{\mathrm{d}t^2}(\boldsymbol{d}_\omega\,\mathrm{e}^{-\mathrm{i}\omega t})=-\omega^2\boldsymbol{d}_\omega\,\mathrm{e}^{-\mathrm{i}\omega t},
+\end{equation*}
+由此得到 $\ddot{\boldsymbol{d}}_\omega=-\omega^2\boldsymbol{d}_\omega$.因此，我们得到
+\begin{equation}
+  \mathrm{d}\mathcal{E}_\omega=\frac{4\omega^4}{3c^3}|\boldsymbol{d}_\omega|^2\,\frac{\mathrm{d}\omega}{2\pi}.
+\end{equation}
+
+对于作周期运动的粒子，我们用同样的方法得到以频率 $\omega=n\omega_0$ 辐射的强度如下：
+\begin{equation}
+  I_n=\frac{4\omega_0^4n^4}{3c^3}|\boldsymbol{d}_n|^2.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求以恒定角速度 Ω 在一平面内转动的偶极子 $\boldsymbol{d}$ 的辐射.\footnote{具有偶极矩的转子或对称陀螺的辐射就是这种类型.在第一种情形下，$\boldsymbol{d}$ 是转子的总偶极矩；在第二种情形下，$\boldsymbol{d}$ 是陀螺的偶极矩在垂直于其进动轴（即总角动量的方向）平面上的投影.}
+
+解：选择转动平面为xy平面，我们有：
+\begin{equation*}
+  d_x=d_0\cos\varOmega t,\quad d_y=d_0\sin\varOmega t.
+\end{equation*}
+因为这些函数是单色的，所以辐射也是单色的，频率 $\omega=\varOmega$.从（67.7）式我们得到辐射的角分布（对转动周期的平均值）：
+\begin{equation*}
+  \overline{\mathrm{d}I}=\frac{d_0^2\varOmega^4}{8\pi c^3}\left(1+\cos^2\vartheta\right)\mathrm{d}o,
+\end{equation*}
+式中 $\vartheta$ 是辐射的方向$\boldsymbol{n}$和z轴之间的夹角.总辐射是
+\begin{equation*}
+  \overline{I}=\frac{2d_0^2\varOmega^4}{3c^3}.
+\end{equation*}
+辐射的偏振沿着矢量 $\ddot{\boldsymbol{d}}\times\boldsymbol{n}=\omega^2\boldsymbol{n}\times\boldsymbol{d}$.将其分解为 $nz$ 平面和垂直于它的分量，我们发现辐射是椭圆偏振的，椭圆的轴比等于 $n_z=\cos\vartheta$；特别是，沿z轴的辐射是圆偏振的.
+
+\noindent{\heiti 习题2}\quad 求（以速度$\boldsymbol{v}$作整体运动的）电荷体系辐射的角分布，如果在体系整体静止的参考系中辐射的分布已知.
+
+解：令
+\begin{equation*}
+  \mathrm{d}I^{\prime}=f(\cos\theta^{\prime},\varphi^{\prime})\,\mathrm{d}o^{\prime},\quad
+  \mathrm{d}o^{\prime}=\mathrm{d}(\cos\theta^{\prime})\,\mathrm{d}\varphi^{\prime}
+\end{equation*}
+是固联于运动电荷体系的 $K^{\prime}$ 系内的辐射强度（$\theta^{\prime},\varphi^{\prime}$ 是极坐标；极轴沿体系运动的方向).在固定的（实验室）参考系K内时间间隔dt中辐射的能量 $\mathrm{d}\mathcal{E}$，与 $K^{\prime}$ 系内辐射的能量 $\mathrm{d}\mathcal{E}^{\prime}$ 通过如下变换公式相关
+\begin{equation*}
+  \mathrm{d}\mathcal{E}=\frac{\mathrm{d}\mathcal{E}-\boldsymbol{V}\cdot\mathrm{d}\boldsymbol{P}}{\sqrt{1-\dfrac{V^2}{c^2}}}=\mathrm{d}\mathcal{E}\,\frac{1-\dfrac{V}{c}\cos\theta}{\sqrt{1-\dfrac{V^2}{c^2}}}
+\end{equation*}
+（在给定方向传播的辐射的动量与其能量的关系满足方程 $|\mathrm{d}\boldsymbol{P}|=\mathrm{d}\mathcal{E}/c$）. K与 $K^{\prime}$ 系内辐射方向的极坐标 $\theta,\theta^{\prime}$ 按公式（5.6）相关，方位角 $\varphi$ 和 $\varphi^{\prime}$ 相等.最后，$K^{\prime}$ 系内的时间间隔 $\mathrm{d}t^{\prime}$ 对应于K系中的时间间隔
+\begin{equation*}
+  \mathrm{d}t=\frac{\mathrm{d}t^{\prime}}{\sqrt{1-\dfrac{V^2}{c^2}}}.
+\end{equation*}
+结果，我们得到K系中的强度 $\mathrm{d}I=(\mathrm{d}\mathcal{E}/\mathrm{d}t)\,\mathrm{d}o$：
+\begin{equation*}
+  \mathrm{d}I=\frac{\left(1-\dfrac{V^2}{c^2}\right)^2}{\left(1-\dfrac{V}{c}\cos\theta\right)^3}\,f\!\left(\frac{\cos\theta-\dfrac{V}{c}}{1-\dfrac{V}{c}\cos\theta},\varphi\right)\mathrm{d}o.
+\end{equation*}
+因此，对于沿自身轴方向运动的偶极矩，$f=\mathrm{const}\cdot\sin^2\theta^{\prime}$，用刚才得到的公式，我们得出：
+\begin{equation*}
+  \mathrm{d}I=\mathrm{const}\cdot\frac{\left(1-\dfrac{V^2}{c^2}\right)^3\sin^2\theta}{\left(1-\dfrac{V}{c}\cos\theta\right)^5}\,\mathrm{d}o.
+\end{equation*}
+
+\end{xiti}
+
+\section{碰撞时的偶极辐射}
+
+在研究碰撞辐射（轫致辐射）问题时，我们很少对两个沿着一定轨道运动的粒子因碰撞而产生的辐射感兴趣.通常我们必须考虑彼此平行移动着的整个粒子束的散射.我们的问题就是求出每单位粒子流密度的总辐射.
+
+如果粒子流密度等于1（即在单位时间内通过粒子束截面的单位面积有一个粒子)，那么，粒子流中“碰撞参量”在 $\rho$ 和 $\rho+\mathrm{d}\rho$ 之间的粒子数等于 $2\pi\rho\,\mathrm{d}\rho$（即以 $\rho$ 和 $\rho+\mathrm{d}\rho$ 为半径的两个圆之间的环的面积).因此所要求的总辐射就可以用 $2\pi\rho\,\mathrm{d}\rho$ 乘一个粒子（具有碰撞参量 $\rho$）的总辐射 $\Delta\mathcal{E}$，再对 $\mathrm{d}\rho$ 从0到 $\infty$ 积分求得.如此求得的量将有能量乘面积的量纲.我们称它为有效辐射（同散射的有效截面相似），并以 $\varkappa$ 代表之\footnote{$\varkappa$ 与辐射体系能量之比称为辐射能量损失截面.}：
+\begin{equation}
+  \varkappa=\int_0^{\infty}\Delta\mathcal{E}\cdot 2\pi\rho\,\mathrm{d}\rho.
+\end{equation}
+用完全类似的方法，我们可以定义在一定立体角元do内，和在一定的频率间隔 dω 内的有效辐射等等\footnote{如果被积分的式子与粒子的偶极矩在粒子流横截面上投影的定向角有关，那么，首先我们必须在这个平面上对于所有方向求平均值，只有这样做以后才能乘以 $2\pi\rho\,\mathrm{d}\rho$ 然后再积分.}.
+
+现在我们来推导粒子束被中心对称场散射时，产生的辐射角分布的一般公式，这里我们假设辐射是偶极辐射.
+
+被散射粒子束中的单个粒子（在每一时刻）的辐射强度由（67.7）式决定，在这个式子内的 $\boldsymbol{d}$ 是粒子对于散射中心的偶极矩\footnote{实际上，通常我们所说的是指两个粒子——散射的粒子和被散射粒子——相对他们的公共的惯性中心的偶极矩.}.首先，我们将此式对矢量 $\ddot{\boldsymbol{d}}$ 在与粒子束方向相垂直的平面内的所有方向求平均值.因为 $(\ddot{\boldsymbol{d}}\times\boldsymbol{n})^2=\ddot{\boldsymbol{d}}^{\,2}-(\boldsymbol{n}\cdot\ddot{\boldsymbol{d}})^2$，那么，求平均值运算仅仅影响到 $(\boldsymbol{n}\times\ddot{\boldsymbol{d}})^2$.因为散射的场是中心对称的，而入射粒子束是平行的，所以散射（以及辐射）具有对通过中心的轴的轴对称性.我们选定这个轴作为 $x$ 轴. 从对称性的考虑可以看出一次项 $\ddot{d}_y,\ddot{d}_z$ 在求平均值时给出零，又因 $\ddot{d}_x$ 不受求平均运算的影响，
+\begin{equation*}
+  \overline{\ddot{d}_x\ddot{d}_y}=\overline{\ddot{d}_x\ddot{d}_z}=0.
+\end{equation*}
+$\ddot{d}_y^{\,2}$ 和 $\ddot{d}_z^{\,2}$ 的平均值彼此相等，所以
+\begin{equation*}
+  \overline{\ddot{d}_y^{\,2}}=\overline{\ddot{d}_z^{\,2}}=\frac{1}{2}(\ddot{\boldsymbol{d}}^{\,2}-\ddot{d}_x^{\,2}).
+\end{equation*}
+注意到这些，我们就不难求得
+\begin{equation*}
+  \overline{(\ddot{\boldsymbol{d}}\times\boldsymbol{n})^2}
+  =\frac{1}{2}(\ddot{\boldsymbol{d}}^{\,2}+\ddot{d}_x^{\,2})
+  +\frac{1}{2}(\ddot{\boldsymbol{d}}^{\,2}-3\ddot{d}_x^{\,2})\cos^2\theta,
+\end{equation*}
+式中，$\theta$ 是辐射方向$\boldsymbol{n}$与$x$轴的夹角.
+
+将强度对时间和对所有碰撞参量积分，我们就得到确定有效辐射作为辐射方向函数的最终公式
+\begin{equation}
+  \mathrm{d}\varkappa_n=\frac{\mathrm{d}o}{4\pi c^3}\left(A+B\,\frac{3\cos^2\theta-1}{2}\right),
+\end{equation}
+式中，
+\begin{equation}
+  A=\frac{2}{3}\int_0^{\infty}\!\!\int_{-\infty}^{\infty}\ddot{\boldsymbol{d}}^{\,2}\,\mathrm{d}t\,2\pi\rho\,\mathrm{d}\rho,\quad
+  B=\frac{1}{3}\int_0^{\infty}\!\!\int_{-\infty}^{\infty}(\ddot{\boldsymbol{d}}^{\,2}-3\ddot{d}_x^{\,2})\,\mathrm{d}t\,2\pi\rho\,\mathrm{d}\rho.
+\end{equation}
+（68.2）式的第二项写成了这样的形式，它在对所有方向平均时为零，所以总有效辐射是 $\varkappa=A/c^3$.请注意，辐射的角分布相对于穿过散射中心并且垂直于束的平面是对称的，因为如果将θ换为 $\pi-\theta$，（68.2）式不变.这个特性为偶极辐射所专有，对于比 $v/c$ 更高阶的近似则无这个特性.
+
+伴随散射而产生的辐射强度可以分成两部分，一部分是在经过$x$轴和方向$\boldsymbol{n}$的平面内（我们选择这个平面为 $xy$ 平面）偏振的辐射，另一部分是在垂直平面 $xz$ 内偏振的辐射.
+
+电场矢量与下面矢量的方向相同：
+\begin{equation*}
+  \boldsymbol{n}\times(\boldsymbol{n}\times\ddot{\boldsymbol{d}})=\boldsymbol{n}(\boldsymbol{n}\cdot\ddot{\boldsymbol{d}})-\ddot{\boldsymbol{d}}
+\end{equation*}
+（参见（67.6）式).这个矢量在与 $xy$ 平面垂直的方向上的分量是 $-\ddot{d}_z$，而它在 $xy$ 平面内的投影是 $|\sin\theta\cdot\ddot{d}_x-\cos\theta\cdot\ddot{d}_y|$.后面这个量可以最方便地由磁场的z分量决定，磁场的方向是 $\ddot{\boldsymbol{d}}\times\boldsymbol{n}$.
+
+将 $\boldsymbol{E}$ 平方，再对矢量 $\ddot{\boldsymbol{d}}$ 在 $yz$ 平面内的所有方向求平均值，我们首先看到，场在 $xy$ 平面上的投影同它在与 $xy$ 平面垂直的平面上的投影之积为零.这意味着，辐射强度实际上可以表示为两个独立部分之和，这两部分就是在两个相互垂直的平面内偏振的辐射强度.
+
+电矢量在垂直于 $xy$ 平面内的辐射强度由 $\ddot{d}_z^{\,2}=\frac{1}{2}(\ddot{\boldsymbol{d}}^{\,2}-\ddot{d}_x^{\,2})$ 的方均所决定.对于有效辐射的相应部分，我们得到
+\begin{equation}
+  \mathrm{d}\varkappa_n^{\perp}=\frac{\mathrm{d}o}{4\pi c^3}\,\frac{1}{2}\int_0^{\infty}\!\!\int_{-\infty}^{\infty}(\ddot{\boldsymbol{d}}^{\,2}-\ddot{d}_x^{\,2})\,\mathrm{d}t\,2\pi\rho\,\mathrm{d}\rho.
+\end{equation}
+我们注意到，辐射的这一部分是各向同性的.没有必要写出电场矢量在 $xy$ 平面内的有效辐射表达式，因为，显然
+\begin{equation*}
+  \mathrm{d}\varkappa_n^{\perp}+\mathrm{d}\varkappa_n^{\parallel}=\mathrm{d}\varkappa_n.
+\end{equation*}
+
+用相似的方法，我们可以求出在给定频率间隔dω内的有效辐射的角分布公式：
+\begin{equation}
+  \mathrm{d}\varkappa_{n\omega}=\frac{\mathrm{d}o}{2\pi c^3}\left[A(\omega)+B(\omega)\,\frac{3\cos^2\theta-1}{2}\right]\frac{\mathrm{d}\omega}{2\pi},
+\end{equation}
+式中
+\begin{equation}
+  A(\omega)=\frac{2\omega^4}{3}\int_0^{\infty}\boldsymbol{d}_\omega^{\,2}\,2\pi\rho\,\mathrm{d}\rho,\quad
+  B(\omega)=\frac{\omega^4}{3}\int_0^{\infty}(\boldsymbol{d}_\omega^{\,2}-3d_{x\omega}^{\,2})\,2\pi\rho\,\mathrm{d}\rho.
+\end{equation}
+
+\section{低频轫致辐射}
+
+我们来考虑轫致辐射谱分解的低频“尾部”，这个区间的频率远低于辐射主要部分集中所在处的频率 $\omega_0$
+\begin{equation}
+  \omega\ll\omega_0.
+\end{equation}
+我们不（像上节所作的那样）假设碰撞粒子的速度远小于光速；下面的公式对于任何速度都是适用的.在非相对论情形下，$\omega_0\sim 1/\tau$，这里τ是碰撞延续时间的量级；在极端相对论情形下，$\omega_0$ 正比于辐射粒子能量的平方（参见§77).
+
+在积分
+\begin{equation*}
+  \boldsymbol{H}_\omega=\int_{-\infty}^{\infty}\boldsymbol{H}\,\mathrm{e}^{\mathrm{i}\omega t}\,\mathrm{d}t
+\end{equation*}
+之中，辐射场$\boldsymbol{H}$只有在与 $1/\omega_0$ 同量级的时间间隔内，才与零有显著的差别.因此，按照条件（69.1)，我们可以假设在被积函数内 $\omega t\ll 1$，从而可以使 $\mathrm{e}^{\mathrm{i}\omega t}$ 等于1；于是，
+\begin{equation*}
+  \boldsymbol{H}_\omega=\int_{-\infty}^{\infty}\boldsymbol{H}\,\mathrm{d}t.
+\end{equation*}
+将 $\boldsymbol{H}=\dot{\boldsymbol{A}}\times\boldsymbol{n}/c$ 代入上式，并对时间积分，则得到：
+\begin{equation}
+  \boldsymbol{H}_\omega=\frac{1}{c}(\boldsymbol{A}_2-\boldsymbol{A}_1)\times\boldsymbol{n},
+\end{equation}
+式中，$\boldsymbol{A}_2-\boldsymbol{A}_1$ 是碰撞粒子在碰撞期间所产生的场的矢势的变化.
+
+将（69.2）代入（66.9）式，我们便得到（频率为 $\omega$ 的）碰撞总辐射：
+\begin{equation}
+  \mathrm{d}\mathcal{E}_{n\omega}=\frac{R_0^2}{4c\pi^2}\left[(\boldsymbol{A}_2-\boldsymbol{A}_1)\times\boldsymbol{n}\right]^2\mathrm{d}o\,\mathrm{d}\omega.
+\end{equation}
+我们可以用对于矢势的李纳-维谢尔表达式（66.4）得出：
+\begin{equation}
+  \mathrm{d}\mathcal{E}_{n\omega}=\frac{1}{4\pi^2c^3}\left[\sum e\left\{\frac{\boldsymbol{v}_2\times\boldsymbol{n}}{1-(1/c)\,\boldsymbol{n}\cdot\boldsymbol{v}_2}-\frac{\boldsymbol{v}_1\times\boldsymbol{n}}{1-(1/c)\,\boldsymbol{n}\cdot\boldsymbol{v}_1}\right\}\right]^2\mathrm{d}o\,\mathrm{d}\omega,
+\end{equation}
+式中 $\boldsymbol{v}_1$ 和 $\boldsymbol{v}_2$ 是碰撞以前和以后的粒子速度，求和对两个碰撞粒子进行.我们注意到，dω的系数与频率无关.换言之，对于低频率（条件（69.1))，谱分布与频率无关，就是说，当 $\omega\to0$ 时，$\mathrm{d}\mathcal{E}_{n\omega}/\mathrm{d}\omega$ 趋近于一个常数极限\footnote{对碰撞参量积分，我们可以得到粒子束散射时的有效辐射的相似的结果，然而我们要记着，这个结果对于碰撞粒子有库仑相互作用情况下的有效辐射是不正确的，因为对 $\mathrm{d}\rho$ 的积分在 $\rho$ 很大时是（对数）发散的.在下一节中可以看出，在这种情形下，低频率的有效辐射与频率的对数有关，而不是保持不变.}.
+
+如果碰撞粒子的速度比光速小很多，那么，（69.4）式变为
+\begin{equation}
+  \mathrm{d}\mathcal{E}_{n\omega}=\frac{1}{4\pi^2c^3}\left[\sum e\,(\boldsymbol{v}_2-\boldsymbol{v}_1)\times\boldsymbol{n}\right]^2\mathrm{d}o\,\mathrm{d}\omega.
+\end{equation}
+
+这个表达式对应于偶极辐射的情形，矢势由（67.4）式给出.
+
+这些公式的一个有趣应用是应用于发射新带电粒子（例如从核中出射$\beta$粒子）时产生的辐射.这个过程被处理成粒子的速度瞬时从零变为其实际值.（由于公式（69.5）对交换 $\boldsymbol{v}_1$ 和 $\boldsymbol{v}_2$ 的对称性，起源于这个过程的辐射与其逆过程（粒子瞬时停止）产生的辐射是相同的.）重要之点在于，由于该过程的“时间”$\tau\to0$，条件（69.1）实际上对所有频率都是满足的.\footnote{然而，这些公式的应用受到量子条件的限制，即 $\hbar\omega$ 同粒子的总动能相比很小.}
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 求一个当射出时以速度$\boldsymbol{v}$运动的带电粒子所产生总辐射的谱分布.
+
+解：按照公式（69.4）（其中我们令 $\boldsymbol{v}_2=\boldsymbol{v}$，$\boldsymbol{v}_1=\boldsymbol{0}$），我们有：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_\omega=\mathrm{d}\omega\,\frac{e^2\boldsymbol{v}^2}{4\pi^2c^3}\int_0^{\pi}\frac{\sin^2\theta}{(1-(v/c)\cos\theta)^2}\,2\pi\sin\theta\,\mathrm{d}\theta.
+\end{equation*}
+进行积分后得到\footnote{正如我们已经指出的那样，即使由于过程的“瞬时性”，条件（69.1）对所有频率都满足，我们却不能通过将（1）式对 dω 积分来求得总辐射能——该积分在高频发散.值得一提的是，除了经典性质的条件在高频失效以外，在本例中发散的原因还在于经典问题的不正确陈述，即这个问题中粒子在初始时刻加速度为无穷大.}：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_\omega=\frac{e^2}{\pi c}\left(\frac{c}{v}\ln\frac{c+v}{c-v}-2\right)\mathrm{d}\omega.\tag{1}
+\end{equation*}
+对于 $v\ll c$，这个公式化为
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_\omega=\frac{2e^2\boldsymbol{v}^2}{3\pi c^3}\,\mathrm{d}\omega,
+\end{equation*}
+该公式也可以从（69.5)直接得到.
+
+\end{xiti}
+
+\section{库仑相互作用的辐射}
+
+为了参考的目的，我们在这一节内列举一系列有关两个带电粒子体系的偶极辐射公式；这里，我们假设粒子的速度比光速小很多.
+
+我们对这个体系作为一个整体的匀速运动（即体系惯性中心的运动）没有兴趣，因为它并不引起辐射；因此我们只需研究粒子的相对运动.我们选定惯性中心为坐标原点，那么，体系的偶极矩 $\boldsymbol{d}=e_1\boldsymbol{r}_1+e_2\boldsymbol{r}_2$ 可以写成
+\begin{equation}
+  \boldsymbol{d}=\frac{e_1m_2-e_2m_1}{m_1+m_2}\,\boldsymbol{r}
+  =\mu\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)\boldsymbol{r},
+\end{equation}
+式中，指标1和2分别属于两个粒子，而 $\boldsymbol{r}=\boldsymbol{r}_1-\boldsymbol{r}_2$ 则是两粒子之间的径矢.
+\begin{equation*}
+  \mu=\frac{m_1m_2}{m_1+m_2}
+\end{equation*}
+是约化质量.
+
+我们从两个按照库仑定律互相吸引着的粒子在作椭圆运动时所产生的辐射开始.从力学我们知道（参看本教程第一卷§15)，这种运动可以用一质量为 $\mu$ 的粒子在椭圆上的运动来说明，椭圆的极坐标方程是
+\begin{equation}
+  1+\varepsilon\cos\varphi=\frac{a(1-\varepsilon^2)}{r},
+\end{equation}
+此处的半长轴 $a$ 和离心率 $\varepsilon$ 是
+\begin{equation}
+  a=\frac{\alpha}{2|\mathcal{E}|},\quad
+  \varepsilon=\sqrt{1-\frac{2|\mathcal{E}|M^2}{\mu\alpha^2}}.
+\end{equation}
+式中，$\mathcal{E}$ 是粒子的总能量（略去他们的静能！)，运动在有限范围内时，总能量为负. $M=\mu r^2\dot{\varphi}$ 是角动量，而 $\alpha$ 是库仑定律中的常数：
+\begin{equation*}
+  \alpha=|e_1e_2|.
+\end{equation*}
+
+坐标与时间的关系可以用参数方程表示如下：
+\begin{equation}
+  r=a(1-\varepsilon\cos\xi),\quad
+  t=\sqrt{\frac{\mu a^3}{\alpha}}\,(\xi-\varepsilon\sin\xi).
+\end{equation}
+当参数 $\xi$ 从0变到2π时，粒子在椭圆上走一周；运动的周期是
+\begin{equation*}
+  T=2\pi\sqrt{\frac{\mu a^3}{\alpha}}.
+\end{equation*}
+
+现在我们来求偶极矩的傅里叶分量.因为运动是周期性的，所以这即是求傅里叶级数的展开式.既然偶极矩与径矢 $\boldsymbol{r}$ 成正比，那么这个问题就可化为求坐标 $x=r\cos\varphi$, $y=r\sin\varphi$ 的傅里叶分量. $x$ 和 $y$ 与时间的关系由如下参数方程决定
+\begin{equation}
+  x=a(\cos\xi-\varepsilon),\quad
+  y=a\sqrt{1-\varepsilon^2}\sin\xi,\quad
+  \omega_0t=\xi-\varepsilon\sin\xi,
+\end{equation}
+这里，我们引入了频率
+\begin{equation*}
+  \omega_0=\frac{2\pi}{T}=\sqrt{\frac{\alpha}{\mu a^3}}=\frac{(2|\mathcal{E}|)^{3/2}}{\alpha\mu^{1/2}}.
+\end{equation*}
+
+利用 $\dot{x}_n=-\mathrm{i}\omega_0nx_n$, $\dot{y}_n=-\mathrm{i}\omega_0ny_n$，计算速度的傅里叶分量，这比求坐标的傅里叶分量更便利些.我们有
+\begin{equation*}
+  x_n=\frac{\dot{x}_n}{-\mathrm{i}\omega_0n}=\frac{\mathrm{i}}{\omega_0nT}\int_0^T\mathrm{e}^{\mathrm{i}\omega_0nt}\,\dot{x}\,\mathrm{d}t.
+\end{equation*}
+但是 $\dot{x}\,\mathrm{d}t=\mathrm{d}x=-a\sin\xi\,\mathrm{d}\xi$；因此，将对dt的积分变为对dξ的积分，我们就有
+\begin{equation*}
+  x_n=-\frac{\mathrm{i}a}{2\pi n}\int_0^{2\pi}\mathrm{e}^{\mathrm{i}n(\xi-\varepsilon\sin\xi)}\sin\xi\,\mathrm{d}\xi.
+\end{equation*}
+同样，我们可求得
+\begin{equation*}
+  y_n=\frac{\mathrm{i}a\sqrt{1-\varepsilon^2}}{2\pi n}\int_0^{2\pi}\mathrm{e}^{\mathrm{i}n(\xi-\varepsilon\sin\xi)}\cos\xi\,\mathrm{d}\xi
+  =\frac{\mathrm{i}a\sqrt{1-\varepsilon^2}}{2\pi n\varepsilon}\int_0^{2\pi}\mathrm{e}^{\mathrm{i}n(\xi-\varepsilon\sin\xi)}\,\mathrm{d}\xi
+\end{equation*}
+（在从第一个积分变到第二个积分时，我们在被积函数中写了 $\cos\xi\equiv\left(\cos\xi-\dfrac{1}{\varepsilon}\right)+\dfrac{1}{\varepsilon}$；这时，出现了 $\cos\xi-\dfrac{1}{\varepsilon}$ 的积分，而它恒等于零）.最后利用贝塞尔函数的理论，我们有
+\begin{equation}
+  \frac{1}{2\pi}\int_0^{2\pi}\mathrm{e}^{\mathrm{i}(n\xi-x\sin\xi)}\,\mathrm{d}\xi
+  =\frac{1}{\pi}\int_0^{\pi}\cos(n\xi-x\sin\xi)\,\mathrm{d}\xi=\mathbf{J}_n(x),
+\end{equation}
+式中，$\mathbf{J}_n(x)$ 是整数n阶的贝塞尔函数.结果得到所求的傅里叶分量的如下表达式：
+\begin{equation}
+  x_n=\frac{a}{n}\,\mathbf{J}_n^{\prime}(n\varepsilon),\quad
+  y_n=\frac{\mathrm{i}a\sqrt{1-\varepsilon^2}}{n\varepsilon}\,\mathbf{J}_n(n\varepsilon)
+\end{equation}
+（贝塞尔函数上面的一撇表示对函数自变量微分）.
+
+辐射的单色分量强度的表达式可以通过将 $x_n$ 和 $y_n$ 代入如下公式中得到：
+\begin{equation*}
+  I_n=\frac{4\omega_0^4n^4}{3c^3}\mu^2\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2\left(|x_n|^2+|y_n|^2\right)
+\end{equation*}
+（参见（67.11））.利用粒子的特征量来表示a和 $\omega_0$，最后我们得到：
+\begin{equation}
+  I_n=\frac{64n^2\mathcal{E}^4}{3c^3\alpha^2}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \left[\mathbf{J}_n^{\prime 2}(n\varepsilon)+\frac{1-\varepsilon^2}{\varepsilon^2}\,\mathbf{J}_n^2(n\varepsilon)\right].
+\end{equation}
+
+作为特例，下面我们写出在轨道接近抛物线的运动中（ε接近1)非常高次谐波（n很大）强度的渐近公式.为此目的，我们用公式
+\begin{equation}
+\begin{aligned}
+  &\mathbf{J}_n(n\varepsilon)\approx\frac{1}{\sqrt{\pi}}\left(\frac{2}{n}\right)^{1/3}
+  \Phi\left[\left(\frac{n}{2}\right)^{2/3}(1-\varepsilon^2)\right],\\
+  &\qquad n\gg1,\quad 1-\varepsilon\ll1,
+\end{aligned}
+\end{equation}
+式中$\Phi$是§59习题脚注中定义的艾里函数\footnote{对于 $n\gg 1$，对积分
+\begin{equation*}
+  \mathrm{J}_n(n\varepsilon)=\frac{1}{\pi}\int_0^{\pi}\cos[n(\xi-\varepsilon\sin\xi)]\,\mathrm{d}\xi
+\end{equation*}
+的主要贡献来自 $\xi$ 的小值（对于大的 $\xi$ 值，被积函数快速振荡）.据此，我们将余弦函数的自变量按 $\xi$ 的幂展开：
+\begin{equation*}
+  \mathrm{J}_n(n\varepsilon)=\frac{1}{\pi}\int_0^{\infty}\cos\left[n\left(\frac{1-\varepsilon^2}{2}\xi+\frac{\xi^3}{6}\right)\right]\mathrm{d}\xi;
+\end{equation*}
+因为积分迅速收敛，上限已换为 $\infty$；含 $\xi^3$ 的项必须保留，因为一阶项含有小系数 $1-\varepsilon\approx(1-\varepsilon^2)/2$.通过明显的代换，上面的积分可以化为（70.9）的形式.}.
+
+代入（70.8）得到：
+\begin{equation}
+\begin{aligned}
+  I_n={}&\frac{64\times 2^{2/3}}{3\pi}\,\frac{n^{4/3}\mathcal{E}^4}{c^3\alpha^2}
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \Bigl\{(1-\varepsilon^2)\Phi^2\left[\left(\tfrac{n}{2}\right)^{2/3}(1-\varepsilon^2)\right]+{}\\
+  &+\left(\frac{2}{n}\right)^{2/3}\Phi^{\prime 2}\left[\left(\tfrac{n}{2}\right)^{2/3}(1-\varepsilon^2)\right]\Bigr\},
+\end{aligned}
+\end{equation}
+
+这个结果也可以用麦克唐纳函数 $K_\nu$ 表示为：
+\begin{equation*}
+\begin{aligned}
+  I_n={}&\frac{64}{9\pi^2}\,\frac{n^2\mathcal{E}^4}{c^3\alpha^2}
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \Bigl\{K_{1/3}^2\left[\frac{n}{3}(1-\varepsilon^2)^{3/2}\right]+{}\\
+  &+K_{2/3}^2\left[\frac{n}{3}(1-\varepsilon^2)^{3/2}\right]\Bigr\}(1-\varepsilon^2)^2
+\end{aligned}
+\end{equation*}
+（必要的公式在（74.13)式后第1个脚注给出）.
+
+以下，我们考虑两个互相吸引的带电粒子的碰撞.这两个粒子的相对运动，可以用一个以质量为 $\mu$ 的粒子在双曲线上的运动来描写：
+\begin{equation}
+  1+\varepsilon\cos\varphi=\frac{a(\varepsilon^2-1)}{r},
+\end{equation}
+式中，
+\begin{equation}
+  a=\frac{\alpha}{2\mathcal{E}},\quad
+  \varepsilon=\sqrt{1+\frac{2\mathcal{E}M^2}{\mu\alpha^2}}
+\end{equation}
+（现在 $\mathcal{E}>0$）. r与时间的关系由下面的参数方程所决定：
+\begin{equation}
+  r=a(\varepsilon\cosh\xi-1),\quad
+  t=\sqrt{\frac{\mu a^3}{\alpha}}\,(\varepsilon\sinh\xi-\xi),
+\end{equation}
+此处的参数ξ可取-∞到+∞之间的一切值.对于坐标$x$，$y$，我们有
+\begin{equation}
+  x=a(\varepsilon-\cosh\xi),\quad
+  y=a\sqrt{\varepsilon^2-1}\sinh\xi.
+\end{equation}
+
+傅里叶分量的计算（我们现在所指的是展开为傅里叶积分的展开式）可以照上面的方法完全一样地进行.结果得到：
+\begin{equation}
+  x_\omega=\frac{\pi a}{\omega}\,H_{\mathrm{i}\nu}^{(1)\prime}(\mathrm{i}\nu\varepsilon),\quad
+  y_\omega=-\frac{\pi a\sqrt{\varepsilon^2-1}}{\omega\varepsilon}\,H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu\varepsilon),
+\end{equation}
+式中，$H_{\mathrm{i}\nu}^{(1)}$ 是第一类第$\mathrm{i}\nu$阶的汉克尔函数，我们引入了符号
+\begin{equation}
+  \nu=\frac{\omega}{\sqrt{\dfrac{\alpha}{\mu a^3}}}=\frac{\omega\alpha}{\mu v_0^3}
+\end{equation}
+（$v_0$ 是粒子在无穷远处的相对速度；能量 $\mathcal{E}=\mu v_0^2/2$）.在计算中，我们还引用了贝塞尔函数理论中的公式：
+\begin{equation}
+  \int_{-\infty}^{\infty}\mathrm{e}^{p\xi-\mathrm{i}x\sinh\xi}\,\mathrm{d}\xi=\mathrm{i}\pi H_p^{(1)}(\mathrm{i}x).
+\end{equation}
+
+将（70.15）代入公式
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_\omega=\frac{4\omega^4\mu^2}{3c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2\left(|x_\omega|^2+|y_\omega|^2\right)\frac{\mathrm{d}\omega}{2\pi}
+\end{equation*}
+（参见（67.10))我们便得到\footnote{注意，函数 $H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu\varepsilon)$ 是纯虚数，而其导数 $H_{\mathrm{i}\nu}^{(1)\prime}(\mathrm{i}\nu\varepsilon)$ 是实数.}：
+\begin{equation}
+  \mathrm{d}\mathcal{E}_\omega=\frac{\pi\mu^2\alpha^2\omega^2}{6c^3\mathcal{E}^2}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \left\{\left[H_{\mathrm{i}\nu}^{(1)\prime}(\mathrm{i}\nu\varepsilon)\right]^2
+  +\frac{\varepsilon^2-1}{\varepsilon^2}\left[H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu\varepsilon)\right]^2\right\}\mathrm{d}\omega.
+\end{equation}
+
+我们比较关心的量是平行粒子束散射时的“有效辐射”（参见§68).为了计算它，我们用 $2\pi\rho\,\mathrm{d}\rho$ 乘 $\mathrm{d}\mathcal{E}_\omega$，再对 $\rho$ 从零到无穷大积分.利用 $2\pi\rho\,\mathrm{d}\rho=2\pi a^2\varepsilon\,\mathrm{d}\varepsilon$，我们将对 $\mathrm{d}\rho$ 的积分化为对 $\mathrm{d}\varepsilon$（在1到 $\infty$ 的范围中）的积分.这个关系从定义（70.12)得来，其中，角动量M和能量 $\mathcal{E}$ 与碰撞参量 $\rho$ 及粒子在无穷远处的速度 $v_0$ 的关系是：
+\begin{equation*}
+  M=\mu\rho v_0,\quad
+  \mathcal{E}=\frac{\mu v_0^2}{2}.
+\end{equation*}
+最后的积分可以直接利用公式
+\begin{equation*}
+  z\left[Z_p^{\prime 2}+\left(\frac{p^2}{z^2}-1\right)Z_p^2\right]=\frac{\mathrm{d}}{\mathrm{d}z}\left(zZ_pZ_p^{\prime}\right),
+\end{equation*}
+式中，$Z_p(z)$ 是 $p$ 阶贝塞尔方程的一个任意解\footnote{这个公式是贝塞尔方程
+\begin{equation*}
+  Z''+\frac{1}{z}Z'+\left(1-\frac{p^2}{z^2}\right)Z=0
+\end{equation*}
+的直接结果.}.记着当 $\varepsilon\to\infty$ 时，汉克尔函数 $H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu\varepsilon)$ 变为零，结果我们便得到下面的公式：
+\begin{equation}
+  \mathrm{d}\varkappa_\omega=\frac{4\pi^2\alpha^3\omega}{3c^3\mu v_0^5}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  |H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu)|\,H_{\mathrm{i}\nu}^{(1)\prime}(\mathrm{i}\nu)\,\mathrm{d}\omega.
+\end{equation}
+
+现在让我们考虑低频和高频两种极限情形.在积分
+\begin{equation}
+  \int_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}\nu(\xi-\sinh\xi)}\,\mathrm{d}\xi=\mathrm{i}\pi H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu)
+\end{equation}
+（汉克尔函数的定义）中，积分变量 $\xi$ 的唯一重要的范围是指数在其中与1同数量级的范围.因此，对于低频（$\nu\ll 1$），仅有大 $\xi$ 的区域是重要的.但是对于大的 $\xi$，我们有 $\sinh\xi\gg\xi$.因此，近似地，
+\begin{equation*}
+  H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu)\approx-\frac{\mathrm{i}}{\pi}\int_{-\infty}^{\infty}\mathrm{e}^{-\mathrm{i}\nu\sinh\xi}\,\mathrm{d}\xi=H_0^{(1)}(\mathrm{i}\nu).
+\end{equation*}
+同理，我们可求得
+\begin{equation*}
+  H_{\mathrm{i}\nu}^{(1)\prime}(\mathrm{i}\nu)\approx H_0^{(1)\prime}(\mathrm{i}\nu).
+\end{equation*}
+最后，利用贝塞尔函数理论中的近似式（对于小的x)
+\begin{equation*}
+  \mathrm{i}H_0^{(1)}(\mathrm{i}x)\approx\frac{2}{\pi}\ln\frac{2}{\gamma x}
+\end{equation*}
+（$\gamma=\mathrm{e}^C$，式中，C是欧拉常数，$\gamma=1.781\cdots$），我们得到低频有效辐射的如下表达式：
+\begin{equation}
+  \mathrm{d}\varkappa_\omega=\frac{16\alpha^2}{3v_0^2c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \ln\left(\frac{2\mu v_0^3}{\gamma\omega\alpha}\right)\mathrm{d}\omega,\quad
+  \text{当}\ \ \omega\ll\frac{\mu v_0^3}{\alpha}.
+\end{equation}
+这个表达式依赖于频率的对数.
+
+对于高频率（$\nu\gg 1$），在积分（70.20）中，与前相反，小 $\xi$ 值的区域是重要的.根据这个理由，我们将被积函数的指数展开为 $\xi$ 的幂级数，并近似地得到
+\begin{equation*}
+  H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu)\approx-\frac{\mathrm{i}}{\pi}\int_{-\infty}^{\infty}\exp\left(-\frac{\mathrm{i}\nu}{6}\xi^3\right)\mathrm{d}\xi
+  =-\frac{2\mathrm{i}}{\pi}\operatorname{Re}\left\{\int_0^{\infty}\exp\left(-\frac{\mathrm{i}\nu}{6}\xi^3\right)\mathrm{d}\xi\right\},
+\end{equation*}
+作代换 $\mathrm{i}\nu\xi^3/6=\eta$，上面的积分化为Γ函数，结果我们得到
+\begin{equation*}
+  H_{\mathrm{i}\nu}^{(1)}(\mathrm{i}\nu)\approx-\frac{\mathrm{i}}{\pi\sqrt{3}}\left(\frac{6}{\nu}\right)^{1/3}\Gamma\left(\frac{1}{3}\right).
+\end{equation*}
+同理，我们得到
+\begin{equation*}
+  H_{\mathrm{i}\nu}^{(1)\prime}(\mathrm{i}\nu)\approx\frac{1}{\pi\sqrt{3}}\left(\frac{6}{\nu}\right)^{2/3}\Gamma\left(\frac{2}{3}\right).
+\end{equation*}
+最后，再利用Γ函数理论中的熟知公式
+\begin{equation*}
+  \Gamma(x)\Gamma(1-x)=\frac{\pi}{\sin\pi x},
+\end{equation*}
+对于高频率有效辐射，我们得到：
+\begin{equation}
+  \mathrm{d}\varkappa_\omega=\frac{16\pi\alpha^2}{3^{3/2}v_0^2c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2\mathrm{d}\omega,\quad
+  \text{当}\ \ \omega\gg\frac{\mu v_0^3}{\alpha},
+\end{equation}
+这是一个与频率无关的表达式.
+
+现在我们转到伴随两个按照库仑定律 $U=\dfrac{\alpha}{r}$（$\alpha>0$）而排斥的粒子互相碰撞而产生的辐射.运动发生于双曲线
+\begin{equation}
+  -1+\varepsilon\cos\varphi=\frac{a(\varepsilon^2-1)}{r};
+\end{equation}
+\begin{equation}
+  x=a(\varepsilon+\cosh\xi),\ 
+  y=a\sqrt{\varepsilon^2-1}\sinh\xi,\ 
+  t=\sqrt{\frac{\mu a^3}{\alpha}}\,(\varepsilon\sinh\xi+\xi)
+\end{equation}
+（a和ε来自（70.12)）.对于这种情形的所有计算直接可以化为上面进行过的计算，因而这里就不再重复了.实际上，对于坐标x的傅里叶分量的积分
+\begin{equation*}
+  x_\omega=\frac{\mathrm{i}a}{\omega}\int_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}\nu(\varepsilon\sinh\xi+\xi)}\sinh\xi\,\mathrm{d}\xi
+\end{equation*}
+在作代换 $\xi\to\mathrm{i}\pi-\xi$ 后便可化为在互相吸引情形下的积分乘以 $-\mathrm{e}^{-\pi\nu}$；这对 $y_\omega$ 也同样成立.
+
+因此，在相斥的情形中，傅里叶分量 $x_\omega$, $y_\omega$ 的表达式与相吸的情形中的相应的表达式只相差一个因子 $\mathrm{e}^{-\pi\nu}$.所以，在辐射的各公式中，唯一的变动是加上一个因子 $\mathrm{e}^{-2\pi\nu}$.就特例言之，对于低频，我们得到上面的公式(70.21)（因为对于 $\nu\ll 1$：$\mathrm{e}^{-2\pi\nu}\approx 1$）.对于高频，有效辐射有下面的形式：
+\begin{equation}
+  \mathrm{d}\varkappa_\omega=\frac{16\pi\alpha^2}{3^{3/2}v_0^2c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \exp\left(-\frac{2\pi\omega\alpha}{\mu v_0^3}\right)\mathrm{d}\omega,\quad
+  \text{当}\ \ \omega\gg\frac{\mu v_0^3}{\alpha}.
+\end{equation}
+它随着频率的增加而按指数规律下降.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求两个互相吸引的粒子在作椭圆运动时的平均总辐射.
+
+解：从偶极矩的表达式（70.1），我们得到辐射的总强度：
+\begin{equation*}
+  I=\frac{2\mu^2}{3c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2\ddot{\boldsymbol{r}}^{\,2}
+  =\frac{2\alpha^2}{3c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2\frac{1}{r^4},
+\end{equation*}
+这里我们用了运动方程 $\mu\ddot{\boldsymbol{r}}=-\alpha\boldsymbol{r}/r^3$. 从轨道方程（70.2)用φ来表示坐标 $\boldsymbol{r}$，再利用方程 $\mathrm{d}t=\mu r^2\mathrm{d}\varphi/M$，将对时间的积分变为对角φ的积分（从0到 $2\pi$）. 结果，我们求得平均强度：
+\begin{equation*}
+  \overline{I}=\frac{1}{T}\int_0^T I\,\mathrm{d}t
+  =\frac{2^{3/2}}{3c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \frac{\mu^{5/2}\alpha^3|\mathcal{E}|^{3/2}}{M^5}
+  \left(3-\frac{2|\mathcal{E}|M^2}{\mu\alpha^2}\right).
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 求两个带电粒子的碰撞总辐射 $\Delta\mathcal{E}$.
+
+解：在相吸的情形下，轨道是双曲线(70.11)，而在相斥的情形下，轨道是(70.23).双曲线的渐近线与其轴的夹角是 $\varphi_0$，$\varphi_0$ 由 $\pm\cos\varphi_0=1/\varepsilon$ 来决定，而粒子的偏转角（在惯性中心是静止的坐标系中）是 $\chi=|\pi-2\varphi_0|$. 计算方法照习题1进行（对 $\mathrm{d}\varphi$ 的积分限是 $-\varphi_0$ 和 $\varphi_0$）. 对于相吸的情形，得到的结果是
+\begin{equation*}
+  \Delta\mathcal{E}=\frac{\mu^3v_0^5}{3c^3\alpha}\tan^3\frac{\chi}{2}
+  \left[(\pi+\chi)\left(1+3\tan^2\frac{\chi}{2}\right)+6\tan\frac{\chi}{2}\right]
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2,
+\end{equation*}
+而对于相斥的情形，我们得到
+\begin{equation*}
+  \Delta\mathcal{E}=\frac{\mu^3v_0^5}{3c^3\alpha}\tan^3\frac{\chi}{2}
+  \left[(\pi-\chi)\left(1+3\tan^2\frac{\chi}{2}\right)-6\tan\frac{\chi}{2}\right]
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2.
+\end{equation*}
+在两种情形下，$\chi$ 都看成正角并由如下方程决定
+\begin{equation*}
+  \cot\frac{\chi}{2}=\frac{\mu v_0^2\rho}{\alpha}.
+\end{equation*}
+因此对于两个相斥电荷的“正”碰撞（$\rho\to0$, $\chi\to\pi$），我们得到
+\begin{equation*}
+  \Delta\mathcal{E}=\frac{8\mu^3v_0^5}{45c^3\alpha}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2.
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 求在相斥库仑场中一粒子束散射时的总有效辐射.
+
+解：所求的量是
+\begin{equation*}
+  \varkappa=\int_0^{\infty}\!\!\int_{-\infty}^{\infty}I\,\mathrm{d}t\,2\pi\rho\,\mathrm{d}\rho
+  =\frac{2\alpha^2}{3c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \cdot 2\pi\int_0^{\infty}\!\!\int_{-\infty}^{\infty}\frac{1}{r^4}\,\mathrm{d}t\,\rho\,\mathrm{d}\rho.
+\end{equation*}
+我们将对时间的积分换为沿电荷轨道对dr的积分，写出 $\mathrm{d}t=\mathrm{d}r/v_r$，此处的径向速度 $v_r=\dot{r}$ 可以用r表示如下：
+\begin{equation*}
+  v_r=\sqrt{\frac{2}{\mu}\left[\mathcal{E}-\frac{M^2}{2\mu r^2}-U(r)\right]}
+  =\sqrt{v_0^2-\frac{\rho^2v_0^2}{r^2}-\frac{2\alpha}{\mu r}}.
+\end{equation*}
+对 $\mathrm{d}r$ 积分的范围是从 $\infty$ 到离中心最近的距离 $r_0=r_0(\rho)$（在这一点 $v_r=0$），然后再从 $r_0$ 到无穷远；这就化为从 $r_0$ 到 $\infty$ 积分两次. 计算二重积分的方便做法是将积分次序互换（即先对 $\mathrm{d}\rho$ 积分，然后再对dr积分).计算的结果是
+\begin{equation*}
+  \varkappa=\frac{8\pi}{9}\,\frac{\alpha\mu v_0}{c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2.
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 设有一个电荷从另一个电荷的旁边经过，假设电荷的速度是这样大（虽然比起光速仍然是很小的），以致它的轨道与直线的偏差可以认为很小，求由此所产生的总辐射的角分布.
+
+解：如果动能 $\mu v^2/2$ 比势能大很多（势能的量级为 $\alpha/\rho\,(\mu v^2\gg\alpha/\rho)$），那么，偏转角就很小了.我们选定运动的平面为xy平面，而原点仍选在惯性中心，$x$轴沿速度的方向.在一级近似中，轨道可以由 $x=vt, y=\rho$ 给出.在高一级的近似中，运动方程给出
+\begin{equation*}
+  \mu\ddot{x}=\frac{\alpha}{r^2}\,\frac{x}{r}\approx\frac{\alpha vt}{r^3},\quad
+  \mu\ddot{y}=\frac{\alpha}{r^2}\,\frac{y}{r}\approx\frac{\alpha\rho}{r^3},
+\end{equation*}
+这里
+\begin{equation*}
+  r=\sqrt{x^2+y^2}\approx\sqrt{\rho^2+v^2t^2}.
+\end{equation*}
+利用公式（67.7)，我们求得：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_n=\mathrm{d}o\,\frac{\mu^2}{4\pi c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \int_{-\infty}^{\infty}\left[\ddot{x}^2+\ddot{y}^2-(\ddot{x}n_x+\ddot{y}n_y)^2\right]\mathrm{d}t,
+\end{equation*}
+这里 $\boldsymbol{n}$ 是在do方向的单位矢量.用t来表示被积函数并进行积分，我们得到：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_n=\frac{\alpha^2}{32vc^3\rho^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^2
+  \left(4-n_x^2-3n_y^2\right)\mathrm{d}o.
+\end{equation*}
+
+\end{xiti}
+
+\section{四极辐射和磁偶极辐射}
+
+现在我们来研究与矢势（按体系尺度与波长之比 $a/\lambda$ 的幂的）展开式中后几项相关的辐射.因为假设 $a/\lambda$ 很小，这些项一般也比第一（偶极）项小得多.但是在电荷体系的偶极矩为零，以至偶极辐射不发生的情形下，它们就很重要了.
+
+将（66.2），即
+\begin{equation*}
+  \boldsymbol{A}=\frac{1}{cR_0}\int\boldsymbol{j}_{t^{\prime}+\frac{\boldsymbol{r}\cdot\boldsymbol{n}}{c}}\,\mathrm{d}V,
+\end{equation*}
+中的被积函数展开为 $\boldsymbol{r}\cdot\boldsymbol{n}/c$ 的幂级数，准确到一阶项，我们得到
+\begin{equation*}
+  \boldsymbol{A}=\frac{1}{cR_0}\int\boldsymbol{j}_{t^{\prime}}\,\mathrm{d}V
+  +\frac{1}{c^2R_0}\,\frac{\partial}{\partial t^{\prime}}\int(\boldsymbol{r}\cdot\boldsymbol{n})\,\boldsymbol{j}_{t^{\prime}}\,\mathrm{d}V.
+\end{equation*}
+将 $\boldsymbol{j}=\rho\boldsymbol{v}$ 代入，并改变到点电荷模型，我们得到：
+\begin{equation}
+  \boldsymbol{A}=\frac{\sum e\,\boldsymbol{v}}{cR_0}
+  +\frac{1}{c^2R_0}\,\frac{\partial}{\partial t}\sum e\,\boldsymbol{v}(\boldsymbol{r}\cdot\boldsymbol{n}).
+\end{equation}
+（从现在起，我们像在§67一样，在所有量中略去指标 $t^{\prime}$）.
+
+在右边的第二个求和中，我们可以写
+\begin{equation*}
+\begin{aligned}
+  \boldsymbol{v}(\boldsymbol{r}\cdot\boldsymbol{n})
+  &=\frac{1}{2}\,\frac{\partial}{\partial t}\,\boldsymbol{r}(\boldsymbol{n}\cdot\boldsymbol{r})
+  +\frac{1}{2}\,\boldsymbol{v}(\boldsymbol{n}\cdot\boldsymbol{r})
+  -\frac{1}{2}\,\boldsymbol{r}(\boldsymbol{n}\cdot\boldsymbol{v})\\
+  &=\frac{1}{2}\,\frac{\partial}{\partial t}\,\boldsymbol{r}(\boldsymbol{n}\cdot\boldsymbol{r})
+  +\frac{1}{2}(\boldsymbol{r}\times\boldsymbol{v})\times\boldsymbol{n}.
+\end{aligned}
+\end{equation*}
+于是，我们求得$\boldsymbol{A}$的表达式
+\begin{equation}
+  \boldsymbol{A}=\frac{\dot{\boldsymbol{d}}}{cR_0}
+  +\frac{1}{2c^2R_0}\,\frac{\partial^2}{\partial t^2}\sum e\,\boldsymbol{r}(\boldsymbol{n}\cdot\boldsymbol{r})
+  +\frac{1}{cR_0}\,\dot{\mathfrak{m}}\times\boldsymbol{n},
+\end{equation}
+式中，$\boldsymbol{d}$ 是这个体系的偶极矩，而 $\mathfrak{m}=\dfrac{1}{2c}\sum e\,\boldsymbol{r}\times\boldsymbol{v}$ 则是体系的磁矩.为了作更进一步的变换，我们注意到，将与$\boldsymbol{n}$成比例的任意矢量加到$\boldsymbol{A}$上并不改变场，因为按照公式(66.3)，$\boldsymbol{H}$和$\boldsymbol{E}$并不因此而改变.根据这个道理，我们可以将（71.2）换为
+\begin{equation*}
+  \boldsymbol{A}=\frac{\dot{\boldsymbol{d}}}{cR_0}
+  +\frac{1}{6c^2R_0}\,\frac{\partial^2}{\partial t^2}\sum e\,[3\boldsymbol{r}(\boldsymbol{n}\cdot\boldsymbol{r})-\boldsymbol{n}r^2]
+  +\frac{1}{cR_0}\,\dot{\mathfrak{m}}\times\boldsymbol{n}.
+\end{equation*}
+但是，在求和号后面的表达式正是矢量$\boldsymbol{n}$和四极矩张量 $D_{\alpha\beta}=\sum e\,(3x_\alpha x_\beta-\delta_{\alpha\beta}r^2)$ 的积 $n_\beta D_{\alpha\beta}$（参见§41). 引入矢量$\boldsymbol{D}$，其分量为 $D_\alpha=D_{\alpha\beta}n_\beta$，我们便得到矢势的最终表达式：
+\begin{equation}
+  \boldsymbol{A}=\frac{\dot{\boldsymbol{d}}}{cR_0}
+  +\frac{1}{6c^2R_0}\,\ddot{\boldsymbol{D}}
+  +\frac{1}{cR_0}\,\dot{\mathfrak{m}}\times\boldsymbol{n}.
+\end{equation}
+知道了$\boldsymbol{A}$,利用一般公式(66.3)，我们现在就可以确定辐射场$\boldsymbol{H}$和$\boldsymbol{E}$
+\begin{equation}
+\begin{aligned}
+  \boldsymbol{H}&=\frac{1}{c^2R_0}\left\{\ddot{\boldsymbol{d}}\times\boldsymbol{n}
+  +\frac{1}{6c}\,\dddot{\boldsymbol{D}}\times\boldsymbol{n}
+  +(\ddot{\mathfrak{m}}\times\boldsymbol{n})\times\boldsymbol{n}\right\},\\
+  \boldsymbol{E}&=\frac{1}{c^2R_0}\left\{(\ddot{\boldsymbol{d}}\times\boldsymbol{n})\times\boldsymbol{n}
+  +\frac{1}{6c}\,(\dddot{\boldsymbol{D}}\times\boldsymbol{n})\times\boldsymbol{n}
+  +\boldsymbol{n}\times\ddot{\mathfrak{m}}\right\}.
+\end{aligned}
+\end{equation}
+立体角 do内的辐射强度dI可以用通式（66.6)来决定. 现在我们来计算总辐射，就是这个体系在单位时间内辐射到各个方向的能量.为此，我们按所有$\boldsymbol{n}$的方向求dI的平均值；总辐射显然就等于这个平均值乘以4π.在求磁场平方的平均值时，在$\boldsymbol{H}$内的三项中，任意两项互乘都是零，因而只剩下每一项的方均值.经过简单的计算\footnote{我们介绍一个便利方法来求一个单位矢量分量之积的平均值.因为张量 $\overline{n_\alpha n_\beta}$ 是对称的，它可以用单位张量 $\delta_{\alpha\beta}$ 来表示.又考虑到它的迹等于 1，我们就可得到
+\begin{equation*}
+  \overline{n_\alpha n_\beta}=\frac{1}{3}\,\delta_{\alpha\beta}.
+\end{equation*}
+四个分量的积的平均值等于
+\begin{equation*}
+  \overline{n_\alpha n_\beta n_\gamma n_\delta}=\frac{1}{15}\left(\delta_{\alpha\beta}\delta_{\gamma\delta}
+  +\delta_{\alpha\gamma}\delta_{\beta\delta}+\delta_{\alpha\delta}\delta_{\beta\gamma}\right).
+\end{equation*}
+右边是由单位张量构成的对所有指标对称的 4 阶张量；总的系数由两对指标缩并来决定，其结果应等于 1.}就可得到下面的I的表达式：
+\begin{equation}
+  I=\frac{2}{3c^3}\,\ddot{\boldsymbol{d}}^{\,2}
+  +\frac{1}{180c^5}\,\dddot{D}_{\alpha\beta}^{\,2}
+  +\frac{2}{3c^3}\,\ddot{\mathfrak{m}}^{\,2}.
+\end{equation}
+
+因此，总辐射包含三个独立部分；它们分别称为偶极辐射，四极辐射和磁偶极辐射.
+
+我们注意到，磁偶极辐射实际上在许多情况下是不存在的.例如，在一个体系中，假如所有运动粒子的荷质比都一样，磁偶极辐射就不存在（在这种情况下，偶极辐射也不存在，我们在§67中已经证明过了）.事实上，在这样的体系中，磁矩与角动量成正比（参见§44)，因为角动量是守恒的，所以 $\dot{\mathfrak{m}}=0$. 同理，磁偶极辐射对于任何只包含两个粒子的体系也是不存在的（参见§44的习题)，但是，在这种情形下，我们得不到任何有关偶极辐射的结论.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 带电粒子束被一些同它们完全一样的粒子所散射，求其总有效辐射.
+
+解：当完全一样的粒子碰撞时，偶极辐射不存在（磁偶极辐射亦然），因此我们必须计算四极辐射.两个完全一样的粒子所构成的体系的四极矩张量（相对于其惯性中心）是
+\begin{equation*}
+  D_{\alpha\beta}=\frac{e}{2}\,(3x_\alpha x_\beta-r^2\delta_{\alpha\beta}),
+\end{equation*}
+式中，$x_\alpha$ 是两个粒子之间的径矢$\boldsymbol{r}$的分量.在对 $D_{\alpha\beta}$ 三重微分后，我们将 $x_\alpha$ 对时间的第一、第二、第三阶导数用粒子的相对速度 $\boldsymbol{v}$ 表示如下：
+\begin{equation*}
+  \dot{x}_\alpha=v_\alpha,\quad
+  \mu\ddot{x}_\alpha=\frac{m}{2}\,\ddot{x}_\alpha=\frac{e^2x_\alpha}{r^3},\quad
+  \frac{m}{2}\,\dddot{x}_\alpha=e^2\,\frac{v_\alpha r-3x_\alpha v_r}{r^4},
+\end{equation*}
+式中，$v_r=\boldsymbol{v}\cdot\boldsymbol{r}/r$ 是速度的径向分量（第二个等式是电荷的运动方程，第三个可由微分第二个得之).计算得出下面的强度的表达式：
+\begin{equation*}
+  I=\frac{1}{180c^5}\,\dddot{D}_{\alpha\beta}^{\,2}
+  =\frac{2e^6}{15m^2c^5}\,\frac{1}{r^4}\left(\boldsymbol{v}^2+11v_\varphi^2\right)
+\end{equation*}
+（$\boldsymbol{v}^2=v_r^2+v_\varphi^2$）；$\boldsymbol{v}$ 和 $v_\varphi$ 与r的关系是
+\begin{equation*}
+  \boldsymbol{v}^2=v_0^2-\frac{4e^2}{mr},\quad
+  v_\varphi=\frac{\rho v_0}{r}.
+\end{equation*}
+我们用对dr的积分代替对时间的积分，如在§70中的习题3一样，即写出
+\begin{equation*}
+  \mathrm{d}t=\frac{\mathrm{d}r}{v_r}
+  =\frac{\mathrm{d}r}{\sqrt{v_0^2-\dfrac{\rho^2v_0^2}{r^2}-\dfrac{4e^2}{mr}}}
+\end{equation*}
+在对于 $\mathrm{d}\rho$ 和dr的重积分中，我们首先对 $\mathrm{d}\rho$ 积分，然后再对 dr积分.计算结果是：
+\begin{equation*}
+  \varkappa=\frac{4\pi}{9}\,\frac{e^4v_0^3}{mc^5}.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 求作用在一个辐射粒子体系上的力，该体系正在作稳定的有限运动.
+
+解：要求的力$\boldsymbol{F}$可以通过计算体系在单位时间内的动量损失获得，这个损失就是由体系辐射的电磁波所带走的动量流：
+\begin{equation*}
+  F_\alpha=\oint\sigma_{\alpha\beta}\,\mathrm{d}f_\beta=\int\sigma_{\alpha\beta}\,n_\beta R_0^2\,\mathrm{d}o;
+\end{equation*}
+积分对半径为 $R_0$ 的大球进行.应力张量由（33.3)式给定，场$\boldsymbol{E}$和$\boldsymbol{H}$由(71.4) 给出.鉴于这些场是横场，积分化为
+\begin{equation*}
+  \boldsymbol{F}=-\frac{1}{8\pi}\int 2\boldsymbol{H}^2\boldsymbol{n}\,R_0^2\,\mathrm{d}o.
+\end{equation*}
+用本节第一个脚注中的公式对$\boldsymbol{n}$的方向作平均（那里$\boldsymbol{n}$的奇数分量的积为零）.结果是：\footnote{我们指出，这个力比洛伦兹摩擦力（§75）高 $1/c$ 级.后者对总反冲力没有贡献：作用在电中性体系的粒子上的力（75.5）之和为零.}
+\begin{equation*}
+  F_\alpha=-\frac{1}{c^4}\left\{\frac{1}{15c}\,\dddot{D}_{\alpha\beta}\,\ddot{d}_\beta
+  +\frac{2}{3}\,(\ddot{\boldsymbol{d}}\times\ddot{\mathfrak{m}})_\alpha\right\}.
+\end{equation*}
+
+\end{xiti}
+
+\section{在近处的辐射场}
+
+偶极辐射的各公式是我们对于与辐射体系相距甚远之处的场求得的，所谓甚远之处，即到辐射体系的距离比波长（特别是比辐射体系的尺度）大很多.在这一节中我们仍如以前一样假设波长比体系的尺度大很多，可是我们要研究的场到体系的距离同波长相比却不大，而是与之同数量级.
+
+矢势的公式（67.4）
+\begin{equation}
+  \boldsymbol{A}=\frac{1}{cR_0}\,\dot{\boldsymbol{d}}
+\end{equation}
+仍然有效，因为在推导这个公式的时候，我们只用了 $R_0$ 比辐射体系的尺度大很多这个事实.然而现在即使在小区域内场也不能当做平面波.因此，电场和磁场的公式（67.5）和（67.6)已经不能应用了，为了计算它们，就必须先求$\boldsymbol{A}$和 $\varphi$.
+
+利用加在两个势上的一般条件（62.1）
+\begin{equation*}
+  \operatorname{div}\boldsymbol{A}+\frac{1}{c}\,\frac{\partial\varphi}{\partial t}=0,
+\end{equation*}
+我们可以直接从矢势的表达式求出标势的公式.将（72.1）代入，并对时间积分，我们便得到
+\begin{equation}
+  \varphi=-\operatorname{div}\frac{\boldsymbol{d}}{R_0}.
+\end{equation}
+积分常数（是坐标的任意函数）在这里被略去了，因为我们只对势的变化部分感兴趣.我们记得，在公式（72.2）以及公式（72.1）中，$\boldsymbol{d}$ 的值必须是在 $t^{\prime}=t-\dfrac{R_0}{c}$ 时刻的值\footnote{有时我们引入所谓赫兹矢量，其定义为
+\begin{equation*}
+  \boldsymbol{Z}=-\frac{1}{R_0}\,\boldsymbol{d}\left(t-\frac{R_0}{c}\right).
+\end{equation*}
+这时
+\begin{equation*}
+  \boldsymbol{A}=-\frac{1}{c}\,\dot{\boldsymbol{Z}},\qquad
+  \varphi=\operatorname{div}\boldsymbol{Z}.
+\end{equation*}}.
+
+现在已经不难计算电场和磁场了.从联系$\boldsymbol{E}$，$\boldsymbol{H}$和势的常用公式，我们得到
+\begin{equation}
+  \boldsymbol{H}=\frac{1}{c}\operatorname{rot}\frac{\dot{\boldsymbol{d}}}{R_0},
+\end{equation}
+\begin{equation}
+  \boldsymbol{E}=\operatorname{grad}\operatorname{div}\frac{\boldsymbol{d}}{R_0}
+  -\frac{1}{c^2}\,\frac{\ddot{\boldsymbol{d}}}{R_0}.
+\end{equation}
+
+$\boldsymbol{E}$的表达式可以改写成另一形式，注意到 $\boldsymbol{d}_{t^{\prime}}/R_0$ 与形如
+\begin{equation*}
+  \frac{1}{R_0}\,f\left(t-\frac{R_0}{c}\right)
+\end{equation*}
+的坐标和时间的任何函数一样，满足波动方程：
+\begin{equation*}
+  \frac{1}{c^2}\,\frac{\partial^2}{\partial t^2}\,\frac{\boldsymbol{d}}{R_0}=\Delta\,\frac{\boldsymbol{d}}{R_0}.
+\end{equation*}
+用矢量分析中熟知的公式
+\begin{equation*}
+  \operatorname{rot}\operatorname{rot}\boldsymbol{a}
+  =\operatorname{grad}\operatorname{div}\boldsymbol{a}-\Delta\boldsymbol{a},
+\end{equation*}
+我们便可求得
+\begin{equation}
+  \boldsymbol{E}=\operatorname{rot}\operatorname{rot}\frac{\boldsymbol{d}}{R_0}.
+\end{equation}
+
+用上面求得的结果可以决定在距离与波长同数量级之处的场.应当理解，在所有这些公式中都不允许将 $1/R_0$ 从微分号内提出来，因为包含 $1/R_0^2$ 的与包含 $1/R_0$ 的项之比正好与 $\lambda/R_0$ 同数量级.
+
+最后，我们来写出场的傅里叶分量的公式.为了求 $\boldsymbol{H}_\omega$，我们用$\boldsymbol{H}$和$\boldsymbol{d}$的单色分量 $\boldsymbol{H}_\omega\mathrm{e}^{-\mathrm{i}\omega t}$ 和 $\boldsymbol{d}_\omega\mathrm{e}^{-\mathrm{i}\omega t}$ 分别代替（72.3)式中$\boldsymbol{H}$和$\boldsymbol{d}$. 然而我们必须记着，在方程（72.1）到（72.5）中的右边的各量都是指 $t^{\prime}=t-R_0/c$ 时刻的值.因此我们必须用
+\begin{equation*}
+  \boldsymbol{d}_\omega\,\mathrm{e}^{-\mathrm{i}\omega(t-R_0/c)}=\boldsymbol{d}_\omega\,\mathrm{e}^{-\mathrm{i}\omega t+\mathrm{i}kR_0}
+\end{equation*}
+代替 $\boldsymbol{d}$. 代入后，再除以 $\mathrm{e}^{-\mathrm{i}\omega t}$，我们便得到
+\begin{equation*}
+  \boldsymbol{H}_\omega=-\mathrm{i}k\operatorname{rot}\left(\boldsymbol{d}_\omega\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0}\right)
+  =\mathrm{i}k\,\boldsymbol{d}_\omega\times\nabla\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0},
+\end{equation*}
+或，进行微分，
+\begin{equation}
+  \boldsymbol{H}_\omega=-\mathrm{i}k\,\boldsymbol{d}_\omega\times\boldsymbol{n}
+  \left(\frac{\mathrm{i}k}{R_0}-\frac{1}{R_0^2}\right)\mathrm{e}^{\mathrm{i}kR_0},
+\end{equation}
+式中 $\boldsymbol{n}$ 是沿 $R_0$ 的单位矢量.
+
+同样，从（72.4）可以得到：
+\begin{equation*}
+  \boldsymbol{E}_\omega=k^2\boldsymbol{d}_\omega\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0}
+  +(\boldsymbol{d}_\omega\cdot\nabla)\nabla\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0},
+\end{equation*}
+微分后得到
+\begin{equation}
+\begin{aligned}
+  \boldsymbol{E}_\omega={}&\boldsymbol{d}_\omega\left(\frac{k^2}{R_0}+\frac{\mathrm{i}k}{R_0^2}-\frac{1}{R_0^3}\right)\mathrm{e}^{\mathrm{i}kR_0}\\
+  &+\boldsymbol{n}(\boldsymbol{n}\cdot\boldsymbol{d}_\omega)\left(-\frac{k^2}{R_0}-\frac{3\mathrm{i}k}{R_0^2}+\frac{3}{R_0^3}\right)\mathrm{e}^{\mathrm{i}kR_0}.
+\end{aligned}
+\end{equation}
+
+在远大于波长的距离处 $(kR_0\gg 1)$，我们可以忽略公式（72.7）和（72.6）中含 $1/R_0^2$ 和 $1/R_0^3$ 的项，而达到处于“波区”的场，
+\begin{equation*}
+  \boldsymbol{E}_\omega=\frac{k^2}{R_0}\,\boldsymbol{n}\times(\boldsymbol{d}_\omega\times\boldsymbol{n})\,\mathrm{e}^{\mathrm{i}kR_0},\quad
+  \boldsymbol{H}_\omega=-\frac{k^2}{R_0}\,\boldsymbol{d}_\omega\times\boldsymbol{n}\,\mathrm{e}^{\mathrm{i}kR_0}.
+\end{equation*}
+
+在距离远小于波长处 $(kR_0\ll 1)$，我们忽略含 $1/R_0$ 和 $1/R_0^2$ 的项并令 $\mathrm{e}^{\mathrm{i}kR_0}\approx 1$，于是得到
+\begin{equation*}
+  \boldsymbol{E}_\omega=\frac{1}{R_0^3}\left\{3\boldsymbol{n}(\boldsymbol{d}_\omega\cdot\boldsymbol{n})-\boldsymbol{d}_\omega\right\},
+\end{equation*}
+这相应于电偶极子的静场(§40)；在这一近似下，磁场为零.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求近距离处四极辐射和磁偶极辐射场的势.
+
+解：为简单起见，假设偶极辐射完全不存在，于是我们有（参见§71中所进行的计算）
+\begin{equation*}
+  \boldsymbol{A}=\frac{1}{c}\int\boldsymbol{j}_{t-R/c}\,\frac{\mathrm{d}V}{R}
+  \approx-\frac{1}{c}\int(\boldsymbol{r}\cdot\nabla)\frac{\boldsymbol{j}_{t-R_0/c}}{R_0}\,\mathrm{d}V,
+\end{equation*}
+这里积分号内的式子已经按照 $\boldsymbol{r}=\boldsymbol{R}_0-\boldsymbol{R}$ 的幂展开；与在§71 中所作的不同，因子 $1/R_0$ 现在不能从微分号内提出来.我们将微分号提到积分号外，将公式改用张量符号表示：
+\begin{equation*}
+  A_\alpha=-\frac{1}{c}\,\frac{\partial}{\partial X_\beta}\int\frac{x_\beta j_\alpha}{R_0}\,\mathrm{d}V
+\end{equation*}
+（$X_\beta$ 是径矢 $\boldsymbol{R}_0$ 的分量）.将积分变为对电荷求和，我们求得
+\begin{equation*}
+  A_\alpha=-\frac{1}{c}\,\frac{\partial}{\partial X_\beta}\,\frac{(\sum e\,v_\alpha x_\beta)_{t^{\prime}}}{R_0}.
+\end{equation*}
+用与§71中同样的方法，将此式分为四极部分和磁偶极部分.相应的标势可由矢势计算出来，如在正文中所作的一样.结果，对于四极辐射，我们得到：
+\begin{equation*}
+  A_\alpha=-\frac{1}{6c}\,\frac{\partial}{\partial X_\beta}\,\frac{\dot{D}_{\alpha\beta}}{R_0},\quad
+  \varphi=\frac{1}{6}\,\frac{\partial^2}{\partial X_\alpha\partial X_\beta}\,\frac{D_{\alpha\beta}}{R_0},
+\end{equation*}
+对于磁偶极辐射，我们得到：
+\begin{equation*}
+  \boldsymbol{A}=\operatorname{rot}\frac{\mathfrak{m}}{R_0},\quad
+  \varphi=0
+\end{equation*}
+（方程右边所有的量，如平常一样，都是取 $t^{\prime}=t-R_0/c$ 时刻的值）.
+
+磁偶极辐射的场强是：
+\begin{equation*}
+  \boldsymbol{E}=-\frac{1}{c}\operatorname{rot}\frac{\dot{\mathfrak{m}}}{R_0},\quad
+  \boldsymbol{H}=\operatorname{rot}\operatorname{rot}\frac{\mathfrak{m}}{R_0}.
+\end{equation*}
+与(72.3)，(72.5)比较，我们看出，在磁偶极子情形下，$\boldsymbol{H}$和$\boldsymbol{E}$用$\mathfrak{m}$来表示的方式，与电偶极子情形下$\boldsymbol{E}$和$-\boldsymbol{H}$用$\boldsymbol{d}$来表示的方式一样.
+
+四极辐射势的谱分量是：
+\begin{equation*}
+  A_\alpha^{(\omega)}=\frac{\mathrm{i}k}{6}\,D_{\alpha\beta}^{(\omega)}\,\frac{\partial}{\partial X_\beta}\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0},\quad
+  \varphi^{(\omega)}=\frac{1}{6}\,D_{\alpha\beta}^{(\omega)}\,\frac{\partial^2}{\partial X_\alpha\partial X_\beta}\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0}.
+\end{equation*}
+由于它们的复杂性，我们将不给出场的表达式.
+
+\noindent{\heiti 习题2}\quad 求电荷体系通过电磁波的偶极辐射损失角动量的速率.
+
+解：按照(32.9)，电磁场角动量流密度由四维张量 $x^iT^{kl}-x^kT^{il}$ 的空间分量给出.变到三维符号，我们引入分量为 $e_{\alpha\beta\gamma}M^{\beta\gamma}/2$ 的三维角动量矢量；流密度由如下三维张量给出
+\begin{equation*}
+  -\frac{1}{2}\,e_{\alpha\beta\gamma}(x_\beta\sigma_{\gamma\delta}-x_\gamma\sigma_{\beta\delta})=-e_{\alpha\beta\gamma}\,x_\beta\sigma_{\gamma\delta},
+\end{equation*}
+式中 $\sigma_{\alpha\beta}\equiv-T^{\alpha\beta}$ 是三维电磁场应力张量（按照常用的三维符号，我们将所有指标写成下标).体系在单位时间内的总角动量损失，等于穿过半径 $R_0$ 球面的辐射场的角动量流：
+\begin{equation*}
+  \frac{\mathrm{d}M_\alpha}{\mathrm{d}t}=\oint e_{\alpha\beta\gamma}\,x_\beta\sigma_{\gamma\delta}\,n_\delta\,\mathrm{d}f,
+\end{equation*}
+式中 $\mathrm{d}f=R_0^2\,\mathrm{d}o$, $\boldsymbol{n}$ 是 $R_0$ 方向的单位矢量.从（33.3）用张量 $\sigma_{\alpha\beta}$，我们得到：
+\begin{equation*}
+  \frac{\mathrm{d}\boldsymbol{M}}{\mathrm{d}t}=\frac{R_0^3}{4\pi}\int\left\{(\boldsymbol{n}\times\boldsymbol{E})(\boldsymbol{n}\cdot\boldsymbol{E})+(\boldsymbol{n}\times\boldsymbol{H})(\boldsymbol{n}\cdot\boldsymbol{H})\right\}\mathrm{d}o.\tag{1}
+\end{equation*}
+将这个式子应用于体系远距离处的辐射场，不过，绝不能只保留到 $\sim 1/R_0$ 的项；在这个近似下 $\boldsymbol{n}\cdot\boldsymbol{E}=\boldsymbol{n}\cdot\boldsymbol{H}=0$，以至被积式为零.这些项（由(67.5)和(67.6)给出)只有对于计算因子 $\boldsymbol{n}\times\boldsymbol{E}$ 和 $\boldsymbol{n}\times\boldsymbol{H}$ 才是足够的；纵场分量$\boldsymbol{n}\cdot\boldsymbol{E}$和$\boldsymbol{n}\cdot\boldsymbol{H}$来自 $\sim 1/R_0^2$ 的项（其结果是，(1)中的被积式变为 $\sim 1/R_0^3$，而距离 $R_0$ 自然就不出现在答案中了).在偶极近似中 $\lambda\gg a$，我们必须将含有附加因子 $\sim \lambda/R_0$ 或 $\sim a/R_0$ 的项（相对于（67.5）和（67.6））进行区分；只保留前者就够了.这些项可以从（72.3）和（72.5）获得；精确到 $1/R_0$ 二阶的计算给出\footnote{仅当包含 $a/R_0$ 的较高阶项时，才会得到非零的 $\boldsymbol{n}\cdot\boldsymbol{H}$ 值.}
+\begin{equation*}
+  \boldsymbol{E}\cdot\boldsymbol{n}=\frac{2}{cR_0^2}\,\boldsymbol{n}\cdot\dot{\boldsymbol{d}},\quad
+  \boldsymbol{H}\cdot\boldsymbol{n}=0.\tag{2}
+\end{equation*}
+将（2）和（67.6）代入（1），我们得到：
+\begin{equation*}
+  \frac{\mathrm{d}\boldsymbol{M}}{\mathrm{d}t}=-\frac{1}{2\pi c^3}\int(\boldsymbol{n}\cdot\ddot{\boldsymbol{d}})(\boldsymbol{n}\cdot\dot{\boldsymbol{d}})\,\mathrm{d}o.
+\end{equation*}
+最后将被积式写成 $e_{\alpha\beta\gamma}\,n_\beta\ddot{d}_\gamma\,n_\delta\dot{d}_\delta$ 的形式，并对$\boldsymbol{n}$的方向作平均，我们得到：
+\begin{equation*}
+  \frac{\mathrm{d}\boldsymbol{M}}{\mathrm{d}t}=-\frac{2}{3c^3}\,\dot{\boldsymbol{d}}\cdot\ddot{\boldsymbol{d}},\tag{3}
+\end{equation*}
+我们注意到，对于线性振子（$\boldsymbol{d}=\boldsymbol{d}_0\cos\omega t$，振幅 $\boldsymbol{d}_0$ 为实数)，(3)式为零：在辐射中没有角动量损失.
+
+\end{xiti}
+
+\section{快速运动电荷的辐射}
+
+现在我们来研究一个带电粒子，这个粒子运动的速度同光速比较起来并不算小.
+
+在求§67中的各公式时，我们假设了 $v\ll c$，因而这些公式不能直接应用到目前所考虑的情形.但是，我们可以把粒子放在它在一给定时刻静止的那个参考系中去研究.在这个参考系中，所提到的这些公式当然是有效的(应该注意这个事实，即这样的做法只有在单个运动粒子的情况下才有可能；对于包含许多粒子的体系，显然不存在所有粒子同时静止的参考系).
+
+因此，在这个特定的参考系中，该粒子在时间dt内辐射出去的能量是
+\begin{equation}
+  \mathrm{d}\mathcal{E}=\frac{2e^2}{3c^3}\,\boldsymbol{w}^2\,\mathrm{d}t
+\end{equation}
+（按照公式(67.9))，式中的$\boldsymbol{w}$是粒子在这个参考系内的加速度.在这个参考系中，辐射出去的总动量是零：
+\begin{equation}
+  \mathrm{d}\boldsymbol{P}=0.
+\end{equation}
+实际上，辐射掉的动量由辐射场中动量流密度对包围粒子的封闭曲面积分给出.但由于偶极辐射的对称性，在反方向带走的动量是大小相等方向相反的；因而积分恒等于零.
+
+为了变换到任意参考系，我们将（73.1）和（73.2)改写为四维形式.容易看出，“辐射掉的四维动量”$\mathrm{d}P^i$ 必须写为
+\begin{equation}
+  \mathrm{d}P^i=-\frac{2e^2}{3c}\,\frac{\mathrm{d}u^k}{\mathrm{d}s}\,\frac{\mathrm{d}u_k}{\mathrm{d}s}\,\mathrm{d}x^i
+  =-\frac{2e^2}{3c}\,\frac{\mathrm{d}u^k}{\mathrm{d}s}\,\frac{\mathrm{d}u_k}{\mathrm{d}s}\,u^i\,\mathrm{d}s.
+\end{equation}
+实际上，在粒子的静止参考系中，四维速度 $u^i$ 的空间分量等于零，而且
+\begin{equation*}
+  \frac{\mathrm{d}u^k}{\mathrm{d}s}\,\frac{\mathrm{d}u_k}{\mathrm{d}s}=-\frac{\boldsymbol{w}^2}{c^4};
+\end{equation*}
+因而 $\mathrm{d}P^i$ 的空间分量变为零而时间分量给出方程（73.1).
+
+一个粒子飞过电磁场期间辐射出去的总四维动量等于表达式（73.3)的积分，即
+\begin{equation}
+  \Delta P^i=-\frac{2e^2}{3c}\int\frac{\mathrm{d}u^k}{\mathrm{d}s}\,\frac{\mathrm{d}u_k}{\mathrm{d}s}\,\mathrm{d}x^i.
+\end{equation}
+利用运动方程（23.4)
+\begin{equation*}
+  mc\,\frac{\mathrm{d}u_k}{\mathrm{d}s}=\frac{e}{c}\,F_{kl}u^l,
+\end{equation*}
+用电磁场张量来表示四维加速度 $\mathrm{d}u^i/\mathrm{d}s$，我们可将（73.4）式改写为另一形式.于是我们得到：
+\begin{equation}
+  \Delta P^i=-\frac{2e^4}{3m^2c^5}\int(F_{kl}u^l)(F^{km}u_m)\,\mathrm{d}x^i.
+\end{equation}
+(73.4)或（73.5)的时间分量是总辐射能 $\Delta\mathcal{E}$.用表示为三维量的式子来代替所有的四维量，我们便得到
+\begin{equation}
+  \Delta\mathcal{E}=\frac{2e^2}{3c^3}\int_{-\infty}^{\infty}
+  \frac{\boldsymbol{w}^2-\dfrac{(\boldsymbol{v}\times\boldsymbol{w})^2}{c^2}}{\left(1-\dfrac{v^2}{c^2}\right)^3}\,\mathrm{d}t
+\end{equation}
+（$\boldsymbol{w}=\dot{\boldsymbol{v}}$ 是粒子的加速度)，或者，利用外电场和磁场：
+\begin{equation}
+\begin{aligned}
+  &\Delta\mathcal{E}=\int_{-\infty}^{\infty}I\,\mathrm{d}t,\\
+  &I=\frac{2e^4}{3m^2c^3}\,
+  \frac{\left\{\boldsymbol{E}+\dfrac{1}{c}\,\boldsymbol{v}\times\boldsymbol{H}\right\}^2-\dfrac{1}{c^2}(\boldsymbol{E}\cdot\boldsymbol{v})^2}{1-\dfrac{v^2}{c^2}}.
+\end{aligned}
+\end{equation}
+
+对于总辐射动量的表达式，不同之处在于被积式中有一个额外的因子 $\boldsymbol{v}$.
+
+从公式（73.7)可以看出，对于与光速相近的速度，在单位时间内所辐射出的总能量基本上与 $(1-v^2/c^2)^{-1}$ 成比例，即与运动粒子的能量平方成正比.唯一的例外是在电场内沿着场方向的运动.在这种情形下，分母里的因子$(1-v^2/c^2)$ 与分子里的同样的因子相消，因而辐射与粒子的能量无关.
+
+最后，还有快速运动电荷所产生的辐射的角分布问题.为了解决这个问题，利用李纳-维谢尔的场公式（63.8）和（63.9）是比较方便的.在远处，我们只保留 $1/R$ 的最低阶的项（公式（63.8）中的第二项）.引入在辐射方向的单位矢量 $\boldsymbol{n}$（$\boldsymbol{R}=\boldsymbol{n}R$），我们得到公式
+\begin{equation}
+  \boldsymbol{E}=\frac{e}{c^2R}\,
+  \frac{\boldsymbol{n}\times\left\{\left(\boldsymbol{n}-\dfrac{\boldsymbol{v}}{c}\right)\times\boldsymbol{w}\right\}}{\left(1-\dfrac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)^3},
+  \quad
+  \boldsymbol{H}=\boldsymbol{n}\times\boldsymbol{E},
+\end{equation}
+等式右边的一切量都取推迟的时刻 $t^{\prime}=t-R/c$ 的值.
+
+辐射到立体角do内的强度是 $\mathrm{d}I=\dfrac{c}{4\pi}\,\boldsymbol{E}^2R^2\,\mathrm{d}o$. 展开 $\boldsymbol{E}^2$，我们便得到
+\begin{equation}
+  \mathrm{d}I=\frac{e^2}{4\pi c^3}\left\{
+  \frac{2(\boldsymbol{n}\cdot\boldsymbol{w})(\boldsymbol{v}\cdot\boldsymbol{w})}{c\left(1-\dfrac{\boldsymbol{v}\cdot\boldsymbol{n}}{c}\right)^5}
+  +\frac{w^2}{\left(1-\dfrac{\boldsymbol{v}\cdot\boldsymbol{n}}{c}\right)^4}
+  -\frac{\left(1-\dfrac{v^2}{c^2}\right)(\boldsymbol{n}\cdot\boldsymbol{w})^2}{\left(1-\dfrac{\boldsymbol{v}\cdot\boldsymbol{n}}{c}\right)^6}\right\}\mathrm{d}o.
+\end{equation}
+
+如果想要定出在电荷运动的全部时间内总辐射的角分布，那么我们必须将强度对时间积分.这时必须记着，被积式是 $t^{\prime}$ 的函数；因此我们必须写出
+\begin{equation}
+  \mathrm{d}t=\frac{\partial t}{\partial t^{\prime}}\,\mathrm{d}t^{\prime}
+  =\left(1-\frac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)\mathrm{d}t^{\prime}
+\end{equation}
+（参见（63.6)），然后再直接对 $\mathrm{d}t^{\prime}$ 积分.这样，我们就得到立体角元 do内的总辐射的表达式
+\begin{equation}
+  \mathrm{d}\mathcal{E}_n=\frac{e^2}{4\pi c^3}\,\mathrm{d}o\int\left\{
+  \frac{2(\boldsymbol{n}\cdot\boldsymbol{w})(\boldsymbol{v}\cdot\boldsymbol{w})}{c\left(1-\dfrac{\boldsymbol{v}\cdot\boldsymbol{n}}{c}\right)^4}
+  +\frac{w^2}{\left(1-\dfrac{\boldsymbol{v}\cdot\boldsymbol{n}}{c}\right)^3}
+  -\frac{\left(1-\dfrac{v^2}{c^2}\right)(\boldsymbol{n}\cdot\boldsymbol{w})^2}{\left(1-\dfrac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)^5}\right\}\mathrm{d}t^{\prime}.
+\end{equation}
+
+如同我们从（73.9)看到的那样，一般情形下辐射的角分布是非常复杂的.在极端相对论情形 $(1-v/c\ll 1)$ 下，它具有特征性的形态，这与该表达式各项的分母中存在差值 $1-(\boldsymbol{v}\cdot\boldsymbol{n}/c)$ 的高次幂有关.因此，在其中差值 $1-(\boldsymbol{v}\cdot\boldsymbol{n}/c)$ 很小的一个狭窄角度范围内辐射强度很大.用 $\theta$ 记 $\boldsymbol{n}$ 和 $\boldsymbol{v}$ 之间的小角，我们有：
+\begin{equation*}
+  1-\frac{v}{c}\cos\theta\approx 1-\frac{v}{c}+\frac{\theta^2}{2}
+  \approx\frac{1}{2}\left(1-\frac{v^2}{c^2}+\theta^2\right);
+\end{equation*}
+这个差对于
+\begin{equation}
+  \theta\sim\sqrt{1-\frac{v^2}{c^2}}
+\end{equation}
+是很小的.因此一个极端相对论粒子主要沿着自己运动的方向发出辐射，其辐射集中在它的速度方向周围一个小角度范围（73.12）之内.
+
+我们也指出，对于粒子的任意速度和加速度，总是有两个方向辐射强度为零.这就是矢量 $\boldsymbol{n}-(\boldsymbol{v}/c)$ 与矢量 $\boldsymbol{w}$ 平行的方向，在这些方向上场（73.8）变为零（参见本节习题2).
+
+最后，我们给出较简单的公式，在两种特殊情形下，(73.9)可以化为它们.
+
+如果粒子的速度和加速度平行，
+\begin{equation*}
+  \boldsymbol{H}=\frac{e}{c^2R}\,
+  \frac{\boldsymbol{w}\times\boldsymbol{n}}{\left(1-\dfrac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)^3},
+\end{equation*}
+强度是
+\begin{equation}
+  \mathrm{d}I=\frac{e^2}{4\pi c^3}\,
+  \frac{\boldsymbol{w}^2\sin^2\theta}{\left(1-\dfrac{v}{c}\cos\theta\right)^6}\,\mathrm{d}o.
+\end{equation}
+它自然是围绕$\boldsymbol{v}$和$\boldsymbol{w}$的共同方向对称的，并且在沿速度的方向 $(\theta=0)$ 和反方向 $(\theta=\pi)$ 变为零.在极端相对论情形下，强度作为θ的函数在（73.12)的范围内有两个尖锐的极大值，对 $\theta=0$ 锐降到零.
+
+如果速度和加速度彼此垂直，我们从（73.9）得到：
+\begin{equation}
+  \mathrm{d}I=\frac{e^2\boldsymbol{w}^2}{4\pi c^3}\left[
+  \frac{1}{\left(1-\dfrac{v}{c}\cos\theta\right)^4}
+  -\frac{\left(1-\dfrac{v^2}{c^2}\right)\sin^2\theta\cos^2\varphi}{\left(1-\dfrac{v}{c}\cos\theta\right)^6}\right]\mathrm{d}o,
+\end{equation}
+式中θ仍是$\boldsymbol{n}$和$\boldsymbol{v}$之间的夹角，而 $\varphi$ 是矢量 $\boldsymbol{n}$ 相对于 $\boldsymbol{v}$ 和 $\boldsymbol{w}$ 所穿过平面的方位角.这个强度只对于$\boldsymbol{v}$和$\boldsymbol{w}$的平面是对称的，沿这个平面中的两个方向为零，该方向与速度成角 $\theta=\arccos(v/c)$.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求一个带电荷 $e_1$ 的相对论粒子发出的总辐射，它以碰撞参量 $\rho$ 穿过固定中心的库仑场（场的势为 $\varphi=e_2/r$）.
+
+解：当经过场时，相对论粒子几乎不偏转\footnote{对于 $v\sim c$，仅当碰撞参量 $\rho\sim e^2/mc^2$ 时，较大角的偏转才能发生，一般来说这是不能作经典处理的.}. 因此我们可以将（73.7)式中的速度$\boldsymbol{v}$当做常数，所以粒子位置处的场是
+\begin{equation*}
+  \boldsymbol{E}=\frac{e_2\boldsymbol{r}}{r^3}\approx\frac{e_2\boldsymbol{r}}{(\rho^2+v^2t^2)^{3/2}},
+\end{equation*}
+式中 $x=vt, y=\rho$. 将（73.7）对时间积分，我们得到：
+\begin{equation*}
+  \Delta\mathcal{E}=\frac{\pi e_1^4e_2^2}{12m^2c^3\rho^3v}\,\frac{4c^2-v^2}{c^2-v^2}.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 求一个运动粒子辐射强度为零的方向.
+
+解：从几何结构我们看出（图15)，要求的方向$\boldsymbol{n}$处在通过$\boldsymbol{v}$和$\boldsymbol{w}$的平面内，且与$\boldsymbol{w}$的方向成角χ，
+\begin{equation*}
+  \sin\chi=\frac{v}{c}\sin\alpha,
+\end{equation*}
+式中 $\alpha$ 是 $\boldsymbol{v}$ 和 $\boldsymbol{w}$ 的夹角.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.2cm]{fig15.pdf}\\[0.3em]{\small 图 15}\end{minipage}\par\nopagebreak
+
+\noindent{\heiti 习题3}\quad 求一个在圆偏振平面电磁波的场中进行稳定运动的粒子发出的辐射强度.
+
+解：按照§48习题3的结果，该粒子在圆上运动，且其速度在每一时刻平行于$\boldsymbol{H}$垂直于$\boldsymbol{E}$.它的动能是
+\begin{equation*}
+  \frac{mc^2}{\sqrt{1-v^2/c^2}}=c\sqrt{p^2+m^2c^2}=c\gamma
+\end{equation*}
+（式中我们用了所引习题的符号).从（73.7)式我们得到辐射强度：
+\begin{equation*}
+  I=\frac{2e^4}{3m^2c^3}\,\frac{\boldsymbol{E}^2}{1-v^2/c^2}
+  =\frac{2e^4E_0^2}{3m^2c^3}\left[1+\left(\frac{eE_0}{mc\omega}\right)^2\right].
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 在线偏振波的场中求解同样的问题.
+
+解：按照§48习题2的结果，运动发生在xy平面内，穿过波的传播方向(x 轴)和 $\boldsymbol{E}$ 的方向(y 轴)；磁场 $\boldsymbol{H}$ 沿 z 方向（且有 $H_z=E_y$ ）.从（73.7）我们得到：
+\begin{equation*}
+  I=\frac{2e^4\boldsymbol{E}^2}{3m^2c^3}\,\frac{(1-v_x/c)^2}{1-v^2/c^2}.
+\end{equation*}
+使用所引习题的参数表示，对运动周期作平均，得到结果
+\begin{equation*}
+  \overline{I}=\frac{e^4E_0^2}{3m^2c^3}\left[1+\frac{3}{8}\left(\frac{eE_0}{mc\omega}\right)^2\right].
+\end{equation*}
+
+\end{xiti}
+
+% ============================================================
+%  第二卷 第九章 电磁波的辐射（后半：§74–§80 + 习题）
+%  底本：高教社中文版；OCR 错误已修正，脚注文本待从纸版补录
+%  本文件无 \chapter 行（章标题行在前半文件 ch09a 中）
+%
+%  OCR/原书错误修正清单（均已对照原书页面 p-223…p-250 复核）：
+%  1. §74 开头 "$\pmb{\mathcal{E}}=$ 0, H⊥v" → $E=0$，$\boldsymbol{H}\perp\boldsymbol{v}$
+%     （花体粗体为 OCR 误认，原书 p.223 为场强 E）；
+%  2. (74.8) 末尾 $\mathrm{d}\theta$ → $\mathrm{d}o$（原书 p.225）；
+%  3. (74.11) 右端 $mc^2/\delta$ → $mc^2/\mathcal{E}$（OCR 误识，原书 p.225）；
+%  4. §74 螺旋轨道段 "在极端相 $v_\parallel$ 对论情形下" 删去误插的 $v_\parallel$；
+%     "（后者取做速度 v 的正方向）" → $v_\parallel$（原书 p.228）；
+%  5. §74 习题1 解 "（ 是粒子的能量）" → "（$\mathcal{E}$ 是粒子的能量）"；
+%  6. §74 习题3 "$E_n=\mathrm{i}kA_{xn}\pm\mathrm{i}k\sin\theta A_{yn}\pm$," →
+%     $E_n=\mathrm{i}kA_{xn}\boldsymbol{e}_1+\mathrm{i}k\sin\theta A_{yn}\boldsymbol{e}_2$
+%     （OCR 丢失单位矢量、正负号错位，原书 p.228）；
+%  7. §75 (75.7) 左端残缺 "\overline{\mathrm{d}/\mathrm{d}t}" →
+%     $\overline{\mathrm{d}\boldsymbol{M}/\mathrm{d}t}$（原书 p.231）；
+%  8. §76 "过渡为矢 f/c" → "过渡为矢量 f/c"（漏字）；
+%     "通常洛伦兹力大很 $\approx$①" → "大很多①"；
+%     "就已经不适用 $\overline{\Gamma}$①" → "不适用了①"；
+%  9. §76 "对称张量 $\boldsymbol{u}_i\boldsymbol{u}_k$" → $u_iu_k$（分量不加速粗）；
+% 10. §76 习题1 被 OCR 拆断的公式恢复为两行（原书 p.236）；
+%     磁偶极矩按原书用粗体 $\boldsymbol{m}$（区别于质量 $m$），答案中 $\boldsymbol{m}^2\pi$ 同；
+% 11. §77 "横向力 $eF^{\textprime}$" → "横向力 $eF$①"；
+% 12. §78 习题1 分母 $A^2\times B^2$ → $A^2B^2$（原书排印之误，量纲不符；
+%     英文原版同式为 A²B²）；
+% 13. §78 习题3 "$\mathbf{\nabla}d\times\mathbf{\nabla}E$"、"$\mathcal{Q}\times d$" →
+%     粗体 $\boldsymbol{d}\times\boldsymbol{E}$、$\boldsymbol{\Omega}\times\boldsymbol{d}$（OCR 乱码）；
+% 14. §78 习题4 乱码 "\rlap{/}{*}ι" → "和"；
+% 15. §78 习题5 题干 "频率 $\omega'$ 一4" → "频率 $\omega'$"（OCR 噪声）；
+%     "不改变 $(\omega=\omega')$ 个关系" → "不改变 $(\omega=\omega')$. 这个关系"（漏"这"）；
+% 16. §78 习题7 "力是 $\sigma\overline{W}_0$ ⊼ 在这个力的作用下" →
+%     "力是 $\sigma\overline{W}_0$，而在这个力的作用下"（OCR 乱码）；
+% 17. §78 习题8 "可以近似地代入 $\ddot{r}=-\omega_0^2\dot{r}$" →
+%     $\dddot{r}=-\omega_0^2\dot{r}$（原书 p.245–246 为三阶导数，OCR 误作两点）；
+% 18. §78 首段 "作用下运动这种运动又产生" → "作用下运动. 这种运动又产生"（漏句号）；
+% 19. §79 "辐射所 $\vec{j}^*$ 生的" → "所产生的"；$\dot{\jmath}$ → $\boldsymbol{j}$；
+% 20. §80 "入射波的场 $\mathcal{E}$ 与散射方向的夹角" → 场 $E$（花体 OCR 误识）；
+%     "通过因子 $\mathrm{e}^{-\mathrm{i}\omega t}$ $\omega$ $\mathrm{e}^{-\mathrm{i}\omega t}$" 删重复 "$\omega$"；
+%     "因而指数 $\boldsymbol{\delta}_q\cdot\boldsymbol{\delta}_r$" → "指数 $\boldsymbol{q}\cdot\boldsymbol{r}$"；
+% 21. 正文孤立的页码噪声（§75 末 "22"、§80 "自由的. 6" 等）删除；
+% 22. 脚注圈码 ①② 按规范保留在正文中，脚注文本未转录
+%     （§74 两处、§75 两处、§76 一处、§77 一处、§78 一处、§79 一处、§80 一处）。
+%
+%  脚注已转录（2026-10-10）：后半（§74–§80）14 处圈码全部替换为
+%  \footnote{...}（转录自原书扫描页 p-239/240/241/244/245/247/250/251/
+%  256/261/262，与 MinerU OCR page_footnote 块逐字核对）。
+%
+%  遗留问题：
+%  * (74.17) $F(\xi)=\xi\int_\xi^\infty \mathrm{K}_{5/3}(\xi)\mathrm{d}\xi$
+%    积分变量与下限同记 $\xi$，按原书 p.227 照排；
+%  * §74 习题2 渐近公式中 $\mathrm{J}_n(n\varepsilon)$ 的 $\varepsilon$ 记号按原书 p.228 照排；
+%  * §78 习题6 分子中 $(1-v/c)^2$ 按原书 p.245 照排（英文原版相同）；
+%  * OCR 行 11161 处的孤立图片为原书 p.250 的水印，非正文插图，未排版。
+% ============================================================
+
+\section{同步辐射（磁轫致辐射）}
+
+我们来详细地研究一个以任意速度在均匀恒定磁场内沿圆周运动的电荷的辐射.这样的辐射称为磁轫致辐射.轨道的半径 $r$ 和运动的循环频率 $\omega_H$ 可通过磁场强度 $H$ 及粒子速度 $v$ 来表示，其公式（参见 §21）为
+\begin{equation}
+  r=\frac{mcv}{eH\sqrt{1-\dfrac{v^2}{c^2}}},\qquad
+  \omega_H=\frac{v}{r}=\frac{eH}{mc}\sqrt{1-\frac{v^2}{c^2}}.
+\end{equation}
+
+沿着所有方向的总辐射强度可以直接从（73.7）求得，不过必须使 $E=0$，$\boldsymbol{H}\perp\boldsymbol{v}$：
+\begin{equation}
+  I=\frac{2e^4H^2v^2}{3m^2c^5\left(1-\dfrac{v^2}{c^2}\right)}.
+\end{equation}
+
+我们看出，总强度与粒子的动量平方成正比.
+
+如果我们对辐射的角分布有兴趣，那么，我们必须应用公式（73.11）.在一个运动周期内的平均强度是我们感兴趣的量.为此，我们将（73.11）式在粒子作圆周运动的周期内积分，所得结果再用周期 $T=2\pi/\omega_H$ 除之.
+
+我们选择轨道平面作为 $xy$ 平面（原点取在圆心），而使 $yz$ 平面经过辐射方向 $\boldsymbol{n}$（图16）.磁场沿着负 $z$ 轴（图16 中粒子运动的方向相应于正电荷 $e$），此外，以 $\theta$ 表示辐射方向 $\boldsymbol{k}$ 和 $y$ 轴的夹角，而 $\varphi=\omega_H t$ 表示粒子的径矢和 $x$ 轴的夹角.那么，$\boldsymbol{k}$ 与粒子速度 $\boldsymbol{v}$ 的夹角余弦等于 $\cos\theta\cos\varphi$（矢量 $\boldsymbol{v}$ 在 $xy$ 平面内，而且在每一时刻都垂直于粒子的径矢）.我们借助运动方程（参见（21.1））用场 $\boldsymbol{H}$ 和粒子速度 $\boldsymbol{v}$ 来表示加速度 $\boldsymbol{w}$：
+\begin{equation*}
+  \boldsymbol{w}=\frac{e}{mc}\sqrt{1-\frac{v^2}{c^2}}\;\boldsymbol{v}\times\boldsymbol{H}.
+\end{equation*}
+
+经过简单计算后，我们得到：
+\begin{equation}
+  \overline{\mathrm{d}I}=\mathrm{d}o\,\frac{e^4H^2v^2}{8\pi^2m^2c^5}
+  \left(1-\frac{v^2}{c^2}\right)\int_0^{2\pi}
+  \frac{\left(1-\dfrac{v^2}{c^2}\right)\sin^2\theta
+  +\left(\dfrac{v}{c}-\cos\theta\cos\varphi\right)^{\!2}}
+  {\left(1-\dfrac{v}{c}\cos\theta\cos\varphi\right)^{5}}\,\mathrm{d}\varphi
+\end{equation}
+（对时间的积分已化为对 $\mathrm{d}\varphi=\omega_H\mathrm{d}t$ 的积分）.积分过程虽然较长，但只涉及基础运算.结果得到下面的公式：
+\begin{equation}
+  \overline{\mathrm{d}I}=\mathrm{d}o\,\frac{e^4H^2v^2\left(1-\dfrac{v^2}{c^2}\right)}{8\pi^2m^2c^5}
+  \cdot\frac{2-\cos^2\theta-\dfrac{v^2}{4c^2}\left(1+\dfrac{3v^2}{c^2}\right)\cos^4\theta}
+  {\left(1-\dfrac{v^2}{c^2}\cos^2\theta\right)^{7/2}}.
+\end{equation}
+
+$\theta=0$（在轨道平面内）时的辐射强度与 $\theta=\pi/2$（与轨道平面垂直）时的辐射强度之比等于
+\begin{equation}
+  \frac{\left(\dfrac{\mathrm{d}I}{\mathrm{d}o}\right)_{\!0}}
+  {\left(\dfrac{\mathrm{d}I}{\mathrm{d}o}\right)_{\!\pi/2}}
+  =\frac{4+3\dfrac{v^2}{c^2}}{8\left(1-\dfrac{v^2}{c^2}\right)^{5/2}}.
+\end{equation}
+
+当 $v\to 0$ 时，这个比值趋近于 $1/2$，但是对于与光速接近的速度，它就变为很大了.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5.5cm]{fig16.pdf}\\[0.3em]{\small 图 16}\end{minipage}\par\nopagebreak
+
+下面，我们来研究辐射的谱分布.既然电荷的运动是周期性的，那么我们实际上就是在处理傅里叶级数的展开式.从矢势出发来计算是便利的.对于矢势的傅里叶分量，我们有公式（参见(66.12)）
+\begin{equation*}
+  \boldsymbol{A}_n=e\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{cR_0T}
+  \oint\exp\{\mathrm{i}(\omega_H nt-\boldsymbol{k}\cdot\boldsymbol{r})\}\,\mathrm{d}\boldsymbol{r},
+\end{equation*}
+式中积分沿着粒子的轨道（圆周）进行.对于粒子的坐标，我们有 $x=r\cos\omega_H t$, $y=r\sin\omega_H t$.选择角 $\varphi=\omega_H t$ 作为积分变量.注意到
+\begin{equation*}
+  \boldsymbol{k}\cdot\boldsymbol{r}=kr\cos\theta\sin\varphi
+  =\frac{nv}{c}\cos\theta\sin\varphi
+\end{equation*}
+（$k=n\omega_H/c=nv/cr$），我们便得到矢势 $x$ 分量的傅里叶分量：
+\begin{equation*}
+  A_{xn}=-\frac{ev}{2\pi cR_0}\,\mathrm{e}^{\mathrm{i}kR_0}
+  \int_0^{2\pi}\exp\left[\mathrm{i}n\left(\varphi-\frac{v}{c}\cos\theta\sin\varphi\right)\right]
+  \sin\varphi\,\mathrm{d}\varphi.
+\end{equation*}
+
+在 §70 中，我们已经遇到过这样的积分.它可以用贝塞尔函数的导数来表示：
+\begin{equation}
+  A_{xn}=-\frac{\mathrm{i}ev}{cR_0}\,\mathrm{e}^{\mathrm{i}kR_0}\,
+  \mathrm{J}'_n\!\left(\frac{nv}{c}\cos\theta\right).
+\end{equation}
+
+$A_{yn}$ 可用同样的方法计算：
+\begin{equation}
+  A_{yn}=\frac{e}{R_0\cos\theta}\,\mathrm{e}^{\mathrm{i}kR_0}\,
+  \mathrm{J}_n\!\left(\frac{nv}{c}\cos\theta\right).
+\end{equation}
+
+沿 $z$ 轴的分量显然总是为零.
+
+按 §66 的各公式，对于频率为 $\omega=n\omega_H$ 并在立体角元 $\mathrm{d}o$ 内的辐射强度，我们有
+\begin{equation*}
+  \mathrm{d}I_n=\frac{c}{2\pi}|\boldsymbol{H}_n|^2R_0^2\,\mathrm{d}o
+  =\frac{c}{2\pi}|\boldsymbol{k}\times\boldsymbol{A}_n|^2R_0^2\,\mathrm{d}o.
+\end{equation*}
+
+注意到
+\begin{equation*}
+  |\boldsymbol{A}\times\boldsymbol{k}|^2=A_x^2k^2+A_y^2k^2\sin^2\theta,
+\end{equation*}
+并将（74.6）和（74.7）代入，我们便得到下面的辐射强度公式（G.~A.~Schott，1912）：
+\begin{equation}
+  \mathrm{d}I_n=\frac{n^2e^4H^2}{2\pi c^3m^2}\left(1-\frac{v^2}{c^2}\right)
+  \left[\tan^2\theta\cdot\mathrm{J}_n^2\!\left(\frac{nv}{c}\cos\theta\right)
+  +\frac{v^2}{c^2}\,\mathrm{J}_n^{\prime 2}\!\left(\frac{nv}{c}\cos\theta\right)\right]\mathrm{d}o.
+\end{equation}
+
+为了求频率为 $\omega=n\omega_H$ 的辐射沿一切方向的总强度，这个式子必须对全部角度积分.然而，这个积分不能以有限形式进行.作一系列利用贝塞尔函数理论中某些关系的变换，所要求的积分可以写成下面的形式：
+\begin{equation}
+  I_n=\frac{2e^4H^2}{m^2c^2v}\left(1-\frac{v^2}{c^2}\right)
+  \left[n\frac{v^2}{c^2}\,\mathrm{J}'_{2n}\!\left(\frac{2nv}{c}\right)
+  -n^2\left(1-\frac{v^2}{c^2}\right)\int_0^{v/c}\mathrm{J}_{2n}(2n\xi)\,\mathrm{d}\xi\right].
+\end{equation}
+
+现在我们更加详细地研究极端相对论情形，即当粒子运动速度接近光速时辐射的谱分布.
+
+在（74.2)的分子中令 $v=c$，我们发现在极端相对论情形下，磁轫致辐射总强度同粒子能量 $\mathcal{E}$ 的平方成正比：
+\begin{equation}
+  I=\frac{2e^4H^2}{3m^2c^3}\left(\frac{\mathcal{E}}{mc^2}\right)^2.
+\end{equation}
+
+辐射的角分布是高度各向异性的.辐射主要集中在轨道平面内.很容易求出包含辐射之主要部分的角区间的“宽度” $\Delta\theta$.从条件
+$1-\dfrac{v^2}{c^2}\cos^2\theta\sim 1-\dfrac{v^2}{c^2}$
+写出 $\theta=\pi/2\pm\Delta\theta$, $\sin\theta\cong 1-(\Delta\theta)^2/2$.显然有
+\begin{equation}
+  \Delta\theta\sim\sqrt{1-\frac{v^2}{c^2}}=\frac{mc^2}{\mathcal{E}}
+\end{equation}
+（这个结果当然与我们在前节得到的瞬时强度角分布一致，参见(73.12)\footnote{不过，读者不要将本节中的角 $\theta$ 同 §73 中 $\boldsymbol{n}$ 和 $\boldsymbol{v}$ 之间的夹角 $\theta$ 混淆起来.}）.
+
+以后可以知道，在极端相对论情形下，辐射中起主要作用的是具有大 $n$ 的频率（Arzimovich，Pomeranchuk，1945）.因此，我们可以应用渐近公式(70.9)，从而得到：
+\begin{equation}
+  \mathrm{J}_{2n}(2n\xi)\approx\frac{1}{\sqrt{\pi}\,n^{1/3}}\,\Phi\!\left[n^{2/3}(1-\xi^2)\right].
+\end{equation}
+
+代入（74.9)，我们便得到对于大 $n$ 值的辐射谱分布公式\footnote{代入时，积分限 $(n^{2/3})$ 在要求的精度内可以换为无穷大；只要可能也可以令 $v=c$.即使接近 1 的 $\xi$ 值在积分（74.9）中是重要的，仍然容许使用公式（74.12），因为该积分在下限迅速收敛.}：
+\begin{equation}
+  I_n=\frac{2e^4H^2}{\sqrt{\pi}\,m^2c^3}\,\frac{mc^2}{\mathcal{E}}\,\sqrt{u}
+  \left[-\Phi'(u)-\frac{u}{2}\int_u^{\infty}\Phi(u)\,\mathrm{d}u\right],
+\end{equation}
+\begin{equation*}
+  u=n^{2/3}\left(\frac{mc^2}{\mathcal{E}}\right)^{\!2}.
+\end{equation*}
+
+当 $u\to 0$ 时，方括号内的函数趋近于常数极限 $\Phi'(0)=-0.4587\cdots$\footnote{从艾里函数的定义得到：
+\begin{equation*}
+  \Phi'(0)=-\frac{1}{\sqrt{\pi}}\int_0^{\infty}\xi\sin\frac{\xi^3}{3}\,\mathrm{d}\xi
+  =-\frac{1}{\sqrt{\pi}\cdot 3^{1/3}}\int_0^{\infty}x^{-1/3}\sin x\,\mathrm{d}x
+  =-\frac{3^{1/6}\Gamma(2/3)}{2\sqrt{\pi}}.
+\end{equation*}}.因此，当 $u\ll 1$ 时，我们有
+\begin{equation}
+  I_n=0.52\,\frac{e^4H^2}{m^2c^3}\left(\frac{mc^2}{\mathcal{E}}\right)^{\!2}n^{1/3},\qquad
+  1\ll n\ll\left(\frac{\mathcal{E}}{mc^2}\right)^{\!3}.
+\end{equation}
+
+当 $u\gg 1$ 时，我们可以用艾里函数的渐近式（见 §59 习题中的脚注）从而得到：
+\begin{equation}
+  I_n=\frac{e^4H^2n^{1/2}}{2\sqrt{\pi}\,m^2c^3}\left(\frac{mc^2}{\mathcal{E}}\right)^{\!5/2}
+  \exp\!\left[-\frac{2}{3}n\left(\frac{mc^2}{\mathcal{E}}\right)^{\!3}\right],\qquad
+  n\gg\left(\frac{\mathcal{E}}{mc^2}\right)^{\!3},
+\end{equation}
+
+就是说，当 $n$ 很大时，强度按指数规律下降.
+
+因此，谱分布对于
+\begin{equation*}
+  n\sim\left(\frac{\mathcal{E}}{mc^2}\right)^{\!3}
+\end{equation*}
+有极大值，而辐射的主要部分集中在频率区间
+\begin{equation}
+  \omega=\omega_H\left(\frac{\mathcal{E}}{mc^2}\right)^{\!3}
+  =\frac{eH}{mc}\left(\frac{\mathcal{E}}{mc^2}\right)^{\!2}.
+\end{equation}
+
+因为 $\omega$ 的这些值与相邻频率的距离 $\omega_H$ 相比很大，那么我们可以说频谱有“似连续”的特征，它由很多相距很近的谱线所组成.因而我们可以引入按连续频率序列 $\omega=n\omega_H$ 的分布来替换分布函数 $I_n$，记
+\begin{equation*}
+  \mathrm{d}I=I_n\,\mathrm{d}n=I_n\,\frac{\mathrm{d}\omega}{\omega_H}.
+\end{equation*}
+
+利用麦克唐纳函数 $K_{\nu}$ 来表示这个分布对于数值计算是便利的\footnote{艾里函数同函数 $K_{1/3}$ 之间的关系由§59习题脚注中的（4）式给出.人们在进一步变换中使用递推关系
+\begin{equation*}
+  K_{\nu-1}(x)-K_{\nu+1}(x)=-\frac{2\nu}{x}\,K_{\nu}(x),\qquad
+  2K_{\nu}'(x)=-K_{\nu-1}(x)-K_{\nu+1}(x),
+\end{equation*}
+式中 $K_{-\nu}(x)=K_{\nu}(x)$.特别是，容易证明
+\begin{equation*}
+  \Phi'(t)=-\frac{t}{\sqrt{3\pi}}\,K_{2/3}\left(\frac{2}{3}t^{3/2}\right).
+\end{equation*}}.在作一些简单变换后，(74.13)式可以写为
+\begin{equation}
+  \mathrm{d}I=\mathrm{d}\omega\,\frac{\sqrt{3}}{2\pi}\,\frac{e^3H}{mc^2}\,
+  F\!\left(\frac{\omega}{\omega_c}\right),\qquad
+  F(\xi)=\xi\int_{\xi}^{\infty}\mathrm{K}_{5/3}(\xi)\,\mathrm{d}\xi,
+\end{equation}
+式中我们用了符号
+\begin{equation}
+  \omega_c=\frac{3eH}{2mc}\left(\frac{\mathcal{E}}{mc^2}\right)^{\!2}.
+\end{equation}
+
+图 17 显示了函数 $F(\xi)$ 的图.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=7cm]{fig17.pdf}\\[0.3em]{\small 图 17}\end{minipage}\par\nopagebreak
+
+最后来谈谈粒子不是在平面内，而是沿螺旋轨道运动的情形，就是说，（沿着场）有纵向速度 $\boldsymbol{v}_{\parallel}=v\cos\chi$（这里 $\chi$ 是 $\boldsymbol{H}$ 和 $\boldsymbol{v}$ 之间的角）.转动频率由同一公式(74.1)给出，但现在矢量 $\boldsymbol{v}$ 的运动不是在圆周上，而是在轴的方向沿 $\boldsymbol{H}$，顶角为 $2\chi$ 的锥面上.辐射的总强度（定义为粒子每秒损失的总能量）与(74.2)不同，那里的 $H$ 现在要换成 $H_{\perp}=H\sin\chi$.
+
+在极端相对论情形下，辐射集中于“速度锥”母线附近的方向.辐射的谱分布和总强度（与上面同义）从（74.17）和（74.10）通过替换 $H\to H_{\perp}$ 得到.如果我们谈的是一个静止观察者在这些方向看到的强度，那么我们必须引入一个附加因子来计及辐射体（在圆周上运动的粒子）所作的趋近或远离运动.这个因子由比值 $\mathrm{d}t/\mathrm{d}t_{\mathrm{obs}}$ 给出，这里 $\mathrm{d}t_{\mathrm{obs}}$ 是由源在间隔 $\mathrm{d}t$ 内发出的信号到达观察者之间的时间间隔.显然有
+\begin{equation*}
+  \mathrm{d}t_{\mathrm{obs}}=\mathrm{d}t\left(1-\frac{1}{c}\,\boldsymbol{v}_{\parallel}\cos\vartheta\right),
+\end{equation*}
+式中 $\vartheta$ 是 $\boldsymbol{k}$ 和 $\boldsymbol{H}$ 方向之间的夹角（后者取做速度 $\boldsymbol{v}_{\parallel}$ 的正方向）.在极端相对论情形下，当 $\boldsymbol{k}$ 的方向接近 $\boldsymbol{v}$ 的方向时，我们有 $\vartheta\approx\chi$，所以
+\begin{equation}
+  \frac{\mathrm{d}t}{\mathrm{d}t_{\mathrm{obs}}}
+  =\left(1-\frac{v_{\parallel}}{c}\cos\chi\right)^{\!-1}\approx\frac{1}{\sin^2\chi}.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 一个粒子在均匀恒定磁场内作圆周运动，求能量随时间变化的规律，和能量的辐射损失.
+
+解：按照（74.2)，对于在单位时间内的能量损失，我们有：
+\begin{equation*}
+  -\frac{\mathrm{d}\mathcal{E}}{\mathrm{d}t}
+  =\frac{2e^4H^2}{3m^4c^7}\left(\mathcal{E}^2-m^2c^4\right)
+\end{equation*}
+（$\mathcal{E}$ 是粒子的能量）.由此可得：
+\begin{equation*}
+  \frac{\mathcal{E}}{mc^2}
+  =\coth\left(\frac{2e^4H^2}{3m^3c^5}\,t+\mathrm{const}\right).
+\end{equation*}
+随着 $t$ 增加，能量单调减小，当 $t\to\infty$ 时，渐近地趋近于极限 $\mathcal{E}=mc^2$（粒子完全停止）.
+
+\noindent{\heiti 习题2}\quad 一个粒子以远小于光速的速度在圆周上运动，求大 $n$ 值辐射之谱分布的渐近公式.
+
+解：利用贝塞尔函数理论中著名的渐近公式，
+\begin{equation*}
+  \mathrm{J}_n(n\varepsilon)=\frac{1}{\sqrt{2\pi n}\,(1-\varepsilon^2)^{1/4}}
+  \left[\frac{\varepsilon}{1+\sqrt{1-\varepsilon^2}}
+  \exp\!\left(\sqrt{1-\varepsilon^2}\right)\right]^{\!n},
+\end{equation*}
+它适用于条件 $n(1-\varepsilon^2)^{3/2}\gg 1$.利用这个公式，我们从（74.9)求得
+\begin{equation*}
+  I_n=\frac{e^4H^2\sqrt{n}}{2\sqrt{\pi}\,m^2c^3}\left(1-\frac{v^2}{c^2}\right)^{\!5/4}
+  \left[\frac{v/c}{1+\sqrt{1-v^2/c^2}}\,
+  \exp\!\left(\sqrt{1-\frac{v^2}{c^2}}\right)\right]^{\!2n}.
+\end{equation*}
+这个公式对于 $n(1-v^2/c^2)^{3/2}\gg 1$ 是可以应用的；如果，此外，$1-v^2/c^2$ 也很小，那么，所得的公式化为(74.15).
+
+\noindent{\heiti 习题3}\quad 求磁轫致辐射的偏振.
+
+解：电场 $\boldsymbol{E}_n$ 从矢势 $\boldsymbol{A}_n$（74.6)，（74.7)按照如下公式计算：
+\begin{equation*}
+  \boldsymbol{E}_n=\frac{\mathrm{i}}{k}(\boldsymbol{k}\times\boldsymbol{A}_n)\times\boldsymbol{k}
+  =-\frac{\mathrm{i}}{k}\,\boldsymbol{k}(\boldsymbol{k}\cdot\boldsymbol{A}_n)+\mathrm{i}k\boldsymbol{A}_n.
+\end{equation*}
+令 $\boldsymbol{e}_1$, $\boldsymbol{e}_2$ 为垂直于 $\boldsymbol{k}$ 的平面内的单位矢量，这里 $\boldsymbol{e}_1$ 平行于 $x$ 轴，$\boldsymbol{e}_2$ 在 $yz$ 平面内（它们的分量是 $\boldsymbol{e}_1=(1,0,0)$, $\boldsymbol{e}_2=(0,\sin\theta,-\cos\theta)$；矢量 $\boldsymbol{e}_1$, $\boldsymbol{e}_2$ 和 $\boldsymbol{k}$ 组成右手系）.那么电场将是：
+\begin{equation*}
+  \boldsymbol{E}_n=\mathrm{i}kA_{xn}\boldsymbol{e}_1+\mathrm{i}k\sin\theta\,A_{yn}\boldsymbol{e}_2,
+\end{equation*}
+或者，略去不重要的共同因子：
+\begin{equation*}
+  \boldsymbol{E}_n\sim\frac{v}{c}\,\mathrm{J}'_n\!\left(\frac{nv}{c}\cos\theta\right)\boldsymbol{e}_1
+  +\tan\theta\,\mathrm{J}_n\!\left(\frac{nv}{c}\cos\theta\right)\mathrm{i}\boldsymbol{e}_2.
+\end{equation*}
+这个波是椭圆偏振的（参见 §48).
+
+在极端相对论情形下，对于大 $n$ 和小角 $\theta$，函数 $\mathrm{J}_n$ 和 $\mathrm{J}'_n$ 用 $\mathrm{K}_{1/3}$ 和 $\mathrm{K}_{2/3}$ 表示，这里我们在自变量中令
+\begin{equation*}
+  1-\frac{v^2}{c^2}\cos^2\theta\approx 1-\frac{v^2}{c^2}+\theta^2
+  =\left(\frac{mc^2}{\mathcal{E}}\right)^{\!2}+\theta^2.
+\end{equation*}
+结果得到：
+\begin{equation*}
+  \boldsymbol{E}_n=\boldsymbol{e}_1\psi\,\mathrm{K}_{2/3}\!\left(\frac{n}{3}\psi^3\right)
+  +\mathrm{i}\boldsymbol{e}_2\theta\,\mathrm{K}_{1/3}\!\left(\frac{n}{3}\psi^3\right),\qquad
+  \psi=\sqrt{\left(\frac{mc^2}{\mathcal{E}}\right)^{\!2}+\theta^2}.
+\end{equation*}
+对于 $\theta=0$，椭圆偏振退化为沿 $\boldsymbol{e}_1$ 的线偏振.对于大 $\theta$（$|\theta|\gg mc^2/\mathcal{E}$, $n\theta^3\gg 1$），我们有 $\mathrm{K}_{1/3}(x)\approx\mathrm{K}_{2/3}(x)\approx\sqrt{\pi/2x}\,\mathrm{e}^{-x}$ 且偏振趋向于变为圆偏振：$\boldsymbol{E}_n\sim\boldsymbol{e}_1\pm\mathrm{i}\boldsymbol{e}_2$；然而辐射强度也按指数变得很小.在中间角度范围，椭圆的短轴沿 $\boldsymbol{e}_2$，长轴沿 $\boldsymbol{e}_1$.转动方向依赖于角 $\theta$ 的正负号（如果 $\boldsymbol{H}$ 和 $\boldsymbol{k}$ 的方向分别处于轨道平面相对两侧，$\theta>0$，如图16 所示）.
+
+\end{xiti}
+
+\section{辐射阻尼}
+
+在 §65 中已经指出，通过将电荷体系的场的势展为 $v/c$ 的幂级数所得到的拉格朗日量的二级近似式，可以完全描述电荷的运动（在该级近似中）.现在我们将场展开到更高次的项，并研究这些项所产生的效应.
+
+在标势
+\begin{equation*}
+  \varphi=\int\frac{1}{R}\,\rho_{t-R/c}\,\mathrm{d}V
+\end{equation*}
+的展开式中的 $1/c$ 的三次方的项是
+\begin{equation}
+  \varphi^{(3)}=-\frac{1}{6c^3}\,\frac{\partial^3}{\partial t^3}\int R^2\rho\,\mathrm{d}V.
+\end{equation}
+
+按照（65.3）之后的推导的同样理由，在展开矢势时，我们只需取 $1/c$ 的二次方的项，就是
+\begin{equation}
+  \boldsymbol{A}^{(2)}=-\frac{1}{c^2}\,\frac{\partial}{\partial t}\int\boldsymbol{j}\,\mathrm{d}V.
+\end{equation}
+
+我们将这些势作下列变换：
+\begin{equation*}
+  \varphi'=\varphi-\frac{1}{c}\,\frac{\partial f}{\partial t},\qquad
+  \boldsymbol{A}'=\boldsymbol{A}+\operatorname{grad}f,
+\end{equation*}
+并这样来选择函数 $f$，使标势 $\varphi^{(3)}$ 为零.为此，显然必须有
+\begin{equation*}
+  f=-\frac{1}{6c^2}\,\frac{\partial^2}{\partial t^2}\int R^2\rho\,\mathrm{d}V.
+\end{equation*}
+
+这时，新的矢势等于
+\begin{equation*}
+\begin{aligned}
+  \boldsymbol{A}^{\prime(2)}
+  &=-\frac{1}{c^2}\,\frac{\partial}{\partial t}\int\boldsymbol{j}\,\mathrm{d}V
+  -\frac{1}{6c^2}\,\frac{\partial^2}{\partial t^2}\,\nabla\int R^2\rho\,\mathrm{d}V=\\
+  &=-\frac{1}{c^2}\,\frac{\partial}{\partial t}\int\boldsymbol{j}\,\mathrm{d}V
+  -\frac{1}{3c^2}\,\frac{\partial^2}{\partial t^2}\int\boldsymbol{R}\rho\,\mathrm{d}V.
+\end{aligned}
+\end{equation*}
+
+将积分变为对各电荷的求和，则右边第一项变为 $-\dfrac{1}{c^2}\sum e\dot{\boldsymbol{v}}$.在右边第二项中，我们写出 $\boldsymbol{R}=\boldsymbol{R}_0-\boldsymbol{r}$，此处的 $\boldsymbol{R}_0$ 和 $\boldsymbol{r}$ 的意义和平常一样（见 §66）；这时，$\dot{\boldsymbol{R}}=-\dot{\boldsymbol{r}}=-\boldsymbol{v}$，而第二项则取 $\dfrac{1}{3c^2}\sum e\dot{\boldsymbol{v}}$ 的形式.因此，
+\begin{equation}
+  \boldsymbol{A}^{\prime(2)}=-\frac{2}{3c^2}\sum e\dot{\boldsymbol{v}}.
+\end{equation}
+
+与这个势相应的磁场为零（$\boldsymbol{H}=\operatorname{rot}\boldsymbol{A}^{\prime(2)}=0$），因为 $\boldsymbol{A}^{\prime(2)}$ 并不显含坐标.电场 $\boldsymbol{E}=-\dot{\boldsymbol{A}}^{\prime(2)}/c$ 等于
+\begin{equation}
+  \boldsymbol{E}=\frac{2}{3c^3}\,\dddot{\boldsymbol{d}},
+\end{equation}
+式中 $\boldsymbol{d}$ 是电荷体系的偶极矩.
+
+因此，场展开式的三次方的各项导致作用于电荷上的某些附加力，在拉格朗日量(65.7)中是不包含这些力的；这些力和电荷加速度的时间导数有关.
+
+让我们考虑一个作稳定运动\footnote{更准确地说，是这样一种运动，尽管在略去辐射的情况下，它会是稳定的，但却在不断减慢.}的电荷体系，并且计算场（75.4)在单位时间内所做之功的平均值.作用于每个电荷 $e$ 上的力是 $\boldsymbol{f}=e\boldsymbol{E}$，就是
+\begin{equation}
+  \boldsymbol{f}=\frac{2e}{3c^3}\,\dddot{\boldsymbol{d}}.
+\end{equation}
+
+这个力在单位时间内所做的功是 $\boldsymbol{f}\cdot\boldsymbol{v}$，所以在所有电荷上所做的总功就等于对所有电荷的叠加；
+\begin{equation*}
+  \sum\boldsymbol{f}\cdot\boldsymbol{v}
+  =\frac{2}{3c^3}\,\dddot{\boldsymbol{d}}\cdot\sum e\boldsymbol{v}
+  =\frac{2}{3c^3}\,\dddot{\boldsymbol{d}}\cdot\dot{\boldsymbol{d}}
+  =\frac{2}{3c^3}\,\frac{\mathrm{d}}{\mathrm{d}t}(\dot{\boldsymbol{d}}\cdot\ddot{\boldsymbol{d}})
+  -\frac{2}{3c^3}\,(\ddot{\boldsymbol{d}})^2.
+\end{equation*}
+在对时间求平均值时，第一项等于零，因此功的平均值等于
+\begin{equation}
+  \sum\overline{\boldsymbol{f}\cdot\boldsymbol{v}}
+  =-\frac{2}{3c^3}\,\overline{\ddot{\boldsymbol{d}}^{\,2}}.
+\end{equation}
+
+但是，右边的式子，如将正负号倒过来，恰恰是这个电荷体系在单位时间内辐射出去的平均能量（参见(67.8)）.因此，在三级近似中出现的力（75.5)描写辐射对电荷的反作用.这些力称为辐射阻尼，或称为洛伦兹摩擦力.
+
+与辐射的电荷体系损失能量的同时，也出现了角动量的一些损失.单位时间内角动量的减少，$\mathrm{d}\boldsymbol{M}/\mathrm{d}t$，利用阻尼力的表达式很容易算出.取角动量 $\boldsymbol{M}=\sum\boldsymbol{r}\times\boldsymbol{p}$ 对时间的导数，则得 $\dot{\boldsymbol{M}}=\sum\boldsymbol{r}\times\dot{\boldsymbol{p}}$，因为 $\sum\dot{\boldsymbol{r}}\times\boldsymbol{p}=\sum m(\boldsymbol{v}\times\boldsymbol{v})\equiv 0$.用作用于粒子上的摩擦力（75.5)来代替粒子动量的时间导数，我们得到
+\begin{equation*}
+  \dot{\boldsymbol{M}}=\sum\boldsymbol{r}\times\boldsymbol{f}
+  =\frac{2}{3c^3}\sum e\,\boldsymbol{r}\times\dddot{\boldsymbol{d}}
+  =\frac{2}{3c^3}\,\boldsymbol{d}\times\dddot{\boldsymbol{d}}.
+\end{equation*}
+
+正如以前我们感兴趣的是能量损失的时间平均值一样，我们所感兴趣的是稳定运动角动量损失的时间平均值.写出
+\begin{equation*}
+  \boldsymbol{d}\times\dddot{\boldsymbol{d}}
+  =\frac{\mathrm{d}}{\mathrm{d}t}(\boldsymbol{d}\times\ddot{\boldsymbol{d}})
+  -\dot{\boldsymbol{d}}\times\ddot{\boldsymbol{d}},
+\end{equation*}
+而且注意到在求平均值时，对时间的导数（第一项）为零，则最后我们求得辐射体系的角动量的平均损失如下\footnote{与 §72 习题2 中得到的结果（3)一致.}：
+\begin{equation}
+  \overline{\frac{\mathrm{d}\boldsymbol{M}}{\mathrm{d}t}}
+  =-\frac{2}{3c^3}\,\overline{\dot{\boldsymbol{d}}\times\ddot{\boldsymbol{d}}}.
+\end{equation}
+
+单独的一个电荷在外场中运动时也发生辐射阻尼.它等于
+\begin{equation}
+  \boldsymbol{f}=\frac{2e^2}{3c^3}\,\ddot{\boldsymbol{v}}.
+\end{equation}
+
+对于单独的一个电荷，我们总可以选择这样一个参考系，在其中，这个电荷在给定时刻静止在坐标的原点.如果在这个参考系中我们计算出电荷产生的场展开式中的高次项，那么就会发现这些高次项有下述特性.当从电荷到观察点的径矢 $\boldsymbol{R}$ 趋近于零时，所有这些项都变为零.因此在单独一个电荷的情形里，公式（75.8)在某种意义上，是电荷在其静止参考系中辐射反作用的准确公式.
+
+然而我们必须记着，利用阻尼力来描写电荷“对自己”的作用，一般说来是不能令人满意的，而且包含着矛盾.在没有外场存在时，仅有力(75.8)作用于电荷上，电荷的运动方程为
+\begin{equation*}
+  m\dot{\boldsymbol{v}}=\frac{2e^2}{3c^3}\,\ddot{\boldsymbol{v}}.
+\end{equation*}
+这个方程，除了平凡解 $v=\mathrm{const}$ 外，还有另外一个解，其中加速度 $\dot{\boldsymbol{v}}$ 与 $\exp(3mc^3t/2e^2)$ 成正比，即随时间无限制地增加.这就意味着，例如，一个电荷在经过任何场并从该场出射时，应该无限制地“自我加速”.这种荒谬的结果表明了公式（75.8）的应用的局限性.
+
+我们可以提出这个问题，既然电动力学满足能量守恒定律，如何能够导出这样荒谬的结论，即一个自由电荷无限制地增加它的能量呢？实际上这个困难植根于前面(§37)所提到的关于基本粒子有无限大的电磁“固有质量”之内.当我们在运动方程内写出电荷的有限质量时，我们在实质上已经形式地给电荷以负无限大的，而又是非电磁根源的“固有质量”，这个质量同电磁质量结合在一起，组成为粒子的有限质量.但是，因为从一个无限大减去另一个无限大不是一个完全正确的数学运算，这就导致一系列的额外困难，上面所提的就是这些困难之一.
+
+在一个电荷在其中速度甚小的坐标系中，包含辐射阻尼的运动方程有如下的形式：
+\begin{equation}
+  m\dot{\boldsymbol{v}}=e\boldsymbol{E}+\frac{e}{c}\,\boldsymbol{v}\times\boldsymbol{H}
+  +\frac{2}{3}\,\frac{e^2}{c^3}\,\ddot{\boldsymbol{v}}.
+\end{equation}
+
+按照前面的讨论，这个方程只能应用到阻尼力比外场作用于电荷上的力小很多的范围内.
+
+为了明白这个条件的物理意义，我们作如下讨论.电荷在给定时刻静止的那个参考系中，速度对时间的二次导数，当略去阻尼力时，等于
+\begin{equation*}
+  \ddot{\boldsymbol{v}}=\frac{e}{m}\,\dot{\boldsymbol{E}}
+  +\frac{e}{mc}\,\dot{\boldsymbol{v}}\times\boldsymbol{H}.
+\end{equation*}
+在第二项中我们将 $\dot{\boldsymbol{v}}=e\boldsymbol{E}/m$ 代入（精确到同样的量级）则得到
+\begin{equation*}
+  \ddot{\boldsymbol{v}}=\frac{e}{m}\,\dot{\boldsymbol{E}}
+  +\frac{e^2}{m^2c}\,\boldsymbol{E}\times\boldsymbol{H}.
+\end{equation*}
+与此相应，阻尼力包含两项：
+\begin{equation}
+  \boldsymbol{f}=\frac{2e^3}{3mc^3}\,\dot{\boldsymbol{E}}
+  +\frac{2e^4}{3m^2c^4}\,\boldsymbol{E}\times\boldsymbol{H}.
+\end{equation}
+
+如果 $\omega$ 是运动的频率，那么，$\dot{\boldsymbol{E}}$ 就与 $\omega\boldsymbol{E}$ 成正比，因此，第一项与 $\dfrac{e^3\omega}{mc^3}\boldsymbol{E}$ 同数量级；第二项与 $\dfrac{e^4}{m^2c^4}EH$ 同数量级.由此可见，从阻尼力比外场加在电荷上的力 $eE$ 小很多的条件，首先得到
+\begin{equation*}
+  \frac{e^2}{mc^3}\,\omega\ll 1,
+\end{equation*}
+或者，引入波长 $\lambda\sim c/\omega$：
+\begin{equation}
+  \lambda\gg\frac{e^2}{mc^2}.
+\end{equation}
+
+因此，辐射阻尼的公式（75.8)仅仅当落在电荷上的辐射的波长比电荷的“半径” $e^2/mc^2$ 大很多时方能应用.我们又一次看到，与 $e^2/mc^2$ 同数量级的距离是电动力学导致内在矛盾的界限（参见 §37).
+
+其次，将阻尼力的第二项与力 $eE$ 相比较，我们便得到下面的条件：
+\begin{equation}
+  H\ll\frac{m^2c^4}{e^3}
+\end{equation}
+（或 $c/\omega_H\gg e^2/mc^2$，其中 $\omega_H=eH/mc$）.因此，场本身也必须不太大.与 $m^2c^4/e^3$ 同量级的场也是经典电动力学导致内在矛盾的界限.这里我们还必须记着，实际上，因为量子效应，电动力学对于相当小的场就已经不适用了\footnote{对应于与 $m^2c^3/\hbar e$ 同量级的场，即 $\hbar\omega_H\sim mc^2$.这个极限比（75.12）设置的极限小 $\hbar c/e^2=137$ 倍.这些距离同 $R_0$ 的比值量级为 $\hbar c/e^2\sim 137$.}.
+
+为了避免误解，我们提醒读者，(75.11）中的波长和（75.12)中的场值是针对给定时刻粒子的静止系而言的.
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 两个相吸引的粒子作椭圆运动（运动的速度比光速小很多），由于辐射而损失了能量.求相互“降落”的时间.
+
+解：假设一周中的相对能量损失很小，我们可以让能量的时间导数等于辐射的平均强度（见 §70 的习题1）：
+\begin{equation*}
+  \frac{\mathrm{d}|\mathcal{E}|}{\mathrm{d}t}
+  =\frac{(2|\mathcal{E}|)^{3/2}\mu^{5/2}\alpha^3}{3c^2M^5}
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^{\!2}
+  \left(3-\frac{2|\mathcal{E}|M^2}{\mu\alpha^2}\right),
+  \tag{1}
+\end{equation*}
+式中 $\alpha=|e_1e_2|$.粒子在损失能量的同时也损失角动量.单位时间内的角动量损失由（75.7）给出；将 $\boldsymbol{d}$ 的表达式(70.1)代入，并且注意到 $\mu\ddot{\boldsymbol{r}}=-\alpha\boldsymbol{r}/r^3$ 和 $\boldsymbol{M}=\mu\boldsymbol{r}\times\boldsymbol{v}$，我们便可求得：
+\begin{equation*}
+  \frac{\mathrm{d}\boldsymbol{M}}{\mathrm{d}t}
+  =-\frac{2\alpha}{3c^3}\left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^{\!2}
+  \frac{\boldsymbol{M}}{r^3}.
+\end{equation*}
+我们将这个式子在运动周期内平均；由于 $\boldsymbol{M}$ 的改变缓慢，右边只要对 $r^{-3}$ 平均就够了.这个平均值的计算像在 §70 的习题1 中求 $r^{-4}$ 的平均值一样.结果我们求得单位时间内角动量的平均损失如下：
+\begin{equation*}
+  \frac{\mathrm{d}M}{\mathrm{d}t}
+  =-\frac{2\alpha(2\mu|\mathcal{E}|)^{3/2}}{3c^3M^2}
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^{\!2}
+  \tag{2}
+\end{equation*}
+（像(1)式一样，我们略去了平均的符号）.用(2)来除(1)，我们得到微分方程
+\begin{equation*}
+  \frac{\mathrm{d}|\mathcal{E}|}{\mathrm{d}M}
+  =-\frac{\mu\alpha^2}{2M^3}\left(3-2\,\frac{|\mathcal{E}|M^2}{\mu\alpha^2}\right),
+\end{equation*}
+将上式积分，得到：
+\begin{equation*}
+  |\mathcal{E}|=\frac{\mu\alpha^2}{2M^2}\left(1-\frac{M^3}{M_0^3}\right)
+  +\frac{|\mathcal{E}_0|}{M_0}\,M.
+  \tag{3}
+\end{equation*}
+积分常数是这样选择的，使得当 $M=M_0$ 时，$\mathcal{E}=\mathcal{E}_0$，此处的 $M_0$ 和 $\mathcal{E}_0$ 是粒子的初角动量和初能量.
+
+粒子相互“降落”与 $M\to 0$ 相对应.从（3）可以看出，这时 $\mathcal{E}\to-\infty$.
+
+我们指出，乘积 $|\mathcal{E}|M^2$ 趋近于 $\mu\alpha^2/2$，并且从公式（70.3)可以看出偏心率 $\varepsilon\to 0$，即是说，当粒子互相接近时，轨道趋近于圆.将(3)代入(2)，我们就决定了表示为 $M$ 的函数的导数 $\mathrm{d}t/\mathrm{d}M$，此后对 $\mathrm{d}M$ 求积分，积分限是 $M_0$ 和 $0$，就直接得到“降落”的时间：
+\begin{equation*}
+  t_{\mathrm{fall}}=\frac{c^3M_0^5}{\alpha\sqrt{2|\mathcal{E}_0|\mu^3}}
+  \left(\frac{e_1}{m_1}-\frac{e_2}{m_2}\right)^{\!-2}
+  \left(\sqrt{\mu\alpha^2}+\sqrt{2M_0^2|\mathcal{E}_0|}\right)^{\!-2}.
+\end{equation*}
+
+\end{xiti}
+
+\section{相对论情形下的辐射阻尼}
+
+我们现在来推导辐射阻尼在相对论中的表达式（对于一个单独的电荷)，这个表达式也适用于速度与光速相近的运动.这个力现在是四维矢量 $g^i$，它应当加在电荷的运动方程内，该方程写为四维形式是：
+\begin{equation}
+  mc\,\frac{\mathrm{d}u^i}{\mathrm{d}s}=\frac{e}{c}\,F^{ik}u_k+g^i.
+\end{equation}
+
+为了求出 $g^i$，我们注意到当 $v\ll c$ 时，它的三个空间分量应当过渡为矢量 $\boldsymbol{f}/c$（75.8）的分量.很容易看出，四维矢量
+$\dfrac{2e^2}{3c}\,\dfrac{\mathrm{d}^2u^i}{\mathrm{d}s^2}$
+有这个特性.但是它不满足对任意四维力矢量的分量都成立的恒等式 $g^iu_i=0$.为了满足这个条件，我们必须在上面的式子中加某一个辅助四维矢量，这个辅助四维矢量由四维速度 $u^i$ 及其导数组成.这个矢量的三个空间分量在 $\boldsymbol{v}=0$ 的极限情形下变为零，但不改变已经由表达式
+$\dfrac{2e^2}{3c}\,\dfrac{\mathrm{d}^2u^i}{\mathrm{d}s^2}$
+所决定的 $\boldsymbol{f}$ 的正确值.四维矢量 $u^i$ 就有这个特性，因而所求的辅助项有 $\alpha u^i$ 的形式.标量 $\alpha$ 必须如此选择，使附加关系式 $g^iu_i=0$ 能被满足.结果我们得到：
+\begin{equation}
+  g^i=\frac{2e^2}{3c}\left(\frac{\mathrm{d}^2u^i}{\mathrm{d}s^2}
+  -(u^iu^k)\,\frac{\mathrm{d}^2u_k}{\mathrm{d}s^2}\right).
+\end{equation}
+
+按照运动方程，用作用于粒子上的外电磁场的场张量直接表示 $\mathrm{d}^2u^i/\mathrm{d}s^2$，这个公式可以写成另一形式：
+\begin{equation*}
+  \frac{\mathrm{d}u^i}{\mathrm{d}s}=\frac{e}{mc^2}\,F^{ik}u_k,\qquad
+  \frac{\mathrm{d}^2u^i}{\mathrm{d}s^2}
+  =\frac{e}{mc^2}\,\frac{\partial F^{ik}}{\partial x^l}\,u_ku^l
+  +\frac{e^2}{m^2c^4}\,F^{ik}F_{kl}u^l.
+\end{equation*}
+
+在作代换时，我们必须记着，对指标 $i$, $k$ 反对称的张量 $\partial F^{ik}/\partial x^l$ 与对称张量 $u_iu_k$ 之积恒等于零.所以，
+\begin{equation}
+  g^i=\frac{2e^3}{3mc^3}\,\frac{\partial F^{ik}}{\partial x^l}\,u_ku^l
+  -\frac{2e^4}{3m^2c^5}\,F^{il}F_{kl}u^k
+  +\frac{2e^4}{3m^2c^5}\,(F_{kl}u^l)(F^{km}u_m)\,u^i.
+\end{equation}
+
+当电荷经过一给定场时，其运动的世界线上的四维力 $g^i$ 的积分，应当与从电荷辐射的总四维动量 $\Delta P^i$ 相合（有相反的正负号），这类似于在非相对论的情形中力 $\boldsymbol{f}$ 所做功的平均值与偶极辐射强度相合（参见（75.6）式）.容易检验，实际上确是如此.在（76.2）式中第一项在进行积分时为零，因为在无穷远处，粒子没有加速度，即 $\mathrm{d}u^i/\mathrm{d}s=0$.对第二项进行分部积分得到：
+\begin{equation*}
+  -\int g^i\,\mathrm{d}s=\frac{2e^2}{3c}\int u^iu^k\,\frac{\mathrm{d}^2u_k}{\mathrm{d}s^2}\,\mathrm{d}s
+  =-\frac{2e^2}{3c}\int\frac{\mathrm{d}u_k}{\mathrm{d}s}\,\frac{\mathrm{d}u^k}{\mathrm{d}s}\,\mathrm{d}x^i,
+\end{equation*}
+它与（73.4）式完全吻合.
+
+如果粒子的速度趋近于光速，那么，在四维矢量（76.3)空间分量的三项中，包含有四维速度分量的三重积的第三项增加得最快.因此，只保留（76.3)的这些项，并利用四维矢量 $g^i$ 的空间分量和三维力 $\boldsymbol{f}$ 分量之间的关系(9.18)，对于后者我们得到
+\begin{equation*}
+  \boldsymbol{f}=\frac{2e^4}{3m^2c^4}\,(F_{kl}u^l)(F^{km}u_m)\,\boldsymbol{n},
+\end{equation*}
+式中 $\boldsymbol{n}$ 是 $\boldsymbol{v}$ 方向的单位矢量.因而，在这种情形下，力 $\boldsymbol{f}$ 同粒子速度的方向相反；选择后者为 $x$ 轴，将上式中的四维量以具体表达式代入，我们得到：
+\begin{equation}
+  f_x=-\frac{2e^4}{3m^2c^4}\,
+  \frac{(E_y-H_z)^2+(E_z+H_y)^2}{1-v^2/c^2}
+\end{equation}
+（这里，除分母以外，我们已处处令 $v=c$）.由此可见，对于一个极端相对论的粒子，辐射阻尼与它的能量的平方成正比.
+
+我们来注意下面的重要情况.在前面已经指出，我们所得到的辐射阻尼的表达式仅仅可以应用于比 $m^2c^4/e^3$ 小很多（在粒子的静止参考系 $K_0$ 中）的场.设 $F$ 为粒子以速度 $v$ 运动的参考系 $K$ 中外场的数量级.这时，在 $K_0$ 系中，场的数量级是 $F/\sqrt{1-v^2/c^2}$（参见 §24 中的变换公式）.因此 $F$ 应当满足条件
+\begin{equation}
+  \frac{e^3F}{m^2c^4\sqrt{1-\dfrac{v^2}{c^2}}}\ll 1.
+\end{equation}
+
+同时，阻尼力(76.4)与外力（$\sim eF$）之比的数量级是
+\begin{equation*}
+  \frac{e^3F}{m^2c^4\left(1-\dfrac{v^2}{c^2}\right)},
+\end{equation*}
+而且可以看出，条件(76.5)的满足并不妨碍阻尼力（对于能量足够高的粒子）比电磁场中作用在粒子上的通常洛伦兹力大很多\footnote{我们应当强调指出，这一结果绝不与早先对四维力 $g^i$ 的相对论表达式的推导矛盾，在那里假设它同四维力 $(e/c)F^{ik}u_k$ 相比是“很小”的.一个矢量的分量同另一个矢量的分量相比很小这个要求，只要在一个参考系中得到满足就足够了；按照相对论不变性的精神，基于这样假设得到的四维公式，在任何其他参考系中也是成立的.}.因此，对于一个极端相对论的粒子，我们可能有这种情形：辐射阻尼是作用于其上的主要的力.
+
+在这种情况下，粒子在每单位行程中所损失的动能可以认为仅仅是等于阻尼力 $f_x$；注意到阻尼力与粒子能量的平方成正比，我们可以写出
+\begin{equation*}
+  -\frac{\mathrm{d}\mathcal{E}_{\mathrm{kin}}}{\mathrm{d}x}=k(x)\,\mathcal{E}_{\mathrm{kin}}^2,
+\end{equation*}
+式中，$k(x)$ 是比例系数，与坐标 $x$ 有关，并且按照（76.4）式用场的横向分量来表示.将这个微分方程积分，我们得到
+\begin{equation*}
+  \frac{1}{\mathcal{E}_{\mathrm{kin}}}=\frac{1}{\mathcal{E}_0}
+  +\int_{-\infty}^{x}k(x)\,\mathrm{d}x,
+\end{equation*}
+式中，$\mathcal{E}_0$ 代表粒子的初能量（当 $x\to-\infty$ 时的能量）.就特例言之，粒子的终能量 $\mathcal{E}_1$（在粒子经过场以后的能量），决定于公式
+\begin{equation*}
+  \frac{1}{\mathcal{E}_1}=\frac{1}{\mathcal{E}_0}
+  +\int_{-\infty}^{+\infty}k(x)\,\mathrm{d}x.
+\end{equation*}
+由此可见当 $\mathcal{E}_0\to\infty$ 时，终能量 $\mathcal{E}_1$ 趋近于一个常数极限，而与 $\mathcal{E}_0$ 无关（I.~Pomeranchuk，1939）.换句话说，在经过场以后，粒子的能量不可能超过等式
+\begin{equation*}
+  \frac{1}{\mathcal{E}_{\mathrm{cr}}}
+  =\int_{-\infty}^{+\infty}k(x)\,\mathrm{d}x
+\end{equation*}
+所定义的能量 $\mathcal{E}_{\mathrm{cr}}$.将 $k(x)$ 的式子代入，此式可变为
+\begin{equation}
+  \frac{1}{\mathcal{E}_{\mathrm{cr}}}
+  =\frac{2}{3m^2c^4}\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \int_{-\infty}^{+\infty}\left[(E_y-H_z)^2+(E_z+H_y)^2\right]\mathrm{d}x.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求粒子经过磁偶极子 $\boldsymbol{m}$ 的场之后的极限能量；矢量 $\boldsymbol{m}$ 与运动方向在同一平面内.
+
+解：我们选定经过矢量 $\boldsymbol{m}$ 和运动方向的平面为 $xz$ 平面，粒子在这个平面内平行于 $x$ 轴运动，但与 $x$ 轴相距为 $\rho$.对于磁偶极子的场的横向分量（参见（44.4）式），我们有：
+\begin{equation*}
+\begin{aligned}
+  &H_y=0,\\
+  &H_z=\frac{(3\boldsymbol{m}\cdot\boldsymbol{r})z-m_zr^2}{r^5}
+  =\frac{\boldsymbol{m}}{(\rho^2+x^2)^{5/2}}
+  \left\{3(\rho\cos\varphi+x\sin\varphi)\rho-(\rho^2+x^2)\cos\varphi\right\}
+\end{aligned}
+\end{equation*}
+式中，$\varphi$ 是 $\boldsymbol{m}$ 与 $z$ 轴间的夹角.以之代入(76.6)，进行积分，我们便得到
+\begin{equation*}
+  \frac{1}{\mathcal{E}_{\mathrm{cr}}}
+  =\frac{\boldsymbol{m}^2\pi}{64m^2c^4\rho^5}
+  \left(\frac{e^2}{mc^2}\right)^{\!2}(15+26\cos^2\varphi).
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 写出在相对论情形中的阻尼力的三维表达式.
+
+解：计算四维矢量（76.3)的空间分量，我们得到
+\begin{equation*}
+\begin{aligned}
+  \boldsymbol{f}={}&\frac{2e^3}{3mc^3}\left(1-\frac{v^2}{c^2}\right)^{\!-1/2}
+  \left\{\left(\frac{\partial}{\partial t}+\boldsymbol{v}\cdot\nabla\right)\boldsymbol{E}
+  +\frac{1}{c}\,\boldsymbol{v}\times\left(\frac{\partial}{\partial t}
+  +\boldsymbol{v}\cdot\nabla\right)\boldsymbol{H}\right\}+\\
+  &+\frac{2e^4}{3m^2c^4}\left\{\boldsymbol{E}\times\boldsymbol{H}
+  +\frac{1}{c}\,\boldsymbol{H}\times(\boldsymbol{H}\times\boldsymbol{v})
+  +\frac{1}{c}\,\boldsymbol{E}(\boldsymbol{v}\cdot\boldsymbol{E})\right\}-\\
+  &-\frac{2e^4}{3m^2c^5\left(1-\dfrac{v^2}{c^2}\right)}\,\boldsymbol{v}
+  \left\{\left(\boldsymbol{E}+\frac{1}{c}\,\boldsymbol{v}\times\boldsymbol{H}\right)^{\!2}
+  -\frac{1}{c^2}(\boldsymbol{E}\cdot\boldsymbol{v})^2\right\},
+\end{aligned}
+\end{equation*}
+
+\end{xiti}
+
+\section{在极端相对论情形下辐射的谱分解}
+
+早先（在 §73 中）已经证明，极端相对论粒子的辐射主要沿着粒子速度的方向朝向前方：几乎完全被包含在 $\boldsymbol{v}$ 的方向附近很小一个角度范围
+\begin{equation*}
+  \Delta\theta\sim\sqrt{1-\frac{v^2}{c^2}}
+\end{equation*}
+之内.
+
+在求辐射的谱分解时，角间隔 $\Delta\theta$ 的大小与粒子经过外电磁场时的偏转角 $\alpha$ 的关系是至关重要的.
+
+$\alpha$ 角可以计算如下.粒子动量的横向（与运动方向相垂直）变化的数量级，与横向力 $eF$\footnote{如果我们选定 $x$ 轴沿着粒子的运动方向，那么，$(eF)^2$ 是洛伦兹力 $e\boldsymbol{E}+e\boldsymbol{v}/c\times\boldsymbol{H}$ 的 $y$ 分量与 $z$ 分量的平方之和，在此，我们可以令 $v\approx c$：
+\begin{equation*}
+  F^2=(E_y-H_z)^2+(E_z+H_y)^2.
+\end{equation*}}和经过场的时间 $t\sim a/v\approx a/c$ 的乘积的数量级相同（此处的 $a$ 是使场显著地有别于零的距离）.
+
+这个量与动量
+\begin{equation*}
+  p=\frac{mv}{\sqrt{1-v^2/c^2}}\approx\frac{mc}{\sqrt{1-v^2/c^2}}
+\end{equation*}
+之比决定小角 $\alpha$ 的数量级：
+\begin{equation*}
+  \alpha\sim\frac{eFa}{mc^2}\sqrt{1-\frac{v^2}{c^2}}.
+\end{equation*}
+
+用 $\Delta\theta$ 除之，我们得到：
+\begin{equation}
+  \frac{\alpha}{\Delta\theta}\sim\frac{eFa}{mc^2}.
+\end{equation}
+
+我们要注意这个事实，即这个比值与粒子的速度无关，而完全为外场本身所决定.
+
+我们先假设
+\begin{equation}
+  eFa\gg mc^2,
+\end{equation}
+就是说，粒子的总偏转角比 $\Delta\theta$ 大很多.这时，我们就可以说，在一指定方向的辐射主要在与运动方向几乎平行的那一部分轨道上发生（这一部分轨道与运动方向所成之角在间隔 $\Delta\theta$ 内），而这一部分轨道的弧长比 $a$ 小很多.场 $F$ 在这段弧内可以认为是不变的，又因为曲线的一小段可以当做圆弧，所以我们可以引用在 §74 中所求出的关于匀速圆周运动时的辐射（以 $F$ 代 $H$）的结果.就特例言之，我们可以说，辐射的主要部分集中在频率范围
+\begin{equation}
+  \omega\sim\frac{eF}{mc\left(1-\dfrac{v^2}{c^2}\right)}
+\end{equation}
+内（参见（74.16）式）.
+
+在相反的极限情形下，
+\begin{equation}
+  eFa\ll mc^2,
+\end{equation}
+粒子的总偏转角比 $\Delta\theta$ 小很多.在这种情形下，所有的辐射主要指向运动方向附近的狭窄的角范围 $\Delta\theta$，而辐射从整个轨道到达某一给定点.
+
+为了求辐射的谱分解，在这种情形下从场在波区的李纳-维谢尔公式(73.8)开始是便利的，我们来计算傅里叶分量
+\begin{equation*}
+  \boldsymbol{E}_{\omega}=\int_{-\infty}^{\infty}\boldsymbol{E}\,\mathrm{e}^{\mathrm{i}\omega t}\,\mathrm{d}t.
+\end{equation*}
+
+(73.8)式右边的表达式是推迟时间 $t'$ 的函数，由条件 $t'=t-R(t')/c$ 决定.在离一个几乎以恒定速度 $\boldsymbol{v}$ 运动的粒子远距离处，我们有：
+\begin{equation*}
+  t'\cong t-\frac{R_0}{c}+\frac{1}{c}\,\boldsymbol{n}\cdot\boldsymbol{r}(t')
+  \cong t-\frac{R_0}{c}+\frac{1}{c}\,\boldsymbol{n}\cdot\boldsymbol{v}t'
+\end{equation*}
+（此处的 $\boldsymbol{r}=\boldsymbol{r}(t')\approx\boldsymbol{v}t'$ 是粒子的径矢），或者
+\begin{equation*}
+  t=t'\left(1-\frac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)+\frac{R_0}{c}.
+\end{equation*}
+因此，从对于 $\mathrm{d}t$ 的积分很容易变为对于 $\mathrm{d}t'$ 的积分，只需注意
+\begin{equation*}
+  \mathrm{d}t=\left(1-\frac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)\mathrm{d}t'.
+\end{equation*}
+结果得到：
+\begin{equation*}
+  \boldsymbol{E}_{\omega}=\frac{e}{c^2}\,
+  \frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0\left(1-\dfrac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)^{\!2}}
+  \int_{-\infty}^{\infty}\boldsymbol{n}\times\left\{\left(\boldsymbol{n}-\frac{\boldsymbol{v}}{c}\right)\times\boldsymbol{w}(t')\right\}
+  \exp\!\left[\mathrm{i}\omega t'\left(1-\frac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)\right]\mathrm{d}t'.
+\end{equation*}
+
+这里处处将速度 $\boldsymbol{v}$ 当做常量；只有加速度 $\boldsymbol{w}(t')$ 是变化的.引入记号
+\begin{equation}
+  \omega'=\omega\left(1-\frac{\boldsymbol{n}\cdot\boldsymbol{v}}{c}\right)
+\end{equation}
+和相应的加速度的频率分量，我们将 $\boldsymbol{E}_{\omega}$ 写为形式
+\begin{equation*}
+  \boldsymbol{E}_{\omega}=\frac{e}{c^2}\,\frac{\mathrm{e}^{\mathrm{i}kR_0}}{R_0}
+  \left(\frac{\omega}{\omega'}\right)^{\!2}
+  \boldsymbol{n}\times\left\{\left(\boldsymbol{n}-\frac{\boldsymbol{v}}{c}\right)\times\boldsymbol{w}_{\omega'}\right\}.
+\end{equation*}
+
+最后从（66.9)，我们得到辐射入立体角 $\mathrm{d}o$ 内频率在 $\mathrm{d}\omega$ 范围的能量：
+\begin{equation}
+  \mathrm{d}\mathcal{E}_{n\omega}=\frac{e^2}{2\pi c^3}\left(\frac{\omega}{\omega'}\right)^{\!4}
+  \left|\boldsymbol{n}\times\left\{\left(\boldsymbol{n}-\frac{\boldsymbol{v}}{c}\right)\times\boldsymbol{w}_{\omega'}\right\}\right|^2
+  \mathrm{d}o\,\frac{\mathrm{d}\omega}{2\pi}.
+\end{equation}
+
+不难估计（77.4）情形中辐射主要集中的频率量级，只要注意仅当时间 $1/\omega'$，即
+\begin{equation*}
+  \frac{1}{\omega\left(1-\dfrac{v^2}{c^2}\right)}
+\end{equation*}
+与粒子加速度发生显著改变的时间 $a/v\sim a/c$ 同数量级时，傅里叶分量 $\boldsymbol{w}_{\omega'}$ 才显著地有别于零.因此，我们求得：
+\begin{equation}
+  \omega\sim\frac{c}{a\left(1-\dfrac{v^2}{c^2}\right)}.
+\end{equation}
+
+这个频率与粒子能量的关系和在（77.3）中一样，但系数是不同的.
+
+在讨论（77.2）和（77.4）两种情形时都作了如下假设，即粒子在穿过场时能量的总损失相对很小.现在我们将示明，这些情况的第一种也包含了极端相对论粒子的辐射问题，其总能损可以同初始能量相比拟.
+
+粒子在场中的总能量损失可以由洛伦兹摩擦力的功来决定.力(76.4)在路程 $\sim a$ 上所做的功量级为
+\begin{equation*}
+  af\sim\frac{e^4F^2a}{m^2c^4\left(1-\dfrac{v^2}{c^2}\right)}.
+\end{equation*}
+为使它能与粒子的总能量 $mc^2/\sqrt{1-v^2/c^2}$ 可以比拟，场必须在如下距离存在
+\begin{equation*}
+  a\sim\frac{m^3c^6}{e^4F^2}\sqrt{1-\frac{v^2}{c^2}}.
+\end{equation*}
+而这样一来条件（77.2）自动得到满足：
+\begin{equation*}
+  aeF\sim\frac{m^3c^6}{e^3F}\sqrt{1-\frac{v^2}{c^2}}\gg mc^2,
+\end{equation*}
+因为场 $F$ 无论如何必须满足条件（76.5)：
+\begin{equation*}
+  \frac{F}{\sqrt{1-\dfrac{v^2}{c^2}}}\ll\frac{m^2c^4}{e^3},
+\end{equation*}
+否则我们甚至不能应用普通电动力学.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求满足条件（77.2)的总辐射强度（沿一切方向）的谱分布.
+
+解：从轨道的每个弧元上发出的辐射由公式（74.13）来决定，公式中应当以在给定点的横向力 $F$ 代替 $H$，此外，还应当从不连续的频谱变到连续的频谱.这种过渡可以这样形式地来完成，即乘以 $\mathrm{d}n$，并作以下的替换：
+\begin{equation*}
+  I_n\,\mathrm{d}n=I_n\,\frac{\mathrm{d}n}{\mathrm{d}\omega}\,\mathrm{d}\omega
+  =I_n\,\frac{\mathrm{d}\omega}{\omega_0}.
+\end{equation*}
+然后，再将强度对全部时间积分，我们便得到总辐射如下形式的谱分布：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_{\omega}=-\mathrm{d}\omega\,
+  \frac{2e^2\omega(1-v^2/c^2)}{c\sqrt{\pi}}
+  \int_{-\infty}^{\infty}\left[\frac{\Phi'(u)}{u}
+  +\frac{1}{2}\int_u^{\infty}\Phi(u)\,\mathrm{d}u\right]\mathrm{d}t,
+\end{equation*}
+式中，$\Phi(u)$ 是艾里函数，而其独立变量是
+\begin{equation*}
+  u=\left[\frac{mc\omega}{eF}\left(1-\frac{v^2}{c^2}\right)\right]^{2/3}.
+\end{equation*}
+被积函数是积分变量 $t$ 的隐函数，两者的关系是通过 $u$ 而联系着的（$F$ 以及 $u$ 沿着粒子的轨道变化，对于一给定的运动，这个变化可以认为与时间有关）.
+
+\noindent{\heiti 习题2}\quad 求满足条件（77.4)的总辐射能量（沿一切方向）的谱分布.
+
+解：注意到与运动方向成小角 $\theta$ 的辐射起着主要的作用，我们可写出
+\begin{equation*}
+  \omega'=\omega\left(1-\frac{v}{c}\cos\theta\right)
+  \approx\omega\left(1-\frac{v}{c}+\frac{\theta^2}{2}\right)
+  \approx\frac{\omega}{2}\left(1-\frac{v^2}{c^2}+\theta^2\right).
+\end{equation*}
+用对 $\mathrm{d}\varphi\,\mathrm{d}\omega'/\omega$ 的积分替换（77.6)中对角
+$\mathrm{d}o=\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi\approx\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi$ 的积分.在写出（77.6)中矢量的三重积时必须记住，在极端相对论情形下，加速度的纵向分量同横向分量相比很小（比值为 $1-v^2/c^2$），而且在本例中我们可以足够精确地认为 $\boldsymbol{w}$ 和 $\boldsymbol{v}$ 相互垂直.结果，我们求得总辐射谱分解的如下公式：
+\begin{equation*}
+  \mathrm{d}\mathcal{E}_{\omega}=\frac{e^2\omega\,\mathrm{d}\omega}{2\pi c^3}
+  \int_{\frac{\omega}{2}\left(1-\frac{v^2}{c^2}\right)}^{\infty}
+  \frac{|\boldsymbol{w}_{\omega'}|^2}{\omega'^2}
+  \left[1-\frac{\omega}{\omega'}\left(1-\frac{v^2}{c^2}\right)
+  +\frac{\omega^2}{2\omega'^2}\left(1-\frac{v^2}{c^2}\right)^{\!2}\right]\mathrm{d}\omega'.
+\end{equation*}
+
+\end{xiti}
+
+\section{被自由电荷散射}
+
+假如电磁波落在一个电荷体系上，那么，电荷会在电磁波的作用下运动.这种运动又产生向所有方向的辐射；通常就说，发生了原波的散射.
+
+刻画散射最便利的办法是利用散射体系在一给定方向在单位时间内所射出的能量与落在辐射体系上的能流密度之比，这个比值的量纲显然是面积，因而称为有效散射截面（或简称截面）.
+
+设入射波的坡印亭矢量为 $\boldsymbol{S}$，而体系每秒辐射到立体角 $\mathrm{d}o$ 内的能量为 $\mathrm{d}I$，那么，散射（到立体角 $\mathrm{d}o$ 内）的有效截面等于
+\begin{equation}
+  \mathrm{d}\sigma=\frac{\overline{\mathrm{d}I}}{\overline{S}}
+\end{equation}
+（在符号上的一横表示对时间求平均）.$\mathrm{d}\sigma$ 对所有方向的积分 $\sigma$ 是总有效散射截面.
+
+我们来考虑一个静止的自由电荷所产生的散射.让一平面单色线性偏振波射在这个电荷上.它的电场可以写成
+\begin{equation*}
+  \boldsymbol{E}=\boldsymbol{E}_0\cos(\boldsymbol{k}\cdot\boldsymbol{r}-\omega t+\alpha).
+\end{equation*}
+
+假设电荷在入射波影响下获得的速度比光速小很多（一般情形确是如此）.这时我们可以认为作用于电荷上的力是 $e\boldsymbol{E}$，而由磁场所产生之力 $(e/c)\,\boldsymbol{v}\times\boldsymbol{H}$ 可以略去.在这种情形下，我们也可以略去电荷在场影响下的振动的位移.如果电荷在坐标原点附近振动，那么，我们可以假设作用在电荷上的场在一切时间都和在原点的场一样，就是说，
+\begin{equation*}
+  \boldsymbol{E}=\boldsymbol{E}_0\cos(\omega t-\alpha).
+\end{equation*}
+
+因为电荷的运动方程是
+\begin{equation*}
+  m\ddot{\boldsymbol{r}}=e\boldsymbol{E},
+\end{equation*}
+而它的偶极矩 $\boldsymbol{d}=e\boldsymbol{r}$，那么，
+\begin{equation}
+  \ddot{\boldsymbol{d}}=\frac{e^2}{m}\,\boldsymbol{E}.
+\end{equation}
+
+为了计算散射出来的辐射，我们可以用偶极辐射的公式（67.7)（这是允许的，因为电荷在入射波影响下获得的速度比光速小很多）.我们也应当注意，电荷所辐射的（即它所散射的）波的频率显然与入射波的频率相等.
+
+将（78.2）代入（67.7），我们便得到
+\begin{equation}
+  \mathrm{d}I=\frac{e^4}{4\pi m^2c^3}\,(\boldsymbol{E}\times\boldsymbol{n}')^2\,\mathrm{d}o,
+\end{equation}
+式中 $\boldsymbol{n}'$ 是散射方向的单位矢量.另一方面，入射波的坡印亭矢量是
+\begin{equation*}
+  S=\frac{c}{4\pi}\,E^2.
+\end{equation*}
+由此可得散射到立体角 $\mathrm{d}o$ 内的有效截面：
+\begin{equation}
+  \mathrm{d}\sigma=\left(\frac{e^2}{mc^2}\right)^{\!2}\sin^2\theta\,\mathrm{d}o,
+\end{equation}
+式中，$\theta$ 是散射方向（矢量 $\boldsymbol{n}$）和入射波的电场 $\boldsymbol{E}$ 所夹之角.我们看出，一个自由电荷的有效散射截面与频率无关.
+
+现在来求总有效截面 $\sigma$.为此，我们选择极轴沿着 $\boldsymbol{E}$ 的方向.则有
+$\mathrm{d}o=\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi$；将此式代入，再对 $\mathrm{d}\theta$ 从 0 到 $\pi$ 积分，对 $\mathrm{d}\varphi$ 从 0 到 $2\pi$ 积分，我们求得
+\begin{equation}
+  \sigma=\frac{8\pi}{3}\left(\frac{e^2}{mc^2}\right)^{\!2}
+\end{equation}
+（这称为汤姆孙公式）.
+
+最后，我们来求在入射波没有偏振（即自然光）情形下的微分截面 $\mathrm{d}\sigma$.为此，我们必须将（78.4) 对矢量 $\boldsymbol{E}$ 的所有的方向求平均值，$\boldsymbol{E}$ 是在垂直于入射波传播方向（即波矢 $\boldsymbol{k}$ 的方向）的平面内.记沿 $\boldsymbol{E}$ 方向的单位矢量为 $\boldsymbol{e}$，我们有：
+\begin{equation*}
+  \overline{\sin^2\theta}=1-\overline{(\boldsymbol{n}'\cdot\boldsymbol{e})^2}
+  =1-n'_{\alpha}n'_{\beta}\,\overline{e_{\alpha}e_{\beta}}.
+\end{equation*}
+用如下公式进行平均\footnote{实际上，$\overline{e_\alpha e_\beta}$ 是迹为 1 的对称张量，因为 $\boldsymbol{e}$ 和 $\boldsymbol{k}$ 彼此垂直，故该张量在乘 $k_\alpha$ 时得零.这里给出的表达式满足这些条件.}
+\begin{equation}
+  \overline{e_{\alpha}e_{\beta}}=\frac{1}{2}\left(\delta_{\alpha\beta}
+  -\frac{k_{\alpha}k_{\beta}}{k^2}\right),
+\end{equation}
+于是得到
+\begin{equation*}
+  \overline{\sin^2\theta}=\frac{1}{2}\left(1+\frac{(\boldsymbol{n}'\cdot\boldsymbol{k})^2}{k^2}\right)
+  =\frac{1}{2}\,(1+\cos^2\vartheta),
+\end{equation*}
+式中 $\vartheta$ 是入射波方向和散射波方向之间的夹角（散射角）.因此，非偏振波被自由电荷散射的有效截面是
+\begin{equation}
+  \mathrm{d}\sigma=\frac{1}{2}\left(\frac{e^2}{mc^2}\right)^{\!2}
+  (1+\cos^2\vartheta)\,\mathrm{d}o.
+\end{equation}
+
+散射的发生会引起，例如，作用于散射粒子上的力的出现.这可以从下面的考虑来验证.平均说来，在单位时间内，射在粒子上的波损失能量 $c\overline{W}\sigma$，此处的 $\overline{W}$ 是平均能量密度，而 $\sigma$ 则是总有效散射截面.因为场的动量等于它的能量除以光速，所以入射波损失的动量的绝对值就等于 $\overline{W}\sigma$.另一方面，如有一个参考系，其中电荷在力 $e\boldsymbol{E}$ 作用下仅作小振动，而且振动的速度 $\boldsymbol{v}$ 也小，那么，在这个参考系中，散射波中的总动量流等于零（精确到 $v/c$ 的高次项）（在 §73 中已经证明了，在 $v=0$ 的参考系中粒子不辐射动量）.所以入射波所损失的动量完全被散射粒子所“吸收”了.作用于粒子的平均力 $\overline{\boldsymbol{f}}$ 就等于单位时间内所吸收的平均动量，即
+\begin{equation}
+  \overline{\boldsymbol{f}}=\sigma\overline{W}\,\boldsymbol{n}
+\end{equation}
+（$\boldsymbol{n}$ 是单位矢量，其方向与入射波传播的方向相同）.我们注意到，“平均”力相对于入射波之场是二级量，而“瞬时”力（其主要部分是 $e\boldsymbol{E}$）相对于入射波之场是一级量.
+
+公式（78.8）也可以直接由求阻尼力（75.10）的平均值得到.第一项（与 $\dot{\boldsymbol{E}}$ 成正比）在求平均值时化为零（就像力主要部分 $e\boldsymbol{E}$ 的平均值一样）.从第二项得到
+\begin{equation*}
+  \overline{\boldsymbol{f}}=\frac{2e^4}{3m^2c^4}\,\overline{E^2}\,\boldsymbol{n}
+  =\frac{8\pi}{3}\left(\frac{e^2}{mc^2}\right)^{\!2}\cdot\frac{\overline{E^2}}{4\pi}\,\boldsymbol{n},
+\end{equation*}
+由于（78.5)，这个式子与（78.8）相吻合.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 一个椭圆偏振波被一个自由电荷散射，求其有效截面.
+
+解：波的场有如下形式：
+\begin{equation*}
+  \boldsymbol{E}=\boldsymbol{A}\cos(\omega t+\alpha)+\boldsymbol{B}\sin(\omega t+\alpha),
+\end{equation*}
+式中，$\boldsymbol{A}$ 和 $\boldsymbol{B}$ 是两个相互垂直的矢量（见 §48).与正文中推导相似，我们可求得
+\begin{equation*}
+  \mathrm{d}\sigma=\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \frac{(\boldsymbol{A}\times\boldsymbol{n}')^2+(\boldsymbol{B}\times\boldsymbol{n}')^2}{A^2B^2}\,\mathrm{d}o.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 一个线性偏振波被一个在弹性力作用下作小振动的电荷（振子）散射.求有效截面.
+
+解：在入射波 $\boldsymbol{E}=\boldsymbol{E}_0\cos(\omega t+\alpha)$ 内，电荷的运动方程是
+\begin{equation*}
+  \ddot{\boldsymbol{r}}+\omega_0^2\boldsymbol{r}
+  =\frac{e}{m}\,\boldsymbol{E}_0\cos(\omega t+\alpha),
+\end{equation*}
+式中 $\omega_0$ 是电荷自由振动的频率.对于强迫振动，由此可得
+\begin{equation*}
+  \boldsymbol{r}=\frac{e\boldsymbol{E}_0\cos(\omega t+\alpha)}{m(\omega_0^2-\omega^2)}.
+\end{equation*}
+由此计算出 $\ddot{\boldsymbol{d}}$，我们便得到
+\begin{equation*}
+  \mathrm{d}\sigma=\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \frac{\omega^4}{(\omega_0^2-\omega^2)^2}\,\sin^2\theta\,\mathrm{d}o
+\end{equation*}
+（$\theta$ 是 $\boldsymbol{E}$ 与 $\boldsymbol{n}'$ 所夹之角）.
+
+\noindent{\heiti 习题3}\quad 电偶极子在力学上是一个转子，求它散射光的总有效截面.假设波的频率 $\omega$ 同转子自由转动的频率 $\Omega_0$ 相比很大.
+
+解：由于条件 $\omega\gg\Omega_0$，我们可以忽略转子的自由转动，而只考虑由散射波施予其上的力 $\boldsymbol{d}\times\boldsymbol{E}$ 的力矩作用下的受迫转动.这个运动的方程是：$J\dot{\boldsymbol{\Omega}}=\boldsymbol{d}\times\boldsymbol{E}$，式中 $J$ 是转子的转动惯量，$\boldsymbol{\Omega}$ 是转动的角速度.偶极矩只作转动运动，其矢量的绝对值不变，公式 $\dot{\boldsymbol{d}}=\boldsymbol{\Omega}\times\boldsymbol{d}$ 决定了偶极矩矢量的变化.从这两个方程我们得到（略去小量 $\boldsymbol{\Omega}$ 中的四极项）：
+\begin{equation*}
+  \ddot{\boldsymbol{d}}=\frac{1}{J}(\boldsymbol{d}\times\boldsymbol{E})\times\boldsymbol{d}
+  =\frac{1}{J}\left[\boldsymbol{E}d^2-(\boldsymbol{E}\cdot\boldsymbol{d})\boldsymbol{d}\right].
+\end{equation*}
+假设偶极子在空间中所有取向的可能性都相同，将 $\ddot{\boldsymbol{d}}^{\,2}$ 对方向进行平均，我们就得到总有效截面：
+\begin{equation*}
+  \sigma=\frac{16\pi d^4}{9c^4J^2}.
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 自然光被自由电荷散射，求退偏振的程度.
+
+解：从对称性的考虑出发，显然可见，散射光的两个非相干的偏振分量（参见 §50)是线偏振的：一个在散射平面（即经过入射光与散射光的平面）内，另外一个和该平面垂直.这些分量的强度取决于入射波场在散射平面内的分量（$\boldsymbol{E}_{\parallel}$）和垂直于它的分量（$\boldsymbol{E}_{\perp}$），按照（78.3)，分别正比于
+\begin{equation*}
+  (\boldsymbol{E}_{\parallel}\times\boldsymbol{n}')^2
+  =E_{\parallel}^2\cos^2\vartheta
+  \quad\text{和}\quad
+  (\boldsymbol{E}_{\perp}\times\boldsymbol{n}')^2=E_{\perp}^2
+\end{equation*}
+（式中 $\vartheta$ 是散射角）.因为对于入射的自然光有 $\overline{E_{\parallel}^2}=\overline{E_{\perp}^2}$，退偏振度（参见(50.9)的定义）是：
+\begin{equation*}
+  \rho=\cos^2\vartheta.
+\end{equation*}
+
+\noindent{\heiti 习题5}\quad 求运动电荷所散射出来的光的频率 $\omega'$.
+
+解：在电荷静止的坐标系中，光的频率经过散射后不改变（$\omega=\omega'$）.这个关系可以写成形如下式的不变量：
+\begin{equation*}
+  k'_iu'^i=k_iu^i,
+\end{equation*}
+式中 $u^i$ 是电荷的四维速度.从此不难求出
+\begin{equation*}
+  \omega'\left(1-\frac{v}{c}\cos\theta'\right)
+  =\omega\left(1-\frac{v}{c}\cos\theta\right),
+\end{equation*}
+式中，$\theta$ 和 $\theta'$ 是入射波和散射波与运动方向所夹之角（$v$ 是电荷的速度）.
+
+\noindent{\heiti 习题6}\quad 一线性偏振波被一个以速度 $v$ 沿波传播方向运动的电荷散射，求散射的角度分布.
+
+解：粒子的速度垂直于入射波的场 $\boldsymbol{E}$ 和 $\boldsymbol{H}$，因而也垂直于给予粒子的加速度 $\boldsymbol{w}$.散射的强度由（73.14)决定，其中，粒子的加速度 $\boldsymbol{w}$ 必须借助 §17 习题中得到的公式用入射波的场 $\boldsymbol{E}$ 和 $\boldsymbol{H}$ 来表示.用入射波的坡印亭矢量除强度 $\mathrm{d}I$，我们得到有效散射截面如下：
+\begin{equation*}
+  \mathrm{d}\sigma=\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \frac{\left(1-\dfrac{v^2}{c^2}\right)\left(1-\dfrac{v}{c}\right)^{\!2}}
+  {\left(1-\dfrac{v}{c}\sin\theta\cos\varphi\right)^{\!6}}
+  \left[\left(1-\frac{v}{c}\sin\theta\cos\varphi\right)^{\!2}
+  -\left(1-\frac{v^2}{c^2}\right)\cos^2\theta\right]\mathrm{d}o,
+\end{equation*}
+式中，$\theta$ 和 $\varphi$ 是如下坐标系中方向 $\boldsymbol{n}'$ 的极角和方位角，该坐标系的 $z$ 轴沿着 $\boldsymbol{E}$ 的方向，$x$ 轴沿着 $\boldsymbol{v}$ 的方向
+（$\cos(\boldsymbol{n}',\boldsymbol{E})=\cos\theta$, $\cos(\boldsymbol{n}',\boldsymbol{v})=\sin\theta\cos\varphi$）.
+
+\noindent{\heiti 习题7}\quad 求电荷在被它散射的波施予于它的平均力的作用下的运动.
+
+解：力（78.8)沿着入射波的传播方向（$x$ 轴)，因此，我们所考虑的运动的速度也沿着这个方向，选择粒子在其中静止的辅助参考系 $K_0$（要注意，我们所讨论的是对一个小振动的周期平均了的运动)，作用于电荷上的力是 $\sigma\overline{W}_0$，而在这个力的作用下，电荷所获得的加速度是
+\begin{equation*}
+  w_0=\frac{\sigma}{m}\,\overline{W}_0
+\end{equation*}
+（角标 0 表示对参考系 $K_0$ 而言）.到原参考系 $K$（其中，电荷以速度 $v$ 运动）的变换由 §7 习题中得到的公式和公式（47.7)给出，于是有：
+\begin{equation*}
+  \frac{\mathrm{d}}{\mathrm{d}t}\,\frac{v}{\sqrt{1-\dfrac{v^2}{c^2}}}
+  =\frac{1}{\left(1-\dfrac{v^2}{c^2}\right)^{3/2}}\,\frac{\mathrm{d}v}{\mathrm{d}t}
+  =\frac{\overline{W}\sigma}{m}\,\frac{1-\dfrac{v}{c}}{1+\dfrac{v}{c}}.
+\end{equation*}
+将此式积分，求得：
+\begin{equation*}
+  \frac{\overline{W}\sigma}{mc}\,t
+  =\frac{1}{3}\sqrt{\frac{1+\dfrac{v}{c}}{1-\dfrac{v}{c}}}\cdot
+  \frac{2-\dfrac{v}{c}}{1-\dfrac{v}{c}}-\frac{2}{3},
+\end{equation*}
+这就决定了作为时间隐函数的速度 $v=\mathrm{d}x/\mathrm{d}t$（积分常数是这样选择的，当 $t=0$ 时，$v=0$）.
+
+\noindent{\heiti 习题8}\quad 求线性偏振波被一个振子散射的有效截面（考虑辐射阻尼）.
+
+解：将电荷在入射波内的运动方程写为如下形式：
+\begin{equation*}
+  \ddot{\boldsymbol{r}}+\omega_0^2\boldsymbol{r}
+  =\frac{e}{m}\,\boldsymbol{E}_0\mathrm{e}^{-\mathrm{i}\omega t}
+  +\frac{2e^2}{3mc^3}\,\dddot{\boldsymbol{r}}.
+\end{equation*}
+在阻尼力中，可以近似地代入 $\dddot{\boldsymbol{r}}=-\omega_0^2\dot{\boldsymbol{r}}$，于是得到
+\begin{equation*}
+  \ddot{\boldsymbol{r}}+\gamma\dot{\boldsymbol{r}}+\omega_0^2\boldsymbol{r}
+  =\frac{e}{m}\,\boldsymbol{E}_0\mathrm{e}^{-\mathrm{i}\omega t},
+\end{equation*}
+式中，$\gamma=\dfrac{2e^2}{3mc^3}\,\omega_0^2$.由此得到
+\begin{equation*}
+  \boldsymbol{r}=\frac{e}{m}\,\boldsymbol{E}_0\,
+  \frac{\mathrm{e}^{-\mathrm{i}\omega t}}{\omega_0^2-\omega^2-\mathrm{i}\omega\gamma}.
+\end{equation*}
+有效截面是
+\begin{equation*}
+  \sigma=\frac{8\pi}{3}\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \frac{\omega^4}{(\omega_0^2-\omega^2)^2+\omega^2\gamma^2}.
+\end{equation*}
+
+\end{xiti}
+
+\section{低频波的散射}
+
+电荷体系对电磁波的散射与单个静止电荷对电磁波的散射之间的区别首先在于这个事实，即由于电荷体系存在内部运动，散射波的频率可能与入射波的频率不同.就是说，在散射波的谱分解中，除了入射波的频率 $\omega$ 外，还可能出现频率 $\omega'$，两者的差是散射体系内部运动的频率之一.改变频率的散射称为非相干散射（或称组合散射），它和不改变频率的相干散射不同.
+
+假设入射波的场是弱场，则我们可以将电流密度写成 $\boldsymbol{j}=\boldsymbol{j}_0+\boldsymbol{j}'$，此处的 $\boldsymbol{j}_0$ 是没有外场时的电流密度，而 $\boldsymbol{j}'$ 则是在入射波作用下的电流变化.与之相应，体系的场的矢势（以及其他的量）也有 $\boldsymbol{A}=\boldsymbol{A}_0+\boldsymbol{A}'$ 的形式，此处的 $\boldsymbol{A}_0$ 和 $\boldsymbol{A}'$ 由电流 $\boldsymbol{j}_0$ 和 $\boldsymbol{j}'$ 决定.显然，$\boldsymbol{A}'$ 描述这个电荷体系所散射的波.
+
+现在让我们来考虑一个波的散射，这个波的频率 $\omega$ 比电荷体系所有的内部频率都小很多.这个散射将包含非相干部分和相干部分，但是我们在此将只考虑相干散射.
+
+为了计算散射波的场，在频率 $\omega$ 十分低的情况下，我们总可以用推迟势的展开式，这个展开式已经在 §67 和 §71 中介绍过了，即使体系内粒子的速度比起光速来并不算小，也可以使用这个式子.事实上，要使积分
+\begin{equation}
+  \boldsymbol{A}'=\frac{1}{cR_0}\int
+  \boldsymbol{j}\,_{t-\frac{R_0}{c}+\frac{\boldsymbol{r}\cdot\boldsymbol{n}'}{c}}^{\prime}\,
+  \mathrm{d}V
+\end{equation}
+的展开式成立，仅仅只须要时间 $\boldsymbol{r}\cdot\boldsymbol{n}'/c\sim a/c$ 比电流分布有显著改变的时间间隔 $1/\omega$ 小很多；对于足够低的频率 $\omega$（$\omega\ll c/a$），不管体系内粒子的速度怎样，这个条件都可以满足.
+
+从展开式的第一项得
+\begin{equation*}
+  \boldsymbol{H}'=\frac{1}{c^2R_0}
+  \left\{\ddot{\boldsymbol{d}}'\times\boldsymbol{n}'
+  +(\ddot{\boldsymbol{m}}'\times\boldsymbol{n}')\times\boldsymbol{n}'\right\},
+\end{equation*}
+式中 $\boldsymbol{d}'$, $\boldsymbol{m}'$ 分别是体系的偶极矩和磁矩的一部分，这部分是由落在体系上的辐射所产生的.展开式的以后各项包含比二阶更高的时间导数，我们将它们略去.
+
+散射波的场的谱分解的分量 $\boldsymbol{H}'_{\omega}$（其频率与入射波的频率相等）为这同一公式所决定，但公式中应将所有的量代以它们的傅里叶分量；
+$\ddot{\boldsymbol{d}}'_{\omega}=-\omega^2\boldsymbol{d}'_{\omega}$,
+$\ddot{\boldsymbol{m}}'_{\omega}=-\omega^2\boldsymbol{m}'_{\omega}$.这样，我们得到
+\begin{equation}
+  \boldsymbol{H}'_{\omega}=\frac{\omega^2}{c^2R_0}
+  \left\{\boldsymbol{n}'\times\boldsymbol{d}'_{\omega}
+  +\boldsymbol{n}'\times(\boldsymbol{m}'_{\omega}\times\boldsymbol{n}')\right\}.
+\end{equation}
+
+场的展开式的更后面的项给出与小频率的较高次幂成正比的量.假如体系中所有粒子的速度都很小（$v\ll c$），那么，在（79.2）式中第二项与第一项比较起来就可以略去了，因为磁矩包含 $v/c$.这时，
+\begin{equation}
+  \boldsymbol{H}'_{\omega}=\frac{1}{c^2R_0}\,\omega^2\,\boldsymbol{n}'\times\boldsymbol{d}'_{\omega}.
+\end{equation}
+
+假如体系的总电荷为零，那么，当 $\omega\to 0$ 时，$\boldsymbol{d}'_{\omega}$ 和 $\boldsymbol{m}'_{\omega}$ 趋近于常数极限（假如总电荷不为零，那么，当 $\omega=0$ 时，就是说在恒定场中，这个体系开始作整体运动）.因此，对于低频（$\omega\ll v/a$）我们可以认为 $\boldsymbol{d}'_{\omega}$ 和 $\boldsymbol{m}'_{\omega}$ 与频率无关.由此可见，散射波的场与频率的平方成正比.因此场的强度与 $\omega^4$ 成正比.所以，当低频波被散射时，相干散射的有效截面与入射波频率的四次幂成比例\footnote{这也适用于光被离子的散射，也适用于光被不带电的原子的散射.因为核子的质量较大，由离子作为整体的运动而发生的散射可以略去不计.}.
+
+\section{高频波的散射}
+
+我们来研究相反极限下波被电荷体系散射的情形，此时波的频率 $\omega$ 比体系内部的基频大很多.后者的数量级为 $\omega_0\sim v/a$，所以 $\omega$ 应当满足条件
+\begin{equation}
+  \omega\gg\omega_0\sim\frac{v}{a}.
+\end{equation}
+
+此外，我们假设体系中电荷的速度很小（$v\ll c$）.
+
+按照条件（80.1)，体系中电荷的运动周期比波的周期大很多.因此，在一个与波的周期同数量级的时间间隔内，体系中电荷的运动可以看做是匀速的.这就是说，在研究短波的散射时，我们无须考虑体系的电荷彼此之间的相互作用，即我们可以将电荷认为是自由的.
+
+因此，在计算电荷在入射波的场内所得到的 $\boldsymbol{v}'$ 时，我们可以将体系中每个电荷分开来考虑，并把电荷的运动方程写成
+\begin{equation*}
+  m\,\frac{\mathrm{d}\boldsymbol{v}'}{\mathrm{d}t}=\boldsymbol{eE}
+  =e\boldsymbol{E}_0\mathrm{e}^{-\mathrm{i}(\omega t-\boldsymbol{k}\cdot\boldsymbol{r})},
+\end{equation*}
+式中，$\boldsymbol{k}=\omega\boldsymbol{n}/c$ 是入射波的波矢量.电荷的径矢当然是时间的函数.在这个方程右边指数因子的指数中，第一项的时间变化率比第二项大很多（第一项的时间变化率为 $\omega$，而第二项的数量级是 $kv\sim v\omega/c\ll\omega$）.所以，在积分运动方程时，我们可以将 $\boldsymbol{r}$ 那部分当做常数.于是，
+\begin{equation}
+  \boldsymbol{v}'=-\frac{e}{\mathrm{i}\omega m}\,
+  \boldsymbol{E}_0\mathrm{e}^{-\mathrm{i}(\omega t-\boldsymbol{k}\cdot\boldsymbol{r})}.
+\end{equation}
+
+对于散射波的矢势（在与体系相距甚远之处)，按照一般公式(79.1)，我们有
+\begin{equation*}
+  \boldsymbol{A}'=\frac{1}{cR_0}\sum
+  \left(e\boldsymbol{v}'\right)_{t-\frac{R_0}{c}+\frac{\boldsymbol{r}\cdot\boldsymbol{n}'}{c}},
+\end{equation*}
+式中，求和应该对体系中所有的电荷进行.将（80.2）代入，我们便求得
+\begin{equation}
+  \boldsymbol{A}'=-\frac{1}{\mathrm{i}cR_0\omega}
+  \exp\!\left[-\mathrm{i}\omega\left(t-\frac{R_0}{c}\right)\right]\boldsymbol{E}_0
+  \sum\frac{e^2}{m}\,\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}},
+\end{equation}
+式中 $\boldsymbol{q}=\boldsymbol{k}'-\boldsymbol{k}$ 是入射波的波矢量 $\boldsymbol{k}=\omega\boldsymbol{n}/c$ 和散射波的波矢量 $\boldsymbol{k}'=\omega\boldsymbol{n}'/c$ 之差\footnote{严格地说，波矢量 $\boldsymbol{k}'=\omega'\boldsymbol{n}'/c$，此处散射波的频率 $\omega'$ 可能与 $\omega$ 不同，然而在此处高频波的情形下，差 $\omega'-\omega\sim\omega_0$ 可以略去.}.在（80.3）式中的和应当取在 $t'=t-R_0/c$ 时刻的值（为简单起见，如平常一样，略去 $\boldsymbol{r}$ 上的指标 $t'$）；由于假设粒子速度很小，可以忽略在时间 $\boldsymbol{r}\cdot\boldsymbol{n}'/c$ 内 $\boldsymbol{r}$ 的变化.矢量 $\boldsymbol{q}$ 的绝对值是
+\begin{equation}
+  q=2\,\frac{\omega}{c}\,\sin\frac{\vartheta}{2},
+\end{equation}
+式中 $\vartheta$ 是散射角.
+
+对于原子（或分子）的散射，我们可以略去（80.3）中求和号内来自核的项，因为它们的质量比电子的质量大很多.以后我们只关注这种情况，所以我们将因子 $e^2/m$ 从求和号内移出，并将 $e$ 和 $m$ 理解为电子的电荷和质量.
+
+对于散射波的场 $\boldsymbol{H}'$，我们从（66.3）求得：
+\begin{equation}
+  \boldsymbol{H}'=\frac{\boldsymbol{E}_0\times\boldsymbol{n}'}{c^2R_0}
+  \exp\!\left[-\mathrm{i}\omega\left(t-\frac{R_0}{c}\right)\right]
+  \frac{e^2}{m}\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}.
+\end{equation}
+
+射入 $\boldsymbol{n}'$ 方向立体角元内的能流是
+\begin{equation*}
+  \frac{c|\boldsymbol{H}'|^2}{8\pi}\,R_0^2\,\mathrm{d}o
+  =\frac{e^4}{8\pi c^3m^2}\,(\boldsymbol{n}'\times\boldsymbol{E}_0)^2
+  \left|\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}\right|^2\mathrm{d}o.
+\end{equation*}
+用入射波的能流 $c|E_0|^2/8\pi$ 除上式，并且 $\theta$ 代表入射波的场 $E$ 与散射方向的夹角，最后我们得到有效散射截面如下：
+\begin{equation}
+  \mathrm{d}\sigma=\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \overline{\left|\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}\right|^2}
+  \,\sin^2\theta\,\mathrm{d}o.
+\end{equation}
+式中的一横表示对时间的平均值，亦即对体系中电荷运动的平均值；它的出现是因为散射是在一个比体系中电荷的运动周期大很多的时间间隔内观察的.
+
+对于入射辐射的波长，从条件(80.1）得到不等式 $\lambda\ll ac/v$.至于 $\lambda$ 和 $a$ 的相对值，可能有 $\lambda\gg a$ 和 $\lambda\ll a$ 两种极限情形.在这两种情形下，通式(80.6) 简化很多.
+
+在 $\lambda\gg a$ 的情形下，在（80.6）式中，$\boldsymbol{q}\cdot\boldsymbol{r}\ll 1$，因为 $q\sim 1/\lambda$，而 $r$ 与 $a$ 同数量级.与此相应，我们用 1 代替 $\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}$，从而得到
+\begin{equation}
+  \mathrm{d}\sigma=\left(\frac{Ze^2}{mc^2}\right)^{\!2}\sin^2\theta\,\mathrm{d}o,
+\end{equation}
+就是说，散射与原子序数 $Z$ 的平方成正比.
+
+现在转到 $\lambda\ll a$ 的情形.在(80.6)中出现的和的平方中，除了每项的模的平方 $(e^2/mc^2)^2$ 以外，还有形式 $\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot(\boldsymbol{r}_1-\boldsymbol{r}_2)}$ 的乘积.在对电荷的运动求平均值时，亦即在对它们在体系中的相互位置求平均值时，$\boldsymbol{r}_1-\boldsymbol{r}_2$ 可取与 $a$ 同数量级的一个间隔内的一切值.因为 $q\sim 1/\lambda$, $\lambda\ll a$，那么，指数因子 $\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot(\boldsymbol{r}_1-\boldsymbol{r}_2)}$ 是一个在该间隔内振动得很快的函数，而它的平均值就化零.因此，当 $\lambda\ll a$ 时，有效散射截面是
+\begin{equation}
+  \mathrm{d}\sigma=Z\left(\frac{e^2}{mc^2}\right)^{\!2}\sin^2\theta\,\mathrm{d}o,
+\end{equation}
+就是说，散射与原子序数的一次方成正比.我们注意到，这个公式不能应用于散射角小的情形（$\vartheta\sim\lambda/a$），因为在这种情形下，$q\sim\vartheta/\lambda\sim 1/a$，因而指数 $\boldsymbol{q}\cdot\boldsymbol{r}$ 不比 1 大很多.
+
+为了求出相干散射的有效截面，我们必须将散射波的场的频率为 $\omega$ 的那一部分分开来.场的表达式（80.5)通过因子 $\mathrm{e}^{-\mathrm{i}\omega t}$ 与时间发生关系，而且求和 $\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}$ 中也涉及时间.后面这个关系使得在散射波的场内，除了频率 $\omega$ 以外，还含有别的频率（虽然与 $\omega$ 很接近）.假如我们将 $\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}$ 对时间求平均值，就可以得到频率为 $\omega$ 的那一部分场（就是仅通过因子 $\mathrm{e}^{-\mathrm{i}\omega t}$ 与时间发生关系的那一部分场）.与此相应，相干散射有效截面 $\mathrm{d}\sigma_{\mathrm{coh}}$ 与总截面 $\mathrm{d}\sigma$ 的不同之处就在于前者包含求和的平均值的模的平方，而后者则包含和的模的平方的平均值：
+\begin{equation}
+  \mathrm{d}\sigma_{\mathrm{coh}}=\left(\frac{e^2}{mc^2}\right)^{\!2}
+  \left|\overline{\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}}\right|^2
+  \sin^2\theta\,\mathrm{d}o.
+\end{equation}
+
+值得注意的是，这个和的平均值（除了一个因子外）正好是原子中电荷密度平均分布 $\rho(\boldsymbol{r})$ 的空间傅里叶分量：
+\begin{equation}
+  e\,\overline{\sum\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}}
+  =\int\rho(\boldsymbol{r})\,\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}\,\mathrm{d}V
+  =\rho_{\boldsymbol{q}}.
+\end{equation}
+
+在 $\lambda\gg a$ 的情形下，我们再次用 1 来代替 $\mathrm{e}^{\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}$，于是
+\begin{equation}
+  \mathrm{d}\sigma_{\mathrm{coh}}=\left(Z\,\frac{e^2}{mc^2}\right)^{\!2}
+  \sin^2\theta\,\mathrm{d}o.
+\end{equation}
+
+将此式与总有效截面(80.7)式相比较，我们看出 $\mathrm{d}\sigma_{\mathrm{coh}}=\mathrm{d}\sigma$，就是说，所有的散射都是相干的.
+
+如果 $\lambda\ll a$，那么，当我们求平均值时，在（80.9）中所有和项（是迅速振动的时间函数）都消失了，从而 $\mathrm{d}\sigma_{\mathrm{coh}}=0$.因此，在这种情形下，散射完全是非相干的.

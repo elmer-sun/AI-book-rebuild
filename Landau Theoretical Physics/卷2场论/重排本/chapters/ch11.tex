@@ -1,0 +1,1700 @@
+% ============================================================
+%  第二卷 第十一章 引力场方程（§91–§98 + 习题）
+%  底本：高教社中文版第8版（鲁欣/任朗 译）；OCR 错误已修正，
+%  脚注文本待从纸版补录（正文圈码 ①②③ 已按原书保留）
+%  注：本版（高教社第8版）第十一章实为 §91–§98；§99 牛顿定律属第十二章
+%  已修正的 OCR/原书错误：
+%   - 全章：克里斯托夫符号 Γ 大量 OCR 误作 T/I/cal T，统一为 \Gamma；
+%     unicode 组合粗体字符（Ḍ,Ḳ 等）→ \mathrm{D}
+%   - §91 习题1 二阶导数推导式整行乱码，按原书 p291 复原
+%     （D^2 v^i/ds^2 三步等式，OCR 中 O/ι/_; 全部错乱）
+%   - §91 (91.5) 前一式：OCR "R^i \nu _ { k l m }" → R^i{}_{klm}、R^k{}_{ilm}
+%   - §92 "根据线性关系 P_{αβ}=γ^{γδ}P_{γαδβ}"：OCR 误作 g^{γδ}
+%     （三维缩并应按三维度规 γ），按原书物理修正
+%   - §92 (92.20)：对偶张量星号 OCR 部分丢失，按原书补 \stackrel{*}{R}
+%   - §92 习题2：OCR "g_{ii}=e_i e^{2F_i}" 的指数 2F_i 误作 2F_i 前后不一，按原书统一
+%   - §93 (93.1) 前被积函数 G 的展开式按原书 p299 逐字复原
+%   - §94 (94.1) 及本节各处作用量密度按原书用 \Lambda（OCR 混作 A）
+%   - §94 δS 展开式第二项分母 OCR "\varDelta^l" → x^l
+%   - §94 (94.6)(94.7)：张量散度指标序 OCR "T_{i;k}^k" → T^k_{i;k}（按原书 p304，与 (95.10)(96.1) 一致）
+%   - §94 习题 "其中之一具有类时方向，另一个具有类空方向"：OCR 乱码 κ̄_η 已删
+%   - §95 正文"按照恒等式（92.13）"：原书如此排印，实指缩并比安基恒等式 (92.10)，按物理改为（92.10）
+%   - §95 (95.10)：T^k_{i;k}=0（OCR 指标序同 §94 问题）
+%   - §95 习题克里斯托夫符号六条全部乱码（⋯/∗ 占位），按原书 p312 逐字复原；
+%     (3)(4)(5) 右端按原书核校
+%   - §96 (96.8)(96.9)：t^{ik} 两条长公式按原书 p315 复原（OCR 哥特体 g 错乱、缺括号）；
+%     𝔤^{ik}=√(-g)g^{ik} 排为 \mathfrak{g}
+%   - §96 习题：作用量密度 OCR "A" → \Lambda；(4) 式右端按原书核校
+%   - §97 "时间坐标 x^0=t"：原书误排为下标 x_0=t，按全书体例改为上标（原书排印错误）
+%   - §97 (97.11)—(97.15)、习题1 (2)—(6) 按原书 p322/p324 核校
+%     （习题1 (2) 中 b_α^β b_β^α 的缩并指标序按 (5) 式统一）
+%   - §98 (98.14)：里奇张量标架分量长公式按原书 p328 复原（OCR 末三项乱码）；
+%     "γ^a{}_{bc}=η^{ad}γ_{dbc}" 的哑标按提升规则复原（OCR 误作 γ_{abc}）
+%  遗留问题：
+%   - §91 习题2 引用的 R_{im} 定义见 (92.6)（原书如此）；
+%   - §97 全节取 c=1（原书脚注①说明），随脚注文本留待脚注代理补录
+%  脚注已转录（36 处圈码全部替换为 \footnote，文本逐页对照原书第 288–328 页核校）
+% ============================================================
+\chapter{引力场方程}
+
+\section{曲率张量}
+
+让我们再来讨论矢量的平行移动的概念.如§85所述，在四维弯曲空间的普遍情形下，一个矢量的无限小平行移动被定义为这样的移动，在这个移动中，矢量的分量在一个坐标系中不改变，这个坐标系在指定的无限小的体积元内是伽利略坐标系.
+
+假如 $x^i=x^i(s)$ 是某一曲线的参数方程(s 是从某一点起量得的弧长)，那么，矢量 $u^i=\mathrm{d}x^i/\mathrm{d}s$ 就是与该曲线相切的单位矢量.假如我们所考虑的曲线是测地线，那么，沿着测地线 $\mathrm{D}u^i=0$.这就是说，假如将矢量 $u^i$ 从测地线上的一点 $x^i$ 平行移动到同一曲线上的另一点 $x^i+\mathrm{d}x^i$，那么，这个矢量将与在 $x^i+\mathrm{d}x^i$ 点与测地线相切的矢量 $u^i+\mathrm{d}u^i$ 重合.因此，当测地线的切线沿测地线本身移动时，切线将自平行地移动.
+
+另一方面，当两个矢量平行移动时，它们之间的“夹”角显然保持不变.因此我们可以说，任意的矢量沿着任何一条测地线平行移动时，矢量同测地线的切线所夹之角保持不变.换句话说，当一个矢量平行移动时，它沿测地线方向的分量在路程的所有点上应当是不变的.
+
+在弯曲空间中，有一个非常重要的情况，一个矢量从一给定点到另一给定点的平行移动，假如沿着不同的路径进行，会得到不同的结果.特别地，由此可以推断，假如我们将一个矢量沿着某一条闭合回路自平行地移动，那么，在回到出发点时，这个矢量将不与原来的矢量重合.
+
+为了了解这一点，让我们考虑一个二维弯曲空间，即任意的弯曲面，图19表示被三条测地线所包围的这样的曲面的一部分.我们来将矢量1沿着这三条曲线所构成的回路平行移动.在沿着曲线 AB 移动时，矢量1与曲线所成之角保持不变，而当到达 B 点时则变为矢量2.与此相似，在沿着 BC 移动时，矢量2变为矢量3.最后，当矢量沿曲线 CA 从 C 点移到 A 点时，它与这条曲线所成之角保持不变，在到达 A 点时，该矢量变为矢量1$'$，而矢量1$'$与矢量1并不重合.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=6cm]{fig19.pdf}\\[0.3em]{\small 图 19}\end{minipage}\par\nopagebreak
+
+现在我们来求一个矢量围绕任何无限小的闭合回路平行移动时所生变化的普遍公式.这个变化 $\Delta A_k$ 显然可以写成 $\oint\delta A_k$ 的形式，此处的积分是沿着一给定回路而取的.用表达式（85.5）代替 $\delta A_k$，我们就有
+\begin{equation}
+  \Delta A_k=\oint\Gamma^i_{kl}A_i\,\mathrm{d}x^l;
+\end{equation}
+被积函数中的矢量 $A_i$ 在沿回路移动时是变化的.
+
+为了对这个积分作进一步的变换，有必要指出以下内容.在回路内的各个点上矢量 $A_i$ 的值并不是唯一的，它们依赖于我们到达该点所经过的路径.但是根据后面得到的结果，我们将看到这个非唯一性与二阶小量有关.因此准确到该变换足够的一阶精度，可以将无限小回路内的点上的矢量 $A_i$ 的分量看做是由回路上的矢量值自身所唯一决定的，其关系式是 $\delta A_i=\Gamma^n_{il}A_n\mathrm{d}x^l$，也就是说，由以下导数关系决定：
+\begin{equation}
+  \frac{\partial A_i}{\partial x^l}=\Gamma^n_{il}A_n.
+\end{equation}
+
+现在对积分(91.1）使用斯托克斯定理(6.19)，并考虑到所研究的回路包围的表面的面积是无限小量 $\Delta f^{lm}$，我们得到
+\begin{equation*}
+\begin{aligned}
+  \Delta A_k&=\frac{1}{2}\left[
+  \frac{\partial(\Gamma^i_{km}A_i)}{\partial x^l}
+  -\frac{\partial(\Gamma^i_{kl}A_i)}{\partial x^m}\right]\Delta f^{lm}\\
+  &=\frac{1}{2}\left[
+  \frac{\partial\Gamma^i_{km}}{\partial x^l}A_i
+  -\frac{\partial\Gamma^i_{kl}}{\partial x^m}A_i
+  +\Gamma^i_{km}\frac{\partial A_i}{\partial x^l}
+  -\Gamma^i_{kl}\frac{\partial A_i}{\partial x^m}\right]\Delta f^{lm}.
+\end{aligned}
+\end{equation*}
+将从（91.2）式求出的导数代入上式，最终求得：
+\begin{equation}
+  \Delta A_k=\frac{1}{2}R^i{}_{klm}A_i\Delta f^{lm},
+\end{equation}
+式中，$R^i{}_{klm}$ 是一个四阶张量：
+\begin{equation}
+  R^i{}_{klm}=\frac{\partial\Gamma^i_{km}}{\partial x^l}
+  -\frac{\partial\Gamma^i_{kl}}{\partial x^m}
+  +\Gamma^i_{nl}\Gamma^n_{km}-\Gamma^i_{nm}\Gamma^n_{kl}.
+\end{equation}
+(91.3) 式的左边的 $\Delta A_k$ 是在同一点的矢量值之差，是一个矢量.由此可见，$R^i{}_{klm}$ 是一个张量.张量 $R^i{}_{klm}$ 称为曲率张量，或称为黎曼张量.
+
+逆变矢量 $A^k$ 的类似公式是容易求得的.为此，我们注意到，既然在平行移动时标量不改变，因此 $\Delta(A^kB_k)=0$，此处的 $B_k$ 是某一协变矢量.利用(91.3)，我们有
+\begin{equation*}
+\begin{aligned}
+  \Delta(A^kB_k)&=A^k\Delta B_k+B_k\Delta A^k
+  =\frac{1}{2}A^kB_iR^i{}_{klm}\Delta f^{lm}+B_k\Delta A^k\\
+  &=B_k\left(\Delta A^k
+  +\frac{1}{2}A^iR^k{}_{ilm}\Delta f^{lm}\right)=0,
+\end{aligned}
+\end{equation*}
+因为矢量 $B_k$ 是任意的，所以
+\begin{equation}
+  \Delta A^k=-\frac{1}{2}R^k{}_{ilm}A^i\Delta f^{lm}.
+\end{equation}
+
+假如我们将矢量 $A_i$ 对 $x^k$ 和 $x^l$ 进行两次协变微分，那么，一般来说，与普通微分的情况不同，所得结果会与微分的次序有关.结果证明，$A_{i;k;l}-A_{i;l;k}$ 这个差将为我们上面所介绍的同一张量所决定.就是说，我们有公式
+\begin{equation}
+  A_{i;k;l}-A_{i;l;k}=A_mR^m{}_{ikl},
+\end{equation}
+在局域测地坐标系里直接计算就可以验证这个公式.同理，对于逆变矢量\footnote{公式（91.7）可以从（91.6）通过升高指标 $i$ 和使用张量 $R_{iklm}$ 的对称性（§92）直接得到.}
+\begin{equation}
+  A^i{}_{;k;l}-A^i{}_{;l;k}=-A^mR^i{}_{mkl}.
+\end{equation}
+
+最后，也很容易得到张量的二阶导数的类似公式（最简便的方法是考虑，比方说，一个形如 $A_iB_k$ 张量的特例，并利用公式（91.6）和(91.7)；这样所得到的公式，由于是线性的，所以对于任意的张量 $A_{ik}$ 也有效).因此，
+\begin{equation}
+  A_{ik;l;m}-A_{ik;m;l}
+  =A_{in}R^n{}_{klm}+A_{nk}R^n{}_{ilm}.
+\end{equation}
+
+显然,在四维平直空间中,曲率张量为零.事实上，在平直空间中,我们可以通过选择坐标系，使得在整个空间中都有 $\Gamma^i_{kl}=0$，于是就有 $R^i{}_{klm}=0$.由于 $R^i{}_{klm}$ 的张量特性，$R^i{}_{klm}$ 在任何其他坐标系中也等于零.这与下述事实有关，即在平直空间中，一个矢量从一点到另一点的平行移动是一个单值的运算，在沿着一条闭合回路绕行时，该矢量不改变.
+
+逆定理也是成立的：假如 $R^i{}_{klm}=0$，那么，空间就是平直的.事实上，在任何空间中，我们可以选择一个坐标系，这个坐标系在一个指定的无穷小的区域内是伽利略坐标系.假如 $R^i{}_{klm}=0$，那么，平行移动就是一个单值的运算.因此，借助于平行移动，可以将伽利略坐标系从这个已知的无限小区域移到空间的所有其余的区域，这样就对于整个空间建立了伽利略坐标系，也就是说，空间是欧氏的.
+
+因此，曲率张量为零与否是判别四维空间是平直还是弯曲空间的准则.
+
+我们指出，虽然在弯曲空间中在一指定点也能选择局域测地坐标系，但同时，在这同一点上的曲率张量并未化为零（因为 $\Gamma^i_{kl}$ 的导数并不随同 $\Gamma^i_{kl}$ 一齐化为零）.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求沿着两条无限靠近的测地世界线运动的两个粒子的四维相对加速度.
+
+解：考察一簇测地线，用某一参数 $\upsilon$ 区分它们；换句话说，世界点的坐标表示为函数 $x^i=x^i(s,\upsilon)$ 的形式.对于每一个 $\upsilon=\mathrm{const}$，该函数就是测地方程（其中 s 是沿着世界线测量的间隔长度，以该世界线与一个给定超曲面的交点为起点).引入四维矢量
+\begin{equation*}
+  \eta^i=\frac{\partial x^i}{\partial\upsilon}\delta\upsilon
+  \equiv\upsilon^i\delta\upsilon,
+\end{equation*}
+该矢量在与参数值 $\upsilon$ 和 $\upsilon+\delta\upsilon$ 对应的两条无限接近的测地线上连接 s 值相同的点.
+
+从协变导数的定义和等式 $\partial u^i/\partial\upsilon=\partial\upsilon^i/\partial s$（其中 $u^i=\partial x^i/\partial s$）可以得出
+\begin{equation*}
+  u^i{}_{;k}\upsilon^k=\upsilon^i{}_{;k}u^k.
+\tag{1}\end{equation*}
+考虑二阶导数：
+\begin{equation*}
+  \frac{\mathrm{D}^2\upsilon^i}{\mathrm{d}s^2}
+  \equiv(\upsilon^i{}_{;k}u^k)_{;l}u^l
+  =(u^i{}_{;k}\upsilon^k)_{;l}u^l
+  =u^i{}_{;k;l}\upsilon^ku^l+u^i{}_{;k}\upsilon^k{}_{;l}u^l.
+\end{equation*}
+在第二项里再次使用 (1)，而在第一项里借助于(91.7)改变协变微分的次序，就得到
+\begin{equation*}
+  \frac{\mathrm{D}^2\upsilon^i}{\mathrm{d}s^2}
+  =(u^i{}_{;l}u^l)_{;k}\upsilon^k
+  +u^mR^i{}_{mkl}u^k\upsilon^l.
+\end{equation*}
+第一项等于零，这是因为沿着测地线 $u^i{}_{;l}u^l=0$.引入恒定的乘数 $\delta\upsilon$，最终得到方程
+\begin{equation*}
+  \frac{\mathrm{D}^2\eta^i}{\mathrm{d}s^2}
+  =R^i{}_{klm}u^ku^l\eta^m
+\tag{2}\end{equation*}
+（此方程被称做测地偏离方程）.
+
+\noindent{\heiti 习题2}\quad 写出不存在电荷情形下四维势的麦克斯韦方程组（使用洛伦兹规范）.
+
+解：条件（46.9）的协变推广具有如下形式：
+\begin{equation*}
+  A^i{}_{;i}=0.
+\tag{1}\end{equation*}
+使用公式(91.7)，麦克斯韦方程组可以写成
+\begin{equation*}
+  F_{ik}{}^{;k}=A_{k;i}{}^{;k}-A_{i;k}{}^{;k}
+  =A_k{}^{;k}{}_{;i}+A^mR_{im}-A_{i;k}{}^{;k}=0,
+\end{equation*}
+其中包含的 $R_{ik}$ 来自（92.6）.于是按照 (1) 式：
+\begin{equation*}
+  A_{i;k}{}^{;k}-R_{ik}A^k=0.
+\tag{2}\end{equation*}
+
+\end{xiti}
+
+\section{曲率张量的特性}
+
+曲率张量具有对称性，为了完全揭示这个性质需要从混合分量 $R^i{}_{klm}$ 变到协变分量：
+\begin{equation*}
+  R_{iklm}=g_{in}R^n{}_{klm}.
+\end{equation*}
+经过简单变换，很容易得到 $R_{iklm}$ 的表达式如下：
+\begin{equation}
+\begin{aligned}[b]
+  R_{iklm}={}&\frac{1}{2}\left(\frac{\partial^2 g_{im}}{\partial x^k\partial x^l}
+  +\frac{\partial^2 g_{kl}}{\partial x^i\partial x^m}
+  -\frac{\partial^2 g_{il}}{\partial x^k\partial x^m}
+  -\frac{\partial^2 g_{km}}{\partial x^i\partial x^l}\right)\\
+  &+g_{np}\left(\Gamma^n_{kl}\Gamma^p_{im}
+  -\Gamma^n_{km}\Gamma^p_{il}\right).
+\end{aligned}
+\end{equation}
+
+从这个式子立刻可以看出下面的对称性质：
+\begin{equation}
+  R_{iklm}=-R_{kilm}=-R_{ikml},
+\end{equation}
+\begin{equation}
+  R_{iklm}=R_{lmik},
+\end{equation}
+也就是说，就指标 ik 和 lm 中的每一对而言，张量都是反对称的，而如果将指标对 ik 和 lm 相互交换位置，则张量是对称的.特别地，$R_{iklm}$ 的所有 i=k 或者 l=m 的分量都为零.
+
+接下来容易验证，假如我们轮换 $R_{iklm}$ 的任意三个指标，并将这样所得到三个分量相加，那么，结果将为零
+\begin{equation}
+  R_{iklm}+R_{imkl}+R_{ilmk}=0
+\end{equation}
+（其余的此类关系式可以按照（92.2）和（92.3）的性质从（92.4）自动获得）.
+
+最后，我们还要证明下面的比安基恒等式：
+\begin{equation}
+  R^n{}_{ikl;m}+R^n{}_{imk;l}+R^n{}_{ilm;k}=0.
+\end{equation}
+
+使用局域测地坐标系，可以很方便地检验上面的恒等式.由于它的张量特性，关系式（92.5）在任何坐标系中都是有效的.将（91.4）式微分，然后将 $\Gamma^i_{kl}=0$ 代入，在考虑的点上，我们便得到
+\begin{equation*}
+  R^n{}_{ikl;m}=\frac{\partial R^n{}_{ikl}}{\partial x^m}
+  =\frac{\partial^2\Gamma^n_{il}}{\partial x^m\partial x^k}
+  -\frac{\partial^2\Gamma^n_{ik}}{\partial x^m\partial x^l}.
+\end{equation*}
+利用上面的式子，很容易证明（92.5）的确是成立的.
+
+用缩并的方法可以从曲率张量构造出一个二阶张量.我们只能用一种方式进行这种缩并：按照指标 i 和 k 或者 l 和 m 对张量 $R_{iklm}$ 进行缩并，由于其反对称性，给出的结果是零，而按照其他任何指标对进行的缩并会得到相同的结果，只是符号可能相反.我们按照下面的方式定义张量 $R_{ik}$（它被称为里奇张量）\footnote{文献中也使用其他的方式对张量 $R_{ik}$ 进行定义：按照第一个和最后一个指标对 $R_{iklm}$ 进行缩并. 这样的定义和我们采用的定义的不同之处在于符号.}：
+\begin{equation}
+  R_{ik}=g^{lm}R_{limk}=R^l{}_{ilk}.
+\end{equation}
+
+按照（91.4），我们有：
+\begin{equation}
+  R_{ik}=\frac{\partial\Gamma^l_{ik}}{\partial x^l}
+  -\frac{\partial\Gamma^l_{il}}{\partial x^k}
+  +\Gamma^l_{ik}\Gamma^m_{lm}-\Gamma^m_{il}\Gamma^l_{km}.
+\end{equation}
+
+这个张量显然是对称的：
+\begin{equation}
+  R_{ik}=R_{ki}.
+\end{equation}
+
+最后缩并 $R_{ik}$，我们将得到不变量
+\begin{equation}
+  R=g^{ik}R_{ik}=g^{il}g^{km}R_{iklm},
+\end{equation}
+它叫做空间的曲率标量.
+
+张量 $R_{ik}$ 的分量满足微分恒等式，它由比安基恒等式(92.5)按照指标对 ik 和 ln 进行缩并而得到：
+\begin{equation}
+  R^l{}_{m;l}=\frac{1}{2}\frac{\partial R}{\partial x^m}.
+\end{equation}
+
+因为有(92.2)—(92.4)的各关系存在，并非所有的曲率张量的分量都是独立的.我们现在就来确定曲率张量的独立分量的数目.
+
+由上面写出的公式给出的曲率张量的定义对任意维度空间都适用.首先我们考虑一个二维空间的情形，亦即考虑一个普通曲面；在这种情况下（区别于四维数值）我们用 $P_{abcd}$ 表示曲率张量，而度规张量用 $\gamma_{ab}$ 表示，指标 $a,b,\cdots$ 可以取1,2两个值.由于 ab 和 cd 当中的每一对的两个指标都应该有不同的值，那么显然，所有非零的曲率张量的分量要么相同，要么仅相差正负号.这样一来，在这种情况下只有一个独立的分量，例如 $P_{1212}$.容易发现，在这种情况下曲率标量等于
+\begin{equation}
+  P=\frac{2P_{1212}}{\gamma},\qquad
+  \gamma\equiv|\gamma_{\alpha\beta}|
+  =\gamma_{11}\gamma_{22}-(\gamma_{12})^2.
+\end{equation}
+量 $P/2$ 正是曲面的高斯曲率 K.
+\begin{equation}
+  \frac{P}{2}=K=\frac{1}{\rho_1\rho_2},
+\end{equation}
+其中 $\rho_1,\rho_2$ 是曲面上给定点的主曲率半径（注意，$\rho_1$ 和 $\rho_2$ 认为具有相同的符号，如果它们对应的曲率中心位于曲面的同一侧.如果它们的曲率中心位于曲面的不同侧，那么它们具有相反的符号;第一种情况下 $K>0$，而第二种情况 $K<0$)\footnote{在指定点 $(x=y=0)$ 附近以下列形式写出曲面方程 $z=x^2/(2\rho_1)+y^2/(2\rho_2)$，可以容易得出公式（92.12）. 那么曲面上线元的平方是
+\begin{equation*}
+  \mathrm{d}l^2=\left(1+\frac{x^2}{\rho_1^2}\right)\mathrm{d}x^2
+  +\left(1+\frac{y^2}{\rho_2^2}\right)\mathrm{d}y^2
+  +2\frac{xy}{\rho_1\rho_2}\,\mathrm{d}x\,\mathrm{d}y.
+\end{equation*}
+按照公式（92.1）（其中只需要带有 $\gamma_{\alpha\beta}$ 的二阶导数的项）在点 $x=y=0$ 上计算 $P_{1212}$ 的值就可以得到（92.12）.}.
+
+现在我们过渡到三维空间的曲率张量，我们将其表示为 $P_{\alpha\beta\gamma\delta}$，而度规张量用 $\gamma_{\alpha\beta}$ 表示，其中指标 $\alpha,\beta,\cdots$ 可以取1,2,3.指标对 $\alpha\beta$ 和 $\gamma\delta$ 总共可以取三个实质上不同的数值组合:23,31,12（一对指标内的置换仅改变张量分量的符号).由于张量 $P_{\alpha\beta\gamma\delta}$ 在这些指标对置换时是对称的，所以总共有 $3\cdot2/2=3$ 个带有不同的指标对的独立的分量，同时也有3个带有相同指标对的分量.恒等式(92.4)不会增加新的限制.因此，在三维空间里曲率张量有6个独立分量.对称张量 $P_{\alpha\beta}$ 也有同样多的分量.因此，根据线性关系 $P_{\alpha\beta}=\gamma^{\gamma\delta}P_{\gamma\alpha\delta\beta}$ 张量 $P_{\alpha\beta\gamma\delta}$ 的所有分量可以用 $P_{\alpha\beta}$ 和度规张量 $\gamma_{\alpha\beta}$ 来表示（参见习题1）.假如我们选择一个坐标系，它在给定点是笛卡儿坐标系，那么对其进行适当旋转就能够将张量 $P_{\alpha\beta}$ 变到主轴上\footnote{实际计算张量 $P_{\alpha\beta}$ 的主值的时候没有必要在给定的点转换到笛卡儿坐标系. 这些值可以确定为方程 $|P_{\alpha\beta}-\lambda\gamma_{\alpha\beta}|=0$ 的根.}.因此，在每一点上，三维空间的曲率由三个量来决定\footnote{关于张量 $P_{\alpha\beta\gamma\delta}$ 的知识使得我们能够确定空间里任何一个曲面的高斯曲率 $K$. 这里仅指出，如果 $x^1,x^2,x^3$ 是正交的坐标系，那么
+\begin{equation*}
+  K=\frac{P_{1212}}{\gamma_{11}\gamma_{22}-(\gamma_{12})^2}
+\end{equation*}
+就是垂直于 $x^3$ 轴的“平面”的高斯曲率. 这里的“平面”理解为由测地线构成的曲面.}.
+
+最后，我们来讨论四维空间.指标对 ik 和 lm 在这种情况下可以取6个不同的数值组合：01, 02, 03, 23, 31, 12.因此 $R_{iklm}$ 具有6个带有相同指标对的分量和 $6\cdot5/2=15$ 个带有不同指标对的分量.然而，后者的所有的分量并不都是相互独立的：其中有三个分量的四个指标都不相同，它们可以按照(92.4)用一个恒等式联系起来：
+\begin{equation}
+  R_{0123}+R_{0312}+R_{0231}=0.
+\end{equation}
+这样一来，在四维空间里曲率张量一共有20个独立的分量.
+
+选择一个坐标系，它在给定点为伽利略坐标系，考虑这个坐标系的旋转变换（因而 $g_{ik}$ 的值在我们所考虑之点并不改变)，我们可以做到使曲率张量的6个分量为零（四维坐标系有6种独立的旋转方式).因此，四维空间每一点的曲率将由14个量所决定.
+
+如果 $R_{ik}=0$\footnote{下面（§95）我们将看到，真空中引力场的曲率张量具备这些性质.}，那么在任意的坐标系中曲率张量总共有10个独立分量.适当的坐标变换可以将张量 $R_{iklm}$（在四维空间的给定的点上）化为“正则”形式，此时它的分量通常可用4个独立的值来表示;在特殊情况下这个数目还可以更小.
+
+如果 $R_{ik}\neq0$，那么在从曲率张量中分离掉用分量 $R_{ik}$ 表示的特定部分之后，可以用（和 $R_{ik}=0$ 时）相同的方法对它进行分类.就是说，构造张量\footnote{这个复杂的表达式可以写成更加紧凑的形式，
+\begin{equation*}
+  C_{iklm}=R_{iklm}-R_{l[igk]m}+R_{m[igk]l}+\frac{1}{3}Rg_{l[igk]m},
+\end{equation*}
+其中方括号的涵义是沿着其中的指标进行反对称运算：
+\begin{equation*}
+  A_{[ik]}=\frac{1}{2}(A_{ik}-A_{ki}).
+\end{equation*}
+张量（92.14）称做外尔张量.}
+\begin{equation}
+\begin{aligned}[b]
+  C_{iklm}={}&R_{iklm}-\frac{1}{2}R_{il}g_{km}
+  +\frac{1}{2}R_{im}g_{kl}\\
+  &+\frac{1}{2}R_{kl}g_{im}-\frac{1}{2}R_{km}g_{il}
+  +\frac{1}{6}R\left(g_{il}g_{km}-g_{im}g_{kl}\right).
+\end{aligned}
+\end{equation}
+
+容易看出，这个张量具备张量 $R_{iklm}$ 的所有对称性，但是按指标对（il 或 km)进行缩并后得到零.
+
+下面说明在 $R_{ik}=0$ 的情况下如何对曲率张量的正则形式的可能种类进行分类（A. Z. Petrov, 1950）.
+
+假设四维空间给定点上的度规已化为伽利略形式.我们把张量 $R_{iklm}$ 的20个独立分量的集合表示为以下面的方式确定的3个三维张量的总和：
+\begin{equation}
+  A_{\alpha\beta}=R_{0\alpha 0\beta},\qquad
+  C_{\alpha\beta}=\frac{1}{4}e_{\alpha\gamma\delta}e_{\beta\lambda\mu}
+  R_{\gamma\delta\lambda\mu},\qquad
+  B_{\alpha\beta}=\frac{1}{2}e_{\alpha\gamma\delta}R_{0\beta\gamma\delta}
+\end{equation}
+（$e_{\alpha\beta\gamma}$ 是单位反对称张量;由于三维度规是笛卡儿的，在求和的时候没有必要对上下指标进行区分）.张量 $A_{\alpha\beta}$ 和 $C_{\alpha\beta}$ 按照定义是对称的;张量 $B_{\alpha\beta}$ 一般来讲是不对称的，而按照（92.13）它的迹为零.按照定义（92.15）我们有，例如：
+\begin{equation*}
+  B_{11}=R_{0123},\quad B_{21}=R_{0131},\quad
+  B_{31}=R_{0112},\quad C_{11}=R_{2323},\cdots
+\end{equation*}
+
+容易看出，条件 $R_{km}=g^{il}R_{iklm}=0$ 等价于张量(92.15)分量之间下列的关系式：
+\begin{equation}
+  A_{\alpha\alpha}=0,\qquad B_{\alpha\beta}=B_{\beta\alpha},\qquad
+  A_{\alpha\beta}=-C_{\alpha\beta}.
+\end{equation}
+
+接下来引入对称的复张量
+\begin{equation}
+  D_{\alpha\beta}=\frac{1}{2}\left(A_{\alpha\beta}
+  +2\mathrm{i}B_{\alpha\beta}-C_{\alpha\beta}\right)
+  =A_{\alpha\beta}+\mathrm{i}B_{\alpha\beta}.
+\end{equation}
+这样将两个实三维张量 $A_{\alpha\beta}$ 与 $B_{\alpha\beta}$ 合并为一个复张量正好对应于将两个矢量 $\boldsymbol{E}$ 和 $\boldsymbol{H}$ 合并为复矢量 $\boldsymbol{F}$（见§25)，而结果中产生的 $D_{\alpha\beta}$ 与四维张量 $R_{iklm}$ 之间的联系对应于 $\boldsymbol{F}$ 与四维张量 $F_{ik}$ 之间的联系.由此可得，张量 $R_{iklm}$ 的四维变换等价于对张量 $D_{\alpha\beta}$ 进行三维复转动.
+
+关于这些转动，可以将本征值 $\lambda=\lambda'+\mathrm{i}\lambda''$ 和本征矢量 $n_{\alpha}$（一般说来是复数）定义为下列方程组的解
+\begin{equation}
+  D_{\alpha\beta}n_{\beta}=\lambda n_{\alpha}.
+\end{equation}
+λ 的值是曲率张量的不变量.由于迹 $D_{\alpha\alpha}=0$，方程（92.18）的根的和同样为零.
+\begin{equation*}
+  \lambda^{(1)}+\lambda^{(2)}+\lambda^{(3)}=0.
+\end{equation*}
+
+根据独立的本征矢量 $n_{\alpha}$ 的数目，我们接下来对曲率张量进行分类，即将它归为彼得罗夫正则型 I—III 几种可能的情况.
+
+I 型.具有三个独立的本征矢量.在这种情况下它们的平方 $n_{\alpha}n^{\alpha}$ 不为零，并且通过适当的转动可把张量 $D_{\alpha\beta}$，从而随之把 $A_{\alpha\beta}$ 和 $B_{\alpha\beta}$ 转化为对角形式：
+\begin{equation}
+  A_{\alpha\beta}=
+  \begin{pmatrix}
+    \lambda^{(1)'} & 0 & 0\\
+    0 & \lambda^{(2)'} & 0\\
+    0 & 0 & -\lambda^{(1)'}-\lambda^{(2)'}
+  \end{pmatrix},\qquad
+  B_{\alpha\beta}=
+  \begin{pmatrix}
+    \lambda^{(1)''} & 0 & 0\\
+    0 & \lambda^{(2)''} & 0\\
+    0 & 0 & -\lambda^{(1)''}-\lambda^{(2)''}
+  \end{pmatrix}.
+\end{equation}
+
+在这种情况下曲率张量有4个独立不变量\footnote{对于存在简并的情形，即当 $\lambda^{(1)\prime}=\lambda^{(2)\prime}$，$\lambda^{(1)\prime\prime}=\lambda^{(2)\prime\prime}$ 时，称做 D 型.}.
+
+复数不变量 $\lambda^{(1)},\lambda^{(2)}$ 可以用复数标量以代数形式表示：
+\begin{equation}
+\begin{aligned}
+  I_1&=\frac{1}{48}\left(R_{iklm}R^{iklm}
+  -\mathrm{i}R_{iklm}\stackrel{*}{R}{}^{iklm}\right),\\
+  I_2&=\frac{1}{96}\left(R_{iklm}R^{lmpr}R_{pr}{}^{ik}
+  +\mathrm{i}R_{iklm}R^{lmpr}\stackrel{*}{R}{}_{pr}{}^{ik}\right),
+\end{aligned}
+\end{equation}
+其中字母上方的星号代表对偶张量：
+\begin{equation*}
+  \stackrel{*}{R}{}_{iklm}
+  =\frac{1}{2}E_{ikpr}R^{pr}{}_{lm}.
+\end{equation*}
+借助于（92.19）计算 $I_1,I_2$，我们得到：
+\begin{equation}
+  I_1=\frac{1}{3}\left(\lambda^{(1)2}+\lambda^{(2)2}
+  +\lambda^{(3)2}\right),\qquad
+  I_2=\frac{1}{2}\lambda^{(1)}\lambda^{(2)}
+  \left(\lambda^{(1)}+\lambda^{(2)}\right).
+\end{equation}
+这些公式使我们能够在任何参考系中由 $R_{iklm}$ 的值出发计算 $\lambda^{(1)},\lambda^{(2)}$.
+
+II 型.具有两个独立的本征矢量.其中一个的平方等于零，由于这个原因它不能够当做坐标轴的方向.但是，可以认为它位于平面 $x^1x^2$ 之内；那么 $n_2=\mathrm{i}n_1$，$n_3=0$.相应的方程（92.18）给出：
+\begin{equation*}
+  D_{11}+\mathrm{i}D_{12}=\lambda,\qquad
+  D_{22}-\mathrm{i}D_{12}=\lambda,
+\end{equation*}
+由此
+\begin{equation*}
+  D_{11}=\lambda-\mathrm{i}\mu,\qquad
+  D_{22}=\lambda+\mathrm{i}\mu,\qquad
+  D_{12}=\mu.
+\end{equation*}
+复数值 $\lambda=\lambda'+\mathrm{i}\lambda''$ 是标量并且不能改变.数值 $\mu$ 经由适当的复转动可以被赋予任意(不为零)的数值；因此可以不失一般性地认为它是实数的.结果我们得到以下实张量 $A_{\alpha\beta},B_{\alpha\beta}$ 的正则型：
+\begin{equation}
+  A_{\alpha\beta}=
+  \begin{pmatrix}
+    \lambda' & \mu & 0\\
+    \mu & \lambda' & 0\\
+    0 & 0 & -2\lambda'
+  \end{pmatrix},\qquad
+  B_{\alpha\beta}=
+  \begin{pmatrix}
+    \lambda''-\mu & 0 & 0\\
+    0 & \lambda''+\mu & 0\\
+    0 & 0 & -2\lambda''
+  \end{pmatrix}.
+\end{equation}
+在这种情况下总共有两个不变量 $\lambda'$ 和 $\lambda''$.并且按照（92.21) $I_1=\lambda^2$，$I_2=\lambda^3$，于是 $I_1^3=I_2^2$.
+
+III 型.只有一个本征矢量,且其平方为零.于是所有的本征值 λ 相同,并且为零.求解方程(92.18)能够导出 $D_{11}=D_{22}=D_{12}=0$，$D_{13}=\mu$，$D_{23}=\mathrm{i}\mu$，于是
+\begin{equation}
+  A_{\alpha\beta}=
+  \begin{pmatrix}
+    0 & 0 & \mu\\
+    0 & 0 & 0\\
+    \mu & 0 & 0
+  \end{pmatrix},\qquad
+  B_{\alpha\beta}=
+  \begin{pmatrix}
+    0 & 0 & 0\\
+    0 & 0 & \mu\\
+    0 & \mu & 0
+  \end{pmatrix}.
+\end{equation}
+在这种情况下曲率张量完全没有不变量，我们遇到了独特的情况:四维空间是弯曲的，但不存在可以作为它的曲率度量的不变量\footnote{同样的情况也出现在存在 $\lambda'=\lambda''=0$ 简并的 II 型中（它被称做 N 型）.}.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 用二阶张量 $P_{\alpha\beta}$ 表示三维空间的曲率张量 $P_{\alpha\beta\gamma\delta}$.
+
+解：在下面的形式中求解 $P_{\alpha\beta\gamma\delta}$
+\begin{equation*}
+  P_{\alpha\beta\gamma\delta}
+  =A_{\alpha\gamma}\gamma_{\beta\delta}
+  -A_{\alpha\delta}\gamma_{\beta\gamma}
+  +A_{\beta\delta}\gamma_{\alpha\gamma}
+  -A_{\beta\gamma}\gamma_{\alpha\delta},
+\end{equation*}
+该形式满足对称性条件；这里 $A_{\alpha\beta}$ 是某一个对称张量，它和 $P_{\alpha\beta}$ 之间的联系通过对上式沿指标 $\alpha$ 和 $\gamma$ 进行缩并来确定.这样得到
+\begin{equation*}
+  P_{\alpha\beta}=A\gamma_{\alpha\beta}+A_{\alpha\beta},\qquad
+  A_{\alpha\beta}=P_{\alpha\beta}-\frac{1}{4}P\gamma_{\alpha\beta},
+\end{equation*}
+最终，
+\begin{equation*}
+  P_{\alpha\beta\gamma\delta}
+  =P_{\alpha\gamma}\gamma_{\beta\delta}
+  -P_{\alpha\delta}\gamma_{\beta\gamma}
+  +P_{\beta\delta}\gamma_{\alpha\gamma}
+  -P_{\beta\gamma}\gamma_{\alpha\delta}
+  +\frac{P}{2}\left(\gamma_{\alpha\delta}\gamma_{\beta\gamma}
+  -\gamma_{\alpha\gamma}\gamma_{\beta\delta}\right).
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 在张量 $g_{ik}$ 是对角张量的度规中，计算张量 $R_{iklm}$ 和 $R_{ik}$ 的分量.
+
+解：将度规张量的非零分量表示为下列形式
+\begin{equation*}
+  g_{ii}=e_i\mathrm{e}^{2F_i},\qquad e_0=1,\qquad e_{\alpha}=-1.
+\end{equation*}
+按照公式(92.1)的计算会导出下列非零的曲率张量分量的表达式：
+\begin{equation*}
+  R_{lilk}=e_l\mathrm{e}^{2F_l}\left(F_{l,k}F_{k,i}
+  +F_{i,k}F_{l,i}-F_{l,i}F_{l,k}-F_{l,i,k}\right),
+  \quad i\neq k\neq l,
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+  R_{lili}={}&e_l\mathrm{e}^{2F_l}\left(F_{i,i}F_{l,i}
+  -F_{l,i}^2-F_{l,i,i}\right)
+  +e_i\mathrm{e}^{2F_i}\left(F_{l,l}F_{i,l}
+  -F_{i,l}^2-F_{i,l,l}\right)\\
+  &-e_l\mathrm{e}^{2F_l}\sum_{m\neq i,l}e_ie_m
+  \mathrm{e}^{2(F_i-F_m)}F_{i,m}F_{l,m},
+  \quad i\neq l
+\end{aligned}
+\end{equation*}
+（不对重复指标求和!).逗号后面的指标表示按相应的坐标进行普通微分.缩并曲率张量的两个指标，得到：
+\begin{equation*}
+\begin{aligned}
+  R_{ik}&=\sum_{l\neq i,k}\left(F_{l,k}F_{k,i}
+  +F_{i,k}F_{l,i}-F_{l,i}F_{l,k}-F_{l,i,k}\right),
+  \quad i\neq k,\\
+  R_{ii}&=\sum_{l\neq i}\left[F_{i,i}F_{l,i}
+  -F_{l,i}^2-F_{l,i,i}\right.\\
+  &\qquad\left.+e_ie_l\mathrm{e}^{2(F_i-F_l)}
+  \left(F_{l,l}F_{i,l}-F_{i,l}^2-F_{i,l,l}
+  -F_{i,l}\sum_{m\neq i,l}F_{m,l}\right)\right]
+\end{aligned}
+\end{equation*}
+
+\end{xiti}
+
+\section{引力场的作用量}
+
+为了得到决定引力场的方程，必须首先决定这个场的作用量 $S_g$.对场的作用量与粒子的作用量之和做变分，我们就能得到所要求的方程.
+
+正如电磁场的作用量一样，作用量 $S_g$ 应当用积分 $\int G\sqrt{-g}\,\mathrm{d}\varOmega$ 来表示，积分范围遍及全部空间和两个已定值之间的时间坐标 $x^0$.这时我们的出发点将是，引力场方程应当包含“势”的不高于二阶的导数（正如电磁场方程一样）.既然场方程是通过对作用量做变分而得，那么，被积分式 G 就应当包含 $g_{ik}$ 的不高于一阶导数；因此，G 仅仅包含张量 $g_{ik}$ 和 $\Gamma^i_{kl}$ 各量.
+
+然而，单从 $g_{ik}$ 和 $\Gamma^i_{kl}$ 各量不可能构造出一个不变量.这一点可以直接从如下事实看出，即只要坐标系选择适当，我们总能使所有的 $\Gamma^i_{kl}$ 在一个给定点为零.然而，存在有标量 R(四维空间的曲率)，尽管它除了包含张量 $g_{ik}$ 及其一阶导数外，还包含 $g_{ik}$ 的二阶导数，但 R 是 $g_{ik}$ 的二阶导数的线性函数.因为这个线性关系，不变积分式 $\int R\sqrt{-g}\,\mathrm{d}\varOmega$ 可以利用高斯定理化为一个不包含二阶导数的式子的积分.就是说，$\int R\sqrt{-g}\,\mathrm{d}\varOmega$ 可以写成下面的形式：
+\begin{equation*}
+  \int R\sqrt{-g}\,\mathrm{d}\varOmega
+  =\int G\sqrt{-g}\,\mathrm{d}\varOmega
+  +\int\frac{\partial(\sqrt{-g}\,w^i)}{\partial x^i}\,\mathrm{d}\varOmega,
+\end{equation*}
+式中，G 仅仅包含张量 $g_{ik}$ 和它的一阶导数，而在第二个积分内的被积函数中有某一个量 $w^i$ 的散度的形式（详细计算见本节之末）.按照高斯定理，第二个积分可以变换为在超曲面上的积分，这个超曲面包围着另外两个积分在其上进行的四维体积.当我们变分作用量时，右边第二项的变分等于零，因为在最小作用量原理中，场在积分区域边界上的变分等于零.因此，我们可以写出
+\begin{equation*}
+  \delta\int R\sqrt{-g}\,\mathrm{d}\varOmega
+  =\delta\int G\sqrt{-g}\,\mathrm{d}\varOmega.
+\end{equation*}
+左边是一个标量；因此右边的式子也是一个标量（G 本身当然不是一个标量).
+
+G 这个量满足上面所提出的条件，因为它只包含 $g_{ik}$ 和它的一阶导数.于是我们可以写出
+\begin{equation}
+  \delta S_g=-\frac{c^3}{16\pi k}\delta\int G\sqrt{-g}\,\mathrm{d}\varOmega
+  =-\frac{c^3}{16\pi k}\delta\int R\sqrt{-g}\,\mathrm{d}\varOmega,
+\end{equation}
+式中 k 是一个新的普适常数.与在§27中对于电磁场的作用量所做的相似，我们能够看出，常数 k 应当是正的（参见本节末).
+
+这个常数 k 称为引力常数.k 的量纲可以从（93.1）式直接推出.作用量的量纲是 $\mathrm{g}^3\cdot\mathrm{cm}^{-2}\cdot\mathrm{s}^{-1}$.所有坐标的量纲是 cm，而 $g_{ik}$ 则没有量纲，所以 R 的量纲为 $\mathrm{cm}^{-2}$.结果我们得到 k 的量纲为 $\mathrm{cm}^3\cdot\mathrm{g}^{-1}\cdot\mathrm{s}^{-2}$.k 的数值是
+\begin{equation}
+  k=6.67\times10^{-8}\ \mathrm{cm}^3\cdot\mathrm{g}^{-1}\cdot\mathrm{s}^{-2}.
+\end{equation}
+
+应当指出，我们可以令 k 等于 1（或任何其他没有量纲的数).然而，质量的单位在这种情况下也就确定了\footnote{如果设 $k=c^2$，那么，质量就用 cm 来度量，此处 $1\,\mathrm{cm}=1.35\times10^{28}\,\mathrm{g}$. 有时会使用下面的量取代 $k$：
+\begin{equation*}
+  \varkappa=\frac{8\pi k}{c^2}=1.86\times10^{-27}\,\mathrm{cm}\cdot\mathrm{g}^{-1},
+\end{equation*}
+它被称为爱因斯坦引力常数.}.
+
+最终，让我们来计算（93.1）式中的 G.从 $R_{ik}$ 的表达式（92.7)，我们得到
+\begin{equation*}
+\begin{aligned}[b]
+  \sqrt{-g}\,R&=\sqrt{-g}\,g^{ik}R_{ik}\\
+  &=\sqrt{-g}\left\{g^{ik}\frac{\partial\Gamma^l_{ik}}{\partial x^l}
+  -g^{ik}\frac{\partial\Gamma^l_{il}}{\partial x^k}
+  +g^{ik}\Gamma^l_{ik}\Gamma^m_{lm}
+  -g^{ik}\Gamma^m_{il}\Gamma^l_{km}\right\}.
+\end{aligned}
+\end{equation*}
+对于右边的前两项，我们有
+\begin{equation*}
+  \sqrt{-g}\,g^{ik}\frac{\partial\Gamma^l_{ik}}{\partial x^l}
+  =\frac{\partial}{\partial x^l}\left(\sqrt{-g}\,g^{ik}\Gamma^l_{ik}\right)
+  -\Gamma^l_{ik}\frac{\partial}{\partial x^l}\left(\sqrt{-g}\,g^{ik}\right),
+\end{equation*}
+\begin{equation*}
+  \sqrt{-g}\,g^{ik}\frac{\partial\Gamma^l_{il}}{\partial x^k}
+  =\frac{\partial}{\partial x^k}\left(\sqrt{-g}\,g^{ik}\Gamma^l_{il}\right)
+  -\Gamma^l_{il}\frac{\partial}{\partial x^k}\left(\sqrt{-g}\,g^{ik}\right).
+\end{equation*}
+略去全导数，我们便求得
+\begin{equation*}
+\begin{aligned}[b]
+  \sqrt{-g}\,G={}&\Gamma^m_{im}
+  \frac{\partial}{\partial x^k}\left(\sqrt{-g}\,g^{ik}\right)
+  -\Gamma^l_{ik}\frac{\partial}{\partial x^l}
+  \left(\sqrt{-g}\,g^{ik}\right)\\
+  &-\left(\Gamma^m_{il}\Gamma^l_{km}
+  -\Gamma^l_{ik}\Gamma^m_{lm}\right)g^{ik}\sqrt{-g}.
+\end{aligned}
+\end{equation*}
+利用(86.5)—(86.8)各公式，我们求得右边的前两项等于 $\sqrt{-g}$ 乘以
+\begin{equation*}
+\begin{aligned}
+  &2\Gamma^l_{ik}\Gamma^i_{lm}g^{mk}
+  -\Gamma^m_{im}\Gamma^i_{kl}g^{kl}
+  -\Gamma^l_{ik}\Gamma^m_{lm}g^{ik}\\
+  &\quad=g^{ik}\left(2\Gamma^l_{mk}\Gamma^m_{li}
+  -\Gamma^m_{lm}\Gamma^l_{ik}
+  -\Gamma^l_{ik}\Gamma^m_{lm}\right)\\
+  &\quad=2g^{ik}\left(\Gamma^m_{il}\Gamma^l_{km}
+  -\Gamma^l_{ik}\Gamma^m_{lm}\right).
+\end{aligned}
+\end{equation*}
+最后，得到
+\begin{equation}
+  G=g^{ik}\left(\Gamma^m_{il}\Gamma^l_{km}
+  -\Gamma^l_{ik}\Gamma^m_{lm}\right).
+\end{equation}
+
+度规张量的分量是决定引力场的量.因此，在对于引力场的最小作用量原理中，$g_{ik}$ 各量正是变分的对象.然而，在此必须作下面的基本保留.明言之，我们现在不能确定在一个实际上可能实现的场中，作用量积分对于 $g_{ik}$ 的所有可能的变分有极小值(而不只是极值).这与下面的事实有关，即不是 $g_{ik}$ 的每一个变化都联系着时空度规的变化，即引力场的实际变化.在同一个时空中仅仅从一个坐标系变换到另外一个坐标系，分量 $g_{ik}$ 也要改变.一般来说，每个这样的坐标变换是四个（依坐标的数目）独立变换的集合.为了除去 $g_{ik}$ 那些不与度规变化有关联的变化，我们可以加上四个辅助条件，并且要求在变分时必须满足这些条件.因此，当最小作用量原理应用到引力场时，我们只能断言，我们能够加四个辅助条件在 $g_{ik}$ 上，当这些条件被满足时，作用量对于 $g_{ik}$ 的变分有极小值\footnote{但是，必须着重指出，我们说过的一切，并不影响从最小作用量原理求场方程的过程（§95）. 这些方程可以从下面的要求来得到，即作用量必须是一个极值（就是它的一阶变分为零），而不一定是极小值. 因此，在求场方程时，我们能够使 $g_{ik}$ 全部分量的变分都是独立的.}.
+
+记住这些要点，现在我们来证明引力常数应当是正的.作为上面所提的四个辅助条件，我们令三个分量 $g_{0\alpha}$ 等于零，并令由 $g_{\alpha\beta}$ 的分量所构成的行列式 $\left|g_{\alpha\beta}\right|$ 为常数：
+\begin{equation*}
+  g_{0\alpha}=0,\qquad |g_{\alpha\beta}|=\mathrm{const};
+\end{equation*}
+由于最后一个条件，我们有
+\begin{equation*}
+  g^{\alpha\beta}\frac{\partial g_{\alpha\beta}}{\partial x^0}
+  =\frac{\partial}{\partial x^0}|g_{\alpha\beta}|=0.
+\end{equation*}
+在作用量表达式的被积函数中，我们有兴趣的是那些包含有 $g_{ik}$ 对于 $x^0$ 的导数的项（比较§93第3段).利用（93.3)的简单计算表明，在 G 内的这些项是
+\begin{equation*}
+  -\frac{1}{4}g^{00}g^{\alpha\beta}g^{\gamma\delta}
+  \frac{\partial g_{\alpha\gamma}}{\partial x^0}
+  \frac{\partial g_{\beta\delta}}{\partial x^0}.
+\end{equation*}
+很容易看出，这个量在本质上是负的.事实上，选择一个空间坐标系，这个坐标系在一给定时刻在一给定点是笛卡儿坐标系（因此 $g_{\alpha\beta}=g^{\alpha\beta}=-\delta_{\alpha\beta}$），我们便得到
+\begin{equation*}
+  -\frac{1}{4}g^{00}\left(\frac{\partial g_{\alpha\beta}}{\partial x^0}\right)^2,
+\end{equation*}
+并且由于 $g^{00}=1/g_{00}>0$，这个量的符号是显而易见的.
+
+因此，只要 $g_{\alpha\beta}$ 随着时间 $x^0$ 的变化足够快（在沿 $\mathrm{d}x^0$ 的积分限间的时间间隔内)，我们可以使 G 有任意大的值.假如 k 是负数，那么，作用量就应该无限制地下降(其值为负而其绝对值则可任意地大),即不可能有极小值.
+
+\section{能量动量张量}
+
+在§32中，我们已经求出一个普遍法则来计算任何物理体系的能量动量张量，这个物理体系的作用量为四维空间内的积分(32.1）所决定.在曲线坐标中，这个积分应当写成：
+\begin{equation}
+  S=\frac{1}{c}\int\varLambda\sqrt{-g}\,\mathrm{d}\varOmega
+\end{equation}
+（在伽利略坐标中 $g=-1$，则 S 回到 $\frac{1}{c}\int\varLambda\,\mathrm{d}V\mathrm{d}t$）.积分应该在整个三维空间和在两个给定时刻内进行，就是说积分应该在两个超曲面之间的四维空间的无限区域内进行.
+
+如在§32中已经指出的，从公式(32.5)计算出来的能量动量张量一般来说不是对称的，而它应该是对称的.为了使之对称化，必须将有 $\frac{\partial}{\partial x^l}\psi_{ikl}$ 形式的适当项加到表达式（32.5)上，并且 $\psi_{ikl}=-\psi_{ilk}$.
+
+现在我们要提出另一个计算能量动量张量的方法，这个新方法有个优点，就是它立即导出对称的表达式.
+
+在（94.1）中，我们进行了从坐标 $x^i$ 到坐标 $x'^i=x^i+\xi^i$ 的变换，此处 $\xi^i$ 是一些小量.在这个变换下，$g^{ik}$ 是按照下面的公式变换的：
+\begin{equation*}
+\begin{aligned}
+  g'^{ik}(x'^l)&=g^{lm}(x^l)\frac{\partial x'^i}{\partial x^l}
+  \frac{\partial x'^k}{\partial x^m}
+  =g^{lm}\left(\delta^i_l+\frac{\partial\xi^i}{\partial x^l}\right)
+  \left(\delta^k_m+\frac{\partial\xi^k}{\partial x^m}\right)\\
+  &\approx g^{ik}(x^l)+g^{im}\frac{\partial\xi^k}{\partial x^m}
+  +g^{kl}\frac{\partial\xi^i}{\partial x^l}.
+\end{aligned}
+\end{equation*}
+张量 $g'^{ik}$ 在这里是 $x^l$ 的函数，而张量 $g^{ik}$ 则是原来坐标 $x^l$ 的函数.为了将所有的项化为同样一些变量的函数，我们将 $g'^{ik}(x^l+\xi^l)$ 展开为 $\xi^l$ 的幂级数.此外，略去 $\xi^l$ 的高次项，在所有含 $\xi^l$ 的项中用 $g^{ik}$ 代替 $g'^{ik}$.于是，我们求得
+\begin{equation*}
+  g'^{ik}(x^l)=g^{ik}(x^l)-\xi^l\frac{\partial g^{ik}}{\partial x^l}
+  +g^{il}\frac{\partial\xi^k}{\partial x^l}
+  +g^{kl}\frac{\partial\xi^i}{\partial x^l}.
+\end{equation*}
+直接演算不难验证，右边的后三项可以写为 $\xi^i$ 的逆变导数之和 $\xi^{i;k}+\xi^{k;i}$.因此，我们最后得到 $g^{ik}$ 的变换式如下：
+\begin{equation}
+  g'^{ik}=g^{ik}+\delta g^{ik},\qquad
+  \delta g^{ik}=\xi^{i;k}+\xi^{k;i}.
+\end{equation}
+
+对于协变分量我们有：
+\begin{equation}
+  g'_{ik}=g_{ik}+\delta g_{ik},\qquad
+  \delta g_{ik}=-\xi_{i;k}-\xi_{k;i}
+\end{equation}
+（由此可知,条件 $g'_{il}g'^{kl}=\delta^k_i$ 在一阶小量的精度上是得到满足的）\footnote{我们指出，方程
+\begin{equation*}
+  \xi^{i;k}+\xi^{k;i}=0
+\end{equation*}
+确定了那些不改变度规的无穷小坐标变换. 在文献中它们经常被称做基灵方程.}.
+
+既然作用量 S 是一个标量，那么，在坐标变换时它不改变.另一方面，作用量在坐标变换时的变化 δS 可以写成下面的形式.和在§32中一样，设 $q$ 为决定一个物理体系的量，该物理体系的作用量为 S.在坐标变换下，这些量 $q$ 改变 $\delta q$.但是，在计算 δS 时，我们不必写出与 q 的变化有关的项.根据这个物理体系的“运动方程”，所有这些项全相等并互相抵消，这是因为运动方程正是根据 $S$ 对 $q$ 的变分等于零得到的.因此，只须写出与 $g_{ik}$ 的变化相关联的项就足够了.利用高斯定理，并且在积分限上令 $\delta g^{ik}=0$，我们便求得下面形式的 δS\footnote{必须着重指出，我们在此所介绍的对称张量 $g^{ik}$ 的分量的导数的表示法，在某种意义上有符号的特性. 就是说，导数 $\partial F/\partial g^{ik}$（$F$ 是 $g^{ik}$ 的某一个函数）实质上只有在 $\mathrm{d}F=(\partial F/\partial g^{ik})\mathrm{d}g^{ik}$ 式中才有意义. 但是在求和式 $(\partial F/\partial g^{ik})\mathrm{d}g^{ik}$ 中，微分 $\mathrm{d}g^{ik}$ 的 $i\neq k$ 的项出现两次. 因此，对于 $i\neq k$ 的任一确定的分量 $g^{ik}$，在求 $F$ 的具体表达式对它的微分时，所得到的量应该两倍于用 $\partial F/\partial g^{ik}$ 所表示的量. 当我们遇到有对 $g^{ik}$ 求导的公式，且指标 $i,k$ 有一定的值时，必须注意到这个注释.}
+\begin{equation*}
+\begin{aligned}
+  \delta S&=\frac{1}{c}\int\left\{
+  \frac{\partial\sqrt{-g}\,\varLambda}{\partial g^{ik}}\delta g^{ik}
+  +\frac{\partial\sqrt{-g}\,\varLambda}
+  {\partial\dfrac{\partial g^{ik}}{\partial x^l}}
+  \delta\frac{\partial g^{ik}}{\partial x^l}\right\}\mathrm{d}\varOmega\\
+  &=\frac{1}{c}\int\left\{
+  \frac{\partial\sqrt{-g}\,\varLambda}{\partial g^{ik}}
+  -\frac{\partial}{\partial x^l}
+  \frac{\partial\sqrt{-g}\,\varLambda}
+  {\partial\dfrac{\partial g^{ik}}{\partial x^l}}\right\}
+  \delta g^{ik}\,\mathrm{d}\varOmega.
+\end{aligned}
+\end{equation*}
+现在，我们引入下面的符号：
+\begin{equation}
+  \frac{1}{2}\sqrt{-g}\,T_{ik}
+  =\frac{\partial\sqrt{-g}\,\varLambda}{\partial g^{ik}}
+  -\frac{\partial}{\partial x^l}
+  \frac{\partial\sqrt{-g}\,\varLambda}
+  {\partial\dfrac{\partial g^{ik}}{\partial x^l}};
+\end{equation}
+这时，δS 将取如下的形式\footnote{要注意，在我们所考虑的情形中，十个量 $\delta g_{ik}$ 并不是独立的，因为它们是坐标变换的结果，而坐标只有四个. 因此从 $\delta S=0$，不能推断 $T_{ik}=0$!}
+\begin{equation}
+  \delta S=\frac{1}{2c}\int T_{ik}\delta g^{ik}\sqrt{-g}\,\mathrm{d}\varOmega
+  =-\frac{1}{2c}\int T^{ik}\delta g_{ik}\sqrt{-g}\,\mathrm{d}\varOmega
+\end{equation}
+（注意 $g^{ik}\delta g_{lk}=-g_{lk}\delta g^{ik}$，因此 $T^{ik}\delta g_{ik}=-T_{ik}\delta g^{ik}$）.将 $\delta g^{ik}$ 的表达式（94.2）代入，利用张量 $T_{ik}$ 的对称性，则我们有
+\begin{equation*}
+  \delta S=\frac{1}{2c}\int T_{ik}\left(\xi^{i;k}+\xi^{k;i}\right)
+  \sqrt{-g}\,\mathrm{d}\varOmega
+  =\frac{1}{c}\int T_{ik}\xi^{i;k}\sqrt{-g}\,\mathrm{d}\varOmega.
+\end{equation*}
+再将此式作如下变换：
+\begin{equation}
+  \delta S=\frac{1}{c}\int\left(T_i^k\xi^i\right)_{;k}\sqrt{-g}\,\mathrm{d}\varOmega
+  -\frac{1}{c}\int T^k_{i;k}\xi^i\sqrt{-g}\,\mathrm{d}\varOmega.
+\end{equation}
+利用（86.9)，第一个积分可以写成
+\begin{equation*}
+  \frac{1}{c}\int\frac{\partial}{\partial x^k}
+  \left(\sqrt{-g}\,T_i^k\xi^i\right)\mathrm{d}\varOmega,
+\end{equation*}
+并可变换为在一个超曲面上的积分.既然在积分的两个限上，$\xi^i$ 为零，那么，这个积分就应当为 0.因此，令 δS 等于零，我们就有
+\begin{equation*}
+  \delta S=-\frac{1}{c}\int T^k_{i;k}\xi^i\sqrt{-g}\,\mathrm{d}\varOmega=0.
+\end{equation*}
+根据 $\xi^i$ 的任意性，可以得出结论：
+\begin{equation}
+  T^k_{i;k}=0.
+\end{equation}
+
+将此式与在伽俐略坐标系中的有效的方程(32.4) $\partial T_{ik}/\partial x^k=0$ 相比较，我们看出，用（94.4）式定义的张量 $T_{ik}$ 应当与能量动量张量是一个东西——至少也是准确到一个常数因子.不难验证这个因子等于1，例如，按照公式(94.4)对电磁场情形
+\begin{equation*}
+  \varLambda=-\frac{1}{16\pi}F_{ik}F^{ik}
+  =-\frac{1}{16\pi}F_{ik}F_{lm}g^{il}g^{km}
+\end{equation*}
+进行计算.
+
+因此，根据（94.4）式，将函数 Λ 对度规张量的分量（和它们的导数）微分，我们就能够计算出能量动量张量.这时，获得的张量 $T_{ik}$ 显然是对称的.用公式(94.4)计算能量动量张量，不仅在引力场存在时是便利的，而且在引力场不存在时也是如此.对于后一种情形，度规张量没有独立的意义，形式地过渡到曲线坐标是作为计算 $T_{ik}$ 的一个中间步骤来进行的.
+
+电磁场的能量动量张量的表达式(33.1）在曲线坐标中应当写成下面的形式：
+\begin{equation}
+  T_{ik}=\frac{1}{4\pi}\left(-F_{il}F_k{}^l
+  +\frac{1}{4}F_{lm}F^{lm}g_{ik}\right).
+\end{equation}
+
+对于宏观物体，能量动量张量等于（对比（35.2)）：
+\begin{equation}
+  T_{ik}=(p+\varepsilon)u_iu_k-pg_{ik}.
+\end{equation}
+
+我们指出，$T_{00}$ 这个量永为正\footnote{事实上，我们有 $T_{00}=\varepsilon u_0^2+p(u_0^2-g_{00})$. 第一项永为正. 在第二项中，我们写出
+\begin{equation*}
+  u_0=g_{00}u^0+g_{0\alpha}u^{\alpha}
+  =\frac{g_{00}\mathrm{d}x^0+g_{0\alpha}\mathrm{d}x^{\alpha}}{\mathrm{d}s},
+\end{equation*}
+经过简单变换以后，得到 $g_{00}p(\mathrm{d}l/\mathrm{d}s)^2$ 的 $\mathrm{d}l$ 是空间距离元（84.6）；由此可以清楚地看出 $T_{00}$ 的第二项也为正. 对于张量（94.8）也可以同样确认.}：
+\begin{equation}
+  T_{00}\geqslant 0
+\end{equation}
+（混合分量 $T^0_0$ 一般说来没有确定的正负号）.
+
+\begin{xiti}
+
+\noindent{\heiti 习题}\quad 考察将二阶对称张量化为正则形式的可能的种类.
+
+解：将对称张量 $A_{ik}$ 化到主轴上意味着找到那些“本征矢量”$n^i$，对它们有
+\begin{equation*}
+  A_{ik}n^k=\lambda n_i.
+\tag{1}\end{equation*}
+对应的主值（或本征值）λ 为下面四次方程的根
+\begin{equation*}
+  |A_{ik}-\lambda g_{ik}|=0,
+\tag{2}\end{equation*}
+并且是该张量的不变量.数值 λ 和对应于它们的本征矢量可以是复的.(张量 $A_{ik}$ 本身的分量自然可以假定是实的.)
+
+由方程(1)出发采用通常的方法可以容易地证明，对应于两个不同主值 $\lambda^{(1)}$ 和 $\lambda^{(2)}$ 的两个矢量 $n_i^{(1)}$ 和 $n_i^{(2)}$ 相互正交：
+\begin{equation*}
+  n_i^{(1)}n^{(2)i}=0.
+\tag{3}\end{equation*}
+
+特别地，如果方程(2)具有复共轭的根 λ 和 $\lambda^{*}$，它们对应于复共轭的矢量 $n_i$ 和 $n_i^{*}$，那么必须有
+\begin{equation*}
+  n_in^{i*}=0.
+\tag{4}\end{equation*}
+
+张量 $A_{ik}$ 通过下面的公式由自己的主值和相应的本征矢量来表示.
+\begin{equation*}
+  A_{ik}=\sum\lambda\frac{n_in_k}{n_ln^l}
+\tag{5}\end{equation*}
+（只要任何一个 $n_ln^l$ 不等于零——参见下文）.
+
+根据方程(2)的根的特征，能够出现下面三种不同的情况.
+
+I. λ 全部的四个主值都是实数.在这种情况下矢量 $n^i$ 同样是实的，而由于它们都是相互正交的，那么它们之中的三个应该具有类空方向，而剩余的一个具有类时方向（它们可以按照条件 $n_ln^l=-1$ 和 $n_ln^l=1$ 进行归一化）.沿着这些矢量选取坐标轴的方向，我们把张量化为如下形式
+\begin{equation*}
+  A_{ik}=
+  \begin{pmatrix}
+    \lambda^{(0)} & 0 & 0 & 0\\
+    0 & -\lambda^{(1)} & 0 & 0\\
+    0 & 0 & -\lambda^{(2)} & 0\\
+    0 & 0 & 0 & -\lambda^{(3)}
+  \end{pmatrix}.
+\tag{6}\end{equation*}
+
+II. 方程(2)具有两个实根 $(\lambda^{(2)},\lambda^{(3)})$ 和两个复共轭根 $(\lambda'\pm\mathrm{i}\lambda'')$.我们把对应于最后两个根的复共轭矢量 $n_i$，$n_i^{*}$ 写成 $a_i\pm\mathrm{i}b_i$ 的形式；由于它们仅精确到任意的复数因子，那么就可以按照条件 $n_in^i=n_i^{*}n^{i*}=1$ 对其进行归一化.同样考虑到(4)，我们求得针对实矢量 $a_i,b_i$ 的条件：
+\begin{equation*}
+  a_ia^i+b_ib^i=0,\qquad a_ib^i=0,\qquad
+  a_ia^i-b_ib^i=1,
+\end{equation*}
+由此 $a_ia^i=1/2$，$b_ib^i=-1/2$，就是说这些矢量的其中之一具有类时方向，另一个具有类空方向\footnote{由于矢量中仅有一个应该具有类时方向，方程（2）不能具有两对复共轭根.}.沿矢量 $a^i,b^i,n^{(2)i},n^{(3)i}$ 选取坐标轴，我们将张量化为（按照(5)）如下形式
+\begin{equation*}
+  A_{ik}=
+  \begin{pmatrix}
+    \lambda' & \lambda'' & 0 & 0\\
+    \lambda'' & -\lambda' & 0 & 0\\
+    0 & 0 & -\lambda^{(2)} & 0\\
+    0 & 0 & 0 & -\lambda^{(3)}
+  \end{pmatrix}.
+\tag{7}\end{equation*}
+
+III. 如果矢量 $n^i$ 的其中之一的平方为零 $(n_ln^l=0)$，那么这个矢量不能选做坐标轴的方向.然而可以从平面 $x^0x^{\alpha}$ 中选取其中之一，使得矢量 $n^i$ 平放在其中.设这个平面为 $x^0x^1$.那么从 $n_ln^l=0$ 可以得出 $n^0=n^1$，并且从方程(1）我们有
+\begin{equation*}
+  A_{00}+A_{01}=\lambda,\qquad A_{10}+A_{11}=-\lambda,
+\end{equation*}
+由此
+\begin{equation*}
+  A_{00}=\lambda+\mu,\qquad A_{11}=-\lambda+\mu,\qquad A_{01}=-\mu,
+\end{equation*}
+其中 $\mu$ 并非不变量，在平面 $x^0x^1$ 中旋转时会发生改变；它的值通过适当的旋转总是可以化为实数.按照其他两个矢量 $n^{(2)i},n^{(3)i}$ 选取坐标轴 $x^2,x^3$，将张量化为：
+\begin{equation*}
+  A_{ik}=
+  \begin{pmatrix}
+    \lambda+\mu & -\mu & 0 & 0\\
+    -\mu & -\lambda+\mu & 0 & 0\\
+    0 & 0 & -\lambda^{(2)} & 0\\
+    0 & 0 & 0 & -\lambda^{(3)}
+  \end{pmatrix}.
+\tag{8}\end{equation*}
+这种情形相应于方程(2)的两个根 $(\lambda^{(0)},\lambda^{(1)})$ 相等.
+
+我们指出，对于低于光速运动的物质，物理的能量动量张量 $\mathcal{E}_{ik}$ 只有第一种情况能够成立；这是由于永远应该存在这样的参考系，在其中物质的能流，即分量 $T_{\alpha 0}$ 等于零.对于电磁波的能量动量张量，则带有 $\lambda=\lambda^{(2)}=\lambda^{(3)}=0$（参考§33的脚注)的第三种情况成立；可以证明，假如不是这样，会存在这样的参考系，其中能流会超过能量密度与光速 c 的乘积.
+
+\end{xiti}
+
+\section{爱因斯坦方程}
+
+现在我们可以来推导引力场方程.这些方程可以从最小作用量原理 $\delta(S_{\mathrm{m}}+S_{\mathrm{g}})=0$ 求得，此处的 $S_{\mathrm{g}}$ 和 $S_{\mathrm{m}}$ 分别是引力场的作用量与物质的作用量\footnote{引力场的变分原理由希尔伯特指出（D. Hilbert, 1915）.}.现在我们来对引力场，即 $g_{ik}$ 诸量，进行变分.
+
+先来计算变分 $\delta S_{\mathrm{g}}$.我们有
+\begin{equation*}
+\begin{aligned}[b]
+  \delta\int R\sqrt{-g}\,\mathrm{d}\varOmega
+  &=\delta\int g^{ik}R_{ik}\sqrt{-g}\,\mathrm{d}\varOmega\\
+  &=\int\left(R_{ik}\sqrt{-g}\,\delta g^{ik}
+  +R_{ik}g^{ik}\delta\sqrt{-g}
+  +g^{ik}\sqrt{-g}\,\delta R_{ik}\right)\mathrm{d}\varOmega.
+\end{aligned}
+\end{equation*}
+从公式（86.4），我们得到
+\begin{equation*}
+  \delta\sqrt{-g}=-\frac{1}{2\sqrt{-g}}\delta g
+  =-\frac{1}{2}\sqrt{-g}\,g_{ik}\delta g^{ik},
+\end{equation*}
+将它代入前一个方程，我们求得
+\begin{equation}
+  \delta\int R\sqrt{-g}\,\mathrm{d}\varOmega
+  =\int\left(R_{ik}-\frac{1}{2}g_{ik}R\right)\delta g^{ik}\sqrt{-g}\,\mathrm{d}\varOmega
+  +\int g^{ik}\delta R_{ik}\sqrt{-g}\,\mathrm{d}\varOmega.
+\end{equation}
+
+为了计算 $\delta R_{ik}$，我们指出，虽然 $\Gamma^i_{kl}$ 并不构成一个张量，但是它们的变分 $\delta\Gamma^i_{kl}$ 却构成一个张量，这是因为 $\Gamma^k_{il}A_k\mathrm{d}x^l$ 是一个矢量从某一点 P 平行移动到一个与之相距无限近的一点 $P'$ 的变化（见（85.5）式）.因此，$\delta\Gamma^k_{il}A_k\mathrm{d}x^l$ 是两个矢量之差，这两个矢量是从 P 到 $P'$ 的两次平行移动的结果（一次平行移动有不变的 $\Gamma^i_{kl}$，另一次有变化的 $\Gamma^i_{kl}$）.在同一点的两个矢量之差是一个矢量，所以 $\delta\Gamma^i_{kl}$ 是一个张量.
+
+我们应用局域测地坐标系.这时，在给定的点，所有的 $\Gamma^i_{kl}=0$.利用 $R_{ik}$ 的表达式（92.7)，我们有（记着，$g^{ik}$ 的一阶导数现在为零)
+\begin{equation*}
+  g^{ik}\delta R_{ik}
+  =g^{ik}\left\{\frac{\partial}{\partial x^l}\delta\Gamma^l_{ik}
+  -\frac{\partial}{\partial x^k}\delta\Gamma^l_{il}\right\}
+  =g^{ik}\frac{\partial}{\partial x^l}\delta\Gamma^l_{ik}
+  -g^{il}\frac{\partial}{\partial x^l}\delta\Gamma^k_{ik}
+  =\frac{\partial w^l}{\partial x^l},
+\end{equation*}
+式中
+\begin{equation*}
+  w^l=g^{ik}\delta\Gamma^l_{ik}-g^{il}\delta\Gamma^k_{ik}.
+\end{equation*}
+既然 $w^l$ 是一个矢量，我们可以把所得的关系在任意坐标系中写成如下形式
+\begin{equation*}
+  g^{ik}\delta R_{ik}=\frac{1}{\sqrt{-g}}
+  \frac{\partial}{\partial x^l}\left(\sqrt{-g}\,w^l\right)
+\end{equation*}
+（用 $w^l{}_{;l}$ 代替 $\partial w^l/\partial x^l$，并利用(86.9)式).因此，(95.1)式右边的第二个积分等于
+\begin{equation*}
+  \int g^{ik}\delta R_{ik}\sqrt{-g}\,\mathrm{d}\varOmega
+  =\int\frac{\partial(\sqrt{-g}\,w^l)}{\partial x^l}\,\mathrm{d}\varOmega,
+\end{equation*}
+利用高斯定理，可以变为 $w^l$ 在包围整个四维体积的超曲面上的积分.既然场的变分在积分边界上为零，那么这一项应该为零.因此，变分 $\delta S_{\mathrm{g}}$ 等于\footnote{在此，我们指出一个有趣的情况. 假如我们将 $\Gamma^i_{kl}$ 作为独立变量，$g_{ik}$ 作为常数，然后用 $\Gamma^i_{kl}$ 的表达式（86.3）来计算变分 $\delta\int R\sqrt{-g}\,\mathrm{d}\varOmega$（用（92.7）式的 $R_{ik}$），则容易验证，其结果恒为零. 反之，如果要求上述变分等于零，则也可以确定 $\Gamma^i_{kl}$ 和度规张量间的关系.}
+\begin{equation}
+  \delta S_{\mathrm{g}}
+  =-\frac{c^3}{16\pi k}\int\left(R_{ik}-\frac{1}{2}g_{ik}R\right)
+  \delta g^{ik}\sqrt{-g}\,\mathrm{d}\varOmega.
+\end{equation}
+
+我们指出，假如从场的作用量的表达式
+\begin{equation*}
+  S_{\mathrm{g}}=-\frac{c^3}{16\pi k}\int G\sqrt{-g}\,\mathrm{d}\varOmega
+\end{equation*}
+出发，那么，我们就会得到
+\begin{equation*}
+  \delta S_{\mathrm{g}}=-\frac{c^3}{16\pi k}\int\left\{
+  \frac{\partial(G\sqrt{-g})}{\partial g^{ik}}
+  -\frac{\partial}{\partial x^l}
+  \frac{\partial(G\sqrt{-g})}{\partial\dfrac{\partial g^{ik}}{\partial x^l}}
+  \right\}\delta g^{ik}\,\mathrm{d}\varOmega.
+\end{equation*}
+将此式与（95.2）比较，我们得到下面的关系式：
+\begin{equation}
+  R_{ik}-\frac{1}{2}g_{ik}R=\frac{1}{\sqrt{-g}}\left\{
+  \frac{\partial(G\sqrt{-g})}{\partial g^{ik}}
+  -\frac{\partial}{\partial x^l}
+  \frac{\partial(G\sqrt{-g})}{\partial\dfrac{\partial g^{ik}}{\partial x^l}}
+  \right\}.
+\end{equation}
+
+对于物质的作用量的变分，根据（94.5）式立即可以写出
+\begin{equation}
+  \delta S_{\mathrm{m}}=\frac{1}{2c}\int T_{ik}\delta g^{ik}
+  \sqrt{-g}\,\mathrm{d}\varOmega,
+\end{equation}
+式中，$T_{ik}$ 是物质（包括电磁场在内）的能量动量张量.由于引力常数太小，只有对于质量足够大的物体，引力相互作用才起作用.因此，在研究引力场时，我们通常应该讨论宏观物体.与此相应，对于 $T_{ik}$，我们通常应当用表达式（94.9）.
+
+因此，从最小作用量原理 $\delta S_{\mathrm{m}}+\delta S_{\mathrm{g}}=0$，我们求得：
+\begin{equation*}
+  -\frac{c^3}{16\pi k}\int\left(R_{ik}-\frac{1}{2}g_{ik}R
+  -\frac{8\pi k}{c^4}T_{ik}\right)\delta g^{ik}\sqrt{-g}\,\mathrm{d}\varOmega=0,
+\end{equation*}
+由于 $\delta g^{ik}$ 的任意性，从此得到：
+\begin{equation}
+  R_{ik}-\frac{1}{2}g_{ik}R=\frac{8\pi k}{c^4}T_{ik},
+\end{equation}
+或者，写成混合分量的形式，
+\begin{equation}
+  R^k_i-\frac{1}{2}\delta^k_iR=\frac{8\pi k}{c^4}T^k_i.
+\end{equation}
+这就是所求的引力场方程——广义相对论的基本方程.它们被称做爱因斯坦方程.
+
+将（95.6）对于指标 i 和 k 缩并，我们求得
+\begin{equation}
+  R=-\frac{8\pi k}{c^4}T
+\end{equation}
+（$T=T_i^i$）.因此场方程也可以写成
+\begin{equation}
+  R_{ik}=\frac{8\pi k}{c^4}\left(T_{ik}-\frac{1}{2}g_{ik}T\right).
+\end{equation}
+
+爱因斯坦方程是非线性方程.因此，对于引力场，叠加原理是不适用的，这个原理只在弱场近似时才成立，这种条件下允许对爱因斯坦方程进行线性化（尤其适用于经典的牛顿极限下的引力场，参见§99).
+
+在真空中，$T_{ik}=0$，引力场的方程化为方程
+\begin{equation}
+  R_{ik}=0.
+\end{equation}
+我们提醒，这绝不意味着，在真空中时空是平直的；要为平直的，就必须满足更为严格的条件 $R_{iklm}=0$.
+
+电磁场的能量动量张量有 $T_i^i=0$ 的特性（见（33.2)式）.从（95.7）可知，在仅有电磁场出现而没有任何质量的情形下，时空的曲率标量为零.
+
+如我们所知道的，能量动量张量的散度为零：
+\begin{equation}
+  T^k_{i;k}=0.
+\end{equation}
+因此方程（95.6）的左边的散度应当为零.按照恒等式（92.10）实际上正是如此.
+
+因此，方程（95.10）实质上已经包含在场方程（95.6)之内.另一方面，方程（95.10）表示能量守恒定律和动量守恒定律，还包含我们所研究的能量动量张量所属的物理体系的运动方程（即物质粒子的运动方程或第二对麦克斯韦方程）.
+
+于是，引力场方程也包含产生这个场的物质本身的方程.因此产生引力场的物质的分布和运动状态是绝对不能随意给定的.相反，它们应该（通过求解给定初始条件的场方程)与自身产生的场同时确定.
+
+我们注意到这种情况和电磁场情况的原则性区别.电磁场的方程（麦克斯韦方程）仅仅包含总电荷守恒的方程（连续性方程)，但是不包含建立场的电荷的运动方程.因此电荷的分布和电荷的运动可以任意规定，只假设总电荷不变就行了，给定电荷分布，借助于麦克斯韦方程，就决定了电荷所产生的场.
+
+然而必须指出，在爱因斯坦引力场方程的情形，为了完全决定物质的分布和运动，还必须引入物态方程（当然并不包含在场方程中)，即联系物质压强与密度的方程，该方程应该与场方程同时给出\footnote{实际上物态方程联系着不是两个，而是三个热力学量，例如物质的压强、密度和温度. 但是在引力理论的应用中，这点并不重要，因为这里使用的近似的物态方程事实上与温度无关（例如，针对稀薄物质的方程 $p=0$，针对强烈压缩物质的极端相对论方程 $p=\varepsilon/3$ 以及其他类似情形）.}.
+
+四个坐标 $x^i$ 可以接受任意的变换.用这些变换，我们可以给张量 $g_{ik}$ 的十个分量中任意四个赋值.因此 $g_{ik}$ 的各分量中未知的独立函数只有六个.此外，在物质的能量动量张量中出现的四维速度 $u^i$ 的分量，彼此之间有 $u_iu^i=1$ 的关系存在，因而，它们之中只有三个是独立的.因此，我们相应地有十个场方程(95.5)，它们确定十个未知数：六个 $g_{ik}$ 的分量，三个 $u^i$ 的分量和物质密度 $\varepsilon/c^2$（或它的压强 p）.真空中的引力场一共存在六个未知量 $(g_{ik}$ 的分量)，并且相应地，独立场方程的数量也会减少：十个方程 $R_{ik}=0$ 由四个恒等式(92.10)联系起来.我们指出爱因斯坦方程的结构的几个特殊性.他们是二阶偏微分方程组.但并非十个分量 $g_{ik}$ 对时间的二阶导数全部都包含在方程中.实际上，从(92.1)可以看出，对时间的二阶导数只包含在曲率张量的分量 $R_{0\alpha 0\beta}$ 中，它们表现为 $-\ddot{g}_{\alpha\beta}/2$ 的形式（圆点表示对 $x^0$ 微分)；度规张量的分量 $g_{0\alpha}$ 和 $g_{00}$ 的二阶导数一般不出现.因此可以明白，通过对曲率张量进行缩并而得到的张量 $R_{ik}$，以及方程(95.5)同样只包含六个空间分量 $g_{\alpha\beta}$ 对时间的二阶导数.
+
+同样容易看到，这些导数只包含在 $^{\beta}{}_{\alpha}$ 方程（95.6)中，就是说，在下列方程中
+\begin{equation}
+  R^{\beta}_{\alpha}-\frac{1}{2}\delta^{\beta}_{\alpha}R
+  =\frac{8\pi k}{c^4}T^{\beta}_{\alpha},
+\end{equation}
+方程 $^{0}{}_{0}$ 和 $^{0}{}_{\alpha}$，即方程
+\begin{equation}
+  R^0_0-\frac{1}{2}R=\frac{8\pi k}{c^4}T^0_0,\qquad
+  R^0_{\alpha}=\frac{8\pi k}{c^4}T^0_{\alpha},
+\end{equation}
+仅包含对时间的一阶导数.在这种情况下经检验可以确认，通过对 $R_{iklm}$ 进行缩并来构造量 $R^{\alpha}_0$ 和 $R^0_0-\dfrac{1}{2}R=\dfrac{1}{2}\left(R^0_0-R^{\alpha}_{\alpha}\right)$ 时，$R_{0\alpha 0\beta}$ 形式的分量的确消掉了.从恒等式(92.10)可以更容易地看出这一点，将其写成如下形式：
+\begin{equation}
+  \left(R^0_i-\frac{1}{2}\delta^0_iR\right)_{;0}
+  =-\left(R^{\alpha}_i-\frac{1}{2}\delta^{\alpha}_iR\right)_{;\alpha}
+\end{equation}
+（$i=0,1,2,3$）.包含在这个等式右边的对时间的高阶导数是二阶导数（正是出现在量 $R^{\alpha}_i$,R 里的).由于(95.13)是恒等式,那么它的左边应该相应地包含不高于二阶的对时间的导数.但对时间的一阶求导已经在其中以显式的形式出现；因此表达式 $R^0_i-(\delta^0_iR)/2$ 本身能够包含不高于一阶的对时间的导数.
+
+不仅如此，方程（95.12）的左边也不包含一阶导数 $\dot{g}_{0\alpha}$ 和 $\dot{g}_{00}$（而仅包含导数 $\dot{g}_{\alpha\beta}$）.实际上，在所有的 $\Gamma_{i,kl}$ 里，只有 $\Gamma_{\alpha,00}$ 和 $\Gamma_{0,00}$ 包含这些导数，而这些量照样也只包含在 $R_{0\alpha 0\beta}$ 形式的曲率张量的分量里面，这些分量，正如我们知道的那样，在对方程(95.12)的左边进行构造的时候被消掉了.
+
+如果有兴趣求解给定初始（按时间）条件下的爱因斯坦方程，那么就会出现这样一个问题，能够任意给定多少个量的初始空间分布.
+
+二阶方程的初始条件应该包括被微分量本身，以及它们对时间的一阶导数的初始分布.但是由于在当前条件下方程只包含六个 $g_{\alpha\beta}$ 的二阶导数，因此在初始条件里不能任意给定所有的 $g_{ik}$ 和 $\dot{g}_{ik}$.于是，可以给出（除了物质的速度和密度外）函数 $g_{\alpha\beta}$ 和 $\dot{g}_{\alpha\beta}$ 的初值，在这之后从4个方程（95.12）确定 $g_{0\alpha}$ 和 $g_{00}$ 允许的初值；在方程（95.11）里 $\dot{g}_{0\alpha}$ 和 $\dot{g}_{00}$ 的初值仍然是任意的.
+
+在以这种方式给定的初始条件中包含一些函数，其任意性只和四维坐标系选取的任意性有关.然而只有那些不能通过任何的参考系选取而减少其数量的“物理上不同”的任意函数才具有现实的物理涵义.从物理上的理解容易看到，这个数目等于 8：初始条件应该给出物质密度及其速度的三个分量的分布，以及表征（不存在物质情形下）自由引力场的四个量（参见后面的§107)；对于真空中的自由引力场,初始条件只应给出最后四个量.
+
+\begin{xiti}
+
+\noindent{\heiti 习题}\quad 写出恒定引力场的方程，将对空间坐标的全部微分运算表示为在带有度规 $\gamma_{\alpha\beta}$ (84.7)的空间中求协变导数的形式.
+
+解：引入表达式 $g_{00}=h$，$g_{0\alpha}=-hg_{\alpha}$ (88.11)和三维速度 $v^{\alpha}$ (88.10).下文中涉及三维矢量 $g_{\alpha}$，$v^{\alpha}$ 和三维标量 h 指标的升高和降低以及协变微分的全部运算都在带有度规 $\gamma_{\alpha\beta}$ 的三维空间里进行.
+
+要寻找的方程相对于下面的变换应该保持不变：
+\begin{equation*}
+  x^{\alpha}\to x^{\alpha},\qquad
+  x^0\to x^0+f(x^{\alpha}),
+\tag{1}\end{equation*}
+该变换不会改变场的稳态性质.但在这种转换之下，容易示明（参见§88第一个脚注），$g_{\alpha}\to g_{\alpha}-\partial f/\partial x^{\alpha}$，而标量 h 和张量 $\gamma_{\alpha\beta}=-g_{\alpha\beta}+hg_{\alpha}g_{\beta}$ 不变.因此可以明白，要寻找的通过 $\gamma_{\alpha\beta}$，h 和 $g_{\alpha}$ 表达的方程仅能够以导数组合的形式包含 $g_{\alpha}$，这些导数组成三维反对称的张量：
+\begin{equation*}
+  f_{\alpha\beta}=g_{\beta;\alpha}-g_{\alpha;\beta}
+  =\frac{\partial g_{\beta}}{\partial x^{\alpha}}
+  -\frac{\partial g_{\alpha}}{\partial x^{\beta}},
+\tag{2}\end{equation*}
+该张量相对于上面指出的变换是不变的.考虑到这种状况，可以显著简化计算，只要(在计算出全部出现于 $R_{ik}$ 里的导数之后)令 $g_{\alpha}=0$ 和 $g_{\alpha;\beta}+g_{\beta;\alpha}=0$\footnote{为避免误解我们强调，这种给出了正确场方程的简化计算方法，会不适用于计算 $R_{ik}$ 自己的任何分量，因为它们相对于变换（1）不是不变的. 方程（3）—（5）左边指出了里奇张量的那些分量，它们实际上等于写出的表达式. 这些分量相对于变换（1）是不变的.}.
+
+克里斯托夫符号是：
+\begin{equation*}
+\begin{aligned}
+  &\Gamma^0_{00}=\frac{1}{2}g^{\alpha}h_{;\alpha},\\
+  &\Gamma^{\alpha}_{00}=\frac{1}{2}h^{;\alpha},\\
+  &\Gamma^0_{\alpha 0}=\frac{1}{2h}h_{;\alpha}
+  +\frac{h}{2}g^{\beta}f_{\alpha\beta}+\cdots,\\
+  &\Gamma^{\alpha}_{0\beta}=\frac{h}{2}f_{\beta}{}^{\alpha}
+  -\frac{1}{2}g_{\beta}h^{;\alpha},\\
+  &\Gamma^0_{\alpha\beta}
+  =-\frac{1}{2}\left(\frac{\partial g_{\alpha}}{\partial x^{\beta}}
+  +\frac{\partial g_{\beta}}{\partial x^{\alpha}}\right)
+  -\frac{1}{2h}\left(g_{\alpha}h_{;\beta}+g_{\beta}h_{;\alpha}\right)
+  +g_{\gamma}\lambda^{\gamma}_{\alpha\beta}+\cdots,\\
+  &\Gamma^{\alpha}_{\beta\gamma}
+  =\lambda^{\alpha}_{\beta\gamma}
+  -\frac{h}{2}\left(g_{\beta}f_{\gamma}{}^{\alpha}
+  +g_{\gamma}f_{\beta}{}^{\alpha}\right)+\cdots.
+\end{aligned}
+\end{equation*}
+这里省略掉的项（用省略号代替)是矢量 $g_{\alpha}$ 的分量的二次形式；在 $R_{ik}$ (92.7)中进行微分后我们令 $g_{\alpha}=0$，此时这些项分明会消失.在计算中使用了公式(84.9),(84.12),(84.13)；$\lambda^{\alpha}_{\beta\gamma}$ 是按照度规 $\gamma_{\alpha\beta}$ 构建的三维克里斯托夫符号.张量 $T_{ik}$ 按照公式（94.9）计算，其中 $u^i$ 来自（88.14）（此处我们同样令 $g_{\alpha}=0$）.
+
+从（95.8）的计算结果得到下列方程：
+\begin{equation*}
+  \frac{1}{h}R_{00}
+  =\frac{1}{\sqrt{h}}(\sqrt{h})^{;\alpha}{}_{;\alpha}
+  +\frac{h}{4}f_{\alpha\beta}f^{\alpha\beta}
+  =\frac{8\pi k}{c^4}\left(
+  \frac{\varepsilon+p}{1-\dfrac{v^2}{c^2}}-\frac{\varepsilon-p}{2}\right),
+\tag{3}\end{equation*}
+\begin{equation*}
+  \frac{1}{\sqrt{h}}R^{\alpha}_0
+  =-\frac{\sqrt{h}}{2}f^{\alpha\beta}{}_{;\beta}
+  -\frac{3}{2}f^{\alpha\beta}(\sqrt{h})_{;\beta}
+  =\frac{8\pi k}{c^4}\frac{p+\varepsilon}{1-\dfrac{v^2}{c^2}}
+  \frac{v^{\alpha}}{c},
+\tag{4}\end{equation*}
+\begin{equation*}
+\begin{aligned}
+  R^{\alpha\beta}&=P^{\alpha\beta}
+  +\frac{h}{2}f^{\alpha\gamma}f^{\beta}{}_{\gamma}
+  -\frac{1}{\sqrt{h}}(\sqrt{h})^{;\alpha;\beta}\\
+  &=\frac{8\pi k}{c^4}\left[
+  \frac{(p+\varepsilon)v^{\alpha}v^{\beta}}
+  {c^2\left(1-\dfrac{v^2}{c^2}\right)}
+  +\frac{\varepsilon-p}{2}\gamma^{\alpha\beta}\right].
+\end{aligned}
+\tag{5}\end{equation*}
+这里 $P^{\alpha\beta}$ 是由 $\gamma_{\alpha\beta}$ 构建的三维张量，正如由 $g_{ik}$ 构建 $R^{ik}$ 一样\footnote{在度规依赖于时间的一般情况下，爱因斯坦方程也可以用类似的方式写出. 方程中除空间导数外也会包含量 $\gamma_{\alpha\beta}$, $g_{\alpha}$, $h$ 的时间导数. 参见 A. Л. Зельманов // ДАН СССР. 1956. Т. 107. С. 815.（A. L. Zel'manov, \textit{Doklady Acad. Sci., U.S.S.R.} \textbf{107}, 815(1956)）.}.
+
+\end{xiti}
+
+\section{引力场的能动赝张量}
+
+在没有引力场存在时，物质（连同电磁场）的能量守恒定律和动量守恒定律是以方程
+\begin{equation*}
+  \frac{\partial T^{ik}}{\partial x^k}=0
+\end{equation*}
+来表示的，这个方程推广到有引力场的情形是方程(94.7)：
+\begin{equation}
+  T^k_{i;k}=\frac{1}{\sqrt{-g}}
+  \frac{\partial(T_i^k\sqrt{-g})}{\partial x^k}
+  -\frac{1}{2}\frac{\partial g_{kl}}{\partial x^i}T^{kl}=0.
+\end{equation}
+
+然而在这种形式中，这个方程一般说来并不表示任何守恒定律\footnote{事实上，积分 $\int T^k_i\sqrt{-g}\,\mathrm{d}S$ 要守恒，就必须满足条件 $\dfrac{\partial\sqrt{-g}\,T^k_i}{\partial x^k}=0$，而不是满足（96.1）. 在曲线坐标中进行§29里在伽利略坐标中所作的一切计算就很容易证明这一点. 除此以外，只须注意下面的事实就够了，这些运算是纯形式的，与相应的量的张量特性无关，这像高斯定理的证明一样，后者在曲线坐标中的形式（83.17）和在笛卡儿坐标的形式是一致的.}.这种情况与下述事实有关，即在引力场中，应该守恒的不是单独物质的四维动量而是物质和引力场的四维总动量；后者并未包含在 $T_i^k$ 的式子之内.
+
+为了决定守恒的引力场和其中物质的四维总动量，我们以如下方式进行(L. D. Landau，E. M. Lifshitz，1947)\footnote{我们可能有这个想法，即将公式（94.4）应用到引力场，将 $\Lambda=-c^4G/(16\pi k)$ 代入. 但是，必须着重指出，这个公式只能应用到以不同于 $g_{ik}$ 的量 $q$ 来描写的物理体系；因此，这个公式不能应用到为 $g_{ik}$ 本身所决定的引力场. 注意，在（94.4）式中以 $G$ 代替 $\Lambda$ 时，我们得到的不过是零而已，这一点从关系式（95.3）和真空中的场方程可以直接看出.}.我们这样来选择坐标系，使在时空的某一给定点上，所有 $g_{ik}$ 的一阶导数都为零（这时，$g_{ik}$ 自身不一定具有伽利略值）.那么，这样，在该点，方程（96.1）中的第二项消失，而在第一项中，可以将 $\sqrt{-g}$ 从微分符号内提出，因而留下的是
+\begin{equation*}
+  \frac{\partial}{\partial x^k}T_i^k=0.
+\end{equation*}
+或者，以逆变分量表示，
+\begin{equation*}
+  \frac{\partial}{\partial x^k}T^{ik}=0.
+\end{equation*}
+恒满足这个方程的量 $T^{ik}$ 可以写成下面的形式：
+\begin{equation*}
+  T^{ik}=\frac{\partial}{\partial x^l}\eta^{ikl},
+\end{equation*}
+式中，$\eta^{ikl}$ 是对于指标 k,l 为反对称的量：
+\begin{equation*}
+  \eta^{ikl}=-\eta^{ilk}.
+\end{equation*}
+
+实际上，不难将 $T^{ik}$ 化为这样的形式.为此我们从下面的场方程出发：
+\begin{equation*}
+  T^{ik}=\frac{c^4}{8\pi k}\left(R^{ik}-\frac{1}{2}g^{ik}R\right),
+\end{equation*}
+对于 $R^{ik}$，按照（92.1），我们有
+\begin{equation*}
+  R^{ik}=\frac{1}{2}g^{im}g^{kp}g^{ln}\left\{
+  \frac{\partial^2 g_{lp}}{\partial x^m\partial x^n}
+  +\frac{\partial^2 g_{mn}}{\partial x^l\partial x^p}
+  -\frac{\partial^2 g_{ln}}{\partial x^m\partial x^p}
+  -\frac{\partial^2 g_{mp}}{\partial x^l\partial x^n}\right\}
+\end{equation*}
+（值得提醒一下，在我们所考虑之点，所有 $\Gamma^i_{lk}=0$）.经过简单的变换，张量 $T^{ik}$ 可以化为下面的形式：
+\begin{equation*}
+  T^{ik}=\frac{\partial}{\partial x^l}\left\{
+  \frac{c^4}{16\pi k}\frac{1}{(-g)}
+  \frac{\partial}{\partial x^m}
+  \left[(-g)\left(g^{ik}g^{lm}-g^{il}g^{km}\right)\right]\right\}.
+\end{equation*}
+花括弧内的式子对于 k 和 l 是反对称的，这就是我们在上面用 $\eta^{ikl}$ 来代表的量.既然 $g_{ik}$ 的一阶导数在所考虑之点为零，因子 $1/(-g)$ 可以从微分符号 $\partial/\partial x^l$ 下提出.我们引入符号
+\begin{equation}
+  h^{ikl}=\frac{\partial}{\partial x^m}\lambda^{iklm},
+\end{equation}
+\begin{equation}
+  \lambda^{iklm}=\frac{c^4}{16\pi k}(-g)
+  \left(g^{ik}g^{lm}-g^{il}g^{km}\right);
+\end{equation}
+$h^{ikl}$ 的各量对于 k 和 l 是反对称的：
+\begin{equation}
+  h^{ikl}=-h^{ilk}.
+\end{equation}
+
+这时，我们可以写出
+\begin{equation*}
+  \frac{\partial h^{ikl}}{\partial x^l}=(-g)T^{ik}.
+\end{equation*}
+这个关系是在 $\partial g_{ik}/\partial x^l=0$ 的假设下导出的，在过渡到任意的坐标系时不再有效.在一般情形下，差 $\partial h^{ikl}/\partial x^l-(-g)T^{ik}$ 不等于零；我们用 $(-g)t^{ik}$ 来代表这个差.于是，根据定义，我们有
+\begin{equation}
+  (-g)\left(T^{ik}+t^{ik}\right)=\frac{\partial h^{ikl}}{\partial x^l}.
+\end{equation}
+
+$t^{ik}$ 对于 i 和 k 是对称的：
+\begin{equation}
+  t^{ik}=t^{ki}.
+\end{equation}
+这可以直接从它们的定义看出，因为像张量 $T^{ik}$ 一样，导数 $\partial h^{ikl}/\partial x^l$ 也是对称的量.用 $R^{ik}$ 表示 $T^{ik}$，按照爱因斯坦方程，可得关系式：
+\begin{equation}
+  (-g)\left\{\frac{c^4}{8\pi k}\left(R^{ik}-\frac{1}{2}g^{ik}R\right)
+  +t^{ik}\right\}=\frac{\partial h^{ikl}}{\partial x^l},
+\end{equation}
+经过相当冗长的运算，从上式中可以得到下面的针对 $t^{ik}$ 的表达式：
+\begin{equation}
+\begin{aligned}[b]
+  t^{ik}={}&\frac{c^4}{16\pi k}\bigl\{
+  \left(2\Gamma^n_{lm}\Gamma^p_{np}
+  -\Gamma^n_{lp}\Gamma^p_{mn}
+  -\Gamma^n_{ln}\Gamma^p_{mp}\right)
+  \left(g^{il}g^{km}-g^{ik}g^{lm}\right)\\
+  &+g^{il}g^{mn}\left(\Gamma^k_{lp}\Gamma^p_{mn}
+  +\Gamma^k_{mn}\Gamma^p_{lp}
+  -\Gamma^k_{np}\Gamma^p_{lm}
+  -\Gamma^k_{lm}\Gamma^p_{np}\right)\\
+  &+g^{kl}g^{mn}\left(\Gamma^i_{lp}\Gamma^p_{mn}
+  +\Gamma^i_{mn}\Gamma^p_{lp}
+  -\Gamma^i_{np}\Gamma^p_{lm}
+  -\Gamma^i_{lm}\Gamma^p_{np}\right)\\
+  &+g^{lm}g^{np}\left(\Gamma^i_{ln}\Gamma^k_{mp}
+  -\Gamma^i_{lm}\Gamma^k_{np}\right)\bigr\},
+\end{aligned}
+\end{equation}
+或者，直接用度规张量的分量的导数表示：
+\begin{equation}
+\begin{aligned}[b]
+  (-g)t^{ik}={}&\frac{c^4}{16\pi k}\Bigl\{
+  \mathfrak{g}^{ik}{}_{,l}\mathfrak{g}^{lm}{}_{,m}
+  -\mathfrak{g}^{il}{}_{,l}\mathfrak{g}^{km}{}_{,m}
+  +\frac{1}{2}g^{ik}g_{lm}\mathfrak{g}^{ln}{}_{,p}
+  \mathfrak{g}^{pm}{}_{,n}\\
+  &-\left(g^{il}g_{mn}\mathfrak{g}^{kn}{}_{,p}\mathfrak{g}^{mp}{}_{,l}
+  +g^{kl}g_{mn}\mathfrak{g}^{in}{}_{,p}\mathfrak{g}^{mp}{}_{,l}\right)
+  +g_{lm}g^{np}\mathfrak{g}^{il}{}_{,n}\mathfrak{g}^{km}{}_{,p}\\
+  &+\frac{1}{8}\left(2g^{il}g^{km}-g^{ik}g^{lm}\right)
+  \left(2g_{np}g_{qr}-g_{pq}g_{nr}\right)
+  \mathfrak{g}^{nr}{}_{,l}\mathfrak{g}^{pq}{}_{,m}\Bigr\},
+\end{aligned}
+\end{equation}
+其中 $\mathfrak{g}^{ik}=\sqrt{-g}\,g^{ik}$，而指标“,i”表示对 $x^i$ 的普通微分.
+
+$t^{ik}$ 有一个本质上的特性，就是它们不构成一个张量；如果注意到在 $\partial h^{ikl}/\partial x^l$ 内出现的是普通导数而不是协变导数，就已经可以看到这一点.然而 $t^{ik}$ 是用量 $\Gamma^i_{kl}$ 表示的，而后者在坐标的线性变换下与张量的表现一样(见§85)，所以，同样的情况对于 $t^{ik}$ 也能应用.
+
+从定义（96.5）可知，$T^{ik}+t^{ik}$ 恒满足方程
+\begin{equation}
+  \frac{\partial}{\partial x^k}(-g)\left(T^{ik}+t^{ik}\right)=0.
+\end{equation}
+这表明，对下面的量，守恒定律是成立的.
+\begin{equation}
+  P^i=\frac{1}{c}\int(-g)\left(T^{ik}+t^{ik}\right)\mathrm{d}S_k.
+\end{equation}
+
+在没有引力场时，在伽利略坐标中，$t^{ik}=0$，而上面的积分化为 $\frac{1}{c}\int T^{ik}\mathrm{d}S_k$，即化为物质的四维动量.因此，量（96.11）应当是物质和引力场的四维总动量.$t^{ik}$ 诸量的集合称为引力场的能动赝张量.
+
+(96.11)中的积分可以在包括整个三维空间的任何无穷大的超曲面上进行.假如我们选择超曲面 $x^0=\mathrm{const}$ 作为这个面，那么，$P^i$ 可以写为三维空间积分的形式：
+\begin{equation}
+  P^i=\frac{1}{c}\int(-g)\left(T^{i0}+t^{i0}\right)\mathrm{d}V.
+\end{equation}
+
+物质和场的四维总动量表示为 $(-g)(T^{ik}+t^{ik})$ 的积分形式，$(-g)(T^{ik}+t^{ik})$ 对于指标 i,k 是对称的，这个事实非常重要.它表明由下式定义的四维角动量（见§32）满足守恒律\footnote{必须指出，我们所求得的物质和场的四维动量的表达式绝不是唯一可能的. 恰恰相反，我们有无穷多的方法（可以参看，例如，本节的习题）来构造出这些表达式，这些表达式在没有场存在时化为 $T^{ik}$，而当沿着 $\mathrm{d}S_k$ 积分时则得到一些守恒量. 然而，我们所做的选择是唯一能同时满足以下两个条件的选择：它让场的能动赝张量仅包含对 $g_{ik}$ 的一阶（没有更高阶的）导数（从物理学的观点来看，这条件是完全自然的），且又保证能动赝张量的对称性（因而可以得出角动量守恒定律）.}：
+\begin{equation}
+\begin{aligned}[b]
+  M^{ik}&=\int\left(x^i\mathrm{d}P^k-x^k\mathrm{d}P^i\right)\\
+  &=\frac{1}{c}\int\left[x^i\left(T^{kl}+t^{kl}\right)
+  -x^k\left(T^{il}+t^{il}\right)\right](-g)\,\mathrm{d}S_l.
+\end{aligned}
+\end{equation}
+
+这样一来，在广义相对论中，引力物体组成的封闭系统中总角动量也是守恒的，并且除此之外，像原先一样可以给出作匀速运动的惯性中心的定义.能够作这样的定义和分量 $M^{0\alpha}$ 的守恒有关（对比§14)，该守恒用下面的方程表达：
+\begin{equation*}
+  x^0\int\left(T^{\alpha 0}+t^{\alpha 0}\right)(-g)\,\mathrm{d}V
+  -\int x^{\alpha}\left(T^{00}+t^{00}\right)(-g)\,\mathrm{d}V
+  =\mathrm{const},
+\end{equation*}
+所以惯性中心的坐标由下式给出：
+\begin{equation}
+  X^{\alpha}=
+  \frac{\displaystyle\int x^{\alpha}\left(T^{00}+t^{00}\right)(-g)\,\mathrm{d}V}
+  {\displaystyle\int\left(T^{00}+t^{00}\right)(-g)\,\mathrm{d}V}.
+\end{equation}
+
+选择这样的一个坐标系，使其在指定的体积元内为惯性系，这时我们就能够使所有的 $t^{ik}$ 在时空的任意一点为零（因为这时所有的 $\Gamma^i_{kl}$ 为零）.另一方面，在平直空间中，即在没有引力场时，只要我们用曲线坐标代替笛卡儿坐标，我们就能得到不等于零的 $t^{ik}$.因此，在任何情形下，谈论引力场能量在空间的定域化是没有意义的.假如张量 $T_{ik}$ 在某一世界点为零，那么，在任何其他参考系中也是这样，因而我们可以说在这一点没有物质或电磁场.相反地，从一个赝张量在一个参考系的某一点为零的事实，根本就不能断定，在另外一个参考系中也是如此，因此，谈在某个地方到底有没有引力能是无意义的.它完全与下面的事实相应，即只要坐标选择得适当，我们能够“消除”在一给定体积元内的引力场，同时，根据我们在上面所说的，赝张量 $t^{ik}$ 在这个体积元内也将消失.
+
+但是量 $P^i$（物质和场的四维动量)却有完全确定的意义，刚好在基于物理考虑所需要的程度上与参考系的选择无关.
+
+让我们划分出一个包含着所研究全部质量的一个空间区域.随着时间的流逝，这个区域在四维时空内割出一条“通道”.在这个“通道”以外，场是减小的，因而四维空间逐渐趋向平直.由于这个原因，在计算场的能量与动量时，显然我们必须选择这样的四维参考系，使得离“通道”足够远处，坐标系转变为伽利略系，而所有的 $t^{ik}$ 都为零.
+
+根据这个要求，参考系当然绝不是唯一确定的，它在“通道”以内还可以任意地选择.然而，就量 $P^i$ 的物理意义而言，它们与“通道”内坐标系的选择完全无关.实际上，我们来考察两个坐标系，在“通道”内是不同的，但在远离“通道”的地方，这两个坐标系转变为同一个伽利略坐标系，我们来比较在这两个参考系内的四维动量 $P^i$ 和 $P'^i$ 在确定的“时刻”$x^0$ 和 $x'^0$ 的值.我们引入第三个坐标系，这个坐标系在时刻 $x^0$ 在“通道”内与第一个参考系统重合，在时刻 $x'^0$ 与第二个参考系重合，而在“通道”以外，则是伽利略坐标系.根据能量守恒和动量守恒定律，量 $P^i$ 是不变的 $(\mathrm{d}P^i/\mathrm{d}x^0=0)$.这对于第三个坐标系是如此，对于前两个也是如此，从此可以断定 $P^i=P'^i$，这即是要证明的.
+
+前面已经提过，量 $t^{ik}$ 在坐标的线性变换下与张量的表现一样.因此，$P^i$ 对于这样的变换构成一个四维矢量，就特例言之，它对于在无穷远处将一个伽利略参考系转换成另一个伽利略参考系的洛伦兹变换也是这样\footnote{严格地说，在定义式（96.11）中，$P^i$ 仅对于行列式等于 1 的线性变换是四维矢量；而这里有关的是那些具有物理意义的洛伦兹变换. 如果允许带行列式不等于 1 的变换，那么在定义 $P^i$ 时应该引入无穷远处的数值 $g$，即在（96.11）的左边用 $\sqrt{-g_\infty}\,P^i$ 取代 $P^i$.}.
+
+四维动量 $P^i$ 同时可以表示为沿着远处的三维曲面的积分形式，该曲面囊括“整个空间”.将（96.5）代入（96.11），我们得到
+\begin{equation*}
+  P^i=\frac{1}{c}\int\frac{\partial h^{ikl}}{\partial x^l}\,\mathrm{d}S_k.
+\end{equation*}
+利用（6.17)式，这个积分可以化为在普通曲面上的积分：
+\begin{equation}
+  P^i=\frac{1}{2c}\oint h^{ikl}\,\mathrm{d}f^{*}_{kl}.
+\end{equation}
+假如我们选择超曲面 $x^0=\mathrm{const}$ 作为（96.11)中的积分面，那么，(96.15)中的积分面就变为纯粹的空间曲面\footnote{$\mathrm{d}f^{*}_{kl}$ 这个量是“垂直”于面元的，它与“切面”元 $\mathrm{d}f^{ik}$ 的关系是（6.11）：$\mathrm{d}f^{*}_{ik}=\frac{1}{2}e_{iklm}\mathrm{d}f^{lm}$. 在垂直于 $x^0$ 轴的超曲面的边界面上，对于 $\mathrm{d}f^{lm}$，只有 $l,m=1,2,3$ 的那些分量不为零，因此对于 $\mathrm{d}f^{*}_{ik}$，只有当 $i$ 和 $k$ 之中有一个为零时，$\mathrm{d}f^{*}_{ik}$ 相应的分量才不为零. 分量 $\mathrm{d}f^{*}_{0\alpha}$ 不是别的，就是普通曲面的三维元的分量，我们简以 $\mathrm{d}f_{\alpha}$ 表之.}：
+\begin{equation}
+  P^i=\frac{1}{c}\oint h^{i0\alpha}\,\mathrm{d}f_{\alpha}.
+\end{equation}
+我们发现，如同在§105里将要指出的那样，在定态情况下数值 $h^{i0\alpha}$ 离物体较远距离处按照 $1/r^2$ 的规律减小，因此积分（96.16）在积分曲面处于无穷远处是有限的.
+
+为了推导角动量的类似公式，将（96.5）代入（96.13)，并且将 $h^{ikl}$ 表示为（96.2)的形式.然后进行“分部”积分，求得：
+\begin{equation*}
+\begin{aligned}
+  M^{ik}&=\frac{1}{c}\int\left(x^i
+  \frac{\partial^2\lambda^{klmn}}{\partial x^m\partial x^n}
+  -x^k\frac{\partial^2\lambda^{ilmn}}{\partial x^m\partial x^n}\right)
+  \mathrm{d}S_l\\
+  &=\frac{1}{2c}\oint\left(x^i
+  \frac{\partial\lambda^{klmn}}{\partial x^n}
+  -x^k\frac{\partial\lambda^{ilmn}}{\partial x^n}\right)\mathrm{d}f^{*}_{lm}
+  -\frac{1}{c}\int\left(\delta^i_m
+  \frac{\partial\lambda^{klmn}}{\partial x^n}
+  -\delta^k_m\frac{\partial\lambda^{ilmn}}{\partial x^n}\right)
+  \mathrm{d}S_l\\
+  &=\frac{1}{2c}\oint\left(x^ih^{klm}-x^kh^{ilm}\right)\mathrm{d}f^{*}_{lm}
+  -\frac{1}{c}\int\frac{\partial}{\partial x^n}
+  \left(\lambda^{klin}-\lambda^{ilkn}\right)\mathrm{d}S_l,
+\end{aligned}
+\end{equation*}
+从数值 $\lambda^{iklm}$ 的定义容易看到
+\begin{equation*}
+  \lambda^{ilkn}-\lambda^{klin}=\lambda^{ilnk}.
+\end{equation*}
+所以剩下的沿 $\mathrm{d}S_l$ 的积分等于
+\begin{equation*}
+  \frac{1}{c}\int\frac{\partial\lambda^{ilnk}}{\partial x^n}\,\mathrm{d}S_l
+  =\frac{1}{2c}\oint\lambda^{ilnk}\,\mathrm{d}f^{*}_{ln}.
+\end{equation*}
+最后，再次选择纯粹的空间曲面做积分，最终得到：
+\begin{equation}
+  M^{ik}=\frac{1}{c}\oint\left(x^ih^{k0\alpha}
+  -x^kh^{i0\alpha}+\lambda^{i0\alpha k}\right)\mathrm{d}f_{\alpha}.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题}\quad 利用公式(32.5)，求物质和引力场的四维总动量的表达式.
+
+解：在曲线坐标中，代替(32.1)，我们有
+\begin{equation*}
+  S=\int\varLambda\sqrt{-g}\,\mathrm{d}V\mathrm{d}t,
+\end{equation*}
+因此，为了得到一个守恒的量，我们必须在(32.5)中以 $\varLambda\sqrt{-g}$ 代替 Λ，因此，四维动量有下面的形式：
+\begin{equation*}
+  P_i=\frac{1}{c}\int\left[-\varLambda\sqrt{-g}\,\delta^k_i
+  +\sum\frac{\partial q^{(l)}}{\partial x^i}
+  \frac{\partial(\sqrt{-g}\,\varLambda)}
+  {\partial(\partial q^{(l)}/\partial x^k)}\right]\mathrm{d}S_k.
+\end{equation*}
+在将这个公式应用于物质时，对于该物质，$q^{(l)}$ 与 $g_{ik}$ 不同，我们可以将 $\sqrt{-g}$ 从微分符号下提出，被积函数就可以化为 $\sqrt{-g}\,T_i^k$，此处的 $T_i^k$ 是物质的能量动量张量.当我们将同一公式应用于引力场时，必须使 $\varLambda=-\dfrac{c^4}{16\pi k}G$，而 $q^{(l)}$ 是度规张量 $g_{ik}$ 的分量.场和物质的四维总动量因此等于
+\begin{equation*}
+  P_i=\frac{1}{c}\int T_i^k\sqrt{-g}\,\mathrm{d}S_k
+  +\frac{c^3}{16\pi k}\int\left[G\sqrt{-g}\,\delta^k_i
+  -\frac{\partial g^{lm}}{\partial x^i}
+  \frac{\partial(G\sqrt{-g})}{\partial(\partial g^{lm}/\partial x^k)}\right]
+  \mathrm{d}S_k.
+\end{equation*}
+利用 G 的表达式(93.3)，可以将上式变为
+\begin{equation*}
+  P_i=\frac{1}{c}\int\Biggl\{T_i^k\sqrt{-g}
+  +\frac{c^4}{16\pi k}\left[G\sqrt{-g}\,\delta^k_i
+  +\Gamma^k_{lm}\frac{\partial(g^{lm}\sqrt{-g})}{\partial x^i}
+  -\Gamma^l_{ml}\frac{\partial(g^{mk}\sqrt{-g})}{\partial x^i}\right]
+  \Biggr\}\mathrm{d}S_k.
+\end{equation*}
+在花括号内的第二项是在没有物质时引力场的四维动量.被积函数对于指标 i，k 是不对称的，因此我们不能得到角动量守恒定律.
+
+\end{xiti}
+
+\section{同步参考系}
+
+就像我们从§84节所知的那样，能够在空间的不同点同步时钟的条件可归结为度规张量的分量 $g_{0\alpha}$ 等于零.除此之外，如果 $g_{00}=1$，那么时间坐标 $x^0=t$ 表示空间内每点处的固有时\footnote{在本节中我们令 $c=1$.}.我们把满足条件
+\begin{equation}
+  g_{00}=1,\qquad g_{0\alpha}=0
+\end{equation}
+的参考系称做同步参考系.在这样的参考系内间隔元由下式给出:
+\begin{equation}
+  \mathrm{d}s^2=\mathrm{d}t^2-\gamma_{\alpha\beta}\mathrm{d}x^{\alpha}\mathrm{d}x^{\beta},
+\end{equation}
+并且空间度规张量的分量与 $g_{\alpha\beta}$ 的分量相等（不计正负号）：
+\begin{equation}
+  \gamma_{\alpha\beta}=-g_{\alpha\beta}.
+\end{equation}
+
+在同步参考系中时间线就是四维空间里的测地线.实际上，与世界线 $x^1,x^2,x^3=\mathrm{const}$ 相切的四维矢量 $u^i=\mathrm{d}x^i/\mathrm{d}s$ 具有分量 $u^{\alpha}=0$，$u^0=1$，并且自动满足测地方程：
+\begin{equation*}
+  \frac{\mathrm{d}u^i}{\mathrm{d}s}
+  +\Gamma^i_{kl}u^ku^l=\Gamma^i_{00}=0,
+\end{equation*}
+因为由条件(97.1)，克里斯托夫符号 $\Gamma^{\alpha}_{00}$，$\Gamma^0_{00}$ 恒等于零.
+
+同样容易看到，这些线垂直于超曲面 t=const.实际上，垂直于这样的超曲面的四维矢量 $n_i=\partial t/\partial x^i$ 具有协变分量 $n_{\alpha}=0$，$n_0=1$.由条件（97.1），相应的逆变分量也是 $n^{\alpha}=0$，$n^0=1$，就是说，等同于时间线的切线的四维矢量 $u^i$ 的分量.
+
+反过来，这些性质可用于任意时空内同步参考系的几何构建.为此我们选择某一类空超曲面作为起点，就是说，在该超曲面每一点上的法线具有类时方向(位于以该点为顶点的光锥内部)；在这样的超曲面上的所有间隔元都是类空的.然后建立垂直于这个超曲面的一簇测地线.如果现在选择这些测地线作为时间坐标线，并且把时间坐标 t 定义为从起始超曲面算起的测地线的长度 s，我们就得到同步参考系.
+
+显然，这样的构建，以及同步参考系的选择原则上总是可能的.此外，这个选择还不是唯一的.形如(97.2)的度规允许进行不影响时间的任何空间坐标变换，除此之外，还允许在几何构建时，有一个和选择起始超曲面的任意性相对应的变换.
+
+解析地变换到同步参考系原则上可以借助哈密顿-雅可比方程进行.这个方法的原理在于引力场中粒子的轨迹恰好是测地线.
+
+在引力场中粒子（其质量定为1）的哈密顿-雅可比方程为
+\begin{equation}
+  g^{ik}\frac{\mathrm{d}\tau}{\mathrm{d}x^i}
+  \frac{\mathrm{d}\tau}{\mathrm{d}x^k}=1
+\end{equation}
+（这里我们将作用量表示为 τ).它的全积分具有如下形式：
+\begin{equation}
+  \tau=f(\xi^{\alpha},x^i)+A(\xi^{\alpha}),
+\end{equation}
+其中 $f$ 是四个坐标 $x^i$ 和三个参数 $\xi^{\alpha}$ 的函数；第四个常数 A 看做三个 $\xi^{\alpha}$ 的任意函数.根据 $\tau$ 的这种表示，令导数 $\partial\tau/\partial\xi^{\alpha}$ 等于零，就可以获得粒子的轨迹方程，即
+\begin{equation}
+  \frac{\partial f}{\partial\xi^{\alpha}}
+  =-\frac{\partial A}{\partial\xi^{\alpha}}.
+\end{equation}
+
+对于参数 $\xi^{\alpha}$ 的每组给定值，方程（97.6）的右边具有确定的固定值，并且由这些方程确定的世界线是粒子可能的轨迹之一.选择沿着轨迹具有恒定值的量 $\xi^{\alpha}$ 作为新的空间坐标，而 τ 的值作为新的时间坐标，我们就得到同步参考系，并且所求的从旧坐标到新坐标的变换由方程（97.5)、(97.6)确定.实际上，在这种变换中时间线的测地性自动得到保证，并且这些线将垂直于超曲面 τ=const.最后一点显然来自于力学类比：垂直于超曲面 $-\partial\tau/\partial x^i$ 的四维矢量等同于力学中粒子的四维动量，因此其方向与四维速度 $u^i$ 重合，也就是说与轨迹切线的四维矢量重合.最后，方程 $g_{00}=1$ 显然得到满足，这是由于作用量沿轨迹的导数 $-\mathrm{d}\tau/\mathrm{d}s$ 就是粒子的质量，我们将其取做 1；因此 $|\mathrm{d}\tau/\mathrm{d}s|=1$.
+
+我们在同步参考系中写出爱因斯坦方程，在其中分离空间和时间的微分运算.
+
+引入符号
+\begin{equation}
+  \varkappa_{\alpha\beta}=\frac{\partial\gamma_{\alpha\beta}}{\partial t}
+\end{equation}
+以表示三维度规张量的时间导数.这些值自己构成三维张量.对三维张量 $\varkappa_{\alpha\beta}$ 移动指标和进行协变微分的所有运算都将在带有度规 $\gamma_{\alpha\beta}$ 的三维空间里进行\footnote{但是这当然不适用于在四维张量 $R_{ik}$, $T_{il}$（参见（88.12）前的脚注）的空间分量上移动指标的运算. 就是说，$T^{\beta}_{\alpha}$ 应该像过去那样理解为 $g^{\beta\gamma}T_{\gamma\alpha}+g^{\beta0}T_{0\alpha}$，在当前情况下可简化为 $g^{\beta\gamma}T_{\gamma\alpha}$，与 $\gamma^{\beta\gamma}T_{\gamma\alpha}$ 差个正负号.}.我们指出，总和 $\varkappa_{\alpha}^{\alpha}$ 是行列式 $\gamma\equiv|\gamma_{\alpha\beta}|=-g$ 的对数的导数：
+\begin{equation}
+  \varkappa_{\alpha}^{\alpha}
+  =\gamma^{\alpha\beta}\frac{\partial\gamma_{\alpha\beta}}{\partial t}
+  =\frac{\partial}{\partial t}\ln\gamma.
+\end{equation}
+
+针对克里斯托夫符号求得表达式：
+\begin{equation}
+  \Gamma^0_{00}=\Gamma^{\alpha}_{00}=\Gamma^0_{0\alpha}=0,\qquad
+  \Gamma^0_{\alpha\beta}=\frac{1}{2}\varkappa_{\alpha\beta},\qquad
+  \Gamma^{\alpha}_{0\beta}=\frac{1}{2}\varkappa_{\beta}^{\alpha},\qquad
+  \Gamma^{\alpha}_{\beta\gamma}=\lambda^{\alpha}_{\beta\gamma},
+\end{equation}
+其中 $\lambda^{\alpha}_{\beta\gamma}$ 是由张量 $\gamma_{\alpha\beta}$ 构成的三维克里斯托夫符号.按照公式（92.7)的计算导出下列张量 $R_{ik}$ 的分量表达式：
+\begin{equation}
+\begin{aligned}
+  R_{00}&=-\frac{1}{2}\frac{\partial}{\partial t}\varkappa_{\alpha}^{\alpha}
+  -\frac{1}{4}\varkappa_{\alpha}^{\beta}\varkappa_{\beta}^{\alpha},\\
+  R_{0\alpha}&=\frac{1}{2}\left(\varkappa^{\beta}_{\alpha;\beta}
+  -\varkappa^{\beta}_{\beta;\alpha}\right),\\
+  R_{\alpha\beta}&=P_{\alpha\beta}
+  +\frac{1}{2}\frac{\partial}{\partial t}\varkappa_{\alpha\beta}
+  +\frac{1}{4}\left(\varkappa_{\alpha\beta}\varkappa_{\gamma}^{\gamma}
+  -2\varkappa_{\alpha}^{\gamma}\varkappa_{\beta\gamma}\right).
+\end{aligned}
+\end{equation}
+这里 $P_{\alpha\beta}$ 是由 $\gamma_{\alpha\beta}$ 构造的三维里奇张量，如同由 $g_{ik}$ 构造 $R_{ik}$；下文中升高指标和协变微分也是用三维度规 $\gamma_{\alpha\beta}$ 进行.
+
+我们把爱因斯坦方程用混合分量写出：
+\begin{equation}
+  R^0_0=-\frac{1}{2}\frac{\partial}{\partial t}\varkappa_{\alpha}^{\alpha}
+  -\frac{1}{4}\varkappa_{\alpha}^{\beta}\varkappa_{\beta}^{\alpha}
+  =8\pi k\left(T^0_0-\frac{1}{2}T\right),
+\end{equation}
+\begin{equation}
+  R^0_{\alpha}=\frac{1}{2}\left(\varkappa^{\beta}_{\alpha;\beta}
+  -\varkappa^{\beta}_{\beta;\alpha}\right)=8\pi kT^0_{\alpha},
+\end{equation}
+\begin{equation}
+  R^{\beta}_{\alpha}=-P^{\beta}_{\alpha}
+  -\frac{1}{2\sqrt{\gamma}}\frac{\partial}{\partial t}
+  \left(\sqrt{\gamma}\,\varkappa^{\beta}_{\alpha}\right)
+  =8\pi k\left(T^{\beta}_{\alpha}-\frac{1}{2}\delta^{\beta}_{\alpha}T\right).
+\end{equation}
+
+同步参考系的特征是它们的非稳态性:在这样的参考系中引力场不可能是恒定的.实际上，在恒定引力场中应该有 $\varkappa_{\alpha\beta}=0$.然而在存在物质的条件下，全部 $\varkappa_{\alpha\beta}$ 变为零在任何情况下都会与方程（97.11）相矛盾（(97.11）右边不为零）.我们可以从（97.13）得出，在真空中全部 $P_{\alpha\beta}$，进而三维曲率张量 $P_{\alpha\beta\gamma\delta}$ 的全部分量变为零，也就是说，完全不存在场(在有欧几里得空间度规的同步参考系里，时空是平直的).
+
+同时，填满空间的物质一般说来相对于同步参考系不能静止.从下面的原因来看这是显而易见的，即内部有压强作用的物质的粒子一般说来不沿着测地世界线运动；静止粒子的世界线是时间线，因而是同步参考系中的测地线.“尘埃状”物质 $(p=0)$ 是个例外情况.它的粒子在无相互作用的情况下沿测地世界线运动；在这种情况下，相应地，参考系同步性的条件与它同物质共动的条件并不矛盾\footnote{但是在这种情况下，选择“同步共动”参考系的可能性还必须满足一个条件，就是物质的运动“不带有旋转”. 在共动参考系中四维速度的逆变分量 $u^0=1$, $u^{\alpha}=0$. 如果参考系还是同步的，那么协变分量 $u_0=1$, $u_{\alpha}=0$，因此它的四维速度必须为零：
+\begin{equation*}
+  u_{i;k}-u_{k;i}\equiv\frac{\partial u_i}{\partial x^k}
+  -\frac{\partial u_k}{\partial x^i}=0.
+\end{equation*}
+但是这个张量等式应该在任何其他参考系中都成立. 于是，在同步的，但不共动的参考系中我们从中得到三维速度 $\boldsymbol{v}$ 的条件 $\operatorname{rot}\boldsymbol{v}=0$.}.对于其他的物态方程，类似的情形只有在个别条件下才成立，即在任何方向或某些方向上不存在压强梯度的时候.
+
+方程(97.11)可以表明，在同步参考系中度规张量的行列式 $-g=\gamma$ 必定得在有限的时间内变为零.
+
+为此我们指出，这个方程右边的表达式对于任意的物质分布都为正值.实际上，在同步参考系中对于能量动量张量(94.9)，我们有：
+\begin{equation*}
+  T^0_0-\frac{1}{2}T
+  =\frac{1}{2}(\varepsilon+3p)
+  +\frac{(p+\varepsilon)v^2}{1-v^2}
+\end{equation*}
+（四维速度的分量由(88.14)给出)；这个值显然是正的.对于电磁场的能量动量张量同样也成立（$T=0$，$T^0_0$ 是场的正能量密度）.这样，从(97.11）我们有：
+\begin{equation}
+  -R^0_0=\frac{1}{2}\frac{\partial}{\partial t}\varkappa_{\alpha}^{\alpha}
+  +\frac{1}{4}\varkappa_{\alpha}^{\beta}\varkappa_{\beta}^{\alpha}
+  \leqslant 0
+\end{equation}
+（等号在真空中成立）.
+
+按照代数不等式\footnote{将张量 $\varkappa^{\alpha}_{\beta}$（在任何一个给定的时刻）转化为对角形式，就可以容易地确认其正确性.}
+\begin{equation*}
+  \varkappa^{\alpha}_{\beta}\varkappa^{\beta}_{\alpha}
+  \geqslant\frac{1}{3}\left(\varkappa_{\alpha}^{\alpha}\right)^2
+\end{equation*}
+可以将（97.14）写成
+\begin{equation*}
+  \frac{\partial}{\partial t}\varkappa_{\alpha}^{\alpha}
+  +\frac{1}{6}\left(\varkappa_{\alpha}^{\alpha}\right)^2\leqslant 0
+\end{equation*}
+或者
+\begin{equation}
+  \frac{\partial}{\partial t}\frac{1}{\varkappa_{\alpha}^{\alpha}}
+  \geqslant\frac{1}{6}.
+\end{equation}
+
+假设，例如某个时刻 $\varkappa_{\alpha}^{\alpha}>0$，那么当 t 减小时 $1/\varkappa_{\alpha}^{\alpha}$ 的值也减小，并且它的导数总是有限的(不为零)，因此 $1/\varkappa_{\alpha}^{\alpha}$ 必定在有限的时间内（从正值）变为零.换句话说，$\varkappa_{\alpha}^{\alpha}$ 变为 $+\infty$，而由于 $\varkappa_{\alpha}^{\alpha}=\partial\ln\gamma/\partial t$，那么这意味着行列式 $\gamma$ 变为零（并且按照不等式(97.15)，不快于 $t^6$）.如果在初始时刻 $\varkappa_{\alpha}^{\alpha}<0$，对于增长的时间将得到同样的结果.
+
+然而这个结果完全不能证明度规中必定存在真实的物理奇点.物理奇点是时空本身的特性，与所选择参考系的特点无关(这样的奇点应该以物质密度，或曲率张量的不变量等标量趋于无穷大为特征).同步参考系中的奇点(已经证明了其不可避免性)，在一般情况下实际上是虚构的，在转换到另一个参考系（非同步的）时会消失.从简单的几何论证就可以理解它的来源.
+
+从上文中我们看到，构造同步参考系可以归结为构造一簇正交于某个类空超曲面的测地线.但是任意一簇测地线一般说来会在某些包络超曲面上相交，这些超曲面是几何光学中焦散面的四维类比.我们知道，在给定的坐标系中，坐标线的交叉自然地产生了度规的奇点.所以，与同步参考系的特殊性质有关的奇点的出现有几何上的原因，因而不具有物理的特征.一般说来，四维空间的任意度规也允许存在不相交的类时测地线簇.同步参考系中行列式 $\gamma$ 为零的必然性意味着，场方程允许的现实（非平直）时空（以不等式 $R^0_0\geqslant0$ 表达）的弯曲特点排除了存在这样的簇的可能性，所以在所有的同步参考系中时间线必定彼此相交\footnote{在同步参考系中，伪奇点附近度规的解析构建可以参考文献 E. M. Лифшиц, В. В. Судаков, И. М. Халатников // ЖЭТФ. 1961. Т. 40. С. 1847（E. M. Lifshitz, V. V. Sudakov, I. M. Khalatnikov, \textit{JETP} \textbf{40}, 1847, 1961）. 从几何的理解可以明白这个度规的一般特征. 由于焦散超曲面在任何情况下都包括了类时的间隔（类时测地线在与焦散面切点处的线元），它不是类空的. 再者，在焦散面上度规张量 $\gamma_{\alpha\beta}$ 的主值之一变为零对应的情况是：两个相邻的测地线在它们与焦散面的切点上相交，并且这两个测地线之间的距离 $(\delta)$ 变为零. 在到达交点前 $\delta$ 按照与距离 $(l)$ 的一次方成正比的关系变为零. 因此度规张量的主值以及行列式 $\gamma$ 按照正比于 $l^2$ 的关系变为零.}.
+
+在上文中我们提到，对于尘埃状物质，同步参考系同时可以是共动的.在这种情况下物质密度在焦散面上变为无穷大，——这正是粒子的世界线（与时间线重合）相交的结果.但是显然这个密度的奇点可以通过引入任意小但不为零的物质压强来消除，因此在这个意义上它也是非物理的.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求真空中引力场方程在非奇异的正则时间点附近的解的展开式.
+
+解：按约定选择被考察的时间点作为时间原点，我们将以下面的形式求解 $\gamma_{\alpha\beta}$
+\begin{equation*}
+  \gamma_{\alpha\beta}=a_{\alpha\beta}+tb_{\alpha\beta}
+  +t^2c_{\alpha\beta}+\cdots,
+\tag{1}\end{equation*}
+其中 $a_{\alpha\beta},b_{\alpha\beta},c_{\alpha\beta}$ 是空间坐标的函数.在同样的近似中，逆张量为：
+\begin{equation*}
+  \gamma^{\alpha\beta}=a^{\alpha\beta}-tb^{\alpha\beta}
+  +t^2\left(b^{\alpha\gamma}b_{\gamma}^{\beta}-c^{\alpha\beta}\right),
+\end{equation*}
+其中 $a^{\alpha\beta}$ 是 $a_{\alpha\beta}$ 的逆张量，而其余张量的指标的上移借助于 $a^{\alpha\beta}$ 进行.我们还有：
+\begin{equation*}
+  \varkappa_{\alpha\beta}=b_{\alpha\beta}+2tc_{\alpha\beta},\qquad
+  \varkappa_{\alpha}^{\beta}=b_{\alpha}^{\beta}
+  +t\left(2c_{\alpha}^{\beta}-b_{\alpha\gamma}b^{\beta\gamma}\right).
+\end{equation*}
+爱因斯坦方程(97.11)—(97.13)导出下列关系式：
+\begin{equation*}
+  R^0_0=-c+\frac{1}{4}b_{\alpha}^{\beta}b_{\beta}^{\alpha}=0,
+\tag{2}\end{equation*}
+\begin{equation*}
+\begin{aligned}
+  R^0_{\alpha}={}&\frac{1}{2}\left(b^{\beta}_{\alpha;\beta}-b_{;\alpha}\right)+{}\\
+  &+t\left[-c_{;\alpha}
+  +\frac{3}{8}\left(b_{\beta}^{\gamma}b_{\gamma}^{\beta}\right)_{;\alpha}
+  +c^{\beta}_{\alpha;\beta}
+  +\frac{1}{4}b_{\alpha}^{\beta}b_{;\beta}
+  -\frac{1}{2}\left(b_{\alpha}^{\gamma}b_{\gamma}^{\beta}\right)_{;\beta}\right]=0,
+\end{aligned}
+\tag{3}\end{equation*}
+\begin{equation*}
+  R^{\beta}_{\alpha}=-P^{\beta}_{\alpha}
+  -\frac{1}{4}b_{\alpha}^{\beta}b
+  +\frac{1}{2}b_{\alpha}^{\gamma}b_{\gamma}^{\beta}
+  -c_{\alpha}^{\beta}=0.
+\tag{4}\end{equation*}
+（$b\equiv b_{\alpha}^{\alpha}$，$c\equiv c_{\alpha}^{\alpha}$）.这里协变微分运算在带有度规 $a_{\alpha\beta}$ 的三维空间里进行；张量 $P_{\alpha\beta}$ 也按照这个度规来定义.
+
+从(4)式可知，系数 $c_{\alpha\beta}$ 完全按照系数 $a_{\alpha\beta}$ 和 $b_{\alpha\beta}$ 来确定.于是（2）式可给出下列关系式
+\begin{equation*}
+  P+\frac{1}{4}b^2-\frac{1}{4}b_{\alpha}^{\beta}b_{\beta}^{\alpha}=0.
+\tag{5}\end{equation*}
+从（3）式中的零阶项可得：
+\begin{equation*}
+  b^{\beta}_{\alpha;\beta}=b_{;\alpha}.
+\tag{6}\end{equation*}
+在这个方程中 $\sim t$ 的项在使用 (2)，(4)—(6)（和恒等式 $P^{\beta}_{\alpha;\beta}=P_{;\alpha}/2$；对比(92.10))时恒为零.
+
+因此，$a_{\alpha\beta},b_{\alpha\beta}$ 的12个值相互之间由一个关系式（5)和3个关系式（6)联系起来，于是剩下3个空间坐标的8个任意的函数.其中的3个函数与3个空间坐标的任意转换的可能性相联系，其中一个函数与在构造同步参考系时初始超曲面的选择的随意性相联系.相应地(参考§95的末尾)，还剩下4个“物理上不同”的任意函数.
+
+\noindent{\heiti 习题2}\quad 计算同步参考系中的曲率张量 $R_{iklm}$ 的分量.
+
+解：利用克里斯托夫符号（97.9），我们按照公式（92.1）可以得到
+\begin{equation*}
+  R_{\alpha\beta\gamma\delta}=-P_{\alpha\beta\gamma\delta}
+  +\frac{1}{4}\left(\varkappa_{\alpha\delta}\varkappa_{\beta\gamma}
+  -\varkappa_{\alpha\gamma}\varkappa_{\beta\delta}\right),
+\end{equation*}
+\begin{equation*}
+  R_{0\alpha\beta\gamma}
+  =\frac{1}{2}\left(\varkappa_{\alpha\gamma;\beta}
+  -\varkappa_{\alpha\beta;\gamma}\right),
+\end{equation*}
+\begin{equation*}
+  R_{0\alpha 0\beta}
+  =\frac{1}{2}\frac{\partial\varkappa_{\alpha\beta}}{\partial t}
+  -\frac{1}{4}\varkappa_{\alpha\gamma}\varkappa_{\beta}^{\gamma},
+\end{equation*}
+其中 $P_{\alpha\beta\gamma\delta}$ 是与三维空间度规 $\gamma_{\alpha\beta}$ 相对应的三维曲率张量.
+
+\noindent{\heiti 习题3}\quad 求不破坏参考系同步性的无穷小变换的一般形式.
+
+解：变换具有如下形式
+\begin{equation*}
+  t\to t+\varphi(x^1,x^2,x^3),\qquad
+  x^{\alpha}\to x^{\alpha}+\xi^{\alpha}(x^1,x^2,x^3,t),
+\end{equation*}
+其中 $\varphi,\xi^{\alpha}$ 是小量.$\varphi$ 不依赖于 t 保证了条件 $g_{00}=1$ 的成立，而条件 $g_{0\alpha}=0$ 的成立则需要满足方程
+\begin{equation*}
+  \gamma_{\alpha\beta}\frac{\partial\xi^{\beta}}{\partial t}
+  =\frac{\partial\varphi}{\partial x^{\alpha}},
+\end{equation*}
+由此
+\begin{equation*}
+  \xi^{\alpha}=\frac{\partial\varphi}{\partial x^{\beta}}
+  \int\gamma^{\alpha\beta}\,\mathrm{d}t
+  +f^{\alpha}(x^1,x^2,x^3),
+\tag{1}\end{equation*}
+其中 $f^{\alpha}$ 也是小量（构成三维矢量 f）.在这种条件下空间度规张量 $\gamma_{\alpha\beta}$ 可按照下式替换
+\begin{equation*}
+  \gamma_{\alpha\beta}\to\gamma_{\alpha\beta}
+  -\xi_{\alpha;\beta}-\xi_{\beta;\alpha}-\varphi\varkappa_{\alpha\beta}.
+\tag{2}\end{equation*}
+（在公式(94.3)的帮助下可以容易地证实）.
+
+可见，该变换包含空间坐标 $\varphi,f^{\alpha}$ 的四个任意（小量的）函数.
+
+\end{xiti}
+
+\section{爱因斯坦方程的标架表示}
+
+对某些特殊形式的度规而言，确定里奇张量的分量（并进而写出爱因斯坦方程),一般说来需要相当繁杂的计算.因此考虑使用各种公式，使得在某些情况下可以简化这些计算，并且以更加直观的形式把结果表达出来，是十分重要的.以标架形式来表达曲率张量就属于这些公式之列.
+
+引入四个线性独立的四维基准矢量 $e^i_{(a)}$（用指标 a 编号）的集合，只需满足下列要求
+\begin{equation}
+  e^i_{(a)}e_{(b)i}=\eta_{ab},
+\end{equation}
+其中 $\eta_{ab}$ 是给定的带有号差 $+---$ 的恒定对称矩阵；$\eta_{ab}$ 的逆矩阵用 $\eta^{ab}$ 表示 $(\eta^{ac}\eta_{cb}=\delta^a_b)$\footnote{在本节中头几个拉丁字母 $a,b,c,\cdots$ 将用来表示给基准矢量编号的指标（以下称标架指标）；四维张量的指标还按照以前那样用字母 $i,k,l,\cdots$ 表示. 在文献中标架指标习惯上用括号中的字母（或数字）表示. 为了避免公式的书写过于烦琐，我们将仅在标架指标和四维张量指标一起出现（或相邻）时才使用括号，而在表示自定义的仅具有标架指标（例如，$\eta_{ab}$ 和接下来的 $\gamma_{abc}$, $\lambda_{abc}$）的量时我们将省略括号. 两次重复的标架指标（如同张量指标一样）在任何地方都表示求和.}.和矢量 $e^i_{(a)}$ 的标架同时引入与之互逆的矢量 $e^{(a)}_i$ 的标架(用上方标架指标编号)，按照下面的条件确定
+\begin{equation}
+  e^{(a)}_ie^i_{(b)}=\delta^a_b,
+\end{equation}
+即，$e^{(a)}_i$ 中的每一个矢量正交于三个矢量 $e^i_{(b)}$，其中 $b\neq a$.等式（98.2）乘以 $e^k_{(a)}$，得到 $\left(e^k_{(a)}e^{(a)}_i\right)e^i_{(b)}=e^k_{(b)}$，由此可见，和（98.2）同时自动地成立等式
+\begin{equation}
+  e^{(a)}_ie^i_{(a)}=\delta^k_i.
+\end{equation}
+
+等式 $e^i_{(a)}e_{(c)i}=\eta_{ac}$ 两边同乘以 $\eta^{bc}$，得到：
+\begin{equation*}
+  e^i_{(a)}\left(\eta^{bc}e_{(c)i}\right)=\delta^b_a;
+\end{equation*}
+与（98.2）相比较，我们求得
+\begin{equation}
+  e^{(b)}_i=\eta^{bc}e_{(c)i},\qquad
+  e_{(b)i}=\eta_{bc}e^{(c)}_i.
+\end{equation}
+
+这样一来，标架指标的上移和下移可以利用矩阵 $\eta^{bc}$ 和 $\eta_{bc}$ 来实现.
+
+用这种方式引入的标架矢量的意义在于，度规张量可以经过它们来表达.实际上，按照四维矢量的协变分量和逆变分量之间的联系的定义，我们有 $e^{(a)}_i=g_{il}e^{(a)l}$；这个等式乘以 $e_{(a)k}$ 并且使用（98.3）和（98.4），我们求得：
+\begin{equation}
+  g_{ik}=e_{(a)i}e^{(a)}_k=\eta_{ab}e^{(a)}_ie^{(b)}_k.
+\end{equation}
+
+带有度规张量(98.5)的线元的平方具有形式
+\begin{equation}
+  \mathrm{d}s^2=\eta_{ab}\left(e^{(a)}_i\mathrm{d}x^i\right)
+  \left(e^{(b)}_k\mathrm{d}x^k\right).
+\end{equation}
+
+至于任意给出的矩阵 $\eta_{ab}$，最自然的选择就是“伽利略”形式（即带有元素为1，$-1$，$-1$，$-1$的对角矩阵)；在这种情况下标架矢量按照（98.1）是相互正交的，并且其中之一是类时的，而其他三个是类空的\footnote{选择线性形式 $\mathrm{d}x^{(a)}=e^{(a)}_i\,\mathrm{d}x^i$ 作为给定的四维空间单元（取“伽利略”$\eta_{ab}$）里的坐标轴的线段，我们因此在这个单元里将度规转化为伽利略形式. 再次强调一下，$\mathrm{d}x^{(a)}$ 的形式一般说来不是坐标的某个函数的全微分.}.然而这里强调一下，这样的选择绝不是必须的，可能存在这样的情形，由于这样或那样的原因（例如，按照度规的对称性质）适合选择非正交的标架\footnote{标架的合适的选择可以遵循以前将 $\mathrm{d}s^2$ 化为形式（98.6）的办法. 因此，形如（88.13）的 $\mathrm{d}s^2$ 表达式相应于标架矢量
+\begin{equation*}
+  e^{(0)}_i=(\sqrt{h},-\sqrt{h}\,\boldsymbol{g}),\qquad
+  e^{(a)}_i=(0,\boldsymbol{e}^{(a)}),
+\end{equation*}
+这里 $\boldsymbol{e}^{(a)}$ 的选择依赖于空间形式 $\mathrm{d}l^2$.}.
+
+四维矢量 $A^i$ 的标架分量（对于任意阶的四维张量也类似）定义为它在四维标架矢量上的“投影”：
+\begin{equation}
+  A_{(a)}=e^i_{(a)}A_i,\qquad
+  A^{(a)}=e^{(a)}_iA^i=\eta^{ab}A_{(b)}.
+\end{equation}
+反过来：
+\begin{equation}
+  A_i=e^{(a)}_iA_{(a)},\qquad
+  A^i=e^i_{(a)}A^{(a)}.
+\end{equation}
+
+我们以这种方式来定义“沿着 a 方向”的微分运算：
+\begin{equation*}
+  \varphi_{,(a)}=e^i_{(a)}\frac{\partial\varphi}{\partial x^i}.
+\end{equation*}
+
+引入接下来需要的量\footnote{$\gamma_{abc}$ 称做里奇旋度系数.}：
+\begin{equation}
+  \gamma_{abc}=e_{(a)i;k}e^i_{(b)}e^k_{(c)}
+\end{equation}
+以及它们的线性组合
+\begin{equation}
+\begin{aligned}[b]
+  \lambda_{abc}&=\gamma_{abc}-\gamma_{acb}\\
+  &=\left(e_{(a)i;k}-e_{(a)k;i}\right)e^i_{(b)}e^k_{(c)}
+  =\left(e_{(a)i,k}-e_{(a)k,i}\right)e^i_{(b)}e^k_{(c)}.
+\end{aligned}
+\end{equation}
+(98.10)中的最后一个等式由（86.12)导出；我们指出，$\lambda_{abc}$ 的值可以通过对标架矢量进行普通的微分来计算.
+
+反过来用 $\lambda_{abc}$ 来表达 $\gamma_{abc}$：
+\begin{equation}
+  \gamma_{abc}=\frac{1}{2}\left(\lambda_{abc}+\lambda_{bca}
+  -\lambda_{cab}\right).
+\end{equation}
+这些量具有对称性质：
+\begin{equation}
+  \gamma_{abc}=-\gamma_{bac},\qquad
+  \lambda_{abc}=-\lambda_{acb}.
+\end{equation}
+
+我们的目标在于确定曲率张量的标架分量.应该从定义(91.6)出发，该定义曾用于标架矢量的协变导数：
+\begin{equation*}
+  e_{(a)i;k;l}-e_{(a)i;l;k}=e^m_{(a)}R_{mikl}
+\end{equation*}
+或者
+\begin{equation*}
+  R_{(a)(b)(c)(d)}
+  =\left(e_{(a)i;k;l}-e_{(a)i;l;k}\right)
+  e^i_{(b)}e^k_{(c)}e^l_{(d)}.
+\end{equation*}
+这个式子可以容易地用量 $\gamma_{abc}$ 来表示.我们写出
+\begin{equation*}
+  e_{(a)i;k}=\gamma_{abc}e^{(b)}_ie^{(c)}_k,
+\end{equation*}
+而在下一个协变微分之后，标架矢量的导数再次以同样的方式表达；在这种条件下标量 $\gamma_{abc}$ 的协变导数与它的普通导数相同\footnote{为便于参考，我们列出采用类似方法变换过的任意四维矢量和四维张量的协变导数的表达式
+\begin{equation*}
+  A_{i;k}e^i_{(a)}e^k_{(b)}=A_{(a),(b)}-A^{(d)}{}_{(b)}\gamma_{dab},
+\end{equation*}
+\begin{equation*}
+  A_{ik;l}e^i_{(a)}e^k_{(b)}e^l_{(c)}
+  =A_{(a),(b),(c)}-A^{(d)}{}_{(b)}\gamma_{dac}+A_{(a)}{}^{(d)}\gamma_{abc},
+\end{equation*}
+等等.}结果得到：
+\begin{equation}
+  R_{(a)(b)(c)(d)}=\gamma_{abc,d}-\gamma_{abd,c}
+  +\gamma_{abf}\left(\gamma^f{}_{cd}-\gamma^f{}_{dc}\right)
+  +\gamma_{afc}\gamma^f{}_{bd}
+  -\gamma_{afd}\gamma^f{}_{bc},
+\end{equation}
+其中按照一般规则，$\gamma^a{}_{bc}=\eta^{ad}\gamma_{dbc}$，等等.
+
+按照一对指标 a，c 对这个张量进行缩并可以给出要求解的里奇张量的标架分量；我们利用 $\lambda_{abc}$ 的值来把它们表示出来：
+\begin{equation}
+\begin{aligned}[b]
+  R_{(a)(b)}=-\frac{1}{2}\bigl(&\lambda_{ab}{}^{c}{}_{,c}
+  +\lambda_{ba}{}^{c}{}_{,c}
+  +\lambda^{c}{}_{ca,b}
+  +\lambda^{c}{}_{cb,a}\\
+  &+\lambda^{cd}{}_{b}\lambda_{cda}
+  +\lambda^{cd}{}_{b}\lambda_{dca}
+  -\frac{1}{2}\lambda_{b}{}^{cd}\lambda_{acd}
+  +\lambda^{c}{}_{cd}\lambda_{ab}{}^{d}
+  +\lambda^{c}{}_{cd}\lambda_{ba}{}^{d}\bigr).
+\end{aligned}
+\end{equation}
+
+最后，我们提请大家注意，上面讲述的这些理论计算实质上和度规的四维特性没有任何联系.因此得到的结果也可以应用于三维度规上的三维黎曼张量和里奇张量的计算.在这种情况下，自然而然，代替四维矢量的标架，我们将应对三维矢量的标架，而矩阵 $\eta_{ab}$ 应具有号差 $+++$（我们将在§116遇到这种应用）.

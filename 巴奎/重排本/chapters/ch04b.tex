@@ -1,0 +1,660 @@
+% ch04b Hamiltonians and stock options 4.9-4.15 (书页62-77 / p080-095)
+% 覆盖说明：原书第4章4.9--4.15节；4.8节及以前（含\chapter标题）由前半文件
+% ch04a.tex 写，本文件自4.9节起直接以 \section 开始。
+% 编号公式核对：原书本文件 tag 为 (4.49)--(4.75)，共27条，连续无断档（已对照
+% PNG 逐页核验）。以下原书无编号的公式照录不标 tag：4.9.1 的障碍势 V(x)、
+% 4.9.2 的无限深势阱本征函数块与完备性求和、4.11 的基矢/本征态矩阵块、
+% 4.12 的厄米条件与薛定谔方程、4.13 的 iλ± 记号定义与归一化、4.14 的
+% 泊松求和后高斯级数与 γ、α 回顾。
+% 原书已知排印疑点三处（均已在正文或脚注说明）：(1) 书页70（p088）重复
+% H_DO 时动能项负号排丢，以式 (4.49) 为准；(2) 式 (4.65) 第三行指数原书印作
+% -α(x-x')，与第二行被积式的公共因子及第四行镜像核矛盾，应为 +α(x-x')，
+% 已订正；(3) 式 (4.52) 与 (4.68) 首项原书印作 ∂/∂x²（分子漏平方），按
+% 式 (4.13) 与物理读作 ∂²/∂x²。
+% 另注意记号复用：4.8 节定义 s(x) 时出现的势 V(x)（取值 r 的"漂移势"）与
+% 本文件 4.9 节起的障碍势 V(x) 是两个不同的对象，正文有辨析。
+
+\section{哈密顿量与障碍期权}
+
+前半章已经搭好了舞台：期权价格是态矢量，定价核是演化算符$e^{-\tau H}$的
+矩阵元，而把股票价格约束在某个区域内这件事，可以翻译成"在 Black--Scholes
+哈密顿量上加一项势"。本节用最典型的路径依赖衍生品——障碍期权
+（barrier option）——检验这套机器是否真的能干活。
+
+核心想法一句话：期权在股价触及障碍的那一瞬间作废，所以定价时只允许
+"从未越界"的路径进入路径和；在哈密顿量语言里，这条约束不是去修改路径
+积分的测度，而是立一堵无穷高的势垒（barrier），让本征函数在禁区自动为零
+——边界条件被焊在了本征函数上，定价核的形式$\langle x\vert e^{-\tau H}
+\vert x'\rangle$原封不动，只是哈密顿量换了。下面两个例子恰好代表两种
+典型的量子力学问题：单障碍对应半直线上的散射态（连续谱），双障碍对应
+盒子里的驻波（离散谱）。
+
+\subsection{向下敲出障碍期权}
+
+\paragraph{本节要解决什么问题}
+向下敲出障碍期权（down-and-out barrier option）是一张欧式期权外加一条
+硬约束：股价$S(t)$在整个存续期内必须始终高于预设障碍$e^{B}$；一旦
+$S(t)\leq e^{B}$，期权立即作废（价值归零）。换成对数坐标$x=\ln S$，
+障碍是竖直线$x=B$，允许的路径集合是"全程$B$右侧"的那些路径。定价
+问题就是：只对这些幸存路径计算贴现期望。
+
+\paragraph{模型设定与记号}
+实现约束的手段是给$x$坐标装一个障碍势（barrier potential）$V(x)$：
+\begin{equation*}
+V(x)=
+\begin{cases}
+\infty, & x\leq B,\\
+r, & x>B,
+\end{cases}
+\end{equation*}
+\origfig{4.1}{（向下敲出势$V(x)$：$x\leq B$处是直竖到无穷的势壁，
+$x>B$一侧是高度为$r$的平台。）}
+平台高度取$r$而不是$0$，有一层记账上的用意：Black--Scholes哈密顿量
+（原书式 (4.13)）含一个常数项$r$，把常数$r$并进势$V(x)$之后，允许区域
+内的总哈密顿量与无障碍情形完全一致。4.9.2节用相反的记账方式（阱内
+$V=0$、常数项留在$\hat{H}_{BS}$里）达到同一效果。常数势只把所有能级
+整体平移，在$e^{-\tau H}$里产生一个与$x$无关的因子，最终被贴现因子
+吸收，不影响定价。
+
+\paragraph{关键公式}
+向下敲出障碍期权的哈密顿量（Hamiltonian）定义为
+\begin{align*}
+H_{DO}&\equiv H_{BS}+V(x)\\
+&=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{1}{2}\sigma^{2}-r\Bigr)\frac{\partial}{\partial x}+V(x)
+\tag{4.49}
+\end{align*}
+无穷势壁的作用不是"产生力"，而是强加边界条件：所有本征函数在障碍外
+必须消失，$\psi_E(x)=0$（$x\leq B$），于是只有穿过障碍还活着的路径
+才对定价核有贡献。设剩下时刻$\tau$时股价位于$x>B$、$\tau=0$时位于
+$x'$，则定价核为
+\begin{equation*}
+p_{DO}(x,x';\tau)=\langle x\vert e^{-\tau H_{DO}}\vert x'\rangle
+=\begin{cases}
+p_{BS}(x,\tau;x')-\Bigl(\dfrac{e^{x}}{e^{B}}\Bigr)^{2\alpha}
+p_{BS}(2B-x,\tau;x'), & x,x'>B,\\[6pt]
+0, & x>B;\ x'<B,
+\end{cases}
+\tag{4.50}
+\end{equation*}
+其中$\alpha=(\sigma^{2}/2-r)/\sigma^{2}$（4.8节式 (4.48)），$p_{BS}$
+是无障碍Black--Scholes定价核。原书把显式推导放在附录4.13，那里直接
+面对$H_{DO}$的非厄米性做本征函数展开。
+
+\paragraph{解读与联系}
+式 (4.50) 的结构是"无障碍核减去镜像核"：第二项把$x$换成$2B-x$，
+即关于障碍面$B$的镜像点，前置因子$(e^{x}/e^{B})^{2\alpha}$来自股票
+漂移。$x,x'>B$时核恒为正，这是概率密度的底线；$x>B$而$x'<B$（起点
+在禁区）时核为零，边界条件得到了执行。向上敲出障碍（up-and-out
+barrier）的对偶问题——只允许$x,x'<B$的路径——不需要重算：其定价核
+在$x,x'<B$区域与$p_{DO}$完全相同，在$x<B$、$x'>B$处为零，势的形状
+只需把图 4.1 翻转。\origfig{4.2}{（向上敲出势垒：$x<B$一侧是高度$r$
+的平台，$x\geq B$处竖起无穷势壁。）}\footnote{经典教科书里这一步
+对应布朗运动的反射原理（reflection principle），如Shreve《Stochastic
+Calculus for Finance II》第7章；本章附录4.13--4.14给出的哈密顿量推导
+与它逐项对应，镜像项正是反射原理中的"减去镜像概率流"。}
+
+\subsection{双重敲出障碍期权}
+
+\paragraph{本节要解决什么问题}
+双重敲出障碍期权（double knock-out barrier option）把股价关进一个
+走廊：上下两条障碍$e^{a}$与$e^{b}$（对应对数坐标$a$与$b$），股价
+一旦走出$(a,b)$区间期权即作废。\origfig{4.3}{（双障碍势垒：$x\leq a$
+与$x\geq b$两堵无穷势壁，中间$(a,b)$是平坦的"井底"。）}与单障碍
+不同，这次允许区域是有限区间，本征值谱将变为离散——定价核从傅里叶
+积分换成正弦级数。
+
+\paragraph{模型设定与记号}
+双障碍哈密顿量为
+\begin{equation*}
+\hat{H}_{DB}=\hat{H}_{BS}+V(x)=e^{s}\bigl[H_{\mathrm{eff}}+V(x)\bigr]e^{-s}
+\tag{4.51}
+\end{equation*}
+这里第一次显式用上了4.8节的等价厄米哈密顿量：$\hat{H}_{BS}$非厄米、
+无法直接对角化，但相似变换$e^{s}(\cdot)e^{-s}$把它变成厄米的
+$H_{\mathrm{eff}}$（$s$与$H_{\mathrm{eff}}$的定义见式 (4.46)）。注意
+记号复用：式 (4.46) 定义$s(x)$时出现的势$V(y)$是取值$r$的"漂移势"，
+与本节的障碍势$V(x)$不是一回事；对本章的定价问题漂移势恒为$r$，于是
+$s(x)=\alpha x$，而\footnote{排印疑点：本式第一行首项原书印作
+$\frac{\partial}{\partial x^{2}}$（分子漏了平方），按式 (4.13) 与末行
+应读作$\frac{\partial^{2}}{\partial x^{2}}$；4.14节式 (4.68) 同。}
+\begin{align*}
+\hat{H}_{BS}&=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{\sigma^{2}}{2}-r\Bigr)\frac{\partial}{\partial x}+r\\
+&=e^{s}H_{\mathrm{eff}}e^{-s}\\
+&=e^{\alpha x}\Bigl[-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\gamma\Bigr]e^{-\alpha x}
+\tag{4.52}
+\end{align*}
+其中$\gamma=\frac{1}{2\sigma^{2}}\bigl(r+\frac{\sigma^{2}}{2}\bigr)^{2}$、
+$\alpha=\frac{1}{\sigma^{2}}\bigl(\frac{\sigma^{2}}{2}-r\bigr)$（式
+(4.48)）。障碍势则取"双墙"形式
+\begin{equation*}
+V(x)=
+\begin{cases}
+\infty, & x\leq a,\\
+0, & a<x<b,\\
+\infty, & x\geq b,
+\end{cases}
+\tag{4.53}
+\end{equation*}
+
+\paragraph{推导主线}
+阱内$V=0$，问题正是量子力学教科书里最标准的"无限深势阱
+（infinite potential well）中的粒子"：$H_{\mathrm{eff}}$在两端边界
+条件$\phi_n(a)=\phi_n(b)=0$下的（归一化）本征函数与"动能"本征值
+$E_n$为
+\begin{align*}
+\phi_n(x)&=\langle x\vert\phi_n\rangle=\sqrt{\frac{2}{b-a}}\,
+\sin[p_n(x-a)]\\
+p_n&=\frac{n\pi}{b-a};\qquad
+E_n=\frac{\sigma^{2}}{2}\,(p_n)^{2};\qquad
+n=1,2,\ldots\infty
+\end{align*}
+注意$H_{\mathrm{eff}}$的本征能量是$E_n+\gamma$：常数势$\gamma$整体
+抬高所有能级，正弦本征函数只"感觉"到动能项。能级离散后，完备性方程
+（completeness equation，原书式 (4.9)、(4.10)）从对能量的积分换成对
+分立能级的求和：
+\begin{equation*}
+\sum_{n=1}^{+\infty}\vert\phi_n\rangle\langle\phi_n\vert=\mathcal{J}
+\;\Rightarrow\;
+\sum_{n=1}^{+\infty}\langle x\vert\phi_n\rangle\langle\phi_n\vert x'\rangle
+=\delta(x-x')
+\end{equation*}
+把这套本征函数插回定价核，就得到本节主结果
+\begin{align*}
+\langle x\vert e^{-\tau H_{DB}}\vert x'\rangle
+&=\langle x\vert e^{s}\,e^{-\tau[H_{\mathrm{eff}}+V]}\,e^{-s}\vert x'\rangle\\
+&=e^{-\tau\gamma}e^{\alpha(x-x')}\sum_{n=1}^{\infty}e^{-\tau E_n}
+\phi_n(x)\phi_n(x')
+\tag{4.54}
+\end{align*}
+推导的机制值得看清：夹在中间的$e^{-\tau[H_{\mathrm{eff}}+V]}$作用在
+本征函数上只是乘$e^{-\tau(E_n+\gamma)}$（故有$e^{-\tau\gamma}$因子），
+两侧的$e^{s}=e^{\alpha x}$与$e^{-\alpha x'}$贴到左右坐标上，给出
+$e^{\alpha(x-x')}$。显式的级数求和与期权价格在附录4.14完成。
+
+\paragraph{解读与联系}
+式 (4.54) 是"谱分解"的一次完整示范：定价核$=$本征函数乘积的级数、
+每项配一个衰减因子$e^{-\tau E_n}$。对比 (4.50)：单障碍问题本征值连续、
+核是高斯差；双障碍问题本征值分立、核是周期化镜像的级数——两个附录
+分别演示"积分型"与"求和型"两种完备性计算。原书在此提示，其余
+障碍类期权（down-and-in、up-and-out、软障碍、各种奇异期权）原则上
+都可以通过给$V(x)$选择适当的形状来统一处理——这正是"势$=$边界
+条件"这一译法的普适性所在。
+
+\section{小结}
+
+原书对本章的收束可以浓缩成四句话。第一，期权定价问题在量子力学语言里
+有自然的对应物：态矢量、哈密顿量、演化算符与完备性方程各就各位，常数
+波动率与随机波动率下的期权演化哈密顿量（$H_{BS}$与$H_{MG}$）都已被
+显式写出。第二，定价核由哈密顿量决定，而定价核里已经装着为任何路径
+无关期权定价所需的全部信息。第三，鞅条件（martingale condition）获得
+了哈密顿量表述：把Black--Scholes哈密顿量加上一个"安全"的势
+（自动满足鞅条件的形状），就能表示一整类期权；本章的障碍期权是其中
+最规整的例子——各种障碍由对本征函数强加相应边界条件实现，一族障碍
+期权的定价核由此统一到手。第四，原书埋下伏笔：哈密顿量与完备性方程
+是"从偏微分方程表述过渡到路径积分表述"的两块跳板，这次跳转正是
+下一章（第5章）的全部内容。
+
+\section{附录：两态量子系统（qubit）}
+
+\paragraph{为什么插入这个附录}
+第4章的正文中，完备性方程是连续谱（$x$表象）里的积分恒等式，读者
+第一次接触它就要同时消化狄拉克记号与连续谱测度。本附录把系统砍到
+只剩两个态，让"基矢张量积求和$=$单位算符"这条机制在$2\times2$
+矩阵上裸露出来；这也是全书第一次出现qubit（量子比特），纯为物理
+背景服务，金融上暂无应用。
+
+\paragraph{两态系统与完备性}
+最简单的量子系统只有两个可能状态，例如电子自旋沿某固定轴向上或向下。
+选两个二维向量作基矢（basis states）：
+\begin{equation*}
+\vert\mathrm{up}\rangle=\begin{bmatrix}1\\0\end{bmatrix};\qquad
+\vert\mathrm{down}\rangle=\begin{bmatrix}0\\1\end{bmatrix};\qquad
+\langle\mathrm{up}\vert=\begin{bmatrix}1&0\end{bmatrix};\qquad
+\langle\mathrm{down}\vert=\begin{bmatrix}0&1\end{bmatrix}
+\end{equation*}
+且正交归一：$\langle\mathrm{up}\vert\mathrm{up}\rangle=1=
+\langle\mathrm{down}\vert\mathrm{down}\rangle$，
+$\langle\mathrm{up}\vert\mathrm{down}\rangle=0=
+\langle\mathrm{down}\vert\mathrm{up}\rangle$。基矢的关键性质是完备：
+它们张开整个态空间$\mathcal{V}$。一般地，完备性方程由基矢与其对偶态
+作张量积（tensor product）再对全体基矢求和得到；两态系统给出
+\begin{align*}
+\vert\mathrm{up}\rangle\langle\mathrm{up}\vert
++\vert\mathrm{down}\rangle\langle\mathrm{down}\vert
+&=\begin{bmatrix}1\\0\end{bmatrix}\begin{bmatrix}1&0\end{bmatrix}
++\begin{bmatrix}0\\1\end{bmatrix}\begin{bmatrix}0&1\end{bmatrix}\\
+&=\begin{bmatrix}1&0\\0&1\end{bmatrix}=\mathcal{J}
+\tag{4.55}
+\end{align*}
+有了完备性，任何二维向量都能用$\vert\mathrm{up}\rangle$与
+$\vert\mathrm{down}\rangle$展开：电子自旋的任意态为
+$\vert\psi\rangle=a\vert\mathrm{up}\rangle+b\vert\mathrm{down}\rangle$
+（$a$、$b$为复数），$a$与$b$的模方分别是自旋处于两个基态的概率；
+量子计算里这个态就叫qubit。总概率为$1$要求
+\begin{equation*}
+\langle\psi\vert\psi\rangle=\vert a\vert^{2}+\vert b\vert^{2}=1
+\tag{4.56}
+\end{equation*}
+
+\paragraph{态空间的几何}
+$a$、$b$是两个复数，约束 (4.56) 只砍掉一个实自由度，故归一化态矢量
+铺满三维球面$\mathcal{S}^{3}$；但还存在冗余——态乘一个全局相位
+$\vert\psi\rangle\to e^{i\phi}\vert\psi\rangle$不改变任何物理，相位
+本身构成一个圆$\mathcal{S}^{1}$。把$\mathcal{S}^{3}$按$\mathcal{S}^{1}$
+"除掉"（作等价类，equivalence classes），得到qubit的真实态空间
+$\mathcal{V}\equiv\mathcal{S}^{3}/\mathcal{S}^{1}=\mathcal{S}^{2}$
+——这就是布洛赫球（Bloch sphere）。证明要用纤维丛（fibre bundle）
+的霍普夫纤维化（Hopf fibration）：以$\mathcal{S}^{2}$为底、
+$\mathcal{S}^{1}$为纤维构造$\mathcal{S}^{3}$（原书引[101]）。结论
+（p086顶部）：$\mathcal{V}=\mathcal{S}^{2}$的每个点唯一对应两态
+系统的一个态矢量。
+
+\paragraph{两态哈密顿量}
+最一般的两态厄米哈密顿量是$2\times2$厄米矩阵：
+\begin{equation*}
+H=\begin{bmatrix}\alpha & \beta\\ \beta^{*} & \gamma\end{bmatrix}
+=H^{\dagger};\qquad \text{$\alpha$、$\gamma$为实数；$\beta$为复数}
+\tag{4.57}
+\end{equation*}
+矩阵元即$H$在基矢间的"取样"：
+$\langle\mathrm{up}\vert H\vert\mathrm{up}\rangle=\alpha$、
+$\langle\mathrm{down}\vert H\vert\mathrm{down}\rangle=\gamma$、
+$\langle\mathrm{up}\vert H\vert\mathrm{down}\rangle=\beta$、
+$\langle\mathrm{down}\vert H\vert\mathrm{up}\rangle=\beta^{*}$。
+（归一化）本征态与本征值可以手算到底：
+\begin{align*}
+\vert\psi_{+}\rangle&=N_{+}\begin{bmatrix}1\\[2pt]\frac{\gamma-E_{+}}{\beta^{*}}\end{bmatrix};
+\qquad
+\vert\psi_{-}\rangle=N_{-}\begin{bmatrix}\frac{\gamma-E_{-}}{\beta^{*}}\\[2pt]1\end{bmatrix}\\
+E_{\pm}&=\frac{1}{2}(\alpha+\gamma)\pm\sqrt{\frac{1}{4}(\alpha-\gamma)^{2}+\vert\beta\vert^{2}}\\
+N_{\pm}&=\sqrt{\frac{\vert\beta\vert^{2}}{(\gamma-E_{\pm})^{2}+\vert\beta\vert^{2}}}
+\end{align*}
+$E_{\pm}$恒为实数，且$\langle\psi_{\pm}\vert\psi_{\pm}\rangle=1$、
+$\langle\psi_{+}\vert\psi_{-}\rangle=0$。本征基同样完备，与
+(4.55) 类比有
+\begin{equation*}
+\vert\psi_{+}\rangle\langle\psi_{+}\vert+\vert\psi_{-}\rangle
+\langle\psi_{-}\vert=\begin{bmatrix}1&0\\0&1\end{bmatrix}=\mathcal{J}
+\tag{4.58}
+\end{equation*}
+
+\paragraph{解读与联系}
+这个玩具模型把本章后面反复出现的逻辑链一次演完：厄米$\Rightarrow$实
+能级$\Rightarrow$左本征矢就是右本征矢的对偶（$\langle\psi\vert$无需
+加波浪号区分）$\Rightarrow$本征基完备、单位算符可插。金融哈密顿量
+非厄米，这条链每一环都可能断（见4.13节：左右本征函数互不复共轭，
+完备性方程要带上测度权重）——两态系统因此成了衡量"金融与量子
+力学差多远"的基准尺。
+
+\section{附录：量子力学中的哈密顿量}
+
+\paragraph{本附录做什么}
+把4.11的有限维图像升级成一般量子力学的标准叙述，给出一套与金融
+哈密顿量对照的参照系。哈密顿量是量子力学（也是期权定价）中最重要的
+算符，因为它管时间演化；其矩阵元$\langle f\vert H\vert g\rangle$是
+复数。物理系统的哈密顿量$H_R$是厄米算符（Hermitian operator）：
+\begin{equation*}
+\langle f\vert H_R\vert g\rangle^{*}\equiv\langle g\vert H_R^{\dagger}
+\vert f\rangle=\langle g\vert H_R\vert f\rangle
+\end{equation*}
+
+\paragraph{薛定谔方程与能量本征态}
+态函数$\vert\psi(t)\rangle$的时间演化由薛定谔方程（Schr\"odinger
+equation）给出：
+\begin{equation*}
+\frac{\partial}{\partial t}\vert\psi(t)\rangle=-\frac{i}{\hbar}
+H_R\vert\psi(t)\rangle;\qquad \vert\psi(0)\rangle\ \text{给定}
+\end{equation*}
+$i=\sqrt{-1}$，$\hbar$是约化普朗克常数。由此可见哈密顿量是时间平移
+的无穷小生成元；薛定谔方程是初值问题（initial value problem）——
+给定$t=0$的态，未来由演化方程唯一决定。厄米哈密顿量存在能量本征态
+（energy eigenstate）：本征值实、本征态集合完备\footnote{原书脚注
+强调：厄米算符最重要的性质之一就是本征函数构成完备基。这条性质在
+金融哈密顿量那里没有免费版本，见4.15节的对照。}：
+\begin{align*}
+H_R\vert\psi_E\rangle&=E\vert\psi_E\rangle;\qquad E^{*}=E\\
+\langle\psi_E\vert H_R^{\dagger}&=\langle\psi_E\vert H_R
+=\langle\psi_E\vert E\\
+\int_E dE\,\mu(E)\vert\psi_E\rangle\langle\psi_E\vert&=\mathcal{J}
+\tag{4.59}
+\end{align*}
+第三行是完备性方程，$\mu(E)$是态密度（density of states，原书式
+(4.8) 定义）。因为$E$实，$H_R$的左右本征态互为对偶——原书特意点破：
+金融哈密顿量照例非厄米，没有这条"免费午餐"。能量本征态的演化
+尤其简单：
+\begin{equation*}
+\vert\psi_E(t)\rangle=e^{-iEt/\hbar}\vert\psi_E\rangle
+\end{equation*}
+只长相位、模长不变——幺正、可逆。
+
+\paragraph{粒子哈密顿量}
+质量$m$的量子粒子在势$V(x)$中运动时，
+\begin{equation*}
+H_R\Bigl(x,\frac{\partial}{\partial x}\Bigr)
+=-\frac{\hbar^{2}}{2m}\frac{\partial^{2}}{\partial x^{2}}+V(x)=H_R^{\dagger}
+\tag{4.60}
+\end{equation*}
+二阶导数项叫动能项，因为它惩罚位置的快速变化；算符$\hbar\partial/
+i\partial x$因此被称作粒子的"速度"；$V(x)$是势能项，随位置改变
+粒子能量。
+
+\paragraph{解读与联系}
+把 (4.60) 与金融哈密顿量$H_{BS}$（式 4.13）并排放：同样是"动能$+$
+势"的结构（这正是第5章路径积分里拉格朗日量$=$动能$-$势的来源），
+差别只有两处——动能系数从$\hbar^{2}/2m$换成$\sigma^{2}/2$（相当于
+$\hbar=1$、"质量"取$1/\sigma^{2}$），以及最重要的：金融哈密顿量
+不带厄米性。演化算符里也没有$i$：$e^{-\tau H}$对应的是虚时间
+（imaginary time）演化，这使得期权定价问题在数学上是扩散而非振动
+——4.15节把这两条差别收拢成清单。
+
+\section{附录：向下敲出障碍期权的定价核}
+
+\paragraph{本附录做什么}
+4.9.1节直接给出了答案 (4.50)，本附录补推导。路线与4.8节不同：不走
+厄米化（那个相似变换对一般势未必好用\footnote{原书脚注承认：对
+Merton--Garman那样的复杂哈密顿量，等价的厄米形式$H_{\mathrm{eff}}$
+远非显然。本附录的方法绕开这一步，直接与非厄米的$H_{DO}$打交道。}），
+而是直接解非厄米哈密顿量的本征函数展开——顺带把非厄米带来的全部
+"新花样"（左右本征函数分离、归一化带权重、完备性方程换测度）演
+示一遍。最终结果与文献[105]的镜像法（method of images）一致。
+
+\paragraph{本征值问题}
+按 (4.49)（原书在本页重复该式时把动能项的负号排丢了，以式 (4.49)
+为准），本征函数$\psi_E(x)$分区域定义：
+\begin{equation*}
+x>B:\quad H_{DO}\vert\psi_E\rangle=E\vert\psi\rangle;\qquad
+\langle\tilde{\psi}_E\vert H_{DO}=E\langle\tilde{\psi}_E\vert;
+\qquad x\leq B:\quad \vert\psi_E\rangle=0=\langle\tilde{\psi}_E\vert
+\end{equation*}
+注意左本征函数$\tilde{\psi}_E(x)$带波浪号且$\tilde{\psi}_E(x)\neq
+\psi_E^{*}(x)$——因为$H_{DO}\neq H_{DO}^{\dagger}$，左右本征函数
+不再是复共轭关系。为满足边界条件，本征函数须取"在$x=B$处为零"的
+形状。记
+\begin{align*}
+i\lambda_{\pm}&=\alpha\pm ip;\\
+p&=\sqrt{\frac{2E}{\sigma^{2}}-\beta};\\
+\alpha&=\frac{\sigma^{2}/2-r}{\sigma^{2}};\qquad
+\beta=\frac{(\sigma^{2}/2+r)^{2}}{\sigma^{4}}
+\end{align*}
+于是$x>B$区域的左右本征函数是"入射波$+$反射波"的驻波组合
+\begin{align*}
+\langle x\vert\psi_E\rangle&=e^{i\lambda_{+}(x-B)}-e^{i\lambda_{-}(x-B)}\\
+&=2ie^{\alpha(x-B)}\sin[p(x-B)]
+\tag{4.61}
+\end{align*}
+\begin{align*}
+\langle\tilde{\psi}_E\vert x\rangle&=e^{-i\lambda_{+}(x-B)}
+-e^{-i\lambda_{-}(x-B)}\\
+&=-2ie^{-\alpha(x-B)}\sin[p(x-B)]
+\tag{4.62}
+\end{align*}
+两式在$x=B$处同时为零，边界条件免费到手；正弦因子来自两个传播相位
+$\lambda_{\pm}$的等幅叠加，指数因子$e^{\pm\alpha(x-B)}$则是非厄米
+性的印记——左本征函数与右本征函数一个衰减一个增长，互不为复共轭。
+归一化（无编号）与$x\leq B$区域的零值为
+\begin{equation*}
+\langle\tilde{\psi}_E\vert\psi_{E'}\rangle=\Bigl[2\pi\sigma^{2}
+\sqrt{\frac{2E}{\sigma^{2}}-\beta}\Bigr]\delta(E-E');\qquad
+x\leq B:\ \langle x\vert\psi_E\rangle=0=\langle\tilde{\psi}_E\vert x\rangle
+\end{equation*}
+
+\paragraph{反射的物理图像}
+\origfig{4.4}{（$\psi_E$在势垒处的反射：右行波$\lambda_{-}$与左行
+入射波$\lambda_{+}$在$x=B$处衔接。）}波$e^{i\lambda_{+}(x-B)}$从
+右向左入射，在$x=B$撞上势壁被反射，相位从$\lambda_{+}$跳到
+$\lambda_{-}$，向右传回——$\langle\tilde{\psi}_E\vert x\rangle$的
+图像相同，只是相位与符号互换。问题里没有时间依赖，应当把这个
+"入射$+$反射"读成定态散射：一束稳定通量的粒子射向势壁、稳定通量
+被反射，与本征值$E$对应的能量处处守恒。
+
+\paragraph{完备性方程}
+非厄米情形的完备性方程，测度不再是平权求和，而是带上了归一化系数
+的倒数作权重：
+\begin{equation*}
+\int_{\sigma^{2}\beta/2}^{\infty}\frac{dE}{2\pi\sigma^{2}
+\sqrt{\frac{2E}{\sigma^{2}}-\beta}}\,
+\langle x\vert\psi_E\rangle\langle\tilde{\psi}_E\vert x'\rangle
+=\delta(x-x')
+\tag{4.63}
+\end{equation*}
+原书强调：尽管本征值$E$原则上可以取复值，写完备性方程时积分域
+$\mathcal{D}$只取实能级$\sigma^{2}\beta/2\leq E\leq+\infty$（下限
+正是$p=0$处）。证明只需换变量。由
+\begin{equation*}
+dp=dE\,\frac{1}{\sigma^{2}\sqrt{\frac{2E}{\sigma^{2}}-\beta}};
+\qquad 0\leq p\leq\infty
+\end{equation*}
+并代入 (4.61)、(4.62)，式 (4.63) 左端化为
+\begin{align*}
+&e^{\alpha(x-x')}\int_{0}^{\infty}\frac{dp}{2\pi}
+\Bigl[e^{ip(x-x')}+e^{-ip(x-x')}-e^{ip(x+x'-2B)}-e^{-ip(x+x'-2B)}\Bigr]\\
+&\qquad=e^{\alpha(x-x')}\int_{-\infty}^{\infty}\frac{dp}{2\pi}
+\Bigl[e^{ip(x-x')}-e^{ip(x+x'-2B)}\Bigr]\\
+&\qquad=\delta(x-x')+e^{\alpha(x-x')}\delta(x+x'-2B)\\
+&\qquad=\delta(x-x')\qquad\text{因}\ x,x'>B
+\tag{4.64}
+\end{align*}
+第一行方括号里的前两项拼成偶函数、把半区间积分折成全区间傅里叶
+积分，给出$\delta(x-x')$；后两项给出"镜像"$\delta$函数，其峰位于
+$x=2B-x'$——只要$x,x'$都在障碍右侧（$x+x'-2B>0$），这个峰就落在
+积分变量取不到的位置，对任意支集在$x>B$的试探函数贡献为零。完备性
+成立，且"镜像项不贡献"与"禁区路径不存在"是同一句话。
+
+\paragraph{定价核}
+有了完备基就能算演化算符的矩阵元。换到$p$变量，用
+$E=\sigma^{2}(p^{2}+\beta)/2$与$\tau=T-t$，每个$p$模都是一次高斯
+积分（步骤从略），得
+\begin{align*}
+p_{DO}(x,\tau;x')&=\langle x\vert e^{-\tau H_{DO}}\vert x'\rangle\\
+&=e^{-\frac{\tau\beta\sigma^{2}}{2}+\alpha(x-x')}\int_{0}^{\infty}
+\frac{dp}{2\pi}\,e^{-\frac{1}{2}\tau\sigma^{2}p^{2}}\\
+&\qquad\times\Bigl[e^{ip(x-x')}+e^{-ip(x-x')}-e^{ip(x+x'-2B)}
+-e^{-ip(x+x'-2B)}\Bigr]\\
+&=p_{BS}(x,\tau;x')-\frac{1}{\sqrt{2\pi\tau\sigma^{2}}}
+e^{-\frac{\tau\beta\sigma^{2}}{2}+\alpha(x-x')}
+e^{-\frac{1}{2\tau\sigma^{2}}(x+x'-2B)^{2}}\\
+&=p_{BS}(x,\tau;x')-\Bigl(\frac{e^{x}}{e^{B}}\Bigr)^{2\alpha}
+p_{BS}(2B-x,\tau;x');\qquad x,x'>B
+\tag{4.65}
+\end{align*}
+其中无障碍核即原书式 (4.39)
+\begin{equation*}
+p_{BS}(x,\tau;x')=\langle x\vert e^{-\tau H_{BS}}\vert x'\rangle
+=\frac{e^{-r(T-t)}}{\sqrt{2\pi\tau\sigma^{2}}}\,
+e^{-\frac{1}{2\tau\sigma^{2}}\left(x-x'+\tau(r-\sigma^{2}/2)\right)^{2}}
+\end{equation*}
+排印勘误：式 (4.65) 第三行指数原书印作$-\alpha(x-x')$，与第二行
+被积式的公共因子、以及第四行镜像核展开后的指数都矛盾，应为
+$+\alpha(x-x')$，上式已按此订正。
+
+\paragraph{镜像法解读}
+\origfig{4.5}{（镜像法定价核：起点$x>B$、首次触障后被淘汰的路径，
+与一条从镜像点$2B-x$出发、同一时刻同一点穿越障碍的"镜像路径"
+配对。）}结果 (4.65) 完全符合直觉：障碍期权只在一部分路径上非零，
+价格必低于对应的欧式看涨；势$V(x)$正是通过"限制（restricting）
+本征态在障碍外为零"来执行对允许路径集合的限制。与 (4.61) 的反射
+图像平行，定价核也有一个逐路径的镜像解读：每一条被淘汰的路径必会
+"命中"（hit）障碍，故可与一条从禁区$2B-x$出发、在同一时刻同一
+位置穿越障碍的镜像路径一一配对；镜像路径全体恰好无遗漏地数完了
+所有越界路径——包括多次穿越障碍的路径。于是定价核$=$无约束
+Black--Scholes核，减去（subtraction）全部被淘汰路径的贡献；减项里
+的前置因子$(e^{x}/e^{B})^{2\alpha}$来自股票价格$e^{x}$的漂移。
+
+\section{附录：双重敲出障碍期权的定价核}
+
+\paragraph{本附录做什么}
+4.9.2节把双障碍核写成了本征函数级数 (4.54)，本附录把它算到尽头：
+先完成正弦级数层面的谱分解，再用泊松求和公式把"在$\tau$内部"
+的级数反演成"高斯的无穷和"，最后对级数逐项积分得到双障碍欧式
+看涨价格的显式公式。技术上有两件新武器：离散谱的完备性证明，以及
+$\tau\leftrightarrow1/\tau$的级数反演。
+
+\paragraph{定价问题}
+双重敲出障碍期权（double knock-out barrier option）的价值只在标的
+价格始终位于下、上障碍$e^{a}$与$e^{b}$之间时非零（原书引[7]）。
+未敲出前提下，$t$时刻、到期日$T$、执行价格$K$的双障碍欧式看涨
+期权价格为
+\begin{equation*}
+e^{-r(T-t)}\,E\Bigl[\bigl(e^{x(T)}-K\bigr)_{+}\,
+\mathbf{1}_{a<x(t')<b,\ t<t'<T}\Bigr]
+\tag{4.66}
+\end{equation*}
+$\mathbf{1}$是指示函数（indicator function），仅当路径全程未出界
+时非零。于是全部工作量归结为：只对不出界的路径求出$x(T)$的分布
+——即受限定价核。
+
+\paragraph{哈密顿量}
+对路径的限制等价于无穷势垒：禁区禁止进入。因此照旧用"Black--Scholes
+哈密顿量$+$势"，障碍化为本征函数的边界条件。薛定谔表述下
+\begin{equation*}
+\hat{H}=\hat{H}_{BS}+V(x)
+\tag{4.67}
+\end{equation*}
+其中
+\begin{equation*}
+\hat{H}_{BS}=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{\sigma^{2}}{2}-r\Bigr)\frac{\partial}{\partial x}+r
+\tag{4.68}
+\end{equation*}
+（首项排印疑点见4.9.2节式 (4.52) 的脚注），障碍势取"双墙"形状
+\begin{equation*}
+V(x)=\begin{cases}
+\infty, & x\leq a,\\
+0, & a<x<b,\\
+\infty, & x\geq b,
+\end{cases}
+\tag{4.69}
+\end{equation*}
+如4.9节所示，这问题等价于质量为$1/\sigma^{2}$的量子粒子（$\hbar=1$
+单位制）被关进无限深势阱。允许动量$p_n=n\pi/(b-a)$下本征函数正交归一：
+\begin{equation*}
+\langle\phi_n\vert\phi_{n'}\rangle=\frac{2}{b-a}\int_{a}^{b}
+\sin p_n(x-a)\,\sin p_{n'}(x-a)\,dx=\delta_{n-n'}
+\tag{4.70}
+\end{equation*}
+且构成完备基：
+\begin{align*}
+\sum_{n=1}^{\infty}\langle x\vert\phi_n\rangle\langle\phi_n\vert x'\rangle
+&=\frac{2}{b-a}\sum_{n=1}^{\infty}\sin p_n(x-a)\sin p_n(x'-a)\\
+&=\frac{1}{2(b-a)}\sum_{n=-\infty}^{\infty}
+\Bigl(\exp\frac{in\pi}{b-a}(x-x')-\exp\frac{in\pi}{b-a}(x+x'-2a)\Bigr)\\
+&=\frac{\pi}{b-a}\Bigl(\delta\Bigl(\frac{\pi(x-x')}{b-a}\Bigr)
+-\delta\Bigl(\frac{\pi(x+x'-2a)}{b-a}\Bigr)\Bigr)\\
+&=\delta(x-x')\qquad \text{当}\ a<x,x'<b
+\tag{4.71}
+\end{align*}
+第二步把正弦级数延拓成对全体整数$n$的指数级数，第三步用
+$\int dn\,e^{ink}=\delta$的离散版本读出两个$\delta$函数。第二个
+$\delta$的峰位于$x=2a-x'<a$，在阱外——与式 (4.64) 的镜像
+$\delta$同一机制，这里换成"有限区间、分能动量"的版本。
+
+\paragraph{级数形式的定价核}
+由 (4.54)（哈密顿量换成本节的$\hat{H}$），
+\begin{align*}
+\langle x\vert e^{-\tau H}\vert x'\rangle
+&=e^{-\gamma\tau+\alpha(x-x')}\sum_{n=1}^{\infty}e^{-\tau E_n}
+\langle x\vert\phi_n\rangle\langle\phi_n\vert x'\rangle\\
+&=\frac{1}{2(b-a)}e^{-\gamma\tau+\alpha(x-x')}\sum_{n=-\infty}^{\infty}
+e^{-\frac{\tau\sigma^{2}p_n^{2}}{2}}
+\Bigl(e^{ip_n(x-x')}-e^{ip_n(x+x'-2a)}\Bigr)
+\tag{4.72}
+\end{align*}
+这时的$\tau$藏在每个模的衰减因子里，要看清$\tau\to0$（到期）行为
+并不方便。补救是把$\tau$反演成$1/\tau$，工具是泊松求和公式
+（Poisson summation formula）
+\begin{equation*}
+\delta(y-n)=\sum_{n=-\infty}^{\infty}e^{2\pi iny}
+\tag{4.73}
+\end{equation*}
+用它把对$n$的求和改写成$\sum_n\int dy\,\delta(y-n)\,(\cdots)$、
+再对$y$做高斯积分（步骤从略），级数摇身变成
+\begin{equation*}
+\langle x\vert e^{-\tau H}\vert x'\rangle=\sqrt{\frac{1}{2\pi\tau\sigma^{2}}}\,
+e^{-\gamma\tau+\alpha(x-x')}\sum_{n=-\infty}^{\infty}
+\Bigl(e^{-\frac{(x-x'+2n(b-a))^{2}}{2\tau\sigma^{2}}}
+-e^{-\frac{(x+x'-2a-2n(b-a))^{2}}{2\tau\sigma^{2}}}\Bigr)
+\end{equation*}
+其中$\gamma=\frac{(r+\sigma^{2}/2)^{2}}{2\sigma^{2}}$、
+$\alpha=\frac{\sigma^{2}/2-r}{\sigma^{2}}$（式 4.48 的回顾）。\footnote{
+泊松求和与4.13节的镜像法在此殊途同归：两者都把"约束路径"换成
+"对镜像求和"，只是4.13在连续谱上减一条镜像路径、这里在周期化
+的坐标$x\to x+2n(b-a)$上累加全部镜像井；式 (4.73) 是连接
+"模长级数"与"镜像高斯"两种表象的桥。}
+
+\paragraph{极限核对}
+除漂移因子外，定价核现在是高斯分布的无穷和，$n$是"镜像井"的
+编号。答案可以用两个极限自检：令$b\to\infty$（$a$有限），只有
+$n=0$项存活，退化为单（下）障碍核；令$a\to-\infty$（$b$有限），
+只剩$n=0$与$n=1$项，退化为单（上）障碍核；两个极限同时取时只剩
+$n=0$的第一项，给出Black--Scholes结果。三层极限一层层剥掉镜像，
+结构与4.9.1的"核减镜像"完全咬合。
+
+\paragraph{期权价格}
+用 (4.72) 的核逐项积分，双障碍欧式看涨的显式价格为（原书引[7]）
+\begin{align*}
+C(S,K;\tau)&=\sum_{n=-\infty}^{\infty}
+\Bigl(e^{-2n\alpha(b-a)}\bigl(e^{2n(b-a)}SN(d_{n1})
+-Ke^{-r\tau}N(d_{n2})\bigr)\\
+&\qquad-S^{2\alpha}e^{-2\alpha(n(b-a)-a)}
+\bigl(e^{2n(b-a)}\,\frac{e^{2a}}{S}\,N(d_{n3})-Ke^{-r\tau}N(d_{n4})\bigr)\Bigr)
+\tag{4.74}
+\end{align*}
+其中
+\begin{align*}
+d_{n1}&=\frac{\ln\bigl(\frac{S}{K}\bigr)+2n(b-a)
++\tau\bigl(r+\frac{\sigma^{2}}{2}\bigr)}{\sigma\sqrt{\tau}}\\
+d_{n2}&=\frac{\ln\bigl(\frac{S}{K}\bigr)+2n(b-a)
++\tau\bigl(r-\frac{\sigma^{2}}{2}\bigr)}{\sigma\sqrt{\tau}}
+=d_{n1}-\sigma\sqrt{\tau}\\
+d_{n3}&=\frac{\ln\bigl(\frac{e^{2a}}{SK}\bigr)+2n(b-a)
++\tau\bigl(r+\frac{\sigma^{2}}{2}\bigr)}{\sigma\sqrt{\tau}}\\
+d_{n4}&=\frac{\ln\bigl(\frac{e^{2a}}{SK}\bigr)+2n(b-a)
++\tau\bigl(r-\frac{\sigma^{2}}{2}\bigr)}{\sigma\sqrt{\tau}}
+=d_{n3}-\sigma\sqrt{\tau}
+\tag{4.75}
+\end{align*}
+与文献[41]的结果一致。读式 (4.74) 的诀窍是认出它为"镜像
+Black--Scholes价格"的求和：$d_{n1},d_{n2}$里$\ln(S/K)+2n(b-a)$是
+起点被平移到第$n$面镜像井的Black--Scholes变量，第一重括号是这些
+平移像的贡献；$d_{n3},d_{n4}$里$\ln(e^{2a}/SK)$带下障碍$a$，第二重
+括号（带负号）是关于下边界的镜像贡献，$S^{2\alpha}$与级数核里的
+$e^{2\alpha(x-B)}$一脉相承，都是漂移$e^x$留下的指纹。
+
+\section{附录：薛定谔方程与 Black--Scholes 方程}
+
+\paragraph{本附录做什么}
+原书以清单形式总结两套演化方程的异同，作为第4章物理背景的收尾。
+我们把清单重组为"三同四异"。
+
+相同的是骨架。其一，随机变量的地位相同：量子力学里粒子的位置是
+随机变量，金融里证券的价格是随机变量——两者都用同样的扩散型数学
+处理。其二，都可以把"期权价格$\vert C\rangle$"类比于态函数
+$\vert\psi(t)\rangle$，由各自的哈密顿量驱动演化。其三，也是本章
+反复用到的：把Black--Scholes方程读作虚时间（imaginary time）里的
+薛定谔方程——演化算符$e^{-\tau H}$与$e^{-iHt/\hbar}$只差一个
+Wick转动，这就是整个"哈密顿量框架"合法性的根基。
+
+不同的是气质，共四条。第一，可观察性：期权价格$\vert C\rangle$
+是直接可观察的市场量，不需要概率诠释，因此$\langle C\vert C\rangle$
+取值任意——量子力学里$\langle\psi\vert\psi\rangle=1$的归一化在
+金融里没有对应物。第二，复与实：薛定谔方程要求复态函数，而
+Black--Scholes方程是实系数偏微分方程，永远给出实值的期权价格。
+第三，厄米性：量子力学的哈密顿量一律厄米，本征值因此全实；金融
+哈密顿量（$H_{BS}$等）非厄米，本征值一般取复值——复本征值又带来
+一个更深的麻烦：不存在对一切哈密顿量通用的程序来挑选"给出完备性
+方程的那组本征函数"；只有像4.8节那样能靠相似变换化成等价厄米
+哈密顿量的特例，完备基才有自然的选择。第四，时间之矢：薛定谔方程
+是初值问题（initial value problem），且因哈密顿量厄米、演化
+$e^{-iHt/\hbar}$幺正而时间可逆；Black--Scholes方程是终值问题
+（final value problem）——收益函数（payoff）在到期时刻预先给定、
+向回求解，其定价核由时间不可逆的半群（semi-group）$e^{-\tau H}$
+生成，过程整体时间不可逆。
+
+到此为止，第4章把"哈密顿量$+$完备性方程"这对工具磨亮并用了
+三次（自由核、单障碍、双障碍）。下一章它们将兑现小结里许诺的跳板
+功能：把期权定价从偏微分方程表述整体搬进路径积分表述。
+
+%TAGS: 4.49,4.50,4.51,4.52,4.53,4.54,4.55,4.56,4.57,4.58,4.59,4.60,4.61,4.62,4.63,4.64,4.65,4.66,4.67,4.68,4.69,4.70,4.71,4.72,4.73,4.74,4.75（与原书完全一致，连续无断档；已对照PNG逐页核验，p080为4.8节末尾与4.9节起始、p095为4.15节末尾）

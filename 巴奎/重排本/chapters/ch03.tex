@@ -1,0 +1,764 @@
+% ch03 Derivative securities (书页25-44 / p043-062)
+% 覆盖说明：原书第3章正文为书页25--42（p043--p060），含3.1--3.9节（3.9为章末附录）。
+% 书页43（p061）为"Part II"扉页、书页44（p062）空白，不属于本章正文。
+% 编号公式核对：原书本章tag为(3.2)--(3.10)与(3.12)--(3.35)，共33条；
+% 原书无(3.1)与(3.11)——编号断档系原书自身如此（已对照PNG逐页核验，非漏转）。
+% 原书已知排印疑点两处，见式(3.25)脚注与3.9节文字说明。
+\chapter{衍生证券}
+
+本章是第一部分"金融学基本概念"的技术核心：第2章给出了套利、对冲、货币的
+时间价值这些定性观念，本章把它们锻造成两个可以实际求解的定价方程——常数
+波动率下的Black--Scholes方程与随机波动率下的Merton--Garman方程。论证工具
+也随之升级：先引进随机微分方程（stochastic differential equation）给股票
+价格建模，再为它配备一套新的微积分——伊藤微积分（Ito calculus）；随后用
+"对冲组合"（hedged portfolio）这一全书反复出现的论证模式导出定价方程。
+先修内容只有第2章的无套利原理；本章结论在后面的去向是明确的：第4章把两个
+方程改写为哈密顿量语言，第5章用路径积分重新求解并推广，第9章把"对冲组合"
+的思路移植到国债并把"残余风险"做成场论中的可计算量。
+
+按内容本章分四步走。第一（3.1--3.2节）按现金流特征给衍生证券分类：远期
+（forward）、期货（futures）与期权（option），并定义收益函数（payoff
+function）与路径无关/路径依赖（path-independent/path-dependent）之分；
+第二（3.3--3.4节）建立数学引擎：股票价格的朗之万型随机微分方程与伊藤
+微积分的两条新规则；第三（3.5节）用对冲组合导出Black--Scholes方程，并用
+风险中性估值解出欧式看涨期权的显式价格；第四（3.6--3.7节）让波动率本身
+也随机化，重复"对冲组合"论证得到Merton--Garman方程。3.9节附录处理
+$\rho=0$情形的随机波动率解，它把3.4节算出的几何平均方差"三分之一因子"
+直接搬来使用。
+
+\section{远期与期货合约}
+
+本节解决的问题是：如何在今天就锁定一笔未来交易的价格。原书用钢铁进口商
+作引子：公司一年后（记$T$）要买钢材，担心钢价上涨，希望按今天（记$t$）
+的市场条件把价格定死。两类合约都能实现这一点，差别在现金流的安排方式。
+
+\paragraph{模型设定与记号}
+设钢材在$t$时刻的每吨价格为$S(t)$。远期合约（forward contract）是买方与
+卖方之间的双边协议：买方持有多头头寸（long position），卖方持有空头头寸
+（short position）；卖方承诺在$T$时刻按远期价格（forward price）
+$F(t,T)$交货，这个价格反映签约当时的市场价格与利率水平。合约在$t$时刻
+签订，签约时没有任何现金易手——合约条款被选成使初始价值为零；此后合约
+价值随行就市地波动，直到$T$时刻结算。到期时合约对双方的价值为
+\begin{equation*}
+S(T)-F(t,T)\quad\text{（多头）},\qquad F(t,T)-S(T)\quad\text{（空头）}.
+\end{equation*}
+即整个合约只在到期日产生一次现金流，其价值取决于届时现货价与$F(t,T)$之
+差，正负皆可。
+
+期货合约（futures contract，记$\mathcal{F}(t,T)$）同样是"今天签约、未来
+$T$时刻交割特定数量资产"的协议，但有三点制度化差异：格式标准化、受严格
+监管；总有一家第三方——通常是清算所（clearing house）——居中担保；以及
+由此产生的保证金制度。初始保证金（initial margin）在签约时缴入；此后若
+价格偏离前值，则按日缴存或划出维持保证金（maintenance margin），这一手续
+称为逐日盯市（marking-to-market）。标的资产价格随机波动，期货合约的价值
+因此也随机波动。
+\footnote{原书脚注提醒：对一般金融工具无须严格区分"价值"与"价格"两个词，
+全书将混用；唯独期货合约需要把两者分开——签约时双方都不付钱，故合约的
+\emph{价值}为零，但市场会给它指派一个名义上的公允\emph{价格}
+$\mathcal{F}(t_0,T)\neq 0$。}
+
+\paragraph{关键公式}
+到期日期货价格必须收敛于现货价格：
+\begin{equation*}
+\mathcal{F}(T,T)=S(T).
+\end{equation*}
+这不是假设而是套利逼出来的结论：若$\mathcal{F}(T,T)>S(T)$，卖方可做空
+期货再按市价$S(T)$买入交割，赚取无风险差价；若$\mathcal{F}(T,T)<S(T)$，
+想买钢的公司做多头期货即可低于市价拿货。两股套利压力把到期期货价钉在
+现货价上。
+
+\origfig{3.1}{可能的期货价格路径（书页27）。两条实线为期货价
+$\mathcal{F}(t,T)$的可能轨迹，虚线为现货价$S(t)$：合约存续期内期货价可在
+现货价上下两侧游走，只在到期时刻$T$收敛于现货价。}
+
+\paragraph{解读}
+远期与期货都服务于同一种需求（锁价），选择标准是流动性与信用：远期合约
+按买卖双方需要定制，一笔现金流、双边信用风险；期货标准化、在交易所交易、
+流动性更好，但逐日盯市把一次到期结算拆成一串现金流。这串现金流使期货
+价格与远期价格在利率随机时可以不同——期货定价是利率理论的试金石，原书
+把它留到第9章的国债期货再处理；本节只需记住$\mathcal{F}(T,T)=S(T)$这条
+边界条件。本节出现的"多头/空头""盯市""保证金"等词汇也是后文对冲论证
+的日常语言。
+
+\section{期权}
+
+本节引入第三类、也是本书真正的主角——期权。远期与期货的卖方被合约
+\emph{强制}交收资产；期权则把权利与义务分开：持有人付一笔期权费
+（premium）买来的只是\emph{权利}而非义务。期权可以写在任何证券（乃至其他
+衍生品）之上，市场上大量期权在场内衍生品市场交易。
+
+\paragraph{模型设定与记号}
+期权$C$是一份买或卖的合约（分别称看涨期权call与看跌期权put）。以欧式
+（European）看涨期权为例：卖方有义务在预定价格$K$与预定未来时刻交割公司
+股票$S$，买方则有权选择行权（exercise）或放弃行权。到期时若股价低于$K$，
+看涨期权持有人自然放弃；高于$K$则行权获利。看跌期权（put）的持有人对称地
+拥有按预定价格\emph{卖出}的权利。一般地，欧式期权是固定到期日的合约，
+买方可在到期日按某个预定（但不必然固定）的执行价格（strike price）买入
+或卖出证券；执行价格的精确形式称为期权的收益函数（payoff function）。
+期权按收益是否依赖路径分两大类：路径无关与路径依赖。
+
+\subsection{路径无关期权}
+
+路径无关期权的收益函数只依赖标的证券在到期时刻的取值，与证券
+\emph{如何}走到终点无关。最重要的两类是欧式看涨与看跌期权。设标的证券为
+$S$，其上的欧式看涨期权价格记$C(t)=C(t,S(t))$，赋予持有人在$T>t$以执行
+价格$K$买入证券的权利。到期日$t=T$时其价值显然为
+\begin{equation*}
+C(T,S(T))=
+\begin{cases}
+S(T)-K, & S(T)>K,\\[2pt]
+0, & S(T)<K,
+\end{cases}
+\;=\;g(S),
+\end{equation*}
+其中$g(S)$即收益函数。
+
+\origfig{3.2}{看涨期权的收益（书页28）。实线为到期收益$g(S)$：$S<K$段
+贴地为零，$K$处以斜率1折起；虚线为到期前$C(t,S(t))$的可能取值，作为
+$S$的函数是一条高于收益折线的光滑曲线——这段高出折线的"溢价"正是
+期权费的时间价值。}
+
+欧式看跌期权价格记$P(t)$，定义同上，只是持有人有权以$K$\emph{卖出}证券。
+设即期利率（spot interest rate）$r$为常数，一个简单的无套利论证给出
+\emph{看跌--看涨平价}（put--call parity）：
+\begin{equation*}
+C(t)+Ke^{-r(T-t)}=P(t)+S(t);\qquad t\leq T.
+\end{equation*}
+读法：左边"看涨期权加一笔到期本息恰为$K$的现金存款"，与右边"看跌期权
+加一股股票"在到期日的价值同为$\max(S(T),K)$——两个组合今日若不等价，
+买卖之间即有套利可图。欧式看涨、看跌期权由此确属路径无关：收益只看终价。
+
+\origfig{3.3}{看跌期权的收益（书页29）。实线为到期收益$g(S)$：$S>K$段
+贴地，$K$处以斜率$-1$折下；虚线为到期前期权值的可能轨迹。}
+
+\subsection{路径依赖期权}
+
+路径依赖期权的收益函数依赖证券在到期前的整条路径。最有名的一类是美式
+（American）期权：与欧式唯一的不同是可以提前行权。它显然路径依赖——
+"现在行不行权"取决于到期前全程的价格轨迹。无套利论证给出两条经典结论：
+不付红利的股票上，美式看涨与欧式看涨同价；而美式看跌一般贵于欧式看跌
+（提前行权锁定利息的能力有价值）。
+
+亚式期权（Asian option）的收益取决于证券在存续期（从签约的$t$到到期的
+$T$）内的\emph{平均}价格。障碍期权（barrier option）为股价预设一条屏障：
+敲出（knock-out）障碍欧式看涨期权与普通欧式看涨相同，只是一旦股价$S(t)$
+触及屏障，期权立即作废；对称地有敲入（knock-in）期权，以及敲入/敲出的
+各种组合。更奇特的品种——回望期权（look-back）、quanto期权、篮子期权
+（basket）、混合期权（hybrid）、双执行价期权（dual-strike）等——为投资者
+的特殊需求定制；还有场外（over-the-counter，OTC）期权市场按需开制合约。
+
+\paragraph{解读}
+本节分类的关键在"终值问题"这四个字：路径无关期权的收益只给定$T$时刻的
+终值，定价因此成为"由终值反推现值"的问题——这正是下一节随机微分方程与
+3.5节Black--Scholes方程的出发点。而路径依赖期权（美式、亚式、障碍）需要
+的数学更多：障碍期权将在第4章用哈密顿量精确求解，亚式期权的几何平均
+恰在本章3.4节作为一个可精确计算的例子出现，随机波动率期权的路径积分
+（第5章）则同时覆盖两类。
+
+\section{随机微分方程}
+
+本节把定价问题写成数学形式并给出股价的动力学假设。期权定价的基本问题是：
+已知到期日$T$的收益函数$g(S)$，问当证券现价为$S(t)$时期权在更早的
+$t<T$时刻该值多少？显然$C=C(t,S(t))$，且终值$C(T,S(T))=g(S(T))$。对路径
+无关期权，这是一个\emph{终值问题}（final value problem）：终值已知，要往
+回解出更早时刻的值。今天的期权价取决于证券未来的取值，所以必须先规定
+$S(t)$如何演化到$S(T)$——理论金融的标准做法是把股价建模为随机过程
+（stochastic process），由随机微分方程驱动。
+\footnote{原书脚注指出这套方程的名号对照：同一件东西在物理文献中叫朗之万
+方程（Langevin equation），在概率论文献中叫伊藤--维纳过程
+（Ito--Wiener process）；白噪声的统计性质见原书附录A.4，狄拉克
+$\delta$函数见附录A.2，朗之万方程的简介见附录A.5。}
+
+\paragraph{模型设定与关键公式}
+股价$S(t)$的演化方程取
+\begin{equation*}
+\frac{dS(t)}{dt}=\phi S(t)+\sigma S R(t)
+\tag{3.2}
+\end{equation*}
+其中$\phi$是证券的期望收益（expected return），$\sigma$是其波动率
+（volatility），$R$是零均值的高斯白噪声（Gaussian white noise）。沿用
+Black--Scholes的分析，本节先取$\sigma$为常数。$\sigma$度量股价演化中
+随机性的强度；特殊情形$\sigma=0$时股价确定性增长，$S(t)=e^{\phi t}S(0)$。
+
+白噪声在任意时刻相互独立，其关联函数由狄拉克$\delta$函数给出：
+\begin{equation*}
+E[R(t)]=0;\qquad E[R(t)R(t')]\equiv\langle R(t)R(t')\rangle=\delta(t-t').
+\tag{3.3}
+\end{equation*}
+随机变量$X$的期望值本书并用$E[X]$与$\langle X\rangle$两种记号。
+
+把时间离散化为$t=n\epsilon$、$R(t)\to R_n$后，白噪声的概率分布函数为
+\begin{equation*}
+P(R_n)=\sqrt{\frac{\epsilon}{2\pi}}\,e^{-\frac{\epsilon}{2}R_n^{2}}.
+\tag{3.4}
+\end{equation*}
+据此（原书附录A.4给出证明）可得白噪声最奇特的性质：
+\begin{equation*}
+R_n^{2}=\frac{1}{\epsilon}+\text{量级为}0(1)\text{的随机项}.
+\tag{3.5}
+\end{equation*}
+
+\paragraph{推导主线与解读}
+式（3.5）是本章一切"新数学"的源头，值得讲透。$R_n$是量级$1/\sqrt{\epsilon}$
+的随机变量（密度里配了$\sqrt{\epsilon}$的归一因子），平方后领先项
+$1/\epsilon$却是\emph{确定性}的——随机性只体现在次领头阶。换言之，到
+$\epsilon$的领先阶，白噪声的平方不再是随机量。这个看似无害的事实就是
+概率论中的伊藤微积分：任何"白噪声的函数"（如$S(t)$、$C(t)$）的泰勒展开
+都会多出经典微积分没有的项，下一节系统地展开这一点。
+
+\section{伊藤微积分}
+
+本节解决的问题是：白噪声的奇异性如何改写泰勒展开与乘积求导法则。设$f$是
+白噪声$R(t)$的任意函数（例如$f=C(t,S(t))$）。按导数定义
+\begin{equation*}
+\frac{df}{dt}=\lim_{\epsilon\to 0}\frac{f(t+\epsilon,S(t+\epsilon))-f(t,S(t))}{\epsilon},
+\end{equation*}
+做泰勒展开到二阶，得
+\begin{equation*}
+\frac{df}{dt}=\frac{\partial f}{\partial t}
++\frac{\partial f}{\partial S}\frac{dS}{dt}
++\frac{\epsilon}{2}\frac{\partial^{2}f}{\partial S^{2}}
+\Bigl[\frac{dS}{dt}\Bigr]^{2}+0(\epsilon^{1/2}).
+\tag{3.6}
+\end{equation*}
+对光滑函数，末项是$\epsilon$阶、取极限后消失。但式（3.2）中的$dS/dt$
+含白噪声，不光滑：
+\begin{align*}
+\Bigl[\frac{dS}{dt}\Bigr]^{2}
+&=\sigma^{2}S^{2}R^{2}+0(1)\\
+&=\frac{1}{\epsilon}\,\sigma^{2}S^{2}+0(1).
+\tag{3.7}
+\end{align*}
+$\epsilon\times[\,dS/dt\,]^2$因而不趋于零，而趋于$\sigma^{2}S^{2}$——
+二阶项\emph{存活}下来。把式（3.2）、（3.6）、（3.7）合并，取
+$\epsilon\to 0$得
+\begin{align*}
+\frac{df}{dt}
+&=\frac{\partial f}{\partial t}
++\frac{\partial f}{\partial S}\frac{dS}{dt}
++\frac{\sigma^{2}}{2}S^{2}\frac{\partial^{2}f}{\partial S^{2}}\\
+&=\frac{\partial f}{\partial t}
++\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}f}{\partial S^{2}}
++\phi S\frac{\partial f}{\partial S}
++\sigma S\frac{\partial f}{\partial S}R.
+\tag{3.8}
+\end{align*}
+第一行是普通链式法则多出的伊藤修正项$\frac{\sigma^{2}}{2}S^{2}
+\partial^{2}f/\partial S^{2}$；第二行把$dS/dt$按式（3.2）展开，确定性
+部分与随机部分（正比于$R$的末项）分明。
+
+乘积的求导法则同样被改写。设$g(t,R(t))\equiv g_t$是另一个白噪声函数，
+记$\delta g_t\equiv g_{t+\epsilon}-g_t$，则
+\begin{align*}
+\frac{d(fg)}{dt}
+&=\lim_{\epsilon\to 0}\frac{1}{\epsilon}\bigl[f_{t+\epsilon}g_{t+\epsilon}-f_tg_t\bigr]\\
+&=\lim_{\epsilon\to 0}\frac{1}{\epsilon}\bigl[\delta f_t\,g_t+f_t\,\delta g_t+\delta f_t\,\delta g_t\bigr],
+\end{align*}
+通常末项$\delta f_t\delta g_t$是$\epsilon^{2}$阶而消失；白噪声的奇异性
+却让它存活，于是
+\begin{equation*}
+\frac{d(fg)}{dt}=\frac{df}{dt}\,g+f\,\frac{dg}{dt}
++\frac{df}{\sqrt{dt}}\,\frac{dg}{\sqrt{dt}}
+\;:\;\text{伊藤链式法则（Ito's chain rule）}.
+\tag{3.9}
+\end{equation*}
+比经典乘积法则多出的第三项，与式（3.8）的二阶项同源。
+
+\paragraph{微分形式的复推}
+式（3.8）是衍生证券理论的中心结果，原书又用微分形式把它重推一遍。把
+式（3.2）写成微分形式
+\begin{equation*}
+dS=\phi S\,dt+\sigma S\,dz;\qquad dz=R\,dt,
+\tag{3.10}
+\end{equation*}
+其中$dz$是维纳过程（Wiener process）。由式（3.5），$R^{2}(t)=1/dt$，故
+\begin{equation*}
+(dz)^{2}=R_t^{2}(dt)^{2}=dt+0(dt^{3/2}),
+\end{equation*}
+从而
+\begin{equation*}
+(dS)^{2}=\sigma^{2}S^{2}\,dt+0(dt^{3/2}).
+\end{equation*}
+于是$f$的微分展开为
+\begin{align*}
+df&=\frac{\partial f}{\partial t}\,dt+\frac{\partial f}{\partial S}\,dS
++\frac{1}{2}\frac{\partial^{2}f}{\partial S^{2}}(dS)^{2}+0(dt^{3/2})\\
+&=\Bigl(\frac{\partial f}{\partial t}
++\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}f}{\partial S^{2}}\Bigr)dt
++\sigma S\frac{\partial f}{\partial S}\,dz
++\phi S\frac{\partial f}{\partial S}\,dt,
+\end{align*}
+用$dz/dt=R$即回到式（3.8）。微分形式下的链式法则与式（3.9）对应：
+\begin{equation*}
+d(fg)=df\,g+f\,dg+df\,dg.
+\end{equation*}
+\footnote{这条"$dS$的平方等于$d t$"规则在通行教材（如Shreve）中表述为
+"布朗运动的二次变差（quadratic variation）为$t$"或"伊藤修正项"；物理
+读者可把它读作高斯白噪声关联$\langle R R\rangle=\delta$的直接推论。
+读推导时抓住一句口诀即可：凡$(d\cdots)^{2}$出现，保留$d t$阶，其余丢弃。}
+
+\subsection*{股票价格：对数正态随机变量}
+
+为了演示随机微积分的用法（也为3.5.2节做准备），原书把式（3.2）积分出来。
+取对数变量并求导——注意这里\emph{必须}用伊藤版链式法则（3.8），多出的
+$-\sigma^{2}/2$正是伊藤修正项：
+\begin{equation*}
+x(t)=\ln[S(t)];\qquad\Rightarrow\quad
+\frac{dx}{dt}=\phi-\frac{\sigma^{2}}{2}+\sigma R(t).
+\tag{3.12}
+\end{equation*}
+关键在于：$R$的系数是常数，$x$方程是\emph{线性}的，逐点积分即得
+\begin{equation*}
+\Rightarrow\quad
+x(T)=x(t)+\Bigl(\phi-\frac{\sigma^{2}}{2}\Bigr)(T-t)
++\sigma\int_{t}^{T}dt'\,R(t').
+\tag{3.13}
+\end{equation*}
+随机变量$\int_t^T dt' R(t')$是一列正态随机变量之和，由原书式（A.29）知它
+是$N(0,\sqrt{T-t})$随机变量，于是
+\begin{equation*}
+S(T)=S(t)\,e^{(\phi-\frac{\sigma^{2}}{2})(T-t)+(\sigma\sqrt{T-t})Z},
+\qquad Z=N(0,1).
+\tag{3.14}
+\end{equation*}
+股价从给定的$S(t)$出发，到期日散布成一族可能的$S(T)$；指数上是正态
+（高斯）随机变量，故$S(T)$是对数正态（lognormal）随机变量。把证券价格
+建模为对数正态变量的经验效度，原书引Campbell等的实证研究讨论。
+
+\subsection*{股票价格的几何平均}
+
+路径依赖量并非都不可解：股价的几何平均（geometric mean）的概率分布可以
+\emph{精确}算出——这个例子同时为3.9节附录预置了工具。记$\tau=T-t$、
+$m=x(t)+\frac{1}{2}(\phi-\frac{\sigma^{2}}{2})\tau$，由式（3.13）
+\begin{align*}
+&S_{\text{geometric mean}}=e^{G},\\
+&G\equiv\frac{1}{\tau}\int_{t}^{T}dt'\,x(t')
+=m+\frac{\sigma}{\tau}\int_{t}^{T}dt'\int_{t}^{t'}dt''\,R(t'')\\
+&\phantom{G\equiv}=m+\frac{\sigma}{\tau}\int_{t}^{T}dt'\,(T-t')\,R(t').
+\end{align*}
+（末步交换积分次序：$\int_t^T dt'\int_t^{t'}dt''$换成权重$T-t'$的单一
+积分。）白噪声的积分是高斯随机变量，由均值与方差完全决定。均值
+$E[G]=m$；方差用式（3.3）的$\delta$关联逐点落网：
+\begin{align*}
+E[(G-m)^{2}]
+&=\Bigl(\frac{\sigma}{\tau}\Bigr)^{2}\int_{t}^{T}dt'\,(T-t')
+\int_{t}^{T}dt''\,(T-t'')\,E[R(t')R(t'')]\\
+&=\Bigl(\frac{\sigma}{\tau}\Bigr)^{2}\int_{t}^{T}dt'\,(T-t')^{2}
+=\frac{\sigma^{2}\tau}{3}.
+\end{align*}
+因此
+\begin{equation*}
+G=N\Bigl(m,\;\frac{\sigma^{2}\tau}{3}\Bigr).
+\tag{3.15}
+\end{equation*}
+\paragraph{解读}
+几何平均是对数正态的，均值与股价本身相同，方差却是股价的$1/3$——因子
+$1/3$来自梯形权重$\int_t^T (T-t')^{2}dt'=\tau^{3}/3$：越靠近起点的噪声
+被平均掉的路径越多。3.9节附录里"平均波动率的分布
+$P_M=N(V_0,\xi^{2}\tau/3)$"正是同一计算换个马甲。
+
+\section{Black--Scholes方程：对冲组合}
+
+本节回答全书的核心问题之一：期权价格$C$到底由什么方程决定？约束只有
+无套利一条，单凭它推不出$C$。Black与Scholes的根本洞见是：若能把期权
+\emph{完全对冲}（perfectly hedge），就能为它定价——完全对冲的组合没有
+不确定性，其收益率必须等于即期利率$r$给出的无风险收益，否则即可套利。
+要构造这样的组合，必须先分析期权随时间的演化。
+
+\paragraph{推导主线}
+Black--Scholes的基本想法：构造一个组合，使其价值的瞬时变化与白噪声$R$
+无关——没有随机性，即为完全对冲。取组合
+\begin{equation*}
+\Pi=C-\frac{\partial C}{\partial S}\,S,
+\tag{3.16}
+\end{equation*}
+即持有一份期权$C$，同时卖空$\partial C/\partial S$份证券$S$。对$\Pi$用
+式（3.8）（对$C$）与式（3.2）（对$S$）：
+\begin{align*}
+\frac{d\Pi}{dt}
+&=\frac{dC}{dt}-\frac{\partial C}{\partial S}\frac{dS}{dt}\\
+&=\frac{\partial C}{\partial t}
++\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}C}{\partial S^{2}}.
+\tag{3.17}
+\end{align*}
+选$\partial C/\partial S$份$S$做对冲的用意正在于此：式（3.8）末尾的随机项
+$\sigma S(\partial C/\partial S)R$与$dS/dt$里的随机项$\sigma SR$系数相同，
+相减即消。$t$时刻$S(t)$已知，$C(t,S(t))$是确定性量，故$d\Pi/dt$中不再
+含$R$——用一种证券的随机涨落抵消另一种证券的随机涨落，就是对冲（delta
+对冲）的实质。
+\footnote{原书脚注声明：混合二阶导项$(\partial^{2}C/\partial S\partial t)S$
+被当作可忽略；这在$\sigma$为常数的模型里是自洽的近似。}
+
+组合$\Pi$的收益率现在是确定性的，按无套利原理必须等于短期无风险利率$r$：
+\begin{equation*}
+\frac{d\Pi}{dt}=r\Pi.
+\end{equation*}
+把式（3.17）代入，得到著名的Black--Scholes方程：
+\begin{equation*}
+\frac{\partial C}{\partial t}
++rS\frac{\partial C}{\partial S}
++\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}C}{\partial S^{2}}
+=rC.
+\tag{3.18}
+\end{equation*}
+
+\paragraph{解读}
+两点最值得咀嚼。其一，式（3.2）的期望收益参数$\phi$在式（3.18）中
+\emph{消失}了：风险中性组合的价值与投资者的期望（$\phi$所体现者）无关，
+等价地说，衍生品定价基于一个与投资者风险偏好无关的无风险过程——这就是
+风险中性（risk-neutral）定价的萌芽。对冲实际上意味着：对被对冲的组合，
+存在证券$S(t)$的一种风险中性演化，也称风险中性测度（risk-neutral
+measure）或无风险测度。其二，"完全对冲"在实践中做不到：Black--Scholes
+框架悬于这个理想化概念之上。原书随即点出后文伏笔——Bouchaud与Potters用
+\emph{不完美}对冲组合为期权定价，残余风险（residual risk）恒为有限；
+第9章的国债对冲场论同样留下一个消不掉的有限风险，称残余方差（residual
+variance）。第4、5章将分别用哈密顿量与路径积分重解式（3.18）。
+
+\subsection{Black--Scholes推导中的假设}
+
+推导实际动用了六条假设，逐条列出（这是日后一切推广的突破口）：
+\begin{itemize}
+\item 组合满足无套利条件；
+\item 股票无限可分割、可以卖空（否则式（3.16）的非整数头寸无从谈起）；
+\item 股价连续演化——若允许不连续跳跃，组合无法完全对冲，Black--Scholes
+分析失效；
+\item 即期利率$r$为常数（可推广为随机即期利率）；
+\item 组合$\Pi$可以连续再平衡（对冲比$\partial C/\partial S$须随时调整）；
+\item 无交易成本。
+\end{itemize}
+这些条件在真实市场中并不完全成立（交易成本尤其显著），但市场仍以
+Black--Scholes定价为行业标准，并将其作为更复杂期权定价的基础。
+
+\subsection{Black--Scholes方程的风险中性解}
+
+解式（3.18）的路子有两条：直接当偏微分方程解；或用哈密顿量与路径积分
+（原书4.6.1节与5.2节）。本节演示最优雅的一条——风险中性估值
+（risk-neutral valuation）原理，这条原理在第9章定价国债期权时还要大规模
+使用。记剩余时间$\tau=T-t$。式（3.14）现在读作
+\begin{equation*}
+S(T)=e^{x(T)};\qquad
+x(T)=N\Bigl(\ln S(t)+\Bigl(\phi-\frac{\sigma^{2}}{2}\Bigr)\tau,\;
+\sigma\sqrt{\tau}\Bigr).
+\tag{3.19}
+\end{equation*}
+风险中性估值原理说：欧式看涨期权的现值等于其到期期望值
+$E[\max(S-K,0)]$按无风险利率贴现。这个"风险中性概率分布"又称鞅测度
+（martingale measure），它须满足鞅条件（原书式A.40）：
+\begin{equation*}
+S(t)=E\bigl[e^{-r\tau}S(T)\,\big|\,S(t)\bigr]
+=\int_{-\infty}^{+\infty}e^{x}\,P_m(x)\,dx.
+\tag{3.20}
+\end{equation*}
+（含义：贴现后的股价在风险中性测度下是鞅——未来贴现值的条件期望等于
+现值。）用式（3.19）的对数正态分布解式（3.20），得$\phi=r$：期望收益被
+无风险利率替换。于是鞅概率分布为（记$\ln S(t)=x(t)$、$x(T)=x$）
+\begin{equation*}
+P_m(x)=\frac{1}{\sqrt{2\pi\sigma^{2}\tau}}\,
+e^{-\frac{1}{2\sigma^{2}\tau}\bigl[x-x(t)-(r-\frac{\sigma^{2}}{2})\tau\bigr]^{2}}.
+\tag{3.21}
+\end{equation*}
+与式（3.19）对照，唯一的改动是$\phi$换成了$r$——这正是风险中性估值的
+操作内容。期权现价即到期收益在鞅测度下的期望经贴现：
+\begin{equation*}
+C=e^{-r\tau}E[\max(S-K,0)]
+=e^{-r\tau}\int_{\ln K}^{+\infty}(e^{x}-K)\,P_m(x)\,dx.
+\tag{3.22}
+\end{equation*}
+积分（3.22）的显式值在下面式（3.25）算出，欧式看涨期权价格为
+\begin{equation*}
+C(\tau,S,K,r)=S\,N(d_{+})-Ke^{-r\tau}N(d_{-}),
+\tag{3.23}
+\end{equation*}
+其中$N(x)$是正态随机变量的累积分布（原书式A.22）：
+\begin{equation*}
+N(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{1}{2}z^{2}}\,dz;
+\qquad
+d_{\pm}=\frac{\ln\bigl(\frac{S}{K}\bigr)+\bigl(r\pm\frac{\sigma^{2}}{2}\bigr)\tau}
+{\sigma\sqrt{\tau}}.
+\tag{3.24}
+\end{equation*}
+
+\paragraph{解读：公式与市场的两处裂缝}
+式（3.23）与真实报价吻合得并不好。其一，原则上$\sigma$应与执行价格$K$
+无关，数据却非如此。于是从业者反其道而行：对每个执行价$K$，用观测到的
+期权价反解出使式（3.23）成立的波动率，得隐含波动率（implied volatility）
+$\sigma(K)$——它不是常数，而恰是交易员的报价语言与策略路标。其二，高斯
+分布（式3.21）下股价对数偏离超过$\sigma\sqrt{T-t}$的概率急剧衰减，实际
+观测的偏离却大得多，即肥尾（fat tail）现象；文献中已提出列维（Levy）
+分布等非高斯分布来解释。这两条裂缝是后文引入更复杂模型的实证动机。
+
+\subsection*{欧式看涨期权的Black--Scholes价格}
+
+因为式（3.23）用途极广，原书给出积分（3.22）的显式推导。记
+$S(T)=e^{x}$、$x_0=\ln S+\tau(r-\frac{\sigma^{2}}{2})$。由式（3.22）与
+式（3.21），
+\begin{align*}
+C&=e^{-r\tau}\int_{-\infty}^{+\infty}\frac{dx}{\sqrt{2\pi\tau\sigma^{2}}}
+\,(e^{x}-K)_{+}\,e^{-\frac{1}{2\tau\sigma^{2}}(x-x_{0})^{2}}\\
+&=e^{-r\tau}\int_{-\infty}^{+\infty}\frac{dx}{\sqrt{2\pi\tau\sigma^{2}}}
+\,(e^{x+x_{0}}-K)_{+}\,e^{-\frac{1}{2\tau\sigma^{2}}x^{2}}\\
+&=e^{-r\tau}\int_{\ln K-x_{0}}^{+\infty}\frac{dx}{\sqrt{2\pi\tau\sigma^{2}}}
+\,(e^{x+x_{0}}-K)\,e^{-\frac{1}{2\tau\sigma^{2}}x^{2}}\\
+&=S\left[\int_{\ln K-x_{0}}^{+\infty}\frac{dx}{\sqrt{2\pi\tau\sigma^{2}}}
+\,e^{-\frac{1}{2\tau\sigma^{2}}(x+\tau\sigma^{2})^{2}}\right]
+-e^{-r\tau}K\,N(d_{-})\\
+&=S\,N(d_{+})-e^{-r\tau}K\,N(d_{-}).
+\tag{3.25}
+\end{align*}
+\footnote{排印勘误：第4行方括号内指数原书印作$(x+\tau\sigma^{2})^{2}$；
+按配方方向应为$(x-\tau\sigma^{2})^{2}$（把$e^{x-\frac{x^{2}}{2\tau\sigma^{2}}}
+\cdot e^{-\tau\sigma^{2}/2}$配方，再作代换$u=x-\tau\sigma^{2}$），否则末行
+的$SN(d_{+})$无法得出。导读按原书照录，在此注明。}
+推导的骨架值得复述：第一步写下对数正态期望（$(\cdot)_{+}$表示取正部）；
+第二步平移积分变量消去$x_0$；第三步把取正部换成积分下限$\ln K-x_0$；
+第四步把$e^{x}$项配方化成高斯（$e^{-r\tau}e^{x_0}=Se^{-\tau\sigma^{2}/2}$
+给出前因子$S$），第二项认出累积分布$N(d_-)$；第五步配方后的高斯积分
+正是$N(d_+)$。
+
+\section{带随机波动率的股票价格}
+
+本节放松Black--Scholes的核心假设：波动率不再是常数，而是一个独立随机的
+对象。想法上仍是老一套——构造（无风险的）对冲组合为期权定价；障碍在于
+波动率本身不是资本市场上的交易品种，可用的金融工具不够把波动率的风险
+完全对冲掉。市场因此是\emph{不完备}的（incomplete）：演化随机波动率的
+风险中性测度不再唯一，其演化依赖于投资者的风险偏好。这是全章论证链上
+第一个真正的裂缝，也是第9、10章场论对冲与非线性模型登场的伏笔。
+
+\paragraph{文献中的波动率过程}
+记$V\equiv\sigma^{2}$。文献中提出过多种方差$V$的随机过程。Hull--White、
+Heston等取
+\begin{equation*}
+\frac{dV}{dt}=a+bV+\xi V^{1/2}Q;\qquad \sigma^{2}\equiv V,
+\end{equation*}
+其中$Q$是白噪声；Baaquie、Hull--White等取
+\begin{equation*}
+\frac{dV}{dt}=\mu V+\xi VQ;
+\end{equation*}
+Stein--Stein则取（对$\sigma$本身）
+\begin{equation*}
+d\sigma=-\delta(\sigma-\theta)\,dt+k\,dz,
+\tag{3.26}
+\end{equation*}
+$\delta$与$\theta$分别是均值回复（mean reversion）强度与波动率的均值。
+除式（3.26）外，上述各过程都是如下一般形式的特例
+\footnote{原书脚注指出：式（3.26）也能纳入，只要在漂移项中添一项
+$\gamma V^{1/2}$。}：
+\begin{equation*}
+\frac{dV}{dt}=\lambda+\mu V+\xi V^{\alpha}Q.
+\tag{3.27}
+\end{equation*}
+$\lambda$与$\mu$的选取受$V>0$的约束。
+
+\paragraph{完整耦合过程与广义伊藤公式}
+股价与方差由两条白噪声驱动，构成完备的耦合系统：
+\begin{equation*}
+\frac{dS}{dt}=\phi S\,dt+S\sqrt{V}\,R_{1},
+\tag{3.28}
+\end{equation*}
+\begin{equation*}
+\frac{dV}{dt}=\lambda+\mu V+\xi V^{\alpha}R_{2};\qquad V\equiv\sigma^{2}.
+\tag{3.29}
+\end{equation*}
+注意原书式（3.28）左端写作$dS/dt$而右端保留$dt$，是记号上的将就，读作
+微分式即可。$R_1$、$R_2$是相关系数为$\rho$（$-1\leq\rho\leq 1$）的高斯
+白噪声：
+\begin{equation*}
+\langle R_{1}(t)R_{1}(t')\rangle=\langle R_{2}(t)R_{2}(t')\rangle
+=\delta(t-t')=\frac{1}{\rho}\,\langle R_{1}(t)R_{2}(t')\rangle,
+\tag{3.30}
+\end{equation*}
+即两噪声的互关联为$\rho\,\delta(t-t')$；$\phi,\lambda,\mu,\xi$取常数。
+离散化到$\epsilon$的领头阶，白噪声的平方规则带上相关项：
+\begin{equation*}
+R_{1}^{2}(t)=\frac{1}{\epsilon}=R_{2}^{2}(t);\qquad
+R_{1}R_{2}(t)=\frac{\rho}{\epsilon}.
+\tag{3.31}
+\end{equation*}
+把式（3.8）推广到双噪声情形——对$R_1,R_2$的任意函数$f$，二阶项中除两个
+各自的平方外还多出互相关项——得
+\begin{align*}
+\frac{df}{dt}
+&=\frac{\partial f}{\partial t}
++\phi S\frac{\partial f}{\partial S}
++(\lambda+\mu V)\frac{\partial f}{\partial V}
++\frac{\sigma^{2}S^{2}}{2}\frac{\partial^{2}f}{\partial S^{2}}
++\rho V^{1/2+\alpha}\xi\,\frac{\partial^{2}f}{\partial S\,\partial V}\\
+&\quad+\frac{\xi^{2}V^{2\alpha}}{2}\frac{\partial^{2}f}{\partial V^{2}}
++\sigma S\frac{\partial f}{\partial S}R_{1}
++\xi V^{\alpha}\frac{\partial f}{\partial V}R_{2}\\
+&=\Theta+\Xi R_{1}+\Psi R_{2},
+\tag{3.32}
+\end{align*}
+末行把确定性部分记$\Theta$、两个随机系数分别记$\Xi$与$\Psi$，为的是把
+随机与非随机项分开，供下一步对冲消元。
+
+\section{Merton--Garman方程}
+
+现在只有一个随机方程（3.32）、两个随机源，一份期权只提供一个对冲工具，
+消不掉两个随机项——这正是"市场不完备"在代数上的样子。Merton与Garman的
+办法：同时取\emph{两种}期权$C_1$与$C_2$（同一标的证券，执行价与到期日
+分别为$K_1,K_2$与$T_1,T_2$），加上股票本身，凑出足够多的对冲工具。取组合
+\begin{equation*}
+\Pi=C_{1}+\Gamma_{1}C_{2}+\Gamma_{2}S,
+\end{equation*}
+对每项用式（3.32）：
+\begin{equation*}
+\frac{d\Pi}{dt}
+=\Theta_{1}+\Gamma_{1}\Theta_{2}+\Gamma_{2}\phi
++(\Xi_{1}+\Gamma_{1}\Xi_{2}+\Gamma_{2}\sigma S)R_{1}
++(\Psi_{1}+\Gamma_{1}\Psi_{2})R_{2}.
+\end{equation*}
+与常数波动率情形一样，完全对冲要求组合价值的变化不含随机项。两个随机
+系数置零，$\Gamma_1$、$\Gamma_2$两个未知数恰可解出：
+\begin{align*}
+&\Xi_{1}+\Gamma_{1}\Xi_{2}+\Gamma_{2}\sigma S=0,\\
+&\Psi_{1}+\Gamma_{1}\Psi_{2}=0,
+\end{align*}
+即
+\begin{align*}
+\Gamma_{1}&=-\frac{\Psi_{1}}{\Psi_{2}}
+=-\frac{\partial C_{1}/\partial V}{\partial C_{2}/\partial V},\\
+\Gamma_{2}&=\frac{\Psi_{1}}{\Psi_{2}}\frac{\partial C_{2}}{\partial S}
+-\frac{\partial C_{1}}{\partial S}
+=\frac{\partial C_{1}/\partial V}{\partial C_{2}/\partial V}
+\,\frac{\partial C_{2}}{\partial S}
+-\frac{\partial C_{1}}{\partial S}.
+\end{align*}
+组合既已无风险，无套利原理要求它按无风险利率增值：
+$\frac{d\Pi}{dt}=r\Pi$。代入$\Theta,\Xi,\Psi$的表达式并整理——关键是
+做\emph{变量分离}：左边只含$K_1,T_1$，右边只含$K_2,T_2$，两边欲恒等必须
+等于一个与$K_1,K_2,T_1,T_2$都无关的量$\beta(S,V,t,r)$：
+\begin{align*}
+&\frac{1}{\partial C_{1}/\partial V}\biggl(
+\frac{\partial C_{1}}{\partial t}
++(\lambda+\mu V)\frac{\partial C_{1}}{\partial V}
++rS\frac{\partial C_{1}}{\partial S}
++\frac{VS^{2}}{2}\frac{\partial^{2}C_{1}}{\partial S^{2}}\\
+&\qquad\qquad+\rho V^{1/2+\alpha}\xi\,\frac{\partial^{2}C_{1}}{\partial S\,\partial V}
++\frac{\xi^{2}V^{2\alpha}}{2}\frac{\partial^{2}C_{1}}{\partial V^{2}}
+-rC_{1}\biggr)\\
+&=\frac{1}{\partial C_{2}/\partial V}\biggl(
+\frac{\partial C_{2}}{\partial t}
++(\lambda+\mu V)\frac{\partial C_{2}}{\partial V}
++rS\frac{\partial C_{2}}{\partial S}
++\frac{VS^{2}}{2}\frac{\partial^{2}C_{2}}{\partial S^{2}}\\
+&\qquad\qquad+\rho V^{1/2+\alpha}\xi\,\frac{\partial^{2}C_{2}}{\partial S\,\partial V}
++\frac{\xi^{2}V^{2\alpha}}{2}\frac{\partial^{2}C_{2}}{\partial V^{2}}
+-rC_{2}\biggr)\\
+&\equiv\beta(S,V,t,r).
+\tag{3.33}
+\end{align*}
+$\beta$称波动率风险的市场价格（market price of volatility risk）：
+$\beta$越高，投资者对波动率风险的厌恶越强。它之所以在随机波动率下
+必须出现、而在Black--Scholes定价中不需要，根源仍是"波动率不可交易"：
+没有足够的工具把波动率风险对冲干净，投资者的风险偏好就必须进场——
+风险中性估值对波动率不再直接可用，或者说不再唯一。$\beta$难以实证估计，
+但有证据表明它非零（原书引文献）；在Cox--Ingersoll--Ross模型中，消费
+增长与标的资产收益有常数相关，产生正比于波动率的风险溢价——采用该模型
+的好处是它只是把上式中的$\lambda$重新定义了一遍。此后原书约定：风险的
+市场价格已被吸收进$\lambda$，Merton--Garman方程即
+\begin{align*}
+\frac{\partial C}{\partial t}
++rS\frac{\partial C}{\partial S}
++(\lambda+\mu V)\frac{\partial C}{\partial V}
++\frac{1}{2}VS^{2}\frac{\partial^{2}C}{\partial S^{2}}
++\rho\xi V^{1/2+\alpha}S\frac{\partial^{2}C}{\partial S\,\partial V}
++\xi^{2}V^{2\alpha}\frac{\partial^{2}C}{\partial V^{2}}
+=rC.
+\tag{3.34}
+\end{align*}
+
+\paragraph{解读}
+与式（3.18）对照：Black--Scholes方程是"时间一维+股价一维"的二阶抛物型
+方程；Merton--Garman方程把变量扩成$(S,V)$二维、多出$\partial_V$一阶项、
+$S$--$V$交叉项与$\partial_V^2$项，且漂移$\lambda+\mu V$里藏着待定的风险
+偏好。第4章将把式（3.18）与（3.34）分别改写成哈密顿量$H_{BS}$与$H_{MG}$
+的作用，第5章用路径积分解$H_{MG}$版本——那是原书方法论的第一次真正亮相。
+
+\section{小结}
+
+本章沿"工具\,--\,方程"两条线推进。工具线：远期/期货/期权的分类与收益
+函数（3.1--3.2节）；股价的朗之万型随机微分方程（3.3节）；伊藤微积分的
+两条新规则——泰勒展开中的二阶存活项与乘积法则中的$df\,dg$项（3.4节）。
+方程线：用对冲组合+无套利导出Black--Scholes方程（3.5节）并经风险中性
+估值（鞅条件$\phi=r$）解出欧式看涨期权价格；让波动率随机化后，市场不完备
+迫使引入波动率风险的市场价格$\beta$，得到Merton--Garman方程（3.6--3.7
+节）。原书把本章定位为"用朗之万形式"推导——即随机微分方程语言；同样的
+内容从第4章起将换用哈密顿量与路径积分语言重演，届时式（3.18）与式
+（3.34）分别对应$H_{BS}$与$H_{MG}$，鞅条件将改写为哈密顿量的本征值
+条件（第4章），随机波动率的解将以路径积分形式独立重推（第5章式5.115）。
+
+\section{附录：$\rho=0$时随机波动率的解}
+
+本附录处理式（3.28）--（3.29）体系的一个可精确求解的角落。虽然股价过程
+（3.28）依赖方差$V$，但当$\rho=0$时方差过程（3.29）不依赖股价$S$——
+波动率的演化可以与股价\emph{分开}处理。
+
+\paragraph{Merton定理}
+Merton的一个定理说：若波动率独立于$S$地遵循某个（可以随机的）过程
+$V(t)$，则期权价格就是Black--Scholes价格、但其中的波动率换成
+\emph{平均波动率}，再对该平均值的分布求积。记$\tau=T-t$、
+\begin{equation*}
+\bar{V}=\frac{1}{\tau}\int_{t}^{T}dt'\,V(t'),
+\end{equation*}
+期权价格由式（3.23）推广为
+\begin{equation*}
+C=\int_{0}^{\infty}\bigl[S\,N(d_{+}(\bar{V}))
+-Ke^{-r\tau}N(d_{-}(\bar{V}))\bigr]\,
+P_{M}(\bar{V})\,\frac{d\bar{V}}{\bar{V}},
+\tag{3.35}
+\end{equation*}
+其中$P_M$是平均波动率$\bar{V}$的概率分布函数，$d_{\pm}(\bar{V})$仿照
+式（3.24）为
+\begin{equation*}
+d_{\pm}=\frac{\ln(S/K)+\tau\,(r\pm\frac{1}{2}\bar{V})}{\sqrt{\bar{V}\tau}},
+\end{equation*}
+$K$为执行价格。式（3.35）的独立推导（连同$P_M$的形式表达式）将在第5章
+用随机波动率期权定价的路径积分表述给出（原书式5.115）。
+\footnote{积分测度$d\bar{V}/\bar{V}$值得注意：被积的是\emph{对数}平均
+波动率的 Black--Scholes 核，与股价的对数正态性一脉相承；这层结构在第5章
+的路径积分推导中会看得很清楚。}
+
+\paragraph{两个例子}
+原书举两个例子演示式（3.35）的用法（都取$\tau=T$）。其一是确定性过程：
+\begin{equation*}
+V=V_{0}e^{\mu t},\qquad 0\leq t\leq T.
+\end{equation*}
+此时平均波动率的分布退化为狄拉克$\delta$函数：
+\begin{equation*}
+V_{M}=\delta\Bigl(V-V_{0}\,\frac{e^{\mu\tau}-1}{\mu\tau}\Bigr),
+\end{equation*}
+即Black--Scholes结果中把$\sigma$换成
+$\sqrt{V_0\,(e^{\mu\tau}-1)/(\mu\tau)}$——时间平均的确定性方差。
+
+其二是随机波动率：在式（3.29）中取$\lambda=\mu=\alpha=0$，
+\begin{equation*}
+\frac{dV}{dt}=\xi R(t),\qquad V(0)=V_{0},\qquad 0\leq t\leq T,
+\end{equation*}
+$R(t)$为白噪声。
+\footnote{原书脚注坦言这不是现实的过程：高斯分布给出$P(V<0)>0$，而$V$
+显然非负；但只要时段较短、$P(V<0)$可忽略，它不失为合理近似。$V>0$的
+约束正是3.6节说$\lambda,\mu$受限的原因，也是第7章非线性（对数）模型
+的动机之一。}
+方差$V$的时段均值$\bar V$在$(0,T)$内的分布直接引用式（3.15）的三分之一
+因子：
+\begin{equation*}
+P_{M}=N\Bigl(V_{0},\;\frac{\xi^{2}\tau}{3}\Bigr).
+\end{equation*}
+代入式（3.35），期权价格为
+\begin{equation*}
+f=\sqrt{\frac{3}{2\pi\xi^{2}\tau}}
+\int_{0}^{\infty}\bigl[S\,N(d_{+}(V))-Ke^{-r\tau}N(d_{-}(V))\bigr]\,
+\exp\Bigl(-\frac{3(V-V_{0})^{2}}{2\xi^{2}\tau}\Bigr)\,\frac{dV}{V}.
+\end{equation*}
+
+\paragraph{解读}
+附录的价值在于示范"可解结构"的叠加方式：$\rho=0$让$V$与$S$解耦，
+Merton定理把随机波动率问题化归为"对平均波动率求平均的Black--Scholes"，
+而平均值的分布又恰好是3.4节算过的几何平均型高斯（三分之一因子）。三个
+毫不相干的部件咬合成一个显式积分。注意最终价格记$f$而非$C$——它是"对
+$\bar V$平均后的期权价格"。第5章的路径积分将不借助Merton定理直接推出
+式（5.115），两相对照可以看出路径积分方法的威力。
+
+%TAGS: 3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,3.10,3.12,3.13,3.14,3.15,3.16,3.17,3.18,3.19,3.20,3.21,3.22,3.23,3.24,3.25,3.26,3.27,3.28,3.29,3.30,3.31,3.32,3.33,3.34,3.35（原书无(3.1)与(3.11)，编号断档系原书如此；已对照PNG逐页核验，p043--p060为正文，p061为Part II扉页，p062空白）
+

@@ -1,0 +1,1754 @@
+% ============================================================
+%  第一卷 第五章 微振动（§21–§30 + 习题）
+%  底本：高教社中文版第5版；OCR 错误已修正，脚注文本待从纸版补录
+%
+%  OCR/排印修正清单（除常规项：\mathrm{d} 收紧、\pmb 去粗体、
+%  函数名与指数拆散合并、\epsilon 统一为 \varepsilon、𝜉/π/q 等斜体化）：
+%   §21  "引入记 a(q₀)=m" 处 OCR 垃圾 \frac{\square}{\square}① 删除，
+%        圈码①在"一维微振动系统"后（原书 p.61 脚注：这样的系统常称为一维振子）；
+%        (21.10) E=½mω²α² → a²（振幅记 a）；(21.12) e^{1α} → e^{iα}；
+%        习题6 T=ms²/2 → m\dot{s}²/2（丢点）；摆线参数 ξ OCR 误加粗
+%   §22  "自由振动频檬"→频率；"\bar{\jmath}" 垃圾删除（势能中出现 −xF(t) 项）；
+%        习题1 b) F=αt → F=at（答亦用 a，照原书 p.66）；
+%        习题1 d) 答案花括号首项乱码 \mathbf{\partial} 删除、尾部 "S=0," 删除；
+%        习题2 "F=F₀ι"→F=F₀、句尾 "IF" 垃圾删除；习题2–4 振幅 α→a（照原书 p.67）
+%   §23  "干是"→于是、"虛部"→虚部；"根ω。"→ω_α；"系数Ak"后重复的
+%        "A_k ω_α"删除；复共轭等式中 OCR 重复的同一项删除；
+%        (23.14) 势能 k₁x²+k₁y²+k₁z² → k₁x²+k₂y²+k₃z²（下文有 ω₂=√(k₂/m)）；
+%        U=kr²/2 的 \dot{k} 删除；(23.17) f_α(ωt) → f_α(t)；
+%        习题1 \dddot→\ddot、"x和γ的变化"→x和y；习题2 \bar{l}_1→l₁、\dddot→\ddot；
+%        "√g/l₁ ↗ √g/l₂"→两极限频率并列
+%   §24  (24.1) 下标 α 统一为 a（全书原子下标 a，照原书）；Q_α → Q_a
+%        （反对称坐标，原书 p.75 印 Q_a）；习题标题"习 题①"圈码按任务要求去除
+%        （原书该处确有文献脚注①，脚注文本暂缺）；横向振动动能
+%        \dot{ϑ}² → \dot{δ}²；习题2 "x₁=l−x₃" → x₁=−x₃（l 为垃圾）
+%   §25  特征方程 κ²+2λr+ω₀²=0 → r²+2λr+ω₀²=0（特征根记 r）；
+%        通解 c₂e^{r₁t}+c₂e^{r₂t} → c₁,c₂；(25.4) 振幅 α→a；
+%        "振动"频率 v_ω"" → "振动"频率ω""；"(参见(21.4))"重复括注删除；
+%        \stackrel{}{x}→\ddot{x}、\stackrel{.}{x}→\dot{x}
+%   §26  "|⋆|"→|ε|；(26.10) 积分下限 "-\infty_0" → −ω_0（照原书 p.82）；
+%        习题 tan\hat{σ} → tanδ
+%   §27  (27.3)(27.6) μ^{t′T}→μ^{t/T}、π₁(ι)→π₁(t)；"它们以后也等于☉"→等于零；
+%        \dot{a}∼εα → εa；\hbarω₀ → hω₀；"阈值"h_k 的乱码引号修复；
+%        习题1 解中 α₀→a₀、答案 Ω_Ω→ε；习题2 方括号方程组 OCR 乱序重复，
+%        按运动方程代入(27.8)重建（各系数已核对：a₁=ha₀/6, b₁=hb₀/6, c₁=−ha₀/2）
+%   §28  (28.5) 振幅 α_α→a_α（同式 cos 宗量保留 α_α；28.6 前乘积式一并修复）；
+%        x⁽³⁾ 方程右端 α³→a³、5α²α²/6ω₀²→5α²a²/6ω₀²；
+%        "与本＋Ⅰ开始所讲"→与本节开始所讲；"必须需改"→必须修改；
+%        "正比于振动振幅的 ± 方"→平方；\mathfrak{c}/ε 混用统一
+%   §29  "所\vec{p}生"→所发生；"2γ≈_ω₀"→2γ≈ω₀；\tag{.(29.10}→(29.10)；
+%        γ=ℏω₀/q→γ=pω₀/q（p, q 是整数，照原书 p.95）；
+%        "λ²/ω₀《A/κ"→≪
+%   §30  "函数X(t)述按"→是按；习题1、2 摆振幅 α²γ²→a²γ²
+%  遗留问题：
+%   1. §21 习题5 解中"由§14习题3所得公式"照 OCR 保留（未回查§14）；
+%   2. §23 习题1 解中原书局部编号"(1)"以公式末手工"(1)"呈现（不入节内编号）；
+%   3. §24 习题1标题处文献脚注①已自原书 p.75 补录（Волкенштейн/Герцберг 分子振动
+%      文献及中译本信息）；
+%   4. 各节脚注圈码①②③已自原书扫描页转录为 \footnote（脚注按页重新编号由
+%      footmisc 的 perpage 选项自动实现）；§21 "引入记号"处被误删的圈码①已恢复
+%      （原书 p.59 脚注：需要强调的是，只有当 x 是笛卡儿坐标时 m 才是质量）。
+% ============================================================
+\chapter{微振动}
+
+\section{一维自由振动}
+
+在稳定平衡位置附近的运动是力学系统的一种非常普遍的运动类型，称为微振动.我们从最简单的情况即只有一个自由度的系统，开始研究这种运动.
+
+稳定平衡位置是指势能 $U(q)$ 取极小值的位置，偏离该位置会导致产生力 $-\mathrm{d}U/\mathrm{d}q$，它力图使系统返回平衡位置.我们用 $q_0$ 表示广义坐标 $q$ 在平衡位置的值.在偏离平衡位置很小的情况下，在 $U(q)-U(q_0)$ 按 $q-q_0$ 的幂次展开的表达式中保留到第一个非零项就足够了.一般情况下这是二阶项
+\begin{equation*}
+  U(q)-U(q_0)\approx\frac{k}{2}\left(q-q_0\right)^2,
+\end{equation*}
+其中 $k$ 是二阶导数 $U''(q)$ 在 $q=q_0$ 处的值，是正数.今后我们从势能的最小值开始计算势能（即假设 $U(q_0)=0$），并引入记号
+\begin{equation}
+  x=q-q_0
+\end{equation}
+表示坐标对平衡位置的偏离.于是有
+\begin{equation}
+  U(x)=\frac{kx^2}{2}.
+\end{equation}
+
+一个自由度系统的动能一般可以写成
+\begin{equation*}
+  \frac{1}{2}a(q)\dot{q}^2=\frac{1}{2}a(q)\dot{x}^2.
+\end{equation*}
+在同样的近似下函数 $a(q)$ 可以用它在 $q=q_0$ 处的值代替.引入记号\footnote{需要强调的是，只有当 $x$ 是笛卡儿坐标时 $m$ 才是质量.}
+\begin{equation*}
+  a(q_0)=m,
+\end{equation*}
+最后可得一维微振动系统\footnote{这样的系统常称为一维振子.}的拉格朗日函数表达式如下：
+\begin{equation}
+  L=\frac{m\dot{x}^2}{2}-\frac{kx^2}{2}.
+\end{equation}
+相应的运动方程为
+\begin{equation}
+  m\ddot{x}+kx=0,
+\end{equation}
+或者
+\begin{equation}
+  \ddot{x}+\omega^2x=0,
+\end{equation}
+这里引入了记号
+\begin{equation}
+  \omega=\sqrt{k/m}.
+\end{equation}
+线性微分方程(21.5)的两个线性无关的解为 $\cos\omega t$ 和 $\sin\omega t$，因此方程的通解为
+\begin{equation}
+  x=c_1\cos\omega t+c_2\sin\omega t.
+\end{equation}
+这个表达式也可以写成
+\begin{equation}
+  x=a\cos(\omega t+\alpha).
+\end{equation}
+因为 $\cos(\omega t+\alpha)=\cos\omega t\cos\alpha-\sin\omega t\sin\alpha$，与(21.7)比较可得任意常数 $a$ 和 $\alpha$ 与常数 $c_1$ 和 $c_2$ 的关系：
+\begin{equation}
+  a=\sqrt{c_1^2+c_2^2},\qquad
+  \tan\alpha=-c_2/c_1.
+\end{equation}
+于是，系统在稳定平衡位置附近的运动是简谐振动.(21.8)中周期因子前面的系数 $a$ 称为振动的振幅，而余弦的宗量称为振动的相位，$\alpha$ 是相位的初始值，显然依赖于初始时间的选择.物理量 $\omega$ 称为振动的圆频率.然而，在理论物理学中，通常简称为频率，今后我们就用这个简称.
+
+频率是振动的基本特征量，不依赖于运动初始条件.根据公式(21.6)，它完全由力学系统本身的性质决定.但是应该指出，频率的这个性质与小振幅振动假设有关，在更高阶近似时就没有这个性质了.从数学角度看，它与势能是坐标的二次函数有关.\footnote{因此，如果函数 $U(x)$ 在 $x=0$ 处取数量级更高的极小值，即 $U\propto x^n$，$n>2$（参见§11的习题2a），则没有这个性质.}
+
+微振动系统的能量为
+\begin{equation*}
+  E=\frac{m\dot{x}^2}{2}+\frac{kx^2}{2}
+  =\frac{m}{2}\left(\dot{x}^2+\omega^2x^2\right),
+\end{equation*}
+或者，将(21.8)代入此式得
+\begin{equation}
+  E=\frac{1}{2}m\omega^2a^2.
+\end{equation}
+能量与振幅平方成正比.
+
+振动系统坐标对时间的依赖关系经常方便地写成复数表达式的实部：
+\begin{equation}
+  x=\mathrm{Re}\left\{A\mathrm{e}^{i\omega t}\right\},
+\end{equation}
+其中 $A$ 是复常数，写成下面形式：
+\begin{equation}
+  A=a\mathrm{e}^{i\alpha},
+\end{equation}
+则又回到(21.8)式了.常数 $A$ 称为复振幅，它的模就是通常的振幅，而辐角就是初相位.
+
+在数学上，指数函数运算比三角函数运算简单，因为指数函数的微分并不改变形式.只要我们进行的是线性运算（加法、数乘、微分和积分），一般可以不写出取实部的符号 Re，只需对最后的计算结果取实部.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 试用坐标和速度的初始值 $x_0$ 和 $v_0$ 表示振动的振幅和初始相位.
+
+答：
+\begin{equation*}
+  a=\sqrt{x_0^2+\frac{v_0^2}{\omega^2}},\qquad
+  \tan\alpha=-\frac{v_0}{\omega x_0}.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 试求由不同同位素原子组成的两个双原子分子的振动频率 $\omega$ 和 $\omega'$ 的比值，设原子的质量分别等于 $m_1,m_2$ 和 $m_1',m_2'$.
+
+解：因为同位素原子以相同的方式相互作用，则有 $k=k'$.在分子动能中起系数 $m$ 作用的是约化质量.根据(21.6)有
+\begin{equation*}
+  \frac{\omega'}{\omega}
+  =\sqrt{\frac{m_1m_2\left(m_1'+m_2'\right)}{m_1'm_2'\left(m_1+m_2\right)}}.
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 设质量为 $m$ 的质点沿着直线运动，弹簧一端连在质点上，另一端固定于 $A$ 点（图22）.$A$ 点到直线的距离为 $l$，弹簧长度为 $l$ 时受力为 $F$，试求质点的振动频率.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.2cm]{fig22.pdf}\\[0.3em]{\small 图 22}\end{minipage}\par\nopagebreak
+
+解：弹簧势能等于力 $F$ 乘以弹簧伸长量 $\delta l$（精确到更高阶项）.当 $x\ll l$ 时，有
+\begin{equation*}
+  \delta l=\sqrt{l^2+x^2}-l\approx x^2/(2l),
+\end{equation*}
+因此，$U=Fx^2/(2l)$.因为动能为 $m\dot{x}^2/2$，故
+\begin{equation*}
+  \omega=\sqrt{\frac{F}{ml}}.
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 同上题，质量为 $m$ 的质点沿着半径为 $r$ 的圆运动（图23）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.5cm]{fig23.pdf}\\[0.3em]{\small 图 23}\end{minipage}\par\nopagebreak
+
+解：在这种情况下，弹簧伸长量为（在 $\varphi\ll1$ 时）
+\begin{equation*}
+  \delta l=\sqrt{r^2+(l+r)^2-2r(l+r)\cos\varphi}-l
+  \approx\frac{r(l+r)}{2l}\varphi^2.
+\end{equation*}
+动能为 $T=(1/2)mr^2\dot{\varphi}^2$.由此得频率：
+\begin{equation*}
+  \omega=\sqrt{\frac{F(r+l)}{rlm}}.
+\end{equation*}
+
+\noindent{\heiti 习题5}\quad 试求§5图2所示摆的振动频率，悬挂点（质量为 $m_1$）可沿着水平方向自由运动.
+
+解：当 $\varphi\ll1$ 时，由§14习题3所得公式有
+\begin{equation*}
+  T=\frac{m_1m_2l^2}{2\left(m_1+m_2\right)}\dot{\varphi}^2,\qquad
+  U=\frac{m_2gl}{2}\varphi^2.
+\end{equation*}
+由此得
+\begin{equation*}
+  \omega=\sqrt{\frac{g\left(m_1+m_2\right)}{m_1l}}.
+\end{equation*}
+
+\noindent{\heiti 习题6}\quad 设质点沿着某曲线（在重力场中）振动的频率不依赖于振幅，试求该曲线的形状.
+
+解：如果质点沿着曲线运动的势能为 $U=ks^2/2$，其中 $s$ 为从平衡位置算起的弧长，则该曲线能满足要求.这时动能为 $T=m\dot{s}^2/2$（$m$ 为质点的质量），振动频率为 $\omega=\sqrt{k/m}$，不依赖于 $s$ 的初始值.
+
+但在重力场中 $U=mgy$，其中 $y$ 是纵坐标.所以有 $ks^2/2=mgy$ 或者
+\begin{equation*}
+  y=\frac{\omega^2}{2g}s^2.
+\end{equation*}
+另一方面，$\mathrm{d}s^2=\mathrm{d}x^2+\mathrm{d}y^2$，由此得
+\begin{equation*}
+  x=\int\sqrt{\left(\frac{\mathrm{d}s}{\mathrm{d}y}\right)^2-1}\,\mathrm{d}y
+  =\int\sqrt{\frac{g}{2\omega^2y}-1}\,\mathrm{d}y.
+\end{equation*}
+作代换
+\begin{equation*}
+  y=\frac{g}{4\omega^2}(1-\cos\xi)
+\end{equation*}
+后，很容易积分得
+\begin{equation*}
+  x=\frac{g}{4\omega^2}(\xi+\sin\xi).
+\end{equation*}
+这两个等式给出了所求曲线的参数方程，这是一条摆线.
+
+\end{xiti}
+
+\section{强迫振动}
+
+现在我们研究可变外力场作用下系统的振动，这种振动称为强迫振动，以区别于§21研究的自由振动.因为前面也假定是微振动，则意味着外力场很弱，否则它会引起过大的位移 $x$.
+
+这种情况下，系统除了固有势能 $(1/2)kx^2$ 以外，还有与外力场作用相关的势能 $U_{\mathrm{e}}(x,t)$.将这个附加势能展开为小量 $x$ 的幂级数，得
+\begin{equation*}
+  U_{\mathrm{e}}(x,t)\approx U_{\mathrm{e}}(0,t)
+  +\left.x\frac{\partial U_{\mathrm{e}}}{\partial x}\right|_{x=0}.
+\end{equation*}
+第一项只是时间的函数，可以从拉格朗日函数中略去（作为另一个时间的函数对时间的全导数）.第二项中 $-\partial U_{\mathrm{e}}/\partial x$ 是外力，作用于处在平衡位置的系统上，是时间的给定函数，用 $F(t)$ 表示.于是势能中出现 $-xF(t)$ 项，所以系统的拉格朗日函数为
+\begin{equation}
+  L=\frac{m\dot{x}^2}{2}-\frac{kx^2}{2}+xF(t).
+\end{equation}
+相应的运动方程为
+\begin{equation*}
+  m\ddot{x}+kx=F(t),
+\end{equation*}
+或者
+\begin{equation}
+  \ddot{x}+\omega^2x=\frac{1}{m}F(t),
+\end{equation}
+这里我们再次引入了自由振动频率 $\omega$.
+
+众所周知，非齐次常系数线性微分方程的通解为两项之和：$x=x_0+x_1$，其中 $x_0$ 是齐次方程的通解，$x_1$ 是非齐次方程的特解.在现在的情况下，$x_0$ 就是§21研究的自由振动.
+
+我们来看一种特别有意义的情况，强迫力是频率为 $\gamma$ 的简单时间周期函数，即
+\begin{equation}
+  F(t)=f\cos(\gamma t+\beta).
+\end{equation}
+我们寻找方程(22.2)形式为 $x_1=b\cos(\gamma t+\beta)$ 的特解，它具有与强迫力同样的周期因子.代入方程可得：$b=f/[m(\omega^2-\gamma^2)]$，加上齐次方程的解，有下列形式的通解
+\begin{equation}
+  x=a\cos(\omega t+\alpha)+\frac{f}{m\left(\omega^2-\gamma^2\right)}\cos(\gamma t+\beta).
+\end{equation}
+任意积分常数 $a$ 和 $\alpha$ 由初始条件确定.
+
+于是，在周期性强迫力作用下，系统的运动是两个振动的合成，两个振动的频率分别为系统的固有频率 $\omega$ 和强迫力的频率 $\gamma$.
+
+解(22.4)不适用于所谓的共振情况，即强迫力的频率 $\gamma$ 与固有频率 $\omega$ 相等的情况.为了求这种情况下方程的通解，将(22.4)改写成如下形式，
+\begin{equation*}
+  x=a\cos(\omega t+\alpha)
+  +\frac{f}{m\left(\omega^2-\gamma^2\right)}
+  \left[\cos(\gamma t+\beta)-\cos(\omega t+\beta)\right],
+\end{equation*}
+其中常数 $\alpha$ 现在有不同的值.当 $\gamma\to\omega$ 时，第二项变为 $0/0$ 的不确定形式.按照洛必达法则消除不确定性可得
+\begin{equation}
+  x=a\cos(\omega t+\alpha)+\frac{f}{2m\omega}t\sin(\omega t+\beta).
+\end{equation}
+于是，在共振情况下，振动的振幅随时间线性增大（直到不再是微振动，上述所有理论都不适用为止）.
+
+我们再来研究共振附近的微振动的性质，即 $\gamma=\omega+\varepsilon$，其中 $\varepsilon$ 是小量.我们将通解写成复数形式
+\begin{equation}
+  x=A\mathrm{e}^{i\omega t}+B\mathrm{e}^{i(\omega+\varepsilon)t}
+  =\left(A+B\mathrm{e}^{i\varepsilon t}\right)\mathrm{e}^{i\omega t}.
+\end{equation}
+因为 $A+B\mathrm{e}^{i\varepsilon t}$ 在因子 $\mathrm{e}^{i\omega t}$ 的周期 $2\pi/\omega$ 内变化很小，所以共振附近的运动可以看作是微振动，但振幅是变化的.\footnote{振动相位中的“常数”项也要变化.}
+
+用 $C$ 表示振幅，有
+\begin{equation*}
+  C=\left|A+B\mathrm{e}^{i\varepsilon t}\right|.
+\end{equation*}
+将 $A$ 和 $B$ 分别表示为 $a\mathrm{e}^{i\alpha}$ 和 $b\mathrm{e}^{i\beta}$，可得
+\begin{equation}
+  C^2=a^2+b^2+2ab\cos(\varepsilon t+\beta-\alpha).
+\end{equation}
+于是，振幅以频率 $\varepsilon$ 周期变化，其变化范围是
+\begin{equation*}
+  |a-b|\leqslant C\leqslant a+b.
+\end{equation*}
+这种现象称为拍.
+
+对任意强迫力 $F(t)$，可以在一般形式下对方程(22.2)积分求解.这很容易做到，只要将方程重写为
+\begin{equation*}
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(\dot{x}+i\omega x\right)
+  -i\omega\left(\dot{x}+i\omega x\right)=\frac{1}{m}F(t)
+\end{equation*}
+或者
+\begin{equation}
+  \frac{\mathrm{d}\xi}{\mathrm{d}t}-i\omega\xi=\frac{1}{m}F(t),
+\end{equation}
+这里引入了复变量
+\begin{equation}
+  \xi=\dot{x}+i\omega x.
+\end{equation}
+方程(22.8)不是二阶，而是一阶微分方程.如果没有右边部分，它的解是 $\xi=A\mathrm{e}^{i\omega t}$，其中 $A$ 是常数.如同前面一样，我们寻找非齐次方程形式为 $\xi=A(t)\mathrm{e}^{i\omega t}$ 的解，对于函数 $A(t)$ 可得方程
+\begin{equation*}
+  \dot{A}(t)=\frac{1}{m}F(t)\mathrm{e}^{-i\omega t}.
+\end{equation*}
+积分后，可得方程(22.8)的解
+\begin{equation}
+  \xi=\mathrm{e}^{i\omega t}\left[\int_0^t\frac{1}{m}F(t)\mathrm{e}^{-i\omega t}\,\mathrm{d}t+\xi_0\right],
+\end{equation}
+其中积分常数 $\xi_0$ 是 $t=0$ 时 $\xi$ 的值.这就是需要寻找的通解，函数 $x(t)$ 由(22.10)的虚部除以 $\omega$ 给出.\footnote{当然，这时力 $F(t)$ 应该写成实数形式.}
+
+系统做强迫振动时能量显然是不守恒的，因为系统靠外场源获得能量.假设初始能量为零，我们来求在外力作用时间内（从 $-\infty$ 到 $+\infty$）传递到系统的总能量.根据公式(22.10)（积分下限用 $-\infty$ 代替零，并且 $\xi(-\infty)=0$），在 $t\to\infty$ 时有
+\begin{equation*}
+  \left|\xi(\infty)\right|^2
+  =\frac{1}{m^2}\left|\int_{-\infty}^{\infty}F(t)\mathrm{e}^{-i\omega t}\,\mathrm{d}t\right|^2.
+\end{equation*}
+另一方面，系统的能量表达式为
+\begin{equation}
+  E=\frac{m}{2}\left(\dot{x}^2+\omega^2x^2\right)=\frac{m}{2}|\xi|^2.
+\end{equation}
+将 $|\xi(\infty)|^2$ 代入此式，可得所要求的转移能量
+\begin{equation}
+  E=\frac{1}{2m}\left|\int_{-\infty}^{\infty}F(t)\mathrm{e}^{-i\omega t}\,\mathrm{d}t\right|^2.
+\end{equation}
+其值由力 $F(t)$ 的傅里叶分量模的平方所决定，该力的频率等于系统的固有频率.
+
+特别地，如果外力作用的时间与 $1/\omega$ 相比很短，则可以令 $\mathrm{e}^{-i\omega t}\approx1$.于是有
+\begin{equation*}
+  E=\frac{1}{2m}\left(\int_{-\infty}^{\infty}F(t)\,\mathrm{d}t\right)^2.
+\end{equation*}
+这个结果是显然的，它表明短时间的力给系统提供冲量 $\int F\,\mathrm{d}t$，但来不及使系统产生显著的位移.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 如果初始时刻 $t=0$ 系统静止在平衡位置（$x=\dot{x}=0$），试求系统在下列几种形式的外力 $F(t)$ 作用下的强迫振动.
+
+a) $F=\mathrm{const}=F_0$.
+
+答：$x=\dfrac{F_0}{m\omega^2}(1-\cos\omega t)$，常力作用的结果是使振动所围绕的平衡位置产生位移.
+
+b) $F=at$.
+
+答：$x=\dfrac{a}{m\omega^3}(\omega t-\sin\omega t)$.
+
+c) $F=F_0\mathrm{e}^{-\alpha t}$.
+
+答：$x=\dfrac{F_0}{m\left(\omega^2+\alpha^2\right)}
+\left(\mathrm{e}^{-\alpha t}-\cos\omega t+\dfrac{\alpha}{\omega}\sin\omega t\right)$.
+
+d) $F=F_0\mathrm{e}^{-\alpha t}\cos\beta t$.
+
+答：
+\begin{equation*}
+\begin{aligned}
+  x=\frac{F_0}{m\left[\left(\omega^2+\alpha^2-\beta^2\right)^2+4\alpha^2\beta^2\right]}\bigg\{&
+  -\left(\omega^2+\alpha^2-\beta^2\right)\cos\omega t\\
+  &+\frac{\alpha}{\omega}\left(\omega^2+\alpha^2+\beta^2\right)\sin\omega t\\
+  &+\mathrm{e}^{-\alpha t}\left[\left(\omega^2+\alpha^2-\beta^2\right)\cos\beta t
+  -2\alpha\beta\sin\beta t\right]\bigg\}.
+\end{aligned}
+\end{equation*}
+（在求解过程中将力写成复数形式 $F=F_0\mathrm{e}^{(-\alpha+i\beta)t}$ 比较方便）.
+
+\noindent{\heiti 习题2}\quad 设直到 $t=0$ 时系统静止在平衡位置，力 $F$ 的变化规律为：当 $t<0$ 时 $F=0$，当 $0<t<T$ 时 $F=F_0t/T$，当 $t>T$ 时 $F=F_0$（图24）.试求在该力作用后系统振动的最后振幅.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.2cm]{fig24.pdf}\\[0.3em]{\small 图 24}\end{minipage}\par\nopagebreak
+
+解：在时间间隔 $0<\tau<T$ 内满足初始条件的振动为
+\begin{equation*}
+  x=\frac{F_0}{mT\omega^3}(\omega t-\sin\omega t).
+\end{equation*}
+当 $t>T$ 时我们求下面形式的解：
+\begin{equation*}
+  x=c_1\cos\left[\omega(t-T)\right]+c_2\sin\left[\omega(t-T)\right]+\frac{F_0}{m\omega^2}.
+\end{equation*}
+由 $x$ 和 $\dot{x}$ 在 $t=T$ 处连续的条件，可求出
+\begin{equation*}
+  c_1=-\frac{F_0}{mT\omega^3}\sin\omega T,\qquad
+  c_2=\frac{F_0}{mT\omega^3}(1-\cos\omega T).
+\end{equation*}
+这样得振幅
+\begin{equation*}
+  a=\sqrt{c_1^2+c_2^2}=\frac{2F_0}{mT\omega^3}\sin\frac{\omega T}{2}.
+\end{equation*}
+可见，施加力 $F_0$ 越缓慢（即 T 越大），这个振幅越小.
+
+\noindent{\heiti 习题3}\quad 同习题2，力 $F_0$ 是常数，只在有限时间间隔 T 内作用（图25）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.2cm]{fig25.pdf}\\[0.3em]{\small 图 25}\end{minipage}\par\nopagebreak
+
+解：可以像习题2那样求解，但利用公式(22.10)更简单.当 $t>T$ 时系统在平衡位置 $x=0$ 处自由振动，有
+\begin{equation*}
+  \xi=\frac{F_0}{m}\mathrm{e}^{i\omega t}\int_0^T\mathrm{e}^{-i\omega t}\,\mathrm{d}t
+  =\frac{F_0}{i\omega m}\left(1-\mathrm{e}^{-i\omega T}\right)\mathrm{e}^{i\omega t}.
+\end{equation*}
+根据关系 $|\xi|^2=a^2\omega^2$，$\xi$ 的模的平方给出振幅.于是求得
+\begin{equation*}
+  a=\frac{2F_0}{m\omega^2}\sin\frac{\omega T}{2}.
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 同习题2，但力在从零到 T 时间间隔内按规律 $F=F_0t/T$ 作用（图26）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.2cm]{fig26.pdf}\\[0.3em]{\small 图 26}\end{minipage}\par\nopagebreak
+
+解：用同样方法可求得
+\begin{equation*}
+  a=\frac{F_0}{Tm\omega^3}\sqrt{\omega^2T^2-2\omega T\sin\omega T+2(1-\cos\omega T)}.
+\end{equation*}
+
+\noindent{\heiti 习题5}\quad 同习题2，但力在从零到 $T=2\pi/\omega$ 时间间隔内按规律 $F=F_0\sin\omega t$ 作用（图27）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.2cm]{fig27.pdf}\\[0.3em]{\small 图 27}\end{minipage}\par\nopagebreak
+
+解：将
+\begin{equation*}
+  F(t)=F_0\sin\omega t=\frac{F_0}{2i}\left(\mathrm{e}^{i\omega t}-\mathrm{e}^{-i\omega t}\right)
+\end{equation*}
+代入公式(22.10)并从零到 T 积分，可得
+\begin{equation*}
+  a=\frac{F_0\pi}{m\omega^2}.
+\end{equation*}
+
+\end{xiti}
+
+\section{多自由度系统振动}
+
+多自由度（$s$）系统的自由振动理论类似于§21的一维振动.
+
+设系统的势能 $U$ 是广义坐标 $q_i\ (i=1,2,\cdots,s)$ 的函数，在 $q_i=q_{i0}$ 处取极小值.引入偏离平衡位置的小位移
+\begin{equation}
+  x_i=q_i-q_{i0},
+\end{equation}
+把 $U$ 展开为 $x_i$ 的级数，并保留到二阶项，可得二次正定形式的势能：
+\begin{equation}
+  U=\frac{1}{2}\sum_{i,k}k_{ik}x_ix_k,
+\end{equation}
+这里我们又取势能的极小值为零.因为(23.2)中 $k_{ik},k_{ki}$ 都是相同量 $x_ix_k$ 的系数，那么它们总是可以被认为相等的：
+\begin{equation*}
+  k_{ik}=k_{ki}.
+\end{equation*}
+动能的一般形式为（参见(5.5)）
+\begin{equation*}
+  \frac{1}{2}\sum_{i,k}a_{ik}(q)\dot{q}_i\dot{q}_k,
+\end{equation*}
+在系数 $a_{ik}$ 中令 $q_i=q_{i0}$，并用 $m_{ik}$ 表示 $a_{ik}(q_0)$，可得二次正定形式的动能：
+\begin{equation}
+  \frac{1}{2}\sum_{i,k}m_{ik}\dot{x}_i\dot{x}_k.
+\end{equation}
+也总可以认为系数 $m_{ik}$ 对下标是对称的：
+\begin{equation*}
+  m_{ik}=m_{ki}.
+\end{equation*}
+于是，自由微振动系统的拉格朗日函数为
+\begin{equation}
+  L=\frac{1}{2}\sum_{i,k}\left(m_{ik}\dot{x}_i\dot{x}_k-k_{ik}x_ix_k\right).
+\end{equation}
+现在我们导出运动方程.为了确定方程中包含的导数，我们写出拉格朗日函数的全微分：
+\begin{equation*}
+  \mathrm{d}L=\frac{1}{2}\sum_{i,k}\left(m_{ik}\dot{x}_i\,\mathrm{d}\dot{x}_k
+  +m_{ik}\dot{x}_k\,\mathrm{d}\dot{x}_i
+  -k_{ik}x_i\,\mathrm{d}x_k-k_{ik}x_k\,\mathrm{d}x_i\right).
+\end{equation*}
+既然上面和之值不依赖于求和指标的名称，我们可以将括号中第一和第三项的 i 和 k 相互交换，考虑到系数 $m_{ik}$ 和 $k_{ik}$ 的对称性，得
+\begin{equation*}
+  \mathrm{d}L=\sum_{i,k}\left(m_{ik}\dot{x}_k\,\mathrm{d}\dot{x}_i-k_{ik}x_k\,\mathrm{d}x_i\right).
+\end{equation*}
+由此可见，
+\begin{equation*}
+  \frac{\partial L}{\partial\dot{x}_i}=\sum_km_{ik}\dot{x}_k,\qquad
+  \frac{\partial L}{\partial x_i}=-\sum_kk_{ik}x_k.
+\end{equation*}
+所以拉格朗日方程为
+\begin{equation}
+  \sum_km_{ik}\ddot{x}_k+\sum_kk_{ik}x_k=0.
+\end{equation}
+这是 $s\ (i=1,2,\cdots,s)$ 个线性齐次常系数微分方程组.
+
+通常，我们寻找下面形式的 $s$ 个未知函数 $x_k(t)$：
+\begin{equation}
+  x_k=A_k\mathrm{e}^{i\omega t},
+\end{equation}
+其中 $A_k$ 是一些待定常数.将(23.6)代入方程组(23.5)，约去 $\mathrm{e}^{i\omega t}$，可得常数 $A_k$ 满足的齐次线性代数方程组
+\begin{equation}
+  \sum_k\left(-\omega^2m_{ik}+k_{ik}\right)A_k=0.
+\end{equation}
+如果该方程组有非零解，则其系数行列式必须等于零：
+\begin{equation}
+  \left|k_{ik}-\omega^2m_{ik}\right|=0.
+\end{equation}
+方程(23.8)称为特征方程，是 $\omega^2$ 的 s 阶方程.在一般情况下，该方程有 s 个不同的正实根 $\omega_\alpha^2\ (\alpha=1,2,\cdots,s)$（在特殊情况下，这些根中有重根）.这样求出的 $\omega_\alpha$ 称为系统的特征频率或本征频率.
+
+从物理的观点来看，显然方程(23.8)的根为正实数.事实上，$\omega$ 有虚部就意味着，坐标 $x_k$ 对时间的依赖关系(23.6)（以及速度 $\dot{x}_k$）中包含指数减小或指数增长的因子.但这样的因子是不允许的，否则会导致系统总能量 $E=U+T$ 随时间变化，违背能量守恒定律.
+
+也可以用数学方法证明上述结论.将(23.7)乘以 $A_i^*$ 并对下标 i 求和，得
+\begin{equation*}
+  \sum_{i,k}\left(-\omega^2m_{ik}+k_{ik}\right)A_i^*A_k=0,
+\end{equation*}
+由此得
+\begin{equation*}
+  \omega^2=\frac{\sum k_{ik}A_i^*A_k}{\sum m_{ik}A_i^*A_k}.
+\end{equation*}
+由于系数 $m_{ik}$ 和 $k_{ik}$ 都是对称的实数，上式分子和分母中的二次型都是实数.事实上，
+\begin{equation*}
+  \left(\sum_{i,k}k_{ik}A_i^*A_k\right)^*
+  =\sum_{i,k}k_{ik}A_iA_k^*
+  =\sum_{i,k}k_{ik}A_kA_i^*.
+\end{equation*}
+它们也是正的\footnote{系数为 $k_{ik}$ 的二次型是正定的，从(23.2)中对实变量的定义看，这是显然的.但如果将复数 $A_k$ 明显地写成 $a_k+ib_k$，则可得（注意到 $k_{ik}$ 的对称性）：$\sum_{i,k}k_{ik}A_i^*A_k=\sum_{i,k}k_{ik}(a_i-ib_i)(a_k+ib_k)=\sum_{i,k}k_{ik}a_ia_k+\sum_{i,k}k_{ik}b_ib_k$，即两个正定二次型的和.}，因而 $\omega^2$ 也是正的.求得频率 $\omega_\alpha$ 并将它们之中的每一个代入方程组(23.7)，就可以求出相应的系数 $A_k$.如果特征方程所有的根 $\omega_\alpha$ 各不相同，则系数 $A_k$ 正比于行列式(23.8)的代数余子式，其中 $\omega$ 用 $\omega_\alpha$ 代替.用 $\Delta_{k\alpha}$ 表示这些余子式.微分方程(23.5)的特解因此有下面形式：
+\begin{equation*}
+  x_k=\Delta_{k\alpha}C_\alpha\mathrm{e}^{i\omega_\alpha t},
+\end{equation*}
+其中 $C_\alpha$ 是任意常数（复数）.
+
+所有这 s 个特解求和，可给出通解.取其实部，写成
+\begin{equation}
+  x_k=\mathrm{Re}\left\{\sum_{\alpha=1}^{s}\Delta_{k\alpha}C_\alpha\mathrm{e}^{i\omega_\alpha t}\right\}
+  \equiv\sum_\alpha\Delta_{k\alpha}\Theta_\alpha,
+\end{equation}
+这里我们引入了记号
+\begin{equation}
+  \Theta_\alpha=\mathrm{Re}\left\{C_\alpha\mathrm{e}^{i\omega_\alpha t}\right\}.
+\end{equation}
+于是，系统每个坐标随时间的变化都是 s 个简单周期振动 $\Theta_1,\Theta_2,\cdots,\Theta_s$ 的叠加，这些简单振动的振幅和相位都是任意的，但频率完全确定.
+
+这自然会产生一个问题，可否选择广义坐标使得每个坐标都仅进行简单振动？通解(23.9)的形式给出了解决这个问题的途径.
+
+事实上，将(23.9)的 s 个关系式看作是 s 个未知量 $\Theta_1,\Theta_2,\cdots,\Theta_s$ 的方程组，求解后可以用 $x_1,x_2,\cdots,x_s$ 表示 $\Theta_1,\Theta_2,\cdots,\Theta_s$.因此 $\Theta_1,\Theta_2,\cdots,\Theta_s$ 可以看作新的广义坐标，这些坐标称为简正坐标（或者主坐标），它们进行简单的周期振动，称为系统的简正振动.
+
+从简正坐标的定义可以看出，它们满足方程
+\begin{equation}
+  \ddot{\Theta}_\alpha+\omega_\alpha^2\Theta_\alpha=0.
+\end{equation}
+这就是说，采用简正坐标，动力学方程组变为 s 个相互独立的方程.每个简正坐标的加速度仅依赖于该坐标，只需已知坐标和相应速度的初值，就可以完全确定坐标对时间的依赖关系.换句话说，系统的简正振动是完全独立的.
+
+由上述可知，用简正坐标表示的拉格朗日函数可以分解为一些表示式之和，每一个表示式都对应于某一频率 $\omega_\alpha$ 的一维振动，即有如下形式
+\begin{equation}
+  L=\sum_\alpha\frac{m_\alpha}{2}\left(\dot{\Theta}_\alpha^2-\omega_\alpha^2\Theta_\alpha^2\right),
+\end{equation}
+其中 $m_\alpha$ 是正常数.从数学观点看，这意味着变换(23.9)将两个二次型（动能(23.3)和势能(23.2)）同时变为对角的形式.
+
+通常可以选择简正坐标，使得在拉格朗日函数中速度平方的系数等于 $1/2$.为此，用下式定义新的简正坐标 $Q_\alpha$：
+\begin{equation}
+  Q_\alpha=\sqrt{m_\alpha}\,\Theta_\alpha.
+\end{equation}
+那么
+\begin{equation*}
+  L=\frac{1}{2}\sum_\alpha\left(\dot{Q}_\alpha^2-\omega_\alpha^2Q_\alpha^2\right).
+\end{equation*}
+当特征方程有重根时，上面的讨论几乎不需要改变.运动方程的积分的一般形式(23.9)和(23.10)也是一样的（也同为 s 项），差别仅仅在于相应于重根的系数 $\Delta_{k\alpha}$ 已不再是行列式的代数余子式，这种情况下这些余子式等于零.\footnote{由与证明频率是实数相同的观点可以看出，在通解中不可能出现包含时间的指数和幂次的项，否则将违背能量守恒定律.}
+
+一个多重（或称简并）频率相应的简正坐标的个数等于这个频率的重数，但是这些简正坐标的选择不是唯一的.对于相同 $\omega_\alpha$ 的简正坐标，它们以和形式 $\sum\dot{Q}_\alpha^2$ 和 $\sum Q_\alpha^2$ 包含在动能和势能中，这些和按相同的方式变换，因此可以对这些简正坐标进行任何方式的线性变换，只要不改变这些平方和.
+
+对于在常外场中一个质点的三维振动，求简正坐标非常容易.取笛卡儿坐标系的原点位于势能 $U(x,y,z)$ 的极小值处，可得变量 $x,y,z$ 的二次形式的势能，而动能
+\begin{equation*}
+  T=\frac{m}{2}\left(\dot{x}^2+\dot{y}^2+\dot{z}^2\right)
+\end{equation*}
+（$m$ 为质点的质量）不依赖于坐标轴的取向.因此，仅需适当旋转坐标系即可将势能化为对角的形式.于是
+\begin{equation}
+  L=\frac{m}{2}\left(\dot{x}^2+\dot{y}^2+\dot{z}^2\right)
+  -\frac{1}{2}\left(k_1x^2+k_2y^2+k_3z^2\right),
+\end{equation}
+且沿着 $x$，$y$，$z$ 方向的振动是简正振动，其频率分别为
+\begin{equation*}
+  \omega_1=\sqrt{k_1/m},\qquad
+  \omega_2=\sqrt{k_2/m},\qquad
+  \omega_3=\sqrt{k_3/m}.
+\end{equation*}
+在有心对称力场（$k_1=k_2=k_3\equiv k$，$U=kr^2/2$）的特殊情况下，这三个频率相等（见习题3）.
+
+利用简正坐标可以将多自由度强迫振动问题转化为一系列单自由度强迫振动的问题.考虑到作用在系统上的可变外力，拉格朗日函数为
+\begin{equation}
+  L=L_0+\sum_kF_k(t)x_k,
+\end{equation}
+其中 $L_0$ 是自由振动的拉格朗日函数.用简正坐标代替 $x_k$ 可得
+\begin{equation}
+  L=\frac{1}{2}\sum_\alpha\left(\dot{Q}_\alpha^2-\omega_\alpha^2Q_\alpha^2\right)
+  +\sum_\alpha f_\alpha(t)Q_\alpha,
+\end{equation}
+其中引入了记号：
+\begin{equation*}
+  f_\alpha(t)=\sum_kF_k(t)\frac{\Delta_{k\alpha}}{\sqrt{m_\alpha}}.
+\end{equation*}
+相应的运动方程
+\begin{equation}
+  \ddot{Q}_\alpha+\omega_\alpha^2Q_\alpha=f_\alpha(t)
+\end{equation}
+只包含一个未知函数 $Q_\alpha(t)$.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 设两个自由度系统的拉格朗日函数为
+\begin{equation*}
+  L=\frac{1}{2}\left(\dot{x}^2+\dot{y}^2\right)
+  -\frac{\omega_0^2}{2}\left(x^2+y^2\right)+\alpha xy
+\end{equation*}
+（两个全同的本征频率为 $\omega_0$ 的一维系统以相互作用 $-\alpha xy$ 耦合起来），试求系统的振动.
+
+解：运动方程为
+\begin{equation*}
+  \ddot{x}+\omega_0^2x=\alpha y,\qquad
+  \ddot{y}+\omega_0^2y=\alpha x.
+\end{equation*}
+将(23.6)代入可得
+\begin{equation*}
+  A_x\left(\omega_0^2-\omega^2\right)=\alpha A_y,\qquad
+  A_y\left(\omega_0^2-\omega^2\right)=\alpha A_x.\qquad(1)
+\end{equation*}
+特征方程为
+\begin{equation*}
+  \left(\omega_0^2-\omega^2\right)^2=\alpha^2,
+\end{equation*}
+由此得
+\begin{equation*}
+  \omega_1^2=\omega_0^2-\alpha,\qquad
+  \omega_2^2=\omega_0^2+\alpha.
+\end{equation*}
+当 $\omega=\omega_1$ 时方程(1)给出 $A_x=A_y$，当 $\omega=\omega_2$ 时方程(1)给出 $A_x=-A_y$，所以
+\begin{equation*}
+  x=\frac{1}{\sqrt{2}}\left(Q_1+Q_2\right),\qquad
+  y=\frac{1}{\sqrt{2}}\left(Q_1-Q_2\right)
+\end{equation*}
+（系数 $1/\sqrt{2}$ 来自于方程(23.13)对简正坐标的归一化）.
+
+当 $\alpha\ll\omega_0^2$ 时（弱耦合），有
+\begin{equation*}
+  \omega_1\approx\omega_0-\alpha/(2\omega_0),\qquad
+  \omega_2\approx\omega_0+\alpha/(2\omega_0).
+\end{equation*}
+在这种情况下 $x$ 和 $y$ 的变化是两个频率几乎相等的振动的叠加，即具有频率为 $\omega_2-\omega_1=\alpha/\omega_0$ 的拍（参见§22）.当坐标 $x$ 的振幅达到最大值时，坐标 $y$ 的振幅达到最小值，反之亦然.
+
+\noindent{\heiti 习题2}\quad 试求平面双摆的微振动（见§5图1）.
+
+解：对于微振动（$\varphi_1\ll1,\varphi_2\ll1$），在§5的习题1中得到的拉格朗日函数写成
+\begin{equation*}
+  L=\frac{m_1+m_2}{2}l_1^2\dot{\varphi}_1^2
+  +\frac{m_2}{2}l_2^2\dot{\varphi}_2^2
+  +m_2l_1l_2\dot{\varphi}_1\dot{\varphi}_2
+  -\frac{m_1+m_2}{2}gl_1\varphi_1^2-\frac{m_2}{2}gl_2\varphi_2^2.
+\end{equation*}
+运动方程为
+\begin{equation*}
+\begin{aligned}
+  &\left(m_1+m_2\right)l_1\ddot{\varphi}_1+m_2l_2\ddot{\varphi}_2
+  +\left(m_1+m_2\right)g\varphi_1=0,\\
+  &l_1\ddot{\varphi}_1+l_2\ddot{\varphi}_2+g\varphi_2=0.
+\end{aligned}
+\end{equation*}
+将(23.6)代入后可得
+\begin{equation*}
+\begin{aligned}
+  &A_1\left(m_1+m_2\right)\left(g-l_1\omega^2\right)-A_2\omega^2m_2l_2=0,\\
+  &-A_1l_1\omega^2+A_2\left(g-l_2\omega^2\right)=0.
+\end{aligned}
+\end{equation*}
+特征方程的根为
+\begin{equation*}
+\begin{aligned}
+  \omega_{1,2}^2=\frac{g}{2m_1l_1l_2}\bigg\{&\left(m_1+m_2\right)\left(l_1+l_2\right)\\
+  &\pm\sqrt{\left(m_1+m_2\right)\left[\left(m_1+m_2\right)\left(l_1+l_2\right)^2-4m_1l_1l_2\right]}\bigg\}.
+\end{aligned}
+\end{equation*}
+当 $m_1\to\infty$ 时，频率趋于极限值 $\sqrt{g/l_1}$，$\sqrt{g/l_2}$，相应于两个单摆独立振动.
+
+\noindent{\heiti 习题3}\quad 试求质点在有心力场 $U=kr^2/2$ 中的运动轨道（称为空间振子）.
+
+解：像所有有心力场一样，轨道位于一个平面内，我们取这个平面为 $xy$ 平面.每个坐标 $x,y$ 的变化是频率均为 $\omega=\sqrt{k/m}$ 的简单振动：
+\begin{equation*}
+  x=a\cos(\omega t+\alpha),\qquad
+  y=b\cos(\omega t+\beta)
+\end{equation*}
+或者
+\begin{equation*}
+  x=a\cos\varphi,\qquad
+  y=b\cos(\varphi+\delta)=b\cos\delta\cos\varphi-b\sin\delta\sin\varphi,
+\end{equation*}
+其中引入了记号 $\varphi=\omega t+\alpha$，$\delta=\beta-\alpha$.由此求出 $\sin\varphi$ 和 $\cos\varphi$ 并由它们的平方和等于1，可得轨道方程
+\begin{equation*}
+  \frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{2xy}{ab}\cos\delta=\sin^2\delta.
+\end{equation*}
+这是中心在坐标原点的椭圆\footnote{在势能 $U=kr^2/2$ 的场中质点的轨道是封闭曲线，这个事实在§14中已经提到.}.当 $\delta=0$ 或者 $\delta=\pi$ 时轨道退化为直线段.
+
+\end{xiti}
+
+\section{分子振动}
+
+如果我们讨论相互作用质点组成的系统，不是处于外场中，则不是所有的自由度都具有振动特性.分子就是一个典型的例子.除了原子在分子内它们的平衡位置附近振动以外，分子整体还作平动和转动.
+
+平动有3个自由度，一般情况下，转动也有同样的自由度，所以由 n 个原子组成的分子的 3n 个自由度中，有 $3n-6$ 个相应于振动.所有原子沿着直线排列属于特殊情况.既然绕这个直线的转动没有意义，这种情况下转动仅有2个自由度，因此振动有 $3n-5$ 个自由度.
+
+在求解分子振动的力学问题时，最好先不考虑平动和转动自由度.
+
+为了消除平动，可以认为分子的总动量等于零.由于这个条件意味着分子的质心不运动，这可以表述为质心的3个坐标为常数.设 $\boldsymbol{r}_a=\boldsymbol{r}_{a0}+\boldsymbol{u}_a$（其中 $\boldsymbol{r}_{a0}$ 是第 $a$ 个原子平衡位置的径矢，而 $\boldsymbol{u}_a$ 是其偏离平衡位置的矢量），我们可将条件
+\begin{equation*}
+  \sum m_a\boldsymbol{r}_a=\mathrm{const}\equiv\sum m_a\boldsymbol{r}_{a0}
+\end{equation*}
+表示为
+\begin{equation}
+  \sum m_a\boldsymbol{u}_a=0.
+\end{equation}
+为了消除转动，应该令分子的总角动量等于零.因为角动量不是坐标的任何函数对时间的全导数，所以，一般来讲，消除转动的条件不可能表述为某个函数等于零的形式.然而，微振动恰好属于特例.事实上，再设 $\boldsymbol{r}_a=\boldsymbol{r}_{a0}+\boldsymbol{u}_a$，略去位移 $\boldsymbol{u}_a$ 的二阶小量，分子的角动量可以写为
+\begin{equation*}
+  \boldsymbol{M}=\sum m_a\boldsymbol{r}_a\times\boldsymbol{v}_a
+  \approx\sum m_a\boldsymbol{r}_{a0}\times\dot{\boldsymbol{u}}_a
+  =\frac{\mathrm{d}}{\mathrm{d}t}\sum m_a\boldsymbol{r}_{a0}\times\boldsymbol{u}_a.
+\end{equation*}
+在这样的近似下，消除分子转动的条件因此可以写成
+\begin{equation}
+  \sum m_a\boldsymbol{r}_{a0}\times\boldsymbol{u}_a=0
+\end{equation}
+（这时坐标原点可以任意选择）.
+
+分子简正振动可以根据原子运动特征分类，分类是基于在分子中原子的平衡位置的对称性.为了实现这个目的，有基于群论的一般方法，这将在本教程的另一卷中讲述\footnote{见第三卷，《量子力学（非相对论理论）》，§100，严肃译，喀兴林校.北京：高等教育出版社，2008.}.这里我们仅考虑几个初等的例子.
+
+如果分子的所有 n 个原子位于一个平面内，则可以区分原子的面内简正振动和面外简正振动.很容易确定这两种振动的自由度.因为在平面内的运动总共有 $2n$ 个自由度，从中去掉两个平动和一个转动，原子面内简正振动自由度为 $2n-3$.其余的 $(3n-6)-(2n-3)=n-3$ 个振动自由度对应于原子的面外振动.
+
+在线性分子情况下，可以区分纵向振动和横向振动.因为 n 个质点沿着直线运动有 n 个自由度，从中去掉一个平动，则纵向振动自由度为 $n-1$.既然线性分子总共有 $3n-5$ 个振动自由度，则有 $2n-4$ 个横向振动自由度.然而，这些 $2n-4$ 个振动仅有 $n-2$ 个不同的频率，这是因为每个振动都可以独立发生在（通过分子轴的）相互垂直的两个平面内，由对称性可知每一对简正振动都有相同的频率.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\footnote{更复杂的分子振动计算可参见：М.\,В.\,Волькенштейн, М.\,А.\,Ельяшевич, Б.\,И.\,Степанов. Колебания молекул. — М.: Гостехиздат, 1949; Г.\,Герцберг, Колебательные и вращательные спектры многоатомных молекул. — М.: ИЛ, 1949.（其中第二篇文献原是英文的，也有中译本：Herzberg G. Molecular spectra and molecular structure: Infrared and Raman spectra of polyatomic molecules. New York: Van Nostrand, 1945. 中译本：赫兹堡 G. 分子光谱与分子结构（第二卷）：多原子分子的红外光谱与拉曼光谱. 王鼎昌译. 北京:科学出版社,1986.）}\quad 求线性 3 原子对称分子 ABA（图28）的振动频率.假设分子势能仅依赖于距离 $A-B$，$B-A$ 以及角 ABA.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5cm]{fig28.pdf}\\[0.3em]{\small 图 28}\end{minipage}\par\nopagebreak
+
+解：根据(24.1)，原子纵向位移 $x_1,x_2,x_3$ 满足关系
+\begin{equation*}
+  m_A\left(x_1+x_3\right)+m_Bx_2=0.
+\end{equation*}
+利用此式，从分子纵向运动的拉格朗日函数
+\begin{equation*}
+  L=\frac{m_A}{2}\left(\dot{x}_1^2+\dot{x}_3^2\right)+\frac{m_B}{2}\dot{x}_2^2
+  -\frac{k_1}{2}\left[\left(x_1-x_2\right)^2+\left(x_3-x_2\right)^2\right]
+\end{equation*}
+中消去 $x_2$，然后引入新坐标
+\begin{equation*}
+  Q_a=x_1+x_3,\qquad
+  Q_s=x_1-x_3.
+\end{equation*}
+于是可得
+\begin{equation*}
+  L=\frac{m_A\mu}{4m_B}\dot{Q}_a^2+\frac{m_A}{4}\dot{Q}_s^2
+  -\frac{k_1\mu^2}{4m_B^2}Q_a^2-\frac{k_1}{4}Q_s^2,
+\end{equation*}
+其中 $\mu=2m_A+m_B$ 是分子的质量.由此可见，$Q_a$ 和 $Q_s$ 是简正坐标（精确到相差归一化系数）.坐标 $Q_a$ 对应着相对分子中心的反对称振动（$x_1=x_3$，图28a），其频率为
+\begin{equation*}
+  \omega_a=\sqrt{\frac{k_1\mu}{m_Am_B}}.
+\end{equation*}
+坐标 $Q_s$ 对应着对称振动（$x_1=-x_3$，图28b），频率为
+\begin{equation*}
+  \omega_{s1}=\sqrt{\frac{k_1}{m_A}}.
+\end{equation*}
+根据(24.1)和(24.2)，原子横向位移 $y_1,y_2,y_3$ 满足关系
+\begin{equation*}
+  m_A\left(y_1+y_3\right)+m_By_2=0,\qquad y_1=y_3,
+\end{equation*}
+（对称弯曲振动，图28c）.分子弯曲势能写成 $k_2l^2\delta^2/2$，其中 $\delta$ 是角 ABA 偏离 $\pi$ 的大小，可以用位移表示为
+\begin{equation*}
+  \delta=\frac{1}{l}\left[\left(y_1-y_2\right)+\left(y_3-y_2\right)\right].
+\end{equation*}
+将所有的位移 $y_1,y_2,y_3$ 用 $\delta$ 表示，可得分子横向振动的拉格朗日函数
+\begin{equation*}
+  L=\frac{m_A}{2}\left(\dot{y}_1^2+\dot{y}_3^2\right)+\frac{m_B}{2}\dot{y}_2^2
+  -\frac{k_2l^2}{2}\delta^2
+  =\frac{m_Am_B}{4\mu}l^2\dot{\delta}^2-\frac{k_2l^2}{2}\delta^2,
+\end{equation*}
+由此得频率
+\begin{equation*}
+  \omega_{s2}=\sqrt{\frac{2k_2\mu}{m_Am_B}}.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 同上题，但分子 ABA 的形状为三角形（图29）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5.5cm]{fig29.pdf}\\[0.3em]{\small 图 29}\end{minipage}\par\nopagebreak
+
+解：根据(24.1)和(24.2)，原子位移 $\boldsymbol{u}$ 在 $X$ 和 $Y$ 方向的分量满足关系
+\begin{equation*}
+\begin{aligned}
+  &m_A\left(x_1+x_3\right)+m_Bx_2=0,\\
+  &m_A\left(y_1+y_3\right)+m_By_2=0,\\
+  &\left(y_1-y_3\right)\sin\alpha-\left(x_1+x_3\right)\cos\alpha=0.
+\end{aligned}
+\end{equation*}
+利用矢量 $\boldsymbol{u}_1-\boldsymbol{u}_2$ 和 $\boldsymbol{u}_3-\boldsymbol{u}_2$ 在直线 AB 和 BA 方向上投影，可得距离 $A-B$ 和 $B-A$ 的变化量 $\delta l_1$ 和 $\delta l_2$ 如下：
+\begin{equation*}
+\begin{aligned}
+  &\delta l_1=\left(x_1-x_2\right)\sin\alpha+\left(y_1-y_2\right)\cos\alpha,\\
+  &\delta l_2=-\left(x_3-x_2\right)\sin\alpha+\left(y_3-y_2\right)\cos\alpha.
+\end{aligned}
+\end{equation*}
+将这两个矢量向垂直于直线 AB 和 BA 方向上投影，可得角 ABA 的改变量
+\begin{equation*}
+  \delta=\frac{1}{l}\left[\left(x_1-x_2\right)\cos\alpha-\left(y_1-y_2\right)\sin\alpha\right]
+  +\frac{1}{l}\left[-\left(x_3-x_2\right)\cos\alpha-\left(y_3-y_2\right)\sin\alpha\right].
+\end{equation*}
+分子的拉格朗日函数为
+\begin{equation*}
+  L=\frac{m_A}{2}\left(\dot{\boldsymbol{u}}_1^2+\dot{\boldsymbol{u}}_3^2\right)
+  +\frac{m_B}{2}\dot{\boldsymbol{u}}_2^2
+  -\frac{k_1}{2}\left(\delta l_1^2+\delta l_2^2\right)-\frac{k_2l^2}{2}\delta^2.
+\end{equation*}
+引入新坐标
+\begin{equation*}
+  Q_a=x_1+x_3,\qquad
+  q_{s1}=x_1-x_3,\qquad
+  q_{s2}=y_1+y_3.
+\end{equation*}
+将矢量 $\boldsymbol{u}$ 的分量用这些新坐标表示
+\begin{equation*}
+  x_1=\frac{1}{2}\left(Q_a+q_{s1}\right),\qquad
+  x_3=\frac{1}{2}\left(Q_a-q_{s1}\right),\qquad
+  x_2=-\frac{m_A}{m_B}Q_a,
+\end{equation*}
+\begin{equation*}
+  y_1=\frac{1}{2}\left(q_{s2}+Q_a\cot\alpha\right),\qquad
+  y_3=\frac{1}{2}\left(q_{s2}-Q_a\cot\alpha\right),\qquad
+  y_2=-\frac{m_A}{m_B}q_{s2},
+\end{equation*}
+计算后可得拉格朗日函数
+\begin{equation*}
+\begin{aligned}
+  L={}&\frac{m_A}{4}\left(\frac{2m_A}{m_B}+\frac{1}{\sin^2\alpha}\right)\dot{Q}_a^2
+  +\frac{m_A}{4}\dot{q}_{s1}^2+\frac{m_A\mu}{4m_B}\dot{q}_{s2}^2\\
+  &-Q_a^2\frac{k_1}{4}\left(\frac{2m_A}{m_B}+\frac{1}{\sin^2\alpha}\right)
+  \left(1+\frac{2m_A}{m_B}\sin^2\alpha\right)
+  -\frac{q_{s1}^2}{4}\left(k_1\sin^2\alpha+2k_2\cos^2\alpha\right)\\
+  &-q_{s2}^2\frac{\mu^2}{4m_B^2}\left(k_1\cos^2\alpha+2k_2\sin^2\alpha\right)
+  +q_{s1}q_{s2}\frac{\mu}{2m_B}\left(2k_2-k_1\right)\sin\alpha\cos\alpha.
+\end{aligned}
+\end{equation*}
+由此可见，坐标 $Q_a$ 对应于频率为
+\begin{equation*}
+  \omega_a^2=\frac{k_1}{m_A}\left(1+\frac{2m_A}{m_B}\sin^2\alpha\right)
+\end{equation*}
+的相对于 Y 轴的反对称简正振动（$x_1=x_3$，$y_1=-y_3$，图29a）.
+
+坐标 $q_{s1}$，$q_{s2}$ 对应于两个振动（相对 Y 轴对称：$x_1=-x_3$，$y_1=y_3$，图29b和29c），其频率 $\omega_{s1},\omega_{s2}$ 是二次（$\omega^2$）特征方程
+\begin{equation*}
+  \omega^4-\omega^2\left[\frac{k_1}{m_A}\left(1+\frac{2m_A}{m_B}\cos^2\alpha\right)
+  +\frac{2k_2}{m_A}\left(1+\frac{2m_A}{m_B}\sin^2\alpha\right)\right]
+  +\frac{2\mu k_1k_2}{m_Bm_A^2}=0
+\end{equation*}
+的根.当 $2\alpha=\pi$ 时，所有这些频率与习题1中得到的相同.
+
+\noindent{\heiti 习题3}\quad 同习题1，但分子 ABC 是线性非对称的（图30）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.5cm]{fig30.pdf}\\[0.3em]{\small 图 30}\end{minipage}\par\nopagebreak
+
+解：原子纵向位移（$x$）和横向位移（$y$）之间的关系为
+\begin{equation*}
+\begin{aligned}
+  &m_Ax_1+m_Bx_2+m_Cx_3=0,\\
+  &m_Ay_1+m_By_2+m_Cy_3=0,\\
+  &m_Al_1y_1=m_Cl_2y_3.
+\end{aligned}
+\end{equation*}
+拉伸和弯曲势能为
+\begin{equation*}
+  \frac{k_1}{2}\left(\delta l_1\right)^2+\frac{k_1'}{2}\left(\delta l_2\right)^2
+  +\frac{k_2l^2}{2}\delta^2,
+\end{equation*}
+其中 $2l=l_1+l_2$.类似习题1，计算可得横向振动频率
+\begin{equation*}
+  \omega_{\mathrm{t}}^2=\frac{k_2l^2}{l_1^2l_2^2}
+  \left(\frac{l_1^2}{m_C}+\frac{l_2^2}{m_A}+\frac{4l^2}{m_B}\right),
+\end{equation*}
+两个纵向振动频率 $\omega_{\mathrm{l1}}$，$\omega_{\mathrm{l2}}$ 满足二次（$\omega^2$）特征方程
+\begin{equation*}
+  \omega^4-\omega^2\left[k_1\left(\frac{1}{m_A}+\frac{1}{m_B}\right)
+  +k_1'\left(\frac{1}{m_B}+\frac{1}{m_C}\right)\right]
+  +\frac{\mu k_1k_1'}{m_Am_Bm_C}=0.
+\end{equation*}
+
+\end{xiti}
+
+\section{阻尼振动}
+
+到现在为止，我们都是假设物体的运动发生在真空中或者周围介质对运动的影响可以忽略.实际上，物体在介质中运动时，介质会产生阻力使运动有减慢的趋势，这时运动物体的能量不断转化为热能而最终耗散完.
+
+在这种情况下运动过程已不再是纯力学过程，需要考虑介质自身的运动，以及物体和介质的内部热状态.特别是，一般情况下不能认为，运动物体的加速度仅仅是给定时刻的坐标和速度的函数，即不存在这种力学意义上的运动方程了.因此，在介质中物体的运动问题已经不是力学问题.
+
+然而，存在一些情况，在介质中的运动可以近似地用力学运动方程描述，这需要在方程中引入某些附加项.如果振动频率小于在介质内耗散过程的频率，则属于这种情况.当满足这样的条件时，可以认为在物体上作用了仅依赖于速度的摩擦力（对于给定的均匀介质）.
+
+此外，如果速度足够小，可以将摩擦力按速度的幂次展开.因为在静止物体上没有任何摩擦力作用，所以零次项为零.不为零的第一项与速度成正比.于是，作用在广义坐标为 $x$ 的一维微振动系统的广义摩擦力 $f_{\mathrm{fr}}$ 可以写成
+\begin{equation*}
+  f_{\mathrm{fr}}=-\alpha\dot{x},
+\end{equation*}
+其中 $\alpha$ 为正的系数，负号表示力的方向与速度方向相反.将这个力加到运动方程（见(21.4)）的右端，可得
+\begin{equation}
+  m\ddot{x}=-kx-\alpha\dot{x}.
+\end{equation}
+除以 $m$ 并引入记号
+\begin{equation}
+  \frac{k}{m}=\omega_0^2,\qquad
+  \frac{\alpha}{m}=2\lambda.
+\end{equation}
+$\omega_0$ 是没有摩擦力时系统自由振动的频率.$\lambda$ 称为阻尼系数\footnote{无量纲乘积 $\lambda T$（其中 $T=2\pi/\omega$ 是周期）称为对数阻尼衰减率.}，或阻尼衰减率.
+
+于是，我们有方程
+\begin{equation}
+  \ddot{x}+2\lambda\dot{x}+\omega_0^2x=0.
+\end{equation}
+根据求解常系数线性微分方程的一般方法，假设 $x=\mathrm{e}^{rt}$ 可得关于 r 的特征方程
+\begin{equation*}
+  r^2+2\lambda r+\omega_0^2=0.
+\end{equation*}
+方程(25.3)的通解为：
+\begin{equation*}
+  x=c_1\mathrm{e}^{r_1t}+c_2\mathrm{e}^{r_2t},\qquad
+  r_{1,2}=-\lambda\pm\sqrt{\lambda^2-\omega_0^2}.
+\end{equation*}
+下面分两种情况讨论.
+
+如果 $\lambda<\omega_0$，则 r 有两个共轭复值.运动方程的通解可以写成
+\begin{equation*}
+  x=\mathrm{Re}\left\{A\exp\left(-\lambda t+it\sqrt{\omega_0^2-\lambda^2}\right)\right\},
+\end{equation*}
+其中 $A$ 是任意复常数.也可以写成
+\begin{equation}
+  x=a\mathrm{e}^{-\lambda t}\cos(\omega t+\alpha),\qquad
+  \omega=\sqrt{\omega_0^2-\lambda^2},
+\end{equation}
+其中 $a$ 和 $\alpha$ 是实常数.这些公式表示的运动称为阻尼振动.可以看作是振幅按指数规律衰减的简谐振动.振幅衰减率由指数 $\lambda$ 确定，振动“频率”$\omega$ 小于无摩擦力时自由振动的频率.当 $\lambda\ll\omega_0$ 时，$\omega$ 和 $\omega_0$ 之间的差别是二阶小量.由于摩擦总是阻碍运动，故有摩擦力时频率减小是所预期的.
+
+如果 $\lambda\ll\omega_0$，则在一个周期 $2\pi/\omega$ 之内阻尼振动的振幅几乎不变.这时研究坐标平方与速度平方的（一个周期内）的平均值很有意义，取平均时忽略乘子 $\mathrm{e}^{-\lambda t}$ 的变化，这两个平均值显然与 $\mathrm{e}^{-2\lambda t}$ 成正比.所以系统的平均能量衰减规律为
+\begin{equation}
+  \overline{E}=E_0\mathrm{e}^{-2\lambda t},
+\end{equation}
+其中 $E_0$ 是能量的初值.
+
+现在假设 $\lambda>\omega_0$.那么 r 的两个值都是实数，并且两个都是负数.通解可写成
+\begin{equation}
+\begin{split}
+  x={}&c_1\exp\left[-\left(\lambda-\sqrt{\lambda^2-\omega_0^2}\right)t\right]\\
+  &+c_2\exp\left[-\left(\lambda+\sqrt{\lambda^2-\omega_0^2}\right)t\right].
+\end{split}
+\end{equation}
+可见，在这种摩擦力足够大的情况下，运动 $|x|$ 单调递减，即（当 $t\to\infty$ 时）渐近地趋近于平衡位置.这种类型的运动称为非周期阻尼.
+
+最后，在 $\lambda=\omega_0$ 的特殊情况下，特征方程有一个二重根为 $r=-\lambda$.这时运动方程的通解为
+\begin{equation}
+  x=\left(c_1+c_2t\right)\mathrm{e}^{-\lambda t}.
+\end{equation}
+这是非周期阻尼的特殊情况.
+
+对于多自由度系统，相应于广义坐标 $x_i$ 的广义摩擦力是如下形式的速度的线性函数
+\begin{equation}
+  f_{i\,\mathrm{fr}}=-\sum_k\alpha_{ik}\dot{x}_k.
+\end{equation}
+从纯粹的力学角度考虑，无法得出系数 $\alpha_{ik}$ 对下标 i 和 k 的对称性结论.但是，用统计物理的方法可以证明，在所有情况下\footnote{参见第五卷，《统计物理学Ⅰ》，§121.}
+\begin{equation}
+  \alpha_{ik}=\alpha_{ki}.
+\end{equation}
+故公式(25.8)可以写成导数形式
+\begin{equation}
+  f_{i\,\mathrm{fr}}=-\frac{\partial F}{\partial\dot{x}_i},
+\end{equation}
+其中 $F$ 是二次型
+\begin{equation}
+  F=\frac{1}{2}\sum_{i,k}\alpha_{ik}\dot{x}_i\dot{x}_k
+\end{equation}
+称为耗散函数.
+
+在拉格朗日方程的右端加入力(25.10)，得
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot{x}_i}
+  =\frac{\partial L}{\partial x_i}-\frac{\partial F}{\partial\dot{x}_i}.
+\end{equation}
+耗散函数自身有重要的物理意义，它决定了系统中能量耗散的速率.这很容易证明，只要计算系统机械能对时间的导数即可.我们有
+\begin{equation*}
+  \frac{\mathrm{d}E}{\mathrm{d}t}
+  =\frac{\mathrm{d}}{\mathrm{d}t}\left(\sum_i\dot{x}_i\frac{\partial L}{\partial\dot{x}_i}-L\right)
+  =\sum_i\dot{x}_i\left(\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial L}{\partial\dot{x}_i}
+  -\frac{\partial L}{\partial x_i}\right)
+  =-\sum_i\dot{x}_i\frac{\partial F}{\partial\dot{x}_i}.
+\end{equation*}
+由于 $F$ 是速度的二次函数，根据欧拉齐次函数定理，上式右端的和等于 $2F$.于是
+\begin{equation}
+  \mathrm{d}E/\mathrm{d}t=-2F,
+\end{equation}
+即系统能量变化率等于2倍耗散函数.因为耗散过程会导致能量损失，总是有 $F>0$，即二次型(25.11)是正定的.
+
+将力(25.8)加入方程(23.5)的右端，可得存在摩擦力时微振动的方程
+\begin{equation}
+  \sum_km_{ik}\ddot{x}_k+\sum_kk_{ik}x_k=-\sum_k\alpha_{ik}\dot{x}_k.
+\end{equation}
+在这些方程中令
+\begin{equation*}
+  x_k=A_k\mathrm{e}^{rt},
+\end{equation*}
+约去 $\mathrm{e}^{rt}$ 后可得常数 $A_k$ 满足的线性代数方程组
+\begin{equation}
+  \sum_k\left(m_{ik}r^2+\alpha_{ik}r+k_{ik}\right)A_k=0.
+\end{equation}
+令行列式等于零可得特征方程
+\begin{equation}
+  \left|m_{ik}r^2+\alpha_{ik}r+k_{ik}\right|=0,
+\end{equation}
+可求得可能的 r 值.
+
+这是 r 的 2s 阶方程.因为所有系数都是实数，方程的根或者是实数，或者是复共轭对.实根一定是负数，复根的实部一定是负的.否则坐标和速度以及系统的能量都会随着时间指数增加，但耗散力应该使能量减小.
+
+\section{有摩擦的强迫振动}
+
+研究有摩擦时的强迫振动类似于§22研究无摩擦振动.这里我们将详细研究非常有意义的周期强迫力情况.
+
+在方程(25.1)的右端加入外力 $f\cos\gamma t$ 并除以 $m$，可得运动方程
+\begin{equation}
+  \ddot{x}+2\lambda\dot{x}+\omega_0^2x=\frac{f}{m}\cos\gamma t.
+\end{equation}
+求解这个方程用复数形式更方便，为此在右端用 $\mathrm{e}^{i\gamma t}$ 代替 $\cos\gamma t$：
+\begin{equation*}
+  \ddot{x}+2\lambda\dot{x}+\omega_0^2x=\frac{f}{m}\mathrm{e}^{i\gamma t}.
+\end{equation*}
+我们求 $x=B\mathrm{e}^{i\gamma t}$ 形式的特解，对于 B 有
+\begin{equation}
+  B=\frac{f}{m\left(\omega_0^2-\gamma^2+2i\lambda\gamma\right)}.
+\end{equation}
+将 B 写成 $b\mathrm{e}^{i\delta}$ 的形式，对于 b 和 $\delta$ 有
+\begin{equation}
+  b=\frac{f}{m\sqrt{\left(\omega_0^2-\gamma^2\right)^2+4\lambda^2\gamma^2}},\qquad
+  \tan\delta=\frac{2\lambda\gamma}{\gamma^2-\omega_0^2}.
+\end{equation}
+最后，将表达式 $B\mathrm{e}^{i\gamma t}=b\mathrm{e}^{i(\gamma t+\delta)}$ 的实部取出来，可得方程(26.1)的特解，再加上其相应的齐次方程的通解（为确定起见，我们给出 $\omega_0>\lambda$ 的情况），最终得
+\begin{equation}
+  x=a\mathrm{e}^{-\lambda t}\cos(\omega t+\alpha)+b\cos(\gamma t+\delta).
+\end{equation}
+第一项随时间指数衰减，因而经过足够长时间后只剩下第二项：
+\begin{equation}
+  x=b\cos(\gamma t+\delta).
+\end{equation}
+强迫振动的振幅 b 的表达式(26.3)在 $\gamma$ 趋近 $\omega_0$ 时也增大，但是不会像无摩擦力共振那样趋向无穷.对于给定的力幅值 f，在 $\gamma=\sqrt{\omega_0^2-2\lambda^2}$ 时振动的振幅最大.当 $\lambda\ll\omega_0$ 时，这个值与 $\omega_0$ 之差是二阶小量.
+
+我们研究接近共振的区域.设 $\gamma=\omega_0+\varepsilon$，其中 $\varepsilon$ 是小量，我们又假设 $\lambda\ll\omega_0$.那么在(26.2)中可以做近似替换
+\begin{equation*}
+  \gamma^2-\omega_0^2=\left(\gamma+\omega_0\right)\left(\gamma-\omega_0\right)\approx2\omega_0\varepsilon,\qquad
+  2i\lambda\gamma\approx2i\lambda\omega_0,
+\end{equation*}
+因此
+\begin{equation}
+  B=-\frac{f}{2m\left(\varepsilon-i\lambda\right)\omega_0}
+\end{equation}
+或者
+\begin{equation}
+  b=\frac{f}{2m\omega_0\sqrt{\varepsilon^2+\lambda^2}},\qquad
+  \tan\delta=\frac{\lambda}{\varepsilon}.
+\end{equation}
+我们研究当强迫力频率改变时，振动与强迫力之间的相位差 $\delta$ 的变化特点.这个差总是负的，即振动“落后”于外力.当从 $\gamma<\omega_0$ 一侧远离共振时，则 $\delta$ 趋于零，如果从 $\gamma>\omega_0$ 一侧远离时，则 $\delta$ 趋于 $-\pi$.在接近 $\omega_0$ 的狭窄区域（宽度为 $\lambda$ 的量级）内，$\delta$ 从零变化为 $-\pi$.当 $\gamma=\omega_0$ 时相位差 $\delta$ 经过 $-\pi/2$.我们发现，无摩擦力时强迫振动相位在 $\gamma=\omega_0$ 时产生量值 $\pi$ 的突变（(22.4)的第二项改变符号），考虑摩擦力时就“消除”了这个突变.
+
+当系统的强迫振动处于稳定运动(26.5)时，系统的能量保持不变.这时系统不断（从外力源）吸收能量，又因摩擦而耗散掉.我们用外力频率的函数 $I(\gamma)$ 表示单位时间内平均吸收的能量.根据(25.13)有
+\begin{equation*}
+  I(\gamma)=2\overline{F},
+\end{equation*}
+其中 $\overline{F}$ 是耗散函数（对振动周期）的平均值.对于一维运动，耗散函数的表达式(25.11)写成 $F=\alpha\dot{x}^2/2=\lambda m\dot{x}^2$.将(26.5)代入得
+\begin{equation*}
+  F=\lambda mb^2\gamma^2\sin^2(\gamma t+\delta).
+\end{equation*}
+正弦的平方对时间的平均值为 $1/2$，所以
+\begin{equation}
+  I(\gamma)=\lambda mb^2\gamma^2.
+\end{equation}
+在共振附近，代入振幅(26.7)得
+\begin{equation}
+  I(\varepsilon)=\frac{f^2}{4m}\frac{\lambda}{\varepsilon^2+\lambda^2}.
+\end{equation}
+能量吸收对频率的这种依赖关系称为色散.在某个 $\varepsilon$ 值时 $I(\varepsilon)$ 等于 $\varepsilon=0$ 时的最大值的一半，则 $|\varepsilon|$ 称为共振曲线（图31）的半宽度.由公式(26.9)可知，在现在的情况下，这个半宽度等于阻尼系数 $\lambda$.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5.5cm]{fig31.pdf}\\[0.3em]{\small 图 31}\end{minipage}\par\nopagebreak
+
+曲线最大值的高度
+\begin{equation*}
+  I(0)=\frac{f^2}{4m\lambda}
+\end{equation*}
+与 $\lambda$ 成反比.因此，随着阻尼系数减小，共振曲线变得更窄更高，即峰值更大.但这时共振曲线下面的面积不变.这个面积由积分
+\begin{equation*}
+  \int_0^{\infty}I(\gamma)\,\mathrm{d}\gamma=\int_{-\omega_0}^{\infty}I(\varepsilon)\,\mathrm{d}\varepsilon
+\end{equation*}
+给出.因为 $I(\varepsilon)$ 在 $|\varepsilon|$ 增大时迅速减小，$|\varepsilon|$ 很大的区域无关紧要，可以在积分时将 $I(\varepsilon)$ 取为(26.9)的形式，积分下限换为 $-\infty$.那么
+\begin{equation}
+  \int_{-\infty}^{\infty}I(\varepsilon)\,\mathrm{d}\varepsilon
+  =\frac{f^2\lambda}{4m}\int_{-\infty}^{\infty}\frac{\mathrm{d}\varepsilon}{\varepsilon^2+\lambda^2}
+  =\frac{\pi f^2}{4m}.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 试求外力 $f=f_0\mathrm{e}^{\alpha t}\cos\gamma t$ 作用下有摩擦的强迫振动.
+
+解：我们求解复数形式的运动方程
+\begin{equation*}
+  \ddot{x}+2\lambda\dot{x}+\omega_0^2x=\frac{f_0}{m}\mathrm{e}^{\alpha t+i\gamma t},
+\end{equation*}
+然后取解的实部.结果可得如下形式的强迫振动
+\begin{equation*}
+  x=b\mathrm{e}^{\alpha t}\cos(\gamma t+\delta),
+\end{equation*}
+其中
+\begin{equation*}
+\begin{aligned}
+  &b=\frac{f_0}{m\sqrt{\left(\omega_0^2+\alpha^2-\gamma^2+2\alpha\lambda\right)^2
+  +4\gamma^2\left(\alpha+\lambda\right)^2}},\\
+  &\tan\delta=-\frac{2\gamma\left(\alpha+\lambda\right)}
+  {\omega_0^2+\alpha^2-\gamma^2+2\alpha\lambda}.
+\end{aligned}
+\end{equation*}
+
+\end{xiti}
+
+\section{参变共振}
+
+存在一种非封闭振动系统，外力的作用可以归结为其参数随时间的变化\footnote{一个简单的例子是单摆，其悬挂点在竖直方向上按给定周期规律运动（见习题3）.}.
+
+一维系统的拉格朗日函数(21.3)中的参数是 m 和 k，如果它们依赖于时间，则运动方程为
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}t}\left(m\dot{x}\right)+kx=0.
+\end{equation}
+用新的独立变量 $\tau$ 代替 t，使得 $\mathrm{d}\tau=\mathrm{d}t/m(\tau)$，则方程变为
+\begin{equation*}
+  \frac{\mathrm{d}^2x}{\mathrm{d}\tau^2}+mkx=0.
+\end{equation*}
+因此，不失一般性，研究下面形式的方程就足够了
+\begin{equation}
+  \frac{\mathrm{d}^2x}{\mathrm{d}t^2}+\omega^2(t)x=0.
+\end{equation}
+这个方程可以由(27.1)中令 $m=\mathrm{const}$ 得到.
+
+函数 $\omega(t)$ 的形式由问题的条件决定.假设这个函数是频率为 $\gamma$，周期为 $T=2\pi/\gamma$ 的周期函数，这就是说，
+\begin{equation*}
+  \omega(t+T)=\omega(t),
+\end{equation*}
+因而方程(27.2)在变换 $t\to t+T$ 下保持不变.由此可知，如果 $x(t)$ 是方程的解，则函数 $x(t+T)$ 也是解.换句话说，如果 $x_1(t),x_2(t)$ 是方程(27.2)的两个独立的解，则变量替换 $t\to t+T$ 后这两个函数必定变换为它们自身的线性叠加.这种情况下可以选择 $x_1$ 和 $x_2$ 使得变量替换 $t\to t+T$ 的结果仅是原函数乘以常数\footnote{这种选择等价于将 $x_1(t)$ 和 $x_2(t)$ 的线性变换矩阵化为对角化的形式，这需要求解相应的二次特征方程.我们假设这个方程没有重根.}
+\begin{equation*}
+  x_1(t+T)=\mu_1x_1(t),\qquad
+  x_2(t+T)=\mu_2x_2(t).
+\end{equation*}
+具有这种性质的函数的一般形式为
+\begin{equation}
+  x_1(t)=\mu_1^{t/T}\pi_1(t),\qquad
+  x_2(t)=\mu_2^{t/T}\pi_2(t),
+\end{equation}
+其中 $\pi_1(t)$ 和 $\pi_2(t)$ 仅仅是时间的周期函数（周期为 T）.
+
+这些函数中的常数 $\mu_1$ 和 $\mu_2$ 应该满足确定的关系.事实上，将方程
+\begin{equation*}
+  \ddot{x}_1+\omega^2(t)x_1=0,\qquad
+  \ddot{x}_2+\omega^2(t)x_2=0
+\end{equation*}
+分别乘以 $x_2$ 和 $x_1$，相减后可得
+\begin{equation*}
+  \ddot{x}_1x_2-\ddot{x}_2x_1
+  =\frac{\mathrm{d}}{\mathrm{d}t}\left(\dot{x}_1x_2-\dot{x}_2x_1\right)=0
+\end{equation*}
+或者
+\begin{equation}
+  \dot{x}_1x_2-\dot{x}_2x_1=\mathrm{const}.
+\end{equation}
+然而，对任何形如(27.3)的函数 $x_1(t)$ 和 $x_2(t)$，在 t 变为 $t+T$ 时，(27.4)左边的表达式乘以 $\mu_1\mu_2$.所以很清楚，为了使等式(27.4)在任何条件下成立，必须有
+\begin{equation}
+  \mu_1\mu_2=1.
+\end{equation}
+从方程(27.2)的系数为实数的事实出发，可以得到关于常数 $\mu_1,\mu_2$ 的其它结论.如果 $x(t)$ 是方程(27.2)的某个解，则其复共轭函数 $x^*(t)$ 也满足该方程.由此可知，常数 $\mu_1,\mu_2$ 应该与另一对常数 $\mu_1^*,\mu_2^*$ 相同，即 $\mu_1=\mu_2^*$ 或者 $\mu_1,\mu_2$ 都是实数.在第一种情况下，考虑到(27.5)，有 $\mu_1=1/\mu_1^*$，即 $|\mu_1|^2=|\mu_2|^2=1$，常数 $\mu_1$ 和 $\mu_2$ 的模都等于1.
+
+在第二种情况下，方程(27.2)的两个独立解的形式为
+\begin{equation}
+  x_1(t)=\mu^{t/T}\pi_1(t),\qquad
+  x_2(t)=\mu^{-t/T}\pi_2(t),
+\end{equation}
+并且 $\mu$ 是模 $|\mu|$ 不为1的正实数或者负实数.这些函数之一（视 $|\mu|>1$ 或 $|\mu|<1$ 而为函数 $x_1(t)$ 或 $x_2(t)$）随时间指数增长.这就是说，系统在平衡位置 $x=0$ 的静止状态不稳定：偏离这个状态任意小量，都会使出现的位移 x 随时间快速增长.这种现象称为参变共振.
+
+应该注意的是，当 $x$ 和 $\dot{x}$ 的初值严格等于零时，它们以后也等于零，这不同于通常的共振（§22）.在通常共振情况下，即使从零初始值出发位移也会随时间增长（正比于 t）.
+
+下面我们确定一种重要的情况中发生参变共振的条件，函数 $\omega(t)$ 与常数 $\omega_0$ 相差很小，并且是简单周期函数
+\begin{equation}
+  \omega^2(t)=\omega_0^2\left(1+h\cos\gamma t\right),
+\end{equation}
+其中常数 $h\ll1$（可以假定 h 是正数，这是因为总可以通过适当地选择时间起点来实现）.下面将会看到，如果函数 $\omega(t)$ 的频率 $\gamma$ 接近两倍的 $\omega_0$，则参变共振最强烈.所以假设
+\begin{equation*}
+  \gamma=2\omega_0+\varepsilon,
+\end{equation*}
+其中 $\varepsilon\ll\omega_0$.
+
+求解运动方程\footnote{这种形式的方程（$\gamma$ 和 $h$ 是任意的）在数学物理中称为马蒂厄（Mathieu）方程.}
+\begin{equation}
+  \ddot{x}+\omega_0^2\left[1+h\cos\left(2\omega_0+\varepsilon\right)t\right]x=0
+\end{equation}
+时，我们假设解的形式为
+\begin{equation}
+  x=a(t)\cos\left(\omega_0+\frac{\varepsilon}{2}\right)t
+  +b(t)\sin\left(\omega_0+\frac{\varepsilon}{2}\right)t,
+\end{equation}
+其中 $a(t)$ 和 $b(t)$ 是随时间变化很慢（与 cos 和 sin 相比）的函数.解的这个形式自然不是精确的.事实上，函数 $x(t)$ 也包括与 $\omega_0+\varepsilon/2$ 相差为 $2\omega_0+\varepsilon$ 的整数倍这样的频率项.然而，这些项是 h 的高阶小量，在一阶近似中可以忽略（参见习题1）.
+
+将(27.9)代入(27.8)，仅保留 $\varepsilon$ 的一阶项，这时假设 $\dot{a}\sim\varepsilon a$，$\dot{b}\sim\varepsilon b$，这个假设在共振条件下的正确性由结果得到确证.将三角函数的乘积展开为三角函数之和，如
+\begin{equation*}
+  \cos\left(\omega_0+\frac{\varepsilon}{2}\right)t\cdot\cos(2\omega_0+\varepsilon)t
+  =\frac{1}{2}\cos\left(3\omega_0+\frac{3\varepsilon}{2}\right)t
+  +\frac{1}{2}\cos\left(\omega_0+\frac{\varepsilon}{2}\right)t
+\end{equation*}
+等等，按照上面所述，我们略去频率为 $3\left(\omega_0+\dfrac{\varepsilon}{2}\right)$ 的项，结果可得
+\begin{equation*}
+  -\left(2\dot{a}+b\varepsilon+\frac{h\omega_0}{2}b\right)\omega_0
+  \sin\left(\omega_0+\frac{\varepsilon}{2}\right)t
+  +\left(2\dot{b}-a\varepsilon+\frac{h\omega_0}{2}a\right)\omega_0
+  \cos\left(\omega_0+\frac{\varepsilon}{2}\right)t=0,
+\end{equation*}
+这个等式成立要求 sin 和 cos 的系数都等于零.由此可得函数 $a(t)$ 和 $b(t)$ 的两个线性微分方程.通常，我们来求这两个方程的正比于 $\mathrm{e}^{st}$ 的解.于是有
+\begin{equation*}
+  sa+\frac{1}{2}\left(\varepsilon+\frac{h\omega_0}{2}\right)b=0,
+\end{equation*}
+\begin{equation*}
+  \frac{1}{2}\left(\varepsilon-\frac{h\omega_0}{2}\right)a-sb=0,
+\end{equation*}
+这两个代数方程的相容条件给出
+\begin{equation}
+  s^2=\frac{1}{4}\left[\left(\frac{h\omega_0}{2}\right)^2-\varepsilon^2\right].
+\end{equation}
+发生参变共振的条件是 s 为实数，即 $s^2>0$\footnote{在(27.6)中的常数 $\mu$ 与 $s$ 的关系是 $\mu=-\mathrm{e}^{s\pi/\omega_0}$（当 $t$ 替换为 $t+2\pi/2\omega_0$ 时，在(27.9)中的 $\sin$ 和 $\cos$ 改变符号）.}.可见，参变共振发生在频率 $2\omega_0$ 两侧的区间\footnote{如果只对共振的区间感兴趣，而对区间内 $s$ 的值不感兴趣，则计算可以简化，只要注意到在区间的边界上 $s=0$，即(27.9)中系数 $a$ 和 $b$ 为常数，这立即给出(27.11)中的边界 $\varepsilon=\pm h\omega_0/2$.}
+\begin{equation}
+  -\frac{h\omega_0}{2}<\varepsilon<\frac{h\omega_0}{2}.
+\end{equation}
+这个区间的宽度与 h 成正比，振动放大系数 s 在该区间的值也是 h 量级的.
+
+在系统参量变化，频率 $\gamma$ 接近 $2\omega_0/n$（n 为任意整数）情况下，也会发生参变共振.但共振区间（不稳定区间）的宽度随 n 的增加像 $h^n$ 那样迅速减小（见习题2的脚注）.振动的放大系数也同样减小.
+
+在系统存在微弱摩擦时，也存在参变共振现象，但不稳定区间变得有点更窄.在§25中我们已经看到，摩擦使振幅按 $\mathrm{e}^{-\lambda t}$ 的规律减小.所以参变共振时振动像 $\mathrm{e}^{(s-\lambda)t}$ 一样放大（正数 s 由无摩擦情况的解给定），不稳定区间的边界由等式 $s-\lambda=0$ 确定.于是，利用(27.10)中的 s，代替(27.11)我们可得共振区间
+\begin{equation}
+  -\sqrt{\left(h\omega_0/2\right)^2-4\lambda^2}<\varepsilon
+  <\sqrt{\left(h\omega_0/2\right)^2-4\lambda^2}.
+\end{equation}
+注意到，这时不是对于任意小的振幅 h 都能发生共振，而是必须大于一个确定的“阈值”$h_k$，当(27.12)成立时，
+\begin{equation*}
+  h_k=\frac{4\lambda}{\omega_0}.
+\end{equation*}
+可以证明，对于接近频率 $2\omega_0/n$ 的共振，阈值 $h_k$ 正比于 $\lambda^{1/n}$，即随着 n 增加.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 试求在 $\gamma=2\omega_0$ 附近共振的不稳定区间边界，精确到 $h^2$ 量级.
+
+解：设方程(27.8)的解形式为
+\begin{equation*}
+\begin{aligned}
+  x={}&a_0\cos\left(\omega_0+\varepsilon/2\right)t
+  +b_0\sin\left(\omega_0+\varepsilon/2\right)t\\
+  &+a_1\cos 3\left(\omega_0+\varepsilon/2\right)t
+  +b_1\sin 3\left(\omega_0+\varepsilon/2\right)t,
+\end{aligned}
+\end{equation*}
+这里考虑了 h 的更高阶项（与(27.9)比较）.我们只对不稳定区间的边界感兴趣，假设系数 $a_0,b_0,a_1,b_1$ 是常数（相应于在上一个脚注里提到的），在代入方程(27.8)时，将三角函数之积化为三角函数之和，略去频率为 $5\left(\omega_0+\varepsilon/2\right)$ 的项，这些项在更高阶近似中才需要.于是我们有
+\begin{equation*}
+\begin{aligned}
+  &\left[-a_0\left(\omega_0\varepsilon+\frac{\varepsilon^2}{4}\right)
+  +\frac{h\omega_0^2}{2}a_0+\frac{h\omega_0^2}{2}a_1\right]
+  \cos\left(\omega_0+\frac{\varepsilon}{2}\right)t\\
+  &+\left[-b_0\left(\omega_0\varepsilon+\frac{\varepsilon^2}{4}\right)
+  -\frac{h\omega_0^2}{2}b_0+\frac{h\omega_0^2}{2}b_1\right]
+  \sin\left(\omega_0+\frac{\varepsilon}{2}\right)t\\
+  &+\left[\frac{h\omega_0^2}{2}a_0-8\omega_0^2a_1\right]
+  \cos 3\left(\omega_0+\frac{\varepsilon}{2}\right)t
+  +\left[\frac{h\omega_0^2}{2}b_0-8\omega_0^2b_1\right]
+  \sin 3\left(\omega_0+\frac{\varepsilon}{2}\right)t=0.
+\end{aligned}
+\end{equation*}
+在频率为 $\omega_0+\varepsilon/2$ 的项中保留一阶和二阶小量，但在频率为 $3\left(\omega_0+\varepsilon/2\right)$ 的那些项中仅保留一阶小量.每个方括号内的表达式都应该分别等于零.由后面两个方括号可得
+\begin{equation*}
+  a_1=\frac{h}{16}a_0,\qquad
+  b_1=\frac{h}{16}b_0,
+\end{equation*}
+然后再由前两个方括号可得
+\begin{equation*}
+  \omega_0\varepsilon\pm\frac{h\omega_0^2}{2}
+  +\frac{\varepsilon^2}{4}-\frac{h^2\omega_0^2}{32}=0.
+\end{equation*}
+求解这个方程，精确到 $h^2$ 量级，我们可得不稳定区间边界的 $\varepsilon$ 值：
+\begin{equation*}
+  \varepsilon=\pm\frac{h\omega_0}{2}-\frac{h^2\omega_0}{32}.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 试求在 $\gamma=\omega_0$ 附近共振的不稳定区间边界.
+
+解：令 $\gamma=\omega_0+\varepsilon$，可得运动方程
+\begin{equation*}
+  \ddot{x}+\omega_0^2\left[1+h\cos\left(\omega_0+\varepsilon\right)t\right]x=0.
+\end{equation*}
+注意到所求边界值 $\varepsilon\sim h^2$，我们求如下形式的解：
+\begin{equation*}
+  x=a_0\cos\left(\omega_0+\varepsilon\right)t+b_0\sin\left(\omega_0+\varepsilon\right)t
+  +a_1\cos 2\left(\omega_0+\varepsilon\right)t
+  +b_1\sin 2\left(\omega_0+\varepsilon\right)t+c_1,
+\end{equation*}
+在此式中同时考虑了前两阶项.为了求不稳定区间边界，我们再次假定系数都是常数，得
+\begin{equation*}
+\begin{aligned}
+  &\left[-2\omega_0\varepsilon a_0+\frac{h\omega_0^2}{2}a_1+h\omega_0^2c_1\right]
+  \cos\left(\omega_0+\varepsilon\right)t
+  +\left[-2\omega_0\varepsilon b_0+\frac{h\omega_0^2}{2}b_1\right]
+  \sin\left(\omega_0+\varepsilon\right)t\\
+  &+\left[-3\omega_0^2a_1+\frac{h\omega_0^2}{2}a_0\right]
+  \cos 2\left(\omega_0+\varepsilon\right)t
+  +\left[-3\omega_0^2b_1+\frac{h\omega_0^2}{2}b_0\right]
+  \sin 2\left(\omega_0+\varepsilon\right)t\\
+  &+\left[\omega_0^2c_1+\frac{h\omega_0^2}{2}a_0\right]=0.
+\end{aligned}
+\end{equation*}
+由此可得
+\begin{equation*}
+  a_1=\frac{h}{6}a_0,\qquad
+  b_1=\frac{h}{6}b_0,\qquad
+  c_1=-\frac{h}{2}a_0,
+\end{equation*}
+于是可得不稳定边界\footnote{一般地，在频率 $2\omega_0/n$ 附近共振的不稳定区间的宽度 $\Delta\varepsilon$ 由下式给出 $\Delta\varepsilon=n^{2n-3}h^n\omega_0/2^{3(n-1)}[(n-1)!]^2$，该结果是贝尔得到的(Bell M. Proceedings of the Glasgow Mathematical Association, 1957, 3: 132)——英译本注}：
+\begin{equation*}
+  \varepsilon=-\frac{5}{24}h^2\omega_0,\qquad
+  \varepsilon=\frac{1}{24}h^2\omega_0.
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 设平面摆的悬挂点在竖直方向上振动，试求此平面摆微振动的参变共振条件.
+
+解：根据§5的习题3求得的拉格朗日函数，微振动（$\varphi\ll1$）的运动方程为
+\begin{equation*}
+  \ddot{\varphi}+\omega_0^2\left[1+4\frac{a}{l}\cos\left(2\omega_0+\varepsilon\right)t\right]\varphi=0,
+\end{equation*}
+其中 $\omega_0^2=g/l$.由此可见，$4a/l$ 起着正文中小参数 h 的作用.条件(27.11)例如，取如下形式：
+\begin{equation*}
+  |\varepsilon|<\frac{2a\sqrt{g}}{l^{3/2}}.
+\end{equation*}
+
+\end{xiti}
+
+\section{非简谐振动}
+
+此前讨论的整个微振动理论建立在系统的势能和动能分别用坐标和速度展开并仅保留到它们的二阶项的基础上，这时运动方程是线性的，在这种近似下研究线性振动.尽管在振幅足够小的条件下这种近似是合理的，然而，考虑更高阶的近似（称为非简谐振动或者非线性振动）会出现运动的某些次要的，但定性来看完全不同的性质.
+
+我们将拉格朗日函数展开至3阶项.这时势能中出现坐标 $x_i$ 的3阶项，在动能中出现速度和坐标的形如 $\dot{x}_i\dot{x}_kx_l$ 的乘积项.与表达式(23.3)的这种差别是由于在函数 $a_{ik}(q)$ 的展开式中保留了 x 的一阶项.于是，拉格朗日函数的形式为
+\begin{equation}
+\begin{aligned}
+  L=\frac{1}{2}\sum_{i,k}&\left(m_{ik}\dot{x}_i\dot{x}_k-k_{ik}x_ix_k\right)
+  +\frac{1}{2}\sum_{i,k,l}n_{ikl}\dot{x}_i\dot{x}_kx_l\\
+  &-\frac{1}{3}\sum_{i,k,l}l_{ikl}x_ix_kx_l,
+\end{aligned}
+\end{equation}
+其中 $n_{ikl},l_{ikl}$ 是新的常系数.
+
+如果从任意坐标 $x_i$ 变换到线性近似下的简正坐标 $Q_\alpha$，则由于变换是线性的，(28.1)的第3和第4个和变为类似的和，其中坐标 $x_i$ 和速度 $\dot{x}_i$ 将被 $Q_\alpha$ 和 $\dot{Q}_\alpha$ 代替.我们将这些新的和的系数用 $\lambda_{\alpha\beta\gamma}$ 和 $\mu_{\alpha\beta\gamma}$ 表示，拉格朗日函数可写成
+\begin{equation}
+  L=\frac{1}{2}\sum_\alpha\left(\dot{Q}_\alpha^2-\omega_\alpha^2Q_\alpha^2\right)
+  +\frac{1}{2}\sum_{\alpha,\beta,\gamma}\lambda_{\alpha\beta\gamma}\dot{Q}_\alpha\dot{Q}_\beta Q_\gamma
+  -\frac{1}{3}\sum_{\alpha,\beta,\gamma}\mu_{\alpha\beta\gamma}Q_\alpha Q_\beta Q_\gamma.
+\end{equation}
+我们不想完整地写出由这个拉格朗日函数导出的运动方程.这些方程的重要特点是它们具有形式
+\begin{equation}
+  \ddot{Q}_\alpha+\omega_\alpha^2Q_\alpha=f_\alpha(Q,\dot{Q},\ddot{Q}),
+\end{equation}
+其中 $f_\alpha$ 是坐标 Q 及其对时间导数的二次齐次函数.
+
+利用逐阶近似的方法，我们求这些方程的如下形式的解：
+\begin{equation}
+  Q_\alpha=Q_\alpha^{(1)}+Q_\alpha^{(2)},
+\end{equation}
+其中 $Q_\alpha^{(2)}\ll Q_\alpha^{(1)}$，函数 $Q_\alpha^{(1)}$ 满足“无扰”方程
+\begin{equation*}
+  \ddot{Q}_\alpha^{(1)}+\omega_\alpha^2Q_\alpha^{(1)}=0,
+\end{equation*}
+即为通常的简谐振动
+\begin{equation}
+  Q_\alpha^{(1)}=a_\alpha\cos(\omega_\alpha t+\alpha_\alpha).
+\end{equation}
+在高一阶近似中，在(28.3)右端只保留到二阶项，可得 $Q_\alpha^{(2)}$ 的方程
+\begin{equation}
+  \ddot{Q}_\alpha^{(2)}+\omega_\alpha^2Q_\alpha^{(2)}
+  =f_\alpha\left(Q^{(1)},\dot{Q}^{(1)},\ddot{Q}^{(1)}\right),
+\end{equation}
+其中右端应该代入(28.5).结果我们得到线性非齐次微分方程，其右端可以变换为简单周期函数之和.例如
+\begin{equation*}
+\begin{aligned}
+  Q_\alpha^{(1)}Q_\beta^{(1)}
+  &={}\alpha_\alpha\alpha_\beta\cos\left(\omega_\alpha t+\alpha_\alpha\right)
+  \cos\left(\omega_\beta t+\alpha_\beta\right)\\
+  &={}\frac{1}{2}\alpha_\alpha\alpha_\beta
+  \left\{\cos\left[\left(\omega_\alpha+\omega_\beta\right)t+\alpha_\alpha+\alpha_\beta\right]
+  +\cos\left[\left(\omega_\alpha-\omega_\beta\right)t+\alpha_\alpha-\alpha_\beta\right]\right\}.
+\end{aligned}
+\end{equation*}
+于是方程(28.6)右端包含相应于频率为系统固有频率之和、之差的振动的项.我们所寻找的这些方程的解应该是包含同样周期性因子的形式.因此，我们断定，在二阶近似中，在频率为 $\omega_\alpha$ 的简正振动上叠加了频率为
+\begin{equation}
+  \omega_\alpha\pm\omega_\beta
+\end{equation}
+（也包括倍频 $2\omega_\alpha$ 和零频，零频相应于常数位移）的另外一些振动.这些频率称为组合频率.组合振动的振幅正比于相应的简正振动的振幅之积 $a_\alpha a_\beta$（或者平方 $a_\alpha^2$）.
+
+在更高阶近似中，当拉格朗日函数的展开式中包含更多的项时，出现的组合频率是更多频率 $\omega_\alpha$ 的和与差，此外还会出现一个新现象.
+
+在3阶近似的组合频率中出现与原频率 $\omega_\alpha$ 相同的频率
+$\omega_\alpha\left(=\omega_\alpha+\omega_\beta-\omega_\beta\right)$.在应用上述方法时，运动方程右端将有共振项，导致方程的解中出现振幅随时间增长的项.但是，从物理角度显然可知，没有外部能量来源的封闭系统不可能自己增大振动强度.
+
+事实上，在高阶近似中基频 $\omega_\alpha$ 与出现在势能二次表达式中的“无扰”值 $\omega_\alpha^{(0)}$ 相比发生了变化.在解中出现随时间增长项，是因为下面类型的展开式
+\begin{equation*}
+  \cos\left(\omega_\alpha^{(0)}+\Delta\omega_\alpha\right)t
+  \approx\cos\left(\omega_\alpha^{(0)}t\right)-t\Delta\omega_\alpha\sin\left(\omega_\alpha^{(0)}t\right)
+\end{equation*}
+在 t 足够大时，显然不合理.
+
+因此，在研究下一阶近似时，逐阶近似方法必须修改，要使出现在解中的周期性因子，从开始就包含准确的而不是近似的频率.求解运动方程并要求事实上不出现共振项可以确定频率必要的改变.
+
+我们以一个自由度的非简谐振动为例介绍这种方法，将拉格朗日函数写成
+\begin{equation}
+  L=\frac{m\dot{x}^2}{2}-\frac{m\omega_0^2}{2}x^2-\frac{m\alpha}{3}x^3-\frac{m\beta}{4}x^4.
+\end{equation}
+相应的运动方程为
+\begin{equation}
+  \ddot{x}+\omega_0^2x=-\alpha x^2-\beta x^3.
+\end{equation}
+我们将寻求级数形式的逐阶近似解
+\begin{equation*}
+  x=x^{(1)}+x^{(2)}+x^{(3)},
+\end{equation*}
+并且
+\begin{equation}
+  x^{(1)}=a\cos\omega t
+\end{equation}
+中精确的 $\omega$ 将在后面以级数形式 $\omega=\omega_0+\omega^{(1)}+\omega^{(2)}+\cdots$ 求解出来（适当选择初始时刻，总可以使 $x^{(1)}$ 中的初相等于零）.但是这时方程(28.9)不是很方便，这是因为代入(28.10)后，方程的左端不是严格等于零.所以我们预先将该方程写成等价形式
+\begin{equation}
+  \frac{\omega_0^2}{\omega^2}\ddot{x}+\omega_0^2x
+  =-\alpha x^2-\beta x^3-\left(1-\frac{\omega_0^2}{\omega^2}\right)\ddot{x}.
+\end{equation}
+此处假设 $x=x^{(1)}+x^{(2)}$，$\omega=\omega_0+\omega^{(1)}$，略去二阶以上的小量项，可得 $x^{(2)}$ 的方程
+\begin{equation*}
+\begin{aligned}
+  \ddot{x}^{(2)}+\omega_0^2x^{(2)}
+  &={}-\alpha a^2\cos^2\omega t+2\omega_0\omega^{(1)}a\cos\omega t\\
+  &={}-\frac{\alpha a^2}{2}-\frac{\alpha a^2}{2}\cos(2\omega t)
+  +2\omega_0\omega^{(1)}a\cos\omega t.
+\end{aligned}
+\end{equation*}
+等式右端无共振项的条件容易给出 $\omega^{(1)}=0$，这与本节开始所讲的二阶近似方法一致.然后，用通常的方法求解非齐次线性方程可得
+\begin{equation}
+  x^{(2)}=-\frac{\alpha a^2}{2\omega_0^2}+\frac{\alpha a^2}{6\omega_0^2}\cos(2\omega t).
+\end{equation}
+进一步，在(28.11)中假设 $x=x^{(1)}+x^{(2)}+x^{(3)}$，$\omega=\omega_0+\omega^{(2)}$，可得 $x^{(3)}$ 的方程
+\begin{equation*}
+  \ddot{x}^{(3)}+\omega_0^2x^{(3)}
+  =-2\alpha x^{(1)}x^{(2)}-\beta x^{(1)3}+2\omega_0\omega^{(2)}x^{(1)}
+\end{equation*}
+或者，将该方程右端代入(28.10)和(28.12)，经过简单的变换得
+\begin{equation*}
+  \ddot{x}^{(3)}+\omega_0^2x^{(3)}
+  =-a^3\left[\frac{\beta}{4}+\frac{\alpha^2}{6\omega_0^2}\right]\cos(3\omega t)
+  +a\left[2\omega_0\omega^{(2)}+\frac{5\alpha^2a^2}{6\omega_0^2}
+  -\frac{3}{4}\alpha^2\beta\right]\cos\omega t.
+\end{equation*}
+令共振因子 $\cos\omega t$ 的系数等于零，可得对基频的修正量
+\begin{equation}
+  \omega^{(2)}=\left(\frac{3\beta}{8\omega_0}
+  -\frac{5\alpha^2}{12\omega_0^3}\right)a^2,
+\end{equation}
+它正比于振动振幅的平方.于是，3阶组合振动为
+\begin{equation}
+  x^{(3)}=\frac{a^3}{16\omega_0^2}\left(\frac{\alpha^2}{3\omega_0^2}+\frac{\beta}{2}\right)
+  \cos(3\omega t).
+\end{equation}
+
+\section{非线性振动中的共振}
+
+当在系统的强迫振动中计入非简谐项时，在共振现象中会出现本质的新特性.
+
+在方程(28.9)右端加入周期（频率为 $\gamma$）外力，得
+\begin{equation}
+  \ddot{x}+2\lambda\dot{x}+\omega_0^2x=\frac{f}{m}\cos\gamma t-\alpha x^2-\beta x^3,
+\end{equation}
+其中也考虑了阻尼系数为 $\lambda$（下面假设为小量）的摩擦力.严格地讲，在自由振动方程中考虑非线性项的同时，也应该考虑强迫力幅值中的高阶项（比如当外力的幅值依赖于位移 x 时会产生高阶项）.我们不计入这些项仅仅是为了简化公式，它们不影响定性的结果.
+
+设
+\begin{equation*}
+  \gamma=\omega_0+\varepsilon
+\end{equation*}
+（$\varepsilon$ 是小量），即 $\gamma$ 接近于通常的共振值.利用下面的方法，我们不研究方程(29.1)就可以探讨所发生运动的特性.
+
+在线性近似中，在共振附近，强迫振动的振幅 b 对外力幅值 f 和频率 $\gamma$ 的依赖关系由(26.7)给出，该公式可以写成
+\begin{equation}
+  b^2\left(\varepsilon^2+\lambda^2\right)=\frac{f^2}{4m^2\omega_0^2}.
+\end{equation}
+振动的非线性导致固有频率对振幅的依赖，将固有频率写成
+\begin{equation}
+  \omega_0+\kappa b^2,
+\end{equation}
+其中常数 $\kappa$ 是非简谐系数的确定的函数（参见(28.13)）.相应地，在公式(29.2)中（更确切地说是在很小的差 $\gamma-\omega_0$ 中）用 $\omega_0+\kappa b^2$ 代替 $\omega_0$.
+
+仍采用记号 $\varepsilon=\gamma-\omega_0$，结果可得方程
+\begin{equation}
+  b^2\left[\left(\varepsilon-\kappa b^2\right)^2+\lambda^2\right]
+  =\frac{f^2}{4m^2\omega_0^2}
+\end{equation}
+或者
+\begin{equation*}
+  \varepsilon=\kappa b^2\pm\sqrt{\left(\frac{f}{2m\omega_0 b}\right)^2-\lambda^2}.
+\end{equation*}
+方程(29.4)是 $b^2$ 的三次方程，它的实根确定强迫振动的振幅.在给定外力幅值 f 时，我们研究这个振幅对外力频率的依赖关系.
+
+当 f 足够小时，振幅 b 也很小，可以在(29.4)中忽略 b 的二阶以上项，我们就回到(29.2)给出的函数关系 $b(\varepsilon)$，可用在 $\varepsilon=0$ 点有极大值的对称曲线表示（图32a）.随着 f 的增大，曲线发生变形，开始还保持有一个极大值的特性（图32b），但极大值移动到正 $\varepsilon$ 一边（当 $\kappa>0$ 时）.这时方程(29.4)的 3 个根中只有一个是实数.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5cm]{fig32.pdf}\\[0.3em]{\small 图 32}\end{minipage}\par\nopagebreak
+
+然而，从某个特定值 $f=f_k$（我们下面再确定）开始，曲线的性质发生改变.对于每个 $f>f_k$ 都存在方程(29.4)有 3 个实根的频率区间，相应于图 32c 中的 BCDE 部分.
+
+在 D 点和 C 点的条件 $\mathrm{d}b/\mathrm{d}\varepsilon=\infty$ 确定这个区间的边界.将方程(29.4)对 $\varepsilon$ 求导得
+\begin{equation*}
+  \frac{\mathrm{d}b}{\mathrm{d}\varepsilon}
+  =\frac{-\varepsilon b+\kappa b^3}{\varepsilon^2+\lambda^2-4\kappa\varepsilon b^2+3\kappa^2b^4}.
+\end{equation*}
+所以 D 点和 C 点的位置由方程
+\begin{equation}
+  \varepsilon^2-4\kappa\varepsilon b^2+3\kappa^2b^4+\lambda^2=0,
+\end{equation}
+和(29.4)的联立解确定，相应的 $\varepsilon$ 的两个值都是正的.在 $\mathrm{d}b/\mathrm{d}\varepsilon=0$ 的点，振幅达到最大值，这时 $\varepsilon=\kappa b^2$，由(29.4)得
+\begin{equation}
+  b_{\max}=\frac{f}{2m\omega_0\lambda}
+\end{equation}
+这个值与(29.2)给出的最大值相同.
+
+可以证明（我们不在这里给出）\footnote{证明可以在下面书中找到：Н. Н. Боголюбов, Ю. А. Митропольский, Асимптотические методы в теории нелинейных колебаний. – М.: Физматгиз, 1958.（中译本：博戈留波夫 Н Н，米特罗波尔斯基 Ю А.非线性振动理论中的渐近方法.金福临等译.上海：上海科学技术出版社，1963.）}，方程(29.4)的 3 个实根中的中间根（即图 32c 上的虚线段 CD 表示的根），相应于系统的不稳定振动：无论多么小的任何作用都会使处于这种态的系统转到相应于较大根或者较小根的振动（即 BC 或者 DE 段）.
+
+因此，只有 ABC 和 DEF 两个分支对应着系统的实际振动.这时非常重要的特性是，存在允许两个不同振幅的频率区间.例如，在外力频率逐渐增大时，强迫振动的振幅沿着曲线 ABC 增大.在 C 点振幅发生不连续的跃变，突然减小到 E 点对应的值，然后（在继续增大频率情况下）沿着曲线 EF 变化.如果现在减小频率，强迫振动振幅将沿着 FD 变化，在 D 点突跳到 B 点，然后沿着 BA 减小.
+
+为了计算 $f_k$，我们注意到，这是（$b^2$ 的）二次方程(29.5)有重根时对应的 f 值.当 $f=f_k$ 时整个曲线段 CD 变为一个拐点.令二次方程(29.5)的判别式等于零，得 $\varepsilon^2=3\lambda^2$，相应的二重根为 $\kappa b^2=2\varepsilon/3$.将 b 和 $\varepsilon$ 的这些值代入方程(29.4)可得
+\begin{equation}
+  f_k^2=\frac{32m^2\omega_0^2\lambda^3}{3\sqrt{3}\,|\kappa|}.
+\end{equation}
+振动的非线性除了使在频率 $\gamma\approx\omega_0$ 处的共振现象的性质改变外，还导致出现新的共振，即频率显著不同于 $\omega_0$ 的外力可以激发频率接近 $\omega_0$ 的振动.
+
+设外力频率为 $\gamma\approx\omega_0/2$，即
+\begin{equation*}
+  \gamma=\omega_0/2+\varepsilon.
+\end{equation*}
+在一阶线性近似中，外力激发系统同频率的振动，振幅与外力幅值成正比，即
+\begin{equation*}
+  x^{(1)}=\frac{4f}{3m\omega_0^2}\cos\left(\frac{\omega_0}{2}+\varepsilon\right)t
+\end{equation*}
+（见公式(22.4)）.当在二阶近似中考虑非线性项后，这些振动导致在方程(29.1)右端出现频率为 $2\gamma\approx\omega_0$ 的项.就是说，将 $x^{(1)}$ 代入方程
+\begin{equation*}
+  \ddot{x}^{(2)}+2\lambda\dot{x}^{(2)}+\omega_0^2x^{(2)}
+  +\alpha x^{(2)2}+\beta x^{(2)3}=-\alpha x^{(1)2},
+\end{equation*}
+运用倍角的余弦并在方程右端仅保留共振项，得
+\begin{equation}
+  \ddot{x}^{(2)}+2\lambda\dot{x}^{(2)}+\omega_0^2x^{(2)}
+  +\alpha x^{(2)2}+\beta x^{(2)3}
+  =-\frac{8\alpha f^2}{9m^2\omega_0^4}\cos\left(\omega_0+2\varepsilon\right)t.
+\end{equation}
+这个方程与(29.1)的不同之处仅在于，力的幅值 f 换成正比于 $f^2$ 的表达式.这就是说，这种共振与前述频率 $\gamma\approx\omega_0$ 共振性质相同，但强度较小.在方程(29.4)中用 $-8\alpha f^2/(9m\omega_0^4)$ 代替 f 以及用 $2\varepsilon$ 代替 $\varepsilon$，可得函数关系 $b(\varepsilon)$
+\begin{equation}
+  b^2\left[\left(2\varepsilon-\kappa b^2\right)^2+\lambda^2\right]
+  =\frac{16\alpha^2f^4}{81m^4\omega_0^{10}}.
+\end{equation}
+下面设外力频率为
+\begin{equation*}
+  \gamma=2\omega_0+\varepsilon.
+\end{equation*}
+在一阶近似中有
+\begin{equation*}
+  x^{(1)}=-\frac{f}{3m\omega_0^2}\cos(2\omega_0+\varepsilon)t.
+\end{equation*}
+将 $x=x^{(1)}+x^{(2)}$ 代入方程(29.1)，我们得不到像前一种情况中出现的表示共振外力的项.然而，由于正比于乘积 $x^{(1)}x^{(2)}$ 的 3 阶项而产生参变共振.如果在所有非线性项中仅保留这一项，则得 $x^{(2)}$ 的方程：
+\begin{equation*}
+  \ddot{x}^{(2)}+2\lambda\dot{x}^{(2)}+\omega_0^2x^{(2)}=-2\alpha x^{(1)}x^{(2)}
+\end{equation*}
+或者
+\begin{equation}
+  \ddot{x}^{(2)}+2\lambda\dot{x}^{(2)}
+  +\omega_0^2\left[1-\frac{2\alpha f}{3m\omega_0^4}\cos\left(2\omega_0+\varepsilon\right)t\right]x^{(2)}=0,
+\end{equation}
+这是(27.8)类型的方程（考虑摩擦），如我们已看到的，它在一定的频率范围内会导致振动不稳定.
+
+但是，这个方程还不足以确定振动的合成振幅.有限振幅的建立与非线性效应相关，为此在运动方程中也应该保留 $x^{(2)}$ 的非线性项：
+\begin{equation}
+  \ddot{x}^{(2)}+2\lambda\dot{x}^{(2)}+\omega_0^2x^{(2)}
+  +\alpha x^{(2)2}+\beta x^{(2)3}
+  =\frac{2\alpha f}{3m\omega_0^2}\cos\left[\left(2\omega_0+\varepsilon\right)t\right]x^{(2)}.
+\end{equation}
+注意到下面的事实，这个问题可以大大简化.在方程(29.11)右端，令
+\begin{equation*}
+  x^{(2)}=b\cos\left[\left(\omega_0+\frac{\varepsilon}{2}\right)t+\delta\right]
+\end{equation*}
+（其中 b 是待求的共振振动的振幅，常数 $\delta$ 是相位差，它对后面研究不重要），同时将两个余弦函数之积写成和的形式，可得（相对于系统的固有频率 $\omega_0$ 而言的）通常类型的共振项为
+\begin{equation*}
+  \frac{\alpha fb}{3m\omega_0^2}
+  \cos\left[\left(\omega_0+\frac{\varepsilon}{2}\right)t-\delta\right].
+\end{equation*}
+由此，问题约化为本节开始所研究的通常的非线性系统共振，区别仅在于这里外力幅值为 $\alpha fb\slash(3m\omega_0^2)$，$\varepsilon/2$ 代替 $\varepsilon$.在方程(29.4)中做这样的替换，得
+\begin{equation*}
+  b^2\left[\left(\frac{\varepsilon}{2}-\kappa b^2\right)^2+\lambda^2\right]
+  =\frac{\alpha^2f^2b^2}{36m^2\omega_0^6}.
+\end{equation*}
+由该方程求解 b 得可能的振幅值：
+\begin{equation}
+  b=0,
+\end{equation}
+\begin{equation}
+  b^2=\frac{1}{\kappa}\left[\frac{\varepsilon}{2}
+  +\sqrt{\left(\frac{\alpha f}{6m\omega_0^3}\right)^2-\lambda^2}\right],
+\end{equation}
+\begin{equation}
+  b^2=\frac{1}{\kappa}\left[\frac{\varepsilon}{2}
+  -\sqrt{\left(\frac{\alpha f}{6m\omega_0^3}\right)^2-\lambda^2}\right].
+\end{equation}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=6cm]{fig33.pdf}\\[0.3em]{\small 图 33}\end{minipage}\par\nopagebreak
+
+图 33 画出了 $\kappa>0$ 时所得的 b 对 $\varepsilon$ 的依赖关系.当 $\kappa<0$ 时曲线由图示曲线对 b 轴的反射得到. B 点和 C 点相应于
+\begin{equation*}
+  \varepsilon=\pm\sqrt{\left(\frac{\alpha f}{3m\omega_0^3}\right)^2-4\lambda^2}.
+\end{equation*}
+在 B 点左边只可能有 $b=0$，即没有共振，也不可能激发频率接近 $\omega_0$ 的振动.在 B 和 C 之间有两个根：$b=0$（图 33 上线段 BC）和表达式(29.13)（分支 BE）.最后，在 C 点右边存在 3 个根(29.12)—(29.14).但是，不是所有这些值都对应稳定振动.在 BC 段\footnote{这一段恰好相应于参变共振区间(27.12)，比较(29.10)和(27.8)有 $|h|=2\alpha f/(3m\omega_0^4)$.所研究现象可能存在的条件 $\left|\frac{2\alpha f}{3m\omega_0^3}\right|>4\lambda$ 相应于不等式 $h>h_k$.}上 $b=0$ 不稳定，并且也可以证明，相应于根(29.14)（位于另外两个根之间）的振动总是不稳定的.在图 33 上不稳定的 b 值用虚线表示.
+
+例如，我们研究外力频率逐渐减小的情况下，初始“静止”\footnote{注意，我们这里研究的只是共振，没有共振并不意味着系统静止，系统存在频率为 $\gamma$ 的微弱强迫振动.}系统的行为.在到达 C 点之前 $b=0$，在 C 点，系统的状态跳跃到分支 EB 上.继续减小 $\varepsilon$，振动的振幅在 B 点减小到零.当频率又增大时，振幅沿着 BE 增大\footnote{然而，必须注意的是，所有这里导出的公式只有在振幅 $b$（以及 $\varepsilon$）足够小情况下成立.事实上，曲线 $BE$ 和 $CF$ 以后相交于一点，达到这点时振动停止因而 $b=0$.}.
+
+我们上面所研究的共振是在非线性振动系统中可能出现的主要情况.在更高阶近似中也会在其它频率处出现共振.严格地讲，共振应该发生在满足关系式
+$n\gamma+m\omega_0=\omega_0$（m, n 是整数）的每一个频率 $\gamma$，也就是说，对每一个 $\gamma=p\omega_0/q$（p, q 是整数），都应该发生共振.但是，随着近似阶数的增加，共振的强度（以及发生共振的频率区间大小）迅速减小，以至实际上可以观察到的共振只能是频率 $\gamma\approx p\omega_0/q$ 并且 p，q 的值都不大的情况.
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 试求在频率 $\gamma\approx 3\omega_0$ 上共振的函数关系 $b(\varepsilon)$.
+
+解：在一阶近似中
+\begin{equation*}
+  x^{(1)}=-\frac{f}{8m\omega_0^2}\cos\left[\left(3\omega_0+\varepsilon\right)t\right].
+\end{equation*}
+对二阶近似 $x^{(2)}$，由(29.1)可得方程
+\begin{equation*}
+  \ddot{x}^{(2)}+2\lambda\dot{x}^{(2)}+\omega_0^2x^{(2)}
+  +\alpha x^{(2)2}+\beta x^{(2)3}=-3\beta x^{(1)}x^{(2)2},
+\end{equation*}
+其中等式右端只写出了导致所要研究的共振的项.在该方程中假设
+$x^{(2)}=b\cos\left[\left(\omega_0+\dfrac{\varepsilon}{3}\right)t+\delta\right]$
+并从 3 个余弦的乘积中分出共振项，可得方程右端表达式为
+\begin{equation*}
+  \frac{3\beta b^2f}{32m\omega_0^2}
+  \cos\left[\left(\omega_0+\frac{\varepsilon}{3}\right)t-2\delta\right].
+\end{equation*}
+由此可见，b 对 $\varepsilon$ 的依赖关系，可以在方程(29.4)中用 $3\beta b^2f/(32m\omega_0^2)$ 代替 f，用 $\varepsilon/3$ 代替 $\varepsilon$ 求得：
+\begin{equation*}
+  b^2\left[\left(\frac{\varepsilon}{3}-\kappa b^2\right)^2+\lambda^2\right]
+  =\frac{9\beta^2f^2}{2^{12}m^2\omega_0^6}b^4\equiv Ab^4.
+\end{equation*}
+这个方程的根为
+\begin{equation*}
+  b=0,\qquad
+  b^2=\frac{\varepsilon}{3\kappa}+\frac{A}{2\kappa^2}
+  \pm\frac{1}{\kappa}\sqrt{\frac{\varepsilon A}{3\kappa}+\frac{A^2}{4\kappa^2}-\lambda^2}.
+\end{equation*}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5cm]{fig34.pdf}\\[0.3em]{\small 图 34}\end{minipage}\par\nopagebreak
+
+在图 34 上画出了 b 对 $\varepsilon$ 的依赖关系的特征曲线（$\kappa>0$）.仅有值 $b=0$（横轴）和分支 AB 对应于稳定振动. A 点相应的值为
+\begin{equation*}
+  \varepsilon_k=\frac{3\left(4\kappa^2\lambda^2-A^2\right)}{4\kappa A},\qquad
+  b_k^2=\frac{4\kappa^2\lambda^2+A^2}{4\kappa^2A}.
+\end{equation*}
+只有在 $\varepsilon>\varepsilon_k$ 因而 $b>b_k$ 的情况下存在振动.由于状态 $b=0$ 总是稳定的，因此为了激发振动，初始的“推动”是必须的.
+
+上面所得的公式只有在 $\varepsilon$ 足够小时才成立.如果力的幅值满足条件
+$\lambda^2/\omega_0\ll A/\kappa\ll\omega_0$，则 $\lambda$ 是小量可以保证 $\varepsilon$ 为小量.
+
+\end{xiti}
+
+\section{快速振动场中的运动}
+
+我们研究同时受定常势场 U 和随时间变化的高频力
+\begin{equation}
+  f=f_1\cos\omega t+f_2\sin\omega t
+\end{equation}
+作用的质点的运动，其中 $f_1,f_2$ 仅是坐标的函数.高频是指频率满足条件 $\omega\gg 1/T$，其中 T 与质点仅在定常场 U 中运动的周期有相同的数量级.从大小上讲，并不假设 f 比场 U 相应的力弱.但是我们将假设这个力引起的质点振动位移（下文用 $\xi$ 表示）很小.
+
+为了简化计算，我们首先研究在仅依赖于空间坐标 $x$ 的力场中的一维运动.那么质点运动方程为\footnote{坐标 $x$ 不一定是笛卡儿坐标，因而系数 $m$ 不一定是质点的质量，也不一定像在(30.2)中那样假设是常数.但是，这个假设并不影响最后的结果（见本节最后一个脚注）.}
+\begin{equation}
+  m\ddot{x}=-\frac{\mathrm{d}U}{\mathrm{d}x}+f.
+\end{equation}
+由作用在质点上力场的性质可知，质点的运动是沿着某个平滑的轨道移动，同时围绕该轨道作频率为 $\omega$ 的微振动.因此我们将函数 $x(t)$ 表示为下列和的形式
+\begin{equation}
+  x(t)=X(t)+\xi(t),
+\end{equation}
+其中 $\xi(t)$ 相应于这些微振动.
+
+函数 $\xi(t)$ 在其周期 $2\pi/\omega$ 之内的平均值等于零，但函数 X(t) 在这段时间内变化很小.若用字母上面加横线表示平均值，则有 $\overline{x}=X(t)$，即函数 $X(t)$ 是按快速振动平均化以后得到的质点的“平稳”运动.我们来推导确定这个函数 X(t) 的方程\footnote{下述方法是基于卡皮查(1951,П. Л. Капица)的思想.Kapitza P L. J. Exp. Theor. Phys, 1951, 21: 588.}.
+
+将(30.3)代入(30.2)并按 $\xi$ 的幂展开，精确到一阶项，得
+\begin{equation}
+  m\ddot{X}+m\ddot{\xi}
+  =-\frac{\mathrm{d}U}{\mathrm{d}X}-\xi\frac{\mathrm{d}^2U}{\mathrm{d}X^2}
+  +f(X,t)+\xi\frac{\partial f}{\partial X}.
+\end{equation}
+在这个方程中出现了不同性质的项，即振动项和平稳项.显然，方程两边它们应该分别对应相等.对于振动项，只需写出
+\begin{equation}
+  m\ddot{\xi}=f(X,t),
+\end{equation}
+其它项包含小量 $\xi$，因此是高阶小量（但是导数 $\ddot{\xi}$ 正比于大的量 $\omega^2$，因而不是小量）.将(30.1)代入(30.5)，积分（这时将 X 看作常数）得
+\begin{equation}
+  \xi=-\frac{f}{m\omega^2}.
+\end{equation}
+现在，我们将方程(30.4)对时间平均（按上面所指的意思）.因为 f 和 $\xi$ 的一次幂的平均值为零，可得方程
+\begin{equation*}
+  m\ddot{X}=-\frac{\mathrm{d}U}{\mathrm{d}X}
+  +\overline{\xi\frac{\partial f}{\partial X}}
+  =-\frac{\mathrm{d}U}{\mathrm{d}X}
+  -\frac{1}{m\omega^2}\overline{f\frac{\partial f}{\partial X}},
+\end{equation*}
+该方程只包含函数 X(t).方程可以重新写为
+\begin{equation}
+  m\ddot{X}=-\frac{\mathrm{d}U_{\mathrm{eff}}}{\mathrm{d}X},
+\end{equation}
+其中“有效势能”定义为\footnote{在 $m$ 依赖于 $x$ 的情况下，经过较长的计算可以证明，公式(30.7)和(30.8)还是成立的.}
+\begin{equation}
+  U_{\mathrm{eff}}=U+\frac{1}{2m\omega^2}\overline{f^2}
+  =U+\frac{1}{4m\omega^2}\left(f_1^2+f_2^2\right).
+\end{equation}
+比较此式和(30.6)可见，附加到场 U 中的项不是别的，正是振动动能的平均值
+\begin{equation}
+  U_{\mathrm{eff}}=U+\frac{m}{2}\overline{\xi^2}.
+\end{equation}
+可见，对振动平均后的质点的运动，与在定常势场 U 加上正比于变场幅值平方的定常场中的运动相同.
+
+所得的结果很容易推广到用广义坐标 $q_i$ 描述的任意自由度系统.有效势能表达式不是(30.8)，而是
+\begin{equation}
+  U_{\mathrm{eff}}=U+\frac{1}{2\omega^2}\sum_{i,k}a_{ik}^{-1}\overline{f_if_k}
+  =U+\sum_{i,k}\frac{a_{ik}}{2}\overline{\dot{\xi}_i\dot{\xi}_k},
+\end{equation}
+其中量 $a_{ik}^{-1}$（一般来说为坐标的函数）是系统的动能(5.5)的系数 $a_{ik}$ 构成的矩阵之逆矩阵的元素.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 试求摆的稳定平衡位置，假设悬挂点以高频 $\gamma\ (\gamma\gg\sqrt{g/l})$ 在竖直方向振动.
+
+解：由§5的习题3情况 c 所得的拉格朗日函数可知，在这种情况下，变力为
+\begin{equation*}
+  f=-mla\gamma^2\cos\gamma t\sin\varphi
+\end{equation*}
+（这里变量 $x$ 用角 $\varphi$ 表示）.所以有效势能为
+\begin{equation*}
+  U_{\mathrm{eff}}=mgl\left(-\cos\varphi+\frac{a^2\gamma^2}{4gl}\sin^2\varphi\right).
+\end{equation*}
+稳定平衡位置相应于这个函数取极小值.竖直向下的位置（$\varphi=0$）总是稳定的.
+
+在满足条件
+\begin{equation*}
+  a^2\gamma^2>2gl
+\end{equation*}
+的情况下，竖直向上的位置（$\varphi=\pi$）也是稳定的.
+
+\noindent{\heiti 习题2}\quad 同上题，但摆的悬挂点水平振动.
+
+解：由§5的习题3情况 b 所得的拉格朗日函数可知，$f=mla\gamma^2\cos\gamma t\cos\varphi$，然后可得
+\begin{equation*}
+  U_{\mathrm{eff}}=mgl\left[-\cos\varphi+\frac{a^2\gamma^2}{4gl}\cos^2\varphi\right].
+\end{equation*}
+如果 $a^2\gamma^2<2gl$，则平衡位置 $\varphi=0$ 稳定.如果 $a^2\gamma^2>2gl$，则稳定平衡位置相应于
+\begin{equation*}
+  \cos\varphi=\frac{2gl}{a^2\gamma^2}.
+\end{equation*}
+
+\end{xiti}

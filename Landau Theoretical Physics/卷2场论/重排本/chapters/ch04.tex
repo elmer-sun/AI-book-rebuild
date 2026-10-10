@@ -1,0 +1,1284 @@
+% ============================================================
+%  第二卷 第四章 电磁场方程（§26–§35 + 习题）
+%  底本：高教社中文版第8版；OCR 错误已修正
+%  脚注已转录：12 处圈码已替换为 \footnote{...}（转录自原书扫描页
+%   p088/090/091/092/097/099/105/108/109/110/112；原遗留 a/d/e 三条
+%   即 §28 δ函数、§34 代换、§33 主轴脚注，已一并录入）
+%  已修正的 OCR/原书错误：
+%   1. §26/§30/§31 OCR "cot"/"cot E"→rot（函数名被拆散错排）
+%   2. §27 "作用量 $\therefore c$ 须是一个标量"→"作用量必须是一个标量"（照原书 p.76）
+%   3. §28 "点电荷 $\rho$ $e$"→"点电荷 $e$"；OCR 断句"电荷守恒它使我们"→"电荷守恒.它使我们"
+%   4. §30 原书 p.83 印刷错误 "(i=0,2,3,4)"→"($i=0,1,2,3$)"；"∂H_z/∂_y、∂H_y/∂_z"
+%      的下标多余底线→∂y、∂z；(30.8) 与 (31.1) 中 "$\dot{\boldsymbol{j}}$"→$\boldsymbol{j}$（OCR 多加点）
+%   5. §32 OCR "在超平面 $x^0=\mathrm{const}$ 那么"脱字→"在超平面 $x^0=\mathrm{const}$ 上进行，那么"；
+%      "对称张量Tik"→$T^{ik}$；OCR 的拉格朗日"密度"A 统一为 $\varLambda$
+%   6. §33 原书 p.91 重文"很容易容易验证"→"很容易验证"；OCR "F^k\iota"→$F^k{}_l$；
+%      "$T^{ik}$ 就不能化为对角形式 $\mathcal{D}$"的乱码→"式.①"（①为 p.91 脚注标记）
+%   7. §34 "间题在于"→"问题在于"；OCR 行4421–4423 孤立公式实为原书 p.95 脚注①内容，未录正文
+%  遗留问题：
+%   a. §28 脚注①（δ函数定义，OCR 行3523–3557，含公式(1)–(5)）按合同不录正文，
+%      留待脚注代理转录（脚注页码对照.txt 行31已登记，p.92）；
+%   b. §30 "但是按照（30.4）式，$\operatorname{div}\operatorname{rot}\boldsymbol{H}\equiv0$"
+%      系原书 p.84 原文（div rot H≡0 实为矢量分析恒等式，疑应为§6 公式），照原文保留；
+%   c. §33 习题末"及对于 $S_z$ 和 $\sigma_{zx}$ 的类似的公式"OCR 作 "$\sigma_x$"，
+%      下标按前后公式对称性补为 zx，请核对原书 p.92/93；
+%   d. §34 脚注①（p.95，"请注意，不做这种改变的话…"）含公式，文本未录，留待脚注代理；
+%   e. §33 "化为对角形式.①"的脚注①（p.91：对称四维张量主轴问题与§94习题有关）文本未录。
+% ============================================================
+\chapter{电磁场方程}
+
+\section{第一对麦克斯韦方程}
+
+从场 $\boldsymbol{E}$ 及 $\boldsymbol{H}$ 的表达式
+\begin{equation*}
+  \boldsymbol{H}=\operatorname{rot}\boldsymbol{A},\qquad
+  \boldsymbol{E}=-\frac{1}{c}\frac{\partial\boldsymbol{A}}{\partial t}
+  -\operatorname{grad}\varphi,
+\end{equation*}
+很容易得到仅含有 $\boldsymbol{E}$ 及 $\boldsymbol{H}$ 的方程.为了做到这一点，我们来求
+$\operatorname{rot}\boldsymbol{E}$：
+\begin{equation*}
+  \operatorname{rot}\boldsymbol{E}
+  =-\frac{1}{c}\frac{\partial}{\partial t}\operatorname{rot}\boldsymbol{A}
+  -\operatorname{rot}\operatorname{grad}\varphi.
+\end{equation*}
+
+但是任何梯度的旋度都为零，所以，
+\begin{equation}
+  \operatorname{rot}\boldsymbol{E}
+  =-\frac{1}{c}\frac{\partial\boldsymbol{H}}{\partial t}.
+\end{equation}
+
+取方程 $\operatorname{rot}\boldsymbol{A}=\boldsymbol{H}$
+两边的散度，并且记起旋度的散度等于零，我们便得到
+\begin{equation}
+  \operatorname{div}\boldsymbol{H}=0.
+\end{equation}
+
+方程（26.1）及（26.2）称为第一对麦克斯韦方程\footnote{麦克斯韦方程组（电动力学的基本方程）是麦克斯韦在1860年首先建立的.}.我们要注意，这两个方程还不能完全确定场的特性.这一点可以从这个事实清楚地看出来，即它们决定了磁场对时间的变化（即导数
+$\partial\boldsymbol{H}/\partial t$），但是并没有决定导数 $\partial\boldsymbol{E}/\partial t$.
+
+方程（26.1）及（26.2）可以写成积分形式.按照高斯定理，
+\begin{equation*}
+  \int\operatorname{div}\boldsymbol{H}\,\mathrm{d}V
+  =\oint\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{f},
+\end{equation*}
+此式右边的面积分是沿着包围着左边体积分所涉及之体积的封闭曲面而取的.基于 (26.2)，我们得到
+\begin{equation}
+  \oint\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{f}=0.
+\end{equation}
+
+一个矢量在一个曲面上的积分称为通过该曲面的矢量的通量.因此，磁场通过每个封闭曲面的通量为零.
+
+按照斯托克斯定理，
+\begin{equation*}
+  \int\operatorname{rot}\boldsymbol{E}\cdot\mathrm{d}\boldsymbol{f}
+  =\oint\boldsymbol{E}\cdot\mathrm{d}\boldsymbol{l},
+\end{equation*}
+此式右边的线积分是沿着包围左边面积分所涉及之曲面的闭合回路而取的.沿着任一曲面积分（26.1）式的两边，我们便求得
+\begin{equation}
+  \oint\boldsymbol{E}\cdot\mathrm{d}\boldsymbol{l}
+  =-\frac{1}{c}\frac{\partial}{\partial t}
+  \int\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{f}.
+\end{equation}
+
+一个矢量沿着一条闭合回路的积分，称为该矢量沿该闭合回路的环流.电场强度的环流也称为该回路内的电动势.所以任何回路内的电动势，等于穿过由该回路所包围的曲面的磁场强度通量的时间导数的负值.
+
+麦克斯韦方程（26.1）及（26.2）可以写成四维形式.用电磁场张量的定义
+\begin{equation*}
+  F_{ik}=\frac{\partial A_k}{\partial x^i}-\frac{\partial A_i}{\partial x^k},
+\end{equation*}
+很容易验证
+\begin{equation}
+  \frac{\partial F_{ik}}{\partial x^l}
+  +\frac{\partial F_{kl}}{\partial x^i}
+  +\frac{\partial F_{li}}{\partial x^k}=0.
+\end{equation}
+
+左边的表达式是一个三阶张量，它对所有三个指标都是反对称的.只有那些 $i\neq k\neq l$
+的分量才不等于零.将（23.5）式代入，很容易验证这四个方程正好就是方程（26.1）及（26.2）.
+
+将这个三阶反对称四维矢量乘以 $e^{iklm}$ 并就三对指标缩并，我们可以构造与其对偶的四维矢量（见§6）.因此
+(26.5) 可以写成形式
+\begin{equation}
+  e^{iklm}\frac{\partial F_{lm}}{\partial x^k}=0,
+\end{equation}
+这明示独立的方程只有四个.
+
+\section{电磁场的作用量}
+
+由电磁场和场内的粒子所组成的整个体系的作用量 $S$，应当包含有三个部分：
+\begin{equation}
+  S=S_{\mathrm{f}}+S_{\mathrm{m}}+S_{\mathrm{mf}}.
+\end{equation}
+
+其中 $S_{\mathrm{m}}$ 是作用量中仅仅与粒子的性质有关的一部分.这部分作用量不是别的，就是自由粒子的作用量.单个自由粒子的作用量由
+(8.1) 式给出.如果有几个粒子，它们的总作用量就是单个粒子的作用量之和.因此，
+\begin{equation}
+  S_{\mathrm{m}}=-\sum mc\int\mathrm{d}s.
+\end{equation}
+
+$S_{\mathrm{mf}}$ 是作用量中与粒子及场之间的相互作用有关的那一部分.按照§16，对于粒子系统我们有：
+\begin{equation}
+  S_{\mathrm{mf}}=-\sum\frac{e}{c}\int A_k\,\mathrm{d}x^k.
+\end{equation}
+
+在这个和的每一项中，$A_k$ 是相应粒子所在的那个时空点处场的势.和数 $S_{\mathrm{m}}+S_{\mathrm{mf}}$
+是我们已经熟悉的电荷在场内的作用量（16.1）.
+
+最后，$S_{\mathrm{f}}$
+是作用量中仅仅与场本身的特性有关的那一部分，就是说，$S_{\mathrm{f}}$
+是场在没有电荷时的作用量.到现在为止，因为我们仅仅注意了电荷在某一给定电磁场内的运动，没有注意到与粒子无关的量
+$S_{\mathrm{f}}$，因为这一项并不能影响粒子的运动.但是，假如我们要寻找决定场本身的方程，这一项倒是必需的了.这是同下列事实相对应的：从作用量的
+$S_{\mathrm{m}}+S_{\mathrm{mf}}$ 这部分，我们只能求出场的两个方程，即（26.1）及（26.2），要由这一对方程完全决定场是不够的.
+
+为了建立场的作用量 $S_{\mathrm{f}}$
+的形式，我们从电磁场如下非常重要的性质出发.实验表明，电磁场满足所谓叠加原理.这个原理可以叙述如下：一个电荷系统所产生的场，是每一个电荷单独所产生的场简单相加的结果.这就是说，在每一点的总场强等于在该点的各个场强的（矢量）和.
+
+场方程的每一个解给出一个在自然界中存在的场.按照叠加原理，任何这样一些场的和也必须是一个在自然界中存在的场，这就是说，必然满足场方程.
+
+大家知道，线性微分方程恰恰具有这个特性，即任意一些解的和也是一个解.因此，场方程必须是线性微分方程.
+
+从这个讨论可以推断，在作用量 $S_{\mathrm{f}}$
+的积分号内，必定有一个场的二次式.仅仅在这种情形下，场方程才是线性的；因为场方程是由作用量的变分得来，而在变分的过程中，积分号内的式子的幂将要减小一.
+
+势不能包含在作用量 $S_{\mathrm{f}}$
+内，因为它们还没有唯一地被确定（在 $S_{\mathrm{mf}}$ 中，缺乏这样的唯一性并不重要）.因此，
+$S_{\mathrm{f}}$ 应当是电磁场张量 $F_{ik}$
+的某函数的积分.但是作用量必须是一个标量，因而必须是某一个标量的积分.这样的量只有乘积 $F_{ik}F^{ik}$.\footnote{$S_{\mathrm{f}}$ 中积分号下的函数必须不包含 $F_{ik}$ 的导数，因为除坐标以外，拉格朗日量只能包含坐标对时间的一阶导数.在这种情形下，场的势 $A_k$ 起着“坐标”（即最小作用原理中被变分的变量）的作用.这与力学中的情形类似，即力学系统的拉格朗日量只含粒子的坐标和它们对时间的一阶导数.\par 至于量 $e^{iklm}F_{ik}F_{lm}$（§25），（正如§25第一个脚注指出的那样）它是一个完全的四维散度，所以把它加到 $S_{\mathrm{f}}$ 中积分号下的表达式里不会影响“运动方程”.有趣的是，这个量已经从作用量中被排除，理由与它是赝标量而非真标量这一情况无关.}
+
+因此，$S_{\mathrm{f}}$ 必须有下面的形式：
+\begin{equation*}
+  S_{\mathrm{f}}=a\iint F_{ik}F^{ik}\,\mathrm{d}V\,\mathrm{d}t,\qquad
+  \mathrm{d}V=\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z,
+\end{equation*}
+其中积分应该遍及全部空间和已知的两个时刻之间的时间间隔；$a$
+是某一常数.积分号内的量是 $F_{ik}F^{ik}=2(H^2-E^2)$.场 $\boldsymbol{E}$ 包含导数
+$\partial\boldsymbol{A}/\partial t$；然而很容易看出，$(\partial\boldsymbol{A}/\partial t)^2$
+必须带着正号出现在作用量内（因而 $E^2$
+必须有正号）.因为假如 $(\partial\boldsymbol{A}/\partial t)^2$ 带着负号出现在
+$S_{\mathrm{f}}$ 内，那么，势对时间的变化要是足够快的话（在我们研究的时间间隔以内），我们总能够使
+$S_{\mathrm{f}}$ 变为绝对值任意大的负量.因此，$S_{\mathrm{f}}$
+不能有最小作用量原理所要求的最小值.因此，$a$ 必须是负数.
+
+$a$ 的数值与场的测量单位的选择有关.我们注意，当 $a$
+以及场的测量单位选定了以后，所有其他电磁量的测量单位也就确定了.
+
+从现在起，我们将采用高斯单位制，在这个单位制中，$a$ 是一个无量纲的量，其数值是 $-1/(16\pi)$\footnote{除高斯单位制外，还有赫维赛德单位制，其中 $a=-1/4$.在这个单位制中，场方程将有比较便利的形式（$4\pi$ 不出现），但是另一方面，$4\pi$ 却出现在库仑定律内.反之，在高斯单位制中，场方程包含着 $4\pi$，但是库仑定律却有简单的形式.}.
+
+因此，场的作用量有下面的形式：
+\begin{equation}
+  S_{\mathrm{f}}=-\frac{1}{16\pi c}\int F_{ik}F^{ik}\,\mathrm{d}\varOmega,
+  \qquad \mathrm{d}\varOmega=c\,\mathrm{d}t\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z.
+\end{equation}
+
+在三维形式中，
+\begin{equation}
+  S_{\mathrm{f}}=\frac{1}{8\pi}\iint\left(E^2-H^2\right)\mathrm{d}V\,\mathrm{d}t.
+\end{equation}
+
+换句话说，电磁场的拉格朗日量是：
+\begin{equation}
+  L_{\mathrm{f}}=\frac{1}{8\pi}\int\left(E^2-H^2\right)\mathrm{d}V.
+\end{equation}
+
+场连同其中的电荷的作用量有下面的形式：
+\begin{equation}
+  S=-\sum\int mc\,\mathrm{d}s-\sum\int\frac{e}{c}A_k\,\mathrm{d}x^k
+  -\frac{1}{16\pi c}\int F_{ik}F^{ik}\,\mathrm{d}\varOmega.
+\end{equation}
+
+我们要注意，现在并不像在推导一个电荷在给定场内的运动方程那样假设电荷很小.因此，$A_k$ 及 $F_{ik}$
+是指实际的场，即外场加上电荷本身所产生的场；现在 $A_k$ 及 $F_{ik}$ 与电荷的位置和速度有关.
+
+\section{四维电流矢量}
+
+为了数学上的便利，我们时常不把电荷看做为点，而设想它们是在空间中连续分布的.这时我们可以引入电荷密度
+$\rho$，使 $\rho\,\mathrm{d}V$ 等于体积 $\mathrm{d}V$ 所包含的电荷.密度 $\rho$
+一般是坐标和时间的函数.在某一个体积内取的体积分 $\int\rho\,\mathrm{d}V$ 等于该体积内的电荷.
+
+这里，我们必须记得，电荷实际上是点状的，因而除了点电荷所在点以外密度 $\rho$
+都是零，而积分 $\int\rho\,\mathrm{d}V$
+必须等于在给定体积内的所有电荷之和.因而 $\rho$ 可以利用δ函数写成下面的形式\footnote{δ函数 $\delta(x)$ 可定义如下：当 $x\neq 0$ 时，$\delta(x)=0$；当 $x=0$ 时，$\delta(0)=\infty$，且使得积分
+\begin{equation*}\tag{1}
+  \int_{-\infty}^{+\infty}\delta(x)\,\mathrm{d}x=1.
+\end{equation*}
+从这个定义，可以推断出下面的特性：假如 $f(x)$ 是任意的一个连续函数，那么
+\begin{equation*}\tag{2}
+  \int_{-\infty}^{+\infty}f(x)\delta(x-a)\,\mathrm{d}x=f(a);
+\end{equation*}
+其中一个特殊情况是
+\begin{equation*}\tag{3}
+  \int_{-\infty}^{+\infty}f(x)\delta(x)\,\mathrm{d}x=f(0)
+\end{equation*}
+（自然，积分限不一定是 $\pm\infty$，积分的区间可以是任何包含δ函数不为零的点的范围）.我们再写出两个δ函数的等式.这两个等式的意思是，它们的左右两边在积分号内作因子时给出同样的结果：
+\begin{equation*}\tag{4}
+  \delta(-x)=\delta(x),\qquad \delta(ax)=\frac{1}{|a|}\delta(x).
+\end{equation*}
+最后那个等式是如下更普遍关系的特例：
+\begin{equation*}\tag{5}
+  \delta[\varphi(x)]=\sum_i\frac{1}{|\varphi'(a_i)|}\,\delta(x-a_i),
+\end{equation*}
+式中 $\varphi(x)$ 是单值函数（其逆并不单值）而 $a_i$ 是方程 $\varphi(x)=0$ 的根.类似于定义一个变量 $x$ 的 $\delta(x)$，我们可以引入三维δ函数 $\delta(\boldsymbol{r})$，这个函数除了在三维空间坐标的原点外，都是零，而其遍及全部空间的积分值是 1.显然我们可以用乘积 $\delta(x)\delta(y)\delta(z)$ 来表示这样的一个函数.}：
+\begin{equation}
+  \rho=\sum_a e_a\delta(\boldsymbol{r}-\boldsymbol{r}_a),
+\end{equation}
+此式对所有电荷求和，而 $\boldsymbol{r}_a$ 是电荷 $e_a$ 的径矢.
+
+从电荷的定义可以知道，粒子的电荷是一个不变量，即是说，电荷与参考系的选择无关.另一方面，密度 $\rho$
+一般来说并不是不变量，不变的仅仅是乘积 $\rho\,\mathrm{d}V$.
+
+用 $\mathrm{d}x^i$ 乘等式 $\mathrm{d}e=\rho\,\mathrm{d}V$ 的两边得
+\begin{equation*}
+  \mathrm{d}e\,\mathrm{d}x^i
+  =\rho\,\mathrm{d}V\,\mathrm{d}x^i
+  =\rho\,\mathrm{d}V\,\mathrm{d}t\,\frac{\mathrm{d}x^i}{\mathrm{d}t}.
+\end{equation*}
+
+左边是一个四维矢量（因为 $\mathrm{d}e$ 是一个标量，而 $\mathrm{d}x^i$
+是一个四维矢量）.这就意味着右边也是一个四维矢量.但 $\mathrm{d}V\mathrm{d}t$
+应当是一个标量，所以 $\rho(\mathrm{d}x^i/\mathrm{d}t)$
+是一个四维矢量.这个矢量（我们用 $j^i$ 来表示）称为四维电流矢量：
+\begin{equation}
+  j^i=\rho\frac{\mathrm{d}x^i}{\mathrm{d}t}.
+\end{equation}
+
+这个矢量的空间分量构成电流密度矢量，
+\begin{equation}
+  \boldsymbol{j}=\rho\boldsymbol{v},
+\end{equation}
+其中 $\boldsymbol{v}$ 是处于给定点的电荷的速度.四维矢量 (28.2) 的时间分量是 $c\rho$.因此，
+\begin{equation}
+  j^i=(c\rho,\boldsymbol{j}).
+\end{equation}
+
+全部空间中的总电荷等于遍及全部空间的积分 $\int\rho\,\mathrm{d}V$.我们可以将这个积分写成四维形式：
+\begin{equation}
+  \int\rho\,\mathrm{d}V=\frac{1}{c}\int j^0\,\mathrm{d}V
+  =\frac{1}{c}\int j^i\,\mathrm{d}S_i,
+\end{equation}
+其中积分应该遍及整个与 $x^0$
+轴垂直的四维空间的超平面（这个积分显然就是遍及整个三维空间的积分）.一般说来，遍及一个任意超曲面取的积分
+\begin{equation*}
+  \frac{1}{c}\int j^i\,\mathrm{d}S_i
+\end{equation*}
+是世界线通过该曲面的那些电荷之和.
+
+我们将四维电流矢量引入作用量的表达式 (27.7)，并对该式中的第二项进行变换.引入以密度 $\rho$
+连续分布的电荷来代替点电荷 $e$，我们必须将该项写成
+\begin{equation*}
+  -\frac{1}{c}\int\rho A_i\,\mathrm{d}x^i\,\mathrm{d}V,
+\end{equation*}
+用遍及整个体积的积分来代替电荷之和.将其改写成形式
+\begin{equation*}
+  -\frac{1}{c}\int\rho\frac{\mathrm{d}x^i}{\mathrm{d}t}A_i\,\mathrm{d}V\,\mathrm{d}t,
+\end{equation*}
+我们看出这一项等于
+\begin{equation*}
+  -\frac{1}{c^2}\int A_i j^i\,\mathrm{d}\varOmega.
+\end{equation*}
+
+因此作用量 $S$ 取下面的形式：
+\begin{equation}
+  S=-\sum\int mc\,\mathrm{d}s-\frac{1}{c^2}\int A_i j^i\,\mathrm{d}\varOmega
+  -\frac{1}{16\pi c}\int F_{ik}F^{ik}\,\mathrm{d}\varOmega.
+\end{equation}
+
+\section{连续性方程}
+
+在某一个体积内的电荷对时间的变化取决于导数
+\begin{equation*}
+  \frac{\partial}{\partial t}\int\rho\,\mathrm{d}V.
+\end{equation*}
+
+另一方面，单位时间内电荷的变化取决于单位时间内离开这个体积而走到外面去的电量，或者反过来，由外面进入这个体积内的电量.在单位时间内经过包围该体积的曲面的面元
+$\mathrm{d}\boldsymbol{f}$ 的电荷等于 $\rho\boldsymbol{v}\cdot\mathrm{d}\boldsymbol{f}$，此处
+$\boldsymbol{v}$ 是电荷在面元 $\mathrm{d}\boldsymbol{f}$
+所在的空间点的速度.矢量 $\mathrm{d}\boldsymbol{f}$
+如通常一样，沿着曲面的外法线方向，就是说沿着由所考虑的体积指向外面的法线的方向.所以假如电荷离开体积，
+$\rho\boldsymbol{v}\cdot\mathrm{d}\boldsymbol{f}$ 为正；假如电荷进入体积，
+$\rho\boldsymbol{v}\cdot\mathrm{d}\boldsymbol{f}$
+就为负.因此，在单位时间内离开给定体积的总电荷是
+$\oint\rho\boldsymbol{v}\cdot\mathrm{d}\boldsymbol{f}$，此处的积分必须遍及包围这个体积的整个封闭曲面.
+
+从这两个表达式相等，我们得到
+\begin{equation}
+  \frac{\partial}{\partial t}\int\rho\,\mathrm{d}V
+  =-\oint\rho\boldsymbol{v}\cdot\mathrm{d}\boldsymbol{f}.
+\end{equation}
+右边出现了负号，因为假如在一个给定体积内总电荷增加的话，左边就是正的.方程
+(29.1) 称为连续性方程，这个方程是用积分形式来表示电荷守恒的.注意到 $\rho\boldsymbol{v}$
+是电流密度，我们可以将（29.1）改写为
+\begin{equation}
+  \frac{\partial}{\partial t}\int\rho\,\mathrm{d}V
+  =-\oint\boldsymbol{j}\cdot\mathrm{d}\boldsymbol{f}.
+\end{equation}
+
+我们再来将这个方程写成微分形式.为此，在 (29.2) 式的右边应用高斯定理：
+\begin{equation*}
+  \oint\boldsymbol{j}\cdot\mathrm{d}\boldsymbol{f}
+  =\int\operatorname{div}\boldsymbol{j}\,\mathrm{d}V,
+\end{equation*}
+我们得到
+\begin{equation*}
+  \int\left(\operatorname{div}\boldsymbol{j}
+  +\frac{\partial\rho}{\partial t}\right)\mathrm{d}V=0.
+\end{equation*}
+
+因为这个方程对于在任意体积上取积分都是有效的，所以被积函数必须为零：
+\begin{equation}
+  \operatorname{div}\boldsymbol{j}+\frac{\partial\rho}{\partial t}=0.
+\end{equation}
+
+这就是连续性方程的微分形式.
+
+很容易验证，以δ函数形式表达 $\rho$ 的（28.1）式自动地满足方程（29.3）.为简便起见，假设总共只有一个电荷，则
+\begin{equation*}
+  \rho=e\,\delta(\boldsymbol{r}-\boldsymbol{r}_0).
+\end{equation*}
+
+这时电流 $\boldsymbol{j}$ 是
+\begin{equation*}
+  \boldsymbol{j}=e\boldsymbol{v}\,\delta(\boldsymbol{r}-\boldsymbol{r}_0),
+\end{equation*}
+此处 $\boldsymbol{v}$ 是电荷的速度.现在我们来确定导数 $\partial\rho/\partial t$.电荷运动时，它的坐标要改变，即矢量
+$\boldsymbol{r}_0$ 要改变.所以
+\begin{equation*}
+  \frac{\partial\rho}{\partial t}
+  =\frac{\partial\rho}{\partial\boldsymbol{r}_0}
+  \cdot\frac{\partial\boldsymbol{r}_0}{\partial t}.
+\end{equation*}
+
+但是 $\partial\boldsymbol{r}_0/\partial t$ 恰是电荷的速度 $\boldsymbol{v}$.此外，因为
+$\rho$ 是 $\boldsymbol{r}-\boldsymbol{r}_0$ 的函数，所以
+\begin{equation*}
+  \frac{\partial\rho}{\partial\boldsymbol{r}_0}
+  =-\frac{\partial\rho}{\partial\boldsymbol{r}}.
+\end{equation*}
+
+因此
+\begin{equation*}
+  \frac{\partial\rho}{\partial t}
+  =-\boldsymbol{v}\cdot\operatorname{grad}\rho
+  =-\operatorname{div}(\rho\boldsymbol{v}).
+\end{equation*}
+（电荷的速度 $\boldsymbol{v}$ 当然与 $\boldsymbol{r}$ 无关）.因此，我们得到了方程（29.3）.
+
+很容易验证，连续性方程（29.3）可以用四维形式表述为，四维电流矢量的四维散度等于零：
+\begin{equation}
+  \frac{\partial j^i}{\partial x^i}=0.
+\end{equation}
+
+在上一节中我们已经看出，全部空间中的总电荷可以写成
+\begin{equation*}
+  \frac{1}{c}\int j^i\,\mathrm{d}S_i,
+\end{equation*}
+这个积分应该遍及超平面 $x^0=\mathrm{const}$.每一时刻，总电荷都由这样一个遍及与 $x^0$
+轴垂直的不同超平面的积分给出.很容易验证，方程 (29.4) 实际上可导出电荷守恒定律，即不论我们在哪一个超平面
+$x^0=\mathrm{const}$ 上取积分，积分 $\int j^i\,\mathrm{d}S_i$
+都是一样的.在这两个超平面上的积分 $\int j^i\,\mathrm{d}S_i$ 之差，可以写成
+$\oint j^i\,\mathrm{d}S_i$，此处的积分是沿整个封闭的超曲面而取的，而这个封闭的超曲面包围着我们所考虑的两个超平面之间的四维体积（这个积分与所求之差的区别是一个沿无穷远的“侧”超曲面的积分，但因在无穷远处没有电荷，所以后面那个积分为零）.利用高斯定理
+(6.15)，我们可以将这个积分转换为一个遍及两个超平面之间的四维体积的积分，从而验证
+\begin{equation}
+  \oint j^i\,\mathrm{d}S_i
+  =\int\frac{\partial j^i}{\partial x^i}\,\mathrm{d}\varOmega=0.
+\end{equation}
+
+上面的证明显然对任意两个积分 $\int j^i\,\mathrm{d}S_i$
+都是有效的，此处的积分是遍及任意两个无限超曲面（不仅是超平面 $x^0=\mathrm{const}$
+），每个超曲面都包括整个（三维）空间.由此得到下面的结论，即积分
+$\dfrac{1}{c}\int j^i\,\mathrm{d}S_i$
+不管是沿着哪个这样的超曲面而取的，其值实际上是相同的（等于空间中的总电荷）.
+
+我们已经提到过（见§18的脚注），电动力学方程的规范不变性和电荷守恒定律之间存在着密切联系.现在让我们用形如
+(28.6) 的作用量表达式再次证明这一点.用 $A_i-\partial f/\partial x^i$ 替换 $A_i$，将积分
+\begin{equation*}
+  \frac{1}{c^2}\int j^i\frac{\partial f}{\partial x^i}\,\mathrm{d}\varOmega
+\end{equation*}
+加到这个表达式的第二项.它正好就是以连续性方程 (29.4) 表达的电荷守恒.它使我们能把被积函数写成四维散度
+$\partial(fj^i)/\partial x^i$，然后用高斯定理，沿四维体积的积分就换为沿闭合超曲面的积分；对作用量变分时，这些积分为零，因此对运动方程没有影响.
+
+\section{第二对麦克斯韦方程}
+
+在利用最小作用量原理来推导场方程时，我们应当认为电荷的运动是已知的，而只变分势（这里看作系统的“坐标”）；另一方面，在推导运动方程时，我们又认为场是已知的，而只变分粒子的轨道.
+
+所以 (28.6) 式中第一项的变分是零，而在第二项中，我们不能变分电流 $j^i$.因此，
+\begin{equation*}
+  \delta S=-\frac{1}{c}\int\left[\frac{1}{c}j^i\delta A_i
+  +\frac{1}{8\pi}F^{ik}\delta F_{ik}\right]\mathrm{d}\varOmega=0
+\end{equation*}
+（式中我们已经用了 $F^{ik}\delta F_{ik}\equiv F_{ik}\delta F^{ik}$ 这个结果）.将
+\begin{equation*}
+  F_{ik}=\frac{\partial A_k}{\partial x^i}-\frac{\partial A_i}{\partial x^k}
+\end{equation*}
+代入，我们就得到
+\begin{equation*}
+  \delta S=-\frac{1}{c}\int\left\{\frac{1}{c}j^i\delta A_i
+  +\frac{1}{8\pi}F^{ik}\frac{\partial}{\partial x^i}\delta A_k
+  -\frac{1}{8\pi}F^{ik}\frac{\partial}{\partial x^k}\delta A_i\right\}\mathrm{d}\varOmega.
+\end{equation*}
+
+在第二项中，我们将指标 $i$ 同 $k$ 交换，其中 $i$，$k$ 是求和指标，此外用 $-F_{ik}$ 代替
+$F_{ki}$，于是我们得到
+\begin{equation*}
+  \delta S=-\frac{1}{c}\int\left\{\frac{1}{c}j^i\delta A_i
+  -\frac{1}{4\pi}F^{ik}\frac{\partial}{\partial x^k}\delta A_i\right\}\mathrm{d}\varOmega.
+\end{equation*}
+
+将第二项作分部积分，换句话说，就是应用高斯定理：
+\begin{equation}
+  \delta S=-\frac{1}{c}\int\left\{\frac{1}{c}j^i
+  +\frac{1}{4\pi}\frac{\partial F^{ik}}{\partial x^k}\right\}\delta A_i\,\mathrm{d}\varOmega
+  -\frac{1}{4\pi c}\int F^{ik}\delta A_i\,\mathrm{d}S_k.
+\end{equation}
+
+在第二项中，我们应当取它在积分限上的值.坐标的积分限是在无穷远处，在无穷远处的场为零.在时间的积分限上，就是在给定的初时刻与末时刻，势的变分为零，因为按照最小作用量原理的意思，势在这两个时刻是给定的.因此，
+(30.1) 式中的第二项为零，从而我们得到
+\begin{equation*}
+  \int\left(\frac{1}{c}j^i
+  +\frac{1}{4\pi}\frac{\partial F^{ik}}{\partial x^k}\right)
+  \delta A_i\,\mathrm{d}\varOmega=0.
+\end{equation*}
+
+因为按照最小作用量原理，变分 $\delta A_i$ 是任意的，所以 $\delta A_i$ 的系数应当等于零：
+\begin{equation}
+  \frac{\partial F^{ik}}{\partial x^k}=-\frac{4\pi}{c}j^i.
+\end{equation}
+
+现在我们把这四个方程（$i=0,1,2,3$）写为三维形式.第一个方程（$i=1$）是
+\begin{equation*}
+  \frac{1}{c}\frac{\partial F^{10}}{\partial t}
+  +\frac{\partial F^{11}}{\partial x}
+  +\frac{\partial F^{12}}{\partial y}
+  +\frac{\partial F^{13}}{\partial z}=-\frac{4\pi}{c}j^1.
+\end{equation*}
+
+将 $F^{ik}$ 的分量值代入，我们得到
+\begin{equation*}
+  \frac{1}{c}\frac{\partial E_x}{\partial t}
+  -\frac{\partial H_z}{\partial y}
+  +\frac{\partial H_y}{\partial z}=-\frac{4\pi}{c}j_x.
+\end{equation*}
+
+这个方程连同 $i=2,3$ 的两个方程可以写成一个矢量方程：
+\begin{equation}
+  \operatorname{rot}\boldsymbol{H}
+  =\frac{1}{c}\frac{\partial\boldsymbol{E}}{\partial t}
+  +\frac{4\pi}{c}\boldsymbol{j}.
+\end{equation}
+
+最后，第四个方程（$i=0$）是
+\begin{equation}
+  \operatorname{div}\boldsymbol{E}=4\pi\rho.
+\end{equation}
+
+方程 (30.3) 及 (30.4)
+是用矢量形式写成的第二对麦克斯韦方程\footnote{适用于真空中电磁场内的一个点电荷的麦克斯韦方程组的形式是由H.A.洛伦兹给出的.}.和第一对麦克斯韦方程一起，它们完全确定了电磁场.它们是电磁场理论，或如通常所说，是电动力学的基本方程.
+
+现在我们来将这些方程写成积分形式.在某一个体积上积分 (30.4)，应用高斯定理
+\begin{equation*}
+  \int\operatorname{div}\boldsymbol{E}\,\mathrm{d}V
+  =\oint\boldsymbol{E}\cdot\mathrm{d}\boldsymbol{f},
+\end{equation*}
+我们得到
+\begin{equation}
+  \oint\boldsymbol{E}\cdot\mathrm{d}\boldsymbol{f}
+  =4\pi\int\rho\,\mathrm{d}V.
+\end{equation}
+
+因此，电场通过一个封闭曲面的通量等于 $4\pi$ 乘曲面所包围的体积内的总电荷.
+
+在一个非封闭曲面上积分（30.3）并应用斯托克斯定理
+\begin{equation*}
+  \int\operatorname{rot}\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{f}
+  =\oint\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{l},
+\end{equation*}
+我们得到
+\begin{equation}
+  \oint\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{l}
+  =\frac{1}{c}\frac{\partial}{\partial t}
+  \int\boldsymbol{E}\cdot\mathrm{d}\boldsymbol{f}
+  +\frac{4\pi}{c}\int\boldsymbol{j}\cdot\mathrm{d}\boldsymbol{f}.
+\end{equation}
+
+我们称
+\begin{equation}
+  \frac{1}{4\pi}\frac{\partial\boldsymbol{E}}{\partial t}
+\end{equation}
+这个量为位移电流.从（30.6）的如下形式：
+\begin{equation}
+  \oint\boldsymbol{H}\cdot\mathrm{d}\boldsymbol{l}
+  =\frac{4\pi}{c}\int\left(\boldsymbol{j}
+  +\frac{1}{4\pi}\frac{\partial\boldsymbol{E}}{\partial t}\right)
+  \cdot\mathrm{d}\boldsymbol{f},
+\end{equation}
+我们知道，磁场绕着任何回路的环流等于穿过此回路所包围之曲面的真实电流与位移电流之和乘 $4\pi/c$.
+
+从麦克斯韦方程组，我们可以得到已经知道的连续性方程 (29.3).取 (30.3)
+式两边的散度，我们得到
+\begin{equation*}
+  \operatorname{div}\operatorname{rot}\boldsymbol{H}
+  =\frac{1}{c}\frac{\partial}{\partial t}\operatorname{div}\boldsymbol{E}
+  +\frac{4\pi}{c}\operatorname{div}\boldsymbol{j}.
+\end{equation*}
+
+但是按照（30.4）式，$\operatorname{div}\operatorname{rot}\boldsymbol{H}\equiv0$，而
+$\operatorname{div}\boldsymbol{E}=4\pi\rho$.因此我们又重新得到了方程（29.3）.在四维形式中，从
+(30.2) 式我们可得到
+\begin{equation*}
+  \frac{\partial^2 F^{ik}}{\partial x^i\partial x^k}
+  =-\frac{4\pi}{c}\frac{\partial j^i}{\partial x^i}.
+\end{equation*}
+
+但是由于算符 $\partial^2/\partial x^i\partial x^k$ 对于指标 $i$ 和 $k$
+的对称性，它作用于反对称张量 $F^{ik}$
+时将得到恒为零的结果，于是我们得到四维形式的连续性方程 (29.4).
+
+\section{能量密度和能流}
+
+我们用 $\boldsymbol{E}$ 乘 (30.3) 式的两边，用 $\boldsymbol{H}$ 乘 (26.1)
+式的两边，再将所得的方程相加，可得
+\begin{equation*}
+  \frac{1}{c}\boldsymbol{E}\cdot\frac{\partial\boldsymbol{E}}{\partial t}
+  +\frac{1}{c}\boldsymbol{H}\cdot\frac{\partial\boldsymbol{H}}{\partial t}
+  =-\frac{4\pi}{c}\boldsymbol{j}\cdot\boldsymbol{E}
+  -\left(\boldsymbol{H}\cdot\operatorname{rot}\boldsymbol{E}
+  -\boldsymbol{E}\cdot\operatorname{rot}\boldsymbol{H}\right).
+\end{equation*}
+
+应用众所周知的矢量分析公式
+\begin{equation*}
+  \operatorname{div}\left(\boldsymbol{a}\times\boldsymbol{b}\right)
+  =\boldsymbol{b}\cdot\operatorname{rot}\boldsymbol{a}
+  -\boldsymbol{a}\cdot\operatorname{rot}\boldsymbol{b},
+\end{equation*}
+我们改写这个方程如下：
+\begin{equation*}
+  \frac{1}{2c}\frac{\partial}{\partial t}\left(E^2+H^2\right)
+  =-\frac{4\pi}{c}\boldsymbol{j}\cdot\boldsymbol{E}
+  -\operatorname{div}\left(\boldsymbol{E}\times\boldsymbol{H}\right),
+\end{equation*}
+或
+\begin{equation}
+  \frac{\partial}{\partial t}\left(\frac{E^2+H^2}{8\pi}\right)
+  =-\boldsymbol{j}\cdot\boldsymbol{E}-\operatorname{div}\boldsymbol{S}.
+\end{equation}
+
+矢量
+\begin{equation}
+  \boldsymbol{S}=\frac{c}{4\pi}\boldsymbol{E}\times\boldsymbol{H}
+\end{equation}
+称为坡印亭矢量.
+
+将（31.1）在一个体积上积分，并对右边第二项应用高斯定理，则我们得到
+\begin{equation}
+  \frac{\partial}{\partial t}\int\frac{E^2+H^2}{8\pi}\,\mathrm{d}V
+  =-\int\boldsymbol{j}\cdot\boldsymbol{E}\,\mathrm{d}V
+  -\oint\boldsymbol{S}\cdot\mathrm{d}\boldsymbol{f}.
+\end{equation}
+
+假如积分遍及整个空间，那么，面积分就等于零（因为在无穷远处场为零）.此外，我们可以用对所有电荷求和的式子
+$\sum e\boldsymbol{v}\cdot\boldsymbol{E}$ 来表示积分
+$\int\boldsymbol{j}\cdot\boldsymbol{E}\,\mathrm{d}V$，并按（17.7）式，将
+\begin{equation*}
+  e\boldsymbol{v}\cdot\boldsymbol{E}
+  =\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{E}_\mathrm{kin}
+\end{equation*}
+代入，那么（31.3）式化为
+\begin{equation}
+  \frac{\mathrm{d}}{\mathrm{d}t}\left\{\int\frac{E^2+H^2}{8\pi}\,\mathrm{d}V
+  +\sum\mathcal{E}_\mathrm{kin}\right\}=0.
+\end{equation}
+
+因此，对于一个包括电磁场及场内粒子的封闭系统，上面方程括号内的量是守恒的.括号内的第二项是全部粒子的动能（还包括静能；见§17的脚注），因而第一项就是场本身的能量.因此，我们称
+\begin{equation}
+  W=\frac{E^2+H^2}{8\pi}
+\end{equation}
+为电磁场的能量密度；它是场在每单位体积内的能量.
+
+假如我们在任何一个有限体积上积分，那么，(31.3)
+式中的面积分一般不等于零，因而我们可以将这个方程写成下面的形式：
+\begin{equation}
+  \frac{\partial}{\partial t}\left\{\int\frac{E^2+H^2}{8\pi}\,\mathrm{d}V
+  +\sum\mathcal{E}_\mathrm{kin}\right\}
+  =-\oint\boldsymbol{S}\cdot\mathrm{d}\boldsymbol{f},
+\end{equation}
+其中括号内的第二项的求和仅涉及所考虑的体积内的各粒子.上式的左边是场与粒子的总能量在单位时间内的变化.因此，积分
+$\oint\boldsymbol{S}\cdot\mathrm{d}\boldsymbol{f}$
+必须认为是经过包围给定体积的曲面的场的能流，因而坡印亭矢量 $\boldsymbol{S}$
+就是这个能流密度——在单位时间内流过曲面的单位面积的场能量\footnote{我们假定，在那一时刻，所研究体积之表面本身上无粒子，如果不是这样，那么，在右边应当包括穿过曲面的粒子输运的能流.}.
+
+\section{能量动量张量}
+
+在上一节中我们已经求出电磁场能量的表达式.现在我们来求出这个式子及场的动量的四维形式.为简便起见，我们现在只考虑无电荷的电磁场.为了以后的应用（对于引力场的应用），也为了简化计算，我们在一般形式下进行推导，而不将体系的具体类型特殊化.
+
+我们考虑一个任意体系，它的作用量积分为
+\begin{equation}
+  S=\int\varLambda\left(q,\frac{\partial q}{\partial x^i}\right)
+  \mathrm{d}V\,\mathrm{d}t
+  =\frac{1}{c}\int\varLambda\,\mathrm{d}\varOmega,
+\end{equation}
+其中 $\varLambda$
+是一些量 $q$（用来描写这个体系的状态）和它们对坐标及时间的一阶导数的某个函数（对于电磁场而言，四维势的分量就是量
+$q$）；为简便起见这里我们只写了一个 $q$.我们应注意，空间积分 $\int\varLambda\,\mathrm{d}V$
+是这个体系的拉格朗日量，所以 $\varLambda$
+可以认为是拉格朗日量的“密度”.体系的封闭性的数学表示是 $\varLambda$ 与 $x^i$
+不存在任何明显关系，这同封闭力学体系的拉格朗日量不显含时间相似.
+
+按照最小作用量原理，运动方程（假如我们研究某种场，它就是场方程）可以通过变分 $S$
+来得到.我们有（为简便起见，我们用符号 $q_{,i}\equiv\partial q/\partial x^i$）
+\begin{equation*}
+\begin{aligned}[b]
+  \delta S&=\frac{1}{c}\int\left(\frac{\partial\varLambda}{\partial q}\delta q
+  +\frac{\partial\varLambda}{\partial q_{,i}}\delta q_{,i}\right)\mathrm{d}\varOmega\\
+  &=\frac{1}{c}\int\left[\frac{\partial\varLambda}{\partial q}\delta q
+  +\frac{\partial}{\partial x^i}\left(\frac{\partial\varLambda}{\partial q_{,i}}\delta q\right)
+  -\delta q\,\frac{\partial}{\partial x^i}\frac{\partial\varLambda}{\partial q_{,i}}\right]
+  \mathrm{d}\varOmega=0.
+\end{aligned}
+\end{equation*}
+
+被积函数内的第二项经过用高斯定理变换后，在整个空间内取积分将等于零，如是我们就得到下面的“运动方程”：
+\begin{equation}
+  \frac{\partial}{\partial x^i}\frac{\partial\varLambda}{\partial q_{,i}}
+  -\frac{\partial\varLambda}{\partial q}=0
+\end{equation}
+（当然应当理解为遍历重复的指标 $i$ 求和）.
+
+其余的推导与在力学中推导能量守恒定律的过程相似.亦即写出
+\begin{equation*}
+  \frac{\partial\varLambda}{\partial x^i}
+  =\frac{\partial\varLambda}{\partial q}\frac{\partial q}{\partial x^i}
+  +\frac{\partial\varLambda}{\partial q_{,k}}\frac{\partial q_{,k}}{\partial x^i}.
+\end{equation*}
+
+将（32.2）式代入，并注意 $q_{,k,i}=q_{,i,k}$，我们便得到
+\begin{equation*}
+  \frac{\partial\varLambda}{\partial x^i}
+  =\frac{\partial}{\partial x^k}\left(\frac{\partial\varLambda}{\partial q_{,k}}\right)q_{,i}
+  +\frac{\partial\varLambda}{\partial q_{,k}}\frac{\partial q_{,i}}{\partial x^k}
+  =\frac{\partial}{\partial x^k}
+  \left(q_{,i}\frac{\partial\varLambda}{\partial q_{,k}}\right).
+\end{equation*}
+
+另一方面，我们可以写
+\begin{equation*}
+  \frac{\partial\varLambda}{\partial x^i}
+  =\delta_i^k\frac{\partial\varLambda}{\partial x^k},
+\end{equation*}
+所以，引入符号
+\begin{equation}
+  T_i^k=q_{,i}\frac{\partial\varLambda}{\partial q_{,k}}-\delta_i^k\varLambda,
+\end{equation}
+我们可以将上面的关系式写成
+\begin{equation}
+  \frac{\partial T_i^k}{\partial x^k}=0.
+\end{equation}
+
+我们应注意，假如不是一个而有几个量 $\boldsymbol{q}^{(l)}$，那么，代替（32.3）我们可以写
+\begin{equation}
+  T_i^k=\sum_l q_{,i}^{(l)}
+  \frac{\partial\varLambda}{\partial q_{,k}^{(l)}}-\delta_i^k\varLambda.
+\end{equation}
+
+但是在§29中我们已经看出，方程 $\partial A^k/\partial x^k=0$，亦即一个矢量的四维散度等于零，就相当于说这个矢量在超曲面（这个超曲面包括整个三维空间）上的积分
+$\int A^k\,\mathrm{d}S_k$
+守恒.显然类似的结果对于张量的散度也是成立的.方程 (32.4) 就相当于说，矢量
+\begin{equation*}
+  P^i=\mathrm{const}\cdot\int T^{ik}\,\mathrm{d}S_k
+\end{equation*}
+是守恒的.
+
+这个矢量必定与体系的四维动量矢量相同.我们这样来选择积分号前面的常数，使矢量 $P^i$ 的时间分量 $P^0$
+按照前面的定义等于这个体系的能量乘以 $1/c$.为此，我们要注意，如果积分在超平面
+$x^0=\mathrm{const}$ 上进行，就有：
+\begin{equation*}
+  P^0=\mathrm{const}\cdot\int T^{0k}\,\mathrm{d}S_k
+  =\mathrm{const}\cdot\int T^{00}\,\mathrm{d}V,
+\end{equation*}
+另一方面，按照（32.3）式，
+\begin{equation*}
+  T^{00}=\dot{q}\frac{\partial\varLambda}{\partial\dot{q}}-\varLambda
+\end{equation*}
+（其中 $\dot{q}\equiv\partial q/\partial t$）.将这个量同通常联系能量与拉格朗日量的公式作比较，可知它应当被认为是体系的能量密度.因此
+$\int T^{00}\,\mathrm{d}V$
+就是体系的总能量.所以我们应当令 $\mathrm{const}=1/c$，最后我们得到体系的四维动量表达式
+\begin{equation}
+  P^i=\frac{1}{c}\int T^{ik}\,\mathrm{d}S_k.
+\end{equation}
+
+张量 $T^{ik}$ 称为体系的能量动量张量.
+
+必须指出，张量 $T^{ik}$ 的定义实质上不是唯一的.事实上，如果 $T^{ik}$ 由方程 (32.3)
+定义，那么任何其他形如
+\begin{equation}
+  T^{ik}+\frac{\partial}{\partial x^l}\psi^{ikl},\qquad
+  \psi^{ikl}=-\psi^{ilk}
+\end{equation}
+的张量也将满足方程 (32.4)，因为张量 $\psi^{ikl}$ 对于指标 $k,l$
+的反对称性，我们恒有 $\partial^2\psi^{ikl}/\partial x^k\partial x^l=0$.体系的四维总动量在这种情况下一般不改变，因为按照
+(6.17) 我们可以写出
+\begin{equation*}
+  \int\frac{\partial\psi^{ikl}}{\partial x^l}\,\mathrm{d}S_k
+  =\frac{1}{2}\int\left(\mathrm{d}S_k\frac{\partial\psi^{ikl}}{\partial x^l}
+  -\mathrm{d}S_l\frac{\partial\psi^{ikl}}{\partial x^k}\right)
+  =\frac{1}{2}\oint\psi^{ikl}\,\mathrm{d}f_{kl}^{*},
+\end{equation*}
+此处，等式左边的积分遍及一超曲面，而右边积分应遍及“包围”此超曲面的（普通）曲面.这个曲面在三维空间中显然是在无穷远处，而因为场或粒子在无穷远处都不存在，所以这个积分为零.因此体系的四维动量是唯一决定了的量.
+
+为了唯一地确定张量 $T^{ik}$
+，我们可以利用这样一个条件，即体系的四维角动量张量（见§14）可借助于下式用四维动量来表示：
+\begin{equation}
+  M^{ik}=\int\left(x^i\,\mathrm{d}P^k-x^k\,\mathrm{d}P^i\right)
+  =\frac{1}{c}\int\left(x^iT^{kl}-x^kT^{il}\right)\mathrm{d}S_l,
+\end{equation}
+就是说，体系的角动量“密度”可按普通公式以动量的“密度”表示之.
+
+很容易确定能量动量张量应当满足些什么条件，才能做到这一点.如我们已经知道的，角动量守恒定律可以用 $M^{ik}$
+的积分号内表达式的散度等于零来表示.因此
+\begin{equation}
+  \frac{\partial}{\partial x^l}
+  \left(x^iT^{kl}-x^kT^{il}\right)=0.
+\end{equation}
+
+注意到 $\partial x^i/\partial x^l=\delta_l^i$，而 $\partial T^{kl}/\partial x^l=0$，我们可由此得到
+\begin{equation*}
+  \delta_l^iT^{kl}-\delta_l^kT^{il}=T^{ki}-T^{ik}=0,
+\end{equation*}
+或
+\begin{equation}
+  T^{ik}=T^{ki},
+\end{equation}
+即能量动量张量必须是对称的.
+
+我们要注意，一般地说，用公式（32.5）定义的 $T^{ik}$
+并不是对称的，但是加上了带合适 $\psi^{ikl}$ 的变换 (32.7)
+以后，就可使它变为一个对称张量.以后（§94）我们可以看出，有一个直接的方法去求得对称张量 $T^{ik}$.
+
+上面已经说过，假如我们将 (32.6) 的积分在超平面 $x^0=\mathrm{const}$ 上进行，那么，$P^i$
+就取下面的形式：
+\begin{equation}
+  P^i=\frac{1}{c}\int T^{i0}\,\mathrm{d}V,
+\end{equation}
+此处的积分遍及整个（三维）空间.既然 $P^i$
+的空间分量构成体系的三维动量矢量而且时间分量是它的能量乘以 $1/c$，那么分量为
+\begin{equation*}
+  \frac{1}{c}T^{10},\qquad
+  \frac{1}{c}T^{20},\qquad
+  \frac{1}{c}T^{30}
+\end{equation*}
+的矢量可以称为动量密度，而量
+\begin{equation*}
+  W=T^{00}
+\end{equation*}
+则称为能量密度.
+
+为了明白 $T^{ik}$ 其余分量的意义，我们将守恒方程 (32.4) 分成空间和时间部分：
+\begin{equation}
+  \frac{1}{c}\frac{\partial T^{00}}{\partial t}
+  +\frac{\partial T^{0\alpha}}{\partial x^\alpha}=0,\qquad
+  \frac{1}{c}\frac{\partial T^{\alpha 0}}{\partial t}
+  +\frac{\partial T^{\alpha\beta}}{\partial x^\beta}=0.
+\end{equation}
+
+我们将这两个方程在空间的一个体积 $V$ 内积分.从第一个方程得到
+\begin{equation*}
+  \frac{1}{c}\frac{\partial}{\partial t}\int T^{00}\,\mathrm{d}V
+  +\int\frac{\partial T^{0\alpha}}{\partial x^\alpha}\,\mathrm{d}V=0,
+\end{equation*}
+用高斯定理变换第二个积分，则得
+\begin{equation}
+  \frac{\partial}{\partial t}\int T^{00}\,\mathrm{d}V
+  =-c\oint T^{0\alpha}\,\mathrm{d}f_\alpha,
+\end{equation}
+此式右边的积分应该在包围体积 $V$ 的曲面上取（$\mathrm{d}f_x,\mathrm{d}f_y,\mathrm{d}f_z$
+是面元 $\mathrm{d}\boldsymbol{f}$
+的三维矢量的分量）.左边的式子是体积 $V$ 中所含的能量随时间的改变率；因此，右边的式子显然是穿过体积
+$V$ 的边界面的能量，而带分量
+\begin{equation*}
+  cT^{01},\qquad cT^{02},\qquad cT^{03}
+\end{equation*}
+的矢量 $\boldsymbol{S}$
+则是能流密度——单位时间内穿过单位面积的能量.因此，我们得到如下重要结论，即由量 $T^{ik}$
+的张量特性表示的相对论不变性要求，自动导致了能流和动量密度之间的确定关系：能流密度等于动量密度乘以 $c^2$.
+
+从（32.12）的第二个方程，我们可同样地求得
+\begin{equation}
+  \frac{\partial}{\partial t}\int\frac{1}{c}T^{\alpha 0}\,\mathrm{d}V
+  =-\oint T^{\alpha\beta}\,\mathrm{d}f_\beta.
+\end{equation}
+
+式子的左边是体系在单位时间中体积 $V$
+内的动量变化，所以 $\oint T^{\alpha\beta}\mathrm{d}f_\beta$
+就是在单位时间内从体积 $V$ 穿出来的动量，而能量动量张量的 $T^{\alpha\beta}$
+分量构成三维动量流密度张量；我们记之为 $-\sigma_{\alpha\beta}$，这里 $\sigma_{\alpha\beta}$
+称为应力张量.能流密度是一个矢量；因为动量流本身是一个矢量，所以动量流密度必须是一个张量（这个张量的分量
+$T^{\alpha\beta}$ 是在单位时间内穿过垂直于 $x^\beta$
+轴的单位面积的动量的 $\alpha$ 分量）.
+
+我们用下式来指明能量动量张量每个分量的意义：
+\begin{equation}
+  T^{ik}=
+  \begin{pmatrix}
+    W & S_x/c & S_y/c & S_z/c\\
+    S_x/c & -\sigma_{xx} & -\sigma_{xy} & -\sigma_{xz}\\
+    S_y/c & -\sigma_{yx} & -\sigma_{yy} & -\sigma_{yz}\\
+    S_z/c & -\sigma_{zx} & -\sigma_{zy} & -\sigma_{zz}
+  \end{pmatrix}.
+\end{equation}
+
+\section{电磁场的能量动量张量}
+
+现在我们将前节所得的一般关系应用到电磁场中.对于电磁场，(32.1)
+式中积分号内的量 $\varLambda$，按照（27.4）式，应该等于
+\begin{equation*}
+  \varLambda=-\frac{1}{16\pi}F_{kl}F^{kl}.
+\end{equation*}
+
+量 $q$ 是场的四维势的分量 $A_k$.于是张量 $T_i^k$ 的定义（32.5）变为
+\begin{equation*}
+  T_i^k=\frac{\partial A_l}{\partial x^i}
+  \frac{\partial\varLambda}{\partial\left(\dfrac{\partial A_l}{\partial x^k}\right)}
+  -\delta_i^k\varLambda.
+\end{equation*}
+
+为了计算此处出现的 $\varLambda$ 的导数，我们来求变分 $\delta\varLambda$.我们有
+\begin{equation*}
+  \delta\varLambda=-\frac{1}{8\pi}F^{kl}\delta F_{kl}
+  =-\frac{1}{8\pi}F^{kl}\left(\delta\frac{\partial A_l}{\partial x^k}
+  -\delta\frac{\partial A_k}{\partial x^l}\right)
+\end{equation*}
+交换指标并利用 $F_{kl}=-F_{lk}$，则得
+\begin{equation*}
+  \delta\varLambda=-\frac{1}{4\pi}F^{kl}\,
+  \delta\frac{\partial A_l}{\partial x^k}.
+\end{equation*}
+
+由此可见，
+\begin{equation*}
+  \frac{\partial\varLambda}
+  {\partial\left(\dfrac{\partial A_l}{\partial x^k}\right)}
+  =-\frac{1}{4\pi}F^{kl},
+\end{equation*}
+由此
+\begin{equation*}
+  T_i^k=-\frac{1}{4\pi}\frac{\partial A_l}{\partial x^i}F^{kl}
+  +\frac{1}{16\pi}\delta_i^kF_{lm}F^{lm},
+\end{equation*}
+或者对逆变分量有
+\begin{equation*}
+  T^{ik}=-\frac{1}{4\pi}\frac{\partial A^l}{\partial x_i}F^k{}_l
+  +\frac{1}{16\pi}g^{ik}F_{lm}F^{lm}.
+\end{equation*}
+
+但这个张量是不对称的.为使它对称化，我们加上一项
+\begin{equation*}
+  \frac{1}{4\pi}\frac{\partial A^i}{\partial x_l}F^k{}_l.
+\end{equation*}
+
+按照不存在电荷时的场方程 (30.2)，$\partial F^k{}_l/\partial x_l=0$，因而有
+\begin{equation*}
+  \frac{1}{4\pi}\frac{\partial A^i}{\partial x_l}F^k{}_l
+  =\frac{1}{4\pi}\frac{\partial}{\partial x_l}
+  \left(A^iF^k{}_l\right),
+\end{equation*}
+因此，增加这一项相当于对 $T^{ik}$
+作了形如（32.7）的改变，因而是允许的.既然
+$\partial A^l/\partial x_i-\partial A^i/\partial x_l=F^{il}$，那么我们最后可求得电磁场能量动量张量的表达式：
+\begin{equation}
+  T^{ik}=\frac{1}{4\pi}\left(-F^{il}F^k{}_l
+  +\frac{1}{4}g^{ik}F_{lm}F^{lm}\right).
+\end{equation}
+
+这个张量显然是对称的.此外，它还有一个特性：
+\begin{equation}
+  T_i^i=0.
+\end{equation}
+
+即对角线上的项之和为零.
+
+现在我们用电场和磁场强度来表示张量 $T^{ik}$ 的分量.利用 $F_{ik}$ 分量的表达式 (23.5)，很容易验证
+$T^{00}$ 同能量密度（31.5）一致，而分量 $cT^{0\alpha}$ 与坡印亭矢量 (31.2)
+的分量相同.空间分量 $T^{\alpha\beta}$ 构成一个三维张量，其分量为
+\begin{equation*}
+\begin{aligned}
+  -\sigma_{xx}&=\frac{1}{8\pi}\left(E_y^2+E_z^2-E_x^2
+  +H_y^2+H_z^2-H_x^2\right),\\
+  -\sigma_{xy}&=-\frac{1}{4\pi}\left(E_xE_y+H_xH_y\right),
+\end{aligned}
+\end{equation*}
+等等，或者
+\begin{equation}
+  \sigma_{\alpha\beta}=\frac{1}{4\pi}\left\{E_\alpha E_\beta+H_\alpha H_\beta
+  -\frac{1}{2}\delta_{\alpha\beta}\left(E^2+H^2\right)\right\}.
+\end{equation}
+
+这个张量称为电磁场应力张量.
+
+为了将张量 $T^{ik}$
+化为对角形式，我们必须变换到这样的参考系，使得其中矢量 $\boldsymbol{E}$ 和 $\boldsymbol{H}$
+（在给定的空间点和给定时刻）彼此平行，或者使得它们之一为零.如我们所知（§25），除了 $\boldsymbol{E}$ 和
+$\boldsymbol{H}$ 彼此垂直并且数值相等，这样的变换总是可能的.容易看出，变换之后 $T^{ik}$ 的非零分量只有
+\begin{equation*}
+  T^{00}=-T^{11}=T^{22}=T^{33}=W
+\end{equation*}
+（$x$ 轴已经取为沿着场的方向）.
+
+假如 $\boldsymbol{E}$ 同 $\boldsymbol{H}$
+相互垂直，且其绝对值相等，那么，$T^{ik}$ 就不能化为对角形式.\footnote{对称四维张量 $T^{ik}$ 可能不能化为主轴这一事实，同四维空间的非欧几里得性质有关（参见§94习题）.}在这种情形，不为零的分量是
+\begin{equation*}
+  T^{00}=T^{33}=T^{30}=W
+\end{equation*}
+（取沿着 $\boldsymbol{E}$ 的方向为 $x$ 轴，沿着 $\boldsymbol{H}$ 的方向为 $y$ 轴）.
+
+到现在为止，我们只考虑了没有电荷存在的场.在有带电粒子存在时，整个系统的能量动量张量就是电磁场能量动量张量与粒子的能量动量张量之和，在后一种情形下，我们假设了粒子之间不存在相互作用.
+
+为了决定粒子能量动量张量的形式，我们必须像用电荷密度描述点电荷的分布那样，用“质量密度”描述它们在空间中的质量分布.与电荷密度的公式（28.1）类似，我们可以将质量密度写为形式
+\begin{equation}
+  \mu=\sum_a m_a\delta(\boldsymbol{r}-\boldsymbol{r}_a),
+\end{equation}
+式中 $\boldsymbol{r}_a$ 是粒子的径矢，求和遍历系统中的所有粒子.
+
+粒子的动量密度由 $\mu c\,\boldsymbol{u}^\alpha$ 给定.我们知道，这个密度是能量动量张量的分量
+$T^{0\alpha}/c$，即
+\begin{equation*}
+  T^{0\alpha}=\mu c^2u^\alpha\qquad(\alpha=1,2,3).
+\end{equation*}
+
+但是质量密度是四维矢量
+$\mu/c\,(\mathrm{d}x^k/\mathrm{d}t)$
+的时间分量（类似于电荷密度；见§28）.因此非相互作用粒子系统的能量动量张量是
+\begin{equation}
+  T^{ik}=\mu c\,\frac{\mathrm{d}x^i}{\mathrm{d}s}\frac{\mathrm{d}x^k}{\mathrm{d}t}
+  =\mu c\,u^iu^k\frac{\mathrm{d}s}{\mathrm{d}t}.
+\end{equation}
+如所预期，这个张量是对称的.
+
+通过直接计算可以验证，系统的能量和动量（定义为场和粒子的能量与动量之和）实际上是守恒的.换言之，我们要来验证表达了这些守恒定律的方程：
+\begin{equation}
+  \frac{\partial}{\partial x^k}
+  \left({T^{(\mathrm{f})}}_i{}^k+{T^{(\mathrm{p})}}_i{}^k\right)=0.
+\end{equation}
+
+微分（33.1），我们写出
+\begin{equation*}
+  \frac{\partial {T^{(\mathrm{f})}}_i{}^k}{\partial x^k}
+  =\frac{1}{4\pi}\left(\frac{1}{2}F^{lm}\frac{\partial F_{lm}}{\partial x^i}
+  -F^{kl}\frac{\partial F_{il}}{\partial x^k}
+  -F_{il}\frac{\partial F^{kl}}{\partial x^k}\right).
+\end{equation*}
+
+代入麦克斯韦方程（26.5）和（30.2），即
+\begin{equation*}
+  \frac{\partial F_{lm}}{\partial x^i}
+  =-\frac{\partial F_{mi}}{\partial x^l}
+  -\frac{\partial F_{il}}{\partial x^m},\qquad
+  \frac{\partial F^{kl}}{\partial x^k}=\frac{4\pi}{c}j^l,
+\end{equation*}
+我们有：
+\begin{equation*}
+  \frac{\partial {T^{(\mathrm{f})}}_i{}^k}{\partial x^k}
+  =\frac{1}{4\pi}\left(
+  -\frac{1}{2}F^{lm}\frac{\partial F_{mi}}{\partial x^l}
+  -\frac{1}{2}F^{lm}\frac{\partial F_{il}}{\partial x^m}
+  -F^{kl}\frac{\partial F_{il}}{\partial x^k}
+  -\frac{4\pi}{c}F_{il}j^l\right).
+\end{equation*}
+
+交换指标很容易证明，右边前三项相互消掉了，因而我们得到了所要求的结果：
+\begin{equation}
+  \frac{\partial {T^{(\mathrm{f})}}_i{}^k}{\partial x^k}
+  =-\frac{1}{c}F_{il}j^l.
+\end{equation}
+
+对粒子能量动量张量的表达式（33.5）进行微分给出：
+\begin{equation*}
+  \frac{\partial {T^{(\mathrm{p})}}_i{}^k}{\partial x^k}
+  =c\,u_i\frac{\partial}{\partial x^k}
+  \left(\mu\frac{\mathrm{d}x^k}{\mathrm{d}t}\right)
+  +\mu c\,\frac{\mathrm{d}x^k}{\mathrm{d}t}
+  \frac{\partial u_i}{\partial x^k}.
+\end{equation*}
+
+由于非相互作用粒子的质量守恒，这个表达式的第一项为零.事实上，与四维电流矢量（28.2）类似，
+$\mu(\mathrm{d}x^k/\mathrm{d}t)$ 构成四维“质量流”矢量.这个四维矢量的散度等于零：
+\begin{equation}
+  \frac{\partial}{\partial x^k}
+  \left(\mu\frac{\mathrm{d}x^k}{\mathrm{d}t}\right)=0,
+\end{equation}
+表达了质量守恒，就正如方程 (29.4) 表达了电荷守恒一样.因此我们有：
+\begin{equation*}
+  \frac{\partial {T^{(\mathrm{p})}}_i{}^k}{\partial x^k}
+  =\mu c\,\frac{\mathrm{d}x^k}{\mathrm{d}t}
+  \frac{\partial u_i}{\partial x^k}
+  =\mu c\,\frac{\mathrm{d}u_i}{\mathrm{d}t}.
+\end{equation*}
+
+下面我们用（表为四维形式的）电荷在场中的运动方程（23.4）：
+\begin{equation*}
+  mc\,\frac{\mathrm{d}u_i}{\mathrm{d}s}=\frac{e}{c}F_{ik}u^k.
+\end{equation*}
+
+从密度 $\mu$ 和 $\rho$ 的定义，变到电荷和质量的连续分布时，我们有：$\mu/m=\rho/e$.因此我们可以将运动方程写成形式
+\begin{equation*}
+  \mu c\,\frac{\mathrm{d}u_i}{\mathrm{d}s}
+  =\frac{\rho}{c}F_{ik}u^k
+\end{equation*}
+或
+\begin{equation*}
+  \mu c\,\frac{\mathrm{d}u_i}{\mathrm{d}t}
+  =\frac{1}{c}F_{ik}\rho u^k\frac{\mathrm{d}s}{\mathrm{d}t}
+  =\frac{1}{c}F_{ik}j^k.
+\end{equation*}
+
+于是，
+\begin{equation}
+  \frac{\partial {T^{(\mathrm{p})}}_i{}^k}{\partial x^k}
+  =\frac{1}{c}F_{ik}j^k.
+\end{equation}
+
+将上式与 (33.7) 式联立，我们实际上就得到方程（33.6）.
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 求能量密度、能流密度、应力张量分量在洛伦兹变换下的变换规律.
+
+解：设 $K'$ 坐标系相对于 $K$ 系沿 $x$ 轴以速度 $V$ 运动.将§6
+习题1的公式用于对称张量 $T^{ik}$，我们得到：
+\begin{equation*}
+  W=\frac{1}{1-\dfrac{V^2}{c^2}}
+  \left(W'+\frac{V}{c^2}S_x'-\frac{V^2}{c^2}\sigma_{xx}'\right),
+\end{equation*}
+\begin{equation*}
+  S_x=\frac{1}{1-\dfrac{V^2}{c^2}}
+  \left[\left(1+\frac{V^2}{c^2}\right)S_x'
+  +VW'-V\sigma_{xx}'\right],
+\end{equation*}
+\begin{equation*}
+  S_y=\frac{1}{\sqrt{1-\dfrac{V^2}{c^2}}}
+  \left(S_y'-V\sigma_{xy}'\right),
+\end{equation*}
+\begin{equation*}
+  \sigma_{xx}=\frac{1}{1-\dfrac{V^2}{c^2}}
+  \left(\sigma_{xx}'-2\frac{V}{c^2}S_x'
+  -\frac{V^2}{c^2}W'\right),
+\end{equation*}
+\begin{equation*}
+  \sigma_{yy}=\sigma_{yy}',\qquad
+  \sigma_{zz}=\sigma_{zz}',\qquad
+  \sigma_{yz}=\sigma_{yz}',
+\end{equation*}
+\begin{equation*}
+  \sigma_{xy}=\frac{1}{\sqrt{1-\dfrac{V^2}{c^2}}}
+  \left(\sigma_{xy}'-\frac{V}{c^2}S_y'\right)
+\end{equation*}
+及对于 $S_z$ 和 $\sigma_{zx}$ 的类似的公式.
+
+\end{xiti}
+
+\section{位力定理}
+
+因为电磁场能量动量张量对角线上诸项之和等于零，所以对于任何相互作用系统，和值 $T_i^i$
+就化为仅仅是粒子能量动量张量的迹.因此用 (33.5) 我们得到：
+\begin{equation*}
+  T_i^i={T^{(\mathrm{p})}}_i{}^i
+  =\mu c\,u_iu^i\frac{\mathrm{d}s}{\mathrm{d}t}
+  =\mu c\,\frac{\mathrm{d}s}{\mathrm{d}t}
+  =\mu c^2\sqrt{1-\frac{v^2}{c^2}}.
+\end{equation*}
+
+对所有粒子求和，即将 $\mu$ 换为和式（33.4），我们最后得到：
+\begin{equation}
+  T_i^i=\sum_a m_ac^2\sqrt{1-\frac{v_a^2}{c^2}}\,
+  \delta(\boldsymbol{r}-\boldsymbol{r}_a).
+\end{equation}
+
+我们注意到，按照这个公式，对于所有系统都有：
+\begin{equation}
+  T_i^i\geqslant0,
+\end{equation}
+式中等号只对没有电荷的电磁场成立.
+
+现在来考虑一个由进行有限运动的带电粒子组成的封闭系统，表征该系统的所有量（坐标、动量）在有限范围内变化.\footnote{这里我们也假定系统的电磁场在无限远处足够快地趋于零.在特殊情形下这一条件可能会要求忽略该系统的电磁波辐射.}
+
+我们来寻求系统的总能量与描述它的某个时间平均值的关系.
+
+将方程
+\begin{equation*}
+  \frac{1}{c}\frac{\partial T^{\alpha 0}}{\partial t}
+  +\frac{\partial T^{\alpha\beta}}{\partial x^\beta}=0
+\end{equation*}
+（见 (32.12)）对时间做平均.像任何有界量导数的平均一样，导数
+$\partial T^{\alpha 0}/\partial t$ 的平均为零\footnote{设 $f(t)$ 是这样一个函数，那么，导数 $\mathrm{d}f/\mathrm{d}t$ 经过一个时间间隔 $T$ 的平均值是
+\begin{equation*}
+  \overline{\frac{\mathrm{d}f}{\mathrm{d}t}}=\frac{1}{T}\int_0^T\frac{\mathrm{d}f}{\mathrm{d}t}\,\mathrm{d}t=\frac{f(T)-f(0)}{T}.
+\end{equation*}
+自然 $f(t)$ 仅在有限范围内变化，那么，当 $T$ 趋向无穷大时，$\mathrm{d}f/\mathrm{d}t$ 的平均值显然趋近于零.}.因此，我们得到
+\begin{equation*}
+  \frac{\partial}{\partial x^\beta}\overline{T_\alpha^\beta}=0.
+\end{equation*}
+
+我们用 $x^\alpha$ 乘这个方程，并将它对整个空间积分.用高斯定理来变换这个积分，并记着在无穷远处
+$T_\alpha^\beta=0$，所以面积分为零：
+\begin{equation*}
+  \int x^\alpha\frac{\partial\overline{T_\alpha^\beta}}{\partial x^\beta}\,\mathrm{d}V
+  =-\int\frac{\partial x^\alpha}{\partial x^\beta}
+  \overline{T_\alpha^\beta}\,\mathrm{d}V
+  =-\int\delta_\beta^\alpha\overline{T_\alpha^\beta}\,\mathrm{d}V=0,
+\end{equation*}
+或者有：
+\begin{equation}
+  \int\overline{T_\alpha^\alpha}\,\mathrm{d}V=0.
+\end{equation}
+
+根据这个等式，对于
+$\overline{T_i^{\,i}}=\overline{T_\alpha^{\,\alpha}}+\overline{T_0^{\,0}}$
+的积分，我们可以写出
+\begin{equation*}
+  \int\overline{T_i^{\,i}}\,\mathrm{d}V
+  =\int\overline{T_0^{\,0}}\,\mathrm{d}V=\mathcal{E},
+\end{equation*}
+式中，$\mathcal{E}$ 是系统的总能量.
+
+最后，用表达式（34.1）代入则得：
+\begin{equation}
+  \mathcal{E}=\sum_a m_ac^2
+  \overline{\sqrt{1-\frac{v_a^2}{c^2}}}.
+\end{equation}
+
+这个关系就是经典力学的位力定理在相对论中的推广（见本教程第一卷§10）.对于低速情形，它化为
+\begin{equation*}
+  \mathcal{E}-\sum_a m_ac^2
+  =-\sum_a\overline{\frac{m_av_a^2}{2}},
+\end{equation*}
+就是说，总能量（减去静能）等于动能平均值的负数——这与经典力学中带电粒子体系（按照库仑定律相互作用着）的位力定理相同.
+
+必须指出，我们得到的公式都比较形式化，因而有必要使之更为精确.问题在于，电磁场能量中包含了使点电荷的电磁自能为无穷大的项（见§37）.考虑到内禀电磁能已经包含在粒子的动能
+(9.4) 中，为使相应的表达式有意义，我们必须去掉这些项.这意味着我们应当在（34.4）中通过代换
+\begin{equation*}
+  \mathcal{E}\to\mathcal{E}
+  -\sum_a\int\frac{E_a^2+H_a^2}{8\pi}\,\mathrm{d}V,
+\end{equation*}
+使能量“重正化”，式中 $\boldsymbol{E}_a$ 和 $\boldsymbol{H}_a$ 是第 $a$
+个粒子产生的场.与（34.3）类似，我们应当作代换\footnote{请注意，不做这种改变的话，表达式
+\begin{equation*}
+  -\int T_\alpha^\alpha\,\mathrm{d}V=\int\frac{E^2+H^2}{8\pi}\,\mathrm{d}V+\sum_a\frac{m_av_a^2}{\sqrt{1-v_a^2/c^2}}
+\end{equation*}
+实质上就是正值且不能变为零.}
+\begin{equation*}
+  \int T_\alpha^\alpha\,\mathrm{d}V\to
+  \int T_\alpha^\alpha\,\mathrm{d}V
+  +\sum_a\int\frac{E_a^2+H_a^2}{8\pi}\,\mathrm{d}V.
+\end{equation*}
+
+\section{宏观物体的能量动量张量}
+
+除了点粒子系统的能量动量张量 (33.5)
+外，我们也需要该张量对于那些可看做是连续的宏观物体的表达式.
+
+穿过一个物体表面面元 $\mathrm{d}\boldsymbol{f}$
+的动量流就是作用在这个面元上的力.所以 $-\sigma_{\alpha\beta}\,\mathrm{d}f_\beta$
+是作用在这个面元上的力的 $\alpha$
+分量.现在我们引入一个参考系，物体的一个指定的体积元在其中是静止的.在这样一个参考系中，帕斯卡定律是有效的，即是说，作用于物体的某一部分上的压强
+$p$ 在一切方向都是相等的，而且在无论任何地方都垂直于它所作用的面\footnote{严格地说，帕斯卡定律仅仅对于液体及气体有效.但是对于固体，在不同方向的应力的最大可能差，较之在相对论中可以起作用的应力，是微不足道的，因此，我们也就不考虑它了.}.因此，我们可以写出
+$\sigma_{\alpha\beta}\,\mathrm{d}f_\beta=-p\,\mathrm{d}f_\alpha$，从而应力张量是
+$\sigma_{\alpha\beta}=-p\delta_{\alpha\beta}$.至于代表动量密度的分量 $T^{\alpha0}$，对于我们所用参考系中给定的体积元，它们等于零.分量
+$T^{00}$ 照例是物体的能量密度，我们用 $\varepsilon$ 来代表它；$\varepsilon/c^2$
+是物体的质量密度，即每单位体积内的质量.我们着重指出，这里所讨论的是单位“固有”体积，也就是在物体的给定部分处于静止的那个参考系中的体积.
+
+因此，在我们所考虑的参考系中，能量动量张量（对物体的指定部分）有如下形式：
+\begin{equation}
+  T^{ik}=
+  \begin{pmatrix}
+    \varepsilon & 0 & 0 & 0\\
+    0 & p & 0 & 0\\
+    0 & 0 & p & 0\\
+    0 & 0 & 0 & p
+  \end{pmatrix}.
+\end{equation}
+
+现在很容易求出宏观物体在任意参考系中能量动量张量的表达式.为此，我们对于物体一个体积元的宏观运动引入四维速度
+$u^i$.在该体积元是静止的参考系中，四维速度的分量 $u^i=(1,0)$. $T^{ik}$
+的式子必须如此选择，使它在这个参考系中取（35.1）的形式.很容易验证，它等于
+\begin{equation}
+  T^{ik}=(p+\varepsilon)u^iu^k-pg^{ik},
+\end{equation}
+或者，对于混合分量
+\begin{equation*}
+  T_i^k=(p+\varepsilon)u_iu^k-p\delta_i^k.
+\end{equation*}
+
+这个式子就给出了宏观物体的能量动量张量.能量密度 $W$，能流矢量 $\boldsymbol{S}$
+和应力张量 $\sigma_{\alpha\beta}$ 是：
+\begin{equation}
+  W=\frac{\varepsilon+p\dfrac{v^2}{c^2}}{1-\dfrac{v^2}{c^2}},\qquad
+  \boldsymbol{S}=\frac{(p+\varepsilon)\boldsymbol{v}}{1-\dfrac{v^2}{c^2}},
+\end{equation}
+\begin{equation*}
+  \sigma_{\alpha\beta}
+  =-\frac{(p+\varepsilon)v_\alpha v_\beta}
+  {c^2\left(1-\dfrac{v^2}{c^2}\right)}-p\delta_{\alpha\beta}.
+\end{equation*}
+
+如果宏观运动的速度 $v$ 比光速小很多，那么，我们就近似地有：
+\begin{equation*}
+  \boldsymbol{S}=(p+\varepsilon)\boldsymbol{v}.
+\end{equation*}
+
+既然 $S/c^2$
+是动量密度，那么我们可以看出，在这种情况下，$(p+\varepsilon)/c^2$
+就起着物体的质量密度的作用.
+
+假如构成宏观物体的所有粒子的速度都比光速小很多（宏观运动速度可以任意），$T^{ik}$
+的式子就可简化.在这种情况下，在能量密度 $\varepsilon$
+中，我们可以略去所有比静能小的各项，亦即我们可以用 $\mu_0c^2$ 来代替 $\varepsilon$，此处
+$\mu_0$
+是在物体的单位（固有）体积中所有粒子的质量之和（我们着重指出，在一般情况下，$\mu_0$
+应当与物体的实际质量密度 $\varepsilon/c^2$
+有差别，后者还包含着与物体内粒子微观运动的能量相应的质量，及与粒子彼此相互作用的能量相应的质量）.分子的微观运动能量所决定的压强，在这种情形下显然也比静止能量密度
+$\mu_0c^2$ 小很多.因此我们求得
+\begin{equation}
+  T^{ik}=\mu_0c^2u^iu^k.
+\end{equation}
+
+由（35.2）式，我们得到
+\begin{equation}
+  T_i^i=\varepsilon-3p.
+\end{equation}
+
+任何体系能量动量张量的一般特性 (34.2)
+表明，一个宏观物体的压强与密度总是满足下面的不等式：
+\begin{equation}
+  p<\frac{\varepsilon}{3}.
+\end{equation}
+
+现在让我们将关系式（35.5）同对任何参考系都有效的通式（34.1）相比较.既然我们现在是考虑宏观物体，那么就应当将（34.1）式对在单位体积内
+$\boldsymbol{r}$ 的所有值求平均.因此，我们得到
+\begin{equation}
+  \varepsilon-3p=\sum m_ac^2\sqrt{1-\frac{v_a^2}{c^2}}
+\end{equation}
+（求和遍历单位体积内的所有粒子）.
+
+这个方程的右边在极端相对论情形下趋于零，所以在这个极限下物态方程是\footnote{在这里，这个极限物态方程是假设粒子之间有电磁相互作用而得到的.我们将假设（在第十四章中需要如此），它对于粒子之间任何其他可能的相互作用仍然有效，尽管这一假设的证明目前还不存在.}：
+\begin{equation}
+  p=\frac{\varepsilon}{3}.
+\end{equation}
+
+现在来把得到的公式应用到理想气体中去，我们假设这种气体由完全一样的粒子组成.既然理想气体的粒子彼此没有相互作用，那么我们便可以应用公式
+(33.5)，而只需先对此公式取平均就行了.因此对于理想气体，
+\begin{equation*}
+  T^{ik}=nmc\,\overline{\frac{\mathrm{d}x^i}{\mathrm{d}t}}
+  \cdot\frac{\mathrm{d}x^k}{\mathrm{d}s},
+\end{equation*}
+式中，$n$
+是单位体积内的粒子数，上面的一横是对所有粒子求平均值的意思.假如在气体中没有宏观运动，那么，在左边我们可以用
+$T^{ik}$ 的表达式（35.1）.比较这两个公式，我们得到方程：
+\begin{equation}
+  \varepsilon=nm\overline{\left(\frac{c^2}
+  {\sqrt{1-\dfrac{v^2}{c^2}}}\right)},\qquad
+  p=\frac{nm}{3}\overline{\left(\frac{v^2}
+  {\sqrt{1-\dfrac{v^2}{c^2}}}\right)}.
+\end{equation}
+
+这两个方程是用粒子的速度来表示相对论中理想气体的密度与压强；第二个方程代替了非相对论性气体动理论中的著名公式
+$p=nm\overline{v^2}/3$.

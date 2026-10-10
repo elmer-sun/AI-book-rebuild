@@ -1,0 +1,1127 @@
+% ============================================================
+%  第二卷 第六章 电磁波（§46–§52 + 习题）
+%  底本：高教社中文版第8版；OCR 错误已修正
+%  脚注已转录：8 处圈码已替换为 \footnote{...}（§46 两处、§48 两处、
+%   §50 四处；转录自原书扫描页 p136/137/143/144/150/151/152，更新原第 11 条）
+%  主要 OCR 修正：
+%   1) (48.16) 多普勒公式 OCR“ω = ω_0 − √(1−V²/c²)/(1−(V/c)cosα)”
+%      中误植减号删去，按 k^(0) 变换推导恢复正确形式
+%   2) §47 习题2 “\ell = (γ+p_x)c”→ ℰ = (γ+p_x)c（能量花体 E）
+%   3) §47 习题2 公式 (1)–(4)、§48 习题1 公式 (1)–(3)、§50 习题2 公式 (1)
+%      系习题内部编号，保留手写 \tag（节内公式编号为节号连续式，
+%      自动编号无法生成；§48 习题2 交叉引用“公式(3)和(4)”依赖此编号）
+%   4) §48 正文 “E_0²−般也是复数”→“E_0² 一般也是复数”
+%   5) §48 习题1 “为 $\Im$ 决定它们的方向”→“为了决定它们的方向”
+%   6) §50 习题2 “（有相同的轴比)，$\bar{\kappa}$ 其中一个…”删 OCR 乱码
+%   7) §51 “利用(51，2)”→“利用(51.2)”
+%   8) §52 (52.7) H = rot A 的符号：OCR 作 −i，按 (52.1)
+%      A=ΣA_k e^{ik·r} 直接微分应为 +i，且与 (52.18)→(52.19)
+%      的推导一致，已改为 +i
+%   9) §52 (52.10) 后 Ȧ_k = −ick(a_k − a_k*) → (a_k − a_{−k}*)
+%      （由 A_k = a_k + a_{−k}* 对时间求导）
+%  10) §52 (52.12) OCR“\frac{k}{k}\frac{\mathcal{O}_k}{c}”
+%      → \frac{\boldsymbol{k}}{k}\frac{\mathcal{E}_k}{c}
+%  11) 脚注圈码①②照 OCR 保留（§46 两处①、§48 两处①、§50 三处①两处②），
+%      脚注文本（含 §46 达朗贝尔算符 □、§48 复量平均法则、§50 行列式
+%      不等式与斯托克斯参数诸条）未录，待脚注代理处理
+%  12) 跨页断词合并（“我们考/虑”）、“代人”→“代入”、标点补全若干
+%  遗留问题：无重大遗留
+% ============================================================
+\chapter{电磁波}
+
+\section{波动方程}
+
+真空中的电磁场可由 $\rho = 0,\ j = 0$ 的麦克斯韦方程来决定，我们将这些方程再写一次：
+\begin{equation}
+  \operatorname{rot}\boldsymbol{E}=-\frac{1}{c}\frac{\partial\boldsymbol{H}}{\partial t},
+  \qquad\operatorname{div}\boldsymbol{H}=0,
+\end{equation}
+\begin{equation}
+  \operatorname{rot}\boldsymbol{H}=\frac{1}{c}\frac{\partial\boldsymbol{E}}{\partial t},
+  \qquad\operatorname{div}\boldsymbol{E}=0.
+\end{equation}
+这些方程具有不为零的解.这就是说，即使没有任何电荷，电磁场也能存在.
+
+在没有电荷存在的真空中所出现的电磁场称为电磁波.我们现在来研究这种场的特性.
+
+首先我们注意没有电荷存在时的这种电磁场必定是随着时间而变化的.事实上，在相反的情形中，$\partial\boldsymbol{H}/\partial t=\partial\boldsymbol{E}/\partial t = 0$，方程（46.1）及（46.2）就变为恒定场的方程（36.1)，(36.2)及(43.1)，(43.2)了，不过这时在方程中 $\rho = 0,\ j = 0$ 但是这时此方程的解（36.8）及（43.5）在 $\rho = 0,\ j = 0$ 时等于零.
+
+我们现在来推导决定电磁波势的方程.
+
+我们已经知道，由于势的非单值性，我们总可以使之满足某一附加条件.根据这点，我们可以这样来选择电磁波的势，使标势满足方程：
+\begin{equation}
+  \varphi=0.
+\end{equation}
+这时，
+\begin{equation}
+  \boldsymbol{E}=-\frac{1}{c}\frac{\partial\boldsymbol{A}}{\partial t},
+  \qquad\boldsymbol{H}=\operatorname{rot}\boldsymbol{A}.
+\end{equation}
+将这两个式子代入方程（46.2)的第一个，得到
+\begin{equation}
+  \operatorname{rot}\operatorname{rot}\boldsymbol{A}
+  =-\Delta\boldsymbol{A}+\operatorname{grad}\operatorname{div}\boldsymbol{A}
+  =-\frac{1}{c^2}\frac{\partial^2\boldsymbol{A}}{\partial t^2}.
+\end{equation}
+虽然我们已经对势加上了一个附加条件，矢势A却仍未被完全唯一地确定.就是说，我们可以将一个与时间无关的任意函数的梯度加在A上（这时不改变 $\varphi$）.就特例言之，我们可以这样选择电磁波的势，使
+\begin{equation}
+  \operatorname{div}\boldsymbol{A}=0.
+\end{equation}
+实际上，将（46.4）代入divE=0内，得到
+\begin{equation*}
+  \operatorname{div}\frac{\partial\boldsymbol{A}}{\partial t}
+  =\frac{\partial}{\partial t}\operatorname{div}\boldsymbol{A}=0,
+\end{equation*}
+这就是说，divA与时间无关，而仅是坐标的函数.将一个适当的、与时间无关的函数的梯度加到A上，我们总可以使 $\operatorname{div}\boldsymbol{A} = 0$
+
+方程（46.5）现在变为
+\begin{equation}
+  \Delta\boldsymbol{A}-\frac{1}{c^2}\frac{\partial^2\boldsymbol{A}}{\partial t^2}=0.
+\end{equation}
+这就是确定电磁波的势的方程.这个方程称为达朗贝尔方程或波动方程\footnote{波动方程有时可以写成 $\square\boldsymbol{A}=0$，式中
+\begin{equation*}
+  \square=-\frac{\partial^2}{\partial x_i\partial x^i}=\Delta-\frac{1}{c^2}\frac{\partial^2}{\partial t^2}
+\end{equation*}
+称为达朗贝尔算符.}.
+
+将算符 rot 及 $\partial/\partial t$ 应用于（46.7)，我们可以证明电场E及磁场H满足同一个波动方程.
+
+我们来用四维形式将波动方程再推导一遍.对于不存在电荷的场，第二对麦克斯韦方程可以写成形式
+\begin{equation*}
+  \frac{\partial F^{ik}}{\partial x^k}=0
+\end{equation*}
+(这就是 $j^i = 0$ 的方程（30.2）），代入用势表达的 $F^{ik}$，
+\begin{equation*}
+  F^{ik}=\frac{\partial A^k}{\partial x_i}-\frac{\partial A^i}{\partial x_k},
+\end{equation*}
+我们得到
+\begin{equation}
+  \frac{\partial^2 A^k}{\partial x_i\partial x^k}
+  -\frac{\partial^2 A^i}{\partial x_k\partial x^k}=0.
+\end{equation}
+给势加上附加条件：
+\begin{equation}
+  \frac{\partial A^k}{\partial x^k}=0
+\end{equation}
+(这个条件称为洛伦兹条件，选取满足这个条件的势就说是取洛伦兹规范)于是（46.8)式第一项为零，留下
+\begin{equation}
+  \frac{\partial^2 A^i}{\partial x_k\partial x^k}
+  \equiv g^{kl}\frac{\partial^2 A^i}{\partial x^k\partial x^l}=0.
+\end{equation}
+
+这就是写成四维形式的波动方程\footnote{应当提及，条件（46.9）还是没有唯一决定势的选择.我们可以给 $\boldsymbol{A}$ 加上一项 $\operatorname{grad}f$ 再从 $\varphi$ 减去一项 $\dfrac{1}{c}\dfrac{\partial f}{\partial t}$，这里函数 $f$ 不是任意的，但必须满足方程 $\square f=0$.}.
+
+条件（46.9）的三维形式是：
+\begin{equation}
+  \frac{1}{c}\frac{\partial\varphi}{\partial t}+\operatorname{div}\boldsymbol{A}=0.
+\end{equation}
+它比早先使用的条件 $\varphi = 0$ 和divA=0更为一般；满足这些条件的势也满足(46.11).但与它们不同，洛伦兹条件具有相对论不变的特性：在一个参考系中满足它的势在任何其他参考系也满足它（而如果变换参考系，条件(46.6)一般说来就破坏了）.
+
+\section{平面波}
+
+我们来研究电磁波的一个特例，这种电磁波的场仅依赖于一个坐标，假定是 $x$ (同时也依赖于时间).这样的波称为平面波.在这种情形下，场的方程为
+\begin{equation}
+  \frac{\partial^2 f}{\partial t^2}-c^2\frac{\partial^2 f}{\partial x^2}=0,
+\end{equation}
+式中，$f$ 代表矢量E或H的任意一个分量.
+
+为了解这个方程，我们将它改写为下面的形式：
+\begin{equation*}
+  \left(\frac{\partial}{\partial t}-c\frac{\partial}{\partial x}\right)
+  \left(\frac{\partial}{\partial t}+c\frac{\partial}{\partial x}\right)f=0
+\end{equation*}
+并且引入新变数
+\begin{equation*}
+  \xi=t-\frac{x}{c},\qquad\eta=t+\frac{x}{c},
+\end{equation*}
+所以
+\begin{equation*}
+  t=\frac{1}{2}(\eta+\xi),\qquad x=\frac{c}{2}(\eta-\xi).
+\end{equation*}
+很容易证明，
+\begin{equation*}
+  \frac{\partial}{\partial\xi}=\frac{1}{2}\left(\frac{\partial}{\partial t}
+  -c\frac{\partial}{\partial x}\right),\qquad
+  \frac{\partial}{\partial\eta}=\frac{1}{2}\left(\frac{\partial}{\partial t}
+  +c\frac{\partial}{\partial x}\right),
+\end{equation*}
+因而f的方程变为
+\begin{equation*}
+  \frac{\partial^2 f}{\partial\xi\,\partial\eta}=0.
+\end{equation*}
+这个方程的解显然具有形式
+\begin{equation*}
+  f=f_1(\xi)+f_2(\eta),
+\end{equation*}
+这里的 $f_1$ 及 $f_2$ 是任意函数.因此，
+\begin{equation}
+  f=f_1\left(t-\frac{x}{c}\right)+f_2\left(t+\frac{x}{c}\right).
+\end{equation}
+例如，设 $f_2 = 0$，则 $f = f_1(t - x/c)$.现在让我们来说明这个解的意义.在每一 $x = \mathrm{const}$ 的平面内，场随时间而变化；在给定的时刻，场因不同的x而不同.显然，对于满足 $t - x/c = \mathrm{const}$ 的坐标 x及时间t，即
+\begin{equation*}
+  x=\mathrm{const}+ct,
+\end{equation*}
+场有相同的值.这就是说，如果在某一时刻 $t = 0$，场在空间某点x有个一定的值，那么，在一段时间t以后，场在沿x轴与原来点相距 $ct$ 处有同样的值.我们可以说，所有电磁场的值都以光速c在空间沿x轴传播.
+
+因此，$f_1(t - x/c)$ 是向x轴正方向行进的平面波.很容易判断，$f_2(t + x/c)$ 是沿着相反的方向，即沿着x轴的负方向行进的平面波.
+
+在§46中我们已经证明，电磁波的势可以如此地选择，使 $\varphi = 0,\ \operatorname{div}\boldsymbol{A} = 0$.我们也可以同样地选择我们现在研究的平面波的势.因为所有的量都与 $y$ 及$z$ 无关，所以 $\operatorname{div}\boldsymbol{A} = 0$ 这个条件，在现在的情况下给出
+\begin{equation*}
+  \frac{\partial A_x}{\partial x}=0,
+\end{equation*}
+按照（47.1）式，我们也就有 $\partial^2 A_x/\partial t^2 = 0$ 即 $\partial A_x/\partial t = \mathrm{const}$.但是导数 $\partial\boldsymbol{A}/\partial t$ 决定电场，而且我们可以看出，在现在的情形下，分量 $A_x$ 不为零就意味着有一个纵向恒定电场存在.因为这样的电场与电磁波无关，我们可以令 $A_x = 0$
+
+因此，平面波的矢势总可以被选择为垂直于x轴，即垂直于这个波的传播方向.
+
+我们来考虑一个沿着x轴的正方向行进的平面波；在这个波里，所有的量，特别是A，仅仅是 $t - x/c$ 的函数.从公式
+\begin{equation*}
+  \boldsymbol{E}=-\frac{1}{c}\frac{\partial\boldsymbol{A}}{\partial t},
+  \qquad\boldsymbol{H}=\operatorname{rot}\boldsymbol{A},
+\end{equation*}
+我们得到
+\begin{equation}
+  \boldsymbol{E}=-\frac{1}{c}\boldsymbol{A}',\qquad
+  \boldsymbol{H}=\nabla\times\boldsymbol{A}
+  =\nabla\left(t-\frac{x}{c}\right)\times\boldsymbol{A}'
+  =-\frac{1}{c}\boldsymbol{n}\times\boldsymbol{A}',
+\end{equation}
+此处的一撇，表示对 $t - x/c$ 微分，n则代表沿着波的传播方向的单位矢量.将第一个方程代入第二个，得到
+\begin{equation}
+  \boldsymbol{H}=\boldsymbol{n}\times\boldsymbol{E}.
+\end{equation}
+我们可以看出，平面波的电场E及磁场H都垂直于波的传播方向.根据这个理由，电磁波被称为横波.此外，从（47.4）式显然可见，平面波的电场和磁场相互垂直，并且绝对值彼此相等.
+
+平面波内的能流，即坡印亭矢量是
+\begin{equation*}
+  \boldsymbol{S}=\frac{c}{4\pi}\boldsymbol{E}\times\boldsymbol{H}
+  =\frac{c}{4\pi}\boldsymbol{E}\times(\boldsymbol{n}\times\boldsymbol{E}),
+\end{equation*}
+因为 $\boldsymbol{E}\cdot\boldsymbol{n} = 0$，所以
+\begin{equation*}
+  \boldsymbol{S}=\frac{c}{4\pi}E^2\boldsymbol{n}
+  =\frac{c}{4\pi}H^2\boldsymbol{n}.
+\end{equation*}
+因此能流是沿着波的传播方向.因为
+\begin{equation*}
+  W=\frac{1}{8\pi}(E^2+H^2)=\frac{E^2}{4\pi}
+\end{equation*}
+是波的能量密度，按照场以光速传播的事实，我们就可以写出
+\begin{equation}
+  \boldsymbol{S}=cW\boldsymbol{n}.
+\end{equation}
+电磁场的每个单位体积内的动量是 $S/c^2$.对于平面波来说，它等于 $(W/c)\boldsymbol{n}$.我们应该注意电磁波的能量W与动量 $W/c$ 之间的关系，正如以光速运动着的粒子的能量与动量之间的关系一样（见(9.9)式）.
+
+场的动量流是由电磁场应力张量的分量 $\sigma_{\alpha\beta}$ (33.3) 所决定的. 如果选择波的传播方向为 $x$ 轴的方向，我们求出 $T^{\alpha\beta}$ 的唯一非零分量是
+\begin{equation}
+  T^{xx}=-\sigma_{xx}=W.
+\end{equation}
+正如应当的那样，动量流沿着波的传播方向，而且其绝对值等于能量密度.
+
+我们来求平面电磁波的能量密度在从一个惯性系变到另一个惯性系时的变换规律.为此我们从如下公式出发
+\begin{equation*}
+  W=\frac{1}{1-\dfrac{V^2}{c^2}}
+  \left(W'+2\frac{V}{c^2}S_x'-\frac{V^2}{c^2}\sigma_{xx}'\right)
+\end{equation*}
+（见 §33 习题)并须作代换
+\begin{equation*}
+  S_x'=cW'\cos\alpha',\qquad
+  \sigma_{xx}'=-W'\cos^2\alpha',
+\end{equation*}
+式中 $\alpha'$ 是 $x'$ 轴（速度V沿该轴指向）同波传播方向之间的夹角（在 $K'$ 系中）.我们得到：
+\begin{equation}
+  W=W'\frac{\left(1+\dfrac{V}{c}\cos\alpha'\right)^2}{1-\dfrac{V^2}{c^2}}.
+\end{equation}
+因为 $W = E^2/4\pi = H^2/4\pi$，所以波内场强的绝对值像 $\sqrt{W}$ 那样变换.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 入射平面电磁波在一壁上反射(反射系数为R)，求作用于壁上的力.
+
+解：作用在该壁单位面积上的力f由穿过该面积的动量流给出，即它是一个矢量，分量为
+\begin{equation*}
+  f_\alpha=-\sigma_{\alpha\beta}N_\beta-\sigma_{\alpha\beta}'N_\beta,
+\end{equation*}
+式中N是垂直于壁表面的矢量，$\sigma_{\alpha\beta}$ 和 $\sigma_{\alpha\beta}'$ 是入射和反射波的能量动量张量的分量.用（47.6），我们得到：
+\begin{equation*}
+  \boldsymbol{f}=W\boldsymbol{n}(\boldsymbol{N}\cdot\boldsymbol{n})
+  +W'\boldsymbol{n}'(\boldsymbol{N}\cdot\boldsymbol{n}').
+\end{equation*}
+从反射系数的定义，我们有：$W' = RW$.再引入入射角θ(等于反射角)并写出分量，我们就得到法向力(“光压”)
+\begin{equation*}
+  f_{\mathrm{N}}=W(1+R)\cos^2\theta
+\end{equation*}
+和切向力
+\begin{equation*}
+  f_{\mathrm{t}}=W(1-R)\sin\theta\cos\theta.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 用哈密顿-雅可比方法求电荷在具有矢势 $\boldsymbol{A}[t - (x/c)]$ 的平面电磁波场中的运动.
+
+解：我们写出四维形式的哈密顿-雅可比方程：
+\begin{equation}\tag{1}
+  g^{ik}\left(\frac{\partial S}{\partial x^i}+\frac{e}{c}A_i\right)
+  \left(\frac{\partial S}{\partial x^k}+\frac{e}{c}A_k\right)=m^2c^2.
+\end{equation}
+场是平面波这一事实意味着，$A^i$ 是一个独立变量的函数，该变量可以写成形式 $\xi = k_ix^i$，式中 $k^i$ 是一个其平方等于零，即 $k_ik^i = 0$ 的常四维矢量（见下节).我们让势满足洛伦兹条件：
+\begin{equation*}
+  \frac{\partial A^i}{\partial x^i}=\frac{\mathrm{d}A^i}{\mathrm{d}\xi}k_i=0;
+\end{equation*}
+对于可变的场，这等价于条件 $A^ik_i = 0$
+
+我们来求方程(1)如下形式的解
+\begin{equation*}
+  S=-f_ix^i+F(\xi),
+\end{equation*}
+式中 $f^i = (f^0,\boldsymbol{f})$ 是满足条件 $f_if^i = m^2c^2$ 的常矢量（$S = -f_ix^i$ 是哈密顿-雅可比方程对于具有四维动量 $p^i = f^i$ 的自由粒子的解）.代入（1)，得到方程
+\begin{equation*}
+  \frac{e^2}{c^2}A_iA^i-2\gamma\frac{\mathrm{d}F}{\mathrm{d}\xi}
+  -\frac{2e}{c}f_iA^i=0,
+\end{equation*}
+式中常数 $\gamma = k_if^i$.由此方程决定F后，我们得到
+\begin{equation}\tag{2}
+  S=-f_ix^i-\frac{e}{c\gamma}\int f_iA^i\,\mathrm{d}\xi
+  +\frac{e^2}{2\gamma c^2}\int A_iA^i\,\mathrm{d}\xi.
+\end{equation}
+变到三维记号和固定参考系，我们选择波的传播方向为x轴.则 $\xi = ct - x$ 而常数 $\gamma = f^0 - f^1$.将二维矢量 $f_y,f_z$ 记为 $\varkappa$，我们从条件
+$f_if^i = (f^0)^2-(f^1)^2-\varkappa^2 = m^2c^2$ 得到
+\begin{equation*}
+  f^0+f^1=\frac{m^2c^2+\varkappa^2}{\gamma}.
+\end{equation*}
+我们选择势时取这样的规范，其中 $\varphi = 0$，而 A(ξ) 处于 $yz$ 平面内.则方程(2)取形式：
+\begin{equation*}
+  S=\boldsymbol{\varkappa}\cdot\boldsymbol{r}-\frac{\gamma}{2}(ct+x)
+  -\frac{m^2c^2+\varkappa^2}{2\gamma}\xi
+  +\frac{e}{c\gamma}\int\boldsymbol{\varkappa}\cdot\boldsymbol{A}\,\mathrm{d}\xi
+  -\frac{e^2}{2\gamma c^2}\int A^2\,\mathrm{d}\xi.
+\end{equation*}
+按照一般法则(见本教程第一卷§47)，为了决定运动，我们必须令导数
+$\partial S/\partial\varkappa,\ \partial S/\partial\gamma$ 等于某些新常数，通过适当选择坐标原点和时间原点，这些常数可以变为零.于是我们得到了含 $\xi$ 的参数方程：
+\begin{equation*}
+\begin{aligned}
+  &y=\frac{1}{\gamma}\varkappa_y\xi-\frac{e}{c\gamma}\int A_y\,\mathrm{d}\xi,\qquad
+  z=\frac{1}{\gamma}\varkappa_z\xi-\frac{e}{c\gamma}\int A_z\,\mathrm{d}\xi,\\
+  &x=\frac{1}{2}\left(\frac{m^2c^2+\varkappa^2}{\gamma^2}-1\right)\xi
+  -\frac{e}{c\gamma^2}\int\boldsymbol{\varkappa}\cdot\boldsymbol{A}\,\mathrm{d}\xi
+  +\frac{e^2}{2\gamma^2c^2}\int A^2\,\mathrm{d}\xi,\qquad
+  ct=\xi+x.
+\end{aligned}
+\end{equation*}
+广义动量 $\boldsymbol{P}=\boldsymbol{p}+\dfrac{e}{c}\boldsymbol{A}$ 和能量 $\mathcal{E}$ 可通过将作用量对坐标和时间微分求得；这样就给出：
+\begin{equation*}
+\begin{aligned}
+  &p_y=\varkappa_y-\frac{e}{c}A_y,\qquad
+  p_z=\varkappa_z-\frac{e}{c}A_z,\\
+  &p_x=-\frac{\gamma}{2}+\frac{m^2c^2+\varkappa^2}{2\gamma}
+  -\frac{e}{c\gamma}\boldsymbol{\varkappa}\cdot\boldsymbol{A}
+  +\frac{e^2}{2\gamma c^2}A^2;\\
+  &\mathcal{E}=(\gamma+p_x)c,
+\end{aligned}
+\end{equation*}
+如果我们对这些量做时间平均，周期函数A(ξ)中的一次项将变为零.假定参考系已经做了这样的选择，使得粒子在其中平均说来处于静止，即它的平均动量为零.则
+\begin{equation*}
+  \varkappa=0,\qquad
+  \gamma^2=m^2c^2+\frac{e^2}{c^2}\overline{\boldsymbol{A}^2}.
+\end{equation*}
+决定运动的最后公式具有形式：
+\begin{equation}\tag{3}
+\begin{aligned}
+  &x=\frac{e^2}{2\gamma^2c^2}\int(A^2-\overline{A^2})\,\mathrm{d}\xi,\qquad
+  y=-\frac{e}{c\gamma}\int A_y\,\mathrm{d}\xi,\qquad
+  z=-\frac{e}{c\gamma}\int A_z\,\mathrm{d}\xi,\\
+  &ct=\xi+\frac{e^2}{2\gamma^2c^2}\int(A^2-\overline{A^2})\,\mathrm{d}\xi;
+\end{aligned}
+\end{equation}
+\begin{equation}\tag{4}
+\begin{aligned}
+  &p_x=\frac{e^2}{2\gamma c^2}(A^2-\overline{A^2}),\qquad
+  p_y=-\frac{e}{c}A_y,\qquad
+  p_z=-\frac{e}{c}A_z,\\
+  &\mathcal{E}=c\gamma+\frac{e^2}{2\gamma c}(A^2-\overline{A^2}).
+\end{aligned}
+\end{equation}
+
+\end{xiti}
+
+\section{单色平面波}
+
+电磁波的一个非常重要的特例，是这样一种波，在这种波内，场是时间的简单周期函数.这种波称为单色波.在单色波内，所有的量(势、场的分量)以形如 $\cos(\omega t + \alpha)$ 的因子与时间发生关系，$\omega$ 这个量称为波的循环频率（我们将简称它为频率）.
+
+在波动方程中，场对时间的二阶导数现在是 $\partial^2 f/\partial t^2 = -\omega^2 f$，所以，对于单色波，场在空间的分布由方程
+\begin{equation}
+  \Delta f+\frac{\omega^2}{c^2}f=0
+\end{equation}
+决定.
+
+在（沿着x轴传播的）平面波内，场仅是 $t - x/c$ 的函数.因此，如果平面波是单色的，那么它的场将是 $t - x/c$ 的简单周期函数.这种波的矢势写成一个复数式的实数部分是最方便的了，即写成
+\begin{equation}
+  \boldsymbol{A}=\operatorname{Re}\left\{\boldsymbol{A}_0
+  \mathrm{e}^{-\mathrm{i}\omega\left(t-\frac{x}{c}\right)}\right\}.
+\end{equation}
+这里，$\boldsymbol{A}_0$ 是某一个复常矢量.显而易见，这种波的场E与场H有相似的形式，即两个场有同一的频率 $\omega$.
+
+我们称
+\begin{equation}
+  \lambda=\frac{2\pi c}{\omega}
+\end{equation}
+为波长；它是场在给定时刻t随坐标x而变化的周期.
+
+矢量
+\begin{equation}
+  \boldsymbol{k}=\frac{\omega}{c}\boldsymbol{n}
+\end{equation}
+(式中n是沿波传播方向的单位矢量）称为波矢.我们可以借助它把（48.2)写成形式
+\begin{equation}
+  \boldsymbol{A}=\operatorname{Re}\left\{\boldsymbol{A}_0
+  \mathrm{e}^{\mathrm{i}(\boldsymbol{k}\cdot\boldsymbol{r}-\omega t)}\right\},
+\end{equation}
+它与坐标轴的选择无关.指数中与i相乘的量称为波的相位.
+
+只要我们仅仅进行线性运算，就可以略去取实部的符号 $\operatorname{Re}$，像对复量运算一样\footnote{如果把两个量 $\boldsymbol{A}(t)$ 和 $\boldsymbol{B}(t)$ 写成复数形式
+\begin{equation*}
+  \boldsymbol{A}(t)=\boldsymbol{A}_0\mathrm{e}^{-\mathrm{i}\omega t},\qquad
+  \boldsymbol{B}(t)=\boldsymbol{B}_0\mathrm{e}^{-\mathrm{i}\omega t},
+\end{equation*}
+那么在构造它们的积时，我们当然必须首先将实部分离出来.但若像通常发生的那样，我们只对这个积的时间平均值感兴趣，就可以把它算作
+\begin{equation*}
+  \frac{1}{2}\operatorname{Re}\{\boldsymbol{A}\cdot\boldsymbol{B}^*\}.
+\end{equation*}
+实际上，我们有：
+\begin{equation*}
+  \operatorname{Re}\boldsymbol{A}\cdot\operatorname{Re}\boldsymbol{B}
+  =\frac{1}{4}\left(\boldsymbol{A}_0\mathrm{e}^{-\mathrm{i}\omega t}
+  +\boldsymbol{A}_0^*\mathrm{e}^{\mathrm{i}\omega t}\right)
+  \cdot\left(\boldsymbol{B}_0\mathrm{e}^{-\mathrm{i}\omega t}
+  +\boldsymbol{B}_0^*\mathrm{e}^{\mathrm{i}\omega t}\right).
+\end{equation*}
+当我们作平均时，含有因子 $\mathrm{e}^{\pm 2\mathrm{i}\omega t}$ 的项为零，于是留下
+\begin{equation*}
+  \overline{\operatorname{Re}\boldsymbol{A}\cdot\operatorname{Re}\boldsymbol{B}}
+  =\frac{1}{4}\left(\boldsymbol{A}_0\cdot\boldsymbol{B}_0^*
+  +\boldsymbol{A}_0^*\cdot\boldsymbol{B}_0\right)
+  =\frac{1}{2}\operatorname{Re}\left(\boldsymbol{A}\cdot\boldsymbol{B}^*\right).
+\end{equation*}}.因此，将
+\begin{equation*}
+  \boldsymbol{A}=\boldsymbol{A}_0\mathrm{e}^{\mathrm{i}(\boldsymbol{k}\cdot\boldsymbol{r}-\omega t)}
+\end{equation*}
+代入(47.3)，我们就得到单色平面波的强度和矢势之间形如下面的关系：
+\begin{equation}
+  \boldsymbol{E}=\mathrm{i}k\boldsymbol{A},\qquad
+  \boldsymbol{H}=\mathrm{i}\boldsymbol{k}\times\boldsymbol{A}.
+\end{equation}
+现在我们要更细致地讨论单色波场的方向.为了明确起见，我们来讨论电场
+\begin{equation*}
+  \boldsymbol{E}=\operatorname{Re}\left\{\boldsymbol{E}_0
+  \mathrm{e}^{\mathrm{i}(\boldsymbol{k}\cdot\boldsymbol{r}-\omega t)}\right\}
+\end{equation*}
+(当然下面所说的一切也同样适用于磁场). $\boldsymbol{E}_0$ 是个复矢量，它的平方 $\boldsymbol{E}_0^2$ 一般也是复数.如果这个数的辐角是$-2\alpha$（即 $\boldsymbol{E}_0^2 = |\boldsymbol{E}_0^2|\mathrm{e}^{-2\mathrm{i}\alpha}$），由
+\begin{equation}
+  \boldsymbol{E}_0=\boldsymbol{b}\,\mathrm{e}^{-\mathrm{i}\alpha}
+\end{equation}
+定义的矢量b将具有它的平方实部，$b^2 = |\boldsymbol{E}_0|^2$.用这个定义，我们写出
+\begin{equation}
+  \boldsymbol{E}=\operatorname{Re}\left\{\boldsymbol{b}\,
+  \mathrm{e}^{\mathrm{i}(\boldsymbol{k}\cdot\boldsymbol{r}-\omega t-\alpha)}\right\}.
+\end{equation}
+我们将b写成形式
+\begin{equation*}
+  \boldsymbol{b}=\boldsymbol{b}_1+\mathrm{i}\boldsymbol{b}_2,
+\end{equation*}
+式中 $\boldsymbol{b}_1$ 和 $\boldsymbol{b}_2$ 是实矢量.因为 $b^2 = b_1^2 - b_2^2 + 2\mathrm{i}\boldsymbol{b}_1\cdot\boldsymbol{b}_2$ 必须是一个实量，$\boldsymbol{b}_1\cdot\boldsymbol{b}_2 = 0$ 即矢量 $\boldsymbol{b}_1$ 和 $\boldsymbol{b}_2$ 相互垂直.我们选择 $\boldsymbol{b}_1$ 的方向为y轴（且 $x$ 轴沿波的传播方向）.则从（48.8）我们有：
+\begin{equation}
+\begin{aligned}
+  &E_y=b_1\cos(\omega t-\boldsymbol{k}\cdot\boldsymbol{r}+\alpha),\\
+  &E_z=\pm b_2\sin(\omega t-\boldsymbol{k}\cdot\boldsymbol{r}+\alpha),
+\end{aligned}
+\end{equation}
+式中用正（负）号的条件是 $\boldsymbol{b}_2$ 沿正（负）z轴.从（48.9）可以得出
+\begin{equation}
+  \frac{E_y^2}{b_1^2}+\frac{E_z^2}{b_2^2}=1.
+\end{equation}
+因此我们看到，在空间中每一点，电场矢量在垂直于波传播方向的一个平面内转动，而其端点描绘出椭圆（48.10).这样的波称为椭圆偏振波.如果在（48.9）中取正（负）号，则转动发生在绕x轴旋转的右手螺旋（反）方向.
+
+如果 $b_1 = b_2$，椭圆（48.10）化为圆，即矢量E转动时保持大小不变.在这种情形下，我们说波是圆偏振波.现在y和z轴方向的选择显然是任意的.我们看到这样的波中复振幅 $\boldsymbol{E}_0$ 的 y 和 z 分量之比是
+\begin{equation}
+  \frac{E_{0z}}{E_{0y}}=\pm\mathrm{i}
+\end{equation}
+相应于转动与右手螺旋方向相同或相反（右旋或左旋偏振)\footnote{我们假设坐标轴 $x,y,z$ 构成右手系统.}.
+
+最后，如果 $\boldsymbol{b}_1$ 或 $\boldsymbol{b}_2$ 等于零，波的场时时处处平行（或反平行）于同一个方向.在这种情形下，称为线偏振波，或平面偏振波.椭圆偏振波显然可以看做两个平面偏振波的叠加.
+
+现在我们转向波矢的定义并引入四维波矢，其分量为
+\begin{equation}
+  k^i=\left(\frac{\omega}{c},\ \boldsymbol{k}\right).
+\end{equation}
+这些量实际上构成四维矢量，理由显然在于，将它们乘以 $x^i$ 我们会得到标量(波的相位):
+\begin{equation}
+  k_ix^i=\omega t-\boldsymbol{k}\cdot\boldsymbol{r}.
+\end{equation}
+从定义式（48.4）和（48.12）可见，四维波矢量的平方等于零：
+\begin{equation}
+  k^ik_i=0.
+\end{equation}
+这个关系也可直接从如下事实得到，即表达式
+\begin{equation*}
+  \boldsymbol{A}=\boldsymbol{A}_0\exp(-\mathrm{i}k_ix^i)
+\end{equation*}
+必须是波动方程（46.10）的解.
+
+同所有平面波的情形一样，在沿x轴传播的单色波中，能量动量张量只有如下分量不等于零（见§47)：
+\begin{equation*}
+  T^{00}=T^{01}=T^{11}=W.
+\end{equation*}
+利用四维波矢量，这些等式可以写成张量形式如
+\begin{equation}
+  T^{ik}=\frac{Wc^2}{\omega^2}k^ik^k,
+\end{equation}
+最后，利用四维波矢量的变换法则，我们能够容易地处理所谓多普勒效应——相对于观察者运动的源发出的波频率 $\omega$，与同一个源在其静止系 $(K_0)$ 中的“真”频率 $\omega_0$ 相比所发生的改变.
+
+设V是源的速度，即 $K_0$ 系相对于K系的速度.按照四维矢量变换的一般公式，我们有：
+\begin{equation*}
+  k^{(0)0}=\frac{k^0-\dfrac{V}{c}k^1}{\sqrt{1-\dfrac{V^2}{c^2}}}
+\end{equation*}
+(K 系相对于 $K_0$ 系的速度是−V). 代入 $k^0 = \omega/c,\ k^1 = k\cos\alpha = \dfrac{\omega}{c}\cos\alpha$，式中 $\alpha$ 是波的发射方向与源的运动方向之间的夹角（在K系中)，用 $\omega_0$ 表示$\omega$，我们得到：
+\begin{equation}
+  \omega=\omega_0\frac{\sqrt{1-\dfrac{V^2}{c^2}}}{1-\dfrac{V}{c}\cos\alpha}.
+\end{equation}
+这就是要求的公式. 对于 $V\ll c$，并且如果角 $\alpha$ 不太接近于 $\pi/2$，它给出：
+\begin{equation}
+  \omega\approx\omega_0\left(1+\frac{V}{c}\cos\alpha\right).
+\end{equation}
+对于 $\alpha = \pi/2$ 我们有：
+\begin{equation}
+  \omega=\omega_0\sqrt{1-\frac{V^2}{c^2}}
+  \approx\omega_0\left(1-\frac{V^2}{2c^2}\right);
+\end{equation}
+在这种情形下，频率的相对改变正比于 $V/c$ 的平方.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 利用复振幅 $\boldsymbol{E}_0$ 求偏振椭圆轴的方向和大小.
+
+解：问题在于求矢量 $\boldsymbol{b}=\boldsymbol{b}_1+\mathrm{i}\boldsymbol{b}_2$，其平方是实数.我们从（48.7）得到：
+\begin{equation}\tag{1}
+  \boldsymbol{E}_0\cdot\boldsymbol{E}_0^*=b_1^2+b_2^2,\qquad
+  \boldsymbol{E}_0\times\boldsymbol{E}_0^*=-2\mathrm{i}\,\boldsymbol{b}_1\times\boldsymbol{b}_2,
+\end{equation}
+或
+\begin{equation*}
+  b_1^2+b_2^2=A^2+B^2,\qquad
+  b_1b_2=AB\sin\delta,
+\end{equation*}
+这里我们引入了记号
+\begin{equation*}
+  |E_{0y}|=A,\qquad |E_{0z}|=B,\qquad
+  \frac{E_{0z}}{B}=\frac{E_{0y}}{A}\,\mathrm{e}^{\mathrm{i}\delta}
+\end{equation*}
+来表示 $E_{0y}$ 和 $E_{0z}$ 的绝对值，以及它们之间的相差δ.于是有
+\begin{equation}\tag{2}
+  2b_{1,2}=\sqrt{A^2+B^2+2AB\sin\delta}
+  \pm\sqrt{A^2+B^2-2AB\sin\delta},
+\end{equation}
+由此我们得到了偏振椭圆半轴的大小.
+
+为了决定它们的方向(相对于任意初始轴y和z)，我们从等式
+\begin{equation*}
+  \operatorname{Re}\left\{(\boldsymbol{E}_0\cdot\boldsymbol{b}_1)
+  (\boldsymbol{E}_0^*\cdot\boldsymbol{b}_2)\right\}=0
+\end{equation*}
+出发，这个等式容易通过代入
+$\boldsymbol{E}_0=(\boldsymbol{b}_1+\mathrm{i}\boldsymbol{b}_2)\mathrm{e}^{-\mathrm{i}\alpha}$ 来验证.在 $y,z$ 坐标中写出这个等式，我们就得到 $\boldsymbol{b}_1$ 的方向和y轴之间的夹角 $\theta$
+\begin{equation}\tag{3}
+  \tan 2\theta=\frac{2AB\cos\delta}{A^2-B^2}.
+\end{equation}
+场的转动方向由矢量 $\boldsymbol{b}_1\times\boldsymbol{b}_2$ 的 $x$ 分量的正负号决定.从（1)写出其表达式
+\begin{equation*}
+  2\mathrm{i}(\boldsymbol{b}_1\times\boldsymbol{b}_2)_x
+  =E_{0z}E_{0y}^*-E_{0z}^*E_{0y}
+  =|E_{0y}|^2\left\{\left(\frac{E_{0z}}{E_{0y}}\right)
+  -\left(\frac{E_{0z}}{E_{0y}}\right)^*\right\},
+\end{equation*}
+我们看到，$\boldsymbol{b}_1\times\boldsymbol{b}_2$ 的方向(无论它与x轴的正向相同还是相反)，以及转动方向(无论与x轴右手螺旋方向相同还是相反)，均由比值 $E_{0z}/E_{0y}$ 虚部的正负号决定(第一种情况为正，第二种情况为负).这是对圆偏振情形的法则(48.11)的推广.
+
+\noindent{\heiti 习题2}\quad 求电荷在平面单色线性偏振波场中的运动.
+
+解：选择波场E的方向为y轴，我们写出：
+\begin{equation*}
+  E_y=E=E_0\cos\omega\xi,\qquad
+  A_y=A=-\frac{cE_0}{\omega}\sin\omega\xi
+\end{equation*}
+（$\xi = t - x/c$）.从§47习题2的公式(3)和(4)我们得到（在粒子平均处于静止的参考系中)下列借助参数 $\eta = \omega\xi$ 来表述运动的公式：
+\begin{equation*}
+  x=-\frac{e^2E_0^2c}{8\gamma^2\omega^3}\sin 2\eta,\qquad
+  y=-\frac{eE_0c}{\gamma\omega^2}\cos\eta,\qquad
+  z=0,
+\end{equation*}
+\begin{equation*}
+  t=\frac{\eta}{\omega}-\frac{e^2E_0^2}{8\gamma^2\omega^3}\sin 2\eta,\qquad
+  \gamma^2=m^2c^2+\frac{e^2E_0^2}{2\omega^2},
+\end{equation*}
+\begin{equation*}
+  p_x=-\frac{e^2E_0^2}{4\gamma\omega^2}\cos 2\eta,\qquad
+  p_y=\frac{eE_0}{\omega}\sin\eta,\qquad
+  p_z=0.
+\end{equation*}
+因此，电荷在xy平面内沿着一个对称的8字形曲线运动（其纵轴沿着y轴). 在一个运动周期内，η从0变到2π.
+
+\noindent{\heiti 习题3}\quad 求电荷在圆偏振波场中的运动.
+
+解：对于圆偏振波的场，我们有：
+\begin{equation*}
+  E_y=E_0\cos\omega\xi,\qquad
+  E_z=E_0\sin\omega\xi,
+\end{equation*}
+\begin{equation*}
+  A_y=-\frac{cE_0}{\omega}\sin\omega\xi,\qquad
+  A_z=\frac{cE_0}{\omega}\cos\omega\xi.
+\end{equation*}
+运动由下列公式给出：
+\begin{equation*}
+  x=0,\qquad
+  y=-\frac{ecE_0}{\gamma\omega^2}\cos\omega t,\qquad
+  z=-\frac{ecE_0}{\gamma\omega^2}\sin\omega t,
+\end{equation*}
+\begin{equation*}
+  p_x=0,\qquad
+  p_y=\frac{eE_0}{\omega}\sin\omega t,\qquad
+  p_z=-\frac{eE_0}{\omega}\cos\omega t,
+\end{equation*}
+\begin{equation*}
+  \gamma^2=m^2c^2+\frac{c^2E_0^2}{\omega^2}.
+\end{equation*}
+因此，电荷在 $yz$ 平面内沿半径为 $ecE_0/\gamma\omega^2$ 的圆运动，动量具有常数值 $p = eE_0/\omega$，在每个时刻，动量p的方向与波的磁场H的方向相反.
+
+\end{xiti}
+
+\section{谱分解}
+
+每种波都可以进行谱分解，即表为不同频率的单色波的叠加.这种展开的特性随场的时间依赖特性而变化.
+
+其中一类同如下情况有关，那里的展开包含组成离散值序列的频率.这一类中最简单的情况出现于纯周期性（尽管不是单色）的场的分解.这就是通常的傅里叶级数展开；它包含的频率是“基本”频率 $\omega_0 = 2\pi/T$ 的整数倍，这里T是场的周期.我们把它写成形式
+\begin{equation}
+  f=\sum_{n=-\infty}^{\infty}f_n\,\mathrm{e}^{-\mathrm{i}\omega_0nt}
+\end{equation}
+(式中，$f$ 是任何描述场的量）.量 $f_n$ 通过积分
+\begin{equation}
+  f_n=\frac{1}{T}\int_{-T/2}^{T/2}f(t)\,\mathrm{e}^{\mathrm{i}n\omega_0t}\,\mathrm{d}t
+\end{equation}
+利用函数 f 来决定.因为 f(t)必须是实数，那么，
+\begin{equation}
+  f_{-n}=f_n^*.
+\end{equation}
+在更复杂的情况下，展开可以包含几个不同的无公度基频的整数倍（或它们之和）.
+
+在对和式（49.1)进行平方及时间平均时，由于含有振荡因子，带不同频率项的乘积得零.留下来的项只有 $f_nf_{-n} = |f_n|^2$.因此，场的平方的平均值，即波的平均强度，是其单色分量强度之和：
+\begin{equation}
+  \overline{f^2}=\sum_{n=-\infty}^{\infty}|f_n|^2
+  =2\sum_{n=1}^{\infty}|f_n|^2
+\end{equation}
+(这里假设了函数f对一个周期的平均值是零，即 $f_0 = \overline{f} = 0$).
+
+另一类场可以展开为含连续分布的不同频率的傅里叶积分.为了实现这一点，函数 $f(t)$ 必须满足一定的条件；通常我们考虑在 $t = \pm\infty$ 时变为零的函数.这样的展开具有形式
+\begin{equation}
+  f(t)=\int_{-\infty}^{\infty}f_\omega\,\mathrm{e}^{-\mathrm{i}\omega t}
+  \frac{\mathrm{d}\omega}{2\pi},
+\end{equation}
+式中傅里叶分量借助函数 f(t) 通过积分
+\begin{equation}
+  f_\omega=\int_{-\infty}^{\infty}f(t)\,\mathrm{e}^{\mathrm{i}\omega t}\,\mathrm{d}t
+\end{equation}
+给出.类似于（49.3），
+\begin{equation}
+  f_{-\omega}=f_\omega^*.
+\end{equation}
+我们来把波的总强度，即 $f^2$ 对所有时间的积分，用傅里叶分量的强度表示之.用（49.5）及（49.6）两式，我们得到
+\begin{equation*}
+\begin{aligned}
+  \int_{-\infty}^{\infty}f^2\,\mathrm{d}t
+  &=\int_{-\infty}^{\infty}\left\{f\int_{-\infty}^{\infty}
+  f_\omega\,\mathrm{e}^{-\mathrm{i}\omega t}\frac{\mathrm{d}\omega}{2\pi}\right\}\mathrm{d}t\\
+  &=\int_{-\infty}^{\infty}\left\{f_\omega\int_{-\infty}^{\infty}
+  f\,\mathrm{e}^{-\mathrm{i}\omega t}\,\mathrm{d}t\right\}\frac{\mathrm{d}\omega}{2\pi}
+  =\int_{-\infty}^{\infty}f_\omega f_{-\omega}\frac{\mathrm{d}\omega}{2\pi},
+\end{aligned}
+\end{equation*}
+或者，用（49.7）得
+\begin{equation}
+  \int_{-\infty}^{\infty}f^2\,\mathrm{d}t
+  =\int_{-\infty}^{\infty}|f_\omega|^2\frac{\mathrm{d}\omega}{2\pi}
+  =2\int_0^{\infty}|f_\omega|^2\frac{\mathrm{d}\omega}{2\pi}.
+\end{equation}
+
+\section{部分偏振光}
+
+每一单色波，依照自己的定义，必定是偏振的.然而，我们经常所遇到的波，它们仅仅是近似单色的，包含着小间隔 $\Delta\omega$ 中的各种不同频率.我们考虑这种波，并且假设 $\omega$ 是它的某一中间频率.这时，它在空间给定点的场（为确定起见，我们将考虑电场E)可以写成形式
+\begin{equation*}
+  \boldsymbol{E}_0(t)\,\mathrm{e}^{-\mathrm{i}\omega t},
+\end{equation*}
+这里的复数振幅 $\boldsymbol{E}_0(t)$ 是某一个缓变的时间的函数（对于严格单色波来说，$\boldsymbol{E}_0$ 就是常数了）.既然 $\boldsymbol{E}_0$ 决定波的偏振，那么，这就意味着，在波的每一点，偏振随着时间变化；这样的波称之为部分偏振波.
+
+用实验来观察电磁波的偏振特性，特别是，观察光的偏振特性，是将所研究的光通过各种物体（例如尼科耳棱镜)，然后观察透过的光的强度.从数学的观点来看，这就意味着，我们可以从光场的某些二次函数的值得出关于光的偏振特性的一些结论.在此，不言而喻，我们所研究的是这些函数的时间平均值.
+
+场的二次函数是一些与乘积 $E_\alpha E_\beta,\ E_\alpha^*E_\beta^*$ 或 $E_\alpha E_\beta^*$ 成正比的项所构成的.形如
+\begin{equation*}
+  E_\alpha E_\beta=E_{0\alpha}E_{0\beta}\,\mathrm{e}^{-2\mathrm{i}\omega t},\qquad
+  E_\alpha^*E_\beta^*=E_{0\alpha}^*E_{0\beta}^*\,\mathrm{e}^{2\mathrm{i}\omega t}
+\end{equation*}
+的乘积包含着快速振荡的因子 $\mathrm{e}^{\pm 2\mathrm{i}\omega t}$ 当取时间平均值时，结果为零.乘积 $E_\alpha E_\beta^* = E_{0\alpha}E_{0\beta}^*$ 不包含那种因子，因而它对时间的平均值不为零.由此可见，光的偏振特性完全为张量
+\begin{equation}
+  J_{\alpha\beta}=\overline{E_{0\alpha}E_{0\beta}^*}
+\end{equation}
+所决定.
+
+因为矢量 $\boldsymbol{E}_0$ 总在垂直于波的方向的平面内，张量 $J_{\alpha\beta}$ 一共有四个分量(在本节内，指标 $\alpha,\beta$ 应被理解为只取两个值，即 $\alpha,\beta = 1,2$，相应于 $y$ 和 $z$ 轴；x轴沿波的传播方向）.
+
+张量 $J_{\alpha\beta}$ 的对角元素之和（我们记为J)是一个实量——矢量 $\boldsymbol{E}_0$ (或E）模数的平方平均值：
+\begin{equation}
+  J\equiv J_{\alpha\alpha}=\overline{\boldsymbol{E}_0\cdot\boldsymbol{E}_0^*}.
+\end{equation}
+这个量决定波的强度，如能流密度所测量的一样.为了消去那些与偏振没有直接关系的量，我们引入张量
+\begin{equation}
+  \rho_{\alpha\beta}=\frac{J_{\alpha\beta}}{J}
+\end{equation}
+来替换 $J_{\alpha\beta}$.对它来说，$\rho_{\alpha\alpha} = 1$；我们称之为偏振张量.
+
+从（50.1）的定义，可以看出在张量 $J_{\alpha\beta}$，以及相应的 $\rho_{\alpha\beta}$ 的分量间存在着下面的关系：
+\begin{equation}
+  \rho_{\alpha\beta}=\rho_{\beta\alpha}^*
+\end{equation}
+(即该张量是厄米的).因而,对角分量 $\rho_{11}$ 和 $\rho_{22}$ 为实数（且 $\rho_{11}+\rho_{22} = 1$) 而 $\rho_{21} = \rho_{12}^*$ 所以，偏振由三个实参数表征.
+
+我们来研究对于完全偏振光，张量 $\rho_{\alpha\beta}$ 必须满足的条件.在这种情形下，$E_0 = \mathrm{const}$，所以我们简单地得到
+\begin{equation}
+  J_{\alpha\beta}=J\rho_{\alpha\beta}=E_{0\alpha}E_{0\beta}^*
+\end{equation}
+(未平均)，即该张量的分量可以写成某个常矢量分量的乘积.其充要条件是行列式为零：
+\begin{equation}
+  |\rho_{\alpha\beta}|=\rho_{11}\rho_{22}-\rho_{12}\rho_{21}=0.
+\end{equation}
+相反的情况是非偏振光或自然光.完全不存在偏振意味着，所有的方向(在 $yz$ 平面内）等价.换言之，偏振张量必须具有形式：
+\begin{equation}
+  \rho_{\alpha\beta}=\frac{1}{2}\delta_{\alpha\beta}.
+\end{equation}
+行列式是 $|\rho_{\alpha\beta}| = 1/4$.
+
+在任意偏振的一般情形下，行列式的值从0到 $1/4$\footnote{通过考虑平均值易见，形如（50.1）的任何张量的行列式均为正.为简单起见，求和对分立值进行，再用熟知的代数不等式
+\begin{equation*}
+  \left|\sum_{a,b}x_ay_b\right|^2\leqslant\sum_a|x_a|^2\sum_b|y_b|^2.
+\end{equation*}}.所谓偏振度是指正量 $P$，定义为
+\begin{equation}
+  |\rho_{\alpha\beta}|=\frac{1}{4}(1-P^2).
+\end{equation}
+$P$ 值从0（对于非偏振光）变到1（对于偏振光).
+
+任意张量 $\rho_{\alpha\beta}$ 可以分为对称的和反对称的两部分.其中对称部分
+\begin{equation*}
+  S_{\alpha\beta}=\frac{1}{2}(\rho_{\alpha\beta}+\rho_{\beta\alpha})
+\end{equation*}
+是实的，因为 $\rho_{\alpha\beta}$ 具有厄米性.反对称部分是纯虚的.像任何阶数等于维数的反对称张量一样，它化为一个赝标量（见§6第五个脚注）：
+\begin{equation*}
+  \frac{1}{2}(\rho_{\alpha\beta}-\rho_{\beta\alpha})
+  =-\frac{\mathrm{i}}{2}e_{\alpha\beta}A,
+\end{equation*}
+式中A是一个实赝标量，$e_{\alpha\beta}$ 是单位反对称张量(其分量 $e_{12} = -e_{21} = 1$) .因此，偏振张量具有形式：
+\begin{equation}
+  \rho_{\alpha\beta}=S_{\alpha\beta}-\frac{\mathrm{i}}{2}e_{\alpha\beta}A,
+  \qquad S_{\alpha\beta}=S_{\beta\alpha},
+\end{equation}
+即它化为一个实对称张量和一个赝标量.
+
+对于圆偏振波，矢量 $\boldsymbol{E}_0 = \mathrm{const}$，这里
+\begin{equation*}
+  E_{02}=\pm\mathrm{i}E_{01}.
+\end{equation*}
+于是易见，$S_{\alpha\beta} = \delta_{\alpha\beta}/2$，而 $A = \pm 1$.另一方面,对于线偏振波,常矢量 $\boldsymbol{E}_0$ 可以选为实的，所以 $A = 0$.在一般情形下，量A可以称为圆偏振度；它取值从+1到−1,极限值分别对应右旋和左旋圆偏振波.
+
+实对称张量 $S_{\alpha\beta}$，像任何对称张量一样，可以化到主轴，不同的主值我们记为 $\lambda_1$ 和 $\lambda_2$.主轴的方向相互垂直.将沿这些方向的单位矢量记为 $\boldsymbol{n}^{(1)}$ 和 $\boldsymbol{n}^{(2)}$，我们可以把 $S_{\alpha\beta}$ 写为形式：
+\begin{equation}
+  S_{\alpha\beta}=\lambda_1 n_\alpha^{(1)}n_\beta^{(1)}
+  +\lambda_2 n_\alpha^{(2)}n_\beta^{(2)},\qquad
+  \lambda_1+\lambda_2=1.
+\end{equation}
+量 $\lambda_1$ 和 $\lambda_2$ 是正数，取值从0到1.
+
+假设 $A = 0$，便有 $\rho_{\alpha\beta} = S_{\alpha\beta}$.(50.10)式的两项中，每项的形式均为常矢量（$\sqrt{\lambda_1}\,\boldsymbol{n}^{(1)}$ 或 $\sqrt{\lambda_2}\,\boldsymbol{n}^{(2)}$）的两个分量之积.换言之，每项对应于线偏振光.此外我们看到,(50.10)中没有含两个波分量乘积的项.这意味着两部分可以看成是在物理上彼此独立的，或者如人们所说，它们是非相干的.实际上，如果两个波独立，乘积 $E_\alpha^{(1)}E_\beta^{(2)}$ 的平均值就等于每个因子平均值的乘积，因为它们每个都是零，所以
+\begin{equation*}
+  \overline{E_\alpha^{(1)}E_\beta^{(2)}}=0.
+\end{equation*}
+于是我们得到如下结论，在这种情形下（$A = 0$），部分偏振波可以表示为两个非相干波（强度正比于 $\lambda_1$ 和 $\lambda_2$) 的叠加，沿相互垂直的方向线性地偏振\footnote{行列式 $|S_{\alpha\beta}|=\lambda_1\lambda_2$；假设 $\lambda_1>\lambda_2$，则偏振度，如（50.8）所定义，是 $P=1-2\lambda_2$.在目前的情形（$A=0$），人们常用退偏振系数（定义为比值 $\lambda_2/\lambda_1$）来表征偏振度.}.(在复张量 $\rho_{\alpha\beta}$ 的一般情形下，可以证明，光能够表示为两个非相干椭圆偏振波的叠加，它们的偏振椭圆相似且相互垂直，见习题2.）
+
+令 $\varphi$ 为轴1(y轴）和单位矢量 $\boldsymbol{n}^{(1)}$ 之间的夹角；于是
+\begin{equation*}
+  \boldsymbol{n}^{(1)}=(\cos\varphi,\ \sin\varphi),\qquad
+  \boldsymbol{n}^{(2)}=(-\sin\varphi,\ \cos\varphi).
+\end{equation*}
+引入量 $l = \lambda_1 - \lambda_2$ (设 $\lambda_1 > \lambda_2$)，我们将张量（50.10）的分量写为如下形式：
+\begin{equation}
+  S_{\alpha\beta}=\frac{1}{2}
+  \begin{pmatrix}
+    1+l\cos 2\varphi & l\sin 2\varphi\\
+    l\sin 2\varphi & 1-l\cos 2\varphi
+  \end{pmatrix}.
+\end{equation}
+因此，对于轴y和z的任意选择，波的偏振特性可以用下列三个实数来表征：A—圆偏振度，l—最大线偏振度和φ—最大偏振方向 $\boldsymbol{n}^{(1)}$ 和y轴之间的夹角.
+
+我们可以用另外三个参数的集合（斯托克斯参数）：
+\begin{equation}
+  \xi_1=l\sin 2\varphi,\qquad
+  \xi_2=A,\qquad
+  \xi_3=l\cos 2\varphi
+\end{equation}
+来替换这三个参数.偏振张量可以利用它们表示为
+\begin{equation}
+  \rho_{\alpha\beta}=\frac{1}{2}
+  \begin{pmatrix}
+    1+\xi_3 & \xi_1-\mathrm{i}\xi_2\\
+    \xi_1+\mathrm{i}\xi_2 & 1-\xi_3
+  \end{pmatrix}.
+\end{equation}
+所有三个参数的取值范围都从−1到+1. 参数 $\xi_3$ 表征沿y和z轴的线偏振：值 $\xi_3 = 1$ 相应于沿y轴的完全线偏振，$\xi_3 = -1$ 相应于沿z轴的完全线偏振.参数 $\xi_1$ 表征沿与y轴成 $45^{\circ}$ 角方向的线偏振：值 $\xi_1 = 1$ 意味着在角 $\varphi = \pi/4$ 的完全偏振，而 $\xi_1 = -1$ 意味着在角 $\varphi = -\pi/4$ 的完全偏振\footnote{对于椭圆轴为 $\boldsymbol{b}_1$ 和 $\boldsymbol{b}_2$ 的完全椭圆偏振波（见§48），斯托克斯参数是：
+\begin{equation*}
+  \xi_1=0,\qquad \xi_2=\pm 2b_1b_2/J,\qquad \xi_3=(b_1^2-b_2^2)/J.
+\end{equation*}
+这里 $y$ 轴沿着 $\boldsymbol{b}_1$，而 $\xi_2$ 中的正负号对应于 $\boldsymbol{b}_2$ 是沿着还是相反于 $z$ 轴的方向.}.
+
+(50.13)式的行列式等于
+\begin{equation}
+  |\rho_{\alpha\beta}|=\frac{1}{4}\left(1-\xi_1^2-\xi_2^2-\xi_3^2\right).
+\end{equation}
+与（50.8）比较，我们看出
+\begin{equation}
+  P=\sqrt{\xi_1^2+\xi_2^2+\xi_3^2}.
+\end{equation}
+于是，对于给定的总偏振度P，可以有不同类型的偏振，由三个量 $\xi_1,\xi_2,\xi_3$ 的值表征，其平方和是固定的；它们构成一类长度固定的矢量.
+
+我们指出，量 $\xi_2 = A$ 和 $\sqrt{\xi_1^2+\xi_3^2} = l$ 是洛伦兹变换下的不变量.从这些量作为圆偏振度和线偏振度本身的意义来看，这一点已经几乎是不言而喻的了\footnote{为给出直接证明，我们指出，因为波场在任何参考系中都是横场，一开始就很清楚，张量 $\rho_{\alpha\beta}$ 在任何新参考系中仍然是二维的.$\rho_{\alpha\beta}$ 到 $\rho'_{\alpha\beta}$ 的变换不改变绝对平方和 $\rho_{\alpha\beta}\rho^*_{\alpha\beta}$（实际上，变换的形式并不依赖于光的特殊偏振性质，而对于完全偏振波，这个和在任何参考系中都等于 1）.因为这个变换是实的，张量 $\rho_{\alpha\beta}$（50.9）的实部和虚部独立地变换，所以每个分量的平方和各自保持常数，用 $l$ 和 $A$ 表示.}.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 将一任意的部分偏振光分解为“自然光”和“偏振光”两部分.
+
+解：这个解意味着将张量 $J_{\alpha\beta}$ 表示为如下形式
+\begin{equation*}
+  J_{\alpha\beta}=\frac{1}{2}J^{(\mathrm{n})}\delta_{\alpha\beta}
+  +E_{0\alpha}^{(\mathrm{p})}E_{0\beta}^{(\mathrm{p})*}.
+\end{equation*}
+第一项对应自然光部分，第二项对应偏振光部分.为了确定这些部分的强度，我们注意行列式
+\begin{equation*}
+  \left|J_{\alpha\beta}-\frac{1}{2}J^{(\mathrm{n})}\delta_{\alpha\beta}\right|
+  =\left|E_{0\alpha}^{(\mathrm{p})}E_{0\beta}^{(\mathrm{p})*}\right|=0.
+\end{equation*}
+将 $J_{\alpha\beta} = J\rho_{\alpha\beta}$ 写为形式(50.13)，解方程得到
+\begin{equation*}
+  J^{(\mathrm{n})}=J(1-P).
+\end{equation*}
+偏振部分的强度是 $J^{(\mathrm{p})} = |\boldsymbol{E}_0^{(\mathrm{p})}|^2 = J - J^{(\mathrm{n})} = JP$.
+
+偏振光部分一般说来是椭圆偏振波，椭圆轴的方向同张量 $S_{\alpha\beta}$ 的主轴重合.椭圆轴的长度 $b_1$ 和 $b_2$ 以及 $\boldsymbol{b}_1$ 轴和y轴的夹角 $\varphi$ 由如下方程给定：
+\begin{equation*}
+  b_1^2+b_2^2=JP,\qquad
+  2b_1b_2=JP\xi_2,\qquad
+  \tan 2\varphi=\frac{\xi_1}{\xi_3}.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 将任意的部分偏振波表示为两个非相干椭圆偏振波的叠加.
+
+解：对于厄米张量 $\rho_{\alpha\beta}$，“主轴”由两个单位复矢量 $\boldsymbol{n}$（$\boldsymbol{n}\cdot\boldsymbol{n}^* = 1$）决定，它们满足方程
+\begin{equation}\tag{1}
+  \rho_{\alpha\beta}n_\beta=\lambda n_\alpha.
+\end{equation}
+主值 $\lambda_1$ 和 $\lambda_2$ 是方程
+\begin{equation*}
+  |\rho_{\alpha\beta}-\lambda\delta_{\alpha\beta}|=0
+\end{equation*}
+的根.将（1）两边乘以 $n_\alpha^*$，我们得到：
+\begin{equation*}
+  \lambda=\rho_{\alpha\beta}n_\alpha^*n_\beta
+  =\frac{1}{J}\overline{|E_{0\alpha}n_\alpha^*|^2},
+\end{equation*}
+由此可见 $\lambda_1,\lambda_2$ 都是正实数.将方程
+\begin{equation*}
+  \rho_{\alpha\beta}n_\beta^{(1)}=\lambda_1 n_\alpha^{(1)},\qquad
+  \rho_{\alpha\beta}^*n_\beta^{(2)*}=\lambda_2 n_\alpha^{(2)*}
+\end{equation*}
+乘以 $n_\alpha^{(2)*}$ (对第一个)和 $n_\alpha^{(1)}$ (对第二个)，取结果的差，并考虑到 $\rho_{\alpha\beta}$ 的厄米性，我们得到：
+\begin{equation*}
+  (\lambda_1-\lambda_2)n_\alpha^{(1)}n_\alpha^{(2)*}=0.
+\end{equation*}
+于是有 $\boldsymbol{n}^{(1)}\cdot\boldsymbol{n}^{(2)*} = 0$，即单位矢量 $\boldsymbol{n}^{(1)}$ 和 $\boldsymbol{n}^{(2)}$ 相互正交.
+
+波的展开由下列公式提供
+\begin{equation*}
+  \rho_{\alpha\beta}=\lambda_1 n_\alpha^{(1)}n_\beta^{(1)*}
+  +\lambda_2 n_\alpha^{(2)}n_\beta^{(2)*}.
+\end{equation*}
+我们总可以选择复振幅，使得两个相互垂直的分量一个为实，另一个为虚(比较 §48).令
+\begin{equation*}
+  n_1^{(1)}=b_1,\qquad n_2^{(1)}=\mathrm{i}b_2
+\end{equation*}
+(现在这里的 $b_1$ 及 $b_2$ 理解为按条件 $b_1^2+b_2^2 = 1$ 进行了归一化)，从方程 $\boldsymbol{n}^{(1)}\cdot\boldsymbol{n}^{(2)*} = 0$ 我们得到：
+\begin{equation*}
+  n_1^{(2)}=\mathrm{i}b_2,\qquad n_2^{(2)}=b_1.
+\end{equation*}
+于是我们看到，两个椭圆偏振的椭圆是相似的（有相同的轴比)，其中一个相对于另一个旋转了 $90^{\circ}$.
+
+\noindent{\heiti 习题3}\quad 求 $y,z$ 轴转动角度 $\varphi$ 时斯托克斯参数的变换法则.
+
+解：该法则由斯托克斯参数与 $yz$ 平面内二维张量分量之间的联系决定，由如下公式给出
+\begin{equation*}
+  \xi_1'=\xi_1\cos 2\varphi-\xi_3\sin 2\varphi,\qquad
+  \xi_3'=\xi_1\sin 2\varphi+\xi_3\cos 2\varphi,\qquad
+  \xi_2'=\xi_2.
+\end{equation*}
+
+\end{xiti}
+
+\section{静电场的傅里叶分解}
+
+电荷所产生的场在形式上也可以分解为平面波（即展开为傅里叶积分).然而这种展开，在本质上与电磁波在真空中的展开是不同的.实际上，电荷所产生的场并不满足齐次的波动方程，因而这个展开式的每一项也不满足这个方程.由此可以断定，电荷产生的场所能展开的平面波，并不满足 $k^2 = \omega^2/c^2$ 这个关系，而这个关系对于单色平面波却是有效的.
+
+就特例言之，如果我们形式地将静电场表为平面波的叠加，这些波的“频率”显然为零，因为所考虑的场与时间无关；波矢量本身当然不为零.
+
+现在我们来考虑处在坐标原点的点电荷 $e$ 所产生的场.该场的势 $\varphi$ 为如下方程所决定（见§36）
+\begin{equation}
+  \Delta\varphi=-4\pi e\delta(\boldsymbol{r}).
+\end{equation}
+我们将 $\varphi$ 展开为傅里叶积分，即我们把它表为形式：
+\begin{equation}
+  \varphi=\int_{-\infty}^{+\infty}\mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}
+  \varphi_{\boldsymbol{k}}\frac{\mathrm{d}^3k}{(2\pi)^3},\qquad
+  \mathrm{d}^3k=\mathrm{d}k_x\,\mathrm{d}k_y\,\mathrm{d}k_z.
+\end{equation}
+式中
+\begin{equation*}
+  \varphi_{\boldsymbol{k}}=\int\varphi(\boldsymbol{r})
+  \,\mathrm{e}^{-\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}\,\mathrm{d}V.
+\end{equation*}
+将拉普拉斯算符应用到（51.2)的两边，我们得到
+\begin{equation*}
+  \Delta\varphi=-\int_{-\infty}^{+\infty}k^2
+  \mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}
+  \varphi_{\boldsymbol{k}}\frac{\mathrm{d}^3k}{(2\pi)^3},
+\end{equation*}
+所以，$\Delta\varphi$ 的表达式的傅里叶分量是
+\begin{equation*}
+  (\Delta\varphi)_{\boldsymbol{k}}=-k^2\varphi_{\boldsymbol{k}}.
+\end{equation*}
+另一方面，我们取方程（51.1）两边的傅里叶分量，就可以求得 $(\Delta\varphi)_{\boldsymbol{k}}$
+\begin{equation*}
+  (\Delta\varphi)_{\boldsymbol{k}}
+  =-\int 4\pi e\delta(\boldsymbol{r})\,\mathrm{e}^{-\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}\,\mathrm{d}V
+  =-4\pi e.
+\end{equation*}
+比较 $(\Delta\varphi)_{\boldsymbol{k}}$ 的以上两个式子，得
+\begin{equation}
+  \varphi_{\boldsymbol{k}}=\frac{4\pi e}{k^2}.
+\end{equation}
+这个公式解决了所提出的问题.
+
+像对势 $\varphi$ 一样，我们也可以展开场
+\begin{equation}
+  \boldsymbol{E}=\int_{-\infty}^{+\infty}\boldsymbol{E}_{\boldsymbol{k}}
+  \,\mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}
+  \frac{\mathrm{d}^3k}{(2\pi)^3}.
+\end{equation}
+利用(51.2)，我们得到
+\begin{equation*}
+  \boldsymbol{E}=-\operatorname{grad}\int_{-\infty}^{+\infty}
+  \varphi_{\boldsymbol{k}}\,\mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}
+  \frac{\mathrm{d}^3k}{(2\pi)^3}
+  =-\int\mathrm{i}\boldsymbol{k}\,\varphi_{\boldsymbol{k}}
+  \,\mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}
+  \frac{\mathrm{d}^3k}{(2\pi)^3}.
+\end{equation*}
+同（51.4）相比较，得
+\begin{equation}
+  \boldsymbol{E}_{\boldsymbol{k}}=-\mathrm{i}\boldsymbol{k}\,\varphi_{\boldsymbol{k}}
+  =-\mathrm{i}\frac{4\pi e\,\boldsymbol{k}}{k^2}.
+\end{equation}
+由此可见，库仑场可以分解的波的场沿着波矢量方向.因此，这些波可以称为纵波.
+
+\section{场的本征振动}
+
+我们来考虑空间一有限体积内的电磁场(不存在电荷).为了简化以后的计算，假设这个体积的形状是一个长方体，其边是A,B,C.这时我们可以将场的所有特征量在这个长方体内展开为三重傅里叶级数(按三个坐标).这个展开式可以写成（例如对于矢势）：
+\begin{equation}
+  \boldsymbol{A}=\sum_{\boldsymbol{k}}\boldsymbol{A}_{\boldsymbol{k}}\,
+  \mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}.
+\end{equation}
+求和应对矢量k的所有可能值进行，矢量k的分量可取
+\begin{equation}
+  k_x=\frac{2\pi n_x}{A},\qquad
+  k_y=\frac{2\pi n_y}{B},\qquad
+  k_z=\frac{2\pi n_z}{C}
+\end{equation}
+各值，$n_x,n_y,n_z$ 是正整数或负整数.
+
+因为A必须为实，展开式（52.1）的系数必须满足关系式 $A_{-\boldsymbol{k}} = A_{\boldsymbol{k}}^*$.从 $\operatorname{div}\boldsymbol{A} = 0$ 这个方程，对于每一个k，我们有
+\begin{equation}
+  \boldsymbol{k}\cdot\boldsymbol{A}_{\boldsymbol{k}}=0,
+\end{equation}
+就是说，复矢量 $\boldsymbol{A}_{\boldsymbol{k}}$ 垂直于其相应的波矢量k. 矢量 $\boldsymbol{A}_{\boldsymbol{k}}$ 当然是时间的函数；从波动方程（46.7)可知，它们满足方程
+\begin{equation}
+  \ddot{\boldsymbol{A}}_{\boldsymbol{k}}+c^2k^2\boldsymbol{A}_{\boldsymbol{k}}=0.
+\end{equation}
+如果体积的边A,B,C足够大，那么，$k_x,k_y,k_z$ 的相邻的值（它们的$n_x,n_y,n_z$ 相差1)彼此几乎相等.在这种情形下，我们可以讨论 $k_x,k_y,k_z$ 在小间隔 $\Delta k_x,\Delta k_y,\Delta k_z$ 中的可能值的数目.既然与 $k_x$ 邻近值相应的 $n_x$ 相差1,那么，在间隔 $\Delta k_x$ 内 $k_x$ 可能值的数目 $\Delta n_x$ 就简单地等于 $n_x$ 之值的相应的间隔.因此，得到
+\begin{equation*}
+  \Delta n_x=\frac{A}{2\pi}\Delta k_x,\qquad
+  \Delta n_y=\frac{B}{2\pi}\Delta k_y,\qquad
+  \Delta n_z=\frac{C}{2\pi}\Delta k_z.
+\end{equation*}
+分量在间隔 $\Delta k_x,\Delta k_y,\Delta k_z$ 内的矢量k的可能值的总数 $\Delta n$ 等于 $\Delta n_x\Delta n_y\Delta n_z$ 即
+\begin{equation}
+  \Delta n=\Delta n_x\Delta n_y\Delta n_z
+  =\frac{V}{(2\pi)^3}\Delta k_x\Delta k_y\Delta k_z,
+\end{equation}
+式中，$V = ABC$ 是场的体积.由此很容易决定其绝对值在间隔 $\Delta k$ 内，而其方向在立体角元 $\Delta o$ 内的波矢量可能值的数目.为此，我们只需在“k空间”内变换到球坐标，并且用这个坐标表示的体积元来代替 $\Delta k_x\Delta k_y\Delta k_z$.因此，
+\begin{equation}
+  \Delta n=\frac{V}{(2\pi)^3}k^2\Delta k\,\Delta o.
+\end{equation}
+以4π代 $\Delta o$，绝对值在间隔 $\Delta k$ 内而方向任意的波矢量k值的总数就是 $\Delta n = Vk^2\Delta k/2\pi^2$.
+
+我们来计算场在体积V内的总能量
+\begin{equation*}
+  \mathcal{E}=\frac{1}{8\pi}\int(E^2+H^2)\,\mathrm{d}V,
+\end{equation*}
+把它表示为量 $\boldsymbol{A}_{\boldsymbol{k}}$ 的函数.对于电场和磁场，我们有
+\begin{equation}
+\begin{aligned}
+  \boldsymbol{E}&=-\frac{1}{c}\dot{\boldsymbol{A}}
+  =-\frac{1}{c}\sum_{\boldsymbol{k}}\dot{\boldsymbol{A}}_{\boldsymbol{k}}\,
+  \mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}},\\
+  \boldsymbol{H}&=\operatorname{rot}\boldsymbol{A}
+  =\mathrm{i}\sum_{\boldsymbol{k}}(\boldsymbol{k}\times\boldsymbol{A}_{\boldsymbol{k}})\,
+  \mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}.
+\end{aligned}
+\end{equation}
+当求这些和的平方时，必须记着，所有含波矢量k和 $\boldsymbol{k}'\ (\boldsymbol{k}\neq\boldsymbol{k}')$ 项的乘积在整个体积内积分时为零.事实上，这样的项含有形如
+$\mathrm{e}^{\mathrm{i}(\boldsymbol{k}+\boldsymbol{k}')\cdot\boldsymbol{r}}$ 的因子，而积分，例如
+\begin{equation*}
+  \int_0^A\exp\left(\mathrm{i}\frac{2\pi}{A}n_xx\right)\mathrm{d}x
+\end{equation*}
+当 $n_x$ 是不为零的整数时，等于零.在含有 $\boldsymbol{k}' = -\boldsymbol{k}$ 的项中，指数为零，对 $\mathrm{d}V$ 的积分恰恰等于体积V.
+
+结果，我们求得
+\begin{equation*}
+  \mathcal{E}=\frac{V}{8\pi}\sum_{\boldsymbol{k}}
+  \left\{\frac{1}{c^2}\dot{\boldsymbol{A}}_{\boldsymbol{k}}\cdot
+  \dot{\boldsymbol{A}}_{\boldsymbol{k}}^*
+  +(\boldsymbol{k}\times\boldsymbol{A}_{\boldsymbol{k}})\cdot
+  (\boldsymbol{k}\times\boldsymbol{A}_{\boldsymbol{k}}^*)\right\}.
+\end{equation*}
+从（52.3），我们有
+\begin{equation*}
+  (\boldsymbol{k}\times\boldsymbol{A}_{\boldsymbol{k}})\cdot
+  (\boldsymbol{k}\times\boldsymbol{A}_{\boldsymbol{k}}^*)
+  =k^2\boldsymbol{A}_{\boldsymbol{k}}\cdot\boldsymbol{A}_{\boldsymbol{k}}^*,
+\end{equation*}
+于是我们最后得到
+\begin{equation}
+  \mathcal{E}=\frac{V}{8\pi c^2}\sum_{\boldsymbol{k}}
+  \left\{\dot{\boldsymbol{A}}_{\boldsymbol{k}}\cdot\dot{\boldsymbol{A}}_{\boldsymbol{k}}^*
+  +k^2c^2\boldsymbol{A}_{\boldsymbol{k}}\cdot\boldsymbol{A}_{\boldsymbol{k}}^*\right\}.
+\end{equation}
+这个和中的每一项对应于展开式(52.1)中的一项.
+
+由于（52.4)，矢量 $\boldsymbol{A}_{\boldsymbol{k}}$ 是时间的调和函数，频率 $\omega_k = ck$ 仅取决于波矢的绝对值.依赖于这些函数的选择，展开式(52.1)中的项可以表示平面驻波或行波.我们将场的展开式写成这样的形式，使它描述平面行波.为此，我们将它写成形式
+\begin{equation}
+  \boldsymbol{A}=\sum_{\boldsymbol{k}}
+  (\boldsymbol{a}_{\boldsymbol{k}}\,\mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}}
+  +\boldsymbol{a}_{\boldsymbol{k}}^*\,\mathrm{e}^{-\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}})
+\end{equation}
+(这个形式明白地显出A为实)，并且每一个 $\boldsymbol{a}_{\boldsymbol{k}}$ 按以下规律依赖于时间：
+\begin{equation}
+  \boldsymbol{a}_{\boldsymbol{k}}\sim\mathrm{e}^{-\mathrm{i}\omega_k t},
+  \qquad\omega_k=ck.
+\end{equation}
+和式（52.9）内的每一项都仅是差 $\boldsymbol{k}\cdot\boldsymbol{r}-\omega_k t$ 的函数，它与在矢量k方向传播的波相应.
+
+比较展开式（52.9）和（52.1），我们发现，它们的系数通过公式
+\begin{equation*}
+  \boldsymbol{A}_{\boldsymbol{k}}=\boldsymbol{a}_{\boldsymbol{k}}+\boldsymbol{a}_{-\boldsymbol{k}}^*
+\end{equation*}
+相关联，而从（52.10）可见，时间导数通过
+\begin{equation*}
+  \dot{\boldsymbol{A}}_{\boldsymbol{k}}
+  =-\mathrm{i}ck(\boldsymbol{a}_{\boldsymbol{k}}-\boldsymbol{a}_{-\boldsymbol{k}}^*)
+\end{equation*}
+相关联.代入(52.8)，我们用展开式(52.9)的系数表示出场的能量.带有形式 $\boldsymbol{a}_{\boldsymbol{k}}\cdot\boldsymbol{a}_{-\boldsymbol{k}}$ 或 $\boldsymbol{a}_{\boldsymbol{k}}^*\cdot\boldsymbol{a}_{-\boldsymbol{k}}^*$ 乘积的项彼此相消；也注意到，和式 $\sum\boldsymbol{a}_{\boldsymbol{k}}\cdot\boldsymbol{a}_{\boldsymbol{k}}^*$ 和 $\sum\boldsymbol{a}_{-\boldsymbol{k}}\cdot\boldsymbol{a}_{-\boldsymbol{k}}^*$ 的差别仅在于求和指标的记号，因而彼此相同，最后得到：
+\begin{equation}
+  \mathcal{E}=\sum_{\boldsymbol{k}}\mathcal{E}_{\boldsymbol{k}},\qquad
+  \mathcal{E}_{\boldsymbol{k}}=\frac{k^2V}{2\pi}
+  \boldsymbol{a}_{\boldsymbol{k}}\cdot\boldsymbol{a}_{\boldsymbol{k}}^*.
+\end{equation}
+因此，场的总能量是用能量 $\mathcal{E}_{\boldsymbol{k}}$ 之和来表示的，而 $\mathcal{E}_{\boldsymbol{k}}$ 又与每一单个的平面波相联系.
+
+用同样的方法，我们可以计算场的总动量.
+\begin{equation*}
+  \frac{1}{c^2}\int\boldsymbol{S}\,\mathrm{d}V
+  =\frac{1}{4\pi c}\int\boldsymbol{E}\times\boldsymbol{H}\,\mathrm{d}V,
+\end{equation*}
+并且得到
+\begin{equation}
+  \sum_{\boldsymbol{k}}\frac{\boldsymbol{k}}{k}\frac{\mathcal{E}_{\boldsymbol{k}}}{c}.
+\end{equation}
+从平面波的能量与动量的关系(见§47)，也可以预料到这个结果.
+
+展开式(52.9）是用不连续的变量序列（矢量 $\boldsymbol{a}_{\boldsymbol{k}}$) 来实现场的描述，而不是用连续的变量序列来描述，后者实际上是给空间各点以势 $\boldsymbol{A}(x,y,z,t)$ .我们现在将变量 $\boldsymbol{a}_{\boldsymbol{k}}$ 作一个变换，使场方程变为与力学中正则方程（哈密顿方程）相似的形式.
+
+引入实“正则变量” $Q_{\boldsymbol{k}}$ 及 $P_{\boldsymbol{k}}$，其关系如下：
+\begin{equation}
+\begin{aligned}
+  &Q_{\boldsymbol{k}}=\sqrt{\frac{V}{4\pi c^2}}
+  (\boldsymbol{a}_{\boldsymbol{k}}+\boldsymbol{a}_{\boldsymbol{k}}^*),\\
+  &P_{\boldsymbol{k}}=-\mathrm{i}\omega_k\sqrt{\frac{V}{4\pi c^2}}
+  (\boldsymbol{a}_{\boldsymbol{k}}-\boldsymbol{a}_{\boldsymbol{k}}^*)=\dot{Q}_{\boldsymbol{k}}.
+\end{aligned}
+\end{equation}
+将这些关系代入能量表达式(52.11)，就得到场的哈密顿量：
+\begin{equation}
+  \mathcal{H}=\sum_{\boldsymbol{k}}\mathcal{H}_{\boldsymbol{k}}
+  =\sum_{\boldsymbol{k}}\frac{1}{2}
+  (P_{\boldsymbol{k}}^2+\omega_k^2Q_{\boldsymbol{k}}^2).
+\end{equation}
+于是哈密顿方程 $\partial\mathcal{H}/\partial P_{\boldsymbol{k}} = \dot{Q}_{\boldsymbol{k}}$ 与 $P_{\boldsymbol{k}} = \dot{Q}_{\boldsymbol{k}}$ 相符，因此它是运动方程的推论(通过适当选择（52.13)中的系数就可以实现这一点）.运动方程 $\partial\mathcal{H}/\partial Q_{\boldsymbol{k}} = -P_{\boldsymbol{k}}$ 则变为
+\begin{equation}
+  \ddot{Q}_{\boldsymbol{k}}+\omega_k^2Q_{\boldsymbol{k}}=0,
+\end{equation}
+就是说，它们同场方程完全一样了.
+
+矢量 $\boldsymbol{P}_{\boldsymbol{k}}$ 及 $\boldsymbol{Q}_{\boldsymbol{k}}$ 中的每一个都垂直于波矢k,即有两个独立分量.这些矢量的方向决定其相应行波的偏振方向.用 $Q_{\boldsymbol{k}j},\ j = 1,2$，代表矢量 $\boldsymbol{Q}_{\boldsymbol{k}}$ 的两个分量（在与k垂直的平面内)，我们就有
+\begin{equation*}
+  Q_{\boldsymbol{k}}^2=\sum_j Q_{\boldsymbol{k}j}^2,
+\end{equation*}
+对于 $\boldsymbol{P}_{\boldsymbol{k}}$,我们也可以得到相似的式子.于是，
+\begin{equation}
+  \mathcal{H}=\sum_{\boldsymbol{k}j}\mathcal{H}_{\boldsymbol{k}j},\qquad
+  \mathcal{H}_{\boldsymbol{k}j}
+  =\frac{1}{2}(P_{\boldsymbol{k}j}^2+\omega_k^2Q_{\boldsymbol{k}j}^2).
+\end{equation}
+由此可见，哈密顿量分解为若干独立项 $\mathcal{H}_{\boldsymbol{k}j}$ 之和，每项仅含一对量 $Q_{\boldsymbol{k}j}$ 及 $P_{\boldsymbol{k}j}$.每个这样的项与一个有一定波矢量及偏振的行波相对应.量 $\mathcal{H}_{\boldsymbol{k}j}$ 具有作简谐振动的一维“振子”的哈密顿量的形式.因为这个理由，我们有时说用振子来展开场.
+
+我们来写出显含变量 $P_{\boldsymbol{k}},Q_{\boldsymbol{k}}$ 的场的表达式.从（52.13）得到
+\begin{equation}
+  \boldsymbol{a}_{\boldsymbol{k}}
+  =\frac{\mathrm{i}}{k}\sqrt{\frac{\pi}{V}}
+  (P_{\boldsymbol{k}}-\mathrm{i}\omega_k Q_{\boldsymbol{k}}),\qquad
+  \boldsymbol{a}_{\boldsymbol{k}}^*
+  =-\frac{\mathrm{i}}{k}\sqrt{\frac{\pi}{V}}
+  (P_{\boldsymbol{k}}+\mathrm{i}\omega_k Q_{\boldsymbol{k}}).
+\end{equation}
+将这些式子代人(52.1)，我们得到场的矢势
+\begin{equation}
+  \boldsymbol{A}=2\sqrt{\frac{\pi}{V}}\sum_{\boldsymbol{k}}\frac{1}{k}
+  (ck\,\boldsymbol{Q}_{\boldsymbol{k}}\cos\boldsymbol{k}\cdot\boldsymbol{r}
+  -\boldsymbol{P}_{\boldsymbol{k}}\sin\boldsymbol{k}\cdot\boldsymbol{r}).
+\end{equation}
+对于电场与磁场，我们求得
+\begin{equation*}
+  \boldsymbol{E}=-2\sqrt{\frac{\pi}{V}}\sum_{\boldsymbol{k}}
+  (ck\,\boldsymbol{Q}_{\boldsymbol{k}}\sin\boldsymbol{k}\cdot\boldsymbol{r}
+  +\boldsymbol{P}_{\boldsymbol{k}}\cos\boldsymbol{k}\cdot\boldsymbol{r}),
+\end{equation*}
+\begin{equation}
+  \boldsymbol{H}=-2\sqrt{\frac{\pi}{V}}\sum_{\boldsymbol{k}}\frac{1}{k}
+  \left\{ck(\boldsymbol{k}\times\boldsymbol{Q}_{\boldsymbol{k}})
+  \sin\boldsymbol{k}\cdot\boldsymbol{r}
+  +(\boldsymbol{k}\times\boldsymbol{P}_{\boldsymbol{k}})
+  \cos\boldsymbol{k}\cdot\boldsymbol{r}\right\}.
+\end{equation}

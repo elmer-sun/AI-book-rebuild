@@ -1,0 +1,925 @@
+% ch04a Hamiltonians and stock options 4.1-4.8 (书页45-62 / p063-080)
+% 覆盖说明：本块覆盖原书第4章4.1--4.8节。4.8节终止于书页62上部（p080）；
+% 4.9节"哈密顿量与障碍期权"自书页62中部（p080下半）起，归下一分块（ch04b）。
+% 编号公式核对：本块tag为(4.2)--(4.24)、(4.26)--(4.32)与(4.34)--(4.48)，共45条；
+% 原书无(4.1)、(4.25)与(4.33)——编号断档系原书自身如此（已对照PNG逐页核验，非漏转）。
+\chapter{哈密顿量与股票期权}
+
+本章是全书方法论的转折点。第3章把期权定价归结为两个抛物型偏微分方程
+（Black--Scholes方程与Merton--Garman方程），并按传统路线"解方程"；本章
+换一套语言：把期权价格看成某个线性空间——态空间（state space）——里的
+态矢，把定价方程逐项改写成薛定谔方程（Schr\"odinger equation）的样子
+$\partial C/\partial t=HC$，其中算符$H$称为期权定价的哈密顿量
+（Hamiltonian）。这不是外衣式的改写：哈密顿量形式带来两件传统方法不易
+做到的事——其一，本征函数（eigenfunction）：求出$H$的全部本征函数，就能
+对一大类路径无关与路径依赖期权（path-dependent option）给出显式解，
+障碍期权（barrier option）不过是给本征函数加约束；其二，势
+（potential）：在哈密顿量上添加势函数，可以定义新的金融工具并建模
+路径依赖期权。前者在本章后半（4.6节）兑现于
+Black--Scholes定价核，后者在4.8节立起框架、由4.9节（障碍期权）与第5章
+（路径积分）展开。
+
+论证的顺序是：4.1--4.3节快节奏补齐量子力学清单——态矢、态空间与完备性
+方程、算符与本征值问题（重点是\emph{非厄米}情形，金融哈密顿量的常态）；
+4.4节把Black--Scholes与Merton--Garman方程翻译成哈密顿量语言，是全章的
+核心一步；4.5--4.6节引入定价核（pricing kernel）并证明它是演化算符
+$e^{-\tau H}$的矩阵元，随后用动量基把Black--Scholes定价核解到显式；
+4.7节把鞅条件（martingale condition）压缩成一条
+算符方程$H|S\rangle=0$；4.8节讨论给哈密顿量加势。先修内容只有第3章的
+两个定价方程；本章多处指向原书章末附录4.11--4.13（两态系统与非厄米
+哈密顿量的具体演算），那里是本节抽象记号的"落地样本"。
+
+\section{量子力学要点}
+
+本节对应原书4.1节，任务是把后文要用的量子力学词汇清点一遍。先说清楚
+为什么可以这么做：本章将逐条核对地展示，期权定价与单自由度量子系统的
+数学描述完全同一——第3章的Black--Scholes方程在本章会原封不动地变成
+薛定谔方程（Schr\"odinger equation）的形状。方程同构，量子力学百年积累
+的线性代数机器——态空间、完备性、谱分解——就可以整体搬进金融。
+
+\paragraph{模型设定与记号}
+经典力学里，粒子在$t$时刻的位置$x_t$是$t$的确定性函数，由牛顿运动定律
+给出；这与零波动率（$\sigma=0$）的股票价格演化完全同型——价格轨道没有
+悬念。量子力学里粒子演化是随机的，对应非零波动率（$\sigma\neq0$）的
+股票。记号上，量子力学把每个时刻的位置记作$x_t$，称之为一个自由度
+（degree of freedom）：它就是"系统在该时刻所取的那个随机变量"，时间
+$t$只是给这些随机变量编号的参数。把所有时刻的自由度收拢成序列
+$\{x_t\}$，就是概率论里的随机过程（stochastic process）。于是"单自由度
+量子系统"翻译成金融语言恰好是"一维随机过程"——一只股票。
+
+固定时刻$t$，粒子位置$x$的概率分布由
+$|\psi(t,x)|^{2}\equiv\psi^{*}(t,x)\psi(t,x)$给出（星号表示复共轭）。
+函数$\psi$称为系统的态矢量（state vector），它是态空间
+（state space）$\mathcal{V}$的元素——$\mathcal{V}$由允许位形上的全体
+函数构成，是一个线性向量空间\footnote{原书脚注给出口径：粒子在实直线
+$\Re$上运动时，$\mathcal{V}$由满足$\int_{\Re}dx\,|\psi(x)|^{2}=1$的全体
+$\psi(x)$组成。}。$\mathcal{V}$的对偶态空间（dual state space）
+$\mathcal{V}_{\mathrm{dual}}$由从$\mathcal{V}$到复数的全体线性映射构成，
+同样是线性向量空间。
+
+记号采用Dirac的括号记号：$\mathcal{V}$的元素记右矢（ket）
+$|g\rangle$，$\mathcal{V}_{\mathrm{dual}}$的元素记左矢（bra）
+$\langle p|$；左矢作用在右矢上得到标量积
+$\langle p|g\rangle=\langle g|p\rangle^{*}$，是个复数。物理上可观测的量
+（能量、位置等）用厄米算符（Hermitian operator）表示——即把线性向量
+空间映到自身的线性映射；对厄米算符而言$\mathcal{V}$与
+$\mathcal{V}_{\mathrm{dual}}$同构，左右矢的区分可以忽略。
+
+\paragraph{两条独立要素}
+量子力学的数学地基由两个互相独立的部件搭成：其一，线性向量态空间及其
+对偶；其二，作用在态空间上的（线性）算符。据此，原书总结出两条原则：
+量子系统由态矢量$|\psi\rangle$描述，它是态空间$\mathcal{V}$的元素；系统
+的一切性质都由作用在$|\psi\rangle$上的线性算符表示。
+
+\paragraph{解读}
+本节真正的载荷只有一句话：把"期权价格"看成向量空间里的向量、把"定价
+方程"看成算符演化方程，有数学结构上的依据，而非修辞。传统教材（Hull、
+Shreve一系）把期权价格当作待求的二元函数直接解偏微分方程；量子口径先
+把"所有可能的价格函数"收进一个线性空间，再把单个方程升格为算符演化
+——这步升格的回报要到4.6节求解定价核时才真正兑现。原书还预告了附录
+4.11的两态系统：只有两个可能状态的最小量子系统，完备性方程（见4.2节）
+在那里有看得见摸得着的矩阵版本。
+
+\section{态空间与完备性方程}
+
+本节对应原书4.2节。核心问题：怎样把"$\mathcal{V}$中任何矢量都能用一组
+基展开"写成一条可操作的公式？答案就是完备性方程（completeness
+equation）。原书开篇即声明：这一节看似形式化，实为后文反复调用的引擎
+——4.6节推定价核、4.7节推鞅条件，用的都是"插入完备性"这一招。
+
+\paragraph{模型设定与记号}
+先离散后连续。设粒子（保留量子力学的说法，读者不妨直接把它读作"对数
+股价"）只能在一维格点上跳动，格距为$a$，格点$x=na$。基矢（basis
+states）$|n\rangle$取"第$n$个位置为1、其余分量为0"的无穷列向量，
+$n=0,\pm1,\pm2,\ldots,\pm\infty$；其对偶是行向量
+$\langle n|=[\ldots\,0\;1\;0\,\ldots]$。正交归一与完备性一并写出：
+\begin{align*}
+&|n\rangle=
+\begin{pmatrix}
+\vdots\\
+0\\
+1\\
+0\\
+\vdots
+\end{pmatrix}
+\;:\;\text{第$n$个位置};\qquad
+\langle n|=[\ldots\,0\;1\;0\,\ldots]\\
+&\langle m|n\rangle=\delta_{n-m}\equiv
+\begin{cases}
+1, & n=m,\\
+0, & n\neq m,
+\end{cases}\\
+&\sum_{n=-\infty}^{+\infty}|n\rangle\langle n|=\mathcal{I}
+\quad\text{（完备性方程）}
+\end{align*}
+$\mathcal{I}$是无穷维单位矩阵。完备性又称恒等算符的分解（resolution of
+the identity）：只有\emph{完备}的基矢集合才能合力拼出态空间上的恒等
+算符——反之，谁能拼出$\mathcal{I}$，谁就是完备基。这条判据后文会反复
+使用。
+
+\paragraph{连续极限}
+允许位置其实是实直线$\Re$上的所有点，故取$a\to0$。位置基矢与标量积
+（原书引其附录式(A.13)）定义为
+\begin{equation*}
+|x\rangle=\lim_{a\to0}\frac{1}{\sqrt{a}}\,|n\rangle;\qquad
+-\infty\leq x\leq\infty
+\end{equation*}
+\begin{equation*}
+\langle x|x'\rangle=\delta(x-x')\equiv
+\begin{cases}
+\infty, & x=x',\\
+0, & x\neq x',
+\end{cases}
+\end{equation*}
+即标量积由克罗内克$\delta$升级为狄拉克$\delta$函数（Dirac delta
+function）。把格点完备性取极限（求和的每项配上前因子$a$）：
+\begin{equation*}
+\sum_{n=-\infty}^{+\infty}|n\rangle\langle n|
+\;\to\;
+a\sum_{n=-\infty}^{+\infty}|x\rangle\langle x|
+\quad\Longrightarrow\quad
+\int_{-\infty}^{\infty}dx\,|x\rangle\langle x|=\mathcal{I}
+\quad\text{（完备性方程）}
+\end{equation*}
+其中$\mathcal{I}$现在是（函数）态空间上的恒等算符。
+
+\paragraph{关键公式}
+再给一个不借助格点的直接验证：考察两个函数的标量积，
+\begin{equation*}
+\langle\psi|g\rangle\equiv\int dx\,\psi^{*}(x)g(x)
+=\Bigl\langle\psi\Bigl|
+\Bigl\{\int_{-\infty}^{\infty}dx\,|x\rangle\langle x|\Bigr\}
+\Bigr|g\Bigr\rangle
+\end{equation*}
+花括号里的算符夹在$\langle\psi|$与$|g\rangle$之间确实起恒等算符的
+作用。于是得到本章第一条编号公式：
+\begin{equation*}
+\mathcal{I}=\int_{-\infty}^{\infty}dx\,|x\rangle\langle x|
+\tag{4.2}
+\end{equation*}
+两个粒子（位置$x$与$y$）的情形只差把积分与基矢都翻倍：
+\begin{equation*}
+\mathcal{I}=\int_{-\infty}^{\infty}dx\,dy\,|x,y\rangle\langle x,y|
+\tag{4.3}
+\end{equation*}
+其中$|x,y\rangle\equiv|x\rangle\otimes|y\rangle$；更多粒子依此类推。
+
+态矢在位置基下的"分量"即波函数：$\psi(x)=\langle x|\psi\rangle$，其对偶
+分量为$\psi^{*}(x)=\langle\psi|x\rangle$。两者给出矢量的模长——把(4.2)
+插进中间即得
+\begin{equation*}
+\langle\psi|\psi\rangle
+=\Bigl\langle\psi\Bigl|\int_{-\infty}^{\infty}dx\,|x\rangle\langle x|
+\Bigr|\psi\Bigr\rangle
+=\int_{-\infty}^{\infty}\psi(x)^{*}\psi(x)\geq0.
+\end{equation*}
+
+\paragraph{金融转译}
+把$x$读作对数股价$\ln S$，本节的抽象物都有了具体身份：$|x\rangle$是
+"股价钉死在$x$"的理想化状态——4.5节的数字期权收益恰是$\delta(x-x_0)$，
+正是基矢$|x_0\rangle$的金融化身；完备性方程则是"对一切可能价格求和"的
+恒等式。日后每见"在被积函数里插一个$\int dx\,|x\rangle\langle x|$"，读者
+应当条件反射：这是在用完备基分解矢量或算符。还应指出，(4.2)的积分限是
+整条实直线；对数变量$x$天然取遍$\Re$，与"粒子在直线上运动"同框，这是
+本书坚持用$x=\ln S$工作（变量替换见4.4节）的深层原因之一。
+
+\section{算符与哈密顿量}
+
+本节对应原书4.3节。核心问题：算符如何用"矩阵元"定义？厄米共轭如何
+操作？以及——本章真正的主角——\emph{非厄米}哈密顿量的本征值问题长什么
+样子？
+
+\paragraph{模型设定与记号}
+算符（operator）定义为态空间$\mathcal{V}$到自身的线性映射，是张量积
+空间$\mathcal{V}\otimes\mathcal{V}_{\mathrm{dual}}$的元素；附录4.11的两态
+系统里，算符就是$2\times2$矩阵。由单变量$x$的全体函数构成的态空间
+$\mathcal{V}=\{\psi(x)\,|\,x\in\Re\}$（约定$\langle x|\psi\rangle=\psi(x)$）
+上，算符是$N\times N$矩阵在$N\to\infty$下的推广。两个基本构件：坐标
+算符$\hat{x}$（把$\psi(x)$乘上$x$）与微分算符$\partial/\partial x$（把
+$\psi$映为偏导）；本节出现的所有算符都是二者的函数。
+
+\paragraph{关键公式}
+与矩阵由矩阵元$M_{ij}$完全确定同理，算符由其矩阵元确定。在Dirac记号
+下，
+\begin{equation*}
+\hat{x}\psi(x)=x\psi(x)
+\quad\Longrightarrow\quad
+\langle x|\hat{x}|\psi\rangle=x\,\langle x|\psi\rangle=x\psi(x),
+\end{equation*}
+\begin{equation*}
+\Bigl\langle x\Bigl|\frac{\partial}{\partial x}\Bigr|\psi\Bigr\rangle
+=\frac{\partial\psi(x)}{\partial x};
+\end{equation*}
+取$|\psi\rangle=|x'\rangle$立得
+\begin{equation*}
+\langle x|\hat{x}|x'\rangle=x\,\langle x|x'\rangle=x\,\delta(x-x').
+\end{equation*}
+模仿矩阵的共轭$M^{\dagger}_{ij}=M^{*}_{ji}$，任意算符$\mathcal{O}$的厄米
+共轭（Hermitian conjugation）定义为
+\begin{equation*}
+\langle f|\mathcal{O}^{\dagger}|g\rangle\equiv
+\langle g|\mathcal{O}|f\rangle^{*}
+\tag{4.4}
+\end{equation*}
+且与矩阵同律：$(A+B+\ldots)^{\dagger}=A^{\dagger}+B^{\dagger}+\ldots$，
+$(AB\ldots)^{\dagger}=\ldots B^{\dagger}A^{\dagger}$。
+
+\paragraph{推导主线：两个算符的厄米性}
+用完备性(4.2)插入与定义(4.4)，坐标算符满足
+\begin{equation*}
+\langle f|\hat{x}^{\dagger}|g\rangle
+=\Bigl[\int_{-\infty}^{\infty}dx\,x\,g^{*}(x)f(x)\Bigr]^{*}
+=\int_{-\infty}^{\infty}dx\,x\,g(x)f^{*}(x)
+=\langle f|\hat{x}|g\rangle
+\quad\Longrightarrow\quad
+\hat{x}^{\dagger}=\hat{x}
+\quad\text{（厄米）}.
+\end{equation*}
+微分算符对(4.4)做一次分部积分（边界项消失）：
+\begin{align*}
+\Bigl\langle f\Bigl|\Bigl(\frac{\partial}{\partial x}\Bigr)^{\dagger}
+\Bigr|g\Bigr\rangle
+&\equiv\Bigl[\int_{-\infty}^{\infty}dx\,g^{*}(x)
+\frac{\partial f(x)}{\partial x}\Bigr]^{*}
+=-\int_{-\infty}^{\infty}dx\,\frac{\partial g(x)}{\partial x}f^{*}(x)\\
+&=-\Bigl\langle f\Bigl|\frac{\partial}{\partial x}\Bigr|g\Bigr\rangle
+\quad\Longrightarrow\quad
+\Bigl(\frac{\partial}{\partial x}\Bigr)^{\dagger}
+=-\frac{\partial}{\partial x}
+\quad\text{（反厄米，anti-Hermitian）}
+\tag{4.5}
+\end{align*}
+一阶导数是反厄米的；乘上$i$（即$i\,\partial/\partial x$）即成厄米算符。
+而二阶导数自轭：
+\begin{equation*}
+\Bigl(\frac{\partial^{2}}{\partial x^{2}}\Bigr)^{\dagger}
+=\frac{\partial^{2}}{\partial x^{2}}
+\quad\text{（厄米）}
+\tag{4.6}
+\end{equation*}
+(4.5)与(4.6)两条小结论是4.4节检验哈密顿量厄米性的全部装备。
+
+\paragraph{一处必须记住的细节}
+矩阵元$\langle x|\partial/\partial x|f\rangle$里的算符作用在
+\emph{左边}——即作用在对偶空间上。厄米算符左右不分家，但金融里的
+哈密顿量一般非厄米，"向左作用还是向右作用"结果不同（原书为此专设
+脚注提醒）。这枚地雷将在4.6.1小节真实引爆。
+
+\paragraph{哈密顿量与本征值问题}
+哈密顿量（Hamiltonian）$H$是驱动系统时间演化的算符，因而也是期权定价
+中最重要的算符；金融中的$H$一般非厄米。先看本征态（eigenstate）的
+定义性范例：坐标算符的本征方程为
+\begin{equation*}
+\hat{x}\,|x\rangle=x\,|x\rangle
+\tag{4.7}
+\end{equation*}
+$|x\rangle$在$\hat{x}$作用下只被乘上实数$x$，故称$\hat{x}$的本征态，$x$
+即本征值（eigenvalue）——实数性是$\hat{x}$厄米的直接红利。
+
+非厄米哈密顿量的本征值问题（把(4.7)与附录4.11的式(4.59)合并推广）：
+本征值$E$是\emph{复}数，右、左本征函数必须分开陈述，
+\begin{equation*}
+H|\psi_{E}\rangle=E|\psi_{E}\rangle
+\quad(E\ \text{复}),
+\end{equation*}
+\begin{equation*}
+\langle\tilde{\psi}_{E}|H=E\langle\tilde{\psi}_{E}|
+\quad\Longrightarrow\quad
+H^{\dagger}|\tilde{\psi}_{E}\rangle=E^{*}|\tilde{\psi}_{E}\rangle,
+\end{equation*}
+\begin{equation*}
+\langle\tilde{\psi}_{E}|\psi_{E'}\rangle
+=\frac{1}{\mu(E)}\,\delta(E-E'),
+\end{equation*}
+其中波浪号标记左本征函数，$\mu(E)$是本征值$E$处的态密度（density of
+states），定义为
+\begin{equation*}
+\mu(E)=\mathrm{trace}\,\delta(H-E)
+\equiv\int_{-\infty}^{+\infty}dx\,\langle x|\delta(H-E)|x\rangle
+\tag{4.8}
+\end{equation*}
+$E$既然是复数，左右本征函数就不再互为对偶：
+$\langle\tilde{\psi}_{E}|\neq\langle\psi_{E}|$。要拼出完备性，须从本征
+能量中挑出一个子集$\mathcal{D}$，使其对应的$|\psi_{E}\rangle$构成态空间
+的完备基；完备性方程为
+\begin{equation*}
+\int_{\mathcal{D}}dE\,\mu(E)\,|\psi_{E}\rangle\langle\tilde{\psi}_{E}|
+=\mathcal{I}
+\tag{4.9}
+\end{equation*}
+写成分量形式（两端各夹位置基矢）：
+\begin{equation*}
+\int_{\mathcal{D}}dE\,\mu(E)\,\psi_{E}(x)\tilde{\psi}_{E}(x')
+=\langle x|\mathcal{I}|x'\rangle=\delta(x-x')
+\tag{4.10}
+\end{equation*}
+
+对一般的（微分）哈密顿量$H=H(x,\partial/\partial x)$，本征函数方程就是
+把矩阵元读成微积分：
+\begin{equation*}
+\Bigl\langle x\Bigl|H\Bigl(x,\frac{\partial}{\partial x}\Bigr)
+\Bigr|\psi_{E}\Bigr\rangle
+=H\Bigl(x,\frac{\partial}{\partial x}\Bigr)\psi_{E}(x)=E\psi_{E}(x),
+\end{equation*}
+且同样谨记"向左作用"：计算
+$\langle\psi|H(x,\partial/\partial x)|x\rangle$时，实际在算
+$\langle x|H^{\dagger}(x,\partial/\partial x)|\psi\rangle^{*}$。
+
+\paragraph{解读}
+这份清单为两件事预备。其一，(4.9)+(4.10)的谱完备性是4.6节定价核本征
+展开（式(4.31)）的原型——届时只需把$e^{-\tau H}$插进(4.9)。其二，非厄米
+不是技术细节：4.4节将看到，Black--Scholes哈密顿量恰因漂移项而非厄米，
+而漂移正是金融的常态；附录4.13将用非厄米哈密顿量实际解一个障碍期权
+（原书脚注4的预告）。\footnote{原书脚注2值得记录：量子力学只允许模长为
+1（$\langle\psi|\psi\rangle=1$）的态矢，构成希尔伯特空间；金融做不到
+——股价$e^{x}$这类态矢长度无穷，故本书的态空间必须取得比希尔伯特空间
+大。态矢不可归一化这一点在4.7节还会重现：$|S\rangle$将是零能量本征态，
+却同样不可归一。}
+
+\section{Black--Scholes与Merton--Garman哈密顿量}
+
+本节对应原书4.4节，是全章的核心：把第3章的两个定价方程逐项翻译成
+$\partial C/\partial t=HC$，读出$H$。翻译完成后，"解期权"就等于
+"解一个（非厄米的）量子系统"。
+
+\paragraph{第一步：常数波动率}
+Black--Scholes方程（原书式(3.18)）为
+\begin{equation*}
+\frac{\partial C}{\partial t}
+=-\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2}C}{\partial S^{2}}
+-rS\frac{\partial C}{\partial S}+rC
+\tag{4.11}
+\end{equation*}
+做对数变量替换
+\begin{equation*}
+S=e^{x};\qquad -\infty\leq x\leq\infty
+\end{equation*}
+$S>0$自动满足，且$S^{2}\partial^{2}/\partial S^{2}$与$S\,\partial/\partial S$
+在$x$变量下都化为常系数。方程获得薛定谔形状——原书称之为
+Black--Scholes--Schr\"odinger方程：
+\begin{equation*}
+\frac{\partial C}{\partial t}=H_{BS}C
+\tag{4.12}
+\end{equation*}
+\begin{equation*}
+H_{BS}=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{1}{2}\sigma^{2}-r\Bigr)\frac{\partial}{\partial x}+r
+\tag{4.13}
+\end{equation*}
+
+\paragraph{物理词典}
+把(4.13)当作一个量子系统来读：自由度是$x=\ln S$；波动率扮演"质量的
+倒数"——动能项$-(\sigma^{2}/2)\partial^{2}/\partial x^{2}$对应量子力学的
+$-(\hbar^{2}/2m)\partial^{2}/\partial x^{2}$；漂移项对应一个依赖"速度"
+的势；期权价格$C$扮演薛定谔波函数。特别地，若$r=\sigma^{2}/2$（漂移
+恰好消失），$H_{BS}$退化为"自由粒子加常数"，一个纯动能系统。
+
+\paragraph{厄米性检查}
+用(4.5)与(4.6)逐项检查(4.13)：
+\begin{equation*}
+H_{BS}^{\dagger}
+=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
+-\Bigl(\frac{1}{2}\sigma^{2}-r\Bigr)\frac{\partial}{\partial x}+r
+\neq H_{BS}
+\tag{4.14}
+\end{equation*}
+二阶导项自轭、常数项自轭，唯独漂移项反号——Black--Scholes哈密顿量的
+非厄米性全部来自漂移。这与4.3节"反厄米的一阶导"遥相呼应：漂移在物理
+词典里是实的速度依赖势，而实势必破厄米（厄米要求势取虚值）。
+
+\paragraph{第二步：Dirac记号}
+把期权价格升格为态矢$|C\rangle$，其在$x$基下的表示就是函数
+$C(x)=\langle x|C\rangle$。Black--Scholes方程写成
+\begin{equation*}
+\langle x|H_{BS}|C\rangle
+=H_{BS}\Bigl(\frac{\partial}{\partial x}\Bigr)\langle x|C\rangle
+=H_{BS}\Bigl(\frac{\partial}{\partial x}\Bigr)C(x)
+\tag{4.15}
+\end{equation*}
+左端是纯记号——算符夹在基矢与态矢之间；右端是微积分——$H_{BS}$对波
+函数逐项求导。(4.15)看似只是改写，实为授权：既然
+$\langle x|H_{BS}|C\rangle$有意义，$|C\rangle$就是合格的态矢，4.6节可以
+放手对它做指数演化$e^{-\tau H}$。
+
+\paragraph{第三步：随机波动率}
+Merton--Garman方程（原书式(3.34)）以股价$S$与方差$V$为变量：
+\begin{equation*}
+\frac{\partial C}{\partial t}
++rS\frac{\partial C}{\partial S}
++(\lambda+\mu V)\frac{\partial C}{\partial V}
++\frac{1}{2}VS^{2}\frac{\partial^{2}C}{\partial S^{2}}
++\rho\xi V^{1/2+\alpha}S\frac{\partial^{2}C}{\partial S\,\partial V}
++\xi^{2}V^{2\alpha}\frac{\partial^{2}C}{\partial V^{2}}
+=rC
+\end{equation*}
+$S$与$V$都是正随机变量，各取对数（双变量替换）\footnote{$y$取为
+$\ln\sigma^{2}$而非$\ln\sigma$，是迁就Merton--Garman方程以方差$V$为变量
+的原口径；如此$(x,y)$对称地取遍实直线，正与4.2节"粒子在直线上运动"的
+舞台吻合。}：
+\begin{equation*}
+S=e^{x},\quad -\infty<x<\infty;\qquad
+\sigma^{2}=V=e^{y},\quad -\infty<y<\infty
+\end{equation*}
+Merton--Garman方程的$(x,y)$形式为（原书引[5,70]）：
+\begin{align*}
+\frac{\partial C}{\partial t}
++\Bigl(r-\frac{e^{y}}{2}\Bigr)\frac{\partial C}{\partial x}
++\Bigl(\lambda e^{-y}+\mu-\frac{\xi^{2}}{2}e^{2y(\alpha-1)}\Bigr)
+\frac{\partial C}{\partial y}
++\frac{e^{y}}{2}\frac{\partial^{2}C}{\partial x^{2}}\notag\\
++\rho\xi e^{y(\alpha-1/2)}\frac{\partial^{2}C}{\partial x\,\partial y}
++\xi^{2}e^{2y(\alpha-1)}\frac{\partial^{2}C}{\partial y^{2}}
+=rC
+\tag{4.16}
+\end{align*}
+即Merton--Garman--Schr\"odinger方程：
+\begin{equation*}
+\frac{\partial C}{\partial t}=H_{MG}C
+\tag{4.17}
+\end{equation*}
+由(4.16)逐项读出（各项变号搬场，$rC$并入哈密顿量）：
+\begin{align*}
+H_{MG}=&-\frac{e^{y}}{2}\frac{\partial^{2}}{\partial x^{2}}
+-\Bigl(r-\frac{e^{y}}{2}\Bigr)\frac{\partial}{\partial x}
+-\Bigl(\lambda e^{-y}+\mu-\frac{\xi^{2}}{2}e^{2y(\alpha-1)}\Bigr)
+\frac{\partial}{\partial y}\\
+&-\rho\xi e^{y(\alpha-1/2)}\frac{\partial^{2}}{\partial x\,\partial y}
+-\frac{\xi^{2}e^{2y(\alpha-1)}}{2}\frac{\partial^{2}}{\partial y^{2}}
++r
+\tag{4.18}
+\end{align*}
+
+\paragraph{解读}
+$H_{MG}$是双自由度系统，且系数全是$e^{y}$的幂，强非线性——原书形容它
+"按任何标准都令人生畏"。一般$\alpha$只能数值求解；$\alpha=1/2$可用偏
+微分方程技术精确解出（原书文献[45]），$\alpha=1$则可用路径积分方法
+（原书文献[5]）——后者正是第5章的节目。本章余下的解析工作只对
+$H_{BS}$展开，但框架（态矢、演化、完备性、谱分解）全部通用，向多变量
+推广"直截了当"（原书语）。另须注意(4.16)与(4.18)的互逆结构：从偏微分
+方程读出哈密顿量时，所有$\partial C$项变号搬家、$rC$原样保留——这个
+"变号"规则是4.8节构造$H_{V}$的手法来源。
+
+\section{期权的定价核}
+
+本节对应原书4.5节。核心问题：从定价公式里把"给定现值、到期如何分布"
+的那个条件概率剥出来——定价核（pricing kernel）。它携带着为任何路径
+无关期权定价所需的全部信息；下一节将证明，它就是哈密顿量演化算符的
+一个矩阵元。
+
+\paragraph{模型设定与记号}
+就一般性而言，取随机波动率的股票与路径无关期权：到期时刻$T$，收益
+函数$g(x,y)$，求$t<T$时刻的价格。记$p(x,y,T-t;x',y')$为（风险中性的）
+条件概率：给定$t$时刻的价格$x$与波动率$y$，$T$时刻取值$x'$与$y'$的
+概率密度。"尚未演化"就是终值条件：
+\begin{equation*}
+p(x,y,0;x',y')=\delta(x'-x)\,\delta(y'-y)
+\tag{4.19}
+\end{equation*}
+定价公式由费曼--卡茨公式（Feynman--Kac formula，原书引[31]）给出
+（$\tau=T-t$）：
+\begin{equation*}
+C(\tau;x,y)=\int_{-\infty}^{+\infty}dx'\,dy'\,
+p(x,y,\tau;x',y')\,g(x';y')
+\tag{4.20}
+\end{equation*}
+$p(x,y,\tau;x',y')$之所以称为定价核：它是把收益函数$g(x',y')$向过去
+演化回$t$时刻的积分变换的\emph{核}——"核"字即由此而来。由(4.19)立即
+得到定价必须满足的终值条件：
+\begin{equation*}
+C(0,x,y)=g(x,y)
+\tag{4.21}
+\end{equation*}
+
+\paragraph{关键公式：从双变量到单变量}
+股票类期权的收益通常只依赖股价：$g(x',y')=g(x')$，与到期波动率无关。
+此时末态波动率$y'$可以积掉：
+\begin{equation*}
+C(\tau;x,y)=\int_{-\infty}^{+\infty}dx'\,
+p_{MG}(x,y,\tau;x')\,g(x')
+\tag{4.22}
+\end{equation*}
+其中Merton--Garman定价核定义为
+\begin{equation*}
+p_{MG}(x,y,\tau;x')=\int_{-\infty}^{+\infty}dy'\,
+p(x,y,\tau;x',y')
+\tag{4.23}
+\end{equation*}
+更简单的Black--Scholes情形里只有股价在演化，记号相应简化：
+\begin{equation*}
+C(\tau;x)=\int_{-\infty}^{+\infty}dx'\,
+p_{BS}(x,\tau;x')\,g(x')
+\tag{4.24}
+\end{equation*}
+
+\paragraph{数字期权：定价核的金融化身}
+定价核还有一个漂亮的工具性解读。数字期权（digital option）的收益函数
+只在股价终值落入$x_0$附近的窄条时非零：
+\begin{equation*}
+D(x-x_{0})=\lim_{\epsilon\to0}
+\begin{cases}
+\frac{1}{\epsilon}, & -\epsilon/2\leq(x-x_{0})\leq\epsilon/2,\\
+0, & \text{其他},
+\end{cases}
+=\delta(x-x_{0})
+\end{equation*}
+把$g=\delta$代入(4.24)：
+\begin{equation*}
+C(t;x)=\int_{-\infty}^{+\infty}dx'\,
+p_{BS}(x,\tau;x')\,\delta(x'-x_{0})
+=p_{BS}(x,\tau;x_{0})
+\tag{4.26}
+\end{equation*}
+
+\paragraph{解读}
+(4.26)说明定价核本身就是数字期权的价格：$p_{BS}(x,\tau;x_{0})$是"到期
+钉住$x_{0}$邻域一格"的数字期权的价格，一般的定价核则由连续排布的数字
+期权拼装而成。回头看4.2节，$\delta(x'-x_{0})$恰是基矢$|x_{0}\rangle$的
+表示——所以(4.26)已经在暗示$p_{BS}$与$\langle x|\cdots|x_{0}\rangle$型
+矩阵元相等，那正是下一节式(4.30)的内容。也不妨与标准教材对读：金融
+教科书把(4.24)读作"风险中性期望乘贴现因子"$e^{-r\tau}E^{Q}[g(S_{T})]$，
+定价核就是其中的（贴现后的）风险中性密度；本书口径里贴现因子已并入核
+本身（见(4.39)的显式式），两种读法给出同一个数——但"核"的读法在漂移、
+势与随机波动率在场时依然成立，"期望乘贴现"的直观却只对常数$r$好用。
+
+\section{定价核的本征函数解}
+
+本节对应原书4.6节。核心问题：定价核由哈密顿量决定——把它写成演化
+算符$e^{-\tau H}$的矩阵元，再用$H$的本征函数把它显式展开。本节只做
+Black--Scholes情形，向多变量的推广"直截了当"。
+
+\paragraph{形式解与方向反转}
+把(4.12)中的$H_{BS}$换成任意哈密顿量$H$：
+\begin{equation*}
+\frac{\partial C}{\partial t}=HC
+\tag{4.27}
+\end{equation*}
+形式解是指数算符：
+\begin{equation*}
+C(t,x)=e^{tH}C(0,x)
+\tag{4.28}
+\end{equation*}
+在Dirac记号下把时间依赖写明，就是三步连锁：
+\begin{equation*}
+\Bigl\langle x\Bigl|\frac{\partial}{\partial t}\Bigr|C,t\Bigr\rangle
+=\langle x|H|C,t\rangle
+\quad\Longrightarrow\quad
+\frac{\partial}{\partial t}|C,t\rangle=H|C,t\rangle
+\quad\Longrightarrow\quad
+|C,t\rangle=e^{tH}|C,0\rangle
+\end{equation*}
+关键一步在于\emph{方向反转}：期权已知条件不是初值而是终值（到期收益）。
+把终值条件(4.21)写成$|C,T\rangle=e^{TH}|C,0\rangle=|g\rangle$，解出
+\begin{equation*}
+|C,0\rangle=e^{-TH}|g\rangle
+\qquad\Longrightarrow\qquad
+|C,t\rangle=e^{-(T-t)H}|g\rangle
+\end{equation*}
+剩余时间$\tau=T-t$是\emph{倒着走}的：$\tau=0$对应$t=T$（拿到收益），
+$\tau=T$对应$t=0$（今天）。于是
+\begin{equation*}
+C(t,x)=\langle x|C,t\rangle=\langle x|e^{-\tau H}|g\rangle
+\tag{4.29}
+\end{equation*}
+插入完备性方程(4.2)把$|g\rangle$展开：
+\begin{equation*}
+C(t,x)=\int_{-\infty}^{\infty}dx'\,
+\langle x|e^{-\tau H}|x'\rangle\,g(x')
+\end{equation*}
+定价核由此获得哈密顿量表示：
+\begin{equation*}
+p(x,\tau;x')=\langle x|e^{-\tau H}|x'\rangle
+\tag{4.30}
+\end{equation*}
+
+\paragraph{解读：哈密顿量是贴现算符}
+式(4.28)里$C$带着增长指数$e^{tH}$，看似不稳定；换用剩余时间$\tau$后
+立即变成衰减指数$e^{-\tau H}$（式(4.30)）。原因不在数学而在边界条件的
+位置：$C$的条件给在终端$T$，改用$\tau$表达，增长即翻转成衰减。换句话说，
+哈密顿量在期权定价中的角色\emph{不是}像量子力学那样把系统推向未来，
+而是把未来收益函数向过去倒演，同时完成贴现（discount）——这是本章最
+重要的观念转折，"定价核=贴现后的转移概率"在这里获得算符身份。
+
+\paragraph{谱表示}
+把本征完备性(4.9)插进(4.30)的矩阵元中间：
+\begin{align*}
+p(x,\tau;x')
+&=\langle x|e^{-\tau H}|x'\rangle\\
+&=\Bigl\langle x\Bigl|e^{-\tau H}
+\int_{\mathcal{D}}dE\,\mu(E)\,|\psi_{E}\rangle\langle\tilde{\psi}_{E}|
+\Bigr|x'\Bigr\rangle\\
+&=\int_{\mathcal{D}}dE\,\mu(E)\,e^{-\tau E}\,
+\psi_{E}(x)\,\tilde{\psi}_{E}(x')
+\tag{4.31}
+\end{align*}
+中间一步用了$e^{-\tau H}|\psi_{E}\rangle=e^{-\tau E}|\psi_{E}\rangle$——
+本征函数的价值正在于此。只要能求出$H$的全部本征函数与态密度，定价核
+就有显式谱表示：一篮子衰减指数$e^{-\tau E}$，本征值$E$扮演"利率"。
+这个表示对研究定价核的形式性质、以及对能显式对角的哈密顿量（4.6.1
+小节与原书附录4.13的障碍期权）是利器；对一般非线性哈密顿量（如(4.18)
+的$H_{MG}$），精确对角化通常做不到，矩阵元$e^{-\tau H}$也就算不出来
+——费曼路径积分正是为这类哈密顿量准备的解析与数值工具（第5章）。
+
+\subsection{Black--Scholes定价核}
+
+本小节对应原书4.6.1，任务是给常数波动率欧式期权把定价核算到底。起点
+是费曼--卡茨公式
+\begin{equation*}
+C(t,x)=\int_{-\infty}^{\infty}dx'\,
+\langle x|e^{-\tau H_{BS}}|x'\rangle\,g(x'),
+\end{equation*}
+其中$H_{BS}$即式(4.13)。定价核定义为
+\begin{equation*}
+p_{BS}(x,\tau|x')=\langle x|e^{-\tau H_{BS}}|x'\rangle
+;\qquad \tau=T-t
+\tag{4.32}
+\end{equation*}
+
+\paragraph{推导主线：动量基}
+求$H_{BS}$本征函数的捷径是换到"动量"基——$H_{BS}$在其中是对角的。
+对$|x\rangle$基做傅里叶变换（原书附录式(A.11)）：
+\begin{equation*}
+\langle x|x'\rangle=\delta(x-x')
+=\int_{-\infty}^{\infty}\frac{dp}{2\pi}\,e^{ip(x-x')}
+=\int_{-\infty}^{\infty}\frac{dp}{2\pi}\,
+\langle x|p\rangle\langle p|x'\rangle
+\end{equation*}
+这给出动量基的完备性方程：
+\begin{equation*}
+\int_{-\infty}^{\infty}\frac{dp}{2\pi}\,|p\rangle\langle p|=\mathcal{I}
+\tag{4.34}
+\end{equation*}
+以及标量积
+\begin{equation*}
+\langle x|p\rangle=e^{ipx};\qquad
+\langle p|x\rangle=e^{-ipx}\;\cdot
+\tag{4.35}
+\end{equation*}
+从(4.13)与(4.15)的定义直接计算矩阵元：
+\begin{align*}
+\langle x|H_{BS}|p\rangle
+&\equiv H_{BS}\,\langle x|p\rangle=H_{BS}\,e^{ipx}\\
+&=\Bigl\{\frac{1}{2}\sigma^{2}p^{2}
++i\Bigl(\frac{1}{2}\sigma^{2}-r\Bigr)p+r\Bigr\}e^{ipx}
+\tag{4.36}
+\end{align*}
+读出结论：平面波$e^{ipx}$是$H_{BS}$的本征函数，以"动量"$p$标记，复
+本征值$E(p)=\frac{1}{2}\sigma^{2}p^{2}+i\bigl(\frac{1}{2}\sigma^{2}-r\bigr)p+r$
+——虚部来自漂移项，是非厄米性的直接痕迹；(4.34)保证这批本征函数完备。
+
+左矢一侧的矩阵元供对照（原书无编号，用(4.14)）：
+\begin{equation*}
+\langle p|H_{BS}|x\rangle
+=\langle x|H_{BS}^{\dagger}|p\rangle^{*}
+=\bigl[H_{BS}^{\dagger}\,e^{ipx}\bigr]^{*}
+=\Bigl\{\frac{1}{2}\sigma^{2}p^{2}
++i\Bigl(\frac{1}{2}\sigma^{2}-r\Bigr)p+r\Bigr\}e^{-ipx}
+\end{equation*}
+\footnote{原书脚注5的警示值得记录：有人想直接对$|x\rangle$求导来算
+$\langle p|H_{BS}|x\rangle$——那是错的，因为
+$\langle p|\partial/\partial x|x\rangle\neq
+\partial/\partial x\,\langle p|x\rangle$。算符由其对\emph{对偶}坐标基
+$\langle x|$的作用定义，而非对$|x\rangle$。厄米哈密顿量下两种做法同
+答案，量子力学教科书因此对此保持沉默；非厄米情形必须分清——对
+$|x\rangle$直接用$H_{BS}$作用，漂移项恰好差一个符号。4.3节"算符作用在
+左边"的地雷在此引爆。}
+
+\paragraph{谱展开与高斯积分}
+在(4.32)中插入动量完备性(4.34)，再用(4.36)的本征值：
+\begin{align*}
+p_{BS}(x,\tau;x')
+&=\langle x|e^{-\tau H_{BS}}|x'\rangle\\
+&=\int_{-\infty}^{\infty}\frac{dp}{2\pi}\,
+\langle x|e^{-\tau H_{BS}}|p\rangle\langle p|x'\rangle
+\tag{4.37}\\
+&=e^{-r\tau}\int_{-\infty}^{\infty}\frac{dp}{2\pi}\,
+e^{-\frac{1}{2}\tau\sigma^{2}p^{2}}\,
+e^{ip\left(x-x'+\tau\left(r-\sigma^{2}/2\right)\right)}
+\tag{4.38}
+\end{align*}
+末行来自合并指数：$\langle x|e^{-\tau H_{BS}}|p\rangle
+=e^{-\tau E(p)}e^{ipx}$，与$e^{-ipx'}$相乘后，虚部
+$-i\tau\bigl(\frac{1}{2}\sigma^{2}-r\bigr)p$并入相位
+$ip\bigl(x-x'+\tau(r-\sigma^{2}/2)\bigr)$。执行高斯积分（步骤从略），得
+Black--Scholes定价核的显式形式：
+\begin{align*}
+p_{BS}(x,\tau;x')&\equiv p_{BS}(x,\tau;x';\sigma)
+=\langle x|e^{-\tau H_{BS}}|x'\rangle\\
+&=e^{-r\tau}\,\frac{1}{\sqrt{2\pi\tau\sigma^{2}}}\,
+e^{-\frac{1}{2\tau\sigma^{2}}
+\left\{x-x'+\tau\left(r-\sigma^{2}/2\right)\right\}^{2}}
+\tag{4.39}
+\end{align*}
+
+\paragraph{解读}
+(4.39)陈述：$x'$服从均值为$\log(S(t))+(r-\sigma^{2}/2)\tau$、方差为
+$\sigma^{2}\tau$的正态分布——这正是常数波动率下应有的结果，与第3章用
+鞅条件推出的定价核（原书式(3.21)）是同一对象\footnote{原书脚注6提醒
+记号对应：$x'=\log(S(T))$，$x=\log(S(t))$，$\tau=T-t$；原书文献[7]
+另给出拉普拉斯变换的推导路线。}。至此，哈密顿量方法与传统方法在常数
+波动率这一试金石上会师，而且多交出一部可推广的机器：4.7节把同一套
+语言用在鞅条件上，4.8节再给哈密顿量加势。
+
+\section{鞅条件的哈密顿量表述}
+
+本节对应原书4.7节。核心问题：风险中性定价的基石——鞅条件（martingale
+condition）——在哈密顿量语言里是什么？答案简洁得像标语：
+\begin{equation*}
+H|S\rangle=0,
+\end{equation*}
+标的证券是哈密顿量的\emph{零能量本征态}。
+
+\paragraph{关键公式}
+出发点是(4.29)与(4.30)的合并重抄：收益$g(x)$的期权在$t<T$的价格为
+\begin{equation*}
+C(t,x)=\int_{-\infty}^{\infty}dx'\,
+\langle x|e^{-(T-t)H}|x'\rangle\,g(x')
+\tag{4.40}
+\end{equation*}
+按无风险（风险中性）演化，未来任一时刻$t_{*}$的股价经贴现后的期望必须
+等于现价——这就是鞅条件（原书引其附录式(A.40)；显式形式即第3章的
+式(3.20)）：
+\begin{equation*}
+S(t)=E\Bigl[e^{-(t_{*}-t)r}\,S(t_{*})\,\Big|\,S(t)\Bigr]
+\tag{4.41}
+\end{equation*}
+$t_{*}$取任何值都必须成立，故鞅条件是瞬时条件。
+
+\paragraph{推导主线}
+在(4.40)里取收益$g(x)=S(x)$——把"期权"换成股票本身：向后演化必须还原
+出$S$，这正是(4.41)的哈密顿量版本：
+\begin{equation*}
+S(x)=\int_{-\infty}^{\infty}dx'\,
+\langle x|e^{-(t_{*}-t)H}|x'\rangle\,S(x')
+\end{equation*}
+写成Dirac记号：
+\begin{equation*}
+\langle x|S\rangle=\int_{-\infty}^{\infty}dx'\,
+\langle x|e^{-(t_{*}-t)H}|x'\rangle\,\langle x'|S\rangle
+\tag{4.42}
+\end{equation*}
+插入单证券完备性
+$\mathcal{I}=\int_{-\infty}^{\infty}dx'\,|x'\rangle\langle x'|$
+（即(4.2)），右端恰是同一个演化算符作用在$|S\rangle$上，于是得到
+（本征态形式的）方程
+\begin{equation*}
+|S\rangle=e^{-(t_{*}-t)H}|S\rangle
+\end{equation*}
+$t_{*}$任意，取无穷小间隔即得鞅条件的瞬时表述（原书引[3]）：
+\begin{equation*}
+H|S\rangle=0
+\tag{4.43}
+\end{equation*}
+
+\paragraph{解读}
+$S=e^{x}$是$H$的\emph{零能量}本征态，这件事有两层意味。其一，股权是态
+空间中不可归一化的元素——$e^{x}$在$L^{2}$意义下长度无穷，呼应4.3节
+原书脚注2的提醒。其二，零本征能量意味着：在鞅演化驱动下，标的证券
+"不变"——它随机漂移的部分恰好被贴现抵消，平均位置原地不动。
+
+验证与意义同样重要。容易核验$H_{BS}$（式(4.13)）满足(4.43)：三项作用在
+$e^{x}$上相消，
+\begin{equation*}
+-\frac{\sigma^{2}}{2}e^{x}
++\Bigl(\frac{\sigma^{2}}{2}-r\Bigr)e^{x}+r\,e^{x}=0;
+\end{equation*}
+$H_{MG}$（式(4.18)）同样满足：其中所有含波动率的项都带着
+$\partial/\partial y$，而$S=e^{x}$不依赖$y$，自动湮灭，剩下的$x$部分与
+$H_{BS}$同构，同样湮灭。这个结果的意义远大于核验本身：鞅测度的存在
+等价于存在湮灭标的证券的无风险哈密顿量；而存在无风险哈密顿量，就意味
+着用它定价的一切衍生品都无套利。无套利原理被压缩成一条算符方程
+——这是哈密顿量形式交给金融理论的第一份结构性红利，也是下一节给哈密
+顿量"加势"时唯一必须守住的约束。
+
+\section{期权定价中的势}
+
+本节对应原书4.8节。核心问题：量子力学哈密顿量的标准形象是"动能加势"，
+\begin{equation*}
+H=-\frac{1}{2m}\frac{\partial^{2}}{\partial x^{2}}+V(x)
+\end{equation*}
+（原书引其式(4.60)），而Black--Scholes与Merton--Garman哈密顿量
+（(4.13)与(4.18)）的每一项都是对$x$、$y$的导数项——依赖"速度"，没有
+乘性的$V(x)$。问：期权定价的哈密顿量能不能加势？原书的答案：能，而且
+加势正是定义新金融工具、建模路径依赖期权（path-dependent option）的
+机制（Linetsky，原书文献[67]）；一部分障碍期权（barrier option）就可以
+表达成势问题。
+
+\paragraph{机制：把路径依赖集中成势}
+路径依赖期权仍然由Black--Scholes哈密顿量$H_{BS}$演化；把障碍等效应用
+一个\emph{附加}在$H_{BS}$上的势$V(x)$来集中实现，得到有效哈密顿量
+\begin{equation*}
+H_{\mathrm{eff}}=H_{BS}+V
+\end{equation*}
+从第5章的拉格朗日量（原书式(5.21)）出发，一类路径依赖期权的哈密顿量为
+\begin{equation*}
+H_{\text{路径依赖期权}}=H_{BS}+igf(x)
+\end{equation*}
+其中函数$f(x)$编码路径依赖结构；特例是亚式期权（Asian option，原书
+式(5.22)）：
+\begin{equation*}
+H_{\text{亚式期权}}=H_{BS}+ige^{x}
+\end{equation*}
+（原书文献[7]）。两式中的$g$是耦合常数，与收益函数的记号撞车，注意
+区分；虚数单位$i$的存在使这类哈密顿量天然非厄米——势不必是实数，
+这是金融哈密顿量与量子力学品味的又一处分岔。
+
+\paragraph{关键公式：鞅条件约束下的势}
+4.7节的(4.43)给哈密顿量立了规矩——必须湮灭$S(t)$；能加的势因此不能
+乱加。满足鞅条件的Black--Scholes哈密顿量的直接推广是：
+\begin{equation*}
+H_{V}=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{1}{2}\sigma^{2}-V(x)\Bigr)\frac{\partial}{\partial x}
++V(x)
+\tag{4.44}
+\end{equation*}
+其中势$V(x)$是$x$的任意函数。核验只需一行：
+\begin{equation*}
+H_{V}\,e^{x}
+=\Bigl[-\frac{\sigma^{2}}{2}+\Bigl(\frac{\sigma^{2}}{2}-V\Bigr)+V\Bigr]
+e^{x}=0,
+\end{equation*}
+对任意$V$成立——漂移项里的$-V$与势里的$+V$严丝合缝地相消。(4.44)把
+常数$r$替换成$V(x)$时"两处同步"（漂移与势），原因正在于此：单换一处
+就会破坏鞅条件。
+
+\paragraph{金融解读}
+$V(x)$的金融身份是\emph{依赖股价路径的贴现率}（原书文献[7]）：证券的
+贴现因子不再是$e^{-r(T-t)}$，而是$\exp\bigl\{-\int_{t}^{T}V(x(t'))\,dt'\bigr\}$
+——随股价所走的路径而变。以
+到期$T$、执行价格$K$的欧式期权为例，$t<T$时刻的价格即
+\begin{equation*}
+E_{[t,T]}\Bigl[e^{-\int_{t}^{T}V(x(t'))\,dt'}\,(e^{x}-K)_{+}\Bigr]
+\tag{4.45}
+\end{equation*}
+其中演化由$-(\sigma^{2}/2)\partial^{2}/\partial x^{2}
++[(1/2)\sigma^{2}-V(x)]\,\partial/\partial x$驱动，而贴现率被选得与漂移
+一致，恰是为了满足鞅条件。原书随即给出应有的审慎：通常的即期利率$r$
+贴现由货币市场账户的无套利论证担保；按$V(x)$贴现能否由市场实现、是否
+与金融学原理相容，需要进一步研究——换言之，(4.44)是形式上自洽的推广，
+其金融地位仍是开放问题。
+
+\paragraph{推导主线：非厄米性的相似变换}
+$H_{V}$的非厄米性质特别简单：任意$V$下，它可经相似变换（similarity
+transformation）化成厄米哈密顿量$H_{\mathrm{eff}}$（原书文献[7]）：
+\begin{equation*}
+H_{V}=e^{s}\,H_{\mathrm{eff}}\,e^{-s}
+\tag{4.46}
+\end{equation*}
+其中
+\begin{equation*}
+H_{\mathrm{eff}}=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\frac{1}{2}\frac{\partial V}{\partial x}
++\frac{1}{2\sigma^{2}}\Bigl(V+\frac{1}{2}\sigma^{2}\Bigr)^{2}
+;\qquad
+s=\frac{1}{2}x-\frac{1}{\sigma^{2}}\int_{0}^{x}dy\,V(y)
+\end{equation*}
+$H_{\mathrm{eff}}$厄米（(4.6)保证二阶导项自轭，后两项是实函数乘性算
+符），故其本征函数构成完备基；由(4.46)，$H_{V}$也能用$H_{\mathrm{eff}}$
+的本征函数对角化：
+\begin{equation*}
+H_{\mathrm{eff}}|\phi_{n}\rangle=E_{n}|\phi_{n}\rangle
+\quad\Longrightarrow\quad
+H_{V}|\psi_{n}\rangle=E_{n}|\psi_{n}\rangle,
+\end{equation*}
+\begin{equation*}
+|\psi_{n}\rangle=e^{s}|\phi_{n}\rangle
+;\qquad
+\langle\tilde{\psi}_{n}|=e^{-s}\langle\phi_{n}|\neq\langle\psi_{n}|
+\end{equation*}
+左右本征函数依旧分离——相似变换不消灭非厄米性，只把它集中到左右矢的
+$e^{\pm s}$权重上；能谱$E_{n}$则是实的（与$H_{\mathrm{eff}}$共用）。
+\footnote{原书脚注7提醒：对更复杂的哈密顿量，如Merton--Garman的
+$H_{MG}$，等价的厄米$H_{\mathrm{eff}}$远非显然——相似变换的运气不会
+次次都有。}
+
+\paragraph{Black--Scholes特例}
+取$V(x)=r$，$H_{BS}$自身就吃进这套变换：
+\begin{equation*}
+H_{BS}=e^{s}\,H_{\mathrm{eff}}\,e^{-s}
+=e^{\alpha x}\Bigl[-\frac{\sigma^{2}}{2}
+\frac{\partial^{2}}{\partial x^{2}}+\gamma\Bigr]e^{-\alpha x}
+\tag{4.47}
+\end{equation*}
+其中
+\begin{equation*}
+\gamma=\frac{1}{2\sigma^{2}}\Bigl(r+\frac{1}{2}\sigma^{2}\Bigr)^{2}
+;\qquad
+\alpha=\frac{1}{\sigma^{2}}\Bigl(\frac{1}{2}\sigma^{2}-r\Bigr)
+\tag{4.48}
+\end{equation*}
+即Black--Scholes哈密顿量与"自由粒子加常数能移$\gamma$"只差一个可显式
+写出的相似变换——4.4节"漂移是实的速度依赖势"的判断在此拿到代数证书。
+
+\paragraph{解读与交棒}
+本节把哈密顿量形式的伸缩性展示完毕：势可以编码路径依赖（亚式的
+$ige^{x}$、障碍的$V$），而鞅条件(4.43)是唯一不可让渡的约束。厄米化的
+有效Black--Scholes哈密顿量（(4.47)--(4.48)）马上派上大用场：原书4.9节
+将用它求解双重势垒问题，障碍期权由此变成"给本征函数加边界条件"的
+习题。本块到此收束；障碍期权、双重障碍与本征函数边界条件的全部内容，
+由下一分块自原书4.9节（书页62中部）接续。
+
+% JOIN：本块（ch04a）止于原书4.8节末——书页62上部（p080），最后一个编号
+% 公式为(4.48)；下一分块（ch04b）自原书4.9节"哈密顿量与障碍期权"
+% （书页62中部，p080下半）起。原书图4.1出现在4.9节（p081附近），归
+% 下一分块指引。
+
+%TAGS: 4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,4.10,4.11,4.12,4.13,4.14,4.15,4.16,4.17,4.18,4.19,4.20,4.21,4.22,4.23,4.24,4.26,4.27,4.28,4.29,4.30,4.31,4.32,4.34,4.35,4.36,4.37,4.38,4.39,4.40,4.41,4.42,4.43,4.44,4.45,4.46,4.47,4.48（原书无(4.1)、(4.25)与(4.33)，编号断档系原书如此；已对照PNG逐页核验，p063--p079为本块主输入，p080上部为4.8节末尾）

@@ -1,0 +1,124 @@
+% !TeX program = xelatex
+% ============================================================
+%  朗道《理论物理学教程》第二卷《场论》
+%  中文重排本 —— 底本：高等教育出版社中文版（第8版，鲁欣/任朗 译）
+%  仅供个人学习使用，版权归原出版社及作者所有
+% ============================================================
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+% 西文字体：Times New Roman（含西里尔字符，用于 Л.Д.Ландау 等）
+\setmainfont{Times New Roman}
+% 圈码脚注标记 ①②③… 用中文字体渲染（西文字体缺 U+2460 字形）
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\newcommand{\ve}[1]{\bm{#1}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+% 章标题：第一章（汉字）；节标题：§1
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \chinese{chapter},
+    format = {\centering\zihao{2}\heiti},
+    beforeskip = 1.5em,
+    afterskip  = 1.5em,
+  },
+  section = {
+    name = {§,},
+    number = \arabic{section},
+    format = {\zihao{4}\heiti},
+    beforeskip = 1.4em,
+    afterskip  = 0.9em,
+  },
+}
+
+% 公式按节编号 (2.1)，与朗道原书一致
+% 节号全书连续（朗道原书体例），章不复位节计数器
+\usepackage{chngcntr}
+\counterwithout{section}{chapter}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 朗道《场论》（中文重排本）}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setstretch{1.18}
+\clubpenalty=10000
+\widowpenalty=10000
+\predisplaypenalty=10000
+% 页底不强制对齐（flushbottom 会在满页时把 习题 标题的 medskip 拉大几十 pt 形成空洞）
+\raggedbottom
+
+% 习题环境
+\newenvironment{xiti}{\par\medskip\noindent{\heiti 习\ 题}\par\smallskip\noindent}{\par}
+
+% 脚注：圈码标记、按页重编号（与原书体例一致）；须在 hyperref 之前加载
+\usepackage[perpage]{footmisc}
+\makeatletter
+\renewcommand{\thefootnote}{\symbol{\numexpr"245F+\c@footnote\relax}}
+% 章前插入的空白页不排页眉页码
+\renewcommand{\cleardoublepage}{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page\else
+      \thispagestyle{empty}%
+      \hbox{}\newpage
+    \fi
+  \fi
+}
+\makeatother
+
+% 目录/引用超链接（黑色，打印友好）
+\usepackage{hyperref}
+\hypersetup{colorlinks, linkcolor=black, urlcolor=black, citecolor=black,
+  pdftitle={朗道《理论物理学教程》第二卷：场论（中文重排本）},
+  pdfauthor={Л.Д.朗道, Е.М.栗弗席兹}}
+
+\begin{document}
+
+% ---------------- 扉页 ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{3.2cm}
+{\zihao{0}\heiti 场\ 论}\\[1.2em]
+{\zihao{3}\kaishu Л.\,Д.\,朗道\quad Е.\,М.\,栗弗席兹\quad 著}\\[3em]
+{\zihao{4}\kaishu 理论物理学教程\ 第二卷}\\[2em]
+{\zihao{4}\kaishu 中文重排本（底本：高等教育出版社中文版第8版）}
+\vfill
+{\zihao{-5}\kaishu 仅供个人学习使用，版权归原出版社及作者所有}
+\end{titlepage}
+
+% ---------------- 目录 ----------------
+{\hypersetup{linktoc=all}\tableofcontents}
+\clearpage
+
+% ---------------- 正文 ----------------
+\input{chapters/symbols}
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+\input{chapters/ch08}
+\input{chapters/ch09}
+\input{chapters/ch10}
+\input{chapters/ch11}
+\input{chapters/ch12}
+\input{chapters/ch13}
+\input{chapters/ch14}
+
+\end{document}

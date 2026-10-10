@@ -1,0 +1,869 @@
+% ============================================================
+%  第二卷 第二章 相对论力学（§8–§14；习题在 §11、§12、§13、§14）
+%  底本：高教社中文版第8版；OCR 错误已修正，脚注文本待从纸版补录
+%  本节（§11 起）原书取 c=1 单位制，公式照原书排印，未补 c。
+%  已修正的 OCR 错误（行号=full_merged.md）：
+%  - 行1317 "\vec p=m\vec v"→"\boldsymbol{p}=m\boldsymbol{v}"
+%  - 行1368 (9.6) "δ²/c²"→"ℰ²/c²"（OCR 误 ℰ 为 δ）
+%  - 行1363 "Σm_αc² 0 (m_α…)"→"（m_α 是诸粒子的质量）"（乱码 0 删）
+%  - 行1448 (9.15) "p_y=p_y′ p_z=p_z′"间补逗号（原书 p.31 有）
+%  - 行1525 "通过 p′ 和 ℰ′ 表示"（OCR 乱码 \mathbf\Delta_O^I）
+%  - 行1581 "同 r,p 相联系"（OCR 乱码）
+%  - 行1591 "ℰ₂₀^{20}"→"ℰ₂₀"；"仅当 M>m₁+m₂"两段合并
+%  - 行1605 "或“C系”）"（OCR 乱码 *C 系"）
+%  - 行1621 "另一个参考系"后补句点
+%  - 行1637 "E 是这同一粒子"→"ℰ 是…"
+%  - 行1660 "ℓ₀V"→"ℰ₀V"；行1701 乱码"𝔥"→"到"；行1704 "d𝓔"→"dℰ"
+%  - 行1763-1778 习题5 张角一律改大写 Θ（原书 p.38）
+%  - 行1775 分式结构按原书改正：do/[sin³(Θ/2)√(V²−cos²(Θ/2))]
+%  - 行1821 (12.3) 乱码粗体 ℓ→ℰ；行1844 "δ₁ℰ₂"→"ℰ₁ℰ₂"
+%  - 行1861 (12.7) "ℰ₁⁰ℰ₂⁰"→"ℰ₁ℰ₂"
+%  - 行1888 "通过方程 φ v=tanhχ"→删衍字 φ
+%  - 行1898 "记为 p₁,ℰ₁ 和 p₂,ℰ₂"（OCR 乱码）
+%  - 行1924 "粒子之-（m₂）"→"粒子之一（m₂）"
+%  - 行1933 (13.5)、行1944、行1960、行2003 (13.11)、行2015 (13.13)：
+%    OCR 误 ℰ 为 δ/𝒪，均改 ℰ；(13.11) 右端首项 "ℰ₁′=ℰ₁′−…"→"ℰ₁′=ℰ₁−…"
+%  - 行2036 "必须有 5"→删衍字 5
+%  - 行2085 习题2 "图的点 A"→"图5的点 A"（原书 p.44 漏图号）
+%  - 行2205 乱码 δ→ℰ：Σℰr/Σℰ−t·c²Σp/Σℰ=const；行2211 同
+%  - 行2230 "\dot{<}"→"之"：试求 M 和 M⁽⁰⁾ 之间的关系
+%  - 行2241 习题答案首项 "M_z=M_x⁽⁰⁾"→"M_x=M_x⁽⁰⁾"（按物理修正）
+%  原书排印说明（照录未改）：
+%  - §11 习题1 的公式 (1)(2)、习题2 的公式 (1) 为原书按习题编号，
+%    用 \tag 手工给出，不影响正文 (11.1)–(11.5) 自动编号
+%  - 行1778 "角 Θ 取值从 π 到 Θ_min=2arccos V" 语序照原书 p.38 保留
+%  - §7 习题积分 ∫√(1−u²/c²)dt 中 u 为原书所用记号，照录
+%  - 脚注已转录（2026-10-10 脚注代理自原书扫描页补录，全章共7处；
+%    §11 习题1 的脚注①在原书 p.50 页脚，脚注页码对照.txt 未收录）
+% ============================================================
+\chapter{相对论力学}
+
+\section{最小作用量原理}
+
+为了研究实物粒子的运动，我们将从最小作用量原理出发.大家知道，最小作用量原理是说：对于每一个力学体系，有一个叫做作用量的积分 $S$ 存在，这个积分对于实际运动有最小值，因此它的变分 $\delta S$ 为零.\footnote{严格说来，最小作用量原理断定，积分 $S$ 仅仅对于小的积分区间才应当是最小值.对于任意长度的积分区间，只能断定积分 $S$ 有极端值，并非必须有最小值.（参见第一卷 §2）.}
+
+为了决定对于一个自由实物粒子（一个不在任何外力影响下的粒子）的作用量积分，我们要注意这个积分必定与参考系的选择无关，这就是说，它必须对于洛伦兹变换保持不变.由此可知，它必定是一个标量函数.此外，很明显地，被积分的函数必须是一个一阶微分.但是对于一个自由粒子，我们所能造出的唯一的这种标量，仅仅是间隔 $\mathrm{d}s$，或 $\alpha\mathrm{d}s$，其中 $\alpha$ 是某一常数.这样一来，对于一个自由粒子，作用量积分必须取下面的形式：
+\begin{equation*}
+  S=-\alpha\int_a^b\mathrm{d}s,
+\end{equation*}
+其中 $\int_a^b$ 表示沿着粒子在两个特定事件间的世界线的积分，这两个特定事件就是粒子在 $t_1$ 时刻到达初位置和在 $t_2$ 时刻到达末位置，也就是说，$\int_a^b$ 是沿着两个世界点之间的世界线的积分；而 $\alpha$ 则为表征该粒子的一个常数.很容易看出，对所有粒子来说，$\alpha$ 必须是正数.的确，在 §3 中，我们已经看到 $\int_a^b\mathrm{d}s$ 沿着一条直的世界线的值是最大；沿着一条弯曲的世界线，我们可以使积分任意小.所以，积分 $\int_a^b\mathrm{d}s$ 如果取正号，则不可能有最小值；如果取负号，那么，显然，沿着这一条直的世界线积分时，它有最小值.
+
+这个作用量可以变为对时间的积分 $S=\int_{t_1}^{t_2}L\,\mathrm{d}t$.众所周知，系数 $L$ 叫做这个力学体系的拉格朗日函数.利用（3.1），我们求得
+\begin{equation*}
+  S=-\int_{t_1}^{t_2}\alpha c\sqrt{1-\frac{v^2}{c^2}}\,\mathrm{d}t,
+\end{equation*}
+其中 $v$ 为实物粒子的速度.因之，对粒子来说，拉格朗日函数是
+\begin{equation*}
+  L=-\alpha c\sqrt{1-\frac{v^2}{c^2}}.
+\end{equation*}
+
+上面已经说过，$\alpha$ 是表征该粒子的一个量.在经典力学中，每个粒子的特征就是它的质量 $m$.我们来找 $m$ 与 $\alpha$ 之间的关系.这可以从下面的条件定出来，在作 $c\to\infty$ 的极限过渡时，$L$ 的表达式应当过渡到它的经典表达式 $L=\frac{1}{2}mv^2$.为了实现这个过渡，我们将 $L$ 展开为 $v/c$ 的幂级数.略去高次项以后，我们便得到
+\begin{equation*}
+  L=-\alpha c\sqrt{1-\frac{v^2}{c^2}}\approx-\alpha c+\frac{\alpha v^2}{2c}.
+\end{equation*}
+拉格朗日函数中的常数项对运动方程没有影响，因而可以略去.从 $L$ 中略去常数 $\alpha c$，并同经典力学中的表达式 $L=mv^2/2$ 比较，我们发现 $\alpha=mc$.
+
+所以，自由实物粒子的作用量是
+\begin{equation}
+  S=-mc\int_a^b\mathrm{d}s,
+\end{equation}
+而拉格朗日函数是
+\begin{equation}
+  L=-mc^2\sqrt{1-\frac{v^2}{c^2}}.
+\end{equation}
+
+\section{能量与动量}
+
+我们把矢量 $\boldsymbol{p}=\partial L/\partial\boldsymbol{v}$ 称为一个粒子的动量（$\partial L/\partial\boldsymbol{v}$ 是表示该矢量的符号，其分量为 $L$ 对 $\boldsymbol{v}$ 的相应分量的导数）.利用（8.2），我们得到
+\begin{equation}
+  \boldsymbol{p}=\frac{m\boldsymbol{v}}{\sqrt{1-\dfrac{v^2}{c^2}}}.
+\end{equation}
+
+对于很小的速度（$v\ll c$），或 $c\to\infty$ 的极限情形下，上式就变为经典的公式 $\boldsymbol{p}=m\boldsymbol{v}$.当 $v=c$ 时，动量 $p$ 就变为无穷大.
+
+动量对时间的导数就是作用于粒子的力.假定粒子的速度只是在方向上有变化，即假设力与速度的方向垂直，则有
+\begin{equation}
+  \frac{\mathrm{d}\boldsymbol{p}}{\mathrm{d}t}
+  =\frac{m}{\sqrt{1-\dfrac{v^2}{c^2}}}\frac{\mathrm{d}\boldsymbol{v}}{\mathrm{d}t}.
+\end{equation}
+
+若速度仅仅改变大小，就是说，若力平行于速度，那么
+\begin{equation}
+  \frac{\mathrm{d}\boldsymbol{p}}{\mathrm{d}t}
+  =\frac{m}{\left(1-\dfrac{v^2}{c^2}\right)^{3/2}}
+  \frac{\mathrm{d}\boldsymbol{v}}{\mathrm{d}t}.
+\end{equation}
+
+我们看到，力与加速度之比，在两种情况下，并不相等.
+
+粒子的能量 $\mathcal{E}$，我们知道，可用下式定义（参见第一卷 §6）：
+\begin{equation*}
+  \mathcal{E}=\boldsymbol{p}\cdot\boldsymbol{v}-L.
+\end{equation*}
+用表达式（8.2）及（9.1）代替 $L$ 及 $\boldsymbol{p}$，则得
+\begin{equation}
+  \mathcal{E}=\frac{mc^2}{\sqrt{1-\dfrac{v^2}{c^2}}}.
+\end{equation}
+
+特别是，由这个非常重要的表达式可以看出，在相对论力学中，一个自由粒子的能量在 $v=0$ 时并不为零，而是取有限值
+\begin{equation}
+  \mathcal{E}=mc^2.
+\end{equation}
+这个量称为该粒子的静能.
+
+在速度很小（$v/c\ll1$）的情况下，将（9.4）式展为 $v/c$ 的幂级数，我们得到
+\begin{equation*}
+  \mathcal{E}\approx mc^2+\frac{mv^2}{2},
+\end{equation*}
+就是说，扣除静能后，此式就是一个粒子动能的经典表达式.
+
+必须强调，尽管我们这里谈的是“粒子”，但从未用到它的“基本性”.因此，这些公式同样可以用于许多粒子组成的复合物体.此时 $m$ 是指该物体的总质量，而 $v$ 是指它作为整体的运动速度.特别地，（9.5）式适用于整体静止的任何物体.请注意，在相对论力学中，任何自由物体（即任何封闭系统）的能量是一个完全确定的量，它总是正的，并与该物体的质量直接相关.为此我们可以回忆在经典力学中，一个物体的能量只确定到差一个任意常数，并且既可以为正值，也可以为负值.
+
+一个静止物体的能量，除其组成粒子的静能外，还包括粒子的动能和它们的相互作用能.换句话说，$mc^2$ 并不等于 $\sum m_\alpha c^2$（$m_\alpha$ 是诸粒子的质量），所以，$m$ 并不等于 $\sum m_\alpha$.因此，在相对论力学中，质量守恒定律并不成立：复合物体的质量并不等于其各个部分质量之和，而只有包含粒子静能在内的能量守恒定律是成立的.
+
+将（9.1）及（9.4）平方并同这些结果比较，我们得到粒子能量和动量之间的下列关系
+\begin{equation}
+  \frac{\mathcal{E}^2}{c^2}=p^2+m^2c^2.
+\end{equation}
+
+用动量来表示的能量称为哈密顿函数 $\mathcal{H}$.
+\begin{equation}
+  \mathcal{H}=c\sqrt{p^2+m^2c^2}.
+\end{equation}
+
+对于低速情况，$p\ll mc$，我们近似地有
+\begin{equation*}
+  \mathcal{H}=mc^2+\frac{p^2}{2m},
+\end{equation*}
+就是说，除静能外我们得到了哈密顿量熟悉的经典表达式.
+
+从（9.1）及（9.4）我们得到一个自由粒子的能量、动量与速度的关系如下：
+\begin{equation}
+  \boldsymbol{p}=\frac{\mathcal{E}\boldsymbol{v}}{c^2}.
+\end{equation}
+
+当 $v=c$ 时，粒子的动量与能量都变为无穷大，这就是说，一个粒子，如果它的质量不为零，就不可能以光速运动.然而在相对论力学中，可能存在质量为零而以光速运动的粒子（例如光子和中微子）.由（9.8），对于这一类粒子我们有
+\begin{equation}
+  p=\frac{\mathcal{E}}{c}.
+\end{equation}
+同样的公式对于非零质量的粒子在极端相对论情况下也近似成立，那时粒子的能量 $\mathcal{E}$ 远大于其静能 $mc^2$.
+
+现在我们来推导得到的所有关系式的四维形式.按照最小作用量原理，
+\begin{equation*}
+  \delta S=-mc\,\delta\int_a^b\mathrm{d}s=0.
+\end{equation*}
+为了建立 $\delta S$ 的表达式，我们注意到 $\mathrm{d}s=\sqrt{\mathrm{d}x_i\mathrm{d}x^i}$，因此，
+\begin{equation*}
+  \delta S=-mc\int_a^b\frac{\mathrm{d}x_i\,\delta\mathrm{d}x^i}{\mathrm{d}s}
+  =-mc\int_a^b u_i\,\mathrm{d}\,\delta x^i.
+\end{equation*}
+用分部积分法，我们得到
+\begin{equation}
+  \delta S=-mc\,u_i\delta x^i\Big|_a^b
+  +mc\int_a^b\delta x^i\frac{\mathrm{d}u_i}{\mathrm{d}s}\,\mathrm{d}s.
+\end{equation}
+
+大家知道，为了求得运动方程，就必须比较经过两个给定点的不同的轨道，即在上限和下限有 $(\delta x^i)_a=(\delta x^i)_b=0$.实际的轨道则是由 $\delta S=0$ 这个条件来决定的.由（9.10）我们得到方程 $\dfrac{\mathrm{d}u_i}{\mathrm{d}s}=0$，也就是自由粒子的四维速度恒定.
+
+为了表示作用量的变分为坐标的函数，我们知道，$a$ 点必须当做固定的，所以 $(\delta x^i)_a=0$.第二点应该当做变化的，但是这时只考虑实际的轨道，即那些满足运动方程的轨道.因此，在表示 $\delta S$ 的（9.10）式中，积分项为零.代替 $(\delta x^i)_b$，可以简单地写 $\delta x^i$，因之，得
+\begin{equation}
+  \delta S=-mc\,u_i\delta x^i.
+\end{equation}
+
+四维矢量
+\begin{equation}
+  p_i=-\frac{\partial S}{\partial x^i}
+\end{equation}
+称为四维动量矢量.我们从力学中知道，导数 $\partial S/\partial x,\partial S/\partial y,\partial S/\partial z$ 是粒子动量矢量 $\boldsymbol{p}$ 的3个分量，而导数 $-\partial S/\partial t$ 是粒子的能量 $\mathcal{E}$.因此，四维动量的协变分量是 $p_i=(\mathcal{E}/c,-\boldsymbol{p})$，而逆变分量是\footnote{请注意有一个辅助方法可以帮助我们记住物理四维矢量的定义：逆变分量同相应的三维矢量（$\boldsymbol{r}$ 对于 $x^i$，$\boldsymbol{p}$ 对于 $p^i$）相关，带“正确的”正号.}
+\begin{equation}
+  p^i=\left(\frac{\mathcal{E}}{c},\boldsymbol{p}\right).
+\end{equation}
+
+由（9.11）可知，一个自由粒子的四维动量的分量是
+\begin{equation}
+  p^i=mc\,u^i.
+\end{equation}
+代入（7.2）式中四维速度的分量，我们事实上就得到 $\boldsymbol{p}$ 和 $\mathcal{E}$ 的表达式（9.1）和（9.4）.
+
+因之，在相对论力学中，动量与能量是一个四维矢量的分量.从而就直接得到动量与能量由一个惯性系到另一个惯性系的变换公式.将（9.13）代入四维矢量的普遍变换公式（6.1）内，我们得到
+\begin{equation}
+  p_x=\frac{p_x'+\dfrac{V}{c^2}\mathcal{E}'}{\sqrt{1-\dfrac{V^2}{c^2}}},\quad
+  p_y=p_y',\quad p_z=p_z',\quad
+  \mathcal{E}=\frac{\mathcal{E}'+Vp_x'}{\sqrt{1-\dfrac{V^2}{c^2}}},
+\end{equation}
+式中 $p_x,p_y,p_z$ 是三维矢量 $\boldsymbol{p}$ 的分量.
+
+从四维动量（9.14）的定义以及恒等式 $u^iu_i=1$，我们就得到自由粒子四维动量的平方
+\begin{equation}
+  p_ip^i=m^2c^2.
+\end{equation}
+代入（9.13）式，我们就回到（9.6）.
+
+同力的通常定义类比，力的四维矢量可定义为导数：
+\begin{equation}
+  g^i=\frac{\mathrm{d}p^i}{\mathrm{d}s}=mc\frac{\mathrm{d}u^i}{\mathrm{d}s}.
+\end{equation}
+其分量满足恒等式 $g_iu^i=0$.这个四维矢量可用通常的三维力矢量 $\boldsymbol{f}=\mathrm{d}\boldsymbol{p}/\mathrm{d}t$ 表示为：
+\begin{equation}
+  g^i=\left(\frac{\boldsymbol{f}\cdot\boldsymbol{v}}
+  {c^2\sqrt{1-\dfrac{v^2}{c^2}}},
+  \frac{\boldsymbol{f}}{c\sqrt{1-\dfrac{v^2}{c^2}}}\right).
+\end{equation}
+时间分量与该力所做的功相关.
+
+将（9.12）式代入（9.16），就得到相对论的哈密顿-雅可比方程：
+\begin{equation}
+  \frac{\partial S}{\partial x_i}\frac{\partial S}{\partial x^i}
+  \equiv g^{ik}\frac{\partial S}{\partial x^i}\frac{\partial S}{\partial x^k}
+  =m^2c^2,
+\end{equation}
+或者，将求和明显写出：
+\begin{equation}
+  \frac{1}{c^2}\left(\frac{\partial S}{\partial t}\right)^2
+  -\left(\frac{\partial S}{\partial x}\right)^2
+  -\left(\frac{\partial S}{\partial y}\right)^2
+  -\left(\frac{\partial S}{\partial z}\right)^2=m^2c^2.
+\end{equation}
+
+在方程（9.20）中过渡到经典力学极限情况的做法如下.首先我们必须注意，正如（9.7）式中相应的过渡那样，相对论力学中一个粒子的能量包含 $mc^2$ 项，而该项在经典力学中没有.因为作用量 $S$ 同能量 $\mathcal{E}$ 有关系 $\mathcal{E}=-\partial S/\partial t$，所以在过渡到经典力学时，我们必须用一个新的作用量 $S'$ 来替换作用量 $S$，其关系为：
+\begin{equation*}
+  S=S'-mc^2t.
+\end{equation*}
+将此式代入（9.20），我们得到
+\begin{equation*}
+  \frac{1}{2mc^2}\left(\frac{\partial S'}{\partial t}\right)^2
+  -\frac{\partial S'}{\partial t}
+  -\frac{1}{2m}\left[\left(\frac{\partial S'}{\partial x}\right)^2
+  +\left(\frac{\partial S'}{\partial y}\right)^2
+  +\left(\frac{\partial S'}{\partial z}\right)^2\right]=0.
+\end{equation*}
+在 $c\to\infty$ 的极限情况下，这个方程就回到经典的哈密顿-雅可比方程.
+
+\section{分布函数的变换}
+
+在许多物理问题中我们都要处理粒子动量的分布函数：$f(\boldsymbol{p})\,\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z$ 是动量分量在给定间隔 $\mathrm{d}p_x,\mathrm{d}p_y,\mathrm{d}p_z$ 内的粒子数（或者，简言之，在“动量空间”给定体积元 $\mathrm{d}^3p\equiv\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z$ 内的粒子数）.于是当我们从一个参考系变换到另一个参考系时，就面临着寻找分布函数 $f(\boldsymbol{p})$ 变换规律的问题.
+
+为了解决这个问题，我们先来确定“体积元”$\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z$ 在洛伦兹变换下的性质.如果我们引入一个四维坐标系，在其轴上标以粒子的四维动量的分量，则 $\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z$ 可以看作是由方程 $p^ip_i=m^2c^2$ 定义的超曲面元的零分量.这个超曲面元是沿该超曲面法线指向的四维矢量；在这种情况下，该法线的方向显然与四维矢量 $p_i$ 的方向一致.由此可知，比值
+\begin{equation}
+  \frac{\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z}{\mathcal{E}}
+\end{equation}
+是一个不变量，因为它是两个平行四维矢量的对应分量的比值.\footnote{对体积元（10.1）的积分可以借助 $\delta$ 函数（参见 §28 第一个脚注）在四维形式中表示为对
+\begin{equation*}
+  \frac{2}{c}\delta(p^ip_i-m^2c^2)\,\mathrm{d}^4p,\qquad
+  \mathrm{d}^4p=\mathrm{d}p^0\mathrm{d}p^1\mathrm{d}p^2\mathrm{d}p^3.
+  \tag{10.1a}
+\end{equation*}
+的积分.4 个分量 $p^i$ 被看做独立变量（$p^0$ 只取正值）.（10.1a）式显然来自其中出现的 $\delta$ 函数的下列表示：
+\begin{equation*}
+  \delta(p^ip_i-m^2c^2)=\delta\left(p_0^2-\frac{\mathcal{E}^2}{c^2}\right)
+  =\frac{c}{2\mathcal{E}}\left[\delta\left(p_0+\frac{\mathcal{E}}{c}\right)
+  +\delta\left(p_0-\frac{\mathcal{E}}{c}\right)\right],
+  \tag{10.1b}
+\end{equation*}
+式中 $\mathcal{E}=c\sqrt{p^2+m^2c^2}$，而这个公式则来自该脚注中的公式（5）.}
+
+粒子数 $f\,\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z$ 显然也是一个不变量，因为它不依赖于参考系的选择.将其写为形式
+\begin{equation*}
+  f(\boldsymbol{p})\,\mathcal{E}\,
+  \frac{\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z}{\mathcal{E}},
+\end{equation*}
+并应用比值（10.1）的不变性，我们得出乘积 $f(\boldsymbol{p})\mathcal{E}$ 是不变量.于是 $K'$ 系中的分布函数与 $K$ 系中的分布函数通过下式联系起来
+\begin{equation}
+  f'(\boldsymbol{p}')=\frac{f(\boldsymbol{p})\mathcal{E}}{\mathcal{E}'},
+\end{equation}
+式中 $\boldsymbol{p}$ 和 $\mathcal{E}$ 必须用变换公式（9.15）通过 $\boldsymbol{p}'$ 和 $\mathcal{E}'$ 表示.
+
+现在再回到不变表达式（10.1）.如果我们在动量空间引入“球坐标”，则体积元 $\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z$ 变为 $p^2\mathrm{d}p\,\mathrm{d}o$，式中 $\mathrm{d}o$ 是围绕矢量 $\boldsymbol{p}$ 方向的立体角元.注意到 $p\,\mathrm{d}p=\mathcal{E}\,\mathrm{d}\mathcal{E}/c^2$（由（9.6）），我们有：
+\begin{equation*}
+  \frac{p^2\mathrm{d}p\,\mathrm{d}o}{\mathcal{E}}
+  =\frac{p\,\mathrm{d}\mathcal{E}\,\mathrm{d}o}{c^2}.
+\end{equation*}
+于是我们发现
+\begin{equation}
+  p\,\mathrm{d}\mathcal{E}\,\mathrm{d}o
+\end{equation}
+也是不变量.
+
+在气体动理论中，分布函数的概念表现为另一种形式：乘积 $f(\boldsymbol{r},\boldsymbol{p})\,\mathrm{d}p_x\mathrm{d}p_y\mathrm{d}p_z\mathrm{d}V$ 是体积元 $\mathrm{d}V$ 中动量在间隔 $\mathrm{d}p_x,\mathrm{d}p_y,\mathrm{d}p_z$ 内的粒子数.函数 $f(\boldsymbol{r},\boldsymbol{p})$ 称为相空间（粒子的坐标和动量空间）中的分布函数，微分乘积 $\mathrm{d}\tau=\mathrm{d}^3p\,\mathrm{d}V$ 是这个空间的体积元.我们将寻求这个函数的变换法则.
+
+除了参考系 $K$ 和 $K'$ 外，我们也引入具有给定动量的粒子在其中处于静止的参考系 $K_0$；粒子占据的体积元的固有体积 $\mathrm{d}V_0$ 就是相对于该参考系定义的.按照定义，$K$ 和 $K'$ 系相对于 $K_0$ 系的速度与这些粒子在 $K$ 和 $K'$ 系中的速度 $\boldsymbol{v}$ 和 $\boldsymbol{v}'$ 一致.因此，按照（4.6）式，我们有：
+\begin{equation*}
+  \mathrm{d}V=\mathrm{d}V_0\sqrt{1-\frac{v^2}{c^2}},\quad
+  \mathrm{d}V'=\mathrm{d}V_0\sqrt{1-\frac{v^{\prime 2}}{c^2}},
+\end{equation*}
+由此，
+\begin{equation*}
+  \frac{\mathrm{d}V}{\mathrm{d}V'}=\frac{\mathcal{E}'}{\mathcal{E}}.
+\end{equation*}
+将此式乘以 $\mathrm{d}^3p/\mathrm{d}^3p'=\mathcal{E}/\mathcal{E}'$ 式，我们得到
+\begin{equation}
+  \mathrm{d}\tau=\mathrm{d}\tau',
+\end{equation}
+即相空间的体积元是不变量.因为粒子数 $f\,\mathrm{d}\tau$ 按定义也是不变量，我们得出结论：相空间的分布函数是不变量：
+\begin{equation}
+  f'(\boldsymbol{r}',\boldsymbol{p}')=f(\boldsymbol{r},\boldsymbol{p}),
+\end{equation}
+式中 $\boldsymbol{r}',\boldsymbol{p}'$ 由洛伦兹变换公式同 $\boldsymbol{r},\boldsymbol{p}$ 相联系.
+
+\section{粒子的衰变}
+
+我们来考虑一个质量为 $M$ 的粒子自发衰变为质量为 $m_1$ 和 $m_2$ 两部分的情形.将衰变中能量守恒定律应用于该粒子处于静止的参考系，我们得到\footnote{在 §11—§13 中，我们令 $c=1$.即把光速取为测量速度的单位（所以长度和时间的量纲变得相同）.这种选择在相对论力学中是自然的，且能大大简化公式的书写.不过，在本书中（它也含有相当数量的非相对论性理论）我们通常不用这种单位制，而在每次用到时予以说明.
+\par 如果公式中已令 $c=1$，换回通常的单位是容易的：在其中引入光速以保证量纲正确即可.}
+\begin{equation}
+  M=\mathcal{E}_{10}+\mathcal{E}_{20},
+\end{equation}
+式中 $\mathcal{E}_{10}$ 和 $\mathcal{E}_{20}$ 是出射粒子的能量.因为 $\mathcal{E}_{10}>m_1$ 和 $\mathcal{E}_{20}>m_2$，仅当 $M>m_1+m_2$ 时（11.1）式才能得到满足，即一个粒子可以自发衰变为质量之和小于该粒子质量的两部分.另一方面，如果 $M<m_1+m_2$，则粒子（对于该特定衰变）是稳定的，不会自发衰变.在这种情形下为引起衰变，我们必须从外面提供给该粒子至少等于其“束缚能”$(m_1+m_2-M)$ 的能量.
+
+衰变过程中动量和能量一样必须守恒.因为粒子的初始动量是零，出射粒子的动量之和必须是零：$\boldsymbol{p}_{10}+\boldsymbol{p}_{20}=0$，因而 $p_{10}^2=p_{20}^2$，或
+\begin{equation}
+  \mathcal{E}_{10}^2-m_1^2=\mathcal{E}_{20}^2-m_2^2.
+\end{equation}
+
+（11.1）和（11.2）两式唯一地决定了出射粒子的能量：
+\begin{equation}
+  \mathcal{E}_{10}=\frac{M^2+m_1^2-m_2^2}{2M},\quad
+  \mathcal{E}_{20}=\frac{M^2-m_1^2+m_2^2}{2M}.
+\end{equation}
+
+在一定意义上，这个问题的逆问题是计算两个碰撞粒子在其总动量为零的参考系中的总能量 $M$.（这个参考系简称为动量中心系或“C 系”.）这个量的计算给出了伴随碰撞粒子状态改变或新粒子“产生”的各种非弹性碰撞过程可能存在的判据.仅当“反应产物”的质量之和不超过 $M$ 时，这类过程才能够发生.
+
+假设在初始参考系（实验室系）中，一个质量为 $m_1$、能量为 $\mathcal{E}_1$ 的粒子同一个质量为 $m_2$ 的静止粒子相撞.两个粒子的总能量是
+\begin{equation*}
+  \mathcal{E}=\mathcal{E}_1+\mathcal{E}_2=\mathcal{E}_1+m_2,
+\end{equation*}
+它们的总动量是 $\boldsymbol{p}=\boldsymbol{p}_1+\boldsymbol{p}_2=\boldsymbol{p}_1$.把两个粒子一起看成单一的复合系统，从（9.8）我们得到它作为一个整体的运动速度是：
+\begin{equation}
+  V=\frac{p}{\mathcal{E}}=\frac{p_1}{\mathcal{E}_1+m_2}.
+\end{equation}
+这个量是 C 系相对于实验室系（L 系）的运动速度.
+
+然而，在测定质量 $M$ 时，没有必要从一个参考系变换到另一个参考系.我们可以直接应用（9.6）式，它既可以个别应用于每个粒子，也同样可以应用于复合系统.于是我们有
+\begin{equation*}
+  M^2=\mathcal{E}^2-p^2=(\mathcal{E}_1+m_2)^2-(\mathcal{E}_1^2-m_1^2),
+\end{equation*}
+由此
+\begin{equation}
+  M^2=m_1^2+m_2^2+2m_2\mathcal{E}_1.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 一个以速度 $V$ 运动的粒子在“飞行”中分解为两个粒子.求这些粒子的出射角同其能量之间的关系.
+
+解：设 $\mathcal{E}_0$ 是衰变粒子之一在 C 系中的能量（即（11.3）中的 $\mathcal{E}_{10}$ 或 $\mathcal{E}_{20}$），$\mathcal{E}$ 是这同一粒子在 L 系中的能量，$\theta$ 是它在 L 系中（相对于 $V$ 的方向）的出射角.用变换公式我们得到：
+\begin{equation*}
+  \mathcal{E}_0=\frac{\mathcal{E}-Vp\cos\theta}{\sqrt{1-V^2}},
+\end{equation*}
+所以
+\begin{equation*}
+  \cos\theta=\frac{\mathcal{E}-\mathcal{E}_0\sqrt{1-V^2}}
+  {V\sqrt{\mathcal{E}^2-m^2}}.\tag{1}
+\end{equation*}
+为从 $\cos\theta$ 反求 $\mathcal{E}$，我们得到（相对于 $\mathcal{E}$）的二次方程
+\begin{equation*}
+  \mathcal{E}^2(1-V^2\cos^2\theta)-2\mathcal{E}\mathcal{E}_0\sqrt{1-V^2}
+  +\mathcal{E}_0^2(1-V^2)+V^2m^2\cos^2\theta=0,\tag{2}
+\end{equation*}
+它有一个正根（如果衰变粒子在 C 系中的速度 $v_0$ 满足 $v_0>V$）或两个正根（如果 $v_0<V$）.
+
+从图示可以清楚这种不确定性的来由.按照（9.15），L 系中的动量分量用参照 C 系的量来表达是通过公式
+\begin{equation*}
+  p_x=\frac{p_0\cos\theta_0+\mathcal{E}_0V}{\sqrt{1-V^2}},\quad
+  p_y=p_0\sin\theta_0.
+\end{equation*}
+消去 $\theta_0$，我们得到
+\begin{equation*}
+  p_y^2+(p_x\sqrt{1-V^2}-\mathcal{E}_0V)^2=p_0^2.
+\end{equation*}
+相对于变量 $p_x,p_y$ 这就是半轴为 $p_0/\sqrt{1-V^2},p_0$ 的椭圆，其中心（图3中的点 $O$）从点 $\boldsymbol{p}=0$（图3中的点 $A$）移动了距离 $\mathcal{E}_0V/\sqrt{1-V^2}$\footnote{在经典极限下，该椭圆变为圆，见本教程第一卷 §16.}.
+
+如果 $V>p_0/\mathcal{E}_0=v_0$，点 $A$ 处于椭圆的外面（图3b），以至对于固定的角 $\theta$，矢量 $\boldsymbol{p}$（因而能量 $\mathcal{E}$）可以有两个不同的值.由此结构也显见，在这种情形下，角 $\theta$ 不能超过确定值 $\theta_{\max}$（相应于矢量 $\boldsymbol{p}$ 同椭圆相切处的位置）.$\theta_{\max}$ 的值很容易从二次方程（2）的判别式等于零的条件解析地确定：
+\begin{equation*}
+  \sin\theta_{\max}=\frac{p_0\sqrt{1-V^2}}{mV}.
+\end{equation*}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=9.5cm]{fig3.pdf}\\[0.3em]{\small 图 3}\end{minipage}\par\nopagebreak
+
+\noindent{\heiti 习题2}\quad 求衰变粒子在 L 系中的能量分布.
+
+解：在 C 系中，衰变粒子是各向同性分布的，即在立体角元 $\mathrm{d}o_0=2\pi\sin\theta_0\,\mathrm{d}\theta_0$ 中的粒子数是
+\begin{equation*}
+  \mathrm{d}N=\frac{1}{4\pi}\mathrm{d}o_0
+  =\frac{1}{2}|\mathrm{d}\cos\theta_0|.\tag{1}
+\end{equation*}
+L 系中的能量用参照 C 系中的量表达为
+\begin{equation*}
+  \mathcal{E}=\frac{\mathcal{E}_0+p_0V\cos\theta_0}{\sqrt{1-V^2}},
+\end{equation*}
+取值范围从
+\begin{equation*}
+  \frac{\mathcal{E}_0-Vp_0}{\sqrt{1-V^2}}\quad\text{到}\quad
+  \frac{\mathcal{E}_0+Vp_0}{\sqrt{1-V^2}}.
+\end{equation*}
+用 $\mathrm{d}\mathcal{E}$ 来表达 $|\cos\theta_0|$，我们得到归一化的能量分布（对两类衰变粒子的每一种）：
+\begin{equation*}
+  \mathrm{d}N=\frac{1}{2Vp_0}\sqrt{1-V^2}\,\mathrm{d}\mathcal{E}.
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 对于衰变为两个全同粒子的情形，求 L 系中两个衰变粒子之间的角（它们的分离角）的取值范围.
+
+解：在 C 系中，粒子反向飞离，所以 $\theta_{10}=\pi-\theta_{20}\equiv\theta_0$.按照（5.4）式，C 系和 L 系中角之间的关系由以下公式给出：
+\begin{equation*}
+  \cot\theta_1=\frac{v_0\cos\theta_0+V}{v_0\sin\theta_0\sqrt{1-V^2}},\quad
+  \cot\theta_2=\frac{-v_0\cos\theta_0+V}{v_0\sin\theta_0\sqrt{1-V^2}}
+\end{equation*}
+（因为在目前情形下，$v_{10}=v_{20}\equiv v_0$）.要求的分离角是 $\Theta=\theta_1+\theta_2$，简单的计算给出：
+\begin{equation*}
+  \cot\Theta=\frac{V^2-v_0^2+V^2v_0^2\sin^2\theta_0}
+  {2Vv_0\sqrt{1-V^2}\sin\theta_0}.
+\end{equation*}
+考察该表达式的极值给出下列 $\Theta$ 可能的取值范围：
+
+对于 $V<v_0$：
+\begin{equation*}
+  2\arctan\left(\frac{v_0}{V}\sqrt{1-V^2}\right)<\Theta<\pi;
+\end{equation*}
+
+对于 $v_0<V<\dfrac{v_0}{\sqrt{1-v_0^2}}$：
+\begin{equation*}
+  0<\Theta<\arcsin\sqrt{\frac{1-V^2}{1-v_0^2}}<\frac{\pi}{2};
+\end{equation*}
+
+对于 $V>\dfrac{v_0}{\sqrt{1-v_0^2}}$：
+\begin{equation*}
+  0<\Theta<2\arctan\left(\frac{v_0}{V}\sqrt{1-V^2}\right)<\frac{\pi}{2}.
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 求零质量的衰变粒子在 L 系中的角分布.
+
+解：按照（5.6）式，$m=0$ 的粒子在 C 系和 L 系中出射角之间的关系是
+\begin{equation*}
+  \cos\theta_0=\frac{\cos\theta-V}{1-V\cos\theta}.
+\end{equation*}
+将这个表达式代入习题2中的（1）式，我们得到：
+\begin{equation*}
+  \mathrm{d}N=\frac{(1-V^2)\,\mathrm{d}o}{4\pi(1-V\cos\theta)^2}.
+\end{equation*}
+
+\noindent{\heiti 习题5}\quad 对于衰变为两个零质量粒子的情形，求 L 系中张角的分布.
+
+解：L 系中出射角 $\theta_1,\theta_2$ 之间的关系，以及 C 系中角 $\theta_{10}\equiv\theta_0,\theta_{20}=\pi-\theta_0$ 由（5.6）式给出，所以对于张角 $\Theta=\theta_1+\theta_2$ 我们有：
+\begin{equation*}
+  \cos\Theta=\frac{2V^2-1-V^2\cos^2\theta_0}{1-V^2\cos^2\theta_0}.
+\end{equation*}
+反过来，
+\begin{equation*}
+  \cos\theta_0=\sqrt{1-\frac{1-V^2}{V^2}\cot^2\frac{\Theta}{2}}.
+\end{equation*}
+把这个表达式代入习题2的（1）式，我们得到：
+\begin{equation*}
+  \mathrm{d}N=\frac{1-V^2}{16\pi V}
+  \frac{\mathrm{d}o}{\sin^3\dfrac{\Theta}{2}
+  \sqrt{V^2-\cos^2\dfrac{\Theta}{2}}}.
+\end{equation*}
+角 $\Theta$ 取值从 $\pi$ 到 $\Theta_{\min}=2\arccos V$.
+
+\noindent{\heiti 习题6}\quad 当一个质量 $M$ 的静止粒子衰变为质量为 $m_1,m_2$ 和 $m_3$ 的3个粒子时，这3个粒子之一能够带出的最大能量是多少？
+
+解：粒子 $m_1$ 有其最大能量的条件是，其他两个粒子 $m_2$ 和 $m_3$ 构成的系统有其最小可能的质量；后者等于和 $m_2+m_3$（且相应于这两个粒子以相同速度一起运动的情形），因此这个问题化为一个粒子衰变为两部分.从（11.3）我们得到：
+\begin{equation*}
+  \mathcal{E}_{1\max}=\frac{M^2+m_1^2-(m_2+m_3)^2}{2M}.
+\end{equation*}
+
+\end{xiti}
+
+\section{不变截面}
+
+碰撞过程由其有效截面（或截面）表征，它决定碰撞的粒子束之间发生的（特定类型的）碰撞数.
+
+假设有两个碰撞束；我们用 $n_1$ 和 $n_2$ 表示其中的粒子密度（即单位体积内的粒子数），用 $\boldsymbol{v}_1$ 和 $\boldsymbol{v}_2$ 表示粒子的速度.在粒子2处于静止的参考系（或者说粒子2的静止系）中，我们讨论的是粒子束1同静止靶的碰撞.于是按照碰撞截面 $\sigma$ 的通常定义，体积 $\mathrm{d}V$ 内时间 $\mathrm{d}t$ 中发生的碰撞数是
+\begin{equation*}
+  \mathrm{d}\nu=\sigma v_{\mathrm{rel}}n_1n_2\,\mathrm{d}V\,\mathrm{d}t,
+\end{equation*}
+式中 $v_{\mathrm{rel}}$ 是粒子1在粒子2静止系中的速度（它恰好就是相对论力学中两个粒子相对速度的定义）.
+
+$\mathrm{d}\nu$ 这个数就其本性而言是一个不变量.让我们来试着将它表示为可适用于任何参考系的形式：
+\begin{equation}
+  \mathrm{d}\nu=An_1n_2\,\mathrm{d}V\,\mathrm{d}t,
+\end{equation}
+式中 $A$ 是一个待定的数，我们知道，在粒子之一的静止系中它的值是 $v_{\mathrm{rel}}\sigma$.我们将总是用 $\sigma$ 来严格表示粒子之一的静止系中的截面，即按照定义，它是一个不变量.从其定义可知，相对速度 $v_{\mathrm{rel}}$ 也是不变量.
+
+在（12.1）式中，乘积 $\mathrm{d}V\mathrm{d}t$ 是不变量.因而乘积 $An_1n_2$ 必定也是不变量.
+
+注意到给定体积元 $\mathrm{d}V$ 中的粒子数 $n\,\mathrm{d}V$ 是不变量，就不难求得粒子密度 $n$ 的变换规律.记 $n\,\mathrm{d}V=n_0\mathrm{d}V_0$（指标0表示静止系），用（4.6）式作为体积的变换公式，我们求得：
+\begin{equation}
+  n=\frac{n_0}{\sqrt{1-v^2}},
+\end{equation}
+或 $n=n_0\mathcal{E}/m$，式中 $\mathcal{E}$ 是粒子的能量，$m$ 是粒子的质量.
+
+因此，$An_1n_2$ 是不变的这个论断与 $A\mathcal{E}_1\mathcal{E}_2$ 的不变性等价.这个条件更方便地表述为如下形式
+\begin{equation}
+  A\frac{\mathcal{E}_1\mathcal{E}_2}{p_{1i}p_2^i}
+  =A\frac{\mathcal{E}_1\mathcal{E}_2}{\mathcal{E}_1\mathcal{E}_2-\boldsymbol{p}_1\cdot\boldsymbol{p}_2}
+  =\mathrm{inv},
+\end{equation}
+式中分母（两个粒子四维动量的乘积）是不变量.
+
+在粒子2的静止系中，我们有 $\mathcal{E}_2=m_2$，$\boldsymbol{p}_2=0$，故不变量（12.3）化为 $A$.另一方面，在该参考系中，$A=\sigma v_{\mathrm{rel}}$.所以，在任意参考系中，
+\begin{equation}
+  A=\sigma v_{\mathrm{rel}}\frac{p_{1i}p_2^i}{\mathcal{E}_1\mathcal{E}_2}.
+\end{equation}
+
+为将此式表为其最终形式，我们用粒子在任意参考系中的动量或速度来表示 $v_{\mathrm{rel}}$.为了做到这一点，我们注意在粒子2的静止系中，
+\begin{equation*}
+  p_{1i}p_2^i=\frac{m_1}{\sqrt{1-v_{\mathrm{rel}}^2}}\,m_2.
+\end{equation*}
+于是，
+\begin{equation}
+  v_{\mathrm{rel}}=\sqrt{1-\frac{m_1^2m_2^2}{(p_{1i}p_2^i)^2}}.
+\end{equation}
+
+利用（9.1）和（9.4）式通过速度 $\boldsymbol{v}_1$ 和 $\boldsymbol{v}_2$ 来表示量 $p_{1i}p_2^i=\mathcal{E}_1\mathcal{E}_2-\boldsymbol{p}_1\cdot\boldsymbol{p}_2$：
+\begin{equation*}
+  p_{1i}p_2^i=m_1m_2
+  \frac{1-\boldsymbol{v}_1\cdot\boldsymbol{v}_2}
+  {\sqrt{(1-v_1^2)(1-v_2^2)}},
+\end{equation*}
+代入（12.5），在做一些简单的变换后，我们得到相对速度的如下表达式
+\begin{equation}
+  v_{\mathrm{rel}}=\frac{\sqrt{(\boldsymbol{v}_1-\boldsymbol{v}_2)^2
+  -(\boldsymbol{v}_1\times\boldsymbol{v}_2)^2}}{1-\boldsymbol{v}_1\cdot\boldsymbol{v}_2}
+\end{equation}
+（我们注意到，这个表达式对 $\boldsymbol{v}_1$ 和 $\boldsymbol{v}_2$ 是对称的，即相对速度的数值与用来定义它的粒子的选择无关.）
+
+将（12.5）或（12.6）代入（12.4）然后代入（12.1），得到解决我们问题的最后公式：
+\begin{equation}
+  \mathrm{d}\nu=\sigma
+  \frac{\sqrt{(p_{1i}p_2^i)^2-m_1^2m_2^2}}{\mathcal{E}_1\mathcal{E}_2}
+  n_1n_2\,\mathrm{d}V\,\mathrm{d}t
+\end{equation}
+或
+\begin{equation}
+  \mathrm{d}\nu=\sigma\sqrt{(\boldsymbol{v}_1-\boldsymbol{v}_2)^2
+  -(\boldsymbol{v}_1\times\boldsymbol{v}_2)^2}\,n_1n_2\,\mathrm{d}V\,\mathrm{d}t.
+\end{equation}
+
+（W. Pauli, 1933.）
+
+如果速度 $\boldsymbol{v}_1$ 和 $\boldsymbol{v}_2$ 共线，则 $\boldsymbol{v}_1\times\boldsymbol{v}_2=0$，于是（12.8）式取如下形式：
+\begin{equation}
+  \mathrm{d}\nu=\sigma|\boldsymbol{v}_1-\boldsymbol{v}_2|\,
+  n_1n_2\,\mathrm{d}V\,\mathrm{d}t.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 求相对论“速度空间”的“线元”.
+
+解：要求的线元 $\mathrm{d}\boldsymbol{l}_v$ 是速度为 $\boldsymbol{v}$ 和 $\boldsymbol{v}+\mathrm{d}\boldsymbol{v}$ 的两点间的相对速度.所以我们从（12.6）得
+\begin{equation*}
+  \mathrm{d}l_v^2=\frac{(\mathrm{d}\boldsymbol{v})^2
+  -(\boldsymbol{v}\times\mathrm{d}\boldsymbol{v})^2}{(1-v^2)^2}
+  =\frac{\mathrm{d}v^2}{(1-v^2)^2}
+  +\frac{v^2}{1-v^2}(\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\varphi^2),
+\end{equation*}
+式中 $\theta,\varphi$ 是 $\boldsymbol{v}$ 的方向的极角和方位角.如果我们通过方程 $v=\tanh\chi$ 引进新的变量 $\chi$ 来代替 $v$，则线元表为：
+\begin{equation*}
+  \mathrm{d}l_v^2=\mathrm{d}\chi^2+\sinh^2\chi
+  (\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\varphi^2).
+\end{equation*}
+从几何的观点看，这就是三维罗巴切夫斯基空间（负常曲率空间）的线元（见（111.12））.
+
+\end{xiti}
+
+\section{粒子的弹性碰撞}
+
+让我们从相对论力学的观点来考虑粒子的弹性碰撞.我们将两个碰撞粒子（质量为 $m_1$ 和 $m_2$）的动量和能量记为 $\boldsymbol{p}_1,\mathcal{E}_1$ 和 $\boldsymbol{p}_2,\mathcal{E}_2$；用撇号代表碰撞后相应的量.
+
+碰撞中的动量和能量守恒定律可以一起写成四维动量守恒方程：
+\begin{equation}
+  p_1^i+p_2^i=p_1^{\prime i}+p_2^{\prime i}.
+\end{equation}
+
+从这个四维矢量方程，我们来构造有助于进一步计算的不变关系式.为此将（13.1）改写成形式：
+\begin{equation*}
+  p_1^i+p_2^i-p_1^{\prime i}=p_2^{\prime i},
+\end{equation*}
+再将两边平方（即写出每边同自身的标积）.注意到四维动量 $p_1^i$ 和 $p_1^{\prime i}$ 的平方等于 $m_1^2$，$p_2^i$ 和 $p_2^{\prime i}$ 的平方等于 $m_2^2$，我们得到：
+\begin{equation}
+  m_1^2+p_{1i}p_2^i-p_{1i}p_1^{\prime i}-p_{2i}p_1^{\prime i}=0.
+\end{equation}
+
+类似地，平方方程 $p_1^i+p_2^i-p_2^{\prime i}=p_1^{\prime i}$，我们得出：
+\begin{equation}
+  m_2^2+p_{1i}p_2^i-p_{2i}p_2^{\prime i}-p_{1i}p_2^{\prime i}=0.
+\end{equation}
+
+我们来考虑参考系（L 系）中的碰撞，该系中粒子之一（$m_2$）碰撞前处于静止.于是 $\boldsymbol{p}_2=0$，$\mathcal{E}_2=m_2$，且（13.2）式中出现的标积是：
+\begin{equation}
+\begin{aligned}
+  &p_{1i}p_2^i=\mathcal{E}_1m_2,\\
+  &p_{2i}p_1^{\prime i}=m_2\mathcal{E}_1',\\
+  &p_{1i}p_1^{\prime i}
+  =\mathcal{E}_1\mathcal{E}_1'-\boldsymbol{p}_1\cdot\boldsymbol{p}_1'
+  =\mathcal{E}_1\mathcal{E}_1'-p_1p_1'\cos\theta_1,
+\end{aligned}
+\end{equation}
+式中 $\theta_1$ 是入射粒子 $m_1$ 的散射角.将这些表达式代入（13.2）我们得到：
+\begin{equation}
+  \cos\theta_1=\frac{\mathcal{E}_1'(\mathcal{E}_1+m_2)
+  -\mathcal{E}_1m_2-m_1^2}{p_1p_1'},
+\end{equation}
+类似地，我们从（13.3）得到：
+\begin{equation}
+  \cos\theta_2=\frac{(\mathcal{E}_1+m_2)(\mathcal{E}_2'-m_2)}{p_1p_2'},
+\end{equation}
+式中 $\theta_2$ 是入射粒子的动量 $\boldsymbol{p}_1$ 同变换后动量 $\boldsymbol{p}_2'$ 之间的夹角.
+
+公式（13.5）—（13.6）将 L 系中两个粒子的散射角同它们在碰撞中的能量变化联系了起来.反演这些公式，我们可以用 $\theta_1$ 或 $\theta_2$ 来表示能量 $\mathcal{E}_1',\mathcal{E}_2'$.将 $p_1=\sqrt{\mathcal{E}_1^2-m_1^2}$，$p_2'=\sqrt{\mathcal{E}_2^{\prime 2}-m_2^2}$ 代入（13.6）并将两边平方，经简单计算后得到：
+\begin{equation}
+  \mathcal{E}_2'=m_2
+  \frac{(\mathcal{E}_1+m_2)^2+(\mathcal{E}_1^2-m_1^2)\cos^2\theta_2}
+  {(\mathcal{E}_1+m_2)^2-(\mathcal{E}_1^2-m_1^2)\cos^2\theta_2}.
+\end{equation}
+
+反演公式（13.5）可得出在一般情形下用 $\theta_1$ 表示 $\mathcal{E}_1'$ 的非常复杂的公式.
+
+我们注意到，如果 $m_1>m_2$，即入射粒子重于靶粒子，则散射角 $\theta_1$ 不能超过某个最大值.通过初等计算不难发现，该值由下式给出：
+\begin{equation}
+  \sin\theta_{1\max}=\frac{m_2}{m_1},
+\end{equation}
+这同熟悉的经典结果一致.
+
+当入射粒子质量为零，即 $m_1=0$，因而 $p_1=\mathcal{E}_1$，$p_1'=\mathcal{E}_1'$ 时，公式（13.5）—（13.6）将得以简化.对于这种情形，入射粒子在碰撞后用其偏转角表示的能量公式为：
+\begin{equation}
+  \mathcal{E}_1'=\frac{m_2}{1-\cos\theta_1+\dfrac{m_2}{\mathcal{E}_1}}.
+\end{equation}
+
+现在让我们再次回到任意质量粒子碰撞的一般情形.在 C 系中讨论碰撞最为简单.给这个参考系中的量附加下标0，我们有 $\boldsymbol{p}_{10}=-\boldsymbol{p}_{20}\equiv\boldsymbol{p}_0$.由动量守恒，碰撞中两个粒子的动量只有转动，保持数值相等且方向相反.由能量守恒，每个动量的数值保持不变.
+
+设 $\chi$ 为 C 系中的散射角，即动量 $\boldsymbol{p}_{10}$ 和 $\boldsymbol{p}_{20}$ 由于碰撞而转过的角.这个量完全决定了 C 系中，因而也是任何其他参考系中的散射过程.在 L 系中描述碰撞时它也是方便的，是应用动量和能量守恒以后仍然不定的单一参量.
+
+我们借助这个参量来表示两个粒子在 L 系中的终态能.为此我们回到（13.2），但这次在 C 系中写出乘积 $p_{1i}p_1^{\prime i}$
+\begin{equation*}
+  p_{1i}p_1^{\prime i}=\mathcal{E}_{10}\mathcal{E}_{10}'
+  -\boldsymbol{p}_{10}\cdot\boldsymbol{p}_{10}'
+  =\mathcal{E}_{10}^2-p_0^2\cos\chi
+  =p_0^2(1-\cos\chi)+m_1^2
+\end{equation*}
+（在 C 系里粒子的能量在碰撞中不变：$\mathcal{E}_{10}'=\mathcal{E}_{10}$）.我们在 L 系中写出另外两个乘积，即利用（13.4）.结果我们得到：
+\begin{equation*}
+  \mathcal{E}_1'-\mathcal{E}_1=-\frac{p_0^2}{m_2}(1-\cos\chi).
+\end{equation*}
+我们还必须用 L 系中的量表示 $p_0^2$.让 L 系和 C 系中不变量 $p_{1i}p_2^i$ 的值相等就不难做到这一点：
+\begin{equation*}
+  \mathcal{E}_{10}\mathcal{E}_{20}-\boldsymbol{p}_{10}\cdot\boldsymbol{p}_{20}
+  =\mathcal{E}_1m_2,
+\end{equation*}
+或
+\begin{equation*}
+  \sqrt{(p_0^2+m_1^2)(p_0^2+m_2^2)}=\mathcal{E}_1m_2-p_0^2.
+\end{equation*}
+对 $p_0^2$ 求解此方程，我们得到：
+\begin{equation}
+  p_0^2=\frac{m_2^2(\mathcal{E}_1^2-m_1^2)}
+  {m_1^2+m_2^2+2m_2\mathcal{E}_1}.
+\end{equation}
+
+因此，我们最后有：
+\begin{equation}
+  \mathcal{E}_1'=\mathcal{E}_1
+  -\frac{m_2(\mathcal{E}_1^2-m_1^2)}{m_1^2+m_2^2+2m_2\mathcal{E}_1}
+  (1-\cos\chi).
+\end{equation}
+第二个粒子的能量从守恒定律：$\mathcal{E}_1+m_2=\mathcal{E}_1'+\mathcal{E}_2'$ 得出.因而
+\begin{equation}
+  \mathcal{E}_2'=m_2
+  +\frac{m_2(\mathcal{E}_1^2-m_1^2)}{m_1^2+m_2^2+2m_2\mathcal{E}_1}
+  (1-\cos\chi).
+\end{equation}
+这些公式的第二项表示第一个粒子失去并转给第二个粒子的能量.当 $\chi=\pi$ 时出现最大的能量转移，等于
+\begin{equation}
+  \mathcal{E}_{2\max}'-m_2=\mathcal{E}_1-\mathcal{E}_{1\min}'
+  =\frac{2m_2(\mathcal{E}_1^2-m_1^2)}{m_1^2+m_2^2+2m_2\mathcal{E}_1}.
+\end{equation}
+碰撞后入射粒子的最小动能与其初始能量的比是：
+\begin{equation}
+  \frac{\mathcal{E}_{1\min}'-m_1}{\mathcal{E}_1-m_1}
+  =\frac{(m_1-m_2)^2}{m_1^2+m_2^2+2m_2\mathcal{E}_1}.
+\end{equation}
+
+在低速极限情况下（当 $\mathcal{E}\approx m+mv^2/2$ 时），这个关系趋于常数极限，等于
+\begin{equation*}
+  \left(\frac{m_1-m_2}{m_1+m_2}\right)^2.
+\end{equation*}
+在能量 $\mathcal{E}_1$ 很大的相反极限下，关系（13.14）趋于0；量 $\mathcal{E}_{1\min}'$ 趋于常数极限，这个极限是
+\begin{equation*}
+  \mathcal{E}_{1\min}'=\frac{m_1^2+m_2^2}{2m_2}.
+\end{equation*}
+
+假设 $m_2\gg m_1$，即入射粒子的质量同静止粒子的质量相比很小.按照经典力学，轻粒子只能转移其能量的可忽略部分（见本教程第一卷 §17）.在相对论力学中，情况却并不如此.从（13.14）式我们看到，对于足够大的能量 $\mathcal{E}_1$，转移能量的比例可以达到1的量级.为此 $m_1$ 的速度量级为1是不够的，必须有
+\begin{equation*}
+  \mathcal{E}_1\sim m_2,
+\end{equation*}
+即轻粒子必须具有重粒子静能量级的能量.
+
+当 $m_2\ll m_1$，即重粒子入射到轻粒子上时出现类似的情形.按照经典力学，这里能量转移也不显著.只有当能量
+\begin{equation*}
+  \mathcal{E}_1\sim\frac{m_1^2}{m_2}
+\end{equation*}
+时，转移能量的比例才开始显著起来.注意，我们不是简单地取速度为光速量级，而是能量同 $m_1$ 相比很大，即我们讨论的是极端相对论情形.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 图4中的三角形 $ABC$ 由入射粒子的动量矢量 $\boldsymbol{p}_1$ 和碰撞后两个粒子的动量 $\boldsymbol{p}_1',\boldsymbol{p}_2'$ 构成.求相应于 $\boldsymbol{p}_1',\boldsymbol{p}_2'$ 所有可能值 $C$ 点的轨迹.
+
+解：要求的曲线是一椭圆，其半轴可用 §11 习题1中得出的公式求得.事实上，那里给出的结构所决定的 L 系中矢量 $\boldsymbol{p}$ 的轨迹，在 C 系中可从给定长度 $p_0$ 的任意指向矢量 $\boldsymbol{p}_0$ 得到.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=9.5cm]{fig4.pdf}\\[0.3em]{\small 图 4}\end{minipage}\par\nopagebreak
+
+因为两个碰撞粒子动量的绝对值在 C 系中相等且在碰撞中不变，我们在该情形下涉及的是与矢量 $\boldsymbol{p}_1'$ 类似的结构，该矢量在 C 系中为
+\begin{equation*}
+  p_0\equiv p_{10}=p_{20}=\frac{m_2V}{\sqrt{1-V^2}},
+\end{equation*}
+式中 $V$ 是粒子 $m_2$ 在 C 系中的速度，在数值上同惯性中心的速度一致，等于 $V=p_1/(\mathcal{E}_1+m_2)$（见（11.4））.结果我们得到该椭圆的半短轴和半长轴是
+\begin{equation*}
+  p_0=\frac{m_2p_1}{\sqrt{m_1^2+m_2^2+2m_2\mathcal{E}_1}},
+\end{equation*}
+\begin{equation*}
+  \frac{p_0}{\sqrt{1-V^2}}
+  =\frac{m_2p_1(\mathcal{E}_1+m_2)}{m_1^2+m_2^2+2m_2\mathcal{E}_1}
+\end{equation*}
+（当然，上述第一式与（13.10）式相同）.
+
+对于 $\theta_1=0$，矢量 $\boldsymbol{p}_1'$ 与 $\boldsymbol{p}_1$ 重合，所以距离 $AB$ 等于 $p_1$.比较 $p_1$ 与椭圆长轴的长度，容易证明如果 $m_1>m_2$，点 $A$ 处于椭圆的外面（图4a），如果 $m_1<m_2$，则在其里面（图4b）.
+
+\noindent{\heiti 习题2}\quad 决定两个质量相等的粒子（$m_1=m_2\equiv m$）碰撞后的最小分离角 $\Theta_{\min}$.
+
+解：如果 $m_1=m_2$，图5的点 $A$ 在椭圆上，最小分离角相应于点 $C$ 在短轴一端的情形（图5）.从这一构形显见，$\tan(\Theta_{\min}/2)$ 是两个轴长度之比，并且我们得到：
+\begin{equation*}
+  \tan\frac{\Theta_{\min}}{2}=\sqrt{\frac{2m}{\mathcal{E}_1+m}},
+\end{equation*}
+或者
+\begin{equation*}
+  \cos\Theta_{\min}=\frac{\mathcal{E}_1-m}{\mathcal{E}_1+3m}.
+\end{equation*}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=6.5cm]{fig5.pdf}\\[0.3em]{\small 图 5}\end{minipage}\par\nopagebreak
+
+\noindent{\heiti 习题3}\quad 对于质量都等于 $m$ 的两个粒子的碰撞，利用 L 系中的散射角 $\theta_1$ 来表达 $\mathcal{E}_1',\mathcal{E}_2',\chi$.
+
+解：在这种情形下，反演（13.5）式得到：
+\begin{equation*}
+  \mathcal{E}_1'=\frac{(\mathcal{E}_1+m)+(\mathcal{E}_1-m)\cos^2\theta_1}
+  {(\mathcal{E}_1+m)-(\mathcal{E}_1-m)\cos^2\theta_1}\,m,
+\end{equation*}
+\begin{equation*}
+  \mathcal{E}_2'=m+
+  \frac{(\mathcal{E}_1^2-m^2)\sin^2\theta_1}
+  {2m+(\mathcal{E}_1-m)\sin^2\theta_1}.
+\end{equation*}
+比较利用 $\chi$ 来表达 $\mathcal{E}_1'$ 的式子：
+\begin{equation*}
+  \mathcal{E}_1'=\mathcal{E}_1-\frac{\mathcal{E}_1-m}{2}(1-\cos\chi),
+\end{equation*}
+我们得到 C 系中的散射角：
+\begin{equation*}
+  \cos\chi=\frac{2m-(\mathcal{E}_1+3m)\sin^2\theta_1}
+  {2m+(\mathcal{E}_1-m)\sin^2\theta_1}.
+\end{equation*}
+
+\end{xiti}
+
+\section{角动量}
+
+由经典力学熟知，对于一个封闭系统，除能量和动量守恒外还有角动量守恒，即矢量
+\begin{equation*}
+  \boldsymbol{M}=\sum\boldsymbol{r}\times\boldsymbol{p}
+\end{equation*}
+守恒.式中 $\boldsymbol{r}$ 和 $\boldsymbol{p}$ 是粒子的径矢和动量；求和遍历组成系统的所有粒子.角动量守恒是这一事实的结果：由于空间各向同性，封闭系统的拉格朗日函数在系统整体转动下不变.
+
+通过在四维形式中进行类似的推演，我们得到角动量的相对论表达式.设 $x^i$ 是该系统中一个粒子的坐标.我们在四维空间中作一无限小转动.在这样的变换下，坐标 $x^i$ 取新值 $x^{\prime i}$，使差 $x^{\prime i}-x^i$ 为线性函数：
+\begin{equation}
+  x^{\prime i}-x^i=x_k\,\delta\Omega^{ik},
+\end{equation}
+$\delta\Omega_{ik}$ 为无限小系数.四维张量 $\delta\Omega_{ik}$ 的诸分量通过一些关系彼此相连，这些关系是如下要求的结果：径矢的长度在转动下必须保持不变，即 $x_i^{\prime}x^{\prime i}=x_ix^i$.从（14.1）中取代 $x^{\prime i}$，并略去 $\delta\Omega_{ik}$ 中作为高阶无穷小的二次项，我们得出
+\begin{equation*}
+  x^ix^k\delta\Omega_{ik}=0.
+\end{equation*}
+这个方程必须对任意的 $x^i$ 满足.因为 $x^ix^k$ 是对称张量，$\delta\Omega_{ik}$ 必为反对称张量（对称张量和反对称张量的乘积显然恒为零）.于是我们得到：
+\begin{equation}
+  \delta\Omega_{ki}=-\delta\Omega_{ik}.
+\end{equation}
+
+对于起点为 $a$、终点为 $b$ 的轨道的无限小坐标变换，作用量的改变具有形式（见（9.10））：
+\begin{equation*}
+  \delta S=-\sum p^i\delta x_i\Big|_a^b
+\end{equation*}
+（求和遍历系统中的所有粒子）.在我们现在考虑的转动情形下，$\delta x_i=\delta\Omega_{ik}x^k$，于是有
+\begin{equation*}
+  \delta S=-\delta\Omega_{ik}\sum p^ix^k\Big|_a^b.
+\end{equation*}
+如果我们把张量 $\sum p^ix^k$ 分解为对称和反对称两部分，则第一部分与反对称张量 $\delta\Omega_{ik}$ 的乘积恒为零.所以只取 $\sum p^ix^k$ 的反对称部分，我们可将上式改写为如下形式：
+\begin{equation}
+  \delta S=-\delta\Omega_{ik}\cdot\frac{1}{2}
+  \sum(p^ix^k-p^kx^i)\Big|_a^b.
+\end{equation}
+
+对于封闭系统，拉格朗日函数是一不变量，它不因四维空间中的转动而改变.这意味着（14.3）中 $\delta\Omega_{ik}$ 的系数必须为零：
+\begin{equation*}
+  \sum(p^ix^k-p^kx^i)_b=\sum(p^ix^k-p^kx^i)_a.
+\end{equation*}
+因而，我们看出，对于封闭系统而言，张量
+\begin{equation}
+  M^{ik}=\sum(x^ip^k-x^kp^i)
+\end{equation}
+是守恒的.这个反对称张量称为四维角动量张量.这个张量的空间分量是三维角动量矢量 $\boldsymbol{M}=\sum\boldsymbol{r}\times\boldsymbol{p}$ 的分量：
+\begin{equation*}
+  M^{23}=M_x,\quad -M^{13}=M_y,\quad M^{12}=M_z.
+\end{equation*}
+分量 $M^{01},M^{02},M^{03}$ 构成一个矢量 $\sum\left(t\boldsymbol{p}-\mathcal{E}\boldsymbol{r}/c^2\right)$.于是，我们可以把张量 $M^{ik}$ 的分量写成形式：
+\begin{equation}
+  M^{ik}=\left(c\sum\left(t\boldsymbol{p}-\frac{\mathcal{E}\boldsymbol{r}}{c^2}\right),
+  -\boldsymbol{M}\right)
+\end{equation}
+（比较（6.10））.
+
+特别是，由于 $M^{ik}$ 对于封闭系统守恒，我们有
+\begin{equation*}
+  \sum\left(t\boldsymbol{p}-\frac{\mathcal{E}\boldsymbol{r}}{c^2}\right)
+  =\mathrm{const}.
+\end{equation*}
+另一方面，因为总能量 $\sum\mathcal{E}$ 也守恒，这个等式可以写成形式
+\begin{equation*}
+  \frac{\sum\mathcal{E}\boldsymbol{r}}{\sum\mathcal{E}}
+  -t\frac{c^2\sum\boldsymbol{p}}{\sum\mathcal{E}}=\mathrm{const}.
+\end{equation*}
+由此我们看到，具有径矢
+\begin{equation}
+  \boldsymbol{R}=\frac{\sum\mathcal{E}\boldsymbol{r}}{\sum\mathcal{E}}
+\end{equation}
+的点以速度
+\begin{equation}
+  \boldsymbol{v}=\frac{c^2\sum\boldsymbol{p}}{\sum\mathcal{E}}
+\end{equation}
+作匀速运动.这正是系统整体的运动速度.（按公式（9.8），它把总能量和总动量联系起来.）公式（14.6）给出了系统惯性中心坐标的相对论定义.如果所有粒子的速度都远小于光速 $c$，我们可以近似地令 $\mathcal{E}\approx mc^2$，（14.6）于是化为通常的经典表达式\footnote{请注意，惯性中心的经典公式可以同样好地适用于相互作用和无相互作用的粒子，而公式（14.6）只有在忽略相互作用时才能成立.在相对论力学中，为定义相互作用粒子系统的惯性中心，要求我们把粒子所产生的场的能量和动量明显地包括进来.}
+\begin{equation*}
+  \boldsymbol{R}=\frac{\sum m\boldsymbol{r}}{\sum m}.
+\end{equation*}
+
+请注意，矢量（14.6）的分量并不构成任何四维矢量的空间分量，故在参考系的变换下它们并不像一个点的坐标那样变换.因此同一粒子系统的惯性中心，对不同的参考系来说是不同的点.
+
+\begin{xiti}
+
+\noindent{\heiti 习\ 题}\quad 一物体（粒子系统）在其以速度 $V$ 运动的参考系 $K$ 中角动量为 $\boldsymbol{M}$，在该物体总体静止的参考系 $K_0$ 中角动量为 $\boldsymbol{M}^{(0)}$，试求 $\boldsymbol{M}$ 和 $\boldsymbol{M}^{(0)}$ 之间的关系；两种情形下角动量都是相对于同一点——物体在 $K_0$ 系中的惯性中心定义的\footnote{我们提请读者回忆，虽然在 $K_0$ 系中（那里 $\sum\boldsymbol{p}=0$）角动量与定义它的点的选择无关，而在 $K$ 系中（那里 $\sum\boldsymbol{p}\neq0$）角动量却依赖于这种选择（见本教程第一卷 §9）.}.
+
+解：$K_0$ 系相对于 $K$ 系以速度 $V$ 运动；我们选其方向为 $x$ 轴.我们要求的张量 $M^{ik}$ 的分量按如下公式变换（见 §6，习题2）：
+\begin{equation*}
+  M^{12}=\frac{M^{(0)12}+\dfrac{V}{c}M^{(0)02}}{\sqrt{1-\dfrac{V^2}{c^2}}},\quad
+  M^{13}=\frac{M^{(0)13}+\dfrac{V}{c}M^{(0)03}}{\sqrt{1-\dfrac{V^2}{c^2}}},\quad
+  M^{23}=M^{(0)23}.
+\end{equation*}
+因为坐标原点选在物体的惯性中心（在 $K_0$ 系中），在该系中 $\sum\mathcal{E}\boldsymbol{r}=0$，又因为在该系中 $\sum\boldsymbol{p}=0$，故 $M^{(0)02}=M^{(0)03}=0$.利用 $M^{ik}$ 和矢量 $\boldsymbol{M}$ 分量之间的关系，我们对后者求得：
+\begin{equation*}
+  M_x=M_x^{(0)},\quad
+  M_y=\frac{M_y^{(0)}}{\sqrt{1-\dfrac{V^2}{c^2}}},\quad
+  M_z=\frac{M_z^{(0)}}{\sqrt{1-\dfrac{V^2}{c^2}}}.
+\end{equation*}
+
+\end{xiti}

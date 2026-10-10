@@ -1,0 +1,1046 @@
+% ch05a Path integrals and stock options 5.1-5.7 (书页78-95 / p096-113)
+% 覆盖说明：原书第5章 5.1--5.7 节为书页78--95（p096--p113）；5.7 节末尾的
+% 未编号公式 F' 与收尾段落在书页96（p114）顶部、5.8 总结之前，为保本节完整
+% 一并收入。5.8 总结与附录5.9--5.13（书页96--116 / p114--p134）由后半文件续写。
+% 编号公式核对：原书本半 tag 为 (5.1)--(5.62)，共62条，连续无断档（已对照
+% PNG 逐页核验）。后半（附录）另有 (5.63)--(5.94)。
+% 原书已知排印疑点：(5.47)(5.48) 印作 O(e)（应为 O(ε)，已按上下文订正）；
+% 式(5.42)第一行积分测度印作 dp_y dp_y、指数印作 H(x,y,p_y,p_y)（均应为
+% p_x，已订正并加脚注）；5.5 节转移振幅一式测度印作 ∫_{BS}DX（BS 下标系
+% 沿用笔误）；式(5.36) 分子印作 cosh(π−|θ|)a（按恒等式读作 cosh((π−|θ|)a)）；
+% 式(5.32) 第二行求和下标印作 Σ_{i=1}^∞ a_n（哑标笔误，应为 n）。
+% 以上均见相应脚注或正文说明。
+\chapter{路径积分与股票期权}
+
+本章把第4章的算符语言换成一套新的数学机器。哈密顿量$\mathcal{H}$固然把
+期权定价组织成了"传播算符$e^{-\tau H}$的矩阵元"，但能直接用算符方法解出
+的定价问题寥寥无几：除了自由Black--Scholes情形，一般的非线性系统（例如
+Merton--Garman哈密顿量$\mathcal{H}_{MG}$）用微分方程手段很难解析求解。
+Feynman路径积分（path integral）提供了换一个视角的入口：不再盯着哈密顿
+算符，而是研究拉格朗日量（Lagrangian）$L$与作用量（action）$S$，把"求
+定价核"改写成"对所有可能路径求和"。许多算符框架下无从下手的计算，在
+路径积分里不过是一串高斯积分；本章的三个可解模型——Black--Scholes核、
+简谐振子、随机波动率股票——分别演示了三种通用技术：积分变量替换、简正
+模式展开（傅里叶展开）与微扰展开。这三种技术是第7--10章远期利率量子场
+论的全部数学预备，其中简谐振子传播子$D(t,t')$将在第7章原封不动地复活为
+远期利率场的传播子。
+
+先修内容：第4章的态空间、完备性方程与定价核$p(x,\tau;x')=\langle x\vert
+e^{-\tau H}\vert x'\rangle$。本章前半（5.1--5.7节，书页78--95）建立路径
+积分表述并解出三个可解模型；后半（5.8节总结与附录5.9--5.13，书页96起）
+补路径积分量子力学的物理背景、金融版海森伯不确定性原理，以及任意
+$\alpha$的Merton--Garman路径积分等技术细节。
+
+\section{定价核的拉格朗日量与作用量}
+
+本节要解决的问题：定价核是矩阵元$\langle x\vert e^{-\tau H}\vert
+x'\rangle$，可$e^{-\tau H}$的矩阵元一般算不出来——哈密顿量里动能项$T$
+是微分算符、势能项$V$是乘法算符，两者不对易$[T,V]\neq0$，故$e^{-\tau H}$
+指数不能拆开。Feynman的观察是：虽然有限时间段$\tau$的演化算符难算，
+无穷小时间步$\epsilon$的演化算符却好算——$\epsilon\to0$时不对易造成的
+误差可以忽略，$e^{-\epsilon H}\simeq e^{-\epsilon T}e^{-\epsilon V}$。
+把$\tau$切成$N$小段、每段用一次这个近似，再把中间所有时刻的态插入完备
+性方程求和，就得到路径积分。\footnote{严格说法是Campbell--Baker公式
+（原书脚注1）：对不对易算符$A$、$B$有$\exp(A)\exp(B)=\exp(A+B+[A,B]/2
++\cdots)$，$e^{-\epsilon H}\simeq e^{-\epsilon T}e^{-\epsilon V}$正是取
+其领先阶。}
+
+\paragraph{模型设定与记号}
+单一证券、距到期时间$\tau=T-t$，定价核由第4章式(4.30)给出：
+$p(x,\tau;x')=\langle x\vert e^{-\tau H}\vert x'\rangle$。把到期前的
+$\tau$均分为$N$步，每步$\epsilon=\tau/N$；连续时间变量$x(t)$离散化为
+$x_i$，$t=i\epsilon$，$0\leq i\leq N$。于是矩阵元可以写成$N$个短时间
+演化算符的乘积的极限：
+\begin{align*}
+p(x,\tau;x')&=\lim_{N\to\infty}\langle x\vert\bigl[e^{-\epsilon H}\bigr]^{N}\vert x'\rangle\\
+&=\lim_{N\to\infty}\langle x\vert e^{-\epsilon H}\cdots e^{-\epsilon H}\vert x'\rangle
+\tag{5.1}
+\end{align*}
+多数计算最终都会取$N\to\infty$极限。位置基矢的完备性方程（即第4章式
+(4.3)，本节重新编号）是
+\begin{equation*}
+\mathcal{I}=\int_{-\infty}^{\infty}dx\vert x\rangle\langle x\vert
+\tag{5.2}
+\end{equation*}
+
+\paragraph{关键公式}
+在式(5.1)中插入$(N-1)$次完备性方程(5.2)，矩阵元便按时间切片分解：
+\begin{equation*}
+p(x;\tau\vert x')=\Biggl(\prod_{i=1}^{N-1}\int dx_{i}\Biggr)\prod_{i=1}^{N}
+\langle x_{i}\vert e^{-\epsilon H}\vert x_{i-1}\rangle
+\tag{5.3}
+\end{equation*}
+边界条件固定路径的两端：
+\begin{equation*}
+x_{N}=x,\quad x_{0}=x'
+\tag{5.4}
+\end{equation*}
+拉格朗日量由Feynman公式定义——单步矩阵元的指数上永远可以提出一个
+$\epsilon L$：
+\begin{equation*}
+\langle x_{i}\vert e^{-\epsilon H}\vert x_{i-1}\rangle\equiv
+\mathcal{N}_{i}(\epsilon)\,e^{\epsilon L(x_{i};x_{i-1};\epsilon)}
+\tag{5.5}
+\end{equation*}
+其中$\mathcal{N}_{i}(\epsilon)$是归一因子。把式(5.5)代回式(5.3)，得
+离散时间Feynman路径积分：
+\begin{equation*}
+p(x;\tau,x')\equiv\int\mathcal{D}X\,e^{S}
+\tag{5.6}
+\end{equation*}
+作用量（action）是拉格朗日量沿时间格点的求和：
+\begin{equation*}
+S=\epsilon\sum_{i=1}^{N}L(x_{i};x_{i-1};\epsilon)
+\tag{5.7}
+\end{equation*}
+路径积分测度（path-integration measure）由完备性插入产生：
+\begin{equation*}
+\int\mathcal{D}X=\mathcal{N}_{N}(\epsilon)\prod_{i=1}^{N-1}\int
+\mathcal{N}_{i}(\epsilon)\,dx_{i}
+\end{equation*}
+（原书脚注提醒：归一因子有$N$个，而$x_i$积分只有$N-1$个——两端由边界
+条件(5.4)钉住。）当$\mathcal{N}_{i}$不依赖积分变量$x_{i}$时，归一因子
+可并入常数、$N\to\infty$极限存在。对边界条件$x(\tau)=x$、$x(0)=x'$，
+取极限得连续时间Feynman路径积分：
+\begin{align*}
+p(x;\tau,x')&=\prod_{t=0}^{\tau}\int_{-\infty}^{+\infty}dx(t)\,e^{S}\\
+\Rightarrow\ \langle x\vert e^{-\tau H}\vert x'\rangle&\equiv\int\mathcal{D}X\,e^{S}
+\tag{5.8}
+\end{align*}
+其中连续时间作用量是熟悉的形式：
+\begin{equation*}
+S=\int L\Bigl(x,\frac{dx}{dt}\Bigr)dt
+\end{equation*}
+
+\paragraph{推导主线}
+整节只有三步。第一步，把$N$步演化算符连乘（式5.1）——这是恒等式，因为
+$e^{-\tau H}=(e^{-\tau H/N})^{N}$。第二步，在相邻两个短演化算符之间插入
+完备性方程(5.2)：每插一次就多一个对中间位置的积分$\int dx_i$，插$N-1$
+次后矩阵元变成式(5.3)——"先固定两端、中间所有时刻的位置都自由"。
+第三步是定义性的：式(5.5)把每个短时间矩阵元的对数按$\epsilon$展开，
+其$O(\epsilon)$系数就定义为拉格朗日量。这一步看似任意，实则是全部魔力
+所在：只要能算出单步矩阵元（而这往往只是高斯积分），就自动得到整个
+理论的作用量。
+
+\paragraph{解读与联系}
+从式(5.7)看，每个时刻$t=i\epsilon$系统只有一个自由度$x_i$；式(5.8)则
+表明路径积分是无穷多次积分——对$[0,\tau]$中每个时刻各积一次$x_t$。
+概率论里这个积分叫维纳积分（Wiener integral），即"对布朗路径求和"的
+严格数学对象。多个独立变量（如下文的随机波动率，股价加波动率两个自由
+度）时只需把测度换成$\mathcal{D}X\,\mathcal{D}Y$，框架不变。路径积分
+量子力学的物理背景（虚时间、欧几里得演化）原书放在附录5.9，见后半。
+
+\section{Black--Scholes拉格朗日量}
+
+本节把5.1节的抽象方案落到第一个具体模型：风险中性演化下的股票价格，
+即Black--Scholes方程描述的常数波动率情形。此时只有一个独立变量——
+股价$S=e^{x}$。单步矩阵元按式(5.5)的方式写成
+$\langle x_{i}\vert e^{-\epsilon H_{BS}}\vert x_{i-1}\rangle
+=N_{BS}(\epsilon)\,e^{\epsilon L_{BS}}$，其中$N_{BS}(\epsilon)$为归一
+常数，函数$L_{BS}$就是Black--Scholes拉格朗日量。由于Black--Scholes
+定价核是少数有精确闭式的情形（第4章式(4.39)），令$\tau=\epsilon$即可
+读出$L_{BS}$——这正是路径积分方法的方便之处：知道短时间核，拉格朗日
+量就是它的对数。
+
+\paragraph{模型设定与记号}
+常数波动率$\sigma$、瞬时利率$r$。第4章式(4.39)的精确定价核在
+$\tau=\epsilon$时给出
+\begin{align*}
+\langle x_{i}\vert e^{-\epsilon H_{BS}}\vert x_{i-1}\rangle
+&=\frac{e^{-r\epsilon}}{\sqrt{2\pi\epsilon\sigma^{2}}}\,
+e^{-\frac{1}{2\epsilon\sigma^{2}}\{x_{i}-x_{i-1}+\epsilon(r-\sigma^{2}/2)\}^{2}}\\
+&=\frac{e^{-r\epsilon}}{\sqrt{2\pi\epsilon\sigma^{2}}}\,
+e^{-\frac{\epsilon}{2\sigma^{2}}\{\frac{\delta x_{i}}{\epsilon}
++(r-\sigma^{2}/2)\}^{2}}\\
+&=N_{BS}(\epsilon)\,e^{\epsilon L_{BS}}
+\end{align*}
+其中$\delta x_{i}=x_{i}-x_{i-1}$。于是
+\begin{align*}
+L_{BS}(i)&=-\frac{1}{2\sigma^{2}}\Bigl(\frac{\delta x_{i}}{\epsilon}
++r-\frac{\sigma^{2}}{2}\Bigr)^{2}-r
+\tag{5.9}\\
+S_{BS}&=\epsilon\sum_{i=1}^{N}L_{BS}(i)
+\tag{5.10}\\
+N_{BS}(\epsilon)&=\frac{1}{\sqrt{2\pi\epsilon\sigma^{2}}}
+\end{align*}
+下标$i$标记剩余时间，$N\epsilon=\tau=T-t$（$t$是真实时间），边界条件
+与式(5.4)相同：
+\begin{equation*}
+x_{N}=x,\quad x_{0}=x'
+\tag{5.11}
+\end{equation*}
+完备性方程给出路径积分测度：
+\begin{equation*}
+\int_{BS}\mathcal{D}X=\Bigl[\frac{1}{2\pi\epsilon\sigma^{2}}\Bigr]^{N/2}
+\prod_{i=1}^{N-1}\int_{-\infty}^{+\infty}dx_{i}
+\tag{5.12}
+\end{equation*}
+Black--Scholes定价核的路径积分表示为
+\begin{equation*}
+p_{BS}(x,\tau;x')=\int_{BS}\mathcal{D}X\,e^{S_{BS}}
+\tag{5.13}
+\end{equation*}
+
+\paragraph{解读与联系}
+式(5.9)的结构值得记住：拉格朗日量是"速度"$\delta x_{i}/\epsilon$的
+二次型减去常数$-r$。把$\delta x_{i}/\epsilon$看成速度，$L_{BS}$正是
+质量为$1/\sigma^{2}$的自由粒子拉格朗日量——波动率倒数充当质量，波动
+率越大质量越小、路径越"软"；漂移项$r-\sigma^{2}/2$只是一个速度平移，
+它是风险中性漂移$r$减去对数坐标的伊藤修正$\sigma^{2}/2$。此外整个
+定价核多出因子$e^{-r\tau}$——贴现不进入作用量，体现"期权费是贴现后
+的期望"。
+
+\subsection{Black--Scholes路径积分}
+
+本小节把式(5.13)一路积到底：它形式上是一个$N$重耦合高斯积分，但经
+一次变量替换即可完全解耦，最终还原式(4.39)。这是全书第一个完整演算
+的路径积分，值得逐步吃透。
+
+\paragraph{关键公式}
+由式(5.10)，作用量的显式形式为
+\begin{equation*}
+S_{BS}=-\frac{1}{2\epsilon\sigma^{2}}\sum_{i=1}^{N}
+\Bigl(x_{i}-x_{i-1}+\epsilon(r-\frac{\sigma^{2}}{2})\Bigr)^{2}-r\epsilon N
+\end{equation*}
+做变量替换，把每一步的"速度平移"吸收进新变量：
+\begin{equation*}
+\begin{aligned}
+\zeta_{i}&=x_{i}-x_{i-1}+\epsilon\Bigl(r-\frac{\sigma^{2}}{2}\Bigr)\\
+d\zeta_{i}&=dx_{i}\ ;\quad i=1,\ldots,N
+\end{aligned}
+\tag{5.14}
+\end{equation*}
+原来的$x_{i}$只有$N-1$个积分变量，而$\zeta_{i}$却定义了$N$个独立
+变量，多出的一个自由度必须用边界条件(5.11)约束掉。$x_{0}$端的边界
+条件自动满足；$x_{N}$端则要求
+\begin{equation*}
+\begin{aligned}
+x_{N}&=x_{0}-N\epsilon\Bigl(r-\frac{\sigma^{2}}{2}\Bigr)
++\sum_{i=1}^{N}\zeta_{i}\\
+\Rightarrow\ m-\sum_{i=1}^{N}\zeta_{i}=0\ ;\quad
+m&\equiv x-x'+\tau\Bigl(r-\frac{\sigma^{2}}{2}\Bigr)
+\end{aligned}
+\tag{5.15}
+\end{equation*}
+把这条约束以$\delta$函数形式放进路径积分，式(5.13)变成
+\begin{align*}
+p_{BS}(x,\tau;x')&=\langle x\vert e^{-\tau H_{BS}}\vert x'\rangle
+=\int_{BS}\mathcal{D}X\,e^{S_{BS}}\\
+&=e^{-r\tau}\Bigl[\frac{1}{2\pi\epsilon\sigma^{2}}\Bigr]^{N/2}
+\prod_{i=1}^{N}\int_{-\infty}^{+\infty}d\zeta_{i}\,
+e^{-\frac{1}{2\epsilon\sigma^{2}}\sum_{i=1}^{N}\zeta_{i}^{2}}\,
+\delta\Bigl(m-\sum_{i=1}^{N}\zeta_{i}\Bigr)
+\end{align*}
+用$\delta$函数的傅里叶表示（附录A式(A.11)），$\zeta_{i}$积分立即
+分解为彼此无关的单变量高斯积分：
+\begin{align*}
+p_{BS}(x,\tau;x')&=e^{-r\tau}\Bigl[\frac{1}{2\pi\epsilon\sigma^{2}}\Bigr]^{N/2}\times\\
+&\quad\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\prod_{i=1}^{N}\int_{-\infty}^{+\infty}
+d\zeta_{i}\,e^{-\frac{1}{2\epsilon\sigma^{2}}\sum_{i=1}^{N}\zeta_{i}^{2}}\,
+e^{ip[m-\sum_{i=1}^{N}\zeta_{i}]}\\
+&=e^{-r\tau}\Bigl[\frac{1}{2\pi\epsilon\sigma^{2}}\Bigr]^{N/2}
+\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,e^{ipm}
+\prod_{i=1}^{N}\int_{-\infty}^{+\infty}d\zeta_{i}\,
+e^{-\frac{1}{2\epsilon\sigma^{2}}\zeta_{i}^{2}+ip\zeta_{i}}\\
+&=e^{-r\tau}\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+e^{ipm}\,e^{-\frac{N\epsilon\sigma^{2}}{2}p^{2}}\\
+&=e^{-r\tau}\,\frac{1}{\sqrt{2\pi\tau\sigma^{2}}}\,
+e^{-\frac{1}{2\tau\sigma^{2}}\{x-x'+\tau(r-\sigma^{2}/2)\}^{2}}
+\tag{5.16}
+\end{align*}
+最后一步用$N\epsilon=\tau$，正是第4章式(4.39)的Black--Scholes定价核。
+
+\paragraph{推导主线}
+三处技术要点。其一，式(5.14)的替换把二次型对角化：作用量本是相邻
+$x_{i}$的耦合平方和，换成$\zeta_{i}$后成为$\sum_{i}\zeta_{i}^{2}$——
+这与统计物理里把耦合振子换成简正坐标是同一招。其二，$N$个新变量对
+$N-1$个旧变量的超额自由度不能含糊：式(5.15)用边界条件生成一条线性
+约束，并明写成$\delta$函数放进积分，否则会丢掉一个归一约束、终式差
+一个因子。其三，$\delta$函数的傅里叶表示把"变量之和固定"的约束积分
+换成对共轭动量$p$的单积分，各$\zeta_{i}$随之彻底解耦；每个单变量
+高斯积分贡献$\exp(-\epsilon\sigma^{2}p^{2}/2)$，$N$个连乘后剩下的
+$p$积分又是一个高斯积分，收出终式。整条推导只用了高斯积分，别无
+其他工具。
+
+\subsection*{Black--Scholes速度关联函数}
+
+定价核只用到$e^{S_{BS}}$的积分，路径积分框架真正的增量在于：它还能
+回答"路径涨落"层面的问题——股价速度的平均值与关联函数（velocity
+correlation function）。这些量在算符框架里对应算符期望值的计算，在
+路径积分里则是对生成泛函求导。注意一个记号约定：$\epsilon$用剩余
+时间$\tau=T-t=N\epsilon$表达，因此对真实时间$t$的导数换算成对剩余
+时间的导数时多一个负号。
+
+\paragraph{模型设定与记号}
+路径泛函$\mathcal{B}$的期望值定义为
+\begin{equation*}
+\langle\mathcal{B}\rangle=\frac{1}{Z_{BS}}\int_{BS}\mathcal{D}X\,
+e^{S_{BS}}\,\mathcal{B}\ ;\quad
+Z_{BS}=\int_{BS}\mathcal{D}X\,e^{S_{BS}}
+\tag{5.17}
+\end{equation*}
+因$\langle 1\rangle=1$，除以$Z_{BS}$才能把$e^{S_{BS}}/Z_{BS}$归一成
+概率测度。
+
+\paragraph{关键公式}
+在式(5.16)的积分里加一项与$\zeta_{i}$耦合的外源$j_{i}$，得矩生成
+配分函数：
+\begin{align*}
+Z_{BS}[j]&=\int_{BS}\mathcal{D}X\,e^{S_{BS}}\,e^{\sum_{i=1}^{N}j_{i}\zeta_{i}}\\
+&=e^{-r\tau}\Bigl[\frac{1}{2\pi\epsilon\sigma^{2}}\Bigr]^{N/2}
+\prod_{i=1}^{N}\int_{-\infty}^{+\infty}d\zeta_{i}\,
+e^{-\frac{1}{2\epsilon\sigma^{2}}\sum_{i=1}^{N}\zeta_{i}^{2}}\,
+\delta\Bigl(m-\sum_{i=1}^{N}\zeta_{i}\Bigr)\,
+e^{\sum_{i=1}^{N}j_{i}\zeta_{i}}
+\end{align*}
+与式(5.16)同理做高斯积分（$\mathcal{N}$为归一常数），得
+\begin{align*}
+Z_{BS}[j]&=\mathcal{N}\,e^{F[j]}\\
+F[j]&=\frac{1}{2}\epsilon\sigma^{2}\sum_{i=1}^{N}j_{i}^{2}
+-\frac{m^{2}}{2\epsilon\sigma^{2}N}
++\frac{m}{N}\sum_{i=1}^{N}j_{i}
+-\frac{\epsilon}{2N}\sigma^{2}\Bigl(\sum_{i=1}^{N}j_{i}\Bigr)^{2}
+\end{align*}
+其中$m=x-x'+\tau(r-\sigma^{2}/2)$见式(5.15)。对源求导即得各阶矩，
+并按剩余时间约定翻译回速度：
+\begin{align*}
+\frac{1}{\epsilon}\langle\zeta_{n}\rangle
+&=\frac{1}{\epsilon}\frac{\partial F[j]}{\partial j_{n}}\Big|_{j=0}
+=\frac{m}{\epsilon N}\\
+\Rightarrow\ \langle\frac{dx}{dt}\rangle
+&=-\frac{x-x'}{\tau}=\frac{x'-x}{T-t}
+\tag{5.18}
+\end{align*}
+进一步取两个时刻$t=n\epsilon$、$t'=i\epsilon$的速度关联：
+\begin{align*}
+\frac{1}{\epsilon^{2}}\langle\zeta_{i}\zeta_{n}\rangle
+&=\frac{1}{\epsilon^{2}}\frac{\partial^{2}F[j]}{\partial j_{i}\,\partial j_{n}}\Big|_{j=0}
+=\frac{1}{\epsilon}\sigma^{2}\delta_{n-i}-\frac{\sigma^{2}}{\epsilon N}
++\Bigl(\frac{m}{\epsilon N}\Bigr)^{2}\\
+\Rightarrow\ \langle\frac{dx(t)}{dt}\frac{dx(t')}{dt}\rangle
+&=\sigma^{2}\delta(t-t')-\frac{\sigma^{2}}{T-t}
++\Bigl(\frac{x'-x}{T-t}\Bigr)^{2}
+\tag{5.19}
+\end{align*}
+速度对自身平均值的偏离（涨落，fluctuation）为
+\begin{equation*}
+\langle\Bigl[\frac{dx(t)}{dt}-\langle\frac{dx(t)}{dt}\rangle\Bigr]
+\Bigl[\frac{dx(t')}{dt}-\langle\frac{dx(t)}{dt}\rangle\Bigr]\rangle
+=\sigma^{2}\delta(t-t')-\frac{\sigma^{2}}{T-t}
+\end{equation*}
+
+\paragraph{解读与联系}
+平均速度(5.18)不含$\sigma$——令$\sigma\to0$，随机速度退化为确定性
+的"经典速度"$(x-x')/(T-t)$，这是"经典极限"在金融语境的直接对应。
+速度涨落则完全由$\sigma\neq0$贡献：把式(5.19)扣除平均后的涨落项
+$\sigma^{2}\delta(t-t')-\sigma^{2}/(T-t)$与布朗桥（Brownian bridge）
+的协方差对照很有启发——固定两端$x(0)=x'$、$x(\tau)=x$的布朗运动，
+桥内涨落正是白噪声减去一个$1/\tau$型负修正，两套语言严丝合缝。
+\footnote{熟悉Shreve或Hull的读者可对照桥过程
+$W_{s}-\frac{s}{\tau}W_{\tau}$的协方差$\min(s,s')-\frac{ss'}{\tau}$：
+对时间求导后恰为$\sigma^{2}$倍的$\delta(t-t')-\frac{1}{\tau}$结构。}
+生成泛函技术（耦合外源、求导取矩）是第8章以后计算远期利率场论各阶
+矩时反复使用的标准武器，此处是其首次亮相。
+
+\subsection*{连续极限}
+
+离散路径积分(5.12)--(5.13)能安全取$N\to\infty$极限，原因是其测度
+本质上就是平直空间$\mathbb{R}^{N}$的测度。由式(5.10)与(5.12)取
+$\epsilon\to0$，作用量变成熟悉的时间积分：
+\begin{equation*}
+S_{BS}=\int_{0}^{\tau}dt\,L_{BS}
+=-\frac{1}{2\sigma^{2}}\int_{0}^{\tau}dt\,
+\Bigl(\frac{dx}{dt}+r-\frac{1}{2}\sigma^{2}\Bigr)^{2}
+\end{equation*}
+边界条件为$x(0)=x'$、$x(\tau)=x$。常数波动率的Black--Scholes情形
+由此显出它的物理身份：一个质量为$1/\sigma^{2}$的自由量子粒子的演化。
+略去无关常数后，连续时间的Black--Scholes定价核路径积分为
+\begin{align*}
+p_{BS}(x,\tau\vert x')&=\langle x\vert e^{-\tau H_{BS}}\vert x'\rangle
+=\int_{BS}\mathcal{D}X\,e^{S_{BS}}\\
+\int_{BS}\mathcal{D}X&=\prod_{t=0}^{\tau}\int_{-\infty}^{+\infty}dx(t)
+\tag{5.20}
+\end{align*}
+
+\origfig{5.1}{量子粒子同时走过所有虚路径（书页98；原图在附录5.9，属本
+章后半）。从$(x_{i},t_{i})$到$(x_{f},t_{f})$画出一束连接两端的路径：
+路径积分即对这束路径的振幅求和；$|\psi|^{2}$给出粒子出现在某点附近
+的概率。股价语境下同一张图读作：股票价格从$x'$演化到$x$，定价核是
+对其间所有可能路径的加权和。}
+
+与量子力学情形一样，式(5.20)是对全部股价变量$x(t)$的连续泛函积分，
+图形上即原书图5.1所示："股票价格在演化中同时取遍所有可能的取值"，
+定价核是对这束路径的求和。
+
+\section{路径依赖期权的路径积分}
+
+本节解决的问题是：路径积分框架如何容纳收益函数依赖整条路径的期权。
+路径依赖期权（path-dependent option）大体分两类：一类像障碍期权
+（barrier option），要求股价在约定期内停留在预定区间内，否则期权
+作废——这对应把路径积分的定义域收窄；另一类的收益函数依赖从初始
+时刻到到期日的全部股价取值（如亚式期权）——这对应在收益函数里
+塞进路径的时间积分。
+
+\paragraph{模型设定与记号}
+先看第一类。以附录4.14讨论过的双重敲出障碍期权（double knock-out
+barrier option）为例，股价被限制在$a\leq x(t')\leq b$（$t\leq t'\leq T$，
+$t$为当前时刻、$T$为到期时刻）。路径积分域从$\mathbb{R}^{N-1}$换成
+区间$[a,b]^{N-1}$，与式(5.12)对照得
+\begin{equation*}
+\int_{DB}\mathcal{D}X=\Bigl[\frac{1}{2\pi\epsilon\sigma^{2}}\Bigr]^{N/2}
+\prod_{i=1}^{N-1}\int_{a}^{b}dx_{i}
+\end{equation*}
+障碍期权的定价核即
+\begin{equation*}
+p_{DB}(x,\tau;x')=\int_{DB}\mathcal{D}X\,e^{S_{BS}}
+\end{equation*}
+再看第二类。一大类路径依赖期权的收益函数可写成（$\tau=T-t$）
+\begin{equation*}
+g[x,K]=\max\Bigl(K,\ \frac{1}{\tau}\int_{0}^{\tau}ds\,f(x(s))\Bigr)_{+}
+\end{equation*}
+亚式期权（Asian option）取$f(x(s))=e^{x(s)}$，即按股价的路径平均值
+结算（收益函数按原书所印形式照录）。Matacz曾用路径积分表示系统处理
+过一批这类期权。
+
+\paragraph{关键公式}
+现时$t$的期权价格由Black--Scholes路径积分配上路径收益函数给出：
+\begin{align*}
+C(x_{0};\tau;K)&=\int_{BS}\mathcal{D}X\,e^{S_{BS}}\,g(x,K)\\
+&=\int_{-\infty}^{+\infty}d\xi\,g(\xi,K)\,
+\Bigl[\int_{BS}\mathcal{D}X\,
+\delta\Bigl(\xi-\frac{1}{\tau}\int_{0}^{\tau}ds\,f(x(s))\Bigr)\,e^{S_{BS}}\Bigr]\\
+&\qquad\text{混合边界条件：}\ x(\tau)=x_{0}\ ;\ \frac{dx(0)}{dt}=0
+\end{align*}
+用$\delta$函数的傅里叶表示（附录A式(A.11)）改写：
+\begin{align*}
+C(x_{0},\tau;K)&=\int_{-\infty}^{+\infty}\frac{d\xi\,dp}{2\pi}\,
+e^{ip\xi}\,Z(p)\,g(\xi,K)\\
+\Rightarrow\ Z(p)&=\int_{BS}\mathcal{D}X\,e^{S_{\mathrm{eff}}(p)}\\
+\text{其中}\quad S_{\mathrm{eff}}(p)&=S_{BS}-i\frac{p}{\tau}
+\int_{0}^{\tau}ds\,f(x(s))
+\tag{5.21}
+\end{align*}
+对亚式期权$f(x)=e^{x}$，特别地有
+\begin{equation*}
+L_{\text{Asian option}}=L_{BS}-i\frac{p}{\tau}\,e^{x}
+\tag{5.22}
+\end{equation*}
+
+\paragraph{推导主线}
+两条路径、两种技术。障碍期权一路：作用量原封不动仍是$S_{BS}$，变的
+只是积分域$DB$——"路径依赖进入定义域而非作用量"。这个观察同时解释
+了为什么第4章用哈密顿量（本征函数展开天然吸收边界条件）处理障碍期权
+更高效，其结果即式(4.54)。路径平均一路则相反：没有障碍、作用量照旧，
+收益函数里的路径平均$\frac{1}{\tau}\int_{0}^{\tau}ds\,f(x(s))$先用
+$\delta$函数$\delta(\xi-\text{平均})$钉成一个新变量$\xi$，再把
+$\delta$函数傅里叶展开——约束被共轭变量$p$取代后，路径积分的指数上
+多出一项$-i\frac{p}{\tau}\int ds\,f(x(s))$，期权价格化成一个对$\xi$、
+$p$的普通二重积分乘以修正后的"有效作用量"路径积分。
+
+\paragraph{解读与联系}
+式(5.22)的读法是：路径依赖被翻译成一个"虚势"——亚式期权的拉格朗日
+量等于Black--Scholes拉格朗日量减去一个正比于$e^{x}$的线性项。原
+$S_{BS}$是$x$的二次型，加上$-i(p/\tau)e^{x}$后指数仍属可积的高斯
+家族，故路径依赖期权在路径积分框架里往往比在偏微分方程框架里更接近
+可解；这也为第7章以后"把复杂结构塞进指数、尽量保持高斯可积"的处理
+范式做了预告。混合边界条件（末端钉值$x(\tau)=x_{0}$、初端自由）值得
+留意：对路径初值不施加固定值，等价于在该端点取自然（Neumann）边界
+条件——这正是下一节简谐振子要正面处理的技术。
+
+\section{期权定价哈密顿量的作用量}
+
+本节解决的问题是：给定一个带任意势$V(x)$的期权定价哈密顿量，写出它
+对应的作用量——把5.1--5.2的流程抽象成通用模板，使"任意的（路径
+依赖）结构都可以表示成路径积分中的一项"。
+
+\paragraph{关键公式}
+带任意势$V(x)$的定价哈密顿量（第4章的结果）为
+\begin{equation*}
+H_{V}=-\frac{\sigma^{2}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{1}{2}\sigma^{2}-V(x)\Bigr)\frac{\partial}{\partial x}
++V(x)
+\tag{5.23}
+\end{equation*}
+与Black--Scholes情形完全平行的分析给出定价核的路径积分表示：
+\begin{align*}
+p_{V}(x,\tau\vert x')&=\langle x\vert e^{-\tau H_{V}}\vert x'\rangle\\
+&=\int_{BS}\mathcal{D}X\,e^{S_{V}}
+\end{align*}
+其中
+\begin{equation*}
+S_{V}=-\int_{0}^{\tau}dt\,
+\Bigl[\frac{1}{2\sigma^{2}}\Bigl(\frac{dx}{dt}-V(x)+\frac{1}{2}\sigma^{2}\Bigr)^{2}
++V(x)\Bigr]
+\tag{5.24}
+\end{equation*}
+
+\paragraph{解读与联系}
+对照式(5.9)（相当于$V=0$的特例）可见势$V(x)$从两处进入作用量：一是
+把"速度平移"从$r-\sigma^{2}/2$换成$-V(x)+\sigma^{2}/2$，等效于给
+扩散过程一个位置相关的漂移$\frac{1}{2}\sigma^{2}-V(x)$；二是显式多出
+一项$-V(x)$。用费曼--卡茨（Feynman--Kac）公式的话说：$-V$既修正
+生成元的漂移、又是"杀势"，这正是抛物型方程与路径期望互相翻译的
+标准结构。本节的连续作用量在附录5.10（见后半）将以离散形式重现，用于
+推导金融版对易关系$[\hat{x},\hat{\dot{x}}]=\sigma^{2}$；结论是势对
+对易子只有$O(\epsilon)$的效应——Black--Scholes拉格朗日量足以支撑
+普适结论，这也说明5.2节的特殊情形并不特殊。
+
+\section{简谐振子的路径积分}
+
+本节转场到量子力学：计算简谐振子（simple harmonic oscillator）的路径
+积分。它是量子力学里最简单、也最有用的可解模型之一，本质上是无穷维
+高斯积分的一个特例。放在期权定价的教科书里，它绝非闲笔：本节算出的
+传播子$D(t,t')$（propagator）——动能算符的逆——正是第7--10章远期
+利率量子场论中传播子的原型，那里的场论传播子不过是它的"多变量版"。
+本节的技术主线是把路径积分的泛函积分化成一串单变量高斯积分，手法是
+傅里叶（简正模式）展开——这是路径积分三大技术之二。
+
+\paragraph{模型设定与记号}
+一个量子粒子，随机位置为$x$，在势$\hat{V}(x)=\frac{1}{2}\omega^{2}x^{2}$
+中运动——即恢复力正比于离原点位移的胡克定律。粒子质量$m$、弹簧常数
+$\omega$，受外力$j$。从初始时刻位置$t_{i},x_{i}$到最终时刻位置
+$t_{f},x_{f}$，拉格朗日量与作用量为
+\begin{align*}
+S&=\int_{t_{i}}^{t_{f}}dt\,L\Bigl[x,\frac{dx}{dt}\Bigr]\\
+L&=-\frac{1}{2}m\Bigl(\frac{dx}{dt}\Bigr)^{2}-\frac{1}{2}m\omega^{2}x^{2}+jx
+\tag{5.25}
+\end{align*}
+（注意欧几里得符号约定：动能与势能两项都带负号，$L$是负定的，与式
+(5.9)、(5.24)的约定一致。）转移振幅为
+\begin{equation*}
+p(x;t_{i};x_{f},t_{f})=\langle x_{f}\vert e^{-(t_{f}-t_{i})H}\vert x_{i}\rangle
+=\int\mathcal{D}X\,e^{S}
+\end{equation*}
+（原书此式测度沿用了$\int_{BS}$的下标，系笔误，按5.1节记号应为
+$\int\mathcal{D}X$。）当初末位置$x_{i},x_{f}$也给随机性、被积分掉时，
+定义生成泛函\footnote{原书脚注3：因系统有无穷多个变量（每个时刻一个
+$x(t)$），故称生成泛函（generating functional）而非生成函数
+（generating function）。}
+\begin{equation*}
+Z(t_{i},t_{f};j)=\int_{-\infty}^{+\infty}dx_{i}\,dx_{f}\,
+p(x_{i},t_{i};x_{f},t_{f})
+\tag{5.26}
+\end{equation*}
+对初末位置的积分可以换一种方式实现——改边界条件。路径$x(t)$不再
+钉死两端取值，而是取
+\begin{equation*}
+\frac{dx(t_{i})}{dt}=0=\frac{dx(t_{f})}{dt}
+\quad\text{：Neumann边界条件}
+\tag{5.27}
+\end{equation*}
+Neumann边界条件允许对式(5.25)的作用量分部积分（边界项因式(5.27)
+消失），得到二次型：
+\begin{equation*}
+S=-\frac{1}{2}m\int_{t_{i}}^{t_{f}}dt\,x(t)
+\Bigl[-\frac{d^{2}}{dt^{2}}+\omega^{2}\Bigr]x(t)
++\int_{t_{i}}^{t_{f}}dt\,j(t)x(t)
+\tag{5.28}
+\end{equation*}
+生成泛函即Neumann边界条件下的路径积分：
+\begin{equation*}
+Z(t_{i},t_{f};j)=\int_{N}\mathcal{D}X\,e^{S}
+\tag{5.29}
+\end{equation*}
+下标$N$表示对路径积分施加Neumann边界条件。套用附录A式(A.19)--(A.20)
+的无穷维高斯积分公式，定义传播子
+\begin{equation*}
+m\Bigl[-\frac{d^{2}}{dt^{2}}+\omega^{2}\Bigr]
+D(t,t';t_{i},t_{f})=\delta(t-t')
+\quad\text{：Neumann边界条件}
+\end{equation*}
+便有
+\begin{equation*}
+Z(t_{i},t_{f};j)=e^{\frac{1}{2}\int_{t_{i}}^{t_{f}}dt\,dt'\,
+j(t)\,D(t,t';t_{i},t_{f})\,j(t')}
+\tag{5.30}
+\end{equation*}
+$D(t,t';t_{i},t_{f})$就是简谐振子的传播子——它同时是关联函数
+$\langle x(t)x(t')\rangle$。
+
+\subsection*{简谐振子路径积分：傅里叶展开}
+
+式(5.29)迄今只是形式解；本小节把它真正积出来。路径积分
+$\int\mathcal{D}X\,e^{S}$跑遍所有满足Neumann边界条件(5.27)的路径
+（函数）$x(t)$，而这类函数恰可用傅里叶余弦级数展开——Neumann条件
+正是余弦基的特征（端点导数为零）。
+
+\paragraph{模型设定与记号}
+记$\tau\equiv t_{f}-t_{i}$，展开
+\begin{align*}
+x(t)&=a_{0}+\sum_{n=1}^{\infty}a_{n}
+\cos\Bigl[n\pi\frac{(t-t_{i})}{\tau}\Bigr]\\
+\int_{N}\mathcal{D}X&=\mathcal{N}\prod_{n=0}^{\infty}
+\int_{-\infty}^{+\infty}da_{n}
+\quad\text{：无穷多重积分}
+\end{align*}
+$\mathcal{N}$为归一常数。泛函积分从此变成可操作的无穷维积分：对每个
+傅里叶系数$a_{n}$各积一次。
+
+\paragraph{关键公式}
+余弦基的正交性（$m,n\geq1$）：
+\begin{align*}
+\int_{t_{i}}^{t_{f}}dt\,\cos\Bigl[n\pi\frac{(t-t_{i})}{\tau}\Bigr]
+\cos\Bigl[m\pi\frac{(t-t_{i})}{\tau}\Bigr]
+&=\int_{t_{i}}^{t_{f}}dt\,\sin\Bigl[n\pi\frac{(t-t_{i})}{\tau}\Bigr]
+\sin\Bigl[m\pi\frac{(t-t_{i})}{\tau}\Bigr]\\
+&=\frac{\tau}{2}\delta_{m-n}\ ;\quad m,n\geq1
+\tag{5.31}
+\end{align*}
+把展开代入式(5.28)，作用量在傅里叶基下对角化：
+\begin{align*}
+S&=-\frac{1}{2}m\omega^{2}\tau\biggl\{a_{0}^{2}
++\frac{1}{2}\sum_{n=1}^{\infty}
+\Bigl[1+\Bigl(\frac{n\pi}{\omega\tau}\Bigr)^{2}\Bigr]a_{n}^{2}\biggr\}\\
+&\quad+\int_{t_{i}}^{t_{f}}dt\,j(t)\biggl\{a_{0}
++\sum_{n=1}^{\infty}a_{n}\cos\Bigl[n\pi\frac{(t-t_{i})}{\tau}\Bigr]\biggr\}\\
+&=-\frac{1}{2}\sum_{n=0}^{\infty}\kappa_{n}a_{n}^{2}
++\sum_{n=0}^{\infty}j_{n}a_{n}
+\tag{5.32}
+\end{align*}
+其中
+\begin{align*}
+&\kappa_{0}=m\omega^{2}\tau\ ;\quad
+\kappa_{n}=\frac{1}{2}m\omega^{2}\tau
+\Bigl[1+\Bigl(\frac{n\pi}{\omega\tau}\Bigr)^{2}\Bigr]\ ;\quad n\geq1\\
+&j_{n}=\int_{t_{i}}^{t_{f}}dt\,j(t)\cos\Bigl[n\pi\frac{(t-t_{i})}{\tau}\Bigr]\ ;
+\quad n=0,1,\ldots\infty
+\end{align*}
+各$a_{n}$的高斯积分在作用量(5.32)中完全解耦，路径积分化成无穷多个
+单变量高斯积分的乘积，逐个套用附录A式(A.16)：
+\begin{align*}
+Z(t_{i},t_{f};j)&=\int\mathcal{D}X\,e^{S}\\
+&=\mathcal{N}\prod_{n=0}^{\infty}
+\Bigl[\int_{-\infty}^{+\infty}da_{n}\,
+e^{-\frac{1}{2}\kappa_{n}a_{n}^{2}+j_{n}a_{n}}\Bigr]\\
+&=e^{\frac{1}{2}\sum_{n=0}^{\infty}j_{n}\frac{1}{\kappa_{n}}j_{n}}
+\tag{5.33}
+\end{align*}
+与式(5.30)对照读出传播子的模式展开：
+\begin{equation*}
+D(t,t';t_{i},t_{f})=\frac{1}{m\omega^{2}\tau}\biggl\{1
++2\sum_{n=1}^{\infty}\cos\Bigl[n\pi\frac{(t-t_{i})}{\tau}\Bigr]
+\Bigl[\frac{1}{1+\bigl(\frac{n\pi}{\omega\tau}\bigr)^{2}}\Bigr]
+\cos\Bigl[n\pi\frac{(t'-t_{i})}{\tau}\Bigr]\biggr\}
+\tag{5.34}
+\end{equation*}
+令$\theta=t-t_{i}>0$、$\theta'=t'-t_{i}>0$，用积化和差把分子改写：
+\begin{equation*}
+2\sum_{n=1}^{\infty}
+\frac{\cos(n\pi\theta/\tau)\cos(n\pi\theta'/\tau)}
+{1+\bigl(\frac{n\pi}{\omega\tau}\bigr)^{2}}
+=\Bigl(\frac{\omega\tau}{\pi}\Bigr)^{2}\sum_{n=1}^{\infty}
+\frac{\cos(n\pi(\theta+\theta')/\tau)+\cos(n\pi(\theta-\theta')/\tau)}
+{\bigl(\frac{\omega\tau}{\pi}\bigr)^{2}+n^{2}}
+\tag{5.35}
+\end{equation*}
+对整数$n$求和用恒等式\footnote{原书脚注4：式(5.36)对任意复数$a$
+成立，后文将在$a$为复数的场合使用；右端只需$a^{2}$，无须指定$a^{2}$
+平方根的分支。}
+\begin{equation*}
+\sum_{n=1}^{\infty}\frac{\cos(n\theta)}{a^{2}+n^{2}}
+=\frac{\pi}{2a}\,\frac{\cosh\bigl((\pi-|\theta|)a\bigr)}{\sinh\pi a}
+-\frac{1}{2a^{2}}
+\tag{5.36}
+\end{equation*}
+（原书印作$\cosh(\pi-|\theta|)a$，按恒等式读作
+$\cosh\bigl((\pi-|\theta|)a\bigr)$。）得封闭形式：
+\begin{equation*}
+D(t,t';t_{i},t_{f})
+=\frac{\cosh\omega\{\tau-|\theta-\theta'|\}
++\cosh\omega\{\tau-(\theta+\theta')\}}
+{2m\omega\sinh\omega\tau}
+\tag{5.37}
+\end{equation*}
+代回$\theta,\theta'$并注意$\tau=t_{f}-t_{i}$，传播子为
+\begin{equation*}
+D(t,t';t_{i},t_{f})=
+\frac{\cosh\omega\{(t_{f}-t_{i})-|t-t'|\}
++\cosh\omega\{(t_{f}-t_{i})-(t+t'-2t_{i})\}}
+{2m\omega\sinh\omega(t_{f}-t_{i})}
+\tag{5.38}
+\end{equation*}
+取无穷时间极限$t_{i}\to-\infty$、$t_{f}\to+\infty$，双曲函数中来自
+边界的第二项消失，只剩平移不变部分：
+\begin{equation*}
+D(t,t')=\frac{1}{2m\omega}\,e^{-\omega|t-t'|}
+\tag{5.39}
+\end{equation*}
+此式在附录A用另一方法（式(A.3.3)）亦曾导出。
+
+\paragraph{推导主线}
+五步。第一，式(5.26)对初末位置的显式积分等价于给路径换Neumann边界
+条件(5.27)——"积分掉端点"="放开端点"，这是场论里"对场构形积分
+自动给出自然边界条件"的最简实例。第二，分部积分把作用量写成
+$x\cdot(\text{动能算符})\cdot x$的二次型(5.28)：没有Neumann条件，
+分部积分的边界项下不去。第三，傅里叶展开把泛函自由度离散成可数无穷
+个系数$a_{n}$，正交性(5.31)保证二次型矩阵是对角的；动能算符
+$-d^{2}/dt^{2}$在余弦基下的本征值是$(n\pi/\tau)^{2}$，与$\omega^{2}$
+合并即式(5.32)中的$1+(n\pi/\omega\tau)^{2}$因子——"简正模式"的
+频谱一目了然。第四，每个模式做单变量高斯积分(5.33)，指数上是
+$j_{n}(1/\kappa_{n})j_{n}$：源的两两耦合经"质量的倒数"传播——
+传播子就是二次型系数矩阵的逆。第五，模方级数(5.34)经积化和差(5.35)
+与经典求和公式(5.36)化成双曲函数的封闭形式(5.37)--(5.38)。
+
+\paragraph{解读与联系}
+这节给出的不只是教科书习题。式(5.30)的结构$Z=\exp(\frac{1}{2}jDj)$
+是所有高斯型（自由）理论的总公式：知道传播子$D$就知道一切关联函数。
+式(5.38)这类"有限区间+边界条件"的传播子正是第7--10章远期利率场论
+传播子$D(\theta,\theta')$的直接前身后——附录A.7将用本征函数法与
+格林函数法对不同边界条件重推此式（含Dirichlet情形），供后文反复调用。
+对金融读者不妨这样理解$D$：它量度"今天的外力扰动$j$对日后位置$x$
+的影响残留"，$\omega$越大（回复越快）残留衰减越快，指数
+$e^{-\omega|t-t'|}$即记忆的时间尺度。
+
+\section{随机波动率股票价格的拉格朗日量}
+
+至此路径积分只处理过线性理论——作用量是随机变量的二次型，高斯积分
+包打天下。作用量含三次及以上幂的非线性系统一般出了名地难解，可精确
+求解者屈指可数；本节处理的股价+随机波动率（stochastic volatility）
+系统恰是这样的稀有物种：它能用路径积分精确求解。系统每个时刻有两个
+随机变量（两个自由度）——股价$S(t)$与其波动率$V(t)$。这个例子既因
+随机波动率本身而重要，也因其复杂度恰到好处：它是演示路径积分推导
+技术的样板戏，此后遇到更难的系统（如远期利率场论）时，这里的每一招
+都会重演。
+
+\paragraph{模型设定与记号}
+回到第3章的Merton--Garman框架。式(3.34)的哈密顿量对任意参数$\alpha$
+成立；期权价格的实证数据显示结果对$\alpha$的具体取值相当不敏感，
+$\frac{1}{2}\leq\alpha\leq1$的任何值拟合得一样好。本节只取$\alpha=1$
+（计算大为简化，且给出高效的数值算法），并取波动率随机方程(3.27)中
+$\lambda=0$。沿用第3章记号$x=\ln S$、$y=\ln V$，两个高斯白噪声
+$Q$、$R$的相关系数为$\rho$，股价与波动率的基本随机方程为
+\begin{equation*}
+\frac{dV}{dt}=\mu V+\xi VQ\ ;\quad
+\frac{dS}{dt}=\phi S+\sigma SR
+\tag{5.40}
+\end{equation*}
+$\alpha=1$、$\lambda=0$的Merton--Garman哈密顿量（第3章式(3.34)
+改写为算符形式）：
+\begin{align*}
+H_{MG}=-\frac{e^{y}}{2}\frac{\partial^{2}}{\partial x^{2}}
++\Bigl(\frac{1}{2}e^{y}-r\Bigr)\frac{\partial}{\partial x}
+-\xi\rho e^{y/2}\frac{\partial^{2}}{\partial x\,\partial y}
+-\frac{\xi^{2}}{2}\frac{\partial^{2}}{\partial y^{2}}
++\Bigl(\frac{1}{2}\xi^{2}-\mu\Bigr)\frac{\partial}{\partial y}
+\tag{5.41}
+\end{align*}
+注意$x$方向与$y$方向通过交叉导数项$-\xi\rho e^{y/2}\partial_{x}\partial_{y}$
+耦合，耦合强度由相关系数$\rho$控制；$e^{y}$取代了常数$\sigma^{2}$
+的位置——波动率进入"动能"。
+
+\subsection*{Merton--Garman拉格朗日量的推导}
+
+本小节从$\mathcal{H}_{MG}$出发导出拉格朗日量$L_{MG}$（为简明，
+推导中省去哈密顿量的下标$MG$）。困难在于$x$与$y$两个自由度的算符
+都不对易于坐标，须借用第4章4.6.1节引入的动量基：把短时间矩阵元
+先在动量表象中算出（那里哈密顿量是普通函数），再做二维高斯积分。
+
+\paragraph{模型设定与记号}
+由动量基完备性（第4章式(4.34)）：
+\begin{align*}
+\langle x,y\vert e^{-\epsilon H}\vert x',y'\rangle
+&=\int_{-\infty}^{\infty}\frac{dp_{x}}{2\pi}\frac{dp_{y}}{2\pi}\,
+\langle x,y\vert e^{-\epsilon H}\vert p_{x},p_{y}\rangle
+\langle p_{x},p_{y}\vert x',y'\rangle\\
+&=\int_{-\infty}^{\infty}\frac{dp_{x}}{2\pi}\frac{dp_{y}}{2\pi}\,
+e^{ip_{x}(x-x')}e^{ip_{y}(y-y')}e^{-\epsilon H(x,y,p_{x},p_{y})}
+\tag{5.42}
+\end{align*}
+（原书此式首行积分测度印作$dp_{y}\,dp_{y}$、指数印作
+$H(x,y,p_{y},p_{y})$，均为$p_{x}$之误，已按上下文订正。）由式(5.41)，
+哈密顿量的动量表象（$p\to$乘$ip$的代换）是
+\begin{equation*}
+H(x,y,p_{x},p_{y})=\frac{e^{y}}{2}p_{x}^{2}
++\Bigl(\frac{1}{2}e^{y}-r\Bigr)ip_{x}
++\xi\rho e^{y/2}p_{x}p_{y}
++\frac{\xi^{2}}{2}p_{y}^{2}
++\Bigl(\frac{1}{2}\xi^{2}-\mu\Bigr)ip_{y}
+\end{equation*}
+写成矩阵形式：
+\begin{align*}
+\langle x,y\vert e^{-\epsilon H}\vert x',y'\rangle
+&=\int_{-\infty}^{\infty}\frac{dp_{x}}{2\pi}\frac{dp_{y}}{2\pi}
+\exp\biggl\{-\frac{\epsilon}{2}
+\begin{bmatrix}p_{x} & p_{y}\end{bmatrix}\mathcal{M}
+\begin{bmatrix}p_{x}\\ p_{y}\end{bmatrix}
++i\begin{bmatrix}A & B\end{bmatrix}
+\begin{bmatrix}p_{x}\\ p_{y}\end{bmatrix}\biggr\}
+\tag{5.43}
+\end{align*}
+其中
+\begin{equation*}
+A=x-x'+\epsilon r-\frac{\epsilon}{2}e^{y},\qquad
+B=y-y'+\epsilon\mu-\frac{\epsilon}{2}\xi^{2}
+\end{equation*}
+而"质量矩阵"为
+\begin{equation*}
+\mathcal{M}=\begin{bmatrix}
+e^{y} & \xi\rho e^{y/2}\\
+\xi\rho e^{y/2} & \xi^{2}
+\end{bmatrix}
+\end{equation*}
+对$p_{x}$、$p_{y}$做高斯积分所需的行列式与逆矩阵为
+\begin{equation*}
+\det\mathcal{M}=\xi^{2}e^{y}(1-\rho^{2}),\qquad
+\mathcal{M}^{-1}=\frac{1}{\xi^{2}(1-\rho^{2})}
+\begin{bmatrix}
+\xi^{2}e^{-y} & -\xi\rho e^{-y/2}\\
+-\xi\rho e^{-y/2} & 1
+\end{bmatrix}
+\end{equation*}
+
+\paragraph{关键公式}
+用附录A式(A.18)完成式(5.43)中的二维高斯积分，并把5.1节的定义式(5.5)
+推广到随机波动率情形（每步写出$\epsilon L$）：
+\begin{equation*}
+\langle x,y\vert e^{-\epsilon H}\vert x',y'\rangle
+=\frac{1}{2\pi\epsilon\sqrt{\det\mathcal{M}}}\,e^{\epsilon L}
+\tag{5.44}
+\end{equation*}
+其中
+\begin{equation*}
+L_{MG}=-\frac{1}{2\epsilon^{2}(1-\rho^{2})}
+\Bigl(e^{-y}A^{2}+\frac{1}{\xi^{2}}B^{2}
+-2\frac{\rho}{\xi}e^{-y/2}AB\Bigr)+O(\epsilon)
+\tag{5.45}
+\end{equation*}
+化简式(5.45)，记$\delta x=x-x'$、$\delta y=y-y'$，得$\alpha=1$的
+（负定的）Merton--Garman拉格朗日量：
+\begin{align*}
+L_{MG}&=-\frac{1}{2\xi^{2}}\Bigl(\frac{\delta y}{\epsilon}
++\mu-\frac{1}{2}\xi^{2}\Bigr)^{2}\\
+&\quad-\frac{e^{-y}}{2(1-\rho^{2})}
+\biggl[\frac{\delta x}{\epsilon}+r-\frac{1}{2}e^{y}
+-\frac{\rho}{\xi}e^{y/2}\Bigl(\frac{\delta y}{\epsilon}
++\mu-\frac{1}{2}\xi^{2}\Bigr)\biggr]^{2}+O(\epsilon)\\
+&\equiv L_{0}+L_{X}
+\tag{5.46}
+\end{align*}
+$\epsilon\to0$时单步矩阵元趋于双$\delta$函数（归一因子恰好保证
+极限正确）：
+\begin{equation*}
+\lim_{\epsilon\to0}\ \langle x_{i},y_{i}\vert e^{-\epsilon H}\vert
+x_{i-1},y_{i-1}\rangle
+=\delta(x_{i}-x_{i-1})\,\delta(y_{i}-y_{i-1})+O(\epsilon)
+\tag{5.47}
+\end{equation*}
+作用量为
+\begin{align*}
+S&=\epsilon\sum_{i=1}^{N}L(i)+O(\epsilon)\\
+&\equiv S_{0}+S_{X}
+\tag{5.48}
+\end{align*}
+$S$对$x_{i}$是二次的、对$y_{i}$是非线性的（$e^{-y}$与$e^{y/2}$在场）
+——故至少股价部分的路径积分原则上可以精确做出。汇集式(5.6)与
+(5.48)，Merton--Garman定价核为
+\begin{align*}
+p(x,y,\tau;x')&=\int_{-\infty}^{\infty}dy'\,p(x,y,\tau;x',y')\\
+&=\lim_{N\to\infty}\int\mathcal{D}X\,\mathcal{D}Y\,e^{S}
+\tag{5.49}
+\end{align*}
+其中（$\epsilon=\tau/N$）股价测度带非线性权重：
+\begin{equation*}
+\int\mathcal{D}X=\frac{e^{-y_{N}/2}}{\sqrt{2\pi\epsilon(1-\rho^{2})}}
+\prod_{i=1}^{N-1}\int_{-\infty}^{\infty}
+\frac{dx_{i}\,e^{-y_{i}/2}}{\sqrt{2\pi\epsilon(1-\rho^{2})}}
+\tag{5.50}
+\end{equation*}
+波动率测度则为平直测度，且因式(5.49)对初值$y'$积分而多出一重
+$dy_{0}=dy'$：
+\begin{equation*}
+\int\mathcal{D}Y=\int_{-\infty}^{\infty}dy_{0}
+\prod_{i=1}^{N-1}\int_{-\infty}^{\infty}
+\frac{dy_{i}}{\sqrt{2\pi\epsilon\xi^{2}}}
+\tag{5.51}
+\end{equation*}
+
+\paragraph{推导主线}
+全部难度集中在一次二维高斯积分上。第一步(5.42)把算符问题翻译成
+动量表象里的普通积分：在$\vert p_{x},p_{y}\rangle$基下，
+$\partial_{x}\to ip_{x}$、$\partial_{y}\to ip_{y}$，哈密顿量退化成
+$p_{x},p_{y}$的多项式。第二步把指数组织成式(5.43)的"二次型+线性型"
+标准形——注意线性项的系数$A$、$B$正是两端坐标差加漂移修正，与
+Black--Scholes情形的$m$（式5.15）角色相同；二次型矩阵$\mathcal{M}$
+的两个本征方向就是"股价+波动率"的联合涨落方向，$\rho$藏在非对角元。
+第三步是教科书式的矩阵高斯积分：积分值由$\det\mathcal{M}$与
+$\mathcal{M}^{-1}$决定（附录A式(A.18)），指数上留下
+$-\frac{1}{2\epsilon}$乘"坐标差经$\mathcal{M}^{-1}$收缩"的二次型，
+即式(5.45)——三个平方项的组合正是逆矩阵元的排列。第四步把$\epsilon$
+吸收回$\delta x/\epsilon$、$\delta y/\epsilon$，整理成式(5.46)。
+
+\paragraph{解读与联系}
+式(5.46)的结构值得细读。$L_{0}$是波动率自身的拉格朗日量：平直空间里
+的自由粒子（质量$1/\xi^{2}$，速度平移$\mu-\xi^{2}/2$）——波动率方程
+(5.40)本身是几何布朗运动，对数为线性，故这部分与Black--Scholes同构。
+$L_{X}$是股价部分：先是常见的$e^{-y}$权重（波动率越高、股价路径的
+"质量"越小），方括号内则是股价速度减去两项修正——$-\frac{1}{2}e^{y}$
+是对数坐标的伊藤修正（现在是随机的），$-\frac{\rho}{\xi}e^{y/2}
+(\cdots)$是$\rho\neq0$时波动率涨落通过交叉项泄露给股价的部分；
+$\rho=0$时这一项消失，$L_{X}$退化为"参数随路径变化的Black--Scholes"。
+另一关键在测度(5.50)：因子$e^{-y_{i}/2}$来自$\sqrt{\det\mathcal{M}}
+\propto e^{y/2}$，它使$\int\mathcal{D}X$不再是平直测度——这正是
+5.7节"必须先做$\mathcal{D}X$积分、再取连续极限"的原因。求
+$S(t)$与$V(t')$这类交叉关联时也须回到路径积分(5.49)。任意$\alpha$的
+一般情形，原书放到章末附录5.11--5.14（见后半）。
+
+\section{随机波动率的定价核}
+
+本节完成任务：把式(5.49)的路径积分真正积出来。策略是"先难后易"：
+先精确做出$\int\mathcal{D}X$（对$x_{i}$的高斯积分），再对剩下的
+$\int\mathcal{D}Y$取连续极限。解的形式是一个无穷级数，尚余若干残差
+积分，但它们全都可以精确完成——因此这个问题可谓已被形式地彻底解决。
+（连续极限$N\to\infty$的严格依据由后半附录5.11的式(5.81)给出。）
+
+\paragraph{模型设定与记号}
+精确做完$\int\mathcal{D}X$后，剩下的$\int\mathcal{D}Y$的测度正如
+Black--Scholes情形一样本质上是平直空间$\mathbb{R}^{N}$的测度（这与
+式(5.50)的非线性形式截然不同），故对$\int\mathcal{D}Y$与
+$S_{0}+S_{1}$可以放心取$N\to\infty$极限。取$\epsilon\to0$：相邻差
+$\delta y_{i}/\epsilon\to dy/dt$，黎曼和$\epsilon\sum_{i=1}^{N}e^{y_{i}}
+\to\int_{0}^{\tau}dt\,e^{y(t)}\equiv\tau w$。于是连续时间作用量分解为
+\begin{equation*}
+S=S_{0}+S_{1}
+\tag{5.52}
+\end{equation*}
+其中
+\begin{align*}
+S_{0}&=-\frac{1}{2\xi^{2}}\int_{0}^{\tau}dt\,
+\Bigl(\frac{dy}{dt}+\mu-\frac{1}{2}\xi^{2}\Bigr)^{2}\\
+S_{1}&=-\frac{1}{2(1-\rho^{2})w}\,\Bigl\{x-x'+r\tau
+-\frac{1}{2}\int_{0}^{\tau}dt\,e^{y(t)}\\
+&\quad+\frac{2\rho}{\xi}\bigl(e^{y(0)/2}-e^{y/2}\bigr)
+-\frac{\rho}{\xi}\Bigl(\mu-\frac{\xi^{2}}{2}\Bigr)
+\int_{0}^{\tau}dt\,e^{y(t)/2}\Bigr\}^{2}
+\tag{5.53}
+\end{align*}
+边界值为$y(\tau)=y$。定价核是只余波动率路径的积分：
+\begin{equation*}
+p(x,y,\tau;x')=\int\mathcal{D}Y\,
+\frac{e^{S}}{\sqrt{2\pi(1-\rho^{2})\tau w}}
+\tag{5.54}
+\end{equation*}
+
+\paragraph{关键公式}
+$\rho\neq0$时（$\rho=0$的情形见下文脚注），由式(5.54)可见定价核除
+$w$外还依赖$u=\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)/2}dt$与
+$e^{y(0)/2}$。引入三个"路径矩"变量
+\begin{equation*}
+u=\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)/2}dt\ ;\quad
+v=e^{y(0)/2}\ ;\quad
+w=\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)}dt
+\end{equation*}
+把定价核写成对这些矩的加权平均：
+\begin{equation*}
+p(x,y,\tau;x')=\int_{0}^{\infty}dw\ du\ dv\,
+\frac{e^{S_{1}(u,v,w)}}{\sqrt{2\pi(1-\rho^{2})\tau w}}\,g(u,v,w)
+\tag{5.55}
+\end{equation*}
+其中
+\begin{align*}
+S_{1}(u,v,w)&=-\frac{1}{2(1-\rho^{2})\tau w}\,
+\Bigl[x-x'+r\tau-\frac{\tau}{2}w
++\frac{2\rho}{\xi}(v-e^{y/2})\\
+&\qquad\qquad-\frac{\rho}{\xi}\Bigl(\mu-\frac{\xi^{2}}{2}\Bigr)u\Bigr]^{2}
+\end{align*}
+而$g(u,v,w)$是矩$(u,v,w)$的概率分布，由带三个$\delta$约束的路径
+积分给出：
+\begin{align*}
+g(u,v,w)&=\int\mathcal{D}Y\,e^{S_{0}}\,
+\delta\bigl\{v-e^{y(0)/2}\bigr\}\,
+\delta\Bigl\{u-\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)/2}\,dt\Bigr\}\,
+\delta\Bigl\{w-\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)}\,dt\Bigr\}
+\tag{5.56}
+\end{align*}
+由式(5.56)看，$g(u,v,w)$是$u,v,w$的概率密度，定价核(5.55)是
+$e^{S_{1}(u,v,w)}/\sqrt{2\pi(1-\rho^{2})\tau w}$对分布$g$的加权平均。
+$g$的路径积分是非线性的，无法精确做出；但它有一个非凡性质——与
+$\rho$完全无关。沿用Hull--White的思路，把式(5.55)的被积函数按
+$u,v,w$展成无穷幂级数，定价核的计算便化归为求$u,v,w$的各阶矩：
+\begin{align*}
+\langle u^{n}w^{m}v^{p}\rangle
+&\equiv\int_{0}^{\infty}du\ dw\ u^{n}\,w^{m}\,v^{p}\ g(u,v,w)\\
+&=\int\mathcal{D}Y\,
+\Bigl[\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)/2}\,dt\Bigr]^{n}
+\Bigl[\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)}\,dt\Bigr]^{m}
+e^{py(0)/2}\,e^{S_{0}}
+\tag{5.57}
+\end{align*}
+这个路径积分可以精确完成。把矩写成对插入时刻的多重积分：
+\begin{equation*}
+\langle u^{n}w^{m}v^{p}\rangle
+=\frac{1}{\tau^{n+m}}\int_{0}^{\tau}dt_{1}\cdots dt_{n}\,
+dt_{n+1}\cdots dt_{n+m}\,Z(j,y,p)
+\tag{5.58}
+\end{equation*}
+其中生成泛函
+\begin{equation*}
+Z(j,y,p)=\int\mathcal{D}Y\,\exp\Bigl[\int_{0}^{\tau}dt\,j(t)y(t)\Bigr]\,e^{S_{0}}
+\tag{5.59}
+\end{equation*}
+由式(5.57)--(5.59)反推，外源$j(t)$是一串$\delta$函数的集合：
+\begin{align*}
+j(t)&=\frac{1}{2}\sum_{i=1}^{n}\delta(t-t_{i})
++\sum_{i=n+1}^{n+m}\delta(t-t_{i})+\frac{p}{2}\,\delta(t)\\
+&\equiv\sum_{i=1}^{n+m}a_{i}\,\delta(t-t_{i})+\frac{p}{2}\,\delta(t)
+\tag{5.60}
+\end{align*}
+$Z(j,y,p)$在附录5.12（见后半；用到其式(5.93)、(5.94)）中被精确算出，
+于是
+\begin{equation*}
+\langle u^{n}w^{m}v^{p}\rangle
+=\sigma^{p}\,\frac{e^{y\sum_{i}a_{i}}}{\tau^{n+m}}
+\Biggl[\prod_{i=1}^{n+m}\int_{0}^{\tau}dt_{i}\Biggr]\,e^{F}
+\qquad\text{：}\alpha=1\ \text{精确解}
+\tag{5.61}
+\end{equation*}
+（此处$\sigma=e^{y(0)/2}=v$即初始波动率；$n+m=0$时约定空积分为1、
+空求和为0。）由式(5.60)与附录5.12的结果，经整理得
+\begin{equation*}
+F=\Bigl(\mu-\frac{1}{2}\xi^{2}\Bigr)\sum_{i=1}^{n+m}a_{i}t_{i}
++\xi^{2}\sum_{i,j=1}^{n+m}a_{i}a_{j}\,\Theta(t_{i}-t_{j})\,t_{j}+F'
+\tag{5.62}
+\end{equation*}
+其中
+\begin{equation*}
+F'=\frac{1}{8}p^{2}\xi^{2}\tau
++\frac{1}{2}p\tau\Bigl(\mu-\frac{1}{2}\xi^{2}\Bigr)
++\frac{1}{2}p\xi^{2}\sum_{i=1}^{n+m}a_{i}t_{i}
+\end{equation*}
+（化简中用了恒等式$\int_{0}^{\tau}dt\,\delta(t-\tau)=\frac{1}{2}$，
+它可由附录A式(A.9)得到。）式(5.61)构成$\alpha=1$情形的精确解：
+指数$F$对每个$t_{i}$都是线性的，故所有$t_{i}$积分都能精确完成。
+股价及其随机波动率的若干具体矩在附录5.13（见后半）中算出。
+
+\paragraph{推导主线}
+顺序不可颠倒：连续极限只能在离散的$\int\mathcal{D}X$积分完成之后取，
+因为式(5.50)的非线性测度（权重$e^{-y_{i}/2}$随路径变化）没有有限的
+连续极限；做完$x$积分后权重被吸收进闭式结果，剩下的$y$测度是平直的，
+连续极限才存在。$\int\mathcal{D}X$本身如何积出：仿照5.2.1节的变量
+替换思路，把式(5.46)方括号里"速度减漂移"的组合换成新变量（其边界
+条件把$x_{0}=x'$、$x_{N}=x$一并吸收），二次型对角化后逐点高斯积分；
+计算细节原书放在附录5.11（见后半），式(5.53)中的三个时间积分
+$\int e^{y}$、$\int e^{y/2}$与端点差$e^{y(0)/2}-e^{y/2}$正是那次
+积分的遗留物。注意$S_{0}$只含$y$、恰是5.2节自由粒子作用的翻版；
+全部$\rho$依赖都集中在$S_{1}$。
+
+\paragraph{解读与联系}
+本节的架构值得从高处看一遍：定价核(5.55)=$S_{1}$部分（给定矩后的
+"平均Black--Scholes"因子）$\times$矩分布$g$。$S_{1}(u,v,w)$正是把
+常数波动率核里的$\sigma^{2}$换成了平均波动率$w$、再补上$\rho$修正项
+的产物；而$g(u,v,w)$编码"波动率路径的平均平方与平均开方各是多少"
+的全部统计。三个矩各司其职：$w$（平均方差）进入分母与二次型，
+$u$（平均波动率）只通过$\rho$项进入，$v$（初值波动率）体现当前
+信息。$\rho=0$时退化极干净：定价核只经由$w$依赖随机波动率——
+这正是第3章Merton定理与Hull--White经典结论的路径积分重述。\footnote{%
+原书脚注5：$\rho=0$时令$w=\sigma^{2}$（$\sigma=e^{y/2}$为$t=0$时刻
+波动率）即还原Black--Scholes公式；此时定价核对随机波动率$y(t)$的
+依赖仅通过组合$w=\frac{1}{\tau}\int_{0}^{\tau}e^{y(t)}dt$，与Merton
+定理（附录3.9）及Hull--White一致。}求矩技术(5.57)--(5.62)是5.2.1节
+外源生成泛函法的双变量升级版：$j(t)$里的$\delta$函数串把"时间平均的
+幂"翻译成"外源对路径抽样"，$S_{0}$是二次型故$Z(j,y,p)$可精确积出，
+$\Theta(t_{i}-t_{j})$因子记录了波动率路径的时间有序性（因果记忆）。
+整个构造在第8--10章的远期利率场论中将以"场变量+外源+传播子"的
+形式再次登场——本章的三个模型正分别是它的三个侧面。
+
+%TAGS: 5.1,5.2,5.3,5.4,5.5,5.6,5.7,5.8,5.9,5.10,5.11,5.12,5.13,5.14,5.15,5.16,5.17,5.18,5.19,5.20,5.21,5.22,5.23,5.24,5.25,5.26,5.27,5.28,5.29,5.30,5.31,5.32,5.33,5.34,5.35,5.36,5.37,5.38,5.39,5.40,5.41,5.42,5.43,5.44,5.45,5.46,5.47,5.48,5.49,5.50,5.51,5.52,5.53,5.54,5.55,5.56,5.57,5.58,5.59,5.60,5.61,5.62（5.1--5.62连续无断档；5.7节末未编号公式F'位于书页96/p114，为保本节完整一并收入；5.63起属后半附录）
+

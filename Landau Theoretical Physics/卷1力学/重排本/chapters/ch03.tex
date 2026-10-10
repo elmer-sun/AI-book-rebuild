@@ -1,0 +1,787 @@
+% ============================================================
+%  第一卷 第三章 运动方程的积分（§11–§15 + 习题）
+%  底本：高教社中文版第5版；OCR 错误已修正，脚注文本待从纸版补录
+%  OCR 错误修正清单：
+%   §11 (11.1) 正文函数名 a(q)（OCR 误作 α(q)）；
+%   §11 (11.3) const 移出根号（OCR 括号错乱）；
+%   §14 (14.2) consit→const；离"+"乱码"→离心势能；
+%   §14 (14.11) 前正文 α>M^2/(2m)（OCR 漏平方作 M/2m），r→0 条件式按原书补；
+%   §14 习题1 "球心"（OCR 乱码）、广义动量 p_φ（OCR 作 φ_φ）、−mglcosθ（OCR 作 mġl）；
+%   §14 习题3 (3) φ̇^2（OCR 漏平方）；m₁→∞（OCR 漏箭头）；
+%   §15 正焦弦记号 p（OCR 误作 △/\phi，按原书 p）；参数推导中 a 与 α 按
+%   原书区分（r−a=−ae cosξ 等，OCR 混作 α）；ε→e；
+%   §15 习题3 结果 −2πβ/(αp)、−6πγ/(αp²)（OCR 误作 αβ、αφ²）；
+%   §13 习题求和下标统一为 a（OCR a/α 混用）；∑（OCR 作 ≥）；
+%   习题内公式编号 (1)–(4) 系原书题内编号，用 \tag 手工给出（正文节内
+%   编号仍全部自动生成）；部分显示公式行末标点按原书补（OCR 惯常丢失）
+%  遗留问题：图10 原书置于页面右栏，此处按文序置于 arccos 公式之后
+% ============================================================
+\chapter{运动方程的积分}
+
+\section{一维运动}
+
+一个自由度系统的运动称为一维运动.若系统处于定常外部条件下，拉格朗日函数的一般形式为
+\begin{equation}
+  L=\frac{1}{2}a(q)\dot{q}^2-U(q),
+\end{equation}
+其中 $a(q)$ 是广义坐标 $q$ 的函数.特别地，如果 $q$ 为笛卡儿坐标（我们就取为 $x$），则
+\begin{equation}
+  L=\frac{m\dot{x}^2}{2}-U(x).
+\end{equation}
+相应于这些拉格朗日函数的运动方程可以在一般形式下积分.这时甚至没必要给出运动方程本身，可以直接由运动方程的第一积分——能量守恒定律给出.于是，对于拉格朗日函数(11.2)有
+\begin{equation*}
+  \frac{m\dot{x}^2}{2}+U(x)=E.
+\end{equation*}
+这是一阶微分方程，可以通过分离变量积分出来：
+\begin{equation*}
+  \frac{\mathrm{d}x}{\mathrm{d}t}
+  =\sqrt{\frac{2}{m}\left[E-U(x)\right]},
+\end{equation*}
+进而得到
+\begin{equation}
+  t=\sqrt{\frac{m}{2}}\int\frac{\mathrm{d}x}{\sqrt{E-U(x)}}
+  +\mathrm{const}.
+\end{equation}
+这里总能量 $E$ 和积分常数 const 表示运动方程解里的两个任意常数.
+
+由于动能实际上是正值，运动中总能量总是大于势能，即运动只能发生在 $U(x)<E$ 的空间区域.
+
+例如，假设函数 $U(x)$ 的形式如图6所示.在图中画出相应于给定总能量的水平直线，立即可以得到可能的运动区域，即图6中 $AB$ 之间和 $C$ 右侧的区域.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=6cm]{fig6.pdf}\\[0.3em]{\small 图 6}\end{minipage}\par\nopagebreak
+
+势能等于总能量的点确定了运动边界：
+\begin{equation}
+  U(x)=E.
+\end{equation}
+由于在这些点速度为零，故称之为转折点.如果运动区域由两个转折点限定，则运动发生在空间的有限区域内，称为有界运动.如果运动区域不受限制或者只有单侧限制，则运动是无限的，质点可以运动到无穷远处，称为无界运动.
+
+一维有界运动是振动，质点在两个边界之间往复运动（在图6的点 $x_1$ 和 $x_2$ 之间的势阱 $AB$ 中）.根据时间的可逆性（参见§5），从 $x_1$ 到 $x_2$ 的运动时间等于从 $x_2$ 到 $x_1$ 的时间.所以，振动周期（从 $x_1$ 运动到 $x_2$ 并返回的时间）等于从 $x_1$ 到 $x_2$ 运动时间的两倍，根据(11.3)有
+\begin{equation}
+  T(E)=\sqrt{2m}\int_{x_1(E)}^{x_2(E)}
+  \frac{\mathrm{d}x}{\sqrt{E-U(x)}},
+\end{equation}
+积分上下限 $x_1$ 和 $x_2$ 是 $E$ 给定时方程(11.4)的根.这个公式给出了振动周期对质点的总能量的依赖关系.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 试求平面单摆（质量为 $m$，摆长为 $l$，在重力场中运动）振动周期和振幅之间的函数关系.
+
+解：单摆的能量为
+\begin{equation*}
+  E=\frac{ml^2\dot{\varphi}^2}{2}-mgl\cos\varphi
+  =-mgl\cos\varphi_0,
+\end{equation*}
+其中 $\varphi$ 为绳与竖直方向夹角，$\varphi_0$ 是最大摆角.周期等于 $\varphi$ 从零到 $\varphi_0$ 运动时间的4倍：
+\begin{equation*}
+  T=4\sqrt{\frac{l}{2g}}\int_0^{\varphi_0}
+  \frac{\mathrm{d}\varphi}{\sqrt{\cos\varphi-\cos\varphi_0}}
+  =2\sqrt{\frac{l}{g}}\int_0^{\varphi_0}
+  \frac{\mathrm{d}\varphi}
+  {\sqrt{\sin^2(\varphi_0/2)-\sin^2(\varphi/2)}}.
+\end{equation*}
+令 $\sin(\varphi/2)/\sin(\varphi_0/2)=\sin\xi$，上面的积分写成
+\begin{equation*}
+  T=4\sqrt{\frac{l}{g}}\,K\left(\sin\frac{\varphi_0}{2}\right),
+\end{equation*}
+其中
+\begin{equation*}
+  K(k)=\int_0^{\pi/2}\frac{\mathrm{d}\xi}
+  {\sqrt{1-k^2\sin^2\xi}}
+\end{equation*}
+称为第一类完全椭圆积分.当 $\sin(\varphi_0/2)\approx\varphi_0/2\ll1$（微振动）时，展开函数 $K(k)$ 可得
+\begin{equation*}
+  T=2\pi\sqrt{\frac{l}{g}}
+  \left(1+\frac{1}{16}\varphi_0^2+\cdots\right).
+\end{equation*}
+这个展开式的第一项就是大家都知道的基本公式.
+
+\noindent{\heiti 习题2}\quad 试求质量为 $m$ 的质点振动周期对能量的依赖关系，其中质点所处力场的势能为：
+
+a. $U=A|x|^n$.
+
+解：
+\begin{equation*}
+  T=2\sqrt{2m}\int_0^{(E/A)^{1/n}}
+  \frac{\mathrm{d}x}{\sqrt{E-Ax^n}}
+  =\frac{2\sqrt{2m}\,E^{1/n-1/2}}{A^{1/n}}
+  \int_0^1\frac{\mathrm{d}y}{\sqrt{1-y^n}}.
+\end{equation*}
+令 $y^n=u$，这个积分式化为用 $\Gamma$ 函数表示的B-欧拉积分，
+\begin{equation*}
+  T=\frac{2\sqrt{2\pi m}\,\Gamma(1/n)}
+  {nA^{1/n}\Gamma(1/n+1/2)}\,E^{1/n-1/2}.
+\end{equation*}
+$T$ 和 $E$ 的关系符合力学相似律(10.2)和(10.3).
+
+b. $U=-U_0/\cosh^2\alpha x$，$-U_0<E<0$.
+
+答案：
+\begin{equation*}
+  T=\frac{\pi\sqrt{2m}}{\alpha\sqrt{|E|}}.
+\end{equation*}
+
+c. $U=U_0\tan^2\alpha x$.
+
+答案：
+\begin{equation*}
+  T=\frac{\pi\sqrt{2m}}{\alpha\sqrt{E+U_0}}.
+\end{equation*}
+
+\end{xiti}
+
+\section{根据振动周期确定势能}
+
+现在让我们来研究这样的问题，当一个质点在场中振动时，通过振动周期 $T$ 与能量 $E$ 的关系在多大程度上可以确定该场的势能 $U(x)$ 的形式.从数学的角度看，这是求解积分方程(11.5)，其中 $U(x)$ 是未知函数，而 $T(E)$ 是已知函数.
+
+我们先不考虑积分方程是否存在不符合下述条件的解的问题，假定所求函数 $U(x)$ 在所考虑的空间区域中只有一个极小值.为了方便起见，我们假设势能极小值等于零，并将坐标原点选在势能极小值处（图7）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5.5cm]{fig7.pdf}\\[0.3em]{\small 图 7}\end{minipage}\par\nopagebreak
+
+对积分(11.5)做变换，将坐标 $x$ 当作 $U$ 的函数.函数 $x(U)$ 是双值的，即每个 $U$ 对应两个不同的 $x$ 值.用 $\dfrac{\mathrm{d}x}{\mathrm{d}U}\mathrm{d}U$ 代替 $\mathrm{d}x$，积分(11.5)变为两个积分之和：从 $x=x_1$ 到 $x=0$ 的积分，从 $x=0$ 到 $x=x_2$ 的积分.我们将这两个区域中的函数 $x(U)$ 分别写为 $x=x_1(U)$ 和 $x=x_2(U)$.
+
+显然，对 $U$ 积分的上下限分别为 $E$ 和 0，于是有
+\begin{equation*}
+\begin{aligned}
+  T(E)&=\sqrt{2m}\int_0^E\frac{\mathrm{d}x_2(U)}{\mathrm{d}U}
+  \frac{\mathrm{d}U}{\sqrt{E-U}}
+  +\sqrt{2m}\int_E^0\frac{\mathrm{d}x_1(U)}{\mathrm{d}U}
+  \frac{\mathrm{d}U}{\sqrt{E-U}}\\
+  &=\sqrt{2m}\int_0^E\left(
+  \frac{\mathrm{d}x_2(U)}{\mathrm{d}U}
+  -\frac{\mathrm{d}x_1(U)}{\mathrm{d}U}\right)
+  \frac{\mathrm{d}U}{\sqrt{E-U}}.
+\end{aligned}
+\end{equation*}
+将这个方程两边除以 $\sqrt{\alpha-E}$，其中 $\alpha$ 是参数，然后对 $E$ 从零到 $\alpha$ 积分：
+\begin{equation*}
+  \int_0^{\alpha}\frac{T(E)\,\mathrm{d}E}{\sqrt{\alpha-E}}
+  =\sqrt{2m}\int_0^{\alpha}\int_0^E\left(
+  \frac{\mathrm{d}x_2(U)}{\mathrm{d}U}
+  -\frac{\mathrm{d}x_1(U)}{\mathrm{d}U}\right)
+  \frac{\mathrm{d}U\,\mathrm{d}E}
+  {\sqrt{(\alpha-E)(E-U)}},
+\end{equation*}
+或者改变积分顺序写成
+\begin{equation*}
+  \int_0^{\alpha}\frac{T(E)\,\mathrm{d}E}{\sqrt{\alpha-E}}
+  =\sqrt{2m}\int_0^{\alpha}\left(
+  \frac{\mathrm{d}x_2(U)}{\mathrm{d}U}
+  -\frac{\mathrm{d}x_1(U)}{\mathrm{d}U}\right)\mathrm{d}U
+  \int_U^{\alpha}\frac{\mathrm{d}E}
+  {\sqrt{(\alpha-E)(E-U)}}.
+\end{equation*}
+对 $E$ 的积分是初等积分，其值等于 $\pi$.而对 $U$ 的积分是平凡的，则有
+\begin{equation*}
+  \int_0^{\alpha}\frac{T(E)\,\mathrm{d}E}{\sqrt{\alpha-E}}
+  =\pi\sqrt{2m}\left[x_2(\alpha)-x_1(\alpha)\right]
+\end{equation*}
+（计算中已考虑到 $x_2(0)=x_1(0)=0$）.将 $\alpha$ 替换为 $U$，最终得
+\begin{equation}
+  x_2(U)-x_1(U)=\frac{1}{\pi\sqrt{2m}}
+  \int_0^U\frac{T(E)\,\mathrm{d}E}{\sqrt{U-E}}.
+\end{equation}
+因此，由已知的函数 $T(E)$ 可以确定 $x_2(U)-x_1(U)$，但函数 $x_2(U)$ 和 $x_1(U)$ 本身仍然无法确定.这就是说，相应于给定的周期与能量的关系，存在不止一条而是无穷多条曲线 $U=U(x)$，但是曲线的不同不改变同一 $U$ 对应的两个 $x$ 的差值.
+
+如果要求曲线 $U=U(x)$ 关于 $U$ 轴对称，即
+\begin{equation*}
+  x_2(U)=-x_1(U)\equiv x(U),
+\end{equation*}
+则不存在解的多值性问题.这时公式(12.1)给出 $U(x)$ 的单值表达式：
+\begin{equation}
+  x(U)=\frac{1}{2\pi\sqrt{2m}}
+  \int_0^U\frac{T(E)\,\mathrm{d}E}{\sqrt{U-E}}.
+\end{equation}
+
+\section{约化质量}
+
+由两个相互作用的质点组成的系统的运动，是非常重要的问题，称为二体问题，可以得到其运动的完全通解.
+
+作为求解问题的第一步，我们将证明，通过把系统的运动分解为系统质心的运动和质点相对于质心的运动，则问题会大大简化.
+
+相互作用的两个质点的势能仅依赖于它们之间的距离，即径矢差的大小.所以这样的系统的拉格朗日函数为
+\begin{equation}
+  L=\frac{m_1\dot{\boldsymbol{r}}_1^{\,2}}{2}
+  +\frac{m_2\dot{\boldsymbol{r}}_2^{\,2}}{2}
+  -U\left(\left|\boldsymbol{r}_1-\boldsymbol{r}_2\right|\right).
+\end{equation}
+引入两质点相对位矢
+\begin{equation*}
+  \boldsymbol{r}=\boldsymbol{r}_1-\boldsymbol{r}_2,
+\end{equation*}
+并将坐标原点置于质心处，即
+\begin{equation*}
+  m_1\boldsymbol{r}_1+m_2\boldsymbol{r}_2=0.
+\end{equation*}
+从这两个等式可以求出
+\begin{equation}
+  \boldsymbol{r}_1=\frac{m_2}{m_1+m_2}\boldsymbol{r},\qquad
+  \boldsymbol{r}_2=-\frac{m_1}{m_1+m_2}\boldsymbol{r}.
+\end{equation}
+将这些表达式代入(13.1)可得
+\begin{equation}
+  L=\frac{m\dot{\boldsymbol{r}}^{\,2}}{2}-U(r),
+\end{equation}
+其中
+\begin{equation}
+  m=\frac{m_1m_2}{m_1+m_2}
+\end{equation}
+称为约化质量.函数(13.3)形式上等同于在外场 $U(r)$ 中运动的一个质点的拉格朗日函数，该质点的质量为 $m$，外场关于固定的坐标原点是对称的.
+
+因此，二体问题等价于一个质量为 $m$ 的质点在给定外场 $U(r)$ 中的运动.利用公式(13.2)，两质点 $m_1$ 和 $m_2$ 的相对于它们共同质心的轨迹 $\boldsymbol{r}_1=\boldsymbol{r}_1(t)$ 和 $\boldsymbol{r}_2=\boldsymbol{r}_2(t)$ 可以由 $\boldsymbol{r}=\boldsymbol{r}(t)$ 分别求出来.
+
+\begin{xiti}
+
+\noindent{\heiti 习题}\quad 质点系由一个质量为 $M$ 的质点和 $n$ 个质量同为 $m$ 的质点组成.试消去质心运动并将该质点系的运动化为 $n$ 体问题.
+
+解：设 $\boldsymbol{R}$ 是质点 $M$ 的径矢，$\boldsymbol{R}_a\ (a=1,2,\cdots,n)$ 分别是质量为 $m$ 的各个质点的径矢.引入质点 $M$ 到质点 $m$ 的相对位矢
+\begin{equation*}
+  \boldsymbol{r}_a=\boldsymbol{R}_a-\boldsymbol{R},
+\end{equation*}
+并将坐标原点置于质心处，即
+\begin{equation*}
+  M\boldsymbol{R}+m\sum_a\boldsymbol{R}_a=0.
+\end{equation*}
+从这两个等式可以求出
+\begin{equation*}
+  \boldsymbol{R}=-\frac{m}{\mu}\sum_a\boldsymbol{r}_a,\qquad
+  \boldsymbol{R}_a=\boldsymbol{R}+\boldsymbol{r}_a,
+\end{equation*}
+其中 $\mu=M+nm$.将这些表达式代入拉格朗日函数
+\begin{equation*}
+  L=\frac{M\dot{\boldsymbol{R}}^{\,2}}{2}
+  +\frac{m}{2}\sum_a\dot{\boldsymbol{R}}_a^{\,2}-U,
+\end{equation*}
+可得
+\begin{equation*}
+  L=\frac{m}{2}\sum_a\boldsymbol{v}_a^2
+  -\frac{m^2}{2\mu}\left(\sum_a\boldsymbol{v}_a\right)^2-U,
+\end{equation*}
+其中 $\boldsymbol{v}_a\equiv\dot{\boldsymbol{r}}_a$.
+
+势能仅取决于质点之间的相对位矢，可以写成是 $\boldsymbol{r}_a$ 的函数.
+
+\end{xiti}
+
+\section{有心力场内的运动}
+
+当将二体问题约化为一个单体运动问题时，我们仅需确定单个质点在某种外场中的运动，该外场中质点的势能只与质点到某一固定点的距离有关，这样的外场称为有心力场.作用在质点上的力
+\begin{equation*}
+  \boldsymbol{F}=-\frac{\partial U(r)}{\partial\boldsymbol{r}}
+  =-\frac{\mathrm{d}U}{\mathrm{d}r}\cdot\frac{\boldsymbol{r}}{r},
+\end{equation*}
+的大小仅依赖于 $r$，方向总是沿着质点的径矢.
+
+在§9已经证明，在有心力场内的运动对场中心的角动量守恒.对于一个质点，这个角动量就是
+\begin{equation*}
+  \boldsymbol{M}=\boldsymbol{r}\times\boldsymbol{p}.
+\end{equation*}
+由于 $\boldsymbol{M}$ 和 $\boldsymbol{r}$ 相互垂直，$\boldsymbol{M}$ 不变就意味着在运动过程中质点的径矢总是位于一个平面内，该平面垂直于 $\boldsymbol{M}$.
+
+因此质点在有心力场内运动的整条轨道都位于一个平面内.在该平面内引入极坐标 $r,\varphi$，写出拉格朗日函数（参见(4.5)）
+\begin{equation}
+  L=\frac{m}{2}\left(\dot{r}^2+r^2\dot{\varphi}^2\right)-U(r).
+\end{equation}
+这个函数不显含坐标 $\varphi$.拉格朗日函数不显含的广义坐标称为循环坐标.根据拉格朗日方程，对于循环坐标 $q_i$，有
+\begin{equation*}
+  \frac{\mathrm{d}}{\mathrm{d}t}
+  \frac{\partial L}{\partial\dot{q}_i}
+  =\frac{\partial L}{\partial q_i}=0,
+\end{equation*}
+即相应的广义动量 $p_i=\partial L/\partial\dot{q}_i$ 是运动积分.这将在存在循环坐标情况下大大简化积分运动方程的问题.
+
+在现在的情况下，广义动量
+\begin{equation*}
+  p_{\varphi}=mr^2\dot{\varphi}
+\end{equation*}
+就是角动量 $M_z=M$（参见(9.8)），因此我们又回到了熟知的角动量守恒定律
+\begin{equation}
+  M=mr^2\dot{\varphi}=\mathrm{const}.
+\end{equation}
+对于单一质点在有心力场内作平面运动的情况，角动量守恒定律有一个简单的几何解释.无限邻近的两个径矢和轨道微元围成的扇形面积（图8）等于 $(1/2)\,r\cdot r\,\mathrm{d}\varphi$，将它表示为 $\mathrm{d}f$.质点的角动量可以写成
+\begin{equation}
+  M=2m\dot{f},
+\end{equation}
+其中 $\dot{f}$ 称为掠面速度.所以角动量守恒意味着掠面速度为常数，即在相等时间间隔内质点径矢扫过相同的面积（开普勒第二定律）\footnote{在有心力场内运动质点角动量守恒定律有时也被称为面积积分.}.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.5cm]{fig8.pdf}\\[0.3em]{\small 图 8}\end{minipage}\par\nopagebreak
+
+从能量和角动量守恒出发，无需写出运动方程，就可以很容易地完全解决质点在有心力场中的运动问题.利用(14.2)用 $M$ 表 $\dot{\varphi}$，代入能量的表达式，我们得到
+\begin{equation}
+  E=\frac{m}{2}\left(\dot{r}^2+r^2\dot{\varphi}^2\right)+U(r)
+  =\frac{m\dot{r}^2}{2}
+  +\frac{M^2}{2mr^2}+U(r).
+\end{equation}
+由此可得
+\begin{equation}
+  \dot{r}\equiv\frac{\mathrm{d}r}{\mathrm{d}t}
+  =\sqrt{\frac{2}{m}\left[E-U(r)\right]
+  -\frac{M^2}{m^2r^2}},
+\end{equation}
+分离变量并积分得
+\begin{equation}
+  t=\int\frac{\mathrm{d}r}
+  {\sqrt{\dfrac{2}{m}\left[E-U(r)\right]
+  -\dfrac{M^2}{m^2r^2}}}+\mathrm{const}.
+\end{equation}
+将(14.2)写成
+\begin{equation*}
+  \mathrm{d}\varphi=\frac{M}{mr^2}\,\mathrm{d}t,
+\end{equation*}
+从(14.5)求出 $\mathrm{d}t$ 代入上式并积分得
+\begin{equation}
+  \varphi=\int
+  \frac{(M/r^2)\,\mathrm{d}r}
+  {\sqrt{2m\left[E-U(r)\right]-M^2/r^2}}
+  +\mathrm{const}.
+\end{equation}
+公式(14.6)和(14.7)给出了问题的通解.公式(14.7)给出了 $r$ 和 $\varphi$ 的关系，即轨道方程，而公式(14.6)给出了质点到力心距离 $r$ 随时间变化的隐函数.应该注意到，由公式(14.2)可知 $\dot{\varphi}$ 的符号总不会改变，因此 $\varphi$ 总是随时间单调变化.
+
+公式(14.4)表明，径向运动可以看作是在某个场中的一维运动，该场的“有效”势能为
+\begin{equation}
+  U_{\mathrm{eff}}=U(r)+\frac{M^2}{2mr^2}.
+\end{equation}
+其中 $M^2/(2mr^2)$ 称为离心势能.从
+\begin{equation}
+  U(r)+\frac{M^2}{2mr^2}=E
+\end{equation}
+中求出的 $r$ 给出了运动区域边界到力心的距离.等式(14.9)成立时径向速度 $\dot{r}$ 等于零.但这不能说明质点像在真正的一维运动中那样是静止的，这是因为角速度 $\dot{\varphi}$ 不为零.等式 $\dot{r}=0$ 表示轨道的“转折点”，函数 $r(t)$ 在这个点从增加变为减小或者相反.
+
+如果 $r$ 的变化区域只受 $r\geqslant r_{\min}$ 的限制，则运动是无界的，即质点从无穷远处来又回到无穷远处去.
+
+如果 $r$ 的变化区域有两个边界 $r_{\min}$ 和 $r_{\max}$，则运动是有界的，轨道完全位于 $r=r_{\min}$ 和 $r=r_{\max}$ 确定的环形区域内.然而，这并不表明轨道必定是封闭曲线.
+
+根据(14.7)，在 $r$ 从 $r_{\max}$ 变到 $r_{\min}$ 再回到 $r_{\max}$ 这一时间间隔内径矢转过的角度 $\Delta\varphi$ 等于
+\begin{equation}
+  \Delta\varphi=2\int_{r_{\min}}^{r_{\max}}
+  \frac{(M/r^2)\,\mathrm{d}r}
+  {\sqrt{2m\left[E-U(r)\right]-M^2/r^2}}.
+\end{equation}
+轨道封闭的条件是这个转角等于 $2\pi$ 的有理数倍，即 $\Delta\varphi=2\pi m/n$，其中 $m$，$n$ 是整数.在这种情况下，经过 $n$ 个运动周期，质点径矢转过 $m$ 圈后，回到初始位置，即轨道封闭.
+
+然而这是很特殊的情况，对于任意形式 $U(r)$，角 $\Delta\varphi$ 不等于 $2\pi$ 的有理数倍.因此一般情况下作有界运动的质点的轨道不是封闭的.轨道无穷多次到达最大和最小距离，最终覆盖两个有界圆环之间的整个环形区域（图9所示轨道是一个例子）.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=6.5cm]{fig9.pdf}\\[0.3em]{\small 图 9}\end{minipage}\par\nopagebreak
+
+只有两种类型的有心力场，其中的一切有界运动的轨道是封闭的，这两种场的势能与 $\dfrac{1}{r}$ 或者 $r^2$ 成正比.第一种将在§15讨论，第二种相应于空间振子（参见§23习题3）.
+
+公式(14.5)（以及公式(14.6)和(14.7)的被积函数）中平方根在转折点改变符号.如果角 $\varphi$ 从指向转折点的径矢方向算起，则轨道在该转折点两侧的每个部分，对同一 $r$ 值，其区别仅在于 $\varphi$ 的符号不同.就是说，轨道相对 $\varphi=0$ 的线是对称的.比如，质点从某个 $r=r_{\max}$ 点开始，经历一段轨道到达 $r=r_{\min}$ 点，然后经历一段对称的轨道到达下一个 $r=r_{\max}$ 点，依此类推，即整个轨道可以通过来回重复相同的轨道段得到.对于由两个从转折点 $r=r_{\min}$ 到无穷远延伸对称分支组成的无界轨道也是如此.
+
+当 $r\to0$ 时，离心势能（对 $M\neq0$ 的运动）像 $\dfrac{1}{r^2}$ 一样趋向无穷大，因此质点通常不可能通过场的中心，即使场本身具有吸引特性也是如此.只有当 $r\to0$ 时势能足够快速地趋向 $-\infty$，质点才可能“坠落”到场的中心.由不等式
+\begin{equation*}
+  \frac{m\dot{r}^2}{2}
+  =E-U(r)-\frac{M^2}{2mr^2}>0
+\end{equation*}
+或者
+\begin{equation*}
+  r^2U(r)+\frac{M^2}{2m}<Er^2
+\end{equation*}
+可知，$r$ 可能趋于零的条件是
+\begin{equation}
+  \left.r^2U(r)\right|_{r\to0}
+  <-\frac{M^2}{2m},
+\end{equation}
+即 $U(r)$ 应该或者像 $-\dfrac{\alpha}{r^2}$（$\alpha>\dfrac{M^2}{2m}$），或者正比于 $-\dfrac{1}{r^n}$（$n>2$）这样的方式趋向 $-\infty$.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 试求解球面摆的运动方程.球面摆是指质量为 $m$ 的质点沿着半径为 $l$ 的球面在重力场中运动.
+
+解：设球坐标系原点位于球心，极轴竖直向下，则质点的拉格朗日函数为
+\begin{equation*}
+  L=\frac{ml^2}{2}\left(\dot{\theta}^2
+  +\dot{\varphi}^2\sin^2\theta\right)
+  +mgl\cos\theta.
+\end{equation*}
+显然 $\varphi$ 是循环坐标，所以广义动量 $p_{\varphi}$，也就是角动量的 $z$ 分量守恒：
+\begin{equation*}
+  ml^2\dot{\varphi}\sin^2\theta=M_z=\mathrm{const}.
+\tag{1}
+\end{equation*}
+能量
+\begin{equation*}
+\begin{aligned}
+  E&=\frac{ml^2}{2}\left(\dot{\theta}^2
+  +\dot{\varphi}^2\sin^2\theta\right)-mgl\cos\theta\\
+  &=\frac{ml^2\dot{\theta}^2}{2}
+  +\frac{M_z^2}{2ml^2\sin^2\theta}
+  -mgl\cos\theta.
+\end{aligned}
+\tag{2}
+\end{equation*}
+由此求出 $\dot{\theta}$ 并分离变量，得
+\begin{equation*}
+  t=\int\frac{\mathrm{d}\theta}
+  {\sqrt{\dfrac{2}{ml^2}\left[E-U_{\mathrm{eff}}(\theta)\right]}}
+\tag{3}
+\end{equation*}
+其中有效势能为
+\begin{equation*}
+  U_{\mathrm{eff}}(\theta)=\frac{M_z^2}{2ml^2\sin^2\theta}
+  -mgl\cos\theta.
+\end{equation*}
+对于角 $\varphi$，利用(1)求出
+\begin{equation*}
+  \varphi=\frac{M_z}{l\sqrt{2m}}
+  \int\frac{\mathrm{d}\theta}
+  {\sin^2\theta\sqrt{E-U_{\mathrm{eff}}(\theta)}}.
+\tag{4}
+\end{equation*}
+积分(3)和(4)可分别化为第一类和第三类椭圆积分.
+
+运动时角 $\theta$ 的变化范围由条件 $E>U_{\mathrm{eff}}$ 确定，而其边界由方程 $E=U_{\mathrm{eff}}$ 确定.这是 $\cos\theta$ 的三次方程，在 $-1$ 和 $+1$ 之间有两个根，它们对应于球面上的两个纬线圈，整条轨道都位于这两个圈之间.
+
+\noindent{\heiti 习题2}\quad 在重力场中质点沿着圆锥表面运动，圆锥顶角为 $2\alpha$，竖直放置，顶点向下.试求解该质点的运动方程.
+
+解：设球坐标系原点位于圆锥顶点，极轴竖直向上，则拉格朗日函数为
+\begin{equation*}
+  L=\frac{m}{2}\left(\dot{r}^2
+  +r^2\dot{\varphi}^2\sin^2\alpha\right)
+  -mgr\cos\alpha.
+\end{equation*}
+显然 $\varphi$ 是循环坐标，所以广义动量
+\begin{equation*}
+  M_z=mr^2\dot{\varphi}\sin^2\alpha
+\end{equation*}
+守恒.能量为
+\begin{equation*}
+  E=\frac{m\dot{r}^2}{2}
+  +\frac{M_z^2}{2mr^2\sin^2\alpha}
+  +mgr\cos\alpha.
+\end{equation*}
+利用与习题1同样的方法求出
+\begin{equation*}
+  t=\int\frac{\mathrm{d}r}
+  {\sqrt{\dfrac{2}{m}\left[E-U_{\mathrm{eff}}(r)\right]}},
+\end{equation*}
+\begin{equation*}
+  \varphi=\frac{M_z}{\sqrt{2m}\sin^2\alpha}
+  \int\frac{\mathrm{d}r}
+  {r^2\sqrt{E-U_{\mathrm{eff}}(r)}},
+\end{equation*}
+\begin{equation*}
+  U_{\mathrm{eff}}(r)=\frac{M_z^2}{2mr^2\sin^2\alpha}
+  +mgr\cos\alpha.
+\end{equation*}
+条件 $E=U_{\mathrm{eff}}(r)$（当 $M_z\neq0$ 时）是 $r$ 的三次方程，有两个正根，它们确定锥面上的两个水平圆，整条轨道都处于这两个圆之间.
+
+\noindent{\heiti 习题3}\quad 试求解质量为 $m_2$ 的平面摆的运动方程，摆的悬挂点质量为 $m_1$ 可以沿着 $m_2$ 运动的平面内的水平线运动（见图2）.
+
+解：在§5习题2中已求出拉格朗日函数.$x$ 是循环坐标，所以广义动量 $P_x$ 守恒，即系统总动量的水平分量守恒：
+\begin{equation*}
+  P_x=\left(m_1+m_2\right)\dot{x}
+  +m_2l\dot{\varphi}\cos\varphi=\mathrm{const}.
+\tag{1}
+\end{equation*}
+总可以认为系统整体静止，即 $\mathrm{const}=0$.对方程(1)积分可得
+\begin{equation*}
+  \left(m_1+m_2\right)x+m_2l\sin\varphi
+  =\mathrm{const},
+\tag{2}
+\end{equation*}
+这表示系统质心在水平方向上静止.利用(1)，能量可以写成
+\begin{equation*}
+  E=\frac{m_2l^2\dot{\varphi}^2}{2}
+  \left(1-\frac{m_2}{m_1+m_2}\cos^2\varphi\right)
+  -m_2gl\cos\varphi.
+\tag{3}
+\end{equation*}
+由此可得
+\begin{equation*}
+  t=l\sqrt{\frac{m_2}{2\left(m_1+m_2\right)}}
+  \int\sqrt{\frac{m_1+m_2\sin^2\varphi}
+  {E+m_2gl\cos\varphi}}\,\mathrm{d}\varphi.
+\end{equation*}
+利用(2)，用 $\varphi$ 表示 $m_2$ 的坐标，$x_2=x+l\sin\varphi$，$y_2=l\cos\varphi$，由此可以求出这个质点的轨道.这是水平半轴为 $lm_1/(m_1+m_2)$ 竖直半轴为 $l$ 的椭圆的一部分.当 $m_1\to\infty$ 时，就变为我们所熟悉的沿着一段圆弧运动的单摆.
+
+\end{xiti}
+
+\section{开普勒问题}
+
+势能与 $r$ 成反比，因而力与 $r^2$ 成反比的有心力场是非常重要的一类有心力场.牛顿万有引力场和库仑静电相互作用力场都属于这种情况，后者可能是吸引的也可能是排斥的力场.
+
+我们首先研究引力场，设
+\begin{equation}
+  U=-\alpha/r,
+\end{equation}
+其中 $\alpha$ 是正数.“有效”势能
+\begin{equation}
+  U_{\mathrm{eff}}=-\frac{\alpha}{r}
+  +\frac{M^2}{2mr^2}
+\end{equation}
+的曲线如图10所示，当 $r\to0$ 时 $U_{\mathrm{eff}}$ 趋于 $+\infty$，当 $r\to\infty$ 时 $U_{\mathrm{eff}}$ 从负方向趋于零，当 $r=M^2/m\alpha$ 时取极小值
+\begin{equation}
+  \left(U_{\mathrm{eff}}\right)_{\min}
+  =-\frac{m\alpha^2}{2M^2}.
+\end{equation}
+由曲线显而易见，当 $E>0$ 时质点运动是无界的，$E<0$ 时运动是有界的.
+
+根据一般公式(14.7)可得轨道形状.代入 $U=-\alpha/r$ 并积分可得
+\begin{equation*}
+  \varphi=\arccos
+  \frac{M/r-m\alpha/M}
+  {\sqrt{2mE+m^2\alpha^2/M^2}}
+  +\mathrm{const}.
+\end{equation*}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5cm]{fig10.pdf}\\[0.3em]{\small 图 10}\end{minipage}\par\nopagebreak
+
+选择 $\varphi$ 的起始位置使得 $\mathrm{const}=0$，并引入记号
+\begin{equation}
+  p=\frac{M^2}{m\alpha},\qquad
+  e=\sqrt{1+\frac{2EM^2}{m\alpha^2}},
+\end{equation}
+轨道方程可以重新写成
+\begin{equation}
+  p/r=1+e\cos\varphi.
+\end{equation}
+这是焦点位于坐标原点的圆锥曲线方程，$2p$ 和 $e$ 分别称为轨道的正焦弦和偏心率.由(15.5)可以看出，选择 $\varphi$ 的起始位置，就是使 $\varphi=0$ 的点离中心最近（称该点为轨道近心点）.
+
+在按(15.1)相互作用的两个质点的等价问题中，每个质点的轨道都是圆锥曲线，其焦点之一位于两质点系统的质心处.
+
+由(15.4)可知，当 $E<0$ 时 $e<1$，即轨道为椭圆（图11），运动是有界的，和本节前面所说的结果一致.根据解析几何公式，椭圆的半长轴和半短轴为
+\begin{equation}
+  a=\frac{p}{1-e^2}=\frac{\alpha}{2|E|},\qquad
+  b=\frac{p}{\sqrt{1-e^2}}
+  =\frac{M}{\sqrt{2m|E|}}.
+\end{equation}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=6cm]{fig11.pdf}\\[0.3em]{\small 图 11}\end{minipage}\par\nopagebreak
+
+能量的最小可能值对应于(15.3)，这时 $e=0$，即椭圆变成圆.需要指出，椭圆轨道的半长轴仅仅依赖于质点的能量（而与角动量无关），到场中心（椭圆焦点）的最小和最大距离等于
+\begin{equation}
+  r_{\min}=\frac{p}{1+e}=a\left(1-e\right),\qquad
+  r_{\max}=\frac{p}{1-e}=a\left(1+e\right).
+\end{equation}
+当然这两个表达式（$a$ 由(15.6)确定，$e$ 由(15.4)确定）也可以直接从方程 $U_{\mathrm{eff}}=E$ 求根得到.
+
+运用以面积积分形式(14.3)表示的角动量守恒定律，可以方便地求得质点沿椭圆轨道运动的周期 $T$.对时间从零到 $T$ 积分这个等式，可得
+\begin{equation*}
+  2mf=TM,
+\end{equation*}
+其中 $f$ 是轨道面积.对于椭圆 $f=\pi ab$，根据(15.6)得
+\begin{equation}
+  T=2\pi a^{3/2}\sqrt{\frac{m}{\alpha}}
+  =\pi\alpha\sqrt{\frac{m}{2|E|^3}}.
+\end{equation}
+在§10已经指出，周期平方正比于轨道线度（半长轴）的立方.还需指出，周期仅仅依赖于质点的能量.
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=4.5cm]{fig12.pdf}\\[0.3em]{\small 图 12}\end{minipage}\par\nopagebreak
+
+当 $E\geqslant0$ 时运动是无界的.如果 $E>0$ 则偏心率 $e>1$，即轨道是原点为内焦点的双曲线，如图12所示.近心点到中心的距离
+\begin{equation}
+  r_{\min}=\frac{p}{1+e}=a\left(e-1\right),
+\end{equation}
+其中
+\begin{equation*}
+  a=\frac{p}{e^2-1}=\frac{\alpha}{2E}
+\end{equation*}
+是双曲线的“半轴”.
+
+在 $E=0$ 情况下偏心率 $e=1$，即质点沿着近心点距离为 $r_{\min}=p/2$ 的抛物线运动.如果质点自无穷远处从静止开始运动，就会出现这种情况.
+
+质点沿着轨道运动时，坐标对时间的依赖关系可以利用(14.6)得到.它可以表示为下面所述的一种方便的参数形式.
+
+首先研究椭圆轨道.根据(15.4)和(15.6)引入的 $a$ 和 $e$，确定时间的积分(14.6)可以写成
+\begin{equation*}
+  t=\sqrt{\frac{m}{2|E|}}\int
+  \frac{r\,\mathrm{d}r}
+  {\sqrt{-r^2+\dfrac{\alpha}{|E|}\,r
+  -\dfrac{M^2}{2m|E|}}}
+  =\sqrt{\frac{ma}{\alpha}}\int
+  \frac{r\,\mathrm{d}r}
+  {\sqrt{a^2e^2-(r-a)^2}}.
+\end{equation*}
+利用变换
+\begin{equation*}
+  r-a=-ae\cos\xi,
+\end{equation*}
+这个积分写成
+\begin{equation*}
+  t=\sqrt{\frac{ma^3}{\alpha}}
+  \int\left(1-e\cos\xi\right)\mathrm{d}\xi
+  =\sqrt{\frac{ma^3}{\alpha}}
+  \left(\xi-e\sin\xi\right)+\mathrm{const}.
+\end{equation*}
+选择时间起点使得 $\mathrm{const}=0$，最终可得 $r$ 依赖于 $t$ 的参数方程：
+\begin{equation}
+  r=a\left(1-e\cos\xi\right),\qquad
+  t=\sqrt{\frac{ma^3}{\alpha}}
+  \left(\xi-e\sin\xi\right)
+\end{equation}
+（在 $t=0$ 时刻质点位于近心点）.用参数 $\xi$ 还可以表示出质点的笛卡儿坐标 $x=r\cos\varphi$，$y=r\sin\varphi$（$x$ 轴和 $y$ 轴分别沿着椭圆的半长轴和半短轴）.由(15.5)和(15.10)有
+\begin{equation*}
+  ex=p-r=a\left(1-e^2\right)
+  -a\left(1-e\cos\xi\right)
+  =ae\left(\cos\xi-e\right),
+\end{equation*}
+再利用 $y=\sqrt{r^2-x^2}$ 求出 $y$.最终可得：
+\begin{equation}
+  x=a\left(\cos\xi-e\right),\qquad
+  y=a\sqrt{1-e^2}\sin\xi.
+\end{equation}
+沿着椭圆轨道运动一整圈对应着参数 $\xi$ 从零到 $2\pi$.
+
+对于双曲线轨道，完全类似地计算可得
+\begin{equation}
+\begin{aligned}
+  &r=a\left(e\cosh\xi-1\right),\qquad
+  t=\sqrt{ma^3/\alpha}
+  \left(e\sinh\xi-\xi\right),\\
+  &x=a\left(e-\cosh\xi\right),\qquad
+  y=a\sqrt{e^2-1}\sinh\xi,
+\end{aligned}
+\end{equation}
+其中参数 $\xi$ 取值范围从 $-\infty$ 到 $+\infty$.
+
+下面研究相斥场中的运动，势能为
+\begin{equation}
+  U=\frac{\alpha}{r}
+\end{equation}
+（$\alpha>0$）.这种情况下，有效势能为
+\begin{equation*}
+  U_{\mathrm{eff}}=\frac{\alpha}{r}
+  +\frac{M^2}{2mr^2}
+\end{equation*}
+当 $r$ 从零到 $\infty$ 变化时，它从 $+\infty$ 单调减少到零.质点能量只能是正的，运动总是无限的.完全像上面对吸引场一样计算可知，轨道是双曲线
+\begin{equation}
+  p/r=-1+e\cos\varphi
+\end{equation}
+
+\par\nopagebreak\noindent\begin{minipage}{\linewidth}\centering\includegraphics[width=5cm]{fig13.pdf}\\[0.3em]{\small 图 13}\end{minipage}\par\nopagebreak
+
+（$p$ 和 $e$ 由公式(15.4)确定），轨道以图13所示的方式通过场的中心附近.近心点距离为
+\begin{equation}
+  r_{\min}=\frac{p}{e-1}=a\left(e+1\right).
+\end{equation}
+运动与时间的关系由参数方程给出：
+\begin{equation}
+\begin{aligned}
+  &r=a\left(e\cosh\xi+1\right),\qquad
+  t=\sqrt{ma^3/\alpha}
+  \left(e\sinh\xi+\xi\right),\\
+  &x=a\left(e+\cosh\xi\right),\qquad
+  y=a\sqrt{e^2-1}\sinh\xi.
+\end{aligned}
+\end{equation}
+在本节的最后我们来证明，仅在有心力场 $U=\alpha/r$（$\alpha$ 的符号任意）内的运动有其特有的运动积分.很容易直接计算验证：
+\begin{equation}
+  \boldsymbol{v}\times\boldsymbol{M}
+  +\frac{\alpha\boldsymbol{r}}{r}
+  =\mathrm{const}.
+\end{equation}
+事实上，上式对时间的全导数等于
+\begin{equation*}
+  \dot{\boldsymbol{v}}\times\boldsymbol{M}
+  +\frac{\alpha\boldsymbol{v}}{r}
+  -\frac{\alpha\boldsymbol{r}
+  \left(\boldsymbol{v}\cdot\boldsymbol{r}\right)}{r^3},
+\end{equation*}
+将 $\boldsymbol{M}=m\boldsymbol{r}\times\boldsymbol{v}$ 代入后得
+\begin{equation*}
+  m\boldsymbol{r}\left(\boldsymbol{v}\cdot
+  \dot{\boldsymbol{v}}\right)
+  -m\boldsymbol{v}\left(\boldsymbol{r}\cdot
+  \dot{\boldsymbol{v}}\right)
+  +\frac{\alpha\boldsymbol{v}}{r}
+  -\frac{\alpha\boldsymbol{r}
+  \left(\boldsymbol{v}\cdot\boldsymbol{r}\right)}{r^3}.
+\end{equation*}
+再根据运动方程
+$m\dot{\boldsymbol{v}}=\alpha\boldsymbol{r}/r^3$
+可知上面表达式等于零.
+
+守恒矢量(15.17)的方向沿着长轴从焦点指向近心点，其大小等于 $\alpha e$.这很容易通过计算该矢量在近心点的值来验证.
+
+需要着重指出，运动积分(15.17)像 $\boldsymbol{M}$ 和 $E$ 一样，是质点状态（位置和速度）的单值函数.在§52我们将看到，存在这个附加的单值积分是因为运动的简并性.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 质点在场 $U=-\alpha/r$ 内沿着抛物线运动，能量 $E=0$，试求质点坐标对时间的依赖关系.
+
+解：对积分
+\begin{equation*}
+  t=\int\frac{r\,\mathrm{d}r}
+  {\sqrt{\dfrac{2\alpha}{m}\,r-\dfrac{M^2}{m^2}}}
+\end{equation*}
+做变换
+\begin{equation*}
+  r=\frac{M^2}{2m\alpha}\left(1+\eta^2\right)
+  =\frac{p}{2}\left(1+\eta^2\right),
+\end{equation*}
+可得如下参数方程：
+\begin{equation*}
+  r=\frac{p}{2}\left(1+\eta^2\right),\qquad
+  t=\sqrt{\frac{mp^3}{\alpha}}\,\frac{\eta}{2}
+  \left(1+\frac{\eta^2}{3}\right),\qquad
+  x=\frac{p}{2}\left(1-\eta^2\right),\qquad
+  y=p\eta.
+\end{equation*}
+参数 $\eta$ 取值范围为 $-\infty$ 到 $+\infty$.
+
+\noindent{\heiti 习题2}\quad 质点在有心力场 $U=-\dfrac{\alpha}{r^2}$（$\alpha>0$）内运动，试积分运动方程.
+
+解：按照公式(14.6)和(14.7)，对 $\varphi$ 和 $t$ 的计算起点做适当选择可得
+
+a）当 $E>0$，$\dfrac{M^2}{2m}>\alpha$ 时，
+\begin{equation*}
+  \frac{1}{r}=\sqrt{\frac{2mE}{M^2-2m\alpha}}
+  \cos\left(\varphi\sqrt{1-\frac{2m\alpha}{M^2}}\right),
+\end{equation*}
+
+b）当 $E>0$，$\dfrac{M^2}{2m}<\alpha$ 时，
+\begin{equation*}
+  \frac{1}{r}=\sqrt{\frac{2mE}{2m\alpha-M^2}}
+  \sinh\left(\varphi\sqrt{\frac{2m\alpha}{M^2}-1}\right),
+\end{equation*}
+
+c）当 $E<0$，$\dfrac{M^2}{2m}<\alpha$ 时，
+\begin{equation*}
+  \frac{1}{r}=\sqrt{\frac{2m|E|}{2m\alpha-M^2}}
+  \cosh\left(\varphi\sqrt{\frac{2m\alpha}{M^2}-1}\right).
+\end{equation*}
+在这三种情况下都有
+\begin{equation*}
+  t=\frac{1}{E}\sqrt{\frac{m}{2}}
+  \sqrt{Er^2-\frac{M^2}{2m}+\alpha}.
+\end{equation*}
+在情况 b）和 c），当 $\varphi\to\infty$ 时，质点沿着趋向坐标原点的轨道“坠落”至中心.从给定的距离 $r$ 开始的坠落时间等于
+\begin{equation*}
+  \frac{1}{E}\sqrt{\frac{m}{2}}
+  \left(\sqrt{\alpha-\frac{M^2}{2m}+Er^2}
+  -\sqrt{\alpha-\frac{M^2}{2m}}\right).
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 在势能 $U=-\alpha/r$ 上增加一个小的修正 $\delta U$，有限运动的轨道不再封闭，并且每运动一圈轨道的近心点都有很小的角度改变量 $\delta\varphi$.在下面情况下求 $\delta\varphi$：a）$\delta U=\beta/r^2$，b）$\delta U=\gamma/r^3$.
+
+解：当 $r$ 从 $r_{\min}$ 变到 $r_{\max}$ 再重新回到 $r_{\min}$ 时，角变化量 $\delta\varphi$ 由公式(14.10)给出.为了避免虚假发散，将公式(14.10)改写成
+\begin{equation*}
+  \Delta\varphi=-2\frac{\partial}{\partial M}
+  \int_{r_{\min}}^{r_{\max}}
+  \sqrt{2m(E-U)-\frac{M^2}{r^2}}\,\mathrm{d}r
+\end{equation*}
+代入 $U=-\alpha/r+\delta U$ 并将被积式按 $\delta U$ 的幂次展开，其中，零阶项为 $2\pi$，一阶项就是所求的 $\delta\varphi$
+\begin{equation*}
+  \delta\varphi=\frac{\partial}{\partial M}
+  \int_{r_{\min}}^{r_{\max}}
+  \frac{2m\,\delta U\,\mathrm{d}r}
+  {\sqrt{2m\left(E+\dfrac{\alpha}{r}\right)
+  -\dfrac{M^2}{r^2}}}
+  =\frac{\partial}{\partial M}\left(\frac{2m}{M}
+  \int_0^{\pi}r^2\delta U\,\mathrm{d}\varphi\right),
+\tag{1}
+\end{equation*}
+其中对 $r$ 的积分变为沿着“无扰”运动轨道对 $\varphi$ 的积分.
+
+对于情况 a），公式(1)中的积分是平凡的，得
+\begin{equation*}
+  \delta\varphi=-\frac{2\pi\beta m}{M^2}
+  =-\frac{2\pi\beta}{\alpha p}
+\end{equation*}
+其中 $2p$ 是(15.4)中无扰椭圆的正焦弦.在情况 b）中 $r^2\delta U=\gamma/r$，由(15.5)给出的 $1/r$ 代入(1)后可得
+\begin{equation*}
+  \delta\varphi=-\frac{6\pi\alpha\gamma m^2}{M^4}
+  =-\frac{6\pi\gamma}{\alpha p^2}.
+\end{equation*}
+
+\end{xiti}
