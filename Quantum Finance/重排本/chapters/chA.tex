@@ -1,0 +1,826 @@
+% chA Appendix A Mathematical background (书页284-302 / p302-320)
+% 覆盖说明：原书附录 A 实际止于书页 300（p318）；任务指派范围中的 p319--p320
+% （书页 301--302）已是附录 B“金融术语简表”，不属于本章内容。
+% 编号公式核对：原书本附录 tag 为 (A.1)--(A.46)，但 (A.12) 与 (A.14) 在原书
+% 中缺号——书页 287 自 (A.11) 直接跳 (A.13)，书页 288 自 (A.13) 直接跳
+% (A.15)，系原书排印缺号（已对照 PNG 逐页核验）。实有编号公式 44 条，全部
+% 收录；编号按原书照录，不重新连续编号。
+% 原书已知排印疑点：
+% (1) 书页 294“so that”后 E[v(t)] 一式的中间指数印作 e^{+\gamma/M\,(t-\tau)}，
+%     按其上方的形式解应为 e^{-\gamma/M\,(t-\tau)}（已订正并加脚注）；
+% (2) 式 (A.43) 第一项的括号印作 cosh{...）花圆括不配对（按配对双曲括号读）；
+% (3) 式 (A.32) 上方 n 维高斯积分的测度印作 dx_1 dx_1 dx_2 ... dx_n（重复
+%     dx_1，按 dx_1 dx_2 ... dx_n 读，本导读正文未收录该式，仅此备注）；
+% (4) 书页 295 等时位形关联式 E[x^2(t)] 的末项印作 e^{-\gamma/M\,(t+t')}，
+%     按“等时”应读作 t'=t 的情形（照录并加脚注说明）。
+\chapter{数学背景}
+
+本章对应原书附录 A，是全书的“工具箱”：概率论的记号与鞅、狄拉克$\delta$函数与泛函导数、一维到无穷维的高斯积分、白噪声的测度、朗之万方程、金融学基本定理，以及传播子的两种求值方法。原书把它们集中放在书末供随时查阅；正书各章用到某件工具时不再重推，只回指此处。因此本章的读法不是从头到尾通读，而是“用到哪条查哪条”——导读为每条公式注明了它在正书中的使用位置。
+
+从知识结构看，这批工具可以分成三组。第一组是概率论语言（A.1、A.3.4、A.4）：随机变量、条件期望、鞅、正态分布、白噪声，这是第 3 章衍生证券定价的底座。第二组是把连续--无穷维世界算清楚的两件兵器：狄拉克$\delta$函数与泛函导数（A.2）、高斯积分（A.3），它们支撑第 5 章的全部路径积分与第 7 章的场论生成泛函。第三组是动力学表述与定价定理：朗之万方程（A.5）给出随机微分方程的物理原型，金融学基本定理（A.6）把“无套利＋完全市场”翻译成“折现价格是鞅”，传播子的求值（A.7）则是第 7、8 章远期利率场论的核心计算。
+
+记号沿用全书：$E[\cdot]$ 表示期望值，$N(\mu,\sigma)$ 表示正态分布，$\epsilon$ 是离散化的时间步长，$R(t)$ 是高斯白噪声，$D(t,t')$ 或 $D(x,x';t,T_{FR})$ 是传播子，$\mathcal{N}$ 是归一化常数。阅读前提：第 3 章的随机微分方程语言、第 5 章的路径积分语言（本章大量公式在正书中的“用武之地”在这两章）。
+
+\section{概率分布}
+
+本节用最短的篇幅把全书要用的概率论记号固定下来：随机变量与随机过程怎么标记、联合分布怎么给出期望值、边缘分布与条件期望怎么从联合分布中“积出来”。真正的主角是 A.1.1 的鞅——原书明言它在金融中地位重要，A.6 的金融学基本定理将把整个无套利定价体系落在鞅条件上。
+
+\paragraph{模型设定与记号}
+随机变量（random variable）是取值于某个预定范围、由概率分布支配的实值或离散值变量，记号大小写混用（如$X$或$r$）。随机过程（stochastic process）是一族随机变量：连续情形对每个$t\in[t_0,t_*]$各有一个$r(t)$；离散情形是一列$Z_n$（$n$为整数）。借用物理学术语，自由度（degree of freedom）指某一瞬间独立随机变量的个数，每个自由度各自对应一条独立的随机过程。
+
+取$N+1$个随机变量$Z_i$（$1\le i\le N+1$），其联合概率分布（joint probability distribution）为$p(z_1,z_2,\ldots,z_{N+1})$。任意函数$f$的期望值（expectation value）与分布的归一化是
+\begin{equation*}
+E[f]=\int dz_1 dz_2,\ldots,dz_{N+1}\,
+f(z_1,z_2,\ldots,z_{N+1})\,p(z_1,z_2,\ldots,z_{N+1})
+\end{equation*}
+\begin{equation*}
+E[1]=1=\int dz_1 dz_2,\ldots,dz_{N+1}\,p(z_1,z_2,\ldots,z_{N+1})
+\end{equation*}
+对联合分布中一部分变量积分，得到边缘分布（marginal probability distribution）：
+\begin{equation*}
+p^{(N+1)}(z_1,z_2,\ldots,z_N)=\int dz_{N+1}\,
+p(z_1,z_2,\ldots,z_{N+1})
+\end{equation*}
+\begin{equation*}
+\ldots\ldots
+\end{equation*}
+\begin{equation*}
+p^{(N+1,N,\ldots,2)}(z_1)=\int dz_2,\ldots,dz_N dz_{N+1}\,
+p(z_1,z_2,\ldots,z_{N+1})
+\end{equation*}
+条件期望（conditional expectation）则是反方向的提问：已知前$N$个变量取了定值$z_i$，$f(z_{N+1})$的平均值是多少——积分只剩下一个未积分的变量：
+\begin{equation*}
+E\bigl[f(z_{N+1})|z_1,z_2,z_3,\ldots,z_N\bigr]
+=\int dz_{N+1}\,f(z_{N+1})\,p(z_1,z_2,\ldots,z_{N+1})
+\tag{A.1}
+\end{equation*}
+
+\paragraph{解读与联系}
+式 (A.1) 是全书定价公式的原型：金融工具的公允价格写成“未来收益对（风险中性）条件分布的积分”，第 3 章风险中性解里$E_{(t_*,T)}[\cdot]$那类记号（原书式 A.40）就是它的带测度版本。条件期望对“信息”的处理方式——已知什么、平均什么——正是鞅定义的语言。
+
+\subsection{鞅}
+
+鞅（martingale）是一类特殊的随机过程。离散随机过程$X_i$若是鞅，须满足
+\begin{equation*}
+E\bigl[X_{n+1}|x_1,x_2,\ldots,x_n\bigr]=x_n
+\quad:\quad\text{Martingale}
+\tag{A.2}
+\end{equation*}
+即：已知前$n$步的结果$x_1,\ldots,x_n$，第$n+1$步的条件期望就等于$x_n$本身，历史信息不提供任何“趋势”。
+
+原书用赌博游戏来解读（此处转述）：$x_n$是赌徒第$n$局结束时的本钱，$X_{n+1}$是下一局的各种可能结果；鞅条件说，下一局结束时期望本钱恰好等于入场本钱$x_n$，与此前输赢的历史无关。鞅因此是“公平游戏”（fair game）的数学表达。由式 (A.2) 立刻得到一条重要推论：
+\begin{align*}
+E[X_{n+1}]
+&=\int dx_1 dx_2,\ldots,dx_n dx_{n+1}\,
+E\bigl[X_{n+1}|x_1,x_2,\ldots,x_n\bigr]\,
+p(x_1,x_2,\ldots,x_{n+1})\\
+&=\int dx_1 dx_2,\ldots,dx_n dx_{n+1}\,
+x_n\,p(x_1,x_2,\ldots,x_{n+1})\\
+&=E[X_n]\\
+\Rightarrow\ E[X_{n+1}]&=E[X_n]=E[X_{n-1}]=\ldots=E[X_1]\\
+\Rightarrow\ E[X_n]&=E[X_1]
+\tag{A.3}
+\end{align*}
+推导只用了两件事：对全体变量积分等于“先取条件期望、再对条件变量积分”（全期望公式），以及鞅条件把条件期望换成$x_n$。结论：公平游戏里赌徒平均不输不赢，离场时带走的就是入场时的本钱。
+
+\subsubsection*{随机停止时间：Wald 方程}
+
+鞅概念的一个重要应用是停止时间问题。所谓停止时间（stopping time），是指过程在哪个时刻停下本身也是随机的：设独立同分布的随机过程$X_1,X_2,\ldots,X_N$，停止时刻$N$就是一个随机整数——想象一维随机游走的粒子，$X_i$是第$i$步后的位置，问：粒子停止时的平均位置$E\bigl[\sum_{i=1}^N X_i\bigr]$是多少？
+
+设$E[X]=\mu$，定义
+\begin{equation*}
+Z_n=\sum_{i=1}^n (X_i-\mu)
+\end{equation*}
+把求和拆成“新的一步＋旧的和”，再用$X_{n+1}$与历史独立，即验证$E[Z_{n+1}|z_1,\ldots,z_n]=z_n$：$Z_n$是鞅（步骤从略）。于是对随机停止时刻$N$
+\begin{align*}
+E[Z_N]&=E\Bigl[\sum_{i=1}^N (X_i-\mu)\Bigr]
+=E\Bigl[\sum_{i=1}^N X_i-N\mu\Bigr]\\
+&=E\Bigl[\sum_{i=1}^N X_i\Bigr]-E[N]\mu
+\tag{A.4}
+\end{align*}
+而由式 (A.3)，鞅的期望一路不增不减：
+\begin{equation*}
+E[Z_N]=E[Z_1]=E(X_1-\mu)=0
+\end{equation*}
+代回式 (A.4) 得 Wald 方程（Wald's equation）：
+\begin{equation*}
+E\Bigl[\sum_{i=1}^N X_i\Bigr]=E[N]\mu
+\quad:\quad\text{Walds equation}
+\end{equation*}
+平均停止步数乘以单步均值——随机游走粒子离原点的平均距离由“走了多久”决定。
+
+\paragraph{解读与联系}
+鞅条件在正书中反复出现：第 3 章推导 Black--Scholes 风险中性解时要求折现股票价格满足鞅条件（原书式 A.40）；第 6 章把 HJM 模型的无套利条件写成远期利率漂移的鞅条件；第 7 章远期利率场论的风险中性测度与计价物变换（原书 7.6、7.7 节）整节都在鞅的语言里进行。Wald 方程本身正文没有直接用到，放在这里是鞅运算的一个热身练习，也提示“停止时间”这一概念在美式期权（提前行权时刻就是停止时间）背景下的分量。
+
+\section{狄拉克$\delta$函数}
+
+研究连续（无穷多个点的）空间时，离散数学里“在某个点取值”的说法需要一件替代工具，这就是狄拉克$\delta$函数（Dirac delta function）。要注意它不是勒贝格可测的普通函数——它的支集是零测集——而是广义函数（generalized function），数学文献里也叫分布（distribution）。它扮演的角色，是离散克罗内克$\delta$符号（Kronecker delta）在连续指标情形的推广。本节罗列它的运算性质与三种表示；全书凡是“初条件是某一确定点”“对完备基求和”“把算符的逆写成积分核”的场合，底下都有它。
+
+\paragraph{关键公式}
+设$x$是直线坐标（$-\infty\le x\le+\infty$），$f(x)$无穷次可微。$\delta(x-a)$的定义性质集中写在下面两条里：对任意测试函数，$\delta$“挑出”$x=a$处的值，而作用在$\delta$的导数上则把导数“转移”到$f$身上（分部积分$n$次，符号翻转$n$次）：
+\begin{equation*}
+\delta(x-a)=\delta(a-x)\quad:\quad\text{偶函数}
+\end{equation*}
+\begin{equation*}
+\delta\bigl(c(x-a)\bigr)=\frac{1}{|c|}\,\delta(x-a)
+\end{equation*}
+\begin{equation*}
+\int_{-\infty}^{+\infty}dx\,f(x)\,\delta(x-a)=f(a)
+\tag{A.5}
+\end{equation*}
+\begin{equation*}
+\int_{-\infty}^{+\infty}dx\,f(x)\,\frac{d^n}{dx^n}\delta(x-a)
+=(-1)^n\,\frac{d^n}{dx^n}f(x)\bigr|_{x=a}
+\tag{A.6}
+\end{equation*}
+
+海维赛德阶跃函数（Heaviside step function）$\Theta(t)$定义为例 (A.7)，它与$\delta$互为微积分逆：$\Theta$对上限积分给出$\delta$，$\delta$积分给出$\Theta$。
+\begin{equation*}
+\Theta(t)=
+\begin{cases}
+1 & t>0\\
+\frac{1}{2} & t=0\\
+0 & t<0
+\end{cases}
+\tag{A.7}
+\end{equation*}
+由定义立得$\Theta(t)+\Theta(-t)=1$。$\delta$函数的一种表示是
+\begin{align*}
+\int_{-\infty}^{b}\delta(x-a)=\Theta(b-a)
+\tag{A.8}\\
+\Rightarrow\ \int_{-\infty}^{a}\delta(x-a)=\Theta(0)=\frac{1}{2}
+\tag{A.9}
+\end{align*}
+末式取$\frac{1}{2}$正是因为$\delta$是偶函数：积分积到奇点正中，左右各分一半。由式 (A.8) 两边对$b$求导，
+\begin{equation*}
+\frac{d}{db}\Theta(b-a)=\delta(b-a)
+\end{equation*}
+此外还有两张“极限表示”的面孔——高斯钟形曲线把宽度压到零、指数尖峰把斜率推到无穷：
+\begin{equation*}
+\delta(x-a)=\lim_{\sigma\to 0}\frac{1}{\sqrt{2\pi\sigma^2}}\,
+\exp\Bigl\{-\frac{1}{2\sigma^2}(x-a)^2\Bigr\}
+\tag{A.10}
+\end{equation*}
+\begin{equation*}
+\delta(x-a)=\lim_{\mu\to\infty}\frac{1}{2}\mu\,
+\exp\bigl\{-\mu|x-a|\bigr\}
+\end{equation*}
+以及傅里叶表示——常数$1$的傅里叶反变换，即“所有频率等幅叠加在一点相干”：
+\begin{equation*}
+\delta(x-a)=\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,e^{ip(x-a)}
+\tag{A.11}
+\end{equation*}
+
+\paragraph{$\delta$与克罗内克$\delta$的关系}
+对整数$n,m$，$\delta_{n-m}$在$n\ne m$时为$0$、$n=m$时为$1$。把连续变量离散化到格点$x=n\epsilon$、$a=m\epsilon$、$f(x)\to f_n$，则式 (A.5) 的离散化版本为
+\begin{align*}
+\int_{-\infty}^{+\infty}dx\,f(x)\,\delta(x-a)
+\to\ \epsilon\sum_{-\infty}^{+\infty}f_n\,\delta(x-a)=f_m\\
+\Rightarrow\ \delta(x-a)\to\frac{1}{\epsilon}\,\delta_{n-m}
+\tag{A.13}
+\end{align*}
+取$\epsilon\to 0$，得到连续极限下“$\delta$在某点为无穷、其余点为零、积分等于一”的直观图像：
+\begin{equation*}
+\delta(x-a)=\lim_{\epsilon\to 0}\frac{1}{\epsilon}\delta_{n-m}
+=
+\begin{cases}
+0 & x\ne a\\
+\infty & x=a
+\end{cases}
+\end{equation*}
+反之，离散化正是把$\delta(x-a)$换成$(1/\epsilon)\delta_{n-m}$、把积分换成$\epsilon\sum$。
+
+\paragraph{解读与联系}
+使用场景：式 (A.5) 是定价核（pricing kernel）$p(x,T-t;x')$类 propagator 的初条件（第 4 章把期权收益写成终端条件、第 5 章转移概率密度在$T\to t$时退化为$\delta$）；式 (A.11) 的傅里叶表示用来验证求和后的封闭形式确实是逆算符——第 5 章 5.5 节简谐振子传播子无限时间极限$D(t,t')=\frac{1}{2m\omega}e^{-\omega|t-t'|}$的核验、本附录 A.3.3 例子中$D(t,t')$的动量积分都用它；式 (A.13) 的“$\delta\to\epsilon^{-1}\delta_{n-m}$”对应关系是第 7 章格点场论（原书附录 7.19）里场与无穷维积分变量互译的桥梁。
+
+\subsection{泛函导数}
+
+偏导数推广到“无穷多个独立变量”的情形就是泛函导数（functional derivative）。先看有限情形：设指标$n$跑遍所有整数的变量族$X_n$，则$\partial X_m/\partial X_n=\delta_{n-m}$——每个变量只对自己敏感。令$t=n\epsilon$、$t'=m\epsilon$并取$\epsilon\to 0$，便得到无穷变量族$X(t)$；其泛函导数$\delta/\delta X(t)$定义为
+\begin{align*}
+\frac{\delta X(t')}{\delta X(t)}
+&\equiv\lim_{\epsilon\to 0}\frac{1}{\epsilon}\,
+\frac{\partial X_m}{\partial X_n}\\
+&=\lim_{\epsilon\to 0}\frac{1}{\epsilon}\,\delta_{n-m}\\
+\Rightarrow\ \frac{\delta X(t')}{\delta X(t)}&=\delta(t-t')
+\tag{A.15}
+\end{align*}
+定义里那个$1/\epsilon$把克罗内克$\delta$放大成狄拉克$\delta$，正是上一小节式 (A.13) 的反向操作。举个最简单的例子：对线性泛函求导，$\delta$函数把积分变量钉在$t$处，
+\begin{equation*}
+\frac{\delta}{\delta X(t)}\int_{-\infty}^{+\infty}ds\,f(s)\,X(s)=f(t)
+\end{equation*}
+
+\paragraph{解读与联系}
+使用场景：第 7 章把远期利率场论的生成泛函（generating functional）$Z[J]$对源$J$求泛函导数来制造关联函数（原书式 7.25）——$\delta^2 Z/\delta J(t,x)\delta J(t',x')$在$J=0$处给出传播子；第 5 章附录“随机波动率的生成函数”（原书 5.12 节）对源泛函逐阶求导得到股票价格与波动率的各阶矩。一句话：泛函导数之于场论路径积分，恰似$\partial/\partial x_i$之于多维高斯积分，A.3.2 的矩生成技巧将整体升级到泛函版本。
+
+\section{高斯积分}
+
+高斯积分（Gaussian integration）渗透了全书的理论金融计算，也是量子理论的一块基石：一维与多维情形是常规武器，而它最不平凡的性质是能原封不动地推广到无穷维——这正是“路径积分可以真的算出来”的原因。本节四小节按维数递进：一维给出母结果，多维用正交变换化成一维乘积，无穷维是多维的极限读法，最后回到概率论把正态随机变量的全部统计量收进同一个机器。
+
+\subsection{一维高斯积分}
+
+要解决的问题：算出带线性源项的高斯积分，并把它变成“矩发生器”。考虑
+\begin{equation*}
+Z[j]=\mathcal{N}\int_{-\infty}^{+\infty}
+e^{-\frac{1}{2}\lambda x^2+jx}\,dx
+\end{equation*}
+指数上多出的线性项$jx$是“源”：对$j$逐阶求导即可取出$x$的各阶矩，
+\begin{equation*}
+E\bigl[x^n\bigr]=\frac{d^n Z[j]}{dj^n}\Bigr|_{j=0}
+\end{equation*}
+因此$Z[j]$称为高斯分布的矩生成函数（moment generating function）。归一化常数$\mathcal{N}$由$Z(0)=1$定出：把$Z[0]$平方、转到极坐标（$x^2+y^2=r^2$、$\xi=r^2/2$代换），
+\begin{align*}
+Z^2[0]&=\mathcal{N}^2\int_{-\infty}^{+\infty}\int_{-\infty}^{\infty}
+e^{-\frac{1}{2}\lambda(x^2+y^2)}dx\,dy
+=\mathcal{N}^2\int_0^{\infty}\int_0^{2\pi}
+r\,e^{-\frac{1}{2}\lambda r^2}\,dr\,d\theta\\
+1&=\mathcal{N}^2 2\pi\int_0^{\infty}d\xi\,e^{-\lambda\xi}
+=\mathcal{N}^2\frac{2\pi}{\lambda}
+\ \Rightarrow\ \mathcal{N}=\sqrt{\frac{\lambda}{2\pi}}
+\end{align*}
+最后一步积分是“配方法”（completing the square）：把$x\to x-\frac{j}{\lambda}$平移，积分测度不变，线性项被吸收进指数的前因子，只剩纯高斯积分：
+\begin{align*}
+Z[j]&=e^{\frac{1}{2\lambda}j^2}\,
+\mathcal{N}\int_{-\infty}^{+\infty}e^{-\frac{1}{2}\lambda x^2}\,dx\\
+&=e^{\frac{1}{2\lambda}j^2}
+\tag{A.16}
+\end{align*}
+
+\paragraph{解读与联系}
+使用场景：式 (A.16) 是全章的“母公式”——第 5 章所有高斯路径积分最终都化归为对一个个傅里叶系数（或时间切片变量）的式 (A.16) 型积分（导读第 5 章 5.5 节的推导显式引用了本式）；第 6 章 Vasicek 模型的国债路径积分解（原书 6.2 节）是它在单变量高斯模型上的直接应用。
+
+\subsection{高维高斯积分}
+
+要解决的问题：把式 (A.16) 升级到$n$个变量，让“二次型＋线性源”的结构在矩阵语言下显形。$n$维高斯积分为
+\begin{align*}
+Z[J]&=\mathcal{N}\int_{-\infty}^{+\infty}e^{S}\,
+dx_1 dx_2 \ldots dx_n\\
+S&=-\frac{1}{2}\sum_{i,j=1}^{n}x_i A_{ij}x_j+\sum_{i=1}^{n}J_i x_i
+\end{align*}
+$\mathcal{N}$仍由$Z(0)=1$定出；在量子理论的语言里$S$称为作用量（action），$A$对应“质量矩阵”。
+
+推导主线只有一步：用对称矩阵的正交对角化把问题旋转回一维。设$n\times n$对称矩阵$A$被正交矩阵$M$对角化：
+\begin{equation*}
+A=M^T\,\mathrm{diag}(\lambda_1,\lambda_2,\ldots,\lambda_n)\,M,
+\qquad
+MM^T=\mathcal{I}_{n\times n}
+\end{equation*}
+其中$\mathcal{I}_{n\times n}$是单位矩阵。只考虑本征值非负（$\lambda_i\ge 0$）的矩阵，否则积分发散。做变量替换$x_i=\sum_{j=1}^n M_{ij}z_j$：正交变换的雅可比行列式为$1$（$\det M=1$），测度不动，
+\begin{equation*}
+\prod_{i=1}^{n}dx_i=\det(M)\prod_{i=1}^{n}dz_i=\prod_{i=1}^{n}dz_i
+\end{equation*}
+于是$n$维积分彻底因子化为一维积分的乘积（源向量也随之旋转，$\tilde{J}_i\equiv\sum_{j=1}^{n}J_j M^T_{ji}$）：
+\begin{equation*}
+Z[J]=\mathcal{N}\prod_{i=1}^{n}
+\Bigl[\int_{-\infty}^{+\infty}
+dz_i\,e^{-\frac{1}{2}\lambda_i z_i^2+\tilde{J}_i z_i}\Bigr]
+\end{equation*}
+每个因子都套用式 (A.16)：
+\begin{equation*}
+Z[J]=\mathcal{N}\prod_{i=1}^{n}
+\Bigl[\sqrt{\frac{2\pi}{\lambda_i}}\;
+e^{\frac{1}{2\lambda_i}\tilde{J}_i^2}\Bigr]
+\tag{A.17}
+\end{equation*}
+把乘积翻回矩阵语言：前因子凑成行列式，
+\begin{equation*}
+\mathcal{N}\prod_{i=1}^{n}\sqrt{\frac{2\pi}{\lambda_i}}
+=\mathcal{N}\,(2\pi)^{n/2}\frac{1}{\sqrt{\det A}}=1
+\end{equation*}
+指数上的对角求和即二次型$J A^{-1}J$，
+\begin{equation*}
+\sum_{i=1}^{n}\frac{1}{\lambda_i}\tilde{J}_i^{\,2}
+=J\,\frac{1}{A}\,J\equiv J A^{-1}J
+\end{equation*}
+所以$n$维高斯积分的最终答案是
+\begin{equation*}
+Z[J]=\exp\Bigl(\frac{1}{2}J A^{-1}J\Bigr)
+\tag{A.18}
+\end{equation*}
+
+\paragraph{解读与联系}
+使用场景：式 (A.18) 是“高斯理论的全部统计由逆协方差$A^{-1}$决定”的矩阵版陈述——多因子股票模型、第 5 章随机波动率模型在$(x,y)$两变量上的离散化（原书 5.7 节 Merton--Garman 框架）、以及第 8 章远期利率两点关联函数的高斯参数化，都是它的用户。结构上更要紧的是它给出了模板：$Z\propto e^{\frac{1}{2}J(\text{逆算符})J}$，下一小节把这个模板整体搬进无穷维。
+
+\subsection{无穷维高斯积分}
+
+要解决的问题：让积分变量从$n$个变成连续统$x(t)$（$-\infty\le t\le+\infty$），作用量从矩阵二次型变成积分核二次型：
+\begin{equation*}
+S=-\frac{1}{2}\int_{-\infty}^{+\infty}dt\,dt'\,
+x(t)\,D^{-1}(t,t')\,x(t')
++\int_{-\infty}^{+\infty}dt\,J(t)\,x(t)
+\tag{A.19}
+\end{equation*}
+把$t$离散化、照抄上一小节$n\times n$情形的步骤、再取$n\to\infty$极限，就得到
+\begin{align*}
+Z[J]
+&=\mathcal{N}\prod_{t=-\infty}^{+\infty}
+\int_{-\infty}^{+\infty}dx(t)\,e^{S}
+=\exp\Bigl\{\frac{1}{2}\int_{-\infty}^{+\infty}dt\,dt'\,
+J(t)\,D(t,t')\,J(t')\Bigr\}
+\tag{A.20}\\
+\int_{-\infty}^{+\infty}ds\,D^{-1}(t,s)\,D(s,t')&=\delta(t-t')
+\end{align*}
+第二行说$D$是核$D^{-1}$的逆——逆是按“卷积等于$\delta$”定义的，矩阵逆$A^{-1}$的连续翻版。此处的归一化$\mathcal{N}$是个发散量，只负责保证$Z(0)=1$；原书强调，在量子理论的讨论中式 (A.20) 居于中心地位。
+
+为什么高斯积分能推广到无穷维？原书给出的理由值得记住：积分测度在平移$x(t)\to x(t)+\xi(t)$下不变。正是这条平移对称性保证了配方法那步“测度不动”，于是式 (A.20) 的结果成立——无穷维的配方法与有限维没有两样。
+
+\subsubsection*{例子：简谐振子}
+
+无穷时间作用量的“简谐振子”（harmonic oscillator）：
+\begin{align*}
+S&=-\frac{m}{2}\int_{-\infty}^{+\infty}dt\,
+\Bigl[\Bigl(\frac{dx(t)}{dt}\Bigr)^{2}+\omega^2 x^2(t)\Bigr]\\
+&=-\frac{m}{2}\int_{-\infty}^{+\infty}dt\,
+x(t)\Bigl(-\frac{d^2}{dt^2}+\omega^2\Bigr)x(t)\\
+\Rightarrow\ D^{-1}(t,t')
+&=m\Bigl(-\frac{d^2}{dt^2}+\omega^2\Bigr)\delta(t-t')
+\end{align*}
+第二步分部积分把导数搬到左边的$x(t)$上（$\pm\infty$处的边界项丢弃——这正是 A.7 求值传播子时将显式处理的那类边界条件）。逆核$D(t,t')$用式 (A.11) 的傅里叶表示求出：
+\begin{align*}
+D(t,t')&=\frac{1}{2\pi m}\int_{-\infty}^{+\infty}
+dp\,\frac{e^{ip(t-t')}}{p^2+\omega^2}\\
+&=\frac{1}{2m|\omega|}\,e^{-|\omega|\,|t-t'|}
+\end{align*}
+末步留数积分（步骤从略），结果可用式 (A.11) 反向验证：把它代入$m(-\partial_t^2+\omega^2)$作用在$D$上，确实回到$\delta(t-t')$。
+
+\paragraph{解读与联系}
+使用场景：式 (A.19)--(A.20) 是全书路径积分机器的心脏——第 5 章 5.5 节简谐振子路径积分直接以本式为出发点（导读第 5 章明确引用“附录 A 式 (A.19)--(A.20)”）；第 7 章 7.4 节远期利率场论的生成泛函（原书式 7.26）就是式 (A.20) 换了一套变量名（$t\to(t,x)$、$D\to D(x,x';t,T_{FR})$）的重演；上面简谐振子例子的$e^{-\omega|t-t'|}$形式，则在参数对应$m=1/\mu^2$、$\omega=\mu$下给出远期利率的刚性传播子（原书式 7.27 的来源）。
+
+\subsection{正态随机变量}
+
+前三小节是“积分技术”，这一小节回到概率论对象：正态（高斯）随机变量$N(\mu,\sigma)$的密度、矩与累积分布，全部可由$Z[j]$机器读出。密度为
+\begin{equation*}
+P(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\,
+\exp\Bigl\{-\frac{1}{2\sigma^2}(x-\mu)^2\Bigr\}
+\end{equation*}
+与式 (A.16) 对照（$\lambda=1/\sigma^2$、$j$－\,$\mu$ 平移）立刻读出均值与方差：
+\begin{align*}
+E[x]&\equiv\int_{-\infty}^{+\infty}x\,P(x)=\mu
+\quad:\quad\text{mean}\\
+E[(x-\mu)^2]&\equiv\int_{-\infty}^{+\infty}(x-\mu)^2\,P(x)=\sigma^2
+\quad:\quad\text{variance}
+\end{align*}
+任何正态随机变量都可标准化为$N(0,1)$：若$X=N(\mu,\sigma)$、$Z=N(0,1)$，则
+\begin{equation*}
+X=\mu+\sigma Z
+\end{equation*}
+$Z=N(0,1)$的各阶矩由式 (A.16) 的生成函数给出（参数代入$\mu=0$、$\sigma^2=1$的一般形式）：
+\begin{equation*}
+E[z^n]=\frac{d^n}{dj^n}Z[j]|_{j=0}
+\ ;\quad
+Z[j]=e^{\mu j+\frac{1}{2}\sigma^2 j^2}
+\tag{A.21}
+\end{equation*}
+累积分布（cumulative distribution）$N(x)$定义为
+\begin{equation*}
+\mathrm{Prob}(-\infty\le z\le x)=N(x)
+=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-\frac{1}{2}z^2}\,dz
+\tag{A.22}
+\end{equation*}
+最后一条代数性质：独立正态随机变量的线性组合仍是正态随机变量——
+\begin{equation*}
+X_1=N(\mu_1,\sigma_1);\ X_2=N(\mu_2,\sigma_2);\ \ldots,\ X_n=N(\mu_n,\sigma_n)
+\end{equation*}
+\begin{equation*}
+\Rightarrow\ X=\sum_{i=1}^{n}\alpha_i X_i=N(\mu,\sigma)
+\ \ \text{with}\ \
+\mu=\sum_{i=1}^{n}\alpha_i\mu_i;\ \
+\sigma^2=\sum_{i=1}^{n}\alpha_i^2\sigma_i^2
+\end{equation*}
+（步骤从略：用式 (A.21) 的生成函数相乘即得。）注意方差合成中系数是平方——这条“$\sigma$按平方根相加”的规则是组合波动率的一切。
+
+\paragraph{解读与联系}
+使用场景：$N(x)$出现在 Black--Scholes 看涨期权价格的显式解里（第 3 章 3.8 节风险中性解的最终公式）；“和仍为正态”用在第 3 章股价对数变量的分布（离散收益之和$=$对数收益）与 A.4.1 白噪声积分的分布论证中；式 (A.21) 的矩生成则是第 5 章附录“股票价格与随机波动率的矩”（原书 5.13 节）的模板。
+
+\section{白噪声}
+
+高斯白噪声（Gaussian white noise）$R(t)$是全书随机动力学的“驱动力”，其基本性质是零均值与$\delta$型关联——不同时刻的噪声完全不相干（“白”光各频率等强之名由此而来）：
+\begin{equation*}
+\langle R(t)\rangle=0;\qquad
+\langle R(t)R(t')\rangle=\delta(t-t')
+\end{equation*}
+本节要回答两个问题：白噪声的概率分布是什么（A.23--A.25 给出离散化答案），以及它的“泛函测度”如何写成指数形式（A.26--A.28）——后者正是路径积分里$e^{S}$的出处之一。
+
+\paragraph{关键公式}
+把时间离散化$t=n\epsilon$、$R(t)\to R_n$，白噪声的概率分布函数为
+\begin{equation*}
+P(R_n)=\sqrt{\frac{\epsilon}{2\pi}}\;e^{-\frac{\epsilon}{2}R_n^2}
+\tag{A.23}
+\end{equation*}
+即$R_n$是零均值、方差$1/\sqrt{\epsilon}$的高斯随机变量$N(0,1/\sqrt{\epsilon})$：步长越细，单步噪声越猛——这是理解伊藤微积分全部反常之处的钥匙。原书接下来证明了如下“必记”结果（伊藤规则的来源）：
+\begin{equation*}
+R_n^2=\frac{1}{\epsilon}\;+\;\text{量级为}0(1)\text{的随机项}
+\tag{A.24}
+\end{equation*}
+\emph{推导主线}：虽然$R_n^2$是随机变量的平方，但只看$t\to0$极限下的生成函数，它与确定值$1/\epsilon$无法区分。$R_n^2$的各阶矩由其生成函数给出：
+\begin{equation*}
+E\bigl[(R_n^2)^k\bigr]=\frac{d^k}{dt^k}E\bigl[e^{tR_n^2}\bigr]\Bigr|_{t=0}
+\end{equation*}
+对$\epsilon$小而固定，用式 (A.23) 算这个生成函数（高斯积分配方，步骤从略）：
+\begin{align*}
+\lim_{t\to 0}E\bigl[e^{tR_n^2}\bigr]
+&=\int_{-\infty}^{+\infty}dR_n\,e^{tR_n^2}
+\sqrt{\frac{\epsilon}{2\pi}}\;e^{-\frac{\epsilon}{2}R_n^2}
+=\frac{1}{\sqrt{1-\dfrac{2t}{\epsilon}}}
+\sim\exp\Bigl(\frac{t}{\epsilon}\Bigr)+O(1)
+\end{align*}
+能给出这个生成函数的“分布”不是别的，正是$\delta$函数——把$R_n^2$钉死在$1/\epsilon$上：
+\begin{equation*}
+P(R_n^2)=\delta\Bigl(R_n^2-\frac{1}{\epsilon}\Bigr)
+\end{equation*}
+换言之：$R_n$固然随机，但它的平方$R_n^2$在$\epsilon$的领头阶\textbf{不是}随机变量，而是确定值$1/\epsilon$。离散增量$(\Delta x)^2\sim\epsilon$、从而$(dt)^2$在伊藤意义下不可忽略，全部源于此（第 3 章伊藤修正项$-\frac{\sigma^2}{2}$的出处）。
+
+\paragraph{白噪声的概率测度}
+区间$t_1\le t\le t_2$上白噪声的概率测度（probability measure）是各时刻分布的乘积：
+\begin{align*}
+\mathcal{P}[R]&=\prod_{n=1}^{N}P(R_n)
+=\prod_{n=1}^{N}e^{-\frac{\epsilon}{2}R_n^2}
+\tag{A.25}\\
+\int dR&=\prod_{n=1}^{N}\sqrt{\frac{\epsilon}{2\pi}}
+\int_{-\infty}^{+\infty}dR_n
+\end{align*}
+为记号简便取$\epsilon\to0$；严格地说，连续记号只是上面离散多重积分之连续极限的简写。对$t_1<t<t_2$，
+\begin{align*}
+\mathcal{P}[R,t_1,t_2]&\to e^{S}
+\tag{A.26}\\
+S&=-\frac{1}{2}\int_{t_1}^{t_2}dt\,R^2(t)
+\tag{A.27}\\
+\int dR&\to\int DR
+\tag{A.28}
+\end{align*}
+原书提醒：这个“作用量泛函”$S$是超局域（ultra-local）的——不同时刻的噪声变量完全解耦，积分没有相邻耦合。这是白噪声与后文远期利率速度场$\mathcal{A}(t,x)$（有刚性、刚度项，变量之间不独立）最大的不同。
+
+\subsection{白噪声的积分}
+
+要解决的问题：白噪声本身病态（方差无穷），但它的积分良性——这正是维纳过程。考虑
+\begin{equation*}
+I=\int_{t}^{T}dt'\,R(t')\sim\epsilon\sum_{n=0}^{M}R_n
+\ ;\quad
+M=\Bigl[\frac{T-t}{\epsilon}\Bigr]
+\end{equation*}
+其中$\epsilon$为无穷小。由式 (A.23)，$R_n=N(0,1/\sqrt{\epsilon})$，故每份$\epsilon R_n=N(0,\sqrt{\epsilon})$。白噪声的积分是正态随机变量之和，由 A.3.4“和仍为正态”（方差相加规则），得
+\begin{equation*}
+I\sim N(0,\sqrt{\epsilon M})\to N(0,\sqrt{T-t})
+\tag{A.29}
+\end{equation*}
+加权版本同样成立：对任意确定性函数$a(t')$，
+\begin{equation*}
+Z=\int_{t}^{T}dt'\,a(t')\,R(t')
+\ \Rightarrow\
+Z=N(0,\sigma^2)\ ;\quad
+\sigma^2=\int_{t}^{T}dt'\,a^2(t')
+\end{equation*}
+
+\paragraph{解读与联系}
+使用场景：式 (A.29) 是第 3 章“股价对数变量服从$N(0,\sqrt{T-t})$、 hence 股价对数正态”的论证核心（原书 3.3 节）；加权版$Z=\int aR$则是第 6 章 HJM 框架下远期利率的随机积分（原书 6.4 节“HJM 模型的白噪声”）与第 7 章场论中$\int dx\,\sigma(t,x)\mathcal{A}(t,x)$型泛函高斯积分的离散原型；而式 (A.26)--(A.28) 的测度$e^{S}$在第 7 章升级为场论作用量$S=-\frac{1}{2}\int\mathcal{A}^2+\ldots$的出发点。
+
+\section{朗之万方程}
+
+朗之万方程（Langevin equation）是随机过程的物理表述。朗之万考虑流体中粒子的经典运动方程：
+\begin{equation*}
+M\frac{dv}{dt}+\gamma v+\Phi(v)=0
+\end{equation*}
+其中$\gamma$是摩擦系数（coefficient of friction），$\Phi(v)$是势（potential），可取为速度$v$的任意函数。对宏观物体轨迹光滑，此方程够用；但花粉尺度的小颗粒每秒遭受$10^9$以上次碰撞，谈不上光滑轨迹。朗之万的提议（此处转述）：把介质对小颗粒的作用替换成一个持续作用的随机力，它随机地改变速度的大小与方向，从而使路径成为随机路径。这就把确定性运动方程推广为随机微分方程（stochastic differential equation）\footnote{原书脚注 1 大意：含随机函数的微分方程称为随机的；朗之万方程中的随机力$F(t)$是时间的任意函数——把它视为确定性方程时，它有无穷多个解，$F(t)$的每个可能位形各对应一个解。}：
+\begin{equation*}
+M\frac{dv}{dt}+\gamma v+\Phi(v)=F(t)
+\tag{A.30}
+\end{equation*}
+随机力$F(t)$零均值、$\delta$关联：
+\begin{equation*}
+E[F(t)]=0;\qquad E[F(t)F(s)]=2D\,\delta(t-s)
+\end{equation*}
+取$\Phi(v)=0$，用白噪声改写$F=\sqrt{2D}\,R$：
+\begin{equation*}
+\frac{dv}{dt}=-\frac{\gamma}{M}v+\frac{\sqrt{2D}}{M}\,R
+\end{equation*}
+
+\paragraph{求解主线}
+形式解由一阶线性方程的标准积分因子法给出：
+\begin{equation*}
+v=v_0e^{-\gamma t/M}+\frac{1}{M}\int_0^t
+e^{-\frac{\gamma}{M}(t-\tau)}F(\tau)\,d\tau
+\end{equation*}
+于是平均速度按初始值指数衰减（记忆耗尽）：
+\begin{equation*}
+E[v(t)]=v_0e^{-\gamma t/M}
++\frac{1}{M}\int_0^t e^{-\frac{\gamma}{M}(t-\tau)}
+E[F(\tau)]\,d\tau=v_0e^{-\gamma t/M}
+\end{equation*}
+涨落部分用$E[F(\eta)F(\tau)]=2D\delta(\eta-\tau)$代入双积分，$\delta$函数吃掉一个积分：
+\begin{align*}
+E\bigl[\bigl(v(t)-v_0e^{-\gamma t/M}\bigr)^2\bigr]
+&=\Bigl(\frac{1}{M}\Bigr)^2\int_0^t\int_0^t
+e^{-\frac{\gamma}{M}(t-\eta)}e^{-\frac{\gamma}{M}(t-\tau)}
+E[F(\eta)F(\tau)]\,d\eta\,d\tau\\
+&=\frac{D}{\gamma M}\bigl(1-e^{-2\gamma t/M}\bigr)
+\end{align*}
+类似的推导（取$v_0=0$）给出速度的非等时与等时关联子：
+\begin{align*}
+E[v(t)v(t')]&=\frac{D}{\gamma M}
+\Bigl[e^{-\frac{\gamma}{M}(t-t')}
+-e^{-\frac{\gamma}{M}(t+t')}\Bigr]
+\ ;\quad t>t'\\
+\Rightarrow\ \lim_{t\to\infty}E[v^2(t)]&=\frac{D}{\gamma M}
+\end{align*}
+
+\paragraph{爱因斯坦关系}
+$t\to\infty$时粒子与环境达到平衡，速度分布应为麦克斯韦分布（Maxwellian）：
+\begin{equation*}
+P(v)=\Bigl(\frac{M}{2\pi kT}\Bigr)^{1/2}
+\exp\Bigl(-\frac{Mv^2}{2kT}\Bigr)
+\ \Rightarrow\
+E[v^2(t)]=\frac{kT}{M}
+\end{equation*}
+与上式比较得$D=kT\gamma$，即爱因斯坦关系（Einstein relation）：涨落强度$D$与耗散$\gamma$不独立——一条在随机系统里反复出现的普适约束。
+
+\paragraph{从速度到位移}
+令$v=dx/dt$，对朗之万方程再积一次分、略去初条件的长时记忆，得位置关联子（$t>t'$）：
+\begin{equation*}
+E[x(t)x(t')]=\frac{2D}{\gamma^2}t'
++\frac{DM}{\gamma^3}\Bigl[-2+2e^{-\frac{\gamma}{M}t}
++2e^{-\frac{\gamma}{M}t'}
+-e^{-\frac{\gamma}{M}|t-t'|}
+-e^{-\frac{\gamma}{M}(t+t')}\Bigr]
+\ ;\quad t>t'
+\end{equation*}
+等时情形为\footnote{原书此处末项印作$e^{-\frac{\gamma}{M}(t+t')}$，严格说等时应取$t'=t$、即$e^{-2\gamma t/M}$（由上一式令$t'=t$亦得此项）。照录并在此说明。}
+\begin{align*}
+E[x^2(t)]&=\frac{2D}{\gamma^2}t
++\frac{DM}{\gamma^3}\Bigl[-3+4e^{-\frac{\gamma}{M}t}
+-e^{-\frac{\gamma}{M}(t+t')}\Bigr]\\
+\lim_{t\to\infty}\sqrt{E[x^2(t)]}&\to
+\sqrt{\frac{2D}{\gamma^2}}\times\sqrt{t}
+\end{align*}
+原书强调这是一条重要结果：随机运动粒子离出发点的平均弥散$\sqrt{E[x^2(t)]}$正比于$\sqrt{t}$——位置均值虽恒为零（$E[x(t)]=0$），离原点的距离却按时间的平方根增长。同一事实在伊藤微积分中以更抽象的面目出现（$(dt)^2\sim dt$，见式 (A.24) 的解读）。
+
+\paragraph{与股票价格方程的关系}
+第 3 章给出的股价对数随机微分方程（原书式 3.12）为
+\begin{equation*}
+\frac{dx}{dt}=r-\frac{\sigma^2}{2}+\sigma R(t)
+\end{equation*}
+做变量替换$v=x-(r-\sigma^2/2)t$，它就成为$\gamma=0$、噪声为$R(t)$的朗之万方程——股价动力学就是无摩擦的布朗运动。原书由此点明朗之万表述的价值：它给出了随机过程的另一种表述，有时能导出求解随机微分方程的新方法。
+
+\subsection{鞅条件}
+
+连续过程$v(t)$的鞅条件：已知$t$时刻取值$v(t)$，下一瞬间的条件期望不变，$E[v(t+\epsilon)|v(t)]=v(t)$。用朗之万方程讨论它最方便。设$\gamma v+\Phi(v)=0$（既无摩擦也无势），则
+\begin{equation*}
+M\frac{dv}{dt}=F(t)
+\ \Rightarrow\
+E\Bigl[\frac{dv}{dt}\Bigr]=0
+\quad:\quad\text{no drift}
+\tag{A.31}
+\end{equation*}
+把条件期望显式算出：离散化时间、除以$\epsilon$，随机力零均值立刻兑现为鞅条件：
+\begin{align*}
+\frac{M}{\epsilon}E[v(t+\epsilon)-v(t)|v(t)]&=E[F(t)]=0\\
+\Rightarrow\ E[v(t+\epsilon)|v(t)]&=v(t)
+\quad:\quad\text{Martingale}
+\end{align*}
+结论（原书原话的转述）：任何没有漂移项、更一般地没有势项的随机过程，就是鞅。
+
+\paragraph{解读与联系}
+使用场景：A.5 全节是第 6 章的物理后盾——即期利率模型（Vasicek）在原书 6.1 节以“随机量子化”表述为带摩擦的朗之万方程，擦掉摩擦项即黑--斯科尔斯型无漂移过程；式 (A.31) 的“无漂移即鞅”判据在第 3 章用于折现股价（风险中性测度下鞅条件成立）、在第 6 章 6.5 节用于 HJM 漂移的剔除、在第 7 章 7.6 节成为风险中性测度的定义性要求。爱因斯坦关系虽不在金融中直接现身，但“漂移与波动率被无套利绑在一起”（A.6 的$\mu_i=r+\sum_j\lambda_j\sigma_j^i$）正是它的金融回声。
+
+\section{金融学基本定理}
+
+金融学基本定理（fundamental theorem of finance）把两个市场性质与鞅条件画上等号：设金融市场 (a) 是完全市场（complete market）、(b) 满足无套利原理（principle of no arbitrage），则 (a)+(b) 等价于“金融工具的演化服从鞅条件”；而且一旦贴现因子取定，这样的市场存在唯一的无风险（风险中性，risk-neutral）概率测度，使一切金融工具的演化满足鞅条件。本节用多证券朗之万方程把定理完整走一遍——这是 A.1.1 与 A.5.1 两条鞅线索的汇合处，也是全书“风险中性定价何以合法”的理论根据。
+
+\paragraph{模型设定与记号}
+设$m$只证券$S_i(t)$，漂移速度$\mu_i(t)$，由$n$个白噪声$R_j(t)$驱动，波动率函数为$\sigma^i_j(t)$（上标$i$标记证券、下标$j$标记噪声源），$i=1,\ldots,m$、$j=1,\ldots,n$。$m$条耦合的朗之万方程为
+\begin{align*}
+\frac{dS_i(t)}{dt}&=\mu_i(t)S_i(t)+S_i(t)\sum_{j=1}^{n}\sigma^i_j(t)R_j(t)\\
+E[R_j(t)R_k(t')]&=\delta_{j-k}\,\delta(t-t')
+\ ;\ \Rightarrow\
+R_j(t)R_k(t')\sim\frac{1}{\epsilon}\,\delta_{j-k}
+\tag{A.32}
+\end{align*}
+第二行是式 (A.24) 的多噪声推广（离散化读法）。除非必要，下文省略时间依赖。完全市场（completeness）意味着：波动率函数$\sigma^i_j(t)$对每个$i$线性独立——$n$个噪声源都能被$m$只证券张成的空间“感知”到。
+
+\paragraph{推导主线}
+第一步，构造把波动全部对冲掉的组合。取持仓$\theta_i$，使
+\begin{equation*}
+\Pi=\sum_{i=1}^{m}\theta_i S_i
+\quad\text{且}\quad
+\sum_{i=1}^{m}\theta_i S_i\sigma^i_j=0
+\quad\text{对每个}\ j
+\end{equation*}
+线性无关性保证这样的$\theta_i$存在。于是$d\Pi/dt$中所有白噪声项相消，成为确定性演化；无套利原理要求确定性演化的收益率恰为无风险利率$r$：
+\begin{align*}
+\frac{d\Pi}{dt}&=\sum_{i=1}^{m}\theta_i\mu_i(t)S_i(t)
+\quad:\quad\text{deterministic}\\
+\text{no arbitrage}\ \Rightarrow\
+\frac{d\Pi}{dt}&=r\,\Pi=r\sum_{i=1}^{m}\theta_i S_i
+\tag{A.33}
+\end{align*}
+第二步，比较系数。把式 (A.32) 的漂移代入式 (A.33)，对消去噪声后的恒等式逐项匹配，得
+\begin{equation*}
+\mu_i=r+\sum_{j=1}^{n}\lambda_j\,\sigma^i_j
+\tag{A.34}
+\end{equation*}
+关键是$\lambda_j$的性质：它独立于所有证券$S_i$。$\lambda_j$是市场为承担超出无风险收益$r$的风险所支付的市场溢价（market premium），对一切证券通用——“溢价不因证券而异”正是无套利的要求（否则卖掉溢价低的证券、买进溢价高的同类风险，即得无风险利润）。
+
+第三步，换到鞅的语言。把式 (A.34) 代回式 (A.32)：
+\begin{equation*}
+\frac{dS_i(t)}{dt}=rS_i+S_i\sum_{j=1}^{n}\sigma^i_j\,[R_j+\lambda_j]
+\tag{A.35}
+\end{equation*}
+定义货币市场账户（money market account）与折现证券（discounted security）：
+\begin{equation*}
+B(t)=e^{\int_0^t r(s)ds}
+\qquad
+X_i(t)\equiv e^{-\int_0^t r(s)ds}\,S_i(t)
+\end{equation*}
+由式 (A.35)，折现证券的演化是
+\begin{equation*}
+\frac{dX_i(t)}{dt}=X_i\sum_{j=1}^{n}\sigma^i_j\,[R_j+\lambda_j]
+\tag{A.36}
+\end{equation*}
+$\lambda_j$项是漂移，故$X_i(t)$还不是鞅。为消去它，引入随机变量
+\begin{equation*}
+\rho(t)=\exp\Bigl[-\sum_{j=1}^{n}\int_0^t\lambda_j(s)R_j(s)\,ds
+-\frac{1}{2}\sum_{j=1}^{n}\int_0^t\lambda_j^2(s)\,ds\Bigr]
+\tag{A.37}
+\end{equation*}
+指数里的两个积分相辅相成：第一个是“含噪声的随机面积”，第二个是保证期望有限的补偿项（对照式 (A.21) 生成函数$e^{\mu j+\sigma^2 j^2/2}$的结构即明）。按其构造，$\rho(t)$满足鞅条件：
+\begin{equation*}
+E_{(s,t)}[\rho(t)|\rho(s)]=\rho(s)
+\ ;\quad s<t
+\tag{A.38}
+\end{equation*}
+（用式 (A.27) 的白噪声高斯积分即可验证，步骤从略。）再用伊藤链式法则（原书式 3.9）组合式 (A.36) 与 (A.37)：$\lambda_j$漂移与$\rho$的补偿恰好相消，
+\begin{align*}
+\frac{d(\rho X_i)}{dt}
+&=\rho X_i\sum_{j=1}^{n}[\sigma^i_j-\lambda_j]R_j
+\quad:\quad\text{martingale}
+\tag{A.39}
+\end{align*}
+式 (A.39) 无漂移项，由 A.5.1 的判据（无漂移即鞅），乘积$\rho X_i$是鞅：
+\begin{equation*}
+E_{(s,t)}[\rho(t)X(t)|\rho(s)X(s)]=\rho(s)X(s)
+\ ;\quad s<t
+\quad:\quad\text{martingale}
+\end{equation*}
+
+\paragraph{风险中性测度}
+最后一步是测度变换：用指数鞅$\rho(t)$重新定义白噪声$R(t)$的概率测度（对照式 (A.27)），新测度称为风险中性鞅测度（risk-neutral martingale measure）；对它取期望（记作$E^{M}[\ldots]$），折现证券即鞅：
+\begin{equation*}
+E^{M}_{(t_*,t)}
+\bigl[e^{-\int_0^t r(s)ds}S_i(t)\,|\,X(t_*)\bigr]
+=e^{-\int_0^{t_*}r(s)ds}\,S_i(t_*)
+\ ;\quad t_*<t
+\quad:\quad\text{martingale}
+\end{equation*}
+特别取$t_*=0$，得到定价公式：
+\begin{equation*}
+S(0)=E^{M}_{(0,t)}
+\bigl[e^{-\int_0^t r(t')dt'}\,S(t)\,|\,S(0)\bigr]
+\tag{A.40}
+\end{equation*}
+原书还指出：对给定的完全且无套利的市场，可以进一步证明这个风险中性鞅测度是\textbf{唯一}的。
+
+\paragraph{解读与联系}
+式 (A.40) 是全书一切“期望$=$价格”公式的母型：第 3 章 3.8 节 Black--Scholes 风险中性解（导读在那里已引用本式作为鞅条件的出处）、第 6 章 HJM 框架下国债与国债期权的定价、第 7 章场论版鞅条件与计价物变换（numeraire change，原书 7.7 节——把“折现”从货币市场账户换成别的计价物，$\rho$随之改形）、第 9 章国债衍生品的定价核，全部是它在不同市场里的实例。$\lambda_j$即术语表中的“风险的市场价格”（market price of risk）：HJM 无套利条件（第 6 章 6.5 节）说的“漂移$=$波动率$\times$市场溢价”，就是式 (A.34) 的场论化。唯一性则解释了为什么完全市场中衍生品价格无歧义——这是复制（replication）论证的测度论说法。
+
+\section{传播子的求值}
+
+传播子（propagator）地位重要，值得给出两种独立求值方法：本征函数展开（eigenfunction expansion）——本质上是原书 5.5 节对简谐振子用过的同一套推导；格林函数（Green's function）方法——一条不同而更强力的路线，能处理结构更复杂的传播子（第 7 章附录的刚度传播子、第 8 章含心理未来时间的传播子都靠它）。本节的$D(x,x';t,T_{FR})$正是远期利率场论的刚性传播子：算符$(1-\mu^{-2}\partial_x^2)$中的$\mu$是远期利率刚性（rigidity）参数，$T_{FR}$是未来时间区间的长度。
+
+\subsection{本征函数展开}
+
+要解决的问题：把逆算符的核显式求出。传播子由本征函数展开求值。由原书式 (5.30)，它满足算符方程
+\begin{equation*}
+\Bigl[1-\frac{1}{\mu^{2}}\frac{\partial^{2}}{\partial x^{2}}\Bigr]\,
+D(x,x';t,T_{FR})=\delta(x-x')
+\ ;\quad t\le x\le t+T_{FR}
+\tag{A.41}
+\end{equation*}
+诺伊曼边界条件（Neumann boundary conditions）要求两端导数为零：
+\begin{equation*}
+\frac{\partial}{\partial x}D(x,x';t,T_{FR})\Bigr|_{x=t}
+=0\ =\
+\frac{\partial}{\partial x}D(x,x';t,T_{FR})\Bigr|_{x=t+T_{FR}}
+\tag{A.42}
+\end{equation*}
+区间$[t,t+T_{FR}]$上满足诺伊曼条件的归一化本征函数（eigenfunction）是余弦族（原书式 5.31 的近亲）：
+\begin{equation*}
+\psi_0(x)=\frac{1}{\sqrt{T_{FR}}}
+\ ;\quad
+\psi_m(x)=\frac{2}{\sqrt{T_{FR}}}\,
+\cos\Bigl\{\frac{m\pi(x-t)}{T_{FR}}\Bigr\}
+\quad m=1,2,3,\ldots,\infty
+\end{equation*}
+它们满足本征值方程：
+\begin{equation*}
+\Bigl(-\frac{1}{\mu^{2}}\frac{\partial^{2}}{\partial x^{2}}+1\Bigr)\psi_m(x)
+=\Bigl[\Bigl(\frac{m\pi}{\mu T_{FR}}\Bigr)^{2}+1\Bigr]\psi_m(x)
+\equiv\lambda_m\,\psi_m(x)
+\ ;\quad m=0,1,2,3,\ldots,\infty
+\end{equation*}
+谱定理版本的“函数的算符”：任意算符函数$f(\mathcal{O})$的核可用本征值与本征函数写出，
+\begin{equation*}
+\langle x|f(\mathcal{O})|x'\rangle
+=\sum_{m=0}^{\infty}\psi_m(x)\,\psi_m(x')\,f(\lambda_m)
+\end{equation*}
+传播子既是厄米微分算符的逆（式 A.41），取$f(\lambda)=1/\lambda$即得展开式
+\begin{equation*}
+D(x,x';t,T_{FR})
+=\sum_{m=0}^{\infty}\frac{\psi_m(x)\,\psi_m(x')}{\lambda_m}
+\end{equation*}
+这个求和在原书式 (5.34)--(5.37) 已经做完（积化和差＋级数恒等式$\sum_n\cos(n\theta)/(a^2+n^2)$），结果为\footnote{原书第一项的括号排印不配对（印作$\cosh\{\mu T_{FR}-\mu|x-x'|\,)$），按配对括号读作$\cosh\bigl(\mu T_{FR}-\mu|x-x'|\bigr)$。}
+\begin{align*}
+D(x,x';t,T_{FR})
+&=\frac{\mu}{2\sinh\mu T_{FR}}
+\bigl[\cosh\bigl(\mu T_{FR}-\mu|x-x'|\bigr)\\
+&\qquad\qquad
++\cosh\bigl(\mu T_{FR}-\mu(x+x'-2t)\bigr)\bigr]
+\tag{A.43}
+\end{align*}
+
+\subsection{格林函数}
+
+格林函数（Green's function）方法不走谱分解，直接解微分方程。由式 (A.41)，在$x\ne x'$处右端无源，传播子满足齐次方程
+\begin{equation*}
+\Bigl[1-\frac{1}{\mu^{2}}\frac{\partial^{2}}{\partial x^{2}}\Bigr]\,
+D(x,x';t,T_{FR})=0
+\ ;\quad x\ne x'
+\tag{A.44}
+\end{equation*}
+考虑伴随方程$\dfrac{\partial^2}{\partial x^2}u(x)=\mu^2 u(x)$，其通解为
+\begin{equation*}
+u(x)=a\,e^{\mu x}+b\,e^{-\mu x}
+\end{equation*}
+设$u_<(x)$、$u_>(x)$分别是满足左端点$x=t$、右端点$x=t+T_{FR}$处边界条件的两个特解（下标“<”“>”标记解各自“负责”哪一侧）。格林函数（传播子）由它们拼装：
+\begin{align*}
+D(x,x';t,T_{FR})
+&=u_<(x)\,u_>(x')\,\Theta(x-x')
++u_<(x')\,u_>(x)\,\Theta(x'-x)\\
+&=D(x',x;t,T_{FR})
+\quad:\quad\text{symmetric in}\ x,x'
+\end{align*}
+结构一目了然：观察点$x$在源点$x'$右侧时用第一项、左侧用第二项，$\Theta$函数（式 A.7）负责开关；两个解交叉相乘保证了$x\leftrightarrow x'$对称。要使式 (A.41) 中$\delta(x-x')$的系数正确，解的朗斯基行列式（Wronskian）必须满足
+\begin{equation*}
+\frac{du_<(x)}{dx}\,u_>(x)-u_<(x)\,\frac{du_>(x)}{dx}=\mu^2
+\end{equation*}
+
+\subsubsection*{诺伊曼与狄利克雷边界条件}
+
+设传播子在两端$x=t$、$x=t+T_{FR}$满足诺伊曼边界条件（式 A.42）。让每个解只在\textbf{一}端满足条件：
+\begin{align*}
+u_<(x)&=A\cosh\mu(x-t)
+\qquad\bigl(u_<'(t)=0\bigr)\\
+u_>(x)&=B\cosh\mu(T_{FR}+t-x)
+\qquad\bigl(u_>'(t+T_{FR})=0\bigr)
+\end{align*}
+代入朗斯基条件：
+\begin{align*}
+\frac{du_<(x)}{dx}\,u_>(x)-u_<(x)\,\frac{du_>(x)}{dx}&=\mu^2\\
+\Rightarrow\ AB&=\frac{\mu}{\sinh\mu T_{FR}}
+\end{align*}
+于是传播子为
+\begin{align*}
+D(x,x';t,T_{FR})
+&=\mu\,\frac{\cosh\mu(x-t)\,\cosh\mu(T_{FR}+t-x')}{\sinh\mu T_{FR}}\,
+\Theta(x'-x)\\
+&\quad+\mu\,\frac{\cosh\mu(x'-t)\,\cosh\mu(T_{FR}+t-x)}{\sinh\mu T_{FR}}\,
+\Theta(x-x')
+\end{align*}
+可以验证它与式 (A.43) 相等——两条路线在同一个封闭形式上会师。混合狄利克雷--诺伊曼边界条件（Dirichlet--Neumann boundary conditions）与双狄利克雷边界条件（Dirichlet--Dirichlet）分别为
+\begin{equation*}
+D(x,x';t,T_{FR})\Bigr|_{x=t}=0\ =\
+\frac{\partial}{\partial x}D(x,x';t,T_{FR})\Bigr|_{x=t+T_{FR}}
+\tag{A.45}
+\end{equation*}
+\begin{equation*}
+D(x,x';t,T_{FR})\Bigr|_{x=t}=0\ =\
+D(x,x';t,T_{FR})\Bigr|_{x=t+T_{FR}}
+\end{equation*}
+各类边界条件下的传播子都可按诺伊曼--诺伊曼情形的同一套流程求出，结果汇总于下表（利用对$x,x'$的对称性可补全完整传播子）。
+
+\origtab{A.1}{不同边界条件下传播子的汇总}
+
+\begin{center}
+\begin{tabular}{@{}l@{\qquad\qquad}l@{}}
+\textbf{边界条件} & \textbf{传播子}$\ D(x,x';t,T_{FR})\ ($对$x>x')$\\[0.4em]
+诺伊曼--诺伊曼 &
+$\mu\,\dfrac{\cosh\mu(x-t)\,\cosh\mu(T_{FR}+t-x')}{\sinh\mu T_{FR}}$\\[1.2em]
+狄利克雷--狄利克雷 &
+$\mu\,\dfrac{\sinh\mu(x-t)\,\sinh\mu(T_{FR}+t-x')}{\sinh\mu T_{FR}}$\\[1.2em]
+狄利克雷--诺伊曼 &
+$\mu\,\dfrac{\sinh\mu(x-t)\,\cosh\mu(T_{FR}+t-x')}{\cosh\mu T_{FR}}$\\
+\end{tabular}
+\end{center}
+
+对狄利克雷--狄利克雷传播子取$\mu\to0$极限（$\sinh$小宗量展开、$\Theta(x)+\Theta(-x)=1$），得
+\begin{align*}
+D_{DD}(x,x';t,T_{FR})
+&=\mu\,\Bigl[(x-t)\,\Theta(x'-x)+(x'-t)\,\Theta(x-x')\\
+&\qquad\qquad
+-\frac{(x-t)(x'-t)}{T_{FR}}\Bigr]
+\tag{A.46}
+\end{align*}
+注意极限下整体多出的因子$\mu$：狄利克雷两边夹得越紧，传播子幅度越小。
+
+\paragraph{解读与联系}
+使用场景：式 (A.41)--(A.43) 就是第 7 章 7.4 节“线性远期利率的传播子”的主角——原书式 (7.27) 的刚性传播子$D(x,x';t,T_{FR})$与本节公式逐字相同，那里的推导注记“细节即 5.5 节的简谐振子计算”指的正是本节方法一；参数对应$m=1/\mu^2$、$\omega=\mu$把简谐振子（原书式 5.38）与远期利率场论（原书第 7 章）连成一体。格林函数方法的用武之地在“更复杂的结构”：第 7 章附录的刚度（stiffness）传播子（算符含$\partial_\theta^2$与$\lambda$刚度项，双曲函数换成含$\lambda$的组合）、第 8 章心理未来时间（psychological future time）$z(\theta)$变形下的传播子——那里边界条件移动、朗斯基条件定出归一，流程与本节逐点对应；第 9 章国债衍生品场论的传播子同样是这套机器的产品。一句话：方法一是“用对称性查表”，方法二是“用边界条件定做”——场论金融里真正常用的是后者。
+
+%TAGS: A.1,A.2,A.3,A.4,A.5,A.6,A.7,A.8,A.9,A.10,A.11,A.13,A.15,A.16,A.17,A.18,A.19,A.20,A.21,A.22,A.23,A.24,A.25,A.26,A.27,A.28,A.29,A.30,A.31,A.32,A.33,A.34,A.35,A.36,A.37,A.38,A.39,A.40,A.41,A.42,A.43,A.44,A.45,A.46
+% 注：原书 (A.12)、(A.14) 缺号（书页 287--288，已对照 PNG 核验），上列 44 条即原书附录 A 实有全部编号公式。

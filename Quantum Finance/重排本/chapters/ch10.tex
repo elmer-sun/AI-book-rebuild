@@ -1,0 +1,1097 @@
+% ch10 Field theory Hamiltonian of forward rates (书页251-281 / p269-299)
+% 覆盖说明：原书第10章全章（10.1--10.13 节）为书页251--281（p269--p299）；
+% 第11章结论（书页282--283 / p300--p301）由 ch11 承接。
+% 编号公式核对：本文件 tag 为 (10.1)--(10.82)，其中 (10.77) 分作 (10.77a) 与
+% (10.77b)，共 83 条，连续无断档（已对照 PNG 逐页核验）。
+% 原书已知排印疑点：
+% (1) 式(10.15)--(10.16) 中波动率坐标印作大写 H_n（如 L_n[H_{n+1},H_n;...]），
+%     实为波动率场 h(t,x) 的格点坐标（正文自明“h(t,x) 已显式写入”）；
+%     已照录并加记号提醒；
+% (2) 式(10.60) 阶梯函数印作 Theta(theta-T+t)，按定义应为 Theta(T-t-theta)
+%     （与式(10.56)同构），疑为笔误；已照录并加脚注；
+% (3) 原书脚注5自认：式(10.64)第一项在文献[3]中不慎遗漏；
+% (4) 式(10.42) 定义处印作 E(x;x',t)（分号），他处一律 E(x,x';t）；
+% (5) 10.2 节正文说态空间与哈密顿量“如图10.2所示”，所指实为图10.4；
+% (6) 10.13.1 节“non-lap overlap”应为 non-zero overlap 之误；
+% (7) 式(10.44) 下一段“two domains involved involved”重复一词。
+% 原书图 10.1--10.5 在本范围内，按规范以 \paragraph 指路。
+\chapter{远期利率的场论哈密顿量}
+
+本章把第7章的远期利率场论从拉格朗日量与路径积分的语言翻译成哈密顿量的语言。这条路线与全书前半的次序正好相反：第5章是先有 Black–Scholes 哈密顿量、再“反推”出拉格朗日量，而这里是从第7章的作用量 $S[f]$ 出发构造无穷小时间演化的生成元 $\mathcal{H}(t)$。为什么要做这件事？因为第7章处理鞅条件（martingale condition）的办法——高斯路径积分——只对线性（高斯）场论有效；对取正值的非线性远期利率、以及带随机波动率（stochastic volatility）的远期利率，那条路走不通，而哈密顿形式的无穷小表述却能精确解出风险中性测度（risk-neutral measure）。本章还有一条贯穿始终的主线：态空间（state space）。远期利率定义域 $\mathcal{P}$ 的平行四边形（梯形）形状迫使每个时刻 $t$ 都有自己的态空间 $\mathcal{V}_t$ 与自己的哈密顿量 $\mathcal{H}(t)$——这是它与第4、6章单自由度定价哈密顿量最大的不同。全章路线：10.1--10.2 节先构造时间依赖的态空间、再定义哈密顿量；10.3 节给出国债态矢量；10.4--10.5 节导出线性、非线性与随机波动率三种哈密顿量；10.6--10.9 节用“哈密顿量湮灭国债”重述鞅条件，并解出漂移速度、计价物变换；10.10 节小结；10.11--10.13 节三个附录分别处理随机波动率传播子、有效厄米哈密顿量与欧式国债期权的哈密顿量推导。
+
+\section{远期利率的哈密顿量}
+
+本节要回答的问题是：能否像第6章处理 Black–Karasinski 模型那样，把远期利率的路径积分直接写成哈密顿量的矩阵元？原书的做法是先列出从拉格朗日量过渡到哈密顿量的四个一般要素（均曾在附录6.11中以 Black–Karasinski 模型为例出现过），再指出天真的写法错在哪里。
+
+第一，完备性方程（completeness equation）。从拉格朗日量到哈密顿量，中间必须插入自由度的完备性方程：Black–Karasinski 情形只有单个自由度 $\phi$，写 $\int d\phi\,|\phi\rangle\langle\phi|=\mathcal{I}$ 即可；远期利率有无穷多个自由度，而且下面会看到这些自由度随时间更换，完备性方程会复杂得多。第二，高斯表示。把无穷小演化因子 $e^{\epsilon L(n)}$ 改写成高斯积分，是整个推导的必要一步，对远期利率同样成立、只是计算更繁。第三，测度项（measure term）。非线性远期利率的路径积分定义中带有因子 $e^{-\nu\phi_n}$（见式 (7.59)），与式 (6.83) 的情形类似；它不是可有可无的修饰，而是得到良定义哈密顿量的必要成分。第四，也是最观念性的一条：哈密顿量与态空间是量子理论的两个独立要素（原书第4.1节），二者合起来才重现第7章讨论过的各种线性与非线性作用量——不能想当然地认为从作用量可以唯一读出哈密顿量而不用管态空间。
+
+带着这四条，自然的想法是把第7章的配分函数写成如下矩阵元：
+
+\begin{equation*}
+Z=\int Df\,e^{S[f]}\ \overset{?}{=}\ \langle f_{\text{initial}}|e^{-(T_f-T_i)\mathcal{H}}|f_{\text{final}}\rangle
+\quad\text{：不正确}
+\tag{10.1}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+S[f]=\int_{\mathcal{P}}\mathcal{L}[f],\qquad
+\int Df\equiv\prod_{(t,x)\in\mathcal{P}}\int_{-\infty}^{+\infty}df(t,x)
+\end{equation*}
+
+域 $\mathcal{P}$ 即原书图7.3中的梯形区域。式 (10.1) 的写法只对不显含时间参数 $t$ 的哈密顿量才有意义，而这恰恰是远期利率不满足的：$\mathcal{P}$ 的平行四边形形状意味着，每前进一个时间切片，可用的期限格点就整体移动一格，于是每一个时刻 $t$ 都对应一个不同的态空间，作用在其上的是一个不同的（时间依赖的）哈密顿量 $\mathcal{H}(t)$。这与 Black–Karasinski 的情形形成鲜明对照——那里哈密顿量 $\mathcal{H}_{BK}$ 与完备性方程都不依赖时间。因此机械照搬第6章的程序行不通；正确次序是先弄清楚远期利率的态空间长什么样，再谈哈密顿量。这正是下一节的全部内容。
+
+\section{远期利率的态空间}
+
+本节是全章技术性最强的一节：任务是为远期利率量子场构造态空间，并解释它为什么随时间“平移”。第7章的拉格朗日量（式 (7.60)）含时间导数项 $(\partial f(t,x)/\partial t)^2$，因此无穷小生成元——哈密顿量——是存在的；但如上节所述，必须先指明它作用的态空间。原书提醒读者：过程繁琐，结论却非常直观。为记号简便，本节用 $f(t,x)$ 统一代表远期利率量子场与随机波动率量子场 $h(t,x)$。
+
+先回忆量子场论的一般框架（原书第4.1节）：场论的态空间 $\mathcal{V}$ 是一个线性矢量空间，其元素是某个固定时刻 $t$ 处场位形（field configuration）的泛函；对偶态空间（dual state space）$\mathcal{V}_{\text{Dual}}$ 由从 $\mathcal{V}$ 到复数的全部线性映射组成，也是线性矢量空间；哈密顿量 $\mathcal{H}$ 是量子类比于能量的算符，属于张量积空间 $\mathcal{V}\otimes\mathcal{V}_{\text{dual}}$。麻烦全部来自定义域：远期利率只在 $x\ge t$ 上有定义（原书图7.4），本节将看到每个时刻 $t$ 都有一个独立的态空间 $\mathcal{V}_t$。
+
+为把事情说清楚，把时间与期限两个方向同时离散化成格距为 $\epsilon$ 的有限格点。\footnote{原书脚注2指出：对以“速度”$v$ 运动的弦，期限格距应为 $v\epsilon$；远期利率相当于 $v=1$。}格点上远期合约的最小期限就是 $\epsilon$；多数应用中取 $\epsilon$ 为一天。
+
+\paragraph{原书图 10.1}\quad 时间 $t$（纵轴）与期限 $x$（横轴）中的格点：最底下一行是 $t=0$（初始时刻）的全部期限格点，每上升一行左端点右移一格——这就是离散域 $\widetilde{\mathcal{P}}$ 的形状（平行四边形的离散版本）。
+
+离散格点域 $\widetilde{\mathcal{P}}$ 即附录7.18讨论过的域：
+
+\begin{equation*}
+\begin{aligned}
+&(t,x)\to\epsilon(n,l);\quad n,l:\ \text{整数}\\
+&(T_i,\,T_f,\,T_{FR})\to\epsilon(N_i,\,N_f,\,N_{FR})\\
+&\text{格点域 }\ \widetilde{\mathcal{P}}=\{(n,l)\,|\,N_i\le n\le N_f;\ n\le l\le n+N_{FR}\}\\
+&f(t,x)\to f_{n,l}
+\end{aligned}
+\tag{10.2}
+\end{equation*}
+
+\begin{equation*}
+\frac{\partial f(t,x)}{\partial t}\simeq\frac{f_{n+1,l}-f_{n,l}}{\epsilon};\qquad
+\frac{\partial f(t,x)}{\partial x}\simeq\frac{f_{n,l+1}-f_{n,l}}{\epsilon}
+\tag{10.3}
+\end{equation*}
+
+配分函数随之变成有限重积分：
+
+\begin{equation*}
+Z=\prod_{(n,l)\in\widetilde{\mathcal{P}}}\int df_{n,l}\,e^{S[f]}
+\tag{10.4}
+\end{equation*}
+
+\begin{equation*}
+S[f]=\sum_n S(n)
+\tag{10.5}
+\end{equation*}
+
+\paragraph{原书图 10.2}\quad 两个相邻时间切片 $t=n\epsilon$ 与 $t=(n+1)\epsilon$（画成两串格点，椭圆圈出）：二者的公共段是期限方向 $n+1\le l\le n+N_{FR}$；切片 $n$ 的左端点 $(n,n)$ 与切片 $n+1$ 的右端点 $(n+1,n+1+N_{FR})$ 是两片各自独有的“错位”格点。
+
+$S(n)$ 是连接这两个时间切片的作用量。由图 10.2 可见两个切片在两端各错开一个格点：时刻 $n$ 的格点 $(n,n)$ 与时刻 $n+1$ 的格点 $(n+1,n+1+N_{FR})$ 不为两者共有。把不匹配的变量单独挑出来：
+
+\begin{equation*}
+\begin{aligned}
+&\text{时刻 } n \text{ 的变量：}\quad \{f_{n,n},\,F_n\};\quad F_n\equiv\{f_{n,l}\,|\,n+1\le l\le n+N_{FR}\}\\
+&\text{时刻 } (n+1) \text{ 的变量：}\quad \{F_{n+1},\,f_{n+1,n+1+N_{FR}}\};\quad F_{n+1}\equiv\{f_{n+1,l}\,|\,n+1\le l\le n+N_{FR}\}
+\end{aligned}
+\tag{10.6}
+\end{equation*}
+
+关键观察：变量集合 $F_n$（属于时刻 $n$）与 $F_{n+1}$（属于时刻 $n+1$）覆盖期限方向上同一段格点 $n+1\le l\le n+N_{FR}$，因此包含同样多个（$N_{FR}-1$ 个）远期利率。下面会看到哈密顿量只用这些变量表达。由离散时间导数（10.3）可知，离散作用量 $S(n)$ 只耦合两个时间切片的公共格点，即属于 $F_n$ 与 $F_{n+1}$ 的变量；故 $S(n)$ 可写成拉格朗日密度（Lagrangian density）$\mathcal{L}_n$ 之和：
+
+\begin{equation*}
+S(n)=\epsilon\sum_{\{l\}}\mathcal{L}_n[f_{n,l},\,f_{n+1,l}]
+\tag{10.7}
+\end{equation*}
+
+\begin{equation*}
+=\epsilon\sum_{\{l\}}\mathcal{L}_n[F_n;\,F_{n+1}]
+\tag{10.8}
+\end{equation*}
+
+\paragraph{原书图 10.3}\quad 用两片相邻切片的构造“搭出”整个格点：把图 10.2 的两片结构沿时间方向逐格重复、并把 $S(n)$ 对全部 $N_i\le n\le N_f$ 求和，就复原了图 10.1 的平行四边形域。
+
+哈密顿量是作用在态空间上的算符，所以还须确定态空间的坐标。把式 (10.6) 中两组相邻时刻的远期利率 $\{f_{n,n},F_n\}$ 与 $\{F_{n+1},f_{n+1,n+1+N_{FR}}\}$ 分别解读为态空间 $\mathcal{V}_n$ 与 $\mathcal{V}_{n+1}$ 的坐标。每个时刻 $n$ 有自己的态空间 $\mathcal{V}_n$ 及其对偶 $\mathcal{V}_{\text{Dual},n}$；两空间的坐标由各期限格点上的态空间作张量积（tensor product）而得：
+
+\begin{equation*}
+\begin{aligned}
+\langle f_n|&=\bigotimes_{n\le l\le n+N_{FR}}\langle f_{n,l}|\equiv\langle f_{n,n}|\,\langle F_n|
+\qquad\text{：}\mathcal{V}_{\text{dual},n}\text{ 的坐标态}\\[4pt]
+|f_{n+1}\rangle&=\bigotimes_{(n+1)\le l\le n+1+N_{FR}}|f_{n+1,l}\rangle\equiv|F_{n+1}\rangle\,|f_{n+1,n+1+N_{FR}}\rangle
+\qquad\text{：}\mathcal{V}_{n+1}\text{ 的坐标态}
+\end{aligned}
+\tag{10.9}
+\end{equation*}
+
+态空间 $\mathcal{V}_n$ 由 $N_{FR}$ 个远期利率 $\{f_{n,n},F_n\}$ 的一切函数组成；不同 $n$ 的 $\mathcal{V}_n$ 之所以彼此不同，是因为组成其自变量的远期利率集合不同。$\mathcal{V}_n$ 与 $\mathcal{V}_{n+1}$ 虽不重合，却有覆盖同一期限区间的交集 $\mathcal{V}_n\cap\mathcal{V}_{n+1}$，而它正是被作用量 $S(n)$ 耦合的部分。这个交集给出物理态空间（physical state space）$\mathcal{F}_n$——远期利率的哈密顿演化就发生在这里。
+
+态空间与其对偶怎么分工，决定了传播方向。回忆附录6.8对福克–普朗克哈密顿量（Fokker–Planck Hamiltonian）的讨论：在 Dirac 记号里，右矢（ket）代表“起始态”，左矢（bra，对偶矢量）代表“终结态”。金融学中的时间演化主要服务于贴现（discounting）——把工具的未来价值折回现值，因此演化理应逆着时间走。据此，原书选择较晚时刻的态空间 $\mathcal{V}_{n+1}$ 装右矢、较早时刻的对偶空间 $\mathcal{V}_{\text{Dual},n}$ 装左矢，于是得到向后传播的利率后向哈密顿量（backward Hamiltonian），把系统从未来推向过去。\footnote{原书脚注3指出：若做相反的选取，得到的将是所得哈密顿量的厄米共轭（Hermitian conjugation），效果相当于把漂移速度反号。}用符号写出：
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{V}_{n+1}&=\mathcal{F}_{n+1}\otimes|f_{n+1,n+1+N_{FR}}\rangle\\
+\mathcal{V}_{\text{Dual},n}&=\langle f_{n,n}|\otimes\mathcal{F}_{\text{dual},n}\\
+\mathcal{H}_n:\ \mathcal{F}_{n+1}&\to\mathcal{F}_{n+1}
+\ \Rightarrow\ \mathcal{H}_n\in\mathcal{F}_{n+1}\otimes\mathcal{F}_{\text{dual},n+1}
+\end{aligned}
+\end{equation*}
+
+哈密顿量 $\mathcal{H}_n$ 属于由算符 $|F_{n+1}\rangle\langle F_{n+1}|$ 张成的算符空间 $\mathcal{F}_{n+1}\otimes\mathcal{F}_{\text{Dual},n+1}$。态空间 $\mathcal{F}_n$ 与 $\mathcal{F}_{n+1}$ 彼此同构，指标 $n$ 只是用来标记它们位于域 $\widetilde{\mathcal{P}}$ 的哪个位置；$|F_{n+1}\rangle$ 与 $\langle F_n|$ 实际属于同一个态空间 $\mathcal{F}_n$ 及其对偶。但 $n$ 变化时态空间随之改变，$\mathcal{F}_n$ 是时间依赖的。
+
+\paragraph{原书图 10.4}\quad 三条水平线自下而上表示 $\mathcal{V}_n,\mathcal{V}_{n+1},\mathcal{V}_{n+2}$，向上的箭头 $\mathcal{H}_n,\mathcal{H}_{n+1}$ 表示哈密顿量把远期利率的态空间逐片向后（图中向上）传播；注意每个态空间在期限方向上的“窗口”逐层右移。
+
+让远期利率 $\{f_{n,l}\,|\,n\le l\le n+N_{FR}\}$ 取遍一切可能值，就得到态空间 $\mathcal{V}_n$ 的一组完备基矢（basis states）；基矢的完备性表现为恒等算符的分解（resolution of identity）：
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{I}_n&=\prod_{n\le l\le n+N_{FR}}\int df_{n,l}\,|f_n\rangle\langle f_n|\\
+&\equiv\int df_{n,n}\,DF_n\,|f_{n,n};F_n\rangle\langle f_{n,n};F_n|
+\end{aligned}
+\tag{10.10}
+\end{equation*}
+
+系统的哈密顿量 $\mathcal{H}_n$ 由费曼公式（Feynman formula，差一个归一化）从式 (10.7) 定义：
+
+\begin{equation*}
+\rho_n e^{\epsilon\sum_{\{l\}}\mathcal{L}_n[f_{n,l},\,f_{n+1,l}]}
+=\langle f_{n,n},F_n|\,e^{-\epsilon\mathcal{H}_n}\,|F_{n+1},\,f_{n+1,n+1+N_{FR}}\rangle
+\tag{10.11}
+\end{equation*}
+
+其中 $\rho_n$ 一般是依赖场的测度项。但连接两片的作用量 (10.8) 并不包含错位变量，因此 $\rho_n e^{S(n)}$ 中错位的远期利率 $f_{n,n}$ 与 $f_{n+1,n+1+N_{FR}}$ 与作用量解耦：
+
+\begin{equation*}
+\rho_n e^{\epsilon\sum_{\{l\}}\mathcal{L}_n[F_n,\,F_{n+1}]}
+=\langle f_{n,n},F_n|e^{-\epsilon\mathcal{H}_n}|F_{n+1},\,f_{n+1,n+1+N_{FR}}\rangle
+\tag{10.12}
+\end{equation*}
+
+\begin{equation*}
+=\langle F_n|e^{-\epsilon\mathcal{H}_n}|F_{n+1}\rangle
+\tag{10.13}
+\end{equation*}
+
+式 (10.13) 是本节的主结果。它的成立理由值得强调：作用量 $S(n)$ 不含 $f_{n,n}$ 与 $f_{n+1,n+1+N_{FR}}$，于是哈密顿量 $\mathcal{H}_n$ 也不依赖这两个变量。式 (10.13) 的解读是：$\mathcal{H}_n$ 把“初”态 $|F_{n+1}\rangle$ 沿时间间隔 $\epsilon$ 向后传播为“终”态 $\langle F_n|$。写成完整关系
+
+\begin{equation*}
+\langle f_{n,n},F_n|e^{-\epsilon\mathcal{H}_n}|F_{n+1},\,f_{n+1,n+1+N_{FR}}\rangle
+=\langle F_n|e^{-\epsilon\mathcal{H}_n}|F_{n+1}\rangle
+\tag{10.14}
+\end{equation*}
+
+可以看出时间方向上的不对称：哈密顿量既不依赖最早的远期利率 $f_{n,n}$，也不依赖最晚的远期利率 $f_{n+1,n+1+N_{FR}}$。正是这种传播的不对称性生成了图 10.1 的平行四边形域 $\mathcal{P}$，也是“远期利率 $f(t,x)$ 只存在于 $x>t$”这一事实的反映。把随机波动率的坐标补进来，式 (10.13) 成为
+
+\begin{equation*}
+\rho_n e^{S(n)}=\rho_n e^{\epsilon\sum_{\{l\}}\mathcal{L}_n[H_{n+1},\,H_n;\,F_{n+1},\,F_n]}
+\tag{10.15}
+\end{equation*}
+
+\begin{equation*}
+=\langle F_n;H_n|e^{-\epsilon\mathcal{H}_n}|F_{n+1};H_{n+1}\rangle
+\tag{10.16}
+\end{equation*}
+
+即把波动率量子场 $h(t,x)$ 显式写进坐标。（记号提醒：原书此处把波动率坐标印作大写 $H_n$，它就是波动率场 $h(t,x)$ 在时间片上的取值，并非哈密顿量本身。）至此得到的是用作用量 $S$ 表出的哈密顿量的一般定义；要得到显式的 $\mathcal{H}$，还须代入具体的远期利率拉格朗日量——这是 10.4 与 10.5 两节的任务。
+
+\subsection{连续记号}
+
+格点叙述便于看清边界上的变量错位；记号上更省事的做法是期限方向 $x$ 取连续、时间方向保持离散。此时需小心处理区间 $[t\le x\le t+T_{FR}]$ 两端出现的变量。时刻 $t=n\epsilon$ 的作用量为
+
+\begin{equation*}
+S(n)=\epsilon\int_x\mathcal{L}_n(t,x)
+\tag{10.17}
+\end{equation*}
+
+\begin{equation*}
+\int_x\equiv\int_t^{t+T_{FR}}dx
+\tag{10.18}
+\end{equation*}
+
+连续记号下态空间记作 $\mathcal{V}_t$，态矢量记作 $|f_t\rangle$。值得强调：$\mathcal{V}_t$ 的元素包含时刻 $t$ 市场上交易的\textbf{一切}可能的金融工具——态空间的这一“全市场”解读在后面 10.6 节的鞅条件推导里会真正派上用场。由式 (10.9) 连续化：
+
+\begin{equation*}
+\begin{aligned}
+|f_t\rangle&=\bigotimes_{t\le x\le t+T_{FR}}|f(t,x)\rangle\\
+|F_t\rangle&=\bigotimes_{t\le x< t+T_{FR}}|f(t,x)\rangle
+\end{aligned}
+\tag{10.19}
+\end{equation*}
+
+$|f_t\rangle$ 与 $|F_t\rangle$ 的唯一区别是：后者的连续张量积把端点 $x=t+T_{FR}$ 排除在外（对应格点语言里最右端的错位格点）。把两片切片的手续递归地重复，就能从哈密顿量与态空间重构配分函数 (10.4)：
+
+\begin{equation*}
+\begin{aligned}
+Z&=\int Df\,e^{S[f]}\\
+&=\langle f_{\text{initial}}|\mathcal{T}\left\{\exp-\int_{T_i}^{T_f}\mathcal{H}(t)\,dt\right\}|f_{\text{final}}\rangle
+\end{aligned}
+\tag{10.20}
+\end{equation*}
+
+其中时序符号（time ordering）$\mathcal{T}$ 把括号内时间依赖的态空间与哈密顿量按时间排序，最早者放在最左。总结一句：时间依赖的哈密顿量 $\mathcal{H}(t)$ 把 $T_f$ 时刻的终态 $|f_{\text{final}}\rangle$ 向后传播到较早时刻 $T_i$ 的初态 $\langle f_{\text{initial}}|$——向后传播是态空间与其对偶的选取方式决定的。式 (10.20) 外形上与式 (10.1) 相似，实质完全不同：式 (10.1) 适合的是定义在时间无关态空间上、对应矩形域 $\mathcal{R}$（原书图9.1）的哈密顿量；而式 (10.20) 生成的是梯形域 $\mathcal{T}$（原书图7.3）上的路径积分。
+
+\section{国债态矢量}
+
+本节很短，任务是把两类最重要的金融工具——零息债券与附息债券——写成远期利率态空间中的态矢量，为 10.6 节的鞅条件准备好“被湮灭的对象”。考虑到期日为 $T$、到期支付 \$1 的无风险零息国债（zero coupon Treasury Bond）。回忆式 (2.8)：$t<T$ 时的价格为 $P(t,T)=e^{-\int_t^T f(t,x)dx}\equiv P[f;t,T]$。右矢 $|P(t,T)\rangle$ 是态空间 $\mathcal{V}_t$ 的元素；债券的态矢量写作其坐标表示
+
+\begin{equation*}
+P(t,T)\equiv\langle f_t|P(t,T)\rangle=e^{-\int_t^T f(t,x)dx}
+\tag{10.21}
+\end{equation*}
+
+附息债券（coupon bond）$|\mathcal{B}\rangle$ 同样是态矢量：它在各时刻 $T_l$ 支付固定金额 $c_l$、在 $T$ 支付本金 $L$，由零息债券态矢量的线性叠加表出：
+
+\begin{equation*}
+|\mathcal{B}(t)\rangle=\sum_l c_l|P(t,T_l)\rangle+L|P(t,T)\rangle
+\end{equation*}
+
+线性叠加在量子理论里不需要任何额外代价——这正是“债券是态矢量”这一表述最经济的地方。
+
+\section{线性与非线性远期利率的哈密顿量}
+
+本节把 10.2 节的一般定义落实到具体拉格朗日量，导出线性（高斯）与非线性（正值）远期利率的显式哈密顿量；步骤与附录6.11完全平行。为简明起见取常数刚性（rigidity）$\mu$。由式 (7.6)，拉格朗日密度为
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{L}[f]&=\mathcal{L}_{\text{kinetic}}[f]+\mathcal{L}_{\text{rigidity}}[f]\\
+&=-\frac{1}{2}\left[\left\{\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}{\sigma(t,x)}\right\}^2
++\frac{1}{\mu^2}\left\{\frac{\partial}{\partial x}\left(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}{\sigma(t,x)}\right)\right\}^2\right]
+\end{aligned}
+\tag{10.22}
+\end{equation*}
+
+\begin{equation*}
+-\infty\le f(t,x)\le+\infty
+\tag{10.23}
+\end{equation*}
+
+式 (10.23) 标明线性理论的取值范围：远期利率可正可负。把拉格朗日量离散化，并用 Neumann 边界条件（Neumann boundary conditions，式 (7.10)）分部积分，得
+
+\begin{equation*}
+S(n)=\epsilon\int_x\mathcal{L}_n=-\frac{1}{2\epsilon}\int_x A\left(1-\frac{1}{\mu^2}\frac{\partial^2}{\partial x^2}\right)A
+\tag{10.24}
+\end{equation*}
+
+\begin{equation*}
+A=\sigma^{-1}(t,x)\,(f_{t+\epsilon}-f_t-\epsilon\alpha_t)(x)
+\tag{10.25}
+\end{equation*}
+
+这里 $f(t,x)\equiv f_t(x)$ 的写法刻意强调：在哈密顿形式中时间 $t$ 只是参数。下一步是把 $e^{S(n)}$ 表示成高斯积分（从此略去无关常数），采用记号 $\prod_x\int dp(x)\equiv\int Dp$：
+
+\begin{equation*}
+\begin{aligned}
+e^{S(n)}&=\int Dp\,e^{-\frac{\epsilon}{2}\int_{x,x'}p(x)D(x,x';t)p(x')\,+\,i\int_x p(x)A(x)}\\
+\left(1-\frac{1}{\mu^2}\frac{\partial^2}{\partial x^2}\right)D(x,x';t)&=\delta(x-x')\quad\text{（Neumann 边界条件）}
+\end{aligned}
+\tag{10.26}
+\end{equation*}
+
+其中传播子（propagator）$D(x,x';t)$ 即式 (7.27)。对动量变量作重标度 $p(x)\to\sigma(t,x)p(x)$，得（差一个常数）
+
+\begin{equation*}
+e^{S(n)}=\int Dp\,e^{\,i\int_x p(x)(f_{t+\epsilon}-f_t-\epsilon\alpha_t)(x)\,-\,\frac{\epsilon}{2}\int_{x,x'}\sigma(t,x)p(x)D(x,x';t)\sigma(t,x')p(x')}
+\tag{10.27}
+\end{equation*}
+
+回忆哈密顿量的定义 (10.13)。线性远期利率的测度项 $\rho_n=1$，于是
+
+\begin{equation*}
+\rho_n e^{S(n)}=\langle f_t|e^{-\epsilon\mathcal{H}_f}|f_{t+\epsilon}\rangle
+\tag{10.28}
+\end{equation*}
+
+\begin{equation*}
+=e^{-\epsilon\mathcal{H}_n(\delta/\delta f_t)}\int Dp\,e^{i\int_x p(f_t-f_{t+\epsilon})}
+\tag{10.29}
+\end{equation*}
+
+哈密顿量写成对\textbf{对偶}态空间坐标 $f_t$ 的（泛函）导数，理由同式 (6.86) 的推导：每个时刻有无穷多个独立的远期利率自由度 $f_t(x)$，$x\in[t,t+T_{FR}]$，必须用泛函导数（functional derivative，见式 (A.15)）才能把哈密顿量写成微分算符。还有一个记约简：自由度 $f(x)$（或等价地 $f(\theta)$）只通过“哈密顿量定义在哪个域上”而提及时间 $t$——作用量 $S[f]$ 横跨从初始到终了的全部时刻，而哈密顿量是无穷小时间生成元，只涉及它作用于态空间的那一瞬。因此哈密顿量中变量的时间指标可以省去：写 $f(x)$，$t\le x\le t+T_{FR}$。于是线性远期利率的哈密顿量为
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_f(t)&=-\frac{1}{2}\int_t^{t+T_{FR}}dxdx'\,\sigma(t,x)D(x,x';t)\sigma(t,x')\frac{\delta^2}{\delta f(x)\delta f(x')}\\
+&\quad-\int_t^{t+T_{FR}}dx\,\alpha(t,x)\frac{\delta}{\delta f(x)}
+\end{aligned}
+\tag{10.30}
+\end{equation*}
+
+这个哈密顿量是非厄米的（non-Hermitian）——金融中的哈密顿量大多如此（漂移项是“罪魁”）。用它可以推出欧式国债期权与定价核（pricing kernel），见附录 10.13。
+
+\subsection{心理未来时间}
+
+若采用心理未来时间（psychological future time）$z=z(\theta)$、$\theta=x-t=\theta(z)$，哈密顿量 (10.30) 改写为
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_{f,z}(t)&=-\frac{1}{2}\int_{z(0)}^{z(T_{FR})}dzdz'\,\sigma(t,z)G(z,z')\sigma(t,z')\frac{\delta^2}{\delta f(\theta(z))\delta f(\theta(z'))}\\
+&\quad-\int_{z(0)}^{z(T_{FR})}dz\,\alpha(t,z)\frac{\delta}{\delta f(\theta(z))}
+\end{aligned}
+\tag{10.31}
+\end{equation*}
+
+注意积分变量换成了 $z$、传播子换成 $G$，但泛函导数的标签仍是 $\theta=\theta(z)$。可以验证这个哈密顿量对应式 (7.86) 的作用量；$\delta/\delta f(\theta)$ 保留 $\theta$ 标签、其余一切用非线性变量 $z(\theta)$ 书写，正是心理未来时间定义式 (7.85) 的反映。
+
+\subsection{非线性远期利率的哈密顿量}
+
+对取正值的远期利率 $f(t,x)=f_0e^{\phi(t,x)}$，推导与线性情形完全平行，只有四点差别：
+
+其一，出发点改为式 (7.57) 的非线性作用量：
+
+\begin{equation*}
+\mathcal{L}[\phi]=-\frac{1}{2}\left[\left\{\frac{f_0\frac{\partial\phi(t,x)}{\partial t}-\alpha(t,x)}{\sigma_0(t,x)e^{\nu\phi(t,x)}}\right\}^2
++\frac{1}{\mu^2}\left\{\frac{\partial}{\partial x}\left(\frac{f_0\frac{\partial\phi(t,x)}{\partial t}-\alpha(t,x)}{\sigma_0(t,x)e^{\nu\phi(t,x)}}\right)\right\}^2\right]
+\end{equation*}
+
+其二，式 (10.25) 中的 $A$ 换成
+
+\begin{equation*}
+A_\phi=f_0\sigma_0^{-1}e^{-\nu\phi}\,(\phi_{t+\epsilon}-\phi_t-\epsilon f_0^{-1}\alpha)
+\end{equation*}
+
+其三，测度项定义为
+
+\begin{equation*}
+\rho_n=\prod_x e^{-\nu\phi(n\epsilon,x)}
+\end{equation*}
+
+其四，动量变量重标度为
+
+\begin{equation*}
+p(x)\to f_0^{-1}\sigma_0e^{\nu\phi}p(x)
+\end{equation*}
+
+这一重标度恰好抵消式 (10.28) 右端的测度项。于是带随机波动率指标 $\nu$ 的非线性远期利率哈密顿量为
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_\phi(t)&=-\frac{1}{2f_0^2}\int dxdx'\,\sigma_0e^{\nu\phi}(x)D(x,x';t)\sigma_0e^{\nu\phi}(x')\frac{\delta^2}{\delta\phi(x)\delta\phi(x')}\\
+&\quad-\frac{1}{f_0}\int dx\,\alpha(t,x)\frac{\delta}{\delta\phi(x)}
+\end{aligned}
+\tag{10.32}
+\end{equation*}
+
+取确定性波动率（$\nu=0$）得
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_\phi(t)\Big|_{\nu=0}&=-\frac{1}{2f_0^2}\int dxdx'\,\sigma_0(t,x)D(x,x';t)\sigma_0(t,x')\frac{\delta^2}{\delta\phi(x)\delta\phi(x')}\\
+&\quad-\frac{1}{f_0}\int dx\,\alpha\,\frac{\delta}{\delta\phi(x)}
+\end{aligned}
+\tag{10.33}
+\end{equation*}
+
+式 (10.33) 是第6章 Black–Karasinski 即期利率哈密顿量（式 (6.87)）向远期利率的自然推广：把单变量 $\phi$ 换成场 $\phi(t,x)$、二阶导数换成泛函二阶导数、传播子乘上刚性结构。
+
+\section{带随机波动率远期利率的哈密顿量}
+
+本节处理最一般的线性情形：远期利率与其波动率各自独立涨落，由两个分离的量子场描述。出发点是式 (7.60) 的拉格朗日量：
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{L}(t,x)&=-\frac{1}{2(1-\rho^2)}\left(\frac{\frac{\partial f}{\partial t}-\alpha}{\sigma}-\rho\,\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\right)^2-\frac{1}{2}\left(\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\right)^2\\
+&\quad-\frac{1}{2\mu^2}\left(\frac{\partial}{\partial x}\left(\frac{\frac{\partial f}{\partial t}-\alpha}{\sigma}\right)\right)^2-\frac{1}{2\kappa^2}\left(\frac{\partial}{\partial x}\left(\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\right)\right)^2
+\end{aligned}
+\tag{10.34}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+\sigma(t,x)=\sigma_0e^{h(t,x)};\qquad -\infty\le f(t,x),\,h(t,x)\le+\infty
+\end{equation*}
+
+波动率场 $h$ 有自己的刚度（stiffness）参数 $\kappa$、波动率的波动率 $\xi$ 与漂移 $\beta$，两个场通过相关系数 $\rho$ 耦合。离散化时间、并省略时间（有时还有期限）标签，作用量可写成矩阵形式：
+
+\begin{equation*}
+S(n)=-\frac{1}{2\epsilon}\int_{x,x'}\left[\sigma^{-1}A\ \ \xi^{-1}B\right](x)\,\mathcal{M}(x,x';t)\begin{bmatrix}\sigma^{-1}A\\ \xi^{-1}B\end{bmatrix}(x')
+\tag{10.35}
+\end{equation*}
+
+其中矩阵算符
+
+\begin{equation*}
+\mathcal{M}(x,x';t)=
+\begin{bmatrix}
+\dfrac{1}{1-\rho^2}-\dfrac{1}{\mu^2}\dfrac{\partial^2}{\partial x^2} & -\dfrac{\rho}{1-\rho^2}\\[8pt]
+-\dfrac{\rho}{1-\rho^2} & \dfrac{1}{1-\rho^2}-\dfrac{1}{\kappa^2}\dfrac{\partial^2}{\partial x^2}
+\end{bmatrix}\delta(x-x')
+\tag{10.36}
+\end{equation*}
+
+以及缩写
+
+\begin{equation*}
+A\equiv\tilde{f}_{t+\epsilon}-f_t-\epsilon\alpha,\qquad
+B\equiv\tilde{h}_{t+\epsilon}-h_t-\epsilon\beta
+\end{equation*}
+
+推导式 (10.35) 时用到了两场的 Neumann 边界条件（式 (7.10) 与式 (7.61)）。把 $e^{S(n)}$ 改写成对动量 $p,q$ 的高斯积分（略去无关常数）：
+
+\begin{equation*}
+e^{S(n)}=\int Dp\,Dq\;e^{-\frac{\epsilon}{2}\int_{x,x'}\left[p\ \ q\right]\mathcal{M}^{-1}\begin{bmatrix}p\\ q\end{bmatrix}\,+\,i\int_x\left[p\ \ q\right]\begin{bmatrix}\sigma^{-1}A\\ \xi^{-1}B\end{bmatrix}}
+\tag{10.37}
+\end{equation*}
+
+定义测度项
+
+\begin{equation*}
+\rho_n\equiv\prod_x e^{-h(x)}
+\tag{10.38}
+\end{equation*}
+
+并对每个 $x$ 作重标度 $p\to\sigma p$、$q\to\xi q$，式 (10.37) 化为
+
+\begin{equation*}
+\rho_n e^{S(n)}=\int Dp\,Dq\;e^{-\frac{\epsilon}{2}\int_{x,x'}\left[\sigma p\ \ \xi q\right]\mathcal{M}^{-1}\begin{bmatrix}\sigma p\\ \xi q\end{bmatrix}\,+\,i\int_x\left[p\ \ q\right]\begin{bmatrix}\tilde{f}-f-\epsilon\alpha\\ \tilde{h}-h-\epsilon\beta\end{bmatrix}}
+\end{equation*}
+
+——测度项恰被重标度吸收（雅可比行列式抵消 $e^{-h(x)}$）。于是
+
+\begin{equation*}
+\begin{aligned}
+\rho_n e^{S(n)}&=\langle f;h|e^{-\epsilon\mathcal{H}_n}|\tilde{f};\tilde{h}\rangle\\
+&=e^{-\epsilon\mathcal{H}_n(\delta/\delta f,\,\delta/\delta h)}\int Dp\,Dq\,e^{i\int_x[p(f-\tilde{f})+q(h-\tilde{h})]}
+\end{aligned}
+\tag{10.39}
+\end{equation*}
+
+从而得到远期利率场与波动率场的哈密顿量：
+
+\begin{equation*}
+\mathcal{H}(t)=\frac{1}{2}\int_{x,x'}\left[\sigma\frac{\delta}{i\delta f}\ \ \xi\frac{\delta}{i\delta h}\right]\mathcal{M}^{-1}\begin{bmatrix}\sigma\frac{\delta}{i\delta f}\\[4pt] \xi\frac{\delta}{i\delta h}\end{bmatrix}-\int_x\left\{\alpha\frac{\delta}{\delta f}+\beta\frac{\delta}{\delta h}\right\}
+\tag{10.40}
+\end{equation*}
+
+矩阵算符 $\mathcal{M}^{-1}$ 的显式逆在附录 10.11 给出（式 (10.73)），即
+
+\begin{equation*}
+\mathcal{M}^{-1}(x,x';t)=
+C\begin{bmatrix}
+D_--D_+ + \frac{1-\rho^2}{\kappa^2}(r_+D_+-r_-D_-) & \rho(D_--D_+)\\[6pt]
+\rho(D_--D_+) & D_--D_+ + \frac{1-\rho^2}{\mu^2}(r_+D_+-r_-D_-)
+\end{bmatrix}
+\tag{10.41}
+\end{equation*}
+
+其中常数 $C,r_\pm$ 与函数 $D_\pm=D_\pm(x,x';t)$ 见附录 10.11。为求远期利率的鞅测度，下面只需要矩阵的 $(1,1)$ 元：
+
+\begin{equation*}
+\begin{aligned}
+E(x;x',t)&\equiv\mathcal{M}_{11}^{-1}(x,x';t)\\
+&=\frac{\mu^2}{\sqrt{(\kappa^2-\mu^2)^2+4\rho^2\mu^2\kappa^2}}\left[\kappa^2(D_--D_+)+(1-\rho^2)(r_+D_+-r_-D_-)\right]
+\end{aligned}
+\tag{10.42}
+\end{equation*}
+
+注意它只依赖 $D_\pm$ 与常数——10.8 节将看到，整个随机波动率理论的鞅测度信息都浓缩在 $E(x,x';t)$ 这一个函数里。
+
+\section{鞅条件的哈密顿量表述}
+
+本节把单证券情形（式 (4.43)）的“风险中性测度等价于无漂移哈密顿量湮灭标的”推广到场论。为什么要在哈密顿框架里重做一遍？第7章的拉格朗日量对场是二次的，鞅条件可以通过高斯路径积分精确求解（原书第7.6节）；对非线性远期利率与随机波动率，拉格朗日量非二次，路径积分路线失效，而哈密顿量的无穷小表述仍能给出精确解——这正是本章存在的理由。
+
+远期利率情形有两处额外的复杂：一是域 $\mathcal{P}$ 非平凡，二是即期利率 $r(t)=f(t,t)$ 本身就是随机量。鞅条件（式 (2.10)）说：国债在将来时刻 $t_*$ 的价格折现后应等于今天的价格，
+
+\begin{equation*}
+P(t,T)=E_{[t,t_*]}\left[e^{-\int_t^{t_*}r(t)dt}\,P(t_*,T)\right]
+\tag{10.43}
+\end{equation*}
+
+\paragraph{原书图 10.5}\quad 风险中性测度的嵌套定义域：大的平行四边形是远期利率路径积分的域 $\mathcal{P}$，内部从 $(t,T)$ 到 $(t_*,T)$ 的小矩形是国债所在的域——债券域嵌套在远期利率域之内。
+
+写成费曼路径积分（对测度 $\rho$）：
+
+\begin{equation*}
+P(t,T)=\int Df\,\rho[f]\,e^{-\int_t^{t_*}r(t)dt}\,P(t_*,T)\,e^{S[f]}
+\tag{10.44}
+\end{equation*}
+
+这个积分涉及两个嵌套的域（图 10.5）。虽然写成了积分形式，式 (10.44) 对一切 $t_*$ 成立，故实质上是微分条件。取 $t_*=t+\epsilon$——之所以必须取无穷小演化，正是因为态空间 $\mathcal{V}_t$ 时间依赖：无穷小演化下泛函积分坍缩为对末时间片变量 $\tilde{f}_{t+\epsilon}$ 的积分：
+
+\begin{equation*}
+P(t,T)=\int D\tilde{f}_{t+\epsilon}\,\rho_{t+\epsilon}\,e^{-\epsilon f(t,t)}\,e^{\epsilon\int\mathcal{L}[f,\tilde{f}]}\,P[\tilde{f};t+\epsilon,T]
+\tag{10.45}
+\end{equation*}
+
+翻译成态矢量语言：
+
+\begin{equation*}
+\langle f_t|P(t,T)\rangle=\int D\tilde{f}_{t+\epsilon}\,\langle f_t|e^{-\epsilon f(t,t)}e^{-\epsilon\mathcal{H}}|\tilde{f}_{t+\epsilon}\rangle\langle\tilde{f}_{t+\epsilon}|P(t+\epsilon,T)\rangle
+\tag{10.46}
+\end{equation*}
+
+插入完备性方程（即式 (10.10) 的 $\mathcal{V}_{t+\epsilon}$ 版本）
+
+\begin{equation*}
+\mathcal{I}_{t+\epsilon}=\int D\tilde{f}_{t+\epsilon}\,|\tilde{f}_{t+\epsilon}\rangle\langle\tilde{f}_{t+\epsilon}|
+\tag{10.47}
+\end{equation*}
+
+式 (10.46) 立即简化为
+
+\begin{equation*}
+\langle f_t|P(t,T)\rangle=\langle f_t|e^{-\epsilon f(t,t)}e^{-\epsilon\mathcal{H}(t)}|P(t+\epsilon,T)\rangle
+\tag{10.48}
+\end{equation*}
+
+\begin{equation*}
+\Rightarrow\ |P(t,T)\rangle=e^{-\epsilon f(t,t)}e^{-\epsilon\mathcal{H}(t)}|P(t+\epsilon,T)\rangle
+\tag{10.49}
+\end{equation*}
+
+用零息债券的显式表示 (10.21) 可以直接验证
+
+\begin{equation*}
+e^{+\epsilon f(t,t)}|P(t,T)\rangle=|P(t+\epsilon,T)\rangle
+\tag{10.50}
+\end{equation*}
+
+——折现因子恰好把较早时刻的债券态变到较晚时刻的债券态（期限窗口左端相同、债券累积了 $\epsilon$ 的利息）。把式 (10.50) 代回式 (10.49)：
+
+\begin{equation*}
+|P(t+\epsilon,T)\rangle=e^{-\epsilon\mathcal{H}(t)}|P(t+\epsilon,T)\rangle
+\tag{10.51}
+\end{equation*}
+
+\begin{equation*}
+\Rightarrow\ \mathcal{H}(t)|P(t+\epsilon,T)\rangle=0
+\tag{10.52}
+\end{equation*}
+
+所考虑的债券并无任何特殊之处，于是得到鞅测度的微分表述：一切零息债券——从而一切附息债券——都是哈密顿量 $\mathcal{H}$ 的本征函数，且被 $\mathcal{H}$ 湮灭，即本征值为零：\footnote{原书脚注4提醒：与第4.7节的股票情形类似，债券并非远期利率态空间中可归一化的态矢量——它们是广义本征函数。}
+
+\begin{equation*}
+\mathcal{H}(t)|P(t,T)\rangle=0\qquad\text{对一切 } t,\,T
+\tag{10.53}
+\end{equation*}
+
+更明显地写成
+
+\begin{equation*}
+\langle f_t|\mathcal{H}(t)|P(t,T)\rangle=\mathcal{H}(t)\,e^{-\int_t^T dxf(t,x)}=0
+\tag{10.54}
+\end{equation*}
+
+式 (10.54) 是单证券结果 (4.43) 的场论推广。这里贴现因子的角色与单证券情形有本质差别：股票情形下即期利率 $r$ 是常数，靠对冲论证“手工”放进哈密顿量；远期利率情形下即期利率是远期利率曲线的一部分，是鞅条件成立的内在要素——正是 $e^{-\epsilon f(t,t)}$ 这个因子把较晚时刻（期限窗口 $[t+\epsilon,T]$ 上的）债券态精确地变换回较早时刻（窗口 $[t,T]$ 上的）债券态，补偿了两个态空间期限区间的错位。这一“折现因子使初、末债券态等价”的机制，在 10.9 节改用国债 $P(t,t_*)$ 计价时同样发挥作用。
+
+\section{鞅条件：线性与非线性远期利率}
+
+本节把湮灭条件 (10.53) 逐个应用到线性与非线性哈密顿量上，解出各自的漂移速度 $\alpha$——每一种情形都是“把债券的泛函导数算干净、令剩余的 $c$ 数为零”。
+
+\subsection{线性哈密顿量}
+
+线性（高斯）远期利率的哈密顿量已由式 (10.30) 给出，零息债券为
+
+\begin{equation*}
+P(t,T)=\exp\left(-\int_t^T dxf(t,x)\right)
+\tag{10.55}
+\end{equation*}
+
+它对远期利率的各阶泛函导数极其简单：
+
+\begin{equation*}
+\frac{\delta^n}{\delta f(t,x)^n}P(t,T)=
+\begin{cases}
+(-1)^nP(t,T), & t<x<T\\
+0, & x>T
+\end{cases}
+=(-1)^nP(t,T)\,\Theta(T-x)
+\tag{10.56}
+\end{equation*}
+
+即每求一次导数多出一个 $(-1)$ 与阶梯函数（Heaviside step function）$\Theta$，导数在到期日之外为零。鞅条件要求
+
+\begin{equation*}
+\mathcal{H}_f(t)|P_t(T)\rangle=0
+\tag{10.57}
+\end{equation*}
+
+把式 (10.30) 作用上去，二阶泛函导数项与一阶导数项各贡献一个积分，利用 (10.56) 后得
+
+\begin{equation*}
+\begin{aligned}
+&\left[-\frac{1}{2}\int_t^T dxdx'\,\sigma(t,x)D(x,x';t)\sigma(t,x')+\int_t^T dx\,\alpha(t,x)\right]|P_t(T)\rangle=0\\
+&\Rightarrow\ \alpha(t,x)=\sigma(t,x)\int_t^x dx'\,D(x,x';t)\sigma(t,x')
+\qquad\text{：鞅测度条件}
+\end{aligned}
+\tag{10.58}
+\end{equation*}
+
+推导要点：$D(x,x';t)$ 中 $x'$ 的积分区间被 $\Theta(T-x')$ 截为 $[t,T]$，再由 $D$ 的对称性把二重积分化成两个 $\int_t^x$ 型单积分，$\alpha$ 随之解出。这正是第7章用高斯路径积分得到的式 (7.38)——哈密顿方法把它重新导出，而且不费任何高斯积分。线性理论的漂移速度是波动率的二次泛函；换任何高斯传播子（例如把 $D(x,x';t)$ 换成刚度（stiffness）拉格朗日量的 $G(x,x';t)$）结论照旧。有效厄米哈密顿量见附录 10.12。
+
+\subsection{线性哈密顿量：心理未来时间}
+
+心理未来时间下零息债券写作
+
+\begin{equation*}
+P(t,T)=\exp\left(-\int_0^{T-t}d\theta\,f(t,\theta)\right)
+\tag{10.59}
+\end{equation*}
+
+与式 (10.56) 平行：\footnote{导读按：阶梯函数的宗量按定义应为 $\Theta(T-t-\theta)$（导数在 $\theta<T-t$，即 $x<T$ 处非零，与式 (10.56) 一致）；原书印作 $\Theta(\theta-T+t)$，疑为笔误，不影响后续结果。}
+
+\begin{equation*}
+\frac{\delta^n}{\delta f(t,\theta(z))^n}P(t,T)=(-1)^nP(t,T)\,\Theta(\theta-T+t)
+\tag{10.60}
+\end{equation*}对心理未来时间哈密顿量 (10.31) 施加鞅条件：
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_{f,z}(t)P(t,T)&=0\\
+&=\left[-\frac{1}{2}\int_{z(0)}^{z(T-t)}dzdz'\,\sigma(t,z)G(z,z')\sigma(t,z')+\int_{z(0)}^{z(T-t)}dz\,\alpha(t,z)\right]P(t,T)\\
+&\Rightarrow\ \alpha(t,z)=\sigma(t,z)\int_{z(0)}^{z}dz'\,G(z,z')\sigma(t,z')
+\end{aligned}
+\tag{10.61}
+\end{equation*}
+
+结构上与式 (10.58) 完全同构：把 $x\to z$、$D\to G$、积分下限 $t\to z(0)$。
+
+\subsection{非线性哈密顿量}
+
+非线性远期利率 $f=f_0e^\phi$ 的零息债券是
+
+\begin{equation*}
+P(t,T)=\exp\left(-f_0\int_t^T dx\,e^{\phi(x)}\right)
+\tag{10.62}
+\end{equation*}
+
+泛函导数不再只是“多出一个符号”——指数上出现了 $\phi$：
+
+\begin{equation*}
+\begin{aligned}
+\frac{\delta}{\delta\phi(x)}P(t,T)&=-f_0e^{\phi(x)}P(t,T)\,\Theta(T-x)\\
+\frac{\delta^2}{\delta\phi(x)\phi(x')}P(t,T)&=\Big[-f_0\delta(x-x')e^{\phi(x)}\Theta(T-x)\\
+&\quad+f_0^2e^{\phi(x)}e^{\phi(x')}\Theta(T-x)\Theta(T-x')\Big]P(t,T)
+\end{aligned}
+\tag{10.63}
+\end{equation*}
+
+第二行多出的 $\delta(x-x')$ 项是二阶导数作用在指数上产生的“接触项”——非线性情形的全部新内容都来自它。把式 (10.63) 代入非线性哈密顿量 (10.32)，鞅条件 $\mathcal{H}_\phi(t)P(t,T)=0$ 给出
+
+\begin{equation*}
+\begin{aligned}
+&\left[-\frac{1}{2}\int_t^T dxdx'\,\sigma_0e^{(\nu+1)\phi}(x)D(x,x';t)\sigma_0e^{(\nu+1)\phi}(x')\right.\\
+&\quad\left.+\frac{1}{2f_0}\int_t^T dx\,D(x,x;t)\sigma_0^2e^{(2\nu+1)\phi}(x)+\int_t^T dx\,\alpha(t,x)e^{\phi(x)}\right]P(t,T)=0
+\end{aligned}
+\end{equation*}
+
+（接触项贡献了第二个积分。）对任意 $\phi$ 成立的唯一解是方括号为零，于是解出漂移速度\footnote{原书脚注5指出：文献 [3]（Baaquie 此前的专著）中不慎遗漏了式 (10.64) 的第一项。}
+
+\begin{equation*}
+\begin{aligned}
+\alpha(t,x)&=-\frac{\sigma_0^2e^{2\nu\phi(t,x)}}{2f_0}\,D(x,x;t)\\
+&\quad+\sigma_0e^{\nu\phi(t,x)}\int_t^x dx'\,D(x,x';t)\,\sigma_0e^{\nu\phi(t,x')}e^{\phi(t,x')}
+\end{aligned}
+\tag{10.64}
+\end{equation*}取确定性波动率 $\nu=0$、并取最简单的 $\sigma_0=\text{常数}$，得
+
+\begin{equation*}
+\alpha_{\nu=0}(t,x)=-\frac{\sigma_0^2}{2f_0}D(x,x;t)+\sigma_0^2\int_t^x dx'\,D(x,x';t)\,e^{\phi(t,x')}
+\tag{10.65}
+\end{equation*}
+
+这个结果值得停下来看两眼。其一，非线性理论的漂移速度不再是波动率的二次函数——远期利率本身（通过 $e^{\phi}$）直接出现在 $\alpha$ 里。文献中关于远期利率漂移的经典结果（线性场论与 HJM 模型）都属于“漂移是波动率函数的二次泛函”这一类，式 (10.64) 不在其中。从场论角度看这很自然：对 $f\in[-\infty,+\infty]$ 的动能项 $(\partial f/\partial t)^2$ 在改用正值远期利率后变成 $(\partial\ln(f/f_0)/\partial t)^2$，鞅条件只是忠实地反映了这个替换。其二，对非线性远期利率，$e^{\phi(t,x)}$ 在作用量中仅通过漂移项 $\alpha_{\nu=0}(t,x)$ 进入——研究远期利率非线性效应的一切问题，都可以从这个“最简单且不可再约”的非线性模型入手。
+
+\subsection{作用量的一般形式}
+
+本小节（原书 10.7.1）给出一个普适的否定结果：当（随机）波动率是远期利率的函数时，鞅条件对作用量的形式施加了严格限制。考虑一般的拉格朗日量
+
+\begin{equation*}
+\mathcal{L}_{\text{general}}=\mathcal{L}\left[\left(\frac{f_0\frac{\partial\phi(t,x)}{\partial t}-\alpha(t,x)}{\sigma_0(t,x)e^{\nu\phi(t,x)}}\right)\right]+\int U(t,x)\frac{\partial\phi}{\partial t}+\int W(t,x)
+\end{equation*}
+
+其中 $U,W$ 是 $f(t,x)$ 的任意局域函数。可以证明鞅条件强制
+
+\begin{equation*}
+U(t,x)=W(t,x)=0
+\end{equation*}
+
+特别地，形如
+
+\begin{equation*}
+W(t,x)\propto\left(\frac{\partial f}{\partial x}\right)^2
+\end{equation*}
+
+的弦张力项（string tension term）与鞅测度不相容——想要风险中性测度，就必须放弃它。这条“排除定理”界定了第7章那些作用量形式的合法性边界。
+
+\section{鞅条件：带随机波动率的远期利率}
+
+本节解出带独立随机波动率场的线性远期利率的鞅条件，并把解代回拉格朗日量，得到理论的最终形式。推导几乎是白送的：哈密顿量 (10.40) 中唯一含 $\delta/\delta h$ 的项作用在零息债券上给出零——债券 (10.21) 根本不依赖波动率场 $h$。于是从式 (10.54)、(10.40) 与 (10.63) 得
+
+\begin{equation*}
+\begin{aligned}
+&\left[-\frac{1}{2}\int_t^T dxdx'\,\sigma(t,x)E(x,x';t)\sigma(t,x')+\int_t^T dx\,\alpha(t,x)\right]P(t,T)=0\\
+&\Rightarrow\ \alpha(t,x)=\sigma(t,x)\int_t^x dx'\,E(x,x';t)\sigma(t,x')
+\qquad\text{：鞅测度条件}
+\end{aligned}
+\tag{10.66}
+\end{equation*}
+
+与线性结果 (10.58) 的唯一差别是传播子：$D\to E=\mathcal{M}_{11}^{-1}$。波动率场的全部效应——刚度 $\kappa$、波动率的波动率 $\xi$、相关系数 $\rho$——都浓缩在 $E(x,x';t)$ 里。把解出的 $\alpha$ 代回拉格朗日量。为记号方便定义波动率场的非局域（non-local）函数
+
+\begin{equation*}
+v(t,x)=\int_t^x dx'\,E(x,x';t)\sigma(t,x')
+\tag{10.67}
+\end{equation*}
+
+得到带独立随机波动率量子场的线性远期利率理论的完整拉格朗日量：
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{L}(t,x)&=-\frac{1}{2(1-\rho^2)}\left(\sigma^{-1}\frac{\partial f}{\partial t}-v-\rho\,\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\right)^2-\frac{1}{2}\left(\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\right)^2\\
+&\quad-\frac{1}{2\mu^2}\left(\frac{\partial}{\partial x}\left(\sigma^{-1}\frac{\partial f}{\partial t}-v\right)\right)^2-\frac{1}{2\kappa^2}\left(\frac{\partial}{\partial x}\left(\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\right)\right)^2
+\end{aligned}
+\tag{10.68}
+\end{equation*}
+
+与出发点 (10.34) 相比，唯一的变化是漂移 $\alpha$ 被非局域场 $v(t,x)$ 替换。理论的全部参数——函数 $\beta(t,x)$ 与参数 $\mu,\kappa,\xi,\rho$——都要靠市场数据确定。由于 $v(t,x)$ 的存在，拉格朗日量是非局域的；函数 $E(x,x';t)$ 携带了风险中性鞅测度的全部信息。
+
+波动率场的漂移 $\beta$ 值得单独说一句：目前市场上没有交易“远期利率波动率”的工具，鞅条件对波动率场无能为力，$\beta(t,x)$ 不能像 $\alpha$ 那样被理论自身固定，只能实证地（empirically）从市场数据确定。要回到确定性波动率的极限，取 $\xi,\rho,\kappa\to0$，此时
+
+\begin{equation*}
+\xi,\rho,\kappa\to0:\qquad r_+\to\mu,\qquad r_-\to0,\qquad E(x,x';t)\to D(x,x';t)
+\end{equation*}
+
+其中 $D(x,x';t)$ 即式 (7.27)。式 (10.68) 还有两个自然的推广方向：(a) 传播子 $E(x,x';t)$ 可以纳入刚度、心理未来时间 $z=z(x-t)$ 等更复杂效应；(b) 远期利率可以取非线性的正值形式 $f>0$——把本章的线性与非线性两套机制组合起来。
+
+\section{非线性计价物变换}
+
+前几节的鞅条件用的计价物（numeraire）是货币市场账户（money market account）$B(t_0,t)=\exp\int_{t_0}^t r(t')dt'$：要求折现工具 $P(t,T)/B(t_0,t)$ 是鞅，导致 $\mathcal{H}(t)P(t,T)=0$，进而固定漂移 $\alpha$。但如第7.7节所述，任何正值工具都可以作计价物——只需相应调整漂移使折现工具仍是鞅。本节用哈密顿语言处理这一计价物变换（change of numeraire），特别地用另一张国债 $P(t,t_*)$ 计价，使 $P(t,T)/P(t,t_*)$ 成为鞅。新的漂移速度 $\alpha_*$ 由“哈密顿量湮灭折现债券”确定，与式 (10.54) 平行：
+
+\begin{equation*}
+\begin{aligned}
+&\mathcal{H}(t)\left[\frac{P(t,T)}{P(t,t_*)}\right]=0\\
+&\Rightarrow\ \langle f_t|\mathcal{H}(t)\left|\frac{P(t,T)}{P(t,t_*)}\right\rangle=\mathcal{H}(t)\exp\left\{-\int_{t_*}^T dxf(t,x)\right\}=0
+\end{aligned}
+\tag{10.69}
+\end{equation*}
+
+结构一目了然：用 $P(t,t_*)$ 计价的唯一效果，是把右端远期利率积分的下限从 $t$ 换成 $t_*$。由此，与式 (10.56) 平行地有
+
+\begin{equation*}
+\frac{\delta^n}{\delta f(t,x)^n}\left[\frac{P(t,T)}{P(t,t_*)}\right]=(-1)^n\frac{P(t,T)}{P(t,t_*)}\,\Theta(T-x)\,\Theta(x-t_*)
+\tag{10.70}
+\end{equation*}
+
+导数只在 $t_*\le x\le T$ 上非零。于是此前的全部漂移速度推导原封不动地搬过来，只需把 $x$ 的积分下限从 $t$ 改为 $t_*$，即得修改后的漂移速度：
+
+\begin{itemize}
+\item 线性远期利率（与式 (10.58) 平行）：
+
+\begin{equation*}
+\alpha_*(t,x)=\sigma(t,x)\int_{t_*}^x dx'\,D(x,x';t)\sigma(t,x')
+\tag{10.71}
+\end{equation*}
+
+\item 非线性远期利率（由式 (10.64)）：
+
+\begin{equation*}
+\begin{aligned}
+\alpha_*(t,x)&=-\frac{\sigma_0^2e^{2\nu\phi(t,x)}}{2f_0}\,D(x,x;t)\\
+&\quad+\sigma_0e^{\nu\phi(t,x)}\int_{t_*}^x dx'\,D(x,x';t)\,\sigma_0e^{(\nu+1)\phi(t,x')}
+\end{aligned}
+\end{equation*}
+
+\item 随机波动率（由式 (10.66)）：
+
+\begin{equation*}
+\alpha_*(t,x)=\sigma(t,x)\int_{t_*}^x dx'\,E(x,x';t)\sigma(t,x')
+\end{equation*}
+
+\end{itemize}
+
+哈密顿表述把计价物变换还原成“改一个积分下限”，这是本章方法经济性的最好展示；附录 10.13 定价欧式国债期权时用的正是 $\alpha_*$。
+
+\section{小结}
+
+原书的本章小结可以浓缩为以下几个论点。第一，哈密顿量与态空间为远期利率的量子场论提供了与路径积分平行而独立的表述，能带来新的洞察；构造哈密顿量的关键一步是先导出时间依赖的态空间——梯形的定义域使这一步出人意料地费力。第二，哈密顿量是无穷多个独立自由度上的时间依赖微分算符，其数学描述必须动用量子场论的全部机制。由于态空间选取的方式，远期利率的哈密顿量把利率\textbf{向后}传播；又由于它是非厄米的，向前与向后两个哈密顿量并不等价——与福克–普朗克哈密顿量的情形一样。第三，原则上可以从哈密顿量出发建模、再走第5--6章的程序得到拉格朗日量；但这条路“看似简单、实则陷阱”：得到拉格朗日量的前提是知道哈密顿量作用的态空间，而态空间是必须与哈密顿量一并独立指定的量。本章的做法表明，时间依赖态空间的诸多关键性质其实编码在作用量 $S[f]$ 里——花了相当篇幅才把它“解码”出来。第四，哈密顿量的非厄米性一律来自鞅演化所要求的漂移项；线性情形可以通过相似变换（similarity transformation）把它化成厄米算符（附录 10.12）。第五，也是本章最实在的收获：非线性远期利率与带随机波动率的线性远期利率这两个模型的鞅测度，全靠哈密顿形式的鞅条件才得以精确解出——路径积分方法对此无能为力。当然，非线性作用量与随机波动率理论里有不少自由参数，第8章的实证程序需要相应扩展；定价核与欧式国债期权的哈密顿量推导（附录 10.13）则演示了这套形式化怎么算出具体数字。
+
+\section{附录：随机波动率的传播子}
+
+本附录求矩阵算符 (10.36)
+
+\begin{equation*}
+\mathcal{M}(x,x';t)=
+\begin{bmatrix}
+\dfrac{1}{1-\rho^2}-\dfrac{1}{\mu^2}\dfrac{\partial^2}{\partial x^2} & -\dfrac{\rho}{1-\rho^2}\\[8pt]
+-\dfrac{\rho}{1-\rho^2} & \dfrac{1}{1-\rho^2}-\dfrac{1}{\kappa^2}\dfrac{\partial^2}{\partial x^2}
+\end{bmatrix}\delta(x-x')
+\tag{10.72}
+\end{equation*}
+
+的逆。$\mathcal{M}$ 的全部矩阵元彼此对易，因此可以当作普通的 $2\times2$ 矩阵求逆（伴随矩阵除以行列式）：
+
+\begin{equation*}
+\mathcal{M}^{-1}(x,x';t)=
+\begin{bmatrix}
+\dfrac{1}{1-\rho^2}-\dfrac{1}{\kappa^2}\dfrac{\partial^2}{\partial x^2} & \dfrac{\rho}{1-\rho^2}\\[8pt]
+\dfrac{\rho}{1-\rho^2} & \dfrac{1}{1-\rho^2}-\dfrac{1}{\mu^2}\dfrac{\partial^2}{\partial x^2}
+\end{bmatrix}\frac{1}{\det\mathcal{M}}\,\delta(x-x')
+\end{equation*}
+
+（注意伴随矩阵的对角元与 $\mathcal{M}$ 的对角元$\mu\leftrightarrow\kappa$互换。）记 $\partial^2/\partial x^2\equiv\partial^2$，行列式的逆可以部分分式化为两个简单逆算符之差：
+
+\begin{equation*}
+\begin{aligned}
+\frac{1}{\det\mathcal{M}}\,\delta(x-x')
+&=(1-\rho^2)C\left[\frac{1}{-\partial^2+r_-}-\frac{1}{-\partial^2+r_+}\right]\delta(x-x')\\
+&=(1-\rho^2)C\left[D_-(x,x';t)-D_+(x,x';t)\right]
+\end{aligned}
+\end{equation*}
+
+其中
+
+\begin{equation*}
+C=\frac{\mu^2\kappa^2}{\sqrt{(\kappa^2-\mu^2)^2+4\rho^2\mu^2\kappa^2}},\qquad
+r_\pm=\frac{1}{2(1-\rho^2)}\left[\mu^2+\kappa^2\pm\sqrt{(\kappa^2-\mu^2)^2+4\rho^2\mu^2\kappa^2}\right]
+\end{equation*}
+
+而 $D_\pm$ 是两个质量为 $r_\pm$ 的自由传播子：
+
+\begin{equation*}
+\left(-\frac{\partial^2}{\partial x^2}+r_\pm\right)D_\pm(x,x';t)=\delta(x-x')\qquad\text{（Neumann 边界条件）}
+\end{equation*}
+
+汇总以上结果：
+
+\begin{equation*}
+\mathcal{M}^{-1}(x,x';t)=
+C\begin{bmatrix}
+D_--D_+ + \frac{1-\rho^2}{\kappa^2}(r_+D_+-r_-D_-) & \rho(D_--D_+)\\[6pt]
+\rho(D_--D_+) & D_--D_+ + \frac{1-\rho^2}{\mu^2}(r_+D_+-r_-D_-)
+\end{bmatrix}
+\tag{10.73}
+\end{equation*}
+
+这正是正文引用的式 (10.41)。对角元的化简用到了恒等式
+
+\begin{equation*}
+-\partial^2\left[D_-(x,x';t)-D_+(x,x';t)\right]=-r_-D_-(x,x';t)+r_+D_+(x,x';t)
+\end{equation*}
+
+（把 $D_\pm$ 满足的方程移项即得）。
+
+\section{附录：有效线性哈密顿量}
+
+线性远期利率哈密顿量 (10.30) 是非厄米的，非厄米性全部来自漂移项。本附录仿照期权定价哈密顿量的处理（式 (4.46)），用相似变换把漂移“变换掉”，得到可用于障碍期权等定价的有效厄米哈密顿量（effective Hermitian Hamiltonian）。出发点是
+
+\begin{equation*}
+\mathcal{H}_f(t)=e^{-\mathcal{O}(t)}\mathcal{H}_{\text{eff}}(t)e^{\mathcal{O}(t)}
+\tag{10.74}
+\end{equation*}
+
+记 $\delta_x\equiv\delta/\delta f(x)$。共轭变换对泛函导数的作用是
+
+\begin{equation*}
+e^{-\mathcal{O}}\delta_x\delta_{x'}e^{\mathcal{O}}
+=\delta_x\mathcal{O}\,\delta_{x'}\mathcal{O}+\delta_x\delta_{x'}\mathcal{O}+\delta_x\mathcal{O}\,\delta_{x'}+\delta_{x'}\mathcal{O}\,\delta_x+\delta_x\delta_{x'}
+\end{equation*}
+
+（对 $e^{\mathcal{O}}$ 逐个求导、再求和，步骤从略。）取记号 $\int_t^{t+T_{FR}}dx\equiv\int_x$，并选择变换
+
+\begin{equation*}
+\mathcal{O}(t)=\int_x\beta(t,x)f(x);\qquad \delta_x\mathcal{O}=\beta(t,x)
+\end{equation*}
+
+其中系数函数取为
+
+\begin{equation*}
+\beta(t,x)=\int_{y,z}\sigma(t,y)D(y,z;t)\,\theta(z-y)\,\theta(y-t)\,D^{-1}(z,x;t)\,\sigma^{-1}(t,x)
+\end{equation*}
+
+$\beta$ 的选法只有一个目的：精确抵消哈密顿量中的漂移项。验证分三步（中间代数从略）：
+
+\begin{equation*}
+\begin{aligned}
+\int_{x,x'}\sigma(t,x)D(x,x';t)\sigma(t,x')\,\delta_{x'}\mathcal{O}\,\delta_x
+&=\int_{x,x'}\sigma(t,x)D(x,x';t)\sigma(t,x')\beta(t,x')\,\delta_x\\
+&=\int_x\sigma(t,x)\int_y\sigma(t,y)D(x,y;t)\,\theta(x-y)\,\theta(y-t)\,\delta_x\\
+&=\int_t^{t+T_{FR}}dx\,\alpha(t,x)\frac{\delta}{\delta f(x)}
+\end{aligned}
+\end{equation*}
+
+第一步代入 $\delta_{x'}\mathcal{O}=\beta(t,x')$，第二步代入 $\beta$ 的表达式并交换积分次序，第三步认出方括号正是式 (10.58) 的漂移速度 $\alpha(t,x)$。于是有效厄米哈密顿量为
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_{\text{eff}}(t)&=\mathcal{H}_0(t)+\Gamma(t)=\mathcal{H}_{\text{eff}}^\dagger(t)\\
+\mathcal{H}_0(t)&=-\frac{1}{2}\int_{x,x'}\sigma(t,x)D(x,x';t)\sigma(t,x')\frac{\delta^2}{\delta f(x)\delta f(x')}\\
+\Gamma(t)&=\frac{1}{2}\int_{x,x'}\sigma(t,x)\beta(t,x)D(x,x';t)\sigma(t,x')\beta(t,x')
+\end{aligned}
+\end{equation*}
+
+$\Gamma(t)$ 是个 $c$ 数（不含泛函导数）。有效哈密顿量可直接用于国债的障碍期权（barrier option）及其他期权定价。
+
+\section{附录：欧式国债期权的哈密顿量推导}
+
+前文哈密顿量的主要用途是求非线性远期利率的鞅测度；本附录用它再算一个具体对象——欧式国债看涨期权 $C(t_0,t_*,T,K)$（即式 (6.53)），以演示完整的定价流水线。按式 (7.47)、(7.48) 的讨论，用贴现因子 $P(t,t_*)$ 折现最方便，$t_0<t_*$ 时期权价格为
+
+\begin{equation*}
+C(t_0,t_*,T,K)=P(t_0,t_*)\,E_*\left[(P(t_*,T)-K)_+\right]
+\tag{10.75}
+\end{equation*}
+
+计价物为 $P(t,t_*)$，故漂移速度取式 (10.71) 的 $\alpha_*(t,x)=\sigma(t,x)\int_{t_*}^x dx'D(x,x';t)\sigma(t,x')$，哈密顿量为
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_f^*(t)&=-\frac{1}{2}\int_t^{t+T_{FR}}dxdx'\,\sigma(t,x)D(x,x';t)\sigma(t,x')\frac{\delta^2}{\delta f(x)\delta f(x')}\\
+&\quad-\int_t^{t+T_{FR}}dx\,\alpha_*(t,x)\frac{\delta}{\delta f(x)}
+\end{aligned}
+\end{equation*}
+
+为了把收益函数 $g[f_*]\equiv(P(t_*,T)-K)_+$ 写清楚，引入对偶基态
+
+\begin{equation*}
+\langle f_*|\equiv\prod_{t_*\le x\le t_*+T_{FR}}\langle f(x)|;\qquad
+\langle f_0|\equiv\prod_{t_0\le x\le t_0+T_{FR}}\langle f(x)|
+\tag{10.76}
+\end{equation*}
+
+于是
+
+\begin{equation*}
+\langle f_*|g\rangle=
+\begin{cases}
+(P(t_*,T)-K)_+, & t_*\le x\le T\\
+0, & x>T
+\end{cases}
+\tag{10.77a}
+\end{equation*}
+
+\begin{equation*}
+\equiv g[f_*]
+\tag{10.77b}
+\end{equation*}
+
+可见收益态 $|g\rangle$ 在未来方向 $x$ 上只在区间 $t_*\le x\le T$ 有非零分量。$t_0$ 时刻的期权价格就是把到期收益态 $|g\rangle$ 沿时间向后传播回 $t_0$（按式 (10.20)），再乘以计价物折现：
+
+\begin{equation*}
+\begin{aligned}
+C(t_0,t_*,T,K)&=P(t_0,t_*)\,E_*\left[(P(t_*,T)-K)_+\right]\\
+&=P(t_0,t_*)\,\langle f_0|\mathcal{T}\left\{\exp-\int_{t_0}^{t_*}dt\,\mathcal{H}_f^*(t)\right\}|g\rangle
+\end{aligned}
+\tag{10.78}
+\end{equation*}
+
+插入完备性方程 $\int Df_*|f_*\rangle\langle f_*|=\mathcal{I}$：
+
+\begin{equation*}
+\begin{aligned}
+\langle f_0|\mathcal{T}\left\{\exp-\int_{t_0}^{t_*}dt\,\mathcal{H}_f^*(t)\right\}|g\rangle
+&=\int Df_*\,\langle f_0|\mathcal{T}\left\{\exp-\int_{t_0}^{t_*}dt\,\mathcal{H}_f^*(t)\right\}|f_*\rangle\langle f_*|g\rangle
+\end{aligned}
+\tag{10.79}
+\end{equation*}
+
+由于时序符号 $\mathcal{T}$ 的非平凡性质，这里的左矢 $\langle f_0|$ 属于区间 $[t_0,t_0+T_{FR}]$ 上函数的态空间，右矢 $|f_*\rangle$ 属于区间 $[t_*,t_*+T_{FR}]$ 上的态空间。式 (10.79) 还能再简化：$\langle f_*|g\rangle$ 只在 $x\in[t_*,T]$ 非零，故 $\langle f_0|$ 与 $|g\rangle$ 的非零重叠也只落在 $x\in[t_*,T]$。这样，计算式 (10.79) 矩阵元涉及的域正是原书图 9.1 的矩形域 $\mathcal{R}$；它的关键好处是：进入矩阵元的态空间子空间对一切 $t\in[t_0,t_*]$ 固定不变（都由 $f(x)$，$x\in[t_*,T]$ 张成），而且域 $\mathcal{R}$ 上哈密顿量与时间无关、$[\mathcal{H}_f^*(t),\mathcal{H}_f^*(t')]=0$。\footnote{原书脚注7指出对照：若改用货币市场账户 $\exp(-\int_{t_0}^{t_*}dt\,r(t))$ 折现，非零重叠被拉宽到 $x\in[t,T]$，路径积分回到梯形域（原书图6.4），时序符号不能省略，且须对每个 $t$ 单独计算。}于是时序可略，把 $\mathcal{H}_f^*(t)$ 限制在域 $\mathcal{R}$ 上（记 $\int_{t_*}^Tdx\equiv\int_{*x}$）：
+
+\begin{equation*}
+\begin{aligned}
+\mathcal{H}_f^*(t)\big|_{\mathcal{R}}&=-\frac{1}{2}\int_{*x,x'}\sigma(t,x)D(x,x';t)\sigma(t,x')\frac{\delta^2}{\delta f(x)\delta f(x')}-\int_{*x}\alpha_*(t,x)\frac{\delta}{\delta f(x)}
+\end{aligned}
+\end{equation*}
+
+不再需要时序后，驱动期权价格的算符是“时间累积”起来的一个时间无关算符：
+
+\begin{equation*}
+\begin{aligned}
+W&\equiv\int_{t_0}^{t_*}dt\,\mathcal{H}_f^*(t)\big|_{\mathcal{R}}\\
+&=-\frac{1}{2}\int_{*x,x'}q^2(x,x')\frac{\delta^2}{\delta f(x)\delta f(x')}-\int_{*x}j(x)\frac{\delta}{\delta f(x)}\\
+&\Rightarrow\ q^2(x,x')=\int_{t_0}^{t_*}dt\,\sigma(t,x)D(x,x';t)\sigma(t,x');\qquad j(x)=\int_{t_0}^{t_*}dt\,\alpha_*(t,x)
+\end{aligned}
+\tag{10.80}
+\end{equation*}
+
+于是式 (10.79) 的矩阵元（记 $g[f_*]\equiv\langle f_*|g\rangle$）化为
+
+\begin{equation*}
+\langle f_0|\mathcal{T}\left\{\exp-\int_{t_0}^{t_*}dt\,\mathcal{H}_f^*(t)\right\}|f_*\rangle\langle f_*|g\rangle
+=\langle f_0|e^{-W}|f_*\rangle\Big|_{\mathcal{R}}\,g[f_*]
+\tag{10.81}
+\end{equation*}
+
+回忆式 (6.55) 的收益函数傅里叶表示：
+
+\begin{equation*}
+(P(t_*,T)-K)_+=\int_{-\infty}^{+\infty}dG\,\frac{d\xi}{2\pi}\,e^{i\xi(G+\int_{*x}dxf(t_*,x))}\,(e^G-K)_+
+\end{equation*}
+
+把式 (10.78)、(10.79)、(10.81) 串起来，矩阵元 $e^{-W}$ 在域 $\mathcal{R}$ 上取值：
+
+\begin{equation*}
+\begin{aligned}
+C(t_0,t_*,T,K)&=P(t_0,t_*)\int Df_*\,\langle f_0|e^{-W}|f_*\rangle\Big|_{\mathcal{R}}\,g[f_*]\\
+&=P(t_0,t_*)\int_{-\infty}^{+\infty}dG\,\frac{d\xi}{2\pi}\,(e^G-K)_+\,e^{i\xi G}\int Df_*\,\langle f_0|e^{-W}|f_*\rangle\Big|_{\mathcal{R}}\,e^{i\xi\int_{*x}f(t_*,x)}
+\end{aligned}
+\end{equation*}
+
+下一步需要场论版的动量基（momentum basis，式 (4.34) 的推广）——与 Black–Scholes 情形的式 (4.38) 完全平行：\footnote{原书脚注8提醒：哈密顿量中的导数 $\delta/\delta f(x)$ 作用在对偶基矢上，故在矩阵元内部等于 $\delta/\delta f_0(x)$。}
+
+\begin{equation*}
+\begin{aligned}
+Z&\equiv\int Df_*\,\langle f_0|e^{-W}|f_*\rangle\Big|_{\mathcal{R}}\,e^{i\xi\int_{*x}f(t_*,x)}\\
+&=\int Df_*Dp\;\langle f_0|e^{-W}|p\rangle\Big|_{\mathcal{R}}\,\langle p|f_*\rangle\,e^{i\xi\int_{*x}f(t_*,x)}\\
+&=\int Df_*Dp\;e^{-\frac{1}{2}\int_{*x,x'}q^2(x,x')p(x)p(x')}\times\\
+&\quad e^{i\int_{*x}p(x)j(x)}\;e^{i\int_x p(x)[f(t_0,x)-f(t_*,x)]}\;e^{i\xi\int_{*x}f(t_*,x)}
+\end{aligned}
+\tag{10.82}
+\end{equation*}
+
+最后对远期利率积分 $\int Df_*$（$f_*(x)\equiv f(t_*,x)$）：它产生一组 $\delta$ 函数，把所有动量积分钉死：
+
+\begin{equation*}
+\begin{aligned}
+Z&=\int Dp\;e^{-\frac{1}{2}\int_{*x,x'}q^2(x,x')p(x)p(x')}\;e^{i\int_{*x}p(x)[f(t_0,x)+j(x)]}\prod_{t_*\le x\le T}\delta(p(x)-\xi)\\
+&=e^{-\frac{q^2}{2}\xi^2}\,e^{i\xi\int_x[f(t_0,x)+j(x)]}
+\qquad\text{其中}\ \ q^2=\int_{*x,x'}q^2(x,x')
+\end{aligned}
+\end{equation*}
+
+而由式 (9.9)，$j$ 的积分恰是“方差的一半”：
+
+\begin{equation*}
+\int_{*x}j(x)=\int_{t_*}^T dx\int_{t_0}^{t_*}dt\,\alpha_*(t,x)=\int_{\mathcal{R}}\alpha_*(t,x)=\frac{q^2}{2}
+\end{equation*}
+
+（这正是鞅条件保证“漂移不产生额外漂移”的地方。）汇总全部结果：
+
+\begin{equation*}
+C(t_0,t_*,T,K)=P(t_0,t_*)\int_{-\infty}^{+\infty}dG\,\frac{d\xi}{2\pi}\,(e^G-K)_+\,e^{-\frac{q^2}{2}\xi^2}\,e^{i\xi\left(G+\int_{t_*}^T dxf(t_0,x)+\frac{q^2}{2}\right)}
+\end{equation*}
+
+对 $\xi$ 作高斯积分，即回到第9章路径积分方法得到的式 (9.10)——两条独立路线殊途同归。
+
+\subsection{远期利率定价核}
+
+与股票情形（式 (4.39)）类似，可以为远期利率定义定价核（pricing kernel）；只要用债券 $P(t_0,t_*)$ 折现，它就足以给一切路径无关（path-independent）期权定价。由式 (10.78)，对剩余时间 $\tau=t_*-t_0$ 定义
+
+\begin{equation*}
+\begin{aligned}
+p[f_0,f_*;\tau]&=\langle f_0|\mathcal{T}\left\{\exp-\int_{t_0}^{t_*}dt\,\mathcal{H}_f^*(t)\right\}|f_*\rangle\\
+&=\langle f_0|e^{-W}|f_*\rangle\Big|_{\mathcal{R}pk}
+\end{aligned}
+\end{equation*}
+
+$\langle f_0|$ 与 $|f_*\rangle$ 的非零重叠只在期限变量 $x\in[t_*,\,t_0+T_{FR}]$ 上，故定价核的路径积分取在矩形域 $\mathcal{R}pk:(t,x)\in[t_0,t_*]\times[t_*,t_0+T_{FR}]$ 上（记 $\int_{pk:x}\equiv\int_{t_*}^{t_0+T_{FR}}dx$）。重复式 (10.82) 的计算：
+
+\begin{equation*}
+\begin{aligned}
+p[f_0,f_*;\tau]
+&=\int Dp\;e^{-\frac{1}{2}\int_{pk:x,x'}q^2(x,x')p(x)p(x')}\;e^{i\int_{pk:x}p(x)j(x)}\;e^{i\int_{pk:x}p(x)[f(t_0,x)-f(t_*,x)]}\\
+&=\mathcal{N}\exp\left\{-\frac{1}{2}\int_{pk:x,x'}\left[f(t_0,x)-f(t_*,x)+j(x)\right]q^{-2}(x,x')\right.\\
+&\qquad\qquad\qquad\left.\times\left[f(t_0,x')-f(t_*,x')+j(x')\right]\right\}
+\end{aligned}
+\end{equation*}
+
+其中 $\mathcal{N}$ 是归一化常数；$q^2(x,x')$ 由式 (10.80) 给出，其逆 $q^{-2}$ 定义为
+
+\begin{equation*}
+\int_{pk:x'}q^2(x,x')\,q^{-2}(x',y)=\delta(x-y)
+\end{equation*}
+
+而
+
+\begin{equation*}
+j(x)=\int_{t_0}^{t_*}dt\,\alpha_*(t,x)=\int_{t_0}^{t_*}dt\,\sigma(t,x)\int_{t_*}^x D(x,x';t)\sigma(t,x')
+\end{equation*}
+
+定价核是 $f(t_0,\cdot)-f(t_*,\cdot)+j$ 的高斯型泛函——远期利率场的“转移概率密度”，且漂移 $j$ 已被鞅条件完全固定，不含任何自由参数。
+
+%TAGS: 10.1,10.2,10.3,10.4,10.5,10.6,10.7,10.8,10.9,10.10,10.11,10.12,10.13,10.14,10.15,10.16,10.17,10.18,10.19,10.20,10.21,10.22,10.23,10.24,10.25,10.26,10.27,10.28,10.29,10.30,10.31,10.32,10.33,10.34,10.35,10.36,10.37,10.38,10.39,10.40,10.41,10.42,10.43,10.44,10.45,10.46,10.47,10.48,10.49,10.50,10.51,10.52,10.53,10.54,10.55,10.56,10.57,10.58,10.59,10.60,10.61,10.62,10.63,10.64,10.65,10.66,10.67,10.68,10.69,10.70,10.71,10.72,10.73,10.74,10.75,10.76,10.77a,10.77b,10.78,10.79,10.80,10.81,10.82

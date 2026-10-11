@@ -1,0 +1,1041 @@
+% ch07a QFT of forward interest rates 7.1-7.11 (书页147-172 / p165-190)
+% 覆盖说明：原书第7章 7.1--7.11 节为书页147--172（p165--p190）；7.12 总结
+% 及附录 7.13--7.19（书页172 起 / p190 起）由后半文件续写。
+% 编号公式核对：原书本半 tag 为 (7.1)--(7.64)，共64条，连续无断档（已对照
+% PNG 逐页核验）。其中 (7.39) 位于原书脚注10内。
+% 原书已知排印疑点：
+% (1) 式(7.40) 前两项用 σ_i、末项用 σ（σ_i 应指任一具体选定的波动率函数，
+%     因高斯模型的鞅漂移公式对一切高斯波动率取同一形式；已照录并加脚注）；
+% (2) 式(7.45) 积分下限印作 t_*（与(7.38)的 t 不同，照录并加脚注提醒）；
+% (3) 式(7.35) 中 ∫_𝒯 为对梯形域的简写（未写出 dtdx）；
+% (4) 式(7.7) 的编号行末尾附有场值域 “-∞≤f≤+∞” 的注记；
+% (5) 式(7.39) 的 μ→0 极限漂移比 HJM 漂移多一个 1/T_FR 因子，原书自己
+%     说明“经 T_FR 重标度后回到 HJM”（μ=0 对应无限刚性的弦）；
+% (6) 7.10 节 HJM 变体清单中“线性比例 HJM (1992)”一行原书多印一个
+%     右方括号（[σ_0+σ_1(x-t)]f(t,x)]），已按平衡括号照录。
+% 原书图 7.1--7.5 均在本半范围内，按规范以 \paragraph 指路。
+\chapter{远期利率的量子场论}
+
+前六章的定价对象无论股票还是即期利率，任一时刻都只用一个（或少数几个）
+随机变量描写；远期利率则不同——任一时刻 $t$，市场上同时存在一整条期限
+结构，从三个月到三十年以上的每个未来期限 $x$ 都有一个远期利率
+$f(t,x)$，而且整条曲线都在随机演化。要求的自由度不是有限多个，而是
+无限多个。量子场论（quantum field theory）正是物理学为处理“无限多个
+独立自由度”发展出来的数学机器，Baaquie 在本章把它搬进利率市场：把
+$f(t,x)$ 当作定义在“时间 $t\times$ 未来时间 $x$”二维平面上的
+玻色量子场，写出它的作用量，解出它的传播子，用路径积分导出风险中性
+测度，再依次向非线性（正值）远期利率与随机波动率推广。这是全书的
+技术核心章：第8章的实证检验、第9章的期权定价、第10章的哈密顿量
+表述，全部建立在本章定义的模型与传播子之上。
+
+先修内容：第6章的 HJM 框架（漂移速度 $\alpha(t,x)$、波动率
+$\sigma(t,x)$ 与 HJM 组合）与第5章的路径积分，尤其是5.5节简谐振子
+的生成泛函与传播子——本章最重的计算（刚性传播子）就是把那个一维
+结果“逐时刻复制”到二维场上。本章的建议读法是抓住一条主线：场论
+模型的所有新内容都由一个参数 $\mu$ 控制，$\mu\to0$ 退化为无限刚性的
+弦、即（重标度后的）HJM 模型；$\mu$ 有限时远期利率在不同期限上的
+涨落只有有限的相关长度 $\mu^{-1}$——这正是 HJM 做不到的非平凡
+相关性。
+
+\section{量子场论}
+
+本节要解决的问题：什么是量子场？回答用一个最简单的物理例子——
+弦。把量子力学里“一个粒子沿时间演化”推广为“一根弦沿时间演化”，
+量子场论的全部结构性特征就已经出现了：场是无限多个独立随机变量的
+集合，路径积分从对路径求和变成对位形求和。
+
+\paragraph{模型设定与记号}
+考虑一根（一维）非相对论弦，记 $t$ 时刻、空间位置 $x$ 处弦偏离平衡
+位置的位移为 $\phi(t,x)$。两个端点条件取定初、末时刻的整条弦位形
+$\phi_1(x)=\phi(t_1,x)$ 与 $\phi_2(x)=\phi(t_2,x)$。设弦的质量线密度
+为 $\rho$、张力（单位长度的能量）为 $T$。
+
+\paragraph{原书图 7.1}\quad 某一时刻 $t_0$ 的一条典型弦位形
+$\phi(t_0,x)$：一条在空间中起伏的曲线，每个点 $x$ 上的取值彼此独立。
+
+\paragraph{关键公式}
+弦的作用量（action）由动能与势能两部分组成：
+\begin{align*}
+S_{\mathrm{string}}&=-\frac{1}{2}\int_{t_1}^{t_2}dt\int_{-\infty}^{+\infty}dx\,
+\rho\Bigl(\frac{\partial\phi}{\partial t}\Bigr)^{2}\\
+&\quad-\frac{1}{2}\int_{t_1}^{t_2}dt\int_{-\infty}^{+\infty}dx\,
+\Bigl[T\Bigl(\frac{\partial\phi}{\partial x}\Bigr)^{2}+V(\phi)\Bigr]\\
+&\equiv S_{\mathrm{kinetic}}+S_{\mathrm{potential}}
+\tag{7.1}
+\end{align*}
+其中 $V(\phi)$ 是场的势能。注意作用量里出现了两类导数：时间导数项
+（动能，带质量密度 $\rho$）与空间导数项（张力，带张力系数 $T$）——
+这个“时间导数加空间导数”的双导数结构，正是后面远期利率作用量
+（动能项加刚性项）的原型。仿照量子力学的做法，弦的哈密顿量
+$\hat{H}_{\mathrm{string}}$ 由作用量导出，跃迁振幅（配分函数）定义为
+Feynman 路径积分（path integral）：
+\begin{align*}
+Z&\equiv\langle\phi_2\vert e^{-\tau\hat{H}_{\mathrm{string}}}\vert\phi_1\rangle
+\tag{7.2}\\
+&=\prod_{t_1<t<t_2}\ \prod_{-\infty<x<+\infty}\int_{-\infty}^{+\infty}
+d\phi(t,x)\,\exp(S_{\mathrm{string}})
+\tag{7.3}
+\end{align*}
+边条件即 $\phi_1(x)=\phi(t_1,x)$、$\phi_2(x)=\phi(t_2,x)$。与量子
+力学中“每时刻对所有位置求和”不同，这里要“每时刻、每空间点对所有
+位移求和”。无穷多随机变量 $\{\phi(t,x)\}$ 的集合称为玻色量子场
+（boson quantum field）：经典弦在每个 $(x,t)$ 取唯一确定的值，玻色场
+则在每个 $(x,t)$ 上取一切可能值。\footnote{原书脚注2：物理时间 $t$ 换
+成 $t\to-it$ 后理论定义在欧几里得时间（Euclidean time）上；本书记号的
+作用量恒为负号约定（$e^{S}$ 而非 $e^{-S}$）即源于此。}
+
+\paragraph{推导主线}
+本节没有计算，但有一个必须讲清的对比：式(5.64)（量子力学）与式(7.2)
+（量子场论）形似而质不同。量子力学在每一时刻只有\textbf{一个}自由度
+$x(t_0)$；量子场论在每个时刻都有无限多个自由度——弦所占据的每个空间
+点 $x$ 上的坐标 $\phi(t_0,x)$ 都是独立随机变量。用态空间的语言说：单
+粒子的态由一个变量 $|x\rangle$ 标记，而场的态空间是无穷张量积
+$\vert\phi\rangle=\bigotimes_{-\infty<x<+\infty}\vert\phi(x)\rangle$，
+跃迁振幅的初末态分别是
+$\vert\phi_1\rangle=\bigotimes_x\vert\phi(t_1,x)\rangle$ 与
+$\vert\phi_2\rangle=\bigotimes_x\vert\phi(t_2,x)\rangle$。
+“有限个自由度对无限个独立自由度”——这就是量子力学与量子场论的本质
+区别，也是“利率曲线需要场论”的原因。
+
+\paragraph{解读与联系}
+两点数学上的诚实声明（原书原话转述）。其一，式(7.3)的“连乘连续指标
+的无穷重积分”没有测度论意义下的严格定义；严格化要走格点化路线——
+先把时空限制在有限体积、再离散成格点，无穷维积分就约化成普通的多重
+积分 $\prod_{m,n}\int d\phi_{m,n}$，远期利率的二维格点场论见原书附录
+7.18。其二，非线性场论的连续极限一般只在理论可重整化（renormalizable）
+时才存在，重整化手续至今没有严格的数学定义——整个场论形式体系超出
+传统（含随机积分在内）严格数学的范围。若作用量 $S$ 只是场的二次函数，
+理论便是自由（高斯）量子场，可以不必碰重整化而取连续极限。这正是
+本章的策略：先花大力气（7.3--7.7节）把线性高斯情形做透，再讨论
+非线性与随机波动率（7.8--7.11节）——后两者的重整化问题是悬而未决的。
+
+\section{远期利率的作用量}
+
+本节要解决的问题：把上一节的抽象框架对准实物——远期利率曲线为什么
+必须看成二维量子场，它的定义域长什么样，以及拉格朗日量里必须放哪些
+成分。本节是“设问”性质的一节：只做定性准备，不写作用量。
+
+\paragraph{模型设定与记号}
+第6章的 HJM 模型里，曲线 $f(t,x)$ 在 $t$ 时刻收到的涨落由有限个（与
+期限 $x$ 无关的）随机变量 $W_i(t)$ 驱动——整条曲线被同一批“冲击”
+推动，因此不同期限完全相关。更一般的设想是：让每个期限独立振动，
+即 $f(t,x)$ 对\textbf{每个} $x$ 与\textbf{每个} $t$ 都独立涨落。唯一
+的约束是：演化必须由某个风险中性鞅测度（risk-neutral martingale
+measure）驱动，从而可以给无套利的金融工具定价。这一句话就是全章的
+纲领：模型可以随便造，鞅条件说了算。
+
+记号的三个要点。第一，市场在任一时刻 $t$ 存在着覆盖未来一段时间
+$T_{FR}$ 的远期利率，即 $f(t,x)$ 对一切 $t<x<t+T_{FR}$ 有定义；把
+$f(t,x)$ 视为期限变量 $x$ 的函数，称为远期利率曲线（forward rate
+curve）。第二，$x$ 标记\textbf{未来时间}（future time），不是空间点
+——场论的“空间维”在金融里是期限方向。第三，因 $x>t$ 恒成立，场
+$f(t,x)$ 只能定义在 $(t,x)$ 平面的一个斜平行四边形 $\mathcal{P}$ 上：
+期限方向以平行线 $x=t$ 与 $x=T_{FR}+t$ 为界，时间方向以 $t=T_i$ 与
+$t=T_f$ 为界。$\mathcal{P}$ 内每一点都是一个独立的积分变量 $f(t,x)$
+——对比 HJM 的少数几个 $W_i(t)$，自由度发生了质变。
+
+\paragraph{原书图 7.2}\quad 1990--1996 年由欧洲美元期货得到的美元
+远期利率数据：八条曲线
+$f(t,0.25$年$),f(t,1$年$),\ldots,f(t,7$年$)$ 的日
+走势：八条线同涨同跌、从不交叉——高度相关但绝非完全相关，这是后文
+（第8章）“有限相关长度”提法的实证出发点。
+\footnote{原书脚注4与5：$T_{FR}$ 取30年以上；欧洲美元市场的讨论见
+原书8.1节。}
+
+\paragraph{拉格朗日量的两个必要成分}
+其一，动能项 $\mathcal{L}_{\mathrm{kinetic}}$，描写远期利率的时间
+演化。HJM 的关键洞见在这里被原书点破：金融中出现的组合永远是归一
+组合
+$[\partial f(t,x)/\partial t-\alpha(t,x)]/\sigma(t,x)$——远期利率
+增量减去漂移速度、再除以波动率。无论线性、非线性还是随机波动率，
+这个“HJM 组合”将贯穿全章反复出现，拉格朗日量必须把它作为基本构件。
+
+\paragraph{原书图 7.3}\quad 远期利率的定义域 $\mathcal{P}$：$(t,x)$
+平面上的斜平行四边形，斜边为 $x=t$ 与 $x=t+T_{FR}$，上下底为
+$t=T_i$ 与 $t=T_f$。（原书脚注6：这个场的演化等价于沿期限 $x$ 方向
+以单位速度运动的（非相对论）量子弦。）
+
+其二，一个约束曲线形状的项。弦的类比是张力项——它抑制形状的剧烈
+变化。但远期利率不能直接用 $(\partial f/\partial x)^2$ 这样的张力
+项：原书预告（10.7.1节）这一项与远期利率的（风险中性）鞅条件相
+抵触，会被鞅条件排除。出路是更高阶的导数——这是下一节的出发点。
+
+\section{线性远期利率的场论作用量}
+
+本节要解决的问题：给远期利率写出一个同时满足“鞅条件容许”与
+“抑制逐期限形状剧变”两个要求的最简作用量——线性（高斯）模型。
+答案是引入弦的\textbf{刚性}（rigidity）。
+
+\paragraph{模型设定与记号}
+鞅测度的存在性要求拉格朗日量含高阶导数项，本质上是
+$(\partial^2f/\partial x\partial t)^2$ 型的项；含这类项的弦系统
+称为有限刚性弦。刚性项记 $\mathcal{L}_{\mathrm{rigidity}}$，带来
+新参数 $\mu$：远期利率的刚性为 $1/\mu^2$，度量远期利率在期限方向
+$x$ 上涨落的受约束强度（$\mu$ 越大刚性越小、涨落越自由）。
+
+满足全部要求的最简作用量是线性（高斯）模型：
+\begin{align*}
+S[f]&=\int_{T_i}^{T_f}dt\int_{t}^{t+T_{FR}}dx\,\mathcal{L}[f]
+\tag{7.4}\\
+&\equiv\int_{\mathcal{P}}\mathcal{L}[f]
+\tag{7.5}
+\end{align*}
+拉格朗日量密度为
+\begin{align*}
+\mathcal{L}[f]&=\mathcal{L}_{\mathrm{kinetic}}[f]
++\mathcal{L}_{\mathrm{rigidity}}[f]
+\tag{7.6}\\
+&=-\frac{1}{2}\Biggl[\biggl\{\frac{\frac{\partial f(t,x)}{\partial t}
+-\alpha(t,x)}{\sigma(t,x)}\biggr\}^{2}
++\frac{1}{\mu^{2}}\biggl\{\frac{\partial}{\partial x}
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}
+{\sigma(t,x)}\biggr)\biggr\}^{2}\Biggr]
+\tag{7.7}
+\end{align*}
+场值域不加限制：$-\infty\leq f(t,x)\leq+\infty$——这个范围注记
+原书就印在式(7.7)的编号行末。结构上完全对应式(7.1)的弦：动能项是
+HJM 组合的平方，刚性项
+是 HJM 组合的 $x$ 导数的平方（分母上的 $\mu^2$ 使刚性正比于
+$1/\mu^2$）。注意两项用的都是 HJM 组合而非 $\partial f/\partial t$
+本身——这正是上一节“金融组合”洞见的落实。原书引实证研究[19]指出：
+刚性项不被风险中性测度排除，且有强有力的市场证据支持它的存在。
+
+\paragraph{解读与联系}
+远期利率由此获得一幅量子弦图像：一个“时--空依赖”的漂移速度
+$\alpha(t,x)$、有效质量 $1/\sigma^2(t,x)$、刚性正比于 $1/\mu^2$。
+$\mu\to0$ 是无限刚性弦的极限，后面将看到（重标度之后）它正好回到
+HJM 模型。分工也清楚了：漂移 $\alpha(t,x)$ 完全由鞅条件决定，自由
+参数只有波动率函数 $\sigma(t,x)$ 与常数 $\mu^2$ 等——与 HJM 通常
+直接假定 $\sigma$ 的函数形式不同，场论做法可以让波动率完全自由地
+留给市场数据去定。
+
+\paragraph{边界条件}
+模型定义在有限域 $\mathcal{P}$ 上，四个边都要给条件。
+
+时间方向用固定（Dirichlet）初末条件：
+\begin{gather*}
+t=T_i;\ \ T_i<x<T_i+T_{FR}:\ f(T_i,x)\\
+\text{：给定的初始远期利率曲线}
+\tag{7.8}\\[2pt]
+t=T_f;\ \ T_f<x<T_f+T_{FR}:\ f(T_f,x)\\
+\text{：给定的终末远期利率曲线}
+\tag{7.9}
+\end{gather*}
+
+期限方向用自由（Neumann）边界条件：要求作用量(7.4)没有表面项。把
+$\int_{\mathcal{P}}\mathcal{L}_{\mathrm{rigidity}}[f]$ 对 $x$ 分部
+积分，边界项为零给出
+\begin{gather*}
+T_i<t<T_f,\quad
+\frac{\partial}{\partial x}\biggl(\frac{\frac{\partial f(t,x)}
+{\partial t}-\alpha(t,x)}{\sigma(t,x)}\biggr)=0
+\tag{7.10}\\
+:\ x=t\ \text{或}\ x=t+T_{FR}
+\tag{7.11}
+\end{gather*}
+（式(7.10)给出条件本身，式(7.11)标出它所在的边界。）Neumann 条件
+不只是数学方便：第10章将看到它是构造远期利率哈密顿量的必要条件。
+利用 Neumann 条件对 $x$ 分部积分，作用量(7.5)--(7.6)可写成算符
+夹层形式：
+\begin{equation*}
+S=-\frac{1}{2}\int_{\mathcal{P}}
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}
+{\sigma(t,x)}\biggr)
+\Bigl[1-\frac{1}{\mu^{2}}\frac{\partial^{2}}{\partial x^{2}}\Bigr]
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}
+{\sigma(t,x)}\biggr)
+\tag{7.12}
+\end{equation*}
+方括号里的算符 $(1-\mu^{-2}\partial_x^2)$ 是本章的主角：7.5节求
+传播子就是求它的逆。
+
+\paragraph{配分函数}
+远期利率场论由配分函数 $Z$ 定义——对所有场位形积分的 Feynman 路径
+积分：
+\begin{align*}
+Z&=\int Df\,e^{S[f]}
+\tag{7.13}\\
+\int Df&\equiv\prod_{(t,x)\in\mathcal{P}}\int_{-\infty}^{+\infty}
+df(t,x)
+\tag{7.14}
+\end{align*}
+$e^{S[f]}/Z$ 就是对 $f(t,x)$ 做泛函积分时不同场位形出现的概率。
+
+\paragraph{无限未来}
+取 $T_f=\infty$，定义域延伸为半无限平行四边形：期限方向仍以
+$x=t$ 与 $x=T_{FR}+t$ 为界，时间方向只以 $t=t_0$ 一条线为界。
+\paragraph{原书图 7.4}\quad 无限未来时间情形远期利率的定义域：从
+$(t_0,t_0)$ 与 $(t_0,t_0+T_{FR})$ 两点出发、向未来无限延伸的斜带。
+后续的路径积分计算都在这个域上进行。
+
+\section{远期利率的速度量子场 $A(t,x)$}
+
+本节要解决的问题：式(7.4)的作用量适合做形式讨论（第10章的哈密顿量
+就以它为基础），但直接拿 $f(t,x)$ 做路径积分并不顺手——HJM 组合
+$(\partial f/\partial t-\alpha)/\sigma$ 处处出现在分母式的结构里。
+换变量：把“速度场”提出来当积分变量，作用量立刻退化成最简单的
+二次型。
+
+\paragraph{模型设定与记号}
+引入二维量子场 $A(t,x)$，用 HJM 式的变量替换把它与远期利率联系起来：
+\begin{align*}
+\frac{\partial f}{\partial t}(t,x)&=\alpha(t,x)+\sigma(t,x)A(t,x)
+\tag{7.15}\\
+f(t,x)&=f(t_0,x)+\int_{t_0}^{t}dt'\,\alpha(t',x)
++\int_{t_0}^{t}dt'\,\sigma(t',x)A(t',x)
+\tag{7.16}
+\end{align*}
+$A(t,x)$ 是远期利率的\textbf{无漂移速度场}：远期利率的时间导数减去
+漂移、除以波动率，剩下的纯涨落就是 $A$。这个替换是逐点线性的，其
+雅可比行列式（Jacobian）为常数，故测度只差一个常数因子：
+\begin{equation*}
+\int Df\to\int DA
+\tag{7.17}
+\end{equation*}
+
+\paragraph{关键公式}
+用式(7.15)改写式(7.6)，HJM 组合恰好就是 $A$ 本身，作用量变成：
+\begin{align*}
+S[A]&=-\frac{1}{2}\int_{t_0}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,
+\biggl\{A^{2}(t,x)+\frac{1}{\mu^{2}}
+\biggl(\frac{\partial A(t,x)}{\partial x}\biggr)^{2}\biggr\}
+\tag{7.18}\\
+&=\int_{\mathcal{P}}\mathcal{L}[A]
+\tag{7.19}
+\end{align*}
+边条件(7.10)变成对 $A$ 的 Neumann 条件：
+\begin{equation*}
+\frac{\partial A(t,x)}{\partial x}\Bigl|_{x=t}=0
+=\frac{\partial A(t,x)}{\partial x}\Bigr|_{x=t+T_{FR}}
+\tag{7.20}
+\end{equation*}
+直观理由：边界上的场值 $A(t,t)$ 与 $A(t,t+T_{FR})$ 本身是自由的
+积分变量，“自由”就意味着法向导数为零。于是配分函数为
+\begin{equation*}
+Z=\int DA\,e^{S[A]}
+\tag{7.21}
+\end{equation*}
+重复导出式(7.12)的分部积分，得速度场作用量的算符形式：
+\begin{equation*}
+S=-\frac{1}{2}\int_{\mathcal{P}}A(t,x)
+\Bigl(1-\frac{1}{\mu^{2}}\frac{\partial^{2}}{\partial x^{2}}\Bigr)
+A(t,x)
+\tag{7.22}
+\end{equation*}
+
+\paragraph{推导主线：为什么这一步是“降维”的}
+看式(7.22)的关键结构：作用量里\textbf{没有对时间 $t$ 的任何导数项}。
+$t$ 在其中只是参数——对每个固定的 $t$，$A(t,\cdot)$ 作为 $x$ 的函数
+构成一个一维量子力学系统：$A^2$ 项扮演“势”，$(\partial A/\partial
+x)^2/\mu^2$ 项扮演“动能”，整个系统与5.5节讨论过的欧几里得简谐振子
+完全相同。二维场论在此刻没有真的变成一维——时间维仍在积分里——
+但全部\textbf{计算}都约化成一维问题：传播子（下一节）逐时刻求解即可。
+这是线性模型“解析可处理”的全部秘密；后面（7.11节末与7.12节）会
+看到非线性模型不享有这个性质。
+
+\paragraph{标度对称性}
+变量替换(7.15)有一个重要的冗余：对任意非零函数 $\zeta(t,x)$，同时做
+$\sigma(t,x)\to\zeta(t,x)\sigma(t,x)$ 与 $A(t,x)\to\zeta(t,x)^{-1}
+A(t,x)$（记 $B(t,x)\equiv\zeta^{-1}A$），定义式(7.15)--(7.16)与整个
+理论保持不变。这意味着波动率函数 $\sigma(t,x)$ 本身没有不变的意义
+——只有把它代入(7.15)后与 $A$ 的组合才有。要从市场数据唯一确定
+$\sigma$，必须先固定这个标度对称性（具体的规范固定在实证章讨论）。
+
+\section{线性远期利率的传播子}
+
+本节要解决的问题：场本身不可观测——它是没有定值的积分变量。可观
+测的是场论的\textbf{关联函数}（correlation function）。对金融而言
+最重要的关联函数是两点关联子（场论对单个随机变量“方差”的推广），
+它就是\textbf{传播子}（propagator）。本节解出线性模型的
+传播子——显式解是全章技术的最高点，第8章的实证工作检验的正是它。
+
+\paragraph{模型设定与记号}
+两点关联子定义为
+\begin{align*}
+\langle A(t,x)A(t',x')\rangle&=E[A(t,x)A(t',x')]\\
+&=\frac{1}{Z}\int DA\ A(t,x)A(t',x')\,e^{S[A]}\\
+&\equiv\delta(t-t')D(x,x';t,T_{FR})
+\tag{7.23}
+\end{align*}
+$\delta(t-t')$ 被特意提出来（为后文方便）：由于作用量(7.22)不含
+时间导数，不同时刻的场互不耦合，关联只在同一时刻、不同期限之间。
+$D(x,x';t,T_{FR})$ 度量 $(t,x)$ 处的场涨落对 $(t',x')$ 处涨落的
+影响，称为传播子。
+
+计算关联函数的标准工具是外源生成泛函（generating functional）：
+\begin{equation*}
+Z[J]=\frac{1}{Z}\int DA\,
+e^{\int_{t_0}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,J(t,x)A(t,x)}\,e^{S[A]}
+\tag{7.24}
+\end{equation*}
+对源 $J(t,x)$ 做泛函导数（functional derivative）再置 $J=0$ 即得
+任意关联函数；特别是
+\begin{equation*}
+\langle A(t,x)A(t',x')\rangle=
+\frac{\delta^{2}}{\delta J(t,x)\delta J(t',x')}Z[J]\Bigr|_{J=0}
+\tag{7.25}
+\end{equation*}
+因为理论是高斯的，$Z[J]$ 可以精确积出——这正是5.5节对简谐振子算过
+的题。由式(5.30)：
+\begin{equation*}
+Z[J]=\exp\frac{1}{2}\int_{t_0}^{\infty}dt\int_{t}^{t+T_{FR}}
+dx\,dx'\,J(t,x)D(x,x';t,T_{FR})J(t,x')
+\tag{7.26}
+\end{equation*}
+高斯理论的标志性便利由此显现：任意多点关联函数都可由传播子表达
+（如同一维正态分布的全部统计由方差决定）。非线性理论没有这个性质
+——需要任意多点的全部关联函数才能完全描写理论。
+
+\paragraph{刚性传播子的显式解与推导主线}
+由式(5.38)（原书脚注8给出与简谐振子的参数对应：
+$m=1/\mu^{2}$，$\omega=\mu$，$t_i=t$，$t_f=t+T_{FR}$），传播子为
+\begin{align*}
+D(x,x';t,T_{FR})&=\mu\,\frac{\cosh\mu\{T_{FR}-|x-x'|\}
++\cosh\mu\{T_{FR}-(x+x'-2t)\}}{2\sinh\mu T_{FR}}\\
+&=D(x',x;t,T_{FR})\ :\ x,x'\ \text{的对称函数}
+\tag{7.27}
+\end{align*}
+这条公式怎么来的？主线分四步（细节即5.5节的简谐振子计算，此处讲
+逻辑）。
+
+第一步，把传播子认作算符的逆。比较式(7.22)、(7.24)与(7.26)可见
+\begin{equation*}
+D(x,x';t,T_{FR};\mu)=\Bigl\langle x\Bigl|
+\frac{1}{1-\frac{1}{\mu^{2}}\frac{\partial^{2}}{\partial x^{2}}}
+\Bigr|x'\Bigr\rangle\ :\ \text{Neumann 边条件}
+\tag{7.28}
+\end{equation*}
+即 $D$ 是微分算符 $(1-\mu^{-2}\partial_x^2)$ 在区间
+$[t,t+T_{FR}]$ 上带 Neumann 边条件的格林函数。
+
+第二步，写齐次解。在 $x\neq x'$ 处右端无源，$D$ 满足
+$D-\mu^{-2}D''=0$，通解是 $e^{\pm\mu x}$ 或双曲函数的组合——指数
+$\mu$ 由算符唯一决定，这就是“刚性参数决定关联形状”的数学出处。
+
+第三步，上边条件。区间两端 $x=t$ 与 $x=t+T_{FR}$ 的 Neumann 条件
+（导数为零）把通解的两个自由系数钉死：把“源点在 $x'$、具有对称性
+的齐次解”写成 $\cosh\mu\{T_{FR}-|x-x'|\}$ 与
+$\cosh\mu\{T_{FR}-(x+x'-2t)\}$ 的组合，两项分别在两端自动满足
+导数为零。（步骤从略——这是一维格林函数的标准练习。）
+
+第四步，用跳跃条件定归一。把方程
+$(1-\mu^{-2}\partial_x^2)D=\delta(x-x')$ 跨过 $x=x'$ 积分一次，
+得导数跳跃 $D'|_{+}-D'|_{-}=-\mu^{2}$；代入即解出分母
+$2\sinh\mu T_{FR}$ 与分子的系数 $\mu$——式(7.27)闭合。
+
+四步之外还有一个便利的约定：利用上一节的标度对称性
+$A\to\zeta^{-1}A$，可把传播子对角线上的值归一，即
+$D\to\tilde{D}$ 且 $\tilde{D}(x,x;t,T_{FR};\mu)=1$。
+
+\paragraph{无限未来极限}
+多数应用取 $T_{FR}\to\infty$：
+\begin{align*}
+D(x,x';t)&=\lim_{T_{FR}\to\infty}D(x,x';t,T_{FR})\\
+&=\frac{\mu}{2}\Bigl[e^{-\mu(x+x'-2t)}+e^{-\mu|x-x'|}\Bigr]
+\ ;\ x,x'>t
+\tag{7.29}
+\end{align*}
+两项各有出处：第一项 $e^{-\mu(x+x'-2t)}$ 来自 $x=t$ 那条边界（把
+$x'=t$ 代入可见它是“镜像”贡献——边界处的反射像），第二项
+$e^{-\mu|x-x'|}$ 来自 $x$ 在无限区间上的直接传播。（用方法的角度
+说：这正是拉普拉斯法解格林函数时“直接项加镜像项”的分解。）
+
+\paragraph{关联时间}
+传播子给出直接的市场解读：若 $A(t,x)$ 在 $x$ 处取某值，则在与 $x$
+相距 $x-\mu^{-1}<x'<x+\mu^{-1}$ 之内场倾向于取相近的值，更远处取值
+任意。涨落在期限方向上的相关长度为 $\mu^{-1}$——它就是远期利率的
+关联时间（correlation time）。$\mu$ 大则各期限近乎独立，$\mu$ 小
+则整条曲线近乎齐步走（HJM 极限）。
+
+\paragraph{解读与联系}
+原书脚注7补充了一个有用的对称性：传播子 $D(x,x';t,T_{FR})$ 只依赖
+$x-t$ 与 $x'-t$（拉格朗日量、域 $\mathcal{P}$ 与 Neumann 条件都只
+通过 $x-t$ 出现）。因此若波动率也只依赖 $\theta=x-t$
+（$\sigma(t,x)=\sigma(x-t)$），则远期利率的一切性质只取决于“往
+未来看多远”而与时刻 $t$ 无关——市场只部分实现了这种平移不变性
+（见原书图8.2）。
+
+\paragraph{传播子的“扭结”}
+常刚性传播子有一个不受欢迎的特征：沿对角方向，垂直于对角的斜率
+不连续，画出来是一个“扭结”（kink）（原书图8.8）。解析地定位它：
+定义 $\theta_{\pm}=\theta\pm\theta'$，$\theta=x-t$，
+$\theta'=x'-t$，式(7.29)改写为
+\begin{equation*}
+D(\theta_{+};\theta_{-})=\frac{\mu}{2}
+\Bigl[e^{-\mu\theta_{+}}+e^{-\mu|\theta_{-}|}\Bigr]
+\tag{7.30}
+\end{equation*}
+$\theta_-=0$ 即对角线 $\theta=\theta'$。垂直于对角线的斜率定义为
+\begin{equation*}
+m=\frac{\partial D(\theta_{+};\theta_{-})}{\partial\theta_{-}}
+\Bigr|_{\theta_{-}=0}\equiv
+\frac{\partial D(\theta_{+};0)}{\partial\theta_{-}}
+\tag{7.31}
+\end{equation*}
+把传播子在 $\theta_-=0$ 附近展开：
+\begin{equation*}
+D(\theta_{+};\theta_{-})\simeq\frac{\mu}{2}
+\Bigl[e^{-\mu\theta_{+}}+1-\mu|\theta_{-}|+O(\theta_{-}^{2})\Bigr]
+\tag{7.32}
+\end{equation*}
+于是斜率不连续\footnote{原书脚注9：由定义
+$|\theta_{-}|=\theta_{-}\ (\theta_{-}>0)$，
+$|\theta_{-}|=-\theta_{-}\ (\theta_{-}<0)$。}：
+\begin{equation*}
+m=-\frac{\mu^{2}}{2}\frac{\partial|\theta_{-}|}{\partial\theta_{-}}
+=\frac{\mu^{2}}{2}\begin{cases}-1&\theta_{-}>0\\ +1&\theta_{-}<0
+\end{cases}
+\end{equation*}
+跳跃量为 $\mu^{2}$。扭结的物理含义：$|\theta_{-}|$ 的尖点来自
+$e^{-\mu|x-x'|}$ 在 $x=x'$ 处的不可导——常刚性模型给出的期限相关
+形状太“硬”。第8章的实证表明：常刚性模型能解释市场相关性的一些
+特征，但预测得不好。
+
+\paragraph{高斯模型的推广清单}
+最简的推广仍是高斯模型、只让传播子更有结构。原书附录7.14--7.15
+研究了四种变体：
+（1）对 $A(t,t)$ 加约束——源于即期利率 $f(t,t)=r(t)$ 的特殊地位；
+（2）非常数（期限依赖）刚性参数 $\mu=\mu(\theta)$；
+（3）在常刚性拉格朗日量上再加四阶导数的“刚度”项
+$(\partial^{2}A(t,x)/\partial x^{2})^{2}$；
+（4）用（非线性的）心理未来时间 $z=z(\theta)$ 替换 $\theta$。
+情形1、2与常刚性传播子密切相关；情形3给出“刚性传播子”（stiff
+propagator），对市场数据拟合最好、实证上最重要；情形4引入非线性
+心理未来时间，线性非线性理论都适用。要点：以上线性模型只修改传播子
+$D$，为线性模型导出的一切公式（如下两节的鞅测度与远期利率衍生品
+定价）对任意高斯模型照用；实证上唯一需要区分模型的正是传播子的
+显式形式。
+
+\section{鞅条件与风险中性测度}
+
+本节要解决的问题：模型造好了（作用量、传播子都有了），但还差最
+关键的一块——漂移速度 $\alpha(t,x)$ 至今悬空。鞅条件把它定死：
+风险中性世界里零息国债贴现后必须是鞅，这一个要求唯一确定
+$\alpha$。与 HJM 的对应公式(6.44)相比，场论版本的漂移多了一个
+“非局域”因子——波动率在不同期限之间的加权平均，权重正是传播子。
+
+\paragraph{模型设定与记号}
+国债的鞅条件（原书式(2.10)）是
+\begin{equation*}
+P(t_0,T)=E_{[t_0,t_*]}\Bigl[e^{-\int_{t_0}^{t_*}r(t)dt}\,P(t_*,T)\Bigr]
+\tag{7.33}
+\end{equation*}
+即 $t_0$ 时刻的国债价格等于“贴现到 $t_*$ 的未来价格”的期望，期望
+对 $[t_0,t_*]$ 上的风险中性测度取。在场论里显式写出：
+\begin{equation*}
+P(t_0,T)=\frac{1}{Z}\int Df\,e^{-\int_{t_0}^{t_*}r(t)dt}\,
+P(t_*,T)\,e^{S[f]}
+\tag{7.34}
+\end{equation*}
+重复 HJM 模型中导出式(6.41)--(6.42)的步骤（远期利率演化代入、积分
+次序交换），得到场论推广：
+\begin{align*}
+\exp\int_{\mathcal{T}}\alpha(t,x)&=\frac{1}{Z}\int DA\,
+e^{-\int_{\mathcal{T}}\sigma(t,x)A(t,x)}\,e^{\int_{\mathcal{P}}
+\mathcal{L}[A]}
+\tag{7.35}\\
+&=\exp\frac{1}{2}\int_{t_0}^{t_*}dt\int_{t}^{T}dx\,dx'\,
+\sigma(t,x)D(x,x';t,T_{FR})\sigma(t,x')
+\tag{7.36}
+\end{align*}
+记号说明：$\int_{\mathcal{T}}$ 是对梯形域
+$\mathcal{T}=\{(t,x):t_0\leq t\leq t_*,\ t\leq x\leq T\}$ 上
+$dt\,dx$ 积分的简写（原书未写出测度）。式(7.36)是纯粹的高斯积分：
+指数上线性源 $\sigma A$ 的系数平方平均，结果由传播子(7.26)生成——
+这是“高斯理论一切统计由 $D$ 决定”的又一次兑现。
+
+\paragraph{原书图 7.5}\quad 鞅条件的梯形域 $\mathcal{T}$：嵌在远期
+利率定义域 $\mathcal{P}$ 内部，底边 $t=t_0$、顶边 $t=t_*$，两侧从
+$x=t$ 斜切到 $x=T$——因为每个时刻的定价只涉及 $x\in[t,T]$ 的
+远期利率。
+
+\paragraph{推导主线：从积分条件到逐点漂移}
+式(7.36)对固定的 $(t_0,t_*,T)$ 成立。把时间积分丢掉（对每个 $t$
+单独成立），得
+\begin{equation*}
+\int_{t}^{T}dx\,\alpha(t,x)=\frac{1}{2}\int_{t}^{T}dx\,dx'\,
+\sigma(t,x)D(x,x';t,T_{FR})\sigma(t,x')
+\tag{7.37}
+\end{equation*}
+这是“积分形式”的鞅条件。对上限 $T$ 求导（$T$ 是任意的，等式对一切
+$T$ 成立故可逐点微分）：左边得 $\alpha(t,T)$；右边的二重积分对 $T$
+与 $x'$ 各有一条对角贡献，因子2恰好消去前面的 $1/2$，得
+$\alpha(t,T)=\sigma(t,T)\int_t^{T}dx'D(T,x';t,T_{FR})\sigma(t,x')$；
+把 $T$ 换名成 $x$，得逐点形式的漂移速度——
+HJM 漂移公式(6.44)的场论推广：
+\begin{equation*}
+\alpha(t,x)=\sigma(t,x)\int_{t}^{x}dx'\,
+D(x,x';t,T_{FR})\sigma(t,x')
+\tag{7.38}
+\end{equation*}
+结构解读：漂移＝该期限的波动率 $\times$（从 $t$ 到 $x$ 的所有更近
+期限波动率、以传播子为核的加权平均）。HJM 里权重退化为常数1（完全
+相关），场论里权重 $D$ 随期限距离指数衰减——非平凡相关性就藏在
+这里。
+
+\paragraph{常数波动率的精确解}
+取 $\sigma(t,x)=\sigma_1$，用式(7.27)的传播子精确算出（未编号公式，
+原书正文给出）：
+\begin{align*}
+\alpha(t,x)&=\lim_{T_{FR}\to\infty}\frac{\sigma_1^{2}}{2}
+\biggl[1+\frac{e^{-2\mu(T_{FR}-x+t)}-e^{-2\mu(x-t)}}
+{1-e^{-2\mu T_{FR}}}\biggr]\\
+&=\frac{\sigma_1^{2}}{2}\bigl(1-e^{-2\mu(x-t)}\bigr)
+\end{align*}
+期限越远漂移越接近饱和值 $\sigma_1^2/2$，饱和的快慢由 $\mu$ 控制。
+两个极端的行为（原书脚注10）：
+\begin{equation*}
+\alpha(t,x)\simeq
+\begin{cases}
+\dfrac{1}{2T_{FR}}\sigma(t,x)\displaystyle\int_{t}^{x}dx'\,
+\sigma(t,x') & \mu\to0\\[10pt]
+\dfrac{1}{2}\sigma^{2}(t,x) & \mu\to\infty
+\end{cases}
+\tag{7.39}
+\end{equation*}
+$\mu\to0$ 的极限比 HJM 漂移多出因子 $1/T_{FR}$——原书明言：HJM
+漂移(6.44)正是 $\mu=0$ 情形经 $T_{FR}$ 重标度后的结果；而
+$\mu\to\infty$ 的漂移与 HJM 完全不同。
+
+\paragraph{远期利率的显式解}
+把鞅漂移(7.38)代回演化方程(7.15)并积分：
+\begin{align*}
+f(t,x)&=f(t_0,x)+\int_{t_0}^{t}dt'\,\sigma_i(t',x)
+\int_{t'}^{x}dy\,D(x,y;t',T_{FR})\sigma_i(t',y)\\
+&\quad+\int_{t_0}^{t}dt'\,\sigma(t',x)A(t',x)
+\tag{7.40}
+\end{align*}
+第一项是漂移贡献（确定性双积分），第二项是涨落贡献（对速度场 $A$
+的线性泛函）。\footnote{记号疑点：式(7.40)前两项原书印作
+$\sigma_i$、末项印作 $\sigma$。合理的读法是 $\sigma_i$ 泛指任一
+具体选定的高斯波动率函数——鞅漂移公式(7.38)的形状对一切高斯波动率
+相同，故第一项可代入任何一个具体模型；本导读照录原书。}
+
+\section{计价物变换}
+
+本节要解决的问题：7.6节的鞅测度是“用货币市场账户贴现”得到的风险
+中性测度。金融学的标准结果（Geman 等）说：任何正价格的证券都可以
+当贴现因子，换一个贴现因子就换一个等价的鞅测度。场论语言里，
+换计价物（change of numeraire）只改漂移项、不改波动率与传播子；
+而对国债期权这类问题，改用国债自身做计价物能让定价公式显著简化。
+
+\paragraph{模型设定与记号}
+先复盘原测度。式(7.33)中的贴现因子是货币市场账户（money market
+account）
+\begin{gather*}
+B(t_0,t_*)\equiv e^{\int_{t_0}^{t_*}r(t)dt}\\
+B(t_0,t_0)=1
+\tag{7.41}
+\end{gather*}
+$P(t,T)/B(t_0,t)$ 是鞅：由式(7.33)立得条件期望
+\begin{equation*}
+\frac{P(t_0,T)}{B(t_0,t_0)}=
+E\biggl[\frac{P(t_*,T)}{B(t_0,t_*)}\Bigm|
+\frac{P(t_0,T)}{B(t_0,t_0)}\biggr]
+\end{equation*}
+其中 $E_{[t_0,t_*]}[\ldots]\equiv E[\ldots]$。
+
+\paragraph{关键公式}
+换计价物：$t_0$ 时刻一切国债改用到期日 $t_*$ 的国债 $P(t_0,t_*)$
+贴现。新鞅条件定义了新测度 $E_*$ 及其作用量 $S_*$：
+\begin{align*}
+P(t_0,T)&=P(t_0,t_*)E_{*}[P(t_*,T)]
+\tag{7.42}\\
+&\equiv P(t_0,t_*)\int DA\ P(t_*,T)\,e^{S_*}
+\tag{7.43}
+\end{align*}
+$E_*[\ldots]$ 表示对新风险中性测度 $S_*$ 取期望。换测度后
+$P(t,T)/P(t,t_*)$ 成为鞅：
+\begin{align*}
+\frac{P(t_0,T)}{P(t_0,t_*)}
+&=E_{*}\biggl[\frac{P(t_*,T)}{P(t_*,t_*)}\Bigm|
+\frac{P(t_0,T)}{P(t_0,t_*)}\biggr]\\
+&=E_{*}[P(t_*,T)]
+\tag{7.44}
+\end{align*}
+新测度对应的漂移速度记 $\alpha_*(t,x)$，与式(7.38)同型的直接计算
+给出（原书脚注11：哈密顿量推导见式(10.71)）\footnote{排印疑点：式(7.45)积分下限原书印作 $t_*$——与式(7.38)的
+推导逻辑（对上限求导、下限恒为 $t$）不符，且当 $x<t_*$ 时积分区间
+反向；疑为排印之误（应为 $t$）。本导读照录原书并提醒读者。}
+\begin{equation*}
+\alpha_{*}(t,x)=\sigma(t,x)\int_{t_{*}}^{x}dx'\,
+D(x,x';t,T_{FR})\sigma(t,x')
+\tag{7.45}
+\end{equation*}
+两个测度的显式关系可对高斯远期利率直接求出（原书附录7.19，式
+(7.104)）：
+\begin{gather*}
+S=S[\alpha]\ ;\quad S_{*}=S[\alpha_{*}]\\
+e^{S_{*}}=\frac{e^{-\int_{t_0}^{t_*}r(t)dt}}{P(t_0,t_*)}\,e^{S}
+\tag{7.46}
+\end{gather*}
+联系两个测度的这个因子，在主流金融文献里用 Radon--Nikodym 导数
+语言表述——路径积分给了一个显式的场论版本。
+
+\paragraph{解读与联系：为什么换计价物省事}
+国债看涨期权定价。由式(6.53)，$t_0<t_*$ 时的看涨期权价格为
+\begin{align*}
+C(t_0,t_*,T,K)&=E\Bigl[e^{-\int_{t_0}^{t_*}dt\,r(t)}
+(P(t_*,T)-K)_{+}\Bigr]
+\tag{7.47}\\
+&=P(t_0,t_{*})E_{*}[(P(t_{*},T)-K)_{+}]
+\tag{7.48}
+\end{align*}
+第二行由式(7.46)代入而来。对比看：式(7.47)的贴现因子
+$e^{-\int r}$ 是随机场 $r(t)$ 的泛函（与标的自身相关，处理棘手）；
+式(7.48)的“贴现因子”换成了确定性常数 $P(t_0,t_*)$，提到期望外面
+——剩下的只是在新测度下算一个未贴现期权的期望。这就是计价物变换
+的全部好处：把“贴现的随机性”吸收进测度。（国债看涨期权的实际计算
+在第9.2节与10.13节用国债贴现完成。）
+
+\section{非线性远期利率}
+
+本节要解决的问题：高斯模型允许远期利率取负值。利率远离零时无伤
+大雅，但利率贴近零时（原书举例：1990年代以来的日元、2000年代初
+以来的美元）“远期利率必须是严格正的场”就变得重要——$f(t,x)>0$
+对一切 $t,x$。做法是把场指数化，模型由此本质地变成非线性的。
+
+\paragraph{为什么正性与随机波动率绑在一起}
+波动率按定义是远期利率的标准差，恒严格为正。一旦把远期利率立为
+正值量子场，随机波动率最自然的建模就是把它设成远期利率的（正）
+函数——这在逻辑上要求远期利率本身严格为正。另一条路是把波动率
+立为独立的随机量子场（7.11节）。市场数据（原书8.5.1节）显示波动率
+的波动率小但显著，故随机波动率不可回避。
+
+\paragraph{本节分析的三种情形}
+（1）非线性远期利率＋确定性波动率；
+（2）非线性远期利率＋作为远期利率函数的随机波动率（7.10节）；
+（3）线性远期利率＋独立的非线性随机波动率量子场（7.11节）。
+（最一般的“非线性远期利率耦合非线性波动率场”不讨论。）
+
+\paragraph{重要告诫}
+本章给出的非线性拉格朗日量是\textbf{不完备}（incomplete）的：漂移
+项 $\alpha(t,x)$ 未被确定。原因在高斯积分这一步——式(7.35)到
+(7.36)的漂移确定依赖对 $A$ 的高斯积分，非线性理论里做不了。要定
+漂移必须用哈密顿量表述（第10章）。读 7.9--7.10 两节时请始终带着
+这个限定。
+
+\section{非线性远期利率的拉格朗日量}
+
+本节要解决的问题：把线性拉格朗日量(7.6)推广到正值场。技巧是场论
+里处理群值变量的标准手法——把“场增量”换成“对数场增量”的线性
+近似。
+
+\paragraph{模型设定与记号}
+远期利率建模为指数量子场（与式(7.7)的无限制场值域对照）：
+\begin{equation*}
+f(t,x)=f_0\,e^{\phi(t,x)}>0\ ;\quad -\infty\leq\phi(t,x)\leq+\infty
+\end{equation*}
+正性自动满足：$\phi$ 取任何实值，$f$ 都为正。先取确定性波动率
+$\sigma_0(t,x)$（由市场决定）。线性拉格朗日量(7.6)重新解读为
+“远期利率都接近某固定值 $f_0$ 时的近似”：因为
+\begin{align*}
+\frac{\partial f(t,x)}{\partial t}
+&=f_0e^{\phi(t,x)}\frac{\partial\phi(t,x)}{\partial t}\\
+&\simeq f_0\frac{\partial\phi(t,x)}{\partial t}+O(\phi^{2})
+\end{align*}
+于是做映射（原书脚注13：这是李群取值量子场研究中的标准映射）
+\begin{equation*}
+\frac{\partial f(t,x)}{\partial t}\ \longrightarrow\
+f_0\frac{\partial\phi(t,x)}{\partial t}
+\end{equation*}
+式(7.6)随之推广为
+\begin{align*}
+\mathcal{L}[\phi]&=\mathcal{L}_{\mathrm{kinetic}}[\phi]
++\mathcal{L}_{\mathrm{rigidity}}[\phi]\\
+&=-\frac{1}{2}\Biggl[\biggl\{\frac{f_0\frac{\partial\phi(t,x)}
+{\partial t}-\alpha(t,x)}{\sigma_0(t,x)}\biggr\}^{2}
++\frac{1}{\mu^{2}}\biggl\{\frac{\partial}{\partial x}
+\biggl(\frac{f_0\frac{\partial\phi(t,x)}{\partial t}-\alpha(t,x)}
+{\sigma_0(t,x)}\biggr)\biggr\}^{2}\Biggr]
+\tag{7.49}
+\end{align*}
+结构与(7.7)完全平行，只是 $\partial f/\partial t$ 换成
+$f_0\partial\phi/\partial t$、$\sigma$ 换成 $\sigma_0$。
+配分函数与测度：
+\begin{align*}
+Z&=\int D\phi\,e^{S[\phi]}
+\tag{7.50}\\
+\int D\phi&\equiv\prod_{(t,x)\in\mathcal{P}}\int_{-\infty}^{+\infty}
+d\phi(t,x)
+\tag{7.51}
+\end{align*}
+边条件照搬：时间方向 Dirichlet 如式(7.8)，期限方向 Neumann
+\begin{gather*}
+T_i<t<T_f,\quad
+\frac{\partial}{\partial x}\biggl(\frac{f_0\frac{\partial\phi(t,x)}
+{\partial t}-\alpha(t,x)}{\sigma_0(t,x)}\biggr)=0\\
+:\ x=t\ \text{或}\ x=t+T_{FR}
+\tag{7.52}
+\end{gather*}
+\paragraph{解读与联系}
+拉格朗日量(7.49)是 Black--Karasinski 即期利率拉格朗日量（式(6.75)）
+的场论推广——把“对数即期利率”换成“对数远期利率曲线”。非线性藏在
+两处：漂移项 $\alpha(t,x)$ 的行为（显式见式(10.66)），以及依赖远期
+利率的金融工具本身。
+
+\subsection{费米子路径积分}
+
+本小节要解决的问题：非线性情形做7.4节那样的变量替换
+$\phi\to A$ 时，雅可比不再是常数——它是一个泛函行列式。场论有一
+件现成的武器表示行列式：\textbf{费米子路径积分}。这是金融建模中
+第一次出现费米子路径积分，值得把“为什么引入”讲透。
+
+\paragraph{模型设定与记号}
+以确定性波动率情形为例。式(7.52)的 Neumann 条件要求改用满足同样
+边条件的速度场做变量，定义
+\begin{equation*}
+\frac{f_0\frac{\partial\phi(t,x)}{\partial t}-\alpha(t,x)}
+{\sigma_0(t,x)}=A(t,x)
+\tag{7.53}
+\end{equation*}
+这一次 $A$ 与 $\phi$ 的关系是非线性的（$\phi$ 出现在指数里、
+$\alpha$ 里也有 $\phi$），雅可比非平凡。对 $\sigma_0(t,x)=\sigma_0$
+（常数）的特殊情形，第10章的鞅分析（式(10.65)）给出漂移
+\begin{equation*}
+\alpha(t,x)=-\frac{\sigma_0^{2}}{2f_0}D(x,x;t)
++\sigma_0^{2}\int_{t}^{x}dx'\,D(x,x';t)\,e^{\phi(t,x')}
+\end{equation*}
+漂移本身依赖场 $\phi$——这就是“非线性”的体现。
+
+\paragraph{推导主线：行列式何以变成费米子}
+解式(7.53)把场用 $A$ 表出：$\phi(t,x)=\psi[t,x;A]$（$\psi$ 是
+非线性泛函）。微分关系是
+\begin{gather*}
+d\phi(t,x)=\int dt'dx'\,\mathcal{J}(t,x;t',x')\,dA(t',x')\\
+\text{其中}\ \ \mathcal{J}(t,x;t',x';A)=
+\frac{\delta\psi[t,x;A]}{\delta A(t',x')}\\
+\Rightarrow\ D\phi=J[A]\,DA\quad\text{其中}\ \
+J=\det\bigl|\mathcal{J}(t,x;t',x')\bigr|
+\end{gather*}
+无穷维矩阵 $\mathcal{J}$ 的行列式怎么积？场论的标准恒等式：
+行列式等于对\textbf{费米子量子场}（fermionic path integral 的
+积分变量）$c^{\dagger}(t,x),c(t',x')$ 的路径积分：
+\begin{align*}
+J[A]&=\int Dc^{\dagger}Dc\ e^{S_F[c^{\dagger},c,A]}\\
+S_F&=\int_{\mathcal{P}}dtdx\,dt'dx'\,c^{\dagger}(t,x)\,
+\mathcal{J}(t,x;t',x';A)\,c(t',x')
+\tag{7.54}
+\end{align*}
+为什么用费米子？理由在积分变量的代数性质：费米子（fermions）是
+\textbf{反对易}（anti-commuting）的积分变量——格拉斯曼变量
+（Grassmann variable），它们的“高斯积分”自动产生行列式而不是行列
+式的逆。具体地，对反对易变量的高斯积分
+$\int dc^{\dagger}dc\,e^{-c^{\dagger}Mc}=\det M$（而对普通对易变量
+得到的是 $1/\det M$）。所以“行列式 $=$ 费米子路径积分”不是类比，
+是恒等式；引入费米子的唯一目的就是给雅可比行列式一个可以参与路径
+积分的表达形式。这些反对易变量是数学上良定义的对象（原书引[106]）；
+与之对照，取实或复值的场 $f(t,x)$、$\phi(t,x)$ 等称为玻色量子场
+（boson quantum fields）。
+
+\paragraph{关键公式}
+非线性远期利率的配分函数最终写成：
+\begin{align*}
+Z&=\int D\phi\,e^{S[\phi]}\\
+&=\int DA\,J[A]\,e^{S[A]}
+=\int DA\,Dc^{\dagger}Dc\ e^{S[A]+S_F[c^{\dagger},c,A]}
+\tag{7.55}
+\end{align*}
+其中测度定义为
+\begin{equation*}
+\int DA\,Dc^{\dagger}Dc\equiv
+\prod_{(t,x)\in\mathcal{P}}\int_{-\infty}^{+\infty}dA(t,x)
+\int dc^{\dagger}(t,x)\,dc(t,x)
+\end{equation*}
+\paragraph{解读与联系}
+非线性的全部后果都集中在费米子路径积分里：$S[A]$ 本身是二次型、
+毫无非线性，但费米子作用量 $S_F$ 通过 $\mathcal{J}[A]$ 依赖 $A$，
+积分掉 $c,c^{\dagger}$ 后就对 $A$ 产生全部的非线性修正项。换句话
+说：非线性场论 $=$ 高斯场论 $+$ 费米子行列式。最后照例的诚实声明：
+非线性量子场论以发散著称，只有可重整化的理论才有一致且有意义的
+解释；非线性远期利率的重整化问题原书时尚未解决（至今仍是开放的）。
+
+\section{随机波动率：远期利率的函数}
+
+本节要解决的问题：对正值远期利率，波动率可以建模成远期利率自身的
+（正）函数——随机性“借”自远期利率。这是随机波动率的第一种实现
+方式（文献[1,2,103]的标准做法），只需在7.9节的非线性框架上加一个
+参数。
+
+\paragraph{模型设定与记号}
+波动率取
+\begin{gather*}
+\sigma(t,x,f(t,x))=\sigma_0(t,x)\,e^{\nu\phi(t,x)}\\
+\sigma_0(t,x)\ :\ \text{确定性函数}
+\tag{7.56}
+\end{gather*}
+$\nu$ 度量波动率随远期利率变化的强度；$\nu\to0$ 回到确定性波动率。
+\footnote{原书脚注14：用无套利论证可证 $\nu\geq-1/2$。}
+
+\paragraph{与 HJM 家族的关系}
+零刚性极限 $\mu\to0$ 下，式(7.56)把一串著名 HJM 变体收编为特例
+（实证讨论见文献[2]）：
+\begin{itemize}
+\item Ho--Lee (1986)：$\sigma(t,x,f(t,x))=\sigma_0$——确定性；
+\item CIR (1985)：$\sigma(t,x,f(t,x))=\sigma_0 f^{1/2}(t,x)$；
+\item Courtadon (1982)：$\sigma(t,x,f(t,x))=\sigma_0 f(t,x)$；
+\item Vasicek (1977)：$\sigma(t,x,f(t,x))=\sigma_0\exp(-\lambda(x-t))$
+——确定性；
+\item 线性比例 HJM (1992)：$\sigma(t,x,f(t,x))=[\sigma_0+\sigma_1(x-t)]f(t,x)$。
+\end{itemize}
+场论参数化把这一家族统一在同一个指数形式里。
+
+\paragraph{关键公式}
+把式(7.56)代入式(7.49)，得非线性远期利率加随机波动率的拉格朗日量：
+\begin{align*}
+\mathcal{L}[\phi]&=\mathcal{L}_{\mathrm{kinetic}}[\phi]
++\mathcal{L}_{\mathrm{rigidity}}[\phi]\\
+&=-\frac{1}{2}\Biggl[\biggl\{\frac{f_0\frac{\partial\phi(t,x)}
+{\partial t}-\alpha(t,x)}{\sigma_0(t,x)e^{\nu\phi(t,x)}}\biggr\}^{2}
++\frac{1}{\mu^{2}}\biggl\{\frac{\partial}{\partial x}
+\biggl(\frac{f_0\frac{\partial\phi(t,x)}{\partial t}-\alpha(t,x)}
+{\sigma_0(t,x)e^{\nu\phi(t,x)}}\biggr)\biggr\}^{2}\Biggr]
+\tag{7.57}
+\end{align*}
+边条件：时间方向 Dirichlet 如式(7.8)；期限方向 Neumann
+\begin{gather*}
+T_i<t<T_f,\quad
+\frac{\partial}{\partial x}\biggl(\frac{f_0\frac{\partial\phi(t,x)}
+{\partial t}-\alpha(t,x)}{\sigma_0(t,x)e^{\nu\phi(t,x)}}\biggr)=0\\
+:\ x=t\ \text{或}\ x=t+T_{FR}
+\tag{7.58}
+\end{gather*}
+
+\paragraph{一个必须留意的细节}
+波动率依赖场之后，路径积分测度不再是平直的 $D\phi$：对数场 $\phi$
+的体积元要带上因子 $e^{-\nu\phi}$。理论的定义是
+\begin{gather*}
+Z=\int D\phi\,e^{-\nu\phi}\,e^{S[\phi]}\\
+\int D\phi\,e^{-\nu\phi}=\prod_{(t,x)\in\mathcal{P}}
+\int_{-\infty}^{+\infty}d\phi(t,x)\,e^{-\nu\phi(t,x)}
+\tag{7.59}
+\end{gather*}
+（$\nu=0$ 时退回式(7.50)的平直测度。）参数 $\nu$ 原则上可从数据
+定出；若 $\nu$ 恰好是小参数，就可以围绕高斯理论做微扰展开——场论
+里研究透了的成熟手续——并自洽地用微扰论从市场数据估计 $\nu$。
+
+\section{随机波动率：独立量子场}
+
+本节要解决的问题：第二种、更一般的随机波动率实现——不让波动率
+依赖远期利率，而是引入一个\textbf{独立的}量子场。能观测的仍然只有
+远期利率，故随机波动率的一切效应只能通过远期利率的可观测性质显现。
+（原书脚注15：HJM 框架内引入随机波动率的文献见[1,103]；Amin 与
+Ng[2]对欧洲美元期权市场数据的研究结论是：市场尤其是远期利率曲线
+的（随机）波动率的许多特征无法在 HJM 框架内完全解释。）
+
+\paragraph{模型设定与记号}
+远期利率取线性场（由式(7.7)）：$-\infty\leq f(t,x)\leq+\infty$。
+波动率恒正，故参数化为第二个玻色量子场：
+\begin{equation*}
+\sigma(t,x)=\sigma_0e^{h(t,x)}\ ,\quad
+-\infty\leq h(t,x)\leq+\infty
+\end{equation*}
+系统现在是\textbf{两个相互作用的量子场} $f(t,x)$ 与 $h(t,x)$。
+相互作用拉格朗日量要容纳四个要素：参数 $\xi$ 度量 $h$ 的随机程度
+（$\xi\to0$ 冻结 $h$ 的全部涨落、退化为确定性函数）；参数 $\kappa$
+控制 $h$ 在期限方向的涨落（角色同 $\mu$ 之于 $f$）；参数
+$\rho\in[-1,+1]$ 度量 $f$ 场与 $h$ 场的关联；波动率自己的漂移项
+$\beta(t,x)$（角色同 $\alpha$）。
+
+\paragraph{关键公式}
+满足上述要素的拉格朗日量不唯一。仿照单证券随机波动率情形（文献[5]）
+写出一个可行选择：
+\begin{align*}
+\mathcal{L}&=-\frac{1}{2(1-\rho^{2})}\biggl(\frac{\frac{\partial f}
+{\partial t}-\alpha}{\sigma}
+-\rho\,\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\biggr)^{2}
+-\frac{1}{2}\biggl(\frac{\frac{\partial h}{\partial t}-\beta}
+{\xi}\biggr)^{2}\\
+&\quad-\frac{1}{2\mu^{2}}\biggl(\frac{\partial}{\partial x}
+\biggl(\frac{\frac{\partial f}{\partial t}-\alpha}{\sigma}\biggr)
+\biggr)^{2}
+-\frac{1}{2\kappa^{2}}\biggl(\frac{\partial}{\partial x}
+\biggl(\frac{\frac{\partial h}{\partial t}-\beta}{\xi}\biggr)
+\biggr)^{2}
+\tag{7.60}
+\end{align*}
+结构解读：前两项是动能部分——$f$ 的 HJM 组合与 $h$ 的对应组合
+$(\partial h/\partial t-\beta)/\xi$ 通过 $\rho$ 交叉耦合，
+$1/(1-\rho^2)$ 正是二元正态的关联结构；后两项分别是两个场自己的
+刚性项（$f$ 用 $\mu$、$h$ 用 $\kappa$）。作用量为
+$S[f,h]=\int_{\mathcal{P}}\mathcal{L}$。
+
+\paragraph{边界条件}
+$f(t,x)$ 的初末条件仍由式(7.8)给出。波动率场在时间方向用数据给定的
+Dirichlet 曲线：
+\begin{gather*}
+T_i<x<T_i+T_{FR}\ ,\ \ \sigma(T_i,x)\\
+\text{：给定的初始波动率曲线}\\[4pt]
+T_f<x<T_f+T_{FR}\ ,\ \ \sigma(T_f,x)\\
+\text{：给定的终末波动率曲线}
+\end{gather*}
+期限方向，$f$ 的条件(7.10)照旧，$h$ 的对应 Neumann 条件为
+\begin{equation*}
+\frac{\partial}{\partial x}\biggl(\frac{\frac{\partial h(t,x)}
+{\partial t}-\beta(t,x)}{\xi}\biggr)\biggl|_{x=t}=0
+=\frac{\partial}{\partial x}\biggl(\frac{\frac{\partial h(t,x)}
+{\partial t}-\beta(t,x)}{\xi}\biggr)\biggl|_{x=t+T_{FR}}
+\tag{7.61}
+\end{equation*}
+
+\paragraph{解读与联系：边条件怎么变成相互作用}
+对波动率场量子化之后，一个微妙之处浮现：远期利率的边条件(7.10)里
+含有 $\sigma(t,x)$——而鞅测度告诉我们 $\alpha$ 是波动率场的
+（二次）泛函。于是 $f$ 的边界条件通过 $\alpha$ 依赖 $h$ 场：
+边条件本身成了两个场之间的一种\textbf{相互作用}（interaction）。
+这是二维场论比“两个独立一维问题”真正多出来的内容。
+
+\paragraph{路径积分测度与配分函数}
+要系统有良定义的哈密顿量，$h(t,x)$ 的路径积分测度必须定义为带
+权重因子的形式：
+\begin{equation*}
+\int Df\,Dh\,e^{-h}=\prod_{(t,x)\in\mathcal{P}}
+\int_{-\infty}^{+\infty}df(t,x)\,dh(t,x)\,e^{-h(t,x)}
+\tag{7.62}
+\end{equation*}
+（源自 $\sigma=\sigma_0e^{h}$ 对数变量替换的雅可比。）配分函数
+定义为
+\begin{equation*}
+Z=\int Df\,Dh\,e^{-h}\,e^{S[f,h]}
+\tag{7.63}
+\end{equation*}
+与非线性远期利率一样，随机波动率场论的重整化问题也必须解决才能
+数学上一致。
+
+\paragraph{可观测量的期望}
+市场可观测的金融工具 $\mathcal{O}[f,h]$ 的（市场）价值是它对两个场
+全部取值的平均值：
+\begin{equation*}
+\langle\mathcal{O}[f,h]\rangle=\frac{1}{Z}\int Df\,Dh\,e^{-h}\,
+\mathcal{O}[f,h]\,e^{S[f,h]}
+\tag{7.64}
+\end{equation*}
+随机波动率在如下极限退化为确定性函数：$\xi$、$\rho$ 与 $\kappa
+\to0$。此时式(7.60)中 $h$ 场的 $1/\xi^{2}$ 动能项压倒一切，取极限
+（舍去无关常数）得
+\begin{equation*}
+\lim_{\xi\to0}\ \prod_{t,x\in\mathcal{P}}\exp\biggl\{-\frac{1}{2}
+\int_{\mathcal{P}}\biggl(\frac{\frac{\partial h}{\partial t}
+-\beta}{\xi}\biggr)^{2}\biggr\}
+\ \longrightarrow\ \prod_{t,x\in\mathcal{P}}
+\delta\biggl(\frac{\partial h}{\partial t}-\beta\biggr)
+\end{equation*}
+即 $\delta$ 泛函把 $h$ 钉死在确定论路径 $\partial h/\partial t
+=\beta$ 上。由此
+\begin{equation*}
+\langle\sigma(t,x)\rangle=\sigma_0\langle e^{h(t,x)}\rangle
+\ \Rightarrow\ \sigma_0\exp\biggl\{\int_{t_0}^{t}dt'\,
+\beta(t',x)\biggr\}+O(\xi,\kappa,\rho)
+\end{equation*}
+——冻结极限下波动率的平均值恰由漂移 $\beta$ 的历史积分给出，有限
+$\xi,\kappa,\rho$ 的修正是场论的下一阶内容。至此，本章的模型阶梯
+（线性 $\to$ 非线性 $\to$ 随机波动率的两种实现）搭建完毕；7.12节
+总结与附录 7.13--7.19 的各项技术细节（含格点场论、传播子的各变体
+与计价物变换的场论推导）由后半文件续写。
+
+%JOIN% 说明：本文件覆盖原书第7章7.1--7.11节（书页147--172/p165--p190），
+%止于7.11节末（式(7.64)之后的冻结极限讨论）。7.12总结及附录7.13--7.19
+%（书页172起/p190起）由 ch07b 续写。
+
+%TAGS: 7.1,7.2,7.3,7.4,7.5,7.6,7.7,7.8,7.9,7.10,7.11,7.12,7.13,7.14,7.15,7.16,7.17,7.18,7.19,7.20,7.21,7.22,7.23,7.24,7.25,7.26,7.27,7.28,7.29,7.30,7.31,7.32,7.33,7.34,7.35,7.36,7.37,7.38,7.39,7.40,7.41,7.42,7.43,7.44,7.45,7.46,7.47,7.48,7.49,7.50,7.51,7.52,7.53,7.54,7.55,7.56,7.57,7.58,7.59,7.60,7.61,7.62,7.63,7.64（7.1--7.64连续无断档，共64条；(7.39)位于原书脚注10内；本文件止于7.11节末，7.12总结（无编号公式）及附录7.13--7.19（编号公式自(7.65)起续）由 ch07b 接写）
+

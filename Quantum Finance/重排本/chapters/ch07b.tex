@@ -1,0 +1,950 @@
+% ch07b QFT of forward interest rates 7.12--7.19 (书页172--190 / p190--p208)
+% 覆盖说明：原书第7章 7.12 小结与附录 7.13--7.19（书页172--190 / p190--p208），
+% 接 ch07（7.1--7.11 节，止于式(7.64)之后的冻结极限讨论）。
+% 任务单原写“7.12--7.18”，但指派页范围 p190--p208 与 ch07 的 %JOIN% 交接注
+% （“7.13--7.19 由 ch07b 续写”）均指向章末；7.19 节（式(7.96)--(7.105)）
+% 按撰写规范“覆盖指派页范围内每一节、每个编号公式”一并写入本文件。
+% 编号公式核对：原书本半 tag 为 (7.65)--(7.105)，共41条，连续无断档（已对照
+% PNG 逐页核验）。其中 (7.71a) 带字母后缀，原书没有 (7.71b)。
+% 原书已知排印疑点：
+% (1) 式(7.70) 分母 2λα(α+1/2) 与第一个括号末项 (1+λθ)^{−α−1/2} 中的 λ：
+%     本节（7.14.2）唯一出现的刚性斜率参数是 k（式(7.69)），λ 是 7.15 节
+%     的刚度参数，此处疑为 k 之误；第三个括号相应位置原书即印 kθ′。
+%     已照录并加脚注。
+% (2) 式(7.71a) 只有这一个编号（μ0→0 极限给 1/T_FR），原书无 (7.71b)。
+% (3) 7.15 节三个 Case 的分界：按 α± 的判别式 1−4(μ/λ)^4，实/复分界与退化
+%     点在 μ=λ/√2（此时 α±=λ²），原书印作 μ=√2λ（√2 挂错了变量）。照录
+%     并加行内勘注。
+% (4) 式(7.80)/(7.81) 中 b、φ 与参数化 α±=λ²e^{±b}、λ²e^{±iφ} 差一个因子 2：
+%     按 (7.78)--(7.79) 与该参数化自证，应含 cosh(b/2)、sinh(b/2)（分母
+%     2sinh b）；原书两式使用的 b、φ 是参数化变量的一半。照录并加脚注。
+%     另 (7.80) 第一个指数 e^{−λθ+cosh(b)} 后原书多印一个右花括号。
+% (5) 式(7.83) 第二行与式(7.84) 中的 cosh²(b)−sinh(b)：按 (7.83) 第一行
+%     展开应为 cosh²(b)−sinh²(b)（缺平方）；不影响 r_Q<0 的结论。照录并
+%     加脚注。
+% (6) 式(7.93) 的 S0 前因子印作 −ε/2：按 (7.92) 的 A² 项应为 −ε²/2；其后
+%     无编号的 S0=−(ε/2)(N+1)ΣA²_mm 与 W(m)=√(N+1)A_mm 彼此自洽、且可回到
+%     式(6.32)，但与 (7.92) 之间差一个 ε。已加脚注。
+% (7) 7.18 节 HJM 极限处“连续极限 μ→0, M→0”：按 N=T_FR/a 与时间切片数增大，
+%     应为 M→∞。
+% (8) 式(7.103) 的 Θ(x−t*) 按其前一行分段定义应表示 x≤t* 的指示函数（通常
+%     记法为 Θ(t*−x)）；式(7.104) 前一行 ∫dx f(t,x) 的 f 按上下文是
+%     f(t0,x)（即 −lnP(t0,t*)），原书未标 t0。均已照录并加脚注。
+% 本文件无 \chapter 命令，首节为 7.12 小结。原书图 7.1--7.5 均在前半；
+% 本半正文引用的原书图 7.3、7.4（第7章）与图 8.4、8.10、10.1（第8、10章）
+% 一律以行内文字指路。
+\section{小结}
+
+原书7.12节是全章的收束：没有新公式，只把第7章搭起的模型阶梯重新串一遍，
+并回答一个问题——为什么利率市场需要量子场论，而随机微积分不够用。本节
+按原书顺序把小结归纳为四点，供读者回查前文。
+
+第一，立论基础。场论模型把每一条远期利率$f(t,x)$都当作独立自由度，于是
+涨落的关联在期限方向一般只有有限的关联长度（常刚性模型中为$\mu^{-1}$）；
+而HJM模型中所有期限的涨落\textbf{完全}相关——这是第6章“$\partial
+f/\partial t$由同一组白噪声驱动”的直接后果。期限方向上有限的关联结构是
+场论相对HJM的实质新增内容，第8章的实证将说明市场数据支持有限关联，而
+刻画这种关联可以有多种场论模型（常刚性、期限依赖刚性、刚度、心理未来
+时间——正是本章7.5节与各附录的内容）。
+
+第二，高斯模型的地位。线性（高斯）远期利率模型全部解析可解；原书讨论了
+它的五个变体，展示同一框架的灵活性。本文件7.13--7.16各附录把这些变体
+（HJM极限、约束即期利率、非常数刚性、刚度传播子、心理未来时间）逐一补齐。
+
+第三，非线性与随机波动率。把远期利率限制为正值的非线性变量替换，使路径
+积分中第一次在金融建模里出现费米子路径积分（7.9.1节）；随机波动率先作为
+远期利率的非线性函数引入（7.10节），再作为独立量子场引入（7.11节）。两
+种情形下，路径积分表述都有自然的推广，不需要改变框架本身。
+
+第四，维度问题。确定性波动率加线性远期利率时，二维场论因拉格朗日量的特
+殊结构实际上约化为一维量子力学问题（7.4节）；非线性远期利率的场论则本质
+上是二维的、不可约化——二维性是“期限间有限关联”的场论表述。
+
+小结末段（原书书页173顶）补了一笔方法论对比：随机微积分的形式可以推广到
+自由（高斯）量子场，但推广不到非线性场论——对理解非线性场论必不可少
+的重整化概念，在随机微积分中没有对应物。因此场论方法不只是换一套记号，
+它为研究驱动远期利率的（非线性）随机过程提供了一个计算上可行、且独立于
+随机微积分的视角。
+
+\section{附录：场论的HJM极限}
+
+本附录要解决的问题是：把7.5节常刚性场论的$\mu\to0$极限显式做出来，验证
+它逐公式退化回第6章的HJM模型；顺带说明多因子（$K$因子）HJM模型在场论
+语言里处在什么位置。
+
+\paragraph{模型设定}
+常刚性作用量式(7.18)允许场$A(t,x)$的全部自由度独立涨落，它的几何图像是
+一根\textbf{刚性}（rigidity）为$1/\mu^{2}$的“弦”：刚性项把相邻期限的
+涨落拴在一起，但只拴住“相邻”。HJM模型要求整条曲线同涨同落，在这个图像
+里就是一根\textbf{无限刚性的弦}。
+
+\paragraph{传播子的两个极限}
+从常刚性传播子（式(7.29)，取$T_{FR}\to\infty$）出发，两个极端给出
+\begin{equation*}
+D(x,x';t)\ \longrightarrow\
+\begin{cases}
+\ \mu+O(\mu^{2}) & \mu\to0\\[4pt]
+\ \dfrac{1}{2}\mu e^{-\mu|x-x'|}\ \longrightarrow\ \delta(x-x')
+& \mu\to\infty
+\end{cases}
+\tag{7.65}
+\end{equation*}
+$\mu\to0$时传播子平庸化（对一切期限对给出同一个常数$\mu$），$x$方向的涨
+落被“冻结”：不同期限的$A(t,x)$取同一个值——这正是重现HJM模型的极限。
+冻结也可以直接从作用量式(7.18)看出来：$\mu=0$时任何在$x$方向有变化的
+位形都给作用量贡献无限大的负项，从而被路径积分排除；存活的随机位形只能
+是全体$A(t,x)$沿$x$取同值的位形。\footnote{另一个极端$\mu\to\infty$对应
+全部涨落完全去关联——传播子退化为$\delta$函数，各期限互不相干。}(原书
+脚注16)
+
+\paragraph{极限次序与源的折叠}
+式(7.65)中$T_{FR}\to\infty$与$\mu\to0$两个极限\textbf{不可交换}，因为收
+敛不一致。想在$\mu\to0$时得到HJM模型，最省事的办法是直接令场论传播子恒
+等于$1$：
+\begin{equation*}
+\lim_{\text{QFT}\to\text{HJM}}D(x,x';t,T_{FR})\ \longrightarrow\ 1
+\end{equation*}
+（此式原书无编号。）再把外源沿期限方向折叠成一维源
+\begin{equation*}
+j(t)=\frac{1}{\sqrt{T_{FR}}}\int_{t}^{t+T_{FR}}dx\,J(t,x)
+\tag{7.66}
+\end{equation*}
+于是生成泛函式(7.26)在$\mu\to0$下变成
+\begin{equation*}
+\lim_{\mu\to0}Z[j]=\exp\frac{1}{2}\int_{t_{0}}^{\infty}dt\,j^{2}(t)
+\end{equation*}
+（无编号），这正是第6章HJM模型的生成泛函——式(6.35)。推导主线：传播子
+恒等于$1$意味着不同期限的$A$完全关联，$\int Df$中无限多个积分变量收缩为
+每个$t$一个；剩下的高斯积分对折叠源$j(t)$配平方，给出平方指数。场论的
+无限自由度在HJM极限下冻结成一个一维白噪声自由度。
+
+\paragraph{$K$因子HJM模型}
+$K$因子HJM模型写成
+\begin{equation*}
+\frac{\partial f(t,x)}{\partial t}=\alpha(t,x)+\sum_{i=1}^{K}
+\sigma_{i}(t,x)\,W_{i}(t),
+\qquad
+\langle W_{i}(t)W_{j}(t')\rangle=\delta_{i-j}\,\delta(t-t')
+\end{equation*}
+远期利率的关联子因此是
+\begin{align*}
+\Bigl\langle\Bigl[\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)\Bigr]
+\Bigl[\frac{\partial f(t',x')}{\partial t}-\alpha(t',x')\Bigr]\Bigr\rangle
+&=\delta(t-t')\,H(t,x,x'),\\
+H(t,x,x')&=\sum_{i=1}^{K}\sigma_{i}(t,x)\,\sigma_{i}(t,x')
+\end{align*}
+（以上原书均无编号。）描写这一随机过程的拉格朗日量为
+\begin{equation*}
+\mathcal{L}[A]=-\frac{1}{2}\,A(t,x)\,H^{-1}(t,x,x')\,A(t,x')
+\end{equation*}
+其中$H^{-1}$是核$H$的逆。问题在于：$K$个白噪声要驱动无限多个期限自由度，
+核$H(t,x,x')$作为$x,x'$的函数是退化的，$H^{-1}$\textbf{奇异}——要得到
+良定义的场论，必须人为引入一个无穷小的刚性参数。这从反面印证了本章的立
+场：HJM不是场论家族的正规成员，只能像上面那样作为$\mu\to0$的极限（或
+“传播子置$1$”的程序）来获得。
+
+\section{附录：刚性传播子的变体}
+
+常刚性模型的全部关联结构来自拉格朗日量中的$(\partial A/\partial x)^{2}$
+项，它约束场$A(t,x)$在期限方向的涨落。本附录在保持作用量为二次（高斯）
+的前提下给出两个推广：把即期利率单独约束（7.14.1），把刚性变成期限的
+函数（7.14.2）。两个变体的传播子都还是解析的。
+
+\subsection{约束即期利率}
+
+\paragraph{本小节要解决什么问题}
+即期利率$r(t)=f(t,t)$在金融市场中地位特殊：中央银行经常直接干预、改变
+即期利率以配合政策目标。常刚性模型把全部远期利率一视同仁，本小节把
+$f(t,t)$单独特殊对待。
+
+\paragraph{模型设定}
+有意义的是即期利率的\textbf{变化率}，把它约束在某个任意值$c$附近涨落。
+由鞅条件式(7.38)知$\alpha(t,t)=0$，代回定义方程得$(\partial f/\partial t)
+(t,t)=\sigma(t,t)A(t,t)$：约束即期利率的变化率，等价于约束边界场变量
+$A(t,t)$——即对角线$\theta=0$上的速度场。
+
+\paragraph{软约束与乘子实现}
+在作用量中添一项高斯型软约束（原书无编号）：
+\begin{equation*}
+e^{S}\ \longrightarrow\ \frac{1}{\sqrt{2\pi a}}
+\exp\Bigl\{-\frac{1}{2a}\int_{t}^{\infty}dt\,\bigl(A(t,t)-c\bigr)^{2}
+\Bigr\}\,e^{S}
+\end{equation*}
+参数$a$度量$A(t,t)$的随机程度：$a\to0$时$A(t,t)$被钉死在$c$。约束传播
+子$D_{C}$不依赖$c$（改变$c$只是移动$\alpha(0)$的取值），计算中取$c=0$最
+省事。等价的拉格朗日乘子（傅里叶）实现是
+\begin{equation*}
+e^{S}\ \longrightarrow\ \int_{-\infty}^{+\infty}d\xi\;
+e^{S}\,e^{i\xi A(t,t)}\,e^{-a^{2}\xi^{2}/2}
+\tag{7.67}
+\end{equation*}
+对$\xi$的高斯积分恰好回到上一行的软约束形式——$\xi$就是共轭于$A(t,t)$
+的乘子场。
+
+\paragraph{约束传播子}
+用高斯积分完成对角线场的条件化（步骤从略），得
+\begin{equation*}
+D_{C}(x,x';t,T_{FR})=D(x,x';t,T_{FR})-
+\frac{D(t,x;t,T_{FR})\,D(t,x';t,T_{FR})}{D(t,t;t,T_{FR})+a}
+\tag{7.68}
+\end{equation*}
+推导主线：这是高斯分布条件化公式（条件协方差$=$协方差$-$协方差$\times$
+方差逆$\times$协方差，即舒尔补）的场论版本——分子是“对角线到期限”的两
+个传播子，分母是对角线自关联加约束强度$a$。解读：约束加在$\theta=0$上，
+所以$D_{C}$只是$\theta=x-t$的函数；$a\to+\infty$时第二项消失，平滑地回到
+无约束的$D(x,x';t,T_{FR})$。
+
+\subsection{非常数刚性}
+
+\paragraph{本小节要解决什么问题}
+另一类修改是让刚性本身依赖期限：$\mu=\mu(\theta)$（原书引[9,97]）。刚性
+随期限增大，等价于$\mu$随$\theta$递减。原书选了解析上可处理的
+\begin{equation*}
+\mu=\frac{\mu_{0}}{1+k\theta}
+\end{equation*}
+$\theta$大时刚性衰减到零，$k\to0$回到常刚性$\mu_{0}$。
+
+\paragraph{关键公式}
+作用量为
+\begin{equation*}
+S_{M}=-\frac{1}{2}\int_{t_{0}}^{t_{1}}dt\int_{0}^{T_{FR}}d\theta\,
+\Biggl(A^{2}+\biggl(\frac{1+k\theta}{\mu_{0}}\,\frac{\partial A}{\partial\theta}
+\biggr)^{2}\Biggr)
+\tag{7.69}
+\end{equation*}
+这仍是二次作用量：分部积分（Neumann边条件使边界项为零）后化为求算符之
+逆，原书引[9,97]给出传播子\footnote{照录原书：式(7.70)分母中的$2\lambda\alpha$与第一个括号末项的
+$(1+\lambda\theta)^{-\alpha-1/2}$印作$\lambda$。本小节唯一出现的刚性斜率
+参数是$k$（见式(7.69)），$\lambda$在此处未定义（它是7.15节的刚度参数），
+且第三个括号相应位置印的是$(1+k\theta')^{-\alpha-1/2}$，故这两处疑为$k$
+之误。}
+\begin{equation*}
+\begin{aligned}
+D_{M}(\theta,\theta';T_{FR})={}&
+\frac{\mu_{0}^{2}\alpha}{2\lambda\alpha(\alpha+1/2)\bigl(1-(1+kT_{FR})^{-2\alpha}\bigr)}\\
+&\times\Biggl(\frac{\alpha+1/2}{\alpha-1/2}(1+kT_{FR})^{-2\alpha}
+(1+k\theta)^{\alpha-1/2}+(1+\lambda\theta)^{-\alpha-1/2}\Biggr)\\
+&\times\Biggl(\frac{\alpha+1/2}{\alpha-1/2}(1+kT_{FR})^{-2\alpha}
+(1+k\theta')^{\alpha-1/2}+(1+k\theta')^{-\alpha-1/2}\Biggr)
+\end{aligned}
+\tag{7.70}
+\end{equation*}其中
+\begin{equation*}
+\alpha=\sqrt{\frac{1}{4}+\frac{\mu_{0}^{2}}{4k^{2}}}
+\end{equation*}
+$\theta$变量的积分上限显式保留为$T_{FR}$。两个预期的极限是
+\begin{equation*}
+D_{M}(\theta,\theta';T_{FR})=
+\begin{cases}
+\ D(\theta,\theta';T_{FR};\mu_{0}) & k\to0\\[4pt]
+\ \dfrac{1}{T_{FR}} & \mu_{0}\to0
+\end{cases}
+\tag{7.71a}
+\end{equation*}
+$k\to0$回到常刚性传播子；$\mu_{0}\to0$给平传播子$1/T_{FR}$，即HJM极限。
+与7.13节一样，$\mu_{0}\to0$必须先于$T_{FR}\to\infty$取，两个极限不可
+交换。
+
+\paragraph{极限次序即模型选择}
+若先取$T_{FR}\to\infty$，对$\theta>\theta'$传播子变为
+\begin{equation*}
+\begin{aligned}
+D_{M1}(\theta,\theta')={}&
+\frac{\mu_{0}^{2}(\alpha-1/2)}{2k\alpha(\alpha+1/2)}\,(1+k\theta)^{-\alpha-1/2}\\
+&\times\Biggl(\frac{\alpha+1/2}{\alpha-1/2}(1+k\theta')^{\alpha-1/2}
++(1+k\theta')^{-\alpha-1/2}\Biggr)
+\end{aligned}
+\tag{7.72}
+\end{equation*}
+它在非HJM极限$\mu_{0}\to0$下仍然带有$\theta$依赖，因此$D_{M1}$不可能与
+HJM模型等价——$T_{FR}\to\infty$在$\mu_{0}\to0$之前取，就永远离开了HJM。
+这里极限次序不是技术细节，而是不同的模型选择。
+
+\section{附录：刚度传播子}
+
+\paragraph{本节要解决什么问题}
+7.5节末尾指出：常刚性传播子沿对角坐标有一个“扭结”（kink；定义见7.5节
+与原书脚注17：在$D(\theta,\theta')$的$\theta,\theta'$曲面上，沿对角线、
+垂直于对角方向的导数不连续）。凡基于刚性项的传播子——包括7.14.1与
+7.14.2的变体——都带同样的扭结：格林函数是$e^{-\mu|\theta-\theta'|}$型，
+$|\theta-\theta'|$的不可导直接遗传给一阶导数。然而实证传播子的曲面（原
+书图8.4）极其光滑、没有任何扭结。原书[6]把这一点读作建模指令：期限方向
+的涨落需要用比二阶导数更高阶的导数去衰减——导数阶数越高，涨落被压得越
+“平”。高阶导数使远期利率曲线更\textbf{刚硬}（stiffen），产生实证传播子
+所要求的光滑行为。
+
+\paragraph{模型设定}
+在拉格朗日量中加一个\textbf{刚度}（stiffness）项
+$(\partial^{2}A(t,x)/\partial x^{2})^{2}$，强约束远期利率在期限方向的任
+何涨落（为什么不是三阶导数——原书脚注18：拉格朗日量中的该项必须为正，
+三阶导数无法构成平方项，导数阶数只能取偶数）。把式(7.18)推广，得到同时
+含刚性与刚度项的作用量（$\mu,\lambda>0$）：
+\begin{align*}
+S_{Q}[A]&=-\frac{1}{2}\int_{t_{0}}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,
+\Biggl\{A^{2}(t,x)+\frac{1}{\mu^{2}}\biggl(\frac{\partial A(t,x)}{\partial x}
+\biggr)^{2}
++\frac{1}{\lambda^{4}}\biggl(\frac{\partial^{2}A(t,x)}{\partial x^{2}}
+\biggr)^{2}\Biggr\}\\
+&=\int_{\mathcal{P}}\mathcal{L}_{Q}[A]
+\tag{7.73}
+\end{align*}
+$A(t,x)$满足与式(7.20)相同的Neumann边条件。分部积分（做法同式(7.22)，边
+界项为零）得算符形式
+\begin{equation*}
+S_{Q}=-\frac{1}{2}\int_{\mathcal{P}}A(t,x)\biggl(1-\frac{1}{\mu^{2}}
+\frac{\partial^{2}}{\partial x^{2}}+\frac{1}{\lambda^{4}}
+\frac{\partial^{4}}{\partial x^{4}}\biggr)A(t,x)
+\tag{7.74}
+\end{equation*}
+刚度$\lambda\ (\neq\infty)$在作用量中引入\textbf{四阶导数}项：它比$\mu$
+刚性项更强地衰减远期利率在期限方向的一切高频涨落。直观读法：动量$p$小
+时常数项与刚性项主导形状，$p$大时$p^{4}$项压倒一切——低频轮廓由$\mu$
+管，高频光滑度由$\lambda$管。传播子即该算符之逆（原书脚注19：自此以后取
+$T_{FR}\to\infty$）
+\begin{equation*}
+G(x,x';t)=\lambda^{4}\,\biggl\langle x\biggl|
+\frac{1}{\lambda^{4}+(\lambda^{2}/\mu)^{2}p^{2}+p^{4}}
+\biggr|x'\biggr\rangle\ :\ \text{Neumann 边条件}
+\tag{7.75}
+\end{equation*}
+其中$p^{2}\equiv-\partial^{2}/\partial x^{2}$。
+
+\paragraph{推导主线：四阶化二阶}
+分母是$p^{2}$的二次式，可以因式分解（原书无编号）：
+\begin{equation*}
+\lambda^{4}+\Bigl(\frac{\lambda^{2}}{\mu}\Bigr)^{2}p^{2}+p^{4}
+=\bigl(p^{2}+\alpha_{+}\bigr)\bigl(p^{2}+\alpha_{-}\bigr),
+\qquad
+\alpha_{\pm}=\frac{\lambda^{4}}{2\mu^{2}}\biggl[1\pm\sqrt{
+1-4\Bigl(\frac{\mu}{\lambda}\Bigr)^{4}}\biggr]
+\end{equation*}
+于是部分分式（$\alpha_{+}\neq\alpha_{-}$）
+\begin{equation*}
+\frac{1}{\lambda^{4}+(\lambda^{2}/\mu)^{2}p^{2}+p^{4}}
+=\biggl(\frac{1}{\alpha_{+}-\alpha_{-}}\biggr)
+\biggl[\frac{1}{p^{2}+\alpha_{-}}-\frac{1}{p^{2}+\alpha_{+}}\biggr]
+\tag{7.76}
+\end{equation*}
+回忆式(7.28)（原书无编号）
+\begin{equation*}
+\biggl\langle x\biggl|\frac{1}{p^{2}+\alpha_{\pm}}\biggr|x'\biggr\rangle
+=\frac{1}{\alpha_{\pm}}\,D(x,x';t;\sqrt{\alpha_{\pm}})
+\end{equation*}
+——四阶算符之逆分解成两个\textbf{常刚性型}二阶传播子（刚度参数
+$\sqrt{\alpha_{\pm}}$）的线性组合：这是整个计算唯一用到的重活，也是本章
+前面投资的“传播子库”兑现的地方。换变量（原书编号(7.77)）
+\begin{equation*}
+\theta_{\pm}=\theta\pm\theta',\qquad
+\theta=x-t,\quad\theta'=x'-t
+\tag{7.77}
+\end{equation*}
+$D$的显式式(7.29)在$\theta_{\pm}$记号下读作：$\theta_{+}$进指数、
+$|\theta_{-}|$决定扭结位置。由式(7.75)、(7.76)与(7.77)得
+\begin{equation*}
+G(\theta_{+};\theta_{-})=\biggl(\frac{\lambda^{4}}{\alpha_{+}-\alpha_{-}}
+\biggr)\biggl[\frac{1}{\alpha_{-}}\,D(\theta_{+};\theta_{-};\sqrt{\alpha_{-}})
+-\frac{1}{\alpha_{+}}\,D(\theta_{+};\theta_{-};\sqrt{\alpha_{+}})\biggr]
+\tag{7.78}
+\end{equation*}
+而（由式(7.29)）
+\begin{equation*}
+D(\theta_{+};\theta_{-};\sqrt{\alpha_{\pm}})=\frac{\sqrt{\alpha_{\pm}}}{2}
+\Bigl[e^{-\sqrt{\alpha_{\pm}}\,\theta_{+}}+e^{-\sqrt{\alpha_{\pm}}\,
+|\theta_{-}|}\Bigr]
+\tag{7.79}
+\end{equation*}
+
+\paragraph{极限核对}
+$\lambda\to\infty$时$\alpha_{+}\simeq\lambda^{4}/\mu^{2}$、
+$\alpha_{-}\simeq\mu^{2}$，代入式(7.78)（$\alpha_{+}$项被$1/\alpha_{+}$
+压没）得
+\begin{equation*}
+\lim_{\lambda\to\infty}G(\theta_{+};\theta_{-};\mu,\lambda)\ \longrightarrow\
+D(\theta_{+};\theta_{-};\mu)
+\end{equation*}
+（无编号）——刚度项消失，回到常刚性。这符合作用量：$\lambda\to\infty$
+时式(7.73)中的四阶项熄灭。
+
+\paragraph{三种情形}
+$\alpha_{\pm}$由判别式$1-4(\mu/\lambda)^{4}$的符号决定，分实、复、重根三
+种情形（原书把分界印作$\mu=\sqrt{2}\lambda$：Case I为$\mu<\sqrt{2}\lambda$、
+Case II为$\lambda<\mu/\sqrt{2}$、Case III为退化点$\mu=\sqrt{2}\lambda$。
+按判别式$1-4(\mu/\lambda)^{4}$，实/复分界与重根点应在$\mu=\lambda/\sqrt{2}$
+——原书把$\sqrt{2}$挂错了变量，但不影响三种情形划分的实质）。三种情形中
+$\lambda\neq\infty$，给出的传播子与一切基于刚性项的变体有质的差别。
+
+\textbf{Case I：$\alpha_{\pm}$为实。}参数化（原书无编号）
+\begin{equation*}
+\alpha_{\pm}=\lambda^{2}e^{\pm b},\qquad
+e^{\pm b}=\frac{\lambda^{2}}{2\mu^{2}}\biggl[1\pm\sqrt{
+1-4\Bigl(\frac{\mu}{\lambda}\Bigr)^{4}}\biggr];\quad b\ge0
+\end{equation*}
+代入式(7.78)、(7.79)：\footnote{两处照录并核对：按参数化$\alpha_{\pm}=\lambda^{2}e^{\pm b}$与
+式(7.78)--(7.79)自证，式(7.80)中应出现$\cosh(b/2)$、$\sinh(b/2)$（分母为
+$2\sinh b$）；原书两式使用的$b$、$\phi$是参数化变量的另一半，即把上式按
+$b\to b/2$读才与参数化一致。另外原书第一个指数$e^{-\lambda\theta_{+}
+\cosh(b)}$后多印一个右花括号，已删。}
+\begin{equation*}
+\begin{aligned}
+G_{b}(\theta_{+};\theta_{-})=\frac{\lambda}{2\sinh(2b)}\Bigl[
+&e^{-\lambda\theta_{+}\cosh(b)}\,\sinh\{b+\lambda\theta_{+}\sinh(b)\}\\
+&+e^{-\lambda|\theta_{-}|\cosh(b)}\,\sinh\{b+\lambda|\theta_{-}|\sinh(b)\}
+\Bigr]
+\end{aligned}
+\tag{7.80}
+\end{equation*}$\mu\ll\lambda$对应$e^{b}\simeq
+\lambda^{2}/\mu^{2}$。
+
+\textbf{Case II：$\alpha_{\pm}$为复。}判别式变号，参数化换为纯相位（原
+书无编号）
+\begin{equation*}
+\alpha_{\pm}=\lambda^{2}e^{\pm i\phi},\qquad
+e^{\pm i\phi}=\frac{\lambda^{2}}{2\mu^{2}}\biggl[1\pm i\sqrt{
+4\Bigl(\frac{\mu}{\lambda}\Bigr)^{4}-1}\biggr]
+\end{equation*}
+于是
+\begin{equation*}
+\begin{aligned}
+G_{\phi}(\theta_{+};\theta_{-})=\frac{\lambda}{2\sin(2\phi)}\Bigl[
+&e^{-\lambda\theta_{+}\cos(\phi)}\,\sin\{\phi+\lambda\theta_{+}\sin(\phi)\}\\
+&+e^{-\lambda|\theta_{-}|\cos(\phi)}\,\sin\{\phi+\lambda|\theta_{-}|\sin(\phi)\}
+\Bigr]
+\end{aligned}
+\tag{7.81}
+\end{equation*}
+其中$\cos(\phi)>0$。复情形的传播子带振荡——$\theta$方向的关联呈阻尼振
+荡而不是单调衰减，这是刚性类模型完全给不出的形状。
+
+\textbf{Case III：重根$\alpha_{\pm}=\lambda^{2}$。}Case I与Case II的分界
+是退化情形（原书印作$\mu=\sqrt{2}\lambda$，见上的勘注），等价于$b=0=\phi$。
+此时对$\alpha_{\pm}$的两项简并为一项泰勒展开：
+\begin{equation*}
+G_{d}(\theta_{+};\theta_{-})=\frac{\lambda}{4}\Bigl[
+e^{-\lambda\theta_{+}}\{1+\lambda\theta_{+}\}
++e^{-\lambda|\theta_{-}|}\{1+\lambda|\theta_{-}|\}\Bigr]
+\tag{7.82}
+\end{equation*}
+在$|\theta_{-}|\simeq0$处，式(7.82)中线性于$|\theta_{-}|$的项发生非平凡
+相消，极限成为
+\begin{equation*}
+G_{d}(\theta_{+};\theta_{-})\simeq-\frac{1}{2}\lambda^{2}\theta_{-}^{2}
++O(\theta_{-}^{3})+\ (\theta_{+}\ \text{的函数})
+\end{equation*}
+（无编号）——对$|\theta_{-}|$的依赖从一次（尖点）变成平方（光滑），
+扭结消失了。下面把这一点一般化。
+
+\paragraph{刚度传播子的无扭结性}
+把7.5节对扭结的论证对$G(\theta_{+};\theta_{-})$重做一遍，结论对三种情形
+都成立；取Case I的显式式最省事。垂直于直线$\theta_{-}=0$方向的斜率（原
+书图8.10指路）定义为
+\begin{equation*}
+m_{Q}=\frac{\partial G_{b}(\theta_{+};\theta_{-})}{\partial\theta_{-}}
+\Bigl|_{\theta_{-}=0}\equiv\frac{\partial G_{b}(\theta_{+};0)}
+{\partial\theta_{-}}
+\end{equation*}
+（无编号。）把传播子(7.80)在$\theta_{-}=0$附近展开（精确到不影响
+$\theta_{-}=0$附近奇异结构的、$\theta_{+}$的函数——原书脚注20）\footnote{照录原书：末行括号印作$\cosh^{2}(b)-\sinh(b)$。按(7.83)第一行
+两个括号乘开，一次项相消后二次项为$\frac{1}{2}\lambda^{2}\theta_{-}^{2}
+(\sinh^{2}(b)-\sinh(b)\cosh^{2}(b))$，故该处应为$\cosh^{2}(b)-\sinh^{2}(b)$
+（缺平方）；式(7.84)同。两种读法在$b\ge0$时都是正数，不影响下文$r_{Q}<0$
+的结论。}
+\begin{align*}
+G_{b}(\theta_{+};\theta_{-})\simeq{}&\frac{\lambda}{2\sinh(2b)}
+\Bigl(1-\lambda|\theta_{-}|\cosh(b)+\frac{1}{2}\lambda^{2}\theta_{-}^{2}
+\cosh^{2}(b)+O(\theta_{-}^{3})\Bigr)\\
+&\times\Bigl(\sinh(b)\{1+\lambda|\theta_{-}|\cosh(b)\}
++\frac{1}{2}\lambda^{2}\theta_{-}^{2}\sinh^{2}(b)+O(\theta_{-}^{3})\Bigr)
+\tag{7.83}\\
+={}&\frac{\lambda}{2\sinh(2b)}\Bigl[\sinh(b)-\frac{1}{2}\lambda^{2}
+\theta_{-}^{2}\sinh(b)\bigl(\cosh^{2}(b)-\sinh(b)\bigr)\Bigr]+O(\theta_{-}^{3})
+\end{align*}一次项$|\theta_{-}|$的非平凡相消使结果只含$\theta_{-}^{2}$，因
+而在$|\theta_{-}|\to0$处导数连续：
+\begin{equation*}
+m_{Q}=r_{Q}\,\theta_{-}\ \longrightarrow\ 0
+\qquad\text{当}\quad\theta_{-}\to0
+\end{equation*}
+（无编号。）即刚度传播子没有扭结；而且$m_{Q}=0$还说明沿整条$\theta_{-}=
+0$线传播子取极大值。垂直于对角线的曲率为
+\begin{equation*}
+r_{Q}=\frac{\partial^{2}G_{b}(\theta_{+};\theta_{-})}{\partial\theta_{-}^{2}}
+\Bigl|_{\theta_{-}=0}
+=\frac{\lambda}{2\sinh(2b)}\Bigl[-\lambda^{2}\sinh(b)\bigl\{\cosh^{2}(b)
+-\sinh(b)\bigr\}\Bigr]
+\tag{7.84}
+\end{equation*}
+$b\ge0$保证$r_{Q}<0$：极大值得以确认。
+
+\paragraph{解读}
+反向极限$\lambda\to\infty$时，展开式(7.83)的系数含$\lambda$的幂、在
+$\theta_{-}=0$附近不再能做泰勒展开，一次项的相消失效，扭结重新出现——
+严格回到常刚性传播子。所以扭结与刚度互为反面：四阶导数项是消除扭结的最
+小修改，而它保住了作用量的二次性（全部解析性）。这是本章模型阶梯的最后
+一档，也是第8章实证的准备工作：实证传播子（原书图8.4）光滑无扭结，刚度
+参数$\lambda$正是为此引入、由市场数据校准的。
+
+\section{附录：心理未来时间}
+
+\paragraph{本节要解决什么问题}
+场论模型给出的关联结构只通过$\theta=x-t$进入：$t$是现在，$x$是未来时间，
+$\theta$度量未来时间$x$有多远。研究自然时这没有歧义——未来必须线性流
+逝。但金融里的“未来时间”由投资者与基金经理\textbf{如何看待未来}决定：
+从业者基于主观判断（在当下）形成对未来贷款风险的评估、期货合约的定价等
+等。众所周知的经验是：市场太远的行为几乎不可预测，能可信建模的只有未来
+一两年。因此离眼前越远的持仓，未来时间感应当比日历时间走得越慢。原书举
+的例子：未来第4年到第12年之间隔着八个日历年，但在投资者与交易员心中，
+这段距离可能只相当于眼前两年。
+
+\paragraph{模型设定}
+把未来时间$\theta$换成某个非线性函数$z=z(\theta)$（原书引[9,97]），由市
+场决定。非线性期限变量$z(\theta)$度量投资者心中的\textbf{心理未来时间}
+（psychological future time），对应日历未来时间$\theta$。$z(\theta)$的
+规定是场论模型的\textbf{独立}配料，要与拉格朗日量一起给出；一般要求它
+可逆（$\theta=\theta(z)$良定义）且$z(0)=0$、$z(\infty)=\infty$。独立变
+量从$t,x$换成$t,z(\theta)$；但市场报价的永远是$f(t,\theta)$，所以日历时
+间$\theta$与心理时间$z(\theta)$两者都要保留才能与市场对接。心理未来时
+间的定义方程（与式(7.15)同类）是
+\begin{equation*}
+\frac{\partial f}{\partial t}(t,\theta)=\alpha(t,z(\theta))
++\sigma(t,z(\theta))\,A(t,z(\theta))\ ;\qquad \theta=x-t
+\tag{7.85}
+\end{equation*}
+其中$f(t,\theta)$本身只依赖日历时间$\theta=x-t$。要点：\textbf{两个}未
+来时间——$\theta=x-t$与心理时间$z(\theta)$——同时出现在理论中。
+\footnote{原书脚注21：心理未来时间的场论也可以完全用远期利率
+$\tilde{f}(t,z(\theta))$定义；但施加鞅条件时需要对国债$P(t,T)=
+\exp\bigl(-\int_{0}^{T-t}d\theta\,f(t,\theta)\bigr)$（式(10.60)）作用泛函微分算子
+$\delta/\delta\tilde{f}(t,z(\theta))$，于是必须给出$\tilde{f}$与$f$的关
+系，结果回到式(7.85)。}心理未来时间的刚度拉格朗日量写成
+\begin{equation*}
+S_{z}=-\frac{1}{2}\int_{t_{0}}^{t_{1}}dt\int_{z(0)}^{z(\infty)}dz\,
+\Biggl(A^{2}+\frac{1}{\mu^{2}}\biggl(\frac{\partial A}{\partial z}
+\biggr)^{2}+\frac{1}{\lambda^{4}}\biggl(\frac{\partial^{2}A}{\partial z^{2}}
+\biggr)^{2}\Biggr)
+\tag{7.86}
+\end{equation*}
+即7.15节的刚度作用量把$x$整体换成$z$。
+
+\paragraph{传播子与鞅条件}
+$S_{z}$的传播子就是$G(z,z';\mu,\lambda)$（形式同式(7.78)），心理未来时
+间的鞅条件由式(10.61)给出（原书无编号）
+\begin{equation*}
+\alpha(t,z)=\sigma(t,z)\int_{z(0)}^{z}dz'\,G(z,z')\,\sigma(t,z')
+\end{equation*}
+常刚性情形传播子如预期为
+\begin{equation*}
+D(z,z';\mu)=\frac{\mu}{2}\bigl(e^{-\mu|z-z'|}+e^{-\mu(z+z')}\bigr)
+\end{equation*}
+（以上两式原书均无编号。）这是半直线上带Neumann边条件的传播子：第二项
+$e^{-\mu(z+z')}$是“镜像项”，与$\theta$平面上的$D$只差这一处。
+
+\paragraph{心理时间不是期限依赖刚性}
+引入$z(\theta)$与给刚性一个期限依赖$\mu=\mu(\theta)$是两回事。为看清这
+一点，把刚性函数写成$\mu(\theta)\equiv\mu_{0}\,(dg(\theta)/d\theta)$，作
+用量为（原书无编号）
+\begin{equation*}
+S_{\text{M}}=-\frac{1}{2}\int_{t_{0}}^{t_{1}}dt\int_{0}^{\infty}d\theta\,
+\Biggl(A^{2}+\frac{1}{\mu_{0}^{2}}\biggl(\frac{\partial A}{\partial g}
+\biggr)^{2}\Biggr)
+\end{equation*}
+做变量替换$\theta\to g$后
+\begin{equation*}
+S_{\text{M}}=-\frac{1}{2}\int_{t_{0}}^{t_{1}}dt\int_{g(0)}^{g(\infty)}dg\,
+\biggl(\frac{d\theta}{dg}\biggr)\Biggl(A^{2}+\frac{1}{\mu_{0}^{2}}
+\biggl(\frac{\partial A}{\partial g}\biggr)^{2}\Biggr)\ \neq\ S_{z}
+\end{equation*}
+（均无编号。）与心理未来时间不同，非线性变量$g(\theta)$的拉格朗日量多出
+一个雅可比（Jacobian）因子$dg(\theta)/d\theta$。原因说穿了很简单：
+$z(\theta)$替换的是理论的自变量本身（场在$z$坐标下的定义就是新的理论），
+$\mu(\theta)$只是修改拉格朗日量的参数；前者不付雅可比，后者要付。
+
+\paragraph{解读}
+可行的心理时间取例如$z=\tanh\beta(\theta-\theta_{0})$、$z=\theta^{\nu}$等
+（原书无编号）。引入非线性未来时间$z(\theta)$是思考利率模型的一种新方
+式：在场论框架里，实证数据可以被用来反推造成$z(\theta)$的市场心理——
+它构成市场参与者的主观未来时间。换言之，$z(\theta)$把“投资者觉得未来
+有多远”变成了一个可以从数据校准的量。
+
+\section{附录：远期利率的生成泛函}
+
+\paragraph{本节要解决什么问题}
+一切金融工具都写成远期利率$f(t,x)$的函数，而不是速度场$A(t,x)$的函数；
+$A$主要是为计算方便引入的工具。本章此前的生成泛函$Z[A]$（式(7.26)）源耦
+合的是$A$，本附录直接算出源耦合$f$的生成泛函（generating functional），
+用于给各类金融工具定价。
+
+\paragraph{关键公式}
+远期利率的生成泛函定义为
+\begin{equation*}
+Z_{f}[J]=\frac{1}{Z}\int Df\;\exp\Bigl\{\int_{t_{0}}^{\infty}dt
+\int_{t}^{t+T_{FR}}dx\,J(t,x)f(t,x)\Bigr\}\,e^{S[f]}
+\tag{7.87}
+\end{equation*}
+路径积分取半无限域（原书图7.4指路）。把式(7.87)中的积分变量从$f(t,x)$换
+成速度场$A(t,x)$。回忆式(7.16)（原书无编号）
+\begin{equation*}
+f(t,x)=f(t_{0},x)+\int_{t_{0}}^{t}dt'\,\alpha(t',x)
++\int_{t_{0}}^{t}dt'\,\sigma(t',x)\,A(t',x)
+\end{equation*}
+代回源项，经整理得（原书无编号）
+\begin{equation*}
+\int_{t_{0}}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,J(t,x)f(t,x)=F_{0}
++\int_{t_{0}}^{\infty}dt\int_{t}^{\infty}d\tau\int_{\tau}^{\tau+T_{FR}}dx\,
+J(\tau,x)\,\sigma(t,x)\,A(t,x)
+\end{equation*}
+其中
+\begin{equation*}
+F_{0}=\int_{t_{0}}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,J(t,x)\,f(t_{0},x)
++\int_{t_{0}}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,J(t,x)
+\int_{t_{0}}^{t}dt'\,\alpha(t',x)
+\end{equation*}
+（均无编号。）注意$A$的耦合项：$J$携带的时刻是$\tau$（远期利率的取值时
+刻），而$\sigma$与$A$的时刻是$t$（速度场的传播时刻）——这正是式(7.16)
+中“$\sigma$乘以过去时刻的$A$”的直接后果。
+
+\paragraph{推导主线}
+由于$\int Df\to\int DA$，从生成泛函$Z[A]$（式(7.26)）出发做带源高斯积
+分——指数上线性项配平方，协方差就是传播子$D(x,x';t)$——得
+\begin{align*}
+Z_{f}[J]&=e^{F_{0}}\,\frac{1}{Z}\int DA\,\exp\Bigl\{\int_{t_{0}}^{\infty}dt
+\int_{t}^{\infty}d\tau\int_{\tau}^{\tau+T_{FR}}dx\,
+J(\tau,x)\sigma(t,x)A(t,x)\Bigr\}\,e^{S[A]}=e^{F_{0}}e^{W}\\
+\Rightarrow\quad W&=\frac{1}{2}\int_{t_{0}}^{\infty}dt\,
+\Biggl[\int_{t}^{\infty}d\tau\int_{\tau}^{\tau+T_{FR}}dx\,
+J(\tau,x)\,\sigma(t,x)\Biggr]\\
+&\qquad\times\Biggl[\int_{t}^{\infty}d\tau'\int_{\tau'}^{\tau'+T_{FR}}dx'\,
+J(\tau',x')\,\sigma(t,x')\Biggr]\,D(x,x';t)
+\tag{7.88}
+\end{align*}
+$W$是以$D(x,x';t)$为核的双线性泛函：两个结构相同的“源折叠”括号相乘。
+解读：式(7.88)把7.5节的传播子直接兑换成定价能力——任何线性于远期利率的
+工具价值都由$Z_{f}[J]$的泛函导数生成；原书指出它对直接计算远期利率的各
+类Libor期权与其他衍生品有用（第9章的期权定价、第10章的哈密顿量表述都建
+立在这个泛函之上）。
+
+\section{附录：远期利率的格点场论}
+
+\paragraph{本节要解决什么问题}
+此前的一切推导都发生在连续域$\mathcal{P}$上，泛函积分（对每一点独立积分）
+只是形式记号。本附录给出严格化方案：把连续变量$t,x$离散成有限格点，连续
+域$\mathcal{P}$换成有限个格点构成的离散域$\hat{\mathcal{P}}$，泛函积分截
+断成有限维多重积分——连续场论于是可以严格地定义为格点理论（lattice
+field theory）的极限。这也是一切数值实现（蒙特卡罗模拟、路径依赖期权定
+价）的出发点。
+
+\paragraph{模型设定}
+把$(t,x)\to(m\epsilon,na)$：$\epsilon$是时间方向的无穷小步长，$a$是期限
+方向的无穷小步长。半无限域$\mathcal{P}$（原书图7.3）截断为有限离散域
+$\hat{\mathcal{P}}$，时间方向上限为$M\epsilon$；记
+\begin{equation*}
+N=\frac{T_{FR}}{a},\qquad m_{0}=\frac{t_{0}}{\epsilon}
+\end{equation*}
+（原书图10.1指路，无编号。）离散域的边界：时间方向$m=m_{0}$到$m=M$，期
+限方向$na=m\epsilon$到$na=m\epsilon+Na$；整数在$\hat{\mathcal{P}}$上取值
+\begin{equation*}
+\hat{\mathcal{P}}=\{m=m_{0},m_{0}+1,\ldots,M-1;\ na=m\epsilon,
+m\epsilon+a,\ldots,m\epsilon+Na\}
+\end{equation*}
+场量离散化（原书无编号）
+\begin{equation*}
+f(t,x)\to f(m\epsilon,na)\equiv f_{mn},\qquad
+A(t,x)\to A(m\epsilon,na)\equiv A_{mn}
+\end{equation*}
+$\alpha,\sigma$同样处理。泛函积分变成
+\begin{equation*}
+\int DA\ \longrightarrow\ \prod_{m=m_{0}}^{M-1}\prod_{n=m}^{N+m}
+\int_{-\infty}^{+\infty}dA_{mn}
+\tag{7.89}
+\end{equation*}
+
+\paragraph{$A_{mn}$变量的边界条件}
+$A_{mn}$变量的选取（线性与非线性远期利率都一样）使期限方向满足Neumann
+边条件；如式(5.26)与(5.27)所论，这意味着期限边界上的$A_{mn}$\textbf{也}
+是积分变量。时间方向上：远期利率的初条件$f(t_{0},x)$是给定的数据，不约
+束$A_{mn}$；远期利率的未来取值（比如给期权定价时）是被积掉的，同样不约
+束任何$A_{mn}$。结论：格点上每一点的$A_{mn}$都是独立积分变量——速度量
+子场$A(t,x)$是远期利率路径积分数值研究的自然变量组。泛函积分由此约化为
+$N(M-m_{0})$个独立变量的有限维积分，一切有限维积分技术（线性的与非线性
+的）都可用。
+
+\paragraph{归一化}
+$\int DA$中常数因子的正确归一化不必逐条追踪，只需重新定义作用量
+\begin{equation*}
+e^{S[A]}\ \longrightarrow\ e^{S[A]}/Z,\qquad
+Z\equiv\int DA\,e^{S[A]}
+\tag{7.90}
+\end{equation*}
+$\int DA$中的一切常数相消，而$e^{S}/Z$作为概率分布的归一化是正确的，因
+此可用于该理论的蒙特卡罗（Monte Carlo）研究。格点作用量是模型所需的各
+种模拟——包括路径依赖衍生品的定价——的起点；物理学里已有成熟的量子场
+数值算法可用（原书引[44]）。
+
+\paragraph{线性远期利率}
+离散化式(7.15)得$f_{mn}\to A_{mn}$的格点变量替换（原书无编号）
+\begin{equation*}
+\frac{\partial f}{\partial t}(t,x)=\alpha(t,x)+\sigma(t,x)A(t,x)
+\quad\Longrightarrow\quad
+f_{m+1,n}=f_{mn}+\epsilon\alpha_{mn}+\epsilon\sigma_{mn}A_{mn}
+\end{equation*}
+\begin{equation*}
+f_{m_{0},n}\ :\ n=m_{0},m_{0}+1,\ldots,N+m_{0}\quad:\quad
+\text{初始远期利率曲线}
+\end{equation*}
+（初值曲线是数据，不是被积变量。）取式(7.18)的常刚性作用量
+\begin{equation*}
+S[A]=-\frac{1}{2}\int_{t_{0}}^{\infty}dt\int_{t}^{t+T_{FR}}dx\,
+\Biggl\{A^{2}(t,x)+\frac{1}{\mu^{2}}\biggl(\frac{\partial A(t,x)}{\partial x}
+\biggr)^{2}\Biggr\}
+\tag{7.91}
+\end{equation*}
+（即式(7.18)原样重列。）用有限差分离散化作用量中的导数：
+\begin{equation*}
+S_{\text{lattice}}[A]=-\frac{\epsilon^{2}}{2}\sum_{m=m_{0}}^{M-1}
+\Biggl\{\sum_{n=m}^{N+m}A_{mn}^{2}
++\frac{1}{(\epsilon\mu)^{2}}\sum_{n=m}^{N+m-1}
+\bigl(A_{mn+1}-A_{mn}\bigr)^{2}\Biggr\}
+\tag{7.92}
+\end{equation*}
+推导主线：$\int dt\int dx\to\epsilon a\sum$，取$\epsilon=a$后$A^{2}$项得
+$\epsilon^{2}/2$；梯度项$(\partial A/\partial x)^{2}\to((A_{mn+1}-
+A_{mn})/a)^{2}$，与外面的$\epsilon^{2}$相乘得$1/(2\mu^{2})$——即花括号
+内$1/(\epsilon\mu)^{2}$的用意：梯度项的格点形式实际上与$\epsilon$无关，
+这保证$\mu\to0$极限不依赖时间步长。路径积分测度与格点配分函数为（原书
+无编号）
+\begin{equation*}
+\int DA=\prod_{(t,x)\in\mathcal{P}}\int dA\ \equiv
+\lim_{\epsilon\to0,\,a\to0,\,M\to\infty}\prod_{mn}\int dA_{mn},
+\qquad
+Z_{\text{lattice}}=\int DA_{mn}\,e^{S_{\text{lattice}}[A]}
+\end{equation*}
+7.14--7.16各附录讨论的全部高斯模型变体都可以照此格点化。
+
+\paragraph{HJM极限}
+看一个具体例子：$\mu\to0$时HJM模型如何从格点理论中浮现。$\mu\to0$时式
+(7.92)的第二项变成$\delta$函数的乘积：\footnote{照录原书：式(7.93)的$S_{0}$前因子印作$-\epsilon/2$。按式
+(7.92)的$A^{2}$项（前因子$-\epsilon^{2}/2$，来自$\int dt\int dx\to
+\epsilon^{2}\sum$），$\mu\to0$极限下被$\delta$函数乘掉的只是梯度项，
+$S_{0}$应携带$-\epsilon^{2}/2$；后文$S_{0}=-\frac{\epsilon}{2}
+(N+1)\sum A_{mm}^{2}$与$W(m)=\sqrt{N+1}\,A_{mm}$彼此自洽、且能回到式
+(6.32)，但与式(7.92)之间相差一个$\epsilon$因子。}
+\begin{align*}
+\lim_{\mu\to0}e^{S[A]}&=e^{S_{0}}\prod_{m=m_{0}}^{M-1}\prod_{n=m}^{N+m-1}
+\delta\bigl(A_{mn+1}-A_{mn}\bigr)\\
+S_{0}&=-\frac{\epsilon}{2}\sum_{m=m_{0}}^{M-1}\sum_{n=m}^{N+m}A_{mn}^{2}
+\tag{7.93}
+\end{align*}每个$m$有$N$个积分变量
+$A_{mn}$，而$\delta$函数只有$N-1$个，故每个$m$只剩一个变量（比如
+$A_{mm}$）不受约束。为简单取$\epsilon=a$，做完$A_{mn}$积分（原书无编号）
+\begin{equation*}
+Z=\prod_{m=m_{0}}^{M-1}\int dA_{mm}\,e^{S_{0}},
+\qquad
+S_{0}=-\frac{\epsilon}{2}(N+1)\sum_{m=m_{0}}^{M-1}A_{mm}^{2}
+\end{equation*}
+定义$W(m)=\sqrt{N+1}\,A_{mm}$，由式(6.32)即可看出HJM模型被复原。HJM极限
+取连续极限：$\mu\to0$并加密时间切片（原书把这一步印作“$M\to0$”，按
+$N=T_{FR}/a$与切片数增大应为$M\to\infty$），于是
+\begin{align*}
+S_{0}&\ \longrightarrow\ -\frac{1}{2}\int_{t_{0}}^{\infty}dt\,W^{2}(t)\\
+W(t)&=\frac{1}{\sqrt{T_{FR}}}\int_{t}^{t+T_{FR}}dx\,A(t,x)
+\tag{7.94}
+\end{align*}
+解读：HJM的单一白噪声$W(t)$不是别的东西，就是远期利率速度场沿期限方向的
+归一化平均（式(7.66)的$j(t)$与式(7.94)的$W(t)$是同一构造）。格点推导把
+7.13节的连续论证落到了实处：$\delta(A_{mn+1}-A_{mn})$逐点锁死相邻期限，
+正是“无限刚性弦”的离散版本。
+
+\paragraph{非线性场论：费米子路径积分}
+非线性变量$\phi(t,x)\to A(t,x)$的替换（7.9.1节）是为了满足Neumann边条
+件；速度场$A(t,x)$的基本用处——连续与格点两个版本——都来自这组边条件。
+非线性路径积分由式(7.55)给出（原书无编号）
+\begin{equation*}
+Z=\int DA\,Dc^{\dagger}Dc\;e^{S[A]+S_{F}[c^{\dagger},c,A]},
+\qquad
+\int DA\,Dc^{\dagger}Dc\equiv\prod_{(t,x)\in\mathcal{P}}
+\int_{-\infty}^{+\infty}dA(t,x)\int dc^{\dagger}(t,x)\,dc(t,x)
+\end{equation*}
+其中$c^{\dagger}(t,x),c(t,x)$是费米子量子场。非线性格点路径积分在二维
+格点上写成
+\begin{equation*}
+Z=\prod_{(mn)\in\tilde{\mathcal{P}}}\int dA_{mn}\,dc^{\dagger}_{mn}\,
+dc_{mn}\;e^{S[A]+S_{F}[c^{\dagger},c,A]}
+\tag{7.95}
+\end{equation*}
+作用量$S[A]$取式(7.92)；$S_{F}[c^{\dagger},c,A]$由离散化式(7.54)的作
+用量得到。$S[A]$还可以同样推广到刚度作用量与非线性心理时间变量
+$z(\theta)$。模拟注记：式(7.95)中$S[A]$只含导数项（局域作用量），可以
+像其他局域量子场一样处理；而费米子路径积分对场变量$A(t,x)$是非局域且非
+线性的，需要类似格点规范理论（lattice gauge theory）中模拟费米子的特殊
+算法（原书引[106]）。
+
+\paragraph{路径依赖期权}
+格点表述的定价能力在路径依赖期权上最清楚。执行时刻$t_{*}$、标的为零息
+国债$P(t,T)$的亚式期权（Asian option），其收益函数在$t_{0}$时刻写为
+（原书无编号）
+\begin{equation*}
+g[P(*,T)]=\biggl[\frac{1}{t_{*}-t_{0}}\int_{t_{0}}^{t_{*}}dt\,P(t,T)-K
+\biggr]_{+}
+\end{equation*}
+另一个例子是式(2.7)的附息国债$\mathcal{B}(t,T)$上的欧式看涨期权，收益函
+数为（原书无编号）
+\begin{equation*}
+g[\mathcal{B}]=\bigl(\mathcal{B}(t_{*},T)-K\bigr)_{+}
+\end{equation*}
+两种情形的收益$g[A]$都是路径依赖的：亚式期权依赖整条$P(t,T)$路径，附息
+期权经式(2.7)依赖一篮子零息债。把全部零息国债用量子场$A(t,x)$表出后，
+此类路径依赖期权在$t_{0}$时刻的价格为（原书无编号）
+\begin{equation*}
+C(t_{0},t_{*},T,K)=\frac{1}{Z}\int DA\;
+e^{-\int_{t_{0}}^{t_{*}}dt\,r(t)}\,g[A]\,e^{S[A]}
+\end{equation*}
+计算可数值进行（原书引[44]），要求的正是$A(t,x)$泛函积分的格点表述。
+解读：这一小节把“场论$=$定价机器”的链条闭合：解析侧（7.17节的生成泛
+函）覆盖线性工具，格点蒙特卡罗侧普适到路径依赖与非线性工具——两端共用
+同一个作用量与同一组$A_{mn}$变量。
+
+\section{附录：计价物变换的作用量$S_{*}$}
+
+\paragraph{本节要解决什么问题}
+7.7节引用过式(7.46)的结果：把计价物换成到期日$t_{*}$的国债后，新测度的
+作用量$S_{*}$与原作用量$S$差一个确定的乘子。本附录给出该结果的场论推导。
+证明的骨架出人意料地经济：两个作用量之差只是漂移的平方型泛函，而漂移差
+$\delta\alpha$经传播子算符作用后聚合成一个阶跃函数，使多余的项精确相消。
+
+\paragraph{模型设定}
+要证的关系是
+\begin{equation*}
+e^{S_{*}}=\frac{e^{-\int_{t_{0}}^{t_{*}}r(t)dt}}{P(t_{0},t_{*})}\;e^{S}
+\tag{7.96}
+\end{equation*}
+回忆式(7.12)的作用量（原书脚注22：不失一般性取$T_{FR}\to\infty$，于是
+$\int_{\mathcal{P}}=\int_{t_{0}}^{t_{*}}dt\int_{t}^{\infty}dx$）
+\begin{equation*}
+S\equiv S[\alpha]=-\frac{1}{2}\int_{\mathcal{P}}
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}{\sigma(t,x)}
+\biggr)D^{-1}(x,x';t)
+\biggl(\frac{\frac{\partial f(t,x')}{\partial t}-\alpha(t,x')}{\sigma(t,x')}
+\biggr)
+\tag{7.97}
+\end{equation*}
+以及把漂移换成$\alpha_{*}$后的同型作用量
+\begin{equation*}
+S_{*}\equiv S[\alpha_{*}]=-\frac{1}{2}\int_{\mathcal{P}}
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha_{*}(t,x)}{\sigma(t,x)}
+\biggr)D^{-1}(x,x';t)
+\biggl(\frac{\frac{\partial f(t,x')}{\partial t}-\alpha_{*}(t,x')}{\sigma(t,x')}
+\biggr)
+\tag{7.98}
+\end{equation*}
+这里用到的逆传播子由常刚性方程给出：
+\begin{align*}
+&\biggl(1-\frac{1}{\mu^{2}}\frac{\partial}{\partial x^{2}}\biggr)
+D(x,x';t)=\delta(x-x')\ :\ \text{Neumann 边条件}\\
+\Rightarrow\quad&D^{-1}(x,x';t)=\biggl(1-\frac{1}{\mu^{2}}
+\frac{\partial}{\partial x^{2}}\biggr)\delta(x-x')
+\tag{7.99}
+\end{align*}
+两个漂移速度由式(7.38)与(7.45)给出（$T_{FR}\to\infty$版）：
+\begin{align*}
+&\alpha(t,x)=\sigma(t,x)\int_{t}^{x}dx'\,D(x,x';t)\,\sigma(t,x')\\
+&\alpha_{*}(t,x)=\sigma(t,x)\int_{t_{*}}^{x}dx'\,D(x,x';t)\,\sigma(t,x')
+\tag{7.100}
+\end{align*}
+解读：两个漂移的唯一差别是传播子积分的下限——风险中性测度从“现在”
+$t$积分，$t_{*}$远期测度从执行时刻$t_{*}$积分；波动率与传播子原封不动。
+
+\paragraph{推导主线}
+定义漂移差并除以波动率（由式(7.100)相减）：
+\begin{align*}
+&\delta\alpha\equiv\alpha-\alpha_{*}=\sigma(t,x)\int_{t}^{t_{*}}dx'\,
+D(x,x';t)\,\sigma(t,x')\\
+\Rightarrow\quad&\biggl(\frac{\delta\alpha}{\sigma}\biggr)(t,x)
+=\int_{t}^{t_{*}}dx'\,D(x,x';t)\,\sigma(t,x')
+\tag{7.101}
+\end{align*}
+把式(7.98)的被积式按$\alpha_{*}=\alpha-\delta\alpha$展开，交叉项只剩一项、
+平方项添因子$\tfrac{1}{2}$：
+\begin{align*}
+S_{*}&=-\frac{1}{2}\int_{\mathcal{P}}
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)+\delta\alpha}{\sigma(t,x)}
+\biggr)D^{-1}(x,x';t)
+\biggl(\frac{\frac{\partial f(t,x')}{\partial t}-\alpha(t,x')+\delta\alpha}{\sigma(t,x')}
+\biggr)\\
+&=S-\int_{\mathcal{P}}\biggl(\frac{\frac{\partial f(t,x)}{\partial t}
+-\alpha(t,x)}{\sigma(t,x)}\biggr)D^{-1}(x,x';t)
+\biggl(\frac{\delta\alpha}{\sigma}\biggr)(t,x')\\
+&\qquad-\frac{1}{2}\int_{\mathcal{P}}\biggl(\frac{\delta\alpha}{\sigma}\biggr)(t,x)
+\,D^{-1}(x,x';t)\,\biggl(\frac{\delta\alpha}{\sigma}\biggr)(t,x')
+\tag{7.102}
+\end{align*}
+关键一步：式(7.101)与(7.99)联立，$D^{-1}$作用在$(\delta\alpha/\sigma)$上
+把积分核约化成分段常数（原书无编号）\footnote{照录原书：末尾的$\Theta(x-t_{*})$按其前一行分段定义（$x\in[t,t_{*}]$
+取$\sigma$，域外取零）应理解为“$x\le t_{*}$”的指示函数，通常记法是
+$\Theta(t_{*}-x)$。}
+\begin{align*}
+\biggl(1-\frac{1}{\mu^{2}}\frac{\partial}{\partial x^{2}}\biggr)
+\biggl(\frac{\delta\alpha}{\sigma}\biggr)(t,x)
+&=\biggl(1-\frac{1}{\mu^{2}}\frac{\partial}{\partial x^{2}}\biggr)
+\int_{t}^{t_{*}}dx'\,D(x,x';t)\,\sigma(t,x')\\
+&=\int_{t}^{t_{*}}dx'\,\delta(x-x')\,\sigma(t,x')
+=\sigma(t,x)\,\Theta(x-t_{*})
+\end{align*}即$\delta\alpha/\sigma$是算符$1-\mu^{-2}\partial^{2}$
+以$\sigma(t,x)$为源、支在$[t,t_{*}]$上的解。代回式(7.102)：
+\begin{align*}
+S_{*}&=S-\int_{t_{0}}^{t_{*}}dt\int_{t}^{\infty}dx\,
+\Bigl\{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)\Bigr\}\,\Theta(x-t_{*})\\
+&\qquad-\frac{1}{2}\int_{t_{0}}^{t_{*}}dt\int_{t}^{\infty}dx\,
+\Bigl[\int_{t}^{t_{*}}dx'\,D(x,x';t)\,\sigma(t,x')\Bigr]\sigma(t,x)\,
+\Theta(x-t_{*})\\
+&=S-\int_{t_{0}}^{t_{*}}dt\int_{t}^{t_{*}}dx\,\frac{\partial f(t,x)}{\partial t}
+\tag{7.103}
+\end{align*}
+因为式(7.103)的末两项\textbf{精确相消}。把第一项的$\Theta$支集写出，
+$\alpha$那一块在$\Theta$的支集上剩下
+\begin{equation*}
+\int_{t_{0}}^{t_{*}}dt\int_{t}^{t_{*}}dx\,\alpha(t,x)
+=\frac{1}{2}\int_{t_{0}}^{t_{*}}dt\int_{t}^{t_{*}}dx
+\int_{t}^{t_{*}}dx'\,\sigma(t,x)\,D(x,x';t)\,\sigma(t,x')
+\end{equation*}
+（等号用$D(x,x')=D(x',x)$的对称性：把正方形积分域沿对角线对折成三角
+形，恰好是式(7.101)右端的一半；步骤从略。）于是$\alpha$块与第二项的两倍
+相消，只剩下$\partial f/\partial t$一项。对它用积分恒等式（原书无编号；
+右边两个边界积分分别取$t=t_{*}$与$t=t_{0}$）
+\begin{equation*}
+\int_{t_{0}}^{t_{*}}dt\int_{t}^{T}dx\,\frac{\partial f(t,x)}{\partial t}
+=\int_{t_{0}}^{t_{*}}dt\,f(t,t)+\int_{t_{*}}^{T}dx\,f(t,x)
+-\int_{t_{0}}^{T}dx\,f(t,x)
+\end{equation*}
+（这是梯形域上的分部积分：$\int_{t}^{T}\partial_{t}f\,dx=\frac{d}{dt}
+\int_{t}^{T}f\,dx+f(t,t)$。）取$T=t_{*}$并用$f(t,t)=r(t)$，得预期结果\footnote{照录原书：式(7.104)前一行的第二项印作$\int_{t_{0}}^{t_{*}}dx\,
+f(t,x)$。按上一行的恒等式，该项来自$-\int_{t_{0}}^{T}dx\,f(t,x)$在
+$t=t_{0}$、$T=t_{*}$的边界取值，故是$f(t_{0},x)$；它恰好等于
+$-\ln P(t_{0},t_{*})$，与式(7.96)一致。}
+\begin{align*}
+S_{*}&=S-\int_{t_{0}}^{t_{*}}dt\,r(t)+\int_{t_{0}}^{t_{*}}dx\,f(t_{0},x)\\
+\Rightarrow\quad e^{S_{*}}&=\frac{e^{-\int_{t_{0}}^{t_{*}}r(t)dt}}
+{P(t_{0},t_{*})}\;e^{S}
+\tag{7.104}
+\end{align*}式(7.96)得证。
+
+\paragraph{推广}
+上述推导对一般二次（高斯）远期利率作用量原样成立：把式(7.97)中的
+$D$推广为任意核
+\begin{align*}
+S=S[\alpha]&=-\frac{1}{2}\int_{\mathcal{P}}
+\biggl(\frac{\frac{\partial f(t,x)}{\partial t}-\alpha(t,x)}{\sigma(t,x)}
+\biggr)G^{-1}(x,x';t)
+\biggl(\frac{\frac{\partial f(t,x')}{\partial t}-\alpha(t,x')}{\sigma(t,x')}
+\biggr)\\
+&\qquad\text{其中}\quad
+\int_{t}^{\infty}dx''\,G^{-1}(x,x'';t)\,G(x'',x';t)=\delta(x-x')
+\tag{7.105}
+\end{align*}
+$G^{-1}(x,x';t)$只要是未来期限的任意函数、与$G$互逆即可。也就是说，计价
+物变换的乘子公式(7.96)与具体传播子无关——它是高斯场论的恒等式，而不仅
+是常刚性模型的性质。这与7.7节的表述（换计价物只改漂移项，不动波动率与传
+播子）在场论层面闭环。
+
+%JOIN% 说明：本文件覆盖原书第7章7.12小结与附录7.13--7.19（书页172--190
+%/ p190--p208），至式(7.105)章末。第7章全部编号公式(7.1)--(7.105)至此
+%收齐；第8章（实证）由后续文件接写。
+
+%TAGS: 7.65,7.66,7.67,7.68,7.69,7.70,7.71a,7.72,7.73,7.74,7.75,7.76,7.77,7.78,7.79,7.80,7.81,7.82,7.83,7.84,7.85,7.86,7.87,7.88,7.89,7.90,7.91,7.92,7.93,7.94,7.95,7.96,7.97,7.98,7.99,7.100,7.101,7.102,7.103,7.104,7.105（7.65--7.105连续无断档，共41条；其中(7.71a)带字母后缀、原书无(7.71b)；7.12小结与7.16、7.17、7.18的部分推导步骤原书无编号，已按规范以无编号公式收录；任务单原写7.12--7.18，因指派页范围p190--p208含章末的7.19节（式(7.96)--(7.105)），按撰写规范完成标准一并覆盖）

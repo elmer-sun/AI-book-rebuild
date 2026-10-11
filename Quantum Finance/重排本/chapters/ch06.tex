@@ -1,0 +1,1115 @@
+% ch06 Stochastic interest rates (书页117-146 / p135-164)
+% 覆盖说明：原书第6章全章 6.1--6.12 节，书页117--144（p135--p162）；
+% p163 为第III部分扉页、p164 空白，无正文内容。
+% 编号公式核对：原书本章 tag 为 (6.1)--(6.88)，共88条，连续无断档
+% （已对照 PNG 逐页核验）。
+% 原书已知排印疑点：式(6.84)第二行相位印作 ip(phi_{n+1}+phi_n+eps*alpha_n/r_0)，
+% 其中 +phi_n 按第一行应为 -phi_n（正文照录并加脚注订正）；
+% 式(6.79)漂移写作 alpha(r,tau)（按上下文应读作 alpha(phi,tau)，照录）。
+% 注：本章不含“折返（folding）”推导——folding 是后续场论章节处理梯形
+% 积分区域 T=Delta_0+R 时的技术，本章只在 6.4 节完成区域的分解。
+\chapter{随机利率的哈密顿量与路径积分}
+
+本章是第II部分的收官，也是通往利率量子场论的桥。第3--5章处理的对象是
+股票：每个时刻只有一个（或两个）随机变量。本章把同一套哈密顿量--路径积分
+机器搬到利率上，先从最简单的即期利率（spot interest rate）$r(t)$做起，
+再升级到业界标准的HJM远期利率模型。全章有一个贯穿性的分界线：这里所有
+模型在每个时刻只含有限个独立随机变量（即期利率模型1个、$K$因子HJM模型
+$K$个），所以它们统称随机利率模型（stochastic interest rate models），
+与后续章节“每个时刻无穷多自由度”的量子场论模型相区分。本章完成的每一
+步推导——朗之万方程到福克--普朗克哈密顿量、哈密顿量到拉格朗日量、白噪声
+的路径积分、鞅条件对漂移的锁定——都将在第7--10章以场论形式重新出现，
+届时只是把有限个随机变量换成一场的随机变量而已。
+
+先修内容：第2章的贴现期望定价公式（式(2.6)、(2.8)、(2.10)），第3章的
+朗之万方程（Langevin equation）与伊藤微积分，第4章的哈密顿量表述与
+鞅条件（martingale condition），第5章的路径积分技术（尤其5.1节“由
+哈密顿量提取拉格朗日量”与5.2节“变量替换解路径积分”）。本章的数学新
+内容只有两件：前向与倒向福克--普朗克（Fokker--Planck）哈密顿量的不对称
+性（6.1节、6.8节附录），以及把积分限从时间轴搬到$(t,x)$平面上的区域
+分解（6.4节）。
+
+\section{即期利率的哈密顿量与拉格朗日量}
+
+本节要解决什么问题：即期利率$r(t)$是时刻$t$的隔夜贷款利率，是收益率
+曲线的短端；给它的衍生品定价，需要它的无套利（鞅）演化，以及刻画其条件
+概率演化的哈密顿量。原书强调两点：一是央行干预使即期利率常带跳跃与
+不连续，实证上需与收益率曲线的其余部分分开处理；二是我们
+只要无套利的鞅演化、不要实证演化——这使问题比第4章推导
+Black--Scholes哈密顿量时简单，因为无需再从对冲论证出发。
+
+\paragraph{模型设定与记号}
+即期利率由朗之万方程驱动：
+\begin{equation*}
+\frac{dr}{dt}=a(r,t)+\sigma(r,t)R(t)\ ;\quad R(t):\ \text{白噪声（white noise）};\quad t_0\leq t\leq T
+\tag{6.1}
+\end{equation*}
+漂移（drift）$a(r,t)$与波动率$\sigma(r,t)$可以是$r$和$t$的任意函数。
+与股票的朗之万方程不同，这里的时间可以正向也可以倒向演化，故边界条件有
+两种互斥的选择：
+\begin{equation*}
+\text{要么}\ r(t_0)=r_0:\ \text{初条件}\quad \text{或}\quad r(T)=R:\ \text{终条件}
+\tag{6.2}
+\end{equation*}
+每个时刻系统只有一个随机变量$R(t)$，即只有一个自由度。白噪声的性质
+$\langle R(t)\rangle=0$、$\langle R(t)R(t')\rangle=\delta(t-t')$
+（离散化为$\langle R^2(t)\rangle=1/\epsilon$）是6.8节附录全部推导的
+输入。
+
+\paragraph{关键公式：前向与倒向福克--普朗克哈密顿量}
+设$P_F(r,t;r_0)$为前向条件概率（forward conditional probability）：
+已知早时刻$t_0$取值$r_0$，$t$时刻取值$r$的概率。它随时间的演化定义出
+前向福克--普朗克哈密顿量$H_F$（6.8节附录式(6.65)--(6.67)给出推导）：
+\begin{align*}
+\frac{\partial}{\partial t}P_F(r,t;r_0)&=-H_FP_F(r,t;r_0)\\
+\Rightarrow\ H_F&=-\frac{1}{2}\frac{\partial^2}{\partial r^2}\sigma^2(r)
++a(r)\frac{\partial}{\partial r}+\frac{\partial a(r)}{\partial r}
+\tag{6.3}
+\end{align*}
+$H_F$是非厄米（non-Hermitian）算符。条件概率就是即期利率的定价核
+（pricing kernel），写成演化算符的矩阵元是
+\begin{equation*}
+P_F(r,t;r_0)=\langle r\vert e^{-(t-t_0)H_F}\vert r_0\rangle
+\tag{6.4}
+\end{equation*}
+\begin{equation*}
+r(t_0)=r_0:\ \text{初条件}
+\tag{6.5}
+\end{equation*}
+倒向条件概率（backward conditional probability）$P_B(R,t;r)$则回答：
+已知未来时刻$T>t$取值$R$，$t$时刻取值$r$的概率。它的演化方程里时间
+带相反的符号（时间按$-t$倒流）：
+\begin{equation*}
+\frac{\partial}{\partial t}P_B(R,t;r)\equiv+H_BP_B(R,t;r)
+\tag{6.6}
+\end{equation*}
+\begin{align*}
+H_B&=-\frac{1}{2}\sigma^2(r)\frac{\partial^2}{\partial r^2}
+-a(r)\frac{\partial}{\partial r}\\
+&=H_F^{\dagger}
+\tag{6.7}
+\end{align*}
+\begin{equation*}
+P_B(r,t;r_0)=\langle r\vert e^{-(T-t)H_B}\vert R\rangle,\qquad
+r(T)=R:\ \text{终条件}
+\tag{6.8}
+\end{equation*}
+
+\paragraph{推导主线：为什么会有两个哈密顿量}
+同一支朗之万方程(6.1)为何分裂成两个不同的算符？直觉是：条件概率是一块
+“概率守恒的板”，从初值端传播到未来时，漂移$a$推动概率板的整体平移，
+而概率守恒（全空间积分不变）要求平移的同时多出一项“板的形变”
+$\partial a/\partial r$——这就是$H_F$比$H_B$多出的第三项。倒向传播
+时不做概率守恒的演化（它是把未来已定的值往回“查询”），故$H_B$只有
+前两项，恰为$H_F$的厄米共轭。6.8节附录将从白噪声的离散化把这一点算
+出来：根本原因是白噪声太奇异（$\langle R^2\rangle=1/\epsilon$），
+倒向推导中漂移与波动率只能取早时刻的宗量$r'$、不能换成$r$，换的误差
+是$O(\epsilon)$的一阶量而非二阶量。
+选择的规则很实用：给了初值用前向式(6.4)；给期权定价时收益函数定在
+未来、现值要往回算，用倒向式(6.8)。第4章的广义期权定价哈密顿量
+$H_V$（式(4.44)）本质上就是一个倒向福克--普朗克哈密顿量
+$-(\sigma^2/2)\partial^2/\partial x^2+[(1/2)\sigma^2-V(x)]
+\partial/\partial x$，只多一处非平凡性：贴现因子里要带含势$V(x)$
+的因子（式(4.45)）。
+
+\subsection*{Black--Scholes哈密顿量}
+
+原书在这里插入一段“反着走”的练习：假定我们不知道Black--Scholes方程，
+只从一般的倒向哈密顿量(6.7)出发给股价$S=e^x$的期权定价。要求期权价格
+的演化满足鞅条件（第4章式(4.43)），即标的的贴现价格无漂移：
+\begin{equation*}
+[H_B^{bs}+r]e^x=0\ ;\quad\Rightarrow\ a(x)=r-\frac{1}{2}\sigma^2(x)
+\end{equation*}
+（上标$bs$表示这是股价Black--Scholes过程对应的$H_B$。）于是
+Black--Scholes哈密顿量被反推出来：
+\begin{align*}
+H_{BS}&=H_B^{bs}+r\\
+&=-\frac{1}{2}\sigma^2(x)\frac{\partial^2}{\partial x^2}
+-\Bigl(r-\frac{1}{2}\sigma^2(x)\Bigr)\frac{\partial}{\partial x}+r
+\end{align*}
+这复现了第3章的$H_{BS}$。值得注意的是：鞅条件对波动率没有任何限制，
+$\sigma(x)$可以是股价的任意函数——这与3.5节的结论一致，也预告了第5章
+随机波动率定价核里“平均波动率”的角色。\footnote{原书脚注2：由第3章
+式(3.12)，Black--Scholes随机微分方程是朗之万方程(6.1)取
+$a=\phi-\sigma^2/2$的特例。}那为什么第3章不直接这样讲Black--Scholes？
+因为完成这段论证需要先有鞅条件的哈密顿量表述：鞅条件把无风险利率$r$
+引进了哈密顿量，而$r$并不在股价的随机微分方程里——它来自对冲与无套利
+的经济论证。逻辑顺序无法颠倒。
+
+\subsection{随机量子化}
+
+本小节要解决什么问题：第5章从哈密顿量出发提取拉格朗日量；随机量子化
+（stochastic quantization）提供另一条路——直接从朗之万方程构造路径
+积分。两条路都通向同一个作用量，但各差一个关键项，对比之下能把路径积分
+测度的来历看得更清楚。
+
+前向的拉格朗日量、作用量与配分函数（由6.8节附录式(6.73)给出）：
+\begin{align*}
+L_F&=-\frac{1}{2\sigma^2}\Bigl(\frac{dr}{dt}-a(r)\Bigr)^2
+-\frac{\partial a(r)}{\partial r}\\
+Z_F&=\int Dre^{\int_{t_0}^{T}L_{FP}dt}
+\tag{6.9}
+\end{align*}
+随机量子化的做法是：对即期利率$r(t)$与白噪声$R(t)$两者做路径积分，
+再用一个泛函$\delta$函数把两者按朗之万方程捆绑起来：
+\begin{align*}
+Z_B&=\int DR\,Dr\prod_{t=t_0}^{T}\delta\Bigl[\frac{dr}{dt}
+-a(r,t)-\sigma(r,t)R(t)\Bigr]e^{-\frac{1}{2}\int_{t_0}^{T}R^2(t)dt}\\
+&=\int Dre^{S_B}
+\tag{6.10}
+\end{align*}
+第一行里$e^{-\frac{1}{2}\int R^2dt}$就是白噪声的高斯测度（每个时刻一个
+独立正态变量）；对$R(t)$做高斯积分（相当于逐点完成一次
+$\int dR\,\delta[{\rm linear}(R)]e^{-R^2/2}$），得倒向福克--普朗克
+作用量：
+\begin{equation*}
+S_B=-\frac{1}{2}\int_{t_0}^{T}dt\,\frac{1}{\sigma^2(t)}
+\Bigl(\frac{dr}{dt}-a(r,t)\Bigr)^2
+\tag{6.11}
+\end{equation*}
+既然$S_B$的传播按式(6.6)是倒向的，不如把时间换成剩余时间
+$\tau=T-t$——注意换元后漂移项变号：
+\begin{equation*}
+S_B=-\frac{1}{2}\int_{0}^{T-t_0}d\tau\,\frac{1}{\sigma^2(\tau)}
+\Bigl(\frac{dr}{d\tau}+a(r,\tau)\Bigr)^2\ ;\quad\tau=T-t
+\tag{6.12}
+\end{equation*}
+
+\paragraph{解读与联系}
+对比式(6.9)与(6.11)：前向与倒向拉格朗日量只差一项$-\partial a(r)/
+\partial r$。它的来源是$\int DR$的积分次序：重复式(6.10)的计算做前向
+积分时，对$R(t)$的路径积分多产生一个雅可比（Jacobian）项，恰好就是
+$\partial a(r)/\partial r$——倒向积分不产生这项\footnote{熟悉流体
+力学或随机量子化文献的读者可以把$\partial a/\partial r$认作“漂移的
+散度”：前向福克--普朗克方程是概率守恒的连续性方程，散度项正是速度场
+发散的痕迹。}。这一正一反的差异是下一节一切利率模型路径积分的基石：
+给国债定价一律用倒向作用量$S_B$（收益在未来、价值往回传），且当漂移
+为常数倍回复形式时$\partial a/\partial r$是常数、被配分函数吸收，
+计算得以精确完成。
+
+\section{Vasicek模型的路径积分}
+
+本节要解决什么问题：Vasicek模型是能精确求解的最简即期利率模型，原书
+用它演示“利率路径积分”的完整流程——写作用量、定边界条件、配分函数
+归一、变量替换、逐点高斯积分——流程与第5章解Black--Scholes路径积分
+同构，只多一道“贴现因子也要平均”的手续。
+
+\paragraph{模型设定与记号}
+零息国债的价格按货币的时间价值（第2章式(2.6)）是贴现因子在即期利率
+路径上的期望：
+\begin{equation*}
+P(t_0,T)=E\Bigl[e^{-\int_{t_0}^{T}dt\,r(t)}\,\big|\,r(t_0)=r_0\Bigr]
+\tag{6.13}
+\end{equation*}
+Vasicek模型取线性回复（mean-reverting）漂移与常数波动率：
+\begin{equation*}
+\frac{dr}{dt}=a(b-r)+\sigma R(t),\qquad r(t_0)=r_0:\ \text{初条件};\quad t_0\leq t\leq T
+\end{equation*}
+$a$是回复速度、$b$是长期利率水平。国债现值是“从未来往回贴现”，故
+用倒向作用量；按式(6.11)代入本模型的漂移$a(r)=a(b-r)$，作用量是二次
+型（高斯的）：
+\begin{equation*}
+S_V=-\frac{1}{2\sigma^2}\int_{t_0}^{T}dt\,
+\Bigl[\frac{dr}{dt}-a(b-r)\Bigr]^2
+\tag{6.14}
+\end{equation*}
+（原书引式(6.73)——本模型漂移线性，前向拉格朗日量的散度项
+$\partial a/\partial r=-a$是常数、会被配分函数$Z$吸收，故前向与倒向
+作用量在此只差一个可丢弃的常数。）路径积分的定义域要指明两端边界条件：初端$r(t_0)=r_0$钉死；终端
+$r(T)$完全自由，等价于诺伊曼（Neumann）边界条件$dr(T)/dt=0$。于是
+即期利率的概率分布与配分函数为
+\begin{align*}
+&e^{S_V}/Z\ ;\quad\text{概率分布}\\
+&Z=\int Dre^{S_V}\ ;\quad \int Dr\equiv\int_{-\infty}^{+\infty}
+\prod_{t=t_0}^{T}dr(t)\\
+&\text{边界条件}\ r(t_0)=r_0\ ,\ \frac{dr(T)}{dt}=0
+\tag{6.15}
+\end{align*}
+分母$Z$把分布归一，同时使$S_V$里的整体常数可以随意丢弃（分子分母相
+消）。零息国债就是贴现因子对分布(6.15)的平均：
+\begin{equation*}
+P(t_0,T)=\frac{1}{Z}\int Dre^{S_V}e^{-\int_{t_0}^{T}r(t)dt}
+\tag{6.16}
+\end{equation*}
+
+\subsection*{国债的路径积分解}
+
+\paragraph{推导主线：变量替换把二次型对角化}
+合并式(6.16)与(6.14)，定义总作用量：
+\begin{align*}
+P(t_0,T)&=\frac{1}{Z}\int Dre^{S}\\
+S&\equiv S_V-\int_{t_0}^{T}r(t)dt\\
+&=-\frac{1}{2\sigma^2}\int_{t_0}^{T}dt\,
+\Bigl[\frac{dr}{dt}-a(b-r)\Bigr]^2-\int_{t_0}^{T}r(t)dt
+\tag{6.17}
+\end{align*}
+与第5章式(5.14)解Black--Scholes路径积分的手法相同，先做变量平移：测度
+$\int Dr$在平移$r(t)\to r(t)+b$下不变，平移把漂移里的常数$b$吸收掉：
+\begin{equation*}
+S=-\frac{1}{2\sigma^2}\int_{t_0}^{T}dt\,
+\Bigl[\frac{dr}{dt}+ar\Bigr]^2-\int_{t_0}^{T}[r(t)+b]dt
+\tag{6.18}
+\end{equation*}
+真正的对角化靠新变量$v(t)$——它是“速度减回复力”的组合：
+\begin{equation*}
+v(t)=\frac{dr}{dt}+ar
+\tag{6.19}
+\end{equation*}
+\begin{equation*}
+\Rightarrow\ r(t)=e^{-a(t-t_0)}r_0+e^{-at}\int_{t_0}^{t}dt'\,e^{at'}v(t')
+\tag{6.20}
+\end{equation*}
+\begin{equation*}
+\int_{t_0}^{T}dt\,r(t)=B(t_0,T)r_0+\int_{t_0}^{T}dt\,B(t,T)v(t)
+\tag{6.21}
+\end{equation*}
+其中
+\begin{equation*}
+B(t,T)\equiv\frac{1-e^{-a(T-t)}}{a}
+\end{equation*}
+式(6.20)是初值问题的积分因子解法（把$\frac{d}{dt}+a$的格林函数
+$e^{-a(t-t')}$显式写出）；式(6.21)是它的直接积分，分部积分一次即
+得。初条件$r(t_0)=r_0$已被式(6.19)吸收；终条件$dr(T)/dt=0$经式(6.19)
+翻译成“$v(T)$取值自由”，于是对所有$t_0\leq t\leq T$的$v(t)$积分
+即可（步骤从略：$a=0$退化情形与雅可比的去向见脚注）。\footnote{原书
+脚注3与4：若$a=0$，则$v(T)=dr(T)/dt=0$，$\int Dv$须把$v(T)$钉在零；
+该情形可由$a\to0$的均匀极限恢复。变量替换(6.19)给出
+$Dv=\det(\frac{d}{dt}+a)Dr$，雅可比$J=\det(\frac{d}{dt}+a)$在
+$P(t_0,T)$中恰好被式(6.16)的分母$Z$消去。}把式(6.18)、(6.19)与
+(6.20)代回，作用量在$v$变量下已无耦合，逐点高斯积分（归一化又被$Z$
+消去）：
+\begin{align*}
+P(t_0,T)&=e^{-b(T-t_0)-B(t_0,T)r_0}\frac{1}{Z}\int Dv\,
+e^{-\frac{1}{2\sigma^2}\int_{t_0}^{T}dt[v^2(t)+2\sigma^2B(t,T)v(t)]}\\
+&=e^{-b(T-t_0)-B(t_0,T)r_0}\,e^{\frac{\sigma^2}{2}\int_{t_0}^{T}dt\,B^2(t,T)}
+\tag{6.22}
+\end{align*}
+这一路径积分解法与Otto早先用别的方法得到的结果一致。记未来时间
+$\theta=T-t_0$，算完$\int_{t_0}^{T}B^2$即得Vasicek的著名闭式：
+\begin{equation*}
+P(t_0,T)=A(\theta)e^{-B(\theta)r_0}
+\tag{6.23}
+\end{equation*}
+\begin{equation*}
+B(\theta)=\frac{1-e^{-a\theta}}{a}
+\tag{6.24}
+\end{equation*}
+\begin{equation*}
+A(\theta)=\exp\Bigl[\Bigl(\frac{\sigma^2}{2a^2}-b\Bigr)
+\bigl(\theta-B(\theta)\bigr)-\frac{\sigma^2}{4a}B^2(\theta)\Bigr]
+\tag{6.25}
+\end{equation*}
+债券价格对即期利率的依赖只有指数上的线性$B(\theta)r_0$——“仿射”
+结构的最简标本（6.9节附录）。
+
+\paragraph{解读与联系：隐含的远期利率}
+由远期利率定义（第2章式(2.9)）对(6.23)求导：
+\begin{align*}
+f(t_0,T)&=-\frac{\partial}{\partial T}\ln P(t_0,T)
+\tag{6.26}\\
+&=r_0+(b-r_0)(1-e^{-a\theta})-\frac{\sigma^2}{2a^2}
+\bigl(1-e^{-a\theta}\bigr)^2
+\tag{6.27}
+\end{align*}
+远期利率曲线从即期利率$r_0$出发、按回复速度$a$逼近长期水平$b$，凸性
+修正项$-\frac{\sigma^2}{2a^2}(1-e^{-a\theta})^2$完全来自波动率——
+它是“贴现因子取平均”相对“平均贴现因子”的Jensen差。这条曲线形状
+被模型参数$a,b,\sigma$死死锁住，能拟合的市场形态极其有限；这正是6.3节
+转向直接建模远期利率的第一个动机。
+
+\section{HJM模型的路径积分}
+
+本节要解决什么问题：即期利率模型从单变量$r(t)$出发反推整条曲线
+$f(t,x)$，形状太僵硬。HJM模型（Heath--Jarrow--Morton）反其道而行：
+把远期利率曲线本身当作随机对象，直接对整条曲线$f(t,x)$写出演化方程。
+原书先把“为什么要直接建模远期利率”讲透，再把HJM模型改写成路径积分
+语言——改写的目的一是理解模型本身，二是为后续章节的远期利率量子场论
+搭好脚手架。
+
+\paragraph{为什么直接建模远期利率}
+既然即期利率模型也能给出$P(t,T)$从而给出$f(t,x)$，为何还要直接建模
+远期利率？原书列举六条理由，可归并为三层：
+（1）实证层面——大多数即期利率模型给出仿射形债券价格（6.9节附录），
+而市场零息债券并非仿射行为；远期利率的复杂形态也不是任何足够简单的
+即期利率模型能生成的。
+（2）市场层面——债务市场直接交易远期利率、数据量巨大，以远期利率为
+第一性工具建模才能贴合市场；HJM模型把初始远期利率曲线$f(t_0,x)$当作
+市场输入而非模型输出，从而把市场关于远期利率的全部信息都吸收进来。
+（3）无套利层面——即期利率模型原则上能拟合初始曲线（\footnote{原书
+脚注5：例如Hull与White把Vasicek模型的$a,b$换成时间函数、逐点调节以
+贴合整条市场初始曲线$f(t_0,T)$。}），但其未来演化无法维持远期利率的
+无套利条件；HJM模型一旦固定贴现因子，就给出远期利率曲线唯一的无套利
+演化。
+
+\paragraph{模型设定与记号}
+零息国债价格由远期利率曲线积分给出（第2章式(2.8)）：
+\begin{equation*}
+P(t,T)=e^{-\int_{t}^{T}dx\,f(t,x)}
+\tag{6.28}
+\end{equation*}
+$K$因子HJM模型把远期利率的随机演化写成（推广第3章股票的随机微分方程，
+把单一波动率换成一排确定性波动率函数）：
+\begin{equation*}
+\frac{\partial f}{\partial t}(t,x)=\alpha(t,x)+\sum_{i=1}^{K}
+\sigma_i(t,x)W_i(t)
+\tag{6.29}
+\end{equation*}
+$\alpha(t,x)$是漂移速度（drift velocity），$\sigma_i(t,x)$是远期利率
+的确定性波动率函数，$W_i(t)$是$K$个独立白噪声。关键的结构性事实：虽然
+模型演化的是整条曲线$f(t,x)$，每个时刻驱动力只有$K$个随机变量
+$W_i(t)$——自由度仍是有限的。所有时刻的“冲击”对全体未来远期利率
+$f(t,x)$（$x>t$）同时施加，到期结构上的差异全靠波动率函数
+$\sigma_i(t,x)$对不同$x$的加权来实现。把式(6.29)沿时间积分：
+\begin{equation*}
+f(t,x)=f(t_0,x)+\int_{t_0}^{t}dt'\,\alpha(t',x)
++\int_{t_0}^{t}dt'\sum_{i=1}^{K}\sigma_i(t',x)W_i(t')
+\tag{6.30}
+\end{equation*}
+初始曲线$f(t_0,x)$与波动率$\sigma_i(t,x)$都取自市场；与Black--Scholes
+逻辑相同（3.5节），漂移$\alpha(t,x)$不能随意设——它被鞅条件锁定为
+波动率的泛函（6.4节）。白噪声的关联为
+\begin{equation*}
+E\bigl(W_i(t)W_j(t')\bigr)=\delta_{ij}\delta(t-t')
+\end{equation*}
+
+\subsection*{HJM模型的白噪声}
+
+为写出$W_i(t)$的概率测度，把时间离散化$t\to m\epsilon$（$m=1,\ldots
+,M$）、$W_i(t)\to W_i(m)$。每个时刻每个分量是方差$1/\epsilon$的独立
+高斯变量，测度为
+\begin{align*}
+\mathcal{P}[W]&=\prod_{m=1}^{M}\prod_{i=1}^{K}
+e^{-\frac{\epsilon}{2}\sum_{i=1}^{K}W_i^2(m)}\\
+\int dW&=\prod_{m=1}^{M}\prod_{i=1}^{K}\sqrt{\frac{\epsilon}{2\pi}}
+\int_{-\infty}^{+\infty}dW_i(m)
+\tag{6.31}
+\end{align*}
+取$\epsilon\to0$极限只是记号上的简化——连续记号是离散多重积分极限的
+简写。对$t_1<t<t_2$：
+\begin{equation*}
+\mathcal{P}[W,t_1,t_2]\to e^{S}
+\tag{6.32}
+\end{equation*}
+\begin{equation*}
+S\equiv S[W,t_1,t_2]=-\frac{1}{2}\sum_{i=1}^{K}\int_{t_1}^{t_2}
+dt\,W_i^2(t)
+\tag{6.33}
+\end{equation*}
+\begin{equation*}
+\int dW\to\int DW
+\tag{6.34}
+\end{equation*}
+作用量$S$是超局部的（ultra-local）：不同时刻的变量完全解耦，没有时间
+导数项、没有相邻耦合。这正是“白”噪声的含义，也是后面一切$W$积分都能
+逐点完成的根本原因。
+
+\origfig{6.1}{（HJM模型中独立的随机变量$W(t)\equiv\{W_i(t)\mid
+i=1,2,\ldots,K\}$，书页126/p144。竖轴为时间$t$，区间$[t_0,t_*]$上
+每个时刻$t$处都立着$K$个互相独立的随机变量——积分测度是“每个时刻
+一个高斯点”的乘积，没有任何时刻之间的关联。）}
+
+后续反复要用的是白噪声的生成泛函（generating functional）（由附录
+A.4式(A.20)的高斯积分立得）：
+\begin{align*}
+Z[j,t_1,t_2]&=\int DW\,e^{\sum_{i=1}^{K}\int_{t_1}^{t_2}dt\,j_i(t)W_i(t)}
+e^{S[W,t_1,t_2]}\\
+&=e^{\frac{1}{2}\sum_{i=1}^{K}\int_{t_1}^{t_2}dt\,j_i^2(t)}
+\tag{6.35}
+\end{align*}
+读法：对外源$j_i$做泛函求导就能生成$W_i$的任意矩；指数上的$\frac12
+j^2$积分核说明一切矩都被二阶矩（$\delta$关联）决定——高斯性的全部
+后果已经浓缩在这一个公式里。
+
+\section{HJM模型中的鞅条件}
+
+本节要解决什么问题：第2.5节说过，要给远期利率的衍生品定价，必须让
+远期利率在风险中性测度下按鞅演化；按金融学基本定理（附录A.6），凡用
+该鞅测度定出的价格都无套利机会。本节的任务是把鞅条件显式写出，用它
+锁定漂移速度$\alpha(t,x)$——得到的正是HJM的无套利条件：漂移由波动率
+决定。附带的产品是一组积分区域记号$\mathcal{T},\Delta_0,\mathcal{R}$，
+后续期权定价反复调用。
+
+\paragraph{鞅条件}
+由第2章式(2.10)，国债价格的贴现期望应等于其现值：
+\begin{align*}
+P(t_0,T)&=E_{[t_0,t_*]}\Bigl[e^{-\int_{t_0}^{t_*}r(t)dt}P(t_*,T)\Bigr]\\
+\Rightarrow\ P(t_0,T)&=\int DW\,e^{-\int_{t_0}^{t_*}r(t)dt}P(t_*,T)
+e^{S[W,t_0,t_*]}
+\tag{6.36}
+\end{align*}
+第二行只是把期望按测度(6.32)--(6.34)展开。代入$P(t,T)$的曲线积分式
+(6.28)：
+\begin{equation*}
+P(t_0,T)=\int DW\,e^{-X}e^{S[W,t_0,t_*]}
+\tag{6.37}
+\end{equation*}
+\begin{equation*}
+X=\int_{t_0}^{t_*}dt\,r(t)+\int_{t_*}^{T}dx\,f(t_*,x)
+\tag{6.38}
+\end{equation*}
+$X$是“从$t_0$到$t_*$的随机贴现”加上“在$t_*$时刻看到的剩余债券
+贴现”。
+
+\subsection*{积分区域$\mathcal{T}$、$\Delta_0$与$\mathcal{R}$}
+
+把$f(t,x)$按式(6.30)展开代入式(6.38)，并用$r(x)=f(x,x)$，$X$变成
+两块：$x$从$t_0$到$t_*$的一段（内层时间积分上限为$x$）加上$x$从
+$t_*$到$T$的一段（内层时间积分上限固定为$t_*$）。（步骤从略：这一段
+是纯Fubini交换，原书以漂移项为例演示——三角形区域上“先$x$后$t$”与
+矩形区域上“先$t$后$x$”的两个积分拼起来，恰是梯形区域上的一个积分。）
+交换的净效果用区域记号写成“图形化”的等式：
+\begin{equation*}
+\int_{\Delta_0}\alpha(t,x)+\int_{\mathcal{R}}\alpha(t,x)
+=\int_{\mathcal{T}}\alpha(t,x)
+\tag{6.39}
+\end{equation*}
+三个区域的几何：$\Delta_0$是$(t,x)$平面上顶点为$(t_0,t_0)$、
+$(t_0,t_*)$、$(t_*,t_*)$的三角形，来自即期利率的贴现；$\mathcal{R}$
+是顶点$(t_0,t_*)$、$(t_0,T)$、$(t_*,T)$、$(t_*,t_*)$的矩形，来自
+国债$P(t_*,T)$；两者拼成梯形
+\begin{equation*}
+\mathcal{T}=\Delta_0\oplus\mathcal{R}
+\end{equation*}
+（$\oplus$表示区域的不相交并。）
+
+\origfig{6.2}{（积分区域$\mathcal{R}$与$\Delta_0$，书页128/p146。
+横轴为未来时间$x$、纵轴为当前时间$t$；阴影矩形是$\mathcal{R}$
+（$t_0\leq t\leq t_*$、$t_*\leq x\leq T$），空白三角形是
+$\Delta_0$（$t_0\leq t\leq x\leq t_*$）。）}
+
+\origfig{6.3}{（区域合成：梯形$\mathcal{T}$=三角形$\Delta_0\oplus$
+矩形$\mathcal{R}$，书页128/p146。）}
+
+\origfig{6.4}{（鞅条件对应的梯形区域$\mathcal{T}$，书页129/p147。
+四个顶点$(t_0,t_0)$、$(t_*,t_*)$、$(t_*,T)$、$(t_0,T)$；斜边是
+$x=t$线，$t$自$t_0$走到$t_*$时斜边扫过三角形$\Delta_0$，矩形
+$\mathcal{R}$则是“终值债券”贡献的阴影部分。）}
+
+对式(6.38)的其余各项做同样处理，$X$最终只剩初始曲线、漂移与噪声三块，
+且后两块都跑到了梯形$\mathcal{T}$上：
+\begin{equation*}
+X=\int_{t_0}^{T}dx\,f(t_0,x)+\int_{\mathcal{T}}\alpha(t,x)
++\sum_i\int_{\mathcal{T}}\sigma_i(t,x)W_i(t)
+\tag{6.40}
+\end{equation*}
+注意第一项$\int_{t_0}^{T}dx\,f(t_0,x)$恰是$\ln P(t_0,T)$的负值。
+代入鞅条件(6.37)：
+\begin{equation*}
+P(t_0,T)=P(t_0,T)e^{-\int_{\mathcal{T}}\alpha(t,x)}
+\int DW\,e^{-\sum_i\int_{\mathcal{T}}\sigma_i(t,x)W_i(t)}
+e^{S[W,t_0,t_*]}
+\tag{6.41}
+\end{equation*}
+右边的$W$积分用生成泛函(6.35)完成——把$-\int_{\mathcal{T}}\sigma_iW_i$
+写成外源$j_i(t)=-\sum_{x=t}^{T}\sigma_i(t,x)$（对固定的$t$，只有
+$x\in[t,T]$段有贡献），逐$t$独立地积：
+\begin{equation*}
+e^{\int_{\mathcal{T}}\alpha(t,x)}
+=e^{\frac{1}{2}\int_{t_0}^{t_*}dt\sum_i\bigl[\int_{t}^{T}dx\,
+\sigma_i(t,x)\bigr]^2}
+\tag{6.42}
+\end{equation*}
+式(6.42)对一切$t_0$、$t_*$都成立，于是对上限$t_*$求导（原书说成
+“丢掉对$t$的积分”）便得逐点等式
+\begin{align*}
+\int_{t}^{T}dx\,\alpha(t,x)&=\frac{1}{2}\sum_{i=1}^{K}
+\Bigl[\int_{t}^{T}dx\,\sigma_i(t,x)\Bigr]^2
+\tag{6.43}\\
+\text{或等价地}\qquad
+\alpha(t,x)&=\sum_{i=1}^{n}\sigma_i(t,x)\int_{t}^{x}dy\,
+\sigma_i(t,y)
+\tag{6.44}
+\end{align*}
+（式(6.44)由式(6.43)对上限$T$求导而来；求和上限原书印作$n$，应读作
+$K$。）这就是著名的HJM无套利条件：远期利率的漂移完全由其波动率决定，
+风险的市场价格被无套利彻底吸收，模型里不再有可自由选择的漂移参数。
+
+\paragraph{两因子示例}
+取波动率
+\begin{equation*}
+\sigma_1(t,x)=\sigma_1\ ;\quad \sigma_2(t,x)=\sigma_2e^{-\lambda(x-t)}
+\tag{6.45}
+\end{equation*}
+第一因子是平行冲击（各期限同幅），第二因子随期限指数衰减（短端动得
+多、长端几乎不动）。代入式(6.44)（步骤从略：两个积分逐个算出）：
+\begin{equation*}
+\alpha(t,x)=\sigma_1^2(x-t)+\frac{\sigma_2^2}{\lambda}
+e^{-\lambda(x-t)}\bigl(1-e^{-\lambda(x-t)}\bigr)
+\end{equation*}
+漂移完全由$(\sigma_1,\sigma_2,\lambda)$决定——没有一个自由漂移参数
+可供拟合，这就是HJM“波动率进、漂移出”的纪律。
+
+\section{HJM框架下国债期货定价}
+
+本节要解决什么问题：第3.1节讲过远期与期货的区别——远期只有一个现金流
+（到期交割），期货则逐日盯市、连续清算。本节在HJM框架里把这个抽象
+区别换算成具体的价格差。先立两个模型无关的结果作参照，再用路径积分算
+出期货与远期价之差。
+
+\paragraph{模型无关的远期价}
+在$t_0$签约、$t_*$交割到期日$T$（$t_0<t_*<T$）零息国债的远期价格
+$F(t_0,t_*,T)$只有一笔现金流，无套利立即给出（步骤从略）：
+\begin{equation*}
+F(t_0,t_*,T)=\frac{P(t_0,T)}{P(t_0,t_*)}
+=e^{-\int_{t_*}^{T}dx\,f(t_0,x)}
+\end{equation*}
+远期价格只由今天的曲线决定，与国债演化的任何模型无关。
+
+\paragraph{期货价}
+期货价格$\mathcal{F}(t_0,t_*,T)$的清算结构不同：从$t_0$到$t_*$，
+$P(t,T)$的每一次变动都被逐日结算，最后在$t_*$按$P(t_*,T)$交割。若
+国债演化是确定性的，逐日结算与一次结清没有差别；随机情形下两者分歧，
+因为连续清算把“中途的盈亏”提前变成了现金，现金可以再投资，故期货价
+应对终值债券的“裸”期望（不贴现）给出——模型无关的结果：
+\begin{equation*}
+\mathcal{F}(t_0,t_*,T)=E_{[t_0,t_*]}\bigl[P(t_*,T)\bigr]
+\tag{6.46}
+\end{equation*}
+对HJM模型，代入式(6.30)与(6.32)：
+\begin{align*}
+\mathcal{F}(t_0,t_*,T)&=\int DW\,e^{-\int_{t_*}^{T}dx\,f(t_*,x)}
+e^{S[W,t_0,t_*]}
+\tag{6.47}\\
+&=F(t_0,t_*,T)\exp\Omega_{\mathcal{F}}
+\tag{6.48}
+\end{align*}
+注意式(6.47)里没有即期利率贴现因子——期货不贴现，因此远期利率的积分
+只落在矩形区域上（对照鞅条件里的梯形）：
+\begin{equation*}
+\int_{\mathcal{R}}\equiv\int_{t_0}^{t_*}dt\int_{t_*}^{T}dx
+\end{equation*}
+把指数配平方（与式(6.41)的推导平行，只是区域换成$\mathcal{R}$）：
+\begin{equation*}
+\exp\Omega_{\mathcal{F}}=e^{\Omega}e^{-\int_{\mathcal{R}}\alpha(t,x)}
+\tag{6.49}
+\end{equation*}
+\begin{align*}
+e^{\Omega}&=\int DW\,e^{-\sum_{i=1}^{K}\int_{\mathcal{R}}
+\sigma_i(t,x)W_i(t)}e^{S}
+\tag{6.50}\\
+&=\exp\Bigl\{\frac{1}{2}\sum_{i=1}^{K}\int_{t_0}^{t_*}dt
+\Bigl[\int_{t_*}^{T}dx\,\sigma_i(t,x)\Bigr]^2\Bigr\}
+\tag{6.51}
+\end{align*}
+（第二行由生成泛函(6.35)完成$W$路径积分。）再用鞅条件(6.44)化简
+（步骤从略：把$\int_{\mathcal{R}}\alpha$按式(6.44)拆成两块、与
+$\Omega$合并），得期货--远期价差：
+\begin{equation*}
+\Omega_{\mathcal{F}}(t_0,t_*,T)
+=-\sum_{i=1}^{K}\int_{t_0}^{t_*}dt\int_{t}^{t_*}dx\,\sigma_i(t,x)
+\int_{t_*}^{T}dx'\,\sigma_i(t,x')
+\tag{6.52}
+\end{equation*}
+对两因子模型(6.45)显式算出（步骤从略）：
+\begin{equation*}
+\Omega_{\mathcal{F}}(t_0,t_*,T)
+=-\sigma_1^2(T-t_*)(t_*-t_0)^2
+-\frac{\sigma_2^2}{2\lambda^3}
+\bigl(1-e^{-\lambda(T-t_*)}\bigr)
+\bigl(1-e^{-\lambda(t_*-t_0)}\bigr)^2
+\end{equation*}
+
+\paragraph{解读与联系}
+$\Omega_{\mathcal{F}}\leq0$恒成立（被积函数是两段波动率积分的乘
+积）：期货价永远不高于远期价。波动率为零（国债确定性演化）时
+$\Omega_{\mathcal{F}}=0$，期货与远期合一——与“随机性是两者分歧的唯一
+原因”的直觉吻合。经典文献里这个价差叫convexity调整\footnote{通行
+教材（如Hull第\,6\,版以后的期货章）把同一结果表述为“期货价超出远期价
+的convexity调整”；HJM框架的好处是不必另做论证，逐日清算的结构直接
+体现在“期望不贴现”上。}。
+
+\section{HJM框架下国债期权定价}
+
+本节要解决什么问题：给到期日$t_*<T$、执行价$K$的欧式看涨期权
+（标的为零息国债$P(t,T)$）定价。这是第5章“用路径积分算期权”的直接
+翻版，但多了一个本章特有的复杂性：贴现因子本身就是随机的（即期利率
+$r(t)=f(t,t)$随机）。解法是傅里叶表示——用$\delta$函数的动量积分
+把非线性收益函数线性化，再让高斯积分一次完成。
+
+\paragraph{定价公式}
+到期收益由合约给定：
+\begin{equation*}
+C(t_*,t_*,T,K)=\bigl(P(t_*,T)-K\bigr)_+
+\equiv\max\bigl((P(t_*,T)-K),0\bigr)
+\end{equation*}
+$t_0<t_*$时的价格是贴现收益的期望（收益从$t_*$倒传回$t_0$，一路被
+随机即期利率$r(t)=f(t,t)$连续贴现）：
+\begin{equation*}
+C(t_0,t_*,T,K)=E_{[t_0,t_*]}\Bigl[e^{-\int_{t_0}^{t_*}dt\,r(t)}
+\bigl(P(t_*,T)-K\bigr)_+\Bigr]
+\tag{6.53}
+\end{equation*}
+\paragraph{收益函数的傅里叶线性化}
+用$\delta$函数的傅里叶表示（附录式(A.11)）：
+\begin{equation*}
+\delta(z)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}dp\,e^{ipz}
+\tag{6.54}
+\end{equation*}
+以$G\equiv-\int_{t_*}^{T}dx\,f(t_*,x)$为辅助变量（即$P(t_*,T)=e^G$），
+收益函数可改写成（步骤从略：先插入$\int dG\,\delta[G+\int f]$，再用
+式(6.54)展开$\delta$）：
+\begin{align*}
+\bigl(P(t_*,T)-K\bigr)_+
+&=\int_{-\infty}^{+\infty}dG\,\delta\Bigl[G+\int_{t_*}^{T}dx\,
+f(t_*,x)\Bigr]\bigl(e^{G}-K\bigr)_+\\
+&=\int_{-\infty}^{+\infty}dG\,\frac{dp}{2\pi}\,
+e^{ip(G+\int_{t_*}^{T}dx\,f(t_*,x))}\bigl(e^{G}-K\bigr)_+
+\tag{6.55}
+\end{align*}
+把式(6.53)写成“概率分布$\times$收益”的形式：
+\begin{equation*}
+C(t_0,t_*,T,K)=\int_{-\infty}^{+\infty}dG\,\Psi(G,t_*,T)
+\bigl(e^{G}-K\bigr)_+
+\tag{6.56}
+\end{equation*}
+其中$G$--空间的“价格分布”为
+\begin{align*}
+\Psi(G,t_*,T)&=\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+E_{[t_0,t_*]}\Bigl[e^{-\int_{t_0}^{t_*}dt\,f(t,t)}
+e^{ip(G+\int_{t_*}^{T}dx\,f(t_*,x))}\Bigr]
+\tag{6.57}\\
+&=P(t_0,t_*)\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+e^{\Lambda}e^{ip\Lambda_0}
+\tag{6.58}
+\end{align*}
+式(6.58)里贴现因子$E[e^{-\int_{t_0}^{t_*}f(t,t)dt}]=P(t_0,t_*)$已按
+鞅性认出，剩余的指数定义为
+\begin{equation*}
+\Lambda_0=G+\int_{t_*}^{T}dx\,f(t_0,x)+\int_{\mathcal{R}}\alpha(t,x)
+\end{equation*}
+与式(6.41)的推导平行（区域$\Delta_0$来自贴现、$\mathcal{R}$来自带
+$ip$权重的终值债券积分）：
+\begin{equation*}
+e^{\Lambda}=e^{-\int_{\Delta_0}\alpha(t,x)}
+\int DW\,e^{-\int_{\Delta_0}\sigma_i(t,x)W_i(t)
++ip\sum_i^{K}\int_{\mathcal{R}}\sigma_i(t,x)W_i(t)}e^{S}
+\tag{6.59}
+\end{equation*}
+子区域$\Delta_0$与$\mathcal{R}$在式(6.59)中的相互制衡决定了期权的
+价格。\footnote{原书脚注6：7.7节将看到计价物变换（change of
+numeraire）能大幅简化此计算；第9.2节的场论期权计算里只有区域
+$\mathcal{R}$出现，$\Delta_0$不再单独露面。}用生成泛函(6.35)完成$W$
+积分、再用鞅条件(6.43)化简（步骤从略；所用恒等式见脚注），
+\footnote{原书脚注7：推导式(6.60)时用了恒等式
+$\int_{t_0}^{t_*}dt\bigl[\int_{t_*}^{T}dx\,\alpha(t,x)
+-\sum_{i=1}^{K}\int_{t}^{t_*}dx\,\sigma_i(t,x)\int_{t_*}^{T}dy\,
+\sigma_i(t,y)\bigr]=\frac{1}{2}q^2$。}得
+\begin{equation*}
+\Lambda=-\frac{q^2}{2}p^2
+\tag{6.60}
+\end{equation*}
+\begin{align*}
+q^2&=\sum_{i=1}^{K}\int_{t_0}^{t_*}dt\Bigl[\int_{t_*}^{T}dx\,
+\sigma_i(t,x)\Bigr]^2\\
+&=2\int_{\mathcal{R}}\alpha(t,x)
+\tag{6.61}
+\end{align*}
+（第二行等式在原书第9章式(9.9)给出独立推导：期权总方差的一半恰是
+矩形区域上的漂移积分——鞅条件的又一次显灵。）$p$积分现在是纯高斯的：
+\begin{align*}
+\Psi(G,t_*,T)&=P(t_0,t_*)\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+e^{-\frac{q^2}{2}p^2}e^{ip\Lambda_0}\\
+&=P(t_0,t_*)\sqrt{\frac{1}{2\pi q^2}}\,
+\exp-\frac{1}{2q^2}\Bigl(G+\int_{t_*}^{T}dx\,f(t_0,x)
++\frac{q^2}{2}\Bigr)^2
+\tag{6.62}
+\end{align*}
+代入式(6.56)积分$dG$，就得到熟知的结果：国债欧式期权有Black--Scholes
+型公式，总波动率（方差）为$q^2$。对两因子模型(6.45)：
+\begin{equation*}
+q^2=\sigma_1^2(T-t_*)^2(t_*-t_0)
++\frac{\sigma_2^2}{2\lambda^3}
+\bigl(1-e^{-\lambda(T-t_*)}\bigr)^2
+\bigl(1-e^{-2\lambda(t_*-t_0)}\bigr)
+\tag{6.63}
+\end{equation*}
+
+\paragraph{解读与联系}
+推导的骨架与第5章完全同构：$\delta$函数傅里叶展开把指数型收益线性
+化，高斯性把$p$积分收敛成$G$--空间的高斯分布(6.62)。唯一的新角色是
+$q^2$：它不再是一个数$\sigma^2\tau$，而是波动率函数在矩形区域
+$\mathcal{R}$上双重积分出的“累计方差”。所有利率特有的结构（随机贴现、
+两个区域、鞅条件）最终都压缩进$q^2$这一个数——这是高斯模型“一切由
+二阶矩决定”的又一次体现。后续场论章节将保留这套流程，只是$\sigma_i$
+升级为随机场$\mathcal{A}(t,x)$，$q^2$升级为传播子的重积分。
+
+\section{小结}
+
+本章把“有限自由度”的随机利率模型梳理成一条完整的链：朗之万方程
+$\to$前向/倒向福克--普朗克哈密顿量$H_F,H_B\to$（随机量子化）路径
+积分作用量$\to$可解模型。即期利率的鞅演化比第4章的Black--Scholes
+推导简单，因为鞅条件已经内置；前向与倒向演化的不对称体现在两个哈密顿
+量互为厄米共轭、且前向拉格朗日量多一项$\partial a/\partial r$。
+Vasicek模型的路径积分用变量替换精确解出，闭式结果(6.23)是仿射模型的
+原型。远期利率应作为债务市场第一性工具直接建模的六条理由被逐一列举；
+业界标准的HJM模型被改写成路径积分形式，鞅测度与国债期权都能以直截了
+当的路径积分算出。
+
+重推HJM这些熟知结果有两个动机：一是理解利率衍生品的路径积分表述本身，
+二是为量子场论推广备好框架。本书其余各章全部投入远期利率的量子场论；
+事后来看，HJM路径积分中首次登场的每个结构——白噪声测度、生成泛函、
+积分区域分解、$\delta$函数傅里叶技巧——都是后续更复杂推导的简化预演。
+在这个意义上，本章（连同第5章）是第III部分全部内容的操练场。
+
+\section{附录：即期利率的福克--普朗克（Fokker--Planck）哈密顿量}
+
+本附录补出正文6.1节引用的前向/倒向哈密顿量推导。出发点是朗之万方程
+(6.1)与边界条件(6.2)，推导只用白噪声的两条性质（离散化$t=n\epsilon$）：
+\begin{equation*}
+\langle R(t)\rangle=0\ ;\quad \langle R^2(t)\rangle=\frac{1}{\epsilon}
+\end{equation*}
+第二条是关键：白噪声的方差随切片变细而发散，这使泰勒展开中的
+$O(\epsilon^2)$项不再自动可忽略——伊藤微积分的全部特殊性都藏在这里。
+
+\paragraph{前向方程：把条件概率“推”向未来}
+把朗之万方程离散化（简化记号$a\equiv a(r)$等）：
+\begin{align*}
+r(t+\epsilon)&=r(t)+\epsilon[a+\sigma R(t)]\\
+\Rightarrow\ r&=r'+\epsilon[a(r')+\sigma(r')R(t)]
+\tag{6.64}
+\end{align*}
+前向条件概率等于：从$r'$出发按朗之万方程走一步、对白噪声取平均后落在
+$r$处的权重。对$\delta$函数的宗量做泰勒展开（保留到$O(\epsilon^2)$）：
+\begin{align*}
+P(r,t+\epsilon;r_0)&\equiv\int dr'\,\bigl\langle
+\delta\bigl(r-r'-\epsilon\{a(r')+\sigma(r')R(t)\}\bigr)\bigr\rangle
+P(r',t;r_0)\\
+&\simeq\int dr'\,\Bigl\langle\delta(r-r')
++\epsilon\{a(r')+\sigma(r')R(t)\}\frac{\partial}{\partial r'}
+\delta(r-r')\\
+&\qquad+\frac{1}{2}\epsilon^2\{a(r')+\sigma(r')R(t)\}^2
+\frac{\partial^2}{\partial r'^2}\delta(r-r')\Bigr\rangle
+P(r',t;r_0)
+\end{align*}
+$\langle R\rangle=0$杀死线性噪声项；$\langle R^2\rangle=1/\epsilon$
+使$\epsilon^2\sigma^2\times\frac{1}{\epsilon}=\epsilon\sigma^2$级
+存活——对普通函数这一项应为零，这正是伊藤修正的出处（与3.4节的伊藤
+泰勒展开对位）。对$r'$分部积分（把$\delta$上的导数搬到$P$上），取
+$\epsilon\to0$：
+\begin{align*}
+\frac{\partial}{\partial t}P(r,t;r_0)
+&=\Bigl[\frac{1}{2}\frac{\partial^2}{\partial r^2}\sigma^2(r)
+-\frac{\partial}{\partial r}a\Bigr]P(r,t;r_0)
+\tag{6.65}\\
+&\equiv-H_FP(r,t;r_0)
+\tag{6.66}
+\end{align*}
+\begin{align*}
+\Rightarrow\ H_F&=-\frac{1}{2}\frac{\partial^2}{\partial r^2}
+\sigma^2(r)+\frac{\partial}{\partial r}a\\
+&=-\frac{1}{2}\frac{\partial^2}{\partial r^2}\sigma^2(r)
++a(r)\frac{\partial}{\partial r}+\frac{\partial a(r)}{\partial r}
+\tag{6.67}
+\end{align*}
+条件概率就是即期利率的定价核：
+\begin{equation*}
+P_F(r,t;r_0)=\langle r\vert e^{-(t-t_0)H_F}\vert r_0\rangle,\qquad
+r(t_0)=r_0:\ \text{初条件}
+\tag{6.68}
+\end{equation*}
+
+\paragraph{倒向方程：同一支朗之万方程的另一种问法}
+期权定价要把未来定的收益往回传，于是要问：终值$R$（$t=T$）给定时，
+$t$时刻取值$r$的概率。对$r=r(t+\epsilon)$、$r'=r(t)$，由式(6.64)：
+\begin{equation*}
+P_B(R,t;r')=\int dr\,\bigl\langle
+\delta\bigl[r-r'-\epsilon\{a(r')-\sigma(r')R(t)\}\bigr]\bigr\rangle
+P(R,t+\epsilon;r)
+\tag{6.69}
+\end{equation*}
+与(6.64)相比噪声项换了符号（倒传）。要害在于：系数$a(r'),\sigma(r')$
+的宗量是早时刻的$r'$，不能换成$r$——想换的话误差是$O(\epsilon)$的
+一阶量，而白噪声的奇异性使一阶项不可丢弃。这就是前向与倒向福克--普朗克
+哈密顿量不同的根本原因。重复前向情形的推导（步骤从略）：
+\begin{align*}
+\frac{\partial}{\partial t}P_B(R,t;r)&\equiv+H_BP_B(R,t;r)\\
+H_B&=-\frac{1}{2}\sigma^2(r)\frac{\partial^2}{\partial r^2}
+-a(r)\frac{\partial}{\partial r}\\
+&=H_F^{\dagger}
+\tag{6.70}
+\end{align*}
+定义式里演化方程的符号与前向式(6.66)相反：倒向情形的时间变量是$-t$，
+故$P_B$由算符$e^{tH_B}$驱动。
+
+\paragraph{倒向演化的狄拉克记号约定}
+要把$P_B$写成矩阵元，先定约定：右矢（ket）永远代表起始态、左矢
+（bra，对偶矢量）永远代表结束态。倒向演化从终值$\vert R\rangle$出发、
+用$H_B$把时间倒退（时间为$-t$）走到$\langle r\vert$；终值由终条件
+$r(T)=R$表达。合起来：
+\begin{equation*}
+P_B(R,t;r)=\langle r\vert e^{-(T-t)H_B}\vert R\rangle,\qquad
+r(T)=R:\ \text{终条件}
+\tag{6.71}
+\end{equation*}
+注意与式(6.4)的对比：前向是“右矢初值、左矢现值”，倒向是“右矢终值、
+左矢现值”——矩阵元的外形一样，两端的角色与哈密顿量都换了。
+
+\subsection*{前向福克--普朗克拉格朗日量}
+
+由哈密顿量到拉格朗日量走第5章式(5.5)的老路。定义短时矩阵元：
+\begin{equation*}
+\langle x\vert e^{-\epsilon H}\vert x'\rangle\equiv
+\mathcal{N}(\epsilon)e^{\epsilon L(x;x';\epsilon)}
+\tag{6.72}
+\end{equation*}
+对前向哈密顿量$H_F$，插入动量基完备性方程（第4章式(4.34)），记
+$a'\equiv\partial a(r)/\partial r$：
+\begin{align*}
+e^{\epsilon L_F[r,\tilde{r}]}&=\langle r\vert e^{-\epsilon H_F}
+\vert\tilde{r}\rangle\\
+&=\int\frac{dp}{2\pi}\langle r\vert e^{-\epsilon H_F}\vert p\rangle
+\langle p\vert\tilde{r}\rangle\\
+&=\int\frac{dp}{2\pi}e^{-\epsilon\left(\frac{\sigma^2}{2}p^2+iap+a'\right)}
+e^{ip(r-\tilde{r})}\\
+&=\frac{1}{\sqrt{2\pi\epsilon\sigma^2}}\,
+e^{-\frac{\epsilon}{2\sigma^2}\left[(r-\tilde{r}-\epsilon a)^2
+-\epsilon a'\right]}
+\end{align*}
+（第一行到第二行用了$H_F$的动量表示：$\partial/\partial r\to ip$，
+动能项$\sigma^2p^2/2$、漂移项$iap$、散度项$a'$依次读出；第三行是
+$p$的高斯积分。）取$\epsilon\to0$，$(r-\tilde{r})/\epsilon\to
+dr/dt$，得前向福克--普朗克拉格朗日量：
+\begin{equation*}
+L_F=-\frac{1}{2\sigma^2}\Bigl(\frac{dr}{dt}-a(r)\Bigr)^2
+-\frac{\partial a(r)}{\partial r}
+\tag{6.73}
+\end{equation*}
+高斯积分的指数上，“速度减漂移”的平方给出动能项，$+\epsilon a'$碎片
+正是$-\partial a/\partial r$项的来源——6.1.1节式(6.9)的出处至此补
+全。
+
+\section{附录：仿射即期利率模型}
+
+本附录把6.2节的Vasicek结果放进更大的家族。凡国债价格对即期利率的依赖
+是“指数上线性”的模型统称仿射模型（affine models）：
+\begin{equation*}
+P(t,T)=\alpha(t,T)e^{-\beta(t,T)r}\ :\quad\text{仿射模型}
+\end{equation*}
+常见的仿射即期利率模型（漂移--波动率对）：
+\begin{itemize}
+\item Vasicek模型：$\dfrac{dr}{dt}=a(b-r)+\sigma R(t)$
+\item Rendleman--Barter模型：$\dfrac{dr}{dt}=\mu r+\sigma rR(t)$
+\item Ho--Lee模型：$\dfrac{dr}{dt}=\theta(t)+\sigma R(t)$
+\item Cox--Ingersoll--Ross（CIR）模型：
+$\dfrac{dr}{dt}=a(b-r)+\sigma\sqrt{r}\,R(t)$
+\item Hull--White模型：$\dfrac{dr}{dt}=\theta(t)-ar+\sigma R(t)$
+\end{itemize}
+（原书第二项印作Rendelman and Barter，通行文献拼写为Rendleman--Barter。）这些模型在文献中讨论与实证检验都很充分，路径积分都可用
+类似6.2节的技术处理（CIR的$\sqrt{r}$波动率需把积分域限制在$r\geq0$
+并换适当变量）。
+
+多因子仿射模型把驱动源扩大到$N$个白噪声：
+\begin{equation*}
+\frac{dr}{dt}=a(r,t)+\sum_{n=1}^{N}\sigma_n(t)R_n(t)
+\end{equation*}
+看似更强，但有个致命缺点：模型隐含的未来波动率函数可以与现有市场数据
+定出的差别很大，用于给即期利率衍生品定价时不可控——这是“因子多”换
+来的代价，也是HJM“直接从市场输入曲线与波动率”思路的又一论据。
+
+\section{附录：Black--Karasinski即期利率模型}
+
+本附录介绍最重要的非仿射（non-affine）即期利率模型。Black--Karasinski
+模型给即期利率以对数正态（lognormal）分布，考察一般过程：
+\begin{align*}
+&r(t)=r_0e^{\phi(t)}>0\\
+&\frac{d\phi}{dt}=\alpha(\phi,t)+\sigma(\phi,t)R(t)\\
+&\text{Black--Karasinski}:\ \alpha(\phi;t)=\theta(t)-a(t)\phi(t)\ ;\quad
+\sigma(\phi;t)=\sigma(t)
+\tag{6.74}
+\end{align*}
+显著优点：即期利率$r(t)=r_0e^{\phi}$恒正——市场利率确实总为正，这是
+Black--Karasinski（与CIR）模型共同的卖点；Vasicek类模型则允许利率为
+负。给国债定价照6.2节的流程走：广义Black--Karasinski模型的倒向拉格朗
+日量（由式(6.11)换变量$r=r_0e^{\phi}$、$dr/dt=r_0\,d\phi/dt$）：
+\begin{equation*}
+S_B^{bk}=-\frac{1}{2}\int_{t_0}^{T}dt\,\frac{1}{\sigma^2(\phi;t)}
+\Bigl[r_0\frac{d\phi}{dt}-\alpha(\phi)\Bigr]^2
+\tag{6.75}
+\end{equation*}
+零息国债是贴现因子对$\phi$--路径分布的平均：
+\begin{equation*}
+P(t_0,T)=E\Bigl[e^{-r_0\int_{t_0}^{T}dt\,e^{\phi(t)}}
+\,\big|\,\phi(t_0)=0\Bigr]
+\tag{6.76}
+\end{equation*}
+\begin{equation*}
+P(t_0,T)=\frac{1}{Z}\int D\phi\,e^{S_B^{bk}}
+e^{-r_0\int_{t_0}^{T}e^{\phi(t)}dt}
+\tag{6.77}
+\end{equation*}
+\begin{equation*}
+Z=\int D\phi\,e^{S_B^{bk}}\ ;\quad
+\int D\phi\equiv\int_{-\infty}^{+\infty}\prod_{t=t_0}^{T}d\phi(t)
+\tag{6.78}
+\end{equation*}
+边界条件$\phi(t_0)=0$、$d\phi(T)/dt=0$（终端诺伊曼条件，与6.2节的
+处理相同）。分母$Z$消去所有与$r_0$无关的项。
+与Vasicek的本质区别在于：贴现因子里的$e^{\phi(t)}$使积分不再是高斯
+的，闭式没有了，但数值结果唾手可得——
+
+\paragraph{蒙特卡罗模拟}
+从朗之万方程出发、时间导数用欧拉（Euler）近似即可生成随机位形。取最简
+设定$\theta=a=0$（$\phi$是纯随机游走），更新格式为
+\begin{equation*}
+\phi(t+\epsilon)=\phi(t)+Z\sqrt{\epsilon},\qquad Z=N(0,1)
+\end{equation*}
+原书计算十年期零息国债在不同初始利率下的价格：$\sigma=1.0/$年、128个
+时间步、100\,000个位形（债券价格误差可忽略）。结果如下面一图——对数
+债券价格对初始利率的曲线与线性拟合（仿射行为对应严格直线）有小而确实
+的偏离：Black--Karasinski国债价格是非仿射的。
+
+\origfig{6.5}{（Black--Karasinski模型的$\ln$债券价格对初始利率，书页
+140/p158。$\sigma=1.0/$年；实线为蒙特卡罗结果，虚线为线性拟合；
+两条线在低利率端与高利率端张开口——偏离仿射（线性）行为，且利率越低
+偏离越大。）}
+
+\section{附录：Black--Karasinski即期利率哈密顿量}
+
+本附录的目的是教学性的：6.8节从哈密顿量导出了拉格朗日量，这里反过来
+——已知拉格朗日量，如何用量子力学技术反推哈密顿量？选Black--Karasinski
+做练习，是因为它与第10章“由远期利率拉格朗日量导出其哈密顿量”那复杂
+得多的推导结构相似，本附录是后者的热身。
+
+\paragraph{设定}
+由式(6.12)的一般结果，把Black--Karasinski倒向作用量写成剩余时间
+$\tau=T-t$、$\tau_0=T-t_0$的形式（$r(\tau)=r_0e^{\phi(\tau)}$）：
+\begin{equation*}
+S_B^{bk}=-\frac{1}{2}\int_{0}^{\tau_0}d\tau\,\frac{1}{\sigma^2(\tau)}
+\Bigl(r_0\frac{d\phi}{d\tau}+\alpha(r,\tau)\Bigr)^2
+\tag{6.79}
+\end{equation*}
+（漂移项已按倒向规则变号；$\alpha(r,\tau)$按上下文应读作
+$\alpha(\phi,\tau)$。）为更大的一般性，设波动率依赖即期利率的对数：
+$\sigma=\sigma_0e^{\nu\phi}$。路径积分是式(6.78)的推广——测度带
+$e^{-\nu\phi}$权重（它来自$r=r_0e^{\phi}$替换下测度与波动率的
+$\phi$依赖，步骤从略）：
+\begin{align*}
+Z&=\int D\phi\,e^{-\nu\phi}e^{S_B^{bk}}\\
+\int D\phi\,e^{-\nu\phi}&\equiv\prod_{\tau=0}^{\tau_0}
+\int_{-\infty}^{+\infty}d\phi(t)\,e^{-\nu\phi(t)}\\
+&\text{边界条件}\ \phi(\tau_0)=\phi_0\ ;\quad \phi(\tau=0)=\phi_T
+\tag{6.80}
+\end{align*}
+按第5.1节定价核的对应关系，路径积分应等于演化算符矩阵元：
+\begin{equation*}
+Z=\int D\phi\,e^{-\nu\phi}e^{S_B^{bk}}
+=\langle\phi_0\vert e^{-\tau_0H_B^{bk}}\vert\phi_T\rangle
+\tag{6.81}
+\end{equation*}
+要从左边提取$H_B^{bk}$。
+
+\paragraph{推导主线：时间切片＋高斯积分＋算符寄存}
+把剩余时间切成格距$\epsilon$的格子（$\tau=n\epsilon$、
+$N=\tau_0/\epsilon$），路径积分化成$(N-1)$重有限积分；时间导数离散化
+$d\phi/d\tau\to(\phi_{n+1}-\phi_n)/\epsilon$：
+\begin{align*}
+\langle\phi_0\vert e^{-\epsilon NH_B^{bk}}\vert\phi_N\rangle
+&=\prod_{n=1}^{N-1}\int d\phi_n\,e^{-\nu\phi_n}e^{S_B^{bk}}\\
+S_B^{bk}&\to\epsilon\sum_{n=0}^{N-1}L_B^{bk}(n)\\
+L_B^{bk}(n)&=-\frac{1}{2\epsilon\sigma_n^2}
+\bigl(r_0(\phi_{n+1}-\phi_n)+\epsilon\alpha_n\bigr)^2
+\tag{6.82}
+\end{align*}
+与5.1节相同，把完备性方程$\int d\phi\vert\phi\rangle\langle\phi
+\vert=\mathcal{I}$插入$N-1$次，单步矩阵元识别出哈密顿量：
+\begin{align*}
+\langle\phi_{n+1}\vert e^{-\epsilon H_B^{bk}}\vert\phi_n\rangle
+&=e^{-\nu\phi_n}e^{\epsilon L_B^{bk}(n)}\\
+&=e^{-\nu\phi_n}\,e^{-\frac{1}{2\epsilon\sigma_n^2}
+\bigl(r_0(\phi_{n+1}-\phi_n)+\epsilon\alpha_n\bigr)^2}
+\tag{6.83}
+\end{align*}
+这恢复了第5章式(5.5)的形式（归一因子依赖随机变量$\phi$）。区别在方向：
+式(5.5)是已知哈密顿量导拉格朗日量，这里要反着来。
+
+反推能成功靠拉格朗日量的两条通性：一是只含一阶时间导数，离散化后只有
+相邻时刻耦合，才能写成$e^{-\epsilon H}$的矩阵元；二是时间导数以二次
+型出现，可以高斯积分改写。把式(6.83)右边配成$p$的高斯积分：
+\begin{align*}
+\langle\phi_{n+1}\vert e^{-\epsilon H_B^{bk}}\vert\phi_n\rangle
+&=e^{-\nu\phi_n}\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+e^{-\frac{\epsilon}{2}p^2}
+\exp\Bigl\{ip\Bigl(\frac{r_0(\phi_{n+1}-\phi_n)+\epsilon\alpha_n}
+{\sigma_n}\Bigr)\Bigr\}\\
+&=\frac{\sigma_0}{r_0}\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+e^{-\frac{\epsilon\sigma_n^2}{2r_0^2}p^2}
+e^{ip\left(\phi_{n+1}+\phi_n+\epsilon\frac{\alpha_n}{r_0}\right)}
+\tag{6.84}
+\end{align*}
+前因子$e^{-\nu\phi_n}$被积分变量按$\sigma_n/r_0$的重标度消去
+（$\sigma_n=\sigma_0e^{\nu\phi_n}$，雅可比$\sigma_n/r_0$恰提供
+$e^{\nu\phi_n}$）。这里原书的排印有两处可疑：第二行相位里的
+$+\phi_n$按第一行应为$-\phi_n$。\footnote{第一行括号内是
+$r_0(\phi_{n+1}-\phi_n)+\epsilon\alpha_n$除以$\sigma_n$，重标度后
+相位必为$ip(\phi_{n+1}-\phi_n+\epsilon\alpha_n/r_0)$；式(6.86)中
+同样的相位就印作$\phi_{n+1}-\phi_n$。本导读按订正后的读法理解，
+上式照录原书排印。}
+
+剩下的一步是技术核心：从$p$--积分式里“认出”微分算符。$H_B^{bk}
+(\phi,\partial/\partial\phi)$应作用在对偶坐标$\phi_{n+1}$上——原因
+在第4.3节末讲过：波函数$\vert\psi\rangle$属于态空间，哈密顿量作用在
+对偶基矢$\langle x\vert$上给出$\langle x\vert H\vert\psi\rangle
+=H(x,\partial/\partial x)\psi(x)$。于是把矩阵元寄存为：
+\begin{align*}
+\langle\phi_{n+1}\vert e^{-\epsilon H_B^{bk}}\vert\phi_n\rangle
+&=e^{-\epsilon H_{BK}(\phi_{n+1},\partial/\partial\phi_{n+1})}
+\langle\phi_{n+1}\vert\phi_n\rangle\\
+&=e^{-\epsilon H_B^{bk}(\phi_{n+1},\partial/\partial\phi_{n+1})}
+\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,
+e^{ip(\phi_{n+1}-\phi_n)}
+\tag{6.85}
+\end{align*}
+（用了$\langle\phi_{n+1}\vert\phi_n\rangle=\delta(\phi_{n+1}
+-\phi_n)$及其傅里叶表示；$e^{ip(\phi_{n+1}-\phi_n)}$中$e^{ip\phi_{n+1}}
+=e^{-\partial/\partial\phi_{n+1}}e^{ip\phi_{n+1}}$，指数算符下每个
+$p$幂正好生成对应的导数。）忽略整体常数，用这条性质改写式(6.84)：
+\begin{equation*}
+\langle\phi_{n+1}\vert e^{-\epsilon H_B^{bk}}\vert\phi_n\rangle
+=\exp\Bigl\{\frac{\epsilon\sigma^2}{2r_0^2}
+\frac{\partial^2}{\partial\phi_{n+1}^2}
++\frac{\epsilon\alpha_n}{r_0}
+\frac{\partial}{\partial\phi_{n+1}}\Bigr\}
+\int_{-\infty}^{+\infty}\frac{dp}{2\pi}\,e^{ip(\phi_{n+1}-\phi_n)}
+\tag{6.86}
+\end{equation*}
+与式(6.85)对比、记$\phi_{n+1}\equiv\phi$，读出Black--Karasinski
+哈密顿量：
+\begin{equation*}
+H_B^{bk}=-\frac{\sigma^2}{2r_0^2}\frac{\partial^2}{\partial\phi^2}
+-\frac{\alpha}{r_0}\frac{\partial}{\partial\phi}
+\tag{6.87}
+\end{equation*}
+这正是预期的式(6.70)（把$r$换成$\phi$、漂移与波动率都除以$r_0$）。
+哈密顿量相当一般：$\sigma$与$\alpha$都可以是$\phi$的函数，因此能
+顺带处理随机波动率的即期利率模型。\footnote{原书脚注8：按第4章式
+(4.35)的标量积约定$\langle p\vert\phi_n\rangle=\exp(-ip\phi_n)$，
+式(6.85)中指数的符号反映了这一选择。$H_{BK}$必须定义为作用在对偶态矢
+$\langle\phi_{n+1}\vert$上；若写成作用在态矢$\vert\phi_n\rangle$上，
+得到的是$H_{BK}^{\dagger}$——$H_{BK}$非厄米，用错一侧会得出错误
+结果。}
+
+\section{附录：量子力学即期利率模型}
+
+Black--Karasinski是非线性模型，解析处理困难。一个可行的修改是：从
+式(6.75)的作用量$S_{BK}$中丢掉边界项，得到一个量子力学式的模型：
+\begin{align*}
+L_1&=-\frac{1}{2\sigma^2}\Biggl[\Bigl(\frac{d\phi}{dt}\Bigr)^2
++a^2(\phi-\theta)^2\Biggr]\\
+S_1&=\int_{t_0}^{T}L_1dt
+\tag{6.88}
+\end{align*}
+这个修改后的模型与量子力学的简谐振子同构（“质量”$1/\sigma^2$、回复
+力常数$a^2$、平衡点$\theta$），可用来对非仿射的国债价格做近似展开。
+另一个方向是给Vasicek模型（式(6.14)）做非线性量子力学推广，在作用量
+里加一个四次势：
+\begin{equation*}
+S_2=-\frac{1}{2\sigma^2}\int_{t_0}^{T}dt\,
+\Bigl\{\Bigl[\frac{dr}{dt}-a(b-r)\Bigr]^2+\lambda(r-b)^4\Bigr\}
+\end{equation*}
+国债价格仍按式(6.77)计算、以$S_2$为作用量。$S_1$与$S_2$两个即期利率
+作用量都给出非仿射的国债价格，都是即期利率模型的候选。
+
+本章到此，“有限自由度”的随机利率工具箱已经备齐。下一章起，$W_i(t)$
+的位置将被一场量子场$\mathcal{A}(t,x)$取代——远期利率的量子场论。
+
+%TAGS: 6.1,6.2,6.3,6.4,6.5,6.6,6.7,6.8,6.9,6.10,6.11,6.12,6.13,6.14,6.15,6.16,6.17,6.18,6.19,6.20,6.21,6.22,6.23,6.24,6.25,6.26,6.27,6.28,6.29,6.30,6.31,6.32,6.33,6.34,6.35,6.36,6.37,6.38,6.39,6.40,6.41,6.42,6.43,6.44,6.45,6.46,6.47,6.48,6.49,6.50,6.51,6.52,6.53,6.54,6.55,6.56,6.57,6.58,6.59,6.60,6.61,6.62,6.63,6.64,6.65,6.66,6.67,6.68,6.69,6.70,6.71,6.72,6.73,6.74,6.75,6.76,6.77,6.78,6.79,6.80,6.81,6.82,6.83,6.84,6.85,6.86,6.87,6.88（6.1--6.88连续无断档，已对照PNG逐页核验；无编号公式照录的有：Vasicek SDE、$B(t,T)$、$E(W_iW_j)$、$\mathcal{T}=\Delta_0\oplus\mathcal{R}$、远期价$F$、$\int_{\mathcal{R}}$定义、两因子$\alpha$与$\Omega_{\mathcal{F}}$、到期收益、$\Lambda_0$、白噪声均值与方差、仿射定义与五个模型、多因子模型、$\sigma=\sigma_0e^{\nu\phi}$、Euler更新、$S_2$）

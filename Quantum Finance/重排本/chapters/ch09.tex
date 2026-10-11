@@ -1,0 +1,738 @@
+% ch09a Field theory of Treasury Bonds' derivatives 9.1-9.8 (书页217-234 / p235-252)
+% 覆盖说明：原书第9章 9.1--9.8 节为书页217--234（p235--p252）；9.9 节起
+% （有限时间对冲、总结与附录 9.12--9.19，编号公式自 (9.38) 起）由 ch09b 接写。
+% 编号公式核对：本半 tag 为 (9.1)--(9.37)，共37条，连续无断档（已对照 PNG
+% 逐页核验）。
+% 原书已知排印疑点：
+% (1) 9.1 节首句把期货合约写作 \mathcal{F}(t_0,t_*,T_i)，下标 i 为排印残留，
+%     式(9.1)起统一用 T；
+% (2) 传播子参数：式(9.2)--(9.5) 写 D(x,x';t,T_FR)，自式(9.8)起原书省写为
+%     D(x,x';t)，系同一对象（已照录并加脚注）；
+% (3) Theta 公式（书页221）中波动率两次印作带指标的 sigma_i，他处均无指标；
+% (4) 式(9.33)中波动率自变量顺序印作 sigma(x,t)（他处为 sigma(t,x)）；
+% (5) 式(9.19)第一行收益函数积分内印作 f(t,x)，按 (9.18) 应为 f(t_*,x)
+%     （已照录并加脚注）；
+% (6) 原书表9.2与图9.6属 9.8 节内容，但印刷在书页235（p253，9.9节所在页）；
+%     表9.2数据已在本文件 9.8 节逐项照录，ch09b 请勿重复；图9.6--9.10 的
+%     指路由 ch09b 按“后半范围”约定给出。
+% 原书图 9.1--9.5 在本半范围内，按规范以 \paragraph 指路。
+\chapter{国债衍生品的场论与对冲}
+
+本章把第7章建立的远期利率量子场论从“形式框架”推进到“实务工具”：前半
+（9.1--9.4节）定价——国债期货、欧式国债期权、期权敏感度（希腊字母）与利率
+上限期权；后半（9.5--9.8节）对冲——把第2.6节的传统对冲概念推广到场论，给出
+随机 Delta 对冲与方差最小化两套方案，并用第8章校准的传播子做实证。原书章首
+交代的三个要点值得先记住：其一，对高斯场论模型，期货与期权的全部公式在
+形式上与 HJM 模型相似，真正的新内容藏在衍生品的波动率里——远期利率之间的
+非平凡相关通过传播子进入波动率参数，这是全章反复出现的主题；其二，对冲
+组合被定义为“终值方差最小”的组合，HJM 模型作为零刚性（rigidity）极限重新
+出现；其三，出于计算可行性，本章所有推导只对高斯模型进行。
+
+先修内容：第6章的 HJM 框架与国债期货、期权的定义（远期价格、式(6.46)、
+(6.48)、(6.49)、(6.53)），第7章高斯模型的作用量、传播子与鞅（martingale）
+漂移速度，第8章校准出的经验传播子与波动率函数——9.8节的实证全部建立在其上。
+
+\section{国债期货}
+
+本节要解决的问题：给国债期货（futures contract）定价。期货与远期（forward）
+的区别在于逐日盯市，两者价格一般不相等，差一个凸性（convexity）调整；本节
+用场论把这个调整显式算出来。
+
+\paragraph{模型设定与记号}
+记 $\mathcal{F}(t_0,t_*,T)$ 为 $t_0$ 时刻的、$t_*$ 到期、标的为 $T$ 到期
+零息国债（zero coupon bond）的期货价格，$t_0<t_*<T$。原书首句把它写成
+$\mathcal{F}(t_0,t_*,T_i)$，下标 $i$ 是排印残留。\footnote{注意原书用花体
+$\mathcal{F}$ 记期货价格、斜体 $F$ 记远期价格：$F(t_0,t_*,T)=
+\exp\{-\int_{t_*}^{T}dxf(t_0,x)\}$（见9.2节式(9.12)之后），两者只在
+(9.1)中同式出现，字形相近易混。}由式(6.46)、(6.48)、(6.49)，期货价格定义
+为期货存续期 $[t_0,t_*]$ 上标的债券终值的条件期望：
+
+\begin{equation*}
+\mathcal{F}(t_0,t_*,T)\equiv E_{[t_0,t_*]}[P(t_*,T)]
+=F(t_0,t_*,T)e^{\Omega_{\mathcal{F}}};\quad
+e^{\Omega_{\mathcal{F}}}=e^{\Omega}e^{-\int_{\mathcal{R}}\alpha(t,x)}
+\tag{9.1}
+\end{equation*}
+
+其中 $\mathcal{R}$ 是对漂移速度（drift velocity）$\alpha$ 积分的定义域，见
+原书图9.1。$\Omega$ 由高斯积分给出（用式(7.26)计算）：
+
+\begin{align*}
+e^{\Omega}&=\frac{1}{Z}\int DA\,e^{-\int_{\mathcal{R}}dx\sigma(t,x)A(t,x)}
+e^{\int_{\mathcal{P}}\mathcal{L}[A]}\tag{9.2}\\
+&=\exp\biggl\{\frac{1}{2}\int_{t_0}^{t_*}dt\int_{t_*}^{T}dxdx'\,
+\sigma(t,x)D(x,x';t,T_{FR})\sigma(t,x')\biggr\}\tag{9.3}
+\end{align*}
+
+这是高斯理论的标准结果：线性源 $\sigma$ 与场 $A$ 耦合后，
+配分函数的比值等于“源在定义域上以传播子 $D$ 卷积自身”的指数的一半——这里
+源作用的区域 $\mathcal{R}$ 是矩形 $t\in[t_0,t_*]$、$x\in[t_*,
+T]$（被贴现“冻结”的段），所以凸性调整只用到矩形域上的传播子。
+
+\paragraph{原书图 9.1}\quad 定义域 $\mathcal{R}$：$(t,x)$ 平面上以
+$(t_0,t_*)$、$(t_*,t_*)$、$(t_*,T)$、$(t_0,T)$ 为角点的斜线阴影矩形——
+期货与期权定价的涨落都来自这个“今天到行权日 $\times$ 行权日到债券到期日”
+的窗口；图上还标出了 $t_0+T_{FR}$，提示传播子的远期利率参照系。
+
+漂移速度取场论的鞅值（式(7.38)），得式(6.52)的场论推广：
+
+\begin{align*}
+\Omega_{\mathcal{F}}(t_0,t_*,T)&=\Omega-\int_{\mathcal{R}}\alpha(t,x)\\
+&=-\int_{t_0}^{t_*}dt\int_{t}^{t_*}dx\,\sigma(t,x)\int_{t_*}^{T}dx'\,
+D(x,x';t,T_{FR})\sigma(t,x')\tag{9.4}
+\end{align*}
+
+其中计算 $\int_{\mathcal{R}}\alpha$ 用的是原书图7.5的梯形域 $\mathcal{T}$：
+对每个 $t\in[t_0,t_*]$，$x$ 从 $t$ 积到 $t_*$。结构的对照很有启发：式(9.3)
+是矩形域上的传播子积分，式(9.4)是梯形域乘矩形域的错位积分，两者之差恰为
+$\Omega_{\mathcal{F}}$——凸性调整完全由“远期利率在行权日之前的记忆”决定。
+
+\paragraph{关键公式}
+对指数型波动率函数 $\sigma_2e^{-\lambda(x-t)}$，$\Omega_{\mathcal{F}}$
+可精确求出；常数波动率 $\sigma_1$（$T_{FR}\to\infty$）时
+
+\begin{equation*}
+\Omega_{\mathcal{F}}(t_0,t_*,T)=-\frac{\sigma_1^{2}}{4\mu^{2}}
+\bigl(1-e^{-\mu(T-t_*)}\bigr)
+\bigl\{e^{-2\mu(t_*-t_0)}-1+2\mu(t_*-t_0)\bigr\}\tag{9.5}
+\end{equation*}
+
+\paragraph{解读}
+两个因子都非负（$e^{-s}>1-s$ 保证第二括号为正），故 $\Omega_{\mathcal{F}}
+<0$：期货价格不高于远期价格，与利率衍生品凸性调整的经典符号一致。式(9.5)
+中刚性参数 $\mu$ 只出现在公共因子 $\sigma_1^{2}/(4\mu^{2})$ 与两个指数里，
+相关长度 $\mu^{-1}$ 越短，调整越大。
+
+\section{国债期权定价}
+
+本节要解决的问题：欧式国债期权（European bond option）是国债最重要的衍生
+品之一，原书在此给出它价格完整的场论推导——把第3、4章“路径积分算股票
+期权”的机器与第7章的场论结合，落到国债衍生品上。与股票期权的结构差别只有
+一处：贴现因子 $e^{-\int_{t_0}^{t_*}dtr(t)}$ 本身是随机的。
+
+\begin{equation*}
+C(t_0,t_*,T,K)=E_{[t_0,t_*]}\biggl[e^{-\int_{t_0}^{t_*}dtr(t)}
+\bigl(P(t_*,T)-K\bigr)_{+}\biggr]\tag{9.6}
+\end{equation*}
+
+\subsection{欧式国债期权价格的场论推导}
+
+推导分五步，原书将其组织为一条链，核心技巧是第6章式(6.55)的傅里叶表示。
+
+\paragraph{第一步：收益函数的傅里叶表示}
+把终值写成 $P(t_*,T)=\exp\{\int_{t_*}^{T}dxf(t_*,x)\}$，引入一对共轭变量
+$(G,p)$，收益函数可恒等地写成（式(6.55)）
+\begin{align*}
+\bigl(P(t_*,T)-K\bigr)_{+}
+&=\frac{1}{2\pi}\int_{-\infty}^{+\infty}dGdp\,
+e^{ip(G+\int_{t_*}^{T}dxf(t_*,x))}\bigl(e^{G}-K\bigr)_{+}\\
+&=\int_{-\infty}^{+\infty}dG\,\Psi(G,t_*,T)\bigl(e^{G}-K\bigr)_{+}
+\end{align*}
+第二行定义了 $\Psi$：对场平均之后，$G$ 的“有效密度”。整个推导的目标就是
+证明这个密度是高斯的——随机性从收益函数中被抽走，浓缩进 $\Psi$ 的两个
+参数（中心与方差）里。
+
+\paragraph{第二步：换拟测度}
+按第7.7节的讨论，用国债 $P(t_0,t_*)$ 把收益的终值贴现，得到作用量 $S_*$；
+由式(7.48)，期权现价为
+\begin{equation*}
+C(t_0,t_*,T,K)=P(t_0,t_*)E_{*}\bigl[\bigl(P(t_*,T)-K\bigr)_{+}\bigr]\tag{9.7}
+\end{equation*}
+$E_{*}$ 是由 $S_*$ 定义的高斯拟测度：贴现的随机性被吸收进 $S_*$，剩下的
+平均只是对场 $A$ 的高斯积分。
+
+\paragraph{第三步：远期利率的三项分解}
+在定义域 $\mathcal{R}$（原书图9.1）上，
+\begin{equation*}
+\int_{t_*}^{T}dxf(t_*,x)=\int_{\mathcal{R}}\alpha_{*}(t,x)
++\int_{t_*}^{T}dxf(t_0,x)+\int_{\mathcal{R}}\sigma(t,x)A(t,x)
+\end{equation*}
+三项分别是：$S_{*}$ 测度下的漂移、今天的远期利率曲线、零均值的涨落。
+
+\paragraph{第四步：高斯矩给出方差}
+涨落项的特征函数是\footnote{自式(9.8)起，原书把传播子简写为 $D(x,x';t)$，省去了式(9.2)--
+(9.5)中的远期利率参照时间 $T_{FR}$；系同一对象，照录。}
+\begin{align*}
+E_{*}\bigl[e^{ip\int_{\mathcal{R}}\sigma(t,x)A(t,x)}\bigr]
+&=\frac{1}{Z}\int DA\,e^{ip\int_{\mathcal{R}}\sigma(t,x)A(t,x)}e^{S_{*}}
+=e^{-\frac{q^{2}}{2}p^{2}}\\
+\Rightarrow\quad
+q^{2}&=\int_{t_0}^{t_*}dt\int_{t_*}^{T}dxdx'\,
+\sigma(t,x)D(x,x';t)\sigma(t,x')\tag{9.8}
+\end{align*}衍生品波动率
+$q^{2}$ 就是矩形域 $\mathcal{R}$ 上传播子的加权积分——场论的全部新内容
+都压缩在这个量里。
+
+\paragraph{第五步：漂移积分恰为方差之半}
+用式(7.45)的 $\alpha_{*}(t,x)$，
+\begin{equation*}
+\int_{\mathcal{R}}\alpha_{*}(t,x)
+=\int_{t_*}^{T}dx\int_{t_0}^{t_*}dt\,\alpha_{*}(t,x)
+=\int_{t_*}^{T}dx\int_{t_0}^{t_*}dt\,\sigma(t,x)\int_{t_*}^{x}dx'\,
+D(x,x';t)\sigma(t,x')=\frac{q^{2}}{2}\tag{9.9}
+\end{equation*}
+最后一步用了 $D$ 对 $x\leftrightarrow x'$ 的对称性：三角形域
+（$x'<x$）上的积分恰是正方形域积分 $q^{2}$ 的一半。
+
+\paragraph{汇总：$\Psi$ 是高斯密度}
+把式(9.8)、(9.9)代回 $\Psi$ 的定义，
+\begin{equation*}
+\Psi(G,t_*,T)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}dp\,
+e^{ip(G+\frac{q^{2}}{2}+\int_{t_*}^{T}dxf(t_0,x))-\frac{q^{2}}{2}p^{2}}
+\end{equation*}
+对 $p$ 做高斯积分即得
+\begin{equation*}
+\Psi(G,t_*,T)=\frac{1}{\sqrt{2\pi q^{2}}}
+e^{-\frac{1}{2q^{2}}\bigl(G+\int_{t_*}^{T}dxf(t_0,x)+\frac{q^{2}}{2}
+\bigr)^{2}}\tag{9.10}
+\end{equation*}
+$\Psi$ 是中心在 $-\int_{t_*}^{T}dxf(t_0,x)-\frac{q^{2}}{2}$、方差 $q^{2}$
+的高斯密度。注意 $\frac{q^{2}}{2}$ 出现了两次、符号相反：一次来自漂移
+（式(9.9)），一次来自对 $p$ 积分时指数的线性项（式(9.10)括号内的
+$+\frac{q^{2}}{2}$），合起来保证 $e^{G}$ 的期望恰等于远期价格——远期
+价格在 $E_{*}$ 下的鞅性在密度层面已经内置。
+
+对常数波动率的场论模型，$q^{2}$ 有显式表达式（无编号）：
+\begin{equation*}
+q^{2}=\frac{\sigma_1^{2}}{4\mu^{2}}\Bigl[4\mu(t_*-t_0)
+\bigl\{e^{-\mu(T-t_*)}-1+\mu(T-t_*)\bigr\}
++\bigl(1-e^{-2\mu(t_*-t_0)}\bigr)\bigl(1-e^{-\mu(T-t_*)}\bigr)^{2}\Bigr]
+\end{equation*}
+
+\paragraph{关键公式}
+有了密度，期权价就是一次 Black--Scholes 型积分：
+\begin{equation*}
+C(t_0,t_*,T,K)=\int_{-\infty}^{+\infty}dG\,\Psi(G,t_*,T)
+\bigl(e^{G}-K\bigr)_{+}\tag{9.11}
+\end{equation*}
+把式(9.10)与第3章单股票期权的式(3.23)逐项对照（现价换成远期价、
+$\sigma^{2}(t_*-t_0)$ 换成 $q^{2}$），可直接读出最终答案：
+\begin{equation*}
+C(t_0,t_*,T,K)=P(t_0,t_*)\bigl[F(t_0,t_*,T)N(d_{+})-KN(d_{-})\bigr]\tag{9.12}
+\end{equation*}
+其中
+\begin{equation*}
+F\equiv F(t_0,t_*,T)=\exp\biggl\{-\int_{t_*}^{T}dxf(t_0,x)\biggr\};\quad
+d_{\pm}=\frac{1}{q}\biggl[\ln\frac{F}{K}\pm\frac{q^{2}}{2}\biggr]
+\end{equation*}
+$N$ 为累积标准正态分布。式(9.12)与 Black--Scholes 公式同构：标的现价
+换成贴现因子 $P(t_0,t_*)$ 乘远期价 $F$，方差 $\sigma^{2}(t_*-t_0)$ 换成
+$q^{2}$。原书脚注指出：令 $D(x,x';t)\to1$ 即回到 HJM 模型的式(6.61)——
+场论的全部修正都在 $q^{2}$ 的非平凡传播子结构里。
+
+\section{欧式国债期权的希腊字母}
+
+本节要解决的问题：给出对冲参数（希腊字母，'Greeks'）。由于场论只改变了
+波动率 $q$，Delta 与 Gamma 和股票期权同构；真正不同的是 Theta 与
+Vega——$q$ 是整条波动率曲面的泛函，它随时间和波动率场本身变化。
+
+求导的工具是两条恒等式（撇号表示求导）：
+\begin{equation*}
+N'(d_{\pm})=\frac{1}{\sqrt{2\pi}}\exp\biggl\{-\frac{1}{2}d_{\pm}^{2}
+\biggr\};\quad FN'(d_{+})=KN'(d_{-})\tag{9.13}
+\end{equation*}
+第二条来自 $d_{+}-d_{-}=q$。
+
+\paragraph{Delta}
+债券期权的“标的”取远期价格 $F$：
+\begin{equation*}
+\Delta\equiv\frac{\partial C}{\partial F}=P(t_0,t_*)N(d_{+})
+\end{equation*}
+
+\paragraph{Gamma}
+\begin{equation*}
+\Gamma\equiv\frac{\partial^{2}C}{\partial F^{2}}
+=\frac{1}{qF}N'(d_{+})
+\end{equation*}
+
+\paragraph{Theta}
+对现在时刻 $t_0$ 的敏感度。$t_0$ 通过两条渠道进入价格：贴现因子
+$P(t_0,t_*)$ 与波动率 $q$：\footnote{原书这两处波动率印作带指标 $i$ 的 $\sigma_i$（他处均无指标），
+已照录；可读作任一选定的波动率分量。}
+\begin{align*}
+\Theta&\equiv\frac{\partial C}{\partial t_0}
+=f(t_0,t_0)C+P(t_0,t_*)FN'(d_{+})\frac{\partial q}{\partial t_0}\\
+\frac{\partial q}{\partial t_0}
+&=-\frac{1}{2q}\int_{t_*}^{T}dxdx'\,
+\sigma_i(t_0,x)D(x,x';t_0)\sigma_i(t_0,x')\\
+\Theta&=r(t_0)C-\frac{1}{2q}FN'(d_{+})\int_{t_*}^{T}dxdx'\,
+\sigma_i(t_0,x)D(x,x';t_0)\sigma_i(t_0,x')
+\end{align*}末行用了 $r(t_0)=f(t_0,t_0)$。符号
+解读：时间流逝使矩形域的时间边 $[t_0,t_*]$ 变短，$q$ 下降，故 Theta 的
+第二项恒为负；第一项是贴现因子随时间“长出利息”的正贡献。
+
+\paragraph{Vega}
+场论的新特征在 Vega：$t_0$ 时刻有无限多个波动率 $\sigma(t_0,x)$（每个未来
+时刻 $x$ 一个），各自可以独立变动，所以 Vega 从一个数变成一个函数——这
+需要泛函导数（functional derivative，见原书附录式(A.15)）：
+\begin{equation*}
+\mathcal{V}(t_0,x)\equiv\frac{\delta C}{\delta\sigma(t_0,x)}
+=\frac{\delta q}{\delta\sigma(t_0,x)}\frac{\partial C}{\partial q}
+=P(t_0,t_*)\frac{\delta q}{\delta\sigma(t_0,x)}FN'(d_{+})\tag{9.14}
+\end{equation*}
+泛函导数的基本关系是 $\delta\sigma(t',x')/\delta\sigma(t,x)
+=\delta(t-t')\delta(x-x')$。于是由式(9.8)，
+\begin{align*}
+\frac{\delta q}{\delta\sigma(t_0,x_0)}
+&=\frac{2}{q}\int_{t_0}^{t_*}dt\int_{t_*}^{T}dxdx'\,
+D(x,x';t)\sigma(t,x')\delta(t-t_0)\delta(x-x_0)\\
+&=\frac{1}{q}\int_{t_*}^{T}dx\,D(x,x_0;t_0)\sigma(t_0,x)
+\end{align*}
+其中用到端点折半约定 $\int_{t_0}^{t_*}dtf(t)\delta(t-t_0)=\frac{1}{2}f(t_0)$。
+实践上只需对有限个波动率对冲：把未来时间 $x$ 离散为间距 $\epsilon$（取一个
+月或三个月）的点 $x=n\epsilon$，对有限族 $\sigma_n$ 计算 Vega。
+
+价格还依赖拉格朗日量的参数：刚性参数 $\mu$ 以及修正传播子引入的
+$a,\beta,\lambda$ 等。把它们统一记为 $\mu_i$（$i$ 取有限个整数）。这些
+参数都只通过 $q$ 进入价格，故有与式(9.14)平行的一族参数 Vega：
+\begin{equation*}
+\mathcal{V}_i(t_0)\equiv\frac{\partial C}{\partial\mu_i}
+=\frac{\partial q}{\partial\mu_i}\frac{\partial C}{\partial q}
+=P(t_0,t_*)\frac{\partial q}{\partial\mu_i}FN'(d_{+})\tag{9.15}
+\end{equation*}
+其中
+\begin{equation*}
+\frac{\partial q}{\partial\mu_i}=\frac{1}{q}\int_{t_0}^{t_*}dt
+\int_{t_*}^{T}dxdx'\,\sigma(t,x)
+\frac{\partial D(x,x';t;\mu_1,\mu_2,\dots)}{\partial\mu_i}\sigma(t,x')
+\end{equation*}
+
+\paragraph{常数波动率场论模型}
+最简单的情形取 $\sigma(x,t_0)=\sigma_0$ 为常数。对刚性传播子，Vega 依赖
+三个参数——$\sigma_0$、刚性 $\mu$、刚度（stiffness）$\lambda$：
+\begin{equation*}
+\mathcal{V}_{\sigma}(t_0)=\frac{\partial C}{\partial\sigma_0};\quad
+\mathcal{V}_{\mu}(t_0)=\frac{\partial C}{\partial\mu};\quad
+\mathcal{V}_{\lambda}(t_0)=\frac{\partial C}{\partial\lambda}
+\end{equation*}
+这三个敏感度是9.8节考察“残余方差脊导致 Vega 不稳定”的对象。
+
+\section{利率上限期权定价}
+
+本节要解决的问题：给利率上限期权（interest rate cap）定价。上限是借款人
+为对冲利率上行风险购买的保险：保证在一段固定时期内借款利率不超过上限利率
+（cap rate）。定价分两步走——先用一个纯代数恒等式把上限收益改写成国债
+看跌期权的收益，然后整套搬用9.2节的场论机器。
+
+利率上限以 Libor（伦敦银行间同业拆借利率，见原书8.1节）结算。远期利率与
+Libor 的关系（式(8.3)，$\tau=90$ 天）为
+\begin{equation*}
+L(t,t_*)=\frac{e^{\int_{t_*}^{t_*+\tau}dxf(t,x)}-1}{\tau}\tag{9.16}
+\end{equation*}
+上限的持有者有权在从 $t_*$ 到 $t_*+\tau$ 的固定时期内把（单利，simple
+interest rate）借款利率锁定为 $K$，条件是届时 Libor
+$L_{*}\equiv L(t_*,t_*)$ 高于 $K$。利率上限类似国债看跌期权（下文即证），
+利率下限期权（floor）则类似国债看涨期权；下限的价格可由上限的价格经
+看跌--看涨平价（put--call parity）得到 [51]。期限超过 $\tau$ 的上限由一串
+期限 $\tau$ 的子上限（caplet）相加而成：$\mathrm{Cap}(t_0,t_n,K_n)$，
+$t_n=t_0+n\tau$，$n=1,2,\dots,N$，上限利率为 $K_n$。
+
+\paragraph{收益函数}
+设本金（principal）为 $V$。上限在 $t_*$ 决定行权，付款在 $t_*+\tau$
+后付（in arrears）进行：
+\begin{equation*}
+g(t_*+\tau)=\tau V(L_{*}-K)_{+}\tag{9.17}
+\end{equation*}
+关键一步：$L_{*}$ 是 $t_*$ 时刻定死、期限 $\tau$ 的单利，故把付款按 $L_{*}$
+本身贴回一个 $\tau$，得 $t_*$ 时刻的收益 [51,52]：
+\begin{align*}
+g(t_*)&=\frac{\tau V}{1+\tau L_{*}}(L_{*}-K)_{+}
+=V\biggl(1-\frac{1+\tau K}{1+\tau L_{*}}\biggr)_{+}\\
+&=\tilde{V}\biggl(X-e^{-\int_{t_*}^{t_*+\tau}dxf(t_*,x)}\biggr)_{+}
+\tag{9.18}\end{align*}
+其中 $\tilde{V}=V(1+\tau K)$，$X\equiv\frac{1}{1+\tau K}$。由于
+$\frac{1}{1+\tau L_{*}}=e^{-\int_{t_*}^{t_*+\tau}dxf(t_*,x)}
+=P(t_*,t_*+\tau)$，式(9.18)断言：\textbf{一张利率上限恰是“标的价格
+$P(t_*,t_*+\tau)$、执行价格（strike price）$X$、名义 $\tilde{V}$ 的欧式
+国债看跌期权”} [51]——利率期权由此被完全翻译成债券期权。
+
+\paragraph{关键公式}
+与式(9.6)同法，上限在 $t_0<t_*$ 的价格是贴现收益的平均值：\footnote{式(9.19)第一行收益函数积分内原书印作 $f(t,x)$；按式(9.18)应为
+$f(t_*,x)$，照录。}
+\begin{align*}
+\mathrm{Cap}(t_0,t_*,X)
+&=\tilde{V}E_{[t_0,t_*]}\biggl[e^{-\int_{t_0}^{t_*}dtr(t)}
+\biggl(X-e^{-\int_{t_*}^{t_*+\tau}dxf(t,x)}\biggr)_{+}\biggr]\\
+&=\tilde{V}P(t_0,t_*)\int_{-\infty}^{+\infty}dG\,
+\Psi_{\mathrm{cap}}(G,t_*)\bigl(X-e^{G}\bigr)_{+}
+\tag{9.19}\end{align*}$\Psi_{\mathrm{cap}}$ 与式(9.10)同构：
+\begin{equation*}
+\Psi_{\mathrm{cap}}(G,t_*)=\frac{1}{\sqrt{2\pi q^{2}_{cap}(t_*-t_0)}}
+e^{-\frac{1}{2q^{2}_{cap}(t_*-t_0)}\bigl(G+\int_{t_*}^{t_*+\tau}
+dxf(t_0,x)+\frac{q^{2}_{cap}(t_*-t_0)}{2}\bigr)^{2}}
+\end{equation*}
+而 $q^{2}_{cap}$ 与式(9.8)平行（积分域取 $T=t_*+\tau$ 后的
+$\mathcal{R}$，见原书图9.1）：\footnote{原书脚注：$q_{cap}$ 按市场惯例定义——多除了一个剩余时间
+$t_*-t_0$（开方后即“年化”波动率），以便与常规报价对接 [51]。}
+\begin{equation*}
+q^{2}_{cap}=\frac{1}{t_*-t_0}\int_{t_0}^{t_*}dt
+\int_{t_*}^{t_*+\tau}dxdx'\,\sigma(t,x)D(x,x';t)\sigma(t,x')\tag{9.20}
+\end{equation*}与
+式(9.12)平行的闭式结果为
+\begin{equation*}
+\mathrm{Cap}(t_0,t_*,X)=\tilde{V}P(t_0,t_*)\bigl[XN(-d_{-})
+-F_{\mathrm{cap}}N(-d_{+})\bigr]\tag{9.21}
+\end{equation*}
+其中
+\begin{equation*}
+F_{\mathrm{cap}}=\exp\biggl\{-\int_{t_*}^{t_*+\tau}dxf(t_0,x)\biggr\};\quad
+d_{\pm}=\frac{1}{q_{\mathrm{cap}}\sqrt{t_*-t_0}}
+\biggl[\ln\frac{F_{\mathrm{cap}}}{X}\pm
+\frac{q^{2}_{\mathrm{cap}}(t_*-t_0)}{2}\biggr]
+\end{equation*}
+平价（at the money）即 $X=F_{\mathrm{cap}}$，此时
+$d_{\pm}=\pm q_{\mathrm{cap}}\sqrt{t_*-t_0}/2$，于是
+\begin{align*}
+\mathrm{Cap}(t_0,t_*)\big|_{\text{At the money}}
+&=\tilde{V}P(t_0,t_*)\bigl[N(-d_{-})-N(-d_{+})\bigr]\\
+&=\tilde{V}P(t_0,t_*)\bigl[N(d_{+})-N(d_{-})\bigr]\\
+&=\tilde{V}P(t_0,t_*)\biggl[N\biggl(\frac{1}{2}q_{\mathrm{cap}}
+\sqrt{t_*-t_0}\biggr)-N\biggl(-\frac{1}{2}q_{\mathrm{cap}}
+\sqrt{t_*-t_0}\biggr)\biggr]\tag{9.22}
+\end{align*}
+
+\subsection{利率上限的 Black 公式}
+
+市场给上限报价并不用无套利模型，而用 Black 公式。Black 的模型假设即期利率
+是（对数正态，lognormal）随机变量 [51,52]。与式(9.18)平行的收益函数为
+\begin{equation*}
+g_{B}(t_*)=\frac{\tau V}{1+\tau f_{*}}\bigl(R(t_*)-R_{X}\bigr)_{+};\quad
+f_{*}=\int_{t_*}^{t_*+\tau}dxf(t_*,x)\tag{9.23}
+\end{equation*}
+其中 $R(t_*)$ 是 $t_*$ 时刻的即期利率（spot interest rate），$R_X$ 是利率
+上的执行价。Black 公式给出的上限价值为 [52]
+\begin{equation*}
+\mathrm{Cap}_{B}(t_0,t_*,R_{X})=\frac{V\tau}{1+\tau f_0}
+P(t_0,t_*)\bigl[f_0N(d^{B}_{+})-R_{X}N(d^{B}_{-})\bigr]\tag{9.24}
+\end{equation*}
+其中
+\begin{equation*}
+f_0=\int_{t_0}^{t_0+\tau}dxf(t_0,x);\quad
+d^{B}_{\pm}=\frac{1}{\sigma_{B}\sqrt{t_*-t_0}}
+\biggl[\ln\frac{f_0}{R_{X}}\pm\frac{\sigma^{2}_{B}(t_*-t_0)}{2}\biggr]
+\end{equation*}
+无套利模型的价格（式(9.22)）与 Black 公式一般并不相等；但在平价处，Black
+公式给出
+\begin{equation*}
+\mathrm{Cap}_{B}(t_0,t_*)\big|_{\mathrm{ATM}}
+=\frac{V\tau f_0}{1+\tau f_0}P(t_0,t_*)\biggl[
+N\biggl(\frac{1}{2}\sigma_{B}\sqrt{t_*-t_0}\biggr)
+-N\biggl(-\frac{1}{2}\sigma_{B}\sqrt{t_*-t_0}\biggr)\biggr]
+\end{equation*}
+与式(9.22)逐项对照即得本章最重要的“接口”公式：
+\begin{equation*}
+q_{\mathrm{cap}}=\sigma_{B}\tag{9.25}
+\end{equation*}
+\paragraph{解读}
+平价处两个模型的公式形式完全相同，Black 波动率与场论波动率是同一个数。
+由于市场上限价以 Black 公式的隐含波动率报价，式(9.25)使场论模型算出的
+$q_{\mathrm{cap}}$ 可以与市场隐含波动率直接比对——这是把第8章“以欧洲
+美元期货校准传播子”推广到上限/下限市场的桥梁，也是原书强调“式(9.25)是
+一切上限数据分析的核心”的原因。
+
+\section{国债的场论对冲}
+
+本节及随后两节把对冲（hedging，见原书2.6节）推广到场论情形。本节没有
+公式，只有概念铺垫，但它是9.6、9.7两节的定调之笔，值得逐条记住。
+
+\paragraph{本节的论证主线}
+定价若不配上对冲策略就没有意义。对债券而言，风险来自利率变化与违约两类；
+本章一律假设债券无违约（default free），唯一的风险源就是利率的随机变化。
+原书对“风险”给出一个可操作的定义：一件工具在时间区间 $[t_0,t_*]$ 上演化，
+其风险定义为\textbf{终值在 $t_*$ 的方差}。这个定义同时覆盖瞬时对冲与有限
+时间对冲；对冲就是构造“被对冲工具+对冲工具”的组合并使其终值方差最小，
+完美对冲即零方差组合。
+
+\paragraph{对有限因子模型的批评}
+HJM 模型中远期利率完全相关：由此可以推出“用六个月国库券完美对冲三十年
+国债”这样的结论——市场显然不支持。$K$ 因子 HJM 模型里，用任意 $K$ 个
+独立对冲工具即可实现零方差；而“无限因子”HJM 由于技术困难，相关文献很少
+[14]。场论模型正面回应这一理论缺陷：每个期限的远期利率各自独立涨落
+（相关由传播子给出、非平凡也非完全），原则上可以对冲任意多个远期利率的
+涨落，并且给出可计算的对冲参数，还提供了一套“该用几只债、用哪些期限”
+的唯一确定方法。
+
+\paragraph{与 HJM 的本质差别}
+单因子 HJM 模型在任一时刻 $t$ 只有一个随机变量驱动整条远期利率曲线，因此
+一只国债可以被精确对冲 [52]；场论中每个时刻 $t$ 有无限多自由度驱动收益率
+曲线，精确对冲原则上不可能，最好的结果是对冲有限个远期利率
+$f(t,x_1),f(t,x_2),\dots,f(t,x_N)$ 的涨落。“做不到精确、但能算出最优”
+是理解后续两节的钥匙。
+
+\section{国债的随机 Delta 对冲}
+
+本节要解决的问题：对冲零息国债 $P(t,T)$ 对即期利率 $r(t)$ 涨落的敏感。最
+简单的方案是用另一只期限 $T_1\neq T$ 的债券构造组合：
+\begin{equation*}
+\Pi(t)=P(t,T)+n_1(t)P(t,T_1)\tag{9.26}
+\end{equation*}
+$n_1$ 是对冲参数；债券价值随时间变化，组合需逐瞬时再平衡。时间变 $\delta t$、
+即期利率变 $\delta r$ 时，组合价值的变化为（无编号）
+\begin{equation*}
+\delta\Pi(t)=\frac{\partial\Pi(t)}{\partial t}\delta t
++\frac{\partial\Pi(t)}{\partial r}\delta r
++\frac{1}{2}\frac{\partial^{2}\Pi(t)}{\partial r^{2}}(\delta r)^{2}
++\dots
+\end{equation*}
+通常的 Delta 对冲（delta hedging）要求组合对 $r$ 的小变化不敏感，即令
+$\delta r$ 项系数为零：
+\begin{equation*}
+\frac{\partial}{\partial r}\Pi(t)=0\tag{9.27}
+\end{equation*}
+由式(9.26)即得
+\begin{equation*}
+n_1=-\frac{\partial P(t,T)}{\partial r}\bigg/\frac{\partial P(t,T_1)}
+{\partial r}\tag{9.28}
+\end{equation*}
+
+\paragraph{为什么场论不能这样做}
+HJM 模型里每个时刻只有一个随机变量驱动远期利率，债券可以直接写成
+$r(t)$ 的函数（相关问题见原书附录9.13、9.14）；Jarrow 与 Turnbull [52]
+进一步设指数型波动率 $\sigma(x,t)=\sigma_2\exp-\beta(x-t)$，便可解出
+式(9.28)。场论中每个时刻 $t$ 有无限多自由度驱动远期利率，式(9.27)永远
+无法满足。原书的退法很物理：\textbf{只要求平均意义上 Delta 中性}——把
+组合对固定的 $r$ 取条件期望，再对 $r$ 求导置零。这个方案叫随机 Delta
+对冲（stochastic delta hedging）。先定义国债的条件期望（其路径积分表达式
+在原书附录9.12的式(9.48)）：
+\begin{equation*}
+B(r;t,T)=E\bigl[P(t,T)\bigl|r\bigr]\tag{9.29}
+\end{equation*}
+式(9.26)取条件期望：
+\begin{equation*}
+E\bigl[\Pi(t)|r(t)\bigr]=B(r;t,T)+n_1(t)B(r;t,T_1)\tag{9.30}
+\end{equation*}
+把式(9.27)推广为
+\begin{equation*}
+\frac{\partial}{\partial r}E\bigl[\Pi(t)|r(t)\bigr]=0\tag{9.31}
+\end{equation*}
+于是
+\begin{equation*}
+n_1=-\frac{\partial B(r;t,T)}{\partial r}\bigg/
+\frac{\partial B(r;t,T_1)}{\partial r}\tag{9.32}
+\end{equation*}
+注意这里的“中性”只对平均成立：组合价值的变化只是\textbf{平均意义上}对
+$r$ 的涨落不敏感。原书附录9.13（式(9.57)）给出 $n_1$ 的显式结果：\footnote{原书此式波动率写作 $\sigma(x,t)$，自变量顺序与他处的
+$\sigma(t,x)$ 相反，照录。}
+\begin{equation*}
+n_1=-\biggl[\frac{\int_{t}^{T}dxD(t,x;t,T_{FR})\sigma(x,t)}
+{\int_{t}^{T_1}dxD(t,x;t,T_{FR})\sigma(x,t)}\biggr]
+\frac{B(r;t,T)}{B(r;t,T_1)}\tag{9.33}
+\end{equation*}当 $T_1=T$ 时 $n_1=-1$：卖空自己当然是零涨落
+的平凡解，故总设 $T_1\neq T$。
+
+\paragraph{推广}
+若还要对冲 Gamma $=\partial^{2}\Pi(t)/\partial r^{2}$ 的涨落，用两只对冲
+债券（无编号）：
+\begin{equation*}
+E\bigl[\Pi(t)|r(t)\bigr]=B(r;t,T)+n_1(t)B(r;t,T_1)+n_2(t)B(r;t,T_2)
+\end{equation*}
+对 Delta 与 Gamma 两类涨落同时置零。有限时间版 Delta 对冲则对冲未来时刻
+$t_*>t$ 的 $r(t_*)$，需要计算 $B(r;t_*,T)$（附录9.13同样给出）。一般地，
+若要对冲 $N$ 个远期利率 $f(t_*,x_i)$ 的涨落，定义（其表达式为原书附录
+9.12的式(9.49)，无编号）
+\begin{equation*}
+B(f_1,f_2,\dots,f_N;t_*,T)
+=E\bigl[P(t_*,T)\bigl|f_1,f_2,\dots,f_N\bigr]
+\end{equation*}
+取组合（无编号）
+\begin{equation*}
+\Pi(t)=P(t,T)+\sum_{i=1}^{N}n_iP(t,T_i)
+\end{equation*}
+随机 Delta 对冲条件为 $N$ 个联立方程（无编号）
+\begin{align*}
+&\frac{\partial}{\partial f_j}E\bigl[\Pi(t_*)|f_1,\dots,f_N\bigr]=0;\quad
+j=1,2,\dots,N\\
+\Rightarrow\;
+&\frac{\partial B(f_1,f_2,\dots,f_N;t_*,T)}{\partial f_j}
++\sum_{i=1}^{N}n_i\frac{\partial B(f_1,f_2,\dots,f_N;t_*,T_i)}
+{\partial f_j}=0
+\end{align*}
+解出 $N$ 个对冲参数 $n_i$；增大 $N$ 可进一步压低组合波动率。但原书直言：
+$N$ 很大时该方案趋于复杂，闭式解难求——这正是9.7节换思路的动机。
+
+\section{国债的随机对冲：方差最小化}
+
+本节要解决的问题：随机 Delta 对冲的根本短处是\textbf{对冲效果不可度量}——
+把对冲做到了“平均中性”，但组合残余波动的方差是多大、还能不能再压低，方案
+本身不回答。度量取组合价值瞬时变化的方差 $\mathrm{Var}[d\Pi(t)/dt]$：组合
+在 $t$ 时刻的取值是确定的（市场观测值），随机的只是瞬时变化。
+
+\paragraph{Black--Scholes 的对照}
+第3章里组合 $\Pi_{BS}=C-(\partial C/\partial S)S$ 使 $d\Pi_{BS}/dt$
+成为确定量，即
+\begin{equation*}
+\mathrm{Var}\biggl[\frac{d\Pi_{BS}}{dt}\biggr]=0\tag{9.34}
+\end{equation*}
+场论情形自由度无限多，方差不可能置零，于是退而求其次：\textbf{最小化}
+它。随机对冲（stochastic hedging）由此定义为：要求对冲组合瞬时变化值的
+方差最小——这一条件将唯一确定全部对冲权重。讨论基于 [12] 的结果。
+
+对冲组合（权重记作 $\Delta_i$，与9.6节的 $n_i$ 相区别）：
+\begin{equation*}
+\Pi(t)=P(t,T)+\sum_{i=1}^{N}\Delta_iP(t,T_i)\tag{9.35}
+\end{equation*}
+$P(t,T)$ 与 $P(t,T_i)$ 都是 $t$ 时刻的市场观测值，不随机。实际操作中更
+方便用（更流动的）国债期货对冲：
+\begin{align*}
+\Pi(t)&=P+\sum_{i=1}^{N}\Delta_i\mathcal{F}_i\\
+\mathcal{F}_i&\equiv\mathcal{F}(t,t_F,T_i)
+=e^{-\int_{t_F}^{T_i}dxf(t,x)}e^{\Omega_{\mathcal{F}}}
+\tag{9.36}\end{align*}
+其中 $\mathcal{F}_i$ 为市场观测价格，$\Omega_{\mathcal{F}}$ 即式(9.1)
+的凸性调整。对冲策略是（无编号）\footnote{原书脚注提醒：在随机利率模型中，高斯模型并不能给对冲权重提供
+唯一解 [18]。}
+\begin{equation*}
+\mathrm{Var}\biggl[\frac{d\Pi(t)}{dt}\biggr]:\ \text{minimize};\qquad
+\frac{\partial}{\partial\Delta_i}\mathrm{Var}\biggl[
+\frac{d\Pi(t)}{dt}\biggr]=0\ \Rightarrow\ \text{确定全部 }\Delta_i
+\end{equation*}
+\paragraph{从瞬时方差到终值方差}
+取 $\epsilon\to0$，因 $\Pi(t)$ 初始值确定（无编号）：
+\begin{equation*}
+\mathrm{Var}\biggl[\frac{d\Pi(t)}{dt}\biggr]\simeq
+\frac{1}{\epsilon^{2}}\mathrm{Var}[\Pi(t+\epsilon)-\Pi(t)]
+=\frac{1}{\epsilon^{2}}\mathrm{Var}[\Pi(t+\epsilon)]
+\end{equation*}
+所以瞬时随机对冲等价于最小化组合\textbf{终值的方差}；这个等价对有限的
+$\epsilon$ 同样成立，正是有限时间对冲的基础。原书归纳为（无编号）：
+瞬时对冲最小化 $\mathrm{Var}[\Pi(t+\epsilon)]$，有限时间对冲最小化
+$\mathrm{Var}[\Pi(t_*)]$（$t_*\gg t$）。方差的最小值称为残余方差
+（residual variance）：
+\begin{equation*}
+V=\text{min Var}\biggl[\frac{d\Pi(t)}{dt}\biggr]\ \text{（瞬时对冲）};\qquad
+V_{*}=\text{min Var}[\Pi(t_{*})]\ \text{（有限时间对冲）}
+\end{equation*}
+对冲参数与方差的详细计算在原书附录9.15、9.16完成（见其式(9.72)、(9.70)），
+结果汇总于原书表9.1：一切通过两个量表达——\textbf{对冲矩阵}（hedging
+matrix）$M_{ij}$，即各对冲工具（债券或期货）彼此的相关；\textbf{对冲向量}
+（hedging vector）$L_i$，即被对冲债券与各对冲工具的相关。
+
+\paragraph{原书表 9.1}\quad 被对冲零息国债 $P(t,T)\equiv P$，对冲工具为
+债券 $P(t,T_i)\equiv P_i$ 或期货 $\mathcal{F}(t,t_F,T_i)\equiv
+\mathcal{F}_i$（$t_F$ 到期）；记 $\theta=x-t$、$\theta'=x'-t$（波动率只
+依赖 $\theta$，故写作 $\sigma(\theta)$）。逐行照录如下。
+
+无对冲（裸债券）：
+\begin{equation*}
+V_0=P^{2}\int_{0}^{T-t}d\theta\int_{0}^{T-t}d\theta'\,
+\sigma(\theta)\sigma(\theta')D(\theta,\theta');\qquad
+\Delta_i=0
+\end{equation*}
+用 $N$ 只债券对冲（$P+\sum_{i=1}^{N}\Delta_iP_i$）：
+\begin{align*}
+&V=V_0-L^{T}M^{-1}L;\qquad
+\Delta_i=-\sum_{j=1}^{N}L_jM^{-1}_{ji}\\
+&L_i=PP_i\int_{0}^{T-t}d\theta\int_{0}^{T_i-t}d\theta'\,
+\sigma(\theta)D(\theta,\theta')\sigma(\theta')\\
+&M_{ij}=P_iP_j\int_{0}^{T_i-t}d\theta\int_{0}^{T_j-t}d\theta'\,
+\sigma(\theta)D(\theta,\theta')\sigma(\theta')
+\end{align*}
+用 $N$ 张期货对冲（$P+\sum_{i=1}^{N}\Delta_i\mathcal{F}_i$；注意积分下限
+从 $t_F-t$ 起算——期货只暴露 $[t_F,T_i]$ 段）：
+\begin{align*}
+&V=V_0-\tilde{L}^{T}\tilde{M}^{-1}\tilde{L};\qquad
+\Delta_i=-\sum_{j=1}^{N}\tilde{L}_j\tilde{M}^{-1}_{ji}\\
+&\tilde{L}_i=P\mathcal{F}_i\int_{t_F-t}^{T_i-t}d\theta\int_{0}^{T-t}
+d\theta'\,\sigma(\theta)D(\theta,\theta')\sigma(\theta')\\
+&\tilde{M}_{ij}=\mathcal{F}_i\mathcal{F}_j\int_{t_F-t}^{T_i-t}d\theta
+\int_{t_F-t}^{T_j-t}d\theta'\,\sigma(\theta)D(\theta,\theta')\sigma(\theta')
+\end{align*}
+（表中 $D(\theta,\theta')$ 是 $D(x,x';t,T_{FR})$ 在 $\theta=x-t$ 记法下
+的简写。）
+
+$N=1$ 时，由附录式(9.72)退化出单工具对冲权重的显式公式：
+\begin{equation*}
+\Delta_1=-\frac{L_1}{M_{11}}
+=-\biggl[\frac{\int_{t}^{T}dx\int_{t}^{T_1}dx'\,\sigma(t,x)\sigma(t,x')
+D(x,x';t,T_{FR})}{\int_{t}^{T_1}dx\int_{t}^{T_1}dx'\,\sigma(t,x)\sigma(t,x')
+D(x,x';t,T_{FR})}\biggr]\frac{P(t,T)}{P(t,T_1)}\tag{9.37}
+\end{equation*}
+当 $T_1=T$ 时 $\Delta_1=-1$：因 $P=P_1$ 蕴含 $L_1=M_{11}$，残余方差（附录
+式(9.70)）降为零——仍是“卖空自己”的平凡解；非平凡策略的实证见下节。
+
+\paragraph{解读：两套方案分歧巨大}
+对照式(9.33)与式(9.37)：随机 Delta 对冲的权重 $n_1$ 由条件期望 $B$ 的导数
+之比给出，方差最小化的权重 $\Delta_1$ 由对冲矩阵元之比给出，两者结构迥异。
+原书预告（9.17节）：当波动率取 $\propto\exp-\beta(x-t)$ 时，两式在 HJM
+极限下相等——又一次体现“HJM = 场论的退化情形”。
+
+\section{瞬时对冲的实证分析}
+
+本节要解决的问题：把9.7节的方差最小化机器装上真实数据，看残余方差实际能
+压到多低、需要几只工具。实证方法沿 [12]；为简单起见只对两个传播子计算——
+常数刚性场论模型的最优拟合传播子（原书图8.8）与经验传播子（原书图8.4），
+波动率函数取原书图8.2。\footnote{原书脚注：全部实证数据来自欧洲美元
+（Eurodollar）期货市场。}
+
+实践的出发点很务实：把残余方差压到零并不现实；可行的做法是先确定愿意
+承受的风险水平，再据此决定纳入多少对冲工具。计算设定：被对冲的是五年期
+零息国债；当期远期利率曲线取平的 $5\%$（原书说明曲线形状不影响任何定性
+结论）；$N$ 表示用来对冲 $P(t,T)$ 的工具数目。
+
+\paragraph{用其他国债对冲}
+$N=1$ 的残余方差 $V=V_0-L_1^{2}/M_{11}$ 见原书图9.2。
+
+\paragraph{原书图 9.2}\quad 五年期债券的残余方差对对冲债券期限的曲线：
+横轴为对冲债券的到期期限（0--8年），纵轴从短端约 $0.0026$ 单调下落，在
+5年处触零（用债券自身对冲自己，等价于消灭原头寸，故必为零），随后回升，
+7.5年处约 $0.0004$。
+
+曲线近似抛物线这一点源于 $\mu$ 取常数；更复杂的 $\mu$ 原则上可以产生非
+单调的偏差。不过抛物线形状符合经济直觉：远期利率之间的相关应随期限距离
+增大而单调衰减。对冲比率 $\Delta_1=-L_1/M_{11}$ 见原书图9.3。
+
+\paragraph{原书图 9.3}\quad 五年期债券被另一只变期限债券对冲时的对冲权重：
+短端（半年内）权重深达约 $-24$，随对冲债券期限增大而急速收敛，约两年后
+进入平缓区，5年处取平凡值 $-1$——与式(9.37)在 $T_1=T$ 的行为一致。
+
+$N=2$（用两只债券对冲）时，残余方差 $V=V_0-L^{T}M^{-1}L$ 的曲面上出现
+尖锐的“脊”（原书图9.4），经验传播子与常数刚性模型都如此；把被对冲债券
+换成一年期短债时，脊变得更加陡峭（原书图9.5）——短债对底层远期利率的
+涨落更敏感。
+
+\paragraph{原书图 9.4}\quad 五年期债券被两只债券对冲的残余方差曲面（两
+水平轴为两只对冲债券的期限，各0--8年）：整体呈谷状，但沿若干曲线出现
+锯齿状尖脊，高度约 $1.6\times10^{-4}$ 量级。
+
+\paragraph{原书图 9.5}\quad 一年期债券被两只债券对冲的残余方差曲面：脊
+比图9.4更显著。原书指出这类脊是此类组合的普遍特征，在有限时间对冲中同样
+出现；脊的存在提示这些组合的 Vega 可能不稳定，而其金融学成因原书明言
+尚不清楚。
+
+\paragraph{用期货对冲}
+改用期货对冲五年期零息国债：期货一律一年后到期（$t_F$ 为一年），标的为
+不同期限的零息债券。残余方差（原书图9.6给出其对标的期限的曲线）正如所料
+永不为零——期货只暴露 $[t_F,T]$ 段的远期利率。最优组合所需的期货清单与
+逐项数据见原书表9.2，数值照录如下：
+
+\begin{center}
+\begin{tabular}{clc}
+\hline
+合约数 & 期货合约（对冲比率） & 残余方差 $V$\\
+\hline
+0 & 无 & $1.82\times10^{-3}$\\
+1 & 4.5年（$-1.288$） & $5.29\times10^{-6}$\\
+2 & 5年（$-0.9347$），1.25年（$-2.72497$） & $1.58\times10^{-6}$\\
+3 & 5年（$-0.95875$），1.5年（$1.45535$）， & $1.44\times10^{-6}$\\
+  & \phantom{5年（$-0.95875$），}1.25年（$-5.35547$） & \\
+\hline
+\end{tabular}
+\end{center}
+表中 $V=V_0-\tilde{L}^{T}\tilde{M}^{-1}\tilde{L}$，权重即对冲比率
+$\Delta_i=-\sum_{j=1}^{N}\tilde{L}_j\tilde{M}^{-1}_{ji}$。
+
+三组观察，各有明确的经济解释。其一，单张合约的最优标的是 4.5 年期债券
+而非 5 年期：期货价格只取决于 $[t_F,T]$ 段的远期利率曲线，而债券本身
+依赖 $[t,T]$ 全段；选一个更短标的的期货，恰好补偿 $[t,t_F]$ 段的暴露。
+其二，两张合约的最优组合是“自身期限 + 最短可得期限 1.25 年”：短端期货
+对应短端远期利率的高波动（原书图8.2）。其三，数据综合来看，用期货对冲使
+残余方差下降了约三个数量级（$1.82\times10^{-3}\to10^{-6}$ 量级），而第三
+张合约——无论债券还是期货——几乎不再改善残余方差，故“两只工具”已是
+近乎最优的策略。期货到期日定在一年后，原书的理由是：这个期限足以清楚展示
+到期效应，又不失实用性（长期期货流动性差，不适合对冲）。
+
+% 接缝说明：本文件止于原书 9.8 节末（书页234 / p252）。原书 9.9 节起由
+% ch09b 接写：编号公式自 (9.38) 起；原书图 9.6--9.10 的指路与原书表 9.2
+% 所在页（书页235 / p253）在后半范围——表 9.2 的数值已在上文照录，请勿
+% 重复；图 9.6 正文提及处（“残余方差永不为零”）已在上文交代。
+%TAGS: 9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,9.10,9.11,9.12,9.13,9.14,9.15,9.16,9.17,9.18,9.19,9.20,9.21,9.22,9.23,9.24,9.25,9.26,9.27,9.28,9.29,9.30,9.31,9.32,9.33,9.34,9.35,9.36,9.37（9.1--9.37连续无断档，共37条；本文件止于9.8节末，9.9节起（编号公式自(9.38)起）由 ch09b 接写）

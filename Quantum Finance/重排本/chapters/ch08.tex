@@ -1,0 +1,978 @@
+% ch08 Empirical forward interest rates (书页191-216 / p209-234)
+% 覆盖说明：原书第8章全章（8.1--8.9节，书页191--216 / p209--p234）一次写完。
+% 编号公式核对：tag 为 (8.1)--(8.49)，共49条，连续无断档（已对照PNG逐页核验）。
+% 原书图 8.1--8.12 与原书表 8.1 均在本章范围内，按规范以 \paragraph 指路。
+% 原书已知排印疑点（均照录并加脚注或正文说明）：
+% (1) 8.3节开头把两个期限坐标都印作 “θ = x - t, θ' = x - t”，第二个应为
+%     θ' = x' - t（与 θ' 配套的自变量是 x'）；
+% (2) 8.5节推导 ξ 的定义印作 ξ = (r'-r)/σ_r²√θ，而同页被积限与式(8.23)
+%     中均用 σ_r√θ（无平方）——按高斯分布的量纲应为 σ_r√θ，原书定义行
+%     的平方系排印多出；
+% (3) 式(8.45)与其下方 “where” 第一行、式(8.47)末项中 g_+' 的自变量印作
+%     θ（其余各处均为 θ_+），主文式(8.39)同项作 [g_+'(θ_+)]²，故 θ 为
+%     θ_+ 之误；
+% (4) 8.9节附录中无编号公式把 z 变量版本的关联子一律记作 C_{Qz}
+%     （∂²C_{Qz}/∂z_-² 等）：C_{Qz}(z_+,z_-) 与 C_Q(θ_+,θ_-) 的函数
+%     形式完全相同（原书自己点明），故这是同一函数的换名记号，非
+%     排印错误，照录；
+% (5) 式(8.13)(8.19)(8.23)(8.44)为多行推导、tag 置于末行（原书如此）；
+% (6) 原书8.7.1节正文把经验曲率的幂律衰减记作 “C_Q(θ_+) ≃ 1/θ_+^{1.3}”，
+%     按上下文此式说的是关联子在垂直于对角方向的曲率（曲率随 θ_+ 按
+%     幂律衰减），而非关联子本身，讲解中已点明。
+\chapter{实证远期利率与场论模型}
+
+模型好不好，最终是实证问题：第7章造出的那一族远期利率量子场论模型
+——常数刚性的、带约束的、刚度（stiffness）的——哪个能活下来，要看
+谁能贴住市场数据。这就是本章的任务：用欧洲美元（Eurodollar）期货市场
+1990--1996年的每日Libor远期利率数据，逐个检验第7章的高斯场论模型。
+检验的切入点选得非常锋利：远期利率的\textbf{连通关联函数}（connected
+correlation function）与漂移速度无关，因而既绕开了“市场漂移不等于
+无套利漂移”的观测困难，又直接给出了模型传播子（propagator）的形状
+信息——把经验关联结构与各模型传播子的归一化版本放在一起比较，参数
+拟合与模型取舍就都成了可操作的数值问题。
+
+先修内容：第7章的各个高斯传播子——常数刚性式(7.29)、含即期利率约束
+的式(7.69)、非常数刚性式(7.72)、刚度模型的实分支式(7.80)，以及心理
+未来时间（psychological future time）变量 $z(\theta)$ 的定义式(7.85)。
+本章结论可以先用一句话给出：只有“刚度传播子加心理未来时间”能同时
+拟合市场的全部行为，其余高斯模型的研究价值主要是教学性的。
+
+\section{欧洲美元市场}
+
+本节要解决的问题：数据从哪里来。全章的实证分析只用欧洲美元期货
+（Eurodollar futures）市场一个数据源，因此原书先把这一市场的制度
+细节交代清楚——工具是什么、结算如何定盘、价格的最小跳动值多少钱。
+
+\paragraph{模型设定与记号}
+欧洲美元指存放在美国境外商业银行（外国银行或美国银行的海外机构）的
+美元定期存款，期限最常见的是90天与180天，且不受美国国内定期存款的
+若干监管约束。欧洲美元存款市场是最大的金融市场之一，由伦敦主导，其
+利率报价即Libor（London Interbank Offer Rate，伦敦银行间同业拆借
+利率）：由90天欧洲美元定期存款导出的\textbf{单利}（simple interest
+rate），最低面值\$1\,000\,000；即期市场期限从几天到十年，三个月与
+六个月存款最深。要点有二：其一，Libor是商业（commercial）利率而非
+主权（sovereign）利率，更能代表公司能拿到的期限结构；其二，它是
+利率衍生品市场与国债对冲的基准利率。
+
+\paragraph{欧洲美元期货}
+欧洲美元期货是短期利率合约中最重要的工具：约定参与方在未来某日按
+Libor确定的利率借入或贷出一笔固定本金。注意欧洲美元存款不可转让、
+无可交割标的，所以欧洲美元期货\textbf{完全现金结算}，不涉及任何实
+物交割；最终结算价确定后，未平仓头寸按逐日盯市（marking-to-market）
+程序以现金了结。1981年以来的现金结算程序要点如下：到期日为到期月
+第三个星期三之前的第二个伦敦营业日；到期时清算所在两个时点（交易
+终止时与随机抽取的收盘前90分钟）各定一次90天存款的Libor——每次从
+20家参考银行中随机抽12家报价，删去最高两家与最低两家，取其余8家
+报价的算术平均；两个时点的结果再取平均，四舍五入到最近的基点
+（basis point，100个基点等于年利率$1\%$）。期货价格到期收敛于
+$100(1-\text{Libor})$。
+
+合约期限覆盖从几天到十年的未来时间，广泛用于对冲、利率互换、远期
+利率协议（FRA）等；1999年欧洲美元期货未平仓量近750\,000手，对应
+面值\$7500亿。交易场所为芝加哥商业交易所的国际货币市场（IMM），
+以及SIMEX、LIFFE与TIFFE，各交易所的合约可相互对冲。
+
+\paragraph{Libor 的价格分辨率}
+欧洲美元期货以\$100万面值90天存款的百分比报价，市场最小分辨率是
+1个基点，其货币价值为（1年$=360$天）
+\begin{equation*}
+1\,000\,000\times\frac{1}{100}\times\frac{1}{100}\times\frac{90}{360}=\$25
+\end{equation*}
+即一个基点值\$25。这个数字的解释：面值百万美元的存款，利率变动一个
+基点（万分之一），90天（四分之一年）的利息变化就是
+$10^6\times10^{-4}\times(90/360)=25$美元。
+
+\subsection{Libor 远期利率曲线}
+
+本节要解决的问题：期货报价是“单利”语言，场论模型的语言是“瞬时
+远期利率”，两者之间需要一座换算的桥。
+
+\paragraph{模型设定与记号}
+欧洲美元期货以Libor形式延伸到十年远的未来，其背后是驱动各个期限
+Libor的远期利率。设 $t$ 时刻进入一份期货合约，对应从未来时刻 $T$
+到 $T+\tau$ 的90天存款（$\tau=90/360$年），本金\$100万。记
+$L(t,T)$ 为（年化的）三个月Libor，$f(t,x)$ 为三个月Libor的远期
+利率（forward interest rate）。
+
+\paragraph{关键公式}
+做多合约的投资者到期拿到的本金加单利利息为
+\begin{equation*}
+P+I=1+\tau L(t,T)
+\tag{8.1}
+\end{equation*}
+同一笔本息也可以用复利化的远期利率写成
+\begin{equation*}
+P+I=e^{\int_{T}^{T+\tau}dx\,f(t,x)}
+\tag{8.2}
+\end{equation*}
+两式相等，即得Libor与其远期利率的关系
+\begin{align*}
+1+\tau L(t,T)&=e^{\int_{T}^{T+\tau}dx\,f(t,x)}\\
+\Rightarrow\quad L(t,T)&=\frac{e^{\int_{T}^{T+\tau}dx\,f(t,x)}-1}{\tau}
+\tag{8.3}
+\end{align*}
+
+\paragraph{推导主线}
+没有推导，只有一次恒等改写：把“存90天拿单利”与“沿远期利率曲线
+连续复利90天”两本账对齐。式(8.3)是从市场数据提取远期利率的工作
+公式——期货报价给出左端 $L(t,T)$，对数差分即得右端区间上的平均
+远期利率。由于Libor逐日定价，数据在时间 $t$ 与未来时间 $x$ 两个
+方向上都是离散的（$x$ 方向间隔90天）。
+
+\paragraph{解读与联系}
+Libor远期利率包含商业借贷的内生风险，比无风险国债决定的利率高出一
+个利差，即金融文献里的TED利差（TED spread，Treasury Eurodollar
+spread）。换句话说，本章实证对象是“含信用风险的远期利率曲线”，
+这一点在第8.2节讨论国债数据时还会再碰到。
+
+\section{市场数据与研究假设}
+
+本节要解决的问题：拿到Libor报价后，要经过哪些数据加工与假设约定，
+才能得到场论模型所需要的对象 $f(t,\theta)$——固定未来时间
+$\theta$、逐日演化的远期利率时间序列。
+
+\paragraph{模型设定与记号}
+数据取1990--1996年Libor远期利率的每日数据（即原书图7.2所画的那组
+曲线），用到未来七年以内的合约，与文献[19]和[9,\,11]用的是同一套
+数据。第一个假设是把欧洲美元期货的Libor价格直接当成远期利率：由
+式(8.3)
+\begin{align*}
+L(t,T)&=\frac{e^{\int_{T}^{T+\tau}dx\,f(t,x)}-1}{\tau}
+\tag{8.4}\\
+&\simeq f(t,T)+O(\tau)
+\tag{8.5}
+\end{align*}
+即90天区间上的平均远期利率与区间起点的瞬时远期利率只差 $O(\tau)$。
+相对实证中其他误差来源，这一近似可以忽略，于是Libor被等同于瞬时
+远期利率。
+
+\paragraph{线性内插}
+市场的Libor数据形如 $L(t,T_i-t)$：每日给定，但到期日 $T_i$ 固定
+（每年三、六、九、十二月）。最短到期时间为$\theta_{\min}=3$个月，
+即期利率取为$r(t)=f(t,\theta_{\min})$。对落在这些固定到期日之间的
+任意未来时间
+$T_i-t\le\theta\le T_{i+1}-t$，要在固定 $\theta$ 处得到
+$f(t,\theta)$，只能在相邻两个到期日的Libor之间做\textbf{线性内插}
+（linear interpolation），得到如图8.1所示的固定 $\theta$ 序列。
+内插是必须的：数据按“固定到期日”$T_i-t$ 给出，而实证需要“固定
+未来时间”$\theta$ 的序列。\footnote{原书脚注2：内插假定Libor曲线
+光滑——直觉上三年零一个月后的远期利率不会与三年后的差太多；被研究
+的随机涨落远大于线性内插引入的误差。}
+\footnote{原书脚注1（第8章引言处）：HJM 模型与场论模型的对照——HJM
+事先假定波动率函数 $\sigma(t,x)$ 具有特定数学形式；场论做法是让
+市场数据自己把 $\sigma$ 定出来。}
+\paragraph{原书图 8.1}\quad $(t,x)$ 平面示意：市场数据在固定到期日
+$T_i-t$ 的竖直线上给出，沿平行于边界的虚线 $x=t+\theta_0$ 方向做
+线性内插，得到常数 $\theta=\theta_0$ 上的远期利率 $f(t,\theta_0)$。
+
+\paragraph{三条工作假设}
+其一，波动率函数与各关联函数只依赖未来时间 $\theta$，不明显依赖
+日历时间 $t$：$\sigma(t,\theta)=\sigma(\theta)$。这纯粹是为了
+简化——允许参数漂移的分析更难做，而对理解模型没有实质帮助；同时
+恒取 $T_{FR}\to\infty$ 极限。其二，\textbf{遍历假设}
+（ergodic hypothesis）：对时间序列做的时间平均等价于对远期利率
+随机涨落做的系综平均，一切关联函数都按时间平均计算——这是统计
+物理学的标准信条搬到金融市场。其三，假设一只能在“市场状态不
+变”的时段内成立：如图8.2所示，$\sigma(t,\theta)$ 实际上随时间
+缓慢变化，市场会在某个时刻整体切换到一组新参数的“体制”
+（regime）；8.4节将回到这一点。
+
+\paragraph{国债数据为何弃用}
+理论上也可以用GovPx数据库的国债逐笔（tick）数据提取远期利率，而且
+国债是无风险工具，比含小额信用风险的欧洲美元存款更“纯”。问题是：
+少数几个期限的收益率可以取得足够准，但从收益率出发求远期利率所需的
+（对期限的）微分运算会放大误差，远期利率的精度不可用。所以全章
+宁可要“稍有信用风险但干净”的欧洲美元数据。
+
+\section{远期利率模型的关联函数}
+
+本节要解决的问题：把第7章的连续场论翻译成数据能回答的语言——
+时间离散化之后，远期利率的日变化量与模型里的场关联子之间是什么
+关系。结论是：模型的可观测内容全部浓缩在一条公式里，日变化的
+协方差等于波动率函数乘以传播子（式(8.13)）。
+
+\paragraph{模型设定与记号}
+数据只在离散时刻给出，所以先把时间切成间隔 $\epsilon$ 的格点，
+$t=n\epsilon$。第7章的基本演化方程（原书式(7.15)）是
+\begin{equation*}
+\frac{\partial f}{\partial t}(t,x)=\alpha(t,x)+\sigma(t,x)A(t,x)
+\tag{8.6}
+\end{equation*}
+其中 $\alpha(t,x)$ 是远期利率的漂移速度（drift velocity），
+$\sigma(t,x)$ 是波动率函数，$A(t,x)$ 是远期利率速度量子场。鞅
+（martingale）条件（原书式(7.38)）把漂移速度用传播子表示为
+\begin{equation*}
+\alpha(t,x)=\sigma(t,x)\int_{t}^{x}dx'\,D(x,x';t)\sigma(t,x')
+\tag{8.7}
+\end{equation*}
+离散化后，远期利率的日变化量由式(8.6)直接给出：
+\begin{align*}
+\delta f(t,x)&\equiv f(t+\epsilon,x)-f(t,x)\\
+&=\epsilon\alpha(t,x)+\epsilon\sigma(t,x)A(t,x)
+\tag{8.8}
+\end{align*}
+场的关联子（原书式(7.23)）为
+\begin{align*}
+&E(A(t,x))=0
+\tag{8.9}\\
+&E(A(t,x)A(t',x'))=\frac{1}{Z}\int DA\,e^{S[A]}A(t,x)A(t',x')
+\tag{8.10}\\
+&=\delta(t-t')D(x,x';t)
+\tag{8.11}
+\end{align*}
+
+\paragraph{关键公式：从场关联子到利率协方差}
+此后一切关联子都改用期限坐标 $\theta=x-t$、$\theta'=x'-t$ 书写
+\footnote{原书把两个坐标都印作“$\theta=x-t,\ \theta'=x-t$”，第二
+个显然应为 $\theta'=x'-t$，否则 $\theta'=\theta$ 恒成立，两期限
+关联无从谈起。}
+——这才是实证需要的坐标。时间离散化后 $\delta(0)=1/\epsilon$，
+同一天、两个期限的场关联为
+\begin{equation*}
+E(A(t,\theta)A(t,\theta'))\equiv\langle A(t,\theta)A(t,\theta')\rangle
+=\frac{1}{\epsilon}D(\theta,\theta')
+\tag{8.12}
+\end{equation*}
+代回式(8.8)，立刻得到全章的工作公式：
+\begin{align*}
+&\langle\delta f(t,\theta)\rangle=\epsilon\alpha(\theta)\\
+&\langle\delta f(t,\theta)\delta f(t,\theta')\rangle_c\equiv
+\langle\delta f(t,\theta)\delta f(t,\theta')\rangle
+-\langle\delta f(t,\theta)\rangle\langle\delta f(t,\theta')\rangle\\
+&\qquad=\epsilon^{2}\sigma(\theta)\sigma(\theta')
+\langle A(t,\theta)A(t,\theta')\rangle\\
+&\qquad=\epsilon\sigma(\theta)\sigma(\theta')D(\theta,\theta')
+\tag{8.13}\\
+&\Rightarrow\quad\langle\delta f^{2}(t,\theta)\rangle_c
+=\epsilon\sigma^{2}(\theta)D(\theta,\theta)
+\tag{8.14}
+\end{align*}
+其中用了记号 $\langle\delta f^{2}(t,\theta)\rangle_c\equiv
+\langle[\delta f(t,\theta)]^{2}\rangle_c$，即日变化的连通（中心化）
+二阶矩；从第二行到第三行用的是式(8.12)及
+$\epsilon^{2}\langle AA\rangle=\epsilon^{2}\cdot D/\epsilon=\epsilon D$。
+
+\paragraph{推导主线}
+一步就完：日变化量 $\delta f$ 由式(8.8)给出，取连通关联时漂移项
+$\epsilon\alpha$ 被“减均值”消掉，剩下的涨落项是两个 $A$ 场的
+关联，用式(8.12)换算。整个推导没有用到漂移的具体形式——这正是
+要点，下一段解释为什么。
+
+\paragraph{解读与联系：为什么只测连通关联子}
+市场里的真实漂移并不是鞅测度给的漂移（8.5节专门讨论这一点），所以
+$\alpha(t,x)$ 无法从远期利率的实际演化中测出，只能从利率衍生品的
+价格反推。但连通关联 $\langle\delta f(t,\theta)\delta f(t,\theta')\rangle_c$
+与漂移速度 $\alpha(\theta)$ 完全无关，直接描写远期利率的真实市场
+演化——因此它是检验场论模型的正确观测对象：把式(8.13)左端（市场
+测量的协方差）与右端（各模型给出的 $\sigma\sigma D$）对照，模型
+传播子的形状就暴露无遗。
+
+\section{远期利率的经验关联结构}
+
+本节要解决的问题：定义市场端的可测量——归一化关联函数（经验传播
+子）与峰度——并把它们测出来。测量结果给出两条硬事实：远期利率
+显著非高斯；不同期限的远期利率高度相关，关联曲面光滑无“扭结”。
+
+\paragraph{模型设定与记号：波动率的模型无关定义}
+式(8.14)是波动率的定义式，只是里面还带着模型因子 $\epsilon D(\theta,\theta)$
+——不同高斯模型的 $D(\theta,\theta)$ 不同，直接比较得到的
+$\sigma$ 没有共同基准。第7.4节末尾的标度对称性允许把场 $A(t,\theta)$
+重标度，使 $D(\theta,\theta')\to\tilde{D}(\theta,\theta')$ 且
+$\tilde{D}(\theta,\theta)=1/\epsilon$；在这个重标度框架里，波动率
+取得其通常定义
+\begin{equation*}
+\langle\delta f^{2}(t,\theta)\rangle_c=\sigma^{2}(t,\theta)
+\tag{8.15}
+\end{equation*}
+单期限的峰度（kurtosis）定义为
+\begin{equation*}
+\kappa(t,\theta)=\frac{\langle[\delta f(t,\theta)]^{4}\rangle}
+{\sigma^{4}(t,\theta)}-3
+\tag{8.16}
+\end{equation*}
+归一化减3，使完全高斯的远期利率峰度为零。
+
+\paragraph{原书图 8.2}\quad 上：经验波动率函数
+$\sigma(\theta)=\sqrt{\langle\delta f^{2}(t,\theta)\rangle_c}$ 对
+$\theta$（0--8年），1994--1996（实线）与1990--1996（点线）两个时段；
+下：峰度 $\kappa(t,\theta)$ 对 $\theta$（0--30年），同样两个时段。
+两函数都呈“驼峰”形：波动率从约0.05升到峰值约0.08（$\theta\approx1$年）
+后缓慢回落到约0.06；峰度峰值约5--7（$\theta\approx1$年），远端降到
+约2.5（数值从图读取）。（来源：J.-P. Bouchaud 与 M. Potters,
+\textit{Theory of Financial Risks}。）
+
+\paragraph{经验事实一：非高斯、且参数随体制漂移}
+1990--1996年欧洲美元市场的波动率与峰度画在图8.2中。峰度远不为零
+——实证远期利率是非高斯的。把数据分成1990--1996与1994--1996两段，
+可以看到波动率与峰度都在随时段缓慢漂移：在一个时段内部可以假设
+$\sigma(t,\theta)=\sigma(\theta)$，但这个假设不能无限外推。本章
+全部计算采用1990--1996时段的 $\sigma$。
+
+\paragraph{经验事实二：高度相关、无扭结}
+远期利率的经验协方差 $\langle\delta f(t,\theta)\delta f(t,\theta')\rangle_c$
+画在图8.3中。比协方差更好用的是归一化关联（缩放协方差），即不同期限
+$\theta,\theta'$ 的瞬时变化之间的相关系数：
+\begin{equation*}
+\mathcal{C}(\theta,\theta')=
+\frac{\langle\delta f(t,\theta)\delta f(t,\theta')\rangle_c}
+{\sqrt{\langle\delta f^{2}(t,\theta)\rangle_c}
+\sqrt{\langle\delta f^{2}(t,\theta')\rangle_c}}
+\tag{8.17}
+\end{equation*}
+\paragraph{原书图 8.3}\quad 经验协方差
+$\langle\delta f(t,\theta)\delta f(t,\theta')\rangle_c$ 的三维网格
+曲面（两轴均为 $\theta$/年，0--8；纵轴 covariance 约0.002--0.007）。
+\paragraph{原书图 8.4}\quad 归一化经验关联
+$\mathcal{C}(\theta,\theta')$ 的三维网格曲面（两轴0--30年，纵轴
+0.65--1），亦称经验传播子（empirical propagator）。
+\paragraph{原书图 8.5}\quad 同一经验关联 $\mathcal{C}(\theta,\theta')$
+的另一视角（两轴 time/quarter，0--30）。
+
+图8.4与图8.5给出两条硬信息。其一，归一化关联子是极端光滑的曲面，
+处处没有不连续或“扭结”（kink）。其二，关联函数处处大于约0.65：
+所有远期利率\textbf{高度相关}（highly correlated），无论两个期限
+相距多远都没有任何一对去相关。正是为了解释这种光滑而高度相关的
+行为，刚度高斯利率模型才被引入（原书文献[6]）——这是下一节模型
+比较的靶子。
+
+\subsection{高斯关联函数}
+
+本节要解决的问题：把各候选模型对 $\mathcal{C}(\theta,\theta')$
+的预测写成公式，与图8.4对照。高斯模型有一件礼物：归一化关联与
+波动率函数完全无关。
+
+\paragraph{关键公式：场论模型}
+高斯场论模型里波动率在式(8.13)、(8.14)中只以乘性因子出现，整个
+波动率函数可以从归一化关联中完全消去：
+\begin{equation*}
+\mathcal{C}_{QFT}(\theta,\theta')=
+\frac{D(\theta,\theta')}{\sqrt{D(\theta,\theta)D(\theta',\theta')}}
+\tag{8.18}
+\end{equation*}
+自由（高斯）量子场的归一化关联与 $\sigma(\theta)$ 无关，因此完全
+不必假设波动率的形式——这正是用缩放协方差（而非协方差本身）做实证
+的原因：$\mu,\lambda$ 等需要校准的参数可以直接从数据拟合，拟合结果
+与 $\sigma(\theta)$ 的取值无关。
+
+\paragraph{关键公式：HJM 模型}
+对照组建两因子HJM模型（Heath--Jarrow--Morton）。其协方差为
+\begin{align*}
+&\delta f(t,\theta)=\epsilon\alpha(\theta)+\sum_{i=1}^{2}\sigma_{i}(\theta)W_{i}(t)\\
+&\Rightarrow\quad C(\theta,\theta')=\langle\delta f(t,\theta)\delta f(t,\theta')\rangle_c\\
+&\qquad=\sigma_{1}(\theta)\sigma_{1}(\theta')+\sigma_{2}(\theta)\sigma_{2}(\theta')
+\tag{8.19}
+\end{align*}
+其中 $W_i(t)$ 是驱动曲线的有限个随机变量。归一化后
+\begin{equation*}
+\mathcal{C}_{HJM}(\theta,\theta')=
+\frac{\sigma_{1}(\theta)\sigma_{1}(\theta')+\sigma_{2}(\theta)\sigma_{2}(\theta')}
+{\sqrt{\sigma_{1}^{2}(\theta)+\sigma_{2}^{2}(\theta)}
+\sqrt{\sigma_{1}^{2}(\theta')+\sigma_{2}^{2}(\theta')}}
+=\frac{1+g(\theta)g(\theta')}{\sqrt{1+g^{2}(\theta)}\sqrt{1+g^{2}(\theta')}}
+\tag{8.20}
+\end{equation*}
+其中 $g(\theta)=\sigma_{1}(\theta)/\sigma_{2}(\theta)$。
+
+\paragraph{推导主线与判决}
+单因子HJM：所有期限的变化完全相关，$\mathcal{C}\equiv1$，与数据
+（远端降到0.65且形状有结构）不符。两因子HJM：式(8.20)要求数据定出
+整个函数 $g(\theta)$——对整个函数做数值估计并不现实；常用的参数
+形式 $\sigma_{1}(\theta)=\sigma_{0}$、$\sigma_{2}(\theta)=\sigma_{1}e^{-\lambda\theta}$
+又解释不了图8.3中的诸多特征（一年处的峰、到期趋零时协方差的骤降）。
+结论：单因子HJM不足以刻画数据，两因子HJM自由度又过多——两头都
+不讨好的处境，正是给场论模型留出的空间。
+
+\section{远期利率的经验性质}
+
+本节要解决的问题：在比较传播子之前，先把Bouchaud及其合作者
+（原书文献[18,19,73,74]，分析过美元[19,73]与其他主要货币[74]的
+远期利率）发现的两条经验规律摆出来——模型必须解释的是
+(i) 远期利率的平均值 $\langle f(t,x)\rangle$ 与 (ii) 其波动率
+$\sigma^{2}(t,x)\equiv\langle\delta f^{2}(t,x)\rangle_c$。
+
+\paragraph{关键公式一：平均值的平方根律}
+对数据的大量分析表明
+\begin{equation*}
+\langle f(t,x)\rangle=r(t)+\text{constant}\,\sqrt{\theta}\;;\quad
+\theta=x-t
+\tag{8.21}
+\end{equation*}
+平均远期利率随期限按 $\sqrt{\theta}$ 增长。
+
+\paragraph{推导主线：鞅测度为什么给不出平方根}
+高斯模型在鞅测度下（原书式(7.40)，用 $\langle A(t,x)\rangle=0$）
+给出的是无编号公式
+\begin{equation*}
+\langle f(t,x)\rangle=f(t_{0},x)+
+\int_{t_{0}}^{t}dt'\,\sigma_{i}(t',x)
+\int_{t'}^{x}dy\,D(x,y;t',T_{FR})\sigma_{i}(t',y)
+\end{equation*}
+期望值是波动率的\textbf{二次}函数。文献[19,74]表明：$\sigma^{2}$
+这样的二次项太小，既撑不起观测到的 $\langle f(t,x)\rangle$，也
+变不出平方根律。这并不意外——鞅测度是无风险演化，而市场不是：
+远期利率编码了借贷货币所内含的一切风险，其市场漂移速度本来就不该
+由无套利要求决定。\footnote{原书脚注3、4、5的要点：平方根律只对
+平均值成立，因此不构成套利机会；在漂移中加一个线性于 $\sigma$ 的
+风险溢价项不改变结论；鞅测度的正当用途是给衍生品定价（无套利），
+而不是预测债务市场上的真实演化。}
+
+\paragraph{值风险解释}
+文献[19,73,74]用值风险（value at risk）给平方根律一个机制。货币
+市场短期借贷由放贷者（money lenders）主导：他们在 $t$ 时刻按远期
+利率 $f(t,\theta)$ 贷出一笔从 $t+\theta$ 到 $t+\theta+d\theta$
+的款项，同时自己要向银行按届时即期利率 $r(t+\theta)$ 借入。放贷者
+押注 $t+\theta$ 时刻的即期利率低于 $f(t,\theta)$——若
+$r(t+\theta)>f(t,\theta)$ 他就亏钱。他愿意承担亏损的概率是
+$p\simeq0.1$，即大约只有10\%的时候亏。于是他把 $f(t,\theta)$ 定在
+这样的水平：即期利率超过 $\langle f(t,\theta)\rangle$ 的概率恰为
+$p$。记即期利率从 $(r,t)$ 转移到 $(r',t')$ 的条件概率为
+$P(r',t';r,t)$，值风险条件写作
+\begin{equation*}
+\int_{\langle f(t,\theta)\rangle}^{\infty}dr'\,
+P(r',t+\theta;r,t)=p
+\tag{8.22}
+\end{equation*}
+短时段内即期利率的演化有重要的非高斯效应；但在月尺度上可用高斯
+转移概率（无编号公式）
+\begin{equation*}
+P(r',t';r,t)=\frac{1}{\sqrt{2\pi\sigma_{r}^{2}(t'-t)}}
+\,e^{-\frac{1}{2\sigma_{r}^{2}(t'-t)}(r'-r)^{2}}
+\end{equation*}
+代入式(8.22)并定义 $\xi=(r'-r)/\sigma_{r}^{2}\sqrt{\theta}$
+\footnote{原书此定义行把分母印作 $\sigma_{r}^{2}\sqrt{\theta}$；
+但同页积分下限与式(8.23)中均为 $\sigma_{r}\sqrt{\theta}$（无平方）。
+按高斯方差 $\sigma_{r}^{2}(t'-t)$ 做变量代换，$dr'=\sigma_r\sqrt{\theta}\,d\xi$，
+量纲一致的是 $\sigma_r\sqrt{\theta}$，定义行的平方系排印多出。}，
+得（多行推导，tag 在末行）
+\begin{align*}
+&\frac{1}{\sqrt{2\pi}}\int_{(\langle f(t,\theta)\rangle-r)/\sigma_{r}\sqrt{\theta}}^{\infty}
+d\xi\,e^{-\frac{1}{2}\xi^{2}}
+=p=\frac{1}{\sqrt{2\pi}}\int_{A}^{\infty}d\xi\,e^{-\frac{1}{2}\xi^{2}}\\
+&\Rightarrow\quad\langle f(t,x)\rangle=r(t)+A\sigma_{r}\sqrt{\theta}\;;\quad
+A=\sqrt{2}\,\mathrm{erfc}^{-1}(2p)
+\tag{8.23}
+\end{align*}
+其中 $\mathrm{erfc}$ 是与原书式(3.24)相关的补偿误差函数（原书脚注6）。
+式(8.23)与数据对照（图8.6）在 $p\simeq0.16$ 处拟合相当好，
+$\sigma_{r}$ 取即期利率的经验波动率（原书文献[18,19]）；图8.6同时
+显示HJM模型给出错误结果。同一公式对英镑、日元、澳元等主要货币均
+成立（用各自的 $\sigma_r$）；平方根行为的进一步精修见原书文献[74]。
+
+\paragraph{原书图 8.6}\quad 平均远期利率曲线（FRC）
+$\langle f(t,\theta)-f(t,\theta_{\min})\rangle$ 对未来时间
+$\theta=x-t$：圆圈为美元1994--1999数据（USD 94-99），实线为平方根
+拟合（Sqrt fit），点线为HJM拟合（HJM Fit，饱和到约1.5\%的平台，
+与数据明显不符）。（来源：J.-P. Bouchaud 与 M. Potters,
+\textit{Theory of Financial Risks}。）
+
+\paragraph{关键公式二：波动率的“驼峰”与预期趋势}
+波动率对所有时段都在未来约一年处呈特征驼峰（hump，缓变极大值）
+——见图8.2上图；利率上限（cap）与下限（floor）期权的隐含波动率
+也有同样的驼峰（原书文献[51]）。直觉机制：放贷者按即期利率的过去
+行为外推其未来演化，即期利率的任何小变动都会改写市场对未来的预期；
+预期风险随期限累积放大，但放贷者的展望不超过一年——更远的即期利率
+由政策制定者与宏观经济决定，超出其借贷视野。于是波动率在约一年处
+见顶，一年半以后缓慢降到常数，反映长期借贷的预期风险。美元远期利率
+1994--1999年经验波动率的良好拟合是（原书文献[73]）
+\begin{equation*}
+\sigma(\theta)=0.061-0.014\,e^{-1.55(\theta-\theta_{\min})}
++0.074\,(\theta-\theta_{\min})\,e^{-1.55(\theta-\theta_{\min})}
+\tag{8.24}
+\end{equation*}
+三项的含义：常数底座0.061是长期借贷的预期风险水平；负的指数项把
+短期（$\theta=\theta_{\min}$ 处约0.047）抬起来；线性增长的指数项
+就是“预期趋势”项——对即期利率预期的投影随期限线性累积——它把
+波动率在 $\theta\approx1$ 年附近推到峰值约0.08，随后指数压制使其
+缓慢回落。这三个数与图8.2的驼峰形状定量吻合。
+
+\subsection{远期利率的波动率的波动率}
+
+本节要解决的问题：波动率本身是不是随机涨落的？波动率的波动率
+（volatility of volatility）精确度量波动率的随机程度；欧洲美元
+期货数据既能给出远期利率，也能给出它的波动率的波动率。
+
+\paragraph{原书图 8.7}\quad 远期利率波动率的波动率（图中记作 std）
+对时间（0--8年）：基于30天移动平均，峰值约0.00082出现在约1.5年处，
+长端降到约0.0005--0.0006（数值从图读取）。
+
+\paragraph{经验数值及其含义}
+图8.7表明：波动率的波动率对远期利率的贡献约为每年0.0006--0.0007，
+并且复现了波动率本身那个约一年半处的特征峰。远期利率波动率约为
+每年0.01，故波动率的波动率约为波动率的6--7\%。这个数看似不起眼，
+但要注意：有效波动率等于波动率的平方乘以合约期限的平方根，因此对
+长期限合约，波动率的波动率的有效值可能变得显著。数据给出的结论：
+远期利率的波动率应当当作一个涨落的量子（随机）场来处理——这正是
+第7章把波动率提升为独立量子场 $h(t,x)$（随机波动率模型）的
+实证理由。
+
+\section{常数刚性场论模型及其变体}
+
+本节要解决的问题：把式(8.18)用到以刚性（rigidity）项
+$(\partial A(t,x)/\partial x)^{2}$ 为基础的那一族高斯模型上，
+逐个拟合、逐个判卷。这一族共四个变体：
+（1）常数刚性；（2）常数刚性加心理未来时间；（3）含即期利率约束的
+常数刚性；（4）非常数刚性。它们的传播子都已在第7章算出，本节只需
+归一化并拟合。它们都有类似的毛病，但研究它们一方面展示了高斯场论的
+弹性，另一方面为更复杂的刚度拉格朗日量模型（8.7节）铺路。
+
+\paragraph{拟合协议（四模型共用）}
+全部参数用 Levenberg--Marquardt 方法对市场拟合，以误差平方最小化
+为准；拟合误差从约4.2\%到2.4\%，误差更低者以更多参数、更复杂的
+传播子为代价；误差界用“把数据切成346组、每组500个连续交易日”
+的自助方案估计。两个数值诊断值得照录：约束传播子的拟合中 $\mu$ 与
+$a$ 本身极小且不稳定（$\mu$ 约$10^{-7}$/年、$a$ 约$10^{-13}$/年$^{2}$
+量级），但比值 $a/\mu^{2}$ 稳定——所以表中列的是比值而非各自的
+拟合值；非常数（期限依赖）刚性情形中 $\mu_{0}$ 很不稳定但总归很小
+（小于$10^{-2}$/年），而 $k$ 的90\%置信区间为(0.099,\,0.149)。
+
+\paragraph{原书表 8.1}\quad 常数与非常数刚性模型最佳拟合汇总
+（$\mu,\sqrt{a},\lambda,\beta$ 单位均为(year)$^{-1}$）：
+\begin{center}
+\begin{tabular}{lccccc}
+\hline\hline
+模型 & $\mu$ & $a/\mu^{2}$ & $k$ & $\beta$ & $\sqrt{\text{Error}}$\\
+\hline
+常数刚性 $\mu$ & 0.06 & -- & -- & -- & 4.23\%\\
+含即期利率约束 & -- & 9.4 & -- & -- & 3.54\%\\
+$\mu(\theta)=\mu/(1+k\theta)$ & 0.011 & -- & 0.1 & -- & 3.35\%\\
+$\mu$；$z=\tanh(\beta\theta)$ & 0.48 & -- & -- & 0.31 & 2.46\%\\
+\hline
+\end{tabular}
+\end{center}
+逐行读表：纯常数刚性拟合 $\mu=0.06$（相关长度 $\mu^{-1}$ 约17年），
+误差4.23\%；加即期利率约束后误差降到3.54\%，但没有改善扭结问题
+（$\mu\to0$ 的极限退化）；期限依赖刚性 $\mu(\theta)=\mu/(1+k\theta)$
+误差3.35\%；把心理时间 $z=\tanh(\beta\theta)$ 与刚性结合效果最好
+（$\mu=0.48$、$\beta=0.31$，误差2.46\%），但仍未达满分——原因
+见下面三条缺点。
+
+\paragraph{刚性族的三大缺点}
+其一（核心）：对照图8.8（常数刚性最佳拟合）与图8.4（市场关联结构），
+常数刚性模型的归一化关联函数沿对角线有一条人为的“扭结”
+（kink），市场数据里没有；这一毛病在四个变体里都存在，与心理时间
+结合后略有缓解。扭结的根源是拉格朗日量里的
+$(\partial A(t,x)/\partial x)^{2}$ 项（二阶导数导致传播子在对角线
+上斜率不连续）。其二：刚性族关联子基本不依赖 $\theta$ 本身、只由
+$|\theta-\theta'|$ 主导；而经验关联子（图8.5）随 $\theta$ 增大而
+增大——非线性时间变量只能部分矫正。其三：因为有对角扭结，关联
+函数的一个关键特征——垂直离开对角线时关联衰减多快的\textbf{曲率}
+——根本无法研究；下一节会看到曲率恰恰是“心理未来时间”的精确
+测量仪。
+
+\paragraph{常数刚性}
+由第7章式(7.29)，传播子为（两种等价形式并排书写）
+\begin{equation*}
+D(\theta,\theta')=\frac{\mu}{2}\left(e^{-\mu(\theta-\theta')}
++e^{-\mu(\theta+\theta')}\right)
+=\mu e^{-\mu\theta}\cosh\mu\theta'\;;\quad\theta>\theta'
+\tag{8.25}
+\end{equation*}
+代入式(8.18)得预测关联结构
+\begin{equation*}
+\mathcal{C}_{R}(\theta,\theta')=
+\sqrt{\frac{e^{-\mu\theta}\cosh\mu\theta'}
+{e^{-\mu\theta'}\cosh\mu\theta}}\;;\quad\theta>\theta'
+\tag{8.26}
+\end{equation*}
+最佳拟合见图8.8。
+\paragraph{原书图 8.8}\quad 常数刚性模型拟合关联
+$\mathcal{C}_{R}(\theta,\theta')
+=\sqrt{e^{-\mu\theta}\cosh\mu\theta'/\left(e^{-\mu\theta'}\cosh\mu\theta\right)}$
+的三维网格曲面（两轴 time/quarter 0--30，纵轴0.75--1）：对角线两侧
+平滑，但沿对角线方向有可见的折痕（扭结）。
+
+\paragraph{心理未来时间变体}
+取心理未来（到期）时间变量 $z(\theta)=\tanh\beta\theta$（原书文献
+[11]）：$\theta$ 小时 $z\approx\beta\theta$ 近似线性，$\theta$ 大时
+$z\to1$。这个选择有点极端——$\theta\gg\beta^{-1}$ 后 $z\simeq1$，
+“心理时间停止流动”——但它足以演示非线性期限变量对关联函数的剧烈
+影响。把式(8.26)中的 $\theta,\theta'$ 全部换成 $z(\theta),z(\theta')$：
+\begin{equation*}
+\mathcal{C}_{RZ}(\theta,\theta')=
+\sqrt{\frac{e^{-\mu z(\theta)}\cosh\mu z(\theta')}
+{e^{-\mu z(\theta')}\cosh\mu z(\theta)}}\;;\quad\theta>\theta'
+\tag{8.27}
+\end{equation*}
+拟合形状见图8.9，是常数刚性拉格朗日量诸变体中的最佳拟合。
+\paragraph{原书图 8.9}\quad 心理时间变体拟合关联
+$\mathcal{C}_{RZ}(\theta,\theta')$（$z(\theta)=\tanh\beta\theta$）
+的三维网格曲面：对角扭结比图8.8缓和，远端关联结构被非线性时间变量
+重塑。
+
+\paragraph{含即期利率约束变体}
+在常数刚性的拉格朗日量上加即期利率约束（第7章）后，传播子为
+\begin{equation*}
+D(\theta,\theta')=\mu e^{-\mu\theta}
+\left(\cosh\mu\theta'-\frac{\mu e^{-\mu\theta'}}{\mu+a}\right)
+\;;\quad\theta>\theta'
+\tag{8.28}
+\end{equation*}
+归一化关联函数为
+\begin{equation*}
+\mathcal{C}_{C}(\theta,\theta')=
+\sqrt{\frac{e^{-\mu\theta}\left(\cosh\mu\theta'
+-\dfrac{\mu e^{-\mu\theta'}}{\mu+a}\right)}
+{e^{-\mu\theta'}\left(\cosh\mu\theta
+-\dfrac{\mu e^{-\mu\theta}}{\mu+a}\right)}}\;;\quad\theta>\theta'
+\tag{8.29}
+\end{equation*}
+最佳拟合的传播子图形与常数刚性情形（图8.8）几乎完全相同（原书文献
+[11]）——正如拟合协议里指出的，$\mu$ 与 $a$ 各自退化为极小且不稳
+定的值，只有比值 $a/\mu^{2}=9.4$ 有意义。
+
+\paragraph{非常数刚性变体}
+让刚性依赖期限（第7章式(7.72)，表中记号 $\mu(\theta)=\mu/(1+k\theta)$，
+正文的拟合值记 $\mu_{0}$）。归一化关联函数为
+\begin{equation*}
+\mathcal{C}_{M}(\theta,\theta')=\left(
+\frac{(\alpha+1/2)(1+k\theta')^{2\alpha}+\alpha-1/2}
+{(\alpha+1/2)(1+k\theta)^{2\alpha}+\alpha-1/2}\right)^{1/2}
+\;;\quad\theta>\theta'
+\tag{8.30}
+\end{equation*}
+其中 $\alpha$ 是该模型拉格朗日量里的（常数）指数参数（见第7章式
+(7.72)所在小节），不要与漂移速度 $\alpha(t,x)$ 混淆。式(8.30)有
+$\mu_{0}\to0$ 极限（无编号公式）
+\begin{equation*}
+\lim_{\mu_{0}\to0}\mathcal{C}_{M}(\theta,\theta')=
+\sqrt{\frac{1+k\theta'}{1+k\theta}}\;;\quad\theta>\theta'
+\end{equation*}
+拟合出的 $\mu_{0}$ 极小，故此极限就是对拟合函数的极好近似；得到的
+关联函数拟合与常数刚性（图8.8）几乎相同。\footnote{原书脚注7：
+关联子 $\mathcal{C}_{M}(\theta,\theta')$ 不属于 HJM 类模型——其
+$\mu_{0}\to0$ 极限不是常数关联。这从反面说明“刚性 $\to$ 非平凡
+相关性”是场论模型与 HJM 的分水岭。}
+
+四份“成绩单”的读法：误差从4.23\%一路降到2.46\%，方向一致地指向
+“非线性期限变量有用、但刚性框架有上限”。判断上限在哪，需要8.7节
+的曲率分析。
+
+\section{刚度场论模型}
+
+本节要解决的问题：把基于四次导数项的刚度传播子（stiff
+propagator）拿上考场。它在第7章附录7.15中已经算出：传播子极光滑、
+没有困扰刚性高斯模型的对角“扭结”——因此理应给出最好的实证结果
+（原书文献[6]）。本节先给出模型关联子，再定义“垂直于对角线的
+曲率”这一新的检验量，并发现一个意外：刚度模型自身在曲率检验上
+也会败北，需要一个非线性时间变量来救。
+
+\paragraph{关键公式：刚度关联子}
+归一化关联函数由传播子按式(8.18)的方式归一：
+\begin{equation*}
+\mathcal{C}_{Q}(\theta,\theta')=
+\frac{G(\theta,\theta')}{\sqrt{G(\theta,\theta)G(\theta',\theta')}}
+\tag{8.31}
+\end{equation*}
+刚度传播子有三个分支（第7章附录7.15），实分支由原书式(7.80)给出：
+\begin{equation*}
+G_{b}(\theta_{+};\theta_{-})\equiv
+\frac{\lambda}{2\sinh(2b)}\left[g_{+}(\theta_{+})+g_{-}(\theta_{-})\right]
+\tag{8.32}
+\end{equation*}
+其中两个辅助函数与两个坐标组合是
+\begin{align*}
+&g_{+}(\theta_{+})=e^{-\lambda\theta_{+}\cosh(b)}
+\sinh\{b+\lambda\theta_{+}\sinh(b)\}
+\tag{8.33}\\
+&g_{-}(\theta_{-})=e^{-\lambda|\theta_{-}|\cosh(b)}
+\sinh\{b+\lambda|\theta_{-}|\sinh(b)\}
+\tag{8.34}\\
+&\theta_{\pm}=\theta\pm\theta'
+\tag{8.35}
+\end{align*}
+代入式(8.31)（前因子 $\lambda/2\sinh(2b)$ 在归一化中消去）：
+\begin{equation*}
+\mathcal{C}_{Q}(\theta_{+};\theta_{-})=
+\frac{g_{+}(\theta_{+})+g_{-}(\theta_{-})}
+{\sqrt{\left[g_{+}(\theta_{+}+\theta_{-})+g_{-}(0)\right]
+\left[g_{+}(\theta_{+}-\theta_{-})+g_{-}(0)\right]}}
+\tag{8.36}
+\end{equation*}
+对角线 $\theta_{-}=0$（即 $\theta=\theta'$）是关联子的极大值线：
+\begin{equation*}
+\frac{\partial\mathcal{C}_{Q}(\theta_{+};\theta_{-})}{\partial\theta_{-}}
+\bigg|_{\theta_{-}=0}
+\equiv\frac{\partial\mathcal{C}_{Q}(\theta_{+};0)}{\partial\theta_{-}}=0
+\tag{8.37}
+\end{equation*}
+\paragraph{原书图 8.10}\quad $(\theta,\theta')$ 平面示意：对角轴为
+$\theta_{-}=\theta-\theta'=0$；固定 $\theta_{+}$ 而改变 $\theta_{-}$
+的方向 $\delta\theta_{-}$ 垂直于对角线——“横向曲率”就定义在这个
+方向上。
+
+\paragraph{关键公式：垂直于对角线的曲率}
+关联子沿对角取极大，其“横向衰减快慢”由二阶导数度量：
+\begin{equation*}
+R_{Q}(\theta_{+})=-\frac{\partial^{2}\mathcal{C}_{Q}(\theta_{+};\theta_{-})}
+{\partial\theta_{-}^{2}}\bigg|_{(\theta_{-}=0)}
+\equiv-\frac{\partial^{2}\mathcal{C}_{Q}(\theta_{+};0)}{\partial\theta_{-}^{2}}
+\tag{8.38}
+\end{equation*}
+计算在附录8.9完成，原书式(8.47)给出
+\begin{equation*}
+R_{Q}(\theta_{+})=\frac{|g_{-}''(0)|}{g_{+}(\theta_{+})+g_{-}(0)}
+-\frac{|g_{+}''(\theta_{+})|\left[g_{+}(\theta_{+})+g_{-}(0)\right]
++\left[g_{+}'(\theta_{+})\right]^{2}}
+{\left[g_{+}(\theta_{+})+g_{-}(0)\right]^{2}}
+\tag{8.39}
+\end{equation*}
+读式(8.39)的关键是 $|g_{-}''(0)|$：它（差一个无关紧要的标度）就是
+刚度传播子在对角线上的曲率，第7章式(7.84)证明它是有限常数；对一切
+带扭结的传播子，$|g_{-}''(0)|$ 沿对角线为无穷——曲率计算直接作废。
+这就是扭结模型被淘汰的数学判决书：不是拟合差一点，而是“横向曲率”
+这个可观测量根本定义不出来。
+
+\paragraph{模型预测与经验矛盾}
+沿对角线远离原点（$\theta_{+}$ 增大）时，式(8.39)第一项的分母
+$g_{+}(\theta_{+})+g_{-}(0)$ 减小、第二（负）项也变小，故曲率
+（缓慢地）\textbf{增大}——图8.11内嵌图中的虚线（$\log R_{Q}(\theta_{+})$）
+向上倾斜。但仔细看图8.4与8.5：经验关联子沿对角线离开原点时曲线
+反而变平，曲率随 $\theta_{+}$ \textbf{减小}。预测与经验正好相反
+——按现状，刚度关联子解释不了远期利率的经验行为。
+\paragraph{原书图 8.11}\quad 拟合刚度关联（对角线的正交方向上的
+截面，圆圈为数据点，曲线为模型，主图范围0.5--1.0对 $\theta$ 0--8年），
+其中关联子写成
+\begin{equation*}
+\mathcal{C}_{Q}(\theta_{+};\theta_{-})=
+\frac{g_{+}(z_{+})+g_{-}(z_{-})}
+{\sqrt{\left[g_{+}(z_{+}+z_{-})+g_{-}(0)\right]
+\left[g_{+}(z_{+}-z_{-})+g_{-}(0)\right]}}
+\end{equation*}
+（带非线性心理时间变量 $z_{\pm}(\theta_{+};\theta_{-})\equiv
+z(\theta)\pm z(\theta')$）。内嵌图：$\log(\theta_{+})$ 对
+(a) 虚线为曲率 $\log(R_{Q}(\theta_{+}))$——（错误的）向上斜；
+(b) 带非线性未来（到期）时间的曲率
+$\log([z'(\theta_{+})]^{2}R_{Q}(2z(\theta_{+}/2)))$——正确地向下斜。
+
+\subsection{心理未来时间}
+
+本节要解决的问题：曲率检验失败后怎么救。经验上，曲率按幂律衰减
+（原书记作 $\mathcal{C}_{Q}(\theta_{+})\simeq1/\theta_{+}^{1.3}$，
+指横向曲率的经验衰减）。刚度传播子的曲率只是缓慢\emph{上升}，那就
+给它乘一个随 $\theta_{+}$ 幂律衰减的前因子，把缓慢上升抵消掉。
+心理未来时间变量 $z(\theta)$ 恰好扮演这个角色。
+
+\paragraph{模型设定与记号}
+心理到期时间的定义方程是原书式(7.85)（无编号公式）
+\begin{equation*}
+\frac{\partial f}{\partial t}(t,\theta)=\alpha(t,z(\theta))
++\sigma(t,z(\theta))A(t,z(\theta))\;;\quad\theta=x-t
+\end{equation*}
+即所有场都改在心理坐标 $z(\theta)$ 上取值。归一化关联子变为
+\begin{equation*}
+\mathcal{C}_{Qz}(\theta,\theta')=
+\frac{G(z(\theta),z(\theta'))}
+{\sqrt{G(z(\theta),z(\theta))G(z(\theta'),z(\theta'))}}
+\tag{8.40}
+\end{equation*}
+这里有一个概念要点：换到心理未来时间，关联子（作为数据的对象）
+\textbf{坐标不变}，变的只是场论模型对它的\emph{描述}——所以上式
+左端只依赖日历时间变量 $\theta,\theta'$，右端只依赖心理时间变量
+$z(\theta),z(\theta')$。仿照式(8.36)把关联子写得更显式：
+\begin{align*}
+&\mathcal{C}_{Qz}(\theta_{+};\theta_{-})=
+\frac{g_{+}(z_{+})+g_{-}(z_{-})}
+{\sqrt{\left[g_{+}(z_{+}+z_{-})+g_{-}(0)\right]
+\left[g_{+}(z_{+}-z_{-})+g_{-}(0)\right]}}
+\tag{8.41}\\
+&z_{\pm}(\theta_{+};\theta_{-})\equiv z(\theta)\pm z(\theta')
+\tag{8.42}
+\end{align*}
+原书式(8.49)（本章附录）证明非线性坐标下的曲率为
+\begin{equation*}
+-\frac{\partial^{2}\mathcal{C}_{Qz}(\theta_{+};0)}{\partial\theta_{-}^{2}}
+=\left[z'(\theta_{+})\right]^{2}R_{Q}\!\left(2z(\theta_{+}/2)\right)
+\tag{8.43}
+\end{equation*}
+即心理时间的曲率\textbf{恰好}分解为原模型曲率乘以因子
+$[z'(\theta_{+})]^{2}$。推论：凡沿对角有扭结的模型（一切刚性变体），
+其曲率发散，任何非发散的心理时间选择都无法把它变成有限——扭结
+模型被彻底判死，救不回来。
+
+\paragraph{关键公式：幂律拟合定出指数}
+预期曲率按幂律衰减，故取拟设（ansatz）
+$z(\theta)=\theta^{\eta}$。利用式(8.43)中的 $R_{Q}$ 在自变量
+$2z(\theta_{+}/2)$ 处随 $\theta_{+}$ 变化极慢这一事实（刚度曲率本
+来就缓变），得近似（多行推导，tag 在末行）
+\begin{align*}
+&[z'(\theta_{+})]^{2}\propto\frac{1}{\theta_{+}^{1.3}}\\
+&\Rightarrow\quad\theta_{+}^{2\eta-2}\propto\frac{1}{\theta_{+}^{1.3}}
+\quad\Rightarrow\quad\eta\simeq0.35
+\tag{8.44}
+\end{align*}
+最佳拟合给出 $\eta=0.34$——心理时间变量几乎完全主导了关联子的
+曲率。\footnote{原书脚注8：若在常数刚性模型里改用非线性到期时间
+$z(\theta)=\theta^{0.34}$，对角横向曲率仍发散——扭结不因心理时间
+而消失。}惊人的是：心理未来时间变量给出的刚度高斯模型曲率，在
+数据\textbf{整个}范围内都与经验关联子的曲率吻合（图8.12，原书文献
+[6]）。
+\paragraph{原书图 8.12}\quad 带心理时间的拟合传播子（主图同图8.11
+式样：数据圆圈加模型曲线）；内嵌图为曲率
+$[z'(\theta_{+})]^{2}R_{Q}(2z(\theta_{+}/2))$ 的经验点与理论曲线，
+二者在全域吻合、整体向下倾斜。
+
+\paragraph{最佳拟合参数与量纲}
+心理未来时间 $z(\theta)=\theta^{0.34}$ 明显慢于日历时间，它影响
+一切金融工具；$\eta$ 或许像波动率一样有“体制”——随受市场情绪
+影响的长时间段漂移。$\eta$ 是标度指数，无量纲；$\lambda,\mu$ 的
+单位按原书式(7.86)约定，使 $\lambda z,\mu z$ 无量纲；由 $z=\theta^{\eta}$
+定义 $\lambda z=[\tilde{\lambda}\theta]^{\eta}$、
+$\mu z=[\tilde{\mu}\theta]^{\eta}$，新常数 $\tilde{\lambda},\tilde{\mu}$
+的量纲恒为(time)$^{-1}$。$\theta$ 以年计，经验研究的结果汇总为
+（$\tilde{\mu}=\tilde{\lambda}/(2\cosh b)^{1/2\eta}=0.403$/年）
+\begin{center}
+\fbox{\begin{minipage}{0.86\textwidth}
+\textbf{刚度传播子参数的最佳拟合}\\[2pt]
+$\tilde{\lambda}=1.790/$年；\quad $\tilde{\mu}=0.403/$年；\quad
+$b=0.845$；\quad $\eta=0.34$\\
+整个拟合的均方根误差：$0.40\%$
+\end{minipage}}
+\end{center}
+几个数字的含义。其一，$\tilde{\mu}/\tilde{\lambda}\approx0.225$
+来自 $b=0.845$：两参数由关系式 $\tilde{\mu}
+=\tilde{\lambda}/(2\cosh b)^{1/2\eta}$ 相连，独立拟合的只有三个。
+其二，均方根误差 $0.40\%$——远好于刚性族最好的 $2.46\%$，而且
+图形上与经验关联子（图8.4）看上去完全一样。其三，图8.11画的是
+模型关联子在垂直于 $\theta_{-}=0$ 对角线的那条线上的截面——这是
+比较模型与数据的最长一段横向路径，拟合与数据几乎精确重合。值得
+强调：非线性期限变量 $z(\theta)$ 本是为解决对角线邻域的曲率行为
+而引入，结果在对角线区域之外它给出的关联子行为同样正确——好参数
+不会只修一处。
+
+\paragraph{边界 $x=t$ 的贡献}
+传播子中含 $\theta_{+}$ 的项（$g_{+}$）反映了 $x=t$ 处边界的存在。
+若把这一项去掉——等价于假设远期利率存在于 $-\infty\le x\le+\infty$
+——拟合劣化，均方根误差从 $0.40\%$ 升到 $0.53\%$。可见 $x=t$
+处边界对远期利率的关联有实实在在的效应：期限空间的“起点”不是
+可有可无的装饰。
+
+\section{小结}
+
+本章把第7章的高斯场论模型逐一送上实验台，判决结果干净利落：远期
+利率数据的细致分析表明，关联远期利率的量子场论模型与市场符合得
+相当好；常数刚性模型的全部变体（含即期利率约束的、期限依赖刚性的、
+加心理时间的 $\tanh$ 变体）都不足以解释远期利率的行为。实证研究
+的主结论是：远期利率的拉格朗日量必须同时带有\textbf{刚性}与
+\textbf{刚度}项，再配上心理未来时间变量，才能对远期利率的观测
+关联函数给出极好的拟合（均方根误差 $0.40\%$）。
+
+也要看到本章实证的边界：研究只用了两点关联函数（归一化协方差）。
+对高斯（线性）场论，三个及以上期限的更高阶关联函数全部由传播子
+决定，测了两点就等于测了全部；但图8.2给出的远期利率峰度远不为零，
+加上初步计算（原书文献[97]）表明远期利率事实上是\textbf{非线性}
+的——本章的实证方法需要推广到第7章讨论过的非线性远期利率理论。
+这是原书留下的开放方向。
+
+\section{附录：刚度关联子的曲率}
+
+本节要解决的问题：补全式(8.39)与式(8.43)的推导。计算本身直截但
+冗长，核心是两个链式法则。
+
+\paragraph{曲率计算的推导主线}
+从式(8.41)（无心理时间情形）的归一化关联子出发：
+\begin{equation*}
+\mathcal{C}_{Q}(\theta_{+};\theta_{-})=
+\frac{g_{+}(\theta_{+})+g_{-}(\theta_{-})}
+{\sqrt{\left[g_{+}(\theta_{+}+\theta_{-})+g_{-}(0)\right]
+\left[g_{+}(\theta_{+}-\theta_{-})+g_{-}(0)\right]}}
+\end{equation*}
+按式(8.38)，对角线正交方向的曲率定义为
+\begin{equation*}
+R_{Q}(\theta_{+})=-\frac{\partial^{2}\mathcal{C}_{Q}(\theta_{+};0)}
+{\partial\theta_{-}^{2}}
+\end{equation*}
+直截但冗长的求导给出（“对角极大”条件式(8.37)保证一阶交叉项不出现，
+结果只含 $g_{\pm}$ 及其导数）
+\begin{equation*}
+R_{Q}(\theta_{+})=-\frac{g_{-}''(0)}{g_{+}(\theta_{+})+g_{-}(0)}
++\frac{g_{+}''(\theta_{+})\left[g_{+}(\theta_{+})+g_{-}(0)\right]
+-\left(g_{+}'(\theta)\right)^{2}}
+{\left[g_{+}(\theta_{+})+g_{-}(0)\right]^{2}}
+\tag{8.45}
+\end{equation*}
+其中
+\begin{align*}
+&g_{+}'(\theta)=-\lambda e^{-\lambda\theta_{+}\cosh(b)}
+\sinh\left[\lambda\theta_{+}\sinh(b)\right]<0\\
+&g_{+}''(\theta_{+})=-\lambda^{2}e^{-\lambda\theta_{+}\cosh(b)}
+\sinh\left[\lambda\theta_{+}\sinh(b)-b\right]<0
+\end{align*}
+（第一行左端原书印作 $g_{+}'(\theta)$，与右端的 $\theta_{+}$ 不一致，
+按主文式(8.39)应为 $g_{+}'(\theta_{+})$。）第7章式(7.84)给出
+\begin{equation*}
+g_{-}''(0)=-\lambda^{2}\sinh(b)\left(\cosh^{2}(b)-\sinh(b)\right)<0
+\tag{8.46}
+\end{equation*}
+把 $g_{-}''(0)<0$、$g_{+}''(\theta_{+})<0$ 代入式(8.45)改写为
+绝对值形式：
+\begin{equation*}
+R_{Q}(\theta_{+})=\frac{|g_{-}''(0)|}{g_{+}(\theta_{+})+g_{-}(0)}
+-\frac{|g_{+}''(\theta_{+})|\left[g_{+}(\theta_{+})+g_{-}(0)\right]
++\left(g_{+}'(\theta)\right)^{2}}
+{\left[g_{+}(\theta_{+})+g_{-}(0)\right]^{2}}
+\tag{8.47}
+\end{equation*}
+（末项 $g_{+}'$ 的自变量原书印作 $\theta$，同上按式(8.39)应为
+$\theta_{+}$。）式(8.39)由此得证；两项的正负配平给出“曲率沿对角
+缓慢上升”的模型预测。
+
+\paragraph{心理未来时间的推导主线}
+把 $\mathcal{C}_{Qz}$ 看成复合函数，链式法则给出（一阶导数）
+\begin{align*}
+\frac{\partial\mathcal{C}_{Qz}(\theta_{+};\theta_{-})}{\partial\theta_{-}}
+&=\frac{\partial z_{-}}{\partial\theta_{-}}
+\frac{\partial\mathcal{C}_{Q}(\theta_{+};\theta_{-})}{\partial z_{-}}
++\frac{\partial z_{+}}{\partial\theta_{-}}
+\frac{\partial\mathcal{C}_{Q}(\theta_{+};\theta_{-})}{\partial z_{+}}\\
+&=\frac{\partial z_{-}}{\partial\theta_{-}}
+\frac{\partial\mathcal{C}_{Q}(\theta_{+};\theta_{-})}{\partial z_{-}}
+\qquad\text{因为}\quad\frac{\partial z_{+}}{\partial\theta_{-}}=0
+\tag{8.48}
+\end{align*}
+（在求导最终取值的对角 $\theta_{-}=0$ 上 $\theta=\theta'$，故
+$\partial z_{+}/\partial\theta_{-}=[z'(\theta)-z'(\theta')]/2=0$。）
+再求二阶导并对角取值，交叉项因式(8.37)（
+$\partial\mathcal{C}_{Qz}(\theta_{+};0)/\partial z_{-}=0$）消失：
+\begin{equation*}
+\frac{\partial^{2}\mathcal{C}_{Qz}(\theta_{+};\theta_{-})}
+{\partial\theta_{-}^{2}}\bigg|_{(\theta_{-}=0)}
+=\left[\frac{\partial z_{-}}{\partial\theta_{-}}\right]^{2}
+\bigg|_{(\theta_{-}=0)}
+\frac{\partial^{2}\mathcal{C}_{Qz}(\theta_{+};\theta_{-})}
+{\partial z_{-}^{2}}\bigg|_{(z_{-}=0)}
+\end{equation*}
+利用原书给出的恒等式
+$[\partial z_{-}/\partial\theta_{-}]|_{(\theta_{-}=0)}=z'(\theta_{+})$
+\footnote{按 $\theta=(\theta_{+}+\theta_{-})/2$、
+$\theta'=(\theta_{+}-\theta_{-})/2$ 严格计算，对角上有
+$\theta=\theta'=\theta_{+}/2$，
+$[\partial z_{-}/\partial\theta_{-}]|_{0}=z'(\theta_{+}/2)$；原书写作
+$z'(\theta_{+})$。由于式(8.44)的指数拟合只用到幂次——
+$\theta_{+}/2$ 与 $\theta_{+}$ 的幂相同——这一差异不影响结论。}，
+非线性坐标下的曲率为
+\begin{equation*}
+\frac{\partial^{2}\mathcal{C}_{Qz}(\theta_{+};0)}{\partial\theta_{-}^{2}}
+=\left[z'(\theta_{+})\right]^{2}
+\frac{\partial^{2}\mathcal{C}_{Qz}(\theta_{+};\theta_{-})}
+{\partial z_{-}^{2}}\bigg|_{(z_{-}=0)}
+=\left[z'(\theta_{+})\right]^{2}
+\frac{\partial^{2}\mathcal{C}_{Qz}(z_{+};0)}{\partial z_{-}^{2}}
+\end{equation*}
+最后一步用了关键观察：$\mathcal{C}_{Qz}(z_{+};z_{-})$ 作为
+$z_{+},z_{-}$ 的函数形式与 $\mathcal{C}_{Q}(\theta_{+};\theta_{-})$
+作为 $\theta_{+},\theta_{-}$ 的函数形式\textbf{完全相同}（比较
+式(8.36)与式(8.41)即见）——所以二阶导可用 $R_{Q}$ 的原式，只是
+变量换名。于是
+\begin{equation*}
+-\frac{\partial^{2}\mathcal{C}_{Qz}(\theta_{+};0)}{\partial\theta_{-}^{2}}
+=\left[z'(\theta_{+})\right]^{2}R_{Q}(z_{+})\big|_{(z_{-}=0)}
+=\left[z'(\theta_{+})\right]^{2}
+R_{Q}\!\left(2z(\theta_{+}/2)\right)
+\tag{8.49}
+\end{equation*}
+其中 $z_{+}|_{z_{-}=0}=2z(\theta_{+}/2)$（对角上
+$z(\theta)=z(\theta')$，故 $z_{+}=2z$，而 $\theta=\theta_{+}/2$），
+$R_{Q}(z)$ 由式(8.39)给出。式(8.43)得证——心理时间把曲率精确地
+“再标度”了。
+
+%TAGS: 8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,8.10,8.11,8.12,8.13,8.14,8.15,8.16,8.17,8.18,8.19,8.20,8.21,8.22,8.23,8.24,8.25,8.26,8.27,8.28,8.29,8.30,8.31,8.32,8.33,8.34,8.35,8.36,8.37,8.38,8.39,8.40,8.41,8.42,8.43,8.44,8.45,8.46,8.47,8.48,8.49（8.1--8.49共49条连续无断档，已对照PNG逐页核验；无编号公式照录的有：Libor基点\$25、鞅测度期望值、高斯转移概率$P(r',t';r,t)$、$\mu_0\to0$极限、式(7.85)心理时间定义、附录中$\mathcal{C}_Q$与$R_Q$的复述及$g_\pm'$、链式法则三式；原书图8.1--8.12与表8.1均已按规范指路）
