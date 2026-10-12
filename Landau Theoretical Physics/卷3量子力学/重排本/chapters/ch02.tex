@@ -1,0 +1,946 @@
+% ============================================================
+%  第三卷 第二章 能量和动量（§8–§16）
+%  底本：高教社中文版第6版；OCR 底稿 full_merged.md 行 1016–2039
+%  插图：本章无插图（原书如此）；本章无习题
+%
+%  已修正的 OCR/原书错误（均对照原书页面 p035–p057 PNG 核验）：
+%   [§8] "因子in"→因子 iħ；d/dt∫|Ψ|²dq 式按 p035 重建（OCR 第二项
+%        缺 Ψ*、粗体 ψ→Ψ）；转置定义推导长式 OCR 乱码（\boldsymbol H、
+%        双重帽子、\mathbb H）按 p035 重建为含 \tilde{\hat{H}}^* 之等式链；
+%        极限表式 ∂Ψ/∂t=(i/ħ)(∂S/∂t)Ψ（OCR 误作粗体小写 ψ）；
+%   [§9] (9.1) \dot{\dot f}→\overline{\dot f}=\dot{\bar f}（p036）；
+%        推导诸式左端 \dot{\hat f}→\overline{\dot f}，被积函数 ψ→Ψ；
+%        "常因子 i/h"→\mathrm{i}/\hbar；圈码①后泊松括号脚注文本
+%        （OCR 行 1100–1122）系脚注①窜入正文，按规范不排；
+%   [§10] (10.1)(10.3) 指数乱码 e^{-(νħ)E_n'}→e^{-(i/ħ)E_nt}；
+%        |ψ_n|²=|ψ_n|²→|Ψ_n|²=|ψ_n|²；平均值式首项 ψ_n→Ψ_n；
+%        连续谱诸积分及模量平方按 p039–p040 一律用大写 Ψ（OCR 混排
+%        1ψ1²、141² 之类乱码）；叠加式 a_ε、ψ_ε、E\iota→a_E、ψ_E、Et；
+%        "哈密顿量等于两个部分之和"句 OCR 词序错乱按 p039 复原；
+%   [§11] (11.8) (E_n−E_n)→(E_n−E_m)（p041）；"消去时间因子"乱码还原；
+%        (f*)_nm 推导链按 p041 重建：∫ψ_n^* f̂⁺ψ_m dq＝∫ψ_n^*(t̃îldê f̂^*)
+%        ψ_m dq＝∫ψ_m f̂^*ψ_n^* dq（OCR 三处均误作 f̂^*）；
+%        f_nn 定义句、(11.13) 前后数句 OCR 词序错乱按 p041–p042 复原；
+%        f_m∫ψ_n^*ψ_m dq 补下标 m；ψ_η→ψ_m；乘积 fg（OCR f_B）；
+%   [§12] \tilde{\hat S}·Ŝ=1→\tilde{\hat S}^* Ŝ=1（p045 有星号）；
+%        (12.7) 前积分链首项 ψ′_n→ψ′_m、转置中间式 ψ_n^*→ψ_m^*（p045）；
+%        "记作 tr f"之 ② 系脚注圈码（OCR 误作上标 (2)）；
+%   [§13] (13.3) E_n'→E_nt；(13.6) 左端 \hat f(t)→\bar f(t)（p047）；
+%        末句 OCR "算符 ḟ f̂˙" 衍字删一；
+%   [§14] (14.1)(14.2) 等处小写 ψ→Ψ（p048）；(14.2) Ψ′→Ψ^*；
+%        纯态 ρ(x′,x)=ψ^*(x′)ψ(x)→Ψ^*(x′)Ψ(x)（p049）；
+%        (14.5) Ĥ″→Ĥ′^*；(14.6) 双重级数按 p049 重建（OCR 下标错乱）；
+%        "它的形式是 22"之"22"为噪声删；"依 q 赖于"断行复原；
+%   [§15] (15.2) 行末衍文"\cdot p"删（p051）；Ô 之小写 o→大写 O；
+%        Σ_a θ_a→Σ_a ∇_a、∇。→∇_a；p̂Ψ=−iħ(i/ħ)Ψ∇S 按大写 Ψ（p052）；
+%        (15.6) 前归一化式 ψ_pψ_p→ψ_p^*ψ_{p'}；δ(p_x′−p_π)→δ(p_x′−p_x)；
+%        (15.8)–(15.10) 指数乱码 (iħ)/(iνħ)/(ψ∧)→(i/ħ)；
+%        d³p=dp_*dp_*dp_*→dp_x dp_y dp_z；P_s,P_y,P_z→p_x,p_y,p_z；
+%        (15.11)–(15.12) 径矢按原书加粗 r̄、r̂；"试用 ρ 表出…T̂_a"句
+%        词序错乱按 p054 复原；
+%   [§16] ψ=u(r)e^{(γ−i/ħ)p₀·r}→e^{(i/ħ)p₀·r}（p055）；振荡因子补 ·r；
+%        (16.6) Δp_、→Δp_{x,y,z}、p_*→p_{x,y,z}；
+%        (16.8) 后 a(p_x) 式 "w/p_x sgc²×"→"常数×"（p056）；
+%        p̂_x=p₀→\bar p_x=p₀；"(H, Weyl)"→（H. Weyl）；
+%        "以 hc 代替了 ħ"→ħc（p057）；"f和 f^g"→f 和 g；
+%   [全章] \mathrm{d} 收紧；\hbar 统一；\mathrm{i}、\mathrm{e} 按 ch03
+%        体例；OCR 粗体噪声（\pmb、\boldsymbol 误加）一律去除；ε→E。
+%
+%  遗留问题：
+%   - 脚注圈码 18 处已全部转录为 \footnote（脚注代理，2026-10-11，
+%     按原书页面 p036–p057 逐页核录：§9 一处 p037（泊松括号诸式四式，
+%     系 OCR 行1100–1122 窜入正文者，现已归位）；§10 三处 p039/p040×2；
+%     §11 五处 p041/p042/p043/p044；§12 两处 p046×2；§14 三处
+%     p048/p049/p050；§15 三处 p052/p053×2（含傅里叶积分式）；
+%     §16 两处 p054/p057）；
+%   - §15 "他们在无穷远处趋于零"之"他"系原书用字（p052），照排；
+%   - (16.6) 等处之 ∼ 号及 (16.3) 前 ≲ 号按原书照排。
+% ============================================================
+\chapter{能量和动量}
+
+\section{哈密顿算符}
+
+量子力学中，物理系统的态完全由波函数 $\varPsi$ 确定.这就是说，给出了某一时刻的波函数后，不但该系统在该时刻的所有性质得以描述，并且能确定该系统在此后所有时刻的行为（当然，这只能确定到量子力学一般允许的完备程度为止）.这一事实的数学表述为，任一时刻波函数的时间微商 $\dfrac{\partial\varPsi}{\partial t}$ 的值必须由该时刻的 $\varPsi$ 函数本身的值所确定，根据叠加原理，它们之间的关系还应是线性的.其最普遍形式为
+\begin{equation}
+  \mathrm{i}\hbar\frac{\partial\varPsi}{\partial t}=\hat{H}\varPsi
+\end{equation}
+式中 $\hat{H}$ 是某个线性算符；因子 $\mathrm{i}\hbar$ 的引进下面即将说明.
+
+由于积分式 $\int\varPsi\varPsi^{*}\,\mathrm{d}q$ 是一个和时间无关的常数，我们有
+\begin{equation*}
+  \frac{\mathrm{d}}{\mathrm{d}t}\int|\varPsi|^{2}\,\mathrm{d}q
+  =\int\varPsi\frac{\partial\varPsi^{*}}{\partial t}\,\mathrm{d}q
+  +\int\varPsi^{*}\frac{\partial\varPsi}{\partial t}\,\mathrm{d}q=0.
+\end{equation*}
+把(8.1)式代入上式，并对第一个积分应用算符的转置定义，我们有（略去公因子 $\mathrm{i}/\hbar$）
+\begin{equation*}
+\begin{aligned}
+  &\int\varPsi\hat{H}^{*}\varPsi^{*}\,\mathrm{d}q
+  -\int\varPsi^{*}\hat{H}\varPsi\,\mathrm{d}q
+  =\int\varPsi^{*}\tilde{\hat{H}}^{*}\varPsi\,\mathrm{d}q
+  -\int\varPsi^{*}\hat{H}\varPsi\,\mathrm{d}q=\\
+  &\qquad=\int\varPsi^{*}\left(\tilde{\hat{H}}^{*}-\hat{H}\right)\varPsi\,\mathrm{d}q=0
+\end{aligned}
+\end{equation*}
+由于上式必须对任意的 $\varPsi$ 函数成立，因而必须有等式 $\hat{H}^{+}=\hat{H}$；故 $\hat{H}$ 是一个厄米算符.我们来求算符 $\hat{H}$ 所对应的物理量.为此，我们应用波函数的极限表式(6.1)，并把它写成
+\begin{equation*}
+  \frac{\partial\varPsi}{\partial t}
+  =\frac{\mathrm{i}}{\hbar}\frac{\partial S}{\partial t}\,\varPsi,
+\end{equation*}
+其中的缓变振幅 $a$ 无需微分.将此式和定义(8.1)式比较，可知极限情形下，$\hat{H}$ 算符归结为相乘因子 $-\partial S/\partial t$.这就是说，$-\partial S/\partial t$ 是厄米算符 $\hat{H}$ 所对应的物理量.
+
+我们在力学中熟知，微商 $-\dfrac{\partial S}{\partial t}$ 正好就是一个力学系统的哈密顿函数 $H$.故算符 $\hat{H}$ 是量子力学中对应于哈密顿函数的算符；称为哈密顿算符，或者简称为该系统的哈密顿量.如果哈密顿量的形式为已知，方程(8.1)就确定了该物理系统的波函数.这个量子力学中的基本方程称为波动方程.
+
+\section{算符对时间的微商}
+
+量子力学中物理量的时间微商概念，不能按经典力学的方式来定义.因为经典力学的微商定义中考虑了一个量在两个相邻的不同时刻所具有的数值.但在量子力学中，一个量在某一时刻具有定值，它在随后各时刻一般讲来并不具有定值；这一点已经在§1中详细讨论过.
+
+因此量子力学中的时间微商概念必须给予另外的定义.我们自然地把物理量 $f$ 的微商 $\dot{f}$ 定义成这样一个量，这个量的平均值等于平均值 $\bar{f}$ 的时间微商.即定义为：
+\begin{equation}
+  \overline{\dot{f}}=\dot{\bar{f}}.
+\end{equation}
+从这个定义出发，不难获得对应于 $\dot{f}$ 的量子力学算符 $\hat{\dot{f}}$ 的表式.由于 $\bar{f}=\int\varPsi^{*}\hat{f}\varPsi\,\mathrm{d}q$，故
+\begin{equation*}
+\begin{aligned}
+  \overline{\dot{f}}&=\dot{\bar{f}}
+  =\frac{\mathrm{d}}{\mathrm{d}t}\int\varPsi^{*}\hat{f}\varPsi\,\mathrm{d}q
+  =\int\varPsi^{*}\frac{\partial\hat{f}}{\partial t}\varPsi\,\mathrm{d}q+\\
+  &\qquad+\int\frac{\partial\varPsi^{*}}{\partial t}\hat{f}\varPsi\,\mathrm{d}q
+  +\int\varPsi^{*}\hat{f}\frac{\partial\varPsi}{\partial t}\,\mathrm{d}q.
+\end{aligned}
+\end{equation*}
+其中的 $\dfrac{\partial\hat{f}}{\partial t}$ 是对算符 $\hat{f}$ 进行时间偏微商后所得的算符，因为 $\hat{f}$ 可能依赖于参量 $t$.把 $\dfrac{\partial\varPsi}{\partial t}$ 和 $\dfrac{\partial\varPsi^{*}}{\partial t}$ 按(8.1)的表式代入上式，可得
+\begin{equation*}
+  \overline{\dot{f}}=\int\varPsi^{*}\frac{\partial\hat{f}}{\partial t}\varPsi\,\mathrm{d}q
+  +\frac{\mathrm{i}}{\hbar}\int(\hat{H}^{*}\varPsi^{*})\hat{f}\varPsi\,\mathrm{d}q
+  -\frac{\mathrm{i}}{\hbar}\int\varPsi^{*}\hat{f}(\hat{H}\varPsi)\,\mathrm{d}q.
+\end{equation*}
+由于算符 $\hat{H}$ 是厄米的，因而
+\begin{equation*}
+  \int(\hat{H}^{*}\varPsi^{*})(\hat{f}\varPsi)\,\mathrm{d}q
+  =\int(\hat{f}\varPsi)(\hat{H}^{*}\varPsi^{*})\,\mathrm{d}q
+  =\int\varPsi^{*}\hat{H}\hat{f}\varPsi\,\mathrm{d}q;
+\end{equation*}
+因此有
+\begin{equation*}
+  \overline{\dot{f}}=\int\varPsi^{*}\left(\frac{\partial\hat{f}}{\partial t}
+  +\frac{\mathrm{i}}{\hbar}\hat{H}\hat{f}
+  -\frac{\mathrm{i}}{\hbar}\hat{f}\hat{H}\right)\varPsi\,\mathrm{d}q.
+\end{equation*}
+另一方面，由于按平均值定义有 $\overline{\dot{f}}=\int\varPsi^{*}\hat{\dot{f}}\varPsi\,\mathrm{d}q$，故知被积函数中圆括号内的表式就是欲求的算符 $\hat{\dot{f}}$\footnote{经典力学中，如果量$f$是该系统的广义坐标$q_i$和广义动量$p_i$的函数，则$f$的时间全微商为
+\begin{equation*}
+  \frac{\mathrm{d}f}{\mathrm{d}t}=\frac{\partial f}{\partial t}
+  +\sum_i\left(\frac{\partial f}{\partial q_i}\dot{q}_i
+  +\frac{\partial f}{\partial p_i}\dot{p}_i\right).
+\end{equation*}
+把哈密顿方程$\dot{q}_i=\partial H/\partial p_i$和$\dot{p}_i=-\partial H/\partial q_i$代入上式，可得
+\begin{equation*}
+  \frac{\mathrm{d}f}{\mathrm{d}t}=\frac{\partial f}{\partial t}+[H,f],
+\end{equation*}
+其中的
+\begin{equation*}
+  [H,f]\equiv\sum_i\left(\frac{\partial f}{\partial q_i}
+  \frac{\partial H}{\partial p_i}
+  -\frac{\partial f}{\partial p_i}\frac{\partial H}{\partial q_i}\right)
+\end{equation*}
+称为$f$和$H$两量的泊松括号（参考第一卷，《力学》，§42）.此式和(9.2)式比较，我们看到，当算符$\mathrm{i}(\hat{H}\hat{f}-\hat{f}\hat{H})$过渡到经典力学极限情形时，第一级近似应当等于零，第二级近似（相对于$\hbar$）就是$\hbar[H,f]$.这个结论对任意两个量$f$和$g$来讲都是正确的；即算符$\mathrm{i}(\hat{f}\hat{g}-\hat{g}\hat{f})$趋向于经典极限量$\hbar[f,g]$，而$[f,g]$为下列泊松括号：
+\begin{equation*}
+  [f,g]\equiv\sum_i\left(\frac{\partial g}{\partial q_i}
+  \frac{\partial f}{\partial p_i}
+  -\frac{\partial g}{\partial p_i}\frac{\partial f}{\partial q_i}\right)
+\end{equation*}
+我们总可以把$\hat{g}$形式地想象为某一系统的哈密顿量，根据这个事实即得上式.}：
+\begin{equation}
+  \hat{\dot{f}}=\frac{\partial\hat{f}}{\partial t}
+  +\frac{\mathrm{i}}{\hbar}(\hat{H}\hat{f}-\hat{f}\hat{H}).
+\end{equation}
+要注意的是，如果算符 $\hat{f}$ 不显含时间，那么，$\hat{\dot{f}}$ 除开一个常因子 $\mathrm{i}/\hbar$ 外，就等于算符 $\hat{f}$ 和哈密顿量的对易式.
+
+有一类十分重要的物理量，它的算符不显含时间，且和哈密顿量相对易，从而有 $\hat{\dot{f}}=0$.这样的量称为守恒量.由于 $\overline{\dot{f}}=\dot{\bar{f}}=0$，即 $\bar{f}$ 是一个常量.换句话说，该量的平均值不随时间变化.这里我们还可断定，如果所给态中的 $f$ 具有定值（即波函数为算符 $\hat{f}$ 的一个本征函数），则在所有的随后时刻 $f$ 仍具（同一）定值.
+
+\section{定态}
+
+封闭系统（或处于恒定外场中的系统）的哈密顿量不可能显含时间.这是因为对这样的系统来讲，所有时间都是等价的.另一方面，由于任一算符和它自己当然是对易的，我们就得到这样一个结论，对不在可变外场中的一个系统来讲，它的哈密顿函数是一个守恒量.大家知道，守恒的哈密顿函数称为能量.量子力学中能量守恒定律的意义就在于，如果所给态的能量具有定值，则此值将不随时间变化.
+
+能量为定值的态称为该系统的定态.描述定态的波函数 $\varPsi_n$ 是哈密顿算符的本征函数，满足方程 $\hat{H}\varPsi_n=E_n\varPsi_n$.其中的 $E_n$ 为能量的本征值.对函数 $\varPsi_n$ 讲来波动方程(8.1)成为
+\begin{equation*}
+  \mathrm{i}\hbar\frac{\partial\varPsi_n}{\partial t}
+  =\hat{H}\varPsi_n=E_n\varPsi_n.
+\end{equation*}
+此式可对时间直接积分，并得
+\begin{equation}
+  \varPsi_n=\mathrm{e}^{-(\mathrm{i}/\hbar)E_nt}\psi_n(q),
+\end{equation}
+式中 $\psi_n$ 仅为坐标的函数.上式确定了定态波函数对时间的依赖关系.
+
+我们用小写的 $\psi$ 代表不包含时间因子的定态波函数.这种函数以及它的能量本征值是由下列方程确定的：
+\begin{equation}
+  \hat{H}\psi=E\psi.
+\end{equation}
+能量为最小允许值的定态称为该系统的基态.
+
+任一波函数 $\varPsi$ 按定态波函数展开后，呈以下的形式：
+\begin{equation}
+  \varPsi=\sum_n a_n\mathrm{e}^{-(\mathrm{i}/\hbar)E_nt}\psi_n(q).
+\end{equation}
+和通常一样，展开式系数的各个模量平方 $|a_n|^{2}$ 确定了该系统具有各种能量值的概率.
+
+一个定态中的坐标概率分布由模量平方 $|\varPsi_n|^{2}=|\psi_n|^{2}$ 所确定；我们看到它和时间无关.同理可知任一物理量 $f$（其算符不显含时间）在定态中的平均值也不随时间变化：
+\begin{equation*}
+  \bar{f}=\int\varPsi_n^{*}\hat{f}\varPsi_n\,\mathrm{d}q
+  =\int\psi_n^{*}\hat{f}\psi_n\,\mathrm{d}q.
+\end{equation*}
+前面已经讲过，任一守恒物理量的算符与哈密顿量相对易.这就是说，任一守恒物理量可以和能量同时测量.
+
+在一个系统的各种不同定态中，有些定态可能具有相同的能量值（相同的能级），但有不同的其它物理量值.被几个不同的定态所对应的那个能级称为有简并的能级.从物理上讲来，存在着简并能级的可能性与下列事实有关，即能量本身一般讲来还不足以构成物理量的一个完全集合.
+
+如果有两个守恒的物理量 $f$ 和 $g$，它们的算符并不对易，那么该系统的诸能级一般讲来是简并的.譬如，设 $\psi$ 为某一定态波函数，该态中除能量外量 $f$ 也具有定值.我们很易断定函数 $\hat{g}\psi$ 并不等同于函数 $\psi$（常因子除外）；否则该态中的量 $g$ 也将具有定值，这是不可能的，因为 $f$ 和 $g$ 不能同时测量.另一方面，函数 $\hat{g}\psi$ 又是哈密顿量的一个本征函数，并且和 $\psi$ 对应于同一能量值 $E$：
+\begin{equation*}
+  \hat{H}(\hat{g}\psi)=\hat{g}\hat{H}\psi=E(\hat{g}\psi).
+\end{equation*}
+由此可见，这个时候有不止一个本征函数对应于同一能量值 $E$，也就是说该能级是简并的.
+
+属于同一简并能级的各种不同波函数加以任意的线性组合后，显然仍为该能级的一个本征函数.换句话说，一个简并能级的一套本征函数的选择方式不是唯一的.任意选出的属于同一简并能级的一套本征函数，一般讲来并不相互正交，但把它们加以适当的线性组合后，总可以组合成为一套正交的（且为归一化的）本征函数.\footnote{并且存在着无限多种组合方法，因为在$n$个函数的线性变换中有$n^{2}$个独立的变换系数，而$n$个函数的正交归一化条件只有$\dfrac{1}{2}n(n+1)$个；也就是小于$n^{2}$个.}
+
+对简并能级的一套本征函数所作的上述论断，当然不仅对能量的本征函数而言是正确的，而且对任一算符的一套本征函数而言也是正确的.对所论的算符讲来，只有属于不同本征值的那些本征函数，才是自动正交的；属于同一简并本征值的那些本征函数，一般讲来并不相互正交.
+
+如果系统的哈密顿量等于两个（或更多个）部分之和.$\hat{H}=\hat{H}_1+\hat{H}_2$，其中的一个部分只含坐标组 $q_1$，而另一部分只含坐标组 $q_2$，那么，算符 $\hat{H}$ 的本征函数就能写成算符 $\hat{H}_1$ 和算符 $\hat{H}_2$ 的本征函数的乘积，能量的本征值也就等于这两个算符的本征值之和.
+
+能量的本征值谱既可以是离散谱，也可以是连续谱.离散谱中的定态总是对应于该系统的有限运动，也就是对应于这样一种运动，该系统以及它的任一部分都不会跑到无穷远处.这是因为对离散谱的本征函数讲来，$\int|\varPsi|^{2}\,\mathrm{d}q$ 对整个空间的积分是有限的.这当然就意味着，模量平方 $|\varPsi|^{2}$ 的数值很快地衰减，并在无穷远处变成零.换句话说，坐标值为无穷大的概率等于零；亦即该系统在作有限运动，或者说该系统处于束缚态中.
+
+对连续谱的波函数讲来，$\int|\varPsi|^{2}\,\mathrm{d}q$ 是发散的.此时波函数的模量平方 $|\varPsi|^{2}$ 并不直接决定各种坐标值的概率，它只能看作是和这种概率成正比的一个量.积分 $\int|\varPsi|^{2}\,\mathrm{d}q$ 的发散原因总是由于 $|\varPsi|^{2}$ 在无穷远处不等于零（或者不是够快地趋于零）所引起的.因此可以断定，在一个任意大而有限的封闭面外的空间区域，积分 $\int|\varPsi|^{2}\,\mathrm{d}q$ 总是发散的.这就意味着处于该态中的系统（或其某一部分）位于无穷远处.对于一个由连续谱的各种定态波函数叠加而成的波函数讲来，积分 $\int|\varPsi|^{2}\,\mathrm{d}q$ 可能是收敛的，此时该系统处于一个有限的空间范围内.可是这个有限空间范围将随着时间无限制地扩张，终于使该系统运动到无穷远处.
+
+这一点可以根据下面的讨论看出.连续谱本征函数的叠加形式为
+\begin{equation*}
+  \varPsi=\int a_E\mathrm{e}^{-(\mathrm{i}/\hbar)Et}\psi_E(q)\,\mathrm{d}E.
+\end{equation*}
+$\varPsi$ 的模量平方可以表成以下的重积分形式：
+\begin{equation*}
+  |\varPsi|^{2}=\iint a_Ea_{E'}^{*}\,
+  \mathrm{e}^{(\mathrm{i}/\hbar)(E'-E)t}\,
+  \psi_E(q)\psi_{E'}^{*}(q)\,\mathrm{d}E\,\mathrm{d}E'.
+\end{equation*}
+这个式子如果对某一时间间隔 $T$ 求平均值，再让 $T$ 趋向无穷，则振荡因子 $\mathrm{e}^{(\mathrm{i}/\hbar)(E'-E)t}$ 的平均值趋于零，从而整个积分趋于零.这就是说，该系统处于位形空间任一指定点的概率 $|\varPsi|^{2}$ 的时间平均值趋于零；但是这种结果只有对发生于无限空间中的运动才有可能成立\footnote{要注意的是，如果$\varPsi$是由离散谱的波函数叠加而成的，则有
+\begin{equation*}
+  \overline{|\varPsi|^{2}}=\sum_n\sum_m a_na_m^{*}\,
+  \mathrm{e}^{\overline{(\mathrm{i}/\hbar)(E_m-E_n)t}}\psi_n\psi_m^{*}
+  =\sum_n|a_n\varPsi_n(q)|^{2}
+\end{equation*}
+亦即概率密度的时间平均值保持有限.}.可见连续谱中的定态对应于系统的无限运动.
+
+\section{矩阵}
+
+为方便计，我们假定所考虑系统的能谱为离散谱；下面求得的所有关系式，都可以直接推广到连续谱的情形.设 $\varPsi=\sum_n a_n\varPsi_n$ 为任一波函数对定态波函数 $\varPsi_n$ 的展开式.如果把这个展开式代入 $f$ 的平均值定义(3.8)式中，则得
+\begin{equation}
+  \bar{f}=\sum_n\sum_m a_n^{*}a_mf_{nm}(t).
+\end{equation}
+其中的 $f_{nm}(t)$ 代表下列积分：
+\begin{equation}
+  f_{nm}(t)=\int\varPsi_n^{*}\hat{f}\varPsi_m\,\mathrm{d}q.
+\end{equation}
+当 $n$ 和 $m$ 采取所有可能的各种数值时，这一组量 $f_{nm}(t)$ 称为量 $f$ 的一个矩阵\footnote{物理量的矩阵表示法，是在薛定谔发现波动方程以前由海森伯于1925年引进的.后来，M.玻恩，W.海森伯和P.约当又进一步发展，成为“矩阵力学”.}，每一个 $f_{nm}(t)$ 则称为由 $n$ 态跃迁到 $m$ 态的矩阵元.
+
+矩阵元 $f_{nm}(t)$ 的时间依赖关系是由（如果算符 $\hat{f}$ 不显含 $t$）波函数 $\varPsi_n$ 的时间依赖关系确定的.用(10.1)式代入上式，可得
+\begin{equation}
+  f_{nm}(t)=f_{nm}\mathrm{e}^{\mathrm{i}\omega_{nm}t},
+\end{equation}
+其中的
+\begin{equation}
+  \omega_{nm}=\frac{E_n-E_m}{\hbar}
+\end{equation}
+称为 $n$ 态和 $m$ 态之间的跃迁频率，而
+\begin{equation}
+  f_{nm}=\int\psi_n^{*}\hat{f}\psi_m\,\mathrm{d}q,
+\end{equation}
+这一组量构成 $f$ 的不依赖于时间的矩阵，在量子力学中经常用到\footnote{由于归一化波函数中有一个不确定的相因子（见§2），矩阵元$f_{nm}$及$f_{nm}(t)$也只能确定到相差一个$\mathrm{e}^{\mathrm{i}(a_m-a_n)}$形式的因子为止.这种不确定性同样不会影响到任何物理结果.}.
+
+$f$ 的微商 $\dot{f}$ 的矩阵元可从 $f$ 矩阵元的时间微商求出；这可直接从下式出发：
+\begin{equation}
+  \overline{\dot{f}}=\dot{\bar{f}}
+  =\sum_n\sum_m a_n^{*}a_m\dot{f}_{nm}(t).
+\end{equation}
+用(11.3)式，可得 $\dot{f}$ 的矩阵元为
+\begin{equation}
+  \dot{f}_{nm}(t)=\mathrm{i}\omega_{nm}f_{nm}(t),
+\end{equation}
+或不含时间（上式两边消去时间因子 $\mathrm{e}^{\mathrm{i}\omega_{nm}t}$ 后）的矩阵元为
+\begin{equation}
+  (\dot{f})_{nm}=\mathrm{i}\omega_{nm}f_{nm}
+  =\frac{\mathrm{i}}{\hbar}(E_n-E_m)f_{nm}.
+\end{equation}
+为简化式中的符号起见，以下导出的所有公式都是针对不含时间的矩阵元而言的；对依赖于时间的矩阵讲来，也能导出同样的式子.
+
+考虑到厄米共轭算符的定义后，我们可以求出 $f$ 的复共轭量 $f^{*}$ 的矩阵元：
+\begin{equation*}
+  (f^{*})_{nm}=\int\varPsi_n^{*}\hat{f}^{+}\varPsi_m\,\mathrm{d}q
+  =\int\varPsi_n^{*}\tilde{\hat{f}}^{*}\varPsi_m\,\mathrm{d}q
+  =\int\varPsi_m\hat{f}^{*}\varPsi_n^{*}\,\mathrm{d}q
+\end{equation*}
+或
+\begin{equation}
+  (f^{*})_{nm}=(f_{mn})^{*}.
+\end{equation}
+通常我们只需考虑实物理量，因此有
+\begin{equation}
+  f_{nm}=f_{mn}^{*}
+\end{equation}
+[$f_{mn}^{*}$ 即 $(f_{mn})^{*}$].满足上式条件的矩阵，其名称和它所对应的算符相同，称为厄米矩阵.
+
+$n=m$ 的矩阵元称为对角矩阵元.这种矩阵元和时间无关，从(11.10)式并可看出它们都是实量.矩阵元 $f_{nn}$ 实际上就是量 $f$ 在态 $\psi_n$ 中的平均值.
+
+不难获得矩阵的“乘法规则”.为此，我们首先指出下列公式是成立的：
+\begin{equation}
+  \hat{f}\psi_n=\sum_mf_{mn}\psi_m.
+\end{equation}
+这个式子不过是函数 $\hat{f}\psi_n$ 对函数组 $\psi_m$ 的展开式，其中的系数可由普遍公式(3.5)确定.根据这一公式，我们可写出两个算符的乘积作用在函数 $\psi_n$ 上所得的结果：
+\begin{equation*}
+  \hat{f}\hat{g}\psi_n=\hat{f}(\hat{g}\psi_n)
+  =\hat{f}\sum_kg_{kn}\psi_k
+  =\sum_kg_{kn}\hat{f}\psi_k
+  =\sum_{k,m}g_{kn}f_{mk}\psi_m.
+\end{equation*}
+另一方面我们应该有
+\begin{equation*}
+  \hat{f}\hat{g}\psi_n=\sum_m(fg)_{mn}\psi_m.
+\end{equation*}
+由此得出结论，乘积 $fg$ 的矩阵元是由下式确定的：
+\begin{equation}
+  (fg)_{mn}=\sum_kf_{mk}g_{kn},
+\end{equation}
+这个乘法法则和数学中采用的矩阵乘法法则完全相同：第一个矩阵的行乘以第二个矩阵的列.
+
+给出矩阵，就等价于给出了算符本身.特别是，如果矩阵已知，则原则上可求出该物理量的本征值及其相应的本征函数.
+
+现在假定所考虑的所有各量都在某一固定时刻，我们把任一波函数 $\varPsi$（在该时刻）按哈密顿算符 $\hat{H}$ 的本征函数组展开，即按不含时间的定态波函数 $\psi_n$ 展开：
+\begin{equation}
+  \varPsi=\sum_mc_m\psi_m,
+\end{equation}
+式中的 $c_m$ 代表展开系数.把上式代入确定 $f$ 的本征值和本征函数的方程式 $\hat{f}\varPsi=f\varPsi$ 中.我们有
+\begin{equation*}
+  \sum_mc_m(\hat{f}\psi_m)=f\sum_mc_m\psi_m.
+\end{equation*}
+上式两边各乘 $\psi_n^{*}$ 后再对 $\mathrm{d}q$ 积分.式左的每一个积分式 $\int\psi_n^{*}\hat{f}\psi_m\,\mathrm{d}q$ 就是相应的矩阵元 $f_{nm}$.式右的所有 $m\neq n$ 的积分式 $\int\psi_n^{*}\psi_m\,\mathrm{d}q$ 由于 $\psi_m$ 函数组的正交性而等于零，并由于归一化条件有 $\int\psi_n^{*}\psi_n\,\mathrm{d}q=1$\footnote{按照一般规则（§5），展式(11.13)中的一套$c_n$系数可以看作“能量表象”中的波函数（其变量为下标$n$，即能量本征值的编号）.矩阵$f_{nm}$在这个表象中起着算符$\hat{f}$的作用，它作用在波函数上的结果等于(11.14)式的左边.表式$\bar{f}=\sum_n\sum_m c_n^{*}(f_{nm}c_m)$相当于一个量用其算符及状态波函数表出的平均值一般公式.}，故
+\begin{equation}
+  \sum_mf_{nm}c_m=fc_n
+\end{equation}
+或
+\begin{equation*}
+  \sum_m(f_{nm}-f\delta_{nm})c_m=0,
+\end{equation*}
+式中，当 $m\neq n$ 时 $\delta_{nm}=0$，$m=n$ 时 $\delta_{nm}=1$.
+
+于是，我们得到了一组齐次的线性代数方程组（以 $c_m$ 为未知数）.大家都知道，这样一组方程式，只有当它们的系数所组成的行列式等于零时，才可能有不等于零的解，因此上式有解的条件为
+\begin{equation}
+  \det(f_{nm}-f\delta_{mn})=0.
+\end{equation}
+这个式子（以 $f$ 为未知数）的根就是物理量 $f$ 的各种可能值.当 $f$ 等于这些可能值中的任意一个时，满足(11.14)式的一套 $c_m$ 值就确定了对应于该可能值的本征函数.
+
+如果在物理量 $f$ 的矩阵元定义(11.5)式中，令 $\psi_n$ 为 $f$ 的本征函数，则按方程式 $\hat{f}\psi_n=f_n\psi_n$ 可得
+\begin{equation*}
+  f_{nm}=\int\psi_n^{*}\hat{f}\psi_m\,\mathrm{d}q
+  =f_m\int\psi_n^{*}\psi_m\,\mathrm{d}q.
+\end{equation*}
+根据 $\psi_m$ 函数组的正交归一化条件，当 $m\neq n$ 时得出 $f_{nm}=0$，$n=m$ 时则有 $f_{mm}=f_m$.因此只有对角矩阵元才不等于零，并且分别等于量 $f$ 的相应本征值.只有对角矩阵元不等于零的矩阵称为对角矩阵.特别是在 $\psi_n$ 函数为定态波函数的常用表象中，能量矩阵就成为一个对角矩阵（同样，凡是在定态中具有定值的其它物理量的矩阵也是对角矩阵）.一般讲来，用算符 $\hat{g}$ 的本征函数来定义的 $f$ 矩阵，称为物理量 $f$ 在 $g$ 表象中的矩阵.此后如无特殊声明，当我们讲到一个物理量的矩阵时，就是指该物理量在常用表象中的矩阵，这个表象中的能量矩阵是一个对角矩阵.前面讲过的矩阵元的时间关系式，都是仅仅针对这个常用表象而言的\footnote{根据能量矩阵的对角性，很容易看出(11.8)式就是算符公式(9.2)的矩阵表示.}.
+
+借助于算符的矩阵表示，我们可以证明§4中提到过的一个定理：如果有两个算符相互对易，它们就具有一整套共同的本征函数组.假定 $\hat{f}$ 和 $\hat{g}$ 是这样的两个算符，根据 $\hat{f}\hat{g}=\hat{g}\hat{f}$ 和(11.12)式的矩阵乘法规则，可得
+\begin{equation*}
+  \sum_kf_{mk}g_{kn}=\sum_kg_{mk}f_{kn}.
+\end{equation*}
+如果取算符 $\hat{f}$ 的一套本征函数 $\psi_n$ 来计算诸矩阵元，则 $m\neq k$ 时 $f_{mk}=0$，故上式可化成 $f_{mm}g_{mn}=g_{mn}f_{nn}$，或
+\begin{equation*}
+  g_{mn}(f_m-f_n)=0.
+\end{equation*}
+如果 $f$ 的所有本征值 $f_n$ 都不一样，那么，只要 $m\neq n$ 就有 $f_m-f_n\neq0$，从而有 $g_{mn}=0$.由此可见 $g_{mn}$ 的矩阵也是对角的，这就是说，函数组 $\psi_n$ 也是物理量 $g$ 的本征函数组.如果 $f_n$ 这组本征值中有些值是相同的（也就是存在这样一些本征值，其中每个本征值同时与几个不同的本征函数相对应），那么，对每一组属于同一本征值的本征函数 $\psi_n$ 而言，所对应的 $g_{mn}$ 矩阵元一般不等于零.但是，把属于同一本征值的那些本征函数 $\psi_n$ 加以种种线性组合后，它们显然仍是该本征值的一组本征函数；从中我们总是可以挑出这样一组线性组合，使得所对应的各个非对角矩阵元 $g_{mn}$ 全都等于零.由此可见，在这样的情况下我们还是可以求得一套函数，它们都是 $\hat{f}$ 和 $\hat{g}$ 的共同本征函数.
+
+下式在应用中会遇到：
+\begin{equation}
+  \left(\frac{\partial H}{\partial\lambda}\right)_{nn}
+  =\frac{\partial E_n}{\partial\lambda},
+\end{equation}
+$\lambda$ 是哈密顿量 $\hat{H}$（从而也是能量本征值 $E_n$）所依赖的一个参量.证明如下.方程 $(\hat{H}-E_n)\psi_n=0$ 对 $\lambda$ 微商后，左乘以 $\psi_n^{*}$，得
+\begin{equation*}
+  \psi_n^{*}(\hat{H}-E_n)\frac{\partial\psi_n}{\partial\lambda}
+  =\psi_n^{*}\left(\frac{\partial E_n}{\partial\lambda}
+  -\frac{\partial\hat{H}}{\partial\lambda}\right)\psi_n,
+\end{equation*}
+对 $q$ 积分，左边为
+\begin{equation*}
+  \int\psi_n^{*}(\hat{H}-E_n)\frac{\partial\psi_n}{\partial\lambda}\,\mathrm{d}q
+  =\int\frac{\partial\psi_n}{\partial\lambda}
+  (\hat{H}-E_n)^{*}\psi_n^{*}\,\mathrm{d}q.
+\end{equation*}
+由于 $\hat{H}$ 是厄米的，上式得零.由前式右边积分即得到所证的方程.
+
+近来文献中，常用下列记号（由狄拉克引进）代表矩阵元 $f_{nm}$\footnote{本书中两套记号都用.当脚标须由多个字母组成时，用(11.17)式特别方便.}：
+\begin{equation}
+  \langle n|f|m\rangle.
+\end{equation}
+它可看作是由 $f$ 及初态 $|m\rangle$ 和末态 $\langle n|$ 所“组成”（这些初末态记号与其波函数的表象无关）.我们也可用这些记号表出波函数的展开系数：如果有一组完备的波函数对应于态 $|n_1\rangle$，$|n_2\rangle$，$\cdots$，则态 $|m\rangle$ 的波函数对这套函数展开后，其展开系数可记作
+\begin{equation}
+  \langle n_i|m\rangle=\int\psi_{n_i}^{*}\psi_m\,\mathrm{d}q.
+\end{equation}
+
+\section{矩阵的变换}
+
+一个给定的物理量，其矩阵元可用不同的波函数组加以定义.例如，它可以是各种物理量的定态波函数组，也可以是同一系统在各种不同外场中的定态波函数组.于是就产生了把一个表象中的矩阵变换到另一表象中去的问题.
+
+设 $\psi_n(q)$ 和 $\psi_n'(q)$（$n=1,2,\cdots$）为两套完备的正交函数组.彼此间存在着以下的线性变换关系：
+\begin{equation}
+  \psi_n'=\sum_mS_{mn}\psi_m
+\end{equation}
+这不过是 $\psi_n'$ 按完备组 $\psi_m$ 的展开式.这个变换关系式可以按惯例写成下列算符形式：
+\begin{equation}
+  \psi_n'=\hat{S}\psi_n
+\end{equation}
+算符 $\hat{S}$ 必须满足一定的条件，使得函数组 $\psi_n$ 为正交归一化函数组时 $\psi_n'$ 也是正交归一化的.将(12.2)代入下列正交归一化条件中：
+\begin{equation*}
+  \int\psi_m^{\prime *}\psi_n'\,\mathrm{d}q=\delta_{mn}.
+\end{equation*}
+然后采用转置算符的定义式(3.14)，我们有
+\begin{equation*}
+  \int(\hat{S}\psi_n)\hat{S}^{*}\psi_m^{*}\,\mathrm{d}q
+  =\int\psi_m^{*}\tilde{\hat{S}}^{*}\hat{S}\psi_n\,\mathrm{d}q=\delta_{mn}.
+\end{equation*}
+如果上式对所有的 $m$ 和 $n$ 都成立，我们必须有 $\tilde{\hat{S}}^{*}\,\hat{S}=1$，或
+\begin{equation}
+  \tilde{\hat{S}}^{*}\equiv\hat{S}^{+}=\hat{S}^{-1}.
+\end{equation}
+即其逆算符等于其厄米共轭算符.具有这种性质的算符称为幺正算符.由于这一性质，(12.1)的逆变换 $\psi_n=\hat{S}^{-1}\psi_n'$ 为
+\begin{equation}
+  \psi_n=\sum_mS_{nm}^{*}\psi_m'.
+\end{equation}
+把 $\hat{S}^{+}\hat{S}=1$ 或 $\hat{S}\hat{S}^{+}=1$ 写成矩阵形式，可得下列形式的幺正条件：
+\begin{equation}
+  \sum_lS_{lm}^{*}S_{ln}=\delta_{mn},
+\end{equation}
+或
+\begin{equation}
+  \sum_lS_{ml}^{*}S_{nl}=\delta_{mn}.
+\end{equation}
+现在来考虑某个物理量 $f$，我们写出它在“新”表象中的矩阵元，亦即相对于 $\psi_n'$ 函数组的矩阵元.它由下列积分式给出：
+\begin{equation*}
+\begin{aligned}
+  \int\psi_m^{\prime *}\hat{f}\psi_n'\,\mathrm{d}q
+  &=\int(\hat{S}^{*}\psi_m^{*})(\hat{f}\hat{S}\psi_n)\,\mathrm{d}q
+  =\int\psi_m^{*}\tilde{\hat{S}}^{*}\hat{f}\hat{S}\psi_n\,\mathrm{d}q=\\
+  &=\int\psi_m^{*}\hat{S}^{-1}\hat{f}\hat{S}\psi_n\,\mathrm{d}q.
+\end{aligned}
+\end{equation*}
+可知算符 $\hat{f}$ 在新表象中的矩阵，等于算符
+\begin{equation}
+  \hat{f}'=\hat{S}^{-1}\hat{f}\hat{S}
+\end{equation}
+在旧表象中的矩阵\footnote{如果$[\hat{f},\hat{g}]=-\mathrm{i}\hbar\hat{c}$，是算符$\hat{f}$和$\hat{g}$的对易关系，由变换(12.7)得$[\hat{f}',\hat{g}']=-\mathrm{i}\hbar\hat{c}'$，即对易关系不变.在§9的附注中已指出，$\hat{c}$是经典泊松括号$[f,g]$的量子类比.而在经典力学中，泊松括号在变量（广义坐标和广义动量）的正则变换下是保持不变的；见《力学》§45.在这种意义下，我们可以说，量子力学中的幺正变换，起着类似于经典力学中正则变换的作用.}.
+
+一个矩阵的对角元素之和称为该矩阵的迹，记作 $\mathrm{tr}f$\footnote{阵迹的德文为Spur，英文为trace，记作$\mathrm{sp}f$或$\mathrm{tr}f$，当然，阵迹只有当对$n$的求和式收敛时才能有定义.}：
+\begin{equation}
+  \mathrm{tr}f=\sum_nf_{nn}
+\end{equation}
+首先应该注意，两个矩阵的乘积的迹与乘积的次序无关：
+\begin{equation}
+  \mathrm{tr}(fg)=\mathrm{tr}(gf)
+\end{equation}
+因为按矩阵乘法规则，有
+\begin{equation*}
+  \mathrm{tr}(fg)=\sum_n\sum_kf_{nk}g_{kn}
+  =\sum_k\sum_ng_{kn}f_{nk}=\mathrm{tr}(gf).
+\end{equation*}
+同理，容易证明，对于多个矩阵的乘积，其迹对因子的循环置换保持不变；例如
+\begin{equation}
+  \mathrm{tr}(fgh)=\mathrm{tr}(hfg)=\mathrm{tr}(ghf).
+\end{equation}
+阵迹有一个重要的性质，就是它并不依赖于定义矩阵元时所选的函数组，因为
+\begin{equation}
+  (\mathrm{tr}f)'=\mathrm{tr}(S^{-1}fS)
+  =\mathrm{tr}(SS^{-1}f)=\mathrm{tr}f.
+\end{equation}
+一个幺正变换，使函数组的模量平方之和在变换后保持不变：由(12.6)我们得
+\begin{equation}
+  \sum_i|\psi_i'|^{2}
+  =\sum_{k,l,i}S_{ki}\psi_kS_{li}^{*}\psi_l^{*}
+  =\sum_{k,l}\psi_k\psi_l^{*}\delta_{kl}
+  =\sum_k|\psi_k|^{2}.
+\end{equation}
+任一幺正算符都可写成
+\begin{equation}
+  \hat{S}=\mathrm{e}^{\mathrm{i}\hat{R}},
+\end{equation}
+其中 $\hat{R}$ 是一个厄米算符：由于 $\hat{R}^{+}=\hat{R}$，我们有
+\begin{equation*}
+  \hat{S}^{+}=\mathrm{e}^{-\mathrm{i}\hat{R}^{+}}
+  =\mathrm{e}^{-\mathrm{i}\hat{R}}=\hat{S}^{-1}.
+\end{equation*}
+把 $\mathrm{e}^{\pm\mathrm{i}\hat{R}}$ 直接展开为 $\hat{R}$ 的幂级数，不难验证下式成立：
+\begin{equation}
+  \hat{f}'=\hat{S}^{-1}\hat{f}\hat{S}
+  =\hat{f}+[\hat{f},\mathrm{i}\hat{R}]
+  +\frac{1}{2}[[\hat{f},\mathrm{i}\hat{R}],\mathrm{i}\hat{R}]+\cdots.
+\end{equation}
+当 $\hat{R}$ 正比于一个小参量时，上式很有用处，此时(12.14)变成对参量的幂级数展开式.
+
+\section{算符的海森伯绘景}
+
+在上述量子力学的数学表述中，对应于各种物理量的算符是作用在坐标函数上，并且一般地不显含时间 $t$.物理量平均值对时间的依赖关系，仅仅来自状态波函数对时间的依赖关系，其公式为
+\begin{equation}
+  \bar{f}(t)=\int\varPsi^{*}(q,t)\hat{f}\varPsi(q,t)\,\mathrm{d}q.
+\end{equation}
+但是，在量子力学的数学表式中，我们还可以采用另一种有所不同但是等价的方式，即把波函数对时间的依赖关系全部转移到算符身上去.这种海森伯绘景中的算符（不同于前述薛定谔绘景中的算符）虽然在本卷中并不采用.但为了相对论理论中的应用起见，在这里把它讲一下.
+
+我们定义下列算符［它是幺正的；见(12.13)式］：
+\begin{equation}
+  \hat{S}=\mathrm{e}^{-\frac{\mathrm{i}}{\hbar}\hat{H}t},
+\end{equation}
+其中 $\hat{H}$ 为系统的哈密顿量.根据定义，这个算符的本征函数就是算符 $\hat{H}$ 的本征函数，也就是定态波函数 $\psi_n(q)$，此时
+\begin{equation}
+  \hat{S}\psi_n(q)=\mathrm{e}^{-\frac{\mathrm{i}}{\hbar}E_nt}\psi_n(q).
+\end{equation}
+根据上式，任意波函数 $\varPsi$ 对定态波函数的展开式(10.3)可以写成下列算符形式：
+\begin{equation}
+  \varPsi(q,t)=\hat{S}\varPsi(q,0).
+\end{equation}
+这就是说，算符 $\hat{S}$ 的作用，是把某一起始时刻的波函数变成任一时刻的波函数.
+
+按(12.7)式，定义下列依赖于时间的算符：
+\begin{equation}
+  \hat{f}(t)=\hat{S}^{-1}\hat{f}\hat{S},
+\end{equation}
+则有
+\begin{equation}
+  \bar{f}(t)=\int\varPsi^{*}(q,0)\hat{f}(t)\varPsi(q,0)\,\mathrm{d}q.
+\end{equation}
+这就是时间依赖性完全转移到算符以后的 $f$ 的平均值公式(3.8)［我们对算符的定义基于(3.8)式］.
+
+显然，(13.5)式的算符对定态波函数而言的矩阵元，就是(11.3)式所定义的依赖于时间的矩阵元 $f_{nm}(t)$.
+
+最后，(13.5)式对时间求微商（假定算符 $\hat{f}$ 以及 $\hat{H}$ 本身都不含 $t$），可得下列方程：
+\begin{equation}
+  \frac{\partial}{\partial t}\hat{f}(t)
+  =\frac{\mathrm{i}}{\hbar}[\hat{H}\hat{f}(t)-\hat{f}(t)\hat{H}].
+\end{equation}
+此式和(9.2)式类似，但具有不同的含义：(9.2)式是与物理量 $\dot{f}$ 对应的算符 $\hat{\dot{f}}$ 的定义，而(13.7)式左边是物理量算符 $f$ 本身对时间的微商.
+
+\section{密度矩阵}
+
+在§1末段指出的含义下，用一个波函数来对一个系统进行的描述，是量子力学中可能做到的最完全的描述.
+
+不能够进行完全描述的态是有的，如果我们所考虑的系统只是一个大的封闭系统的一部分.我们假定整个封闭系统处于由波函数 $\varPsi(q,x)$ 所描述的某个态中，其中的 $x$ 是我们所考虑的那个子系统的坐标组，$q$ 是该封闭系统的其余坐标组.这个波函数一般讲来不能分解成一个 $x$ 函数和一个 $q$ 函数的乘积\footnote{要使$\varPsi(q,x)$能够（在某一时刻）写成这样的乘积，建立$\varPsi(q,x)$态的那些测量值必须能够对$x$系统和$q$系统分别作出完全描述.此外，为了使$\varPsi(q,x)$在随后时刻仍能继续保持这种乘积形式，封闭系统的这两部分还必须没有相互作用（见§2）.这些条件现在一个也没有.}，因此所考虑的子系统本身并不具备自己的波函数.
+
+设 $f$ 是这个子系统的某个物理量.它的算符只作用在坐标组 $x$ 上，不作用在 $q$ 上.这个量在 $\varPsi(q,x)$ 态中的平均值为
+\begin{equation}
+  \bar{f}=\iint\varPsi^{*}(q,x)\hat{f}\varPsi(q,x)\,\mathrm{d}q\,\mathrm{d}x.
+\end{equation}
+引进 $\rho(x',x)$ 函数，其定义为
+\begin{equation}
+  \rho(x',x)=\int\varPsi^{*}(q,x')\varPsi(q,x)\,\mathrm{d}q.
+\end{equation}
+式中只对坐标组 $q$ 进行积分；这个 $\rho$ 函数称为子系统的密度矩阵.根据(14.2)式的定义，这个函数显然是“厄米”的，即
+\begin{equation}
+  \rho^{*}(x,x')=\rho(x',x).
+\end{equation}
+这个密度矩阵的“对角元”为
+\begin{equation*}
+  \rho(x,x)=\int|\varPsi(q,x)|^{2}\,\mathrm{d}q.
+\end{equation*}
+上式确定了子系统坐标组的概率分布.
+
+应用密度矩阵，平均值 $\bar{f}$ 可以写成以下的形式：
+\begin{equation}
+  \bar{f}=\int[\hat{f}\rho(x',x)]_{x'=x}\,\mathrm{d}x.
+\end{equation}
+其中的 $\hat{f}$ 只作用在函数 $\rho(x',x)$ 中的 $x$ 变量上；算出其作用结果后，再令 $x'=x$.由此可见，知道了密度矩阵后，就可以算出描述 $x$ 系统的任一物理量的平均值.根据这一点，我们还可以通过 $\rho(x',x)$ 算出该系统中每一个物理量取各种可能值的概率.因此，对一个不具备波函数的系统讲来，它的状态可以通过密度矩阵来描述.这个密度矩阵不包含不属于该系统的 $q$ 坐标组，当然，它实质上还是依赖于整个封闭系统所处的态.
+
+用密度矩阵进行的描述，是一种最普遍形式的量子力学描述.而波函数的描述不过是这种普遍描述的一种特殊情形，也就是相当于密度矩阵具有 $\rho(x',x)=\varPsi^{*}(x')\varPsi(x)$ 形式时的情形.这种特殊情形与普遍情形之间存在着以下的重要差别\footnote{可以用一个波函数描述的态有时称为“纯态”，以便区别于只能用密度矩阵描述的态，这种态称为“混合态”.}.对具备波函数的一个态讲来，它总是存在着某种完全的测量过程，可以在该态中测得肯定的结果（从数学上讲来，这意味着 $\varPsi$ 总是某种算符的一个本征函数）.另一方面，对只具有密度矩阵的那些态讲来，就不存在测量结果可以唯一地断定的完全测量.
+
+现在假定所考虑的系统是封闭的，或在某一时刻成为封闭的.那么，我们可以导出密度矩阵的一个时间变化式，它类似于 $\varPsi$ 函数所满足的波动方程式.我们注意到，$\rho(x',x,t)$ 所应满足的那个线性微分方程式，在特殊情形下，当 $x$ 系统具有波函数时，即当
+\begin{equation*}
+  \rho(x,x',t)=\varPsi(x,t)\varPsi^{*}(x',t)
+\end{equation*}
+也应该成立，考虑这一点后，就可以使推导过程简化.上式对时间求微商并应用波动方程(8.1)，可得
+\begin{equation*}
+\begin{aligned}
+  \mathrm{i}\hbar\frac{\partial\rho}{\partial t}
+  &=\mathrm{i}\hbar\varPsi^{*}(x',t)\frac{\partial\varPsi(x,t)}{\partial t}
+  +\mathrm{i}\hbar\varPsi(x,t)\frac{\partial\varPsi^{*}(x',t)}{\partial t}=\\
+  &=\varPsi^{*}(x',t)\hat{H}\varPsi(x,t)
+  -\varPsi(x,t)\hat{H}^{\prime *}\varPsi^{*}(x',t),
+\end{aligned}
+\end{equation*}
+式中的 $\hat{H}$ 是子系统的哈密顿量，只作用在 $x$ 的函数上，$\hat{H}'$ 是同一算符，只作用在 $x'$ 的函数上.式中的函数 $\varPsi^{*}(x',t)$ 和 $\varPsi(x,t)$ 显然能分别移到 $\hat{H}$ 和 $\hat{H}'$ 算符的后面，从而得出欲求的方程式：
+\begin{equation}
+  \mathrm{i}\hbar\,\partial\rho(x,x',t)/\partial t
+  =(\hat{H}-\hat{H}^{\prime *})\rho(x,x',t).
+\end{equation}
+假定 $\varPsi_n(x,t)$ 是子系统的定态波函数组，也就是子系统哈密顿量的本征函数组.我们把密度矩阵按这组函数展开；这个展开式是 $\varPsi_n(x,t)$ 和 $\varPsi_n(x',t)$ 两函数的一个双重级数，它的形式是
+\begin{equation}
+\begin{aligned}
+  \rho(x,x',t)
+  &=\sum_m\sum_na_{mn}\varPsi_n^{*}(x',t)\varPsi_m(x,t)=\\
+  &=\sum_m\sum_na_{mn}\psi_n^{*}(x')\psi_m(x)\,
+  \mathrm{e}^{(\mathrm{i}/\hbar)(E_n-E_m)t},
+\end{aligned}
+\end{equation}
+对密度矩阵讲来，这个式子的作用，相当于波函数的展开式(10.3)，原来的单组系数 $a_n$ 现在被双组系数 $a_{mn}$ 所代替.$a_{mn}$ 系数和密度矩阵本身一样显然是“厄米”的：
+\begin{equation}
+  a_{nm}^{*}=a_{mn},
+\end{equation}
+把(14.6)式代入(14.4)式，物理量 $f$ 的平均值就可以表成
+\begin{equation*}
+  \bar{f}=\sum_m\sum_na_{mn}
+  \int\varPsi_n^{*}(x,t)\hat{f}\varPsi_m(x,t)\,\mathrm{d}x
+\end{equation*}
+或
+\begin{equation}
+  \bar{f}=\sum_m\sum_na_{mn}f_{nm}(t)
+  =\sum_m\sum_na_{mn}f_{nm}\,
+  \mathrm{e}^{(\mathrm{i}/\hbar)(E_n-E_m)t}.
+\end{equation}
+式中的 $f_{nm}$ 就是物理量 $f$ 的矩阵元.这个式子和(11.1)式相类似\footnote{$a_{mn}$组成能量表象中的密度矩阵，用此矩阵描述系统的态是由Л.朗道和F.布洛赫于1927年各自独立地提出的.}.
+
+$a_{mn}$ 这组量必须满足某些不等式.密度矩阵的“对角元” $\rho(x,x)$ 确定坐标组的概率分布，显然必须是一些正量.故按(14.6)式（令其中 $x'=x$），由系数 $a_{mn}$ 所组成的下列二次型
+\begin{equation*}
+  \sum_n\sum_ma_{mn}\xi_n^{*}\xi_m
+\end{equation*}
+（其中的 $\xi_n$ 是一些任意复量）必须为正量.根据二次型的理论可以知道，此时系数 $a_{mn}$ 就必须满足某些条件.例如，所有的“对角”量显然必须是正量：
+\begin{equation}
+  a_{nn}\geqslant0,
+\end{equation}
+而 $a_{nn}$，$a_{mm}$ 和 $a_{mn}$ 任意三量必须满足以下的不等式：
+\begin{equation}
+  a_{nn}a_{mm}\geqslant|a_{mn}|^{2}.
+\end{equation}
+“纯态”情形下，密度矩阵变成两个函数的乘积，相应的 $a_{mn}$ 矩阵显然呈下列形式：
+\begin{equation}
+  a_{mn}=a_ma_n^{*}.
+\end{equation}
+现在来指出一个简单的判据，使我们能够根据 $a_{mn}$ 矩阵来判断所考虑的态究竟是“纯态”还是“混合”态.在纯态下，我们有：
+\begin{equation*}
+\begin{aligned}
+  (a^{2})_{mn}&=\sum_ka_{mk}a_{kn}
+  =\sum_ka_k^{*}a_ma_n^{*}a_k=\\
+  &=a_ma_n^{*}\sum_k|a_k|^{2}=a_ma_n^{*}
+\end{aligned}
+\end{equation*}
+或
+\begin{equation}
+  (a^{2})_{mn}=a_{mn}.
+\end{equation}
+也就是说纯态的密度矩阵等于它自身的平方.
+
+\section{动量}
+
+我们来考虑一个不在外场中的多粒子封闭系统.由于空间的所有位置对作为一个整体的这个系统而言都是等价的，由此可以断定，当整个系统平移任一距离后，该系统的哈密顿量仍将保持不变.只要对任一无限小位移讲来这个条件能够得到满足就够了.
+
+距离为 $\delta\boldsymbol{r}$ 的一个无限小平移，相当于这样一种变换，这时所有粒子的径矢量 $\boldsymbol{r}_a$（$a$ 为粒子的编号）都获得同一增量 $\delta\boldsymbol{r}$，即 $\boldsymbol{r}_a\to\boldsymbol{r}_a+\delta\boldsymbol{r}$.在这种变换下，粒子坐标的任意函数 $\psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)$ 就变成下列函数：
+\begin{equation*}
+\begin{aligned}
+  \psi(\boldsymbol{r}_1+\delta\boldsymbol{r},\boldsymbol{r}_2+\delta\boldsymbol{r},\cdots)
+  &=\psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)
+  +\delta\boldsymbol{r}\cdot\sum_a\boldsymbol{\nabla}_a\psi=\\
+  &=\left(1+\delta\boldsymbol{r}\cdot\sum_a\boldsymbol{\nabla}_a\right)
+  \psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)
+\end{aligned}
+\end{equation*}
+（对于 $\boldsymbol{r}_a$ 的微分算符 $\boldsymbol{\nabla}_a$ 代表一个“矢量”，它的分量为算符 $\partial/\partial x_a$，$\partial/\partial y_a$，$\partial/\partial z_a$）.括号中的表式
+\begin{equation*}
+  1+\delta\boldsymbol{r}\cdot\sum_a\boldsymbol{\nabla}_a,
+\end{equation*}
+是无限小平移算符，它可使 $\psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)$ 函数变成下列函数：
+\begin{equation*}
+  \psi(\boldsymbol{r}_1+\delta\boldsymbol{r},\boldsymbol{r}_2+\delta\boldsymbol{r},\cdots).
+\end{equation*}
+所谓“使哈密顿量保持不变”的变换，它的含义是，如果对 $\hat{H}\psi$ 函数施行这种变换，其结果等于先对 $\psi$ 函数施行这种变换后，再把算符 $\hat{H}$ 作用在变换以后的 $\psi$ 函数上.从数学上讲来.这可以表成以下的形式.令 $\hat{O}$ 代表“进行”上述变换的算符.则有 $\hat{O}(\hat{H}\psi)=\hat{H}(\hat{O}\psi)$，所以
+\begin{equation*}
+  \hat{O}\hat{H}-\hat{H}\hat{O}=0,
+\end{equation*}
+即哈密顿量必须和算符 $\hat{O}$ 对易.
+
+在我们所考虑的情形下，$\hat{O}$ 算符就是上面提到的无限小平移算符.由于单位算符（这个算符的作用相当于乘以1）当然和任一算符对易，同时常因子 $\delta\boldsymbol{r}$ 可以移到 $\hat{H}$ 的前面去，条件 $\hat{O}\hat{H}-\hat{H}\hat{O}=0$ 现在可化成
+\begin{equation}
+  \left(\sum_a\boldsymbol{\nabla}_a\right)\hat{H}
+  -\hat{H}\left(\sum_a\boldsymbol{\nabla}_a\right)=0.
+\end{equation}
+我们已经知道，和 $\hat{H}$ 对易的算符（不显含时间）它所对应的物理量是一个守恒量.一个封闭系统由于空间均匀性而导致的守恒量就是该系统的动量（见《力学》§7）.因此(15.1)式表达了量子力学中的动量守恒定律；$\sum_a\boldsymbol{\nabla}_a$ 算符除开一个常因子外应该对应于该系统的总动量，每一个 $\boldsymbol{\nabla}_a$ 则对应于单粒子的动量.
+
+$\boldsymbol{\nabla}$ 算符和单粒子的动量算符 $\hat{\boldsymbol{p}}$ 之间的比例系数，可以用过渡到经典力学极限情形的方法来确定，它等于 $-\mathrm{i}\hbar$：
+\begin{equation}
+  \hat{\boldsymbol{p}}=-\mathrm{i}\hbar\boldsymbol{\nabla}
+\end{equation}
+其分量式是
+\begin{equation*}
+  \hat{p}_x=-\mathrm{i}\hbar\frac{\partial}{\partial x},\qquad
+  \hat{p}_y=-\mathrm{i}\hbar\frac{\partial}{\partial y},\qquad
+  \hat{p}_z=-\mathrm{i}\hbar\frac{\partial}{\partial z}
+\end{equation*}
+应用波函数的极限表式(6.1)，我们有
+\begin{equation*}
+  \hat{\boldsymbol{p}}\varPsi
+  =-\mathrm{i}\hbar(\mathrm{i}/\hbar)\varPsi\boldsymbol{\nabla}S
+  =\varPsi\boldsymbol{\nabla}S
+\end{equation*}
+亦即算符 $\hat{\boldsymbol{p}}$ 的作用在经典近似中还原成为乘以 $\boldsymbol{\nabla}S$.作用量的梯度 $\boldsymbol{\nabla}S$ 就是粒子的经典动量 $\boldsymbol{p}$（见《力学》§43）.
+
+容易证明(15.2)的算符确是厄米的.设 $\psi(\boldsymbol{x})$ 和 $\varphi(\boldsymbol{x})$ 是两个任意函数，他们在无穷远处趋于零，则有
+\begin{equation*}
+  \int\varphi\hat{p}_x\psi\,\mathrm{d}x
+  =-\mathrm{i}\hbar\int\varphi\frac{\partial\psi}{\partial x}\,\mathrm{d}x
+  =\mathrm{i}\hbar\int\psi\frac{\partial\varphi}{\partial x}\,\mathrm{d}x
+  =\int\psi\hat{p}_x^{*}\varphi\,\mathrm{d}x
+\end{equation*}
+这正是算符的厄米条件.
+
+对任一函数的两个不同变量进行微商，其结果和微商的先后次序无关，由此可知，动量的三个分量的算符是相互对易的：
+\begin{equation}
+  \hat{p}_x\hat{p}_y-\hat{p}_y\hat{p}_x=0,\qquad
+  \hat{p}_x\hat{p}_z-\hat{p}_z\hat{p}_x=0,\qquad
+  \hat{p}_y\hat{p}_z-\hat{p}_z\hat{p}_y=0.
+\end{equation}
+这意味着单粒子的三个动量分量可以同时具有定值.
+
+我们来求动量算符的本征值和本征函数.它们是由下列矢量方程确定的：
+\begin{equation}
+  -\mathrm{i}\hbar\boldsymbol{\nabla}\psi=\boldsymbol{p}\psi.
+\end{equation}
+解的形式为
+\begin{equation}
+  \psi=C\mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}
+\end{equation}
+其中 $C$ 是一个常数.我们看到，如果同时给出了动量的三个分量，粒子的波函数就完全确定.换句话说，$p_x$，$p_y$，$p_z$ 三个分量组成单粒子物理量的一个可能的完全集合.它们的本征值构成从 $-\infty$ 到 $+\infty$ 的连续谱.
+
+根据连续谱本征函数的归一化法则(5.4)，$\int\psi_{p'}^{*}\psi_p\,\mathrm{d}V$ 对整个空间（$\mathrm{d}V=\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z$）积分应该等于函数 $\delta(\boldsymbol{p}'-\boldsymbol{p})$\footnote{矢量$\boldsymbol{a}$的三维$\delta(\boldsymbol{a})$函数，定义为它的分量$\delta$函数之积，即$\delta(\boldsymbol{a})=\delta(a_x)\delta(a_y)\delta(a_z)$.}.但是，根据以后应用中即将明白的理由，最好把粒子动量的本征函数归一化成动量差除以 $2\pi\hbar$ 的 $\delta$ 函数：
+\begin{equation*}
+  \int\psi_p^{*}\psi_{p'}\,\mathrm{d}V
+  =\delta\left(\frac{\boldsymbol{p}'-\boldsymbol{p}}{2\pi\hbar}\right),
+\end{equation*}
+或等价于
+\begin{equation}
+  \int\psi_p^{*}\psi_{p'}\,\mathrm{d}V
+  =(2\pi\hbar)^{3}\delta(\boldsymbol{p}'-\boldsymbol{p}).
+\end{equation}
+因为三维 $\delta$ 函数的三个因子中，每个因子都有
+$\delta[(p_x'-p_x)/2\pi\hbar]=2\pi\hbar\,\delta(p_x'-p_x)$，等等.
+
+利用公式
+\begin{equation}
+  \frac{1}{2\pi}\int_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}\alpha\xi}\,\mathrm{d}\xi
+  =\delta(\alpha)
+\end{equation}
+进行积分\footnote{此式的习惯含义是，式左的函数具有(5.8)式的$\delta$函数性质.把(15.7)形式的$\delta(x-a)$函数代入(5.8)，即得熟知的傅里叶积分式
+\begin{equation*}
+  f(a)=\int_{-\infty}^{\infty}\int f(x)\,
+  \mathrm{e}^{\mathrm{i}\xi(x-a)}\,\mathrm{d}x\,\frac{\mathrm{d}\xi}{2\pi}
+\end{equation*}}可以看出，如按(15.6)归一化，则(15.5)中的常数 $C=1$\footnote{采用这种归一化时，注意：概率密度$|\psi|^{2}=1$，即函数归一化到“每单位体积中有一个粒子”.这种归一化的一致性并不是偶然的，见§48的最后一个脚注.}：
+\begin{equation}
+  \psi_p=\mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}
+\end{equation}
+粒子的任意波函数 $\psi(\boldsymbol{r})$ 按其动量算符的本征函数组 $\psi_p$ 展开，其展式简单地等于傅里叶积分：
+\begin{equation}
+  \psi(\boldsymbol{r})=\int a(\boldsymbol{p})\psi_p(\boldsymbol{r})\,
+  \frac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}
+  =\int a(\boldsymbol{p})\mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}\,
+  \frac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}
+\end{equation}
+（其中 $\mathrm{d}^{3}p=\mathrm{d}p_x\,\mathrm{d}p_y\,\mathrm{d}p_z$）.按(5.3)式，展开系数 $a(\boldsymbol{p})$ 为
+\begin{equation}
+  a(\boldsymbol{p})=\int\psi(\boldsymbol{r})\psi_p^{*}(\boldsymbol{r})\,\mathrm{d}V
+  =\int\psi(\boldsymbol{r})\mathrm{e}^{-(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}\,\mathrm{d}V.
+\end{equation}
+函数 $a(\boldsymbol{p})$ 可看作“动量表象”中的粒子波函数（见§5）；$|a(\boldsymbol{p})|^{2}\,\dfrac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}$ 是动量值在 $\mathrm{d}^{3}\boldsymbol{p}$ 范围内的概率.
+
+正如在坐标表象中求出动量算符 $\hat{\boldsymbol{p}}$ 的本征函数一样，我们也可在动量表象中引入粒子的坐标算符 $\hat{\boldsymbol{r}}$.它必须这样定义，使得坐标平均值呈下列形式：
+\begin{equation}
+  \overline{\boldsymbol{r}}=\int a^{*}(\boldsymbol{p})\hat{\boldsymbol{r}}a(\boldsymbol{p})\,
+  \frac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}},
+\end{equation}
+另一方面，这个平均值可通过波函数 $\psi(\boldsymbol{r})$ 由下式求出：
+\begin{equation*}
+  \overline{\boldsymbol{r}}=\int\psi^{*}\boldsymbol{r}\psi\,\mathrm{d}V.
+\end{equation*}
+把(15.9)式的 $\psi(\boldsymbol{r})$ 代入，我们得（用分部积分法）
+\begin{equation*}
+\begin{aligned}
+  \boldsymbol{r}\psi(\boldsymbol{r})
+  &=(2\pi\hbar)^{-3}\int\boldsymbol{r}\,a(\boldsymbol{p})\,
+  \mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}\,\mathrm{d}^{3}p=\\
+  &=(2\pi\hbar)^{-3}\int\mathrm{i}\hbar\,
+  \mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}\,
+  \left[\partial a(\boldsymbol{p})/\partial\boldsymbol{p}\right]\mathrm{d}^{3}p
+\end{aligned}
+\end{equation*}
+用上式及(15.10)，得
+\begin{equation*}
+\begin{aligned}
+  \overline{\boldsymbol{r}}
+  &=(2\pi\hbar)^{-3}\iint\psi^{*}(\boldsymbol{r})\,\mathrm{i}\hbar\,
+  \left[\partial a(\boldsymbol{p})/\partial\boldsymbol{p}\right]\,
+  \mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}\cdot\boldsymbol{r}}\,
+  \mathrm{d}^{3}p\,\mathrm{d}V=\\
+  &=\int\mathrm{i}\hbar\,a^{*}(\boldsymbol{p})\,
+  \left[\partial a(\boldsymbol{p})/\partial\boldsymbol{p}\right]\,
+  \frac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}
+\end{aligned}
+\end{equation*}
+与(15.11)比较，可知动量表象中的径矢算符为
+\begin{equation}
+  \hat{\boldsymbol{r}}=\mathrm{i}\hbar\,\partial/\partial\boldsymbol{p}
+\end{equation}
+在动量表象中的动量算符则简单地变成了相乘因子 $\boldsymbol{p}$.
+
+最后，我们试用 $\hat{\boldsymbol{p}}$ 表出空间平移间距 $\boldsymbol{a}$ 为有限大（不光是无限小）的算符 $\hat{T}_a$.根据这个算符的定义，我们有
+\begin{equation*}
+  \hat{T}_a\psi(\boldsymbol{r})=\psi(\boldsymbol{r}+\boldsymbol{a})
+\end{equation*}
+把函数 $\psi(\boldsymbol{r}+\boldsymbol{a})$ 展成泰勒级数，我们有
+\begin{equation*}
+  \psi(\boldsymbol{r}+\boldsymbol{a})=\psi(\boldsymbol{r})
+  +\boldsymbol{a}\cdot\partial\psi(\boldsymbol{r})/\partial\boldsymbol{r}+\cdots,
+\end{equation*}
+或者，引入算符 $\hat{\boldsymbol{p}}=-\mathrm{i}\hbar\boldsymbol{\nabla}$，
+\begin{equation*}
+  \psi(\boldsymbol{r}+\boldsymbol{a})=\left[1+\frac{\mathrm{i}}{\hbar}\boldsymbol{a}\cdot\hat{\boldsymbol{p}}
+  +\frac{1}{2}\left(\frac{\mathrm{i}}{\hbar}\boldsymbol{a}\cdot\hat{\boldsymbol{p}}\right)^{2}
+  +\cdots\right]\psi(\boldsymbol{r})
+\end{equation*}
+括号内的表式即算符
+\begin{equation}
+  \hat{T}_a=\mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{a}\cdot\hat{\boldsymbol{p}}}
+\end{equation}
+就是我们欲求的有限大平移算符.
+
+\section{不确定度关系式}
+
+我们来推导动量算符和坐标算符之间的对易关系.我们知道，对 $x$，$y$，$z$ 中的任一个变量求微商再乘上其中的另一个变量后，所得的结果和这两种运算的先后次序无关，因此有
+\begin{equation}
+  \hat{p}_xy-y\hat{p}_x=0,\qquad
+  \hat{p}_xz-z\hat{p}_x=0,
+\end{equation}
+对 $\hat{p}_y$，$\hat{p}_z$ 讲来也有类似的式子.
+
+推导 $\hat{p}_x$ 和 $x$ 的对易关系时我们有：
+\begin{equation*}
+  (\hat{p}_xx-x\hat{p}_x)\psi
+  =-\mathrm{i}\hbar\frac{\partial(x\psi)}{\partial x}
+  +\mathrm{i}\hbar x\frac{\partial\psi}{\partial x}
+  =-\mathrm{i}\hbar\psi.
+\end{equation*}
+可见 $(\hat{p}_xx-x\hat{p}_x)$ 算符的作用结果等于乘以 $-\mathrm{i}\hbar$；这一点，对 $\hat{p}_y$ 和 $y$ 以及 $\hat{p}_z$ 和 $z$ 的对易关系讲来，当然也是正确的.因此有\footnote{1925年海森伯发现了(16.2)式的矩阵表式，成为量子力学的一个起点.}
+\begin{equation}
+  \hat{p}_xx-x\hat{p}_x=-\mathrm{i}\hbar,\qquad
+  \hat{p}_yy-y\hat{p}_y=-\mathrm{i}\hbar,\qquad
+  \hat{p}_zz-z\hat{p}_z=-\mathrm{i}\hbar.
+\end{equation}
+(16.1)和(16.2)诸式可以并写成以下形式：
+\begin{equation}
+  \hat{p}_ix_k-x_k\hat{p}_i=-\mathrm{i}\hbar\delta_{ik}
+  \quad(i,k=x,y,z).
+\end{equation}
+在考察这些关系式的物理意义及其后果前，我们先来推导两个以后有用的式子.令 $f(\boldsymbol{r})$ 为某一坐标函数.由于
+\begin{equation*}
+  (\hat{\boldsymbol{p}}f-f\hat{\boldsymbol{p}})\psi
+  =-\mathrm{i}\hbar[\boldsymbol{\nabla}(f\psi)-f\boldsymbol{\nabla}\psi]
+  =-\mathrm{i}\hbar\psi\boldsymbol{\nabla}f,
+\end{equation*}
+所以有
+\begin{equation}
+  \hat{\boldsymbol{p}}f(\boldsymbol{r})-f(\boldsymbol{r})\hat{\boldsymbol{p}}
+  =-\mathrm{i}\hbar\boldsymbol{\nabla}f.
+\end{equation}
+动量算符的函数 $f(\hat{\boldsymbol{p}})$ 与 $\boldsymbol{r}$ 之间，也有类似的对易关系式：
+\begin{equation}
+  f(\hat{\boldsymbol{p}})\boldsymbol{r}
+  -\boldsymbol{r}f(\hat{\boldsymbol{p}})
+  =-\mathrm{i}\hbar\frac{\partial f}{\partial\boldsymbol{p}}.
+\end{equation}
+这个式子的推导方法和(16.4)式相同，式中的坐标算符可以采用(15.12)式，然后在 $\boldsymbol{p}$ 表象中进行计算即可.
+
+(16.1)和(16.2)式表明，一个粒子沿某一轴的坐标分量可以和沿其它两轴的动量分量同时具有定值；可是，沿同一轴的坐标分量和动量分量却不可能同时存在.特别是，粒子不可能处于空间某一固定点而又同时具有确定的动量 $\boldsymbol{p}$.
+
+设有一个粒子处于某一有限空间区域内，这个空间区域沿三个坐标轴方向的尺度（它的数量级）分别为 $\Delta x$，$\Delta y$，$\Delta z$.再令 $\boldsymbol{p}_0$ 为该粒子的动量平均值.从数学上讲来，这意味着波函数具有
+$\psi=u(\boldsymbol{r})\mathrm{e}^{(\mathrm{i}/\hbar)\boldsymbol{p}_0\cdot\boldsymbol{r}}$
+的形状，其中的 $u(\boldsymbol{r})$ 函数只有在上述空间区域内才显著地不等于零.我们把这个 $\psi$ 函数按动量算符的本征函数组展开（即展为傅里叶积分）.展开式系数 $a(\boldsymbol{p})$ 是由(15.10)式确定的，该式中的被积函数呈
+$u(\boldsymbol{r})\mathrm{e}^{(\mathrm{i}/\hbar)(\boldsymbol{p}_0-\boldsymbol{p})\cdot\boldsymbol{r}}$
+的形式.为了使这个积分显著地不等于零，振荡因子
+$\mathrm{e}^{(\mathrm{i}/\hbar)(\boldsymbol{p}_0-\boldsymbol{p})\cdot\boldsymbol{r}}$
+的周期必须不小于 $\Delta x$，$\Delta y$，$\Delta z$，即不小于 $u(\boldsymbol{r})$ 函数不等于零的空间区域的尺度.这就是说，只有当 $\boldsymbol{p}$ 值满足
+$(1/\hbar)(p_{0x}-p_x)\Delta x\lesssim1$ 诸式时，$a(\boldsymbol{p})$ 才显著地不等于零.由于 $|a(\boldsymbol{p})|^{2}$ 决定动量值的概率，$a(\boldsymbol{p})$ 不等于零的各种 $p_x$，$p_y$，$p_z$ 值，正好就是该态中所能找到的粒子动量的各种分量值.我们用 $\Delta p_x$，$\Delta p_y$，$\Delta p_z$ 代表 $a(\boldsymbol{p})$ 不等于零时 $p_x$，$p_y$，$p_z$ 所具有的值域，因此有
+\begin{equation}
+  \Delta p_x\,\Delta x\sim\hbar,\qquad
+  \Delta p_y\,\Delta y\sim\hbar,\qquad
+  \Delta p_z\,\Delta z\sim\hbar.
+\end{equation}
+这些式子叫做不确定度关系式，它是海森伯于1927年建立的.
+
+我们看到，粒子坐标知道得愈精确（即 $\Delta x$ 愈小），沿同一轴的动量分量的不确定度 $\Delta p_x$ 就愈大，反之亦然.特别是当粒子处于空间的某一确定点（$\Delta x=\Delta y=\Delta z=0$）时，则 $\Delta p_x=\Delta p_y=\Delta p_z=\infty$.这意味着此时所有各种动量值机会均等.反之，如果粒子具有完全确定的动量 $\boldsymbol{p}$，则该粒子的位置在整个空间内机会均等［这一点可以从(15.8)式的波函数直接看出来，这个波函数的模量平方与坐标变量完全无关］.
+
+如果用标准偏差来表明坐标和动量的不确定度
+\begin{equation*}
+  \delta x=\sqrt{\left[(x-\bar{x})^{2}\right]},\qquad
+  \delta p_x=\sqrt{\left[(p_x-\bar{p}_x)^{2}\right]}
+\end{equation*}
+则可确切求出它们的乘积的最小可能值（H. Weyl）.我们来考虑一维波包，它的波函数 $\psi(x)$ 只依赖于一个坐标，并为简单计，假定这个态中的 $x$ 和 $p_x$ 的平均值都等于零.考虑下列明显成立的不等式：
+\begin{equation*}
+  \int_{-\infty}^{\infty}\left|\alpha x\psi+\frac{\mathrm{d}\psi}{\mathrm{d}x}\right|^{2}
+  \mathrm{d}x\geqslant0
+\end{equation*}
+其中 $\alpha$ 是一个任意的实常数.计算上述积分时，注意到
+\begin{equation*}
+  \int x^{2}|\psi|^{2}\,\mathrm{d}x=(\delta x)^{2},
+\end{equation*}
+\begin{equation*}
+  \int\left(x\frac{\mathrm{d}\psi^{*}}{\mathrm{d}x}\psi
+  +x\psi^{*}\frac{\mathrm{d}\psi}{\mathrm{d}x}\right)\mathrm{d}x
+  =\int x\frac{\mathrm{d}|\psi|^{2}}{\mathrm{d}x}\,\mathrm{d}x
+  =-\int|\psi|^{2}\,\mathrm{d}x=-1,
+\end{equation*}
+\begin{equation*}
+  \int\frac{\mathrm{d}\psi^{*}}{\mathrm{d}x}\frac{\mathrm{d}\psi}{\mathrm{d}x}\,\mathrm{d}x
+  =-\int\psi^{*}\frac{\mathrm{d}^{2}\psi}{\mathrm{d}x^{2}}\,\mathrm{d}x
+  =\frac{1}{\hbar^{2}}\int\psi^{*}\hat{p}_x^{2}\psi\,\mathrm{d}x
+  =\frac{1}{\hbar^{2}}(\delta p_x)^{2}.
+\end{equation*}
+我们得
+\begin{equation*}
+  \alpha^{2}(\delta x)^{2}-\alpha
+  +\frac{1}{\hbar^{2}}(\delta p_x)^{2}\geqslant0.
+\end{equation*}
+如果这个 $\alpha$ 的二次三项式对所有的 $\alpha$ 值而言都是正的，则它的判别式必须为负，从而给出下列不等式：
+\begin{equation}
+  \delta x\,\delta p_x\geqslant\frac{1}{2}\hbar,
+\end{equation}
+乘积的最小可能值为 $\dfrac{1}{2}\hbar$，此时波包的波函数呈下列形式：
+\begin{equation}
+  \psi=\frac{1}{(2\pi)^{1/4}\sqrt{\left(\delta x\right)}}\,
+  \exp\left(\frac{\mathrm{i}}{\hbar}p_0x-\frac{x^{2}}{4(\delta x)^{2}}\right)
+\end{equation}
+其中 $p_0$ 和 $\delta x$ 都是常数，这个态中的坐标概率值为
+\begin{equation*}
+  |\psi|^{2}=\frac{1}{\sqrt{2\pi}\cdot\delta x}\,
+  \exp\left(-\frac{x^{2}}{2(\delta x)^{2}}\right)
+\end{equation*}
+这是对称于原点（平均值 $\bar{x}=0$）的高斯分布，标准偏差为 $\delta x$.动量表象中的波函数是
+\begin{equation*}
+  a(p_x)=\frac{1}{\sqrt{2\pi\hbar}}
+  \int_{-\infty}^{\infty}\psi(x)\mathrm{e}^{-(\mathrm{i}/\hbar)p_xx}\,\mathrm{d}x
+\end{equation*}
+算出上式积分，得到
+\begin{equation*}
+  a(p_x)=\text{常数}\times
+  \exp\left[-\frac{(\delta x)^{2}(p_x-p_0)^{2}}{\hbar^{2}}\right]
+\end{equation*}
+动量的概率分布 $|a(p_x)|^{2}$ 也是一个对称于平均值 $\bar{p}_x=p_0$ 的高斯分布，标准偏差为 $\delta p_x=\hbar/2\delta x$，所以乘积 $\delta p_x\,\delta x$ 确为 $\dfrac{1}{2}\hbar$.
+
+最后，我们来推导另一个有用的关系式.假定 $f$ 和 $g$ 是两个物理量，它们的算符满足以下的对易关系：
+\begin{equation}
+  \hat{f}\hat{g}-\hat{g}\hat{f}=-\mathrm{i}\hbar\hat{c},
+\end{equation}
+式中的 $\hat{c}$ 是某个物理量 $c$ 的算符.上式右边之所以引入 $\hbar$ 因子，是由于经典极限（即当 $\hbar\to0$）时所有的物理量算符应该还原成为经典量而彼此对易.故在“准经典”情形下，第一级近似时可把(16.9)式的右边当作零.在下一级近似中，算符 $\hat{c}$ 可以用经典量 $c$ 来代替，即有
+\begin{equation*}
+  \hat{f}\hat{g}-\hat{g}\hat{f}=-\mathrm{i}\hbar c.
+\end{equation*}
+这个式子正好和 $\hat{p}_xx-x\hat{p}_x=-\mathrm{i}\hbar$ 相类似，唯一的区别是以 $\hbar c$ 代替了 $\hbar$\footnote{这个经典量$c$就是$f$和$g$的泊松括号，见§9中的附注.}，因此我们用关系式 $\Delta x\,\Delta p_x\sim\hbar$ 类推，就可以得到这样的结论，即在准经典情形下 $f$ 和 $g$ 两个量有以下的不确定度关系式：
+\begin{equation}
+  \Delta f\,\Delta g\sim\hbar c.
+\end{equation}
+特别是，如果其中之一为能量（$\hat{f}\equiv\hat{H}$），并且另一个量的算符（$\hat{g}$）不显含时间，则按(9.2)式有 $c=\dot{g}$，准经典情形下的不确定度关系式此时变成
+\begin{equation}
+  \Delta E\,\Delta g\sim\hbar\dot{g}.
+\end{equation}

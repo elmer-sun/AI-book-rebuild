@@ -1,0 +1,752 @@
+% ============================================================
+%  第三卷 第十五章 磁场中的运动（§111–§115 + 习题）
+%  底本：高教社中文版第6版（严肃 译，喀兴林 校）；OCR 错误已修正，
+%  脚注文本待从纸版补录（正文圈码共 15 处，原样保留）。
+%  本章无插图（原书第十五章全章无图；任务单所提图41–43经核 hash 与
+%  原书页面 p-377~379，实属 §100 习题，不在本章）。
+%
+%  已修正的 OCR / 原书错误（均对照 原书转换/pages/p-426…p-443.png 核实）：
+%  1. (111.2)：原书数值印作 9.7×10^-24 J/T，按玻尔磁子实际值改为 9.27×10^-24
+%     （OCR 又误 ħ 为 h，已按原书页面恢复为 \hbar）；
+%  2. §111 "为通常值的二倍"句：OCR 漏排"理论上可从狄拉克相对论波动方程求出
+%     （见卷4，§33）"及"电子（自旋1/2）"，按原书 p413 补齐；
+%  3. (111.8) φ→φ−(1/c)∂f/∂t：OCR 漏 ∂/∂t，按原书补；
+%  4. §111 末段旋量分量 ψ_{λμ…}（OCR 误作 ψ_{λμ*}）及"反演后式子两边"断句合并；
+%  5. (112.2)(112.3) 算符下标 OCR 印作 ∗，按原书恢复 p̂_x,p̂_y,p̂_z,ŝ_z；
+%     OCR 的 ω_μ 按原书为 ω_H；§112 习题1 径向方程 ω_R→ω_H、E→正体下标恢复；
+%  6. (112.9) 恢复 χ_n、√(2^n n!)、H_n（OCR 作 χ_∥、√(2′n!)、H_.）；
+%  7. §112 "态数（n, p_z 给定）"（OCR 丢下标）及 x_0=cp_x/eH+x、
+%     (L_x/2πħ)Δp_x 等按原书恢复；
+%  8. §112 习题2–3：ε=E−½ħω 按物理意义补下标 ω_H（原书漏印）；
+%     Ū(z) 积分式按原书重建；R_∞→R_00；(9)式右端 eφ→εφ；
+%     χ(−z)=±χ(z)（OCR 误作 x）；文献作者 OCR "O.A.BB" 按原书 p419 为
+%     Ю. А. Бычков（1960）；
+%  9. (113.3) 磁矩算符下标按原书为"原子"二字（OCR 误作 lij）；
+% 10. §113 分步平均三式 OCR 全乱（"24/17∗x×5"等），按原书 p421 重建为
+%     S̄=常数×J、S̄_z=常数×J_z=常数×M_J、S̄·J=常数×J²=常数×J(J+1)；
+% 11. (113.6)：原书印作 ΔE=μ_B gM_J/H，斜线系排印之误，按(113.4)(113.9)
+%     改为 ΔE=μ_B gM_J H；
+% 12. §113 强磁场段 μ_0H 按物理意义改为 μ_BH（原书排印误，p423）；
+% 13. §113 习题1：矩阵元记号 M_L|L|M'_L 等、态矢 |M_LM_S⟩=|L ½⟩、
+%     久期方程诸式、E^± 及 E^⋆ 诸式均按原书 p425 重建（OCR 严重乱码）；
+% 14. §113 习题2 "仍和对多电子系统一样"（OCR 串入 p⃗*）；习题3 "平行于
+%     总角动量 J"（OCR 串入 k）；(113.13)–(113.15) 的 M_L、M_S 去 OCR 误加粗；
+% 15. §114 习题1 归一化条件 |ψ¹|²+|ψ²|²=1（OCR 作 14^1 1²）；习题2 场分量
+%     H_x,H_y,H_z 及解中 e^{±iΩt/2}、Ω±(ω+2ω_H cosθ) 分母按原书恢复；
+% 16. §115 最后结果式：OCR 重出 phantom 项 −(e²/mc²)∫δA·AΨΨ*dV（原式跨页
+%     p442→443，页尾"−"系续行减号），按原书恢复为三项；分部积分各式中的
+%     δA（OCR 作 ŝA / 8A）全部恢复；(115.6) OCR "−Ψ_n*∇ψ_n" 按原书为 −Ψ_n*∇Ψ_m；
+% 17. 习题内编号公式按原书每节自成 (1),(2),…，用 \setcounter{equation}{0}
+%     与局部 \theequation 实现，节末恢复（main.tex 不变）；
+% 18. 其它：函数名与 div、curl 正体收紧，\mathrm{d} 收紧，半角标点改全角。
+%
+%  遗留问题（原书如此，照排）：
+%  - §113 "微扰 −μ_at·H"（p423）下标 at 原书如此（当指原子磁矩，参见(113.3)）；
+%  - (115.2) 中 −(μ/s)Hŝ 原书未印点乘（对照 (111.4) −μ̂·H）；
+%  - (113.5) 分母 J² 原书即印作 J²（理解为本征值 J(J+1)）；
+%  - (112.9) 厄米多项式记号 H_n、(112.4) 试解指数用 ξ（=p_z）均照原书。
+%
+%  脚注转录（脚注代理完成，正文圈码 15 处全部替换为 \footnote，前后一致）：
+%  页面：原书转换/pages300/p-427…p-443；定位依据 脚注页码对照.txt 行 15567–16259。
+%   p427 注1-3 —— §111 三注（电矩与时间反演；广义动量记号 p 与《场论》P；
+%        磁场 H 与哈密顿算符 Ĥ 记号，注内“^”号用 \textasciicircum 照排）；
+%   p430 注1 —— §112 正文 x_0 圆心坐标注，注内含 y_0、x_0 两式（equation*）；
+%   p431 注1 —— §112 习题1 解首句（e=−|e|、质量记 M；OCR 行 15727 系跨页
+%        合并行，圈码实居 p431，故 p430 注1 属正文 x_0 句、p431 注1 属习题解）；
+%   p435 注1-2 —— §113 反常塞曼效应名词；§76 电场论证对磁场不成立（H 轴矢量）；
+%   p436 注1-3 —— §113 托马斯-费米模型 ⟨r²⟩；S=L≠0 非对角跃迁矩阵元
+%        L_z,S_z；中间情形（S=1/2 计算见例题1）；
+%   p437 注1 —— §113 习题1 解（(L̂·Ŝ)² 项未计入 V̂，S=1/2 时化为 L̂·Ŝ）；
+%   p440 注1-2 —— §113 习题2 解（拉莫尔进动，《场论》§45）；§114 均匀场算符
+%        不显含坐标（非均匀场准经典情形）；
+%   p442 注1-2 —— §115 j 代表电流密度；拉格朗日函数含 (e/c)v·A 项，注内含
+%        δL=(1/c)∫j·δA dV 式（equation*）与《力学》§40 引语。
+% ============================================================
+\chapter{磁场中的运动}
+
+\section{磁场中的薛定谔方程}
+
+具有自旋的粒子还有某种“内禀”磁矩$\boldsymbol{\mu}$.它的量子力学算符与自旋算符$\hat{\boldsymbol{s}}$成正比，可以写成
+\begin{equation}
+  \hat{\boldsymbol{\mu}}=\frac{\boldsymbol{\mu}}{s}\hat{\boldsymbol{s}}
+\end{equation}
+式中$s$是粒子的自旋值，$\mu$是标志粒子的一个常数.磁矩分量的本征值为$\boldsymbol{\mu}_z=\boldsymbol{\mu}\sigma/s$.因此系数$\mu$（通常把$\mu$称作磁矩值）就是$\boldsymbol{\mu}_z$的最大可能值，当自旋分量$\sigma=s$时达到此值.
+
+$\boldsymbol{\mu}/\hbar s$给出了该粒子内禀磁矩和内禀角动量的比值（当两者都沿$z$轴时）.对于通常的（轨道）角动量，这个比值为$e/(2mc)$（见《场论》，§44）.粒子的内禀磁矩和其自旋间的比例系数则不同，对于电子，它等于$-|e|/mc$，为通常值的二倍，理论上可从狄拉克相对论波动方程求出（见卷4，§33）.电子（自旋$\frac{1}{2}$）的内禀磁矩$-\mu_\mathrm{B}$因此为
+\begin{equation}
+  \mu_\mathrm{B}=\frac{|e|\hbar}{2mc}=9.27\times10^{-24}\ \mathrm{J/T}.
+\end{equation}
+$\mu_\mathrm{B}$称为玻尔磁子.
+
+重粒子的磁矩习惯上以核磁子为单位，此单位的定义为$e\hbar/(2m_pc)$，$m_p$为质子的质量.实验上测得质子的内禀磁矩为2.79核磁子，其方向与自旋平行.中子的磁矩与自旋反向，数值为1.91核磁子.
+
+应该注意的是，(111.1)式两边的$\boldsymbol{\mu}$和$\boldsymbol{s}$应该是同一类型的矢量：都是轴矢量.电偶极矩的类似方程$\boldsymbol{d}$（$\boldsymbol{d}=$常数$\times\boldsymbol{s}$）将和坐标系的反演对称性相矛盾：反演后式子两边的相对符号将会改变.\footnote{这种方程（假如基本粒子存在一个电矩）也和时间反演对称性相矛盾：时间反号时$\boldsymbol{d}$不变，但自旋变号（为明显起见，我们以这些量在轨道运动中的定义为例，此时$\boldsymbol{d}$中只含坐标，但角动量中还含有粒子的速度）.}
+
+在非相对论量子力学中，磁场只看作外场.但粒子间的磁作用是一种相对论效应，需要用统一的相对论理论加以考虑.
+
+经典理论中，电磁场中带电粒子的哈密顿函数为
+\begin{equation*}
+  H=\frac{1}{2m}\biggl(\boldsymbol{p}-\frac{e}{c}\boldsymbol{A}\biggr)^2+e\varphi,
+\end{equation*}
+$\varphi$是场的标势，$\boldsymbol{A}$是矢势，$\boldsymbol{p}$是粒子的广义动量（见《场论》§16）.如果粒子无自旋，可用通常方式过渡到量子力学：广义动量必须改为算符$\hat{\boldsymbol{p}}=-\mathrm{i}\hbar\nabla$，我们得哈密顿算符\footnote{广义动量在这里和普通动量采用同一符号$\boldsymbol{p}$（不用《场论》§16中的$\boldsymbol{P}$），是为了强调它们对应于同一个算符.}
+\begin{equation}
+  \hat{H}=\frac{1}{2m}\biggl(\hat{\boldsymbol{p}}-\frac{e}{c}\boldsymbol{A}\biggr)^2+e\varphi.
+\end{equation}
+另一方面，如果粒子有自旋，上述手续是不够的.这是因为粒子的内禀磁矩直接与磁场相作用.在经典的哈密顿函数中，这种作用并不存在，因为自旋是一种纯量子效应，在经典力学极限下消失.哈密顿量的正确表式是在(111.3)中外加一项$-\hat{\boldsymbol{\mu}}\cdot\boldsymbol{H}$后得到的，这一项相当于磁矩$\boldsymbol{\mu}$在磁场$\boldsymbol{H}$中的能量.因此有自旋粒子的哈密顿算符为\footnote{磁场和哈密顿算符用同一字母不会混淆，因后者总加有“\textasciicircum{}”号.}
+\begin{equation}
+  \hat{H}=\frac{1}{2m}\biggl(\hat{\boldsymbol{p}}-\frac{e}{c}\boldsymbol{A}\biggr)^2-\hat{\boldsymbol{\mu}}\cdot\boldsymbol{H}+e\varphi.
+\end{equation}
+展开平方项$\biggl(\hat{\boldsymbol{p}}-\frac{e}{c}\boldsymbol{A}\biggr)^2$时，注意$\hat{\boldsymbol{p}}$一般和矢量$\boldsymbol{A}$不对易，后者是坐标的函数.我们必须写成
+\begin{equation}
+  \hat{H}=\frac{\hat{\boldsymbol{p}}^2}{2m}-\biggl(\frac{e}{2mc}\biggr)(\boldsymbol{A}\cdot\hat{\boldsymbol{p}}+\hat{\boldsymbol{p}}\cdot\boldsymbol{A})+\frac{e^2}{2mc^2}\boldsymbol{A}^2-\frac{\mu}{s}\hat{\boldsymbol{s}}\cdot\boldsymbol{H}+e\varphi.
+\end{equation}
+根据动量算符和任意坐标函数的对易关系(16.4)，我们有
+\begin{equation}
+  \hat{\boldsymbol{p}}\cdot\boldsymbol{A}-\boldsymbol{A}\cdot\hat{\boldsymbol{p}}=-\mathrm{i}\hbar\,\mathrm{div}\,\boldsymbol{A}.
+\end{equation}
+故当$\mathrm{div}\,\boldsymbol{A}\equiv0$时$\hat{\boldsymbol{p}}$和$\boldsymbol{A}$对易.这一点对均匀场成立，它的矢势可表成下式：
+\begin{equation}
+  \boldsymbol{A}=\frac{1}{2}\boldsymbol{H}\times\boldsymbol{r}.
+\end{equation}
+
+具有哈密顿算符(111.4)的方程$\mathrm{i}\hbar\partial\psi/\partial t=\hat{H}\psi$是存在磁场情形下的广义薛定谔方程.这个方程中哈密顿算符所作用的波函数是一些$2s$秩的对称旋量.
+
+磁场中的粒子波函数不能唯一地定义，因为场势的选择不是唯一的，它们只能确定到相差一个规范变换为止（见《场论》，§18）：
+\begin{equation}
+  \boldsymbol{A}\longrightarrow\boldsymbol{A}+\nabla f,\quad
+  \varphi\longrightarrow\varphi-\frac{1}{c}\frac{\partial f}{\partial t},
+\end{equation}
+其中$f$是坐标和时间的任意函数.这种变换并不影响场强的值，因此不会在实质上改变波动方程的解，特别是，$|\psi|^2$一定保持不变.不难证明，如果对哈密顿算符作(111.8)式的变换同时对波函数作下列变换，则原方程保持不变：
+\begin{equation}
+  \psi\to\psi\exp\biggl(\frac{\mathrm{i}e}{\hbar c}f\biggr).
+\end{equation}
+波函数的这种非唯一性并不影响到任何一个具有物理意义的量（此量的定义中并不显含场势）.
+
+经典力学中，粒子的广义动量和速度的关系为
+\begin{equation*}
+  m\boldsymbol{v}=\boldsymbol{p}-e\boldsymbol{A}/c.
+\end{equation*}
+为了求出量子力学中的算符$\hat{\boldsymbol{v}}$，需要求出矢量$\boldsymbol{r}$和哈密顿算符的对易关系.简单计算后给出
+\begin{equation}
+  m\hat{\boldsymbol{v}}=\hat{\boldsymbol{p}}-\frac{e}{c}\boldsymbol{A},
+\end{equation}
+这与经典表式完全类似.至于速度的分量算符，我们有下列对易关系
+\begin{equation}
+  \left.\begin{array}{l}
+  \{\hat{v}_x,\hat{v}_y\}=\mathrm{i}\,\frac{e\hbar}{m^2c}\,\boldsymbol{H}_z,\\
+  \{\hat{v}_y,\hat{v}_z\}=\mathrm{i}\,\frac{e\hbar}{m^2c}\,\boldsymbol{H}_x,\\
+  \{\hat{v}_z,\hat{v}_x\}=\mathrm{i}\,\frac{e\hbar}{m^2c}\,\boldsymbol{H}_y,
+  \end{array}\right\}
+\end{equation}
+上式很易直接验证.我们看到，在磁场中，（带电）粒子的三个速度分量并不对易.这意味着粒子三个方向的速度分量不能同时具有定值.
+
+当在磁场中运动时，只有场$\boldsymbol{H}$（以及矢势$\boldsymbol{A}$）反号才能有时间反演对称性，这意味着（见§18和§60），薛定谔方程$\hat{H}\psi=E\psi$取复共轭并把$\boldsymbol{H}$反号后，其原有形式保持不变.这可很明显地从哈密顿算符(111.4)的所有各项（除了$-\hat{\boldsymbol{s}}\cdot\boldsymbol{H}$这一项）看出.薛定谔方程中$-\hat{\boldsymbol{s}}\cdot\boldsymbol{H}\psi$这一项在上述变换下变成$\hat{\boldsymbol{s}}^*\cdot\boldsymbol{H}\psi^*$，由于$\hat{\boldsymbol{s}}^*$不同于$-\hat{\boldsymbol{s}}$，初看起来对称性被破坏了.但应记住，波函数实质上是一个旋量$\psi^{\lambda\mu\cdots}$，时间反演下，一个逆变旋量必须改为协变旋量（见§60），故在薛定谔方程中$-\hat{\boldsymbol{s}}\cdot\boldsymbol{H}\psi^{\lambda\mu\cdots}$变成$\hat{\boldsymbol{s}}^*\cdot\boldsymbol{H}\psi_{\lambda\mu\cdots}$.利用定义(57.4)，(57.5)很易看出，算符$\hat{\boldsymbol{s}}^*$作用在协变旋量分量上的结果，与算符$\hat{\boldsymbol{s}}$作用在逆变旋量分量上的结果相差一个符号.因此时间反演操作导致的分量$\psi_{\lambda\mu\cdots}$的薛定谔方程，与原来的$\psi^{\lambda\mu\cdots}$的方程具有同一形式.
+
+\section{均匀磁场中的运动}
+
+我们来求恒定均匀磁场中粒子的能级（朗道，1930）.均匀磁场的矢势此时最好不取(111.7)式而取下列形式：
+\begin{equation}
+  A_x=-Hy,\quad A_y=A_z=0,
+\end{equation}
+磁场方向已取作$z$轴.
+
+哈密顿算符则变成
+\begin{equation}
+  \hat{H}=\frac{1}{2m}\biggl(\hat{\boldsymbol{p}}_x+\frac{eH}{c}y\biggr)^2
+  +\frac{\hat{\boldsymbol{p}}_y^2}{2m}+\frac{\hat{\boldsymbol{p}}_z^2}{2m}
+  -\frac{\mu}{s}\hat{\boldsymbol{s}}_z\boldsymbol{H}.
+\end{equation}
+首先，我们注意到算符$\hat{\boldsymbol{s}}_z$是和哈密顿算符对易的，因为后者不含自旋的其它分量算符.这意味着自旋的$z$分量守恒，从而$\hat{\boldsymbol{s}}_z$可用本征值$s_z=\sigma$代替.随后，波函数与自旋的关系成为不重要，薛定谔方程中的$\psi$可取作普通的坐标函数.这个函数的方程为
+\begin{equation}
+  \frac{1}{2m}\biggl[\biggl(\hat{\boldsymbol{p}}_x+\frac{eH}{c}y\biggr)^2
+  +\hat{\boldsymbol{p}}_y^2+\hat{\boldsymbol{p}}_z^2\biggr]\psi
+  -\frac{\mu}{s}\sigma\boldsymbol{H}\psi=E\psi.
+\end{equation}
+这个方程的哈密顿算符不显含坐标$x$和$z$.因此算符$\hat{\boldsymbol{p}}_x$和$\hat{\boldsymbol{p}}_z$（对$x$和$z$的微分算符）也和哈密顿算符对易，亦即广义动量的$x$和$z$分量是守恒量.由此可把$\psi$取成下列形式：
+\begin{equation}
+  \psi=\mathrm{e}^{\frac{\mathrm{i}}{\hbar}(p_xx+p_zz)}\chi(y).
+\end{equation}
+本征值$p_x$和$p_z$取$-\infty$到$+\infty$的所有值.由于$A_z=0$，广义动量的$z$分量等于普通的动量分量$mv_z$，因此粒子速度沿磁场方向可取任意值，我们可以说沿磁场的运动是“非量子化”的.
+
+(112.4)代入(112.3)，得函数$\chi(y)$的下列方程
+\begin{equation}
+  \chi''+\frac{2m}{\hbar^2}\biggl[\biggl(E+\frac{\mu\sigma}{s}\boldsymbol{H}
+  -\frac{1}{2m}p_z^2\biggr)-\frac{1}{2}m\omega_H^2(y-y_0)^2\biggr]\chi=0,
+\end{equation}
+式中记号$y_0=-cp_x/e\boldsymbol{H}$，以及
+\begin{equation}
+  \omega_H=\frac{|e|H}{mc}.
+\end{equation}
+(112.5)式形式上等同于频率为$\omega_H$的线性振子的薛定谔方程(23.6).因此可以立刻作出结论，(112.5)式圆括号内的表式相当于振子能量，它具有本征值$\bigl(n+\frac{1}{2}\bigr)\hbar\omega_H$，而$n=0,1,2,\cdots$.
+
+由此我们得到均匀磁场中粒子能级的下列表式：
+\begin{equation}
+  E=\biggl(n+\frac{1}{2}\biggr)\hbar\omega_H+\frac{1}{2m}p_z^2-\frac{\mu\sigma}{s}H.
+\end{equation}
+第一项给出的是离散能量值，对应于垂直于磁场的平面内的运动，这些能级称为朗道能级.对于电子，$\mu/s=-|e|\hbar/mc$，(112.7)变成
+\begin{equation}
+  E=\biggl(n+\frac{1}{2}+\sigma\biggr)\hbar\omega_H+\frac{1}{2m}p_z^2.
+\end{equation}
+与能级(112.7)式相对应的本征函数$\chi(y)$由(23.12)式给出，适当改变记号后得到
+\begin{equation}
+  \chi_n(y)=\frac{1}{\pi^{1/4}a_H^{1/2}\sqrt{2^n n!}}
+  \exp\biggl[-\frac{(y-y_0)^2}{2a_H^2}\biggr]
+  \mathrm{H}_n\biggl(\frac{y-y_0}{a_H}\biggr),
+\end{equation}
+其中$a_H=\sqrt{\hbar/m\omega_H}$.
+
+经典力学中，粒子在垂直于场$\boldsymbol{H}$的平面（$xy$平面）中作圆周运动（圆心固定）.量子力学中守恒的$y_0$相当于经典的圆心坐标.$x_0=cp_x/e\boldsymbol{H}+x$也是一个守恒量，很易看出其算符与哈密顿算符(112.2)对易.$x_0$相当于圆心的经典坐标$x$\footnote{在圆半径为$cmv_\perp/eH$（$v_\perp$是速度在$xy$面上的投影，见《场论》，§21）的经典运动中，我们有
+\begin{equation*}
+  y_0=-cp_x/eH=-cmv_x/eH+y.
+\end{equation*}
+由此可知，$y_0$是圆心的$y$坐标.另一坐标为
+\begin{equation*}
+  x_0=cmv_y/eH+x=cp_y/eH+x.
+\end{equation*}}.可是$\hat{x}_0$和$\hat{y}_0$算符不对易，换句话说，坐标$x_0$和$y_0$不能同时取定值.
+
+由于(112.7)式中不含$p_x$（后者原先假定它可取连续值），能级是连续简并的.如果$xy$平面内的运动局限在一个很大的但是有限的面积$S=L_xL_y$内，简并度就成为有限的.$\Delta p_x$区间内$p_x$的可能值（现在是离散的）的数目为$(L_x/2\pi\hbar)\Delta p_x$.当轨道中心在$S$内时所有这些$p_x$值都是允许的（与很大的$L_y$值相比，我们略去了轨道半径）.从条件$0<y_0<L_y$得$\Delta p_x=eHL_y/c$.因而态数（$n$，$p_z$给定）为$eHS/(2\pi\hbar c)$.如果运动区域在$z$方向也是有限的（尺度为$L_z$），在$\Delta p_z$区间内$p_z$的可能值的数目为$(L_z/2\pi\hbar)\Delta p_z$，此区间内的态数为
+\begin{equation}
+  \frac{eHS}{2\pi\hbar c}\,\frac{L_z}{2\pi\hbar}\,\Delta p_z
+  =\frac{eHV\Delta p_z}{4\pi^2\hbar^2c}.
+\end{equation}
+对于电子，还有一个附加简并：(112.8)式中$n$，$\sigma=\frac{1}{2}$和$n+1$，$\sigma=-\frac{1}{2}$的能级相同.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求均匀磁场中的电子状态波函数，该态中电子沿磁场方向的动量和角动量具有定值.
+
+解：取$z$轴沿场的方向，在柱坐标$\rho,\varphi,z$中，矢势的分量为$\boldsymbol{A}_\varphi=\frac{1}{2}\boldsymbol{H}\rho$，$\boldsymbol{A}_z=\boldsymbol{A}_\rho=0$，薛定谔方程为\footnote{电子的电荷写成$e=-|e|$，电子质量记作$M$以便和角动量$m$相区别.此题中自旋项不重要，故省去.}
+\setcounter{equation}{0}\renewcommand{\theequation}{\arabic{equation}}%
+\begin{equation}
+\begin{aligned}
+  -\frac{\hbar^2}{2M}\biggl[\frac{1}{\rho}\frac{\partial}{\partial\rho}
+  \biggl(\rho\frac{\partial\psi}{\partial\rho}\biggr)
+  +\frac{\partial^2\psi}{\partial z^2}
+  +\frac{1}{\rho^2}\frac{\partial^2\psi}{\partial\varphi^2}\biggr]\psi-\\
+  -\frac{1}{2}\mathrm{i}\hbar\omega_H\frac{\partial\psi}{\partial\varphi}
+  +\frac{1}{8}M\omega_H^2\rho^2\psi=E\psi.
+\end{aligned}
+\end{equation}
+取解的形式为
+\begin{equation*}
+  \psi=\frac{1}{\sqrt{2\pi}}R(\rho)\,\mathrm{e}^{\mathrm{i}m\varphi}\,\mathrm{e}^{\mathrm{i}\xi z/\hbar},
+\end{equation*}
+得径向函数的方程
+\begin{equation*}
+  \frac{\hbar^2}{2M}\biggl(R''+\frac{R'}{\rho}-\frac{m^2R}{\rho^2}\biggr)
+  +\biggl[E-\frac{p_z^2}{2M}-\frac{1}{8}M\omega_H^2\rho^2
+  -\frac{1}{2}\hbar\omega_H m\biggr]R=0.
+\end{equation*}
+定义一个新的独立变量$\xi=(M\omega_H/2\hbar)\rho^2$，可把上式写成
+\begin{equation*}
+  \xi R''+R'+\biggl(-\frac{1}{4}\xi+\beta-\frac{m^2}{4\xi}\biggr)R=0,
+\end{equation*}
+\begin{equation*}
+  \beta=\frac{1}{\hbar\omega_H}\biggl(E-\frac{p_z^2}{2M}\biggr)-\frac{1}{2}m.
+\end{equation*}
+$\xi\to\infty$时，所求函数的行为犹如$\mathrm{e}^{-\xi/2}$，而当$\xi\to0$时犹如$\xi^{|m|/2}$，因此可令
+\begin{equation*}
+  R(\xi)=\mathrm{e}^{-\xi/2}\xi^{|m|/2}w(\xi)\,\text{；}
+\end{equation*}
+$w(\xi)$的方程被下列合流超几何函数所满足
+\begin{equation*}
+  w=\mathrm{F}\biggl\{-\biggl(\beta-\frac{1}{2}|m|-\frac{1}{2}\biggr),|m|+1,\xi\biggr\}.
+\end{equation*}
+如果波函数到处有限，$\beta-\frac{1}{2}|m|-\frac{1}{2}$必须是一个非负整数$n_\rho$.能级就由下式给出：
+\begin{equation*}
+  E=\hbar\omega_H\biggl(n_\rho+\frac{1}{2}|m|+\frac{1}{2}m+\frac{1}{2}\biggr)
+  +\frac{p_z^2}{2M},
+\end{equation*}
+它等价于(112.7).相应的径向波函数为
+\begin{equation}
+\begin{aligned}
+  R_{n_\rho m}(\rho)={}&\frac{1}{a_H^{1+|m|}}
+  \left[\frac{(|m|+n_\rho)!}{2^{|m|}n_\rho!(|m|!)^2}\right]^{1/2}
+  \exp\biggl(-\frac{\rho^2}{4a_H^2}\biggr)\times\\
+  &\times\rho^{|m|}\mathrm{F}\biggl(-n_\rho,\,|m|+1,\,\frac{\rho^2}{2a_H^2}\biggr),
+\end{aligned}
+\end{equation}
+其中$a_H=\sqrt{\hbar/M\omega_H}$，上式已按下列条件归一化：
+\begin{equation*}
+  \int_0^{\infty}R^2\rho\,\mathrm{d}\rho=1.
+\end{equation*}
+此处的超几何函数是一个广义拉盖尔多项式.
+
+\noindent{\heiti 习题2}\quad 求对应于电子束缚态的最低能级，该电子处于浅势阱$U(r)$（$|U|\ll\hbar^2/ma^2$，$a$是阱中的力程）及一个均匀磁场中（Ю.~А.~Бычков,1960）.
+
+解：对场$U(r)$所设的条件保证了（磁场不存在时）微扰论可用，此时阱中没有束缚态（§45）.当有磁场存在时，只有对垂直于$\boldsymbol{H}$的平面内的运动，才能把$U(r)$看作微扰；加上$U$后该运动的能谱（离散）性质不变，但沿$\boldsymbol{H}$方向的运动性质发生了改变，从无限运动变成（见后面）有限运动，亦即能谱从连续变成离散.对后一种运动讲来，势阱之场不能用微扰论处理.
+
+据此，当把薛定谔方程（题1的(1)式，但左边加了一项$U\psi$）分离变量以后，径向函数$R(\rho)$仍呈上题的(2)式，最低能级对应于量子数$n_\rho=m=0$.把$\psi=R_{00}(\rho)\chi(z)$代入薛定谔方程，乘以$R_{00}(\rho)$并对$\rho\,\mathrm{d}\rho$积分后，得$\chi(z)$的方程
+\begin{equation}
+  -\frac{\hbar^2}{2m}\chi''+\overline{U}(z)\chi=\varepsilon\chi,
+\end{equation}
+其中$\varepsilon=E-\frac{1}{2}\hbar\omega_H$，
+\begin{equation*}
+  \overline{U}(z)=\int_0^{\infty}U\bigl(\sqrt{z^2+\rho^2}\bigr)R_{00}^2(\rho)\,\rho\,\mathrm{d}\rho.
+\end{equation*}
+$m$仍为粒子质量.上式与势阱$U(z)$中能量为$\varepsilon$的一维运动薛定谔方程具有相同的形式，因此可以简单地利用§45题1的结果，按该题得离散能级为
+\begin{equation}
+\begin{aligned}
+  \varepsilon&=-\frac{m}{2\hbar^2}\biggl[\int_{-\infty}^{\infty}\overline{U}(z)\,\mathrm{d}z\biggr]^2\\
+  &=-\frac{m}{2\hbar^2}\biggl[\int_{-\infty}^{\infty}\int_0^{\infty}
+  U\bigl(\sqrt{z^2+\rho^2}\bigr)R_{00}^2(\rho)\,\rho\,\mathrm{d}\rho\,\mathrm{d}z\biggr]^2
+\end{aligned}
+\end{equation}
+波函数$R_{00}(\rho)$在距离$\rho\sim a_H$处衰减.如果磁场很弱使得$a_H\gg a$，上式对$\rho$的积分主要在$\rho\leqslant a$区域内，在此区域内可令$R_{00}(\rho)\approx R_{00}(0)=1/a_H$，于是
+\begin{equation}
+  \varepsilon=-\frac{me^2H^2}{8\pi^2\hbar^4c^2}
+  \biggl(\int U(r)\,\mathrm{d}V\biggr)^2,
+\end{equation}
+其中$\mathrm{d}V=2\pi\rho\,\mathrm{d}\rho\,\mathrm{d}z\to4\pi r^2\,\mathrm{d}r$.相反地，在强磁场情形下，当$a_H\ll a$时，(4)中的积分主要在$\rho\leqslant a_H$内，此时可令$U\bigl(\sqrt{z^2+\rho^2}\bigr)\approx U(z)$.对$\rho$的积分就化成对$R_{00}$函数的归一化积分并等于1，故
+\begin{equation}
+  \varepsilon=-\frac{2m}{\hbar^2}\biggl(\int_0^{\infty}U(z)\,\mathrm{d}z\biggr)^2.
+\end{equation}
+这两种情形下，对积分的估计给出$\varepsilon\ll\hbar\omega_H$.
+
+\emergencystretch=2em%
+\noindent{\heiti 习题3}\quad 求磁场中的氢原子能级，该磁场很强使得$a_H\ll a_\mathrm{B}$，$a_\mathrm{B}$为玻尔半径（R.~J.~Elliott, R.~Loudon,1960）.
+
+解：按所述条件，$\hbar\omega_H\gg me^4/\hbar^2$，在垂直于$\boldsymbol{H}$的平面内核库仑场对电子运动的影响可以看作小的微扰，从而回到题2的情形，(3)式可用，但
+\emergencystretch=0pt%
+\begin{equation}
+  \overline{U}(z)=-e^2\int_0^{\infty}\frac{R_{00}^2(\rho)\,\rho}{\sqrt{\rho^2+z^2}}\,\mathrm{d}\rho,
+\end{equation}
+此式中写进$R_{00}$径向函数，我们只是考虑纵向运动的能级，保持横向运动为零朗道能级$\bigl(\frac{1}{2}\hbar\omega_H\bigr)$.
+
+基态波函数$\chi_0(z)$延伸到$|z|\leqslant a_H$距离处并在该距离内变化缓慢（没有零点，故在$z=0$处不等于零）.因此最低能级满足§45题1中所用的条件，从而(6)式可用，(6)式是以该题之解为基础的.积分的对数发散可在上限$|z|\sim a_\mathrm{B}$和下限$|z|\sim a_H$［这里的$|z|\sim\rho$，(7)式中不允许用$|z|$代替$\sqrt{\rho^2+z^2}$］处“截断”.结果为
+\begin{equation}
+  \varepsilon_0=-\frac{2me^4}{\hbar^2}\ln^2\frac{a_\mathrm{B}}{a_H}
+  =-\frac{me^4}{2\hbar^2}\ln^2\frac{\hbar^3H}{m^2c|e|^3}.
+\end{equation}
+此式具有所谓对数准确性.这里不但假定了比值$a_\mathrm{B}/a_H$很大而且它的对数也是很大的.对数的宗量中有一个数值因子仍不确定.
+
+离散谱的激发态是由$\overline{U}(z)\approx-e^2/z$［从$z\sim a_\mathrm{B}\gg\rho$的(7)式中得出］的薛定谔方程(3)中解出的，但此式作变换$\chi=z\varphi(z)$后可化成
+\begin{equation}
+  -\frac{\hbar^2}{2m}\frac{1}{z^2}\frac{\mathrm{d}}{\mathrm{d}z}
+  \biggl(z^2\frac{\mathrm{d}\varphi}{\mathrm{d}z}\biggr)-\frac{e^2\varphi}{z}
+  =\varepsilon\varphi,
+\end{equation}
+这与三维库仑问题中$s$态的径向波函数方程相同，因此所求的能级由(36.10)式给出：
+\begin{equation}
+  \varepsilon_n=-\frac{me^4}{2\hbar^2n^2},
+\end{equation}
+其中$n=1,2,3,\cdots$，此式也只有对数准确性.下一级改正项与主项相比将是很小的，比值只有$1/\ln(a_\mathrm{B}/a_H)$.
+
+(9)式只给出了$z>0$的波函数.它可延拓到$z<0$的区域内成为$\chi(-z)=\chi(z)$或者$\chi(-z)=-\chi(z)$.在这种近似下，能级(10)因而是双重简并的.但在对$(a_H/a_\mathrm{B})$而言的更高次近似中，双重简并被解除.
+
+\end{xiti}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}%
+
+\section{磁场中的原子}
+
+我们来考虑处于均匀磁场$\boldsymbol{H}$中的一个原子.它的哈密顿算符是
+\begin{equation}
+  \hat{H}=\frac{1}{2m}\sum_a\biggl[\hat{\boldsymbol{p}}_a
+  +\frac{|e|}{c}\boldsymbol{A}(\boldsymbol{r}_a)\biggr]^2+U
+  +\frac{|e|\hbar}{mc}\boldsymbol{H}\cdot\hat{\boldsymbol{S}},
+\end{equation}
+式中对所有的电子（电子的电荷写成$-|e|$）求和，$U$是电子之间以及和核的相互作用能量，$\hat{\boldsymbol{S}}=\sum\hat{\boldsymbol{s}}_a$是原子的总（电子）自旋算符.
+
+如果磁场矢势取(111.7)式，则已指出，此时算符$\hat{\boldsymbol{p}}$和$\boldsymbol{A}$对易.展开(113.1)中的方括号并用$\hat{H}_0$代表没有磁场时的原子哈密顿量，我们得
+\begin{equation*}
+  \hat{H}=\hat{H}_0+\frac{|e|}{mc}\sum_a\boldsymbol{A}_a\cdot\hat{\boldsymbol{p}}_a
+  +\frac{e^2}{2mc^2}\sum_a\boldsymbol{A}_a^2
+  +\frac{|e|\hbar}{mc}\boldsymbol{H}\cdot\hat{\boldsymbol{S}},
+\end{equation*}
+把(111.7)的$\boldsymbol{A}$代入，得
+\begin{equation*}
+  \hat{H}=\hat{H}_0+\frac{|e|}{mc}\boldsymbol{H}\cdot\sum_a\boldsymbol{r}_a\times\hat{\boldsymbol{p}}_a
+  +\frac{e^2}{8mc^2}\sum_a(\boldsymbol{H}\times\boldsymbol{r}_a)^2
+  +\frac{|e|\hbar}{mc}\boldsymbol{H}\cdot\hat{\boldsymbol{S}}.
+\end{equation*}
+但$\boldsymbol{r}_a\times\hat{\boldsymbol{p}}_a$就是电子的轨道角动量算符，对所有电子求和后给出了原子的总轨道角动量算符$\hbar\hat{\boldsymbol{L}}$.故
+\begin{equation}
+  \hat{H}=\hat{H}_0+\mu_\mathrm{B}(\hat{\boldsymbol{L}}+2\hat{\boldsymbol{S}})\cdot\boldsymbol{H}
+  +\frac{e^2}{8mc^2}\sum_a(\boldsymbol{H}\times\boldsymbol{r}_a)^2,
+\end{equation}
+$\mu_\mathrm{B}$是玻尔磁子.算符
+\begin{equation}
+  \hat{\boldsymbol{\mu}}_{\text{原子}}=-\mu_\mathrm{B}(\hat{\boldsymbol{L}}+2\hat{\boldsymbol{S}})
+\end{equation}
+可以看作原子的“内禀”磁矩算符，它在没有磁场时也为原子所具有.
+
+外磁场分裂了原子的能级并且解除了对总角动量方向的简并性（塞曼效应）.我们来求原子能级的分裂值，该能级的$J,L$和$S$等量子数具有定值（亦即假定能级属于LS耦合情形，见§72）.
+
+我们将假定磁场很弱，以致$\mu_\mathrm{B}H$比原子的能级间距包括精细结构间距在内要小得多.此时(113.2)中的第二和第三项可看作微扰，未微扰能级就是多重项的各个成分.一级近似中可以略去第三项，因与第二项的线性项相比它是场的二次项.
+
+在这种近似下，能量分裂值$\Delta E$是由微扰项对总角动量沿磁场方向分量具有定值的那些（未微扰）态求平均值得到的.取磁场方向为$z$轴，我们有
+\begin{equation}
+  \Delta E=\mu_\mathrm{B}H\bigl(\overline{\boldsymbol{L}}_z+2\hat{\boldsymbol{S}}_z\bigr)
+  =\mu_\mathrm{B}H\bigl(\overline{\boldsymbol{J}}_z+\overline{\boldsymbol{S}}_z\bigr).
+\end{equation}
+平均值$\overline{\boldsymbol{J}}_z$正好等于所给本征值$J_z=M_J$.平均值$\overline{\boldsymbol{S}}_z$可用分步平均法（参考§72）求出.作法如下.
+
+算符$\hat{\boldsymbol{S}}$先对$S,L$和$J$值固定但$M_J$值不固定的原子态求平均.平均以后的算符$\overline{\boldsymbol{S}}$一定和标志自由原子的唯一守恒“矢量”$\hat{\boldsymbol{J}}$“平行”.因此可写成
+\begin{equation*}
+  \overline{\boldsymbol{S}}=\text{常数}\times\boldsymbol{J},
+\end{equation*}
+这个式子是纯约定的，因为$\boldsymbol{J}$的三个分量不能同时有定值，它的$z$分量可直接写成
+\begin{equation*}
+  \overline{\boldsymbol{S}}_z=\text{常数}\times J_z=\text{常数}\times M_J.
+\end{equation*}
+前式两边乘以$\boldsymbol{J}$后得方程
+\begin{equation*}
+  \overline{\boldsymbol{S}}\cdot\boldsymbol{J}=\text{常数}\times\boldsymbol{J}^2
+  =\text{常数}\times J(J+1).
+\end{equation*}
+把守恒矢量$\boldsymbol{J}$放进平均记号内得$\overline{\boldsymbol{S}}\cdot\boldsymbol{J}=\overline{\boldsymbol{S}\cdot\boldsymbol{J}}$.平均值$\boldsymbol{S}\cdot\boldsymbol{J}$在$\boldsymbol{L}^2,\boldsymbol{S}^2$和$\boldsymbol{J}^2$具有定值的态中等于它的本征值［参考(31.4)式］
+\begin{equation*}
+  \boldsymbol{S}\cdot\boldsymbol{J}=\frac{1}{2}[J(J+1)-L(L+1)+S(S+1)]
+\end{equation*}
+从以上第二式中求出常数代入第一式后，得
+\begin{equation}
+  \overline{S}_z=M_J\boldsymbol{J}\cdot\boldsymbol{S}/\boldsymbol{J}^2.
+\end{equation}
+汇集以上诸式并代入(113.4)中，得到分裂值的最终表式：
+\begin{equation}
+  \Delta E=\mu_\mathrm{B}gM_JH
+\end{equation}
+其中的
+\begin{equation}
+  g=1+\frac{J(J+1)-L(L+1)+S(S+1)}{2J(J+1)}
+\end{equation}
+称为朗德（Land\'e）因子或旋磁因子.无自旋时（$S=0$，因而$J=L$）$g=1$；$L=0$时（故$J=S$）$g=2$\footnote{由一般公式(113.6)和(113.7)所描述的分裂通常称为反常塞曼效应.这个不合适的名词的产生是由于电子的自旋未发现以前人们把(113.6)中$g=1$的效应看作是正常的.}.
+
+(113.6)式给出了$2J+1$个$M_J=-J,-J+1,\cdots,J$的不同能量值.因此磁场完全解除了关于角动量方向的能级简并，与电场不同，电场保留$M_J=\pm|M_J|$的两个能级不分裂\footnote{§76中对电场所作的论证对磁场并不成立.原因在于$\boldsymbol{H}$是一个轴矢量，因此对包含它的任一平面的反射，$\boldsymbol{H}$要变号.所以由这个操作所得的两个态分属于不同场中的原子，不是同一场中的原子.}（§76）.但是，当$g=0$时，(113.6)描述的线性分裂不再存在，即使$J\neq0$的态如$^4\mathrm{D}_{1/2}$就是这样.
+
+我们在§76中看到，电场中原子能级的位移和其平均电偶极矩之间存在着一定的关系.磁场情形下也有类似的关系.经典理论中，带电粒子系统的势能为$-\boldsymbol{\mu}\cdot\boldsymbol{H}$，$\boldsymbol{\mu}$是该系统的磁矩.量子理论中，要用相应的算符来代替，故系统的哈密顿算符为
+\begin{equation*}
+  \hat{H}=\hat{H}_0-\hat{\boldsymbol{\mu}}\cdot\boldsymbol{H}
+  =\hat{H}_0-\hat{\mu}_zH.
+\end{equation*}
+应用(11.16)式，以场$H$为参量$\lambda$，得磁矩平均值为
+\begin{equation}
+  \overline{\mu}_z=-\frac{\partial\Delta E}{\partial H},
+\end{equation}
+其中$\Delta E$是所给原子态的能级位移.把(113.6)代入上式，我们看到，在角动量的$z$方向投影$M_J$具有定值的原子态中，该原子沿$z$方向的平均磁矩为
+\begin{equation}
+  \overline{\mu}_z=-\mu_\mathrm{B}gM_J.
+\end{equation}
+如果原子既无自旋又无轨道角动量（$S=L=0$），不论在一级近似或任一高级近似中，(113.2)式中的第二项不产生能级位移（因为$\boldsymbol{L}$和$\boldsymbol{S}$的矩阵元等于零）.在此情形下，整个效应来自(113.2)中的第三项.在微扰论的一级近似中能级位移就等于下列平均值
+\begin{equation}
+  \Delta E=\frac{e^2}{8mc^2}\sum_a\overline{(\boldsymbol{H}\times\boldsymbol{r}_a)^2},
+\end{equation}
+令$(\boldsymbol{H}\times\boldsymbol{r}_a)^2=H^2r_a^2\sin^2\theta$，$\theta$是$\boldsymbol{r}_a$和$\boldsymbol{H}$的夹角，对$\boldsymbol{r}_a$的各个方向求平均，我们有$\sin^2\theta=1-\cos^2\theta=2/3$（$L=S=0$的状态波函数是球对称的，因此对方向求平均与对距离$r_a$求平均无关），故
+\begin{equation}
+  \Delta E=\frac{e^2}{12mc^2}H^2\sum_a\overline{r_a^2}.
+\end{equation}
+由(113.8)算出的磁矩现在和场$H$成正比（对$L=S=0$的原子，无磁场时当然不会有磁矩）.把它写成$\chi H$的形式，我们可把系数$\chi$看作朗之万公式（P.~Langevin,1905）所给出的原子磁化率：
+\begin{equation}
+  \chi=-\frac{e^2}{6mc^2}\sum_a\overline{r_a^2},
+\end{equation}
+它是负的，亦即原子是抗磁的\footnote{托马斯－费米模型不能用来计算电子离核的距离的均方值，尽管托马斯－费米密度为$n(r)$的积分式$\int nr^2\,\mathrm{d}r$是收敛的，但收敛太慢，结果与实验相差较远.}.
+
+如果$J=0$但$S=L\neq0$，场的线性位移还是等于零，可是二级近似中微扰$-\boldsymbol{\mu}_{at}\cdot\boldsymbol{H}$的二次效应超过了(113.11)的效应\footnote{$S=L\neq0$时，对于$S,L,J\rightarrow S,L,J\pm1$的跃迁，其非对角跃迁矩阵元$L_z$，$S_z$一般讲来不等于零.}，这是因为根据一般公式(38.10)，能量本征值的微扰论二级改正项是一个求和式，其中各个求和项的分母中含有未微扰能级的差，目前情形下它们是能级的精细结构间距，都是一些小量.我们已在§38中指出，二级近似的基态能级改正项永远是负的.因此基态中的磁矩永远是正的，亦即$J=0,L=S\neq0$的基态原子是顺磁的.
+
+强磁场中，$\mu_\mathrm{B}H$差不多等于或大于精细结构间距，能级的分裂情况与(113.6)和(113.7)预言的不同，这种现象称为帕邢-巴克（Paschen-Back）效应.
+
+当塞曼分裂远大于精细结构间距但仍小于不同多重项之间的间距时，能级分裂值的计算是很简单的（和以前一样可以证明，哈密顿算符(113.2)中的第三项与第二项相比仍可略去）.换句话说，此时磁场中的能量远超过自旋-轨道作用\footnote{对于中间情形，当磁场效应和自旋-轨道作用差不多大小的时候，能级分裂的一般表式无法算出，$S=\frac{1}{2}$时的计算见后面的例题1.}.因此可在一级近似中略去自旋-轨道作用.轨道角动量的投影$M_L$和自旋的投影$M_S$就和总角动量的投影一样都成为守恒量，故分裂值由下式给出：
+\begin{equation}
+  \Delta E=\mu_\mathrm{B}H(M_L+2M_S).
+\end{equation}
+多重项分裂是叠加在磁场分裂上的.它是由(72.4)的$A\hat{\boldsymbol{L}}\cdot\hat{\boldsymbol{S}}$算符对具有给定$M_L,M_S$值的态求平均后确定的（我们考虑的是自旋-轨道作用引起的多重项分裂）.给定了角动量的一个分量值，其它两个分量的平均值就都等于零.从而$\overline{\boldsymbol{L}\cdot\boldsymbol{S}}=M_LM_S$，因此下一级近似中的能级公式为
+\begin{equation}
+  \Delta E=\mu_\mathrm{B}H(M_L+2M_S)+AM_LM_S.
+\end{equation}
+计算任意耦合型式（不是LS耦合）下的塞曼效应是不可能的.我们只能说，这种分裂（在弱场中）和场$H$成线性关系并与总角动量分量$M_J$成正比，亦即呈下列形式：
+\begin{equation}
+  \Delta E=\mu_\mathrm{B}g_{nJ}HM_J,
+\end{equation}
+式中的$g_{nJ}$是标志所考虑谱项的某些系数，$n$代表标志该谱项的除$J$以外的所有量子数的集合.这些系数虽然不能分别算出，但有可能得到一个有关$\sum_n g_{nJ}$的实用公式，式中对具有给定电子组态和总角动量的所有可能的原子态求和.
+
+根据定义
+\begin{equation*}
+  g_{nJ}M_J=\langle nJM_J|L_z+2S_z|nJM_J\rangle\>,
+\end{equation*}
+另一方面，$g_{SLJ}M_J$［其中$g_{SLJ}$是LS耦合的朗德因子(113.7)］是用不同的波函数完备组算出的下列对角矩阵元：
+\begin{equation*}
+  g_{SLJ}M_J=\langle SLJM_J|L_z+2S_z|SLJM_J\rangle.
+\end{equation*}
+这两组波函数可通过线性幺正变换相互得到，但是这种变换不改变对角矩阵元之和（§12）.因此有
+\begin{equation*}
+  \sum_n g_{nJ}M_J=\sum_{S,L}g_{SLJ}M_J.
+\end{equation*}
+由于$g_{nJ}$和$g_{SLJ}$与$M$无关，故得
+\begin{equation}
+  \sum_n g_{nJ}=\sum_{S,L}g_{SLJ},
+\end{equation}
+式中对所给电子组态中具有给定$J$值的一切可能态求和.这就是欲求的关系式.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求$S=\frac{1}{2}$的谱项在帕邢-巴克效应中的分裂.
+
+解：在微扰处理论中需要同时考虑磁场和自旋轨道作用，即微扰算符为\footnote{我们没有把正比于$(\hat{\boldsymbol{L}}\cdot\hat{\boldsymbol{S}})^2$的项（自旋-自旋作用）包括在$\hat{V}$内.但应记住，当自旋$S=\frac{1}{2}$时，由于泡利矩阵的特性（见§55），可把$(\hat{\boldsymbol{L}}\cdot\hat{\boldsymbol{S}})^2$化成$\hat{\boldsymbol{L}}\cdot\hat{\boldsymbol{S}}$，从而包括在所写的$\hat{V}$的表式中.}
+\begin{equation*}
+  \hat{V}=A\hat{\boldsymbol{L}}\cdot\hat{\boldsymbol{S}}
+  +\mu_\mathrm{B}(\hat{L}_z+2\hat{S}_z)H.
+\end{equation*}
+作为零级近似的原始波函数，我们取$L,S=\frac{1}{2},M_L,M_S$具有定值（$L$给定，$M_L=-L,\cdots,L$；$M_S=\pm\frac{1}{2}$）的这套波函数.受微扰态中只有$M\equiv M_J=M_L+M_S$是守恒量（$\hat{V}$和$\hat{J}_z$对易），因此分裂谱项的各个部分具有确定的$M$值.$M=\pm\bigl(L+\frac{1}{2}\bigr)$这两个值每个只能以一种方式出现：即$|M_LM_S\rangle=\bigl|L\,\frac{1}{2}\bigr\rangle$和$\bigl|-L,-\frac{1}{2}\bigr\rangle$.具有这两个$M$值的态，它的能量改正值简单地等于这两个$|M_LM_S\rangle$的对角元$\langle M_LM_S|V|M_LM_S\rangle$.其余的$M$值每个都能以两种方式出现：即$\bigl|M-\frac{1}{2},\frac{1}{2}\bigr\rangle$和$\bigl|M+\frac{1}{2},-\frac{1}{2}\bigr\rangle$.此时对应于每个$M$有两个不同的能量值，它们是由以上两态间的跃迁矩阵元所组成的久期方程确定的.
+
+$\boldsymbol{L}\cdot\boldsymbol{S}$的矩阵元可由矩阵$\langle M_L|\boldsymbol{L}|M'_L\rangle$和$\langle M_S|\boldsymbol{S}|M'_S\rangle$的直接相乘算出，并且有
+\begin{equation*}
+  \langle M_LM_S|\boldsymbol{L}\cdot\boldsymbol{S}|M_LM_S\rangle=M_LM_S,
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+  &\biggl\langle M+\frac{1}{2},-\frac{1}{2}\biggr|\boldsymbol{L}\cdot\boldsymbol{S}
+  \biggl|M-\frac{1}{2},\frac{1}{2}\biggr\rangle
+  =\biggl\langle M-\frac{1}{2},\frac{1}{2}\biggr|\boldsymbol{L}\cdot\boldsymbol{S}
+  \biggl|M+\frac{1}{2},-\frac{1}{2}\biggr\rangle=\\
+  &=\frac{1}{2}\sqrt{\biggl(L+M+\frac{1}{2}\biggr)\biggl(L-M+\frac{1}{2}\biggr)}.
+\end{aligned}
+\end{equation*}
+无磁场时，该谱项是双线，其两成分间的间距为$\varepsilon=A\bigl(L+\frac{1}{2}\bigr)$，见(72.6).我们取其中的较低能级作为能量的原点.于是在磁场中的能级最终表式为
+\begin{equation*}
+  E=\varepsilon\pm\mu_\mathrm{B}H(L+1),\qquad
+  \text{当 }M=\pm\biggl(L+\frac{1}{2}\biggr)\text{ 时；}
+\end{equation*}
+\begin{equation*}
+  E^{\star}=\frac{1}{2}\varepsilon+\mu_\mathrm{B}HM\pm
+  \biggl[\frac{1}{4}\bigl(\varepsilon^2+\mu_\mathrm{B}^2H^2\bigr)
+  +\frac{1}{2L+1}\mu_\mathrm{B}HM\varepsilon\biggr]^{1/2},
+\end{equation*}
+\begin{equation*}
+  \text{当 }M=L-\frac{1}{2},\cdots,-L+\frac{1}{2}\text{ 时.}
+\end{equation*}
+当$\mu_\mathrm{B}H/\varepsilon\ll1$时有
+\begin{equation*}
+  E^{+}=\varepsilon+\mu_\mathrm{B}HM\frac{2(L+1)}{2L+1},\qquad
+  E^{-}=\mu_\mathrm{B}HM\frac{2L}{2L+1},
+\end{equation*}
+这与(113.6)，(113.7)式一致（令该式中$S=\frac{1}{2}$，$J=L\pm\frac{1}{2}$）.当$\mu_\mathrm{B}H/\varepsilon\gg1$时，我们有
+\begin{equation*}
+  E^{\star}=\mu_\mathrm{B}H\biggl(M\pm\frac{1}{2}\biggr)+\frac{1}{2}\varepsilon
+  \pm\frac{M\varepsilon}{2L+1},
+\end{equation*}
+这与(113.14)式一致.
+
+\noindent{\heiti 习题2}\quad 求情形$a$的双原子分子谱项的塞曼分裂.
+
+解：核运动产生的磁矩远小于电子的磁矩.因此磁场的微扰对分子讲来仍和对多电子系统一样，即可写成和以前一样的形式：$\hat{V}=\mu_\mathrm{B}\boldsymbol{H}\cdot(\hat{\boldsymbol{L}}+2\hat{\boldsymbol{S}})$，其中$\boldsymbol{L},\boldsymbol{S}$是电子的轨道和自旋角动量.
+
+微扰项对电子态求平均，在情形$a$时可得
+\begin{equation*}
+  \mu_\mathrm{B}Hn_z(\Lambda+2\Sigma)=\mu_\mathrm{B}Hn_z(2\Omega-\Lambda).
+\end{equation*}
+$n_z$对分子转动的平均值等于下列对角元
+\begin{equation*}
+  \langle JM|n_z|JM\rangle=\frac{\Omega M}{J(J+1)},
+\end{equation*}
+其中$M\equiv M_J$，这个矩阵元是从(87.4)的约化矩阵元算出的，该式中的$K$和$\Lambda$改成$J$和$\Omega$.故所求的分裂值为
+\begin{equation*}
+  \Delta E=\mu_\mathrm{B}HM\frac{\Omega(2\Omega-\Lambda)}{J(J+1)}.
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 同题2，但为情形$b$.
+
+解：确定所求分裂值的对角元$\langle\Lambda KJ|V|\Lambda KJ\rangle$可用§87给出的一般规则算出.但它也可用以下更简明的办法算出.微扰算符对轨道和电子态求平均，可得
+\begin{equation*}
+  \mu_\mathrm{B}H(\Lambda n_z+2\hat{S}_z)
+\end{equation*}
+（自旋算符在这个平均中不受影响），然后，我们对分子的转动求平均；$n_z$的平均值由(87.4)式给出，从而得
+\begin{equation*}
+  \mu_\mathrm{B}H\biggl[\frac{\Lambda^2}{K(K+1)}\hat{K}_z+2\hat{S}_z\biggr]
+\end{equation*}
+最后，我们对自旋波函数求平均.经过整个平均后，各矢量的平均值必须平行于总角动量$\boldsymbol{J}$，它是唯一的守恒矢量.因此得［参考(113.5)］
+\begin{equation*}
+  \frac{\mu_\mathrm{B}H}{J(J+1)}
+  \biggl[\frac{\Lambda^2}{K(K+1)}\boldsymbol{K}\cdot\boldsymbol{J}
+  +2\boldsymbol{S}\cdot\boldsymbol{J}\biggr]M
+\end{equation*}
+（$M\equiv M_J$），最后是
+\begin{equation*}
+\begin{aligned}
+  \Delta E={}&\frac{\mu_\mathrm{B}}{J(J+1)}
+  \biggl\{\frac{\Lambda^2}{2K(K+1)}
+  \bigl[J(J+1)+K(K+1)-\\
+  &-S(S+1)\bigr]
+  +\bigl[J(J+1)-K(K+1)+S(S+1)\bigr]\biggr\}HM.
+\end{aligned}
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 一个抗磁性原子处于外磁场中，求原子中心处的感生磁场强度.
+
+解：对于$S=L=0$，哈密顿量中不含场的线性微扰项，因此原子波函数不含磁场的一级改正项，外磁场感生的原子中的电流变化$\boldsymbol{j}'$只是来自（仍为$H$的一级近似）电子速度算符的附加项$(|e|/mc)\boldsymbol{A}$.因此有\footnote{此式相当于原子的电子壳层绕外磁场方向的拉莫尔进动：见《场论》§45.}
+\setcounter{equation}{0}\renewcommand{\theequation}{\arabic{equation}}%
+\begin{equation}
+  \boldsymbol{j}'=-\rho\frac{e^2}{mc}\boldsymbol{A}
+  =-\rho\frac{e^2}{2mc}\boldsymbol{H}\times\boldsymbol{r}
+\end{equation}
+式中$\rho$是原子中的电子密度.这个附加电流在原子中心处产生的磁场为
+\begin{equation*}
+  \boldsymbol{H}_{\mathrm{ind}}=-\frac{1}{c}\int
+  \frac{\boldsymbol{j}'\times\boldsymbol{r}}{r^3}\,\mathrm{d}V,
+\end{equation*}
+参考(121.8).把(1)式代入并在积分号内对$\boldsymbol{r}$的方向求平均，得
+\begin{equation}
+  \boldsymbol{H}_{\mathrm{ind}}=-\frac{e^2}{3mc^2}\boldsymbol{H}\int\frac{\rho}{r}\,\mathrm{d}r
+  =\frac{e}{3mc^2}\varphi_e(0)\boldsymbol{H},
+\end{equation}
+$\varphi_e(0)$是原子的电子壳层在其中心处的电势.
+
+在托马斯-费米模型中，$\varphi_e(0)=-1.80Z^{4/3}me^3/\hbar^2$［见(70.8)］故
+\begin{equation*}
+  \boldsymbol{H}_{\mathrm{ind}}=-0.60\biggl(\frac{e^2}{\hbar c}\biggr)^2Z^{4/3}\boldsymbol{H}
+  =-3.2\times10^{-5}Z^{4/3}\boldsymbol{H}.
+\end{equation*}
+
+\end{xiti}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}%
+
+\section{可变磁场中的自旋}
+
+我们来考虑一个具有磁矩的电中性粒子，处于一个均匀的但随时间变化的磁场中.它可以是一个基本粒子（中子），也可以是一个复合粒子（原子）.假定磁场很弱，粒子在该场中的磁能小于该粒子的能级间距.我们就可研究粒子的整体运动，它的内态已被给定.
+
+设$\hat{\boldsymbol{s}}$为该粒子的“内禀”角动量算符——基本粒子的自旋或者是原子的总角动量$\boldsymbol{J}$.磁矩算符可表成(111.1)的形式.中性粒子整体运动的哈密顿量可写成
+\begin{equation}
+  \hat{H}=-\frac{\mu}{s}\hat{\boldsymbol{s}}\cdot\boldsymbol{H}.
+\end{equation}
+我们只写出了依赖于自旋的那一部分哈密顿量.
+
+在一均匀场中，这个算符不显含坐标\footnote{这些说法也能用到在非均匀磁场中运动的任一粒子（带电或不带电），只要它的运动可以看作是准经典的.随粒子的轨道运动变化的磁场，就可以简单地看成时间的函数.我们也能用同样的方程描述自旋波函数的变化.}，粒子波函数因而分解成为坐标函数和自旋函数的乘积.前者不过是自由运动的波函数，以后我们仅对其自旋部分感兴趣.我们将证明，角动量$s$为任意的一个粒子的问题，可以化成较简单的自旋为$\frac{1}{2}$的一个粒子运动的问题（E.~Majorana）.为此只需应用§57中早已用过的方法，即把自旋为$s$的一个粒子形式上换成$2s$个自旋为$\frac{1}{2}$的“粒子”.算符$\hat{\boldsymbol{s}}$则表成这些“粒子”的自旋算符之和$\sum\hat{\boldsymbol{s}}_a$，波函数则表成$2s$个1秩旋量的乘积，哈密顿算符(114.1)则分解成为$2s$个独立的哈密顿算符：
+\begin{equation}
+  \hat{H}=\sum_a\hat{H}_a,\qquad
+  \hat{H}_a=-\frac{\mu}{s}\boldsymbol{H}\cdot\hat{\boldsymbol{s}}_a,
+\end{equation}
+因此$2s$个“粒子”中每个粒子的运动都能相互独立地确定.当我们这样做了以后，就只需重新引进任一$2s$秩对称旋量的各个分量，来代替$2s$个1秩旋量各个分量的连乘积.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求均匀磁场中自旋为$\frac{1}{2}$的一个中性粒子的自旋波函数，该磁场方向恒定但其绝对值按$H=H(t)$的任意规律变化.
+
+解：波函数是一个旋量$\psi^{\nu}$，它满足波动方程
+\setcounter{equation}{0}\renewcommand{\theequation}{\arabic{equation}}%
+\begin{equation}
+  \mathrm{i}\hbar\frac{\partial}{\partial t}\psi^{\nu}
+  =-2\mu\boldsymbol{H}\cdot\hat{\boldsymbol{s}}\psi^{\nu}
+\end{equation}
+取磁场方向为$z$轴，把上式写成旋量的分量式
+\begin{equation*}
+  \mathrm{i}\hbar\frac{\partial}{\partial t}\psi^1=-\mu H\psi^1,\qquad
+  \mathrm{i}\hbar\frac{\partial}{\partial t}\psi^2=\mu H\psi^2,
+\end{equation*}
+得
+\begin{equation*}
+  \psi^1=c_1\exp\biggl(\frac{\mathrm{i}\mu}{\hbar}\int H\,\mathrm{d}t\biggr),\qquad
+  \psi^2=c_2\exp\biggl(\frac{-\mathrm{i}\mu}{\hbar}\int H\,\mathrm{d}t\biggr),
+\end{equation*}
+常数$c_1,c_2$必须从初始条件和归一化条件$|\psi^1|^2+|\psi^2|^2=1$求出.
+
+\noindent{\heiti 习题2}\quad 同题1，但磁场的绝对值恒定，它的方向以匀角速$\omega$绕$z$轴旋转并和$z$轴夹$\theta$角.
+
+解：该磁场具有分量
+\begin{equation*}
+  H_x=H\sin\theta\cos\omega t,\qquad
+  H_y=H\sin\theta\sin\omega t,\qquad
+  H_z=H\cos\theta,
+\end{equation*}
+按(1)得方程
+\begin{gather*}
+  \dot{\psi}^1=\mathrm{i}\omega_H(\psi^1\cos\theta+\psi^2\mathrm{e}^{-\mathrm{i}\omega t}\sin\theta),\\
+  \dot{\psi}^2=\mathrm{i}\omega_H(\psi^1\mathrm{e}^{\mathrm{i}\omega t}\sin\theta-\psi^2\cos\theta)
+\end{gather*}
+其中$\omega_H=\mu H/\hbar$.作替换$\psi^1=\mathrm{e}^{-\mathrm{i}\omega t/2}\varphi^1$，$\psi^2=\mathrm{e}^{\mathrm{i}\omega t/2}\varphi^2$，上列方程组就化成常系数线性方程组，解出后得
+\begin{gather*}
+  \psi^1=\mathrm{e}^{-\mathrm{i}\omega t/2}
+  \bigl(c_1\mathrm{e}^{\mathrm{i}\Omega t/2}+c_2\mathrm{e}^{-\mathrm{i}\Omega t/2}\bigr),\\
+  \psi^2=2\omega_H\mathrm{e}^{\mathrm{i}\omega t/2}\sin\theta
+  \biggl[\frac{c_1}{\Omega+\omega+2\omega_H\cos\theta}\,\mathrm{e}^{\mathrm{i}\Omega t/2}
+  -\frac{c_2}{\Omega-\omega-2\omega_H\cos\theta}\,\mathrm{e}^{-\mathrm{i}\Omega t/2}\biggr],
+\end{gather*}
+其中
+\begin{equation*}
+  \Omega=\bigl[(\omega+2\omega_H\cos\theta)^2+4\omega_H^2\sin^2\theta\bigr]^{1/2}.
+\end{equation*}
+
+\end{xiti}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}%
+
+\section{磁场中的流密度}
+
+现在来推导在磁场中运动的带电粒子的流密度的量子力学表达式.
+
+我们从下式出发\footnote{本节中的$\boldsymbol{j}$代表电流密度，亦即粒子的通量密度乘以粒子电荷$e$.}：
+\begin{equation}
+  \delta H=-\frac{1}{c}\int\boldsymbol{j}\cdot\delta\boldsymbol{A}\,\mathrm{d}V,
+\end{equation}
+此式确定了矢势变化时具有空间电荷分布的哈密顿函数的变化\footnote{磁场中一个电荷的拉格朗日函数中含有一项$\frac{e}{c}\boldsymbol{v}\cdot\boldsymbol{A}$，如果电荷具有空间分布，则此项为$\frac{1}{c}\int\boldsymbol{j}\cdot\boldsymbol{A}\,\mathrm{d}V$.
+当$\boldsymbol{A}$变化时拉氏函数的改变为
+\begin{equation*}
+  \delta L=\frac{1}{c}\int\boldsymbol{j}\cdot\delta\boldsymbol{A}\,\mathrm{d}V,
+\end{equation*}
+而哈密顿函数的无限小变化等于拉氏函数的无限小变化再取一个负号（见《力学》，§40）.}.量子力学中此式必须应用于带电粒子哈密顿量的平均值：
+\begin{equation}
+  \overline{H}=\int\varPsi^{*}\biggl[\frac{1}{2m}
+  \biggl(\hat{\boldsymbol{p}}-\frac{e}{c}\boldsymbol{A}\biggr)^2
+  -\frac{\mu}{s}\boldsymbol{H}\hat{\boldsymbol{s}}\biggr]\varPsi\,\mathrm{d}V.
+\end{equation}
+对上式进行变分，并注意$\delta\boldsymbol{H}=\mathrm{curl}\,\delta\boldsymbol{A}$，得
+\begin{equation}
+\begin{aligned}
+  \delta\overline{H}={}&\int\varPsi^{*}\biggl[-\frac{e}{2mc}
+  (\hat{\boldsymbol{p}}\cdot\delta\boldsymbol{A}+\delta\boldsymbol{A}\cdot\hat{\boldsymbol{p}})
+  +\frac{e^2}{mc^2}\boldsymbol{A}\cdot\delta\boldsymbol{A}\biggr]\varPsi\,\mathrm{d}V-\\
+  &-\frac{\mu}{s}\int\mathrm{curl}\,\delta\boldsymbol{A}\cdot
+  \varPsi^{*}\hat{\boldsymbol{s}}\varPsi\,\mathrm{d}V.
+\end{aligned}
+\end{equation}
+$\boldsymbol{p}\cdot\delta\boldsymbol{A}$项可用分部积分变成
+\begin{equation*}
+  \int\varPsi^{*}\hat{\boldsymbol{p}}\cdot\delta\boldsymbol{A}\varPsi\,\mathrm{d}V
+  =-\mathrm{i}\hbar\int\varPsi^{*}\nabla(\delta\boldsymbol{A}\cdot\varPsi)\,\mathrm{d}V
+  =\mathrm{i}\hbar\int\delta\boldsymbol{A}\cdot\varPsi\nabla\varPsi^{*}\,\mathrm{d}V
+\end{equation*}
+（无穷远处的面积分照例等于零）.利用矢量分析中熟知的公式
+\begin{equation*}
+  \boldsymbol{a}\cdot\mathrm{curl}\,\boldsymbol{b}
+  =-\mathrm{div}(\boldsymbol{a}\times\boldsymbol{b})
+  +\boldsymbol{b}\cdot\mathrm{curl}\,\boldsymbol{a},
+\end{equation*}
+对(115.3)中的最后一项进行分部积分.div项的积分等于零，故得
+\begin{equation*}
+  \int\varPsi^{*}\hat{\boldsymbol{s}}\varPsi\cdot\mathrm{curl}\,\delta\boldsymbol{A}\,\mathrm{d}V
+  =\int\delta\boldsymbol{A}\cdot\mathrm{curl}(\varPsi^{*}\hat{\boldsymbol{s}}\varPsi)\,\mathrm{d}V,
+\end{equation*}
+最后结果为
+\begin{equation*}
+\begin{aligned}
+  \delta\overline{H}={}&-\frac{\mathrm{i}e\hbar}{2mc}\int\delta\boldsymbol{A}\cdot
+  (\varPsi\nabla\varPsi^{*}-\varPsi^{*}\nabla\varPsi)\,\mathrm{d}V
+  +\frac{e^2}{mc^2}\int\boldsymbol{A}\cdot\delta\boldsymbol{A}\,\varPsi\varPsi^{*}\,\mathrm{d}V-\\
+  &-\frac{\mu}{s}\int\delta\boldsymbol{A}\cdot\mathrm{curl}(\varPsi^{*}\hat{\boldsymbol{s}}\varPsi)\,\mathrm{d}V.
+\end{aligned}
+\end{equation*}
+将此式和(115.1)比较，即得下列流密度表式：
+\begin{equation}
+  \boldsymbol{j}=\frac{\mathrm{i}e\hbar}{2m}\bigl[(\nabla\varPsi^{*})\varPsi
+  -\varPsi^{*}\nabla\varPsi\bigr]-\frac{e^2}{mc}\boldsymbol{A}\varPsi^{*}\varPsi
+  +\frac{\mu}{s}c\,\mathrm{curl}(\varPsi^{*}\hat{\boldsymbol{s}}\varPsi)
+\end{equation}
+要强调的是，这个表式中虽然显含矢势，但$\boldsymbol{j}$还是单值的.这可通过直接计算加以验证，只要记得矢势按(111.8)变换的同时波函数应按(111.9)式变换.
+
+也很易验证，流(115.4)和电荷密度$\rho=e|\varPsi|^2$确实满足下列连续性方程
+\begin{equation*}
+  \frac{\partial\rho}{\partial t}+\mathrm{div}\,\boldsymbol{j}=0.
+\end{equation*}
+(115.4)式最后一项给出了粒子磁矩对流密度的贡献.这就是$c\,\mathrm{curl}\,\boldsymbol{m}$，其中
+\begin{equation}
+  \boldsymbol{m}=\frac{\mu}{s}\varPsi^{*}\hat{\boldsymbol{s}}\varPsi
+  =\varPsi^{*}\hat{\boldsymbol{\mu}}\varPsi,
+\end{equation}
+这是磁矩的空间密度.
+
+(115.4)式是流的平均值.它可看作流密度算符$\hat{\boldsymbol{j}}$的对角矩阵元.这个算符可用二次量子化形式最简单地写出来，即把(115.4)中的$\varPsi$和$\varPsi^{*}$改成算符$\hat{\varPsi}$和$\hat{\varPsi}^{+}$（根据一般规则，每项中的$\varPsi^{+}$应写在$\varPsi$的左边）.这个符号的非对角矩阵元也能求出：
+\begin{equation}
+\begin{aligned}
+  \boldsymbol{j}_{nm}={}&\frac{\mathrm{i}e\hbar}{2m}
+  \bigl[(\nabla\varPsi_n^{*})\varPsi_m-\varPsi_n^{*}\nabla\varPsi_m\bigr]
+  -\frac{e^2}{mc}\boldsymbol{A}\varPsi_n^{*}\varPsi_m+\\
+  &+\frac{\mu}{s}c\,\mathrm{curl}(\varPsi_n^{*}\hat{\boldsymbol{s}}\varPsi_m).
+\end{aligned}
+\end{equation}

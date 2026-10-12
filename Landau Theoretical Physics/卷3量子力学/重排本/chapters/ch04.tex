@@ -1,0 +1,790 @@
+% ============================================================
+%  第三卷 第四章 角动量（§26–§31 + 习题）
+%  底本：高教社中文版第6版（严肃 译，喀兴林 校）；OCR 底稿
+%  full_merged.md 行 3540–4273；插图：本章无图（与原书一致；
+%  manifest 中图9属§35，已排入 ch05）
+%
+%  已修正的 OCR/原书错误（均对照原书页面 PNG p089–p106 核实）：
+%  1. §26 行3563 "1+84·Σrₐ×θₐ" 按 p089 重建为 1+δφ·Σₐrₐ×∇ₐ
+%     （"84"系 δφ、"θₐ"系 ∇ₐ 误识）；
+%  2. §26 行3576 按 p090 重建："比例系数应该等于 −iħ"（OCR 作 −in）；
+%     "我们总是用ħ作为角动量的量度单位"（OCR 于句中衍出 r×p，已删）；
+%     î、L̂ 记号归位（OCR 作 i、\hat{\iota}、\hat{L} 错位）；
+%  3. §26 分量式下标按 p090：ħl̂_x=yp̂_z−zp̂_y，ħl̂_y=zp̂_x−xp̂_z，
+%     ħl̂_z=xp̂_y−yp̂_x（OCR 下标全错）；
+%  4. §26 行3586–3592 按 p090 重建平均值段：L̄=−L̄⟹L̄=0、ψ*L̂ψ、
+%     行末孤立 \overline{L} 归位于"矢量 L̄ 本身"句（该句在 §27 末）；
+%  5. §26 (26.6)(26.8) 下标按 p091 恢复（OCR 作 *、ν 等）；
+%     (26.12) OCR 把 L̂_z 误作 L̂_±，按 p092 恢复 [L̂_+,L̂_−]=2L̂_z、
+%     [L̂_z,L̂_±]=±L̂_±；(26.13) 首项 L̂_+L̂_−（OCR 作 L̂,L̂_−）；
+%  6. §26 Σₐl̂_azΣₐl̂_ay 及 (l̂_ayl̂_az−l̂_azl̂_ay)（OCR 误作 l̂_ax）；
+%  7. §27 (27.2)(27.5) 补"其中"（OCR 乱码）；本征值 l_z（OCR 乱码）；
+%     (27.3)(27.4) 按 p093 用大写 Φ_m（OCR 误作 \b\phi、带帽 \hat\phi）；
+%  8. §27 ψ_M（OCR 混作 ψ_m、ψ_ϰ）；(27.6) L̂_±（OCR L̂_x）；
+%     (27.7) "常数×L̂_±"（OCR 乱码 νμ/ħ³𝒳）；(27.8) L̂_+（OCR L̂_*）；
+%     "把 L̂_− 算符作用于上式"补下标；L̂_−L̂_+ψ_L=(L̂²−L̂_z²−L̂_z)ψ_L=0
+%     按 p094 重建；
+%  9. §27 (27.11) l² 按原书 p095 不用粗体（OCR 作 \pmb）；
+%     行3832 两处算符补 ± 下标；行3862 §27 末段按 p096 重建
+%     （平均值 L̄_x、L̄_y 都等于零；矢量 L̄ 本身沿该方向）；
+% 10. §28 行3866 "本征函φ数"衍字 φ 删；l̂²、l̂_z（OCR 作 i²、i）；
+%     (28.4)–(28.11) θ_{lm}→Θ_{lm}、Υ→Y、Y_u→Y_ll（p098）；
+%     行3985 e^{iφ}→e^{ilφ}；
+% 11. §28 (28.5) 幂次 (−1)^m（OCR 作 ^n）；(28.6) Θ_{l,−|m|}=(−1)^mΘ_{l,|m|}；
+%     (28.7) (−1)^{(m+|m|)/2}、|m|、P_l^{|m|}（OCR 乱码按 p097 恢复）；
+% 12. §28 行3942–3944 按 p097/p098 重建被 OCR 拆断的句子："Θ_lm 函数对
+%     l−|m| 个不同的 θ 角而言可以等于零；换句话说，它以球面上的 l−|m|
+%     条"纬线"为节线."及"它还具有|m|条"经线"节线"；
+% 13. §28 (28.10)(28.11) 按 p098 幂次为 (−i)^l（OCR 乱码），已核其与
+%     (28.5) 自洽（本书 P_l^m 定义不含 (−1)^m 因子，附录§c）；
+% 14. §29 (29.1) 对易括号 [f̂,L̂]=0；行4006 "算符 f̂ 和 L̂_+"（OCR 乱码）；
+%     行4012 "考虑到 L̂_+ 算符只有一个 n,L,M⟶n,L,M+1 矩阵元不等于零"；
+%     行4015/4018 L_+（OCR 作 "L,."、L）；行4034 A_x（OCR A_s）；
+% 15. §29 (29.5)(29.6) "或""对 A_±=A_x±iA_y、A_z"按 p100 重建；
+%     (29.7)–(29.9) 约化矩阵元按 p100 用斜体 A（OCR 误作 \mathcal{A}）；
+%     (29.9) 为 A_− 的矩阵元（OCR 作 "A_1"），A_− 和 A_+ 句序按 p100；
+% 16. §29 行4060 "约化矩阵元"（OCR 衍出 π̄）；行4066 按算符 Â_z 的厄米性；
+%     (29.10) ⟨n'L'M'|A_+|nLM⟩=⟨nLM|A_−|n'L'M'⟩*（OCR A_*）；
+%     (29.11) Â_+B̂_−+Â_−B̂_+（OCR A_*B_*）；(29.12) 求和指标 n''L''；
+% 17. §29 (29.14) 原书 p101 印作 √l，但与(29.7)第三式及紧邻积分式
+%     ⟨l−1,0|n_z|l0⟩=il/√((2l−1)(2l+1))（书中自带 i，已按本书相位约定
+%     数值复核 l=1）联立应为 i√l，判定原书漏 i，改排 i√l；
+% 18. §29 习题按 p101/p102 重建：l_z（OCR 乱码）、l̂（OCR Ⅱ）、
+%     乘积链中 e_{ikl}e_{lkm}（OCR 作 e_{ikm}，并核 e_{ikl}e_{lkm}=−2δ_im
+%     与书中恒等式 e_{ikl}e_{mkl}=2δ_im 相容）；
+% 19. §30 (30.4)(30.5)(30.8) "真标量/赝标量""极矢量/轴矢量"（OCR 乱码）；
+%     P_gg、f_gg（OCR 作 κ、K）；(30.7) P=(−1)^l（OCR 乱码）；
+% 20. §31 行4208 L̂_z=L̂_{1z}+L̂_{2z}；(2L_1+1)（OCR 2L_:+1）；
+%     行4216 φ 波函数下标原书印作 φ_{LL₂MM₂}，系 L₁、M₁ 下标脱落，
+%     按"任一态可以由 L₁,L₂,M₁,M₂ 四个值确定"补足为 φ_{L₁L₂M₁M₂}；
+%     行4226 L_2（OCR 作 L_z）；(31.3) 花括号按 p106；
+% 21. 其它：\mathrm{d} 收紧；\sin \cos \cot \exp 正体；i、e 正体；
+%     半角标点 ,;:() 按文体约定改全角（数学环境内保持 ASCII）；
+%     原书黑体术语（反演变换、宇称守恒定律、选择定则、约化矩阵元、
+%     连带勒让德多项式、矢量模型、禁戒等）按卷1体例不排粗体；
+%     习题内公式一律不编号（仿卷1体例）。
+%
+%  遗留问题：
+%   - 脚注已全部转录（共 14 处，圈码已清零；页码 p091×1、p093×2、p094×1、
+%     p095×2、p097×1、p098×2、p100×1、p101×1、p102×1、p103×1、p104×1；
+%     p091 脚注①内三组公式 e_{ikl}e_{ikm}=2δ_lm、e_{ikl}e_{ikl}=6、
+%     C_i=e_{ikl}A_kB_l 以 equation* 排入脚注；p100 脚注①含两段文字）；
+%     脚注页码对照表缺 p098①②/p100① 三处，页码系按 pages300 页面实况核定；
+%   - (29.14) 改排 i√l 系按本书自洽性推断（见上第17条），原书及英译本
+%     均印作 √l，如后续版本有勘误表可再核；
+%   - §31 表格中原书 M₂ 列花括号用嵌套 array 仿排，行距与原书略有出入。
+% ============================================================
+\chapter{角动量}
+
+\section{角动量}
+
+§15中推导动量守恒定律的时候，我们利用了多粒子封闭系统的空间均匀性.除了这种均匀性以外，空间还具有各向同性：所有的空间方向都是等价的.因此当整个系统绕任意轴转过任意角以后，该封闭系统的哈密顿量不会改变.这一条件，只要对任意的无限小旋转而言能够满足，就足够了.
+
+令 $\delta\boldsymbol{\varphi}$ 为无限小旋转矢量，它的长度等于转角 $\delta\varphi$，它的方向沿着转轴.粒子的径矢量 $\boldsymbol{r}_a$ 经过这种旋转后的改变量 $\delta\boldsymbol{r}_a$ 等于
+\begin{equation*}
+  \delta\boldsymbol{r}_a=\delta\boldsymbol{\varphi}\times\boldsymbol{r}_a
+\end{equation*}
+于是，一个任意函数 $\psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)$ 就被变换成下列函数：
+\begin{equation*}
+\begin{aligned}
+  \psi(\boldsymbol{r}_1+\delta\boldsymbol{r}_1,\boldsymbol{r}_2+\delta\boldsymbol{r}_2,\cdots)
+  &=\psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)
+  +\sum_a\delta\boldsymbol{r}_a\cdot\nabla_a\psi=\\
+  &=\psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots)
+  +\sum_a\delta\boldsymbol{\varphi}\times\boldsymbol{r}_a\cdot\nabla_a\psi=\\
+  &=\left(1+\delta\boldsymbol{\varphi}\cdot\sum_a\boldsymbol{r}_a\times\nabla_a\right)
+  \psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\cdots).
+\end{aligned}
+\end{equation*}
+其中的表式
+\begin{equation*}
+  1+\delta\boldsymbol{\varphi}\cdot\sum_a\boldsymbol{r}_a\times\nabla_a
+\end{equation*}
+可以看作“无限小旋转”算符.无限小旋转不改变系统的哈密顿量这一事实，可以用“旋转算符”与 $\hat{H}$ 算符的可对易性来表述（见§15）.由于单位算符与任意算符都对易，而 $\delta\boldsymbol{\varphi}$ 是一个恒矢量，这个可对易条件就可以化成
+\begin{equation}
+  \biggl(\sum_a\boldsymbol{r}_a\times\nabla_a\biggr)\hat{H}
+  -\hat{H}\biggl(\sum_a\boldsymbol{r}_a\times\nabla_a\biggr)=0,
+\end{equation}
+这个式子表述了某种守恒律.
+
+一个封闭系统由于空间各向同性而导致的守恒量，就是该系统的角动量（见《力学》§9）.因此算符 $\sum_a\boldsymbol{r}_a\times\nabla_a$ 除了一个常因子外必须正好对应于该系统的总角动量，而求和式中的每一项 $\boldsymbol{r}_a\times\nabla_a$ 对应于一个个别粒子的角动量.
+
+这个比例系数应该等于 $-\mathrm{i}\hbar$；因为这样一来，单粒子的角动量表式变成 $-\mathrm{i}\hbar\boldsymbol{r}\times\nabla=\boldsymbol{r}\times\hat{\boldsymbol{p}}$，正好对应于经典表式 $\boldsymbol{r}\times\boldsymbol{p}$.今后，我们总是用 $\hbar$ 作为角动量的量度单位.这样定义的单粒子角动量算符，我们用 $\hat{l}$ 表示之，整个系统的角动量算符，则用 $\hat{\boldsymbol{L}}$ 表示之.因而单粒子角动量的算符可表为
+\begin{equation}
+  \hbar\hat{\boldsymbol{l}}=\boldsymbol{r}\times\hat{\boldsymbol{p}}
+  =-\mathrm{i}\hbar\boldsymbol{r}\times\nabla
+\end{equation}
+其分量式：$\hbar\hat{l}_x=y\hat{p}_z-z\hat{p}_y,\quad
+\hbar\hat{l}_y=z\hat{p}_x-x\hat{p}_z,\quad
+\hbar\hat{l}_z=x\hat{p}_y-y\hat{p}_x.$
+
+处于外场中的一个系统的角动量一般讲来是不守恒的.但如该场具有某种对称性，则角动量仍有守恒的可能.例如，在一有心力场中的系统，自力心引出的各个空间方向都是等价的，故相对于力心而言的角动量将是守恒的.同理，在具有轴对称性的外场中，沿该对称轴的角动量分量将是守恒的.所有这些在经典力学中成立的守恒律，在量子力学中也同样成立.
+
+对角动量不守恒的系统来讲，定态中没有确定的角动量值.在这样的情形下，我们感兴趣的往往是角动量在所给定态中的平均值.很容易证明，在任一非简并的定态中，角动量的平均值等于零.因为，当时间反号后能量保持不变，由于所给能级只有一个定态，故 $t$ 变成 $-t$ 后，该系统的态必将保持不变.这就意味着所有各量的平均值特别是角动量的平均值也将保持不变.但是当时间变号时，角动量也要随之变号，我们就有 $\overline{\boldsymbol{L}}=-\overline{\boldsymbol{L}}$，从而得 $\overline{\boldsymbol{L}}=0$.如果从平均值的数学定义出发，把 $\overline{\boldsymbol{L}}$ 看作 $\psi^{*}\hat{\boldsymbol{L}}\psi$ 的积分，也能得到同样的结论.非简并态的波函数都是实函数（见§18末尾）.故下列表式是一个纯虚量：
+\begin{equation*}
+  \overline{\boldsymbol{L}}
+  =-\mathrm{i}\hbar\int\psi\biggl(\sum_a\boldsymbol{r}_a\times\nabla_a\biggr)\psi\,\mathrm{d}q,
+\end{equation*}
+可是 $\overline{\boldsymbol{L}}$ 必须是实量，显然有 $\overline{\boldsymbol{L}}=0$.
+
+现在来推导角动量算符和坐标算符以及和动量算符的各种对易关系.借助于(16.2)式，我们很易求得
+\begin{equation}
+\left.\begin{aligned}
+  &[\hat{l}_x,x]=0,\qquad[\hat{l}_x,y]=\mathrm{i}z,\qquad[\hat{l}_x,z]=-\mathrm{i}y,\\
+  &[\hat{l}_y,y]=0,\qquad[\hat{l}_y,z]=\mathrm{i}x,\qquad[\hat{l}_y,x]=-\mathrm{i}z,\\
+  &[\hat{l}_z,z]=0,\qquad[\hat{l}_z,x]=\mathrm{i}y,\qquad[\hat{l}_z,y]=-\mathrm{i}x.
+\end{aligned}\right\}
+\end{equation}
+例如
+\begin{equation*}
+\begin{aligned}
+  \hat{l}_xy-y\hat{l}_x
+  &=(1/\hbar)\left(y\hat{p}_z-z\hat{p}_y\right)y
+  -y\left(y\hat{p}_z-z\hat{p}_y\right)(1/\hbar)=\\
+  &=-\left(z/\hbar\right)\left[\hat{p}_y,y\right]=\mathrm{i}z.
+\end{aligned}
+\end{equation*}
+(26.3)诸式可以并写成下列张量形式
+\begin{equation}
+  [\hat{l}_i,x_k]=\mathrm{i}e_{ikl}x_l,
+\end{equation}
+其中的 $e_{ikl}$ 是一个三秩反对称单位张量\footnote{三秩反对称单位张量 $e_{ikl}$（也称为单位轴张量）的定义为分量 $e_{123}=1$ 且对三个下标全部反对称的一个张量.它的 27 个分量中，显然只有 6 个分量不等于零，这 6 个分量的下标 $i,k,l$ 等于 1,2,3 的某种置换.如果可以从 1,2,3 出发对调偶数次以后得到置换 $i,k,l$，则该分量等于 $+1$，如果这种对调次数为奇数，则该分量等于 $-1$，显然有
+\begin{equation*}
+  e_{ikl}e_{ikm}=2\delta_{lm},\ \ e_{ikl}e_{ikl}=6
+\end{equation*}
+两个矢量 $\boldsymbol{A},\boldsymbol{B}$ 的矢积 $\boldsymbol{A}\times\boldsymbol{B}=\boldsymbol{C}$ 的分量可以通过 $e_{ikl}$ 张量表为
+\begin{equation*}
+  C_i=e_{ikl}A_kB_l.
+\end{equation*}}，而 $l$ 是一个叠标，它在同一项中出现两次，即表示对该下标求和.
+
+同样，容易证明，角动量算符和动量算符之间也满足完全类似的对易关系式：
+\begin{equation}
+  [\hat{l}_i,\hat{p}_k]=\mathrm{i}e_{ikl}\hat{p}_l.
+\end{equation}
+利用这些公式，容易求出 $\hat{l}_x,\hat{l}_y,\hat{l}_z$ 算符间的对易关系.例如
+\begin{equation*}
+\begin{aligned}
+  &\hbar(\hat{l}_x\hat{l}_y-\hat{l}_y\hat{l}_x)
+  =\hat{l}_x\left(z\hat{p}_x-x\hat{p}_z\right)
+  -\left(z\hat{p}_x-x\hat{p}_z\right)\hat{l}_x=\\
+  &\qquad=\left(\hat{l}_xz-z\hat{l}_x\right)\hat{p}_x
+  -x\left(\hat{l}_x\hat{p}_z-\hat{p}_z\hat{l}_x\right)=\\
+  &\qquad=-\mathrm{i}y\hat{p}_x+\mathrm{i}x\hat{p}_y=\mathrm{i}\hbar\hat{l}_z.
+\end{aligned}
+\end{equation*}
+由此有
+\begin{equation}
+  [\hat{l}_y,\hat{l}_z]=\mathrm{i}\hat{l}_x,\quad
+  [\hat{l}_z,\hat{l}_x]=\mathrm{i}\hat{l}_y,\quad
+  [\hat{l}_x,\hat{l}_y]=\mathrm{i}\hat{l}_z.
+\end{equation}
+或
+\begin{equation}
+  [\hat{l}_i,\hat{l}_k]=\mathrm{i}e_{ikl}\hat{l}_l.
+\end{equation}
+系统的总角动量算符 $\hat{L}_x,\hat{L}_y,\hat{L}_z$ 之间也满足同样的关系式.这是因为不同粒子的角动量算符是彼此对易的，例如
+\begin{equation*}
+  \sum_a\hat{l}_{ay}\sum_a\hat{l}_{az}
+  -\sum_a\hat{l}_{az}\sum_a\hat{l}_{ay}
+  =\sum_a\left(\hat{l}_{ay}\hat{l}_{az}-\hat{l}_{az}\hat{l}_{ay}\right)
+  =\mathrm{i}\sum_a\hat{l}_{ax}.
+\end{equation*}
+故
+\begin{equation}
+  [\hat{L}_y,\hat{L}_z]=\mathrm{i}\hat{L}_x,\quad
+  [\hat{L}_z,\hat{L}_x]=\mathrm{i}\hat{L}_y,\quad
+  [\hat{L}_x,\hat{L}_y]=\mathrm{i}\hat{L}_z.
+\end{equation}
+(26.8)式表明角动量的三个分量不能同时具有定值（除非这三个分量同时等于零，见后）.从这一点来讲，角动量和动量具有基本的区别，动量的三个分量是可以同时具有定值的.
+
+从 $\hat{L}_x,\hat{L}_y,\hat{L}_z$ 等算符出发，我们可以组成角动量矢量的模量平方算符，并用 $\hat{\boldsymbol{L}}^2$ 表示之：
+\begin{equation}
+  \hat{\boldsymbol{L}}^2=\hat{L}_x^2+\hat{L}_y^2+\hat{L}_z^2.
+\end{equation}
+这个算符和 $\hat{L}_x,\hat{L}_y,\hat{L}_z$ 等算符分别对易：
+\begin{equation}
+  [\hat{\boldsymbol{L}}^2,\hat{L}_x]=0,\quad
+  [\hat{\boldsymbol{L}}^2,\hat{L}_y]=0,\quad
+  [\hat{\boldsymbol{L}}^2,\hat{L}_z]=0.
+\end{equation}
+例如，应用(26.8)式，我们有
+\begin{equation*}
+\begin{aligned}
+  &[\hat{L}_x^2,\hat{L}_z]
+  =\hat{L}_x[\hat{L}_x,\hat{L}_z]+[\hat{L}_x,\hat{L}_z]\hat{L}_x=\\
+  &\qquad=-\mathrm{i}\left(\hat{L}_x\hat{L}_y+\hat{L}_y\hat{L}_x\right),\\
+  &\qquad[\hat{L}_y^2,\hat{L}_z]
+  =\mathrm{i}\left(\hat{L}_x\hat{L}_y+\hat{L}_y\hat{L}_x\right),\\
+  &\qquad[\hat{L}_z^2,\hat{L}_z]=0.
+\end{aligned}
+\end{equation*}
+以上三式相加，可得 $[\hat{\boldsymbol{L}}^2,\hat{L}_z]=0$.从物理上来讲，(26.10)式表明了角动量的平方（即其绝对值）可以和它的一个分量同时具有定值.
+
+为方便计，通常用下列复组合量代替 $\hat{L}_x$ 和 $\hat{L}_y$ 算符：
+\begin{equation}
+  \hat{L}_+=\hat{L}_x+\mathrm{i}\hat{L}_y,\qquad
+  \hat{L}_-=\hat{L}_x-\mathrm{i}\hat{L}_y.
+\end{equation}
+应用(26.8)式进行直接计算后，很易证明下列对易关系：
+\begin{equation}
+  [\hat{L}_+,\hat{L}_-]=2\hat{L}_z,\qquad
+  [\hat{L}_z,\hat{L}_+]=\hat{L}_+,\qquad
+  [\hat{L}_z,\hat{L}_-]=-\hat{L}_-
+\end{equation}
+不难验证
+\begin{equation}
+  \hat{\boldsymbol{L}}^2=\hat{L}_+\hat{L}_-+\hat{L}_z^2-\hat{L}_z
+  =\hat{L}_-\hat{L}_++\hat{L}_z^2+\hat{L}_z.
+\end{equation}
+最后，我们来写出常用的单粒子角动量算符在球坐标中的表达式.按照通常方式引进球坐标
+\begin{equation*}
+  x=r\sin\theta\cos\varphi,\qquad
+  y=r\sin\theta\sin\varphi,\qquad
+  z=r\cos\theta,
+\end{equation*}
+经过简单计算后，可得下列表式：
+\begin{equation}
+  \hat{l}_z=-\mathrm{i}\frac{\partial}{\partial\varphi},
+\end{equation}
+\begin{equation}
+  \hat{l}_{\pm}=\mathrm{e}^{\pm\mathrm{i}\varphi}
+  \left(\pm\frac{\partial}{\partial\theta}
+  +\mathrm{i}\cot\theta\,\frac{\partial}{\partial\varphi}\right).
+\end{equation}
+代入(26.13)式中，得下列形式的单粒子角动量平方算符：
+\begin{equation}
+  \hat{l}^2=-\left[\frac{1}{\sin^2\theta}
+  \frac{\partial^2}{\partial\varphi^2}
+  +\frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+  \left(\sin\theta\frac{\partial}{\partial\theta}\right)\right].
+\end{equation}
+要注意的是，上式除了一个相乘因子外就是拉普拉斯算符的角部.
+
+\section{角动量的本征值}
+
+为了求出单粒子角动量沿某一方向的分量的本征值，最好把该分量所沿的方向取作极轴，并在球坐标系中表出该算符.根据(26.14)式，方程 $\hat{l}_z\psi=l_z\psi$ 可写作
+\begin{equation}
+  -\mathrm{i}\partial\psi/\partial\varphi=l_z\psi.
+\end{equation}
+其解为
+\begin{equation*}
+  \psi=f(r,\theta)\,\mathrm{e}^{\mathrm{i}l_z\varphi},
+\end{equation*}
+其中的 $f(r,\theta)$ 是 $r$ 和 $\theta$ 的任意函数.为了使 $\psi$ 函数是单值函数起见，它对 $\varphi$ 而言必须具有周期性，其周期为 $2\pi$.由此得\footnote{角动量分量的本征值按习惯用 $m$ 来标志，它和粒子的质量采用相同的记号，然而在实际上不会导致混淆.}
+\begin{equation}
+  l_z=m,\qquad\text{其中}\ m=0,\pm1,\pm2,\cdots.
+\end{equation}
+因此本征值 $l_z$ 是一些正负整数，零也包括在内.$\hat{l}_z$ 算符的本征函数依赖于 $\varphi$，这个依赖于 $\varphi$ 的因子可写作
+\begin{equation}
+  \varPhi_m(\varphi)=(2\pi)^{-\frac{1}{2}}\mathrm{e}^{\mathrm{i}m\varphi}.
+\end{equation}
+这种函数已按下式归一化：
+\begin{equation}
+  \int_0^{2\pi}\varPhi_m^{*}(\varphi)\varPhi_{m'}(\varphi)\,\mathrm{d}\varphi
+  =\delta_{mm'}.
+\end{equation}
+系统总角动量 $z$ 分量的本征值显然也等于一些正负整数：
+\begin{equation}
+  L_z=M,\qquad\text{其中}\ M=0,\pm1,\pm2,\cdots.
+\end{equation}
+（这是因为 $\hat{L}_z$ 算符等于相互对易的单粒子算符 $\hat{l}_z$ 之和.）
+
+由于 $z$ 轴所取的方向并无任何特殊性，显然对 $\hat{L}_x,\hat{L}_y$ 或对角动量沿任一方向的分量来讲，也能得同样结论；亦即它们只能取整数值.这个结论粗看起来似乎有些不大合理，特别是我们把它应用到两个靠得无限近的方向上的时候.但在实际上我们必须记住 $\hat{L}_x,\hat{L}_y,\hat{L}_z$ 算符的唯一共同本征函数只能对应于下列本征值：
+\begin{equation*}
+  L_x=L_y=L_z=0;
+\end{equation*}
+这种情形下的角动量矢量等于零，从而沿任一方向的投影也都等于零.本征值 $L_x,L_y,L_z$ 中只要有一个不等于零，$\hat{L}_x,\hat{L}_y,\hat{L}_z$ 算符就没有共同本征函数.换句话说，不存在这样的态，该态中两个或三个沿不同方向的角动量分量算符可以同时具有（不全等于零的）定值，因此我们只能谈到其中的一个分量为整数.
+
+一个系统的各种定态之间的差别，仅在于 $M$ 值不同的那些定态具有相同的能量值；这是根据 $z$ 轴方向毫无特殊性这样一种一般考虑得知的.因此，角动量守恒（并不等于零）的系统，它的那些能级总是简并的\footnote{这是 §10 中提到过的一个普遍定理的特殊情形，该定理指出，如果存在两个或两个以上的守恒量它们的算符并不相互对易，那么能级是简并的.现在的三个角动量分量就是这样的量.}.
+
+现在来求角动量平方的本征值.我们只从对易关系(26.8)式出发，看一看怎样求出这些本征值.令 $\psi_M$ 为某一简并能级中 $\boldsymbol{L}^2$ 值相同但 $M$ 值不同的那些定态波函数\footnote{这里已假定不存在附加简并，这种附加简并会使角动量平方值不同的态具有相同的能量值.这样的假定，对离散谱而言是成立的（库仑场中所谓的偶然简并除外；见 §36），对连续谱而言一般并不成立.可是，即使有这样的附加简并存在的时候，我们总可以选取这样一套本征函数，这套本征函数所描述的各个态中 $\boldsymbol{L}^2$ 具有各种定值，从而可以再从中选出一些状态，它们具有相同的 $E$ 值和相同的 $\boldsymbol{L}^2$ 值.这一事实的可能性，从数学上来讲，是由于一组对易算符的矩阵总能同时对角化.为简单计，我们下面不考虑这些附加简并，因为根据上述理由，所得的结论实际上是和有无附加简并的假定无关的.}.
+
+首先，由于 $z$ 轴的两个方向在物理上是等价的，对每个正值 $M=|M|$，就有一个对应的负值 $M=-|M|$.令 $L$（正整数或零）为 $\boldsymbol{L}^2$ 给定后 $|M|$ 的最大可能值.这一上限的存在，是由于 $\hat{\boldsymbol{L}}^2-\hat{L}_z^2=\hat{L}_x^2+\hat{L}_y^2$ 代表正物理量 $L_x^2+L_y^2$ 的算符，它的本征值不可能是负的.
+
+把 $\hat{L}_z\hat{L}_\pm$ 算符作用在 $\hat{L}_z$ 的本征函数 $\psi_M$ 上，应用(26.12)式的对易关系 $[\hat{L}_z,\hat{L}_\pm]=\pm\hat{L}_\pm$，可得
+\begin{equation}
+  \hat{L}_z\hat{L}_{\pm}\psi_M=(M\pm1)\hat{L}_z\psi_M.
+\end{equation}
+由此可见 $\hat{L}_{\pm}\psi_M$ 函数相当于 $L_z$ 值等于 $M\pm1$ 的本征函数（除开一个归一化常数外）；我们可写作
+\begin{equation}
+\begin{aligned}
+  \psi_{M+1}&=\text{常数}\times\hat{L}_+\psi_M,\\
+  \psi_{M-1}&=\text{常数}\times\hat{L}_-\psi_M.
+\end{aligned}
+\end{equation}
+如果在第一式中令 $M=L$，则必须有下列恒等式：
+\begin{equation}
+  \hat{L}_+\psi_L=0,
+\end{equation}
+因为根据定义 $M>L$ 的态是不存在的.把 $\hat{L}_-$ 算符作用于上式，并利用(26.13)式，可得
+\begin{equation*}
+  \hat{L}_-\hat{L}_+\psi_L
+  =\left(\hat{\boldsymbol{L}}^2-\hat{L}_z^2-\hat{L}_z\right)\psi_L=0.
+\end{equation*}
+但由于 $\psi_M$ 是 $\hat{\boldsymbol{L}}^2$ 和 $\hat{L}_z$ 算符的共同本征函数，我们有
+\begin{equation*}
+  \hat{\boldsymbol{L}}^2\psi_L=L^2\psi_L,\qquad
+  \hat{L}_z^2\psi_L=L^2\psi_L,\qquad
+  \hat{L}_z\psi_L=L\psi_L,
+\end{equation*}
+故由前式可得
+\begin{equation}
+  L^2=L(L+1).
+\end{equation}
+(27.9)式确定了欲求的角动量平方本征值；$L$ 可以取所有的正整数值，包括零在内.对给定的一个 $L$ 值而言，角动量分量 $L_z=M$ 可以采取以下的各种数值：
+\begin{equation}
+  M=L,L-1,\cdots,-L,
+\end{equation}
+总共有 $2L+1$ 个不同的值.因此，角动量为 $L$ 的能级具有 $(2L+1)$ 重简并；通常称为角动量方向上的简并.角动量 $L=0$（当三个分量全都为零时）的态并不简并，这种态的波函数是球对称的，这是因为在任意无限小转动下，改变量 $\hat{\boldsymbol{L}}\psi$ 此时为零.
+
+为简便计，我们按习惯常称一个系统的“角动量”为 $L$，其含义是指角动量的平方值等于 $L(L+1)$；角动量的 $z$ 分量通常就叫做“角动量分量”.
+
+对单粒子角动量而言(27.9)式可写成
+\begin{equation}
+  l^2=l(l+1).
+\end{equation}
+我们用小写的 $l$ 代表单个粒子的角动量.
+
+现在来计算 $L_x$ 和 $L_y$ 在一个表象中的矩阵元，这个表象中的能量以及 $\boldsymbol{L}^2$ 和 $L_z$ 都是对角的（1926年，玻恩，海森伯，约当）.首先，我们注意到，由于 $\hat{L}_x$ 和 $\hat{L}_y$ 算符与 $\hat{H}$ 算符分别对易，它们的矩阵对能量而言呈对角形式，也就是说，对具有不同能量值（以及不同角动量值 $L$）的那些态而言，这些态之间的跃迁矩阵元全都等于零.因此，我们只需考虑同一简并能级中具有不同 $M$ 值的那些态之间的跃迁矩阵元就可以了.
+
+由(27.7)式可知，算符 $\hat{L}_+$ 的矩阵中只有 $M-1\longrightarrow M$ 的跃迁矩阵元才不等于零，而在算符 $\hat{L}_-$ 的矩阵中只有 $M\longrightarrow M-1$ 的跃迁矩阵元不等于零.考虑到这一点以后，我们在(26.13)式的两边各取对角矩阵元，可得\footnote{为简便计，我们往往在矩阵元的记号中略去一些指标（包括指标 $L$ 在内）.这些所略指标对该矩阵而言是对角的.}
+\begin{equation*}
+  L(L+1)=\langle M|L_+|M-1\rangle\langle M-1|L_-|M\rangle+M^2-M.
+\end{equation*}
+注意到算符 $\hat{L}_x,\hat{L}_y$ 都是厄米的，
+\begin{equation*}
+  \langle M-1|L_-|M\rangle=\langle M|L_+|M-1\rangle^{*}
+\end{equation*}
+我们可以把前式改写成下列形式：
+\begin{equation*}
+\begin{aligned}
+  |\langle M|L_+|M-1\rangle|^2
+  &=L(L+1)-M(M-1)=\\
+  &=(L-M+1)(L+M),
+\end{aligned}
+\end{equation*}
+所以\footnote{此式中根号前所选的符号，与角动量本征函数中所选的相位因子一致.}
+\begin{equation}
+  \langle M|L_+|M-1\rangle=\langle M-1|L_-|M\rangle
+  =\sqrt{(L+M)(L-M+1)}.
+\end{equation}
+因而对 $L_x$ 和 $L_y$ 本身来讲，不等于零的矩阵元为
+\begin{equation}
+\left.\begin{aligned}
+  &\langle M|L_x|M-1\rangle=\langle M-1|L_x|M\rangle=\\
+  &\qquad=\frac{1}{2}\sqrt{(L+M)(L-M+1)}\\
+  &\langle M|L_y|M-1\rangle=-\langle M-1|L_y|M\rangle=\\
+  &\qquad=-\frac{1}{2}\mathrm{i}\sqrt{(L+M)(L-M+1)}
+\end{aligned}\right\}
+\end{equation}
+$L_x$ 和 $L_y$ 矩阵中的对角元都等于零.由于对角矩阵元代表该量在有关态中的平均值，从而在 $L_z$ 具有定值的态中，平均值 $\overline{L}_x$ 和 $\overline{L}_y$ 都等于零.由此可知，如果角动量分量在空间某一指定方向具有定值，则矢量 $\overline{\boldsymbol{L}}$ 本身也沿该方向.
+
+\section{角动量的本征函数}
+
+当 $l$ 和 $m$ 的数值事先给定后，一个粒子的波函数并未完全确定.这是因为以上两量的算符在球坐标表式中只含 $\theta$ 和 $\varphi$ 角，从这一点可以看出它们的本征函数中可含一个依赖于 $r$ 的任意因子.我们现在只考虑该波函数中表征角动量本征函数的那个角部因子.把它记作 $Y_{lm}(\theta,\varphi)$，具有下列归一化条件：
+\begin{equation*}
+  \int|Y_{lm}|^2\,\mathrm{d}o=1,
+\end{equation*}
+其中 $\mathrm{d}o=\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi$ 为立体角元.
+
+我们以后将看到，在求解 $\hat{l}^2$ 和 $\hat{l}_z$ 算符的共同本征函数问题中，允许把变量 $\theta$ 和 $\varphi$ 分离开来，把这个函数写成下列形式：
+\begin{equation}
+  Y_{lm}=\varPhi_m(\varphi)\varTheta_{lm}(\theta),
+\end{equation}
+其中的 $\varPhi_m(\varphi)$ 为算符 $\hat{l}_z$ 的本征函数，已由(27.3)式给出.由于 $\varPhi_m$ 函数已按(27.4)式的条件归一化，因而 $\varTheta_{lm}$ 函数的归一化条件应该是
+\begin{equation}
+  \int_0^{\pi}|\varTheta_{lm}|^2\sin\theta\,\mathrm{d}\theta=1.
+\end{equation}
+$l$ 或 $m$ 值不同的 $Y_{lm}$ 函数是自动正交的：
+\begin{equation}
+  \int_0^{2\pi}\!\!\int_0^{\pi}Y_{l'm'}^{*}Y_{lm}\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi
+  =\delta_{ll'}\delta_{mm'},
+\end{equation}
+因为它们是对应于不同本征值的角动量算符的本征函数.$\varPhi_m(\varphi)$ 这组函数本身是相互正交的［见(27.4)式］，因为它们是 $\hat{l}_z$ 算符的不同的本征函数，对应于该算符的不同本征值 $m$.$\varTheta_{lm}(\theta)$ 这组函数本身并不是任何角动量算符的本征函数；根据(28.3)式，它们对不同的 $l$ 而言是相互正交的，但对不同的 $m$ 而言并不正交.
+
+计算所求函数的最直接方法是把 $\hat{l}^2$ 算符写为球坐标如表式(26.16)，直接求解它的本征函数.方程式 $\hat{l}^2\psi=l^2\psi$ 成为
+\begin{equation*}
+  \frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+  \left(\sin\theta\frac{\partial\psi}{\partial\theta}\right)
+  +\frac{1}{\sin^2\theta}\frac{\partial^2\psi}{\partial\varphi^2}
+  +l(l+1)\psi=0.
+\end{equation*}
+把(28.1)形式的 $\psi$ 代入上式，可得 $\varTheta_{lm}$ 函数的方程式
+\begin{equation}
+  \frac{1}{\sin\theta}\frac{\mathrm{d}}{\mathrm{d}\theta}
+  \biggl(\sin\theta\,\frac{\mathrm{d}\varTheta_{lm}}{\mathrm{d}\theta}\biggr)
+  -\frac{m^2}{\sin^2\theta}\varTheta_{lm}+l(l+1)\varTheta_{lm}=0.
+\end{equation}
+这个方程在球谐函数论中是熟知的.当 $l\geqslant|m|$ 为正整数时，上式具有满足单值条件和有限条件的解，与上节用矩阵方法求得的角动量本征值相一致.它所对应的解称为连带勒让德多项式 $P_l^m(\cos\theta)$（见数学附录§c）.应用归一化条件(28.2)，得到\footnote{归一化条件当然不能确定相位因子的选择方式.我们在本书中采用 (28.5) 式的定义，从普遍的角动量相加理论看来最为自然.它和一般采用的定义相差一个 $\mathrm{i}^l$ 因子.上述选法的优点，参考 §60，§106 和 §107 中的附注即能明白.}
+\begin{equation}
+  \varTheta_{lm}(\theta)=(-1)^m\mathrm{i}^l
+  \sqrt{\frac{2l+1}{2}\frac{(l-m)!}{(l+m)!}}\,P_l^m(\cos\theta).
+\end{equation}
+上式中已经假定了 $m\geqslant 0$.当 $m$ 为负值时，我们采用定义
+\begin{equation}
+  \varTheta_{l,-|m|}=(-1)^m\varTheta_{l,|m|},
+\end{equation}
+换句话说，(28.5)式中去掉 $(-1)^m$ 因子并把 $m$ 改成 $|m|$ 后即得 $m<0$ 的 $\varTheta_{lm}$.
+
+由此可知，角动量本征函数在数学上就是用特殊方式归一化以后的球谐函数.为参考计，我们写出上述定义下的完整表式：
+\begin{equation}
+  Y_{lm}(\theta,\varphi)=(-1)^{\frac{m+|m|}{2}}\mathrm{i}^l
+  \sqrt{\frac{2l+1}{4\pi}\frac{(l-|m|)!}{(l+|m|)!}}\,
+  P_l^{|m|}(\cos\theta)\mathrm{e}^{\mathrm{i}m\varphi},
+\end{equation}
+特别是
+\begin{equation}
+  Y_{l0}=\mathrm{i}^l\sqrt{\frac{2l+1}{4\pi}}\,P_l(\cos\theta),
+\end{equation}
+显然，$m$ 值反号的两个函数，存在下列关系：
+\begin{equation}
+  (-1)^{l-m}Y_{l,-m}=Y_{lm}^{*}.
+\end{equation}
+$l=0$（从而有 $m=0$）时，球谐函数变成一个常数.换句话说，角动量等于零的粒子态波函数只依赖于 $r$，亦即具有球对称性，这和§27中的一般论述是一致的.
+
+当 $m$ 值给定以后，$l$ 可从 $|m|$ 开始依次地等于 $\hat{l}^2$ 的各个递增本征值.根据本征函数的一般零点原理（§21），我们可以导出这样的结论，$\varTheta_{lm}$ 函数对 $l-|m|$ 个不同的 $\theta$ 角而言可以等于零；换句话说，它以球面上的 $l-|m|$ 条“纬线”为节线.如果整个角部函数中的 $\mathrm{e}^{\pm\mathrm{i}m\varphi}$ 因子用实因子 $\cos m\varphi$ 或 $\sin m\varphi$ 来代替\footnote{这种函数所对应的态中没有确定的 $l_z$ 值，但可以具有概率相等的 $\pm m$ 值.}，它还具有 $|m|$ 条“经线”节线；从而节线总数等于 $l$.
+
+最后，我们来看一下怎样用矩阵方法算出 $\varTheta_{lm}$ 函数.它和§23中计算振子波函数时所采用的做法类似.从(27.8)式 $\hat{l}_+Y_{ll}=0$ 出发，应用(26.15)式的 $\hat{l}_+$ 算符，并把它作用在下列函数上：
+\begin{equation*}
+  Y_{ll}=\frac{1}{\sqrt{2\pi}}\,\mathrm{e}^{\mathrm{i}l\varphi}\varTheta_{ll}(\theta),
+\end{equation*}
+可得 $\varTheta_{ll}$ 的方程式
+\begin{equation*}
+  \frac{\mathrm{d}\varTheta_{ll}}{\mathrm{d}\theta}
+  -l\cot\theta\cdot\varTheta_{ll}=0,
+\end{equation*}
+因而 $\varTheta_{ll}=$ 常数 $\times\sin^l\theta$.应用归一化条件求出此常数后，得
+\begin{equation}
+  \varTheta_{ll}=(-\mathrm{i})^l\sqrt{\frac{(2l+1)!}{2}}\,
+  \frac{1}{2^l\,l!}\sin^l\theta.
+\end{equation}
+其次，应用(27.12)式，我们有
+\begin{equation*}
+  \hat{l}_-Y_{l,m+1}=(l_-)_{m,m+1}Y_{lm}
+  =\sqrt{(l-m)(l+m+1)}\,Y_{lm}.
+\end{equation*}
+重复应用此式，得
+\begin{equation*}
+  \sqrt{\frac{(l-m)!}{(l+m)!}}\,Y_{lm}
+  =\frac{1}{\sqrt{(2l)!}}\left(\hat{l}_-\right)^{l-m}Y_{ll}.
+\end{equation*}
+采用(26.15)式的 $\hat{l}_-$ 算符，易于把上式右边计算出来，我们有
+\begin{equation*}
+  \hat{l}_-\left[f(\theta)\mathrm{e}^{\mathrm{i}m\varphi}\right]
+  =\mathrm{e}^{\mathrm{i}(m-1)\varphi}\sin^{1-m}\theta
+  \frac{\mathrm{d}}{\mathrm{d}\cos\theta}\left(f\sin^m\theta\right).
+\end{equation*}
+重复应用此式，得
+\begin{equation*}
+  \left(\hat{l}_-\right)^{l-m}\mathrm{e}^{\mathrm{i}l\varphi}\varTheta_{ll}
+  =\mathrm{e}^{\mathrm{i}m\varphi}\sin^{-m}\theta
+  \frac{\mathrm{d}^{l-m}}{\left(\mathrm{d}\cos\theta\right)^{l-m}}
+  \left(\sin^l\theta\,\varTheta_{ll}\right).
+\end{equation*}
+应用上式以及(28.10)式的 $\varTheta_{ll}$，最后可得
+\begin{equation}
+  \varTheta_{lm}(\theta)=(-\mathrm{i})^l
+  \sqrt{\frac{2l+1}{2}\frac{(l+m)!}{(l-m)!}}\,
+  \frac{1}{2^l\,l!\,\sin^m\theta}
+  \frac{\mathrm{d}^{l-m}}{\left(\mathrm{d}\cos\theta\right)^{l-m}}
+  \sin^{2l}\theta,
+\end{equation}
+此式和(28.5)式相同.
+
+\section{矢量的矩阵元}
+
+我们再来考虑一个多粒子封闭系统\footnote{本节所有的结论，对有心力场中的一个粒子也是成立的（一般来讲，对总角动量守恒的系统也是成立的）.}；设 $f$ 为标志该系统的任一标量物理量，对应于这个量的算符为 $\hat{f}$.任一标量对该系统的坐标系旋转而言是不变的.因此标量算符 $\hat{f}$ 经过旋转变换后保持不变，即 $\hat{f}$ 与旋转算符相对易.我们知道，除开一个常因子外，无限小旋转算符等于角动量算符，故有
+\begin{equation}
+  [\hat{f},\hat{\boldsymbol{L}}]=0
+\end{equation}
+根据 $\hat{f}$ 和角动量算符的可对易性可知，在 $\boldsymbol{L}^2$ 和 $L_z$ 为对角的表象中，$f$ 矩阵对下标 $LM$ 而言也是对角的.再则，$M$ 仅决定于系统和坐标轴的相对取向，一个标量的值是和这个取向无关的，因此我们可以说，矩阵元 $\langle n'LM|f|nLM\rangle$ 是和 $M$ 值无关的；$n$ 暂时代表除 $L$ 和 $M$ 外确定系统状态的所有量子数.上述论断可以根据算符 $\hat{f}$ 和 $\hat{L}_+$ 的可对易性形式地得到证明：
+\begin{equation}
+  \hat{f}\hat{L}_+-\hat{L}_+\hat{f}=0.
+\end{equation}
+把上式的 $n,L,M\longrightarrow n',L,M+1$ 的跃迁矩阵元写出来.考虑到 $\hat{L}_+$ 算符只有一个 $n,L,M\longrightarrow n,L,M+1$ 矩阵元不等于零，可得
+\begin{equation*}
+\begin{aligned}
+  &\langle n',L,M+1|f|n,L,M+1\rangle
+  \langle n,L,M+1|L_+|n,L,M\rangle=\\
+  &=\langle n',L,M+1|L_+|n',L,M\rangle
+  \langle n',L,M|f|n,L,M\rangle
+\end{aligned}
+\end{equation*}
+由于 $L_+$ 的矩阵元与指标 $n$ 无关，我们有
+\begin{equation}
+  \langle n',L,M+1|f|n,L,M+1\rangle
+  =\langle n',L,M|f|n,L,M\rangle
+\end{equation}
+可见 $M$ 值不同（其它指标相同）的所有 $\langle n',L,M|f|n,L,M\rangle$ 是相等的.
+
+如果把上述结论应用到哈密顿量本身上来，就可得出早先的结论，即定态的能量和 $M$ 无关，也就是说，能级具有 $(2L+1)$ 重简并.
+
+其次，设 $A$ 为标志封闭系统的某一矢量物理量.当该系统的坐标系转动后（如为无限小旋转，即用角动量算符作用后），一个矢量的三个分量就变换成为它们之间的线性组合.因此，$\hat{L}_i$ 算符和 $\hat{A}_i$ 算符的对易结果，必然仍得到该矢量的一些 $\hat{A}_i$ 分量.确切的形式可以这样求出，只要注意到，在 $A$ 为粒子径矢的特殊情形下，应该得到(26.4)式.因此得出下列对易关系：
+\begin{equation}
+  [\hat{L}_i,\hat{A}_k]=\mathrm{i}e_{ikl}\hat{A}_l.
+\end{equation}
+这些对易式使我们有可能对 $A_x,A_y,A_z$ 诸分量的矩阵形式作出一系列的结论（玻恩，海森伯和约当，1926）.首先，我们可以求出对哪些跃迁矩阵元才可能不为零，也就是求出它们的选择定则.但是，我们不准备在这里进行这种冗长的计算，以后将会讲明（§107），这些选择定则，实际上是一个矢量的一般变换性质的直接结果，根据变换性质，几乎无需计算，就可以把它求出来.在这里我们先不加证明，只给出这些选择定则.
+
+所有矢量分量的跃迁矩阵元，只有当角动量 $L$ 的改变值不超过 1 的时候才不等于零；即
+\begin{equation}
+  L\longrightarrow L\qquad\text{或}\qquad L\pm1.
+\end{equation}
+此外还有一个附加的选择定则，它禁止两个 $L=0$ 的态之间的跃迁；这个附加定则，乃是角动量 $L=0$ 的态具有完全的球对称性的直接结果.
+
+对角动量投影值 $M$ 而言，它的选择定则对矢量的不同分量具有不同的结果.这就是说，改变 $M$ 值的各种跃迁矩阵元中，只有下列跃迁矩阵元有可能不等于零：
+\begin{equation}
+\left.\begin{aligned}
+  &\text{对}\ A_+=A_x+\mathrm{i}A_y,\qquad M\longrightarrow M+1,\\
+  &\text{对}\ A_-=A_x-\mathrm{i}A_y,\qquad M\longrightarrow M-1,\\
+  &\text{对}\ A_z,\qquad M\longrightarrow M.
+\end{aligned}\right\}
+\end{equation}
+此外，还有可能求出矢量矩阵元依赖于量子数 $M$ 的一般公式.这是一些经常用到的重要公式，我们不加证明地把它写出来，它们实际上是§107中求得的（关于任意张量的）某些更普遍公式的特殊情形.
+
+不等于零的 $A_z$ 矩阵元由下列公式给出：
+\begin{equation}
+\left.\begin{aligned}
+  &\langle n'LM|A_z|nLM\rangle
+  =\frac{M}{\sqrt{L(L+1)(2L+1)}}\,
+  \langle n'L\parallel A\parallel nL\rangle,\\
+  &\langle n'LM|A_z|n,L-1,M\rangle
+  =\sqrt{\frac{L^2-M^2}{L(2L-1)(2L+1)}}\,
+  \langle n'L\parallel A\parallel n,L-1\rangle,\\
+  &\langle n',L-1,M|A_z|nLM\rangle
+  =\sqrt{\frac{L^2-M^2}{L(2L-1)(2L+1)}}\,
+  \langle n',L-1\parallel A\parallel nL\rangle.
+\end{aligned}\right\}
+\end{equation}
+记号 $\langle n'L'\parallel A\parallel nL\rangle$ 称为约化矩阵元，不依赖于量子数 $M$\footnote{(29.7) 和 (29.9) 中出现的依赖于 $L$ 的分母是和 §107 中采用的一般记号一致的.写出这些分母的方便之处，可从 (29.12) 式（两个矢量的标积矩阵元）采取简单的形式看出来.
+
+约化矩阵元的符号具有整体性，不像矩阵元符号那样可以分开理解［见 (11.17) 式后的说明］.}.这些矩阵元有下列关系：
+\begin{equation}
+  \langle n'L'\parallel A\parallel nL\rangle
+  =\langle nL\parallel A\parallel n'L'\rangle^{*},
+\end{equation}
+这可直接根据算符 $\hat{A}_z$ 的厄米性得出.
+
+$A_-$ 和 $A_+$ 的矩阵元也可由约化矩阵元确定.$A_-$ 的非零矩阵元为
+\begin{equation}
+\left.\begin{aligned}
+  &\langle n',L,M-1|A_-|nLM\rangle
+  =\sqrt{\frac{(L-M+1)(L+M)}{L(L+1)(2L+1)}}\,
+  \langle n'L\parallel A\parallel nL\rangle,\\
+  &\langle n',L,M-1|A_-|n,L-1,M\rangle
+  =\sqrt{\frac{(L-M+1)(L-M)}{L(2L-1)(2L+1)}}\,
+  \langle n'L\parallel A\parallel n,L-1\rangle,\\
+  &\langle n',L-1,M-1|A_-|nLM\rangle
+  =-\sqrt{\frac{(L+M-1)(L+M)}{L(2L-1)(2L+1)}}\,
+  \langle n',L-1\parallel A\parallel nL\rangle.
+\end{aligned}\right\}
+\end{equation}
+$A_+$ 的矩阵元无需再写：由于 $A_x$ 和 $A_y$ 是实量，我们有
+\begin{equation}
+  \langle n'L'M'|A_+|nLM\rangle
+  =\langle nLM|A_-|n'L'M'\rangle^{*}.
+\end{equation}
+还有一个公式，用约化矩阵元表出两个矢量 $\boldsymbol{A}$ 和 $\boldsymbol{B}$ 的标积 $\boldsymbol{A}\cdot\boldsymbol{B}$ 的矩阵元.如把算符 $\boldsymbol{A}\cdot\boldsymbol{B}$ 写成下列形式，可以简捷地导出
+\begin{equation}
+  \hat{\boldsymbol{A}}\cdot\hat{\boldsymbol{B}}
+  =\frac{1}{2}\left(\hat{A}_+\hat{B}_-+\hat{A}_-\hat{B}_+\right)
+  +\hat{A}_z\hat{B}_z.
+\end{equation}
+矩阵 $\boldsymbol{A}\cdot\boldsymbol{B}$（和任一个标量一样）对 $L$ 和 $M$ 是对角的.应用公式(29.7)—(29.9)，可算出下列结果：
+\begin{equation}
+  \langle n'LM|\boldsymbol{A}\cdot\boldsymbol{B}|nLM\rangle
+  =\frac{1}{2L+1}\sum_{n''L''}
+  \langle n'L\parallel A\parallel n''L''\rangle
+  \langle n''L''\parallel B\parallel nL\rangle,
+\end{equation}
+式中 $L''$ 取值 $L,L\pm1$.
+
+为参考计，我们给出矢量 $\boldsymbol{L}$ 的约化矩阵元本身，比较(29.9)和(27.12)式，得
+\begin{equation}
+\left.\begin{aligned}
+  &\langle L\parallel L\parallel L\rangle
+  =\sqrt{L(L+1)(2L+1)},\\
+  &\langle L-1\parallel L\parallel L\rangle
+  =\langle L\parallel L\parallel L-1\rangle=0.
+\end{aligned}\right\}
+\end{equation}
+应用中经常碰到的一个量是粒子径矢的单位矢量 $\boldsymbol{n}$.它的约化矩阵元可以通过例如 $n_z=\cos\theta$ 对 $m=0$ 的角动量分量的矩阵元求出来；
+\begin{equation*}
+  \langle l-1,0|n_z|l0\rangle
+  =\int_0^{\pi}\varTheta_{l-1,0}^{*}\cos\theta\cdot\varTheta_{l0}\sin\theta\,\mathrm{d}\theta
+\end{equation*}
+$\varTheta_{l0}$ 已由(28.11)式给出.上式积分后，得\footnote{对 $\mathrm{d}\cos\theta$ 进行 $l-1$ 次分部积分；此类积分的一般公式为 (107.14) 式.}
+\begin{equation*}
+  \langle l-1,0|n_z|l0\rangle
+  =\frac{\mathrm{i}l}{\sqrt{(2l-1)(2l+1)}}.
+\end{equation*}
+$l\longrightarrow l$ 的跃迁矩阵元均为零［和单粒子的任一极矢量一样，见后面(30.8)式］.和(29.7)式比较后，得到
+\begin{equation}
+\left.\begin{aligned}
+  &\langle l-1\parallel \boldsymbol{n}\parallel l\rangle
+  =-\langle l\parallel \boldsymbol{n}\parallel l-1\rangle
+  =\mathrm{i}\sqrt{l},\\
+  &\langle l\parallel \boldsymbol{n}\parallel l\rangle=0.
+\end{aligned}\right\}
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题}\quad 把张量 $n_in_k-\dfrac{1}{3}\delta_{ik}$（$\boldsymbol{n}$ 是沿粒子径矢方向的单位矢量）对角动量绝对值给定为 $l$（但其方向即 $l_z$ 不确定）的态平均化，求其结果.
+
+解：所求的张量平均值仍为算符，这种算符可以只通过 $\hat{\boldsymbol{l}}$ 算符来表述，其形式为
+\begin{equation*}
+  \overline{n_in_k}-\frac{1}{3}\delta_{ik}
+  =a\left[\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k
+  +\hat{\boldsymbol{l}}_k\hat{\boldsymbol{l}}_i
+  -\frac{2}{3}\delta_{ik}\,l(l+1)\right];
+\end{equation*}
+这是由 $\hat{\boldsymbol{l}}$ 的分量所能组成的其迹为零的二秩对称张量的最一般形式.为了求出常数 $a$，上式可左乘 $\hat{\boldsymbol{l}}_i$ 并右乘 $\hat{\boldsymbol{l}}_k$（并对 $i$ 和 $k$ 求和）.由于 $\boldsymbol{n}$ 和 $\hbar\hat{\boldsymbol{l}}=\hat{\boldsymbol{r}}\times\hat{\boldsymbol{p}}$ 相垂直，故 $n_i\hat{\boldsymbol{l}}_i=0$（$i$ 为叠标）.乘积 $\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k\hat{\boldsymbol{l}}_k=(\hat{\boldsymbol{l}}^2)^2$ 可用本征值 $l^2(l+1)^2$ 代替，乘积 $\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k$ 可用(26.7)式变换成下列形式：
+\begin{equation*}
+\begin{aligned}
+  \hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k
+  &=\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_k\hat{\boldsymbol{l}}_k
+  -\mathrm{i}e_{ikl}\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_l\hat{\boldsymbol{l}}_k
+  =(\hat{\boldsymbol{l}}^2)^2
+  -\frac{\mathrm{i}}{2}e_{ikl}\hat{\boldsymbol{l}}_i
+  \left(\hat{\boldsymbol{l}}_l\hat{\boldsymbol{l}}_k
+  -\hat{\boldsymbol{l}}_k\hat{\boldsymbol{l}}_l\right)=\\
+  &=(\hat{\boldsymbol{l}}^2)^2
+  +\frac{1}{2}e_{ikl}e_{lkm}\hat{\boldsymbol{l}}_i\hat{\boldsymbol{l}}_m
+  =(\hat{\boldsymbol{l}}^2)^2-\hat{\boldsymbol{l}}^2
+  =l^2(l+1)^2-l(l+1)
+\end{aligned}
+\end{equation*}
+（其中我们应用了 $e_{ikl}e_{mkl}=2\delta_{im}$）.经过简单整理后，得下列结果：
+\begin{equation*}
+  a=\frac{-1}{(2l-1)(2l+3)}.
+\end{equation*}
+
+\end{xiti}
+
+\section{态的宇称}
+
+除了坐标系的平移和旋转不变性分别代表空间的均匀性和各向同性以外，还有一种变换可使一个封闭系统的哈密顿量保持不变.这种变换称为反演变换，它由所有坐标的同时变号所组成，亦即把每个坐标轴反向；右手坐标系变成左手坐标系，或者反之.哈密顿量在这种变换下的不变性代表空间的镜向反射对称性\footnote{处于有心力场中的一个多粒子系统，它的哈密顿量对力心也有反演不变性.}.经典力学中，哈密顿函数对空间反演的不变性并不导致守恒律，量子力学中情况则有所不同.
+
+我们用符号 $\hat{P}$（因“宇称”的英文是“Parity”）代表一个反演算符，它作用在波函数 $\psi(\boldsymbol{r})$ 上的效果是使坐标变号：
+\begin{equation}
+  \hat{P}\psi(\boldsymbol{r})=\psi(-\boldsymbol{r}).
+\end{equation}
+容易求出这个算符的本征值 $P$，它由下式确定：
+\begin{equation}
+  \hat{P}\psi(\boldsymbol{r})=P\psi(\boldsymbol{r}).
+\end{equation}
+我们注意到，把反演算符连用两次，等于一个恒等变换：函数的宗量没有变化.换句话说，我们有 $\hat{P}^2\psi=P^2\psi=\psi$，即 $P^2=1$，故
+\begin{equation}
+  P=\pm1.
+\end{equation}
+因此，反演算符的本征函数用 $\hat{P}$ 作用后，或者根本不变，或者变一符号.第一种情况下，波函数（及其相应的态）称为偶的，第二种情况下则称为奇的.
+
+哈密顿量反演变换下的不变性（亦即算符 $\hat{H}$ 和 $\hat{P}$ 对易）代表了宇称守恒定律：如果一个封闭系统的态具有确定的宇称（它是偶的或奇的），这个宇称在随后的时刻中保持不变\footnote{为避免误解，必须申明这是针对非相对论理论的.在相对论理论范围内，存在着破坏宇称守恒的相互作用.}.
+
+角动量算符在反演变换下也是不变的，坐标以及对坐标微商的算符都变号，结果使算符(26.2)保持不变.换句话说，反演算符和角动量算符对易，这意味着，一个系统可以在具有确定的宇称的同时，具有确定的角动量 $L$ 和确定的角动量分量 $M$.所有那些只有 $M$ 值不同的态都有相同的宇称；因为一个封闭系统的性质和它的空间取向无关，这可从对易式 $\hat{L}_+\hat{P}-\hat{P}\hat{L}_+=0$ 出发加以证明，其方法和(29.2)到(29.3)的推导方法相同.
+
+各种物理量的矩阵元具有一定的宇称选择定则.我们先来考虑标量.首先必须区分反演后保持不变的真标量和反演后变号的赝标量，后者例如一个轴矢量和一个极矢量的标积.一个真标量的算符 $\hat{f}$ 与 $\hat{P}$ 对易；由于这一点，如果 $P$ 的矩阵是对角的，则矩阵 $\hat{f}$ 对宇称指标也是对角的，亦即除了 $g\longrightarrow g$ 和 $u\longrightarrow u$ 的跃迁外矩阵元均为零（$g$ 和 $u$ 分别代表偶态和奇态）.对于赝标量算符，我们有 $\hat{P}\hat{f}=-\hat{f}\hat{P}$；算符 $\hat{P}$ 和 $\hat{f}$ 反对易.对 $g\longrightarrow g$ 跃迁而言，此式的矩阵元为 $P_{gg}f_{gg}=-f_{gg}P_{gg}$，由于 $P_{gg}=1$，故 $f_{gg}=0$.同理可得 $f_{uu}=0$.因此，赝标量矩阵中，只有改变宇称的那些跃迁矩阵元才不等于零.由此可知，标量矩阵元的选择定则为
+\begin{equation}
+\left.\begin{aligned}
+  &\text{真标量}\qquad g\longrightarrow g,\ u\longrightarrow u,\\
+  &\text{赝标量}\qquad g\longrightarrow u,\ u\longrightarrow g.
+\end{aligned}\right\}
+\end{equation}
+这些定则也可从矩阵元定义出发直接导出.例如，我们来考虑积分 $f_{ug}=\int\psi_u^{*}\hat{f}\psi_g\,\mathrm{d}q$，其中 $\psi_g$ 是偶函数，$\psi_u$ 是奇函数.如果 $f$ 是真标量，当所有坐标变号时被积函数也随之变号；另一方面，积分是遍及整个空间的，不会因积分变量的更名而变化.因此，有 $f_{ug}=-f_{ug}$，即 $f_{ug}=0$.
+
+我们可以类似地导出矢量的选择定则，此时必须记得，普通矢量（极矢量）反演时变号，而轴矢量（例如角动量矢量，它是 $\boldsymbol{p}$ 和 $\boldsymbol{r}$ 两个极矢量的矢积）反演时不变号.求出的选择定则如下：
+\begin{equation}
+\left.\begin{aligned}
+  &\text{极矢量}\qquad g\longrightarrow u,\ u\longrightarrow g,\\
+  &\text{轴矢量}\qquad g\longrightarrow g,\ u\longrightarrow u.
+\end{aligned}\right\}
+\end{equation}
+我们来确定角动量为 $l$ 的单粒子态的宇称.反演变换（$x\longrightarrow-x$，$y\longrightarrow-y$，$z\longrightarrow-z$）在球坐标中相当于下列变换：
+\begin{equation}
+  r\longrightarrow r,\qquad
+  \theta\longrightarrow\pi-\theta,\qquad
+  \varphi\longrightarrow\pi+\varphi.
+\end{equation}
+粒子波函数和角度的关系，是由角动量本征函数 $Y_{lm}$ 给出的，其中，除开一个这里并不重要的常数外，具有 $P_l^m(\cos\theta)\mathrm{e}^{\mathrm{i}m\varphi}$ 的形式.当 $\varphi$ 被 $\pi+\varphi$ 代替后，$\mathrm{e}^{\mathrm{i}m\varphi}$ 因子乘上了一个 $(-1)^m$，而当 $\theta$ 被 $\pi-\theta$ 代替后，$P_l^m(\cos\theta)$ 变成 $P_l^m(-\cos\theta)=(-1)^{l-m}P_l^m(\cos\theta)$.因此整个函数等于原函数乘以 $(-1)^l$（和 $m$ 无关，与以前所讲的一致），这就是说，$l$ 值为给定的态中，其宇称为
+\begin{equation}
+  P=(-1)^l.
+\end{equation}
+我们看到，凡是 $l$ 为偶数的态都是偶态，$l$ 为奇数的态都是奇态.
+
+一个单粒子的矢量物理量只有 $l\longrightarrow l$ 或 $l\pm1$ 的跃迁矩阵元才不等于零（§29）.记住这一点，再和矢量矩阵元的宇称改变问题联系起来，参照(30.7)式，可得如下的结论：一个单粒子的矢量矩阵元只有对下列跃迁才不等于零：
+\begin{equation}
+\left.\begin{aligned}
+  &\text{极矢量}\qquad l\longrightarrow l\pm1;\\
+  &\text{轴矢量}\qquad l\longrightarrow l.
+\end{aligned}\right\}
+\end{equation}
+
+\section{角动量的相加}
+
+我们来考虑一个系统，它由相互作用很弱的两个部分组成.当把相互作用全部略去后，每一部分都能满足角动量守恒定律.整个系统的总角动量 $\boldsymbol{L}$ 可以看作是这两个部分的角动量 $\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 之和.在下一步近似中，考虑了弱的相互作用后，$\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 不再严格守恒，但是模量平方值的量子数 $L_1$ 和 $L_2$ 仍是“好的”量子数，适合于对该系统的态进行近似描述.把角动量看作经典量，我们可以这样说，在这种近似中，$\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 只绕 $\boldsymbol{L}$ 方向旋转，它们的长度保持不变.
+
+对这样的系统，产生了角动量的“相加法则”问题：$L_1$ 和 $L_2$ 给定后 $L$ 的可能值是什么？角动量分量的相加法则是很明显的：由于 $\hat{L}_z=\hat{L}_{1z}+\hat{L}_{2z}$，可得
+\begin{equation}
+  M=M_1+M_2.
+\end{equation}
+但对角动量平方算符，没有这样简单的关系，为了导出它们的“相加法则”，我们作如下的考虑.
+
+如果把 $\boldsymbol{L}_1^2,\boldsymbol{L}_2^2,L_{1z},L_{2z}$ 取作物理量的一个完全集合\footnote{以上四个量与其它量放在一起才能组成一个完全集.但是其它物理量在以下的讨论中不起作用，为表述简单计，我们可以把它们完全略去，而把以上四个量暂称为一个完全集.}，任一态可以由 $L_1,L_2,M_1,M_2$ 四个值确定.当 $L_1$ 和 $L_2$ 给定以后，$M_1$ 和 $M_2$ 可以分别取 $(2L_1+1)$ 个及 $(2L_2+1)$ 个不同的数值，因此共有 $(2L_1+1)(2L_2+1)$ 个不同的态具有相同的 $L_1$ 和 $L_2$ 值.我们令 $\varphi_{L_1L_2M_1M_2}$ 为这种表象中的状态波函数.
+
+如果不用以上四个量，我们也可以拿 $\boldsymbol{L}_1^2,\boldsymbol{L}_2^2,\boldsymbol{L}^2,L_z$ 作为一个完全集.那么，每个态可以用 $L_1,L_2,L,M$ 四个值来标志（其相应的波函数我们记作 $\psi_{L_1L_2LM}$）.当 $L_1$ 和 $L_2$ 给定以后，必须和以前一样具有 $(2L_1+1)(2L_2+1)$ 个不同的态，也就是说，对给定的 $L_1$ 和 $L_2$ 而言，$L$ 和 $M$ 必须取 $(2L_1+1)(2L_2+1)$ 对不同的数值.这些数值可以用下法确定.
+
+把各种可能的 $M_1$ 和 $M_2$ 值相加起来，得到相应的各个 $M$ 值，如下表所示：
+\begin{center}
+\begin{tabular}{ccc}
+  $M_1$ & $M_2$ & $M$\\
+  \hline
+  $L_1$ & $L_2$ & $L_1+L_2$\\[0.3em]
+  $\begin{array}{c}L_1\\ L_1-1\end{array}$ &
+  $\left.\begin{array}{c}L_2-1\\ L_2\end{array}\right\}$ &
+  $L_1+L_2-1$\\[0.3em]
+  $\begin{array}{c}L_1\\ L_1-1\\ L_1-2\end{array}$ &
+  $\left.\begin{array}{c}L_2-2\\ L_2-1\\ L_2\end{array}\right\}$ &
+  $L_1+L_2-2$\\[0.3em]
+  $\cdots$ & $\cdots$ & $\cdots$
+\end{tabular}
+\end{center}
+我们看到，对应于一个 $\varphi$ 态（这时有一对 $M_1$ 和 $M_2$ 值）. $M$ 的最大可能值为 $M=L_1+L_2$，$\psi$ 态中 $M$ 的最大可能值，也就是 $L$ 的最大可能值，因而为 $L_1+L_2$.其次，$M=L_1+L_2-1$ 的 $\varphi$ 态有两个.因此，具有这种 $M$ 值的 $\psi$ 态也一定有两个；其中一态的 $L=L_1+L_2$（以及 $M=L-1$），另一个态的 $L=L_1+L_2-1$（以及 $M=L$）.$M=L_1+L_2-2$ 的 $\varphi$ 态有三个.这意味着，除了 $L=L_1+L_2$、$L=L_1+L_2-1$ 这两个值外，还会有 $L=L_1+L_2-2$ 这个值.
+
+继续分析下去，$M$ 值每减少 1，具有给定 $M$ 值的态数就增加 1.很易看出，上述情况会继续下去.直到 $M$ 值等于 $|L_1-L_2|$ 为止.当 $M$ 值进一步减小时，态数就不再增加，仍等于 $2L_2+1$（如果 $L_2\leqslant L_1$）.这就表明，$|L_1-L_2|$ 是 $L$ 的最小可能值.因此，我们可以得出结论，$L_1$ 和 $L_2$ 值给定后，量子数 $L$ 可以采取下列各种数值：
+\begin{equation}
+  L=L_1+L_2,\ L_1+L_2-1,\ \cdots,\ |L_1-L_2|,
+\end{equation}
+这里一起有 $2L_2+1$ 个不同的数值（假定 $L_2\leqslant L_1$）.容易验证此时 $L,M$ 这一对量子数的确可取 $(2L_1+1)(2L_2+1)$ 种不同的数值.要注意的是，如果我们不管 $2L+1$ 个不同的 $M$ 值（对一个给定的 $L$），那么，(31.2)中每一个可能的 $L$ 值只对应于一个态.
+
+上述结果可以用“矢量模型”直观地描述.如果令矢量 $\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 的长度为 $L_1$ 和 $L_2$，则 $L$ 的可能值可以用 $\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 矢量相加后所得的 $\boldsymbol{L}$ 矢量的整数长度表示之；当 $\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 平行时，可得 $L$ 的最大值 $L_1+L_2$，当 $\boldsymbol{L}_1$ 和 $\boldsymbol{L}_2$ 反平行时，得最小值 $|L_1-L_2|$.
+
+在角动量 $L_1,L_2$ 及总角动量 $L$ 都具有定值的态中，$\boldsymbol{L}_1\cdot\boldsymbol{L}_2$，$\boldsymbol{L}\cdot\boldsymbol{L}_1$，$\boldsymbol{L}\cdot\boldsymbol{L}_2$ 等标积也都具有定值.这些定值很容易算出来.计算 $\boldsymbol{L}_1\cdot\boldsymbol{L}_2$ 时，我们令 $\hat{\boldsymbol{L}}=\hat{\boldsymbol{L}}_1+\hat{\boldsymbol{L}}_2$，把它平方再移项后，得
+\begin{equation*}
+  2\hat{\boldsymbol{L}}_1\cdot\hat{\boldsymbol{L}}_2
+  =\hat{\boldsymbol{L}}^2-\hat{\boldsymbol{L}}_1^2-\hat{\boldsymbol{L}}_2^2.
+\end{equation*}
+式右的算符用他们的本征值来代替，我们得到式左算符的本征值：
+\begin{equation}
+  \boldsymbol{L}_1\cdot\boldsymbol{L}_2
+  =\frac{1}{2}\left\{L(L+1)-L_1(L_1+1)-L_2(L_2+1)\right\}.
+\end{equation}
+同理可得
+\begin{equation}
+  \boldsymbol{L}\cdot\boldsymbol{L}_1
+  =\frac{1}{2}\left\{L(L+1)+L_1(L_1+1)-L_2(L_2+1)\right\}.
+\end{equation}
+现在来求“宇称的相加法则”.我们知道，由两个独立部分所组成的一个系统，它的波函数 $\varPsi$ 等于这两个部分的波函数 $\varPsi_1$ 和 $\varPsi_2$ 的乘积.如果后两个波函数具有相同的宇称（即当所有坐标变号时它们同时变号，或同时不变号），则整个系统的波函数显然是偶的.反之，如果 $\varPsi_1$ 和 $\varPsi_2$ 的宇称相反，则 $\varPsi$ 函数是奇的.这个说法可写成
+\begin{equation}
+  P=P_1P_2,
+\end{equation}
+$P$ 是整个系统的宇称，$P_1$ 和 $P_2$ 分别是子系统的宇称.这个法则当然可以立刻推广到由无相互作用的任意多个部分所组成的系统中去.
+
+特别是，如果我们考虑的是处于有心力场中的一个多粒子系统（粒子间的相互作用假定很弱），则整个系统的态的宇称［见(30.7)］为
+\begin{equation}
+  P=(-1)^{l_1+l_2+\cdots+l_n}.
+\end{equation}
+我们强调指出，上式幂数中只包含角动量 $l_i$ 的代数和，一般来讲，它和角动量的“矢量和”，即该系统的总角动量 $L$，是很不一样的.
+
+如果一个封闭系统（在内力作用下）发生分裂，它的总角动量和宇称都必须守恒.这些条件有可能使得一个系统的分裂因此成为不可能，尽管从能量角度看来这种分裂似乎是可能的.
+
+例如，我们来考虑一个原子，处于角动量为 $L=0$ 的偶态，并从能量角度看来，它有可能分裂成为一个自由电子和一个角动量为 $L=0$ 并处于奇态的一个离子.但是很容易证明这样的分裂实际上是不可能的（或者说是禁戒的）.这是因为，由于角动量守恒定律，这个自由电子的角动量也必须等于零，从而处于偶态 $[P=(-1)^0=+1]$；而离子$+$自由电子系统的态将为奇态，可是该原子的初态却是偶态.

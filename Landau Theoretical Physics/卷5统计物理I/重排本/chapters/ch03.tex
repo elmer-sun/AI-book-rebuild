@@ -1,0 +1,1127 @@
+% ============================================================
+%  第五卷 第三章 吉布斯分布（§28–§36 + 习题）
+%  底本：高教社中文版第5版；OCR 底稿 full_merged.md 行 2687–3888
+%  插图：本章无插图（原书 §28–§36 无图）
+%
+%  已修正的 OCR/原书错误（除注明外均对照原书页面 PNG 核验）：
+%   [§28] (28.1)及前后四处被 OCR 乱码吞没的"常数·"按 p083/p084 还原；
+%         dT/ΔT′→dΓ/ΔΓ′、Γ′(E′)（T 与 Γ 混淆多处）；(28.2) 下标 S*、E*→S′、E′；
+%   [§29] (29.2) 指数 /τ→/T；(29.3)(29.4) 中 p_*、v_*→下标 x,y,z；(29.5)(29.7) ν→v；
+%         (29.8) v_ν→v_r；"dw_g"→dw_q；p=mσσ̃→p=mv（p087）；
+%         习题1 解中"从−∞到+∞的同样积分…两倍"一句系印刷页73（PDF p088）脚注①之
+%         末行窜入正文，按 p088 页面删除；转录时已归位于该脚注①末尾（p088）；
+%         习题1 (r+1)! 前 OCR 残缺 \frac{}{}；习题4 e^{−ε/7}→e^{−ε/T}；
+%         习题5 dw_±→dw_Ω；
+%   [§30] 能级和式 w_α→ω_α；(30.1)(30.2) w²q²、θ_n→ω²q²、ε_n；
+%         "纯量子分布"后 OCR 乱码 \mathfrak{O} 为圈码①，按 p092 还原；
+%         ρ_o→ρ_q；p_{n+1,}n 断行粘连修复；习题"计算导数(∂ρ/∂s)"补下标 r（p092）；
+%   [§31] (31.2)(31.6)(34.1)(34.3)(35.4) 等 (2πħ)^{−s}（OCR 作 −*、−′、\circ、\Sigma^{-}）；
+%         (31.5) E(q,P)→E(p,q)（原书排印误）；(31.6) 指数 \circ→s；
+%         习题1 K(P)·U(q)→K(p)+U(q)、λ′T→λⁿT、f(VT^{−3/2})→f(VT^{−3/n})（p095）；
+%         习题2 "2K−nV−3PV=0"→"2K−nU−3PV=0"（按 (n+2)K=nE+3PV 反推，原书排印误）；
+%         e^{−κ/τ}→e^{−F/T}；Σ r·ṗ 之 P→p；
+%   [§32] (32.4) Σ′_n→Σ′_m；(32.6) 下标全坏按 p099 还原：|V_nm|²(w_n−w_m)/(E_n^{(0)}−E_m^{(0)})；
+%         "小很§"→小很多；E_s→E_n；\overrightharpoon{V}→V̄；
+%   [§33] 节名"按 h 的幂次展开式"→按 $\hbar$ 的幂次展开式（p099；OCR 目录之假名"ぁ"同此）；
+%         正文 h→ħ（十余处）；(33.1) 1/√V′→1/√(V^N)（p100）；(33.3) 下标 Γ_pp→pp；
+%         "按 i 幂次"→"按 iħ 幂次"（p102）；δ_ik（OCR S_ik）；(33.11) 行末衍冒号删；
+%         (33.8) 前置因子 ħ/2m_i→ħ²/2m_i：原书排印误——照原书则 ħ⁰ 阶不为零，
+%         与其自有之 χ₁、χ₂ 方程（p101）矛盾，ħ²/2m_i 时逐阶吻合；
+%         (33.17) 方括号内负号→正号：原书排印误，按 (33.10)+(33.14) 推演为 +ħ²β⁴/24，
+%         且与 (33.18)(33.19) 及"较高的有效温度"（p104）自洽；
+%         "∫e^{−βU}dg"→dq（p104 排印误）；dp_1→dp_s、V^N（OCR \mathcal N）；
+%         χ₂ 方程之 Σ_i 1/2m_i 前置因子（OCR 残作 Σ 1/i）按 p101 还原；
+%   [§34] Ω（OCR \mathscr{a}）；dp′_{1x}（OCR 1s）；(34.7) dv_{1x}dv_{1y}dv_{1z}（OCR 乱）；
+%         "因子 (2πħ)^s"补指数 s；"(2πħ)^{−s}"三处；
+%   [§35] (35.4) E_ν→E_N；E_ns→E_nN；\vec E→Ē；e^{πτ}→e^{Ω/T}；
+%         (∂S/∂E)_{V,N}、(∂S/∂N)_{E,V} 下标还原；
+%   [§36] Σw_n ∂E_n/∂λ 之右端补平均线（p110）；
+%   [全章] \mathrm{d} 收紧；\sin\coth\tanh 等函数名统一；中文粘连/断行多处修复；
+%         公式内"常数"照原书排 \text{常数}\cdot。
+%
+%  遗留问题：
+%   - 脚注 16 处已全部转录为 \footnote{...}（圈码已删）：§28 一处（p085）、§29 四处
+%     （p086×2、p087、p088）、§30 两处（p090、p092）、§31 两处（p094）、§32 三处
+%     （p098、p099×2）、§34 一处（p105）、§35 两处（p107、p108）、§36 一处（p110），
+%     全部对照 pages300 页面转录（原头注"15 处、§35 一处"计数有误，实为 §35 两处）；
+%     p088 脚注①（I_n 积分表）末行"从−∞到+∞的同样积分…两倍"系原窜入正文被删之句，
+%     已归位；p110 脚注①含 (11.16) 引用式；p094 脚注②含续段（"从纯粹经典的看来…"）；
+%   - (36.3) 原书即印 E_n（非 E_nN），照排（p110）；
+%   - §36 首句"再给一种说法看其合理性"、§33"导致在自由能出现一个 ħ 三次方的项"
+%     均系原书原貌（p099/p100），照排；
+%   - §32 "参看§2 中关于宏观物体热力学量的均方涨落的讨论" 照 OCR，未核页面。
+% ============================================================
+\chapter{吉布斯分布}
+
+\section{吉布斯分布}
+
+现在我们回到第一章所提出的问题：任何宏观物体作为某个大的闭合系统的微小部分（子系统），求其分布函数.解决这个问题的最方便和最普遍的方法，是基于将微正则分布应用于整个系统上.
+
+把我们感兴趣的物体从闭合系统中划分出来，并把整个系统看成由两部分即由该物体和系统的所有其余部分组成.我们把这个相对于物体的其余部分称为介质.
+
+把微正则分布(6.6)写成
+\begin{equation}
+  \mathrm{d}w=\text{常数}\cdot\delta\left(E+E'-E^{(0)}\right)\mathrm{d}\varGamma\,\mathrm{d}\varGamma',
+\end{equation}
+式中的 $E,\mathrm{d}\varGamma$ 和 $E',\mathrm{d}\varGamma'$ 分别属于物体和介质，而 $E^{(0)}$ 是闭合系统给定的能量值；物体和介质的能量之和 $E+E'$ 应该等于这个 $E^{(0)}$ 值.
+
+我们的目的是求出整个系统的这样一种状态的概率 $w_n$：在这种状态下该物体处于某个确定的量子态（具有能量 $E_n$），即处于以微观方式描述的状态.这时我们对介质的微观状态并不感兴趣，而认为介质处于某种宏观描述的状态.设 $\Delta\varGamma'$ 是介质的宏观状态的统计权重；我们用 $\Delta E'$ 表示在§7中所指出的意义下与量子态间隔 $\Delta\varGamma'$ 相对应的介质的能量间隔.
+
+在(28.1)中用 1 代替 $\mathrm{d}\varGamma$，令 $E=E_n$，并对 $\mathrm{d}\varGamma'$ 进行积分就求出所寻求的概率 $w_n$：
+\begin{equation*}
+  w_n=\text{常数}\cdot\int\delta\left(E_n+E'-E^{(0)}\right)\mathrm{d}\varGamma'.
+\end{equation*}
+
+设 $\varGamma'(E')$ 表示介质的能量小于或等于 $E'$ 的量子态总数.由于被积式只与 $E'$ 有关，所以可以变换成对 $\mathrm{d}E'$ 的积分，写成
+\begin{equation*}
+  \mathrm{d}\varGamma'=\frac{\mathrm{d}\varGamma'(E')}{\mathrm{d}E'}\,\mathrm{d}E'.
+\end{equation*}
+
+用下式
+\begin{equation*}
+  \frac{\mathrm{d}\varGamma'}{\mathrm{d}E'}=\frac{\mathrm{e}^{S'(E')}}{\Delta E'},
+\end{equation*}
+代替导数 $\mathrm{d}\varGamma'/\mathrm{d}E'$（参看§7），其中 $S'(E')$ 是介质的熵，为介质能量 $E'$ 的函数.当然，$\Delta E'$ 也是 $E'$ 的函数.因此，
+\begin{equation*}
+  w_n=\text{常数}\cdot\int\frac{\mathrm{e}^{S'}}{\Delta E'}\,\delta\left(E'+E_n-E^{(0)}\right)\mathrm{d}E',
+\end{equation*}
+
+由于 $\delta$ 函数的存在，积分归结为用 $E^{(0)}-E_n$ 代替 $E'$，我们就得到
+\begin{equation}
+  w_n=\text{常数}\cdot\left(\frac{\mathrm{e}^{S'}}{\Delta E'}\right)_{E'=E^{(0)}-E_n}.
+\end{equation}
+
+现在考虑到：由于物体很小，其能量 $E_n$ 比 $E^{(0)}$ 小得多.当 $E'$ 变化不很大时，$\Delta E'$ 这个量的变化相对来讲也很小；所以在 $\Delta E'$ 中可以直接地令 $E'=E^{(0)}$，于是 $\Delta E'$ 就变为与 $E_n$ 无关的常数了.在指数因子 $\mathrm{e}^{S'}$ 中，必须把 $S'(E^{(0)}-E_n)$ 按 $E_n$ 的幂次展开至线性项：
+\begin{equation*}
+  S'\left(E^{(0)}-E_n\right)=S'\left(E^{(0)}\right)-E_n\frac{\mathrm{d}S'\left(E^{(0)}\right)}{\mathrm{d}E^{(0)}},
+\end{equation*}
+但是熵 $S'$ 对能量的导数不是别的，而是 $\frac{1}{T}$，其中 $T$ 是系统的温度（物体与介质的温度相同，因为假定系统处于平衡状态）.
+
+于是，最后我们得到 $w_n$ 的如下表示式：
+\begin{equation}
+  w_n=A\exp\left(-\frac{E_n}{T}\right),
+\end{equation}
+式中 $A$ 是与 $E_n$ 无关的归一化常数.这是统计物理学中最重要的公式之一.它确定了任何宏观物体的统计分布，这个宏观物体是某个大的闭合系统的比较小的一部分.分布(28.3)称为吉布斯分布或正则分布（它是吉布斯在 1901 年对经典统计学研究所发现的）.
+
+归一化常数 $A$ 由条件 $\sum w_n=1$ 确定，由此得出
+\begin{equation}
+  \frac{1}{A}=\sum_n\mathrm{e}^{-E_n/T}.
+\end{equation}
+
+表征该物体的任何物理量 $f$ 的平均值都可以借助于吉布斯分布按如下公式计算：
+\begin{equation}
+  \bar{f}=\sum_n w_nf_{nn}
+  =\frac{\displaystyle\sum_n f_{nn}\,\mathrm{e}^{-E_n/T}}{\displaystyle\sum_n\mathrm{e}^{-E_n/T}}.
+\end{equation}
+
+在经典统计学中，对于相空间中的分布函数，可以得到与公式(28.3)完全对应的表达式
+\begin{equation}
+  \rho(p,q)=A\,\mathrm{e}^{-E(p,q)/T},
+\end{equation}
+式中 $E(p,q)$ 是物体的能量作为它的粒子的坐标和动量的函数\footnote{为避免误解，我们再次提醒，$w_n$（或 $\rho$）是能量的单调函数，绝对不会在 $E=\bar{E}$ 处具有极大值.在 $E=\bar{E}$ 处具有很陡的极大值的，是按能量的分布函数，它由 $w_n$ 与 $\dfrac{\mathrm{d}\varGamma(E)}{\mathrm{d}E}$ 相乘得到.}.归一化常数 $A$ 由如下条件决定
+\begin{equation}
+  \int\rho\,\mathrm{d}p\,\mathrm{d}q=A\int\mathrm{e}^{-E(p,q)/T}\,\mathrm{d}p\,\mathrm{d}q=1.
+\end{equation}
+
+实际上常常会遇到这样的情况：并非粒子的所有微观运动都是准经典的，只有对应于一部分自由度的运动是准经典的，而对应于其余的自由度的运动是量子的（例如，分子的平动可以是准经典的，而分子内部的原子的运动具有量子的特征）.在这种情况下，物体的能级可以写成准经典的坐标和动量的函数形式：$E_n=E_n(p,q)$，式中 $n$ 表示确定“量子部分”运动的量子数的集合，对于量子部分的运动，$p,q$ 的值起参量的作用.于是吉布斯分布的公式可写成
+\begin{equation}
+  \mathrm{d}w_n(p,q)=A\,\mathrm{e}^{-E_n(p,q)/T}\,\mathrm{d}p_{\mathrm{cl}}\,\mathrm{d}q_{\mathrm{cl}},
+\end{equation}
+式中 $\mathrm{d}p_{\mathrm{cl}}\,\mathrm{d}q_{\mathrm{cl}}$ 是“准经典的”坐标与动量微分的乘积.
+
+最后，关于能够应用吉布斯分布解决问题的范围必须作如下说明.我们讲到吉布斯分布总是指子系统的统计分布，事实上也正是如此.然而，十分重要的是，这个分布也可以完全成功地用于确定闭合物体的基本统计性质.事实上，像物体的热力学量或它的各个粒子的坐标与速度的概率分布这些性质，显然与我们把物体看成是闭合的还是看成放在一个想像的恒温器中无关（§7）.但是，在后一种情况下，物体成为“子系统”，因而就可以把吉布斯分布直接应用于它.在应用吉布斯分布时，闭合系统与非闭合系统的差别实质上只在考虑关于物体总能量的涨落这个重要性不太大的问题时才会出现.
+
+吉布斯分布给出一个不等于零的能量平均涨落，这种涨落对处于介质中的物体具有实际意义，而对于闭合物体就是完全虚构的了，因为按照定义，这种物体的能量是常量，并不会发生涨落.
+
+吉布斯分布实质上与微正则分布差别细微，由之也可以看出（在上述意义下）应用吉布斯分布于闭合系统的可能性，而用它进行具体计算要方便得多.实际上，粗略地说，微正则分布等于承认对应于物体给定能量值的所有微观状态是等概率的.而正则分布是“散布”在能量值的一个间隔内，但是，对于宏观物体来讲，这个间隔的宽度（能量平均涨落的数量级）是极为微小的.
+
+\section{麦克斯韦分布}
+
+在经典统计学的吉布斯分布公式中能量 $E(p,q)$ 总是可以表示为两部分之和——动能和势能.其中的第一部分是原子的动量的二次函数\footnote{假定我们使用笛卡儿坐标.}，而第二部分是它们坐标的函数，并且这个函数的形式取决于物体内粒子的相互作用定律（如果有外场存在，则还依赖于外场）.如果把动能和势能分别表示为 $K(p)$ 和 $U(q)$，则 $E(p,q)=K(p)+U(q)$，而且概率 $\mathrm{d}w=\rho(p,q)\,\mathrm{d}p\,\mathrm{d}q$ 可以写成
+\begin{equation*}
+  \mathrm{d}w=A\exp\left(-\frac{U(q)}{T}-\frac{K(p)}{T}\right)\mathrm{d}p\,\mathrm{d}q,
+\end{equation*}
+也就是说，概率被分为两个因子的乘积，其中一个仅仅与坐标有关，而另一个仅仅与动量有关.这意味着动量的概率与坐标的概率是彼此独立的，其意义也就是说：动量的任何特定值无论如何也不会影响坐标的任何特定值的概率，反之亦然.因而，动量的不同值的概率可以写成
+\begin{equation}
+  \mathrm{d}w_p=a\,\mathrm{e}^{-K(p)/T}\,\mathrm{d}p,
+\end{equation}
+而坐标的概率分布为
+\begin{equation}
+  \mathrm{d}w_q=b\,\mathrm{e}^{-U(q)/T}\,\mathrm{d}q.
+\end{equation}
+
+因为动量的所有可能值的概率之和应该等于一（对于坐标来说也完全一样），所以概率 $\mathrm{d}w_p$ 与 $\mathrm{d}w_q$ 应当各自归一化，即它们对该物体所有可能的动量值或坐标值的积分应该等于一.从这两个条件可以决定(29.1)和(29.2)中的常数 $a$ 和 $b$.
+
+我们来研究动量的概率分布，同时再次强调一个非常重要的事实：在经典统计学中，这种分布与系统内粒子的相互作用类型或外场的类型完全无关，所以可以把这种分布表示成一种对于任何物体都适用的形式\footnote{在量子统计学中，一般说来，这个论断是不正确的.}.
+
+整个物体的动能等于物体内所含有的每个原子的动能之和，因而概率再一次分解为许多因子的乘积，其中的每个因子只与一个原子的动量有关.这又表示：各个原子动量的概率是彼此独立的，即其中任何一个原子的动量无论如何也不会影响其它所有原子动量的概率.因此可以把每个原子动量的概率分布分别写出来.
+
+一个质量为 $m$ 的原子的动能等于 $\dfrac{p_x^2+p_y^2+p_z^2}{2m}$，式中 $p_x,p_y,p_z$ 是原子的动量在笛卡儿坐标中的分量，因而概率分布具有如下形式
+\begin{equation*}
+  \mathrm{d}w_p=a\exp\left[-\frac{1}{2mT}\left(p_x^2+p_y^2+p_z^2\right)\right]\mathrm{d}p_x\,\mathrm{d}p_y\,\mathrm{d}p_z,
+\end{equation*}
+常数 $a$ 由归一化条件决定.分成对 $\mathrm{d}p_x,\mathrm{d}p_y,\mathrm{d}p_z$ 的积分并借助于已知的公式
+\begin{equation*}
+  \int_{-\infty}^{+\infty}\mathrm{e}^{-\alpha x^2}\,\mathrm{d}x=\sqrt{\frac{\pi}{\alpha}}.
+\end{equation*}
+结果求得 $a=(2\pi mT)^{-3/2}$，我们得到最终的动量概率分布的形式为
+\begin{equation}
+  \mathrm{d}w_p=\frac{1}{(2\pi mT)^{3/2}}\exp\left[-\frac{p_x^2+p_y^2+p_z^2}{2mT}\right]\mathrm{d}p_x\,\mathrm{d}p_y\,\mathrm{d}p_z.
+\end{equation}
+
+把动量变换为速度（$p=mv$），可以写出相对于速度的分布：
+\begin{equation}
+  \mathrm{d}w_v=\left(\frac{m}{2\pi T}\right)^{3/2}\exp\left[-\frac{m\left(v_x^2+v_y^2+v_z^2\right)}{2T}\right]\mathrm{d}v_x\,\mathrm{d}v_y\,\mathrm{d}v_z.
+\end{equation}
+
+这就是所谓的麦克斯韦分布（J. C. Maxwell, 1860）.应当指出，这个分布又可分解为三个独立因子的乘积：
+\begin{equation}
+  \mathrm{d}w_{v_x}=\sqrt{\frac{m}{2\pi T}}\,\mathrm{e}^{-mv_x^2/2T}\,\mathrm{d}v_x,\ \cdots,
+\end{equation}
+其中的每一个因子确定一个速度分量的概率分布.
+
+如果物体是由许多分子构成的（例如，多原子气体），那么除了单个原子具有麦克斯韦分布以外，分子的整体平动也具有这样的分布.这是因为，从分子的动能中可以把平动能量作为一项分离出来，结果就把所求的分布以(29.4)式的形式分离出来了，其中 $m$ 必须理解为分子的总质量，而 $v_x,v_y,v_z$ 应当理解为它的质心的速度分量.必须强调：分子平动麦克斯韦分布的成立条件，与分子内部原子运动（以及分子的转动）的性质关系不大，这里包括原子运动必须用量子力学描述的情形在内.\footnote{显然，麦克斯韦分布对于悬浮在液体中的粒子的所谓布朗运动也是正确的.}
+
+式(29.4)是以“速度空间”中的笛卡儿坐标来表示的.如果从笛卡儿坐标变换到球坐标，则得到：
+\begin{equation}
+  \mathrm{d}w_v=\left(\frac{m}{2\pi T}\right)^{3/2}\mathrm{e}^{-mv^2/2T}\,v^2\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi\,\mathrm{d}v,
+\end{equation}
+式中 $v$ 是速度的绝对值，而 $\theta$ 和 $\varphi$ 是确定速度方向的极角和方位角.对角度进行积分，我们得到速度绝对值的概率分布为：
+\begin{equation}
+  \mathrm{d}w_v=4\pi\left(\frac{m}{2\pi T}\right)^{3/2}\mathrm{e}^{-mv^2/2T}\,v^2\,\mathrm{d}v.
+\end{equation}
+
+有时采用速度空间中的圆柱坐标较为方便.这时
+\begin{equation}
+  \mathrm{d}w_v=\left(\frac{m}{2\pi T}\right)^{3/2}\exp\left[-\frac{m\left(v_r^2+v_z^2\right)}{2T}\right]v_r\,\mathrm{d}v_r\,\mathrm{d}v_z\,\mathrm{d}\varphi,
+\end{equation}
+式中 $v_z$ 是沿 $z$ 轴的速度分量，$v_r$ 是垂直于 $z$ 轴的速度分量，而 $\varphi$ 是决定 $v_r$ 方向的角度.
+
+我们来计算原子的动能的平均值.根据平均值的定义并利用(29.5)，我们求出速度的任意一个笛卡儿分量\footnote{我们在这里引入在应用麦克斯韦分布时经常会遇到的形如
+$I_n=\int_0^{\infty}\mathrm{e}^{-\alpha x^2}x^n\,\mathrm{d}x$
+的积分的值，以供参考.以 $\alpha x^2=y$ 代入后，给出
+\begin{equation*}
+  I_n=\frac{1}{2}\alpha^{-\frac{n+1}{2}}\int_0^{\infty}\mathrm{e}^{-y}\,y^{\frac{n-1}{2}}\,\mathrm{d}y
+  =\frac{1}{2}\alpha^{-\frac{n+1}{2}}\Gamma\left(\frac{n+1}{2}\right),
+\end{equation*}
+式中 $\Gamma(x)$ 是伽马函数.其中如果 $n=2r$，$r>0$，则
+\begin{equation*}
+  I_{2r}=\frac{(2r-1)!!}{2^{r+1}}\sqrt{\frac{\pi}{\alpha^{2r+1}}},
+\end{equation*}
+式中 $(2r-1)!!=1\cdot3\cdot5\cdot\cdots\cdot(2r-1)$.如果 $r=0$，则
+\begin{equation*}
+  I_0=\frac{1}{2}\sqrt{\frac{\pi}{\alpha}}.
+\end{equation*}
+如果 $n=2r+1$，则
+\begin{equation*}
+  I_{2r+1}=\frac{r!}{2\alpha^{r+1}}.
+\end{equation*}
+从 $-\infty$ 到 $+\infty$ 的同样积分，在 $n$ 为奇数时等于零，而在 $n$ 为偶数时等于从 0 到 $\infty$ 的积分的两倍.}，
+\begin{equation}
+  \overline{v_x^2}=\sqrt{\frac{m}{2\pi T}}\int_{-\infty}^{+\infty}v_x^2\,\mathrm{e}^{-mv_x^2/2T}\,\mathrm{d}v_x=\frac{T}{m}.
+\end{equation}
+
+因此原子动能的平均值等于 $\dfrac{3}{2}T$.因而可以说，在经典统计学中物体的全部粒子的平均动能总是等于 $\dfrac{3}{2}NT$，其中 $N$ 是原子的总数.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 求速度绝对值的 $n$ 次幂的平均值.
+
+解：利用(29.7)，得
+\begin{equation*}
+  \left\langle v^n\right\rangle=4\pi\left(\frac{m}{2\pi T}\right)^{3/2}
+  \int_0^{\infty}\mathrm{e}^{-\frac{mv^2}{2T}}v^{n+2}\,\mathrm{d}v
+  =\frac{2}{\sqrt{\pi}}\left(\frac{2T}{m}\right)^{n/2}\Gamma\left(\frac{n+3}{2}\right).
+\end{equation*}
+如果 $n$ 为偶数（$n=2r$），则
+\begin{equation*}
+  \left\langle v^{2r}\right\rangle=\left(\frac{T}{m}\right)^r(2r+1)!!,
+\end{equation*}
+如果 $n=2r+1$，则
+\begin{equation*}
+  \left\langle v^{2r+1}\right\rangle=\frac{2}{\sqrt{\pi}}\left(\frac{2T}{m}\right)^{\frac{2r+1}{2}}(r+1)!.
+\end{equation*}
+
+\noindent{\heiti 习题2}\quad 求速度的均方涨落.
+
+解：利用习题1中 $n=1$ 和 $n=2$ 的结果，求得
+\begin{equation*}
+  \left\langle(\Delta v)^2\right\rangle=\overline{v^2}-\bar{v}^2=\frac{T}{m}\left(3-\frac{8}{\pi}\right).
+\end{equation*}
+
+\noindent{\heiti 习题3}\quad 求原子动能的平均值、均方值和均方涨落.
+
+解：利用习题1中的结果，得到
+\begin{equation*}
+  \bar{\varepsilon}=\frac{m}{2}\,\overline{v^2}=\frac{3T}{2},\qquad
+  \overline{\varepsilon^2}=\frac{15}{4}T^2,
+\end{equation*}
+\begin{equation*}
+  \left\langle(\Delta\varepsilon)^2\right\rangle=\overline{\varepsilon^2}-\bar{\varepsilon}^2=\frac{3}{2}T^2.
+\end{equation*}
+
+\noindent{\heiti 习题4}\quad 求原子动能的概率分布.
+
+解：
+\begin{equation*}
+  \mathrm{d}w_\varepsilon=\frac{2}{\sqrt{\pi T^3}}\,\mathrm{e}^{-\frac{\varepsilon}{T}}\sqrt{\varepsilon}\,\mathrm{d}\varepsilon.
+\end{equation*}
+
+\noindent{\heiti 习题5}\quad 求分子转动角速度的概率分布.
+
+解：按照与分子平动情形相同的理由，（在经典统计学中）可以分别写出每个分子转动的概率分布.把分子看成刚体（由于分子内部的原子振动很小，因此可以这样考虑），它的转动动能就等于
+\begin{equation*}
+  \varepsilon_{\mathrm{rot}}=\frac{1}{2}\left(I_1\Omega_1^2+I_2\Omega_2^2+I_3\Omega_3^2\right)
+  =\frac{1}{2}\left(\frac{M_1^2}{I_1}+\frac{M_2^2}{I_2}+\frac{M_3^2}{I_3}\right),
+\end{equation*}
+式中 $I_1,I_2,I_3$ 是主转动惯量，$\Omega_1,\Omega_2,\Omega_3$ 是角速度在惯量主轴上的投影，而 $M_1=I_1\Omega_1$，$M_2=I_2\Omega_2$，$M_3=I_3\Omega_3$ 是角动量的分量，相对于角速度 $\Omega_1,\Omega_2,\Omega_3$ 它们起着广义动量的作用.角动量的归一化概率分布为
+\begin{equation*}
+  \mathrm{d}w_M=(2\pi T)^{-3/2}\left(I_1I_2I_3\right)^{-1/2}
+  \exp\left[-\frac{1}{2T}\left(\frac{M_1^2}{I_1}+\frac{M_2^2}{I_2}+\frac{M_3^2}{I_3}\right)\right]\mathrm{d}M_1\,\mathrm{d}M_2\,\mathrm{d}M_3,
+\end{equation*}
+而角速度的概率分布为
+\begin{equation*}
+  \mathrm{d}w_\Omega=(2\pi T)^{-3/2}\left(I_1I_2I_3\right)^{1/2}
+  \exp\left[-\frac{1}{2T}\left(I_1\Omega_1^2+I_2\Omega_2^2+I_3\Omega_3^2\right)\right]\mathrm{d}\Omega_1\,\mathrm{d}\Omega_2\,\mathrm{d}\Omega_3.
+\end{equation*}
+
+\noindent{\heiti 习题6}\quad 求分子的角速度和角动量的绝对值.
+
+解：借助于上题求出的分布，得到
+\begin{equation*}
+  \overline{\Omega^2}=T\left(\frac{1}{I_1}+\frac{1}{I_2}+\frac{1}{I_3}\right),\qquad
+  \overline{M^2}=T\left(I_1+I_2+I_3\right).
+\end{equation*}
+
+\end{xiti}
+
+\section{振子的概率分布}
+
+考虑一个物体，它的原子各自相对于一定的平衡位置作微小的振动.这里所说的可以是晶体中原子的振动，也可以是气体分子中原子的振动（在后一种情况下，分子的整体运动并不影响其内部的原子振动，因而不会影响到下面所得到的结果）.
+
+从力学中已经知道，由任意个作微小振动的粒子所构成的系统，其哈密顿函数（能量）可以表示为求和的形式
+\begin{equation*}
+  E(p,q)=\frac{1}{2}\sum_\alpha\left(p_\alpha^2+\omega_\alpha^2q_\alpha^2\right),
+\end{equation*}
+式中 $q_\alpha$ 是振动的简正坐标（在平衡点 $q_\alpha=0$），$p_\alpha=\dot{q}_\alpha$ 是与它们相对应的广义动量，而 $\omega_\alpha$ 是振动频率.换句话说，$E(p,q)$ 分解为许多独立项之和，其中每一项对应于一个单独的简正振动（或称为“振子”）.在量子力学中，对于系统的哈密顿算符情况也同样，因此每一个振子都独立地量子化，并且系统的能级由和式表示：
+\begin{equation*}
+  \sum_\alpha\hbar\omega_\alpha\left(n_\alpha+\frac{1}{2}\right),
+\end{equation*}
+$n_\alpha$ 是整数.
+
+由于这些情况，整个系统的吉布斯分布分为许多独立因子的乘积，其中的每一个因子各自确定一个振子的统计分布.根据这一点，下面我们考虑一个单独的振子.
+
+我们来确定振子 $q$ 的概率分布\footnote{简正坐标 $q$ 的量纲是 $[\mathrm{cm}\cdot\mathrm{g}^{1/2}]$.}（以后我们总是省略掉标明振子号码的角标 $\alpha$）.在经典统计学中解决这个问题十分简单：因为振子的势能是 $\frac{1}{2}\omega^2q^2$，所以概率分布由下述公式给出：
+\begin{equation*}
+  \mathrm{d}w_q=A\,\mathrm{e}^{-\frac{\omega^2q^2}{2T}}\,\mathrm{d}q,
+\end{equation*}
+或者由归一化条件确定 $A$ 以后，为
+\begin{equation}
+  \mathrm{d}w_q=\frac{\omega}{\sqrt{2\pi T}}\,\mathrm{e}^{-\frac{\omega^2q^2}{2T}}\,\mathrm{d}q
+\end{equation}
+（由于积分收敛得很快，所以对 $\mathrm{d}q$ 的积分可以在积分限 $-\infty$ 到 $+\infty$ 中进行）.
+
+现在我们在量子情形下解决这个问题.设 $\psi_n(q)$ 是振子的定态波函数，相应的能级为
+\begin{equation*}
+  \varepsilon_n=\hbar\omega\left(n+\frac{1}{2}\right).
+\end{equation*}
+
+如果振子处于第 $n$ 个状态，则它的坐标的量子力学概率分布取决于 $\psi_n^2$（在振子的情形下，函数 $\psi_n$ 是实数，所以我们可以直接写成 $\psi_n^2$ 去代替模平方 $|\psi_n|^2$）.如果用振子处于第 $n$ 个状态的概率 $w_n$ 去乘 $\psi_n^2$，然后对所有可能的状态求和，就得到所求的概率的统计分布.
+
+根据吉布斯分布，$w_n$ 具有形式
+\begin{equation*}
+  w_n=a\,\mathrm{e}^{-\frac{\varepsilon_n}{T}},
+\end{equation*}
+式中 $a$ 是常数.因此，我们得到公式
+\begin{equation}
+  \mathrm{d}w_q=a\,\mathrm{d}q\sum_{n=0}^{\infty}\mathrm{e}^{-\frac{\varepsilon_n}{T}}\psi_n^2,
+\end{equation}
+当然，这个公式是与普遍公式(5.8)完全相符合的.
+
+为了计算上式中的和式，可以应用如下方法.引入符号 $\mathrm{d}w_q=\rho_q\,\mathrm{d}q$ 并求导数：
+\begin{equation*}
+  \frac{\mathrm{d}\rho_q}{\mathrm{d}q}=2a\sum_{n=0}^{\infty}\mathrm{e}^{-\frac{\varepsilon_n}{T}}\psi_n\frac{\mathrm{d}\psi_n}{\mathrm{d}q}.
+\end{equation*}
+
+引入动量算符 $\hat{p}=-\mathrm{i}\hbar\,\frac{\mathrm{d}}{\mathrm{d}q}$，并且考虑到振子的动量只在 $n\to n\pm1$ 的跃迁中才有不等于零的矩阵元（参看本教程第三卷§23），可以写出：
+\begin{equation*}
+  \frac{\mathrm{d}\psi_n}{\mathrm{d}q}=\frac{\mathrm{i}}{\hbar}\hat{p}\psi_n
+  =\frac{\mathrm{i}}{\hbar}\left(p_{n-1,n}\psi_{n-1}+p_{n+1,n}\psi_{n+1}\right)
+  =\frac{\omega}{\hbar}\left(q_{n-1,n}\psi_{n-1}-q_{n+1,n}\psi_{n+1}\right)
+\end{equation*}
+（式中利用了动量矩阵元和坐标矩阵元之间的关系式 $p_{n-1,n}=-\mathrm{i}\omega q_{n-1,n}$，$p_{n+1,n}=\mathrm{i}\omega q_{n+1,n}$）.因此，我们有
+\begin{equation*}
+  \frac{\mathrm{d}\rho_q}{\mathrm{d}q}=\frac{2a\omega}{\hbar}
+  \left\{\sum_{n=0}^{\infty}q_{n-1,n}\psi_n\psi_{n-1}\,\mathrm{e}^{-\varepsilon_n/T}
+  -\sum_{n=0}^{\infty}q_{n+1,n}\psi_n\psi_{n+1}\,\mathrm{e}^{-\varepsilon_n/T}\right\}.
+\end{equation*}
+
+在第一个和式中作求和角标的变换（$n\to n+1$），并注意到关系式
+\begin{equation*}
+  \varepsilon_{n+1}=\varepsilon_n+\hbar\omega,\qquad
+  q_{n+1,n}=q_{n,n+1},\qquad
+  q_{-1,0}=0,
+\end{equation*}
+求出
+\begin{equation*}
+  \frac{\mathrm{d}\rho_q}{\mathrm{d}q}
+  =-\frac{2a\omega}{\hbar}\left(1-\mathrm{e}^{-\hbar\omega/T}\right)
+  \sum_{n=0}^{\infty}q_{n,n+1}\psi_n\psi_{n+1}\,\mathrm{e}^{-\varepsilon_n/T}.
+\end{equation*}
+
+用类似的方法我们求出等式
+\begin{equation*}
+  q\rho_q=a\left(1+\mathrm{e}^{-\hbar\omega/T}\right)
+  \sum_{n=0}^{\infty}q_{n,n+1}\psi_n\psi_{n+1}\,\mathrm{e}^{-\varepsilon_n/T}.
+\end{equation*}
+
+比较这两个等式后，我们得到方程式
+\begin{equation*}
+  \frac{\mathrm{d}\rho_q}{\mathrm{d}q}
+  =-\left(\frac{2\omega}{\hbar}\tanh\frac{\hbar\omega}{2T}\right)q\rho_q,
+\end{equation*}
+由此得出
+\begin{equation*}
+  \rho_q=\text{常数}\cdot\exp\left(-q^2\,\frac{\omega}{\hbar}\tanh\frac{\hbar\omega}{2T}\right).
+\end{equation*}
+
+从归一化条件确定常数后，最后我们得到如下公式（F. Bloch, 1932）：
+\begin{equation}
+  \mathrm{d}w_q=\left(\frac{\omega}{\pi\hbar}\tanh\frac{\hbar\omega}{2T}\right)^{1/2}
+  \exp\left(-q^2\,\frac{\omega}{\hbar}\tanh\frac{\hbar\omega}{2T}\right)\mathrm{d}q.
+\end{equation}
+
+由此可见，在量子的情形中，振子的不同坐标值的概率也是按照 $\mathrm{e}^{-\alpha q^2}$ 形式的规律而分布的，但是与经典统计学相比较，系数 $\alpha$ 具有不同的值.在 $\hbar\omega\ll T$ 的极限情形下，量子化已经不起作用，公式(30.3)正如所希望的那样变为公式(30.1).
+
+在相反的极限情形 $\hbar\omega\gg T$ 下，公式(30.3)变成
+\begin{equation*}
+  \mathrm{d}w_q=\sqrt{\frac{\omega}{\pi\hbar}}\,\mathrm{e}^{-q^2\frac{\omega}{\hbar}}\,\mathrm{d}q,
+\end{equation*}
+即振子处于基态中，其坐标的概率分布是纯量子分布\footnote{这是振子基态波函数的模平方.}.这相当于在 $T\ll\hbar\omega$ 时，振子的振动实际上未被激发.
+
+振子动量的概率分布可按类似于(30.3)的方式写出来，无需重新计算.这是因为：振子量子化的问题相对于坐标和相对于动量是完全对称的，因而振子在 $p$ 表象中的波函数与它通常的坐标波函数完全一样（用 $\frac{p}{\omega}$ 代替 $q$；参看本教程第三卷§23 习题1）.因此所求的分布为
+\begin{equation}
+  \mathrm{d}w_p=\left(\frac{1}{\pi\hbar\omega}\tanh\frac{\hbar\omega}{2T}\right)^{1/2}
+  \exp\left(-\frac{p^2}{\hbar\omega}\tanh\frac{\hbar\omega}{2T}\right)\mathrm{d}p.
+\end{equation}
+
+在经典的极限情形下（$\hbar\omega\ll T$），它变为通常的麦克斯韦分布
+\begin{equation}
+  \mathrm{d}w_p=(2\pi T)^{-1/2}\,\mathrm{e}^{-\frac{p^2}{2T}}\,\mathrm{d}p.
+\end{equation}
+
+\begin{xiti}
+
+\noindent{\heiti 习题}\quad 确定简谐振子的坐标密度矩阵.
+
+解：与统计平衡相应的振子坐标密度矩阵由如下公式确定
+\begin{equation*}
+  \rho(q,q')=a\sum_{n=0}^{\infty}\mathrm{e}^{-\frac{\varepsilon_n}{T}}\psi_n(q')\psi_n(q)
+\end{equation*}
+（与(5.4)后的脚注相比较）.设 $q=r+s$，$q'=r-s$ 并计算导数 $\left(\dfrac{\partial\rho}{\partial s}\right)_r$.如正文中作类似计算，得到
+\begin{equation*}
+\begin{aligned}
+  \frac{\partial\rho}{\partial s}
+  &=\frac{\partial\rho}{\partial q}-\frac{\partial\rho}{\partial q'}\\
+  &=-\frac{a\omega}{\hbar}\left(1+\mathrm{e}^{-\frac{\hbar\omega}{T}}\right)
+  \sum_{n=0}^{\infty}q_{n,n+1}\left[\psi_{n+1}(q)\psi_n(q')-\psi_n(q)\psi_{n+1}(q')\right].
+\end{aligned}
+\end{equation*}
+以同样的方法计算 $s\rho=\frac{1}{2}(q-q')\rho$ 并且与求出的导数相比较，我们得到
+\begin{equation*}
+  \left(\frac{\partial\rho}{\partial s}\right)_r
+  =-s\rho\,\frac{2\omega}{\hbar}\coth\frac{\hbar\omega}{2T},
+\end{equation*}
+由此得出
+\begin{equation*}
+  \rho(q,q')=A(r)\exp\left(-s^2\,\frac{\omega}{\hbar}\coth\frac{\hbar\omega}{2T}\right).
+\end{equation*}
+要求在 $s=0$ 即 $q=q'=r$ 时密度矩阵的“对角元” $\rho(q,q)$ 与(30.3)一致，可确定函数 $A(r)$.最后我们有
+\begin{equation*}
+  \rho(q,q')=\left(\frac{\omega}{\pi\hbar}\tanh\frac{\hbar\omega}{2T}\right)^{1/2}
+  \exp\left\{-\frac{\omega\left(q+q'\right)^2}{4\hbar}\tanh\frac{\hbar\omega}{2T}
+  -\frac{\omega\left(q-q'\right)^2}{4\hbar}\coth\frac{\hbar\omega}{2T}\right\}.
+\end{equation*}
+
+\end{xiti}
+
+\section{吉布斯分布中的自由能}
+
+根据公式(7.9)，物体的熵可以用它的分布函数的对数的平均值来计算：
+\begin{equation*}
+  S=-\left\langle\ln w_n\right\rangle.
+\end{equation*}
+
+把吉布斯分布(28.3)代入上式，得到
+\begin{equation*}
+  S=-\ln A+\frac{\bar{E}}{T},
+\end{equation*}
+由此得出 $\ln A=(\bar{E}-TS)/T$.但是平均能量 $\bar{E}$ 恰好是我们在热力学中所了解的能量，因此 $\bar{E}-TS=F$，而且 $\ln A=F/T$，即分布的归一化常数直接与物体的自由能有关.
+
+因此，吉布斯分布又可以写成形式
+\begin{equation}
+  w_n=\exp\frac{F-E_n}{T},
+\end{equation}
+这也是它最常用的形式.用同样的方法借助于(7.12)，我们得到在经典情形下的表达式
+\begin{equation}
+  \rho=(2\pi\hbar)^{-s}\exp\frac{F-E(p,q)}{T}.
+\end{equation}
+
+分布(31.1)的归一化条件为
+\begin{equation*}
+  \sum_n w_n=\mathrm{e}^{\frac{F}{T}}\sum_n\mathrm{e}^{-\frac{E_n}{T}}=1,
+\end{equation*}
+由此得出
+\begin{equation*}
+  \mathrm{e}^{-\frac{F}{T}}=\sum_n\mathrm{e}^{-\frac{E_n}{T}},
+\end{equation*}
+取对数后，
+\begin{equation}
+  F=-T\ln\sum_n\mathrm{e}^{-\frac{E_n}{T}}.
+\end{equation}
+
+这个公式是吉布斯分布的热力学应用的基本公式.在原则上它提供了计算任何物体的热力学函数的可能性，只要物体的能谱是已知的.
+
+在(31.3)的对数符号后面的和式通常称为配分函数.它不是别的，而就是算符 $\mathrm{e}^{-\hat{H}/T}$ 的迹，式中 $\hat{H}$ 是该物体的哈密顿算符\footnote{按照一般法则，$\mathrm{e}^{-\hat{H}/T}$ 应该理解为这样一个算符：它的本征函数与算符 $\hat{H}$ 的本征函数相同，而它的本征值等于 $\mathrm{e}^{-E_n/T}$.}：
+\begin{equation}
+  Z\equiv\sum_a\mathrm{e}^{-E_a/T}=\mathrm{tr}\left(\mathrm{e}^{-\hat{H}/T}\right).
+\end{equation}
+这种形式的写法其优点在于：可以利用任何完全的波函数系来计算迹.
+
+在经典统计学中，可由分布(31.2)的归一化条件得到类似的公式.然而，必须事先顾及一个前提，在我们只对分布函数本身感兴趣，而不将归一化系数与物体的特定的定量特性如自由能相联系之前，这个前提一直是不重要的.例如，如果把两个同样的原子相互交换位置，那么在这种置换以后物体的微观状态由另外一个相点表示，这个相点是由原来的相点在把一个原子的坐标和动量与另一个原子的坐标和动量交换以后得到的.另一方面，由于被置换原子的全同性，物体的这两种状态在物理上是同样的.因此，与物体的同一物理微观态相对应的，在相空间中有一系列的点.然而，在对分布函数(31.2)进行积分时，每一个状态当然只应该考虑一次\footnote{如果把经典的配分函数看成是量子的配分函数的极限，这个情况就变得特别明显.后者是按所有不同的量子态进行求和的，因而根本不会发生任何问题（必须注意，由于量子力学中的波函数对称性原理，量子态绝不会因相同粒子的置换而发生变化）.\par
+从纯粹经典的看来，如此理解配分函数很有必要，否则统计权重的可乘性就会破坏，从而熵和其它热力学量的可加性也会破坏.}.换而言之，我们只应该对相空间的一部分区域积分，这部分区域相应于物理上不同的物体状态；我们用积分号上加一撇来标记这种情况.
+
+这样，我们得到公式
+\begin{equation}
+  F=-T\ln\int'\mathrm{e}^{-\frac{E(p,q)}{T}}\,\mathrm{d}\varGamma;
+\end{equation}
+在这里和以后在类似的情形下，我们总是用 $\mathrm{d}\varGamma$ 表示相空间的体积元除以 $(2\pi\hbar)^s$：
+\begin{equation}
+  \mathrm{d}\varGamma=\frac{\mathrm{d}p\,\mathrm{d}q}{(2\pi\hbar)^s}.
+\end{equation}
+
+因此，求和形式的量子配分函数(31.3)被积分形式的配分函数所代替.正如在§29中已经指出的，经典的能量 $E(p,q)$ 总是可以表示成动能 $K(p)$ 与势能 $U(q)$ 之和的形式.动能是动量的二次函数，并且对动量的积分可以在一般形式下积分出来.因此有关计算配分函数的问题实际上归结为函数 $\mathrm{e}^{-\frac{U(q)}{T}}$ 对坐标积分的问题.
+
+在实际计算配分函数时，为方便起见，通常是扩大积分的区域，同时引入相应的修正因子.例如，设所讨论的是由 $N$ 个相同的原子所构成的气体.于是可以对每个原子的坐标独立地进行积分，并且把积分区域扩展到气体所占据的整个体积.但是，所得的结果必须除以 $N$ 个原子可能的置换数，即除以 $N!$.换句话说，可以用对整个相空间的积分除以 $N!$ 取代积分 $\int'$：
+\begin{equation}
+  \int'\cdots\,\mathrm{d}\varGamma=\frac{1}{N!}\int\cdots\,\mathrm{d}\varGamma.
+\end{equation}
+
+对于由 $N$ 个相同分子构成的气体，用类似的方法扩展积分区也很方便：对于每个分子作为一个整体的坐标（分子质心的坐标）独立地积遍整个体积，而对分子内部原子的坐标所进行的积分则只在每个分子内部积遍它本身所拥有的“体积”（即构成分子的原子能以显著的概率被发现的一个小区域）；此后，必须把积分再除以 $N!$.
+
+\begin{xiti}
+
+\noindent{\heiti 习题1}\quad 设物体的粒子间相互作用势能是它们坐标的 $n$ 次齐次函数.试用相似性分析，确定出这种物体的自由能在经典统计学中应取何种形式.
+
+解：在配分函数
+\begin{equation*}
+  Z=\int'\mathrm{e}^{-\frac{K(p)+U(q)}{T}}\,\mathrm{d}\varGamma
+\end{equation*}
+中，把所有的 $q$ 用 $\lambda q$ 代替，把所有的 $p$ 用 $\lambda^{n/2}p$ 代替（其中 $\lambda$ 是任意常数）.如果同时用 $\lambda^n T$ 代替 $T$，则被积式保持不变.但是，对坐标进行积分的积分限改变了——积分区域的线度变为原来的 $1/\lambda$，这使得体积相应地变为原来的 $1/\lambda^3$；要使积分限保持不变，必须同时用 $\lambda^3V$ 代替 $V$.在经过所有这些代换以后，由于在 $\mathrm{d}\varGamma$ 中的自变量（$s=3N$ 个坐标和同样数目的动量；$N$ 为物体中的粒子数）的变换，积分还要乘上因子 $\lambda^{3N(1+n/2)}$.因此，我们得出结论：在代换
+\begin{equation*}
+  V\to\lambda^3V,\qquad T\to\lambda^nT
+\end{equation*}
+下，配分函数作如下变换：
+\begin{equation*}
+  Z\to\lambda^{3N(1+n/2)}Z.
+\end{equation*}
+具有这些性质的函数 $Z(V,T)$ 的最普遍的形式为
+\begin{equation*}
+  Z=T^{3N(1/2+1/n)}f\left(VT^{-3/n}\right),
+\end{equation*}
+式中 $f$ 是单变量的一个任意函数.
+
+由此我们求出自由能的表达式形为
+\begin{equation*}
+  F=-3\left(\frac{1}{2}+\frac{1}{n}\right)NT\ln T+NT\varphi\left(\frac{VT^{-3/n}}{N}\right),
+\end{equation*}
+它只含有一个未知的单变量函数（在(1)式的第二项中引入了数 $N$，以使得 $F$ 具备应有的可加性）.
+
+\noindent{\heiti 习题2}\quad 设宏观物体中粒子间的相互作用势能是它们坐标的 $n$ 次齐次函数，试推导这种宏观物体的位力定理.
+
+解：遵循力学中推导位力定理的方法（参看本教程第一卷§10），计算和式 $\sum\boldsymbol{r}\cdot\boldsymbol{p}$ 对时间的导数，其中 $\boldsymbol{r}$ 和 $\boldsymbol{p}$ 为物体中诸粒子的径矢和动量.注意到 $\dot{\boldsymbol{r}}=\dfrac{\partial K(\boldsymbol{p})}{\partial\boldsymbol{p}}$ 并且 $K(\boldsymbol{p})$ 是动量的二次齐次函数，得到
+\begin{equation*}
+  \frac{\mathrm{d}}{\mathrm{d}t}\sum\boldsymbol{r}\cdot\boldsymbol{p}
+  =\sum\boldsymbol{p}\,\frac{\partial K(\boldsymbol{p})}{\partial\boldsymbol{p}}
+  +\sum\boldsymbol{r}\cdot\dot{\boldsymbol{p}}
+  =2K(\boldsymbol{p})+\sum\boldsymbol{r}\cdot\dot{\boldsymbol{p}}.
+\end{equation*}
+物体的粒子在空间的有限区域内运动，其速度不会趋于无穷大.因此 $\sum\boldsymbol{r}\cdot\boldsymbol{p}$ 这个量是有限的，而且它对时间的导数的平均值变为零，所以
+\begin{equation*}
+  2K+\left\langle\sum\boldsymbol{r}\cdot\dot{\boldsymbol{p}}\right\rangle=0
+\end{equation*}
+（式中 $K=\overline{K(\boldsymbol{p})}$）.导数 $\dot{\boldsymbol{p}}$ 由作用于物体粒子上的力确定.在对所有的粒子求和时，必须考虑到：除了这些粒子彼此间的相互作用力以外，还有来自物体周围各方面（遍及物体表面）作用于物体上的力：
+\begin{equation*}
+  \sum\boldsymbol{r}\cdot\dot{\boldsymbol{p}}
+  =-\sum\boldsymbol{r}\cdot\frac{\partial U(q)}{\partial\boldsymbol{r}}
+  -P\oint\boldsymbol{r}\cdot\mathrm{d}\boldsymbol{f}
+  =-nU-3PV
+\end{equation*}
+（面积分化为体积分并注意到 $\nabla\cdot\boldsymbol{r}=3$）.这样，我们就得到 $2K-nU-3PV=0$，或者引入总能量 $E=U+K$，有
+\begin{equation*}
+  (n+2)K=nE+3PV.
+\end{equation*}
+这就是所求的定理.它不仅在经典理论中是正确的，而且在量子理论中也是正确的.在经典的情形下，平均动能 $K=\frac{3}{2}NT$，从而关系式(2)给出
+\begin{equation*}
+  E+\frac{3}{n}PV=3\left(\frac{1}{2}+\frac{1}{n}\right)NT.
+\end{equation*}
+由习题1中得到的自由能表达式(1)出发，也可以推导出这个公式.
+
+在粒子按照库仑定律相互作用的情形下（$n=-1$），我们从(2)式得到
+\begin{equation*}
+  K=-E+3PV.
+\end{equation*}
+这个关系式是相对论关系式
+\begin{equation*}
+  E-3PV=\sum mc^2\sqrt{1-\frac{v^2}{c^2}}
+\end{equation*}
+的极限情形，式中能量 $E$ 还包括物体中粒子的静止能量（参看本教程第二卷§35）.
+
+\end{xiti}
+
+\section{热力学微扰理论}
+
+在具体计算热力学量时常有这样的情况：从物体的能量 $E(p,q)$ 中可以分离出一些相对说来较小的项，这些项在零级近似下可以忽略不计.例如，物体的粒子在外场中的势能就可以起这些微小项的作用（关于允许认为哪一些项是微小的条件，参看下面）.
+
+在这一类情况下可以建立一种计算热力学量的“微扰理论”（R. Peierls, 1932）.首先，我们指出在经典吉布斯分布可以应用的情形下怎样进行这种计算.
+
+把能量 $E(p,q)$ 写成
+\begin{equation}
+  E(p,q)=E_0(p,q)+V(p,q),
+\end{equation}
+式中 $V$ 是微小的项.为了计算物体的自由能我们写出
+\begin{equation}
+  \mathrm{e}^{-\frac{F}{T}}=\int\mathrm{e}^{-\frac{E_0(p,q)+V(p,q)}{T}}\,\mathrm{d}\varGamma
+  \approx\int\mathrm{e}^{-\frac{E_0}{T}}\left(1-\frac{V}{T}+\frac{V^2}{2T^2}\right)\mathrm{d}\varGamma,
+\end{equation}
+并且在按 $V$ 的幂次的展开式中，在这里和以后我们都只限于取到二次项，因为我们的目的只在于计算一级近似和二级近似的修正.取对数并把对数也展开成级数，在同样的精确度下我们有
+\begin{equation*}
+  F=F_0+\int'\left(V-\frac{V^2}{2T}\right)\mathrm{e}^{\frac{F_0-E_0(p,q)}{T}}\,\mathrm{d}\varGamma
+  +\frac{1}{2T}\left[\int'V\,\mathrm{e}^{\frac{F_0-E_0(p,q)}{T}}\,\mathrm{d}\varGamma\right]^2,
+\end{equation*}
+式中 $F_0$ 表示在 $V=0$ 时计算出来的“未微扰”的自由能.
+
+以上所得到的几个积分是用“未微扰”的吉布斯分布来计算各个相应量的平均值.记住在这种意义下取平均并注意到 $\overline{V^2}-\bar{V}^2=\left\langle(V-\bar{V})^2\right\rangle$，最后我们写出
+\begin{equation}
+  F=F_0+\bar{V}-\frac{1}{2T}\left\langle(V-\bar{V})^2\right\rangle.
+\end{equation}
+
+由此可见，对自由能的一级近似的修正就直接等于微扰能量 $V$ 的平均值.二级近似的修正总是负的，而且取决于 $V$ 与其平均值 $\bar{V}$ 的均方偏差.特别是，如果平均值 $\bar{V}$ 变为零，则由于微扰的结果，自由能就减小了.
+
+把(32.3)中的二次项与一次项进行比较，我们就能阐明上述微扰法的适用条件.这时必须注意：无论是平均值 $\bar{V}$，还是均方值 $\left\langle(V-\bar{V})^2\right\rangle$，粗略地说，这两者都与粒子数成正比（参看§2中关于宏观物体热力学量的均方涨落的讨论）.因此可以把所求的条件表述为：属于一个粒子的微扰能量应当比 $T$ 小得多\footnote{在把(32.2)中的被积式展开时，我们是按 $\dfrac{V}{T}$ 这个量来展开的，它与粒子数成正比，严格地讲，绝非很小.但是取对数并把对数再次展开后，导致大项相消，结果就得到按小量展开的幂级数.}.
+
+现在我们对量子的情形作类似的计算.代替(32.1)式，在这里必须写出相应的哈密顿算符表达式
+\begin{equation*}
+  \hat{H}=\hat{H}_0+\hat{V}.
+\end{equation*}
+
+根据量子微扰理论（参看第三卷§38），微扰系统的能级在精确到二级近似修正时的表达式为
+\begin{equation}
+  E_n=E_n^{(0)}+V_{nn}+\sum_m^{\prime}\frac{|V_{nm}|^2}{E_n^{(0)}-E_m^{(0)}},
+\end{equation}
+式中 $E_n^{(0)}$ 是未微扰的能级（假定是非简并的）；求和号上的一撇表示应该把 $m=n$ 的项去掉.
+
+必须把该表达式代入公式
+\begin{equation*}
+  \mathrm{e}^{-\frac{F}{T}}=\sum_n\mathrm{e}^{-\frac{E_n}{T}},
+\end{equation*}
+并且像上面已进行的那样把它展开.经过简单的计算得到下面结果：
+\begin{equation}
+\begin{aligned}
+  F={}&F_0+\sum_nV_{nn}w_n+\sum_n\sum_m^{\prime}
+  \frac{|V_{nm}|^2w_n}{E_n^{(0)}-E_m^{(0)}}\\
+  &-\frac{1}{2T}\sum_nV_{nn}^2w_n+\frac{1}{2T}\left(\sum_nV_{nn}w_n\right)^2,
+\end{aligned}
+\end{equation}
+式中 $w_n=\mathrm{e}^{\frac{F_0-E_n^{(0)}}{T}}$ 是“未微扰”的吉布斯分布.
+
+对角矩阵元 $V_{nn}$ 不是别的，而是微扰能量 $V$ 在该（第 $n$ 个）量子态的平均值.因此和式
+\begin{equation*}
+  \sum_nV_{nn}w_n\equiv\bar{V}_{nn}
+\end{equation*}
+是 $V$ 的完全平均值——既对物体的量子态进行了平均，又按不同量子态的（“未微扰”的）统计分布进行了平均.对自由能的一级近似修正等于 $\bar{V}$——这个结果在形式上与上面所得到的经典结果是一致的.
+
+可以把公式(32.5)改写成
+\begin{equation}
+  F=F_0+\bar{V}_{nn}-\frac{1}{2}\sum_n\sum_m^{\prime}
+  \frac{|V_{nm}|^2(w_n-w_m)}{E_n^{(0)}-E_m^{(0)}}
+  -\frac{1}{2T}\left\langle(V_{nn}-\bar{V}_{nn})^2\right\rangle.
+\end{equation}
+
+在这个表达式中，所有的二次项都是负的（因为 $w_m-w_n$ 与 $E_n^{(0)}-E_m^{(0)}$ 同号）.因此在量子的情形下，对自由能的二级近似修正也是负的.
+
+正如经典的情形一样，这个方法适用的条件也是要求（属于一个粒子的）微扰能量比 $T$ 小得多.然而众所周知，通常的量子力学微扰理论（给出 $E_n$ 的表达式(32.4)）能够适用的条件是要求微扰矩阵元比相应的能级之差小得多；粗略地说，微扰能量应该比那些彼此之间允许发生跃迁\footnote{一般来讲，这是一些使得物体中只有少数粒子的状态发生变化的跃迁.}的能级之差小得多.
+
+这两个条件绝非彼此一致的——温度与物体的能级没有任何关系.可能出现这种情况：微扰能量比 $T$ 是小得多，但同时比几个起主要作用的能级之差却并非很小，甚至还大得多.在这种情况下，热力学量的微扰理论（即公式(32.6)）可以应用，然而作为能级本身的微扰理论（即公式(32.4)）却不能应用了；换句话说，由公式(32.6)所表示的展开式的收敛范围可能比推导(32.6)所根据的展开式(32.4)的收敛范围还宽.
+
+当然，相反的情形（在足够低的温度下）也是可能的.
+
+如果不仅微扰能量比 $T$ 小得多，而且连能级之差也比 $T$ 小很多，则公式(32.6)就可以大大简化.把(32.6)中的 $w_m-w_n$ 按 $\dfrac{E_n^{(0)}-E_m^{(0)}}{T}$ 的幂次展开，在这种情形下我们求得
+\begin{equation*}
+  F=F_0+\bar{V}_{nn}
+  -\frac{1}{2T}\left[\sum_m^{\prime}\left\langle|V_{nm}|^2\right\rangle
+  +\left\langle(V_{nn}-\bar{V}_{nn})^2\right\rangle\right].
+\end{equation*}
+
+但是根据矩阵乘法规则，有
+\begin{equation*}
+  \sum_m^{\prime}|V_{nm}|^2+V_{nn}^2=\sum_m|V_{nm}|^2
+  =\sum_mV_{nm}V_{mn}=\left(V^2\right)_{nn},
+\end{equation*}
+因而我们得到在形式上与公式(32.3)完全一致的表达式.于是，在这种情形下，量子力学的公式在形式上转变为经典的公式\footnote{更强的方法是所谓图技术，它能考虑热力学量的整个微扰论级数，将在本教程的第九卷叙述.}.
+
+\section{按$\hbar$的幂次展开式}
+
+公式(31.5)实质上是自由能的量子力学表达式(31.3)在准经典情形下按 $\hbar$ 幂次展开的级数的第一项，也是主要的一项.计算展开式中下一个不等于零的项也很有意义（E. Wigner, G. E. Uhlenbeck, L. Gropper, 1932）.
+
+计算自由能的问题归结为计算配分函数.为此目的，我们利用配分函数就是算符 $\mathrm{e}^{-\beta\hat{H}}$ 的迹这一事实（参看(31.4)）；为了简化繁复的表达式的书写，我们引入符号 $\beta=1/T$.计算算符的迹可以借助于任何一个完全的正交归一化波函数系来进行.为方便起见，我们可以选择 $N$ 个彼此不相互作用的粒子所构成的系统在某个很大的（但是是有限的）体积 $V$ 中的自由运动的波函数来作为这样的波函数系.
+
+这种波函数具有形式
+\begin{equation}
+  \psi_p=\frac{1}{\sqrt{V^N}}\exp\left(\frac{\mathrm{i}}{\hbar}\sum_ip_iq_i\right),
+\end{equation}
+式中 $q_i$ 是粒子的笛卡儿坐标，而 $p_i$ 是相应的动量；我们将其编号，取 $i=1,2,\cdots,s$ 的值，其中 $s=3N$ 是 $N$ 个粒子所构成的系统的自由度数.
+
+下面的计算对于由相同或者不同的粒子（原子）所构成的系统都是同样适用的.为了以普遍的形式考虑到这些粒子有可能是不同的，我们把粒子的质量也写上表征自由度的编号的角标 $m_i$（对应于同一个粒子的三个 $m_i$ 值当然总是相同的）.
+
+在物体内存在相同粒子，则在量子理论中必须考虑所谓的交换效应.首先，这就意味着：波函数(33.1)相对于粒子的坐标来说应该是对称的或者是反对称的——需视粒子服从哪一种统计而定.然而，实际上这个效应只是使得在自由能中出现指数型的小项，因而没有必要考虑.此外，粒子的量子力学的全同性会影响到应该怎样对粒子的不同动量值进行求和的方法——在下面，例如在计算量子理想气体的配分函数时，我们就会遇到这个问题.这个效应导致在自由能出现一个 $\hbar$ 三次方的项（见下面），所以也不影响我们在这里要计算的 $\hbar^2$ 项.这样，在计算时我们可以完全不考虑任何交换效应.
+
+在(33.1)的每一个波函数中，动量 $p_i$ 有确定的常数值.每个 $p_i$ 的全部可能值形成一个稠密的不连续的序列（两个相邻值之间的距离与系统所占据体积的线度成反比）.因此矩阵元 $\left(\mathrm{e}^{-\beta\hat{H}}\right)_{pp}$ 对全部可能的动量值的求和可以用对 $\mathrm{d}p=\mathrm{d}p_1\mathrm{d}p_2\cdots\mathrm{d}p_s$ 的积分来代替，同时要考虑到“占据”在相空间体积 $V^N\mathrm{d}p$（每个粒子在体积 $V$ 的全部坐标值和在 $\mathrm{d}p$ 中的动量值）内的量子态数等于 $\dfrac{V^N\mathrm{d}p}{(2\pi\hbar)^s}$.
+
+引入符号
+\begin{equation}
+  I=\exp\left(-\frac{\mathrm{i}}{\hbar}\sum p_iq_i\right)
+  \exp\left(-\beta\hat{H}\right)
+  \exp\left(\frac{\mathrm{i}}{\hbar}\sum p_iq_i\right).
+\end{equation}
+把它对所有的坐标进行积分就得到我们所感兴趣的矩阵元：
+\begin{equation}
+  \left(\mathrm{e}^{-\beta\hat{H}}\right)_{pp}=\frac{1}{V^N}\int I\,\mathrm{d}q.
+\end{equation}
+
+由此再对动量进行积分，就得到所求的配分函数.
+
+因此，我们应该把 $I$ 遍及整个相空间进行积分，更确切地说，应该遍及相空间内对应于物体的物理上不同状态的区域进行积分，其理由已在§31中说明；如同在§31中一样，我们用积分号上加一撇来表明这种情况
+\begin{equation}
+  Z\equiv\sum_n\mathrm{e}^{-\beta E_n}=\int'I\,\mathrm{d}\varGamma.
+\end{equation}
+
+我们首先来计算 $I$ 这个量，方法如下.求导数
+\begin{equation*}
+  \frac{\partial I}{\partial\beta}
+  =-\exp\left(-\frac{\mathrm{i}}{\hbar}\sum p_iq_i\right)\hat{H}
+  \exp\left(\frac{\mathrm{i}}{\hbar}\sum p_iq_i\right)I
+\end{equation*}
+（算符 $\hat{H}$ 作用在位于它右边的所有因子上）.展开上式的右边，并利用物体哈密顿算符的明确表式
+\begin{equation}
+  \hat{H}=\sum_i\frac{\hat{p}_i^2}{2m_i}+U
+  =-\frac{\hbar^2}{2}\sum_i\frac{1}{m_i}\frac{\partial^2}{\partial q_i^2}+U,
+\end{equation}
+式中 $U=U(q_1,q_2,\cdots,q_s)$ 是物体中所有粒子的相互作用势能.借助于(33.5)，并经过简单的计算后，我们得到关于 $I$ 的如下方程：
+\begin{equation}
+  \frac{\partial I}{\partial\beta}=-E(p,q)I
+  +\sum_i\frac{\hbar^2}{2m_i}\left(\frac{2\mathrm{i}}{\hbar}p_i\frac{\partial I}{\partial q_i}
+  +\frac{\partial^2I}{\partial q_i^2}\right),
+\end{equation}
+式中
+\begin{equation*}
+  E(p,q)=\sum_i\frac{p_i^2}{2m_i}+U
+\end{equation*}
+是物体能量的通常的经典表达式.
+
+当 $\beta=0$ 时显然有 $I=1$，上述方程应该在这个条件下求解.将
+\begin{equation}
+  I=\mathrm{e}^{-\beta E(p,q)}\chi
+\end{equation}
+代入，方程化为以下形式：
+\begin{equation}
+\begin{aligned}
+  \frac{\mathrm{d}\chi}{\mathrm{d}\beta}=\sum_i\frac{\hbar^2}{2m_i}\bigg[
+  &-\frac{2\mathrm{i}\beta p_i}{\hbar}\frac{\partial U}{\partial q_i}\chi
+  +\frac{2\mathrm{i}p_i}{\hbar}\frac{\partial\chi}{\partial q_i}
+  -\beta\chi\frac{\partial^2U}{\partial q_i^2}\\
+  &+\beta^2\chi\left(\frac{\partial U}{\partial q_i}\right)^2
+  -2\beta\frac{\partial\chi}{\partial q_i}\frac{\partial U}{\partial q_i}
+  +\frac{\partial^2\chi}{\partial q_i^2}\bigg],
+\end{aligned}
+\end{equation}
+其边界条件为：当 $\beta=0$ 时，$\chi=1$.
+
+为求得依 $\hbar$ 幂的级数展开，我们用逐次近似法来解方程(33.8)：
+\begin{equation}
+  \chi=1+\hbar\chi_1+\hbar^2\chi_2+\cdots,
+\end{equation}
+当 $\beta=0$ 时式中的 $\chi_1,\chi_2,\cdots$ 都等于零.把这个展开式代入方程(33.8)，并且把 $\hbar$ 的不同幂次的项分离出来，得到方程
+\begin{equation*}
+\begin{aligned}
+  &\frac{\partial\chi_1}{\partial\beta}
+  =-\mathrm{i}\beta\sum_i\frac{p_i}{m_i}\frac{\partial U}{\partial q_i},\\
+  &\frac{\partial\chi_2}{\partial\beta}
+  =\sum_i\frac{1}{2m_i}\left[
+  -2\mathrm{i}\beta p_i\frac{\partial U}{\partial q_i}\chi_1
+  +2\mathrm{i}p_i\frac{\partial\chi_1}{\partial q_i}
+  -\beta\frac{\partial^2U}{\partial q_i^2}
+  +\beta^2\left(\frac{\partial U}{\partial q_i}\right)^2\right].
+\end{aligned}
+\end{equation*}
+
+从第一个方程确定出 $\chi_1$，然后从第二个方程确定出 $\chi_2$.经过简单的计算后，我们得到
+\begin{equation}
+\begin{aligned}
+  &\chi_1=-\frac{\mathrm{i}\beta^2}{2}\sum_i\frac{p_i}{m_i}\frac{\partial U}{\partial q_i},\\
+  &\chi_2=-\frac{\beta^4}{8}\left(\sum_i\frac{p_i}{m_i}\frac{\partial U}{\partial q_i}\right)^2
+  +\frac{\beta^3}{6}\sum_i\sum_k\frac{p_i}{m_i}\frac{p_k}{m_k}
+  \frac{\partial^2U}{\partial q_i\partial q_k}\\
+  &\qquad+\frac{\beta^3}{6}\sum_i\frac{1}{m_i}\left(\frac{\partial U}{\partial q_i}\right)^2
+  -\frac{\beta^2}{4}\sum_i\frac{1}{m_i}\frac{\partial^2U}{\partial q_i^2}.
+\end{aligned}
+\end{equation}
+
+所求的配分函数(33.4)等于积分
+\begin{equation}
+  Z=\int'\left(1+\hbar\chi_1+\hbar^2\chi_2\right)\mathrm{e}^{-\beta E(p,q)}\,\mathrm{d}\varGamma.
+\end{equation}
+
+容易看出，在这个积分中 $\hbar$ 的一次项变成 0.这是因为，这一项中的被积函数是动量的奇函数（$E(p,q)$ 是动量的二次函数，而 $\chi_1$ 按照(33.10)是动量的线性函数），所以在对动量积分后变为零.因此，可把(33.11)改写为形式
+\begin{equation*}
+  Z=\left(1+\hbar^2\bar{\chi}_2\right)\int'\mathrm{e}^{-\beta E(p,q)}\,\mathrm{d}\varGamma,
+\end{equation*}
+式中我们引入了依经典吉布斯分布的平均值 $\bar{\chi}_2$：
+\begin{equation*}
+  \bar{\chi}_2=\frac{\int'\chi_2\,\mathrm{e}^{-\beta E(p,q)}\,\mathrm{d}\varGamma}
+  {\int'\mathrm{e}^{-\beta E(p,q)}\,\mathrm{d}\varGamma}.
+\end{equation*}
+
+把配分函数的这个表达式代入公式(31.3)，求得自由能为：
+\begin{equation*}
+  F=F_{\mathrm{cl}}-\frac{1}{\beta}\ln\left(1+\hbar^2\bar{\chi}_2\right),
+\end{equation*}
+或者在同样的精度下，
+\begin{equation}
+  F=F_{\mathrm{cl}}-\frac{\hbar^2}{\beta}\bar{\chi}_2,
+\end{equation}
+式中 $F_{\mathrm{cl}}$ 是经典统计学中的自由能（公式(31.5)）.
+
+由此可见，在自由能的展开式中紧接经典项之后的是 $\hbar$ 的二次项.这并不偶然.我们用逐次近似法解方程(33.8)，而量子常数仅以 $\mathrm{i}\hbar$ 的形式出现在该方程内；因此所得到的展开式也是按 $\mathrm{i}\hbar$ 幂次的展开式.自由能是实数，所以在自由能中只能出现实数的 $\mathrm{i}\hbar$ 幂次.因此在这里推导出的自由能展开式（不考虑交换效应）是按 $\hbar$ 偶次幂的展开式.
+
+我们剩下的问题是计算平均值 $\bar{\chi}_2$.在§29中我们看到：在经典统计学中坐标的概率分布与动量的概率分布是相互独立的.因此对动量的平均和对坐标的平均可以分别进行.
+
+显然，两个不同的动量的乘积其平均值等于零，而平方 $p_i^2$ 的平均值等于 $\dfrac{m_i}{\beta}$.
+
+因此可以写成
+\begin{equation*}
+  \left\langle p_ip_k\right\rangle=\frac{m_i}{\beta}\,\delta_{ik},
+\end{equation*}
+式中当 $i=k$ 时，$\delta_{ik}=1$；当 $i\neq k$ 时，$\delta_{ik}=0$.利用该式对动量进行平均时得到
+\begin{equation}
+  \bar{\chi}_2=\frac{\beta^3}{24}\sum_i\frac{1}{m_i}
+  \left\langle\left(\frac{\partial U}{\partial q_i}\right)^2\right\rangle
+  -\frac{\beta^2}{12}\sum_i\frac{1}{m_i}
+  \left\langle\frac{\partial^2U}{\partial q_i^2}\right\rangle.
+\end{equation}
+
+在这里，两项可以合并为一项，因为其中包含的平均值由如下关系式相联系：
+\begin{equation}
+  \left\langle\frac{\partial^2U}{\partial q_i^2}\right\rangle
+  =\beta\left\langle\left(\frac{\partial U}{\partial q_i}\right)^2\right\rangle.
+\end{equation}
+
+很容易证明这个等式的正确性，只要注意到
+\begin{equation*}
+  \int\frac{\partial^2U}{\partial q_i^2}\,\mathrm{e}^{-\beta U}\,\mathrm{d}q_i
+  =\frac{\partial U}{\partial q_i}\,\mathrm{e}^{-\beta U}
+  +\beta\int\left(\frac{\partial U}{\partial q_i}\right)^2\mathrm{e}^{-\beta U}\,\mathrm{d}q_i.
+\end{equation*}
+右边的第一项给出代表表面效应的表达式，第二项给出体积效应；由于物体的宏观性，第一项与第二项比较起来完全可以忽略不计.
+
+把这样得到的 $\bar{\chi}_2$ 的表达式代入公式(33.12)并以 $1/T$ 代替 $\beta$，最后求得自由能的表达式为
+\begin{equation}
+  F=F_{\mathrm{cl}}+\frac{\hbar^2}{24T^2}\sum_i\frac{1}{m_i}
+  \left\langle\left(\frac{\partial U}{\partial q_i}\right)^2\right\rangle.
+\end{equation}
+
+我们看到，对经典值的修正项总是一个正的量，它由作用到粒子上的力的均方值来决定.这个修正项随着粒子质量的增加以及温度的升高而减小.
+
+根据以上所述，在这里所推导出来的展开式的下一项应该是四次项.这个情况使我们可以完全独立地计算 $\hbar^3$ 项；该项在自由能中的出现，起因于量子力学粒子全同性导致的动量求和的某些特点.这一项在形式上与对理想气体进行类似计算时出现的修正项相同，因而（对于由 $N$ 个相同粒子构成的物体）由公式(56.14)：
+\begin{equation}
+  F^{(3)}=\pm\frac{\pi^{3/2}}{2g}\,\frac{N^2\hbar^3}{VT^{1/2}m^{3/2}}
+\end{equation}
+所确定.正号属于费米统计的情形，负号属于玻色统计的情形；$g$ 是关于电子和核二者角动量取向的总简并度.
+
+所得到的这些公式也可以用于求出物体内的原子坐标与动量概率分布函数中的修正项.根据在§5中得到的普遍结果，把 $I$ 对 $\mathrm{d}q$ 积分后就得到动量的概率分布（参看(5.10)）
+\begin{equation*}
+  \mathrm{d}w_p=\text{常数}\cdot\mathrm{d}p\int I\,\mathrm{d}q.
+\end{equation*}
+
+在 $I$ 中的 $\chi_1\mathrm{e}^{-\beta E(p,q)}$ 一项含有对坐标的全微商，对坐标积分后它给出的量代表表面效应，可以忽略不计.因此有：
+\begin{equation*}
+  \mathrm{d}w_p=\text{常数}\cdot\exp\left(-\beta\sum_i\frac{p_i^2}{2m_i}\right)\mathrm{d}p
+  \int\left(1+\hbar^2\chi_2\right)\mathrm{e}^{-\beta U}\,\mathrm{d}q.
+\end{equation*}
+
+在 $\chi_2$ 的表达式(33.10)中的第三项和第四项在对坐标积分后给出一个微小的常数项（不包含动量），它在这一近似下可以忽略不计.把因子 $\int\mathrm{e}^{-\beta U}\,\mathrm{d}q$ 也归并到常系数中去，得到：
+\begin{equation*}
+\begin{aligned}
+  \mathrm{d}w_p={}&\text{常数}\cdot\exp\left(-\beta\sum_i\frac{p_i^2}{2m_i}\right)
+  \bigg[1-\hbar^2\frac{\beta^4}{8}\sum_{i,k}\frac{p_ip_k}{m_im_k}
+  \left\langle\frac{\partial U}{\partial q_i}\frac{\partial U}{\partial q_k}\right\rangle\\
+  &+\hbar^2\frac{\beta^3}{6}\sum_{i,k}\frac{p_ip_k}{m_im_k}
+  \left\langle\frac{\partial^2U}{\partial q_i\partial q_k}\right\rangle\bigg]\mathrm{d}p.
+\end{aligned}
+\end{equation*}
+式中所包含的平均值由如下关系式（类似于(33.14)）相联系：
+\begin{equation*}
+  \left\langle\frac{\partial^2U}{\partial q_i\partial q_k}\right\rangle
+  =\beta\left\langle\frac{\partial U}{\partial q_i}\frac{\partial U}{\partial q_k}\right\rangle.
+\end{equation*}
+因此有：
+\begin{equation}
+  \mathrm{d}w_p=\text{常数}\cdot\exp\left(-\beta\sum_i\frac{p_i^2}{2m_i}\right)
+  \left[1+\frac{\hbar^2\beta^4}{24}\sum_{i,k}\frac{p_ip_k}{m_im_k}
+  \left\langle\frac{\partial U}{\partial q_i}\frac{\partial U}{\partial q_k}\right\rangle\right]\mathrm{d}p.
+\end{equation}
+
+用同样精度的指数式代替(33.17)中方括号项，该表达式可以很方便地改写成如下形式：
+\begin{equation}
+\begin{aligned}
+  \mathrm{d}w_p={}&\text{常数}\cdot\exp\bigg\{-\frac{1}{T}\bigg[\sum_i\frac{p_i^2}{2m_i}
+  -\frac{\hbar^2}{24T^3}\sum_{i,k}\frac{p_ip_k}{m_im_k}
+  \left\langle\frac{\partial U}{\partial q_i}\frac{\partial U}{\partial q_k}\right\rangle\bigg]\bigg\}\mathrm{d}p.
+\end{aligned}
+\end{equation}
+
+因此，我们看到，对经典的动量分布函数的修正归结为把动量的一个二次式附加到指数中的动能上，这个二次式的系数与物体中粒子的相互作用定律有关.
+
+如果我们想求对于任意一个动量 $p_i$ 的概率分布，就必须把(33.17)对所有其余的动量进行积分.这时，所有带平方 $p_k^2$（$k\neq i$）的项给出一些常数，它们比 1 小得多而可以忽略不计，而所有带不同动量乘积的项积分后变为零.重新变为指数形式后，最后求得
+\begin{equation}
+  \mathrm{d}w_{p_i}=\text{常数}\cdot\exp\bigg\{-\frac{p_i^2}{2m_iT}
+  \left[1-\frac{\hbar^2}{12m_iT^3}
+  \left\langle\left(\frac{\partial U}{\partial q_i}\right)^2\right\rangle\right]\bigg\}\mathrm{d}p_i.
+\end{equation}
+
+我们看到，得到的分布与麦克斯韦分布的差别只在于用某个较高的“有效温度”去代替真正的温度 $T$：
+\begin{equation*}
+  T_{\mathrm{eff}}=T+\frac{\hbar^2}{12m_iT^2}
+  \left\langle\left(\frac{\partial U}{\partial q_i}\right)^2\right\rangle.
+\end{equation*}
+
+用类似的方法可以计算出修正的坐标分布函数.在把 $I$ 对动量积分后就得到坐标的分布函数：
+\begin{equation*}
+  \mathrm{d}w_q=\text{常数}\cdot\mathrm{d}q\int I\,\mathrm{d}p.
+\end{equation*}
+
+利用类似于获得表达式(33.13)的计算，得到如下结果：
+\begin{equation}
+\begin{aligned}
+  \mathrm{d}w_q={}&\text{常数}\cdot\exp\bigg\{-\frac{1}{T}\bigg[U
+  -\frac{\hbar^2}{24T^2}\sum_i\frac{1}{m_i}\left(\frac{\partial U}{\partial q_i}\right)^2\\
+  &+\frac{\hbar^2}{12T}\sum_i\frac{1}{m_i}\frac{\partial^2U}{\partial q_i^2}\bigg]\bigg\}\mathrm{d}q.
+\end{aligned}
+\end{equation}
+
+\section{转动物体的吉布斯分布}
+
+关于转动物体的热力学关系式的问题已经在§26中研究过了.现在我们来看，应该如何表述转动物体的吉布斯分布；这样就完全解决了关于转动物体的统计性质的问题.至于匀速平动，正如在§26中已经指出的，因为伽利略相对性原理，它对统计性质只起着无关紧要的影响，所以不必特殊考虑.
+
+在随物体一起转动的坐标系中，通常的吉布斯分布是正确的；在经典统计学中，
+\begin{equation}
+  \rho=(2\pi\hbar)^{-s}\exp\frac{F'-E'(p,q)}{T},
+\end{equation}
+式中 $E'(p,q)$ 是物体在该坐标系中的能量，它是物体粒子的坐标和动量的函数，而 $F'$ 是物体在该坐标系中的自由能（但是它决不同于静止物体的自由能）.能量 $E'(p,q)$ 与静止坐标系中的能量 $E(p,q)$ 之间的关系式为
+\begin{equation}
+  E'(p,q)=E(p,q)-\boldsymbol{\Omega}\cdot\boldsymbol{M}(p,q)
+\end{equation}
+式中 $\boldsymbol{\Omega}$ 是转动角速度，而 $\boldsymbol{M}(p,q)$ 是物体的角动量（参看§26）.把(34.2)代入(34.1)，我们求出转动物体的吉布斯分布形式为\footnote{分布(34.3)，像通常的吉布斯分布一样，是同§4中由刘维尔定理（公式(4.2)）出发所得到的结果完全符合的：分布函数的对数是物体的能量和角动量的线性函数.}
+\begin{equation}
+  \rho=(2\pi\hbar)^{-s}\exp\left[\frac{F'-E(p,q)+\boldsymbol{\Omega}\cdot\boldsymbol{M}(p,q)}{T}\right].
+\end{equation}
+
+在经典统计学中，转动物体的吉布斯分布也可以表示成另外一种形式.为此，我们利用物体能量在转动坐标系中的如下表达式：
+\begin{equation}
+  E'=\sum\frac{mv'^2}{2}-\frac{1}{2}\sum m\left(\boldsymbol{\Omega}\times\boldsymbol{r}\right)^2+U,
+\end{equation}
+式中 $\boldsymbol{v}'$ 是粒子相对于转动坐标系的速度，而 $\boldsymbol{r}$ 是粒子的径矢（参看第一卷§39）.不依赖于 $\boldsymbol{\Omega}$ 的那部分能量我们用
+\begin{equation}
+  E_0(v',r)=\sum\frac{mv'^2}{2}+U
+\end{equation}
+来表示，于是就得到吉布斯分布的形式为
+\begin{equation*}
+  \rho=(2\pi\hbar)^{-s}\exp\bigg\{\frac{1}{T}
+  \left[F'-E_0(v',r)+\frac{1}{2}\sum m\left(\boldsymbol{\Omega}\times\boldsymbol{r}\right)^2\right]\bigg\}.
+\end{equation*}
+
+函数 $\rho$ 决定处于相空间体积元 $\mathrm{d}x_1\mathrm{d}y_1\mathrm{d}z_1\cdots\mathrm{d}p'_{1x}\mathrm{d}p'_{1y}\mathrm{d}p'_{1z}\cdots$ 中的概率，其中 $\boldsymbol{p}'=m\boldsymbol{v}'+m\left(\boldsymbol{\Omega}\times\boldsymbol{r}\right)$ 是物体粒子的动量（参看第一卷§39）.因为在求动量的微分时坐标应该看成常数，所以 $\mathrm{d}p'=m\,\mathrm{d}v'$，并且我们可以用粒子的坐标和速度表示概率分布：
+\begin{equation}
+\begin{aligned}
+  \mathrm{d}w={}&C\exp\bigg\{\frac{F'}{T}
+  -\frac{1}{T}\left[E_0(v',r)-\sum\frac{m}{2}\left(\boldsymbol{\Omega}\times\boldsymbol{r}\right)^2\right]\bigg\}\\
+  &\times\mathrm{d}x_1\mathrm{d}y_1\mathrm{d}z_1\cdots\mathrm{d}v'_{1x}\mathrm{d}v'_{1y}\mathrm{d}v'_{1z}\cdots,
+\end{aligned}
+\end{equation}
+为简单起见，在这里我们用字母 $C$ 表示因子 $(2\pi\hbar)^s$ 与所有粒子质量的乘积，这些质量的乘积是在把动量微分变换为速度微分时而出现的.
+
+对于静止的物体我们有
+\begin{equation}
+  \mathrm{d}w=C\exp\bigg\{\frac{F-E_0(v,r)}{T}\bigg\}
+  \mathrm{d}x_1\mathrm{d}y_1\mathrm{d}z_1\cdots\mathrm{d}v_{1x}\mathrm{d}v_{1y}\mathrm{d}v_{1z}\cdots,
+\end{equation}
+式中 $E_0(v,r)$ 的表达式与(34.5)相同，不过现在是静止坐标系中的速度的函数.因此，我们看到，转动物体按坐标和速度的吉布斯分布与静止物体的吉布斯分布之间的区别仅在于附加了一项势能，它等于
+\begin{equation*}
+  -\frac{1}{2}\sum m\left(\boldsymbol{\Omega}\times\boldsymbol{r}\right)^2.
+\end{equation*}
+
+换句话说，对物体的统计性质而言，转动相当于出现一个对应于离心力的外场.科里奥利力并不影响这些性质.
+
+然而，必须着重指出：上述结论只适用于经典统计学.在量子的情形下，对于转动物体用类似于(34.3)式的统计算符表达式
+\begin{equation}
+  \hat{w}=\exp\frac{F'-\hat{H}+\boldsymbol{\Omega}\cdot\hat{\boldsymbol{M}}}{T}
+\end{equation}
+才是正确的.形式上可以把这个算符化为与(34.6)相应的形式，这时速度 $\boldsymbol{v}'$ 用算符 $\hat{\boldsymbol{v}}=\dfrac{\hat{\boldsymbol{p}}'}{m}-\left(\boldsymbol{\Omega}\times\boldsymbol{r}\right)$ 来代替.但是这个矢量算符各分量彼此不对易，不像静止坐标系中的速度算符那样.因此，与(34.6)式和(34.7)式相应的两个统计算符，除了其中有一个存在着离心能量以外，一般来讲，彼此之间还存在着重大的差别.
+
+\section{粒子数可变的吉布斯分布}
+
+直到目前为止我们始终默认：物体中的粒子数是给定的常数.同时我们有意不提各个子系统之间实际上可以发生粒子交换这一事实.换而言之，子系统中的粒子数 $N$ 不可避免地会在它的平均值附近涨落.为了准确地表述这里的粒子数是什么意思，我们把系统中被包围在一个确定体积内的部分称为子系统，那么我们把 $N$ 理解为处于该体积内的粒子数\footnote{在§28中推导吉布斯分布时，我们所考虑的实质上正是在这种意义下的子系统：从公式(28.2)变换到(28.3)，我们对熵进行微分时，就认为物体的体积是恒定的（因而介质体积也是恒定的）.}.
+
+这样就产生了把吉布斯分布推广到粒子数可变的物体上的问题.在这里，我们只写出由相同粒子所组成的物体的公式；如何进一步推广到含有不同粒子的系统上去是很显然的（§85）.
+
+现在分布函数不仅与量子态的能量有关，而且还与物体中的粒子数 $N$ 有关，并且能级 $E_{nN}$ 本身在不同的 $N$ 下当然也是不同的（该情况用角标 $N$ 表明）.物体包含 $N$ 个粒子并且同时处于第 $n$ 个状态的概率用 $w_{nN}$ 表示.
+
+确定这个函数形式的方法与§28中获得函数 $w_n$ 的方法完全一样.区别只在于：介质的熵现在不仅是它的能量 $E'$ 的函数，而且也是其粒子数 $N'$ 的函数，$S'=S'(E',N')$.把 $E'$ 和 $N'$ 写成 $E'=E^{(0)}-E_{nN}$ 和 $N'=N^{(0)}-N$（$N$ 是物体中的粒子数，$N^{(0)}$ 是整个闭合系统中给定的粒子总数，它比 $N$ 大得多），根据(28.2)，我们有
+\begin{equation*}
+  w_{nN}=\text{常数}\cdot\exp S'\left(E^{(0)}-E_{nN},N^{(0)}-N\right)
+\end{equation*}
+（正如在§28中一样，把 $\Delta E'$ 当成常数）.
+
+其次，把 $S'$ 按 $E_{nN}$ 和 $N$ 的幂次展开，而且仍然只保留到线性项.把等式(24.5)写成形式
+\begin{equation*}
+  \mathrm{d}S=\frac{\mathrm{d}E}{T}+\frac{P}{T}\,\mathrm{d}V-\frac{\mu}{T}\,\mathrm{d}N,
+\end{equation*}
+由这个式子得出
+\begin{equation*}
+  \left(\frac{\partial S}{\partial E}\right)_{V,N}=\frac{1}{T},\qquad
+  \left(\frac{\partial S}{\partial N}\right)_{E,V}=-\frac{\mu}{T}.
+\end{equation*}
+
+因此，
+\begin{equation*}
+  S'\left(E^{(0)}-E_{nN},N^{(0)}-N\right)
+  \approx S'\left(E^{(0)},N^{(0)}\right)-\frac{E_{nN}}{T}+\frac{\mu N}{T},
+\end{equation*}
+并且根据平衡条件，物体和介质的化学势 $\mu$（正如温度一样）是相同的.
+
+这样，我们就得到分布函数的如下表达式：
+\begin{equation}
+  w_{nN}=A\exp\frac{\mu N-E_{nN}}{T}.
+\end{equation}
+
+归一化常数 $A$ 就像在§31中那样可以用热力学量表示出来.计算出物体的熵，
+\begin{equation*}
+  S=-\left\langle\ln w_{nN}\right\rangle=-\ln A-\frac{\mu\bar{N}}{T}+\frac{\bar{E}}{T},
+\end{equation*}
+由此得出
+\begin{equation*}
+  T\ln A=\bar{E}-TS-\mu\bar{N}.
+\end{equation*}
+
+但是 $\bar{E}-TS=F$，而差 $F-\mu\bar{N}$ 是热力学势 $\Omega$.因此，$T\ln A=\Omega$，而且可以把(35.1)改写成
+\begin{equation}
+  w_{nN}=\exp\frac{\Omega+\mu N-E_{nN}}{T}.
+\end{equation}
+
+这就是粒子数可变情形的吉布斯分布的最后形式\footnote{这个分布有时称为巨正则分布.}.
+
+分布(35.2)的归一化条件，要求把 $w_{nN}$ 首先对所有的量子态（在给定的 $N$ 下）然后对所有的 $N$ 值求和的结果应当等于 1：
+\begin{equation*}
+  \sum_N\sum_n w_{nN}=\mathrm{e}^{\Omega/T}\sum_N\left(\mathrm{e}^{\mu N/T}\sum_n\mathrm{e}^{-E_{nN}/T}\right)=1.
+\end{equation*}
+
+由此得到热力学势 $\Omega$ 的如下表达式：
+\begin{equation}
+  \Omega=-T\ln\sum_N\left[\mathrm{e}^{\mu N/T}\sum_n\mathrm{e}^{-E_{nN}/T}\right].
+\end{equation}
+
+除了公式(31.3)以外，这个公式也可以用来计算具体物体的热力学量.公式(31.3)给出物体的自由能作为 $T,N$ 和 $V$ 的函数，而公式(35.3)给出物体的热力学势 $\Omega$ 作为 $T,\mu$ 和 $V$ 的函数.
+
+在经典统计学中，我们写概率分布形如
+\begin{equation*}
+  \mathrm{d}w_N=\rho_N\,\mathrm{d}p^{(N)}\mathrm{d}q^{(N)},
+\end{equation*}
+式中
+\begin{equation}
+  \rho_N=(2\pi\hbar)^{-s}\exp\frac{\Omega+\mu N-E_N(p,q)}{T}.
+\end{equation}
+
+我们把变量 $N$ 写成分布函数的角标；我们给相空间的体积元也写上同样的角标，以此强调：与每一个 $N$ 值对应的有它自己的相空间（其维数为 $2s$）.相应地，$\Omega$ 的公式写成
+\begin{equation}
+  \Omega=-T\ln\Bigl\{\sum_N\mathrm{e}^{\mu N/T}
+  \int'\mathrm{e}^{-E_N(p,q)/T}\,\mathrm{d}\varGamma_N\Bigr\}.
+\end{equation}
+
+最后，我们讨论一下在这里推导出的粒子数可变情形的吉布斯分布(35.2)与此前的分布(31.1)之间的关系.首先很明显，在确定物体所有的统计性质（除了物体中粒子总数的涨落以外）时，这两种分布完全等效.忽略粒子数 $N$ 的涨落，我们就得到 $\Omega+\mu N=F$，分布(35.2)与(31.1)也就完全一致了.分布(31.1)和(35.2)之间的关系在一定意义下类似于微正则分布和正则分布之间的关系.用微正则分布描述子系统相当于忽略它的总能量的涨落；而正则分布在它的通常形式(31.1)下则考虑了这种涨落.但是，后者没有考虑到粒子数的涨落，可以说，它是“相对于粒子数的微正则分布”.而分布(35.2)无论对能量或是对粒子数都是“正则的”.
+
+因此，所有这三种分布——微正则分布和两种形式的吉布斯分布，对于确定物体的热力学性质来说原则上都适用.从这种观点来看，区别只在于数学上的方便程度.实际上，微正则分布是最不方便的，而且从来不用于这个目的.最方便的通常是粒子数可变的吉布斯分布.
+
+\section{从吉布斯分布出发的热力学关系式推导}
+
+吉布斯分布在整个统计学中起着最主要的作用，所以在这里我们再给一种说法看其合理性.这个分布实质上早在§4和§6中就已经直接从刘维尔定理推导出来了.我们看到，应用刘维尔定理（与子系统分布函数可乘性假设一起）就能够得出，子系统分布函数的对数应该是其能量的线性函数：
+\begin{equation}
+  \ln w_n=\alpha+\beta E_n,
+\end{equation}
+系数 $\beta$ 对于给定闭合系统的所有子系统来讲都是相同的（参看(6.4)式，或经典情形的类似关系式(4.5)）.由此可得
+\begin{equation*}
+  w_n=\mathrm{e}^{\alpha+\beta E_n};
+\end{equation*}
+如果形式上引入符号 $\beta=-\dfrac{1}{T}$，$\alpha=\dfrac{F}{T}$，那么这个表达式在形式上就与吉布斯分布(31.1)一致.剩下来还需要证明：从吉布斯分布本身，即用纯粹统计学的方式，可以推导出基本的热力学关系式.
+
+我们已经看到，$\beta$ 这个量，因而也就是 $T$ 这个量，对处于平衡状态的系统的所有部分应该是相同的.其次，显然应该有 $\beta<0$，即 $T>0$，否则归一化的和式 $\sum w_n$ 就必然会发散（由于包含粒子的动能，能量 $E_n$ 可以取任意大的数值）.所有这些性质都与热力学温度的基本性质一致.
+
+为了导出定量的关系式，我们从归一化条件
+\begin{equation*}
+  \sum_n\exp\frac{F-E_n}{T}=1
+\end{equation*}
+出发.对这个等式取微分，把它的左边看成 $T$ 和某些参量 $\lambda_1,\lambda_2,\cdots$ 的函数，这些参量表征我们所考虑的物体所处的外部条件；例如，这些参量可以确定物体所占体积的形状和大小.能级 $E_n$ 依赖于 $\lambda_1,\lambda_2,\cdots$，以它们为参量.
+
+进行微分后，我们写出
+\begin{equation*}
+  \sum_n\frac{w_n}{T}\left[\mathrm{d}F-\frac{\partial E_n}{\partial\lambda}\,\mathrm{d}\lambda
+  -\frac{F-E_n}{T}\,\mathrm{d}T\right]=0
+\end{equation*}
+（为简短起见，我们在这里只考虑一个外参量 $\lambda$）.由此可得
+\begin{equation*}
+  \mathrm{d}F\sum_n w_n=\mathrm{d}\lambda\sum_n w_n\frac{\partial E_n}{\partial\lambda}
+  +\frac{\mathrm{d}T}{T}\left(F-\sum_n w_nE_n\right).
+\end{equation*}
+
+在等式的左边，$\sum w_n=1$，而在右边
+\begin{equation*}
+  \sum_n w_nE_n=\bar{E},\qquad
+  \sum_n w_n\frac{\partial E_n}{\partial\lambda}
+  =\overline{\frac{\partial E_n}{\partial\lambda}}.
+\end{equation*}
+
+再考虑到 $F-\bar{E}=-TS$ 以及\footnote{如果哈密顿算符 $\hat{H}$（因而还有它的本征值 $E_n$）与某个参量 $\lambda$ 有关，则
+\begin{equation*}
+  \frac{\partial E_n}{\partial\lambda}=\left(\frac{\partial\hat{H}}{\partial\lambda}\right)_{nn}
+\end{equation*}
+（参看第三卷，(11.16)），对它进行统计平均后就得到公式(36.2).}
+\begin{equation}
+  \overline{\frac{\partial E_n}{\partial\lambda}}=\overline{\frac{\partial\hat{H}}{\partial\lambda}},
+\end{equation}
+最后得到
+\begin{equation*}
+  \mathrm{d}F=-S\,\mathrm{d}T+\overline{\frac{\partial\hat{H}}{\partial\lambda}}\,\mathrm{d}\lambda.
+\end{equation*}
+
+这就是自由能微分的一般形式.
+
+用同样的方法也可以得到粒子数可变情形的吉布斯分布.如果把粒子数看成动力学变量，则显然它（对于闭合系统而言）也是一个“运动积分”，并且同样也是可加性的.所以应当写成
+\begin{equation}
+  \ln w_{nN}=\alpha+\beta E_n+\gamma N,
+\end{equation}
+式中 $\gamma$ 也像 $\beta$ 一样，对于平衡系统的所有各部分都应该是相同的.设
+\begin{equation*}
+  \alpha=\frac{\Omega}{T},\qquad
+  \beta=-\frac{1}{T},\qquad
+  \gamma=\frac{\mu}{T}
+\end{equation*}
+就得到形为(35.2)的分布，然后用与上面相同的方法，就可以得到热力学势 $\Omega$ 微分的表达式.
