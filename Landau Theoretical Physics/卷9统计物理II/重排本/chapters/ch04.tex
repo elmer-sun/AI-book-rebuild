@@ -1,0 +1,516 @@
+% ============================================================
+%  chapters/ch04.tex —— 第四章 有限温度时的格林函数（§36–§38）
+%  底本：高教社中文第4版（王锡绂 译）；印刷页 136–146（PDF p147–p157）
+%  全书最短章；\chapter 章头在本文件（PDF p147 章扉）
+%
+%  插图清单：本章无插图（原书 §36–§38 无编号插图，亦无图式图）。
+%
+%  圈码脚注：圈码共 8 处已还原为 \footnote——§36 标题①（p147）、正文②（p147）、
+%  ①（p148）、①（p150）、①②（p152）、①②（p153）；脚注文本已由脚注代理
+%  按页面裁片逐条转录（OCR 正文无窜入的脚注文本，无 %%FN 注释需要处理）。
+%
+%  编号公式核算：OCR tag 46 条 = equation 46 个：§36 23 条（36.1–36.23）、
+%  §37 16 条（37.1–37.15，其中 (37.8a)(37.8b) 为原书双编号，用 equation*+
+%  \tag 手工照排，其后 \setcounter{equation}{8} 恢复自动编号使 (37.9)
+%  正确）、§38 7 条（38.1–38.7）。逐条对照页面核实，无重号、无缺号。
+%  另有无编号公式 16 处（p148 三处、p149 一处、p152 一处、p153 三处、
+%  p155 三处、p156 三处、p157 两处），照原书不编号排 equation*。
+%
+%  已修正的 OCR/原书错误（编号：依据页面 pNNN）：
+%   1. 首锚点 %%p 146 系切片错位：第四章章头与 §36 实起于 PDF p147
+%      （印刷页 136），p146 为 §35* 末页
+%   2. p147 "用记号(…〉表示"→记号 $\langle\cdots\rangle$；"热力学变量
+%      T_{μ,V}"→T,μ,V；"(π.Ⅱ.朗道，1958)"→(Л.Д. 朗道，1958)（西里尔）
+%   3. p147 (36.2) 上标 OCR \kappa→R；例况逗/句号照页面
+%   4. p148 无编号展开式：OCR "k_mn = P_n−P_n"→P_m−P_n；ψ̂_α^*→ψ̂_α⁺；
+%      指数与矩阵元结构照页面重建
+%   5. p148 (36.6) OCR "\hat{\bf\sigma}(p−k_mn)"→δ(p−k_mn)
+%   6. p148 (36.6) 后 OCR 仅存残句"ω 下半平面之内"，按页面补全
+%      "应注意：这个表达式的全部极点（按照上边说的）都分布在实轴下面，
+%      即在 ω 的"
+%   7. p149 (36.10) OCR ω^•→ω^*、G^{K*}→G^{R*}；(36.11) 尾部乱码→
+%      "当|ω|→∞ 时"
+%   8. p150 (36.14) OCR 漏虚数单位 i，按页面为 ±i·coth(ω/2T)·Im G
+%   9. p150 (36.16) OCR 只剩一行，按页面补全 {G^R, ω>0; G^A, ω<0.}
+%  10. p150 段落乱串两处按页面接排："由于 G^{(0)R} 的极点位于实轴下方，
+%      而 G^{(0)A} 的极点位于实轴上方"；"现在我们对玻色系统引入类似的
+%      公式. 推迟格林函数和超前格林函数分别定义为："（OCR 漏前半句）
+%  11. p151 (36.19) OCR ψ^*→ψ^+（四处，页面均为 + 号）
+%  12. p152 (37.1) 第二行 OCR 无横杠→\hat{\overline\Psi}^M（照页面）；
+%      (7.8) 代换句乱码→"Ψ̂→Ψ̂^M，Ψ̂⁺→Ψ̄^M，i∂/∂t→−∂/∂τ"
+%  13. p152 定义显形式段 OCR 角括号重复，按页面仅一处 ⟨⋯⟩
+%  14. p153 (37.4) 前式 OCR e^{αττ}→e^{Ω/T}；(37.6) 前两行指数乱码→
+%      e^{−(1/T−τ)Ĥ′}、e^{−τĤ′}（照页面）
+%  15. p153 按页面补 OCR 漏句"按坐标展成傅里叶积分，并按 τ［在(37.5)
+%      式的区间内］展成傅里叶级数"（原书方括号照排）
+%  16. p154 (37.14) OCR τ 加粗→斜体（τ₁、τ+0，照页面）
+%  17. p155 "算符 Ψ̂^M_{0α} 和 Ψ̄^M_α"：OCR 第二算符漏横杠照页面补；
+%      "…当 τ=0 时相重合…"句 OCR 乱串照页面接排；两行无编号 σ̂ 乘积式
+%      OCR 误作上标括号，照页面改正
+%  18. p155 代换式右端 OCR e^{−Ĥ′₀τ}→e^{−Ĥ′₀/T}（p156 同）
+%  19. p156 "把因子 e^{Ω/T}" OCR e^{α′τ}→e^{Ω/T}
+%  20. p157 坐标表象虚线因子 OCR "−U(r₁−r₂)S(τ₁−τ₂)"→δ(τ₁−τ₂)；
+%      公共系数 OCR (−1)^ε→(−1)^L；无编号和式 OCR 下标 *→s、尾部
+%      "\ dt"噪声删；末段"G和G"→G^R 和 G^A、"名种"→"各种"
+%  21. 全章 ω 一律斜体（OCR 多处 \pmb\omega，页面不加粗）
+%  原书排印疑误（照排，未改动）：
+%   a. p153 (37.7) 指数 i(p·r−ζ_s) 漏 τ——对照 p154 (37.9) 指数为
+%      −i(p·r−ζ_sτ)，且量纲上必须有 τ；本文件照原书排 i(p·r−ζ_s)
+%   b. p155 "把此式代入格林函数的定义(37.3)中"——𝒢 之定义为 (37.2)，
+%      (37.3) 为其显形式（含 ŵ），照页面排 (37.3)
+%   c. p153 1/(2) 因子（括号中的 2 对费米系统，玻色系统换 1，见 p153
+%      脚注①），连同 (37.10) 的 (2π)³/(2) 照排
+%  遗留问题：
+%   a. 8 条脚注文本已转录排入（p147×2、p148×1、p150×1、p152×2、p153×2）；
+%      原 §36 节题圈码改为 \section[短题]{长题\footnote{...}} 形式以保 toc/书签干净
+%   b. (37.7) 漏 τ、"(37.3)中"两处原书排印问题提请主控裁定
+%   c. OCR 末尾窜入第五章章头残行（PDF p158），属 ch05a，未排入
+% ============================================================
+\chapter{有限温度时的格林函数}
+
+\section[有限温度时的格林函数]{有限温度时的格林函数\footnote{在 §36—§38 中我们采用 $\hbar=1$ 的单位制.}}
+
+宏观系统格林函数在温度不等于零时的定义与温度等于零时的定义是不同的，其区别仅在于将按封闭系统的基态求平均换成了按吉布斯分布求平均：现在用记号$\langle\cdots\rangle$表示
+\begin{equation}
+\langle\cdots\rangle=\sum_{n}w_n\langle n|\cdots|n\rangle,\quad
+w_n=\exp\Bigl(\frac{\varOmega-E_n'}{T}\Bigr).
+\label{36.1}
+\end{equation}
+这里是按系统所有的（用不同的能量 $E_n$ 和不同的粒子数 $N_n$ 描述的）态进行求和，$E_n'=E_n-\bm\mu N_n$，$\langle n|\cdots|n\rangle$ 是第 $n$ 态的对角矩阵元. 用这种方式定义的平均值是热力学变量 $T,\mu,V$ 的函数.
+
+研究有限温度格林函数的解析性质（Л.Д. 朗道，1958）时最好利用所谓推迟格林函数及超前格林函数. 这样可使格林函数的解析性质变得更为简单\footnote{一般用上标 $R$ 和 $A$（来自于英语 retarded 和 advanced）来区分这两个函数.}. 为了明确起见，我们首先说明费米系统的情况.
+
+{\heiti 推迟格林函数定义为：}
+\begin{equation}
+\mathrm{i}G^{R}_{\alpha\beta}(X_1,X_2)=
+\left\{\begin{array}{ll}
+\langle\hat\Psi_\alpha(X_1)\hat\Psi^{+}_\beta(X_2)+\hat\Psi^{+}_\beta(X_2)\hat\Psi_\alpha(X_1)\rangle, & t_1>t_2,\\[0.2em]
+0, & t_1<t_2.
+\end{array}\right.
+\label{36.2}
+\end{equation}
+对于微观均匀的非铁磁性系统，当没有外场时，这个函数（像通常的 $G_{\alpha\beta}$ 一样）归结为只与 $X=X_1-X_2$ 这个差有关的标量函数：
+\begin{equation}
+G^{R}_{\alpha\beta}(X_1,X_2)=\delta_{\alpha\beta}G^{R}(X),\quad
+G^{R}=\frac{1}{2}G^{R}_{\alpha\alpha}.
+\label{36.3}
+\end{equation}
+
+现在用通常的方法变到动量表象. 但因为 $t<0$ 时 $G^{R}(t,\bm r)=0$，所以在
+\begin{equation}
+G^{R}(\omega,\bm p)=\iint_{0}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm p\cdot\bm r)}G^{R}(t,\bm r)\,\mathrm{d}t\,\mathrm{d}^{3}x
+\label{36.4}
+\end{equation}
+这一定义式中，实际上只需从 0 到 $\infty$ 对 $t$ 求积分. 移动变量 $\omega$ 到上半平面仅仅是改善这个积分的收敛性. 因此\eqref{36.4}式的积分在 $\omega$ 的上半平面内定义一个不具奇异性的解析函数\footnote{对照一下第五卷 §123 中关于函数 $\alpha(\omega)$ 的类似讨论. $G^{R}$ 和 $\alpha$ 这两个函数具有相同的解析性质当然不是偶然的：从第五卷的(126.8)式来看，该式就是用相似的方法通过一定的算符对易子表达出来的.}. 但在下半平面内，函数 $G^{R}$ 是借助于解析延拓的方法来定义的，这里该函数有极点（见下文）.
+
+对于函数 $G^{R}$，我们可以得到类似于 §8 中对 $T=0$ 时导出函数 $G(8.7)$ 式那种形式的展开式.
+
+把 $\psi$ 算符乘积的矩阵元 $\langle n|\cdots|n\rangle$ 按矩阵乘法规则展开，并把矩阵元表达成（8.4）的形状，我们得到：
+\begin{equation*}
+\begin{aligned}
+\mathrm{i}G^{R}(t,\bm r)&={}\\
+&=\frac{1}{2}\sum_{n,m}w_n\bigl\{\mathrm{e}^{-\mathrm{i}(\omega_{mn}t-\bm k_{mn}\cdot\bm r)}
+\langle n|\hat\psi_\alpha(0)|m\rangle\langle m|\hat\psi^{+}_\alpha(0)|n\rangle+\\
+&\quad+\mathrm{e}^{\mathrm{i}(\omega_{mn}t-\bm k_{mn}\cdot\bm r)}
+\langle n|\hat\psi^{+}_\alpha(0)|m\rangle\langle m|\hat\psi_\alpha(0)|n\rangle\bigr\},
+\end{aligned}
+\end{equation*}
+式中
+\begin{equation*}
+\omega_{mn}=E_m'-E_n',\quad\bm k_{mn}=\bm P_m-\bm P_n.
+\end{equation*}
+对于花括号中的两项来说，对 $n$ 和 $m$ 求和有某些不同的意义：第一项里，处于 $n$ 和 $m$ 态的粒子数以关系式 $N_m=N_n+1$ 相联系；而第二项里，是以 $N_m=N_n-1$ 相联系. 在第二个求和式中互换下标 $m$ 和 $n$ 便可以消除这个差异. 同时注意到
+\begin{equation*}
+\langle n|\hat\psi_\alpha(0)|m\rangle\langle m|\hat\psi^{+}_\alpha(0)|n\rangle
+=|\langle n|\hat\psi_\alpha(0)|m\rangle|^{2}\equiv A_{mn},
+\end{equation*}
+我们即得出如下形式的完整表达式：
+\begin{equation}
+\mathrm{i}G^{R}(t,\bm r)=\frac{1}{2}\sum_{n,m}w_n\mathrm{e}^{-\mathrm{i}(\omega_{mn}t-\bm k_{mn}\cdot\bm r)}
+A_{mn}\bigl(1+\mathrm{e}^{-\omega_{mn}/T}\bigr),\quad t>0
+\label{36.5}
+\end{equation}
+最后，计算\eqref{36.4}式的积分时应作一下（同 §8 中一样的）代换：$\omega\to\omega+\mathrm{i}0$，最终求得：
+\begin{equation}
+G^{R}(\omega,\bm p)=\frac{(2\pi)^{3}}{2}\sum_{m,n}w_n
+\frac{A_{mn}\delta(\bm p-\bm k_{mn})}{\omega-\omega_{mn}+\mathrm{i}0}
+\bigl(1+\mathrm{e}^{-\omega_{mn}/T}\bigr).
+\label{36.6}
+\end{equation}
+应注意：这个表达式的全部极点（按照上边说的）都分布在实轴下面，即在 $\omega$ 的下半平面之内.
+
+上述性质足以用来建立函数的实部和虚部之间的一定的关系，即所谓 Kramers--Kronig 关系，或称作{\heiti 色散关系}：
+\begin{equation}
+\mathrm{Re}\,G^{R}(\omega,\bm p)=\frac{1}{\pi}\int_{-\infty}^{\infty}
+\frac{\mathrm{Im}\,G^{R}(u,\bm p)}{u-\omega}\,\mathrm{d}u
+\label{36.7}
+\end{equation}
+［见第五卷 §123 中关于 $\alpha(\omega)$ 同样关系式的推导］. 对于上式，只要借助公式（8.11）在\eqref{36.6}式中分离出实部及虚部来直接检验，便可确信它的正确性. 还应指出，考虑到公式（8.11）可以将\eqref{36.7}式重写成如下形式：
+\begin{equation}
+G^{R}(\omega,\bm p)=\frac{1}{\pi}\int_{-\infty}^{\infty}
+\frac{\rho(u,\bm p)}{u-\omega-\mathrm{i}0}\,\mathrm{d}u,
+\label{36.8}
+\end{equation}
+式中
+\begin{equation*}
+\rho(u,\bm p)=-4\pi^{4}\sum_{m,n}w_n A_{mn}\delta(u-\omega_{mn})\delta(\bm p-\bm k_{mn})
+\bigl(1+\mathrm{e}^{-\omega_{mn}/T}\bigr).
+\end{equation*}
+当 $\omega$ 为实数时，则有 $\rho=\mathrm{Im}\,G^{R}$.
+
+表达式\eqref{36.8}，当趋于"宏观极限"$V\to\infty$（比值 $N/V$ 一定）时，具有更深刻的意义. 在这个极限下，各极点 $\omega_{mn}$ 都汇合在一起，因而函数 $\rho(u)$ 对于一切 $u$ 值都不等于零（但不简单地等于各离散点上的 $\delta$ 函数之和）. 这时公式\eqref{36.8}可直接确定在 $\omega$ 上半平面内及实轴上的 $G^{R}(\omega)$. 为确定在 $\omega$ 下半平面内的 $G^{R}(\omega)$，必须进行积分的解析延拓，因而应当改变积分围道的形状，以使围道总是从下面绕过 $u=\omega$ 这一点. 这时 $G^{R}(\omega)$ 在下半平面内距实轴为有限距离处可以有奇点，积分围道被"夹"于极点 $u=\omega$ 和分子的奇点之间.
+
+现在用类似的方法引入超前格林函数，按照定义：
+\begin{equation}
+\begin{aligned}
+&\mathrm{i}G^{A}_{\alpha\beta}(X_1,X_2)=\\
+&=\left\{\begin{array}{ll}
+0, & t_1>t_2;\\[0.2em]
+-\langle\hat\Psi_\alpha(X_1)\hat\Psi^{+}_\beta(X_2)+\hat\Psi^{+}_\beta(X_2)\hat\Psi_\alpha(X_1)\rangle, & t_1<t_2.
+\end{array}\right.
+\end{aligned}
+\label{36.9}
+\end{equation}
+动量表象中的函数 $G^{A}(\omega,\bm p)$ 是变量 $\omega$ 的解析函数，它在下半平面内没有奇点. 它的展开式不同于\eqref{36.6}式的地方在于改变了分母中 i0 前的符号. 这就是说，在实轴上 $G^{A}(\omega)=G^{R*}(\omega)$，而在 $\omega$ 整个平面内，
+\begin{equation}
+G^{A}(\omega^{*})=G^{R*}(\omega).
+\label{36.10}
+\end{equation}
+$\omega\to\infty$ 时，函数 $G^{R}$ 和 $G^{A}$ 与 $G$ 一样都按如下规律趋于零：
+\begin{equation}
+G^{R},G^{A}\to 1/\omega,\quad\text{当}\ |\omega|\to\infty\ \text{时}.
+\label{36.11}
+\end{equation}
+我们提醒一下［见（8.15）式的推导］，这个渐近表达式的系数（为 1）决定于函数在 $t_2=t_1$ 时跃变之值；这个跃变值与温度无关，并且对于所有三个函数 $G^{R},G^{A},G$ 都是相同的，根据它们的定义，这一点是很显然的.
+
+为了建立用上述方法引入的函数 $G^{R},G^{A}$ 与通常的格林函数
+\begin{equation}
+\mathrm{i}G_{\alpha\beta}(X_1,X_2)=\langle T\hat\Psi_\alpha(X_1)\hat\Psi^{+}_\beta(X_2)\rangle
+\label{36.12}
+\end{equation}
+之间的关系，我们可获得此格林函数类似于\eqref{36.5}的展开式. 经过上面所进行的完全类似的计算，便得出如下结果\footnote{改用动量表象时，对 $t$ 的积分可分成从 $-\infty$ 到 0 和从 0 到 $\infty$ 两部分，并且在其中一个积分里交换求和指标 $m,n$.}：
+\begin{equation}
+\begin{aligned}
+G(\omega,\bm p)&=-\frac{(2\pi)^{3}}{2}\sum_{m,n}w_n A_{mn}\delta(\bm p-\bm k_{mn})\times\\
+&\times\Bigl\{\frac{1}{\omega_{mn}-\omega}\bigl(1+\mathrm{e}^{-\omega_{mn}/T}\bigr)
++\mathrm{i}\pi\delta(\omega-\omega_{mn})\bigl(1-\mathrm{e}^{-\omega_{mn}/T}\bigr)\Bigr\}
+\end{aligned}
+\label{36.13}
+\end{equation}
+比较\eqref{36.13}和\eqref{36.6}两式，我们求得：
+\begin{equation}
+\left.\begin{aligned}
+G^{R}(\omega,\bm p)\\
+G^{A}(\omega,\bm p)
+\end{aligned}\right\}
+=\mathrm{Re}\,G(\omega,\bm p)\pm\mathrm{i}\coth\frac{\omega}{2T}\,\mathrm{Im}\,G(\omega,\bm p).
+\label{36.14}
+\end{equation}
+这时，仍从上述的表达式\eqref{36.13}可以看出：
+\begin{equation}
+\mathrm{sign}\,\mathrm{Im}\,G(\omega,\bm p)=-\mathrm{sign}\,\omega.
+\label{36.15}
+\end{equation}
+应当注意，函数 $G$（与 $G^{R}$ 和 $G^{A}$ 不同）不是 $\omega$ 的解析函数.
+
+当 $T\to 0$ 时，有 $\coth(\omega/2T)\to\mathrm{sign}\,\omega$，因而由\eqref{36.14}式得出：在实轴上
+\begin{equation}
+G=\left\{\begin{array}{ll}
+G^{R}, & \omega>0;\\
+G^{A}, & \omega<0.
+\end{array}\right.
+\label{36.16}
+\end{equation}
+所以，$T=0$ 时的函数 $G(\omega)$ 乃是两个不同的解析函数：右实半轴上的 $G^{R}(\omega)$ 和左实半轴上的 $G^{A}(\omega)$ 当 $|\mathrm{Im}\,\omega|\to 0$ 时是 $G(\omega)$ 在 $\omega$ 的两个实半轴上的极限值.
+
+现在不难写出理想费米气体的函数 $G^{R},G^{A}$ 的表达式. 只需要注意：这两个函数都遵从同一个方程（9.6），而在推导这个方程的过程中只利用了函数在 $t_1=t_2$ 时的跃变值. 由于 $G^{(0)R}$ 的极点位于实轴下方，而 $G^{(0)A}$ 的极点位于实轴上方，因而绕过极点的方式是熟知的. 由此得出下式：
+\begin{equation}
+G^{(0)R,A}(\omega,\bm p)=\Bigl(\omega-\frac{p^{2}}{2m}+\mu\pm\mathrm{i}0\Bigr)^{-1}.
+\label{36.17}
+\end{equation}
+上式在温度等于零时和在有限温度时都成立. 根据\eqref{36.14}式，我们求得函数 $G^{(0)}$ 为：
+\begin{equation}
+G^{(0)}(\omega,\bm p)=P\frac{1}{\omega-p^{2}/2m+\mu}
+-\mathrm{i}\pi\tanh\frac{\omega}{2T}\cdot\delta\Bigl(\omega-\frac{p^{2}}{2m}+\mu\Bigr).
+\label{36.18}
+\end{equation}
+当 $T\to 0$ 时，我们又回到了公式（9.7），该式与\eqref{36.17}式的区别就是将 $\pm\mathrm{i}0$ 换成了 $\mathrm{i}0\cdot\mathrm{sign}\,\omega$.
+
+现在我们对玻色系统引入类似的公式. 推迟格林函数和超前格林函数分别定义为：
+\begin{equation}
+\begin{aligned}
+&\mathrm{i}G^{R}(X_1,X_2)=\\
+&=\left\{\begin{array}{ll}
+\langle\hat\Psi(X_1)\hat\Psi^{+}(X_2)-\hat\Psi^{+}(X_2)\hat\Psi(X_1)\rangle, & t_1>t_2;\\[0.2em]
+0, & t_1<t_2.
+\end{array}\right.\\[0.8em]
+&\mathrm{i}G^{A}(X_1,X_2)=\\
+&=\left\{\begin{array}{ll}
+0, & t_1>t_2;\\[0.2em]
+-\langle\hat\Psi(X_1)\hat\Psi^{+}(X_2)-\hat\Psi^{+}(X_2)\hat\Psi(X_1)\rangle, & t_1<t_2.
+\end{array}\right.
+\end{aligned}
+\label{36.19}
+\end{equation}
+假如我们这时所谈的是温度超过 $\lambda$ 点的情况，则在这两定义式中将出现全 $\Psi$ 标符；当温度低于 $\lambda$ 点时，定义式则与非凝聚体算符有关. 代替\eqref{36.6}式，现在有：
+\begin{equation}
+G^{R}(\omega,\bm p)=(2\pi)^{3}\sum_{m,n}w_n
+\frac{A_{mn}\delta(\bm p-\bm k_{mn})}{\omega-\omega_{mn}+\mathrm{i}0}
+\bigl(1-\mathrm{e}^{-\omega_{mn}/T}\bigr),
+\label{36.20}
+\end{equation}
+这个函数与 $G$ 的关系，由下列公式给出：
+\begin{equation}
+G^{R}(\omega,\bm p)=\mathrm{Re}\,G(\omega,\bm p)
++\mathrm{i}\tanh\frac{\omega}{2T}\cdot\mathrm{Im}\,G(\omega,\bm p),
+\label{36.21}
+\end{equation}
+并且在实轴上有
+\begin{equation}
+\mathrm{Im}\,G(\omega,\bm p)<0,
+\label{36.22}
+\end{equation}
+［函数 $G$ 由（31.1）式定义，并以按吉布斯分布求平均代替按基态求平均］. 对于理想玻色气体来说，函数 $G^{R}$ 由同样的公式\eqref{36.17}给出，而函数 $G$ 为：
+\begin{equation}
+G^{(0)}(\omega,\bm p)=P\frac{1}{\omega-p^{2}/2m+\mu}
+-\mathrm{i}\pi\coth\frac{\omega}{2T}\cdot\delta\Bigl(\omega-\frac{p^{2}}{2m}+\mu\Bigr).
+\label{36.23}
+\end{equation}
+
+格林函数在温度不等于零时的物理意义与 $T=0$ 时的物理意义基本上相同. 当然，格林函数 $G$ 与粒子动量分布之间的关系式（7.23）以及 $G$ 与密度矩阵之间的关系式（7.18），（31.4）仍旧成立.
+
+这里，关于格林函数的极点与元激发能量相合的论断也仍然有效（但因为函数 $G$ 本身不是解析的，所以这时讨论解析函数 $G^{R}$ 在 $\omega$ 的下半平面内的极点或讨论函数 $G^{A}$ 在 $\omega$ 的上半平面内的极点更为合适）. 这个论断（像 §8 中的情况一样）可重新由展开式\eqref{36.6}得出. 虽然在这个展开式的不同项里现在会出现系统任意两个态之间的跃迁频率 $\omega_{mn}$，但是在趋于宏观极限之后，同以前的情况一样，仍保留的极点只对应于由基态到具有一个元激发的各态的跃迁. 两个激发态之间的跃迁不会使宏观单粒子格林函数中出现极点，正如由基态到具有多于一个准粒子态的跃迁不会引起极点的出现一样（见 §8）. 因为这些态的能量之差并不单值地决定于它们的动量之差.
+
+还应强调一下：当温度不等于零时，准粒子寿命不仅与它们本身的不稳定性有关，而且也与它们之间的相互碰撞有关. 由这两种原因引起的衰减必须是微弱的，这样，准粒子的概念继续有意义.
+
+\section{温度格林函数}
+
+为了建立计算有限温度时格林函数的图技术，需要从 $\psi$ 算符的海森伯绘景变到相互作用绘景，这同在 §12 中的做法是一样的. 这时我们重新得到的表达式与（12.12）式的差别，只在于求平均不是对基态进行的. 但是，这一差别是很重要的：与由（12.12）式变到（12.14）式的做法不一样，现在对算符 $\hat S^{-1}$ 的平均不可能与其余因子的平均再分离开来；问题在于，非基态在算符 $\hat S^{-1}$ 的作用下并不自然地变为其本身，而是变成具有同样能量的一些激发态的一定的叠加（包括准粒子所有可能的相互散射过程的结果）. 这种情形，将使得图技术变得极为复杂，即因 $\hat S^{-1}$ 中的 $\psi$ 算符也参与收缩而产生一些新的项.
+
+但是，可以改变格林函数的定义，以避免产生类似的复杂情况. 根据这种定义建立起来的数学工具，是松原（T.~Matsubara，1955）研究的成果，很适宜于计算宏观系统的热力学量.
+
+我们按下面定义引入所谓松原 $\bm\psi$ 算符\footnote{这一节里我们写出的公式将同时用于费米系统和玻色系统（高于 $\lambda$ 点）. 用记号来区别时，上标对应于费米系统，下标对应于玻色系统. 此外，对于玻色系统应略去自旋下标.}：
+\begin{equation}
+\begin{aligned}
+\hat\Psi^{\mathrm M}_{\alpha}(\tau,\bm r)&=\mathrm{e}^{\tau\hat H'}\hat\psi_{\alpha}(\bm r)\mathrm{e}^{-\tau\hat H'},\\
+\hat{\overline\Psi}^{\mathrm M}_{\alpha}(\tau,\bm r)&=\mathrm{e}^{\tau\hat H'}\hat\psi^{+}_{\alpha}(\bm r)\mathrm{e}^{-\tau\hat H'}.
+\end{aligned}
+\label{37.1}
+\end{equation}
+式中 $\tau$ 是辅助实变量；这两个算符，从纯形式观点来看，与海森伯算符的区别在于后一种算符中是把实变量 $t$ 换成虚数 $-\mathrm{i}\tau$\footnote{我们强调一下：鉴于这一区别，算符 $\hat{\overline\Psi}^{\mathrm M}$ 与 $\hat\Psi^{\mathrm M+}$ 绝不相同.}. 例如在（7.8）式中作代换：$\hat\Psi\to\hat\Psi^{\mathrm M}$，$\hat\Psi^{+}\to\hat{\overline\Psi}^{\mathrm M}$，$\mathrm{i}\partial/\partial t\to-\partial/\partial\tau$，便得到\eqref{37.1}式的两个算符所遵从的方程. 像用海森伯 $\psi$ 算符定义通常的格林函数一样，借助上述两个算符可定义新的格林函数 $\mathcal G$：
+\begin{equation}
+\mathcal G_{\alpha\beta}(\tau_1,\bm r_1;\tau_2,\bm r_2)
+=-\bigl\langle T_\tau\hat\Psi^{\mathrm M}_{\alpha}(\tau_1,\bm r_1)\hat{\overline\Psi}^{\mathrm M}_{\beta}(\tau_2,\bm r_2)\bigr\rangle,
+\label{37.2}
+\end{equation}
+这里记号 $T_\tau$ 表示"$\tau$ 编时"，即按 $\tau$ 从右至左增大的次序排列算符（在费米系统的情况下，置换一次算符时需改变符号）；括号 $\langle\cdots\rangle$ 表征按吉布斯分布求平均. 将定义\eqref{37.2}写成如下形式后，即可把这个分布表示成显形式：
+\begin{equation*}
+\mathcal G_{\alpha\beta}=-\mathrm{Tr}\bigl\{\hat w\,T_\tau\hat\Psi^{\mathrm M}_{\alpha}(\tau_1,\bm r_1)\hat{\overline\Psi}^{\mathrm M}_{\beta}(\tau_2,\bm r_2)\bigr\},
+\end{equation*}
+\begin{equation}
+\hat w=\exp\Bigl(\frac{\varOmega-\hat H'}{T}\Bigr),
+\label{37.3}
+\end{equation}
+式中 $\mathrm{Tr}$ 表示所有对角矩阵元的和. 用这种方式定义的格林函数称作{\heiti 温度格林函数}，以区别于"通常的"函数 $G$（故把 $G$ 称作{\heiti 时间格林函数}）.
+
+像函数 $G_{\alpha\beta}$ 一样，非铁磁系统的函数 $\mathcal G_{\alpha\beta}$ 在无外磁场时归结为标量：$\mathcal G_{\alpha\beta}=\mathcal G\delta_{\alpha\beta}$. 对于空间均匀系统来说，该函数与 $\bm r_1$ 和 $\bm r_2$ 的关系又归结为与 $\bm r=\bm r_1-\bm r_2$ 这一差值的关系.
+
+同样不难看出：就定义\eqref{37.3}本身来说，函数 $\mathcal G$ 只与 $\tau=\tau_1-\tau_2$ 这一差值有关. 例如，令 $\tau_1<\tau_2$；于是就有\footnote{括号中的因子 2 是对费米系统的，对于玻色体系统应换成 1.}：
+\begin{equation*}
+\mathcal G=\pm\frac{1}{(2)}\mathrm{e}^{\varOmega/T}\mathrm{Tr}\bigl\{\mathrm{e}^{-\hat H'/T}
+\mathrm{e}^{\tau_2\hat H'}\hat\psi^{+}_{\alpha}(\bm r_2)
+\mathrm{e}^{(-\tau_2+\tau_1)\hat H'}\hat\psi_{\alpha}(\bm r_1)
+\mathrm{e}^{-\tau_1\hat H'}\bigr\},
+\end{equation*}
+或者在记号 $\mathrm{Tr}$ 下循环置换因子：
+\begin{equation}
+\mathcal G=\pm\frac{1}{(2)}\mathrm{e}^{\varOmega/T}\mathrm{Tr}\bigl\{\mathrm{e}^{-(1/T+\tau)\hat H'}
+\hat\psi^{+}_{\alpha}(\bm r_2)\mathrm{e}^{\tau\hat H'}\hat\psi_{\alpha}(\bm r_1)\bigr\},\quad\tau<0.
+\label{37.4}
+\end{equation}
+由此，上述的说法是显然的.
+
+事实上，变量 $\tau$ 的取值只在如下有限区间内：
+\begin{equation}
+-1/T\leqslant\tau\leqslant 1/T,
+\label{37.5}
+\end{equation}
+并且当 $\tau<0$ 时和 $\tau>0$ 时，函数 $\mathcal G(\tau)$ 的值可以用简单的关系式联系起来. 当 $\tau=\tau_1-\tau_2>0$ 时，作类似于\eqref{37.4}式的推导，求得：
+\begin{equation*}
+\begin{aligned}
+\mathcal G&=-\frac{1}{(2)}\mathrm{e}^{\varOmega/T}\mathrm{Tr}\bigl\{\mathrm{e}^{-(1/T-\tau)\hat H'}
+\hat\psi_{\alpha}(\bm r_1)\mathrm{e}^{-\tau\hat H'}\hat\psi^{+}_{\alpha}(\bm r_2)\bigr\}=\\
+&=-\frac{1}{(2)}\mathrm{e}^{\varOmega/T}\mathrm{Tr}\bigl\{\mathrm{e}^{-\tau\hat H'}
+\hat\psi^{+}_{\alpha}(\bm r_2)\mathrm{e}^{-(1/T-\tau)\hat H'}\hat\psi_{\alpha}(\bm r_1)\bigr\},\quad\tau>0
+\end{aligned}
+\end{equation*}
+把此式与\eqref{37.4}式作比较，则得：
+\begin{equation}
+\mathcal G(\tau)=\mp\mathcal G\Bigl(\tau+\frac{1}{T}\Bigr),\quad\tau<0
+\label{37.6}
+\end{equation}
+［由于\eqref{37.5}式，右边函数的宗量当 $\tau<0$ 时是正的］.
+
+现在我们把函数 $\mathcal G(\tau,\bm r)$ 按坐标展成傅里叶积分，并按 $\tau$［在\eqref{37.5}式的区间内］展成傅里叶级数\footnote{А.\,А.\,Абрикосов, Л.\,П.\,Горьков, И.\,Е.\,Дзялошинский(1959) 及 Е.\,С.\,Фрадкин(1959) 引入了这种方法.}：
+\begin{equation}
+\mathcal G(\tau,\bm r)=T\sum_{s=-\infty}^{\infty}\int\mathrm{e}^{\mathrm{i}(\bm p\cdot\bm r-\zeta_s)}
+\mathcal G(\zeta_s,\bm p)\frac{\mathrm{d}^{3}p}{(2\pi)^{3}},
+\label{37.7}
+\end{equation}
+其中，对于费米系统
+\begin{equation*}
+\zeta_s=(2s+1)\pi T\tag{37.8a}\label{37.8a}
+\end{equation*}
+对于玻色系统
+\begin{equation*}
+\zeta_s=2s\pi T\tag{37.8b}\label{37.8b}
+\end{equation*}
+\setcounter{equation}{8}% (37.8a)(37.8b) 为原书双编号，手工 \tag 照排；恢复自动编号使下一式为 (37.9)
+$(s=0,\pm1,\pm2,\cdots)$；这时自然满足条件\eqref{37.6}. 对\eqref{37.7}式的逆变换，具有如下形式：
+\begin{equation}
+\mathcal G(\zeta_s,\bm p)=\int_{0}^{1/T}\int\mathrm{e}^{-\mathrm{i}(\bm p\cdot\bm r-\zeta_s\tau)}
+\mathcal G(\tau,\bm r)\,\mathrm{d}^{3}x\,\mathrm{d}\tau
+\label{37.9}
+\end{equation}
+［考虑到\eqref{37.6}及（37.8）式，在 $-1/T\leqslant\tau\leqslant 1/T$ 范围的积分变为从 0 到 $1/T$ 的积分］.
+
+进行类似于 §36 中所作的一些计算，可以把 $\mathcal G(\zeta_s,\bm p)$ 通过薛定谔 $\psi$ 算符的矩阵元表达出来. 计算的结果为：
+\begin{equation}
+\mathcal G(\zeta_s,\bm p)=\frac{(2\pi)^{3}}{(2)}\sum_{m,n}w_n
+\frac{A_{mn}\delta(\bm p-\bm k_{mn})}{\mathrm{i}\zeta_s-\omega_{mn}}
+\bigl(1\pm\mathrm{e}^{-\omega_{mn}/T}\bigr).
+\label{37.10}
+\end{equation}
+由此，首先可以看出：
+\begin{equation}
+\mathcal G(-\zeta_s,\bm p)=\mathcal G^{*}(\zeta_s,\bm p).
+\label{37.11}
+\end{equation}
+其次将\eqref{37.10}式与 $G^{R}$ 的两个展开式\eqref{36.6}和\eqref{36.20}作对比，我们求得：
+\begin{equation}
+\mathcal G(\zeta_s,\bm p)=G^{R}(\mathrm{i}\zeta_s,\bm p),\quad\zeta_s>0.
+\label{37.12}
+\end{equation}
+在 139 页上已说过，条件 $\zeta_s>0$ 来源于表达式\eqref{36.6}和\eqref{36.20}只在 $\omega$ 的上半平面内才直接成立. 因此，在傅里叶分量中温度格林函数与在 $\omega$ 的虚轴上离散点处所取的推迟格林函数相同. 特别是，由这个结论可以立即写出理想气体温度格林函数的表达式，将 $\omega$ 换成 $\mathrm{i}\zeta_s$，由\eqref{36.17}式可得：
+\begin{equation}
+\mathcal G^{(0)}(\zeta_s,\bm p)=\Bigl(\mathrm{i}\zeta_s-\frac{p^{2}}{2m}+\mu\Bigr)^{-1}.
+\label{37.13}
+\end{equation}
+
+下一节将要讲述计算函数 $\mathcal G(\zeta_s,\bm p)$ 的图技术. 为了确定函数 $G^{R}(\omega,\bm p)$（因而特别是为了确定系统的能谱），需要建立一个解析函数，该函数应在 $\omega=\mathrm{i}\zeta_s$ 点与 $\mathcal G(\zeta_s,\bm p)$ 相同，并在 $\omega$ 的上半平面内没有奇点. 假如补充上 $|\omega|\to\infty$ 时 $G^{R}(\omega,\bm p)\to 0$ 这一要求，则这套手续就是唯一的［见\eqref{36.11}式］. 然而在具体的情况下，这种解析延拓可能伴有一定的困难. 但计算热力学量时并不需要进行解析延拓.
+
+例如，为了计算势 $\Omega$，可以根据对密度矩阵按吉布斯分布取平均的表达式
+\begin{equation}
+N\rho_{\alpha\beta}(\bm r_1,\bm r_2)=\pm\mathcal G_{\alpha\beta}(\tau_1,\bm r_1;\tau+0,\bm r_2)
+\label{37.14}
+\end{equation}
+来进行.［该式显然由定义\eqref{37.2}得出；比较（7.17）］. 取 $\bm r_2=\bm r_1$（并对 $\alpha=\beta$ 求和后），我们得到系统的密度
+\begin{equation}
+\frac{N}{V}=\pm T\sum_{s=-\infty}^{\infty}\int\mathcal G(\zeta_s,\bm p)\mathrm{e}^{-\mathrm{i}\zeta_s\tau}
+\frac{\mathrm{d}^{3}p}{(2\pi)^{3}}\bigg|_{\tau\to-0},
+\label{37.15}
+\end{equation}
+该表达式将 $N$ 定义为 $\mu,T,V$ 的函数，然后对等式 $N=-\partial\Omega/\partial\mu$ 求积分即可算出 $\Omega(\mu,T,V)$.
+
+\section{温度格林函数的图技术}
+
+建立计算温度格林函数 $\mathcal G$ 的图技术同在 §12，§13 中对时间格林函数 $G$ 的处理方法是类似的. 松原 $\psi$ 算符的定义\eqref{37.1}与海森伯算符的定义之区别，只不过是在形式上将 it 换成 $\tau$，这一事实允许在许多方面利用直接类比法.
+
+首先我们引入"相互作用绘景"中的松原算符，这些算符与\eqref{37.1}式的区别，是把精确的哈密顿量 $\hat H'$ 换成自由粒子的哈密顿量 $\hat H_0'$：
+\begin{equation}
+\hat\Psi^{\mathrm M}_{0\alpha}(\tau,\bm r)=\exp(\tau\hat H_0')\hat\psi_{\alpha}(\bm r)\exp(-\tau\hat H_0').
+\label{38.1}
+\end{equation}
+算符 $\hat\Psi^{\mathrm M}_{0\alpha}$ 和 $\hat{\overline\Psi}^{\mathrm M}_{\alpha}$ 之间的关系是由松原 $S$ 矩阵来实现的，它的建立类似于（12.8）式：
+\begin{equation}
+\hat\sigma(\tau_2,\tau_1)=T_\tau\exp\Bigl\{-\int_{\tau_1}^{\tau_2}\hat V_0(\tau)\,\mathrm{d}\tau\Bigr\},
+\label{38.2}
+\end{equation}
+式中
+\begin{equation}
+\hat V_0(\tau)=\exp(\tau\hat H_0')\hat V\exp(-\tau\hat H_0')
+\label{38.3}
+\end{equation}
+是相互作用绘景中的相互作用算符. 但是，以前在 §12 中，$\hat\Psi$ 和 $\hat\Psi_0$ 之间的联系是在 $t=-\infty$ 时"加入"相互作用的初始条件下建立起来的，而现在 $\hat\Psi^{\mathrm M}$ 和 $\hat\Psi^{\mathrm M}_0$ 当 $\tau=0$ 时相重合应起着"初始条件"的作用. 相应地，代替（12.11）式可写成：
+\begin{equation}
+\hat\Psi^{\mathrm M}_{\alpha}(\tau)=\hat\sigma^{-1}(\tau,0)\hat\Psi^{\mathrm M}_{0\alpha}(\tau)\hat\sigma(\tau,0).
+\label{38.4}
+\end{equation}
+把此式代入格林函数的定义\eqref{37.3}中；为明确起见，取 $\tau_1>\tau_2$，我们有：
+\begin{equation*}
+\begin{aligned}
+\mathcal G_{\alpha\beta}(\tau_1,\tau_2)=\\
+=-\mathrm{Tr}\bigl\{\hat w\hat\sigma^{-1}(\tau_1,0)\hat\Psi^{\mathrm M}_{0\alpha}(\tau_1)\hat\sigma(\tau_1,0)\hat\sigma^{-1}(\tau_2,0)\hat{\overline\Psi}^{\mathrm M}_{0\beta}(\tau_2)\hat\sigma(\tau_2,0)\bigr\}
+\end{aligned}
+\end{equation*}
+（为简单起见，没有写出宗量 $\bm r_1,\bm r_2$）. 注意，当 $\tau_1>\tau_2>\tau_3$ 时，
+\begin{equation*}
+\begin{aligned}
+\hat\sigma(\tau_1,\tau_3)&=\hat\sigma(\tau_1,\tau_2)\hat\sigma(\tau_2,\tau_3),\\
+\hat\sigma(\tau_2,\tau_1)\hat\sigma^{-1}(\tau_3,\tau_1)&=\hat\sigma(\tau_2,\tau_3),
+\end{aligned}
+\end{equation*}
+我们把上式重新写成如下形式：
+\begin{equation*}
+\begin{aligned}
+\mathcal G_{\alpha\beta}(\tau_1,\tau_2)=-\mathrm{Tr}\bigl\{\hat w\hat\sigma^{-1}\Bigl(\frac{1}{T},0\Bigr)\times\\
+\times\Bigl[\hat\sigma\Bigl(\frac{1}{T},\tau_1\Bigr)\hat\Psi^{\mathrm M}_{0\alpha}(\tau_1)\hat\sigma(\tau_1,\tau_2)\hat{\overline\Psi}^{\mathrm M}_{0\beta}(\tau_2)\hat\sigma(\tau_2,0)\Bigr]\bigr\},
+\end{aligned}
+\end{equation*}
+方括号中的各因子是从右至左按增大次序排列的. 因此可以写成：
+\begin{equation}
+\mathcal G_{\alpha\beta}(\tau_1,\tau_2)=-\mathrm{Tr}\bigl\{\hat w\hat\sigma^{-1}
+\bigl[T_\tau\hat\Psi^{\mathrm M}_{0\alpha}(\tau_1)\hat{\overline\Psi}^{\mathrm M}_{0\beta}(\tau_2)\hat\sigma\bigr]\bigr\},
+\label{38.5}
+\end{equation}
+其中
+\begin{equation*}
+\hat\sigma\equiv\hat\sigma\Bigl(\frac{1}{T},0\Bigr).
+\end{equation*}
+不难验证：写成这种形式的表达式当 $\tau_1<\tau_2$ 时仍然成立.
+
+不同于（12.12）式的是：在\eqref{38.5}式中包含多余的（吉布斯）因子，除此之外，仍按相互作用粒子系统的各态进行平均. 下面我们证明，这两个差异将"相互抵消"，因而可回复到完全类似于（12.14）的形式. 为此，我们利用公式
+\begin{equation}
+\mathrm{e}^{-\tau\hat H'}=\mathrm{e}^{-\tau\hat H_0'}\hat\sigma(\tau,0),
+\label{38.6}
+\end{equation}
+此式是把\eqref{38.1}式代入\eqref{38.4}式，随后将得到的表达式同 $\hat\Psi^{\mathrm M}$ 的定义\eqref{37.1}作比较而得出的. 借助于上式，在\eqref{38.5}式中作如下代换：
+\begin{equation*}
+\mathrm{e}^{-\hat H'/T}\hat\sigma^{-1}\Bigl(\frac{1}{T},0\Bigr)=\mathrm{e}^{-\hat H_0'/T}.
+\end{equation*}
+把因子 $\mathrm{e}^{\varOmega/T}$ 从记号 $\mathrm{Tr}$ 下提出来，再把它从分子移到分母上，并表示成：
+\begin{equation*}
+\mathrm{e}^{-\varOmega/T}=\mathrm{Tr}\,\mathrm{e}^{-\hat H'/T}
+=\mathrm{Tr}\,\mathrm{e}^{-\hat H_0'/T}\hat\sigma\Bigl(\frac{1}{T},0\Bigr)
+\end{equation*}
+末了，以 $\exp(\Omega_0/T)$（这里 $\Omega_0$ 是在同样的 $\mu,T,V$ 值时理想气体的热力学势）乘分子和分母，我们最终得到：
+\begin{equation}
+\mathcal G_{\alpha\beta}(\tau_1,\tau_2)=-\frac{1}{\langle\hat\sigma\rangle_0}
+\bigl\langle T_\tau\hat\Psi^{\mathrm M}_{0\alpha}(\tau_1)\hat{\overline\Psi}^{\mathrm M}_{0\beta}(\tau_2)\hat\sigma\bigr\rangle_0.
+\label{38.7}
+\end{equation}
+这里，按无相互作用粒子系统的各态进行平均：
+\begin{equation*}
+\langle\cdots\rangle_0=\mathrm{Tr}\{\hat w_0\cdots\}
+\end{equation*}
+显然这个结果与（12.14）式相似.
+
+为了变到微扰论的图，同 §13 中的作法一样，我们将表达式\eqref{38.7}按相互作用算符 $\hat V_0(\tau)$ 的幂展开. 对于粒子间呈现成对相互作用的系统来说，这个算符与（13.2）式的区别只是把海森伯算符 $\hat\Psi_0,\hat\Psi^{+}_0$ 换成了松原算符 $\hat\Psi^{\mathrm M},\hat{\overline\Psi}^{\mathrm M}$. $\psi$ 算符乘积的平均值重新按维克定理展开（即用所有可能的方式来选取算符的成对收缩）；用 §13 中的同样的讨论，可以证明在这种情况下这个定理是适用于宏观极限的.
+
+因此，现在产生的图技术规则与 §13 中所得到的，对于 $T=0$ 时的图技术规则完全类似. 图表示法也丝毫不差地保持原样. 只不过图的解析读法规则有一点儿改变.
+
+在坐标表象中，每一条由点 2 进入点 1 的实线都相当于一个因子 $-\mathcal G^{(0)}_{\alpha\beta}(\tau_1,\bm r_1;\tau_2,\bm r_2)$（带有负号）. 每一条连接点 1 和点 2 的虚线对应于一个因子 $-U(\bm r_1-\bm r_2)\delta(\tau_1-\tau_2)$. 图的各内点的一切变量 $\tau,\bm r$，要在整个空间对 $\mathrm{d}^{3}x$ 积分，并在由 0 到 $1/T$ 的界限内对 $\mathrm{d}\tau$ 积分.
+
+为了变到动量表象，需要把所有的函数 $\mathcal G^{(0)}$ 展成\eqref{37.7}式的形式. 对全部内变量 $\bm r$ 求积分之后，在图的每个顶点都出现一个表征动量守恒定律（$\sum\bm p=0$）的 $\delta$ 函数. 此外，在每个顶点上还出现如下形式的积分：
+\begin{equation*}
+T\int_{0}^{1/T}\exp\bigl\{-\mathrm{i}\tau(\zeta_{s1}+\zeta_{s2}+\zeta_{s3})\bigr\}\,\mathrm{d}\tau.
+\end{equation*}
+这个积分［考虑到（37.8）式］只当 $\sum\zeta_s=0$ 时才不为零，并且在这种情况下等于 1. 因此，在每个顶点上也遵从离散频率守恒定律. 现在每条实线与因子 $-\mathcal G^{(0)}_{\alpha\beta}(\zeta_s,\bm p)$ 相对应（但自身封闭的实线重新对应于因子 $n^{(0)}(\mu,T)$——理想气体在 $\mu,T$ 一定时的密度）. 每一条虚线相应于因子 $-U(\bm q)$. 所有顶点上的守恒定律都考虑到之后，对余下的全部不确定的动量和频率作如下形式的积分并求和：
+\begin{equation*}
+T\sum_{s=-\infty}^{\infty}\int\frac{\mathrm{d}^{3}p}{(2\pi)^{3}}\cdots
+\end{equation*}
+公共系数（包含在 $-\mathcal G_{\alpha\beta}$ 中的图均带此系数），在费米系统情况下等于 $(-1)^{L}$，这里 $L$ 是图中闭合实线的圈数. 在玻色系统情况下，此系数等于 1.
+
+当然，在这种图技术中（像在 $T=0$ 时的图技术一样）也可以进行部分求和以及引入各种图"单元". 比如说，可以定义顶角部分，它是通过双粒子格林函数表达出来的. 这个顶角部分是以类似于（15.14）式的戴森方程与函数 $\mathcal G$ 联系起来的. 我们不必写出这些公式，因为这些公式的推导完全类似于 $T=0$ 时图技术的情形.
+
+当变到 $T=0$ 的情况时，在松原图中对 $s$ 的求和变为对 $\zeta$ 的积分，因而松原图技术就变为与第二章所讲的普通图技术非常类似的技术. 但不同的是，当 $\zeta$ 为实数时松原函数与相应的虚半轴上 $G^{R}$ 和 $G^{A}$ 的值相同［见（37.11—37.12）式］. 为过渡到 $T=0$ 时通常的图技术，还需要把积分围道一直转到与 $\omega$ 的实轴相重合.

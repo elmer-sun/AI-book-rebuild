@@ -14,6 +14,11 @@ Each folder contains the original PDF scan, LaTeX source, figures, and the compi
 | Interacting Electrons and Quantum Magnetism | A. Auerbach |
 | Magnetism in Condensed Matter | S. Blundell (Chinese translation) |
 | 数学物理方法 | 李政道 (re-typeset) |
+| Landau Theoretical Physics | L. D. Landau & E. M. Lifshitz (Vols 1, 2, 3, 5, 9) |
+| Quantum Finance | B. E. Baaquie (2004, Chinese study companion) |
+| Solid State Theory | 李正中 (2nd ed) |
+| Advanced Solid State Physics | P. Phillips (2nd ed) |
+| David Tong Lecture Notes | D. Tong (19 lecture notes, Chinese translation) |
 
 `Print Editions/` — print-ready PDFs.
 

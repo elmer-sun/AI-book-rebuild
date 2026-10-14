@@ -1,0 +1,273 @@
+% ch04 Second quantization (书页 24–30 / 分册p038–p044)
+% 第4章 Second quantization
+\chapter{二次量子化}
+
+为求解多粒子问题，引入二次量子化（second quantization）的语言是十分便利的。这一方法并没有给量子力学增添任何新的概念负担；不如说，它为处理多粒子态提供了一种便利的记账手段。因此，我们对这一技术的形式化表述将着墨不多。更完整的论述可参见例如 Baym 的著作（文献 [B1969]）。我们将针对费米子（fermion）和玻色子（boson）发展这一方法：费米子是对其任意两个坐标的交换呈反对称的粒子；玻色子则是这类交换不引起多粒子波函数任何符号改变的粒子。
+
+\section{玻色子}
+
+考虑一个含有 $n$ 个全同粒子的玻色子系统的多体态：
+\begin{equation*}
+\varphi_0(\mathbf{r})=\langle \mathbf{r}_1,\mathbf{r}_2,\ldots,\mathbf{r}_n|n\rangle.
+\tag{4.1}
+\end{equation*}
+对于粒子数不同的各个态，正交条件
+\begin{equation*}
+\langle n|m\rangle=\delta_{nm}
+\tag{4.2}
+\end{equation*}
+成立。正如谐振子的情形，我们定义算符 $a_0$，使得
+\begin{equation*}
+a_0|n\rangle=\sqrt{n}\,|n-1\rangle.
+\tag{4.3}
+\end{equation*}
+也就是说，算符 $a_0$ 从态 $|n\rangle$ 中湮灭一个粒子，产生相应的 $n-1$ 粒子态。对式 (4.3) 取伴随运算便提示我们\footnote{译注：原书此处印作“式 (4.2)”，按上下文应为式 (4.3)。}
+\begin{equation*}
+\langle n|a_0^\dagger=\langle n-1|\sqrt{n}.
+\tag{4.4}
+\end{equation*}
+于是，矩阵元
+\begin{equation*}
+\langle n|a_0^\dagger|n-1\rangle=\sqrt{n}\,\langle n-1|n-1\rangle=\sqrt{n}.
+\tag{4.5}
+\end{equation*}
+式 (4.5) 的结果也可以等价地表述为
+\begin{equation*}
+a_0^\dagger|n-1\rangle=\sqrt{n}\,|n\rangle.
+\tag{4.6}
+\end{equation*}
+算符 $a_0^\dagger$ 作用于 $|n-1\rangle$ 粒子态，重新产生原来的态 $|n\rangle$。
+
+当我们考虑算符 $\widehat{N}_0=a_0^\dagger a_0$ 时，因子 $\sqrt{n}$ 的选取缘由便会清楚。$\widehat{N}_0$ 是厄米算符，当它作用于 $|n\rangle$ 时，
+\begin{equation*}
+\widehat{N}_0|n\rangle=a_0^\dagger a_0|n\rangle=a_0^\dagger\sqrt{n}\,|n-1\rangle=n|n\rangle,
+\tag{4.7}
+\end{equation*}
+它数出的正是态 $|n\rangle$ 中的粒子数。因此 $\langle n|\widehat{N}_0|n\rangle=n$，$\widehat{N}_0$ 被称为粒子数算符（number operator）。现在考虑从真空态 $|0\rangle$ 生成态 $|n\rangle$。由式 (4.1) 至式 (4.7) 可得
+\begin{equation*}
+|n\rangle=\frac{(a_0^\dagger)^n}{\sqrt{n!}}\,|0\rangle.
+\tag{4.8}
+\end{equation*}
+于是我们看到，玻色子 $n$ 粒子态的构造方式与谐振子态的生成规则直接类似。正因如此，算符 $a_0$ 和 $a_0^\dagger$ 必须服从对易关系（commutation relation）
+\begin{equation*}
+\left[a_0,a_0^\dagger\right]=1.
+\tag{4.9}
+\end{equation*}
+为看清个中缘由，考虑操作 $[a_0a_0^\dagger-a_0^\dagger a_0]|n\rangle$。由式 (4.1)–(4.7) 我们已经求得
+\begin{equation*}
+[a_0a_0^\dagger-a_0^\dagger a_0]|n\rangle=(n+1-n)|n\rangle=|n\rangle,
+\tag{4.10}
+\end{equation*}
+这意味着 $[a_0,a_0^\dagger]=1$。
+
+现在推广到形如 $|n_0,n_1,n_2,\ldots\rangle$ 的玻色子态，其中 $n_i$ 表示玻色子态 $i$ 的占据数（occupation number）。应用前文概述的玻色子规则，得到
+\begin{align*}
+a_\ell|\ldots,n_\ell,\ldots\rangle &= \sqrt{n_\ell}\,|\ldots,n_\ell-1,\ldots\rangle \\
+a_\ell a_j|\ldots,n_\ell,\ldots,n_j,\ldots\rangle &= \sqrt{n_\ell}\sqrt{n_j}\,|\ldots,n_\ell-1,\ldots,n_j-1,\ldots\rangle.
+\tag{4.11}
+\end{align*}
+对产生算符也有类似的关系式成立。广义的对易关系为
+\begin{align*}
+\left[a_j,a_\ell^\dagger\right] &= \delta_{j\ell}, \\
+\left[a_j,a_\ell\right] &= \left[a_j^\dagger,a_\ell^\dagger\right]=0.
+\tag{4.12}
+\end{align*}
+关于玻色子算符的乘积作用于态 $|n_0,\ldots,n_j,\ldots\rangle$，最后还须作一点说明。由于玻色子相互对易，形如 $a_i^\dagger a_j^\dagger|\ldots,n_i,\ldots,n_j,\ldots\rangle$ 的操作，不论算符 $a_i^\dagger$ 与 $a_j^\dagger$ 的先后次序如何，都给出相同的结果。我们将会看到，对费米子而言情况并非如此。
+
+\section{费米子}
+
+现在假设占据态 $|n_0\rangle$ 的粒子是费米子。泡利不相容原理（Pauli exclusion principle）限制 $n_0=0,1$。类似地，
+\begin{align*}
+a_0|1\rangle &= |0\rangle, \\
+a_0^\dagger|0\rangle &= |1\rangle.
+\tag{4.13}
+\end{align*}
+同时还应注意 $a_0|0\rangle=a_1^\dagger|1\rangle=0$，因为无法从真空中湮灭粒子，而且每个态至多容纳一个粒子。为说明费米子固有的反对称性，考虑态 $|n_0,n_1,\ldots\rangle$。对这一参考态施加产生和湮灭算符时的符号约定是
+\begin{equation*}
+a_j^\dagger|\ldots,n_{j-1},n_j,n_{j+1},\ldots\rangle=
+\begin{cases}
+(-1)^{\eta_j}|\ldots,n_{j-1},1,n_{j+1},\ldots\rangle, & n_j=0, \\
+0, & n_j=1,
+\end{cases}
+\tag{4.14}
+\end{equation*}
+\begin{equation*}
+a_j|\ldots,n_{j-1},n_j,n_{j+1},\ldots\rangle=
+\begin{cases}
+(-1)^{\eta_j}|\ldots,n_{j-1},0,n_{j+1},\ldots\rangle, & n_j=1, \\
+0, & n_j=0,
+\end{cases}
+\tag{4.15}
+\end{equation*}
+其中 $\eta_j$ 是位于态 $j$ 左侧的被占据态的数目。
+
+设 $\Psi$ 表示一个占据数波函数，它包含态 $j$ 但不包含态 $\ell$，并设 $j>\ell$。再令 $\eta_j$ 和 $\eta_\ell$ 分别表示紧排在 $j$ 和 $\ell$ 左侧的被占据态的数目。按式 (4.14) 与式 (4.15) 的规则，我们有
+\begin{align*}
+a_\ell^\dagger a_j\Psi &= (-1)^{\eta_j+\eta_\ell}|\ldots,n_{\ell-1},1,\ldots,n_{j-1},0,\ldots\rangle
+\tag{4.16}\\
+a_j a_\ell^\dagger\Psi &= (-1)^{\eta_\ell+\eta_j+1}|\ldots,n_{\ell-1},1,\ldots,n_{j-1},0,\ldots\rangle.
+\tag{4.17}
+\end{align*}
+如果现在把式 (4.16) 与式 (4.17) 相加，就得到
+\begin{equation*}
+\bigl[a_\ell^\dagger a_j+a_j a_\ell^\dagger\bigr]\Psi=(-1)^{\eta_j+\eta_\ell}[1-1]|\ldots,n_{\ell-1},1,\ldots,n_{j-1},0,\ldots\rangle,
+\tag{4.18}
+\end{equation*}
+或者等价地，
+\begin{equation*}
+\{a_\ell^\dagger,a_j\}=a_\ell^\dagger a_j+a_j a_\ell^\dagger=0\quad (j\ne\ell).
+\tag{4.19}
+\end{equation*}
+不难证明，若在式 (4.16) 中取 $j=\ell$，则有 $a_j^\dagger a_j+a_j a_j^\dagger=1$。一般的反对易关系（anticommutation relation）为
+\begin{equation*}
+\{a_j^\dagger,a_\ell\}=\delta_{j\ell}.
+\tag{4.20}
+\end{equation*}
+其余的反对易关系，即
+\begin{equation*}
+\{a_j,a_\ell\}=\left\{a_j^\dagger,a_\ell^\dagger\right\}=0,
+\tag{4.21}
+\end{equation*}
+可以用类似的方式导出。最后需要定义的量是粒子数算符
+\begin{equation*}
+\widehat{N}=\sum_j a_j^\dagger a_j.
+\tag{4.22}
+\end{equation*}
+与玻色子情形一样，$a_j^\dagger a_j$ 数出态 $j$ 中的粒子数。
+
+\section{费米子算符}
+
+我们现在着手把单体和两体费米子算符写成二次量子化的形式。完成这一任务的一个直接途径，是考察它们在一个完全反对称化的多粒子态上的作用。考虑两个单粒子态 $\phi_1$ 与 $\phi_2$，对粒子交换为反对称的归一化波函数是
+\begin{equation*}
+\langle \mathbf{r}_1,\mathbf{r}_2|n_1,n_2\rangle=\frac{1}{\sqrt{2}}\left[\phi_1(1)\phi_2(2)-\phi_1(2)\phi_2(1)\right].
+\tag{4.23}
+\end{equation*}
+这个态可以由 $\phi_1$ 与 $\phi_2$ 的行列式构造出来：
+\begin{equation*}
+D_2=\frac{1}{\sqrt{2!}}
+\begin{vmatrix}
+\phi_1(1) & \phi_2(1) \\
+\phi_1(2) & \phi_2(2)
+\end{vmatrix}.
+\tag{4.24}
+\end{equation*}
+狄拉克（Dirac）（文献 [D1929; D1958]）和斯莱特（文献 [S1929]）证明了由 $n$ 个单粒子态构造反对称波函数的一般规则：
+\begin{equation*}
+D_n=\langle \mathbf{r}_1,\mathbf{r}_2,\ldots|n_\alpha,n_\beta,\ldots\rangle=\frac{1}{\sqrt{n!}}\,\|\,\phi_1\cdots\phi_n\,\|,
+\tag{4.25}
+\end{equation*}
+其中 $\|\ \|$ 表示行列式。$D_n$ 包含轨道集合 $\phi_1\cdots\phi_n$ 的所有反对称化置换，因此也可以写成
+\begin{equation*}
+D_n=\langle \mathbf{r}_1,\mathbf{r}_2,\ldots|n_1,n_2,\ldots\rangle=\frac{1}{\sqrt{n!}}\sum_P(-1)^P P[\phi_1\cdots\phi_n],
+\tag{4.26}
+\end{equation*}
+其中 $P$ 是置换算符。采用二次量子化记号的内在优势在于，一般的多粒子费米子态可以紧凑地写成
+\begin{equation*}
+|n_1,n_2,\ldots\rangle=a_1^\dagger a_2^\dagger\cdots|0\rangle.
+\tag{4.27}
+\end{equation*}
+由于费米子算符的反对易性质，粒子交换下的完全反对称性被自动内建于这个多体态之中。注意这里没有 $\sqrt{n!}$ 归一化因子。而在一次量子化中则会出现显式的 $\sqrt{n!}$ 因子，因为粒子被放入特定的单粒子态，并且要对所有可能的置换求和。在二次量子化中，粒子不带有任何标记。
+
+现在让我们回到最初的目标。考虑单体算符 $\widehat{H}_1$。单体算符在两个多粒子态之间的矩阵元，仅当这两个多粒子态相差不超过两个单粒子态时才不为零（见习题 4.1）。因此，$\widehat{H}_1$ 作用在一般多体态上时，至多能做到的是：从一个特定的单粒子态中湮灭一个粒子，然后填入同一个态或某个原先空着的态。于是，二次量子化形式的一般单体算符只能拥有一对产生–湮灭算符。这样一来，非常普遍地，我们可以把单体算符写成
+\begin{equation*}
+\widehat{H}_1=\sum_{\nu,\lambda}c_{\lambda\nu}a_\lambda^\dagger a_\nu.
+\tag{4.28}
+\end{equation*}
+为确定系数 $c_{\lambda\nu}$，只需计算矩阵元 $\langle\mu|\widehat{H}_1|\gamma\rangle$。单粒子态的正交性立即给出 $\langle\mu|\widehat{H}_1|\gamma\rangle=c_{\mu\gamma}$。因此，在二次量子化中写出单体算符的最一般方式是
+\begin{equation*}
+\widehat{H}_1=\sum_{\nu,\lambda}\langle\lambda|\widehat{H}_1|\nu\rangle a_\lambda^\dagger a_\nu.
+\tag{4.29}
+\end{equation*}
+倘若单粒子态恰好是 $\widehat{H}_1$ 的本征函数，则 $\widehat{H}_1|\nu\rangle=\epsilon_\nu|\nu\rangle$，其中 $\epsilon_\nu$ 是一个 c 数（c-number）。此时式 (4.29) 约化为
+\begin{equation*}
+\widehat{H}_1=\sum_\lambda\epsilon_\lambda a_\lambda^\dagger a_\lambda=\sum_\lambda n_\lambda\epsilon_\lambda.
+\tag{4.30}
+\end{equation*}
+于是，当 $\widehat{H}_1$ 是单体能量算符时，$\widehat{H}(1)$ 的平均值决定系统的平均能量。所得表达式与式 (2.8) 类似。
+
+现在考虑一个一般的两体算符
+\begin{equation*}
+\widehat{H}_2=\frac{1}{2}\sum_{i,j}\widehat{V}(i,j).
+\tag{4.31}
+\end{equation*}
+在电子气中，$\widehat{V}(i,j)=e^2/|\widehat{\mathbf{r}}_i-\widehat{\mathbf{r}}_j|$，即库仑能。两体算符在一个一般的多体态中至多能产生两个粒子–空穴激发。产生这类激发的算符的一般形式是 $a_k^\dagger a_\ell^\dagger a_j a_i$。因此，二次量子化形式的一般两体算符可以写成
+\begin{equation*}
+\widehat{H}_2=\frac{1}{2}\sum_{i,j,k,\ell}V_{i,j,k,\ell}a_k^\dagger a_\ell^\dagger a_j a_i.
+\tag{4.32}
+\end{equation*}
+同时含有单体项与两体项的相互作用电子哈密顿量可以改写为
+\begin{equation*}
+\widehat{H}_e=\sum_{\nu,\lambda}\langle\nu|\widehat{H}_1|\lambda\rangle a_\nu^\dagger a_\lambda+\frac{1}{2}\sum_{i,j,k,\ell}\langle k|\langle\ell|\frac{e^2}{|\mathbf{r}_1-\mathbf{r}_2|}|i\rangle|j\rangle a_k^\dagger a_\ell^\dagger a_j a_i.
+\tag{4.33}
+\end{equation*}
+为了与电子气问题衔接，通常变换到动量空间；在其中，单粒子平面波态
+\begin{equation*}
+\phi_p(\mathbf{r})=\frac{\mathrm{e}^{\mathrm{i}\mathbf{p}\cdot\mathbf{r}/\hbar}}{\sqrt{V}},
+\tag{4.34}
+\end{equation*}
+恰好严格对角化电子的动能。这些态定义在体积为 $V$ 的盒子里，并施加周期性边界条件。自旋为 $\sigma$ 的粒子通过算符 $a_{\mathbf{p}\sigma}^\dagger$ 或 $a_{\mathbf{p}\sigma}$ 分别加入或移出这些态。我们引入场算符（field operator）
+\begin{equation*}
+\Psi_\sigma^\dagger(\mathbf{r})=\sum_{\mathbf{p}}\frac{\mathrm{e}^{-\mathrm{i}\mathbf{p}\cdot\mathbf{r}/\hbar}}{\sqrt{V}}a_{\mathbf{p}\sigma}^\dagger,
+\tag{4.35}
+\end{equation*}
+它在 $\mathbf{r}$ 处产生一个自旋为 $\sigma$ 的电子。其厄米共轭场 $\Psi_\sigma(\mathbf{r})$ 则在 $\mathbf{r}$ 处湮灭一个自旋为 $\sigma$ 的粒子。场算符在特定位置上产生和湮灭粒子。在此过程中，它们并不往某个特定动量态中加入或移出粒子；毋宁说，它们以振幅 $\mathrm{e}^{\pm\mathrm{i}\mathbf{p}\cdot\mathbf{r}/\hbar}/\sqrt{V}$ 从动量态的叠加中增加或减去粒子。产生场算符与湮灭场算符的乘积
+\begin{equation*}
+\Psi_\sigma^\dagger(\mathbf{r})\Psi_\sigma(\mathbf{r})=\frac{1}{V}\sum_{\mathbf{p},\mathbf{p}'}\mathrm{e}^{-\mathrm{i}\mathbf{r}\cdot(\mathbf{p}-\mathbf{p}')/\hbar}a_{\mathbf{p}\sigma}^\dagger a_{\mathbf{p}'\sigma}
+\tag{4.36}
+\end{equation*}
+定义了粒子密度算符。于是，若将式 (4.36) 对 $\mathbf{r}$ 积分，
+\begin{align*}
+\widehat{n}_\sigma &= \int\mathrm{d}\mathbf{r}\,\Psi_\sigma^\dagger(\mathbf{r})\Psi_\sigma(\mathbf{r}) \\
+&= \frac{1}{V}\int\mathrm{d}\mathbf{r}\sum_{\mathbf{p},\mathbf{p}'}\mathrm{e}^{-\mathrm{i}(\mathbf{p}-\mathbf{p}')\cdot\mathbf{r}/\hbar}a_{\mathbf{p}\sigma}^\dagger a_{\mathbf{p}'\sigma} \\
+&= \sum_{\mathbf{p}}a_{\mathbf{p}\sigma}^\dagger a_{\mathbf{p}\sigma}=\sum_{\mathbf{p}}\widehat{n}_{\mathbf{p}\sigma},
+\tag{4.37}
+\end{align*}
+便得到自旋为 $\sigma$ 的电子的总粒子密度。
+
+与式 (4.27) 类似，我们可以用场算符 $\Psi_{\sigma_i}^\dagger(\mathbf{r}_i)$ 从真空态构造出一个一般的多体态
+\begin{equation*}
+|\mathbf{r}_{1\sigma_1}\cdots\mathbf{r}_{n\sigma_n}\rangle=\Psi_{\sigma_1}^\dagger(\mathbf{r}_1)\cdots\Psi_{\sigma_n}^\dagger(\mathbf{r}_n)|0\rangle,
+\tag{4.38}
+\end{equation*}
+把 $\Psi_{\sigma_i}^\dagger$ 与 $\Psi_{\sigma_i}$ 作用于 $|\mathbf{r}_{1\sigma_1}\cdots\mathbf{r}_{n\sigma_n}\rangle$ 的规则是
+\begin{equation*}
+\Psi_{\sigma_{n+1}}^\dagger(\mathbf{r}_{n+1})|\mathbf{r}_{1\sigma_1}\cdots\mathbf{r}_{n\sigma_n}\rangle=\sqrt{n+1}\,(-1)^{\eta_{n+1}}|\mathbf{r}_{1\sigma_1}\cdots\mathbf{r}_{n+1\sigma_{n+1}}\rangle
+\tag{4.39}
+\end{equation*}
+和
+\begin{equation*}
+\Psi_\sigma(\mathbf{r})|\mathbf{r}_{1\sigma_1}\cdots\mathbf{r}_{n\sigma_n}\rangle=\frac{1}{\sqrt{n}}\sum_\alpha\delta(\mathbf{r}-\mathbf{r}_\alpha)(-1)^{\eta_\alpha}|\mathbf{r}_1\cdots\mathbf{r}_{\alpha-1},\mathbf{r}_{\alpha+1}\cdots\mathbf{r}_n\rangle.
+\tag{4.40}
+\end{equation*}
+这里同样地，$\eta_\alpha$ 是位于 $\mathbf{r}_\alpha$ 左侧的被占据态的数目。
+
+\section*{习题}
+\addcontentsline{toc}{section}{习题}
+
+\textbf{习题 4.1}\quad 证明：只要两个多体态相差不超过两个单粒子态，单体算符在这两个多粒子态之间的矩阵元就不为零。
+
+\textbf{习题 4.2}\quad 明确证明，一个一般的两体算符可以写成如下形式：
+\begin{equation*}
+\widehat{V}_2=\sum_{\alpha\beta\gamma\delta}\langle\gamma|\langle\delta|V_2|\alpha\rangle|\beta\rangle a_\gamma^\dagger a_\delta^\dagger a_\beta a_\alpha,
+\end{equation*}
+其中 $\langle\gamma\delta|V_2|\alpha\beta\rangle$ 是两体相互作用在初态 $\phi_\alpha$、$\phi_\beta$ 与末态 $\phi_\gamma$、$\phi_\delta$ 之间的矩阵元。再证明，对于处在形如式 (4.27) 的态中的费米子，期望值 $\langle a_\gamma^\dagger a_\delta^\dagger a_\beta a_\alpha\rangle$ 可以因子分解为
+\begin{equation*}
+\langle a_\gamma^\dagger a_\delta^\dagger a_\beta a_\alpha\rangle=\langle a_\gamma^\dagger a_\alpha\rangle\langle a_\delta^\dagger a_\beta\rangle-\langle a_\gamma^\dagger a_\beta\rangle\langle a_\delta^\dagger a_\alpha\rangle.
+\end{equation*}
+
+\textbf{习题 4.3}\quad 证明场算符服从对易关系
+\begin{align*}
+\bigl[\Psi_\sigma^\dagger(\mathbf{r}),\Psi_\sigma(\mathbf{r}')\bigr]_\pm &= \delta(\mathbf{r}-\mathbf{r}'), \\
+\bigl[\Psi_\sigma(\mathbf{r}),\Psi_\sigma(\mathbf{r}')\bigr]_\pm &= \bigl[\Psi_\sigma^\dagger(\mathbf{r}),\Psi_\sigma^\dagger(\mathbf{r}')\bigr]_\pm=0,
+\tag{4.41}
+\end{align*}
+其中 $\pm$ 号表示：对玻色子取对易子，对费米子取反对易子。
+
+\section*{参考文献}
+\addcontentsline{toc}{section}{参考文献}
+\begin{itemize}[leftmargin=2em,itemsep=0pt,parsep=0pt,label={}]
+\item {[}B1969] G. Baym, Lectures on Quantum Mechanics (W. A. Benjamin, Inc., New York, 1969; Perseus Books, Cambridge, MA, 1969).
+\item {[}D1929] P. A. M. Dirac, Proc. Roy. Soc. Lond. A123, 714 (1929).
+\item {[}D1958] P. A. M. Dirac, The Principles of Quantum Mechanics, 4th edn. (Oxford University Press, Oxford, 1958), p. 248.
+\item {[}S1929] J. C. Slater, Phys. Rev. 34, 1293 (1929).
+\end{itemize}

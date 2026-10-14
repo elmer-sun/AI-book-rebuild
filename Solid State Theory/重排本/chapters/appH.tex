@@ -1,0 +1,110 @@
+% ============================================================
+%  附录H 自旋密度算符
+%  底本：高等教育出版社《固体理论》第二版；原书印刷页 559–560
+%  （PDF 页 = 印刷页 + 20）
+%  公式编号自检：(H.1)–(H.10)，自动编号 10 个，无缺号。
+%
+%  已修正的 OCR/原书错误（除全角句点转"."、删 ~ 间隔符等常规项外）：
+%  1. (H.1) δ 函数 OCR 误识为"\otimes"，按 p559 复原为
+%     δ(r−r_j)。
+%  2. (H.1) 后文 OCR"其中r为电子坐标，r_j σ̂ 为…"语序错乱，
+%     按 p559 复原为"其中 r_j 为电子坐标，σ̂ 为向量自旋泡利矩阵"。
+%  3. (H.5) 求和下标 OCR 作 i，按 p559 原书 Σ_j 复原。
+%  4. (H.6) 前文衍出的顿号（"、为求出"）按 p559 删。
+%  5. (H.6) 后文"这里χ为自旋函数，χ_μ μ 代表自旋取向"语序
+%     错乱，按 p559 复原为"这里 χ_μ 为自旋函数，μ 代表自旋取向"。
+%  6. (H.7) 各行 C 系数上下标 OCR 错乱（δ_{k',k+q} 排成
+%     \mathrm{u}、求和指标 i/j 混用等），已按 p559 原书逐行复原为
+%     C⁺_{k'μ}C_{kν}(½σ̂_{μν})…δ_{k',k+q}…C⁺_{k+q,μ}C_{kν}。
+%  7. (H.8)(H.9) OCR 乱码按 p559 复原：Ŝ^z(q)=Σ_k(1/2)
+%     (C⁺_{k+q↑}C_{k↑}−C⁺_{k+q↓}C_{k↓})、Ŝ⁺(q)=Σ_k C⁺_{k+q↑}C_{k↓}。
+%  8. 末句"Ŝ^±(q)代表横向自旋密度起伏"OCR 上标乱码，按 p560
+%     复原为 ±。
+%  (H.2) 中 σ̂⁺=(0 2;0 0)、σ̂⁻=(0 0;2 0) 系原书定义（矩阵元含
+%  因子 2，与各式中 (1/2)σ̂ 相配），照录未改。
+%  遗留问题：无
+% ============================================================
+\chapter{自旋密度算符}
+
+$N$ 个电子系统的自旋密度算符定义为
+\begin{equation}
+  \hat{\boldsymbol{S}}(\boldsymbol{r})=\sum_{j}
+  \delta(\boldsymbol{r}-\boldsymbol{r}_{j})
+  \frac{1}{2}\hat{\boldsymbol{\sigma}}
+\end{equation}
+其中 $\boldsymbol{r}_{j}$ 为电子坐标，$\hat{\boldsymbol{\sigma}}$ 为向量自旋泡利矩阵：
+\begin{equation}
+  \hat{\sigma}^{z}=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+  ,\qquad
+  \hat{\sigma}^{+}=\begin{pmatrix}0&2\\0&0\end{pmatrix}
+  ,\qquad
+  \hat{\sigma}^{-}=\begin{pmatrix}0&0\\2&0\end{pmatrix}
+\end{equation}
+将 $\delta$ 函数作傅里叶展开：
+\begin{equation}
+  \delta(\boldsymbol{r}-\boldsymbol{r}_{j})=\frac{1}{N}
+  \sum_{\boldsymbol{q}}\mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot
+  (\boldsymbol{r}-\boldsymbol{r}_{j})}
+\end{equation}
+代入式(H.1)，求得
+\begin{equation}
+  \hat{\boldsymbol{S}}(\boldsymbol{r})=\sum_{\boldsymbol{q}}
+  \hat{\boldsymbol{S}}(\boldsymbol{q})
+  \mathrm{e}^{-\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}}
+\end{equation}
+其中自旋密度算符的傅里叶分量
+\begin{equation}
+  \hat{\boldsymbol{S}}(\boldsymbol{q})=\frac{1}{N}\sum_{j}
+  \left(\frac{1}{2}\hat{\boldsymbol{\sigma}}\right)
+  \mathrm{e}^{\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}_{j}}
+\end{equation}
+为求出 $\hat{\boldsymbol{S}}(\boldsymbol{q})$ 的二次量子化表示式，取态矢量
+\begin{equation}
+  \Psi(\boldsymbol{r}_{j})=\frac{1}{\sqrt{V}}
+  \sum_{\boldsymbol{k},\mu}
+  \mathrm{e}^{\mathrm{i}\boldsymbol{k}\cdot\boldsymbol{r}_{j}}
+  C_{\boldsymbol{k}\mu}\chi_{\mu}
+\end{equation}
+这里 $\chi_{\mu}$ 为自旋函数，$\mu$ 代表自旋取向，$V$ 为系统的体积，利用式(H.6)，求得 $\hat{\boldsymbol{S}}(\boldsymbol{q})$ 的二次量子化表示为
+\begin{equation}
+\begin{aligned}
+  \hat{\boldsymbol{S}}(\boldsymbol{q})
+  &=\frac{1}{N}\sum_{j}\int\Psi^{+}(\boldsymbol{r}_{j})
+  \left(\frac{1}{2}\hat{\boldsymbol{\sigma}}\right)
+  \mathrm{e}^{\mathrm{i}\boldsymbol{q}\cdot\boldsymbol{r}_{j}}
+  \Psi(\boldsymbol{r}_{j})\mathrm{d}\boldsymbol{r}_{j}\\
+  &=\sum_{\boldsymbol{k},\boldsymbol{k}'}\sum_{\mu,\nu}
+  C^{+}_{\boldsymbol{k}'\mu}C_{\boldsymbol{k}\nu}
+  \left(\frac{1}{2}\hat{\sigma}_{\mu\nu}\right)
+  \frac{1}{V}\int\mathrm{e}^{\mathrm{i}(\boldsymbol{k}
+  +\boldsymbol{q}-\boldsymbol{k}')\cdot\boldsymbol{r}_{j}}
+  \mathrm{d}\boldsymbol{r}_{j}\\
+  &=\sum_{\boldsymbol{k},\boldsymbol{k}'}\sum_{\mu,\nu}
+  C^{+}_{\boldsymbol{k}'\mu}C_{\boldsymbol{k}\nu}
+  \left(\frac{1}{2}\hat{\sigma}_{\mu\nu}\right)
+  \delta_{\boldsymbol{k}',\boldsymbol{k}+\boldsymbol{q}}\\
+  &=\sum_{\boldsymbol{k},\mu,\nu}
+  C^{+}_{\boldsymbol{k}+\boldsymbol{q},\mu}
+  C_{\boldsymbol{k}\nu}
+  \left(\frac{1}{2}\hat{\sigma}_{\mu\nu}\right)
+\end{aligned}
+\end{equation}
+因此
+\begin{equation}
+  \hat{S}^{z}(\boldsymbol{q})=\sum_{\boldsymbol{k}}
+  \frac{1}{2}\left(C^{+}_{\boldsymbol{k}+\boldsymbol{q}\uparrow}
+  C_{\boldsymbol{k}\uparrow}
+  -C^{+}_{\boldsymbol{k}+\boldsymbol{q}\downarrow}
+  C_{\boldsymbol{k}\downarrow}\right)
+\end{equation}
+\begin{equation}
+  \hat{S}^{+}(\boldsymbol{q})=\sum_{\boldsymbol{k}}
+  C^{+}_{\boldsymbol{k}+\boldsymbol{q}\uparrow}
+  C_{\boldsymbol{k}\downarrow}
+\end{equation}
+\begin{equation}
+  \hat{S}^{-}(\boldsymbol{q})=\sum_{\boldsymbol{k}}
+  C^{+}_{\boldsymbol{k}+\boldsymbol{q}\downarrow}
+  C_{\boldsymbol{k}\uparrow}
+\end{equation}
+其中 $\hat{S}^{\pm}(\boldsymbol{q})$ 代表横向自旋密度起伏，用于描述金属中的自旋波.

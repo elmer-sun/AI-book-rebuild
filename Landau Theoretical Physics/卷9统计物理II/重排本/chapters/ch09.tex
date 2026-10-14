@@ -1,0 +1,943 @@
+% ============================================================
+%  第九卷 第九章  流体动力学涨落（§86–§91）
+%  底本：高教社中文第4版（王锡绂 译）；印刷页 339–360（PDF p350–p371）
+%  本文件以 \chapter{流体动力学涨落} 开头（OCR 正文缺章头，按书前目录补；
+%  章头页 PDF p350 = 印刷页 339）。
+%
+%  插图清单：本章无编号插图（全卷 18 幅插图至 p336 为止）。
+%  §91 之后原书为索引（PDF p372–p376），按任务书不排入，正文至 §91 末。
+%
+%  圈码脚注：正文圈码共 11 处，已全部按 300dpi 页脚转录为 \footnote（p350①、
+%  p352①、p354①、p356①②③、p358①、p359①、p364①、p365①、p366①；每页至多
+%  一个脚注按①编号，p356 有①②③三个）。p358① 为译者注（Pergamon1980 英文版
+%  增补习题的说明），照页面转录。
+%
+%  编号公式核算：OCR 带 tag 103 条 = §86 共 21 条（(86.1)–(86.21)）+ §86 习题
+%  (1)–(3) 3 条 + §87 共 10 条（(87.1)–(87.10)）+ §87 习题 (1)–(6) 6 条
+%  + §88 共 21 条（(88.1)–(88.21)）+ §89 共 25 条（(89.1)–(89.25)）
+%  + §90 共 6 条（(90.1)–(90.6)）+ §91 共 11 条（(91.1)–(91.11)）。
+%  逐节与页面核对：无重号、无缺号、无跳号。习题编号 (1)(2)… 按原书手写 \tag。
+%  文件头 \setcounter{section}{85} 保证单独编译时节号/公式号与原书一致
+%  （全书连排时 ch08b 已至 §85，该行幂等无害）。
+%
+%  记号约定（依页面 p350–p371）：
+%   - 密度涨落 δn̂ 排 \delta\hat n（OCR 之 \hat{8}、\hat{\otimes}、\mathbb{\widehat{s}}、
+%     \mathfrak{d}、\mathfrak{F}、\mathbf{8}、\S 等一切 δ 误识统一还原）；
+%   - \pmb 一律改 \bm；微分 \mathrm{d}；欧氏 e、虚数 i 排正体；
+%   - 形状因子记号：连乘式 n̄σ(…)、n̄σ̃(…) 左端之 σ/σ̃ 页面为粗体，照排 \bm\sigma、
+%     \tilde{\bm\sigma}；单独出现的 σ(ω,k)、σ(k)、σ̃(t,r)、ν(r)、α(ω,k)、χ(n)
+%     均为斜体（110dpi 页面上部分粗斜体判别有不确定性，以版面统一的斜体为准）；
+%   - (89.11) 速度纵/横分解：上标 (l)＝纵向（有势）、(t)＝横向（有旋），
+%     ∇·v^{(t)}=0、∇×v^{(l)}=0（页面 p363 核实）；
+%   - (89.22)、p366 正文之 γ_T 下标为大写斜体 T（页面核实，OCR 误作 τ）。
+%
+%  已修正的 OCR 错误（均对照 原书转换/pages/pNNN.png 逐条核实）：
+%   1. p350：OCR "与函数 σ̃(t,r) σ(t,r) 是时间t的偶函数"按页面理顺为
+%      "与函数 σ̃(t,r) 相反，函数 σ(t,r) 不是时间 t 的偶函数"；
+%      "此定义仍用记号 σ(t,r)①"之①OCR 误作 \circledast，按页面还原为①。
+%   2. p351：OCR "在 r≃0 我们写出"按页面补全为"在 r=0 的矩阵元). 计及此公式，
+%      我们写出"；无编号和式左端 ⟨m|δn̂(t,r₁|l⟩ 按页面理顺为
+%      ⟨m|δn̂(t₁,r₁)|l⟩⟨l|δn̂(t₂,r₂)|m⟩。
+%   3. p352：(86.16) OCR 乱码 "=0∼0" 按页面为"σ(ω,k)=0，当 ω<0, T=0."；
+%      (86.13)(86.14) 间正文 "E_ι=E_{ιm}+ħω_{lm}=E_{ιm}+ħω" 按页面为
+%      "E_l=E_m+ħω_{lm}=E_m+ħω"。
+%   4. p353：(86.18) 之 |r₁−r₂| OCR 窜为 \Vdash、\{ 乱码，按页面还原；
+%      无编号式 n̄σ̃(ω,r)=(δn(r₁)δn(r₂))_ω 之 δn 无帽（页面如此）。
+%   5. p353 习题：OCR "在同种原子组成的液体"按页面为"在同样原子组成的液体"；
+%      句末噪声"22"删除（页面无）。
+%   6. p354：终态归一"成为 p′/2π 的 δ 函数"OCR 误作 p/2π，按页面为 p′/2π；
+%      §87 首句"关系——即求和规则."OCR 作单字线"关系—即求和规则"，按页面
+%      补足破折号与句号；OCR 窜行"算符nk由公式 n̂_k n̂̇_⋆ n̂_k (86.9)定义"
+%      按页面理顺为"算符 n̂_k 由公式(86.9)定义"。
+%   7. p355：∂σ/∂t=(1/2N)⟨…⟩ 式中 δn̂ 上之时间导数点号 OCR 丢失（两项同形），
+%      按推导及(87.1)补为 ⟨δn̂̇_k(t₁)δn̂_{−k}(t₂) − δn̂_k(t₁)δn̂̇_{−k}(t₂)⟩
+%      （110dpi 点号过小难以分辨，推导唯一确定）。
+%   8. p357：习题1 解"积分归结为对极点的留数"OCR 脱"极点"二字，按页面补；
+%      习题2（p358）OCR 脱首行题文"在玻色超流体中凝聚体波函数有涨落，试求在
+%      大距离上此涨落关联函数的极限形式"，按页面 p358 补全。
+%   9. p357–358：ν(r) 积分式指数页面印作 e^{ik·r}（一维积分照排）；ν∝T⁴ 与
+%      ν∝T⁷ 之指数按页面为 4 与 7（OCR 误作 T^τ）。
+%  10. p358：G(r)=⟨δΞ(0)δΞ(r)⟩ 之 Ξ OCR 窜为 σ，按页面还原为 \Xi；
+%      "相差无几"OCR 窜为"相差无 n"；"这里 ζ 是恰当临界指数"OCR 作"里 ζ 是怡
+%      临界指数"；r_c 上标按页面为 ζ（OCR 误作 ξ）；(T_λ−T) 指数 2β−νζ 按页面。
+%  11. p359：OCR "实现涨落所需的最小功Rin的可 R_min 加性"按页面理顺为
+%      "实现涨落所需的最小功 R_min 的可加性"；"把物体体积划成…避开这个非本质
+%      的困难"之 ΔV 噪声删除。
+%  12. p360–361：(88.12) OCR 乱码"作为 θ̊(…)…"按页面理顺为"作为 ẋ_a；于是
+%      s_{ik} 和 g 便是量 y_a："；(88.13)(88.15)(88.17) 之 γ_ab、γ_ik=κT²δ_ik/ΔV
+%      按页面（OCR 之 \dot\gamma 为 γ）。
+%  13. p364：OCR 整行乱码"(If M)ν=η/ρ≈…HF…"按页面还原为"(此处 ν=η/ρ 是运动学
+%      粘度. 对它进行一侧傅里叶变换后，我们得到"；(89.10) 之 κ OCR 误作 k；
+%      (89.14) 系数为 (ζ+4η/3)（OCR 作 4/3η，同页 (89.20) 后按页面统一）。
+%  14. p365：(89.21)(89.23) 之 (∂T/∂P)_s² 下标 s 按页面（OCR 脱 s）；
+%      (89.23) 末尾 OCR 之杂逗号删除；"用来表达 ∂δs/∂t"OCR 乱码按页面还原；
+%      "此时在公式(3)中重要的是含有 ħ"OCR 脱"要"字之半，按页面理顺。
+%  15. p366：OCR 脱习题2 题文首行，按页面补全（见第 8 条）；p365–366 两处圈码
+%      ①（"等压涨落①"、"uγ①"）OCR 均脱，按页面 p365、p366 补回。
+%  16. p368：(90.5) lim 之下限 k→0 OCR 乱码"lim_{1 0}"按页面还原；
+%      (А. А. Абрикосов, И. М. Халатников, 1958) OCR 作"(. . , . . , 1958)"，
+%      按页面 p370 以西里尔文还原。
+%  17. p370：(91.10) 之后 OCR 脱一句"这项是费米液体能谱零声分支对形状因子必须
+%      提供的贡献；它完全类似于声子"（接"对玻色液体的形状因子所做的贡献(87.4)."），
+%      按页面补全。
+%  18. 全章：OCR "I M" "Pines, P. Noziéres" 等拉丁人名按页面核为
+%      (D. Pines, P. Noziéres, 1958)、(R. P. Feynman, 1954)、(M. S. Green, 1954)、
+%      (H. Mori, 1958)、(G. Placzek, 1952)、(P. C. Hohenberg, P. C. Martin, 1965)。
+%
+%  原书排印问题（照排并登记，供总校裁定）：
+%   a. (86.5)（p351）：左端页面印作"σ(ω,k) ≡ σ(ω,k)"，两个同形符号用 ≡ 相连
+%      （疑其一应为 σ̃ 或其一应为 σ̃(t,r) 的变换式记号），照排。
+%   b. (87.8)（p356）：右端积分页面印作 dω/2π；按 Kramers–Kronig 公式与(87.10)
+%      的量纲衔接应为 dω（多除 2π），照排。
+%   c. p355 ∂σ/∂t 式（见修正第 7 条）：中文版两项之导数点号印制过小近乎不见，
+%      本重排按推导排加点号。
+%   d. §89 习题1（p366）：(δn²)_{ωk}=2n̄k²D/(ω⁴+k⁴D²) 分母首项页面印作 ω⁴，
+%      对照同型式(89.25)（ω²+χ²k⁴）及扩散解的物理，疑应为 ω²，照排。
+%   e. (89.19)（p364–365）"时，出现熵的等压涨落①"之①其脚注（p365"不等式
+%      χk²≪ku 在流体动力学范围总是满足的…"）内容对应的是(89.18)—(89.19)的
+%      条件，与"等压涨落"文句衔接略隔，页面如此，照排。
+%
+%  遗留问题：
+%   - (86.5) 的"≡"重号（见原书排印问题 a）请总校裁定；
+%   - p371 末尾 OCR 有两个无编号图片块（页面 p371 无图，系水印/噪声裁剪），
+%     已弃置未排。
+% ============================================================
+
+\chapter{流体动力学涨落}
+
+\setcounter{section}{85}
+
+\section{流体动力学形状因子}
+
+%%p350（印刷页339，章头页）
+
+第五卷§116所研究的密度涨落关联函数，是更一般函数的一种特殊情况，这种一般函数不仅将空间不同点而且将不同时刻的密度涨落联系起来. 在经典理论中，此函数定义成如下的平均值.
+\begin{equation}
+\bar{n}\bm{\sigma}(t;\bm{r}_{1},\bm{r}_{2})=\langle\delta\hat{n}(t_{1},\bm{r}_{1})\delta\hat{n}(t_{2},\bm{r}_{2})\rangle,
+\end{equation}
+%%p351（印刷页340）
+在此$t=t_{1}-t_{2}$；从定义$\sigma$中提出的因子$\bar{n}=\dfrac{N}{V}$是平均粒子数密度. 对于均匀的各向同性介质（液体，气体），函数(86.1)仅仅通过两点距离$r=|\bm{r}_{1}-\bm{r}_{2}|$而依赖于$\bm{r}_{1}$和$\bm{r}_{2}$，以后我们正是这样假定的.
+
+在量子理论中，类似的函数是用与时间有关的（海森伯）密度算符的对称化乘积来定义的：
+\begin{equation}
+\bar{n}\tilde{\bm{\sigma}}(t,r)=\frac{1}{2}\bigl\langle\delta\hat{n}(t_{1},\bm{r}_{1})\delta\hat{n}(t_{2},\bm{r}_{2})+\delta\hat{n}(t_{2},\bm{r}_{2})\delta\hat{n}(t_{1},\bm{r}_{1})\bigr\rangle.
+\end{equation}
+［与第五卷中按(118.4)定义的一般方法相对应］. 然而，在此情况下，非对称的定义
+\begin{equation}
+\bar{n}\bm{\sigma}(t,r)=\bigl\langle\delta\hat{n}(t_{1},\bm{r}_{1})\delta\hat{n}(t_{2},\bm{r}_{2})\bigr\rangle
+\end{equation}
+更有某些优越性，此定义仍用记号$\bm{\sigma}(t,r)$\footnote{恰恰这个函数是直接的观测量，例如，在液体中的中子非弹性散射——见习题.}. 与函数$\tilde{\bm{\sigma}}(t,r)$相反，函数$\bm{\sigma}(t,r)$不是时间$t$的偶函数；显然，
+\begin{equation}
+\tilde{\bm{\sigma}}(t,r)=\frac{1}{2}\bigl[\bm{\sigma}(t,r)+\bm{\sigma}(-t,r)\bigr].
+\end{equation}
+
+函数$\bm{\sigma}(t,r)$按时间和坐标的傅里叶变换式
+\begin{equation}
+\sigma(\omega,\bm{k})\equiv\sigma(\omega,\bm{k})=\iint_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\sigma(t,\bm{r})\,\mathrm{d}t\,\mathrm{d}^{3}x
+\end{equation}
+称为介质的动力学形状因子. 由于函数$\sigma(t,\bm{r})$的各向同性，它只依赖于波矢的绝对值. 从(86.4)得出，$\tilde{\bm{\sigma}}(t,r)$的傅里叶变换式为
+\begin{equation}
+\tilde{\sigma}(\omega,\bm{k})=\frac{1}{2}\bigl[\sigma(\omega,\bm{k})+\sigma(-\omega,\bm{k})\bigr].
+\end{equation}
+
+液体密度涨落纯空间的关联由$t=0$时的函数(86.1)定义：$\bm{\sigma}(r)=\bm{\sigma}(t=0,r)=\tilde{\bm{\sigma}}(t=0,r)$. 此函数与第五卷§116中引入（并在本卷§83中利用过）的函数$\nu(r)$以$\bm{\sigma}(r)=\nu(r)+\delta(\bm{r})$相联系；它们的傅里叶变换式为$\sigma(\bm{k})=\nu(\bm{k})+1$. 函数$\sigma(\bm{k})$或$\nu(\bm{k})$称为液体的静力学形状因子. 函数$\sigma(\omega,\bm{k})$与$\sigma(\bm{k})$之间以积分关系
+\begin{equation}
+\sigma(\bm{k})=\int_{-\infty}^{\infty}\sigma(\omega,\bm{k})\,\mathrm{e}^{-\mathrm{i}\omega t}\frac{\mathrm{d}\omega}{2\pi}\bigg|_{t=0}=\int_{-\infty}^{\infty}\sigma(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}
+\end{equation}
+相联系.
+
+薛定谔密度算符（不依赖时间）由对介质中所有粒子的求和式
+\begin{equation}
+\hat{n}(\bm{r})=\sum_{a}\delta(\bm{r}-\bm{r}_{a})
+\end{equation}
+给出；粒子的坐标$\bm{r}_{a}$起着参数的作用［对比(24.4)］. 今后我们需要此算符对坐标的傅里叶展开的分量
+\begin{equation}
+\hat{n}_{\bm{k}}=\int\hat{n}(\bm{r})\,\mathrm{e}^{-\mathrm{i}\bm{k}\cdot\bm{r}}\,\mathrm{d}^{3}x=\sum_{a}\mathrm{e}^{-\mathrm{i}\bm{k}\cdot\bm{r}_{a}}.
+\end{equation}
+按一般规则过渡到与时间有关的（海森伯）算符
+\begin{equation}
+\hat{n}(t,\bm{r})=\exp(\mathrm{i}\hat{H}t/\hbar)\,\hat{n}(\bm{r})\exp(-\mathrm{i}\hat{H}t/\hbar).
+\end{equation}
+此处$\hat{H}$是系统的哈密顿量，这个算符可以用(86.8—86.9)式表达，其中以$\hat{\bm{r}}_{a}(t)$取代$\bm{r}_{a}$. $\hat{\bm{r}}_{a}(t)$是粒子坐标的海森伯算符.
+
+根据统计学的基本原理，平均$\langle\cdots\rangle$可以有不同的解释，这要看结果必须用什么热力学变量来表达. 例如，如果函数$\sigma$是在系统的总能量和粒子数一定时确定的，那么，平均将按给定的定态（$m$态）进行，亦即取相应的对角矩阵元. 对于均匀系（液体），算符$\delta\hat{n}(t,\bm{r})$的矩阵元对时间和坐标的依赖关系由下式给出，
+\begin{equation}
+\langle m|\delta\hat{n}(t,\bm{r})|l\rangle=\langle m|\delta\hat{n}(0)|l\rangle\exp[\mathrm{i}\omega_{ml}t-\bm{k}_{ml}\cdot\bm{r}].
+\end{equation}
+完全与(8.4)类似（右侧为薛定谔算符$\delta\hat{n}(\bm{r})$在$\bm{r}=0$的矩阵元）. 计及此公式，我们写出
+\begin{equation*}
+\begin{aligned}
+\bar{n}\bm{\sigma}(t,r)&=\sum_{l}\langle m|\delta\hat{n}(t_{1},\bm{r}_{1})|l\rangle\langle l|\delta\hat{n}(t_{2},\bm{r}_{2})|m\rangle=\\
+&=\sum_{l}\bigl|\langle m|\delta\hat{n}(0)|l\rangle\bigr|^{2}\exp\bigl[\mathrm{i}(\omega_{ml}t-\bm{k}_{ml}\cdot\bm{r})\bigr].
+\end{aligned}
+\end{equation*}
+%%p352（印刷页341）
+此函数的傅里叶变换式为
+\begin{equation}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=(2\pi)^{4}\sum_{l}\bigl|\langle m|\delta\hat{n}(0)|l\rangle\bigr|^{2}\delta(\omega-\omega_{lm})\,\delta(\bm{k}-\bm{k}_{lm}).
+\end{equation}
+
+这些式中的求和，是在给定粒子数$(N_{m})$情况下按系统的全部状态进行的（因为算符$\delta\hat{n}(0)$不改变此粒子数）.
+
+如果我们希望通过温度和液体的化学势来表示形状因子，那么公式(86.12)还应当按吉布斯分布进行平均：
+\begin{equation}
+\begin{split}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=(2\pi)^{4}\sum_{l,m}\exp\biggl(\frac{\varOmega-E_{m}-\mu N_{m}}{T}\biggr)\cdot{}\\
+\cdot\ \bigl|\langle m|\delta\hat{n}(0)|l\rangle\bigr|^{2}\cdot\delta(\omega-\omega_{lm})\,\delta(\bm{k}-\bm{k}_{lm}).
+\end{split}
+\end{equation}
+（此时在一切求和项中$N_{l}=N_{m}$）. 再对$\bm{\sigma}(-\omega,-\bm{k})\equiv\bm{\sigma}(-\omega,\bm{k})$写出同样的公式，互换式中的求和指标$l$和$m$，并在指数因子中代入$E_{l}=E_{m}+\hbar\omega_{lm}=E_{m}+\hbar\omega$（后面的等式是存在$\delta$函数的结果），我们得出
+\begin{equation}
+\bm{\sigma}(-\omega,\bm{k})=\bm{\sigma}(\omega,\bm{k})\,\mathrm{e}^{-\hbar\omega/T}.
+\end{equation}
+然后，根据(86.6)，
+\begin{equation}
+\tilde{\bm{\sigma}}(\omega,\bm{k})=\frac{1}{2}\bigl(1+\mathrm{e}^{-\hbar\omega/T}\bigr)\bm{\sigma}(\omega,\bm{k}).
+\end{equation}
+
+注意到，从(86.13)（或(86.12)）得出，对于$\bm{\sigma}$的一切宗量的值，函数$\sigma(\omega,\bm{k})\geqslant0$. 又从关系式(86.14)得出，在零温度时
+\begin{equation}
+\sigma(\omega,\bm{k})=0,\quad\text{当}\ \omega<0,\ T=0.
+\end{equation}
+
+在宏观极限下（比值$N/V$给定时$N$和$V\to\infty$），(86.13)中的各$\delta$函数的“栅栏”变得平滑而成为连续函数，但在对应于不衰减的元激发$\omega=\omega(\bm{k})$处仍保留着$\sigma(\omega,\bm{k})$中的$\delta$函数峰（通过类似于§8的讨论就会得出）. 然而，仅仅对于粒子数不变的激发才能发生这样的峰\footnote{例如，在费米液体中，$\sigma(\omega,\bm{k})$ 在 $\omega=ku_{0}$ 处（$u_{0}$ 是零声的速度）有 $\delta$ 函数的奇异性. 但对应于能谱的费米支没有这种奇异性，见§91.}.
+
+我们来证明，液体的形状因子怎样才能和涨落耗散定理一般公式中所表述的量相联系（D.~Pines, P.~Nozi\'eres, 1958）.
+
+设在液体每个粒子上都作用某一外场，给粒子以势能$U(t,\bm{r})$，则作用在液体整体上的微扰算符是
+\begin{equation}
+\hat{V}(t)=\int\hat{n}(t,\bm{r})\,U(t,\bm{r})\,\mathrm{d}^{3}x,
+\end{equation}
+%%p353（印刷页342）
+将此式中所有的量都对时间作傅里叶展开，我们将系统的响应（即微扰引起的密度变化的平均值）表为如下形式
+\begin{equation}
+\delta\bar{n}(\omega,\bm{r}_{1})=-\int\alpha(\omega,|\bm{r}_{1}-\bm{r}_{2}|)\,U(\omega,\bm{r}_{2})\,\mathrm{d}^{3}x_{2}
+\end{equation}
+此处函数$\alpha(\omega,r)$起着广义感应率的作用. 关联函数$\tilde{\bm{\sigma}}(t,r)$对时间的傅里叶分量$\tilde{\bm{\sigma}}(\omega,r)$用涨落—耗散定理中的表述方法是
+\begin{equation*}
+\bar{n}\tilde{\bm{\sigma}}(\omega,r)=\bigl(\delta n(\bm{r}_{1})\,\delta n(\bm{r}_{2})\bigr)_{\omega},\quad r=\bm{r}_{1}-\bm{r}_{2}.
+\end{equation*}
+根据这个定理，此函数通过广义感应率可用下列公式表述
+\begin{equation}
+\bar{n}\tilde{\bm{\sigma}}(\omega,r)=\hbar\coth\frac{\hbar\omega}{2T}\,\mathrm{Im}\,\alpha(\omega,r).
+\end{equation}
+通过$\alpha(\omega,\bm{k})$也可用此式将对坐标的傅里叶分量$\tilde{\bm{\sigma}}(\omega,\bm{k})$表述出来，然后，根据(86.15)，我们得到动力学形状因子：
+\begin{equation}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=\frac{2\hbar}{1-\mathrm{e}^{-\hbar\omega/T}}\,\mathrm{Im}\,\alpha(\omega,\bm{k}).
+\end{equation}
+
+这些公式的重要性，首先是由于它们将动力学形状因子与已知的（对变量$\omega$的）一般解析性质联系起来；对于函数$\alpha(\omega,\bm{k})$的这些性质阐述于第五卷§123中. 这些性质也允许应用普遍公式［对比(75.11)］来计算形状因子. 根据此公式
+\begin{equation}
+\alpha(\omega,\bm{k})=\frac{\mathrm{i}}{\hbar}\iint_{0}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\bigl\langle\hat{n}(t,\bm{r})\hat{n}(0,0)-\hat{n}(0,0)\hat{n}(t,\bm{r})\bigr\rangle\,\mathrm{d}t\,\mathrm{d}^{3}x.
+\end{equation}
+
+如用$\psi$算符表征密度算符（$\hat{n}=\hat{\varPsi}^{+}\hat{\varPsi}$），可以将此式写成双粒子格林函数的形式，计算后者要用到图技术.
+
+\begin{xiti}
+
+{\sloppy 试通过动力学形状因子来表征慢中子在同样原子组成的液体中进行非弹性散射的概率\allowbreak（G.~Placzek, 1952）.\par}
+
+{\heiti 解：}根据赝势方法（见第三卷§151），慢中子散射可以描述成以势能
+\begin{equation}\tag{1}
+U(\bm{r})=\frac{2\pi\hbar^{2}}{M}\,a\,\hat{n}(\bm{r})
+\end{equation}
+相互作用的结果. 此处$\hat{n}(\bm{r})$是密度算符(86.8)；$M$是原子和中子的折合质量；$a$是慢中子在单个原子上的散射长度（即散射幅极限值的反号）. 液体加中子的系统在某区间$\mathrm{d}\nu_{f}$内从某初态$(i)$到终态$(f)$的跃迁概率是
+\begin{equation}\tag{2}
+\mathrm{d}w_{fi}=\biggl|\frac{1}{\hbar}\int_{-\infty}^{\infty}U_{fi}(t)\,\mathrm{d}t\biggr|^{2}\mathrm{d}\nu_{f}
+\end{equation}
+%%p354（印刷页343）
+［见第三卷(40,5)］；对于(1)中的非对角矩阵元$U_{fi}$可以写成$\delta\hat{n}$来代替$\hat{n}$. 中子（动量$\bm{p}$和能量$\varepsilon$）的初态波函数归一成在体积$V$中有一个粒子，而终态（动量$\bm{p}'$和能量$\varepsilon'$）波函数归一成为$\bm{p}'/2\pi$的$\delta$函数. 则$\mathrm{d}\nu_{f}=\mathrm{d}^{3}p'/(2\pi\hbar)^{3}$，而微扰矩阵元为
+\begin{equation*}
+U_{fi}(t)=\frac{2\pi\hbar^{2}a}{M\sqrt{V}}\int\delta n_{fi}(t,\bm{r})\,\mathrm{e}^{\mathrm{i}(\bm{k}\cdot\bm{r}-\omega t)}\,\mathrm{d}^{3}x,
+\end{equation*}
+此处$\hbar\bm{k}=\bm{p}-\bm{p}'$，$\hbar\omega=\varepsilon-\varepsilon'$，而$\delta n_{fi}(t,\bm{r})$是对于液体波函数的矩阵元. 将此式代入$\mathrm{d}w_{fi}$，将跃迁概率按液体的一切可能的终态求和. 此时积分的模平方可以写成双重积分的形式（按$\mathrm{d}t\,\mathrm{d}t'\,\mathrm{d}^{3}x\,\mathrm{d}^{3}x'$）并注意到
+\begin{equation*}
+\begin{aligned}
+\sum_{f}\delta n_{fi}(t,\bm{r})\,\delta n_{fi}(t',\bm{r}')^{*}&=\sum_{f}\delta n_{if}(t',\bm{r}')\,\delta n_{fi}(t,\bm{r})=\\
+&=\bigl\langle i|\delta\hat{n}(t',\bm{r}')\,\delta\hat{n}(t,\bm{r})|i\bigr\rangle=\bar{n}\bm{\sigma}(t'-t,\bm{r}'-\bm{r})
+\end{aligned}
+\end{equation*}
+（此时$\bm{\sigma}$表为$i$态液体总能量的函数）. 按$\mathrm{d}(t'-t)\,\mathrm{d}^{3}(x'-x)$积分给出$\bm{\sigma}(\omega,\bm{k})$，还有一个积分（比如对$\mathrm{d}t\,\mathrm{d}^{3}x$）恰好给出体积$V$和总的时间间隔$t$. 去掉因子$t$之后，结果得到单位时间的散射概率
+\begin{equation}\tag{3}
+w=\frac{4\pi^{2}\hbar^{2}}{M^{2}}\,\bar{n}a^{2}\,\bm{\sigma}(\omega,\bm{k})\,\frac{\mathrm{d}^{3}p'}{(2\pi\hbar)^{3}}.
+\end{equation}
+当然，再按吉布斯分布平均——亦即当形状因子通过温度来表征时，此公式仍保持其正确性.
+
+我们指出，形状因子的性质(86.16)能够应用到中子散射，表明这样的事实：在$T=0$时液体仅能获得能量，而不能放出能量. 关系式(86.14)代表细致平衡原理，因为转移能量和动量$(\omega,\bm{k})$和$(-\omega,-\bm{k})$的两个散射过程是互为逆的.
+
+\end{xiti}
+
+\section{形状因子的求和规则}
+
+动力学形状因子满足一定的积分（按频率$\omega$）关系——即求和规则.
+
+其中一个规则的导出是基于算符$\hat{n}_{\bm{k}}(t)$和$\dot{\hat{n}}_{\bm{k}}(t)$的对易关系. 同一时刻海森伯算符的对易关系和薛定谔算符$\hat{n}_{\bm{k}}$和$\dot{\hat{n}}_{\bm{k}}$的对易关系是相同的. 算符$\hat{n}_{\bm{k}}$由公式(86.9)定义，并且所需的对易关系由下式给出
+\begin{equation}
+\dot{\hat{n}}_{\bm{k}}\hat{n}^{+}_{\bm{k}}-\hat{n}^{+}_{\bm{k}}\dot{\hat{n}}_{\bm{k}}=-\frac{\mathrm{i}\hbar}{m}k^{2}N,
+\end{equation}
+此处$m$是液体粒子的质量\footnote{这个对易关系的计算与在第三卷§149 中为导出求和规则(149.5)所进行的计算一致；现在用液体总粒子数 $N$ 来代替电子数 $Z$.}.
+
+函数$\bm{\sigma}(t,r)$只按坐标展开的傅里叶分量具有表达式
+\begin{equation*}
+\bar{n}\bm{\sigma}(t,\bm{k})=\int\mathrm{e}^{-\mathrm{i}\bm{k}\cdot(\bm{r}_{1}-\bm{r}_{2})}\bigl\langle\delta\hat{n}(t_{1},\bm{r}_{1})\,\delta\hat{n}(t_{2},\bm{r}_{2})\bigr\rangle\,\mathrm{d}^{3}(x_{1}-x_{2}),
+\end{equation*}
+%%p355（印刷页344）
+由此出发，鉴于被积式仅依赖于$\bm{r}_{1}-\bm{r}_{2}$，我们用对$\mathrm{d}^{3}x_{1}\,\mathrm{d}^{3}x_{2}/V$的积分代替对$\mathrm{d}^{3}(x_{1}-x_{2})$的积分；在平均号内进行积分. 我们得出
+\begin{equation}
+\bm{\sigma}(t,\bm{k})=\frac{1}{N}\bigl\langle\delta\hat{n}_{\bm{k}}(t_{1})\,\delta\hat{n}_{-\bm{k}}(t_{2})\bigr\rangle.
+\end{equation}
+
+我们计算$t=0$时的微商值$\dfrac{\mathrm{d}\bm{\sigma}(t,\bm{k})}{\mathrm{d}t}$. 因为$\bm{\sigma}(t,\bm{k})$仅依赖于差$t=t_{1}-t_{2}$，所以
+\begin{equation*}
+\frac{\partial\bm{\sigma}(t,\bm{k})}{\partial t}=\frac{1}{2}\biggl(\frac{\partial\bm{\sigma}}{\partial t_{1}}-\frac{\partial\bm{\sigma}}{\partial t_{2}}\biggr),
+\end{equation*}
+因而将(87.2)代入此式后得
+\begin{equation*}
+\frac{\partial\bm{\sigma}(t,\bm{k})}{\partial t}=\frac{1}{2N}\bigl\langle\delta\dot{\hat{n}}_{\bm{k}}(t_{1})\,\delta\hat{n}_{-\bm{k}}(t_{2})-\delta\hat{n}_{\bm{k}}(t_{1})\,\delta\dot{\hat{n}}_{-\bm{k}}(t_{2})\bigr\rangle.
+\end{equation*}
+此式两项中的每一项都仅依赖于矢量$\bm{k}$的绝对值；据此在第二项中以$-\bm{k}$代替$\bm{k}$. 然后取$t_{1}=t_{2}$，并考虑到$\hat{n}_{-\bm{k}}=\hat{n}^{+}_{\bm{k}}$，我们发现角括号中的两项差与(87.1)中的对易关系一致. 这样一来，我们得到
+\begin{equation*}
+\frac{\partial\bm{\sigma}(t,\bm{k})}{\partial t}\bigg|_{t\to0}=-\frac{\mathrm{i}\hbar}{2m}k^{2}.
+\end{equation*}
+另一方面，将$\bm{\sigma}(t,\bm{k})$表为对频率的傅里叶积分，我们得出
+\begin{equation*}
+\frac{\partial\bm{\sigma}(t,\bm{k})}{\partial t}\bigg|_{t=0}=\frac{\partial}{\partial t}\int_{-\infty}^{\infty}\mathrm{e}^{-\mathrm{i}\omega t}\,\bm{\sigma}(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}\bigg|_{t=0}=-\mathrm{i}\int_{-\infty}^{\infty}\omega\,\bm{\sigma}(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}.
+\end{equation*}
+对比两个微商表达式，便得出待求关系式
+\begin{equation}
+\int_{-\infty}^{\infty}\omega\,\bm{\sigma}(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}=\frac{\hbar k^{2}}{2m}
+\end{equation}
+（G.~Placzek, 1952）. 我们强调指出，对于任何$k$此式都是正确的. 为了将这关系式过渡到经典极限（$\hbar\to0$），应当将它左边的积分写成
+\begin{equation*}
+\int_{0}^{\infty}\omega\bigl[\bm{\sigma}(\omega,\bm{k})-\bm{\sigma}(-\omega,\bm{k})\bigr]\frac{\mathrm{d}\omega}{2\pi},
+\end{equation*}
+根据(86.14)，其中再代入
+\begin{equation*}
+\bm{\sigma}(\omega,\bm{k})-\bm{\sigma}(-\omega,\bm{k})\approx\frac{\hbar\omega}{T}\,\bm{\sigma}(\omega,\bm{k}).
+\end{equation*}
+然后等式两侧的$\hbar$因子便相消，于是留下
+\begin{equation*}
+\int_{0}^{\infty}\omega^{2}\,\bm{\sigma}(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}=T\frac{k^{2}}{2m}.
+\end{equation*}
+
+将公式(87.3)应用到$T=0$的玻色液体，并考察小$k$值的区域. 在$k\to0$时对积分的主要贡献来自形状因子$\sigma(\omega,\bm{k})$的$\delta$函数峰. 而后者在(86.13)中是由于
+%%p356（印刷页345）
+产生一个声子的跃迁而出现的（因为在液体基态没有声子，所以在$T=0$时不存在湮没一个声子的跃迁）. 这项的形式为$A\,\delta(\omega-uk)$. 此处$\hbar uk$是声子能量（$u$是声速）. 将此项作为$\sigma(\omega,\bm{k})$代入(87.3)，我们得到系数$A$，结果
+\begin{equation}
+\sigma(\omega,\bm{k})=\frac{\pi\hbar k}{mu}\,\delta(\omega-uk).
+\end{equation}
+
+按(86.7)积分此式，给出静力学形状因子
+\begin{equation}
+\sigma(\bm{k})=\frac{\hbar k}{2mu}
+\end{equation}
+（R.~P.~Feynman, 1954）\footnote{写成 $\sigma=\hbar^{2}k^{2}/2m\varepsilon(k)$ 形式[$\varepsilon(k)$ 是准粒子能量]的公式(87.5)，仅在 $k\to 0$ 时才是严格正确的. 在 $k$ 值增加时产生几个准粒子的跃迁，对 $\sigma(k)$ 的贡献起着越来越大的作用. 如果忽略这些贡献，可以认为，这个公式给出了形状因子与玻色液体中准粒子能量之间的关系. 并且当 $k\sim 1/a$ 时（$a$ 是液体中原子间的距离）$\sigma$ 具有极大值，这对应于曲线 $\varepsilon(k)$ 上“旋子”的极小值.}. 因为这个公式是关于$k$的小值区域的，所以它的傅里叶反演给出在大$r$时关联函数的渐近公式
+\begin{equation}
+\nu(r)=-\frac{\hbar}{2\pi^{2}mur^{4}}
+\end{equation}
+（为了检验这个公式，参阅330页注释中引用的积分）. 在$T=0$时公式(87.6)在任意大的距离都是正确的. 在低而有限的温度时，直至$r\sim\hbar u/T$的距离它都是对的，在此距离的涨落已经不再是纯量子的了. 在更大的距离上规律(87.6)为指数衰减律所代替（如果忽略范德瓦尔斯力的贡献，见§83）\footnote{关联函数(87.6)与取正值的理想玻色气体的相反（见第五卷§117），是负值（与粒子间的斥力相对应）. 与此有关，我们记得（§25），弱非理想玻色气体能谱仅在 $k\ll mu/\hbar$（并且 $\hbar/mu\gg a$）时才有声子型. 相应的距离 $r\sim\dfrac{1}{k}\gg\hbar/mu$，所以过渡到理想气体（$u\to 0$）时，公式(87.6)的应用范围推延到无限远.}.
+
+还有一个求和规则，可以从§86中建立的形状因子与某个广义感应率$\alpha(\omega,\bm{k})$的关系中得到. 这个关系由公式(86.20)给出，它在$T=0$时归结为（对$\omega>0$）
+\begin{equation}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=2\hbar\,\mathrm{Im}\,\alpha(\omega,\bm{k}).
+\end{equation}
+
+根据 Kramers--Kronig 公式［见第五卷(123,15)］，
+\begin{equation*}
+\mathrm{Re}\,\alpha(\omega,\bm{k})=\frac{1}{\pi}\,P\int_{-\infty}^{\infty}\frac{\mathrm{Im}\,\alpha(\omega',\bm{k})}{\omega'-\omega}\,\mathrm{d}\omega'.
+\end{equation*}
+在此，取$\omega=0$并计及$\alpha(0,\bm{k})$是实量\footnote{由广义感应率的一般性质可知 $\alpha(\omega=0,\bm{r})$ 是实的. 因此傅里叶分量 $\alpha(\omega=0,\bm{k})$ 的实数性可由 $\alpha(\omega,\bm{r})$ 对 $\bm{r}$ 是偶函数中得出.}，我们写出
+\begin{equation}
+\alpha(0,\bm{k})=\frac{2}{\pi}\int_{0}^{\infty}\frac{1}{\omega}\,\mathrm{Im}\,\alpha(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}
+\end{equation}
+%%p357（印刷页346）
+在$k\to0$的极限有下列关系
+\begin{equation}
+\alpha(0,\bm{k}\to0)=\biggl(\frac{\partial\bar{n}}{\partial\mu}\biggr)_{T=0}=\bar{n}\biggl(\frac{\partial\bar{n}}{\partial P}\biggr)_{T=0}.
+\end{equation}
+它的得出，是由于在空间做慢变的静弱场中发生$\mu+U=\mathrm{const}$的平衡条件. 所以施加外场等价于化学势变化$-U$. 因此，在极限$k\to0$时，从(86.18)我们有
+\begin{equation*}
+\delta\bar{n}=-\frac{\partial\bar{n}}{\partial\mu}\,U\approx-U\int\alpha(0,\bm{r}_{1}-\bm{r}_{2})\,\mathrm{d}^{3}(x_{1}-x_{2})=-U\alpha(0,\bm{k}=0),
+\end{equation*}
+由此得到(87.9).
+
+将得到的公式(87.7—87.9)汇集起来，我们便得到$T=0$时液体形状因子的如下求和规则：
+\begin{equation}
+\frac{1}{\pi\hbar}\int_{0}^{\infty}\sigma(\omega,k{\to}0)\,\frac{\mathrm{d}\omega}{\omega}=\frac{\partial\bar{n}}{\partial P}
+\end{equation}
+（D.~Pines, Ph.~Nozi\'eres, 1958）.
+
+\begin{xiti}
+
+1. 求出温度$T\ll T_{\lambda}$时，在$r\geqslant\hbar u/T$的距离上玻色液体的关联函数$\nu(r)$.
+
+{\heiti 解：}待求的关联函数，由$k\sim\dfrac{1}{r}\leqslant T/\hbar u\ll\dfrac{1}{a}$时的形状因子确定. 在此条件下液体的能谱是声子型的. 当$T\neq0$时在$\sigma(\omega,\bm{k})$中有对应于吸收声子的$\delta(\omega+ku)$项，同时还有放出声子的$\delta(\omega-ku)$项. 这些项的系数可借助于(86.14)和(87.3)来确定：
+\begin{equation}\tag{1}
+\sigma(\omega,\bm{k})=\frac{\pi\hbar k}{mu}\bigl[1-\mathrm{e}^{-\hbar ku/T}\bigr]^{-1}\bigl\{\delta(\omega-ku)+\mathrm{e}^{-\hbar ku/T}\,\delta(\omega+ku)\bigr\}.
+\end{equation}
+积分此式，我们得到
+\begin{equation}\tag{2}
+\sigma(\bm{k})=\frac{\hbar k}{2mu}\coth\frac{\hbar ku}{2T}.
+\end{equation}
+然后
+\begin{equation*}
+\nu(r)=\int\mathrm{e}^{\mathrm{i}\bm{k}\cdot\bm{r}}\,\sigma(\bm{k})\frac{\mathrm{d}^{3}k}{(2\pi)^{3}}=\frac{\hbar}{8\pi^{2}\mathrm{i}mur}\int_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}k\cdot r}k^{2}\coth\frac{\hbar ku}{2T}\,\mathrm{d}k.
+\end{equation*}
+在复数$k$的上半平面，用无限远的半圆封闭$\mathrm{d}k$的积分围道，积分归结为对极点的留数（分布在虚轴上）求和. 当$r\gg\hbar u/T$，积分的主要贡献来自于$\hbar ku/2T=\mathrm{i}\pi$处极点的留数：
+\begin{equation}\tag{3}
+\nu(r)=-\frac{2\pi T^{3}}{mu^{4}\hbar^{2}r}\exp\biggl(-\frac{2\pi T}{\hbar u}\,r\biggr).
+\end{equation}
+在$aT/\hbar u\ll1$的条件下，函数$\nu(r)$衰减的特征距离远大于原子间距离. 在此原子距离上与原子的直接作用有关的效应减弱了，此时在公式(3)中重要的是含有$\hbar$，所以，由它描述的关联具有量子性质. 我们指出，在推导中我们忽略了范德瓦尔斯力的贡献. 正如从§83的结果中得到的，此贡献具有幂的特征，因此在足够大的距离上就成为主要的了. 应该由(3)过渡到(83.16)的这些距离，决定于系数间的具体关系，但当温度足够低时总有公式(3)的适用区域. 因为在适用区域的边界，当$r\sim\hbar u/T$时，根据(3)，$\nu\propto T^{4}$，而根据(83.16)，$\nu\propto T^{7}$.
+%%p358（印刷页347）
+
+2. 在玻色超流体中凝聚体波函数有涨落，试求在大距离上此涨落关联函数的极限形式.\allowbreak（P.~C.~Hohenberg, P.~C.~Martin, 1965）\footnote{本题是 Pergamon1980 英文版增加的，我们将其加到中文版内。——译者注.}
+
+{\heiti 解：}在长波极限，最强的涨落属于凝聚体的波函数$\Phi$，因为此涨落只含有宏观超流运动的较小能量. 对液体（体积$V$并有给定的$T$和$\mu$）总热力学势$\Omega$的相应贡献为
+\begin{equation*}
+\delta\Omega=\int\frac{1}{2}\rho_{s}\,\bm{v}_{s}^{2}\,\mathrm{d}V=\frac{\hbar\rho_{s}}{2m^{2}}\int(\nabla\Phi)^{2}\,\mathrm{d}V.
+\end{equation*}
+将$\delta\Phi$表成傅里叶级数，
+\begin{equation*}
+\delta\Phi=\sum_{\bm{k}}\delta\Phi_{\bm{k}}\,\mathrm{e}^{\mathrm{i}\bm{k}\cdot\bm{r}},\qquad\delta\Phi_{-\bm{k}}=\delta\Phi^{*}_{\bm{k}},
+\end{equation*}
+我们得出
+\begin{equation*}
+\delta\Omega=\frac{\hbar^{2}}{2m^{2}}\rho_{s}V\sum_{\bm{k}}k^{2}\,|\delta\Phi_{\bm{k}}|^{2},
+\end{equation*}
+因此，均方涨落为
+\begin{equation}\tag{4}
+\bigl\langle|\delta\Phi_{\bm{k}}|^{2}\bigr\rangle=Tm^{2}/V\hbar^{2}\rho_{s}k^{2};
+\end{equation}
+与第五卷§146的计算完全类似. 此涨落对同时关联函数
+\begin{equation*}
+G(r)=\bigl\langle\delta\Xi(0)\,\delta\Xi(\bm{r})\bigr\rangle
+\end{equation*}
+的贡献是
+\begin{equation}\tag{5}
+G(r)\approx n_{0}\bigl\langle\delta\Phi(0)\,\delta\Phi(\bm{r})\bigr\rangle=Tn_{0}m^{2}/4\pi\hbar^{2}\rho_{s}r.
+\end{equation}
+因此$G(r)$在大距离上按幂的规律下降. 凝聚体密度涨落$n_{0}$的贡献，在这里按指数规律减小. 在$r\sim r_{c}$处此二贡献相差无几. 在距离$r\ll r_{c}$、温度于$\lambda$点附近，它们共同遵守下列规律：
+\begin{equation}\tag{6}
+G(r)\propto r^{-(1+\zeta)}.
+\end{equation}
+这里$\zeta$是恰当临界指数. 关联半径$r_{c}$可以定义为这样的距离，在其上能够用(6)代替渐近形(5)，
+\begin{equation*}
+r^{\zeta}_{c}\propto\rho_{s}/n_{0}.
+\end{equation*}
+借助于临界指数$\beta$和$\nu$［这些临界指数，根据(28.1)和(28.3)描述$n_{0}$和$r_{c}$对温度的依赖关系］，我们求出
+\begin{equation*}
+\rho_{s}\propto(T_{\lambda}-T)^{2\beta-\nu\zeta}.
+\end{equation*}
+%%p359（印刷页348）
+利用临界指数$\alpha,\beta,\nu,\zeta$间熟知的关系式（见第五卷§148，§149），我们容易看出，此结果与(28.4)是一致的.
+
+\end{xiti}
+
+\section{流体动力学涨落}
+
+在前几节，我们研究了在任意频率$\omega$和任意波矢$\bm{k}$时液体密度的涨落. 此时，在一般情况下，当然不能求出关联函数的具体形式. 然而，当涨落波长大于微观特征线度（液体中原子间距离，气体中的自由程）时，在流体动力学极限下就可作到这一点.
+
+在静止液体中，不需要特殊研究对密度、温度、速度等涨落的同时关联函数的计算：利用适于任何热平衡介质的通常热力学公式来描述这些涨落（经典的，即非量子极限）. 在空间不同点，涨落的同时关联在原子距离数量级的长度上传播（此时，我们忽略了弱的远程作用的范德瓦尔斯力）. 但是，此距离在流体动力学中是看做无限小的. 因此，在流体动力学极限下，不同地点的同时涨落是不相关联的. 形式上，这个论断可以从热力学量——实现涨落所需的最小功$R_{\mathrm{min}}$的可加性中得到. 因为涨落的概率正比于$\exp(-R_{\mathrm{min}}/T)$，所以将$R_{\mathrm{min}}$表为与各个物理无限小体积有关的各项之和的形式，我们便发现，这些体积中的涨落概率是相互独立的.
+
+根据这个独立性，可以立刻将热力学量在空间给定点的涨落均方值的著名公式（见第五卷§112），改写成关联函数公式的形式. 例如，根据体积$V$中温度涨落公式
+\begin{equation*}
+\bigl\langle(\delta T)^{2}\bigr\rangle=\frac{T^{2}}{\rho c_{v}V}
+\end{equation*}
+（$\rho$是密度；$c_{v}$是介质单位质量的热容量），首先写出
+\begin{equation*}
+\bigl\langle\delta T(\bm{r}_{a})\,\delta T(\bm{r}_{b})\bigr\rangle=\frac{T^{2}}{\rho c_{v}V_{a}}\,\delta_{ab},
+\end{equation*}
+此处涨落分属两个小体积$V_{a}$和$V_{b}$，然后当体积趋于零时，我们得到\footnote{此式以及气体情况下同时关联的以下公式，对于波长仅大于分子间距离，但不一定大于自由程的涨落是正确的. 但是，后一个条件，在流体动力学近似中对于不同时关联函数是不可缺少的（因为在气体中微扰传播的微观机制恰好由粒子的自由程所决定）.}
+\begin{equation}
+\bigl\langle\delta T(\bm{r}_{1})\,\delta T(\bm{r}_{2})\bigr\rangle=\frac{T^{2}}{\rho c_{v}}\,\delta(\bm{r}_{1}-\bm{r}_{2})
+\end{equation}
+%%p360（印刷页349）
+另外的热力学量的涨落，用类似的方法可以写出公式：
+\begin{equation}
+\bigl\langle\delta\rho(\bm{r}_{1})\,\delta\rho(\bm{r}_{2})\bigr\rangle=\rho T\biggl(\frac{\partial\rho}{\partial P}\biggr)_{T}\delta(\bm{r}_{1}-\bm{r}_{2}),
+\end{equation}
+\begin{equation}
+\begin{split}
+\bigl\langle\delta P(\bm{r}_{1})\,\delta P(\bm{r}_{2})\bigr\rangle&=\rho T\biggl(\frac{\partial P}{\partial\rho}\biggr)_{s}\delta(\bm{r}_{1}-\bm{r}_{2})=\\
+&=\rho Tu^{2}\,\delta(\bm{r}_{1}-\bm{r}_{2}),
+\end{split}
+\end{equation}
+\begin{equation}
+\bigl\langle\delta s(\bm{r}_{1})\,\delta s(\bm{r}_{2})\bigr\rangle=\frac{c_{p}}{\rho}\,\delta(\bm{r}_{1}-\bm{r}_{2}).
+\end{equation}
+（$P$是压强；$s$是介质单位质量的熵）；此时，一对量$\rho,T$的涨落是相互独立的（$P$，$s$也是如此）. 还可以写出液体宏观速度$\bm{v}$（平衡时等于零）的涨落公式：
+\begin{equation}
+\bigl\langle\delta v_{i}(\bm{r}_{1})\,\delta v_{k}(\bm{r}_{2})\bigr\rangle=\frac{T}{\rho}\,\delta_{ik}\,\delta(\bm{r}_{1}-\bm{r}_{2}).
+\end{equation}
+
+涨落的时间关联以及运动液体中的涨落是流体动力学中独特的问题. 这些问题的解决要求考虑液体中的耗散过程——粘滞性和热传导.
+
+流体动力学中建立涨落现象的普遍理论，归结为构造涨落量的“运动方程”. 在流体动力学方程中，用引入相应的附加项的方法，便可以做到这一点（Л.~Д.~朗道，Е.~М.~栗弗席兹，1957）.
+
+写成如下形式的流体动力学方程，
+\begin{equation}
+\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\,\bm{v})=0,
+\end{equation}
+\begin{equation}
+\rho\,\frac{\partial v_{i}}{\partial t}+\rho v_{k}\,\frac{\partial v_{i}}{\partial x_{k}}=-\frac{\partial P}{\partial x_{i}}+\frac{\partial{\sigma'}_{ik}}{\partial x_{k}},
+\end{equation}
+\begin{equation}
+\rho T\biggl(\frac{\partial s}{\partial t}+\bm{v}\nabla s\biggr)=\frac{1}{2}\,{\sigma'}_{ik}\biggl(\frac{\partial v_{i}}{\partial x_{k}}+\frac{\partial v_{k}}{\partial x_{i}}\biggr)-\nabla\cdot\bm{q}.
+\end{equation}
+
+对于应力张量${\sigma'}_{ik}$和热流矢量$\bm{q}$的形式，没有特定的要求，这些方程不过表示质量守恒、动量守恒和能量守恒而已. 因此，此形式的方程对任何运动，其中包括液体状态的涨落变化，都是正确的. 此时$\rho,P,\bm{v}$应理解为基本运动的量值$\rho_{0},P_{0},\bm{v}_{0},\cdots$与其涨落振荡$\delta\rho,\delta P,\delta\bm{v},\cdots$之和（当然，对后者的方程总可以线性化）.
+
+相应地将应力张量和热流通常的表达式与速度梯度及温度梯度联系起来. 在液体的涨落中，也会发生与上述梯度无关的局域自发应力和热流；用$s_{ik}$和$\bm{g}$表示它们并称之为“随机”量. 这样一来，我们写出
+\begin{equation}
+{\sigma'}_{ik}=\eta\biggl(\frac{\partial v_{i}}{\partial x_{k}}+\frac{\partial v_{k}}{\partial x_{i}}-\frac{2}{3}\,\delta_{ik}\nabla\cdot\bm{v}\biggr)+\zeta\,\delta_{ik}\nabla\cdot\bm{v}+s_{ik},
+\end{equation}
+\begin{equation}
+\bm{q}=-\kappa\nabla T+\bm{g}
+\end{equation}
+（$\eta,\zeta$是粘滞系数；$\kappa$是导热系数）.
+
+现在的问题是在定义$s_{ik}$和$\bm{g}$的关联函数时确定它们的性质. 为简单计，一切讨论都是对流体动力学非量子涨落的自然情况进行的；这意味着，假设涨落振荡频率满足条件$\hbar\omega\ll T$. 此时粘滞系数和导热系数将不认为是色散的，亦即不依赖于振荡频率.
+%%p361（印刷页350）
+
+在涨落的普遍理论中（第五卷§119—§122），是研究涨落量$x_{1},x_{2},\cdots$的离散序列，然而在此我们处理的是连续序列（液体每一点的$\rho,P,\cdots$）. 把物体体积划成小而有限的区域$\Delta V$，并在每一个区域内研究量的若干平均值，我们就能避开这个非本质的困难；在最后公式中再过渡到无限小体元.
+
+我们要把公式（88.9—88.10）作为准定态涨落普遍理论［见第五卷(122.20)］的方程
+\begin{equation}
+\dot{x}_{a}=-\sum_{b}\gamma_{ab}X_{b}+y_{a}
+\end{equation}
+来研究，此时选取每一区域$\Delta V$中的张量${\sigma'}_{ik}$和矢量$\bm{q}$的分量值，作为$\dot{x}_{a}$；于是$s_{ik}$和$\bm{g}$便是量$y_{a}$：
+\begin{equation}
+\begin{aligned}
+\dot{x}_{a}&\to{\sigma'}_{ik},\quad q_{i},\\
+y_{a}&\to s_{ik},\quad g_{i}.
+\end{aligned}
+\end{equation}
+热力学共轭量$X_{a}$的意义可用引入液体总熵$S$变化速度公式的方法来解释. 借助于方程（88.8—88.10），用普通方法（对比第六卷§49）我们得到
+\begin{equation}
+\dot{S}=\int\biggl\{\frac{{\sigma'}_{ik}}{2T}\biggl(\frac{\partial v_{i}}{\partial x_{k}}+\frac{\partial v_{k}}{\partial x_{i}}\biggr)-\frac{\bm{q}\cdot\nabla T}{T^{2}}\biggr\}\mathrm{d}V.
+\end{equation}
+按小区$\Delta V$求和来代替此积分，然后将其与公式
+\begin{equation*}
+\dot{S}=-\sum_{a}\dot{x}_{a}X_{a}
+\end{equation*}
+比较，我们得到
+\begin{equation}
+X_{a}\to-\frac{1}{2T}\biggl(\frac{\partial v_{i}}{\partial x_{k}}+\frac{\partial v_{k}}{\partial x_{i}}\biggr)\Delta V,\quad\frac{1}{T^{2}}\,\frac{\partial T}{\partial x_{i}}\,\Delta V.
+\end{equation}
+
+现在容易求出系数$\gamma_{ab}$，根据公式
+\begin{equation}
+\bigl\langle y_{a}(t_{1})\,y_{b}(t_{2})\bigr\rangle=(\gamma_{ab}+\gamma_{ba})\,\delta(t_{1}-t_{2})
+\end{equation}
+［见第五卷(122.21a)］，这些系数便可直接确定待求的关联.
+
+我们首先注意到，在公式（88.9—88.10）中没有${\sigma'}_{ik}$与温度梯度相联系的项，也没有$\bm{q}$与速度梯度相联系的项. 这就意味着相应的系数$\gamma_{ab}=0$，因而根据(88.15)有
+\begin{equation}
+\bigl\langle s_{ik}(t_{1},\bm{r}_{1})\,g_{l}(t_{2},\bm{r}_{2})\bigr\rangle=0,
+\end{equation}
+即$s_{ik}$和$\bm{g}$的值彼此完全不关联.
+
+其次，如这些量取自不同的小区$\Delta V$，那么联系$q_{i}$和值$(\Delta V/T^{2})\cdot\partial T/\partial x_{i}$的系数等于零，如果它们取自同一小区，那么等于$\gamma_{ik}=\kappa T^{2}\delta_{ik}/\Delta V$，根据公式(88.15)用这些$\gamma_{ab}$值，过渡到$\Delta V\to0$的极限，我们得到
+\begin{equation}
+\bigl\langle g_{i}(t_{1},\bm{r}_{1})\,g_{k}(t_{2},\bm{r}_{2})\bigr\rangle=2\kappa T^{2}\,\delta_{ik}\,\delta(\bm{r}_{1}-\bm{r}_{2})\,\delta(t_{1}-t_{2}).
+\end{equation}
+
+用类似的方法，可得出关于随机应力张量的关联函数公式
+\begin{equation}
+\begin{split}
+\bigl\langle s_{ik}(t_{1},\bm{r}_{1})\,s_{lm}(t_{2},\bm{r}_{2})\bigr\rangle=\\
+=2T\biggl[\eta\bigl(\delta_{il}\delta_{km}+\delta_{im}\delta_{kl}\bigr)+\biggl(\zeta-\frac{2\eta}{3}\biggr)\delta_{ik}\delta_{lm}\biggr]\delta(\bm{r}_{1}-\bm{r}_{2})\,\delta(t_{1}-t_{2}).
+\end{split}
+\end{equation}
+%%p362（印刷页351）
+公式（88.16—88.18）原则上解决了所提出的在任何具体情况下计算流体动力学涨落的问题. 解决问题的过程是这样：将$s_{ik}$和$\bm{g}$看成是坐标和时间的给定函数，如考虑到必要的流体动力学边界条件，我们便形式地对于量$\delta\rho,\delta\bm{v},\cdots$求解已线性化的方程（88.6—88.8）. 结果我们得到的这些量，是表达成$s_{ik}$和$\bm{g}$的某些线性泛函的形式. 相应的，$\delta\rho,\delta\bm{v},\cdots$的任何平方量，均可通过$s_{ik},\bm{g}$的平方泛函来表征. 然后它们的平均值便用公式（88.16—88.18）来计算，因而在解答中不再出现辅助量$s_{ik},\bm{g}$.
+
+我们再将公式（88.16—88.18）写出对频率的傅里叶分量式，并可立刻将此写成量子涨落情况的推广形式. 根据涨落—耗散定理的一般规则，用引入附加因子$\dfrac{\hbar\omega}{2T}\coth\dfrac{\hbar\omega}{2T}$（在经典极限$\hbar\omega\ll T$下变为1）的方法，即可完成此推广. 当粘滞性和热传导有色散的情况下，量$\eta,\zeta,\kappa$是频率的复函数；此时在涨落的公式中$\eta,\zeta,\kappa$代之以这些函数的实部：
+\begin{equation}
+\bigl(s^{(1)}_{ik}\,g^{(2)}_{l}\bigr)_{\omega}=0
+\end{equation}
+\begin{equation}
+\bigl(g^{(1)}_{i}\,g^{(2)}_{k}\bigr)_{\omega}=\delta_{ik}\,\delta(\bm{r}_{1}-\bm{r}_{2})\,\hbar\omega T\coth\frac{\hbar\omega}{2T}\cdot\mathrm{Re}\,\kappa(\omega),
+\end{equation}
+\begin{equation}
+\begin{split}
+\bigl(s^{(1)}_{ik}\,s^{(2)}_{lm}\bigr)_{\omega}=\hbar\omega\,\delta(\bm{r}_{1}-\bm{r}_{2})\coth\frac{\hbar\omega}{2T}\times\\
+\times\biggl[\biggl(\delta_{il}\delta_{km}+\delta_{im}\delta_{kl}-\frac{2}{3}\,\delta_{ik}\delta_{lm}\biggr)\mathrm{Re}\,\eta(\omega)+\delta_{ik}\delta_{lm}\,\mathrm{Re}\,\zeta(\omega)\biggr].
+\end{split}
+\end{equation}
+
+\section{无限介质中的流体动力学涨落}
+
+这一节我们研究静止的无限液体中的流体动力学涨落. 这个课题当然可用上节讲述的方法解决. 然而，我们在此用另外方法做此问题，以演示求解流体动力学涨落课题可以任选一种方法.
+
+这个方法，是在引入随机力以前的早期阶段，便利用准定态涨落的一般理论. 我们回忆起与此有关的一般公式（见第五卷§122）.
+
+设
+\begin{equation}
+\dot{x}_{a}=-\sum_{b}\lambda_{ab}x_{b}
+\end{equation}
+是描述系统非平衡态（于平衡态全部$x_{a}=0$）的一组量$x_{a}(t)$的宏观“运动方程”，如果量$x_{a}$大于它们的平均涨落（但同时又是足够小，以致允许将运动方程线性化），则可断定，涨落关联函数满足（在$t>0$时）同一组方程
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}\bigl\langle x_{a}(t)\,x_{c}(0)\bigr\rangle=-\sum_{b}\lambda_{ab}\bigl\langle x_{b}(t)\,x_{c}(0)\bigr\rangle,\quad t>0.
+\end{equation}
+
+%%p363（印刷页352）
+下列等式
+\begin{equation}
+\bigl[\bigl\langle x_{a}(t)\,x_{c}(0)\bigr\rangle\bigr]_{t=+0}=\langle x_{a}\,x_{c}\rangle
+\end{equation}
+可做为这些方程的起始条件，此处$\langle x_{a}\,x_{c}\rangle$假设为已知的同时关联函数. 关联函数按规则
+\begin{equation}
+\bigl\langle x_{a}(t)\,x_{c}(0)\bigr\rangle=\pm\bigl\langle x_{a}(-t)\,x_{c}(0)\bigr\rangle
+\end{equation}
+延拓到$t<0$的区域，式中上面的符号用于两个量$x_{a}$和$x_{b}$都是时间反演的偶函数（或都是奇函数）的情况，而下面的符号用于两量中一个是偶函数另一个是奇函数的情况. 方程(89.2)的带附加条件(89.3)的解，可用一侧傅里叶变换的方法求出：给方程乘以$\mathrm{e}^{\mathrm{i}\omega t}$，并由0到$\infty$对$t$积分（方程左侧进行分部积分变换）我们得方程组
+\begin{equation}
+-\mathrm{i}\omega\bigl(x_{a}\,x_{c}\bigr)^{(+)}_{\omega}=-\sum_{b}\lambda_{ab}\bigl(x_{b}\,x_{c}\bigr)^{(+)}_{\omega}+\langle x_{a}\,x_{c}\rangle.
+\end{equation}
+其中的量（频率函数）为
+\begin{equation}
+\bigl(x_{a}\,x_{b}\bigr)^{(+)}_{\omega}=\int_{0}^{\infty}\mathrm{e}^{\mathrm{i}\omega t}\bigl\langle x_{a}(t)\,x_{b}(0)\bigr\rangle\,\mathrm{d}t.
+\end{equation}
+关联函数通常的傅里叶分量，通过量(89.6)可根据
+\begin{equation}
+\begin{split}
+\bigl(x_{a}\,x_{b}\bigr)_{\omega}=\int_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}\omega t}\bigl\langle x_{a}(t)\,x_{b}(0)\bigr\rangle\mathrm{d}t=\\
+=\bigl(x_{a}\,x_{b}\bigr)^{(+)}_{\omega}\pm\bigl[\bigl(x_{a}\,x_{b}\bigr)^{(+)}_{\omega}\bigr]^{*}=\\
+=\bigl(x_{a}\,x_{b}\bigr)^{(+)}_{\omega}+\bigl(x_{b}\,x_{a}\bigr)^{(+)}_{-\omega}
+\end{split}
+\end{equation}
+表征出来. 此处符号$\pm$对应于(89.4)中的符号.
+
+现在转到所提的静止液体的涨落问题上来，首先将（88.9—88.10）的${\sigma'}_{ik}$和$\bm{q}$（略去最后项）代入流体动力学方程（88.6—88.8）并使之线性化. 取$\rho=\rho_{0}+\delta\rho$，$\bm{v}=\delta\bm{v}$，$\cdots$并略去非线性项，我们得到
+\begin{equation}
+\frac{\partial}{\partial t}\,\delta\rho+\rho\,\nabla\cdot\bm{v}=0
+\end{equation}
+\begin{equation}
+\rho\,\frac{\partial}{\partial t}\,\bm{v}=-\nabla\delta P+\eta\Delta\bm{v}+\biggl(\zeta+\frac{\eta}{3}\biggr)\nabla(\nabla\cdot\bm{v}),
+\end{equation}
+\begin{equation}
+\frac{\partial}{\partial t}\,\delta s=\frac{\kappa}{\rho T}\,\Delta\delta T
+\end{equation}
+（线性化之后我们略去常量$\rho_{0}$，$\cdots$的下标0）. 在方程（89.8—89.10）中，最好根据定义
+\begin{equation}
+\begin{gathered}
+\bm{v}=\bm{v}^{(l)}+\bm{v}^{(t)},\\
+\nabla\cdot\bm{v}^{(t)}=0,\quad\nabla\times\bm{v}^{(l)}=0,
+\end{gathered}
+\end{equation}
+立刻将速度分为有势的（“纵向的”）和有旋的（“横向的”）两部分$\bm{v}^{(l)}$和$\bm{v}^{(t)}$. 在
+%%p364（印刷页353）
+(89.8)中只剩下纵向速度：
+\begin{equation}
+\frac{\partial}{\partial t}\,\delta\rho+\rho\,\nabla\cdot\bm{v}^{(l)}=0,
+\end{equation}
+而(89.9)，分解为两个方程
+\begin{equation}
+\frac{\partial}{\partial t}\,\bm{v}^{(t)}=\frac{\eta}{\rho}\,\Delta\bm{v}^{(t)}.
+\end{equation}
+\begin{equation}
+\rho\,\frac{\partial}{\partial t}\,\bm{v}^{(l)}=-\nabla\delta P+\biggl(\zeta+\frac{4}{3}\eta\biggr)\nabla(\nabla\cdot\bm{v}^{(l)}).
+\end{equation}
+
+横向速度的方程独立于其余的方程. 与此对应，它的涨落关联函数有一个方程
+\begin{equation}
+\frac{\partial}{\partial t}\bigl\langle v^{(t)}_{i}(t,\bm{r})\,v^{(t)}_{k}(0,0)\bigr\rangle-\nu\Delta\bigl\langle v^{(t)}_{i}(t,\bm{r})\,v^{(t)}_{k}(0,0)\bigr\rangle=0
+\end{equation}
+（此处$\nu=\eta/\rho$是运动学粘度. 对它进行一侧傅里叶变换后，我们得到
+\begin{equation*}
+\begin{aligned}
+&-\mathrm{i}\omega\bigl(v^{(t)}_{i}(\bm{r})\,v^{(t)}_{k}(0)\bigr)^{(+)}_{\omega}-\nu\Delta\bigl(v^{(t)}_{i}(\bm{r})\,v^{(t)}_{k}(0)\bigr)^{(+)}_{\omega}=\\
+&\qquad=\bigl\langle v^{(t)}_{i}(\bm{r})\,v^{(t)}_{k}(0)\bigr\rangle
+\end{aligned}
+\end{equation*}
+（公式右边是同时关联函数），或变到对坐标的傅里叶分量：
+\begin{equation*}
+\bigl(v^{(t)}_{i}\,v^{(t)}_{k}\bigr)_{\omega k}=\frac{\bigl(v^{(t)}_{i}\,v^{(t)}_{k}\bigr)_{k}}{\nu k^{2}-\mathrm{i}\omega}.
+\end{equation*}
+速度涨落的同时关联函数，由公式(88.5)给出；对它取傅里叶分量，并分出横向部分后，我们有
+\begin{equation}
+\bigl(v^{(t)}_{i}\,v^{(t)}_{k}\bigr)_{k}=\frac{T}{\rho}\biggl(\delta_{ik}-\frac{k_{i}k_{k}}{k^{2}}\biggr)
+\end{equation}
+将此代入前式，最后得到\footnote{容易看出，将公式(89.17)按 $\mathrm{d}\omega/2\pi$ 积分，理应回到同时关联函数.}
+\begin{equation}
+\bigl(v^{(t)}_{i}\,v^{(t)}_{k}\bigr)_{\omega k}=2\,\mathrm{Re}\bigl(v^{(t)}_{i}\,v^{(t)}_{k}\bigr)^{(+)}_{\omega k}=\frac{2T}{\rho}\biggl(\delta_{ik}-\frac{k_{i}k_{k}}{k^{2}}\biggr)\frac{\nu k^{2}}{\omega^{2}+\nu^{2}k^{4}}.
+\end{equation}
+
+对于剩余的变量，我们有互相联系的方程组(89.10)，(89.12)，(89.14). 然而该方程组，在大频率或小频率的极限情况下可以简化. 事实是，纵向速度的微扰和压强的微扰在液体中以声速$u$传播，而熵的微扰是按热传导方程传播的. 后者的机制，要求在$\sim\dfrac{1}{k}$距离上传播微扰的时间为$\sim\dfrac{1}{\chi k^{2}}$. （$\chi=\kappa/\rho c_{p}$是介质的导温系数）. 因此，对于满足条件
+\begin{equation}
+\chi k^{2}\ll\omega\sim ku
+\end{equation}
+的频率（波矢之值给定时），可以认为，熵一定时只有$\bm{v}^{(l)}$和$P$在涨落. 相反，在
+\begin{equation}
+\chi k^{2}\sim\omega\ll ku
+\end{equation}
+%%p365（印刷页354）
+时，出现熵的等压涨落\footnote{不等式 $\chi k^{2}\ll ku$ 在流体动力学范围总是满足的. 例如，在气体中 $u\sim v_{T}$ 和 $\chi\sim v_{T}l$，在此 $v_{T}$ 是粒子的平均热速度，而 $l$ 是其自由程. 因此不等式 $\chi k\ll u$ 等价于条件 $kl\ll 1$.}.
+
+我们首先研究前者，即高频区(89.18)，并确定，例如，压强的涨落.
+
+改写关联函数的方程(89.14)为下列形式
+\begin{equation*}
+\begin{aligned}
+\frac{\partial}{\partial t}\bigl\langle\bm{v}^{(l)}(t,\bm{r})\,\delta P(0,0)\bigr\rangle&=-\nabla\bigl\langle\delta P(t,\bm{r})\,\delta P(0,0)\bigr\rangle+\\
+&\quad+\biggl(\zeta+\frac{4}{3}\eta\biggr)\nabla\bigl(\nabla\cdot\bigl\langle\bm{v}^{(l)}(t,\bm{r})\,\delta P(0,0)\bigr\rangle\bigr),
+\end{aligned}
+\end{equation*}
+而$\bm{v}^{(l)}$和$\delta P$的同时关联为零，可以作为上式的起始条件. 进行对时间的一侧傅里叶变换和对坐标的全变换后，得出
+\begin{equation}
+-\mathrm{i}\omega\rho\bigl(\bm{v}^{(l)}\delta P\bigr)^{(+)}_{\omega k}=-\mathrm{i}\bm{k}\bigl(\delta P^{2}\bigr)^{(+)}_{\omega k}-\biggl(\zeta+\frac{4}{3}\eta\biggr)\bm{k}\bigl(\bm{k}\cdot\bm{v}^{(l)}\delta P\bigr)^{(+)}_{\omega k}
+\end{equation}
+
+其次，在方程(89.12)中我们写出
+\begin{equation*}
+\delta\rho=\biggl(\frac{\partial\rho}{\partial P}\biggr)_{s}\delta P+\biggl(\frac{\partial\rho}{\partial s}\biggr)_{P}\delta s=\frac{1}{u^{2}}\,\delta P-\rho^{2}\biggl(\frac{\partial T}{\partial P}\biggr)_{s}\delta s,
+\end{equation*}
+将方程(89.10)写成下列形式
+\begin{equation*}
+\frac{\partial}{\partial t}\,\delta s=\frac{\kappa}{\rho T}\biggl(\frac{\partial T}{\partial P}\biggr)_{s}\Delta\delta P,
+\end{equation*}
+用来表达$\partial\delta s/\partial t$（根据条件$\chi k^{2}\ll\omega$，与$\dfrac{\partial}{\partial t}\delta s$比较，右侧的$\Delta\delta s$项可以忽略）. 这就导出方程
+\begin{equation*}
+\frac{1}{u^{2}}\,\frac{\partial}{\partial t}\,\delta P-\frac{\kappa\rho}{T}\biggl(\frac{\partial T}{\partial P}\biggr)^{2}_{s}\Delta\delta P+\rho\,\nabla\cdot\bm{v}^{(l)}=0.
+\end{equation*}
+在此分别以$\bigl\langle\delta P(t,\bm{r})\,\delta P(0,0)\bigr\rangle$和$\bigl\langle\bm{v}^{(l)}(t,\bm{r})\,\delta P(0,0)\bigr\rangle$代替$\delta P$和$\bm{v}^{(l)}$，便重新得到与关联函数相应的方程. 而它的起始条件是(88.3). 傅里叶变换后，该方程给出
+\begin{equation}
+\biggl[-\frac{\mathrm{i}\omega}{u^{2}}+\frac{k^{2}\kappa\rho}{T}\biggl(\frac{\partial T}{\partial P}\biggr)^{2}_{s}\biggr]\bigl(\delta P^{2}\bigr)^{(+)}_{\omega k}+\mathrm{i}\rho\bigl(\bm{k}\cdot\bm{v}^{(l)}\delta P\bigr)^{(+)}_{\omega k}=\rho T.
+\end{equation}
+
+进行一些变换后，从两个方程（89.20—89.21），我们得到
+\begin{equation}
+\bigl(\delta P^{2}\bigr)_{\omega k}=2\,\mathrm{Re}\bigl(\delta P^{2}\bigr)^{(+)}_{\omega k}=2\,\mathrm{Re}\,\frac{k^{2}\rho Tu^{4}\bigl(\mathrm{i}+2\gamma_{T}\omega/uk^{2}\bigr)}{\omega\bigl(\omega^{2}-k^{2}u^{2}+2\mathrm{i}\omega u\gamma\bigr)},
+\end{equation}
+在此，
+\begin{equation}
+\gamma=\frac{k^{2}}{2\rho u}\biggl[\zeta+\frac{4}{3}\eta+\frac{\kappa u^{2}\rho^{2}}{T}\biggl(\frac{\partial T}{\partial P}\biggr)^{2}_{s}\biggr]
+\end{equation}
+%%p366（印刷页355）
+是介质中声的吸收系数（见第六卷§79），而$\gamma_{T}$是此系数中与热传导有关的部分. 对于$\omega=\pm ku$值附近（此处涨落特别大）的频率区域，我们写出最终答案：
+\begin{equation}
+\bigl(\delta P^{2}\bigr)_{\omega k}=\frac{\rho Tu^{3}\gamma}{(\omega\mp ku)^{2}+u^{2}\gamma^{2}}
+\end{equation}
+此式在$|\omega\mp ku|\leqslant u\gamma$\footnote{我们记得（见第六卷§79），流体力学的声吸收系数在气体中总是小的（可自动从条件 $kl\ll 1$ 中得出不等式 $\gamma\ll k$），并且在无明显声色散的液体中也是小的.}情况下是正确的.
+
+在(89.19)的低频范围内，已经讲过，忽略压强涨落，只考察熵涨落已足够了. 这意味着在方程(89.10)中可取
+\begin{equation*}
+\delta T\approx\biggl(\frac{\partial T}{\partial s}\biggr)_{P}\delta s=\frac{T}{c_{p}}\,\delta s
+\end{equation*}
+（热容量$c_{p}$是单位质量的）. 因此，对于待求的关联函数有与(89.15)同型的方程，而它的起始条件由表达式(88.4)给出. 结果得出
+\begin{equation}
+\bigl(\delta s^{2}\bigr)_{\omega k}=\frac{2c_{p}}{\rho}\,\frac{\chi k^{2}}{\omega^{2}+\chi^{2}k^{4}}.
+\end{equation}
+
+\begin{xiti}
+
+1. 求自弱溶液中溶质粒子数的涨落关联函数.
+
+{\heiti 解：}溶质粒子数密度$n$满足扩散方程
+\begin{equation*}
+\frac{\partial n}{\partial t}=D\Delta n
+\end{equation*}
+（$D$是扩散系数）. 在弱溶液中，密度在空间不同点的同时值是互不关联的（类似于理想气体中不存在同时关联）；所以同时关联函数为
+\begin{equation*}
+\bigl\langle\delta n(\bm{r}_{1})\,\delta n(\bm{r}_{2})\bigr\rangle=\bar{n}\,\delta(\bm{r}_{1}-\bm{r}_{2}).
+\end{equation*}
+类似于公式(89.25)，我们得到
+\begin{equation*}
+\bigl(\delta n^{2}\bigr)_{\omega k}=\frac{2\bar{n}k^{2}D}{\omega^{4}+k^{4}D^{2}}.
+\end{equation*}
+在此解中我们忽略了热扩散，因此$n$的涨落可以认为与温度涨落无关.
+
+2. 求出液体的压强涨落关联函数，该液体具有大的、色散的第二粘滞系数$\zeta(\omega)$（与某个参数缓慢弛豫有关）.
+
+{\heiti 解：}缓慢弛豫过程的存在，导致出现下列形式的第二粘滞系数
+\begin{equation*}
+\zeta(\omega)=\frac{\tau\rho}{1-\mathrm{i}\omega\tau}\bigl(u^{2}_{\infty}-u^{2}_{0}\bigr),
+\end{equation*}
+此处$\tau$是弛豫时间；$u_{0}$是平衡声速度；$u_{\infty}$是在弛豫参数值不变时的声速（见第六
+%%p367（印刷页356）
+卷§81）. 方程（89.20—89.21），以及(89.22)在有色散时也是正确的. 取$\zeta=\zeta(\omega)$并忽略含$\eta$和$\kappa$的项，经计算得到
+\begin{equation*}
+\bigl(\delta P^{2}\bigr)_{\omega k}=\frac{2T\tau\rho u^{4}_{0}\bigl(u^{2}_{\infty}-u^{2}_{0}\bigr)}{\bigl(u^{2}_{0}-\omega^{2}/k^{2}\bigr)^{2}+\omega^{2}\tau^{2}\bigl(u^{2}_{\infty}-\omega^{2}/k^{2}\bigr)^{2}}.
+\end{equation*}
+
+\end{xiti}
+
+\section{动理学系数的算符表述}
+
+可以给予§88中得到的公式（88.20—88.21）以新的看法，这只要“从右向左”读，即可将其看成导热系数和粘滞系数的表达式. 此时等式左边的关联函数，根据它们的定义，可以通过具有微观意义的一些量的算符来表征. 结果，通过这些算符可表述液体的动理学系数.
+
+首先需要考虑，在空间不同地点，能量和动量的“随机”流涨落之间不存在关联，（公式（88.20—88.21）中的$\delta$函数$\delta(\bm{r}_{1}-\bm{r}_{2})$）乃是流体动力学的近似结果；这种近似只在波矢量取小值时才正确. 为了将此条件表为显形式，我们将公式按空间坐标展为傅里叶分量［这归结为用1代替$\delta(\bm{r}_{1}-\bm{r}_{2})$因子］并过渡到$\bm{k}\to0$的极限. 例如，将一对指标$i,k$缩并后的公式(88.20)
+\begin{equation*}
+\bigl(\bm{g}^{(1)}\,\bm{g}^{(2)}\bigr)_{\omega}=3\,\delta(\bm{r}_{1}-\bm{r}_{2})\,\hbar\omega T\coth\frac{\hbar\omega}{2T}\cdot\mathrm{Re}\,\kappa(\omega)
+\end{equation*}
+写成如下形式
+\begin{equation}
+\mathrm{Re}\,\kappa(\omega)=\frac{1}{3\hbar\omega T}\tanh\frac{\hbar\omega}{2T}\lim_{k\to0}\bigl(g^{2}\bigr)_{\omega k}.
+\end{equation}
+
+容易看出，这样描写时，在此公式中可以用$\bm{Q}$表征的总能流代替“随机”热流$\bm{g}$. 从流体动力学知道，$\bm{Q}$由对流迁移能流和热流$\bm{q}$所构成：
+\begin{equation}
+\bm{Q}=\biggl(\frac{v^{2}}{2}+w\biggr)\rho\,\bm{v}+\bm{q}\approx\rho w\,\bm{v}-\kappa\,\nabla T+\bm{g}
+\end{equation}
+（$w$是液体单位质量的热函数；最后表达式中忽略了速度$\bm{v}$涨落的高次幂项）. 但在小$\bm{k}$时，真实物理量（$\bm{v},T,\rho$等等）的涨落比随机流涨落，多包含$\bm{k}$的幂次，因此，在$\bm{k}\to0$的极限时，$\bm{g}$的涨落与$\bm{Q}$的涨落一致. 这一点从下列事实中立即明了，即在流体动力学涨落的运动方程式（88.6—88.8）中，流$\bm{g}$及$s_{ik}$只在空间微商下出现，而上述真实物理量也以对时间微商的形式出现；因此，变成傅里叶分量后，对空间微商的傅里叶分量与对时间微商的傅里叶分量之比的数量级为$k/\omega$.
+
+与$\bm{g}$不同，总能流$\bm{Q}$是有直接力学意义的量，因而，它对应于用介质粒子的动力学变量算符所表征的、确定的量子力学算符$\hat{\bm{Q}}(t,\bm{r})$. 回忆以相应量的（海森伯）算符来表述的关联函数定义. 于是，我们获得下列公式
+\begin{equation}
+\begin{split}
+\mathrm{Re}\,\kappa(\omega)=\frac{1}{6\hbar\omega T}\tanh\frac{\hbar\omega}{2T}\times\\
+\times\lim_{k\to0}\iint_{-\infty}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\bigl\langle\hat{\bm{Q}}(t,\bm{r})\,\hat{\bm{Q}}(0,0)+\hat{\bm{Q}}(0,0)\,\hat{\bm{Q}}(t,\bm{r})\bigr\rangle\,\mathrm{d}t\,\mathrm{d}^{3}x
+\end{split}
+\end{equation}
+%%p368（印刷页357）
+（M.~S.~Green, 1954）.
+
+然而，如果利用相应算符对易关系表述的关联函数公式，就能为函数$\kappa(\omega)$得到更合适的表述法.
+
+如果$\bm{x}_{a}(\bm{r})$，$\bm{x}_{b}(\bm{r})$是两个涨落量（在平衡态等于零，并且在时间反演中的行为相同），那么它们的关联函数，根据(76.1)和(75.11)，可以表为如下形式
+\begin{equation*}
+\bigl(x^{(1)}_{a}\,x^{(2)}_{b}\bigr)_{\omega}=\coth\frac{\hbar\omega}{2T}\,\mathrm{Re}\int_{0}^{\infty}\mathrm{e}^{\mathrm{i}\omega t}\bigl\langle\bigl\{\hat{x}_{a}(t,\bm{r}_{1}),\hat{x}_{b}(0,\bm{r}_{2})\bigr\}\bigr\rangle\,\mathrm{d}t,
+\end{equation*}
+此处括号$\{\cdots\}$表示对易子. 按坐标$\bm{r}=\bm{r}_{1}-\bm{r}_{2}$进行傅里叶展开后，我们得到公式
+\begin{equation}
+\bigl(x_{a}\,x_{b}\bigr)_{\omega k}=\coth\frac{\hbar\omega}{2T}\cdot\mathrm{Re}\iint_{0}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\bigl\langle\bigl\{\hat{x}_{a}(t,\bm{r}),\hat{x}_{b}(0,0)\bigr\}\bigr\rangle\,\mathrm{d}t\,\mathrm{d}^{3}x.
+\end{equation}
+将此式应用到关联函数$(Q^{2})_{\omega\bm{k}}$并代入(90.1)后，我们得到
+\begin{equation*}
+\mathrm{Re}\,\kappa(\omega)=\frac{1}{3\omega T}\lim_{k\to0}\mathrm{Re}\iint_{0}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\bigl\langle\bigl\{\hat{\bm{Q}}(t,\bm{r}),\hat{\bm{Q}}(0,0)\bigr\}\bigr\rangle\,\mathrm{d}t\,\mathrm{d}^{3}x.
+\end{equation*}
+此公式的左边和右边在$\mathrm{Re}$号后都有$\omega$的函数. 此函数当$\omega\to\infty$时趋于零，并且在复变量$\omega$的上半平面无奇点. 在$\omega$的实轴上从这些函数的实部相等中得出这些函数本身是相等的，因而我们得到最终公式：
+\begin{equation}
+\kappa(\omega)=\frac{1}{3\omega T}\lim_{k\to0}\iint_{0}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\bigl\langle\bigl\{\hat{\bm{Q}}(t,\bm{r}),\hat{\bm{Q}}(0,0)\bigr\}\bigr\rangle\,\mathrm{d}t\,\mathrm{d}^{3}x.
+\end{equation}
+为了得到导热系数的静态值，还应当过渡到$\omega\to0$的极限.
+
+用类似的方法可以变换公式(88.21)，于是得出粘滞系数的算符表达式.
+
+如果引入总动量流$\sigma_{ik}=-P\delta_{ik}+{\sigma'}_{ik}$［(88.9)中的$\sigma_{ik}$］，那么在$\bm{k}\to0$的极限时，除$s_{ik}$外的一切项的涨落都趋于零，所以在此极限可以用$(\sigma_{ik}\,\sigma_{lm})_{\omega k}$代替关联函数$(s_{ik}\,s_{lm})_{\omega k}$. 结果我们得出公式
+\begin{equation}
+\begin{split}
+&\eta(\omega)\biggl(\delta_{il}\delta_{km}+\delta_{im}\delta_{kl}-\frac{2}{3}\,\delta_{ik}\delta_{lm}\biggr)+\zeta(\omega)\,\delta_{ik}\delta_{lm}=\\
+&\qquad=\frac{1}{\omega}\lim_{k\to0}\iint_{0}^{\infty}\mathrm{e}^{\mathrm{i}(\omega t-\bm{k}\cdot\bm{r})}\bigl\langle\bigl\{\hat{\sigma}_{ik}(t,\bm{r}),\hat{\sigma}_{lm}(0,0)\bigr\}\bigr\rangle\,\mathrm{d}t\,\mathrm{d}^{3}x.
+\end{split}
+\end{equation}
+此处$\hat{\sigma}_{ik}(t,\bm{r})$是动量流密度算符（H.~Mori, 1958），将此等式按两对指标$i,k$和$l,m$或$i,l$和$k,m$缩并，我们分别得到相应于$9\zeta$或$10\eta+3\zeta$的独立表达式.
+
+\section{费米液体的动力学形状因子}
+
+对费米液体不能应用$T=0$时的形状因子公式（87.4—87.6），因为推导这
+%%p369（印刷页358）
+些公式时假定只存在元激发谱的声子支（$\omega$和$\bm{k}$都小）. 对费米液体也不能应用§88，§89建立的流体动力学涨落理论：它要求满足的条件$kl\ll1$（$l$是准粒子的自由程），显然在费米液体中已被损坏. 因为$l\propto T^{-2}$在$T\to0$时趋于无限. 因而计算费米液体的形状因子应当使用动理学方程.
+
+此时最好从公式（86.17—86.20）入手，这些公式将形状因子与液体受某一场$U(t,\bm{r})$作用时的广义感应率联系起来. 定义(86.18)也可写成按坐标的傅里叶分量
+\begin{equation}
+\delta\bar{n}(\omega,\bm{k})=-\alpha(\omega,\bm{k})\,U_{\omega\bm{k}},
+\end{equation}
+我们限于$T=0$的情况，则动力学形状因子根据下式
+\begin{equation}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=
+\begin{cases}
+2\hbar\,\mathrm{Im}\,\alpha(\omega,\bm{k}), & \omega>0,\\
+0, & \omega<0
+\end{cases}
+\end{equation}
+通过$\alpha(\omega,\bm{k})$来表征.
+
+密度的微扰$\delta\bar{n}(\omega,\bm{k})$可借助于动理学方程来计算，此时式中可以忽略碰撞积分（在$T\to0$时）. 这些计算与§4中对零声计算所不同的只是对准粒子能量附加了一项
+\begin{equation*}
+U(t,\bm{r})=U_{\omega k}\,\mathrm{e}^{\mathrm{i}(\bm{k}\cdot\bm{r}-\omega t)}.
+\end{equation*}
+相应的，在微商$\partial\varepsilon/\partial\bm{r}$（4.3）中附加一项$\partial U/\partial\bm{r}=\mathrm{i}\bm{k}U$，而在动理学方程(4.8)的左侧附加一项
+\begin{equation*}
+-\mathrm{i}\bm{k}U\,\frac{\partial n_{0}}{\partial\bm{p}}=\mathrm{i}\,\bm{k}\cdot\bm{v}\,U\,\delta(\varepsilon-\varepsilon_{F}).
+\end{equation*}
+求出动理学方程的解如下：
+\begin{equation}
+\begin{gathered}
+\delta n(\bm{p})=\delta n_{\omega k}(\bm{p})\,\mathrm{e}^{\mathrm{i}(\bm{k}\cdot\bm{r}-\omega t)},\\
+\delta n_{\omega k}(\bm{p})=-\delta(\varepsilon-\varepsilon_{F})\,\frac{\pi^{2}\hbar^{2}}{2m^{*}p_{F}}\,\chi(\bm{n}),\quad\bm{n}=\frac{\bm{p}}{p}.
+\end{gathered}
+\end{equation}
+这是准粒子的动量分布微扰的傅里叶分量，待求的总准粒子数密度（与真实粒子数密度一致）的变化，由如下积分给出
+\begin{equation*}
+\delta\bar{n}(\omega,\bm{k})=\int\delta n_{\omega k}(\bm{p})\,\frac{2\,\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}=-\frac{1}{2\hbar}\int\chi(\bm{n})\,\frac{\mathrm{d}o}{4\pi}\cdot U_{\omega k}.
+\end{equation*}
+(91.3)中定义的函数$\chi(\bm{n})$与(4.9)中定义的$\bm{\nu}(\bm{n})$不同之处在于归一化系数. 在此选取归一化系数，可使公式(91.2)取如下形式：
+\begin{equation}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=\mathrm{Im}\int\chi(\bm{n})\,\frac{\mathrm{d}o}{4\pi},\quad\omega>0.
+\end{equation}
+函数$\chi(\bm{n})$本身由下列方程得到：
+\begin{equation}
+\bigl(\omega-v_{F}\,\bm{k}\cdot\bm{n}\bigr)\chi(\bm{n})+v_{F}\,\bm{k}\cdot\bm{n}\int F(\vartheta)\,\chi(\bm{n}')\,\frac{\mathrm{d}o'}{4\pi}=-\bm{k}\cdot\bm{n}\,\frac{2p^{2}_{F}}{\pi^{2}\hbar^{2}}.
+\end{equation}
+此方程的右侧不同于(4.11)式.
+
+%%p370（印刷页359）
+方程(91.5)不显含虚量. 因此解$\chi(\bm{n})$中出现的虚部仅和求解过程积分的极点绕法有关. 这些围道规则要求从$t=-\infty$开始，浸渐地给体系施加场$U\propto\mathrm{e}^{-\mathrm{i}\omega t}$；为此，应当进行$\omega\to\omega+\mathrm{i}0$的频率代换.
+
+解的具体形式依赖于准粒子相互作用函数的形式$F(\vartheta)$. 我们演示求解过程，并以最简单的函数$F=\mathrm{const}\equiv F_{0}$为例说明解的性质.
+
+在这种情况下，方程(91.5)的解具有下列形式
+\begin{equation}
+\chi(\bm{n})=C\,\frac{v_{F}\,\bm{k}\cdot\bm{n}}{v_{F}\,\bm{k}\cdot\bm{n}-\omega-\mathrm{i}0},
+\end{equation}
+在此$C$是常数. 将表达式(91.6)代回(91.5)以确定$C$，于是给出
+\begin{equation}
+C\,(1+IF_{0})=\frac{2m^{*}p_{F}}{\pi^{2}\hbar^{2}},
+\end{equation}
+这里
+\begin{equation*}
+I=\int\frac{\bm{k}\cdot\bm{n}'\,v_{F}}{\bm{k}\cdot\bm{n}'\,v_{F}-\omega-\mathrm{i}0}\,\frac{\mathrm{d}o'}{4\pi}.
+\end{equation*}
+被积式仅依赖于$\bm{n}'$与$\bm{k}$间的夹角，进行显然的代换后，我们得到
+\begin{equation}
+I(s)=\frac{1}{2}\int^{1}_{-1}\frac{x\,\mathrm{d}x}{x-s-\mathrm{i}0}=1-\frac{s}{2}\ln\biggl|\frac{s+1}{s-1}\biggr|+
+\begin{cases}
+\mathrm{i}s\,\dfrac{\pi}{2}, & s<1,\\[0.5em]
+0, & s>1,
+\end{cases}
+\end{equation}
+此处$s=\omega/kv_{F}$［积分的虚部可按(8.11)的规则分离出来］.
+
+将（91.6—91.8）中解出的函数$\chi(\bm{n})$代入(91.4)，我们得到动力学形状因子
+\begin{equation}
+\bar{n}\bm{\sigma}(\omega,\bm{k})=\frac{2m^{*}p_{F}}{\pi^{2}\hbar^{2}}\,\mathrm{Im}\,\frac{I(s)}{1+F_{0}I(s)}
+\end{equation}
+（А.~А.~Абрикосов, И.~М.~Халатников, 1958）. 根据(91.8)，当$s<1$即所有的$\omega<kv_{F}$时，此形状因子不为零.
+
+如果$F_{0}>0$，则在费米液体中可能有以速度$u_{0}$传播的零声，$u_{0}$由方程(4.15)来确定
+\begin{equation*}
+1+F_{0}I(s_{0})=0,\quad s_{0}=u_{0}/v_{F}.
+\end{equation*}
+当$s$值接近$s_{0}$时，表达式(91.9)取
+\begin{equation*}
+\mathrm{const}\cdot\mathrm{Im}\,\frac{1}{s-s_{0}}
+\end{equation*}
+的形式，并且如上所述，$s=\omega/kv_{F}$应当理解为$s+\mathrm{i}0$. 这意味着在$\sigma(\omega,\bm{k})$中还有形如$\mathrm{const}\cdot\delta(s-s_{0})$的$\delta$函数项，或有
+\begin{equation}
+\sigma(\omega,\bm{k})=\mathrm{const}\cdot k\,\delta(\omega-ku_{0})
+\end{equation}
+这项是费米液体能谱零声分支对形状因子必须提供的贡献；它完全类似于声子对玻色液体的形状因子所做的贡献(87.4).
+
+当然，这一项的存在与是否假定$F=\mathrm{const}$无关，而且是可能传播零声的费
+%%p371（印刷页360）
+米液体的普遍性质. 与准粒子相互作用定律有关的只是(91.10)中的常系数值. 方程(91.5)右侧为零便和零声方程一致；因此非齐次方程的解在$\omega/k=u_{0}$处有极点.
+
+从方程(91.5)的形式看出，它的解仅以比值$\omega/k$的形式依赖于$\omega$和$k$. 所以动力学形状因子就是此比值的函数. 于是静力学形状因子
+\begin{equation*}
+\sigma(\bm{k})=\int_{0}^{\infty}\sigma(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}
+\end{equation*}
+将有如下形式
+\begin{equation}
+\sigma(\bm{k})=\mathrm{const}\cdot k
+\end{equation}
+这意味着在费米液体中，在$T=0$时，密度涨落的同时空间关联函数遵守$\nu(r)\propto r^{-4}$规律（玻色液体中也是如此）.
+
+最后，我们注意到，用$F_{0}\to0$的极限过渡方式，可以从(91.9)得到理想费米气体的动力学形状因子.
+\begin{equation*}
+\sigma(\omega,\bm{k})=\frac{m^{2}\omega}{\pi\hbar^{2}\bar{n}k},\quad0<\omega<kv_{F}.
+\end{equation*}
+此时静力学形状因子
+\begin{equation*}
+\sigma(\bm{k})=\int_{0}^{kv_{F}}\sigma(\omega,\bm{k})\frac{\mathrm{d}\omega}{2\pi}=\frac{p^{2}_{F}k}{(2\pi\hbar)^{2}\bar{n}}
+\end{equation*}
+（与第五卷§117中习题1的结果一致）.

@@ -1,0 +1,149 @@
+% !TeX program = xelatex
+% ============================================================
+%  李正中《固体理论》（第二版）
+%  中文重排本 —— 底本：高等教育出版社 研究生教学用书（第二版，2002）
+%  仅供个人学习使用，版权归原出版社及作者所有
+% ============================================================
+\documentclass[11pt,a4paper,twoside,openright]{ctexbook}
+
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,bm,mathrsfs}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+% 西文字体：Times New Roman
+\setmainfont{Times New Roman}
+% 圈码脚注标记 ①②③… 用中文字体渲染（西文字体缺 U+2460 字形）
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\newcommand{\ve}[1]{\bm{#1}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+% 章标题：第一章（汉字）；节标题：§1 —— 节号每章重排（原书体例）
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \chinese{chapter},
+    format = {\centering\zihao{2}\heiti},
+    beforeskip = 1.5em,
+    afterskip  = 1.5em,
+  },
+  section = {
+    name = {§,},
+    number = \arabic{section},
+    format = {\zihao{4}\heiti},
+    beforeskip = 1.4em,
+    afterskip  = 0.9em,
+  },
+}
+
+% 公式按 (章.节.式) 编号，如 (1.1.1)，与原书一致；节号每章复位（book 类默认）
+\counterwithin{equation}{section}
+\renewcommand{\theequation}{\thechapter.\arabic{section}.\arabic{equation}}
+% 图表按 (章.图) 编号，如 图1.1（book 类默认）
+
+% 页眉页脚
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 李正中《固体理论》（中文重排本）}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setstretch{1.18}
+\clubpenalty=10000
+\widowpenalty=10000
+\predisplaypenalty=10000
+% 页底不强制对齐（flushbottom 会在满页时把小标题的 medskip 拉大几十 pt 形成空洞）
+\raggedbottom
+
+% 章末参考文献环境
+\newenvironment{canKao}{\par\medskip\noindent{\heiti 参\ 考\ 文\ 献}\par\smallskip}{\par}
+
+% 脚注：圈码标记、按页重编号；须在 hyperref 之前加载
+% perpage 选项按页复位脚注编号（依赖 aux，须编译两遍以上）
+\usepackage[perpage]{footmisc}
+\makeatletter
+\renewcommand{\thefootnote}{\symbol{\numexpr"245F+\c@footnote\relax}}
+% 章前插入的空白页不排页眉页码
+\renewcommand{\cleardoublepage}{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page\else
+      \thispagestyle{empty}%
+      \hbox{}\newpage
+    \fi
+  \fi
+}
+\makeatother
+
+% 目录/引用超链接（黑色，打印友好）
+\usepackage{hyperref}
+\hypersetup{colorlinks, linkcolor=black, urlcolor=black, citecolor=black,
+  pdftitle={李正中《固体理论》（第二版）（中文重排本）},
+  pdfauthor={李正中}}
+
+\begin{document}
+
+% ---------------- 扉页 ----------------
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+\vspace*{3.2cm}
+{\zihao{0}\heiti 固体理论}\\[1.0em]
+{\zihao{3}\kaishu Solid State Theory}\\[1.2em]
+{\zihao{4}\kaishu （第二版）}\\[3em]
+{\zihao{3}\kaishu 李正中\quad 著}\\[2em]
+{\zihao{4}\kaishu 研究生教学用书（教育部研究生工作办公室推荐）}\\[1em]
+{\zihao{4}\kaishu 中文重排本（底本：高等教育出版社第二版）}
+\vfill
+{\zihao{-5}\kaishu 仅供个人学习使用，版权归原出版社及作者所有}
+\end{titlepage}
+
+% ---------------- 重要符号表 ----------------
+\chapter*{重要符号表}
+\markboth{重要符号表}{}
+\addcontentsline{toc}{chapter}{重要符号表}
+\input{chapters/symbols}
+\clearpage
+
+% ---------------- 目录 ----------------
+{\hypersetup{linktoc=all}\tableofcontents}
+\clearpage
+
+% ---------------- 正文 ----------------
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+\input{chapters/ch08}
+\input{chapters/ch09}
+\input{chapters/ch10}
+\input{chapters/ch11a}
+\input{chapters/ch11b}
+\input{chapters/ch12}
+
+% ---------------- 附录 ----------------
+% 附录编号 A–H，公式按 (A.1) 章号编号（原书体例）
+\setcounter{chapter}{0}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\ctexset{chapter={name={附录,}, number={\Alph{chapter}}}}
+\counterwithin{equation}{chapter}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\input{chapters/appA}
+\input{chapters/appB}
+\input{chapters/appC}
+\input{chapters/appD}
+\input{chapters/appE}
+\input{chapters/appF}
+\input{chapters/appG}
+\input{chapters/appH}
+
+% ---------------- 习题 ----------------
+\input{chapters/xiti}
+
+\end{document}

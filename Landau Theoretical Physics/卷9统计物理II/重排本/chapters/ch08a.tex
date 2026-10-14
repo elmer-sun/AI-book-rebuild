@@ -1,0 +1,718 @@
+% ============================================================
+%  第九卷 第八章（前半） 电磁涨落（§75–§79）
+%  底本：高教社中文第4版（王锡绂 译）；印刷页 297–312（PDF p308–p323）
+%  本文件以 \chapter{电磁涨落} 开头（章头在 PDF p308）；§80–§85 由 ch08b.tex 接排（不带 \chapter）
+%
+%  插图清单：本切片无编号插图（全卷 18 幅插图不在 p308–p323 范围内）。
+%
+%  图式等式：§79 共 3 处（(79.11) 粗/细虚线记号；(79.12) 图级数；(79.13) 戴森图方程），
+%  OCR 窜为乱码线段，全部按页面 p322 用 picture 环境重绘（粗/细虚线段数、
+%  圆圈＝极化算符插入点，逐图对照）。
+%
+%  圈码脚注：正文圈码共 12 处原位保留（p309①②、p311①②③、p312①、p314①、
+%  p316①、p318①、p321①、p322①、p323①）。脚注文本已全部按原书页面 300dpi
+%  页脚裁片逐字转录为 \footnote{...}（p323① 含公式，照页面用 equation* 排入
+%  脚注；文末 %%FN 参考注释经逐条核对后删除）。
+%
+%  编号公式核算：OCR 带 tag 67 条 = §75 共 23 条（(75.1)–(75.23)）+ §76 共 6 条
+%  （(76.1)–(76.6)）+ §77 共 13 条（(77.1)–(77.13)）+ §78 共 3 条（(78.1)–(78.3)）
+%  + §79 共 18 条（(79.1)–(79.18)）+ §77 习题 (1)–(4) 共 4 条（手写 \tag）。
+%  逐节与页面核对：无重号、无缺号、无跳号。(79.18) 两式共用一号（页面如此），
+%  用 align+\notag 实现。文件头 \setcounter{section}{74} 保证单独编译时节号/
+%  公式号与原书一致（全书连排时 ch07 已至 §74，该行幂等无害）。
+%
+%  已修正的 OCR 错误（均对照 原书转换/pages/pNNN.png 逐条核实）：
+%   1. 切片首锚 %%p 307 应为 p308（第八章章头页，印刷页 297）；自 %%p 313 起
+%      锚点与实际页对齐。p307 实为第七章末页（印刷页 296），不属本文件。
+%   2. p309：OCR "Â_i^+ \Phi" 之 \Phi 为圈码①误识，按页面还原为①；
+%      "电流密度算符②"之后窜入的 $\textcircled{2}$ 系噪声删除（页面无）。
+%   3. p309（(75.3)(75.4) 等）：OCR \cal R / \scriptscriptstyle R 混用，
+%      按页面统一为上标 R。
+%   4. p310：OCR "量 x_a(a_)=1(2,⋯)" 按页面理顺为"量 x_a（a=1,2,…）"；
+%      "如 α_ab 果 x 和 x…"按页面理顺为"如果 x_a 和 x_b…那么量 α_ab…"；
+%      "量 f 和 x。具有空间分布的性质"按页面理顺为"量 f_a 和 x_a"；
+%      "把宏观系统对外部作用的响应与一般理论联系起来"句末句号按页面补。
+%   5. p311：OCR "(. . ,. . ,1959)"按页面为
+%      "(И. Е. Дзялошинский, Л. П. Питаевский, 1959)"（西里尔）。
+%   6. 全章：OCR 之 \hat{8}、\hat{\otimes}、\bf 8、\mathfrak{F}、\hat\delta_p
+%      等一切 δ 误识按页面统一为 \delta；\pmb→\bm；ε（介电函数）、μ（磁导率）
+%      页面为粗体，统一排 \bm\varepsilon、\bm\mu；δ（克氏与 δ 函数）照页面排。
+%   7. p312：OCR "$H^{(I)}$"按页面为 H①（圈码）；OCR "T{ }0"按页面为 T→0；
+%      OCR "( i ω^| ,k)"按页面为 D^R_ik(|ω|,k)；OCR "均匀介质格林函数 Dk 通过
+%      推迟格林函数 Dk"乱序按页面理顺为"均匀介质格林函数 D_ik 通过推迟格林
+%      函数 D^R_ik"；正文"ε→1 + i sign ω"之 ω 按页面补全。
+%   8. p313：OCR "\mathfrak{x}_\mathfrak{a}"按页面为 x_a；OCR \mathbf{α}_ab
+%      按页面为斜体 α_ab。
+%   9. p315：OCR "(C. M. PbITOB,1953)"按页面为"(С. М. Рытов, 1953)"（西里尔）；
+%      OCR "(M. . P3,1957)"按页面为"(М. И. Рязанов, 1957)"（p316）；
+%      "微小而不为零的吸收"段末噪声"8"删除（页面无脚注号）；
+%      (77.8) 式尾部乱码（"）end{array}"）按页面重建。
+%  10. p317（习题1）：OCR"下标 h 已给"按页面为"下标 k 已给"；OCR"满足同一个
+%      方程 -ε=1 的方程"按页面为"满足同一个方程——ε=1 的方程"（破折号）；
+%      OCR"以普迪公式(6.3-76.6)给出"按页面为"以普遍公式(76.3—76.6)给出"。
+%  11. p318（习题3）：OCR"在解 ℏ 题时"按页面为"在解题时"；(2) 式 α 下标按
+%      页面为 α_lm（OCR α_ln）；"rot′_mk e^{iωr′/c}/r′"按页面。
+%  12. p319（§78）：OCR "(𝒫²)_ω"按页面为 (ℰ²)_ω（™花体 ℰ，电动势）；
+%      OCR "(x̄̂)_ω = α(ω)f"按页面为 (x̄)_ω = α(ω)f（无点）。
+%  13. p321：OCR"函数②应当满足"之②为 𝒟_ik 误识，按页面理顺为"函数 𝒟_ik
+%      应当满足"；OCR"ω→i|ζ,|1 的代换"按页面为"ω→i|ζ_s| 的代换"；
+%      (79.9) 左端 𝒟 下标按页面为 lk（OCR 𝒟_u）。
+%  14. p323：OCR"的查这义"按页面为"的图的意义"；OCR "\xrightarrow{}"按页面
+%      为"→"（|ω|→∞ 时 ε(ω)→1①）；"在格林函数②的图中"之②为 𝒟_ik 误识
+%      按页面理顺；末尾无编号式实为脚注①内容，挪出为 %%FN 注释（其
+%      \mathfrak{F}_ik 按页面还原为 δ_ik）。
+%
+%  原书排印问题（照排并登记，供总校裁定）：
+%   a. (75.10)（p310）：右端页面印作 α_ba(ω; r′·r)，按对称性(75.12)疑应为
+%      逗号"r′, r"，照排。
+%   b. (75.22)（p312）：页面印作"+ i sign · Im D^R_ik"，对照同页正文
+%      "ε→1+i sign ω"及 (75.21)，疑脱 ω，照排。
+%   c. (77.9)（p315）：sin 的宗量页面印作 ωnr/c²，按 (77.12) 与量纲疑应为
+%      ωnr/c，照排。
+%   d. (77.6)(77.7)(77.8)（p315）：页面根号横线覆于"−εr"整体之上；按正文
+%      "根 √(−ε) 应当取使 Re√(−ε)>0"之定义，实为 (√−ε)·r，本重排照数学
+%      意义排 √(−ε)r（横线延伸系排版所致）。
+%   e. p314 §77 首句函数记号页面作 D_ik（无上标 R），与上下文 D^R_ik 不一致，
+%      照排。
+%   f. 习题1（p317）：E_i(0,r′)=D^R_lk(ω;0,r′) 之 D 下标页面作 lk，与同页
+%      正文 D^R_ik 不一致（俄文原版作 ik），照页面排 lk。
+%   g. p318 习题3 正文"δ(A_i1 A_i2)_ω"之 A_i2 与随后的显示式及 (3)(4) 中
+%      A_k2 不一致，各照页面排。
+%   h. p318 习题2 解"而是它的势 A_i 所满足的方程．与函数 D^R_ik 的有同样
+%      形式"句读如此（疑有脱漏字），照排。
+%   i. p323"才重要；换句话说；计算极化算符时"第二个"；"疑为"，"之误，照排。
+%
+%  遗留问题：
+%   - 12 处圈码脚注已全部转录完毕（p323① 含公式按页面 equation* 排入
+%     \footnote；原 %%FN 参考注释已删除）；
+%   - (79.11)(79.12)(79.13) 三处图式为 picture 示意重绘：虚线段数、粗细与
+%     原书成比例，圆圈位置为极化算符插入点，与页面 p322 逐图核对一致。
+% ============================================================
+
+\chapter{电磁涨落}
+
+\setcounter{section}{74}
+
+\section{介质中光子的格林函数}
+
+%%p308（印刷页297，章头页）
+在研究实物介质中电磁场的统计性质之前，我们首先回忆一下宏观电动力学中对电磁量进行平均的意义.
+
+为直观起见，如果从经典的观点出发，可以分两个层次来平均. 先是全部粒子在给定分布下按物理无限小体积平均；然后再将得到的量按粒子的运动平均. 在宏观电动力学的麦克斯韦方程中包含的是完全的平均量. 在研究场的涨落时，指的是量随时间的振荡，而量的平均仅仅是对物理无限小体积进行的.
+
+从量子力学的观点来看，对体积的平均，当然不是对物理量本身，而只是对它的算符进行的；第二步才是利用量子力学概率确定此算符的平均值. 下面在本章出现的场算符只理解为第一种意义下的平均.
+
+在实物介质中，电磁辐射的统计性质可用介质中的光子格林函数来描述. 对于光子，电磁场的势算符起着$\psi$算符的作用. 通过这些算符定义光子格林函数的方式，与通过$\psi$算符定义粒子格林函数的方式一样.
+
+场势由4维矢量$\bm{A}^{\mu}=(A^{0},\bm{A})$组成，其中$A^{0}\equiv\varphi$是标势，而$\bm{A}$是矢势. 在经典电动力学中，这些势的选择不是唯一的，它容许进行对观察量没有任何影响的所谓规范变换（见第二卷§18）. 相应地在量子电动力学中在选择场算符以及在定义光子格林函数时都会产生这种非唯一性. 我们将使用标势等于0的规范：
+\begin{equation}
+A^{0}\equiv\varphi=0.
+\end{equation}
+于是场仅由一个矢势来确定. 当涉及电磁场与非相对论粒子相互作用时——例如普通的实物介质中的场就属此情况，这种规范便显得方便.
+
+在此规范中的格林函数乃是三维二阶张量
+\begin{equation}
+D_{ik}(X_{1},X_{2})=-\mathrm{i}\langle T\hat{A}_{i}(X_{1})\hat{A}_{k}(X_{2})\rangle,
+\end{equation}
+%%p309（印刷页298）
+（$i,k=x,y,z$是三维矢量下标），此处尖括号［与(36.1)一样］表明是按系统的吉布斯分布进行平均的，该系统由介质及其中的平衡辐射所组成；因为光子是玻色子，所以算符$\hat{A}_{i},\hat{A}_{k}$在其编时重新排列中并不改变乘积符号. 我们也要指出，$\hat{A}_{i}$是自轭算符（用来表示严格中性的光子）；因此在(75.2)中，不区分$\hat{A}_{i}$和$\hat{A}_{i}^{+}$\footnote{在势有任意规范的普遍情况，光子格林函数是4维张量$D_{\mu\nu}$［在规范(75.1)中：$D_{00}=0$, $D_{0i}=0$］. 统计学中光子格林函数普遍的张量的和规范的性质与量子电动力学中场在真空的这些性质完全一样. 我们注意到定义(75.2)与第四卷中的定义差一符号. 这里选择的定义与其他玻色子（其中包括声子）格林函数的定义是统一的.}.
+
+然而，为了建立各种型式的光子格林函数，作为原始概念，不是利用(75.2)而是利用如下定义的推迟格林函数，
+\begin{equation}
+\mathrm{i}D_{ik}^{R}(X_{1},X_{2})=
+\begin{cases}
+\langle\hat{A}_{i}(X_{1})\hat{A}_{k}(X_{2})-\hat{A}_{k}(X_{2})\hat{A}_{i}(X_{1})\rangle, & t_{1}>t_{2},\\
+0, & t_{1}<t_{2}
+\end{cases}
+\end{equation}
+（在尖括号内两项之间的负号与玻色统计的定义(36.19)相对应）.
+
+对封闭系，格林函数对时间$t_{1},t_{2}$的依赖关系，只通过它们之差$t=t_{1}-t_{2}$来表述. 至于坐标$\bm{r}_{1},\bm{r}_{2}$，在非均匀介质的一般情况，在函数中它们是互相独立的：$D_{ik}^{R}(t;\bm{r}_{1},\bm{r}_{2})$. 此函数只按时间进行傅里叶展开；此展开的分量为
+\begin{equation}
+D_{ik}^{R}(\omega;\bm{r}_{1},\bm{r}_{2})=\int_{0}^{\infty}\mathrm{e}^{\mathrm{i}\omega t}D_{ik}^{R}(t;\bm{r}_{1},\bm{r}_{2})\,\mathrm{d}t.
+\end{equation}
+在研究按物理无限小体积求平均量时，我们只考察辐射的长波部分，此时光子的波矢量满足下列条件：
+\begin{equation}
+ka\ll1
+\end{equation}
+（$a$为介质中原子间的距离）. 在这个频率范围内，光子格林函数可以通过介质的其余宏观特征量——它的电容率$\bm{\varepsilon}(\omega)$和磁导率$\bm{\mu}(\omega)$来表述.
+
+为此，写出电磁场与介质的相互作用算符：
+\begin{equation}
+\hat{V}=-\frac{1}{c}\int\hat{\bm{j}}\cdot\hat{\bm{A}}\,\mathrm{d}^{3}x.
+\end{equation}
+此处$\hat{\bm{j}}$是介质粒子所产生的电流密度算符\footnote{见第四卷§43（在第四卷电流表示为$e\bm{j}$. 即将元电荷$e$从$\bm{j}$的定义中提出）. 算符(75.6)利用了电流算符的相对论表达式. 在非相对论的问题中，可以忽略$\psi$算符（用之构造电流算符$\bm{j}$）中与负频（即反粒子）相联系的部分. 这就意味着在其中忽略了辐射修正，而辐射修正是在计及电子–正电子偶在真空中的虚产生而对光子格林函数的修正. 在波长$\lambda\gg\hbar/mc$，即在区域(75.5)显然能够满足的条件下，这个修正是非常小的.}. 如果在介质中引入某种经典的"外部"电流$\bm{j}(t,\bm{r})$，那么，相互作用算符与它的关系为
+\begin{equation}
+\hat{V}=-\frac{1}{c}\int\bm{j}(t,\bm{r})\cdot\hat{\bm{A}}\,\mathrm{d}^{3}x.
+\end{equation}
+%%p310（印刷页299）
+这个表达式能够把宏观系统对外部作用的响应与一般理论联系起来.
+
+我们记得，在此理论中（见第五卷，§125），有一系列离散的量$x_{a}$（$a=1,2,\cdots$），用来表征一定外部扰动作用下系统的行为. 这些扰动用"扰动力"$f_{a}(t)$描述，于是相互作用能的算符形式为
+\begin{equation*}
+\hat{V}=-\sum_{a}f_{a}\hat{x}_{a},
+\end{equation*}
+此处$\hat{x}_{a}$是量$x_{a}$的算符. 在微扰作用下，得到的平均值$\bar{x}_{a}(t)$乃是力$f_{a}(t)$的线性泛函. 对于一切量的傅里叶分量，这个关系可以写成下列形式：
+\begin{equation*}
+\bar{x}_{a\omega}=\sum_{b}\alpha_{ab}(\omega)f_{b\omega}
+\end{equation*}
+（假设无微扰时$\bar{x}_{a}=0$）. 在这些关系式中的系数$\alpha_{ab}$称为系统的广义感应率. 如果$x_{a}$和$x_{b}$对于时间反演有相同的行为，而物体又不是磁活性的（无磁结构又不处于磁场中），那么量$\alpha_{ab}$对于自己的下标是对称的.
+
+此处需要涉及的量$f_{a}$和$x_{a}$具有空间分布的性质——是物体点坐标$\bm{r}$的函数. 在此情况下表达式$\hat{V}$应当写成下列形式：
+\begin{equation}
+\hat{V}=-\sum_{a}\int f_{a}(t,\bm{r})\hat{x}_{a}(t,\bm{r})\,\mathrm{d}^{3}x,
+\end{equation}
+而平均值$\bar{x}_{a}$和力$f_{a}$的关系式为
+\begin{equation}
+\bar{x}_{a\omega}(\bm{r})=\sum_{b}\int\alpha_{ab}(\omega;\bm{r},\bm{r}')f_{b\omega}(\bm{r}')\,\mathrm{d}^{3}x'.
+\end{equation}
+广义感应率现已成为物体中两点坐标的函数，而它们的对称性用下列等式表述
+\begin{equation}
+\alpha_{ab}(\omega;\bm{r},\bm{r}')=\alpha_{ba}(\omega;\bm{r}'\cdot\bm{r}).
+\end{equation}
+根据久保公式［见第五卷(126.9)］，感应率可表为海森伯算符$\hat{x}_{a}(t,\bm{r})$的对易子的平均值：
+\begin{equation}
+\begin{aligned}
+\alpha_{ab}(\omega;\bm{r},\bm{r}')={}\\
+{}=\frac{\mathrm{i}}{\hbar}\int_{0}^{\infty}\mathrm{e}^{\mathrm{i}\omega t}
+\bigl\langle\hat{x}_{a}(t,\bm{r})\hat{x}_{b}(0,\bm{r}')-\hat{x}_{b}(0,\bm{r}')\hat{x}_{a}(t,\bm{r})\bigr\rangle\mathrm{d}t.
+\end{aligned}
+\end{equation}
+现在我们将流矢量$\bm{j}$的分量看做"力"$f_{a}$. 则从(75.7)与(75.8)的比较中看出，与其对应的量$x_{a}$是场矢势$\bm{A}/c$的分量. 对比公式(75.11)和定义(75.3—75.4)表明：广义感应率$\alpha_{ab}(\omega;\bm{r},\bm{r}')$与张量分量
+\begin{equation*}
+-D_{ik}^{R}(\omega;\bm{r},\bm{r}')/\hbar c^{2}
+\end{equation*}
+一致.
+
+由此根据(75.10)立刻可得（对非磁活性介质）
+\begin{equation}
+D_{ik}^{R}(\omega;\bm{r},\bm{r}')=D_{ki}^{R}(\omega;\bm{r}',\bm{r}).
+\end{equation}
+关系式(75.9)具有下列形式
+\begin{equation}
+\overline{A}_{i\omega}(\bm{r})=-\frac{1}{\hbar c}\int D_{ik}^{R}(\omega;\bm{r},\bm{r}')j_{k\omega}(\bm{r}')\,\mathrm{d}^{3}x'.
+\end{equation}
+%%p311（印刷页300）
+平均值$\overline{A}$正是介质中宏观（完全平均，见本节开头）电磁场的矢势；以后不再在$\bm{A}$（以及在另外宏观量）上划线. 现在考虑，由经典电流$\bm{j}$产生的，满足麦克斯韦方程
+\begin{equation*}
+\nabla\times\bm{H}_{\omega}=\frac{4\pi}{c}\bm{j}_{\omega}-\frac{\mathrm{i}\omega}{c}\bm{D}_{\omega}
+\end{equation*}
+的经典场. 此处$\bm{D}$是电感强度；在一般情况，各向异性的介质中，$\bm{D}_{\omega}$与场强$\bm{E}_{\omega}$的关系为$D_{i\omega}=\bm{\varepsilon}_{ik}(\omega)E_{k\omega}$；如果介质是非均匀的，则电容率张量也是坐标的函数：$\bm{\varepsilon}_{ik}(\omega,\bm{r})$.
+
+在我们选定势的规范(75.1)里，有：
+\begin{equation}
+\bm{B}_{\omega}=\nabla\times\bm{A}_{\omega},\qquad\bm{E}_{\omega}=\mathrm{i}\frac{\omega}{c}\bm{A}_{\omega},
+\end{equation}
+此处$\bm{B}$是磁感应强度，它与场强$\bm{H}$有$B_{i\omega}=\bm{\mu}_{ik}H_{k\omega}$\footnote{我们记得：在宏观电动力学中，微观电场强度的平均值通常表为$\bm{E}$，而磁场强度平均值表为$\bm{B}$并称为磁感应强度.}的关系. 因此，对于势，我们有方程\footnote{在这里以及今后，利用记号$\mathrm{rot}_{il}=e_{ikl}\dfrac{\partial}{\partial x_k}$，此处$e_{ikl}$是单位反对称赝张量，并且$(\mathrm{rot}\,\bm{A})_i=\mathrm{rot}_{il}A_l$.}
+\begin{equation*}
+\bigl[\mathrm{rot}_{im}(\bm{\mu}_{mn}^{-1}\mathrm{rot}_{nk})-\frac{\omega^{2}}{c^{2}}\bm{\varepsilon}_{ik}\bigr]A_{k\omega}=\frac{4\pi}{c}j_{i\omega}.
+\end{equation*}
+将(75.13)形的$\bm{A}_{\omega}$代入，我们发现函数$D_{ik}^{R}$必须满足方程
+\begin{equation}
+\bigl[\mathrm{rot}_{im}(\bm{\mu}_{mn}^{-1}\mathrm{rot}_{nl})-\frac{\omega^{2}}{c^{2}}\bm{\varepsilon}_{il}\bigr]D_{lk}^{R}(\omega;\bm{r},\bm{r}')=-4\pi\hbar\delta_{ik}\delta(\bm{r}-\bm{r}').
+\end{equation}
+对于各向同性（在每一体积元内）介质，当张量$\bm{\varepsilon}_{ik}$和$\bm{\mu}_{ik}$归结为标量时，这个方程可以大大简化. 磁导率一般接近于1，故在本节后半部分我们认为它等于1. 设$\bm{\varepsilon}_{ik}=\bm{\varepsilon}\delta_{ik}$和$\bm{\mu}_{ik}=\delta_{ik}$，我们得到方程
+\begin{equation}
+\begin{aligned}
+\biggl[\frac{\partial^{2}}{\partial x_{i}\partial x_{l}}-\delta_{il}\Delta-\delta_{il}\frac{\omega^{2}}{c^{2}}\bm{\varepsilon}(\omega;\bm{r})\biggr]D_{lk}^{R}(\omega;\bm{r},\bm{r}')={}\\
+{}=-4\pi\hbar\delta_{ik}\delta(\bm{r}-\bm{r}').
+\end{aligned}
+\end{equation}
+这样一来，对非均匀介质，计算推迟格林函数便归结为求解一定的微分方程（И.\,Е.\,Дзялошинский，Л.\,П.\,Питаевский，1959）.\footnote{我们指出：函数$D_{ik}$是数学物理方程中熟知的麦克斯韦方程的格林函数，它是点源场的满足推迟条件方程式的解（以$\mathrm{e}^{-\mathrm{i}\omega t}$代替$\mathrm{e}^{\mathrm{i}\omega t}$，超前格林函数满足同样方程）.}
+
+在不同介质的分界面上，张量分量$D_{ik}^{R}$必须满足一定的条件. 在方程(75.16)中，第二个变量$\bm{r}'$和第二指标$k$不参与对张量$D_{ik}^{R}(\omega,\bm{r},\bm{r}')$的微分运算或代数运算，而只起个参数的作用. 因此，只要求函数$D_{lk}^{R}(\omega,\bm{r},\bm{r}')$的坐标$\bm{r}$必须
+%%p312（印刷页301）
+遵守边界条件，而将$D_{lk}^{R}$看成是关于下标$l$的矢量. 这个条件与要求$\bm{E}$和$\bm{H}$\footnote{$\bm{B}$和$\bm{D}$法向分量的边界条件，在给定情况下，不提供任何新的内容，因为在以$\mathrm{e}^{-\mathrm{i}\omega t}$随时间变化的场中，方程$\nabla\cdot\bm{D}=0$, $\nabla\cdot\bm{B}=0$乃是方程$\nabla\times\bm{E}=\mathrm{i}\omega\bm{B}/c$, $\nabla\times\bm{H}=-\mathrm{i}\omega\bm{D}/c$的推论.}的切线分量必须是连续的相当. 因为$\bm{E}=-\dot{\bm{A}}/c$，所以微商
+\begin{equation*}
+-\frac{1}{c}\frac{\partial}{\partial t}D_{lk}^{R}(t;\bm{r},\bm{r}')
+\end{equation*}
+或傅里叶分量
+\begin{equation}
+\mathrm{i}\frac{\omega}{c}D_{lk}^{R}(\omega;\bm{r},\bm{r}')
+\end{equation}
+此时起着矢量$\bm{E}$的作用. 类似地，
+\begin{equation}
+\mathrm{rot}_{li}D_{ik}(\omega;\bm{r},\bm{r}')
+\end{equation}
+起着矢量$\bm{H}$（$\bm{\mu}=1$时与$\bm{B}$一致）的作用.
+
+对于空间均匀而无限的介质，函数$D_{ik}^{R}$仅依赖于坐标差$\bm{r}-\bm{r}'$. 对于按此差值展开的傅里叶分量，微分方程(75.16)归于代数方程组
+\begin{equation}
+\frac{1}{4\pi\hbar}\biggl[k_{i}k_{l}-\delta_{il}k^{2}+\delta_{il}\frac{\omega^{2}}{c^{2}}\bm{\varepsilon}(\omega)\biggr]D_{lk}^{R}(\omega,\bm{k})=\delta_{ik}
+\end{equation}
+这些方程的解：
+\begin{equation}
+D_{ik}^{R}(\omega,\bm{k})=\frac{4\pi\hbar}{\omega^{2}\bm{\varepsilon}(\omega)/c^{2}-k^{2}}\biggl[\delta_{ik}-\frac{c^{2}k_{i}k_{k}}{\omega^{2}\bm{\varepsilon}(\omega)}\biggr].
+\end{equation}
+根据(36.21)，均匀介质格林函数$D_{ik}$通过推迟格林函数$D_{ik}^{R}$可表为如下形式
+\begin{equation}
+D_{ik}(\omega,\bm{k})=\mathrm{Re}D_{ik}^{R}(\omega,\bm{k})+\mathrm{i}\coth\frac{\hbar\omega}{2T}\cdot\mathrm{Im}D_{ik}^{R}(\omega,\bm{k}).
+\end{equation}
+当$T\to0$时此式给出
+\begin{equation}
+D_{ik}(\omega,\bm{k})=\mathrm{Re}D_{ik}^{R}(\omega,\bm{k})+\mathrm{i}\,\mathrm{sign}\cdot\mathrm{Im}D_{ik}^{R}(\omega,\bm{k}).
+\end{equation}
+函数$D_{ik}^{R}$由公式(75.20)给出；如果考虑到$\mathrm{Re}\bm{\varepsilon}(\omega)$是$\omega$的偶函数，而$\mathrm{Im}\bm{\varepsilon}(\omega)$是$\omega$的奇函数，则我们在$T=0$时，得到
+\begin{equation}
+D_{ik}(\omega,\bm{k})=D_{ik}^{R}(|\omega|,\bm{k}).
+\end{equation}
+在真空中$\bm{\varepsilon}(\omega)=1$. 然而，因为在任何介质中当$\omega>0$时，$\mathrm{Im}\bm{\varepsilon}(\omega)>0$，所以与真空对应的是极限$\bm{\varepsilon}\to1+\mathrm{i}\,\mathrm{sign}\,\omega$，此时得到表达式
+\begin{equation*}
+D_{ik}^{(0)}(\omega,\bm{k})=\frac{4\pi\hbar}{\omega^{2}/c^{2}-k^{2}+\mathrm{i}0}\biggl(\delta_{ik}-\frac{c^{2}k_{i}k_{k}}{\omega^{2}}\biggr),
+\end{equation*}
+它与量子电动力学中周知的结果一致（见第四卷§76）.
+
+\section{电磁场的涨落}
+
+%%p313（印刷页302）
+在上节开头指出，研究电磁场涨落时，我们涉及的只是对物理无限小体积元（而不是对其中的粒子运动）求平均的量随时间的振荡. 这些量的量子力学算符也应在此意义下来理解.
+
+电磁涨落理论的基本公式，可以直接由涨落耗散定理的一般公式写出（第五卷§125）. 我们记得，对于一组离散的涨落量$x_{a}$，涨落的谱分布可通过广义感应率$\alpha_{ab}(\omega)$表为如下公式
+\begin{equation*}
+(x_{a}x_{b})_{\omega}=\frac{\mathrm{i}\hbar}{2}\bigl(\alpha_{ba}^{*}-\alpha_{ab}\bigr)\coth\frac{\hbar\omega}{2T},
+\end{equation*}
+此处量$(x_{a}x_{b})_{\omega}$是时间的关联函数
+\begin{equation*}
+\varphi_{ab}(t)=\frac{1}{2}\bigl\langle\hat{x}_{a}(t)\hat{x}_{b}(0)+\hat{x}_{b}(0)\hat{x}_{a}(t)\bigr\rangle
+\end{equation*}
+的按时间傅里叶展开的分量，而$\hat{x}_{a}(t)$是量$x_{a}$的海森伯算符. 对于分布的量$x_{a}(\bm{r})$（物体内点的坐标函数），此式可写成如下形式.
+\begin{equation}
+\bigl(x_{a}^{(1)}x_{b}^{(2)}\bigr)_{\omega}=\frac{\mathrm{i}\hbar}{2}\coth\frac{\hbar\omega}{2T}
+\bigl[\alpha_{ba}^{*}(\omega;\bm{r}_{2},\bm{r}_{1})-\alpha_{ab}(\omega;\bm{r}_{1},\bm{r}_{2})\bigr],
+\end{equation}
+此处上标(1)或(2)代表在点$\bm{r}_{1}$和$\bm{r}_{2}$量的数值.
+
+在上一节已经表明：如果量$x_{a}$是矢势$\bm{A}(\bm{r})/c$的分量，则与此对应的广义感应率将是张量分量——$D_{ik}^{R}(\omega;\bm{r}_{1},\bm{r}_{2})/\hbar c^{2}$. 因此，立即得到
+\begin{equation}
+\bigl(A_{i}^{(1)}A_{k}^{(2)}\bigr)_{\omega}=\frac{\mathrm{i}}{2}\coth\frac{\hbar\omega}{2T}
+\bigl\{D_{ik}^{R}(\omega;\bm{r}_{1},\bm{r}_{2})-\bigl[D_{ki}^{R}(\omega;\bm{r}_{2},\bm{r}_{1})\bigr]^{*}\bigr\}.
+\end{equation}
+场强涨落的谱函数可以用简单方法从(76.2)得到. 设$\varphi_{ik}^{A}(t_{1},\bm{r}_{1};t_{2},\bm{r}_{2})$为矢势涨落的关联函数；表达式(76.2)是这个函数按$t=t_{1}-t_{2}$展开的傅里叶分量. 因为电场强度
+\begin{equation*}
+\bm{E}=-\frac{\dot{\bm{A}}}{c},
+\end{equation*}
+所以对$\bm{E}$分量也有这样的函数
+\begin{equation*}
+\varphi_{ik}^{E}=\frac{1}{c^{2}}\frac{\partial^{2}}{\partial t_{1}\partial t_{2}}\varphi_{ik}^{A}=-\frac{1}{c^{2}}\frac{\partial^{2}}{\partial t^{2}}\varphi_{ik}^{A},
+\end{equation*}
+或者，用傅里叶分量有：
+\begin{equation}
+\bigl(E_{i}^{(1)}E_{k}^{(2)}\bigr)_{\omega}=\frac{\omega^{2}}{c^{2}}\bigl(A_{i}^{(1)}A_{k}^{(2)}\bigr)_{\omega}.
+\end{equation}
+用类似的方法，考虑到$\bm{B}=\mathrm{rot}\,\bm{A}$的关系，我们得到
+\begin{equation}
+\bigl(B_{i}^{(1)}B_{k}^{(2)}\bigr)_{\omega}=\mathrm{rot}_{il}^{(1)}\,\mathrm{rot}_{km}^{(2)}\bigl(A_{l}^{(1)}A_{m}^{(2)}\bigr)_{\omega},
+\end{equation}
+\begin{equation}
+\bigl(E_{i}^{(1)}B_{k}^{(2)}\bigr)_{\omega}=\frac{\mathrm{i}\omega}{c}\,\mathrm{rot}_{km}^{(2)}\bigl(A_{i}^{(1)}A_{m}^{(2)}\bigr)_{\omega}.
+\end{equation}
+%%p314（印刷页303）
+通过推迟格林函数表述电磁涨落的关联函数，公式(76.2—76.5)将它们的计算问题，归结为在物体已给边界的适当边界条件下求解微分方程(75.15)或(75.16)\footnote{有另一种形式的电磁涨落理论由С.\,М.\,Рытов（1953）发展的，而与(76.2—76.5)等价的形式是М.\,Л.\,Левин和С.\,М.\,Рытов（1967）引入的.}.
+
+下面我们认为介质是非磁活性的，则函数$D_{ik}^{R}$具有对称性(75.12)，并且表达式(76.2)取如下形式
+\begin{equation}
+\bigl(A_{i}^{(1)}A_{k}^{(2)}\bigr)_{\omega}=-\coth\frac{\hbar\omega}{2T}\,\mathrm{Im}D_{ik}^{R}(\omega;\bm{r}_{1},\bm{r}_{2})
+\end{equation}
+我们注意到表达式(76.6)是实的，同时(76.3—76.4)也是实的，而(76.5)是虚的，这就意味着$\bm{E}$的各分量之间，以及$\bm{B}$的各分量之间的时间关联函数是时间$t=t_{1}-t_{2}$的偶函数（对于时间反演，两个量或全是偶函数或全是奇函数，它们之间的关联性理应如此）. 而$\bm{E}$分量跟$\bm{B}$分量之间的时间关联函数是时间的奇函数（对于一个是时间反演的偶函数，另一个是时间的奇函数的两个量理应如此）. 由此得出$\bm{E}$和$\bm{B}$之值在同一时刻是不相关联的（$t$的奇函数在$t=0$时变为零）. 关联函数变为零的同时，$\bm{E}$和$\bm{B}$的任何双线性表达式取同一时刻的平均值（例如坡印廷矢量）也变为零. 不过后一情况早就是显然的，因为处于热平衡并具有时间反演不变性的物体，不能有内部的宏观能流.
+
+\section{无限介质中的电磁涨落}
+
+在均匀的无限介质中，函数$D_{ik}(\omega;\bm{r}_{1},\bm{r}_{2})$仅仅依赖于坐标差$\bm{r}=\bm{r}_{1}-\bm{r}_{2}$，并且是此变量的偶函数［方程(75.15)只包括对坐标的二阶微商，因此$D_{ik}(\omega;\bm{r})$和$D_{ik}(\omega;-\bm{r})$满足同一方程］. 对等式(76.2)两侧取对$\bm{r}$的傅里叶分量，我们得到
+\begin{equation}
+\bigl(A_{i}^{(1)}A_{k}^{(2)}\bigr)_{\omega k}=\frac{\mathrm{i}}{2}\coth\frac{\hbar\omega}{2T}
+\bigl\{D_{ik}^{R}(\omega,\bm{k})-\bigl[D_{ki}^{R}(\omega,\bm{k})\bigr]^{*}\bigr\}.
+\end{equation}
+对非磁活性介质，考虑到(75.12)，此公式写成下列形式
+\begin{equation}
+\bigl(A_{i}^{(1)}A_{k}^{(2)}\bigr)_{\omega k}=-\coth\frac{\hbar\omega}{2T}\,\mathrm{Im}D_{ik}^{R}(\omega,\bm{k}).
+\end{equation}
+在各向同性非磁性（$\bm{\mu}=1$）介质中，函数$D_{ik}^{R}(\omega,\bm{k})$由(75.20)给出. 确定涨落的空间关联函数的问题，归结为计算下列积分
+\begin{equation}
+D_{ik}^{R}(\omega,\bm{r})=\int D_{ik}^{R}(\omega,\bm{k})\,\mathrm{e}^{\mathrm{i}\bm{k}\cdot\bm{r}}\frac{\mathrm{d}^{3}k}{(2\pi)^{3}}.
+\end{equation}
+用下列公式进行积分
+\begin{equation*}
+\int\frac{\mathrm{e}^{\mathrm{i}\bm{k}\cdot\bm{r}}}{k^{2}+\kappa^{2}}\,\frac{\mathrm{d}^{3}k}{(2\pi)^{3}}=\frac{\mathrm{e}^{-\kappa r}}{4\pi r},
+\end{equation*}
+\begin{equation}
+\int\frac{k_{i}k_{k}\,\mathrm{e}^{\mathrm{i}\bm{k}\cdot\bm{r}}}{k^{2}+\kappa^{2}}\,\frac{\mathrm{d}^{3}k}{(2\pi)^{3}}=-\frac{\partial^{2}}{\partial x_{i}\partial x_{k}}\frac{\mathrm{e}^{-\kappa r}}{4\pi r}.
+\end{equation}
+%%p315（印刷页304）
+第一个公式取自下列著名等式的傅里叶分量，得到
+\begin{equation}
+(\Delta-\kappa^{2})\frac{\mathrm{e}^{-\kappa r}}{r}=-4\pi\delta(\bm{r}),
+\end{equation}
+微商第一个公式得出第二个公式. 结果得到
+\begin{equation}
+D_{ik}^{R}(\omega;\bm{r})=-\hbar\biggl(\delta_{ik}+\frac{c^{2}}{\omega^{2}\bm{\varepsilon}}\frac{\partial^{2}}{\partial x_{i}\partial x_{k}}\biggr)\frac{1}{r}\exp\biggl(-\frac{\omega}{c}\sqrt{-\bm{\varepsilon}}\,r\biggr),
+\end{equation}
+此处$r=|\bm{r}_{1}-\bm{r}_{2}|$，而根$\sqrt{-\bm{\varepsilon}}$应当取使$\mathrm{Re}\sqrt{-\bm{\varepsilon}}>0$的符号；对于真空应取$\bm{\varepsilon}=1$，$\sqrt{-\bm{\varepsilon}}=-\mathrm{i}$（见下面）.
+
+因此，根据(76.6)和(76.3)，立即得出
+\begin{equation}
+\begin{aligned}
+\bigl(E_{i}^{(1)}E_{k}^{(2)}\bigr)_{\omega}={}\\
+{}=\hbar\coth\frac{\hbar\omega}{2T}\,\mathrm{Im}\Biggl\{\frac{1}{\bm{\varepsilon}}
+\biggl[\frac{\bm{\varepsilon}\omega^{2}}{c^{2}}\delta_{ik}+\frac{\partial^{2}}{\partial x_{i}\partial x_{k}}\biggr]\frac{1}{r}\cdot\exp\biggl(-\frac{\omega}{c}\sqrt{-\bm{\varepsilon}}\,r\biggr)\Biggr\}
+\end{aligned}
+\end{equation}
+（С.\,М.\,Рытов，1953）. 将此公式中的下标$i,k$缩并掉［并利用公式(77.5)］，我们得到
+\begin{equation}
+\begin{aligned}
+\bigl(\bm{E}^{(1)}\bm{E}^{(2)}\bigr)_{\omega}={}\\
+{}=2\hbar\coth\frac{\hbar\omega}{2T}\,\mathrm{Im}\Biggl\{\frac{1}{\bm{\varepsilon}}
+\biggl[\frac{\bm{\varepsilon}\omega^{2}}{c^{2}r}\exp\biggl(-\frac{\omega}{c}\sqrt{-\bm{\varepsilon}}\,r\biggr)+2\pi\delta(\bm{r})\biggr]\Biggr\}.
+\end{aligned}
+\end{equation}
+用类似的方法，根据公式(76.4)的计算，可得到磁场关联函数的表达式. 此式与(77.7—77.8)不同的地方，是在方括号前没有因子$1/\bm{\varepsilon}$；此时在(77.8)中，记号$\mathrm{Im}$下的$\delta$函数项成为实的而从答案中消失. 公式(77.7—77.8)与$\bm{\varepsilon}$虚部的关系，显然是强调电磁涨落与介质吸收的关系. 但是如果在公式(77.7—77.8)中过渡到$\mathrm{Im}\bm{\varepsilon}\to0$的极限，我们得到不为零的有限表达式. 这种情况与两种过渡的次序有关（介质极限线度的无限大和$\mathrm{Im}\bm{\varepsilon}$等于零）. 因为在无限介质中，甚至任意小的$\mathrm{Im}\bm{\varepsilon}$最后也导致吸收. 所以，我们利用极限过渡的次序能得到与物理上透明的介质有关的结果. 在这种介质中与任何实际介质一样，总要有一些微小而不为零的吸收.
+
+例如，在公式(77.8)中作上述的过渡. 为此，我们注意到，在$\mathrm{Im}\bm{\varepsilon}$为小的正值时（当$\omega>0$），
+\begin{equation*}
+\sqrt{-\bm{\varepsilon}}\approx-\mathrm{i}\sqrt{\mathrm{Re}\bm{\varepsilon}}\biggl(1+\mathrm{i}\frac{\mathrm{Im}\bm{\varepsilon}}{2\,\mathrm{Re}\bm{\varepsilon}}\biggr)
+\end{equation*}
+（考虑$\mathrm{Re}\sqrt{-\bm{\varepsilon}}>0$的要求）. 因此在$\mathrm{Im}\bm{\varepsilon}\to0$的极限下，我们得到
+\begin{equation}
+\bigl(\bm{E}^{(1)}\bm{E}^{(2)}\bigr)_{\omega}=\frac{1}{n^{2}}\bigl(\bm{H}^{(1)}\bm{H}^{(2)}\bigr)_{\omega}
+=\frac{2\omega^{2}\hbar}{c^{2}r}\sin\frac{\omega nr}{c^{2}}\coth\frac{\hbar\omega}{2T},
+\end{equation}
+%%p316（印刷页305）
+此处$n=\sqrt{\bm{\varepsilon}}$是实的折射率. 由于不存在$\delta$函数项，这个公式甚至在$\bm{r}_{1}$和$\bm{r}_{2}$重合时也保持为有限：
+\begin{equation}
+\bigl(\bm{E}^{2}\bigr)_{\omega}=\frac{1}{n^{2}}\bigl(\bm{H}^{2}\bigr)_{\omega}=\frac{2\omega^{3}\hbar n}{c^{3}}\coth\frac{\hbar\omega}{2T}.
+\end{equation}
+可以在更早的计算阶段——在格林函数中，进行向透明介质的极限过渡. 考虑到$\mathrm{Im}\bm{\varepsilon}$与$\omega$有相同的符号，我们发现，在此极限下函数(75.20)采取如下形式
+\begin{equation}
+D_{ik}^{R}(\omega,\bm{k})=\frac{4\pi\hbar}{\omega^{2}n^{2}/c^{2}-k^{2}+\mathrm{i}0\cdot\mathrm{sign}\,\omega}
+\biggl(\delta_{ik}-\frac{c^{2}k_{i}k_{k}}{\omega^{2}n^{2}}\biggr).
+\end{equation}
+（М.\,И.\,Рязанов，1957）. 这个函数的虚部只与环绕极点$\omega=\pm ck/n$的方式有关：借助于(8.11)，将虚部分离出来并代入(77.2)后，得到
+\begin{equation}
+\begin{aligned}
+\bigl(E_{i}^{(1)}E_{k}^{(2)}\bigr)_{\omega k}={}\\
+{}=\frac{2\pi^{2}\hbar}{k}\biggl(\frac{\omega^{2}}{c^{2}}\delta_{ik}-\frac{k_{i}k_{k}}{n^{2}}\biggr)
+\biggl\{\delta\biggl(\frac{n\omega}{c}-k\biggr)-\delta\biggl(\frac{n\omega}{c}+k\biggr)\biggr\}\coth\frac{\hbar\omega}{2T}.
+\end{aligned}
+\end{equation}
+在此公式中，$\delta$函数的宗量具有简单的物理意义：这宗量表明，给定$\bm{k}$值时，场的涨落在空间以$c/n$的速度传播，这与在该介质中电磁波的传播速度一致. 对公式(77.12)进行傅里叶反演，当然可以重新得到(77.7).
+
+在透明介质（$\bm{\mu}=1$）中，谱间隔为$\mathrm{d}\omega$的（空间单位体积）电磁场的涨落能量由下式给出
+\begin{equation*}
+\frac{1}{8\pi}\biggl[2\bigl(\bm{E}^{2}\bigr)_{\omega}\frac{\mathrm{d}(\bm{\varepsilon}\omega)}{\mathrm{d}\omega}+2\bigl(\bm{H}^{2}\bigr)_{\omega}\biggr]\frac{\mathrm{d}\omega}{2\pi}
+\end{equation*}
+（见第八卷§80）\footnote{按$\mathrm{d}\omega$由$0\to\infty$的积分可得到总能量：方括号中的因子2，是因为在我们所采用涨落谱函数的定义中，平均值$\langle x^2\rangle$是对$(x^2)_\omega$按$\dfrac{\mathrm{d}\omega}{2\pi}$由$-\infty$到$\infty$的积分得到的［见第五卷(122,6)］.}. 将(77.10)代入这里，经简单变换后我们得到
+\begin{equation}
+\biggl(\frac{\hbar\omega}{2}+\frac{\hbar\omega}{\mathrm{e}^{\hbar\omega/T}-1}\biggr)\frac{\omega^{2}n^{2}}{\pi^{2}c^{3}}\frac{\mathrm{d}(n\omega)}{\mathrm{d}\omega}\,\mathrm{d}\omega
+\end{equation}
+括号中的第一项与场的零点振动有关. 第二项给出透明介质中热力学平衡电磁辐射的能量，即黑体辐射能量. 不研究涨落，而用相应推广真空中黑体辐射的普朗克公式的方法，也能得到公式的这一部分. 根据普朗克公式，在波矢量$\mathrm{d}^{3}k$的间隔内单位体积黑体辐射的能量公式为
+\begin{equation*}
+\frac{\hbar\omega}{\mathrm{e}^{\hbar\omega/T}-1}\,\frac{2\,\mathrm{d}^{3}k}{(2\pi)^{3}}
+\end{equation*}
+（因子2是考虑到两个极化方向）. 为了得到能量的谱密度，相应地应当用$4\pi k^{2}\mathrm{d}k$代替$\mathrm{d}^{3}k$，并取$k=\omega/c$. 为了由真空过渡到透明介质，只要取$k=n\omega/c$，也就是写出
+\begin{equation*}
+k^{2}\mathrm{d}k=k^{2}\frac{\mathrm{d}k}{\mathrm{d}\omega}\,\mathrm{d}\omega=\frac{\omega^{2}n^{2}}{c^{3}}\frac{\mathrm{d}(n\omega)}{\mathrm{d}\omega}\,\mathrm{d}\omega
+\end{equation*}
+%%p317（印刷页306）
+就够了. 于是得出所要的结果.
+
+\begin{xiti}
+
+1. 求出远离物体的电磁场的涨落，该物体处在与之热平衡的稀薄透明介质中；辐射波长以及物体距观测点的距离均远大于物体的线度. 物体具有各向异性的电极化率$\bm{\alpha}_{ik}(\omega)$.
+
+{\heiti 解：}稀薄的透明介质可以看做真空. 物体的存在使真空格林函数产生微小的变化（在远距离上），据此决定待求的涨落. 我们以类比法来计算此变化. 根据这种类比，下标$k$已给的真空函数$D_{ik}^{R}(\omega;\bm{r},\bm{r}')$可以形式地看做$\bm{r}'$点的某个源在$\bm{r}$点产生的电场$E_{i}(\bm{r},\bm{r}')$. 这种类比的根据是，场$E_{i}(\bm{r},\bm{r}')$［它的势$A_{i}(\bm{r},\bm{r}')$也同样］在$\bm{r}\neq\bm{r}'$的情况下和$D_{ik}^{R}(\omega;\bm{r},\bm{r}')$满足同一个方程——$\bm{\varepsilon}=1$的方程(75.16). 设物体处在点$\bm{r}=0$. 场为
+\begin{equation*}
+E_{i}(0,\bm{r}')=D_{lk}^{R}(\omega;0,\bm{r}')\equiv D_{lk}^{R}(\omega;\bm{r}')
+\end{equation*}
+［此处$D_{lk}^{R}(\omega;\bm{r}')$是无物体时由(77.6)表述的$\bm{\varepsilon}=1$的真空格林函数］. 该场使物体极化，同时在$\bm{r}=0$点产生偶极矩$d_{i}=\bm{\alpha}_{il}D_{lk}^{R}(\omega;0,\bm{r}')$. 这个偶极矩在点$\bm{r}$也要产生场，它将给出待求的变化$\delta D_{ik}^{R}(\omega;\bm{r},\bm{r}')$. 根据电动力学熟知的公式（见第二卷§72），在$\bm{r}=0$点的偶极矩$\bm{d}$在$\bm{r}$点产生的场（以$\mathrm{e}^{-\mathrm{i}\omega t}$依赖于时间）是
+\begin{equation*}
+E_{i}=d_{l}\biggl[\frac{\omega^{2}}{c^{2}}\delta_{il}+\frac{\partial^{2}}{\partial x_{i}\partial x_{l}}\biggr]\mathrm{e}^{\mathrm{i}\omega r/c}/r,
+\end{equation*}
+并且只要求距离$r$比物体的线度大，不要求比波长大. 此式可以写成
+\begin{equation*}
+E_{i}=-\frac{\omega^{2}}{\hbar c^{2}}D_{il}^{R}(\omega;\bm{r})\,d_{l}
+\end{equation*}
+（注意，函数$D_{il}^{R}(\omega,\bm{r})$是变量$\bm{r}$的偶函数）. 因而用上述偶极矩，我们得到
+\begin{equation*}
+\delta D_{ik}^{R}(\omega;\bm{r},\bm{r}')=-\frac{\omega^{2}}{\hbar c^{2}}D_{il}^{R}(\omega;\bm{r})\bm{\alpha}_{lm}D_{mk}^{R}(\omega;\bm{r}').
+\end{equation*}
+待求的涨落关联函数，现在用$\delta D_{ik}^{R}(\omega;\bm{r},\bm{r}')$代替$D_{ik}^{R}$，以普遍公式(76.3—76.6)给出. 结果我们得到
+\begin{equation}\tag{1}
+\delta\bigl(A_{i}^{(1)}A_{k}^{(2)}\bigr)_{\omega}=\frac{2\omega^{2}}{\hbar c^{2}}
+\biggl\{\frac{1}{2}+\frac{1}{\mathrm{e}^{\hbar\omega/T}-1}\biggr\}
+\mathrm{Im}\bigl[D_{il}^{R}(\omega;\bm{r}_{1})\bm{\alpha}_{lm}D_{mk}^{R}(\omega;\bm{r}_{2})\bigr].
+\end{equation}
+注意，物体处于$\bm{r}=0$点，而$\bm{r}_{1}$和$\bm{r}_{2}$是远离物体的两点. 我们指出，对于涨落的贡献不仅来自极化系数的虚部而且来自实部，后者可以看做充满透明介质的黑体辐射在物体上散射的结果.
+
+2. 对磁极化率为$\bm{\alpha}_{ik}(\omega)$的物体，再求解上题\footnote{有磁极化率，并不一定表明物体是由磁性物质组成的. 例如，趋肤效应可以将磁场从物体中排挤出去.}.
+
+{\heiti 解：}在此情况下，把$\mathrm{rot}_{il}D_{lk}^{R}(\omega;\bm{r},\bm{r}')$视为$\bm{r}'$点的源在$\bm{r}$点产生的磁场$H_{i}(\bm{r},\bm{r}')$（不是场$H_{i}$本身，而是它的势$A_{i}$所满足的方程. 与函数$D_{ik}^{R}$的有同样形式）. 这个场磁化物体，在$\bm{r}=0$点形成的磁矩为
+\begin{equation*}
+m_{i}=-\bm{\alpha}_{il}\,\mathrm{rot}'_{lm}D_{mk}^{R}(\omega;0,\bm{r}')
+\end{equation*}
+（用对$\bm{r}'$的微商代替对$\bm{r}$的微商，是因为考虑到$D_{mk}^{R}$仅依赖于差$(\bm{r}-\bm{r}')$）. 待求的格林函数变化与这个磁矩在$\bm{r}$点所构成的磁场矢势一致.
+%%p318（印刷页307）
+\begin{equation*}
+A_{i}=\mathrm{rot}_{il}\biggl(\frac{1}{r}m_{l}\,\mathrm{e}^{\mathrm{i}\omega r/c}\biggr).
+\end{equation*}
+（见第二卷§72，习题1）. 这样一来
+\begin{equation*}
+\delta D_{ik}^{R}(\omega;\bm{r},\bm{r}')=-\biggl(\mathrm{rot}_{il}\frac{\mathrm{e}^{\mathrm{i}\omega r/c}}{r}\biggr)\bm{\alpha}_{lm}\,\mathrm{rot}'_{mn}D_{nk}^{R}(\omega;0,\bm{r}').
+\end{equation*}
+最后，将(77.6)的$D_{nk}^{R}$代入后，我们得到
+\begin{equation}\tag{2}
+\delta D_{ik}^{R}(\omega;\bm{r},\bm{r}')=\hbar\biggl(\mathrm{rot}_{il}\frac{\mathrm{e}^{\mathrm{i}\omega r/c}}{r}\biggr)\bm{\alpha}_{lm}\,\mathrm{rot}'_{mk}\frac{\mathrm{e}^{\mathrm{i}\omega r'/c}}{r'}
+\end{equation}
+（利用$\mathrm{rot}_{mn}\nabla_{n}=e_{mkn}\nabla_{k}\nabla_{n}\equiv0$）.
+
+3. 在习题1的条件下，确定电磁场的涨落，但认为介质的温度远低于物体的温度.
+
+{\heiti 解：}在习题1的计算中，与(1)的花括号的两项相对应，场自然地分为零点涨落和黑体热辐射. 后者也由两部分组成——即物体本身的热辐射和介质的黑体辐射在物体上散射而形成的场. 如果介质的温度低，就没有第二部分. 在解题时我们单独计算这部分，然后从(1)中减去. 设$\bm{A}(\bm{r})=\bm{A}^{(0)}+\bm{A}^{(s)}$，此处$\bm{A}^{(0)}$是无物体时涨落的场，而$\bm{A}^{(s)}$是被物体散射的场. 在大距离上，$\bm{A}^{(s)}$很小，在计算$\delta(A_{i1}A_{i2})_{\omega}$时可以忽略$\bm{A}^{(s)}$的平方项. 因此，来自散射的贡献有
+\begin{equation*}
+\begin{aligned}
+\delta^{(s)}(A_{i1}A_{k2})_{\omega}\approx\bigl(A_{i1}^{(s)}A_{k2}^{(0)}\bigr)_{\omega}+\bigl(A_{i1}^{(0)}A_{k2}^{(s)}\bigr)_{\omega}=\\
+{}=\bigl(A_{i1}^{(s)}A_{k2}^{(0)}\bigr)_{\omega}+\bigl(A_{k2}^{(s)}A_{i1}^{(0)}\bigr)_{\omega}^{*}.
+\end{aligned}
+\end{equation*}
+散射场又由第二卷§72的公式给出，但现在的偶极矩应当简单地理解为黑体辐射所感应的矩$d_{i}=\bm{\alpha}_{ik}A_{k}^{(0)}(0)$. 仍引入无物体时的真空格林函数，有
+\begin{equation*}
+A_{i}^{(s)}(\bm{r}_{1})=-\frac{\omega^{2}}{\hbar c^{2}}D_{il}^{R}(\omega;\bm{r}_{1})\bm{\alpha}_{lm}(\omega)A_{m}^{(0)}(0),
+\end{equation*}
+于是
+\begin{equation*}
+\bigl(A_{i1}^{(s)}A_{k2}^{(0)}\bigr)_{\omega}=-\frac{\omega^{2}}{\hbar c^{2}}D_{il}^{R}(\omega;\bm{r}_{1})\bm{\alpha}_{lm}\bigl(A_{m}^{(0)}(0)A_{k}^{(0)}(\bm{r}_{2})\bigr)_{\omega}.
+\end{equation*}
+%%p319（印刷页308）
+再从(76.2)中取得关联函数$\bigl(A_{m1}^{(0)}A_{k2}^{(0)}\bigr)_{\omega}$. 因为在这里我们感兴趣的只是热辐射，应当忽略公式中的零点振动项，即进行代换
+\begin{equation*}
+\frac{1}{2}\coth\frac{\hbar\omega}{2T}=\frac{1}{\mathrm{e}^{\hbar\omega/T}-1}+\frac{1}{2}\longrightarrow\frac{1}{\mathrm{e}^{\hbar\omega/T}-1}.
+\end{equation*}
+结果得到散射的黑体辐射对关联函数的贡献
+\begin{equation}\tag{3}
+\begin{aligned}
+\delta^{(s)}(A_{i1}A_{k2})_{\omega}=\frac{2\omega^{2}}{\hbar c^{2}\bigl(\mathrm{e}^{\hbar\omega/T}-1\bigr)}
+\bigl[D_{il}^{R}(\omega;\bm{r}_{1})\bm{\alpha}_{lm}\,\mathrm{Im}D_{mk}^{R}(\omega;\bm{r}_{2})+{}\\
+{}+D_{kl}^{R*}(\omega;\bm{r}_{2})\bm{\alpha}_{lm}^{*}\,\mathrm{Im}D_{mi}^{R}(\omega,\bm{r}_{1})\bigr].
+\end{aligned}
+\end{equation}
+最后，为了求出冷介质中的涨落场，应当从(1)减去(3)，利用张量$D_{ik}$和$\bm{\alpha}_{ik}$的对称性，作简单的变换之后我们得到
+\begin{equation}\tag{4}
+\delta^{(T)}(A_{i1}A_{k2})_{\omega}=\frac{2\omega^{2}}{\hbar c^{2}\bigl(\mathrm{e}^{\hbar\omega/T}-1\bigr)}
+D_{il}^{R}(\omega;\bm{r}_{1})\bigl[\mathrm{Im}\bm{\alpha}_{lm}(\omega)\bigr]D_{mk}^{R*}(\omega;\bm{r}_{2})
+\end{equation}
+（$T$是物体的温度）. 在此写出的仅是热项；(1)中零点振动项保持不变. 我们应注意：定义物体热辐射的表达式(4)只与极化系数的虚部有关. 按表达式(4)计算的能流已不等于零，而给出了热物体往周围冷介质辐射的热辐射强度.
+
+\end{xiti}
+
+\section{线性电路中的电流涨落}
+
+涨落-耗散定理还有一个重要的应用，就是H.~Nyquist 1928年首先研究的线性电路中的电流涨落问题.
+
+电流涨落是导体中的自由（即无外加电动势而发生的）电振荡. 在闭合的线性电路中，自然最有意义的是沿导线产生总电流为$J$的振荡. 下边我们假设满足似稳条件——电路的尺度小于波长$\lambda\sim c/\omega$. 则在电路的各个部分总电流$J$都相同，并且仅是时间的函数.
+
+我们选此电流$J$作为第五卷§124中涨落-耗散定理普遍表述中的$x(t)$. 因此，为了阐明有关广义感应率$\alpha$的意义，我们假设在电路中有外来电动势$\mathcal{E}$. 则在电路中能量的耗散为$Q=J\mathcal{E}$. 与作为"力"的定义的$Q=-\bar{x}\dot{f}$进行比较［见第五卷(123.10)］，我们看出，$\dot{f}=-\mathcal{E}$，或傅里叶分量$\mathcal{E}_{\omega}=\mathrm{i}\omega f_{\omega}$. 另一方面，在线性电路中，电流和电动势的关系式为$\mathcal{E}_{\omega}=Z(\omega)\cdot J_{\omega}$. 此处$Z(\omega)$是电路中的复电阻（阻抗）. 因此，有
+\begin{equation*}
+J_{\omega}=\mathcal{E}_{\omega}/Z=\mathrm{i}\omega f_{\omega}/Z.
+\end{equation*}
+与关系式$(\bar{x})_{\omega}=\alpha(\omega)f$中广义感应率的定义比较，我们求得$\alpha(\omega)=\mathrm{i}\omega/Z(\omega)$. 它的虚部为
+\begin{equation*}
+\mathrm{Im}\,\alpha=\mathrm{Im}\frac{\mathrm{i}\omega}{Z}=\frac{\omega}{|Z|^{2}}R(\omega),
+\end{equation*}
+此处$R=\mathrm{Re}\,Z$.
+
+根据涨落-耗散定理，
+\begin{equation*}
+\bigl(x^{2}\bigr)_{\omega}=\hbar\coth\frac{\hbar\omega}{2T}\cdot\mathrm{Im}\,\alpha(\omega),
+\end{equation*}
+%%p320（印刷页309）
+对于电流涨落的谱函数，现在得出
+\begin{equation}
+\bigl(J^{2}\bigr)_{\omega}=\frac{\hbar\omega}{|Z(\omega)|^{2}}R(\omega)\coth\frac{\hbar\omega}{2T}.
+\end{equation}
+如把电流涨落看做是"随机"电动势$\mathcal{E}_{\omega}=ZJ_{\omega}$作用的结果，这个公式就可以写成另外的形式. 对此电动势我们有
+\begin{equation}
+\bigl(\mathcal{E}^{2}\bigr)_{\omega}=\hbar\omega R(\omega)\coth\frac{\hbar\omega}{2T}.
+\end{equation}
+在经典情况下（$\hbar\omega\ll T$）
+\begin{equation}
+\bigl(\mathcal{E}^{2}\bigr)_{\omega}=2TR(\omega).
+\end{equation}
+我们再强调一次，这个公式完全与电路阻抗耗散所引起现象的本质无关.
+
+\section{在介质中光子的温度格林函数}
+
+在介质中光子的温度格林函数按松原电磁场势算符构造的方式，与时间格林函数(75.2)由海森伯算符构成的方式相类似：
+\begin{equation}
+\mathcal{D}_{ik}=-\langle T_{\tau}\hat{A}_{i}^{M}(\tau_{1},\bm{r}_{1})\hat{A}_{k}^{M}(\tau_{2},\bm{r}_{2})\rangle,
+\end{equation}
+此处考虑到，由于薛定谔场算符的厄米性，松原算符$\hat{A}^{M}$和$\hat{\overline{A}}^{M}$［根据(37.1)定义］彼此相等. 然而这些算符本身（不同于海森伯算符）已不是厄米的；由于参数$\tau$是实的，我们有
+\begin{equation*}
+\bigl[\hat{A}^{M}(\tau,\bm{r})\bigr]^{+}=\bigl[\mathrm{e}^{\tau\hat{H}'/\hbar}\hat{A}(\bm{r})\mathrm{e}^{-\tau\hat{H}'/\hbar}\bigr]^{+}=\mathrm{e}^{-\tau\hat{H}'/\hbar}\hat{A}(\bm{r})\mathrm{e}^{\tau\hat{H}'/\hbar}
+\end{equation*}
+或
+\begin{equation*}
+\bigl[\hat{A}^{M}(\tau,\bm{r})\bigr]^{+}=\hat{A}^{M}(-\tau,\bm{r}).
+\end{equation*}
+因为函数(79.1)仅依赖于差$\tau=\tau_{1}-\tau_{2}$（对比§37），所以可以写成（例如取$\tau>0$）
+\begin{equation*}
+\begin{gathered}
+\mathcal{D}_{ik}(\tau;\bm{r}_{1},\bm{r}_{2})=-\bigl\langle\hat{A}_{i}^{M}(\tau,\bm{r}_{1})\hat{A}_{k}^{M}(0,\bm{r}_{2})\bigr\rangle,\\
+\mathcal{D}_{ik}(-\tau;\bm{r}_{1},\bm{r}_{2})=-\bigl\langle\hat{A}_{k}^{M}(\tau,\bm{r}_{2})\hat{A}_{i}^{M}(0,\bm{r}_{1})\bigr\rangle.
+\end{gathered}
+\end{equation*}
+比较这两个表达式可以看出
+\begin{equation}
+\mathcal{D}_{ik}(-\tau;\bm{r}_{1},\bm{r}_{2})=\mathcal{D}_{ki}(\tau;\bm{r}_{2},\bm{r}_{1}).
+\end{equation}
+函数$\mathcal{D}_{ik}$可以按变量$\tau$展成傅里叶级数：
+\begin{equation}
+\mathcal{D}_{ik}(\tau;\bm{r}_{1},\bm{r}_{2})=T\sum_{s=-\infty}^{\infty}\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})\,\mathrm{e}^{-\mathrm{i}\zeta_{s}\tau},
+\end{equation}
+%%p321（印刷页310）
+并且由于光子遵守玻色统计，"频率"$\zeta_{s}$取值$\hbar\zeta_{s}=2\pi sT$［对比(37.8)］. 对于这个展开式的分量，从(79.2)可以得到类似的关系式
+\begin{equation}
+\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})=\mathcal{D}_{ki}(-\zeta_{s};\bm{r}_{2},\bm{r}_{1})
+\end{equation}
+根据一般关系式(37.12)，这些分量和推迟格林函数，在$\zeta_{s}$取正值时有下列等式相联系
+\begin{equation*}
+\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})=D_{ik}^{R}(\mathrm{i}\zeta_{s};\bm{r}_{2},\bm{r}_{1}).
+\end{equation*}
+在§75中已经证明：在一定意义下，函数$D_{ik}^{R}(\omega;\bm{r}_{1},\bm{r}_{2})$可以看做是外界扰动下宏观系统的一般响应理论中的广义感应率. 由此得到用等式(75.12)表述的这些函数的对称性（对非磁活性介质）. 由于$D_{ik}^{R}$和$\mathcal{D}_{ik}$之间的联系，后者同样具有这种性质：
+\begin{equation}
+\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})=\mathcal{D}_{ki}(\zeta_{s};\bm{r}_{2},\bm{r}_{1})
+\end{equation}
+由此等式以及等式(79.4)，现在得出函数$\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})$对于离散变量$\zeta_{s}$是偶函数，因此在它的所有值（正的和负的）的范围内，有
+\begin{equation}
+\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})=D_{ik}^{R}(\mathrm{i}|\zeta_{s}|;\bm{r}_{1},\bm{r}_{2})
+\end{equation}
+其次，函数$D_{ik}^{R}(\omega;\bm{r}_{1},\bm{r}_{2})$以及一切广义感应率在$\omega$的上半虚轴是实的（见第五卷§123）；因此，从(79.6)得出，在$\zeta_{s}$取任何值时，函数$\mathcal{D}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})$都是实的. 最后，由这些性质也得出，最初的函数$\mathcal{D}_{ik}(\tau;\bm{r}_{1},\bm{r}_{2})$是实的，并是变量$\tau$的偶函数：
+\begin{equation}
+\mathcal{D}_{ik}(\tau;\bm{r}_{1},\bm{r}_{2})=\mathcal{D}_{ik}(-\tau;\bm{r}_{1},\bm{r}_{2}).
+\end{equation}
+由温度格林函数和推迟格林函数之间的关系式(79.6)，可以立刻写出在非均匀介质中函数$\mathcal{D}_{ik}$应当满足的微分方程；为此，只要在方程(75.15)或(75.16)中进行$\omega\to\mathrm{i}|\zeta_{s}|$的代换即可. 例如，对于$\bm{\mu}=1$的各向同性的非磁活性介质，我们得到方程
+\begin{equation}
+\begin{aligned}
+\biggl[\frac{\partial^{2}}{\partial x_{i}\partial x_{l}}-\delta_{il}\Delta+\frac{\zeta_{s}^{2}}{c^{2}}\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|,\bm{r})\delta_{il}\biggr]\mathcal{D}_{lk}(\zeta_{s};\bm{r},\bm{r}')={}\\
+{}=-4\pi\hbar\delta_{ik}\delta(\bm{r}-\bm{r}').
+\end{aligned}
+\end{equation}
+对于均匀且无限的介质，函数$\mathcal{D}_{ik}(\zeta_{s};\bm{r},\bm{r}')$按差$\bm{r}-\bm{r}'$展成傅里叶积分. 这个展开式的分量满足代数方程组
+\begin{equation}
+\frac{1}{4\pi\hbar}\biggl[k_{i}k_{l}-\delta_{il}k^{2}-\delta_{il}\frac{\zeta_{s}^{2}}{c^{2}}\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)\biggr]\mathcal{D}_{lk}(\zeta_{s},\bm{k})=\delta_{ik}.
+\end{equation}
+并由下式给出\footnote{在实际应用（对比§80）中函数$\mathcal{D}_{ik}$总以与$\zeta_s^2$的乘积形式出现；因此$\zeta_s=0$时的发散实际上将消除.}
+\begin{equation}
+\mathcal{D}_{ik}(\zeta_{s},\bm{k})=-\frac{4\pi\hbar}{\zeta_{s}^{2}\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)/c^{2}+k^{2}}
+\biggl[\delta_{ik}+\frac{c^{2}k_{i}k_{k}}{\zeta_{s}^{2}\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)}\biggr].
+\end{equation}
+%%p322（印刷页311）
+因为函数$\mathcal{D}_{ik}(\zeta_{s},\bm{k})$是通过$\bm{\varepsilon}(\omega)$表征的（在长波范围内$ka\ll1$），所以计算它所用的图技术，也就成了计算介质的电容率的技术. 此时，后者同样具有确切的图意义，下面就来解释这个意义.
+
+按规则我们用粗虚线表示精确的$\mathcal{D}$—函数，而真空中的函数$\mathcal{D}^{(0)}$用细虚线表示\footnote{在这里用虚线表示$\mathcal{D}$函数，不会引起误解，因为在本节和下一节，都没有显形式的介质粒子成对相互作用能的出现（以前用这种记号描述过介质）.}
+\begin{equation}
+\setlength{\unitlength}{0.72pt}%
+\begin{picture}(390,26)(0,0)
+  % ---- 粗虚线（精确 𝒟） ----
+  \linethickness{1.3pt}%
+  \multiput(8,13)(10,0){5}{\line(1,0){6}}%
+  \put(62,13){\makebox(0,0){$=\mathcal{D}_{ik}$，}}%
+  % ---- 细虚线（真空 𝒟^{(0)}） ----
+  \linethickness{0.4pt}%
+  \multiput(160,13)(8,0){7}{\line(1,0){5}}%
+  \put(240,13){\makebox(0,0){$=\mathcal{D}_{ik}^{(0)}$，}}%
+\end{picture}
+\end{equation}
+描述$\mathcal{D}$函数的图的一切集合，能够以如下的级数来表征［与函数$G$的级数(14.3)完全类似］.
+\begin{equation}
+\setlength{\unitlength}{0.72pt}%
+\begin{picture}(520,26)(0,0)
+  % ---- 左端：粗虚线 ----
+  \linethickness{1.3pt}%
+  \multiput(8,13)(10,0){4}{\line(1,0){6}}%
+  \put(50,13){\makebox(0,0){$=$}}%
+  % ---- 第 0 项：细虚线 ----
+  \linethickness{0.4pt}%
+  \multiput(66,13)(8,0){6}{\line(1,0){5}}%
+  \put(118,13){\makebox(0,0){$+$}}%
+  % ---- 第 1 项：细虚线—○—细虚线 ----
+  \multiput(134,13)(8,0){3}{\line(1,0){5}}%
+  \put(163,13){\circle{12}}%
+  \multiput(172,13)(8,0){3}{\line(1,0){5}}%
+  \put(206,13){\makebox(0,0){$+$}}%
+  % ---- 第 2 项：细虚线—○—细虚线—○—细虚线 ----
+  \multiput(222,13)(8,0){3}{\line(1,0){5}}%
+  \put(251,13){\circle{12}}%
+  \multiput(260,13)(8,0){3}{\line(1,0){5}}%
+  \put(289,13){\circle{12}}%
+  \multiput(298,13)(8,0){3}{\line(1,0){5}}%
+  \put(332,13){\makebox(0,0){$+\cdots$}}%
+\end{picture}
+\end{equation}
+此处圆圈描述图单元的集合，每个单元不能分为仅由一条虚线联系的两个部分. 我们用$-\mathcal{P}_{ik}/4\pi$表述这个集合. 函数$\mathcal{P}_{ik}$（类似于粒子格林函数的自能部分）称为极化算符.
+
+(79.12)的图等式与下列方程等价：
+\begin{equation}
+\setlength{\unitlength}{0.72pt}%
+\begin{picture}(330,26)(0,0)
+  % ---- 左端：粗虚线 ----
+  \linethickness{1.3pt}%
+  \multiput(8,13)(10,0){4}{\line(1,0){6}}%
+  \put(50,13){\makebox(0,0){$=$}}%
+  % ---- 第 1 项：细虚线 ----
+  \linethickness{0.4pt}%
+  \multiput(66,13)(8,0){6}{\line(1,0){5}}%
+  \put(118,13){\makebox(0,0){$+$}}%
+  % ---- 第 2 项：细虚线—○—粗虚线 ----
+  \multiput(134,13)(8,0){3}{\line(1,0){5}}%
+  \put(163,13){\circle{12}}%
+  \linethickness{1.3pt}%
+  \multiput(172,13)(10,0){4}{\line(1,0){6}}%
+\end{picture}
+\end{equation}
+［与(14.3)到(14.4)的过渡比较］. 解析形式的方程为
+\begin{equation}
+\mathcal{D}_{ik}=\mathcal{D}_{ik}^{(0)}+\mathcal{D}_{il}^{(0)}\frac{\mathcal{P}_{lm}}{4\pi}\mathcal{D}_{mk}
+\end{equation}
+（所有因子都是相同宗量$\zeta_{s},\bm{k}$的函数）. 此等式右边乘以逆张量$\mathcal{D}^{-1}$，而左边乘以$\mathcal{D}^{(0)-1}$，再改写为
+\begin{equation}
+\mathcal{D}_{ik}^{-1}=\mathcal{D}_{ik}^{(0)-1}-\frac{\mathcal{P}_{ik}}{4\pi}.
+\end{equation}
+最后，从方程(79.9)的左侧取$\mathcal{D}_{ik}^{-1}$，并且取$\bm{\varepsilon}=1$时$\mathcal{D}_{ik}^{(0)-1}$的同样表达式. 我们得到
+\begin{equation}
+\mathcal{P}_{ik}(\zeta_{s},\bm{k})=\frac{\zeta_{s}^{2}}{\hbar c^{2}}\bigl[\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)-1\bigr]\delta_{ik},
+\end{equation}
+由此，在$\omega$的上半虚轴上的离散的点集合内，确定了函数$[\bm{\varepsilon}(\omega)-1]$的图的意义. 函数$\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)$在整个上半平面的解析延拓，原则上，应当考虑到$\bm{\varepsilon}(\omega)$在这
+%%p323（印刷页312）
+半平面内不应当有奇点，并且在$|\omega|\to\infty$时$\bm{\varepsilon}(\omega)\to1$\footnote{在各向异性介质中应当写
+\begin{equation*}
+\mathcal{P}_{ik}(\zeta_{s},\bm{k})=(\zeta_{s}^{2}/\hbar c^{2})\bigl[\bm{\varepsilon}_{ik}(\mathrm{i}|\zeta_{s}|)-\delta_{ik}\bigr],
+\end{equation*}
+注意，这种形式的表达式存在空间色散时，即当$\bm{\varepsilon}_{ik}$不仅依赖于频率而且还依赖于波矢量时，仍保持其正确性.}.
+
+在非均匀介质内极化算符（如同$\mathcal{D}_{ik}$），是两点坐标的函数. 重复坐标表象内的全部推导，代替(79.14)我们得到方程
+\begin{equation*}
+\begin{aligned}
+\mathcal{D}_{ik}(\bm{r}_{1},\bm{r}_{2})={}\\
+{}=\mathcal{D}_{ik}^{(0)}(\bm{r}_{1},\bm{r}_{2})+\frac{1}{4\pi}\int\mathcal{D}_{il}^{(0)}(\bm{r}_{1},\bm{r}_{3})\mathcal{P}_{lm}(\bm{r}_{3},\bm{r}_{4})\mathcal{D}_{mk}(\bm{r}_{4},\bm{r}_{2})\,\mathrm{d}^{3}x_{3}\,\mathrm{d}^{3}x_{4}
+\end{aligned}
+\end{equation*}
+（为了简化，没写宗量$\zeta_{s}$）. 将算符
+\begin{equation*}
+\frac{\partial^{2}}{\partial x_{1n}\partial x_{1l}}-\delta_{nl}\Delta_{1}+\frac{\zeta_{s}^{2}}{c^{2}}\delta_{nl}
+\end{equation*}
+从左边作用到等式上，并考虑到$\mathcal{D}^{(0)}$满足$\bm{\varepsilon}=1$的方程(79.8)，于是得到
+\begin{equation*}
+\int\mathcal{P}_{il}(\bm{r}_{1},\bm{r}')\mathcal{D}_{lk}(\bm{r}',\bm{r}_{2})\,\mathrm{d}^{3}x'=\bigl[\bm{\varepsilon}(\bm{r}_{1})-1\bigr]\frac{\zeta_{s}^{2}}{\hbar c^{2}}\mathcal{D}_{ik}(\bm{r}_{1},\bm{r}_{2}).
+\end{equation*}
+由此得
+\begin{equation}
+\mathcal{P}_{ik}(\zeta_{s};\bm{r}_{1},\bm{r}_{2})=\frac{\zeta_{s}^{2}}{\hbar c^{2}}\delta_{ik}\,\delta(\bm{r}_{1}-\bm{r}_{2})\bigl[\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|,\bm{r}_{1})-1\bigr].
+\end{equation}
+凝聚介质的结构，以及它的介电性质，由在原子线度$a$的距离内介质粒子间的作用力来确定. 在这个距离内可以忽略（粒子取非相对论速度）推迟作用，这种作用仅对于场的长波成分$ka\ll1$才重要；换句话说；计算极化算符时可以忽略场的长波部分. 在格林函数$\mathcal{D}_{ik}$的图中，长波场只通过(79.12)式右侧的细虚线来描述.
+
+本节研究的三维张量$\mathcal{P}_{ik}$，当然只是4维极化张量$\mathcal{P}_{\mu\nu}$的空间部分. 为了避免误会，我们强调指出，它的时间分量$\mathcal{P}_{00}$和混合分量$\mathcal{P}_{0i}$绝不为零. 而且如同在量子电动力学一样，这四维张量完全与势的规范无关. 在非相对论的理论中，这个规范不变性是显然的. 因为，上边已经指出，只要计及与长波场的规范无关的非推迟力，即可计算出极化算符.
+
+分量$\mathcal{P}_{00}$和$\mathcal{P}_{0i}$可以从4维张量的横向条件：$\mathcal{P}_{\mu\nu}k^{\mu}=0$中得出，此处$k^{\mu}=(\mathrm{i}\zeta_{s},\bm{k})$是四维波矢量：
+\begin{align}
+\mathcal{P}_{00}&=-\frac{k^{2}}{\hbar c^{2}}\bigl[\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)-1\bigr],\notag\\
+\mathcal{P}_{0i}&=\frac{\mathrm{i}\zeta_{s}k_{i}}{\hbar c^{2}}\bigl[\bm{\varepsilon}(\mathrm{i}|\zeta_{s}|)-1\bigr].
+\end{align}
+

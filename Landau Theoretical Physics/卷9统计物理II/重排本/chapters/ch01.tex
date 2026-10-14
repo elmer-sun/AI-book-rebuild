@@ -1,0 +1,899 @@
+% ============================================================
+%  第一章 正常费米液体（§1–§6），印刷页 1–25（PDF p012–p036）
+%  底本：高教社中文第4版（王锡绂 译）；OCR 切片：章节OCR/ch01.md
+%  全部公式与文字已逐条对照 原书转换/pages/p012–p036.png 核验
+%
+%  节范围：§1 费米型量子液体的元激发（p1）；§2 准粒子的相互作用（p7）；
+%    §3 费米液体的磁化率（p11）；§4 零声（p12，节末含习题）；
+%    §5 费米液体中的自旋波（p17）；§6 粒子间有斥力的简并化近理想费米气体（p19）
+%  插图：本章无编号插图。OCR 切片末尾的图片块为 p036 页面水印（PDG 印记），已弃置。
+%  圈码脚注：26 处已全部还原为 \footnote{...}（圈码字符删除，圈码编号由
+%    footmisc perpage 按页自动生成）。页面归属（PDF 页码，按页面图核定）：
+%    p013①；p015①；p016①②；p017①②③；p019①（含公式(2.4a)，\tag 照排）；
+%    p020①；p021①；p022①；p023①②；p024①；p025①；p026①；p027①；
+%    p028习题①；p029①；p030①；p031①；p033①②；p034①②；p035①。
+%    脚注全文均按 pages/pNNN 300dpi 页底裁片逐字转录；p029① 内
+%    "见 12 页上的注释①"为原书页码交叉引用，照录。
+%  OCR 窜入正文的页底脚注（曾挪出为 %%FN 注释，转录后已删除）：
+%    p016① 内的公式 θ'(p)=−δ(p−p_F)（曾窜入 §1 末段）；
+%    p019① 内的公式 (2.4a)（曾窜入 §2 (2.8) 之后）。
+%    故正文编号公式 83 条 + 脚注内 1 条 (2.4a) = OCR tag 共 84 条，逐节核对：
+%    §1 16/16；§2 20/21（(2.4a) 入 FN）；§3 5/5；§4 16/16；§5 8/8；§6 18/18。
+%
+%  已修正的 OCR 错误（择要，均以页面图 pNNN 为据）：
+%   1. p012：氦同位素（³He 和 ⁴He）OCR 乱码，按页面还原。
+%   2. p013：p_F 重复 token、"所有的态"句窜乱，按页面整理。
+%   3. p014："归结为与 ŝ 无关的常数"脱 ŝ；"自旋态中的准粒子数"脱"准粒子"；
+%      "所以这个乘积是一个赝标量"处 ε 错位。
+%   4. p015：(1.3) 中 δε̂、δn 误作 \mathfrak d ŝ；(1.4) δ_αβ 误作 \hat 8；
+%      (1.9) 下标 F 误作 e/r；变分条件式 δ̂‡E → δE。
+%   5. p016：(1.10) 条件语"当"误作 ∃；"不仅小于动量本身"脱"于"；
+%      T→0、|ε_F| 乱码还原。
+%   6. p018：(2.3) 等式中 δ 误作 \otimes；"偏离值 δn′"句窜入 \widehat\xi 杂码；
+%      "所以 f̂ 仅决定于矢量 p 和 p′ 的方向"脱"仅决定于"。
+%   7. p019："两个函数①"圈码误作 \Phi；脚注公式 (2.4a) 窜入正文（挪出）。
+%   8. p020：∂n′/∂p′ 脱撇；(2.16) 按 p021 页面删 OCR 误加之 "\ dt"。
+%   9. p021："由于 T=0 时 μ=ε_F"乱码还原。
+%  10. p022：(3.1) 前引式 δn̂=(∂n/∂ε)δε̂① 中 δε̂ 误作 ∂ε̂；
+%      g=2−g·Ḡ 之横线补；(3.2) δ 误作 \otimes。
+%  11. p023：χH 式 \hat 8 → δ；"Tr(σH)σ=2H"的 σ、H 补粗体；"造成的②"补句号。
+%  12. p024：ṙ=∂ε̂/∂p 原 OCR 多负号，按页面删（原书 ṙ=∂ε̂/∂p，ṗ=−∂ε̂/∂r）；
+%      "函数 n̂ 作为自旋变量算符"误作 λ；三处 n 补 hat。
+%  13. p025：∂n₀/∂p 式 ∇ 杂码删除；(4.9) δ(ε−ε_F) 误作 \hat\Delta；
+%      "（v = v_F n…"误作 v′。
+%  14. p026：(4.14) "ν = 常数×cosθ/(s−cosθ)"OCR 全乱，按页面重写；
+%      "切连科夫（Черенков）"还原西里尔。
+%  15. p027：(4.15) "−1"误作"−.1"；"[其中常数 F_0 代之以 F(0)]①"圈码误作
+%      \mathbb O；"…=v_F²/3"句补句号。
+%  16. p028：习题解"ν = 常数×sinθcosθ/(s−cosθ)e^{iφ}"OCR 乱码重写；
+%      "可称为自旋波."后杂字"公"删除。
+%  17. p029："（В.П.Силин, 1958）"还原西里尔；(5.4) δ 误作 \hat\Delta；
+%      两处 e^{−iωt} 指数乱码还原；对易子定义 {σ·a,σ·b} 之 b 误作 μ；
+%      球函数 Y_lm 误作 \Upsilon_ι；{ε̂,n̂} 误作 {δ,n}。
+%  18. p030："而所有其它频率 ω_lm…"窜乱还原；"作用半径 r_0 小于……平均距离
+%      l~(V/N)^{1/3}"窜乱还原；"按 r_0/l 的幂展开……小距离"窜乱还原。
+%  19. p031：(6.3) /h → /ℏ；p=p_2′−p_2=−(p_1′−p_1) 下标 ι → 2,1；
+%      V_00 误作 V_∞。
+%  20. p032：(6.6) 算符串 â⁺_{p′₁α₁}â⁺_{p′₂α₂}â_{p₂α₂}â_{p₁α₁} 首算符下标
+%      乱码按页面还原；(6.7) 后 â′_{1+}≡â′_{p₁+} 脱 +。
+%  21. p033：(6.10) 及 E^{(2)} 分母下标 ~1~ → 1′、2′；"积分 U_0"误作 U_𝔬。
+%  22. p034："[p<p_F=ℏ(3π²N/V)^{1/3}]"括号位置按页面纠正；d³p₂ 乱码还原。
+%  23. p035：f_{+−}、f_{++}、f_{−−} 下标 · → +/−；两积分式 δ 记号还原；
+%      人名 Абрикосов、Халатников 还原西里尔。
+%  24. 全章：\pmb→\bm、\mathtt/\mathfrak 等杂体清理；偏导 ∂/δ 按上下文区分；
+%      直引号改中文弯引号；原书黑体术语（元激发、准粒子、色散律、费米球、
+%      相互作用函数、零声、玻色支、自旋波、散射长度、重整化）按页面以
+%      \textbf 恢复，如需全书统一可由主控归一化。
+%
+%  照排不改书的原书排印点：
+%   - p035 (6.16) 第二方括号内因子印作 πℏ²（按页面照排，按量纲疑为 πℏ 之误）。
+%   - p031 "在形式上将真实能量 U(r) 用另一个……函数来代替"、"散射辐中含 U"，
+%     按页面照排（疑当为"相互作用""散射幅"，不改书）。
+%   - p032 "……（自旋为 1/2 的）所组成其哈密顿量……"句中无逗号，照排。
+%   - p021 "（这样定义系数 F_l 和 G_l 时；它们与……）"分号用法照排。
+%
+%  遗留问题：无（脚注 26 条已转录完毕）。
+% ============================================================
+\chapter{正常费米液体}
+
+\section{费米型量子液体的元激发}
+
+当温度低到使液体原子热运动的德布罗意波长达到与原子之间的距离可比拟时，液体的宏观性质就由量子效应决定. 这类量子液体的理论具有重大的原则性意义，虽然自然界中只有两种这样的客体，但它们才真正堪称为液体；这就是在温度约为 $1\sim2$ K 时液体氦的两种同位素（$^{3}$He 和 $^{4}$He）. 一切其它物质，当量子效应在其中成为重要效应之前，就早已凝成固体了. 在这方面我们记得，根据经典力学理论，一切物体在绝对零度时都应当成为固体（见第五卷 §64）；而氦，由于它的原子间相互作用极其微弱，直到量子现象起作用的温度时仍保持为液态，并且在这温度以下也不再凝固.
+
+计算宏观物体的各个热力学量，需要知道物体的能谱. 当然，量子液体是粒子间相互作用很强的一种系统，所指的能级应该相应于整个液体的量子力学定态，而绝非那些单个原子的状态. 在足够低的温度范围内计算配分函数时，只应考虑液体的弱激发能级——离基态不太高的能级.
+
+下述情况，对于全部理论具有原则性的意义. 宏观物体的任一弱激发态，在量子力学中可以看做是单个\textbf{元激发}的集合. 这些元激发的行为，类似于在物体所占体积中运动并具有确定的能量 $\varepsilon$ 和动量 $\bm p$ 的一些\textbf{准粒子}. $\varepsilon(\bm p)$ 关系的形式（或所谓元激发的\textbf{色散律}）是物体能谱的重要特征. 我们再一次强调指出，元激发的概念是来自对物体中原子集体运动的量子力学描述方法，而绝不能把准粒子与单个原子或分子等同起来.
+
+量子液体原则上可以具有不同类型的能谱. 根据能谱的不同类型，液体将具有完全不同的宏观性质. 我们首先研究具有称之为费米型能谱的液体. 这种费米液体的理论是由 Л.\,Д.\,朗道（1956—1958）创建的. 在 §1—§4\footnote{为了避免误解，我们提前说明所讲的是非超流的（或所谓正常的）费米液体. 液氦同位素 $^{3}$He 就是这样的液体（附加条件，见 210 页的附注）.} 中叙述的就是他的成果.
+
+费米型量子液体能谱的结构，在某种意义上类似于理想费米气体（由自旋为 1/2 的粒子组成）的能谱. 后者的基态，相当于\textbf{费米球}内的全部状态都被粒子填满，费米球是动量空间中半径为 $p_{\mathrm F}$ 的球，而 $p_{\mathrm F}$ 与气体密度 $N/V$（单位体积内的粒子数）的关系由下式决定：
+\begin{equation}
+\frac{N}{V}=2\,\frac{4\pi p_{\mathrm F}^{3}}{3(2\pi\hbar)^{3}}=\frac{p_{\mathrm F}^{3}}{3\pi^{2}\hbar^{3}}
+\end{equation}
+（见 V §57）. 当有粒子从已填满的球内的一些态跃迁到 $p>p_{\mathrm F}$ 的某些态时，就出现了气体的激发态.
+
+当然，液体中不存在单个粒子的量子态. 但是，作为费米液体能谱结构的出发点，在于如下的论断：当逐渐“增大”原子间的相互作用，即由气体变成液体时，能级的分类保持不变. 在这种分类中，气体粒子所起的作用转给了各元激发（准粒子），后者的数目等于原子的数目，并遵守费米统计.
+
+还应立即指出，显然只有由自旋为半整数的粒子所组成的液体才可能有这一类型的能谱，而玻色子（自旋为整数的粒子）系统的状态不能用遵从费米统计法的准粒子术语来描述. 同时应当强调，这种类型的能谱不可能成为所有这些液体的普适性质. 能谱的类型也依赖于原子间相互作用的具体性质. 这种情况，用简单的论证即可明了：如果相互作用的结果使原子结合成对，那么在极限的情况下，我们就会得到由自旋为整数的粒子（分子）所组成的分子液体. 对于后者，显然不可能有上面所讨论的能谱.
+
+每一个准粒子都有确定的动量 $\bm p$（我们还将回来讨论这种说法何以正确的问题）. 设 $n(\bm p)$ 是准粒子按动量的分布函数，其归一化条件为
+\begin{equation*}
+\int n\,\mathrm{d}\tau=\frac{N}{V},\qquad \mathrm{d}\tau=\frac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}
+\end{equation*}
+（这个条件以后还将确切说明）. 上面提到的分类原则，在于假设给出这个分布函数便单值地确定了液体的能量，并且基态对应于半径为 $p_{\mathrm F}$ 的费米球内所有的态都被占满的分布函数，而半径 $p_{\mathrm F}$ 与液体密度的关系与理想气体情况时一样，是同一个公式(1.1).
+
+必须强调，液体的总能量 $E$ 绝不可以归结为准粒子的能量之和. 换句话说，$E$ 是分布函数的泛函，不能归结为积分 $\int n\varepsilon\,\mathrm{d}\tau$（对于理想气体正是如此，其中准粒子与真实粒子一样，彼此间没有相互作用）. 由于第一位的概念是 $E$，因此就出现了在考虑准粒子相互作用时如何确定它们的能量的问题.
+
+为此，我们研究分布函数作无限小改变时 $E$ 的变化. 显然，它应当由变分 $\delta n$ 的线性表达式的积分来决定，即有如下形式：
+\begin{equation*}
+\frac{\delta E}{V}=\int\varepsilon(\bm p)\,\delta n\,\mathrm{d}\tau.
+\end{equation*}
+
+量 $\varepsilon$ 是能量 $E$ 对分布函数 $n$ 的变分微商. 它相当于增加一个动量为 $\bm p$ 的准粒子时系统能量的改变；也正是这个量，起着准粒子在其它粒子的场中哈密顿函数的作用. 它同样是分布函数的泛函，就是说函数 $\varepsilon(\bm p)$ 的形式依赖于液体中全部粒子的分布.
+
+因此我们指出：在所讨论的类型的能谱中，元激发在某种意义上可以看成是在其它原子的自洽场中的一个原子. 但是，这种自洽性不能以通常的量子力学中的意义来理解，在这里它具有更深刻的性质，因为在原子的哈密顿量中，要考虑到周围粒子不仅影响到势能，而且也改变了动能算符与动量算符的关系.
+
+至今，我们撇开了准粒子是否存在自旋的问题. 因为自旋是量子力学的量，对它不能作经典性讨论，因此我们应该把分布函数当作是关于自旋的统计矩阵. 而元激发的能量 $\varepsilon$，在一般情况下不仅是动量的函数，而且也是与自旋变量有关的算符，后者可用准粒子自旋算符标记. 对于均匀并各向同性的液体（不处在磁场中，本身也不是铁磁性的），算符 $\hat{\bm s}$ 只能以标量 $\hat{\bm s}^{2}$ 或 $(\hat{\bm s}\cdot\bm p)^{2}$ 的形式含于标量函数 $\varepsilon$ 中；但乘积 $\hat{\bm s}\cdot\bm p$ 的一次幂是不允许的，因为自旋矢量具有轴向性，所以这个乘积是一个赝标量. 平方 $\hat{\bm s}^{2}=s(s+1)$，对于自旋 $s=\frac{1}{2}$ 的情形，归结为与 $\hat{\bm s}$ 无关的常数，而标量 $(\hat{\bm s}\cdot\bm p)^{2}=p^{2}/4$ 也是如此. 因而，在这种情况下准粒子的能量完全与自旋算符无关，即准粒子的一切能级都是二重简并的.
+
+实质上，说准粒子有自旋，即表明存在这种简并的事实. 就此意义可以断言：在这种类型的能谱中，准粒子的自旋恒等于 1/2，而与液体中真实粒子的自旋的大小无关. 事实上，对于任何不等于 1/2 的自旋 $s$ 来讲，形如 $(\hat{\bm s}\cdot\bm p)^{2}$ 的项都将使 $(2s+1)$ 重简并的能级分裂成 $(2s+1)/2$ 个二重简并的能级. 换句话说，函数 $\varepsilon(\bm p)$ 将出现 $(2s+1)/2$ 个不同的支，每一支都对应于“自旋为 1/2 的准粒子”.
+
+前已指出，在考虑准粒子的自旋时，分布函数变成一个关于自旋变量的矩阵或算符 $\hat n(\bm p)$. 把这个算符写成显形式，就是厄米统计矩阵 $n_{\alpha\beta}(\bm p)$，$\alpha,\beta$ 取遍 $\pm1/2$ 两个值的自旋矩阵的下标. 对角矩阵元决定一定自旋态中的准粒子数. 因此，准粒子分布函数的归一化条件，现在应写成
+\begin{equation}
+\mathrm{Tr}\int\hat n\cdot\mathrm{d}\tau\equiv\int n_{\alpha\alpha}\,\mathrm{d}\tau=\frac{N}{V},\qquad \mathrm{d}\tau=\frac{\mathrm{d}^{3}p}{(2\pi\hbar)^{3}}
+\end{equation}
+（符号 Tr 代表矩阵按自旋的下标取迹）\footnote{此后，下标重复两次照惯例理解为求和.}.
+
+在一般情况下，准粒子的能量 $\hat\varepsilon$ 也是算符，即以自旋为变量的矩阵，它的定义应写成
+\begin{equation}
+\frac{\mathrm{d}E}{V}=\mathrm{Tr}\int\hat\varepsilon\,\delta\hat n\,\mathrm{d}\tau\equiv\int\varepsilon_{\alpha\beta}\,\delta n_{\beta\alpha}\,\mathrm{d}\tau.
+\end{equation}
+
+如果分布函数和能量与自旋无关时，就是说 $n_{\alpha\beta}$ 和 $\varepsilon_{\alpha\beta}$ 归结为单位矩阵
+\begin{equation}
+n_{\alpha\beta}=n\,\delta_{\alpha\beta},\qquad \varepsilon_{\alpha\beta}=\varepsilon\,\delta_{\alpha\beta},
+\end{equation}
+那么在(1.2 及 1.3)式中取迹便简单地归结为乘以因子 2：
+\begin{equation}
+2\int n\,\mathrm{d}\tau=\frac{N}{V},\qquad \frac{\delta E}{V}=2\int\varepsilon\,\delta n\,\mathrm{d}\tau.
+\end{equation}
+
+容易看出：在统计平衡中，准粒子的分布函数具有费米分布的形式，并且根据(1.3)式定义的量 $\hat\varepsilon$ 起着能量的作用. 实际上，由于量子液体和理想费米气体的能级分类特性相同，液体的熵 $S$ 与气体的情况一样（见第五卷 §55），同样定义成如下组合型的表达式：
+\begin{equation}
+\frac{S}{V}=-\mathrm{Tr}\int\bigl\{\hat n\ln\hat n-(1-\hat n)\ln(1-\hat n)\bigr\}\,\mathrm{d}\tau,
+\end{equation}
+在总粒子数和总能量都恒定的附加条件下，
+\begin{equation*}
+\frac{\delta N}{V}=\mathrm{Tr}\int\delta\hat n\,\mathrm{d}\tau=0,\qquad \frac{\delta E}{V}=\mathrm{Tr}\int\hat\varepsilon\,\delta\hat n\,\mathrm{d}\tau=0,
+\end{equation*}
+对(1.6)式取变分，我们得到所求的分布：
+\begin{equation}
+\hat n=\bigl[\mathrm{e}^{(\hat\varepsilon-\mu)/T}+1\bigr]^{-1},
+\end{equation}
+式中 $\mu$ 为液体的化学势.
+
+当准粒子能量与自旋无关时，(1.7)式表明 $n$ 和 $\varepsilon$ 两个量之间有同样关系：
+\begin{equation}
+n=\bigl[\mathrm{e}^{(\varepsilon-\mu)/T}+1\bigr]^{-1}.
+\end{equation}
+
+当温度 $T=0$ 时，化学势与费米球面的边界能量相等：
+\begin{equation}
+\mu\big|_{T=0}=\varepsilon_{\mathrm F}\equiv\varepsilon(p_{\mathrm F}).
+\end{equation}
+
+我们强调指出，虽然(1.8)式与通常的费米分布在形式上相似，但它们并不相同，因为 $\varepsilon$ 本身是 $n$ 的泛函，严格说来，(1.8)式是 $n$ 的一个复杂的隐函数定义式.
+
+现在我们回到原先的假设：对每个准粒子都可用确定的动量描述. 这个假设成立的条件要求：动量的不确定度（与准粒子自由程的有限性有关）不仅小于动量本身，同时也小于分布的“弥散区”宽度 $\Delta p$，在这个区域内，分布明显地偏离“阶跃函数”\footnote{为了后文需要指出，微商
+\begin{equation*}
+\theta'(p)=-\delta(p-p_{\mathrm F}),
+\end{equation*}
+事实上，当对包含 $p=p_{\mathrm F}$ 的 $p$ 的任意区间进行积分时，这个等式的两边给出相同的结果（等于 1）.}：
+\begin{equation}
+\theta(\bm p)\equiv\theta(p)=
+\begin{cases}
+1, & \text{当}\ p<p_{\mathrm F};\\
+0, & \text{当}\ p>p_{\mathrm F}.
+\end{cases}
+\end{equation}
+
+不难看出，如果分布函数 $n(\bm p)$ 只在费米球面附近很小的范围内有别于(1.10)式，这个条件便得到满足. 事实上，由于泡利原理，准粒子只在分布函数的“弥散区”内方能相互散射，并且由于散射的结果，它们应跃迁到同一区域的自由态上. 所以，碰撞概率正比于该区域宽度的平方. 相应地，准粒子能量以及动量的不确定度都正比于 $(\Delta p)^{2}$. 因此，当 $\Delta p$ 足够小时，动量的不确定度不仅小于 $p_{\mathrm F}$，也小于 $\Delta p$.
+
+可见，这里叙述的方法只适用于准粒子分布函数所描述的液体激发态，这个分布函数仅在临近费米面的窄域内才区别于“阶跃”函数. 特别是，对于热力学平衡分布，只在足够低的温度时才能适用. 平衡分布的弥散区（能量）宽度与 $T$ 是同一数量级. 而与碰撞有关的准粒子能量的量子不确定度与数值 $\hbar/\tau$ 是同一数量级，其中 $\tau$ 为准粒子的自由飞行时间. 因此，理论适用的条件为
+\begin{equation}
+\hbar/\tau\ll T.
+\end{equation}
+
+同时，如前所述，时间 $\tau$ 与弥散区宽度的平方成反比，即
+\begin{equation*}
+\tau\propto T^{-2}.
+\end{equation*}
+
+所以，当 $T\to0$ 时显然(1.11)式是满足的. 对于粒子间相互作用并不微弱的液体，所有的能量参数与边界能量 $\varepsilon_{\mathrm F}$ 同一数量级；在此意义上说，条件(1.11)与条件 $T\ll|\varepsilon_{\mathrm F}|$\footnote{但是，对于液态$^{3}$He，实验指出理论的定量适用范围实际上被限制在温度 $T\leqslant0.1$ K 的范围（此时 $|\varepsilon_{\mathrm F}|\approx2.5$ K）.} 是等价的.
+
+对于接近在 $T=0$ 时“阶跃”函数的分布，在一级近似下，泛函 $\varepsilon$ 可用其在 $n(\bm p)=\theta(\bm p)$ 时的计算值去代替. 于是 $\varepsilon$ 成为动量的确定函数，而公式(1.7)便成为通常的费米分布.
+
+此时，在费米球面附近［函数 $\varepsilon(\bm p)$ 在此处才有直接的物理意义］，可将 $\varepsilon(\bm p)$ 按差 $p-p_{\mathrm F}$ 的幂展开. 我们有
+\begin{equation}
+\varepsilon-\varepsilon_{\mathrm F}\approx v_{\mathrm F}(p-p_{\mathrm F}),
+\end{equation}
+其中
+\begin{equation}
+\bm v_{\mathrm F}=\frac{\partial\varepsilon}{\partial\bm p}\bigg|_{p=p_{\mathrm F}}
+\end{equation}
+是费米面上准粒子的“速度”. 在理想费米气体中，准粒子同真实粒子一样，有
+$\varepsilon=\dfrac{p^{2}}{2m}$，因此 $v_{\mathrm F}=\dfrac{p_{\mathrm F}}{m}$. 与此类似，对费米液体可引入一个量
+\begin{equation}
+m^{*}=p_{\mathrm F}/v_{\mathrm F},
+\end{equation}
+称它为准粒子的\textbf{有效质量}；并且这个量是正的（见 §2 末）.
+
+用这样引入的物理量的术语，可以将理论的适用条件写成 $T\ll v_{\mathrm F}p_{\mathrm F}$，并且只有动量为 $\bm p$ 且 $|p-p_{\mathrm F}|\ll p_{\mathrm F}$ 的准粒子才有实际意义. 我们再一次强调上述情况，并应指出，这种情况特别赋予 $p_{\mathrm F}$ 和液体密度之间的关系式(1.1)以非平凡的特性，因为它（对于费米气体）的明显结论是基于这样的概念：粒子占满整个费米球的各态，而不仅占满它表面的邻近区域\footnote{(1.1)式的证明需要运用较复杂的数学方法，以后将在 §20 中给出.}.
+
+特别是，有效质量可以用来确定低温下液体的熵 $S$ 和热容量 $C$. 对这两个物理量可给出与理想气体公式相同的形式（第五卷 §58），在这里只需以有效质量 $m^{*}$ 代替粒子质量 $m$：
+\begin{equation}
+S=C=V\nu T,\qquad \nu=\frac{m^{*}p_{\mathrm F}}{3\hbar^{3}}=\biggl(\frac{\pi}{3}\biggr)^{2/3}\frac{m^{*}}{\hbar^{2}}\biggl(\frac{N}{V}\biggr)^{1/3}
+\end{equation}
+（$S$ 和 $C$ 两个量，由于与 $T$ 成线性关系而相等）. 事实上，用分布函数表述的熵表达式(1.6)对于液体和气体都是一样的，而在计算这个积分时，仅仅 $p_{\mathrm F}$ 附近的动量区域起主要作用，在这个区域内液体中准粒子的分布函数和气体中粒子的分布函数由同一个(1.8)式给出\footnote{对于液态$^{3}$He（在零压时）：$p_{\mathrm F}/\hbar=0.8\times10^{8}\ \mathrm{cm}^{-1}$；$m^{*}=3.1\,m$（$^{3}$He）；$p_{\mathrm F}$ 根据液体密度决定；$m^{*}$ 根据热容量决定.}.
+
+在将理论展开之前，我们先作如下的说明. 在费米液体中引进与气体粒子完全类似的准粒子概念，虽然这种表述方法对于建立系统的理论最为方便，但与此相连的物理图像却有缺陷，即在这个图像中出现了一个观察不到的被准粒子占满的费米球. 如果用只在 $T\neq0$ 时才出现元激发来表述，便可能消除这个缺陷. 在这种图像中，费米球外的准粒子和球内的“空穴”都起着元激发的作用，对于前者［与公式(1.12)的近似相对应］应将能量写成 $\varepsilon=v_{\mathrm F}(p-p_{\mathrm F})$，而对于后者能量应写成 $\varepsilon=v_{\mathrm F}(p_{\mathrm F}-p)$. 其中任何一种情况的统计分布，都由化学势等于零的费米分布公式给出（此时元激发的数目不是常数，而是决定于温度的量\footnote{我们记得（参看第五卷 §63），在这种条件下，准粒子数 $N_{\text{准}}$ 决定于热力学平衡条件——在给定温度和体积下，作为 $N_{\text{准}}$ 的函数的自由能 $F$ 取最小值：$\bigl(\partial F/\partial N_{\text{准}}\bigr)_{T,V}=0$；但这个微商是“准粒子的化学势”（不要把它同液体的化学势 $\mu$ 相混淆，$\mu$ 定义为 $F$ 对真实粒子数 $N$ 的微商）.}）：
+\begin{equation}
+n=\bigl[\mathrm{e}^{\varepsilon/T}+1\bigr]^{-1}.
+\end{equation}
+
+在这种图像中，元激发只能成对地出现或消失，因此动量为 $p>p_{\mathrm F}$ 和 $p<p_{\mathrm F}$ 的元激发的总数恒相等.
+
+还要指出，这样定义的元激发，其能量一定是正的，因激发能级总是超过系统基态能级. 而根据(1.3)式定义的准粒子能量则可以是正值，也可以是负值.
+
+尤其是，对于温度和压强均为零的量子液体，$\varepsilon_{\mathrm F}=\mu$ 的值显然是负的，因此接近于 $\varepsilon_{\mathrm F}$ 的 $\varepsilon$ 值也是负的. 这一点，根据 $T=0$ 和 $p=0$ 时 $-\mu$ 的值等于一个正值便可以明显地看出来，这个正值是液体汽化一个粒子所需热量的极限值.
+
+\section{准粒子的相互作用}
+
+由于能量是准粒子分布函数的一个泛函，故准粒子的能量随分布函数的变化而变化. 当分布函数对“阶跃函数”(1.10)有微小偏离 $\delta n$ 时，能量改变应取形式
+\begin{equation}
+\delta\varepsilon_{\alpha\beta}(\bm p)=\int f_{\alpha\gamma,\beta\delta}(\bm p,\bm p')\,\delta n_{\delta\gamma}(\bm p')\,\mathrm{d}\tau',
+\end{equation}
+或写成更符号化的形式：
+\begin{equation*}
+\delta\hat\varepsilon(\bm p)=\mathrm{Tr}'\int\hat f(\bm p,\bm p')\,\delta n(\bm p')\,\mathrm{d}\tau',
+\end{equation*}
+式中 $\mathrm{Tr}'$ 代表按与动量 $\bm p'$ 相对应的一对自旋下标取迹. 函数 $\hat f$ 可称为准粒子的\textbf{相互作用函数}（在费米气体中 $\hat f\equiv0$）. 按函数 $\hat f$ 本身的定义，它是量子液体总能量 $E$ 的二阶变分微商，因此对于变量 $\bm p,\bm p'$ 及其相应的各对自旋下标是对称的：
+\begin{equation}
+f_{\alpha\gamma,\beta\delta}(\bm p,\bm p')=f_{\gamma\alpha,\delta\beta}(\bm p',\bm p).
+\end{equation}
+
+考虑到(2.1)的变化，费米球面附近的准粒子能量可用如下的和式表征：
+\begin{equation}
+\hat\varepsilon(\bm p)-\varepsilon_{\mathrm F}=v_{\mathrm F}(\bm p-\bm p_{\mathrm F})+\mathrm{Tr}'\int\hat f(\bm p,\bm p')\,\delta\hat n(\bm p')\,\mathrm{d}\tau'.
+\end{equation}
+
+特别是，对热力学平衡分布，公式(2.3)中的第二项决定准粒子的能量与温度的关系. 偏离值 $\delta n'$ 仅在接近费米球面的 $\bm p'$ 值的薄层中才明显不为零，而实际准粒子的动量 $\bm p$ 的值也在同样的薄层中. 因此，实际上公式(2.1)和(2.3)中的函数 $\hat f(\bm p,\bm p')$ 能够用这个费米球面上的值来代替，即假定 $p=p'=p_{\mathrm F}$，所以 $\hat f$ 仅决定于矢量 $\bm p$ 和 $\bm p'$ 的方向.
+
+函数 $\hat f$ 的自旋关系既与相对论效应（自旋-自旋和自旋-轨道的相互作用）有关，也与交换相互作用有关. 而后者最为重要. 考虑到交换相互作用，准粒子的相互作用函数（在费米面上）取下列形式：
+\begin{equation}
+\frac{p_{\mathrm F}m^{*}}{\pi^{2}\hbar^{3}}\hat f(\bm p,\bm p')=F(\vartheta)+\bm\sigma\bm\sigma'G(\vartheta),
+\end{equation}
+其中 $\bm\sigma,\bm\sigma'$ 为作用在相应的（即对应于变量 $\bm p,\bm p'$ 的）自旋下标的泡利矩阵，而 $F$ 和 $G$ 为矢量 $\bm p$ 和 $\bm p'$ 夹角 $\vartheta$ 的两个函数\footnote{用明显的矩阵形式表为
+\begin{equation*}
+\frac{p_{\mathrm F}m^{*}}{\pi^{2}\hbar^{3}}\,f_{\alpha\gamma,\beta\delta}=F\,\delta_{\alpha\beta}\,\delta_{\gamma\delta}+G\,\sigma_{\alpha\beta}\,\sigma_{\gamma\delta}\tag{2.4a}
+\end{equation*}}. 这个表达式的形式同交换相互作用的特性有关；它与系统在空间的总角动量的取向无关；所以两个自旋算符只能以标积形式出现在式中. 根据(2.4)式定义的函数 $F$ 和 $G$ 是量纲为 1 的. 在(2.4)式左方为此引入的因子是费米面上单位能量间隔内的准粒子的状态数：
+\begin{equation*}
+\nu(\varepsilon_{\mathrm F})=\frac{2\,\mathrm{d}\tau}{\mathrm{d}\varepsilon}\bigg|_{\varepsilon=\varepsilon_{\mathrm F}}
+=\frac{2\times4\pi p_{\mathrm F}^{2}}{(2\pi\hbar)^{3}}\left(\frac{\mathrm{d}p}{\mathrm{d}\varepsilon}\right)_{p_{\mathrm F}},
+\end{equation*}
+或
+\begin{equation}
+\nu_{\mathrm F}=\frac{p_{\mathrm F}^{2}}{\pi^{2}\hbar^{3}v_{\mathrm F}}=\frac{p_{\mathrm F}m^{*}}{\pi^{2}\hbar^{3}}.
+\end{equation}
+
+因为泡利矩阵的迹等于零，所以取迹 $\mathrm{Tr}'$ 之后(2.4)式中的第二项就消失了，因此 $\mathrm{Tr}'\hat f$ 已经不依赖于 $\bm\sigma$. 实际上，当考虑到自旋-轨道相互作用和自旋-自旋相互作用时，也同样没有这样的依赖关系. 问题在于，标量函数 $\mathrm{Tr}'\hat f$ 若包含自旋算符，只能以两个轴矢量 $\hat{\bm s}$ 和 $\bm p\times\bm p'$ 的乘积 $\hat{\bm s}\cdot[\bm p\times\bm p']$ 的形式出现（$\hat{\bm s}$ 分量平方的表达式，可以不去研究，因自旋为 1/2，表达式归结为 $\hat{\bm s}$ 的线性项和完全不含 $\hat{\bm s}$ 的项）. 但是，这个乘积对时间的反演不是不变的，因此不能包含在不变量 $\mathrm{Tr}'\hat f$ 中.
+
+今后引入使用更方便的记号.
+\begin{equation}
+f_{\alpha\gamma,\beta\gamma}(\bm p,\bm p')=\delta_{\alpha\beta}f(\bm p,\bm p'),\qquad f=\frac{1}{2}\,\mathrm{Tr}\,\mathrm{Tr}'\hat f.
+\end{equation}
+由(2.4)式，我们有
+\begin{equation}
+\frac{p_{\mathrm F}m^{*}}{\pi^{2}\hbar^{3}}f(\vartheta)=2F(\vartheta),
+\end{equation}
+
+准粒子的相互作用函数，满足于由伽利略相对性原理而得的确定的积分关系. 这个原理的直接结果是：单位体积液体的动量同其质量通量密度相等. 准粒子的速度是 $\partial\bm\varepsilon/\partial\bm p$，因此准粒子通量用如下积分给出：
+\begin{equation*}
+\mathrm{Tr}\int\hat n\,\frac{\partial\hat\varepsilon}{\partial\bm p}\,\mathrm{d}\tau.
+\end{equation*}
+因为液体中的准粒子数与真实粒子数相同，所以准粒子引起的总质量迁移显然可由准粒子数通量与真实粒子质量 $m$ 的乘积得出. 因此，我们得到如下等式：
+\begin{equation}
+\mathrm{Tr}\int\bm p\,\hat n\,\mathrm{d}\tau=\mathrm{Tr}\int m\,\frac{\partial\hat\varepsilon}{\partial\bm p}\hat n\,\mathrm{d}\tau.
+\end{equation}
+
+假定 $n_{\alpha\beta}=n\delta_{\alpha\beta},\ \varepsilon_{\alpha\beta}=\varepsilon\delta_{\alpha\beta}$，对(2.8)式两端取变分. 利用(2.1)式和(2.6)式
+的符号 $f$，我们得到
+\begin{equation*}
+\begin{aligned}
+\int\bm p\,\delta n\,\mathrm{d}\tau
+&=m\int\frac{\partial\varepsilon}{\partial\bm p}\,\delta n\,\mathrm{d}\tau
++m\int\frac{\partial f(\bm p,\bm p')}{\partial\bm p}\,n\,\delta n'\,\mathrm{d}\tau\,\mathrm{d}\tau'=\\
+&=m\int\frac{\partial\varepsilon}{\partial\bm p}\,\delta n\,\mathrm{d}\tau
+-m\int f(\bm p,\bm p')\,\frac{\partial n'}{\partial\bm p'}\,\delta n\,\mathrm{d}\tau\,\mathrm{d}\tau',
+\end{aligned}
+\end{equation*}
+式中 $n'=n(\bm p')$（在第二个积分中交换变量的标记并进行分部积分）. 因为 $\delta n$ 是任意的，由此得到待求的关系
+\begin{equation}
+\frac{\bm p}{m}=\frac{\partial\bm\varepsilon}{\partial\bm p}-\int f(\bm p,\bm p')\,\frac{\partial n(\bm p')}{\partial\bm p'}\,\mathrm{d}\tau.
+\end{equation}
+
+对于阶跃函数
+\begin{equation*}
+n(\bm p')=\theta(\bm p')
+\end{equation*}
+微商 $\partial n'/\partial\bm p'$ 归结为 $\delta$ 函数：
+\begin{equation}
+\frac{\partial\theta(\bm p)}{\partial\bm p}=-\frac{\bm p}{p}\,\delta(p-p_{\mathrm F}).
+\end{equation}
+
+将(1.12)式中的函数 $\varepsilon(\bm p)$ 代入(2.9)式，然后处处用费米面上的数值 $\bm p_{\mathrm F}=p_{\mathrm F}\bm n$ 代换动量 $\bm p=p\bm n$，并用 $p_{\mathrm F}$ 除等式两端，便可得到真实粒子质量 $m$ 与准粒子有效质量之间的如下关系：
+\begin{equation}
+\frac{1}{m}=\frac{1}{m^{*}}+\frac{p_{\mathrm F}}{(2\pi\hbar)^{3}}\int f(\vartheta)\cos\vartheta\,\mathrm{d}o'
+\end{equation}
+其中 $\mathrm{d}o'$ 是 $\bm p'$ 方向上的立体角元. 如果将由(2.7)式得出的 $f(\vartheta)$ 代入上式，则这个等式取如下形式：
+\begin{equation}
+\frac{m^{*}}{m}=1+\overline{F(\vartheta)\cos\vartheta},
+\end{equation}
+式中横线表示按方向平均（即按 $\mathrm{d}o'/4\pi=\sin\vartheta\,\mathrm{d}\vartheta/2$ 积分）.
+
+我们再来计算绝对零度时费米液体的压缩系数，即算出 $u^{2}=\partial P/\partial\rho$\footnote{当 $T=0$ 时，同样 $S=0$，因此无需区别等温压缩系数和绝热压缩系数. $u$ 的值用已知的液体中声速的表达式来确定. 但应注意，在 $T=0$ 时，实际上费米液体中根本不能传播普通的声音——见 §4 的开头.} 的值. 液体的密度 $\rho=mN/V$，所以
+\begin{equation*}
+u^{2}=-\frac{V^{2}}{mN}\,\frac{\partial P}{\partial V}.
+\end{equation*}
+为了便于算出这个微商，最好用化学势的微商将它表达出来. 注意到化学势只以比值 $N/V$ 的形式依赖于 $N$ 和 $V$，同样，在 $T=$ 常数 $=0$ 时，微分 $\mathrm{d}\mu=V\mathrm{d}P/N$，则有
+\begin{equation*}
+\frac{\partial\mu}{\partial N}=-\frac{V}{N}\,\frac{\partial\mu}{\partial V}=-\frac{V^{2}}{N^{2}}\,\frac{\partial P}{\partial V},
+\end{equation*}
+因此
+\begin{equation}
+u^{2}=\frac{N}{m}\,\frac{\partial\mu}{\partial N}.
+\end{equation}
+
+由于 $T=0$ 时 $\mu=\varepsilon_{\mathrm F}$，所以当粒子数改变 $\delta N$ 时，变分 $\delta\mu$ 为
+\begin{equation}
+\delta\mu=\int f(\bm p_{\mathrm F},\bm p')\,\delta n'\,\mathrm{d}\tau'+\frac{\partial\varepsilon_{\mathrm F}}{\partial p_{\mathrm F}}\,\delta p_{\mathrm F}.
+\end{equation}
+
+表达式中的第一项，是由于分布函数的变化而引起的能量 $\varepsilon(p_{\mathrm F})$ 值的改变. 该式的第二项则是由于总粒子数的变化改变了边界动量的值：由(1.1)式，我们有 $\delta N=Vp_{\mathrm F}^{2}\,\delta p_{\mathrm F}/\pi^{2}\hbar^{3}$. 因为 $\delta n'$ 只在 $p'\approx p_{\mathrm F}$ 时才明显地不等于零，所以在积分中把函数 $f$ 用它在费米面上的值代替之后，我们可写成
+\begin{equation*}
+\int f\,\delta n'\,\mathrm{d}\tau'\approx\frac{1}{2}\int f\,\mathrm{d}o'\int\delta n'\,\frac{2\,\mathrm{d}\tau'}{4\pi}=\frac{1}{2}\,4\pi\bar f\,\frac{\delta N}{4\pi V},
+\end{equation*}
+将此式代入(2.14)式，并根据 $\partial\varepsilon_{\mathrm F}/\partial p_{\mathrm F}=p_{\mathrm F}/m^{*}$ 引入 $m^{*}$，我们得出
+\begin{equation}
+\frac{\partial\mu}{\partial N}=\frac{\bar f}{2V}+\frac{\pi^{2}\hbar^{3}}{p_{\mathrm F}m^{*}V}.
+\end{equation}
+
+最后，由(2.11)式取 $1/m^{*}$，再考虑(1.1)式，最终可得：
+\begin{equation}
+u^{2}=\frac{p_{\mathrm F}^{2}}{3m^{2}}+\frac{1}{3m}\left(\frac{p_{\mathrm F}}{2\pi\hbar}\right)^{3}\int f(\vartheta)(1-\cos\vartheta)\,\mathrm{d}o'.
+\end{equation}
+
+借助于得自(2.7)式的函数 $f(\vartheta)$ 并利用(2.12)式，这个表达式可以变为
+\begin{equation}
+u^{2}=\frac{p_{\mathrm F}^{2}}{3mm^{*}}\bigl(1+\overline{F(\vartheta)}\bigr).
+\end{equation}
+
+函数 $\hat f$ 应该满足一定的条件，这个条件是出于量子液体的基态具有稳定性的要求. 液体的基态对应于准粒子占满费米球内的全部状态，该状态的能量对于球体任一微小的形变都应是最小的. 这里，我们不进行全部的计算，而只指出计算的最终结果\footnote{参阅 И.\,Я.\,Померанчук, ЖЭТФ, 35, 524 (1958). 英译本：Pomeranchuk I. Ya. Soviet Physics JETP 8, 361, (1959).}. 为了方便地表达出这个结果，将(2.4)式中的函数 $F(\vartheta)$ 和 $G(\vartheta)$ 按勒让德多项式展开，即给 $F(\vartheta)$ 和 $G(\vartheta)$ 以如下形式：
+\begin{equation}
+F(\vartheta)=\sum_{l}\,(2l+1)F_{l}\,\mathrm{P}_{l}(\cos\vartheta),\qquad
+G(\vartheta)=\sum_{l}\,(2l+1)G_{l}\,\mathrm{P}_{l}(\cos\vartheta)
+\end{equation}
+（这样定义系数 $F_{l}$ 和 $G_{l}$ 时；它们与乘积 $F\mathrm{P}_{l}$ 和 $G\mathrm{P}_{l}$ 的平均值相同）. 这时，稳定性条件可写成不等式的形式：
+\begin{equation}
+F_{l}+1>0,
+\end{equation}
+\begin{equation}
+G_{l}+1>0.
+\end{equation}
+
+将 $l=1$ 时的条件(2.19)同有效质量的表达式(2.12)相比较，使我们确信有效质量的正定性. $l=0$ 时的条件(2.19)也保证了(2.17)式的正定性.
+
+\section{费米液体的磁化率}
+
+自旋不等于零的准粒子，一般说来也具有磁矩. 自旋为 1/2 的磁矩的算符是 $\beta\bm\sigma$（磁矩的 $z$ 轴投影等于 $\pm\beta$）. 准粒子的磁矩与机械矩 $(\hbar/2)$ 之比即常数 $2\beta/\hbar$，同真实粒子的这一常数值相等：显然，用任何方法将粒子的自旋合成为准粒子的自旋时，这个比值都不会改变.
+
+准粒子具有自旋，同样会导致液体具有顺磁性. 现在我们来计算相应的磁化率.
+
+对于“自由”准粒子来说，它在磁场 $\bm H$ 中获得的附加能量的算符是 $-\beta\bm\sigma\cdot\bm H$. 但是，在费米液体中必须考虑这样一个事实，即由于准粒子的相互作用，其中每个准粒子的能量还因在磁场中分布函数的变化而再生变化. 因此，在计算磁化率时，应将准粒子能量变化算符写成
+\begin{equation}
+\delta\hat\varepsilon=-\beta\bm\sigma\cdot\bm H+\mathrm{Tr}'\int\hat f\,\delta\hat n'\,\mathrm{d}\tau',
+\end{equation}
+而分布函数变化本身，是通过 $\delta\hat\varepsilon$ 按式 $\delta\hat n=(\partial n/\partial\varepsilon)\,\delta\hat\varepsilon$\footnote{在计算与场有关的增量 $\delta n$ 时，可以不考虑化学势的变化. 在各向同性的液体中，宏观量 $\bm\mu$ 的变化只能是场 $\hat{\bm H}$ 的平方（在计算磁化率时，它是很小的量），而 $\delta\hat\varepsilon$ 是场的一级小量. 还要指出. 由于液体的磁化率是个小量，所以在这里可以不区分液体中的磁场强度和磁感应强度.} 表达出来的；因此，对于 $\delta\hat\varepsilon$ 我们得到方程
+\begin{equation}
+\delta\hat\varepsilon(\bm p)=-\beta\bm\sigma\cdot\bm H+\mathrm{Tr}'\int\hat f(\bm p,\bm p')\,\frac{\mathrm{d}n'}{\mathrm{d}\varepsilon'}\,\delta\hat\varepsilon(\bm p')\,\mathrm{d}\tau'.
+\end{equation}
+
+下面我们仅在费米球面上寻求这个方程的解. 设解的形式为
+\begin{equation}
+\delta\hat\varepsilon=-\frac{\beta}{2}\,g\,\bm\sigma\cdot\bm H,
+\end{equation}
+式中 $g$ 为常数. 对于阶跃函数 $n(\bm p')=\theta(\bm p')$ 我们有
+\begin{equation*}
+\frac{\mathrm{d}n'}{\mathrm{d}\varepsilon'}=-\delta\bigl(\varepsilon'-\varepsilon_{\mathrm F}\bigr),
+\end{equation*}
+因此，对 $\mathrm{d}p'=\mathrm{d}\varepsilon'/v_{\mathrm F}$ 求积分归结为被积式在费米面上取值. 将(2.4)式中的函数 $\hat f$ 代入后，并注意对于泡利矩阵有
+\begin{equation*}
+\mathrm{Tr}\,\bm\sigma=0,\qquad
+\mathrm{Tr}'(\bm\sigma\cdot\bm\sigma')\bm\sigma'=\frac{1}{3}\,\bm\sigma\,\mathrm{Tr}'(\bm\sigma'\cdot\bm\sigma')=2\bm\sigma,
+\end{equation*}
+我们求出 $g=2-g\,\overline{G(\vartheta)}$，或
+\begin{equation}
+g=\cfrac{2}{1+\overline{G(\vartheta)}},
+\end{equation}
+这里的横线［与(2.12)式一样］仍表示按方向求平均.
+
+磁化率 $\chi$ 由单位体积液体的磁矩表示式确定：
+\begin{equation*}
+\chi H=\beta\,\mathrm{Tr}\int\bm\sigma\,\delta\hat n\,\mathrm{d}\tau
+=\beta\,\mathrm{Tr}\int\bm\sigma\,\delta\hat\varepsilon\,\frac{\partial n}{\partial\varepsilon}\,\mathrm{d}\tau,
+\end{equation*}
+或对带有阶跃函数 $n(\bm p)$ 的被积式求积分后得：
+\begin{equation*}
+\chi H=-\beta\,\frac{p_{\mathrm F}m^{*}}{2\pi^{2}\hbar^{3}}\,\mathrm{Tr}\,\bm\sigma\,\delta\hat\varepsilon(\bm p_{\mathrm F}).
+\end{equation*}
+最后，将(3.3—3.4)式代入上式并注意 $\mathrm{Tr}(\bm\sigma\bm H)\bm\sigma=2\bm H$，我们得到
+\begin{equation}
+\chi=\frac{\beta^{2}p_{\mathrm F}m^{*}}{\pi^{2}\hbar^{3}(1+\bar G)}=\frac{3\nu\beta^{2}}{\pi^{2}(1+\bar G)},
+\end{equation}
+式中 $\nu$ 为热容量线性定律(1.15)中的系数. $\chi=3\nu\beta^{2}/\pi^{2}$ 是磁矩为 $\beta$ 的粒子所组成的简并费米气体的磁化率［见第五卷(59.5)］. 因子 $(1+\bar G)^{-1}$ 代表费米气体与费米液体的区别\footnote{对于$^{3}$He：$\bar G\approx-2/3$.}.
+
+我们指出，$l=0$ 的稳定性条件(2.20)与条件 $\chi>0$ 是一致的.
+
+\section{零声}
+
+费米液体的非平衡态可用准粒子的分布函数来描写，这个分布函数不仅与动量有关而且也与坐标和时间有关. 函数 $\hat n(\bm p,\bm r,t)$ 遵从如下的动理学方程：
+\begin{equation}
+\frac{\mathrm{d}\hat n}{\mathrm{d}t}=\mathrm{St}\hat n,
+\end{equation}
+其中 $\mathrm{St}\hat n$ 称为碰撞积分，它决定在给定的相体积元中准粒子数的变化，这种变化是因准粒子的相互碰撞造成的\footnote{这一节假定读者已熟悉动理学方程（кинетическое уравнение）的概念，就此意义来说，本不属于本卷的应有内容. 但是，没有动理学方程（以及在此后诸节中的应用）费米液体理论的描述将是不充分的. 在这里我们只需要无碰撞积分的方程，与碰撞积分的具体形式有关的问题将在本教程专讲物理动理学的另一卷中研究.}.
+
+(4.1)式中的对时间的全微商，既顾及到 $\hat n$ 对 $t$ 的显函数关系，也考虑到准粒子的坐标，动量和自旋变量按它的运动方程变化的隐函数关系. 费米液体的特性在于准粒子的能量是分布函数的泛函，所以在非均匀液体中 $\hat n$ 和 $\hat\varepsilon$ 都依赖于坐标.
+
+对于跟平衡的分布函数 $n_{0}$ 偏离很小的分布 $\hat n$，我们可写出
+\begin{equation}
+\hat n(\bm p,\bm r,t)=n_{0}(\bm p)+\delta\hat n(\bm p,\bm r,t).
+\end{equation}
+
+此时，准粒子的能量 $\hat\varepsilon=\varepsilon_{0}+\delta\hat\varepsilon$，其中 $\varepsilon_{0}$ 相应于平衡分布的能量，而 $\delta\hat\varepsilon$ 由(2.1)式给出，所以
+\begin{equation}
+\frac{\partial\hat\varepsilon}{\partial\bm r}=\frac{\partial\delta\hat\varepsilon}{\partial\bm r}
+=\mathrm{Tr}'\int\hat f(\bm p,\bm p')\,\frac{\partial\delta\hat n(\bm p')}{\partial\bm r}\,\mathrm{d}\tau'.
+\end{equation}
+
+当不存在外磁场时，$\varepsilon_{0}$ 和 $n_{0}$ 都与自旋无关.
+
+$\hat n$ 对时间 $t$ 的显函数关系，在 $\mathrm{d}\hat n/\mathrm{d}t$ 中给出一项
+\begin{equation*}
+\frac{\partial\hat n}{\partial t}=\frac{\partial\delta\hat n}{\partial t}.
+\end{equation*}
+用 $\hat n$ 与坐标及动量的关系给出两项
+\begin{equation*}
+\frac{\partial\hat n}{\partial\bm r}\,\dot{\bm r}+\frac{\partial\hat n}{\partial\bm p}\,\dot{\bm p}.
+\end{equation*}
+准粒子的能量 $\delta\hat\varepsilon$ 起着它的哈密顿函数的作用. 根据哈密顿方程，我们有
+\begin{equation*}
+\dot{\bm r}=\frac{\partial\hat\varepsilon}{\partial\bm p},\qquad
+\dot{\bm p}=-\frac{\partial\hat\varepsilon}{\partial\bm r}.
+\end{equation*}
+因此，取精确到 $\delta n$ 的一级项，则有
+\begin{equation*}
+\frac{\partial\delta\hat n}{\partial\bm r}\,\frac{\partial\varepsilon_{0}}{\partial\bm p}
+-\frac{\partial n_{0}}{\partial\bm p}\,\frac{\partial\delta\hat\varepsilon}{\partial\bm r}.
+\end{equation*}
+最后，函数 $\hat n$ 作为自旋变量算符随时间的变化，可按量子力学的普通规则由下面的对易子给出：
+\begin{equation}
+\frac{\mathrm{i}}{\hbar}\{\hat\varepsilon,\hat n\}.
+\end{equation}
+但是，当 $n_{0}$ 和 $\varepsilon_{0}$ 与自旋无关时，在此对易子中不存在 $\delta n$ 的一级近似项.
+
+集中上述各项，我们得出方程
+\begin{equation}
+\frac{\partial\delta\hat n}{\partial t}
++\frac{\partial\varepsilon_{0}}{\partial\bm p}\,\frac{\partial\delta\hat n}{\partial\bm r}
+-\frac{\partial\delta\hat\varepsilon}{\partial\bm r}\,\frac{\partial n_{0}}{\partial\bm p}
+=\mathrm{St}\hat n.
+\end{equation}
+
+在开始应用动理学方程之前，我们先讨论一下它的适用条件. 利用（坐标和动量的）经典方程时，我们就假定了准粒子的运动是准经典性运动. 这个假定，实质上正是用分布函数来描述液体的基础，该函数同时依赖于准粒子的坐标和动量. 准经典条件是：准粒子的德布罗意波长 $\hbar/p_{\mathrm F}$ 小于函数 $n$ 有显著变化的特征长度 $L$. 用非均匀性“波矢量”$k\sim1/L$ 代替 $L$，我们可以把这个条件写成\footnote{根据定义(1.1)，$\hbar/p_{\mathrm F}$ 具有原子间距的数量级，因此条件(4.6)是很弱的.}
+\begin{equation}
+\hbar k\ll p_{\mathrm F}.
+\end{equation}
+
+由给定的 $k$ 所确定的分布函数的变化频率 $\omega$，其数量级为 $\omega\sim v_{\mathrm F}k$，因而自然满足条件
+\begin{equation}
+\hbar\omega\ll\varepsilon_{\mathrm F}.
+\end{equation}
+
+$\hbar\omega$ 与温度 $T$ 的比值可以是任意的. 如果 $\hbar\omega\gg T$，那么 $\hbar\omega$ 这个量就相当于分布函数弥散区的宽度；于是(4.7)式便是整个理论适用的必需条件，它保证了准粒子能量（与它们的碰撞有关）的量子不确定性小于 $\hbar\omega$.
+
+现在我们运用动理学方程来研究费米液体的振动.
+
+在低温但不等于零温的情况下，费米液体中准粒子发生相互碰撞，并且它们的自由飞行时间 $\tau\propto T^{-2}$. 在液体中传播的波，其性质主要决定于乘积 $\omega\tau$ 的大小.
+
+在 $\omega\tau\ll1$（实际上等价于准粒子行程 $l$ 甚小于波长 $\lambda$ 这一条件）时，在每个（线度小于 $\lambda$ 的）液体体积元中，碰撞来得及建立起热力学平衡. 这就是说，我们遇到的是以速度 $u=\sqrt{\partial P/\partial\rho}$ 传播的通常的流体力学声波. 在 $\omega\tau\ll1$ 的情况下，声波的吸收很小，但 $\omega\tau$ 增大时吸收也随之增大，而且当 $\omega\tau\sim1$ 时吸收变得很强烈，以致声波的传播成为不可能\footnote{当 $\omega\tau\ll1$ 时，声的吸收系数 $\gamma\sim\omega^{2}\eta/\rho u^{3}$，其中 $\eta$ 为液体的粘滞系数. 按数量级，则有 $u\sim v_{\mathrm F}$，$\eta/\rho\sim v_{\mathrm F}l\sim v_{\mathrm F}^{2}\tau$，这里 $v_{\mathrm F}$ 为准粒子速度（与温度无关），因此 $\eta\propto T^{-2}$（И.\,Я.\,Померанчук, 1950）. 这时 $\gamma u/\omega\sim\omega\tau\propto\omega/T^{2}$.}.
+
+使 $\omega\tau$ 继续增加并达到 $\omega\tau\gg1$ 时，在费米液体中波的传播重新变为可能，但是这种波具有另外的物理特性. 在这些振动中准粒子的碰撞不起作用，并在每个体积元中来不及建立热力学平衡. 这个过程，可以看作是在绝对零度时发生的. 因而将这些波称为\textbf{零声}.
+
+如上所述，当 $\omega\tau\gg1$ 时，在动理学方程中可以略去碰撞积分，于是
+\begin{equation}
+\frac{\partial\delta\hat n}{\partial t}
++\bm v\,\frac{\partial\delta\hat n}{\partial\bm r}
+-\frac{\partial n_{0}}{\partial\bm p}\,\frac{\partial\delta\hat\varepsilon}{\partial\bm r}=0,
+\end{equation}
+式中 $\bm v=\partial\bm\varepsilon/\partial\bm p$ 为按非微扰能量 $\varepsilon$ 计算的准粒子速度（$\bm v=v_{\mathrm F}\bm n$，其中 $\bm n$ 是 $\bm p$ 方向上的单位矢量）；此后，我们略去 $\varepsilon$ 的下标 0.
+
+在 $T=0$ 时，平衡分布函数 $n_{0}$ 是一个阶跃函数 $\theta(\bm p)$，它在边界动量 $p=p_{\mathrm F}$ 处中断. $n_{0}$ 的微商
+\begin{equation*}
+\frac{\partial n_{0}}{\partial\bm p}
+=-\bm n\,\delta\bigl(p-p_{\mathrm F}\bigr)
+=-\bm v\,\delta\bigl(\varepsilon-\varepsilon_{\mathrm F}\bigr).
+\end{equation*}
+
+假设波中的 $\delta\hat n$ 与时间和坐标的关系由因子 $\exp[\mathrm{i}(\bm k\cdot\bm r-\omega t)]$ 给出，我们将得出动理学方程的如下形式的解：
+\begin{equation}
+\delta\hat n=\delta\bigl(\varepsilon-\varepsilon_{\mathrm F}\bigr)\,\hat\nu(\bm n)\,\mathrm{e}^{\mathrm{i}(\bm k\cdot\bm r-\omega t)}.
+\end{equation}
+
+这时，根据(4.3)式的 $\partial\delta\varepsilon/\partial\bm r$，方程(4.8)取如下形式：
+\begin{equation}
+\bigl(\omega-v_{\mathrm F}\bm n\cdot\bm k\bigr)\hat\nu(\bm n)
+=\bm n\cdot\bm k\,\frac{p_{\mathrm F}^{2}}{(2\pi\hbar)^{3}}\,\mathrm{Tr}'\int\hat f(\bm n,\bm n')\,\hat\nu(\bm n')\,\mathrm{d}o'
+\end{equation}
+
+式中 $\bm n$ 和 $\bm n'$ 为 $\bm p$ 和 $\bm p'$ 方向的单位矢量，而积分是按方向 $\bm n'$ 进行的.
+
+现在我们来研究不涉及液体自旋特性的振动（零声）. 就是说，不仅平衡分布函数，还有它的“微扰”$\delta\hat n$，都与自旋变量无关. 振动时，分布函数在这种波中因 $\delta\hat n$ 的变化归结为边界费米面（非微扰分布中的球面）的形变，这时费米面仍然是被准粒子占满的和未被占满的状态之间明显的边界. 函数 $\nu(\bm n)$ 是这个表面在给定的 $\bm n$ 方向上的位移值（以能量为单位）.
+
+因为 $\nu(\bm n')$ 与自旋变量无关，所以(4.10)式中的 $\mathrm{Tr}'$ 运算只应用在函数 $\hat f$ 上. 把 $\hat f$ 写成(2.4)的形式，将有 $\mathrm{Tr}'\hat f=\bigl(2\pi^{2}\hbar^{3}/p_{\mathrm F}m^{*}\bigr)F(\vartheta)$. 于是，算符 $\bm\sigma$ 从方程中完全消除，现在方程取如下形式：
+\begin{equation}
+(\omega-\bm k\cdot\bm v)\,\nu(\bm n)=\bm k\cdot\bm v\int F(\vartheta)\,\nu(\bm n')\,\frac{\mathrm{d}o'}{4\pi}.
+\end{equation}
+
+我们选择 $\bm k$ 的方向作为极轴，并以角 $\theta,\varphi$ 确定 $\bm n$ 的方向，再引入波传播的速度 $u_{0}=\omega/k$ 和符号 $s=u_{0}/v_{\mathrm F}$，则可写出最终得到的方程
+\begin{equation}
+\bigl(s-\cos\theta\bigr)\,\nu(\theta,\varphi)=\cos\theta\int F(\vartheta)\,\nu(\theta',\varphi')\,\frac{\mathrm{d}o'}{4\pi}.
+\end{equation}
+
+这个积分方程，原则上能够确定波的传播速度和波中的函数 $\nu(\bm n')$. 我们可立即看出，对于非阻尼振动（这里，我们仅对这种情况感兴趣）$s$ 的数值应大于 1，即应有
+\begin{equation}
+u_{0}>v_{\mathrm F}.
+\end{equation}
+
+把(4.12)式重写为如下形式，便能了解这个不等式的来源：
+\begin{equation*}
+\tilde\nu(\theta,\varphi)=\cos\theta\int F(\vartheta)\,\frac{\tilde\nu(\theta',\varphi')}{s-\cos\theta'}\,\frac{\mathrm{d}o'}{4\pi}.
+\end{equation*}
+
+这里引入另外一个未知函数 $\tilde\nu=(s-\cos\theta)\,\nu$ 来代替 $\nu$. 在 $s=\omega/kv_{\mathrm F}<1$ 的情况下，被积式在 $\cos\theta'=s$ 处有极点，为了使积分有意义，应在复变量 $\cos\theta'$ 的平面上，按一定规则绕过该极点. 这种环绕给积分添进了虚部，因而也使频率 $\omega$（在给定实数 $\bm k$ 的情况下）得到虚部，而这表示波的衰减. 对应于极点的等式 $\cos\theta=u_{0}/v_{\mathrm F}$，其物理意义是准粒子零声波的切连科夫（Черенков）辐射条件\footnote{这样的衰减机制称为朗道阻尼，将在第十卷有关等离体振荡问题中作详细研究. 在积分中环绕极点的规则，是用 $\omega+\mathrm{i}0$ 代换 $\omega$（即 $s\to s+\mathrm{i}0$），这种代换的意义在于对过去全部时刻（包括 $t\to-\infty$）都保证了扰动的有限性.}.
+
+作为一个例子，我们研究函数 $F(\vartheta)$ 变成常数（用 $F_{0}$ 表示）的情况. 方程(4.12)右边的积分这时不依赖于角 $\theta,\varphi$，所以待求的函数 $\nu$ 具有如下形式：
+\begin{equation}
+\nu=\text{常数}\times\frac{\cos\theta}{s-\cos\theta}.
+\end{equation}
+
+因此，费米面获得了沿波传播方向向前伸长和沿相反方向被压扁这种旋转面的形式. 这种各向异性是每一体积元中液体状态的非平衡性的表现，因为在平衡条件下，液体的一切性质应是各向同性的，因而费米面应当是球面. 为比较起见，我们指出：普通声波对应于半径振动的球形费米面（边界动量 $p_{\mathrm F}$ 随液体的密度一起振动），并且费米面作为整体而移动，移动的大小与波内液体的运动速度有关；而相应的函数 $\nu$ 的形式为 $\nu=\delta p_{\mathrm F}+$ 常数 $\times\cos\theta$.
+
+为了确定零声波的传播速度 $u_{0}$，将(4.14)式代入(4.12)式，我们求得
+\begin{equation*}
+F_{0}\int_{0}^{\pi}\frac{\cos\theta}{s-\cos\theta}\,\frac{2\pi\sin\theta\,\mathrm{d}\theta}{4\pi}=1.
+\end{equation*}
+
+积分结果，我们便得到一个把速度 $u_{0}$ 表示为给定值 $F_{0}$ 的隐函数形式的方程：
+\begin{equation}
+\frac{s}{2}\ln\frac{s+1}{s-1}-1=\frac{1}{F_{0}}.
+\end{equation}
+
+当 $s$ 由 1 变到 $\infty$ 时，方程左边的函数由 $\infty$ 降到 0，总保持正值. 由此可以得出，上述的波仅在 $F_{0}>0$ 时才能存在. 所以我们强调，零声传播的可能性与费米液体中准粒子的相互作用特性有关.
+
+当 $F_{0}\to0$ 时，由(4.15)式得出，$s$ 按如下规律趋于 1：
+\begin{equation}
+s-1\approx2\,\mathrm{e}^{-2/F_{0}}/\mathrm{e}^{2}.
+\end{equation}
+
+这种情况，比公式(4.15)（假设 $F=$ 常数 $\equiv F_{0}$）更具普遍意义：它相当于在任意形式的函数 $F(\vartheta)$ 时近理想费米气体中的零声. 实际上，绝对值很小的函数 $F(\vartheta)$ 对应于近理想气体. 由方程(4.12)可以看出，这时 $s$ 将接近 1，而函数 $\nu$ 仅在角 $\theta$ 很小的情况下才明显地不为零. 根据这一点，当只研究小角范围时，(4.12)式右边的积分中可以用函数 $F(\vartheta)$ 在 $\vartheta=0$ 时的值去代替 $F(\vartheta)$（当 $\theta=0$ 和 $\theta'=0$ 时，同样有 $\vartheta=0$）. 归根到底，我们又重新回到公式(4.14)和(4.16)［其中常数 $F_{0}$ 代之以 $F(0)$］\footnote{相当于弱非理想费米气体中零声的振动，这个问题首先是由克利蒙托维奇（Ю.\,Л.\,Климонтович）和西林 В.\,П.\,Силин（1952）研究的.}. 我们要指出，在弱非理想气体中零声的速度是普通声速的 $\sqrt{3}$ 倍. 事实上，对于零声有 $u_{0}\approx v_{\mathrm F}$，而对于普通声，我们由(2.17)式（其中忽略了 $\bar F$ 并设 $m^{*}\approx m$）求得 $u^{2}\approx p_{\mathrm F}^{2}/3{m^{*}}^{2}=v_{\mathrm F}^{2}/3$.
+
+在 $F(\vartheta)$ 为任意函数关系的一般情况下，方程(4.12)的解不是单值的. 原则上，这个解允许有不同类型的零声存在，它们的区别在于零声的幅 $\nu(\theta,\varphi)$ 具有不同的与角度的函数关系以及不同的传播速度. 这时，除了轴对称解 $\nu(\theta)$ 外，还可以存在非对称解，其中 $\nu$ 包含方位角因子 $\mathrm{e}^{\pm\mathrm{i}m\varphi}$，这里 $m$ 为整数（见习题）. 我们指出，对于所有这些解，积分 $\int\nu\,\mathrm{d}o=0$，即费米面包围的体积保持不变. 这意味着振动是在液体密度不变的情况下进行的.
+
+在绝对零度，波能够在费米液体中传播，就是说，费米液体的能谱可能包含相应于动量为 $\bm p=\hbar\bm k$ 和能量为 $\varepsilon=\hbar\omega=u_{0}p$ 的元激发的分支——“零声量子”. 零声（具有任意给定的 $\bm k$）可以有任意（小）的强度，这一事实，用元激发的术语来说，表明它们能够以任意的数目填充自己的量子态；换句话说，它们遵从玻色统计，并构成费米液体能谱的所谓\textbf{玻色支}. 但是应强调指出，在朗道理论的范围内，把对应于这一分支的改正量引入费米液体的热力学量那可就错了，因为这些热力学量含有温度的更高次幂（如热容量中的 $T^{3}$），而不只是上述近似理论中的前几级改正量.
+
+关于零声的吸收问题，需要研究准粒子的碰撞，这已不属于本卷的内容.
+
+\begin{xiti}
+在 $F=F_{0}+F_{1}\cos\vartheta$ 的情况下，试求零声的非对称波的传播速度.
+
+解：在 $F=F_{0}+F_{1}\,[\cos\theta\cos\theta'+\sin\theta\sin\theta'\cos(\varphi-\varphi')]$ 的情况下，可存在具有 $\nu\propto\mathrm{e}^{\pm\mathrm{i}\varphi}$ 形式的解. 实际上，设 $\nu=f(\theta)\,\mathrm{e}^{\mathrm{i}\varphi}$，代入(4.12)式并对 $\mathrm{d}\varphi'$ 求积分，我们得到
+\begin{equation*}
+(s-\cos\theta)f=\frac{F_{1}}{4}\,\cos\theta\sin\theta\int_{0}^{\pi}\sin^{2}\theta'\,f(\theta')\,\mathrm{d}\theta',
+\end{equation*}
+因而，
+\begin{equation*}
+\nu=\text{常数}\times\frac{\sin\theta\cos\theta}{s-\cos\theta}\,\mathrm{e}^{\mathrm{i}\varphi}.
+\end{equation*}
+将这个表示式代回原方程，便得到关系式
+\begin{equation*}
+\int_{0}^{\pi}\frac{\sin^{3}\theta\cos\theta\,\mathrm{d}\theta}{s-\cos\theta}=\frac{4}{F_{1}}.
+\end{equation*}
+
+此式确定了传播速度与 $F_{1}$ 的关系. 等式左边的积分，是 $s$ 的单调下降函数. 因此，当 $s=1$ 时它达到最大值. 算出 $s=1$ 时的积分后，我们发现上述形式的非对称波可以在 $F_{1}>6$ 的条件下传播\footnote{对于液体$^{3}$He，利用公式(2.12)和(2.17)，根据已知的 $m^{*}$ 和 $u^{2}$ 的值可以算出：$F_{0}=10.8$，$F_{1}=6.3$（在零压下）.}.
+\end{xiti}
+
+\section{费米液体中的自旋波}
+
+除了上节研究过的与自旋无关的解 $\nu(\bm n)$ 之外，方程(4.10)还有如下形式的解：
+\begin{equation}
+\hat{\bm\nu}=\bm\sigma\cdot\bm\mu(\bm n)
+\end{equation}
+
+在此公式中，准粒子分布函数的变化依赖于它们的自旋投影. 这样的波可称为\textbf{自旋波}.
+
+将(5.1)式代入(4.10)式，再取(2.4)式中的函数 $\hat f$，并注意到 $\mathrm{Tr}'\,\bm\sigma'(\bm\sigma\bm\sigma')=2\bm\sigma$，约去 $\bm\sigma$ 后可得：
+\begin{equation}
+(s-\cos\theta)\,\mu(\theta,\varphi)=\cos\theta\int G(\vartheta)\,\mu(\theta',\varphi')\,\frac{\mathrm{d}o'}{4\pi}.
+\end{equation}
+
+这样，对于矢量 $\bm\mu$ 的每一分量，我们都得到一个方程，它不同于(4.12)式的只是换 $F$ 为 $G$. 因此，在 §4 中所做的一切进一步的计算，都能应用于自旋波\footnote{在液体$^{3}$He 中，$G_{0}=\overline{G(\vartheta)}<0$（见 12 页上的注释①）. 因此，在这种液体中不可能传播这样的波.}.
+
+在有磁场时，费米液体中能够传播另一种类型的自旋波（В.\,П.\,Силин, 1958）. 这里，我们仅限于研究 $\bm k=0$ 的振动，这时 $\delta\hat n$ 不依赖于坐标.
+
+当存在磁场 $\bm H$ 时，“未被振动微扰”的准粒子的能量及其分布函数都与自旋有关. 这些相互间的依赖关系可用下列公式表达（见 §3）：
+\begin{equation}
+\hat\varepsilon_{0}=\varepsilon_{0}(\bm p)-\beta_{1}\,\bm\sigma\cdot\bm H,\qquad
+\beta_{1}=\beta/(1+\bar G),
+\end{equation}
+\begin{equation}
+\hat n_{0}=n_{0}(\bm p)-\frac{\mathrm{d}n_{0}}{\mathrm{d}\varepsilon}\,\beta_{1}\,\bm\sigma\cdot\bm H
+=n_{0}(\bm p)+\delta\bigl(\varepsilon-\varepsilon_{\mathrm F}\bigr)\,\beta_{1}\,\bm\sigma\cdot\bm H.
+\end{equation}
+
+式中 $\varepsilon_{0}(\bm p)$ 是无磁场时的能量；下标 0 再次提醒这些表述项与平衡液体有关.
+
+我们再来寻求以波的形式表示的分布函数的微小变化部分，其形式为
+\begin{equation*}
+\delta\hat n=\delta\bigl(\varepsilon-\varepsilon_{\mathrm F}\bigr)\,\bm\sigma\cdot\bm\mu(\bm n)\,\mathrm{e}^{-\mathrm{i}\omega t}
+\end{equation*}
+
+与此对应的准粒子能量的变化：
+\begin{equation*}
+\delta\hat\varepsilon=\bm\sigma\cdot\int\bm\mu(\bm n')\,G(\vartheta)\,\frac{\mathrm{d}o'}{4\pi}\cdot\mathrm{e}^{-\mathrm{i}\omega t}.
+\end{equation*}
+
+现在，在动理学方程中应当考虑带有对易子 $\{\hat\varepsilon,\hat n\}$ 的项(4.4)；对与坐标无关的分布函数，方程取如下形式：
+\begin{equation}
+\frac{\partial}{\partial t}\,\delta\hat n+\frac{\mathrm{i}}{\hbar}\,\{\hat\varepsilon,\hat n\}=0.
+\end{equation}
+
+精确到 $\delta n$ 的线性项，则有
+\begin{equation*}
+\{\hat\varepsilon,\hat n\}
+=-\beta_{1}\,\{\bm\sigma\cdot\bm H,\delta\hat n\}
++\beta_{1}\,\delta(\varepsilon-\varepsilon_{\mathrm F})\,\{\delta\hat\varepsilon,\bm\sigma\cdot\bm H\},
+\end{equation*}
+
+这里的几个对易子由下式定义：
+\begin{equation*}
+\{\bm\sigma\cdot\bm a,\ \bm\sigma\cdot\bm b\}=2\mathrm{i}\,\bm\sigma\cdot[\bm a\times\bm b],
+\end{equation*}
+
+其中 $\bm a,\bm b$ 为任意矢量［见第三卷(55.10)式］；结果动理学方程变为如下形式：
+\begin{equation}
+\mathrm{i}\omega\,\bm\mu(\bm n)=\frac{2\beta_{1}}{\hbar}\,\bm H\times\bm\rho(\bm n),
+\end{equation}
+
+式中符号的意义为
+\begin{equation}
+\bm\rho(\bm n)=\bm\mu(\bm n)+\int\bm\mu(\bm n')\,G(\vartheta)\,\frac{\mathrm{d}o'}{4\pi}.
+\end{equation}
+
+在一般情况下，方程(5.6)的解可以展开为球函数 $Y_{lm}(\theta,\varphi)$（极轴沿 $\bm H$）的级数. 展开式的每一项是具有固有频率 $\omega_{lm}$ 的一定类型的振动.
+
+其中的第一个频率 $\omega_{00}$ 是对应于 $\mu=$ 常数的振动；并且 $\bm\rho=\bm\mu\bigl(1+\bar G\bigr)$，于是方程(5.6)归结为
+\begin{equation*}
+\mathrm{i}\omega_{00}\,\bm\mu=\frac{2\beta}{\hbar}\,\bm H\times\bm\mu,
+\end{equation*}
+
+这时振动垂直于场（$\bm\mu\perp\bm H$）. 将方程分别写成分量形式（在垂直于 $\bm H$ 的平面内），并列出这个方程组的行列式，我们求得频率：
+\begin{equation}
+\omega_{00}=2\beta H/\hbar.
+\end{equation}
+
+应注意，$\beta$ 是液体真实粒子的磁矩. 因此，频率 $\omega_{00}$ 完全与液体的特性无关. 而所有其它频率 $\omega_{lm}$ 的值均与函数 $G(\vartheta)$ 的具体形式有关.
+
+\section{粒子间有斥力的简并化近理想费米气体}
+
+本节我们将研究简并化近理想费米气体的性质. 这个问题具有重要的研究方法上的意义. 虽然，作为平衡系，自然界中并不存在这样的气体. 因为温度为绝对零度时，一切气体都要凝聚. 但是，作为寿命足够长的介稳物体，可以存在稀薄费米气体. 下面讲的理论中用到的近似，其特点是在远小于寿命的时间内该系统不会形成凝聚.
+
+弱非理想气体的条件是分子力的作用半径 $r_{0}$ 小于粒子间的平均距离 $l\sim(V/N)^{1/3}$. 对于粒子动量为 $p$ 的情况，条件 $r_{0}\ll l$ 及不等式
+\begin{equation}
+pr_{0}/\hbar\ll1
+\end{equation}
+
+均成立. 实际上，对于简并化费米气体可按公式(1.1)估算边界动量 $p_{\mathrm F}$，根据该式，$p_{\mathrm F}/\hbar\sim(N/V)^{1/3}\ll1/r_{0}$.
+
+在此，我们只讨论粒子对的相互作用，并且为了简单起见，认为这种相互作用 $U(r)$ 与粒子的自旋无关. 我们的目的是应用量子力学的微扰论计算热力学量按 $r_{0}/l$ 的幂展开的前几项. 这里出现的困难是，粒子间的相互作用能在小距离上增加过快，微扰论（所谓玻恩近似）对于粒子的碰撞实际上是不适用的. 然而，这个困难可用下述方法避开.
+
+在“慢”［满足条件(6.1)即谓慢］碰撞的极限情况下，质量为 $m$ 的粒子的相互散射幅趋于固定极限 $-a$，这个极限在玻恩近似下由下列表达式给出［见第三卷(126.13)式］：
+\begin{equation}
+-a=-\frac{m}{4\pi\hbar^{2}}\,U_{0},\qquad U_{0}=\int U(r)\,\mathrm{d}^{3}x,
+\end{equation}
+
+并且这个极限符合于（自旋为 1/2 的）粒子对的 s 态；常数 $a$ 称为\textbf{散射长度}\footnote{表达式(6.2)没考虑量子力学的粒子全同性. 自旋为 1/2 的全同粒子，在慢碰撞的极限情况下，散射只在自旋反平行时发生，并且在立体角 $\mathrm{d}o$ 内（质心系内）的散射微分截面是 $\mathrm{d}\sigma=4a^{2}\,\mathrm{d}o$；沿半球对 $\mathrm{d}o$ 求积分得到总截面：$\sigma=8\pi a^{2}$（见第三卷 §137）.}. 因为这个量完全决定碰撞的性质，所以它同样也决定气体的热力学性质.
+
+我们因此有可能运用下述所谓\textbf{重整化}方法. 在形式上将真实能量 $U(r)$ 用另一个有同一 $a$ 值但允许应用微扰论的函数来代替. 计算一直进行到（即近似到）最终结果只在散射辐中含 $U$ 时为止，这个结果总会与真实的相互作用导致的结果一致.
+
+一般说来，真实的相互作用半径，其数量级与散射长度 $a$ 相同. 对于作为辅助概念而引入的虚构的场 $U(r)$，玻恩近似的适用条件就是 $a\ll r_{0}$. 理论展开的真实的小参量，当然是 $ap_{\mathrm F}/\hbar$.
+
+以下我们不仅要用到 $U_{0}$ 与 $a$ 之间的一级玻恩近似关系［公式(6.2)］，而且也要用到二级玻恩近似关系. 为了找到这个关系，我们提醒一下，如果在恒定微扰 $\hat V$ 的作用下，系统的某一跃迁概率在一级近似中用矩阵元 $V_{00}$ 确定，那么在二级近似中 $V_{00}$ 将代之以
+\begin{equation*}
+V_{00}+\sum_{n}^{\prime}\,\frac{V_{0n}V_{n0}}{E_{0}-E_{n}},
+\end{equation*}
+
+这里是按无微扰系统 $n\neq0$ 的各量子态进行求和的（见第三卷 §43）. 在这种情况下，我们所讨论的是双粒子碰撞的系统，粒子的相互作用 $U(r)$ 就是微扰. 对于粒子动量变化为 $\bm p_{1},\bm p_{2}\to\bm p_{1}',\bm p_{2}'$（并且 $\bm p_{1}+\bm p_{2}=\bm p_{1}'+\bm p_{2}'$）的跃迁过程，其微扰矩阵元为
+\begin{equation}
+\langle\bm p_{1}'\alpha_{1},\bm p_{2}'\alpha_{2}|U|\bm p_{1}\alpha_{1},\bm p_{2}\alpha_{2}\rangle
+=\frac{1}{V}\int U(r)\,\mathrm{e}^{-\mathrm{i}\bm p\cdot\bm r/\hbar}\,\mathrm{d}^{3}x,
+\end{equation}
+
+式中 $\bm p=\bm p_{2}'-\bm p_{2}=-\bigl(\bm p_{1}'-\bm p_{1}\bigr)$；由于相互作用与自旋无关，粒子自旋投影（用下标 $\alpha_{1},\alpha_{2}$ 表征）在碰撞时不变. 动量为零时，$V_{00}$ 起着矩阵元 $U_{0}/V$ 的作用. 因此，由一级近似过渡到二级近似时，$U_{0}$ 应以下式来代替：
+\begin{equation*}
+U_{0}+\frac{1}{V}\sum_{p_{1}'}\,
+\biggl[\frac{p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}}{2m}\biggr]^{-1}
+\biggl|\int U\,\mathrm{e}^{-\mathrm{i}\bm p\cdot\bm r/\hbar}\,\mathrm{d}^{3}x\biggr|^{2}
+\end{equation*}
+
+（当给定 $\bm p_{1},\bm p_{2}$ 时，按 $\bm p_{1}'\neq\bm p_{1},\bm p_{2}$ 求和）. 因为在这种情况下，假设粒子的动量很小，所以可用动量 $\bm p=0$ 时的矩阵元的值代替求和式中一切主要项中的矩阵元. 做完这一步后，便得到下列散射长度的表达式\footnote{在所有中间公式中，我们写出的是按粒子动量的离散谱求和，这些粒子都包含在有限的体积 $V$ 中；最终计算时，按惯例是用对 $V\mathrm{d}^{3}p/(2\pi\hbar)^{3}$ 的积分代替求和.}：
+\begin{equation}
+a=\frac{m}{4\pi\hbar^{2}}\biggl[U_{0}+\frac{U_{0}^{2}}{V}\sum_{p_{1}'}\,
+\frac{2m}{p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}}\biggr],
+\end{equation}
+
+因此，在同样精度下则有
+\begin{equation}
+U_{0}=\frac{4\pi\hbar^{2}a}{m}\biggl[1-\frac{4\pi\hbar^{2}a}{mV}\sum_{p_{1}'}\,
+\frac{2m}{p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}}\biggr].
+\end{equation}
+
+(6.4)式中求和式的发散性（当 $\bm p_{1}',\bm p_{2}'$ 很大时）与以常数值的矩阵元代替一切矩阵元有关，但这个发散并不要紧，因为进一步利用这个表达式计算系统的能量时，反正会得到大动量不起作用的收敛的表达式. 我们知道，慢粒子的散射长度 $a$ 与粒子能量无关. 公式(6.4)乍一看来与动量 $\bm p_{1},\bm p_{2}$ 有关. 但事实上这种依赖关系只包含在散射幅的虚部［适当规定求和方法便会出现这种情况——比较第三卷(130.9)式］. 对这一虚部可以不必理睬，因为我们早就知道，最终结果总是实的；这个问题，我们还将在 §21 中讨论.
+
+在这一节里，我们将研究粒子间具有斥力相互作用特性的费米气体模型；对于这种相互作用，$a>0$. 气体正是在这种情况下才具有 §1，§2 中所描述的那种费米型的能谱.
+
+系统由具有成对相互作用的粒子（自旋为 1/2 的）所组成其哈密顿量用二次量子化方法可写成如下形式：
+\begin{equation}
+\begin{split}
+\hat H=\sum_{p\alpha}\frac{p^{2}}{2m}\,\hat a^{+}_{p\alpha}\hat a_{p\alpha}
++\frac{1}{2}\sum\,\langle\bm p_{1}'\alpha_{1},\bm p_{2}'\alpha_{2}|U|\bm p_{1}\alpha_{1},\bm p_{2}\alpha_{2}\rangle\\
+\times\,\hat a^{+}_{p_{1}'\alpha_{1}}\hat a^{+}_{p_{2}'\alpha_{2}}\hat a_{p_{2}\alpha_{2}}\hat a_{p_{1}\alpha_{1}}
+\end{split}
+\end{equation}
+
+（见第三卷 §64）. 这里 $\hat a^{+}_{p\alpha}$ 和 $\hat a_{p\alpha}$ 是动量为 $\bm p$、自旋投影为 $\alpha\,\bigl(\alpha=\pm\frac{1}{2}\bigr)$ 的自由粒子的产生和湮没算符. (6.6)式中的第一项相应于粒子的动能，而第二项相应于粒子的势能；在第二项里，是按粒子的全部动量值和自旋投影值求和，并遵从在碰撞时的动量守恒定律.
+
+根据粒子具有微小动量的假设，我们再次用矩阵元在动量为零时的值：$\langle0\alpha_{1},0\alpha_{2}|U|0\alpha_{1},0\alpha_{2}\rangle=U_{0}/V$ 代替(6.6)中的矩阵元. 其次我们注意到，在费米统计中由于算符 $\hat a_{p_{1}\alpha_{1}},\hat a_{p_{2}\alpha_{2}}$ 的反对易性，算符乘积对下标的置换是反对称的；乘积 $\hat a^{+}_{p_{1}'\alpha_{1}}\hat a^{+}_{p_{2}'\alpha_{2}}$ 也有同样的性质. 结果，(6.6)式的第二个求和式中所有含相同成对下标的 $\alpha_{1},\alpha_{2}$ 项都相互抵消了（在物理上，这与已指出过的情况有关，即在慢碰撞的极限情况下，只有自旋相反的粒子才能相互散射）.
+
+因此，系统的哈密顿量取如下形式：
+\begin{equation}
+\hat H=\sum_{p,\alpha}\frac{p^{2}}{2m}\,\hat a^{+}_{p\alpha}\hat a_{p\alpha}
++\frac{U_{0}}{V}\sum_{p_{1},p_{2},p_{1}'}\hat a^{+}_{1'+}\hat a^{+}_{2'-}\hat a_{2-}\hat a_{1+},
+\end{equation}
+
+式中 $\hat a_{1+}\equiv\hat a_{p_{1}+},\ \hat a'_{1+}\equiv\hat a'_{p_{1}+}$，等等，而下标 $+$ 和 $-$ 此后将分别代替 $+1/2$ 和 $-1/2$.
+
+这个哈密顿量的本征值可用通常的微扰论算出来，并且(6.6)式中的第二项可以看作是对第一项的小修正. 第一项已有对角形式，它的本征值等于
+\begin{equation}
+E^{(0)}=\sum_{p\alpha}\frac{p^{2}}{2m}\,n_{p\alpha},
+\end{equation}
+
+这里 $n_{p\alpha}$ 为状态 $\bm p,\alpha$ 的占有数\footnote{假设粒子具有确定的自旋投影值，我们即假定统计矩阵 $n_{\alpha\beta(\bm p)}$ 也获得对角形式；这时，$\alpha=\pm\frac{1}{2}$ 的函数 $n_{\alpha(\bm p)}$ 就是它的对角元素.}.
+
+相互作用能的对角矩阵元给出上式的一级修正：
+\begin{equation}
+E_{1}^{(1)}=\frac{U_{0}}{V}\sum_{p_{1}p_{2}}\,n_{1+}\,n_{2-},
+\end{equation}
+
+式中 $n_{1+}\equiv n_{p_{1}+}$，等等.
+
+为了找出二级修正，我们利用微扰论的熟知公式
+\begin{equation*}
+E_{n}^{(2)}=\sum_{m}{}'\,\frac{|V_{nm}|^{2}}{E_{n}-E_{m}},
+\end{equation*}
+
+其中下标 $n,m$ 标志非微扰系统的状态.
+
+经简单的计算（运用算符 $\hat a_{p\alpha},\hat a^{+}_{p\alpha}$ 已知的矩阵元）得出如下结果：
+\begin{equation}
+\frac{U_{0}^{2}}{V^{2}}\sum_{p_{1}p_{2}p_{1}'}
+\frac{n_{1+}\,n_{2-}\,\bigl(1-n'_{1+}\bigr)\bigl(1-n'_{2-}\bigr)}
+{\bigl(p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}\bigr)/2m}.
+\end{equation}
+
+此式的结构是十分明显的：跃迁 $\bm p_{1},\bm p_{2}\to\bm p_{1}',\bm p_{2}'$ 的矩阵元的平方与状态 $\bm p_{1},\bm p_{2}$ 的占有数及状态 $\bm p_{1}',\bm p_{2}'$ 的空位数成正比.
+
+(6.9—6.10)式中的积分 $U_{0}$ 应当用真实的物理量（即散射幅）$a$ 表示出来. 在二级项中 $U_{0}$ 可按(6.2)式计算，而在一级项中则需要用更精确的公式(6.5). 将计算值代入，我们得到对 $a$ 的一级修正
+\begin{equation}
+E^{(1)}=\frac{g}{V}\sum_{p_{1},p_{2}}\,n_{1+}\,n_{2-}
+\end{equation}
+
+和二级修正：
+\begin{equation*}
+E^{(2)}=\frac{2mg^{2}}{V^{2}}\sum_{p_{1},p_{2},p_{1}'}
+\frac{n_{1+}\,n_{2-}\,\bigl[\bigl(1-n'_{1+}\bigr)\bigl(1-n'_{2-}\bigr)-1\bigr]}
+{p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}}
+\end{equation*}
+
+（为简单起见，我们在中间的公式里引入了气体粒子的“耦合常数”\footnote{散射辐重整化后，这个量就绝不与公式(6.2)中的常数 $U_{0}$ 相同了！}$\ g=\dfrac{4\pi\hbar^{2}a}{m}$）. 将分子中的表示式展开，我们会看出分子中四个 n 乘积的项可以相消，因为这些项的分子对于 $\bm p_{1},\bm p_{2}$ 和 $\bm p_{1}',\bm p_{2}'$ 的置换是对称的，而分母是反对称的；但对这些变量求和却是按对称方式进行的. 所以，最后我们得到：
+\begin{equation}
+E^{(2)}=-\frac{2mg^{2}}{V^{2}}\sum_{p_{1},p_{2},p_{1}'}
+\frac{n_{1+}\,n_{2-}\,\bigl(n'_{1+}+n'_{2-}\bigr)}
+{p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}},
+\end{equation}
+
+这个求和式已经收敛（其中当 $p\to\infty$ 时，所有的 $n_{p\alpha}\to0$）.
+
+运用已得的公式，首先可以计算基态的能量. 对此，应当假设：费米球内$\,\bigl[p<p_{\mathrm F}=\hbar(3\pi^{2}N/V)^{1/3}\bigr]$ 所有的 $n_{p\alpha}$ 都等于 1，而费米球外的 $n_{p\alpha}$ 都等于零. 因此我们指出：虽然在起初的哈密顿量中算符乘积 $\hat a^{+}_{p\alpha}\hat a_{p\alpha}$ 的本征值给出了气体粒子本身状态的占有数，但借助微扰论将哈密顿量对角化之后，就与准粒子的分布函数（同以前各节，仍用 $n_{p\alpha}$ 表征）有关了.
+
+注意到 $\sum n_{p+}=\sum n_{p-}=N/2$，由(6.11)式得到一级修正
+\begin{equation*}
+E_{0}^{(1)}=gN^{2}/4V.
+\end{equation*}
+
+在公式(6.12)中，我们对
+\begin{equation*}
+\frac{V^{3}}{(2\pi\hbar)^{9}}\,\delta(p_{1}+p_{2}-p_{1}'-p_{2}')\,
+\mathrm{d}^{3}p_{1}\,\mathrm{d}^{3}p_{2}\,\mathrm{d}^{3}p_{1}'\,\mathrm{d}^{3}p_{2}'
+\end{equation*}
+
+取积分代替求满足条件 $\bm p_{1}+\bm p_{2}=\bm p_{1}'+\bm p_{2}'$ 的三个动量之和而使得
+\begin{equation*}
+E_{0}^{(2)}=-\frac{4mg^{2}V}{(2\pi\hbar)^{9}}\int
+\frac{\delta(p_{1}+p_{2}-p_{1}'-p_{2}')}{p_{1}^{2}+p_{2}^{2}-p_{1}^{\prime2}-p_{2}^{\prime2}}\,
+\mathrm{d}^{3}p_{1}\,\mathrm{d}^{3}p_{2}\,\mathrm{d}^{3}p_{1}'\,\mathrm{d}^{3}p_{2}',
+\end{equation*}
+
+而且是对 $p_{1},p_{2},p_{1}'\leqslant p_{\mathrm F}$ 的区域进行积分的. 算出积分\footnote{实际上，按另一种顺序进行计算，即首先计算函数 $f$ 是比较简单的（见下文）.} 便得到如下的基态能量的最终结果：
+\begin{equation}
+E_{0}=N\,\frac{3p_{\mathrm F}^{2}}{10m}\biggl[1+\frac{10}{9\pi}\,\frac{p_{\mathrm F}a}{\hbar}
++\frac{4(11-2\ln 2)}{21\pi^{2}}\biggl(\frac{p_{\mathrm F}a}{\hbar}\biggr)^{2}\biggr].
+\end{equation}
+
+式中括号前的量为理想费米气体的能量（黄克逊，杨振宁，1957）.
+
+绝对零度时气体的化学势，可定义为微商：$\mu=(\partial E_{0}/\partial N)_{V}$；用边界动量 $p_{\mathrm F}$ 表示的化学势具有如下形式：
+\begin{equation}
+\mu=\frac{p_{\mathrm F}^{2}}{2m}\biggl[1+\frac{4}{3\pi}\,\frac{p_{\mathrm F}a}{\hbar}
++\frac{4(11-2\ln 2)}{15\pi^{2}}\biggl(\frac{p_{\mathrm F}a}{\hbar}\biggr)^{2}\biggr].
+\end{equation}
+
+根据朗道理论的一般原理，元激发谱 $\varepsilon(\bm p)$ 和准粒子的相互作用函数 $f_{\alpha\alpha'}(\bm p,\bm p')$\footnote{本节中的矩阵 $f_{\alpha\alpha'}(\bm p,\bm p')$ 是两对下标（$\alpha,\beta$ 和 $\gamma,\delta$）的对角矩阵 $f_{\alpha\gamma,\beta\delta}(\bm p,\bm p')$ 元素的集合.} 可以用总能量对准粒子的分布函数的一级和二级变分来确定. 如果将能量 $E$ 写成按 $p$ 和 $\alpha$ 取离散和的形式，则根据定义有
+\begin{equation}
+\delta E=\sum_{p\alpha}\varepsilon_{\alpha}(\bm p)\,\delta n_{p\alpha}
++\frac{1}{2V}\sum_{p\alpha,p'\alpha'}f_{\alpha\alpha'}(\bm p,\bm p')\,\delta n_{p\alpha}\,\delta n_{p'\alpha'}
+\end{equation}
+
+（对能量取变分后，$n_{p\alpha}$ 应当用下述数值来代替：在费米球内等于 1，在球外等于零）. 然而不必用这种方法去计算准粒子的有效质量 $m^{*}$，因为它可以用更简便的方法求出来（见下）.
+
+为了计算函数 $f_{\alpha\alpha'}(\bm p,\bm p')$（在费米面上），我们对(6.11—6.12)的求和式进行两次微分，然后令 $p=p'=p_{\mathrm F}$. 进行这一简单的计算后，并将求和变成积分，可得
+\begin{equation*}
+\begin{aligned}
+f_{+-}(\bm p,\bm p')&=g-\frac{4mg^{2}}{(2\pi\hbar)^{3}}\int\biggl\{\frac{\delta(\bm p+\bm p'-\bm p_{1}-\bm p_{2})}{2p_{\mathrm F}^{2}-p_{1}^{2}-p_{2}^{2}}+\\
+&\qquad+\frac{\delta(\bm p+\bm p_{1}-\bm p'-\bm p_{2})+\delta(\bm p'+\bm p_{1}-\bm p-\bm p_{2})}{2\bigl(p_{1}^{2}-p_{2}^{2}\bigr)}\biggr\}\mathrm{d}^{3}p_{1}\,\mathrm{d}^{3}p_{2},\\
+f_{++}(\bm p,\bm p')&=f_{--}(\bm p,\bm p')=\\
+&=\frac{2mg^{2}}{(2\pi\hbar)^{3}}\int\frac{\delta(\bm p+\bm p_{1}-\bm p'-\bm p_{2})+\delta(\bm p'+\bm p_{1}-\bm p-\bm p_{2})}{p_{1}^{2}-p_{2}^{2}}\,\mathrm{d}^{3}p_{1}\,\mathrm{d}^{3}p_{2}.
+\end{aligned}
+\end{equation*}
+
+这两个公式中的积分，由于积分重数少而比较简单.
+
+最终的结果应当是(2.4)的形式，它与自旋量子化轴的选择无关.
+
+(2.4)的最后形式由下列公式给出：
+\begin{align}
+f_{\alpha\gamma,\beta\delta}=\frac{2\pi a\hbar^{2}}{m}\biggl\{\biggl[1+\frac{2ap_{\mathrm F}}{\pi\hbar}
+\biggl(2+\frac{\cos\vartheta}{2\sin\dfrac{\vartheta}{2}}\ln\frac{1+\sin\dfrac{\vartheta}{2}}{1-\sin\dfrac{\vartheta}{2}}\biggr)\biggr]\times\nonumber\\
+\times\,\delta_{\alpha\beta}\delta_{\gamma\delta}
+-\biggl[1+\frac{2ap_{\mathrm F}}{\pi\hbar^{2}}\biggl(1-\frac{1}{2}\sin\frac{\vartheta}{2}\,\ln\frac{1+\sin\dfrac{\vartheta}{2}}{1-\sin\dfrac{\vartheta}{2}}\biggr)\biggr]\sigma_{\alpha\beta}\sigma_{\gamma\delta}\biggr\},
+\end{align}
+
+式中 $\vartheta$ 为矢量 $\bm p_{\mathrm F}$ 与 $\bm p_{\mathrm F}'$ 间的夹角（А.\,А.\,Абрикосов, И.\,М.\,Халатников, 1957）\footnote{函数(6.16)当 $\vartheta=\pi$ 时将变为对数发散. 这种情况与所作的忽略有关，更精确的研究证明，虽然 $\vartheta=\pi$ 的值确实是函数的奇点，但函数在这一点不趋向无穷大而趋于零（见 210 页的注解）. 公式(6.16)在 $\vartheta=\pi$ 附近不适用，这对今后的应用是无关紧要的，因为在应用中出现的积分在该点是收敛的.}.
+
+因而对公式(2.12)取积分便得到准粒子的有效质量，它等于
+\begin{equation}
+\frac{m^{*}}{m}=1+\frac{8}{15\pi^{2}}\bigl(7\ln 2-1\bigr)\biggl(\frac{ap_{\mathrm F}}{\hbar}\biggr)^{2}.
+\end{equation}
+
+由公式(2.17)可以求出气体中的声速：
+\begin{equation}
+u^{2}=\frac{p_{\mathrm F}^{2}}{3m^{2}}\biggl[1+\frac{2}{\pi}\,\frac{ap_{\mathrm F}}{\hbar}
++\frac{8(11-2\ln 2)}{15\pi^{2}}\biggl(\frac{ap_{\mathrm F}}{\hbar}\biggr)^{2}\biggr].
+\end{equation}
+
+然后将 $u^{2}m/N$（这里以 $N/V$ 代替 $\rho$ 的表达）对 $\mathrm{d}N$ 求积分，根据(2.13)式我们可求得气体的化学势，这时对 $\mathrm{d}N$ 再积分一次便得到基态能量的表达式(6.13).
+
+公式(6.13)是气体能量按“气体特征参量”$\eta=p_{\mathrm F}a/\hbar\sim a\,(N/V)^{1/3}$ 的幂展开的前几项. 采用类似的即使是非常繁琐的计算，还能得到一些随后的展开项. 因为在费米气体的情况下，三重碰撞对能量的贡献是比较高级的近似. 在三重碰撞的粒子中，至少有两个粒子具有相同的自旋投影；这时对于这两个粒子系统的坐标波函数应当是反对称的. 这就是说，这些粒子相对运动的轨道角动量至少等于 1（p-态）. 相应的波函数与 s 态的波函数相比，包含多余的 $p/\hbar$ 的一次幂（见第三卷 §33），因此，这种碰撞的概率应该包含多余的 $p^{2}$，也就是说与不遵从泡利原理的粒子“正”碰撞的概率相比，要减弱到 $(pa/\hbar)^{2}\sim\eta^{2}$ 倍. 因此，三重碰撞对能量的贡献只在含有体积的 $V^{-2}V^{-2/3}$ 的那些项中. 换句话说，能量展开式至数量级
+\begin{equation*}
+N\,\frac{p_{\mathrm F}^{2}}{m}\,\eta^{5}
+\end{equation*}
+
+为止的所有的项［即在(6.13)式中已写出的项之后再加三项］，均可单凭一些粒子对的碰撞特征量表达出来. 但是，在粒子对的碰撞特征量中不仅有慢碰撞［如(6.13)］的 s 散射幅，而且也有它对能量的微商以及 $p$ 散射幅.
