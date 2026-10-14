@@ -18,7 +18,7 @@ Each folder contains the original PDF scan, LaTeX source, figures, and the compi
 | Quantum Finance | B. E. Baaquie (2004, Chinese study companion) |
 | Solid State Theory | 李正中 (2nd ed) |
 | Advanced Solid State Physics | P. Phillips (2nd ed) |
-| David Tong Lecture Notes | D. Tong (19 lecture notes, Chinese translation) |
+| David Tong Lecture Notes | D. Tong (19 lecture notes, Chinese translation by Zhihu user 二刺猿丛雨) |
 
 `Print Editions/` — print-ready PDFs.
 
